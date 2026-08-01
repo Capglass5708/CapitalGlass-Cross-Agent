@@ -13,6 +13,27 @@ Purpose: give Wesley, ChatGPT, Cursor, and other agents a fast orientation point
 | Current focus | Move protocol authority to Governance while keeping AppBuilder as execution adapter |
 | Last updated | 2026-08-01 |
 
+## Required writing rule
+
+All pertinent build information must be written into the meeting repo as the work progresses.
+
+This includes:
+
+- workspace/repo context
+- active goals
+- decisions made
+- current status
+- blockers
+- commands that matter
+- commits and pushes
+- verification results
+- authority rules
+- next actions
+
+Do not rely on chat memory alone. If the information affects future work, agent behavior, repo ownership, authority, verification, or recovery, write it here or in `work-progress/ACTIVE_WORK.md`.
+
+Do not write secrets, credentials, database dumps, Bible copies, app source code, or implementation code into this repo.
+
 ## Repositories involved
 
 | Repo | Role in this workspace | What belongs there | What does not belong there |
@@ -63,3 +84,5 @@ Then work in the correct repo:
 - Coordination or handoff only → `CapitalGlass-Cross-Agent`
 - Protocol authority or validation → `CG-Platform-Governance-MCP`
 - Execution adapter, sync, index, cache, harvest, or AppBuilder implementation → `CG-AppBuilder-MCP`
+
+As work proceeds, write pertinent build information back into `work-progress/ACTIVE_WORK.md`.
