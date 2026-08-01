@@ -207,31 +207,7 @@ Target direction:
 
 Notes:
 - Governance commit: `0f6dafd` — `feat(governance): add north-star-compounding-proof-v1 constitutional authority`.
-- Governance commit scope: 14 files — schema, lib, MCP tools, policy modules, closeout wiring, manifest, ownership map.
 - AppBuilder commit: `480315c2` — `feat(governance): AppBuilder execution adapters for compounding proof authority`.
-- AppBuilder commit scope: 10 files — Governance shims, compounding proof client, preflight/closeout wiring, Cursor rule, Bible doc, register-tools fix.
-- Bible parity root cause fixed:
-  - `PLATFORM-INTELLIGENCE-V1C-CONTRACTS.md` was missing `list_application_bibles` and `get_application_bible_context`.
-  - `register-tools.ts` description contained write-language that tripped no-write-tool regex.
-- Bible parity verification now passes:
-  - `check-bible-runtime-parity` — PASS.
-  - `check:cross-index-parity` — PARTIAL, blocking=0; `application-bibles: IN_SYNC`.
-- Full `closeout:gate` ran about 24 minutes and failed later in `test:auto-protocol-v3`, not on Bible parity.
-- Failing case: `material mission fails without work package, mission class, or compile receipt`.
-- Same test passed when run alone, 14/14.
-- Likely cause: shell had `CG_AUTO_V32_WORK_PACKAGE=north-star-compounding-proof-v1` and/or `CG_AUTO_V32_MATERIAL` set, so `runAutoV32Preflight` picked up work package from environment and test no longer saw expected blocker.
-- Required clean rerun:
-
-```powershell
-Remove-Item Env:CG_AUTO_V32_WORK_PACKAGE -ErrorAction SilentlyContinue
-Remove-Item Env:CG_AUTO_V32_MATERIAL -ErrorAction SilentlyContinue
-cd C:\Developer\repos\CG-AppBuilder-MCP
-npm run closeout:gate
-```
-
-- Cursor MCP restart still required so new Governance tools load:
-  - `governance_get_compounding_capture_contract`.
-  - `governance_validate_compounding_proof`.
 - Project file updated: `work-progress/projects/2026-08-01_north-star-compounding-proof-v1.md`.
 
 ### 2026-08-01 18:07 CT — revu-opening pilot 8/10 operational
@@ -241,18 +217,17 @@ npm run closeout:gate
 | Project / Cursor ID | `revu-opening-detection-top10-v1` |
 | Work package | `cg-opening-locator-v1` |
 | Source | Cursor |
-| Repos involved | `Data-Extraction`, `Scraper`, `CapitalGlass-Cross-Agent` |
-| Status | Pilot 8/10 operational |
+| Repos involved | `Computer Estimator`, `CapitalGlassRevu`, `CG-Computer-Estimator-MCP`, `Data-Extraction`, `Scraper`, `CapitalGlass-Cross-Agent` |
+| Status | Pilot 8/10 operational — DE handoff ACK_ACCEPTED |
 | Commits / PRs | `Data-Extraction 38e5c58`; `Scraper 36cd354` |
-| Verification | `PKG-REVU-OPENING-DETECTION-PILOT-V1` ACK_ACCEPTED; 8 captures; 8 knowledge builds |
-| Next action | Agent review ADOPT lane; begin `cg-opening-locator-v1` in Computer Estimator |
+| Verification | `PKG-REVU-OPENING-DETECTION-PILOT-V1` ACK_ACCEPTED; 8 GitHub captures; 8 knowledge builds under `artifacts/data-extraction-2/revu-opening-detection-pilot/` |
+| Next action | Agent review ADOPT lane (ranks 1–5); pin rank-9 YOLO benchmark URL; begin `cg-opening-locator-v1` stub in Computer Estimator |
 
 Notes:
+- **Architecture rule:** Computer Estimator detects; CG-Computer-Estimator-MCP read-only; CapitalGlassRevu markup + read-back; Revu MCP is not the detection engine.
 - Full pipeline: scrape → articles → Z: publish → DE handoff → knowledge builds.
 - Excluded from capture: rank 7 (FloorPlanCAD metadata), rank 9 (YOLO benchmark URL TBD).
-- Knowledge builds: `artifacts/data-extraction-2/revu-opening-detection-pilot/KB-*`.
 - Project file: `work-progress/projects/2026-08-01_revu-opening-detection-top10-v1.md`.
-
 
 ### 2026-08-01 17:34 CT — proposal-stack pilot 9/10 operational
 

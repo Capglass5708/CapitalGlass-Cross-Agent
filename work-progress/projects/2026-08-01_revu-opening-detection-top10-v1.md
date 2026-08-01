@@ -16,7 +16,8 @@ Scope Evidence Locator Phase 2 research registry for door/window/opening detecti
 | Detection owner | `Computer Estimator` |
 | Markup binding owner | `CapitalGlassRevu` |
 | Read-only evidence MCP | `CG-Computer-Estimator-MCP` |
-| Status | Registry drafted — capture not started |
+| Status | **Pilot 8/10 operational** |
+| Commits / PRs | `Data-Extraction 38e5c58`; `Scraper 36cd354`; `CapitalGlass-Cross-Agent` (pending push) |
 
 ## Architecture rule (mandatory)
 
@@ -111,6 +112,13 @@ Capital Glass historical Bluebeam markups via pymkup — not public floor-plan d
 | 5 | Keep CapitalGlassRevu takeoff workflow locked until estimator-reviewed recall demonstrated | CapitalGlassRevu |
 
 ## Update log
+
+### 2026-08-01 18:07 CT — pilot 8/10 operational; DE handoff ACK_ACCEPTED
+
+- GitHub captures complete for ranks 1–6, 8, 10 (8 sources).
+- `PKG-REVU-OPENING-DETECTION-PILOT-V1` validated, ingested, ACK_ACCEPTED.
+- Eight knowledge builds under `artifacts/data-extraction-2/revu-opening-detection-pilot/`.
+- Commits pushed: Data-Extraction `38e5c58`, Scraper `36cd354`.
 
 ### 2026-08-01 17:43 CT — investigation recorded; registry drafted
 
