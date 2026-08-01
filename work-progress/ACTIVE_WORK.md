@@ -107,7 +107,7 @@ Do not capture:
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-08-01 |
-| Current focus | Agent research library layout + proposal-stack pilot 9/10 operational; n8n bounded capture deferred |
+| Current focus | North Star compounding proof authority committed locally; closeout gate needs clean-env rerun; proposal-stack pilot remains 9/10 operational |
 | Workspace context | `work-progress/WORKSPACE_CONTEXT.md` |
 | Project file instructions | `work-progress/projects/README.md` |
 | Primary authority repo | CG-Platform-Governance-MCP |
@@ -119,10 +119,10 @@ Do not capture:
 
 | Repo | Commit | Status | Notes |
 | --- | --- | --- | --- |
+| CG-Platform-Governance-MCP | `0f6dafd` | Local only / not pushed | `north-star-compounding-proof-v1` constitutional authority: schema, lib, MCP tools, policy modules, closeout wiring, manifest, ownership map |
+| CG-AppBuilder-MCP | `480315c2` | Local only / not pushed | AppBuilder execution adapters: Governance shims, compounding proof client, preflight/closeout wiring, Cursor rule, Bible doc, register-tools fix |
 | CapitalGlass-Cross-Agent | `76b34fe` | Pushed | Application Bible sync runbook updated |
 | CG-AppBuilder-MCP | `dc32d991` | Pushed | `bible:authority:gate` added |
-| CG-Platform-Governance-MCP | Not provided | Local / pending operator review | `north-star-compounding-proof-v1` schema/lib/MCP tools and policy migration work completed per Cursor closeout |
-| CG-AppBuilder-MCP | Not provided | Local / pending operator review | AppBuilder shims, preflight fail-closed, closeout compounding envelope completed per Cursor closeout |
 
 ## Current operating rules
 
@@ -183,14 +183,56 @@ Target direction:
 
 | Priority | Action | Owner repo | Status |
 | --- | --- | --- | --- |
-| 1 | Restart MCP in Cursor so `governance_get_compounding_capture_contract` and `governance_validate_compounding_proof` load | Cursor / local MCP runtime | Pending operator action |
-| 2 | Commit paired Governance + AppBuilder changes after operator review | CG-Platform-Governance-MCP / CG-AppBuilder-MCP | Pending |
-| 3 | Fix pre-existing `BIBLE_RUNTIME_PARITY_FAILED` / missing `list_application_bibles` runtime parity issue, then rerun `npm run closeout:gate` | CG-AppBuilder-MCP | Pending separate fix |
+| 1 | Clear leaked `CG_AUTO_V32_WORK_PACKAGE` and `CG_AUTO_V32_MATERIAL`, then rerun `npm run closeout:gate` | CG-AppBuilder-MCP / shell environment | Pending |
+| 2 | Restart MCP in Cursor so `governance_get_compounding_capture_contract` and `governance_validate_compounding_proof` load | Cursor / local MCP runtime | Pending operator action |
+| 3 | Push local commits `0f6dafd` and `480315c2` when approved | CG-Platform-Governance-MCP / CG-AppBuilder-MCP | Pending |
 | 4 | Run next work package: `north-star-compounding-vertical-pilot-v1` — harvest → Z: → next-mission retrieval | CG-Platform-Governance-MCP / CG-AppBuilder-MCP | Recommended next WP |
 | 5 | Run next work package: `platform-governance-phase4-registries-v1` — program/mission/exception registries | CG-Platform-Governance-MCP | Recommended next WP |
 | 6 | Keep this valuable-work ledger updated as timestamped work proceeds | CapitalGlass-Cross-Agent | Active |
 
 ## Progress log
+
+### 2026-08-01 CT — north-star-compounding-proof-v1 commits and gate rerun
+
+| Field | Value |
+| --- | --- |
+| Project / Cursor ID | `north-star-compounding-proof-v1` |
+| Work package | `north-star-compounding-proof-v1` |
+| Source | Cursor paste + Wesley + ChatGPT ledger intake |
+| Repos involved | `CG-Platform-Governance-MCP`, `CG-AppBuilder-MCP`, `CapitalGlass-Cross-Agent` |
+| Status | Committed locally; push pending; full closeout gate needs clean-env rerun |
+| Commits / PRs | `CG-Platform-Governance-MCP 0f6dafd`; `CG-AppBuilder-MCP 480315c2`; neither pushed |
+| Verification | `check-bible-runtime-parity` PASS; `check:cross-index-parity` PARTIAL blocking=0; isolated `test:auto-protocol-v3` passed 14/14; full `closeout:gate` failed later due likely env contamination |
+| Next action | Clear Auto v3.2 env vars, rerun `npm run closeout:gate`, restart Cursor MCP servers, then push commits when approved |
+
+Notes:
+- Governance commit: `0f6dafd` — `feat(governance): add north-star-compounding-proof-v1 constitutional authority`.
+- Governance commit scope: 14 files — schema, lib, MCP tools, policy modules, closeout wiring, manifest, ownership map.
+- AppBuilder commit: `480315c2` — `feat(governance): AppBuilder execution adapters for compounding proof authority`.
+- AppBuilder commit scope: 10 files — Governance shims, compounding proof client, preflight/closeout wiring, Cursor rule, Bible doc, register-tools fix.
+- Bible parity root cause fixed:
+  - `PLATFORM-INTELLIGENCE-V1C-CONTRACTS.md` was missing `list_application_bibles` and `get_application_bible_context`.
+  - `register-tools.ts` description contained write-language that tripped no-write-tool regex.
+- Bible parity verification now passes:
+  - `check-bible-runtime-parity` — PASS.
+  - `check:cross-index-parity` — PARTIAL, blocking=0; `application-bibles: IN_SYNC`.
+- Full `closeout:gate` ran about 24 minutes and failed later in `test:auto-protocol-v3`, not on Bible parity.
+- Failing case: `material mission fails without work package, mission class, or compile receipt`.
+- Same test passed when run alone, 14/14.
+- Likely cause: shell had `CG_AUTO_V32_WORK_PACKAGE=north-star-compounding-proof-v1` and/or `CG_AUTO_V32_MATERIAL` set, so `runAutoV32Preflight` picked up work package from environment and test no longer saw expected blocker.
+- Required clean rerun:
+
+```powershell
+Remove-Item Env:CG_AUTO_V32_WORK_PACKAGE -ErrorAction SilentlyContinue
+Remove-Item Env:CG_AUTO_V32_MATERIAL -ErrorAction SilentlyContinue
+cd C:\Developer\repos\CG-AppBuilder-MCP
+npm run closeout:gate
+```
+
+- Cursor MCP restart still required so new Governance tools load:
+  - `governance_get_compounding_capture_contract`.
+  - `governance_validate_compounding_proof`.
+- Project file updated: `work-progress/projects/2026-08-01_north-star-compounding-proof-v1.md`.
 
 ### 2026-08-01 17:34 CT — proposal-stack pilot 9/10 operational
 
@@ -347,140 +389,3 @@ Notes:
 ### 2026-08-01 16:45 CT — north-star-compounding-proof-v1 project file created
 
 | Field | Value |
-| --- | --- |
-| Project / Cursor ID | north-star-compounding-proof-v1 |
-| Work package | north-star-compounding-proof-v1 |
-| Source | ChatGPT + Wesley |
-| Repos involved | `CapitalGlass-Cross-Agent` |
-| Status | Active / pending commits |
-| Commits / PRs | Project file commit `108348a6d3404939c570623295463c0632429084`; ledger update pending in this entry |
-| Verification | Required context files read: `work-progress/WORKSPACE_CONTEXT.md`, `work-progress/ACTIVE_WORK.md`; project file created under `work-progress/projects/` |
-| Next action | Restart MCP in Cursor, commit paired Governance + AppBuilder changes after operator review, and fix `BIBLE_RUNTIME_PARITY_FAILED` separately |
-
-Notes:
-- Created `work-progress/projects/2026-08-01_north-star-compounding-proof-v1.md`.
-- Captured project purpose, workspace, repository roles, authority rule, delivered/reported complete items, evidence paths, verification, key decision, blockers, next work packages, and ledger links.
-- This is coordination-only documentation; no implementation repos were modified.
-
-### 2026-08-01 CT — project-files-readme
-
-| Field | Value |
-| --- | --- |
-| Project / Cursor ID | project-files-readme |
-| Work package | project-files-folder-instructions-v1 |
-| Source | Wesley + ChatGPT |
-| Repos involved | `CapitalGlass-Cross-Agent` |
-| Status | Complete |
-| Commits / PRs | Pending commit SHA from GitHub write |
-| Verification | GitHub file write requested |
-| Next action | Use `work-progress/projects/README.md` whenever starting a new project file |
-
-Notes:
-- Added folder-level README instructions for `work-progress/projects/`.
-- The README tells agents to read workspace context, active ledger, and project instructions before creating a project file.
-- The README defines filename pattern, required project template, Cursor paste intake, ledger update, and commit rule.
-
-### 2026-08-01 CT — north-star-compounding-proof-v1
-
-| Field | Value |
-| --- | --- |
-| Project / Cursor ID | north-star-compounding-proof-v1 |
-| Work package | north-star-compounding-proof-v1 |
-| Source | Cursor paste + Wesley + ChatGPT ledger intake |
-| Repos involved | `CG-Platform-Governance-MCP`, `CG-AppBuilder-MCP`, `CapitalGlass-Cross-Agent` |
-| Status | Complete locally; commit pending operator review |
-| Commits / PRs | Not committed in Cursor session per pasted closeout |
-| Verification | Auto v3.2 closeout gate `AUTO_V32_CLOSEOUT_GATE_PASS`; Governance tests 6/6 PASS; authority manifest OK; targeted corpus-sync test 16/16 PASS |
-| Next action | Restart MCP in Cursor, commit paired Governance + AppBuilder changes after review, fix Bible runtime parity separately |
-
-Notes:
-- Mission: move constitutional authority to Governance MCP; AppBuilder becomes execution worker only.
-- Delivered in Governance MCP:
-  - `north-star-compounding-proof-v1` schema.
-  - `north-star-compounding-proof-v1` library.
-  - Two MCP tools: `governance_get_compounding_capture_contract` and `governance_validate_compounding_proof`.
-  - Policy moved for corpus-sync, mission-front-door, and retention closeout.
-- Delivered in AppBuilder:
-  - Shims to Governance authority.
-  - Preflight fail-closed behavior.
-  - Closeout compounding envelope.
-- Session evidence paths reported:
-  - `CG-AppBuilder-MCP/artifacts/agent-runs/north-star-compounding-proof-v1/session-closeout-v3.2.json`
-  - `governance-material-preflight-v1.json` — PASS.
-  - `governance-closeout-decision-v1.json` — AUTHORIZED.
-  - `north-star-compounding-proof-v1.json`.
-  - `harvest-manifest-v1.json`.
-- Outcome: PASS — governance preflight PASS, closeout AUTHORIZED, harvest recorded.
-- Mission class: ownership.
-- Host: Windows PowerShell.
-- Mutation repo for closeout: `CG-AppBuilder-MCP`.
-- Key decision: hard compounding proof BLOCK only applies when `platformTier.target=Compounding` or `promotionCompleted`; non-compounding material missions remain advisory.
-- Verification commands/results reported:
-  - `npm run test:north-star-compounding-proof` — PASS.
-  - `npm run test:governance-closeout-decision` — PASS.
-  - AppBuilder shim smoke — PASS.
-  - `validate-auto-v32-closeout-gate.mjs` — PASS.
-  - `run-auto-v32-closeout-corpus-sync.test.mjs` — 16/16 PASS.
-- Known blocker: full `closeout:gate` still blocked by pre-existing `BIBLE_RUNTIME_PARITY_FAILED` / missing `list_application_bibles` tool; this is unrelated to `north-star-compounding-proof-v1`.
-- Runtime note: targeted corpus-sync test took about 5.7 minutes because Node ran the full file despite name filter; harmless `fatal: not a git repository` warnings came from temp fixture dirs and did not affect results.
-- Enhancement recommendations captured:
-  - `north-star-compounding-vertical-pilot-v1` — harvest → Z: → next-mission retrieval.
-  - `platform-governance-phase4-registries-v1` — program/mission/exception registries.
-  - Immediate fix: fix `BIBLE_RUNTIME_PARITY_FAILED` to unblock full `closeout:gate`.
-  - Immediate fix: commit paired Governance + AppBuilder changes after operator review.
-- Mission alignment:
-  - Lane served: Suite control-plane / governance authority correction.
-  - Capability improved: Governance owns capture contract and PASS/BLOCK; AppBuilder triggers Governance at preflight and closeout.
-  - Closeout question answered: authority is in Governance; AppBuilder is hands, not brain.
-
-### 2026-08-01 15:00 CT — meeting-repo-progress-ledger
-
-| Field | Value |
-| --- | --- |
-| Project / Cursor ID | meeting-repo-progress-ledger |
-| Work package | active-work-ledger-v1 |
-| Source | ChatGPT + Wesley |
-| Repos involved | `CapitalGlass-Cross-Agent` |
-| Status | Active |
-| Commits / PRs | `d0825e2`, `16c64b3`, `35a046a`, `981c8c7`, `feb9446`, `6190376`, `8b66320`, `335f81a`, `f66745d`, `4ec95f9`, `64c2c98`, `cb1f58a` |
-| Verification | GitHub file writes succeeded |
-| Next action | Keep updating during future work |
-
-Notes:
-- Defined this file as the valuable-work ledger for the build.
-- Added rule: when Wesley pastes Cursor output into ChatGPT, ChatGPT extracts the valuable build information and writes it into this ledger.
-- Added explicit rule: all pertinent build information must be written into the meeting repo as work progresses.
-- Added required format for timestamped project/work-package entries.
-- Added requirement to capture project ID / Cursor project ID when available.
-- Created `work-progress/WORKSPACE_CONTEXT.md` to state the active workspace and the repos involved:
-  - `CapitalGlass-Cross-Agent`
-  - `CG-Platform-Governance-MCP`
-  - `CG-AppBuilder-MCP`
-
-### 2026-08-01 — Bible authority gate and sync recovery
-
-| Field | Value |
-| --- | --- |
-| Project / Cursor ID | Bible authority sync/gate |
-| Work package | bible-authority-gate |
-| Source | Cursor + Wesley + ChatGPT handoff |
-| Repos involved | `CG-AppBuilder-MCP`, `CapitalGlass-Cross-Agent` |
-| Status | Pushed |
-| Commits / PRs | `CG-AppBuilder-MCP dc32d991`, `CapitalGlass-Cross-Agent 76b34fe` |
-| Verification | Z: mirror `23/23 PASS`; bible-db live index 23 apps / 541 files; 60 cache links refreshed; `bible:authority:gate` `PASS_WITH_WARNINGS` exit 0 |
-| Next action | Use the gate before Bible-dependent work |
-
-Notes:
-- Bible mirror and index pipeline reported complete:
-  - Z: mirror mounted and `23/23 PASS`.
-  - `bible-db:index-suite --live` indexed 23 apps / 541 files.
-  - `bible-db:link-cache` refreshed 60 links.
-  - `bible:authority:gate` returned `PASS_WITH_WARNINGS` with exit 0.
-- Pushed coordination/runbook update:
-  - CapitalGlass-Cross-Agent commit `76b34fe`.
-- Pushed AppBuilder gate update:
-  - CG-AppBuilder-MCP commit `dc32d991`.
-- Decided permanent structure:
-  - Governance MCP is authority.
-  - AppBuilder is execution adapter.
-  - Synology/Supabase/cache are storage and reuse layers, not protocol authority.
