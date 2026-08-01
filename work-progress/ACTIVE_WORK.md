@@ -192,6 +192,24 @@ Target direction:
 
 ## Progress log
 
+### 2026-08-01 16:45 CT — north-star-compounding-proof-v1 project file created
+
+| Field | Value |
+| --- | --- |
+| Project / Cursor ID | north-star-compounding-proof-v1 |
+| Work package | north-star-compounding-proof-v1 |
+| Source | ChatGPT + Wesley |
+| Repos involved | `CapitalGlass-Cross-Agent` |
+| Status | Active / pending commits |
+| Commits / PRs | Project file commit `108348a6d3404939c570623295463c0632429084`; ledger update pending in this entry |
+| Verification | Required context files read: `work-progress/WORKSPACE_CONTEXT.md`, `work-progress/ACTIVE_WORK.md`; project file created under `work-progress/projects/` |
+| Next action | Restart MCP in Cursor, commit paired Governance + AppBuilder changes after operator review, and fix `BIBLE_RUNTIME_PARITY_FAILED` separately |
+
+Notes:
+- Created `work-progress/projects/2026-08-01_north-star-compounding-proof-v1.md`.
+- Captured project purpose, workspace, repository roles, authority rule, delivered/reported complete items, evidence paths, verification, key decision, blockers, next work packages, and ledger links.
+- This is coordination-only documentation; no implementation repos were modified.
+
 ### 2026-08-01 CT — project-files-readme
 
 | Field | Value |
