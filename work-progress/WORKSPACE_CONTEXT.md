@@ -18,6 +18,8 @@ Purpose: give Wesley, ChatGPT, Cursor, and other agents a fast orientation point
 
 All valuable build information must be written into the meeting repo as the work progresses.
 
+When Wesley pastes Cursor text into ChatGPT, ChatGPT is responsible for extracting the valuable build information and writing it into `work-progress/ACTIVE_WORK.md`.
+
 Every material update must include, when available:
 
 - project ID or Cursor project ID
