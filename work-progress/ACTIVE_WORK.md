@@ -192,6 +192,31 @@ Target direction:
 
 ## Progress log
 
+### 2026-08-01 17:23 CT — docling manifest-only-fast publish
+
+| Field | Value |
+| --- | --- |
+| Project / Cursor ID | `docling-github-ingest-v1` |
+| Work package | `docling-github-ingest-v1` |
+| Source | Wesley + Cursor closeout + ChatGPT ledger intake |
+| Repos involved | `Scraper`, `Data-Extraction`, `CapitalGlass-Cross-Agent` |
+| Status | Publish optimized; corpus publish no longer bulk-copies pages by default |
+| Commits / PRs | Cross-Agent Docling note update `2ecb2f5fb4265c2ce23c063734c30ac2f329725d`; implementation commit not provided |
+| Verification | `manifest-only-fast` publish completed in ~28 seconds; previous full-copy path crashed after 21+ minutes |
+| Next action | Use L: compact / manifest / cold-cache entry points for agents; use full publish only when all 1,076 pages must be mirrored to L: |
+
+Notes:
+- `publish-docling-corpus.mjs` now uses `manifest-only-fast` by default.
+- Default publish skips bulk page copies.
+- It publishes manifests and pointers to Z:.
+- It mirrors only lightweight sections to L: — `00-control`, `02-manifests`, and `03-provenance`.
+- Full page bytes remain in local capture and DE2 cold cache.
+- Agent entry points on L:
+  - `L:/Capital-Glass-Intelligence-Hub/03-domains/vendor-docs/docling/compacts/docling-adoption-agent-compact-v1.json`.
+  - `L:/Capital-Glass-Research/Scraper-Corpus/vendor-docs/docling/02-manifests/extracted-articles-docling-github-v1.json`.
+  - `L:/Capital-Glass-Research/estimating-suite-cold-cache/intelligence/vendor-docs/docling/PKG-DE2-DOCLING-.../retrieval-snapshot.json`.
+- Use `npm run vendor-docs:publish:docling:full` only if all 1,076 pages must be mirrored to L:.
+
 ### 2026-08-01 16:56 CT — agent research layout commits pushed
 
 | Field | Value |
