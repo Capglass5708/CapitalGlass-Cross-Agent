@@ -1,17 +1,17 @@
 # Active Work Progress
 
-This is the shared editable working ledger for Wesley, ChatGPT, Cursor, and other agents.
+This is the shared editable valuable-work ledger for Wesley, ChatGPT, Cursor, and other agents.
 
-Purpose: keep the current work, progress, decisions, blockers, saved commits, and next actions in one durable place.
+Purpose: keep everything valuable from the build in one durable place: current work, project IDs, timestamps, progress, decisions, blockers, evidence, saved commits, verification, reusable context, and next actions.
 
 ## Rules
 
-- This file tracks work; it does not contain implementation code.
+- This file tracks valuable build information; it does not contain implementation code.
 - All pertinent build information must be written here as work progresses.
 - Do not rely on chat memory alone for anything that affects future work, agent behavior, repo ownership, authority, verification, recovery, or next actions.
 - Do not store secrets, credentials, database dumps, Bible copies, or app source here.
 - Link to owning repos, commits, PRs, runbooks, and verification files instead of copying their contents.
-- Update this file whenever meaningful work starts, changes direction, gets blocked, is committed, or is pushed.
+- Update this file whenever meaningful work starts, changes direction, gets blocked, is committed, is pushed, is verified, or creates reusable knowledge.
 - Every material update must include a project/work package ID when available and a timestamp.
 - Newest active status goes near the top. Historical detail can move to dated entries below.
 - Read `work-progress/WORKSPACE_CONTEXT.md` before deciding which repo owns the next action.
@@ -52,6 +52,25 @@ Minimum required fields:
 | Verification | Required when validated |
 | Next action | Required unless complete |
 
+## What counts as valuable information
+
+Write it here if it would help future agents, reduce repeated explanation, prevent drift, recover context, or prove what happened.
+
+| Valuable information | Capture requirement |
+| --- | --- |
+| Project / Cursor project ID | Record when available |
+| Work package ID | Record when available |
+| Timestamp | Required for material updates |
+| Repo ownership | Record involved repos and role |
+| Decisions | Record the decision and why |
+| Blockers | Record blocker and required fix |
+| Commands | Record commands that matter |
+| Verification | Record command/result/evidence |
+| Commits / PRs | Record SHA/link/status |
+| Reusable lessons | Record what future agents should know |
+| Authority rules | Record if they affect where work belongs |
+| Next action | Record unless work is complete |
+
 ## Current active status
 
 | Field | Value |
@@ -62,7 +81,7 @@ Minimum required fields:
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution/support repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
-| Progress writing rule | Write pertinent build information here as timestamped project/work-package entries |
+| Progress writing rule | Write all valuable build information here as timestamped project/work-package entries |
 
 ## Current saved work
 
@@ -88,6 +107,7 @@ Write pertinent build information into this file, including:
 - commits and pushes
 - verification results
 - authority rules
+- reusable lessons
 - next actions
 
 ### Bible-dependent work
@@ -126,7 +146,7 @@ Target direction:
 | 1 | Define `north-star-compounding-proof-v1` schema and validation in Governance MCP | CG-Platform-Governance-MCP | Not started here |
 | 2 | Map AppBuilder policy files to Governance authority vs execution adapter | CG-AppBuilder-MCP / CG-Platform-Governance-MCP | Drafted in chat |
 | 3 | Update Governance ownership/migration docs after compounding proof design | CG-Platform-Governance-MCP | Pending |
-| 4 | Keep this ledger updated as timestamped work proceeds | CapitalGlass-Cross-Agent | Active |
+| 4 | Keep this valuable-work ledger updated as timestamped work proceeds | CapitalGlass-Cross-Agent | Active |
 
 ## Progress log
 
@@ -139,13 +159,15 @@ Target direction:
 | Source | ChatGPT + Wesley |
 | Repos involved | `CapitalGlass-Cross-Agent` |
 | Status | Active |
-| Commits / PRs | `d0825e2`, `16c64b3`, `35a046a`, `981c8c7`, `feb9446`, `6190376` |
+| Commits / PRs | `d0825e2`, `16c64b3`, `35a046a`, `981c8c7`, `feb9446`, `6190376`, `8b66320`, `335f81a` |
 | Verification | GitHub file writes succeeded |
 | Next action | Push if local/remote policy requires explicit push confirmation; keep updating during future work |
 
 Notes:
+- Defined this file as the valuable-work ledger for the build.
 - Added explicit rule: all pertinent build information must be written into the meeting repo as work progresses.
 - Added required format for timestamped project/work-package entries.
+- Added requirement to capture project ID / Cursor project ID when available.
 - Created `work-progress/WORKSPACE_CONTEXT.md` to state the active workspace and the repos involved:
   - `CapitalGlass-Cross-Agent`
   - `CG-Platform-Governance-MCP`
