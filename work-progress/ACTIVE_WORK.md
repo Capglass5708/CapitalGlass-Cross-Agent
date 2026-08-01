@@ -11,6 +11,7 @@ Purpose: keep the current work, progress, decisions, blockers, saved commits, an
 - Link to owning repos, commits, PRs, runbooks, and verification files instead of copying their contents.
 - Update this file whenever meaningful work starts, changes direction, gets blocked, is committed, or is pushed.
 - Newest active status goes near the top. Historical detail can move to dated entries below.
+- Read `work-progress/WORKSPACE_CONTEXT.md` before deciding which repo owns the next action.
 
 ## Current active status
 
@@ -18,6 +19,7 @@ Purpose: keep the current work, progress, decisions, blockers, saved commits, an
 | --- | --- |
 | Last updated | 2026-08-01 |
 | Current focus | Governance/North Star capture authority and Bible authority gate handoff |
+| Workspace context | `work-progress/WORKSPACE_CONTEXT.md` |
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution/support repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
@@ -73,6 +75,10 @@ Target direction:
 
 ### 2026-08-01
 
+- Created `work-progress/WORKSPACE_CONTEXT.md` to state the active workspace and the repos involved:
+  - `CapitalGlass-Cross-Agent`
+  - `CG-Platform-Governance-MCP`
+  - `CG-AppBuilder-MCP`
 - Bible mirror and index pipeline reported complete:
   - Z: mirror mounted and `23/23 PASS`.
   - `bible-db:index-suite --live` indexed 23 apps / 541 files.
