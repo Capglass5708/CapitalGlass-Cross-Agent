@@ -1,0 +1,144 @@
+# Project Index
+
+Master index of all project files in `work-progress/projects/`.
+
+**Last updated:** 2026-08-01
+
+Read `AGENT_START_HERE.md` and `work-progress/ACTIVE_WORK.md` before working on any project listed here.
+
+---
+
+## How to use this index
+
+| Column | Meaning |
+| --- | --- |
+| Project ID | Canonical work-package or Cursor project identifier |
+| File | Durable project file in this folder |
+| Status | Current state from ledger and project file |
+| Owner repo | Primary repo where implementation happens |
+| Last commit | Most recent known commit (if any) |
+| Next action | Highest-priority next step |
+
+When you create or materially update a project file:
+
+1. Update the project file.
+2. Update this index row.
+3. Add a timestamped entry to `work-progress/ACTIVE_WORK.md`.
+
+Filename pattern: `YYYY-MM-DD_<project-id>.md` — see `work-progress/projects/README.md`.
+
+---
+
+## Active projects
+
+| Project ID | File | Status | Owner repo(s) | Last commit | Next action |
+| --- | --- | --- | --- | --- | --- |
+| `north-star-compounding-proof-v1` | [2026-08-01_north-star-compounding-proof-v1.md](./2026-08-01_north-star-compounding-proof-v1.md) | Active — local complete, commits pending | `CG-Platform-Governance-MCP` (authority), `CG-AppBuilder-MCP` (execution) | Not committed — operator review pending | Restart MCP; commit paired Governance + AppBuilder changes; fix `BIBLE_RUNTIME_PARITY_FAILED` separately |
+| `agent-research-library-layout-v1` | [2026-08-01_agent-research-library-layout-v1.md](./2026-08-01_agent-research-library-layout-v1.md) | Pilot 9/10 operational | `Data-Extraction`, `Scraper` | `Data-Extraction 2190944`; `Scraper 0111837`; layout `b1d2e42`, `3e09e4c` | Optional bounded n8n capture; agent review before any `10-approved-for-use/` promotion |
+| `docling-github-ingest-v1` | [2026-08-01_docling-github-ingest-v1.md](./2026-08-01_docling-github-ingest-v1.md) | Publish optimized — `manifest-only-fast` default | `Scraper`, `Data-Extraction` | Cross-Agent `2ecb2f5` | Use L: compact / manifest entry points; full publish only when all 1,076 pages must be mirrored |
+| `ephemeral-unstructured-github-scrape-v1` | [2026-08-01_ephemeral-unstructured-github-scrape-v1.md](./2026-08-01_ephemeral-unstructured-github-scrape-v1.md) | Scrape complete — corpus publish pending | `Scraper` (capture), `Data-Extraction` (publish) | Cross-Agent `1ff3908`, `5abae0f`, `78bbdde` | Implement shared `build-github-markdown-articles.mjs`; publish Unstructured corpus; run `knowledge:build` |
+| `revu-opening-detection-top10-v1` | [2026-08-01_revu-opening-detection-top10-v1.md](./2026-08-01_revu-opening-detection-top10-v1.md) | Active — registry drafted, capture not started | `Computer Estimator` (detection), `CapitalGlassRevu` (markup), `Scraper` (capture) | Pending | Run `revu-opening:scrape:github-batch` ranks 1–5; pin rank-9 YOLO URL; begin `cg-opening-locator-v1` stub |
+
+---
+
+## Status legend
+
+| Status | Meaning |
+| --- | --- |
+| Planned | Scoped but not started |
+| Active | In progress |
+| Blocked | Waiting on dependency or operator action |
+| Complete | Delivered locally; may still need commit/push |
+| Pushed | Committed and pushed to remote |
+| Pilot operational | Partial rollout verified; optional follow-ups remain |
+
+---
+
+## Projects by owner repo
+
+Use this when you need to find all work touching a specific repo.
+
+### CG-Platform-Governance-MCP
+
+| Project ID | Status | Next action |
+| --- | --- | --- |
+| `north-star-compounding-proof-v1` | Active — commits pending | Commit authority schema, MCP tools, policy migration after operator review |
+
+Recommended follow-on work packages (not yet project files):
+
+- `north-star-compounding-vertical-pilot-v1` — harvest → Z: → next-mission retrieval
+- `platform-governance-phase4-registries-v1` — program/mission/exception registries
+
+### CG-AppBuilder-MCP
+
+| Project ID | Status | Next action |
+| --- | --- | --- |
+| `north-star-compounding-proof-v1` | Active — commits pending | Commit shims, preflight fail-closed, closeout envelope; fix `BIBLE_RUNTIME_PARITY_FAILED` |
+
+### Data-Extraction
+
+| Project ID | Status | Next action |
+| --- | --- | --- |
+| `agent-research-library-layout-v1` | Pilot 9/10 operational | Agent review before `10-approved-for-use/` promotion |
+| `docling-github-ingest-v1` | Publish optimized | Add Docling vendor interpreter; warm retrieval ladder |
+| `ephemeral-unstructured-github-scrape-v1` | Scrape complete | Corpus publish after shared articles builder exists |
+
+### Scraper
+
+| Project ID | Status | Next action |
+| --- | --- | --- |
+| `agent-research-library-layout-v1` | Pilot 9/10 operational | Optional bounded n8n capture |
+| `docling-github-ingest-v1` | Publish optimized | GitHub bulk capture + articles builder if not done |
+| `ephemeral-unstructured-github-scrape-v1` | Scrape complete | Shared `build-github-markdown-articles.mjs` |
+| `revu-opening-detection-top10-v1` | Registry drafted | `revu-opening:scrape:github-batch` ranks 1–5 |
+
+### Computer Estimator / CapitalGlassRevu
+
+| Project ID | Status | Next action |
+| --- | --- | --- |
+| `revu-opening-detection-top10-v1` | Registry drafted | Begin `cg-opening-locator-v1` stub in Computer Estimator |
+
+---
+
+## Cross-cutting blockers
+
+| Blocker | Affects | Owner | Required action |
+| --- | --- | --- | --- |
+| MCP restart needed for new Governance tools | `north-star-compounding-proof-v1` | Cursor / operator | Restart MCP in Cursor |
+| `BIBLE_RUNTIME_PARITY_FAILED` / missing `list_application_bibles` | `north-star-compounding-proof-v1`, full `closeout:gate` | `CG-AppBuilder-MCP` | Fix runtime parity separately |
+| Missing shared GitHub → articles builder | `docling-github-ingest-v1`, `ephemeral-unstructured-github-scrape-v1` | `Scraper` | Implement `build-github-markdown-articles.mjs` |
+| Rank-9 Arch FP YOLO benchmark repo URL unknown | `revu-opening-detection-top10-v1` | Research | Pin URL before capture |
+
+---
+
+## Open next actions (workspace-wide)
+
+Priority order from `work-progress/ACTIVE_WORK.md`:
+
+| Priority | Action | Owner repo |
+| --- | --- | --- |
+| 1 | Restart MCP so `governance_get_compounding_capture_contract` and `governance_validate_compounding_proof` load | Cursor / local MCP |
+| 2 | Commit paired Governance + AppBuilder changes after operator review | `CG-Platform-Governance-MCP`, `CG-AppBuilder-MCP` |
+| 3 | Fix `BIBLE_RUNTIME_PARITY_FAILED`, then rerun `npm run closeout:gate` | `CG-AppBuilder-MCP` |
+| 4 | Run `north-star-compounding-vertical-pilot-v1` | Governance + AppBuilder |
+| 5 | Run `platform-governance-phase4-registries-v1` | `CG-Platform-Governance-MCP` |
+| 6 | Keep ledger updated as work proceeds | `CapitalGlass-Cross-Agent` |
+
+---
+
+## Index maintenance rule
+
+When adding a project:
+
+```text
+1. Create  work-progress/projects/YYYY-MM-DD_<project-id>.md
+2. Add row to this INDEX.md (Active projects + By owner repo)
+3. Add entry to work-progress/ACTIVE_WORK.md
+4. Commit with: docs: add <project-id> project file
+```
+
+When closing a project:
+
+1. Set status to Complete or Pushed in project file and this index.
+2. Move detailed history to project file update log; keep ledger entry in `ACTIVE_WORK.md`.
+3. Optionally archive superseded notes to `archive/YYYY-MM/` when that folder is in use.

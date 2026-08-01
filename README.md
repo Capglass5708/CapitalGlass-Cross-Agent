@@ -2,6 +2,8 @@
 
 Cross-agent workspace for ChatGPT, Cursor, and you.
 
+**Agents: start at [`AGENT_START_HERE.md`](./AGENT_START_HERE.md), then [`work-progress/projects/INDEX.md`](./work-progress/projects/INDEX.md).**
+
 ## Most important rule
 
 **This repo may describe work.**  
