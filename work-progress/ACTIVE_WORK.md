@@ -192,6 +192,43 @@ Target direction:
 
 ## Progress log
 
+### 2026-08-01 16:50 CT — agent-research-library-layout-v1
+
+| Field | Value |
+| --- | --- |
+| Project / Cursor ID | agent-research-library-layout-v1 |
+| Work package | scraper-data-extraction-agent-research-library-layout |
+| Source | Cursor paste + Wesley + ChatGPT ledger intake |
+| Repos involved | `Data-Extraction`, `Scraper`, `CapitalGlass-Cross-Agent` |
+| Status | Complete on disk; verification ALL_A_PLUS |
+| Commits / PRs | Not provided in pasted closeout |
+| Verification | `npm run agent-research-library:verify-layout -- --strict` reported `ALL_A_PLUS`; 58 folders created/verified across Z:, L:, and Intelligence Hub |
+| Next action | Send/register 10 pilot URLs in `00-source-registry`, capture into raw lanes, package for Data-Extraction, then run handoff → `knowledge:build` → `08-app-opportunity-map` |
+
+Notes:
+- On-disk result: 58 new folders created across Z:, L:, and Intelligence Hub.
+- Z: Scraper-Corpus folders created: `00-source-registry` through `09-evidence-hashes`, plus `github-research/` and `web-research/`.
+- L: Research folders created: `raw-imports`, `normalized-text`, `extracted-json`, `agent-review-queue`, and related extraction lanes; existing `scraper-handoff-intake` and `exports` were preserved.
+- L: Intelligence Hub folders created: `00-master-index` through `12-watchlist`, including `08-app-opportunity-map` and `10-approved-for-use`.
+- README + INDEX files were added for the two gate folders: `08-app-opportunity-map` and `10-approved-for-use`.
+- Reproducible Data-Extraction commands:
+  - `npm run agent-research-library:scaffold-layout`
+  - `npm run agent-research-library:verify-layout -- --strict`
+- Data-Extraction wiring added:
+  - `scripts/lib/agent-research-library/paths.mjs` — path constants + layout manifest.
+  - `scripts/lib/agent-research-library/scaffold.mjs` — idempotent folder creation.
+  - `scripts/lib/agent-research-library/verify.mjs` — layout grading.
+  - `scripts/agent-research-library/scaffold-layout.mjs` and `scripts/agent-research-library/verify-layout.mjs` — CLIs.
+  - `CORPUS_DIRS` extended with L: extraction lanes.
+  - Layout is wired into `synology:scaffold-nas-layout` so future NAS scaffolds include the agent research library layout.
+- Layout manifest written to `Z:\Capital-Glass-Research\Scraper-Corpus\00-control\AGENT-RESEARCH-LIBRARY-LAYOUT.json`.
+- Scraper alignment completed: retired default `Z:\TEMP L DRIVE` in `ui-capture/scripts/lib/pageflows-env.mjs` replaced with canonical `Z:\Capital-Glass-Research\Scraper-Corpus\websites\pageflows`.
+- Legacy paths intentionally preserved and not moved:
+  - `Z:\...\Scraper-Corpus\packages\` remains the existing handoff lane, including `packages/ready-for-data-extraction`.
+  - `Z:\...\Scraper-Corpus\vendor-docs\` remains the Synology vendor slot.
+  - Existing Intelligence Hub `00-hub-control` through `12-operations` remains parallel to the new agent library lanes.
+- Decision: new numbered lanes sit alongside legacy paths; the layout manifest documents aliases so writers can migrate incrementally.
+
 ### 2026-08-01 16:45 CT — north-star-compounding-proof-v1 project file created
 
 | Field | Value |
