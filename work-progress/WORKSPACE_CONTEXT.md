@@ -17,18 +17,18 @@ Purpose: give Wesley, ChatGPT, Cursor, and other agents a fast orientation point
 
 All pertinent build information must be written into the meeting repo as the work progresses.
 
-This includes:
+Every material update must include, when available:
 
-- workspace/repo context
-- active goals
-- decisions made
-- current status
-- blockers
-- commands that matter
-- commits and pushes
-- verification results
-- authority rules
-- next actions
+- project ID or Cursor project ID
+- work package ID
+- timestamp
+- source: ChatGPT, Cursor, human, or agent name
+- repos involved
+- status
+- pertinent notes
+- commits / PRs when changed
+- verification results when validated
+- next action unless complete
 
 Do not rely on chat memory alone. If the information affects future work, agent behavior, repo ownership, authority, verification, or recovery, write it here or in `work-progress/ACTIVE_WORK.md`.
 
@@ -63,7 +63,7 @@ Permanent rule:
 
 | File | Purpose |
 | --- | --- |
-| `work-progress/ACTIVE_WORK.md` | Shared editable progress ledger |
+| `work-progress/ACTIVE_WORK.md` | Shared editable timestamped progress ledger |
 | `work-progress/WORKSPACE_CONTEXT.md` | This workspace and repo-role map |
 | `verification/application-bible-sync-runbook.md` | Bible sync/gate verification runbook |
 | `cursor-reports/2026-08-01-chatgpt-bible-access-verification.md` | ChatGPT Bible access verification handoff |
@@ -85,4 +85,4 @@ Then work in the correct repo:
 - Protocol authority or validation → `CG-Platform-Governance-MCP`
 - Execution adapter, sync, index, cache, harvest, or AppBuilder implementation → `CG-AppBuilder-MCP`
 
-As work proceeds, write pertinent build information back into `work-progress/ACTIVE_WORK.md`.
+As work proceeds, write pertinent build information back into `work-progress/ACTIVE_WORK.md` using timestamped project/work-package entries.
