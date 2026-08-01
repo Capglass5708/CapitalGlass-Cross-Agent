@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "1.0.0",
+  "topic": "commit-free-application-bible-read-access",
+  "date": "2026-08-01",
+  "status": "CODE_COMPLETE_PENDING_DEPLOY",
+  "meetingRepo": "CapitalGlass-Cross-Agent",
+  "implementationRepo": "CG-AppBuilder-MCP",
+  "implementationCommit": "51a0f7e7",
+  "platformIntelligenceTools": [
+    "list_application_bibles",
+    "get_application_bible_context"
+  ],
+  "bibleAccessModel": {
+    "editAuthority": "owning application repository",
+    "indexAuthority": "Supabase bibleintel",
+    "readPath": "Platform Intelligence read-only tools",
+    "meetingRepoBibleCopies": false,
+    "commitsOnBibleRead": false
+  },
+  "evidence": {
+    "connectorManifest": "CG-AppBuilder-MCP/docs/platform-registry/chatgpt-platform-intelligence-connector-v1.json",
+    "contractTests": [
+      "npm run test:platform-intelligence-contract",
+      "npm run test:application-bible-contract"
+    ]
+  },
+  "remainingWork": [
+    "Deploy capital-glass-platform-intelligence-mcp on Railway",
+    "Re-authorize ChatGPT connector for bible.read if needed"
+  ]
+}
