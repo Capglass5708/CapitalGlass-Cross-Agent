@@ -575,6 +575,152 @@ The **estimating spine** is a **multi-repo ecosystem** unified by:
 
 ---
 
+## 16. Unification readiness assessment
+
+### Current conclusion
+
+The suite is not close to one monolithic application—and the architecture deliberately avoids that. It is much closer to a unified operator experience across repositories, especially along the estimating spine, where integration work is advanced but production cutover is not complete.
+
+### What “single app” means in this system
+
+Capital Glass is designed as a federated suite, not a repository-merger target.
+
+| Design choice | Evidence |
+| --- | --- |
+| No monolithic MCP | `MCP-SUITE-ORCHESTRATION.md`: governance-only federation; no monolithic proxy |
+| Repositories remain standalone | `WORKSPACE_NORTH_STAR.md`: each repository can operate independently |
+| Hard ownership boundaries | Document Layer, Contacts, Pipeline, `bid_*`, CE local Postgres, and Proposal Generator `project_proposal_*` each retain an owner |
+| Hub is an authentication shell | Hub launches separate production applications rather than merging their codebases |
+
+The realistic target is therefore:
+
+- One operator workflow through the estimating spine
+- One shared operational data foundation for projects, contacts, and documents
+- One federated agent/MCP fabric
+- One coherent UI shell, without requiring one codebase
+
+### Distance by unification goal
+
+#### A. One monolithic repository and deployable application
+
+**Estimated readiness: 5–10%. This is not the planned destination.**
+
+A literal merger would require collapsing:
+
+- Nine or more Vercel/Railway deployables
+- Three or more database authorities: operational Supabase, MCP control-plane storage, and CE local Postgres
+- Explicit ADR ownership boundaries, including Human Estimator Core in Bid Composer, CE as evidence producer, and Document Layer as a service
+- GPU/workstation parsing into a serverless web application
+
+Nothing in current suite governance points toward this outcome. It would be a multi-year rewrite rather than a normal unification milestone.
+
+#### B. One unified estimating workstation: CE → BC → HE → issue
+
+**Estimated readiness: 55–65% integrated in code; 25–35% active in production.**
+
+Capabilities implemented and verified through the suite-unification waves include:
+
+| Capability | Status |
+| --- | --- |
+| Bid Composer `bid_*` review spine | Implemented; Bid Composer owns the tables |
+| Human Estimator Core and MCP read surface | Implemented |
+| Command MCP gated writes | Implemented; feature-flag gated |
+| Agent Lane recommendations | Implemented |
+| Parser-evidence consumer using `bid_parser_*` | Implemented with tests |
+| `computer-estimator-parser-evidence-v1` bridge | Registered |
+| Submersive pilot #2 issue gate | Passed with zero fatal findings per Session 2B closeout |
+
+Remaining production gaps:
+
+| Gap | Operational impact |
+| --- | --- |
+| `PARSER_EVIDENCE_IMPORT_ENABLED` remains off | CE is not the live parser authority |
+| Relay remains manual | Operator friction between CE and Bid Composer |
+| Legacy GPT intake remains the production path | Two parallel intake lanes remain |
+| Parser-authority cutover is deferred | CE has not become the primary production intake |
+| Proposal Generator remains separate | New-construction estimating uses separate tables and product ownership |
+| VAE remains a parallel visual lane | It does not block the CE→BC proof path |
+| Data-Extraction uses pointer bridges | It is not runtime-coupled to estimating applications |
+
+The estimating spine is substantially wired in code. The major remaining milestone is the evidence-backed authority change that makes CE the primary parser. This requires sustained operator proof, not repository consolidation.
+
+#### C. One unified Capital Glass business suite
+
+**Estimated readiness: 70–80% at the data/authentication layer; 40–50% at the UX layer.**
+
+Already unified:
+
+- Hub provides a common sign-on and application entry point.
+- Operational Supabase provides shared projects, contacts, documents, purchase orders, calendar records, and email links.
+- Document Layer provides one project-file engine consumed by applications.
+- Canonical reference APIs provide active-project and vendor/client selectors.
+- Suite Wiring MCP registers bridges, environment contracts, and ownership checks.
+
+The suite still feels like multiple applications because:
+
+- Each module retains its own URL, repository, deployment, and Application Bible.
+- Bid Composer and Proposal Generator serve different estimating domains.
+- Computer Estimator runs on a workstation with local Postgres and L: storage.
+- Visual-Asset-Engine and Data-Extraction are intelligence lanes rather than primary product interfaces.
+
+Closing this gap means building a unified project shell with shared navigation, project context, status, and deep links. It does not require merging application codebases.
+
+#### D. One unified agent and developer plane
+
+**Estimated readiness: 75–85%.**
+
+| Component | Status |
+| --- | --- |
+| CG App Builder MCP, Suite Wiring, and diagnostics | Live |
+| Platform Intelligence Application Bible access | Deployed |
+| CapitalGlass-Cross-Agent meeting repository | Active |
+| Federated MCP orchestration | Implemented by design |
+| Work-package Platform Intelligence tools | Intentionally removed |
+
+Agents can already inspect and reason across the suite. This does not imply a single application binary or a single runtime.
+
+### Current unification profile
+
+| Layer | Current position | Remaining separation |
+| --- | --- | --- |
+| Authentication and identity | Largely unified through Hub SSO | Independent application sessions and deploys |
+| Operational data | Mostly unified | `bid_*`, CE local Postgres, and `project_proposal_*` remain domain-owned |
+| Documents | Largely unified through Document Layer | CE evidence packages and DE logic graphs remain specialized stores |
+| Estimating workflow | Partially unified | CE is not production parser authority |
+| Operator interface | Partially unified | Multiple applications, tabs, URLs, and navigation systems |
+| Codebase | Deliberately separate | Fifteen or more repositories with explicit boundaries |
+
+### Realistic completion target
+
+If the objective is for one estimator to run a bid end-to-end without thinking about repositories, completion should be defined by these milestones:
+
+| Milestone | Completion meaning | Estimated distance |
+| --- | --- | --- |
+| M1 — Estimating spine production | CE primary parser, legacy GPT fallback, automated relay | Approximately 6–12 weeks of focused operational proof |
+| M2 — One remodel product | Bid Composer owns remodel/TI; Proposal Generator remains new-construction | Architected; requires continued product discipline |
+| M3 — Unified project shell | One project context opens documents, bid, purchase order, and calendar workflows | Partial; Project Dashboard is the foundation |
+| M4 — Reliable workstation/cloud boundary | CE operates locally, BC operates in cloud, and L: handoff is automated and monitored | In progress; relay remains manual in v1 |
+| M5 — Literal single application | One repository and deployment | Not recommended under the current architecture |
+
+### Direct answers
+
+| Question | Answer |
+| --- | --- |
+| Can all repositories be merged into one application soon? | No. Ownership rules and the workstation/cloud runtime split make this impractical. |
+| How close is the suite to one working estimating system? | Moderately close in code, but not yet close in production authority until CE import is activated and proven. |
+| How close is the suite to one Capital Glass experience? | Advanced at the platform layer, but less than halfway unified at the operator-interface layer. |
+| What should the program optimize for? | Unified workflows, contracts, navigation, and evidence—not repository merger. |
+
+### Highest-leverage next steps
+
+1. **Activate CE→BC in shared development.** Enable `PARSER_EVIDENCE_IMPORT_ENABLED` and run representative Submersive/Rosewood evidence through relay, import, and estimator review.
+2. **Automate the relay.** Remove `relay_parser_evidence_to_bid_composer.py` as a manual critical-path step while preserving authentication, idempotency, and read-back evidence.
+3. **Make an explicit authority decision.** When CE evidence outperforms legacy GPT intake on agreed pilot bids, record the production cutover in `decisions/`.
+4. **Use Project Dashboard as the unified shell.** Carry `operationalProjectContext` into Document Center, Bid Composer, Pipeline, purchase orders, and calendar workflows through shared navigation and deep links.
+5. **Keep Proposal Generator and Bid Composer separate.** Unify them through shared project context, bridge contracts, and Hub navigation rather than shared estimating tables or a codebase merger.
+
+---
+
 ## Document governance
 
 - **This file is a plan only.** Implementation belongs in the owning application repos listed in `MANIFEST.json`.
