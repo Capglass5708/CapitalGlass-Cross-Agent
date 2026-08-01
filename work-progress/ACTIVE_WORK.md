@@ -107,8 +107,10 @@ Do not capture:
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-08-01 |
-| Current focus | North Star compounding proof authority committed locally; closeout gate needs clean-env rerun; proposal-stack pilot remains 9/10 operational |
+| Current focus | Cross-Agent startup path pushed; North Star compounding proof authority committed locally; closeout gate needs clean-env rerun; proposal-stack pilot remains 9/10 operational |
 | Workspace context | `work-progress/WORKSPACE_CONTEXT.md` |
+| Agent startup entrypoint | `AGENT_START_HERE.md` |
+| Project index | `work-progress/projects/INDEX.md` |
 | Project file instructions | `work-progress/projects/README.md` |
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution/support repo | CG-AppBuilder-MCP |
@@ -119,6 +121,7 @@ Do not capture:
 
 | Repo | Commit | Status | Notes |
 | --- | --- | --- | --- |
+| CapitalGlass-Cross-Agent | `4260ed7` | Pushed | Agent startup entrypoint, project index, README startup path pointer; working tree clean; no hook warnings |
 | CG-Platform-Governance-MCP | `0f6dafd` | Local only / not pushed | `north-star-compounding-proof-v1` constitutional authority: schema, lib, MCP tools, policy modules, closeout wiring, manifest, ownership map |
 | CG-AppBuilder-MCP | `480315c2` | Local only / not pushed | AppBuilder execution adapters: Governance shims, compounding proof client, preflight/closeout wiring, Cursor rule, Bible doc, register-tools fix |
 | CapitalGlass-Cross-Agent | `76b34fe` | Pushed | Application Bible sync runbook updated |
@@ -192,6 +195,34 @@ Target direction:
 
 ## Progress log
 
+### 2026-08-01 CT — cross-agent startup path pushed
+
+| Field | Value |
+| --- | --- |
+| Project / Cursor ID | `cross-agent-startup-entrypoint-v1` |
+| Work package | `agent-start-here-and-project-index` |
+| Source | Cursor paste + Wesley + ChatGPT ledger intake |
+| Repos involved | `CapitalGlass-Cross-Agent` |
+| Status | Pushed |
+| Commits / PRs | `CapitalGlass-Cross-Agent 4260ed7` pushed to `origin/main` |
+| Verification | Remote files confirmed: `AGENT_START_HERE.md`, `work-progress/projects/INDEX.md`, README startup pointer; working tree clean; no hook warnings |
+| Next action | New agents should follow `README.md` → `AGENT_START_HERE.md` → `work-progress/projects/INDEX.md` → relevant project file |
+
+Notes:
+- Commit message: `docs: add agent startup entrypoint and project index`.
+- Remote advanced `3399c2a..4260ed7` on `main`.
+- Commit contents:
+  - `AGENT_START_HERE.md` — new onboarding doc.
+  - `work-progress/projects/INDEX.md` — master index of project files.
+  - `README.md` — startup path pointer.
+- No implementation repos were modified.
+- Startup path now durable:
+  - `README.md`
+  - `AGENT_START_HERE.md`
+  - `work-progress/ACTIVE_WORK.md`
+  - `work-progress/projects/INDEX.md`
+  - relevant project file.
+
 ### 2026-08-01 CT — north-star-compounding-proof-v1 commits and gate rerun
 
 | Field | Value |
@@ -248,139 +279,3 @@ Notes:
 - n8n (#10) deferred — bounded WATCH config ready, non-blocking.
 - Raw captures excluded from git (`artifacts/captures/`); corpus on Z: only.
 - Project file updated: `work-progress/projects/2026-08-01_agent-research-library-layout-v1.md`.
-
-### 2026-08-01 17:23 CT — docling manifest-only-fast publish
-
-| Field | Value |
-| --- | --- |
-| Project / Cursor ID | `docling-github-ingest-v1` |
-| Work package | `docling-github-ingest-v1` |
-| Source | Wesley + Cursor closeout + ChatGPT ledger intake |
-| Repos involved | `Scraper`, `Data-Extraction`, `CapitalGlass-Cross-Agent` |
-| Status | Publish optimized; corpus publish no longer bulk-copies pages by default |
-| Commits / PRs | Cross-Agent Docling note update `2ecb2f5fb4265c2ce23c063734c30ac2f329725d`; implementation commit not provided |
-| Verification | `manifest-only-fast` publish completed in ~28 seconds; previous full-copy path crashed after 21+ minutes |
-| Next action | Use L: compact / manifest / cold-cache entry points for agents; use full publish only when all 1,076 pages must be mirrored to L: |
-
-Notes:
-- `publish-docling-corpus.mjs` now uses `manifest-only-fast` by default.
-- Default publish skips bulk page copies.
-- It publishes manifests and pointers to Z:.
-- It mirrors only lightweight sections to L: — `00-control`, `02-manifests`, and `03-provenance`.
-- Full page bytes remain in local capture and DE2 cold cache.
-- Agent entry points on L:
-  - `L:/Capital-Glass-Intelligence-Hub/03-domains/vendor-docs/docling/compacts/docling-adoption-agent-compact-v1.json`.
-  - `L:/Capital-Glass-Research/Scraper-Corpus/vendor-docs/docling/02-manifests/extracted-articles-docling-github-v1.json`.
-  - `L:/Capital-Glass-Research/estimating-suite-cold-cache/intelligence/vendor-docs/docling/PKG-DE2-DOCLING-.../retrieval-snapshot.json`.
-- Use `npm run vendor-docs:publish:docling:full` only if all 1,076 pages must be mirrored to L:.
-
-### 2026-08-01 16:56 CT — agent research layout commits pushed
-
-| Field | Value |
-| --- | --- |
-| Project / Cursor ID | `agent-research-library-layout-v1` |
-| Work package | `scraper-data-extraction-agent-research-library-layout` |
-| Source | Wesley + Cursor closeout + ChatGPT ledger intake |
-| Repos involved | `Data-Extraction`, `Scraper`, `CapitalGlass-Cross-Agent` |
-| Status | Pushed |
-| Commits / PRs | `Data-Extraction b1d2e42`; `Scraper 3e09e4c`; Cross-Agent project note `c7dc425ab7b7ffb28a3d4f46eb8e0c00708657da` |
-| Verification | Prior layout verification reported `ALL_A_PLUS`; pushed commits reported by Wesley/Cursor |
-| Next action | Decide whether to make a second Scraper commit for remaining Unstructured/Docling vendor-docs work and a separate Data-Extraction commit for Bible/Docling changes |
-
-Notes:
-- Created `work-progress/projects/2026-08-01_agent-research-library-layout-v1.md`.
-- Data-Extraction commit pushed to `origin/main`: `b1d2e42` — `feat(agent-research-library): scaffold Z/L/Hub ingestion folder layout`.
-- Data-Extraction commit scope included:
-  - `scripts/lib/agent-research-library/*`.
-  - `scripts/agent-research-library/*`.
-  - `package.json` new npm scripts.
-  - `scripts/lib/paths.mjs` L: extraction directories.
-  - `scripts/synology/scaffold-nas-layout.mjs`.
-- Data-Extraction still unstaged / not in commit:
-  - application-bible edits.
-  - docling scripts.
-  - railway run artifacts.
-  - `constants.mjs`.
-  - other unstaged items not listed in the closeout.
-- Scraper commit pushed to `origin/feat/vendor-docs-markdown-capture-v1`: `3e09e4c` — `fix(pageflows): retire TEMP L DRIVE default capture root`.
-- Scraper commit scope included:
-  - `ui-capture/scripts/lib/pageflows-env.mjs`.
-  - `ui-capture/README.md`.
-- Scraper still unstaged / not in commit:
-  - Unstructured capture lane work.
-  - Docling capture lane work.
-  - related `package.json`, scripts, configs, and artifacts.
-- Decision point: user asked whether to make a second commit for remaining Scraper vendor-docs work or Data-Extraction Bible/Docling changes.
-
-### 2026-08-01 16:52 CT — unstructured scrape + docling ingest planning
-
-| Field | Value |
-| --- | --- |
-| Project / Cursor ID | `ephemeral-unstructured-github-scrape-v1`; `docling-github-ingest-v1` |
-| Work package | `ephemeral-unstructured-github-scrape-v1`; `docling-github-ingest-v1` |
-| Source | Wesley + Cursor paste + attached markdown + ChatGPT ledger intake |
-| Repos involved | `Scraper`, `Data-Extraction`, `CapitalGlass-Cross-Agent`, external `Unstructured-IO/unstructured`, external `Unstructured-IO/unstructured-ingest`, external `docling-project/docling` |
-| Status | Unstructured scrape complete; Docling ingest planned; shared GitHub articles builder needed |
-| Commits / PRs | Cross-Agent project file commits: `1ff390878b25c54e8cfa615e7bf013539b1fb14b`, `5abae0f3917102767d039222b648ae5bdc15126d`; Unstructured note update `78bbddec98ac8f5943b06e4fa03f16801d47db2d` |
-| Verification | Unstructured full scrape reported 1,793 artifacts, 0 failures; Docling plan read from attached markdown |
-| Next action | Implement shared `build-github-markdown-articles.mjs`, then publish Unstructured and Docling captures to corpus and run Data-Extraction `knowledge:build` / opportunity mapping |
-
-Notes:
-- Created `work-progress/projects/2026-08-01_ephemeral-unstructured-github-scrape-v1.md`.
-- Created `work-progress/projects/2026-08-01_docling-github-ingest-v1.md`.
-- Updated the Unstructured project note with the shared Docling-discovered blocker: missing generic GitHub → articles builder.
-- Unstructured scrape reported complete:
-  - `unstructured-github-v1` — 279 files from `github.com/Unstructured-IO/unstructured`.
-  - `unstructured-ingest-github-v1` — 1,008 files from `github.com/Unstructured-IO/unstructured-ingest`.
-  - `unstructured-docs-markdown-v1` — 506 pages from `docs.unstructured.io` using `llms.txt`.
-  - Total: 1,793 artifacts, 0 failures.
-- Scraper files reported added for Unstructured:
-  - `ui-capture/scripts/scrape-github-repo.mjs`.
-  - `config/vendor-docs-targets/unstructured-github-v1.json`.
-- Unstructured output locations reported under `C:\Developer\repos\Scraper\artifacts\captures\` and rollup artifacts under `C:\Developer\repos\Scraper\artifacts\`.
-- Re-run command reported: `npm run vendor-docs:scrape:unstructured-all` from `C:\Developer\repos\Scraper\ui-capture`.
-- Docling plan captured target layout for `Z:/Capital-Glass-Research/Scraper-Corpus/vendor-docs/docling/`, L: research mirror, cold-cache retrieval snapshot, and Intelligence Hub compact.
-- Docling plan identified wrong-lane UI-reference capture and specified that GitHub API/tree scrape should supersede it.
-- Shared blocker: generic GitHub article builder must emit `extracted-articles.json`, update `capture-manifest.json`, and handle Markdown/code/config files before GitHub captures can become first-class vendor-docs corpus packages.
-- Future Data-Extraction work includes Docling interpreter, registry entry, warm retrieval ladder, estate status, fixture subset, producer package verification, and agent compact.
-
-### 2026-08-01 16:50 CT — agent-research-library-layout-v1
-
-| Field | Value |
-| --- | --- |
-| Project / Cursor ID | agent-research-library-layout-v1 |
-| Work package | scraper-data-extraction-agent-research-library-layout |
-| Source | Cursor paste + Wesley + ChatGPT ledger intake |
-| Repos involved | `Data-Extraction`, `Scraper`, `CapitalGlass-Cross-Agent` |
-| Status | Complete on disk; verification ALL_A_PLUS |
-| Commits / PRs | Not provided in pasted closeout |
-| Verification | `npm run agent-research-library:verify-layout -- --strict` reported `ALL_A_PLUS`; 58 folders created/verified across Z:, L:, and Intelligence Hub |
-| Next action | Send/register 10 pilot URLs in `00-source-registry`, capture into raw lanes, package for Data-Extraction, then run handoff → `knowledge:build` → `08-app-opportunity-map` |
-
-Notes:
-- On-disk result: 58 new folders created across Z:, L:, and Intelligence Hub.
-- Z: Scraper-Corpus folders created: `00-source-registry` through `09-evidence-hashes`, plus `github-research/` and `web-research/`.
-- L: Research folders created: `raw-imports`, `normalized-text`, `extracted-json`, `agent-review-queue`, and related extraction lanes; existing `scraper-handoff-intake` and `exports` were preserved.
-- L: Intelligence Hub folders created: `00-master-index` through `12-watchlist`, including `08-app-opportunity-map` and `10-approved-for-use`.
-- README + INDEX files were added for the two gate folders: `08-app-opportunity-map` and `10-approved-for-use`.
-- Reproducible Data-Extraction commands:
-  - `npm run agent-research-library:scaffold-layout`
-  - `npm run agent-research-library:verify-layout -- --strict`
-- Data-Extraction wiring added:
-  - `scripts/lib/agent-research-library/paths.mjs` — path constants + layout manifest.
-  - `scripts/lib/agent-research-library/scaffold.mjs` — idempotent folder creation.
-  - `scripts/lib/agent-research-library/verify.mjs` — layout grading.
-  - `scripts/agent-research-library/scaffold-layout.mjs` and `scripts/agent-research-library/verify-layout.mjs` — CLIs.
-  - `CORPUS_DIRS` extended with L: extraction lanes.
-  - Layout is wired into `synology:scaffold-nas-layout` so future NAS scaffolds include the agent research library layout.
-- Layout manifest written to `Z:\Capital-Glass-Research\Scraper-Corpus\00-control\AGENT-RESEARCH-LIBRARY-LAYOUT.json`.
-- Scraper alignment completed: retired default `Z:\TEMP L DRIVE` in `ui-capture/scripts/lib/pageflows-env.mjs` replaced with canonical `Z:\Capital-Glass-Research\Scraper-Corpus\websites\pageflows`.
-- Legacy paths intentionally preserved and not moved:
-  - `Z:\...\Scraper-Corpus\packages\` remains the existing handoff lane, including `packages/ready-for-data-extraction`.
-  - `Z:\...\Scraper-Corpus\vendor-docs\` remains the Synology vendor slot.
-  - Existing Intelligence Hub `00-hub-control` through `12-operations` remains parallel to the new agent library lanes.
-- Decision: new numbered lanes sit alongside legacy paths; the layout manifest documents aliases so writers can migrate incrementally.
-
-### 2026-08-01 16:45 CT — north-star-compounding-proof-v1 project file created
-
-| Field | Value |
