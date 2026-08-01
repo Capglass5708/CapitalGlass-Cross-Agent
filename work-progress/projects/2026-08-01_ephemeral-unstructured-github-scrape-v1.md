@@ -129,6 +129,13 @@ cd C:\Developer\repos\Scraper\ui-capture
 node scripts/scrape-github-repo.mjs --owner Unstructured-IO --repo unstructured --capture-id unstructured-github-v1
 ```
 
+## Shared pipeline dependency discovered from Docling ingest plan
+
+- The missing generic GitHub → articles builder also blocks `unstructured-github-v1` from becoming a first-class vendor-docs corpus package.
+- Shared builder target: `Scraper/ui-capture/scripts/build-github-markdown-articles.mjs`.
+- Builder should emit `extracted-articles.json`, update `capture-manifest.json`, and support GitHub page trees with Markdown, Python, TOML, YAML, and other source/config files.
+- This should be implemented once and reused for Unstructured, Docling, and future GitHub vendor research captures.
+
 ## Blockers / warnings
 
 | Blocker | Owner repo | Required action |
