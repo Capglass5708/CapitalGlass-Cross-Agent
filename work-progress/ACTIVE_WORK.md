@@ -234,6 +234,26 @@ npm run closeout:gate
   - `governance_validate_compounding_proof`.
 - Project file updated: `work-progress/projects/2026-08-01_north-star-compounding-proof-v1.md`.
 
+### 2026-08-01 18:07 CT — revu-opening pilot 8/10 operational
+
+| Field | Value |
+| --- | --- |
+| Project / Cursor ID | `revu-opening-detection-top10-v1` |
+| Work package | `cg-opening-locator-v1` |
+| Source | Cursor |
+| Repos involved | `Data-Extraction`, `Scraper`, `CapitalGlass-Cross-Agent` |
+| Status | Pilot 8/10 operational |
+| Commits / PRs | `Data-Extraction 38e5c58`; `Scraper 36cd354` |
+| Verification | `PKG-REVU-OPENING-DETECTION-PILOT-V1` ACK_ACCEPTED; 8 captures; 8 knowledge builds |
+| Next action | Agent review ADOPT lane; begin `cg-opening-locator-v1` in Computer Estimator |
+
+Notes:
+- Full pipeline: scrape → articles → Z: publish → DE handoff → knowledge builds.
+- Excluded from capture: rank 7 (FloorPlanCAD metadata), rank 9 (YOLO benchmark URL TBD).
+- Knowledge builds: `artifacts/data-extraction-2/revu-opening-detection-pilot/KB-*`.
+- Project file: `work-progress/projects/2026-08-01_revu-opening-detection-top10-v1.md`.
+
+
 ### 2026-08-01 17:34 CT — proposal-stack pilot 9/10 operational
 
 | Field | Value |
