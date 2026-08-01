@@ -92,7 +92,7 @@ Data-Extraction owns the scaffold/verify contract for the research-library layou
 | Data-Extraction | `2190944` — registry, handoff publisher, proposal-stack pilot pipeline | Pushed to `origin/main` |
 | Scraper | `3e09e4c` — Pageflows path alignment | Pushed to `feat/vendor-docs-markdown-capture-v1` |
 | Scraper | `0111837` — proposal-stack batch capture/publish scripts + configs | Pushed to `feat/vendor-docs-markdown-capture-v1` |
-| CapitalGlass-Cross-Agent | This update | Pending push |
+| CapitalGlass-Cross-Agent | `10d53b6` — proposal-stack pilot coordination notes | Pushed to `origin/main` |
 
 ## Data-Extraction commit scope
 
