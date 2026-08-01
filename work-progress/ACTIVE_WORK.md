@@ -8,6 +8,8 @@ Purpose: keep everything valuable from the build in one durable place: current w
 
 - This file tracks valuable build information; it does not contain implementation code.
 - All pertinent build information must be written here as work progresses.
+- When Wesley pastes Cursor text into ChatGPT, ChatGPT is responsible for extracting the valuable build information and writing it into this ledger.
+- Cursor paste intake means: keep project IDs, timestamps, repo names, commits, verification, decisions, blockers, and next actions; discard noise and duplicated chat filler.
 - Do not rely on chat memory alone for anything that affects future work, agent behavior, repo ownership, authority, verification, recovery, or next actions.
 - Do not store secrets, credentials, database dumps, Bible copies, or app source here.
 - Link to owning repos, commits, PRs, runbooks, and verification files instead of copying their contents.
@@ -70,6 +72,33 @@ Write it here if it would help future agents, reduce repeated explanation, preve
 | Reusable lessons | Record what future agents should know |
 | Authority rules | Record if they affect where work belongs |
 | Next action | Record unless work is complete |
+
+## Cursor paste intake rule
+
+When Wesley pastes Cursor output, ChatGPT must convert it into a ledger entry.
+
+Capture:
+
+- project ID / Cursor project ID
+- work package ID
+- timestamp
+- repo(s) involved
+- files changed, if relevant
+- commits and push status
+- verification commands and results
+- blockers and warnings
+- decisions made
+- next action
+- reusable lessons for future agents
+
+Do not capture:
+
+- repeated filler
+- long unneeded command output
+- secrets or credentials
+- full source code
+- Bible content copies
+- database dumps
 
 ## Current active status
 
@@ -159,12 +188,13 @@ Target direction:
 | Source | ChatGPT + Wesley |
 | Repos involved | `CapitalGlass-Cross-Agent` |
 | Status | Active |
-| Commits / PRs | `d0825e2`, `16c64b3`, `35a046a`, `981c8c7`, `feb9446`, `6190376`, `8b66320`, `335f81a` |
+| Commits / PRs | `d0825e2`, `16c64b3`, `35a046a`, `981c8c7`, `feb9446`, `6190376`, `8b66320`, `335f81a`, `f66745d`, `4ec95f9` |
 | Verification | GitHub file writes succeeded |
 | Next action | Push if local/remote policy requires explicit push confirmation; keep updating during future work |
 
 Notes:
 - Defined this file as the valuable-work ledger for the build.
+- Added rule: when Wesley pastes Cursor output into ChatGPT, ChatGPT extracts the valuable build information and writes it into this ledger.
 - Added explicit rule: all pertinent build information must be written into the meeting repo as work progresses.
 - Added required format for timestamped project/work-package entries.
 - Added requirement to capture project ID / Cursor project ID when available.
