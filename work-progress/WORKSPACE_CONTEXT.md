@@ -12,10 +12,11 @@ Purpose: give Wesley, ChatGPT, Cursor, and other agents a fast orientation point
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Current focus | Move protocol authority to Governance while keeping AppBuilder as execution adapter |
 | Last updated | 2026-08-01 |
+| Valuable-work ledger | `work-progress/ACTIVE_WORK.md` |
 
 ## Required writing rule
 
-All pertinent build information must be written into the meeting repo as the work progresses.
+All valuable build information must be written into the meeting repo as the work progresses.
 
 Every material update must include, when available:
 
@@ -30,7 +31,7 @@ Every material update must include, when available:
 - verification results when validated
 - next action unless complete
 
-Do not rely on chat memory alone. If the information affects future work, agent behavior, repo ownership, authority, verification, or recovery, write it here or in `work-progress/ACTIVE_WORK.md`.
+Do not rely on chat memory alone. If the information affects future work, agent behavior, repo ownership, authority, verification, recovery, reuse, or next actions, write it here or in `work-progress/ACTIVE_WORK.md`.
 
 Do not write secrets, credentials, database dumps, Bible copies, app source code, or implementation code into this repo.
 
@@ -63,7 +64,7 @@ Permanent rule:
 
 | File | Purpose |
 | --- | --- |
-| `work-progress/ACTIVE_WORK.md` | Shared editable timestamped progress ledger |
+| `work-progress/ACTIVE_WORK.md` | Shared editable valuable-work ledger with timestamped project/work-package entries |
 | `work-progress/WORKSPACE_CONTEXT.md` | This workspace and repo-role map |
 | `verification/application-bible-sync-runbook.md` | Bible sync/gate verification runbook |
 | `cursor-reports/2026-08-01-chatgpt-bible-access-verification.md` | ChatGPT Bible access verification handoff |
@@ -85,4 +86,4 @@ Then work in the correct repo:
 - Protocol authority or validation → `CG-Platform-Governance-MCP`
 - Execution adapter, sync, index, cache, harvest, or AppBuilder implementation → `CG-AppBuilder-MCP`
 
-As work proceeds, write pertinent build information back into `work-progress/ACTIVE_WORK.md` using timestamped project/work-package entries.
+As work proceeds, write valuable build information back into `work-progress/ACTIVE_WORK.md` using timestamped project/work-package entries.
