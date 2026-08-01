@@ -10,6 +10,7 @@ Purpose: keep everything valuable from the build in one durable place: current w
 - All pertinent build information must be written here as work progresses.
 - When Wesley pastes Cursor text into ChatGPT, ChatGPT is responsible for extracting the valuable build information and writing it into this ledger.
 - Cursor paste intake means: keep project IDs, timestamps, repo names, commits, verification, decisions, blockers, and next actions; discard noise and duplicated chat filler.
+- For distinct projects/work packages, create or update a project file in `work-progress/projects/` using the instructions in `work-progress/projects/README.md`.
 - Do not rely on chat memory alone for anything that affects future work, agent behavior, repo ownership, authority, verification, recovery, or next actions.
 - Do not store secrets, credentials, database dumps, Bible copies, or app source here.
 - Link to owning repos, commits, PRs, runbooks, and verification files instead of copying their contents.
@@ -72,6 +73,7 @@ Write it here if it would help future agents, reduce repeated explanation, preve
 | Reusable lessons | Record what future agents should know |
 | Authority rules | Record if they affect where work belongs |
 | Next action | Record unless work is complete |
+| Project file | Create/update `work-progress/projects/<date>_<project-id>.md` for distinct projects |
 
 ## Cursor paste intake rule
 
@@ -107,6 +109,7 @@ Do not capture:
 | Last updated | 2026-08-01 |
 | Current focus | North Star compounding proof moved into Governance authority; AppBuilder remains execution worker |
 | Workspace context | `work-progress/WORKSPACE_CONTEXT.md` |
+| Project file instructions | `work-progress/projects/README.md` |
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution/support repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
@@ -140,6 +143,12 @@ Write pertinent build information into this file, including:
 - authority rules
 - reusable lessons
 - next actions
+
+For distinct projects, also create or update a file under:
+
+```text
+work-progress/projects/
+```
 
 ### Bible-dependent work
 
@@ -182,6 +191,24 @@ Target direction:
 | 6 | Keep this valuable-work ledger updated as timestamped work proceeds | CapitalGlass-Cross-Agent | Active |
 
 ## Progress log
+
+### 2026-08-01 CT — project-files-readme
+
+| Field | Value |
+| --- | --- |
+| Project / Cursor ID | project-files-readme |
+| Work package | project-files-folder-instructions-v1 |
+| Source | Wesley + ChatGPT |
+| Repos involved | `CapitalGlass-Cross-Agent` |
+| Status | Complete |
+| Commits / PRs | Pending commit SHA from GitHub write |
+| Verification | GitHub file write requested |
+| Next action | Use `work-progress/projects/README.md` whenever starting a new project file |
+
+Notes:
+- Added folder-level README instructions for `work-progress/projects/`.
+- The README tells agents to read workspace context, active ledger, and project instructions before creating a project file.
+- The README defines filename pattern, required project template, Cursor paste intake, ledger update, and commit rule.
 
 ### 2026-08-01 CT — north-star-compounding-proof-v1
 
