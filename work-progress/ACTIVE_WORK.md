@@ -192,6 +192,38 @@ Target direction:
 
 ## Progress log
 
+### 2026-08-01 16:52 CT — unstructured scrape + docling ingest planning
+
+| Field | Value |
+| --- | --- |
+| Project / Cursor ID | `ephemeral-unstructured-github-scrape-v1`; `docling-github-ingest-v1` |
+| Work package | `ephemeral-unstructured-github-scrape-v1`; `docling-github-ingest-v1` |
+| Source | Wesley + Cursor paste + attached markdown + ChatGPT ledger intake |
+| Repos involved | `Scraper`, `Data-Extraction`, `CapitalGlass-Cross-Agent`, external `Unstructured-IO/unstructured`, external `Unstructured-IO/unstructured-ingest`, external `docling-project/docling` |
+| Status | Unstructured scrape complete; Docling ingest planned; shared GitHub articles builder needed |
+| Commits / PRs | Cross-Agent project file commits: `1ff390878b25c54e8cfa615e7bf013539b1fb14b`, `5abae0f3917102767d039222b648ae5bdc15126d`; Unstructured note update `78bbddec98ac8f5943b06e4fa03f16801d47db2d` |
+| Verification | Unstructured full scrape reported 1,793 artifacts, 0 failures; Docling plan read from attached markdown |
+| Next action | Implement shared `build-github-markdown-articles.mjs`, then publish Unstructured and Docling captures to corpus and run Data-Extraction `knowledge:build` / opportunity mapping |
+
+Notes:
+- Created `work-progress/projects/2026-08-01_ephemeral-unstructured-github-scrape-v1.md`.
+- Created `work-progress/projects/2026-08-01_docling-github-ingest-v1.md`.
+- Updated the Unstructured project note with the shared Docling-discovered blocker: missing generic GitHub → articles builder.
+- Unstructured scrape reported complete:
+  - `unstructured-github-v1` — 279 files from `github.com/Unstructured-IO/unstructured`.
+  - `unstructured-ingest-github-v1` — 1,008 files from `github.com/Unstructured-IO/unstructured-ingest`.
+  - `unstructured-docs-markdown-v1` — 506 pages from `docs.unstructured.io` using `llms.txt`.
+  - Total: 1,793 artifacts, 0 failures.
+- Scraper files reported added for Unstructured:
+  - `ui-capture/scripts/scrape-github-repo.mjs`.
+  - `config/vendor-docs-targets/unstructured-github-v1.json`.
+- Unstructured output locations reported under `C:\Developer\repos\Scraper\artifacts\captures\` and rollup artifacts under `C:\Developer\repos\Scraper\artifacts\`.
+- Re-run command reported: `npm run vendor-docs:scrape:unstructured-all` from `C:\Developer\repos\Scraper\ui-capture`.
+- Docling plan captured target layout for `Z:/Capital-Glass-Research/Scraper-Corpus/vendor-docs/docling/`, L: research mirror, cold-cache retrieval snapshot, and Intelligence Hub compact.
+- Docling plan identified wrong-lane UI-reference capture and specified that GitHub API/tree scrape should supersede it.
+- Shared blocker: generic GitHub article builder must emit `extracted-articles.json`, update `capture-manifest.json`, and handle Markdown/code/config files before GitHub captures can become first-class vendor-docs corpus packages.
+- Future Data-Extraction work includes Docling interpreter, registry entry, warm retrieval ladder, estate status, fixture subset, producer package verification, and agent compact.
+
 ### 2026-08-01 16:50 CT — agent-research-library-layout-v1
 
 | Field | Value |
