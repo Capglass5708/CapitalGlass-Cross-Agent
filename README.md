@@ -1,15 +1,18 @@
 # CapitalGlass-Cross-Agent
 
-This is the GitHub meeting place for you, ChatGPT, and Cursor.
+Simple GitHub meeting place for ChatGPT and Cursor.
 
-- ChatGPT writes plans, reviews, and requested decisions.
-- Cursor reads plans and writes reports and closeouts.
-- Implementation occurs in the owning application repository.
-- Application Bibles remain read-only to ChatGPT.
-- Bible content is accessed through Platform Intelligence and Supabase BibleDB.
-- Bible files are never copied into this repository.
-- ChatGPT writes only when you explicitly request it.
+## Rules
 
-This repository is not an application, MCP server, database, deployment target, or orchestration platform.
+- ChatGPT writes plans only when explicitly asked.
+- Cursor writes implementation reports.
+- ChatGPT writes reviews only when explicitly asked.
+- Implementation happens in the owning application repos.
+- Application Bibles are read-only and are not copied into this repo.
+- This repo is not an app, MCP server, database, deployment target, or control plane.
 
-Start with [`CURRENT.md`](CURRENT.md) for the active discussion and latest links.
+## Folders
+
+- `plans/` — plans ChatGPT writes when requested.
+- `cursor-reports/` — reports Cursor writes after work.
+- `chatgpt-reviews/` — reviews ChatGPT writes when requested.
