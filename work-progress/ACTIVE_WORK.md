@@ -192,6 +192,44 @@ Target direction:
 
 ## Progress log
 
+### 2026-08-01 16:56 CT — agent research layout commits pushed
+
+| Field | Value |
+| --- | --- |
+| Project / Cursor ID | `agent-research-library-layout-v1` |
+| Work package | `scraper-data-extraction-agent-research-library-layout` |
+| Source | Wesley + Cursor closeout + ChatGPT ledger intake |
+| Repos involved | `Data-Extraction`, `Scraper`, `CapitalGlass-Cross-Agent` |
+| Status | Pushed |
+| Commits / PRs | `Data-Extraction b1d2e42`; `Scraper 3e09e4c`; Cross-Agent project note `c7dc425ab7b7ffb28a3d4f46eb8e0c00708657da` |
+| Verification | Prior layout verification reported `ALL_A_PLUS`; pushed commits reported by Wesley/Cursor |
+| Next action | Decide whether to make a second Scraper commit for remaining Unstructured/Docling vendor-docs work and a separate Data-Extraction commit for Bible/Docling changes |
+
+Notes:
+- Created `work-progress/projects/2026-08-01_agent-research-library-layout-v1.md`.
+- Data-Extraction commit pushed to `origin/main`: `b1d2e42` — `feat(agent-research-library): scaffold Z/L/Hub ingestion folder layout`.
+- Data-Extraction commit scope included:
+  - `scripts/lib/agent-research-library/*`.
+  - `scripts/agent-research-library/*`.
+  - `package.json` new npm scripts.
+  - `scripts/lib/paths.mjs` L: extraction directories.
+  - `scripts/synology/scaffold-nas-layout.mjs`.
+- Data-Extraction still unstaged / not in commit:
+  - application-bible edits.
+  - docling scripts.
+  - railway run artifacts.
+  - `constants.mjs`.
+  - other unstaged items not listed in the closeout.
+- Scraper commit pushed to `origin/feat/vendor-docs-markdown-capture-v1`: `3e09e4c` — `fix(pageflows): retire TEMP L DRIVE default capture root`.
+- Scraper commit scope included:
+  - `ui-capture/scripts/lib/pageflows-env.mjs`.
+  - `ui-capture/README.md`.
+- Scraper still unstaged / not in commit:
+  - Unstructured capture lane work.
+  - Docling capture lane work.
+  - related `package.json`, scripts, configs, and artifacts.
+- Decision point: user asked whether to make a second commit for remaining Scraper vendor-docs work or Data-Extraction Bible/Docling changes.
+
 ### 2026-08-01 16:52 CT — unstructured scrape + docling ingest planning
 
 | Field | Value |
