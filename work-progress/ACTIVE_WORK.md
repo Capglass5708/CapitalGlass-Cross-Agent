@@ -7,6 +7,8 @@ Purpose: keep the current work, progress, decisions, blockers, saved commits, an
 ## Rules
 
 - This file tracks work; it does not contain implementation code.
+- All pertinent build information must be written here as work progresses.
+- Do not rely on chat memory alone for anything that affects future work, agent behavior, repo ownership, authority, verification, recovery, or next actions.
 - Do not store secrets, credentials, database dumps, Bible copies, or app source here.
 - Link to owning repos, commits, PRs, runbooks, and verification files instead of copying their contents.
 - Update this file whenever meaningful work starts, changes direction, gets blocked, is committed, or is pushed.
@@ -23,6 +25,7 @@ Purpose: keep the current work, progress, decisions, blockers, saved commits, an
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution/support repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
+| Progress writing rule | Write pertinent build information here as work proceeds |
 
 ## Current saved work
 
@@ -32,6 +35,20 @@ Purpose: keep the current work, progress, decisions, blockers, saved commits, an
 | CG-AppBuilder-MCP | `dc32d991` | Pushed | `bible:authority:gate` added |
 
 ## Current operating rules
+
+### Meeting repo capture
+
+Write pertinent build information into this file, including:
+
+- active goals
+- decisions made
+- current status
+- blockers
+- commands that matter
+- commits and pushes
+- verification results
+- authority rules
+- next actions
 
 ### Bible-dependent work
 
@@ -75,6 +92,7 @@ Target direction:
 
 ### 2026-08-01
 
+- Added explicit rule: all pertinent build information must be written into the meeting repo as work progresses.
 - Created `work-progress/WORKSPACE_CONTEXT.md` to state the active workspace and the repos involved:
   - `CapitalGlass-Cross-Agent`
   - `CG-Platform-Governance-MCP`
