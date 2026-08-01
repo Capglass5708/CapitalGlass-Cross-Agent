@@ -9,13 +9,13 @@ Scaffold the Z:/L:/Intelligence Hub folder layout for the Scraper → Data-Extra
 | Field | Value |
 | --- | --- |
 | Project / Cursor ID | agent-research-library-layout-v1 |
-| Work package | scraper-data-extraction-agent-research-library-layout |
+| Work package | `scraper-data-extraction-agent-research-library-layout`; pilot registry `proposal-stack-top10-v1` |
 | Date opened | 2026-08-01 |
 | Source | Wesley / Cursor / ChatGPT |
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Authority repo | Data-Extraction / Northstar storage policy |
 | Execution repo | Data-Extraction / Scraper |
-| Status | Pushed |
+| Status | Pilot 9/10 operational |
 
 ## Repositories involved
 
@@ -48,7 +48,11 @@ Data-Extraction owns the scaffold/verify contract for the research-library layou
 - README + INDEX files added on the two gate folders: `08-app-opportunity-map` and `10-approved-for-use`.
 - Data-Extraction scaffold/verify commands added.
 - Layout wired into `synology:scaffold-nas-layout`.
-- Scraper Pageflows retired default path fixed.
+- Scraper proposal-stack pilot: GitHub batch capture, article build, manifest-only Z: publish, bounded n8n config (deferred).
+- Data-Extraction proposal-stack pilot: source registry publish, handoff package, ingest/ack, nine `knowledge:build` runs.
+- Registry `proposal-stack-top10-v1` published to Z: `00-source-registry` and L: `08-app-opportunity-map` / `01-source-catalog`.
+- Handoff `PKG-PROPOSAL-STACK-PILOT-V1` accepted (9 sources; ranks 1–7, 8 Unstructured, 9 AgencyOS).
+- Nothing promoted to `10-approved-for-use/` yet — STUDY/WATCH verdicts only.
 
 ## Evidence / artifact paths
 
@@ -59,6 +63,12 @@ Data-Extraction owns the scaffold/verify contract for the research-library layou
 | Z: Scraper-Corpus evidence hashes | `Z:\Capital-Glass-Research\Scraper-Corpus\09-evidence-hashes` | Created |
 | L: app opportunity map | `L:\Capital-Glass-Intelligence-Hub\08-app-opportunity-map` | Created with gate docs |
 | L: approved-for-use gate | `L:\Capital-Glass-Intelligence-Hub\10-approved-for-use` | Created with gate docs |
+| Z: proposal-stack registry | `Z:\Capital-Glass-Research\Scraper-Corpus\00-source-registry\proposal-stack-top10-v1.json` | Published |
+| Z: proposal-stack crawl queue | `Z:\Capital-Glass-Research\Scraper-Corpus\01-crawl-queue\proposal-stack-top10-v1-queue.json` | Published |
+| Z: github-research manifests | `Z:\Capital-Glass-Research\Scraper-Corpus\github-research\repos\{slug}\02-manifests\` | Nine slugs published (manifest-only) |
+| L: opportunity map index | `L:\Capital-Glass-Intelligence-Hub\08-app-opportunity-map\proposal-stack-top10-index.json` | Published |
+| DE handoff package | `PKG-PROPOSAL-STACK-PILOT-V1` | ACK_ACCEPTED |
+| DE knowledge builds | `Data-Extraction/artifacts/data-extraction-2/proposal-stack-pilot/KB-*` | Nine builds (repo-local, not in meeting repo) |
 
 ## Verification
 
@@ -66,64 +76,82 @@ Data-Extraction owns the scaffold/verify contract for the research-library layou
 | --- | --- | --- |
 | `npm run agent-research-library:scaffold-layout` | Complete | Creates missing folders idempotently |
 | `npm run agent-research-library:verify-layout -- --strict` | `ALL_A_PLUS` | 58 folders verified across Z:, L:, and Intelligence Hub |
-| Data-Extraction push | Pushed | Commit `b1d2e42` to `origin/main` |
-| Scraper push | Pushed | Commit `3e09e4c` to `origin/feat/vendor-docs-markdown-capture-v1` |
+| `npm run agent-research-library:register-source-registry` | Complete | Registry + L: opportunity map seeded |
+| `npm run proposal-stack:build:articles-batch` | Complete | Eight new captures + Unstructured reused |
+| `npm run proposal-stack:publish:github-corpus` | Complete | Manifest-only publish to Z: `github-research/repos/` |
+| `npm run agent-research-library:publish-proposal-stack-pilot` | `PROPOSAL_STACK_HANDOFF_COMPLETE` | Validate, ingest, ack, nine knowledge builds |
+| Proposal-stack GitHub batch (ranks 1–7, 9) | `BATCH_COMPLETE` | Zero capture failures |
+| Data-Extraction push | Pushed | `b1d2e42` (layout), `2190944` (ingestion pipeline) on `origin/main` |
+| Scraper push | Pushed | `3e09e4c` (pageflows), `0111837` (proposal-stack pilot) on `feat/vendor-docs-markdown-capture-v1` |
 
 ## Commits / PRs
 
 | Repo | Commit / PR | Status |
 | --- | --- | --- |
-| Data-Extraction | `b1d2e42` — `feat(agent-research-library): scaffold Z/L/Hub ingestion folder layout` | Pushed to `origin/main` |
-| Scraper | `3e09e4c` — `fix(pageflows): retire TEMP L DRIVE default capture root` | Pushed to `origin/feat/vendor-docs-markdown-capture-v1` |
-| CapitalGlass-Cross-Agent | Pending | Project file and ledger update |
+| Data-Extraction | `b1d2e42` — layout scaffold | Pushed to `origin/main` |
+| Data-Extraction | `2190944` — registry, handoff publisher, proposal-stack pilot pipeline | Pushed to `origin/main` |
+| Scraper | `3e09e4c` — Pageflows path alignment | Pushed to `feat/vendor-docs-markdown-capture-v1` |
+| Scraper | `0111837` — proposal-stack batch capture/publish scripts + configs | Pushed to `feat/vendor-docs-markdown-capture-v1` |
+| CapitalGlass-Cross-Agent | This update | Pending push |
 
 ## Data-Extraction commit scope
 
-Included in `b1d2e42`:
+`b1d2e42` — layout scaffold:
 
 - `scripts/lib/agent-research-library/*`
-- `scripts/agent-research-library/*`
-- `package.json` new npm scripts
+- `scripts/agent-research-library/scaffold-layout.mjs`, `verify-layout.mjs`
+- `package.json` scaffold/verify scripts
 - `scripts/lib/paths.mjs` L: extraction directories
 - `scripts/synology/scaffold-nas-layout.mjs`
 
-Still unstaged / not in `b1d2e42` per reported closeout:
+`2190944` — proposal-stack pilot pipeline:
 
-- application-bible edits
-- docling scripts
-- railway run artifacts
-- `constants.mjs`
-- other unstaged work not listed in the closeout
+- `config/agent-research-library/proposal-stack-top10-v1.json`
+- `scripts/agent-research-library/register-source-registry.mjs`
+- `scripts/agent-research-library/publish-proposal-stack-pilot.mjs`
+- `package.json` register + publish pilot scripts
 
 ## Scraper commit scope
 
-Included in `3e09e4c`:
+`3e09e4c` — Pageflows path:
 
 - `ui-capture/scripts/lib/pageflows-env.mjs`
 - `ui-capture/README.md`
 
-Still unstaged / not in `3e09e4c` per reported closeout:
+`0111837` — proposal-stack pilot:
 
-- Unstructured capture lane work
-- Docling capture lane work
-- related `package.json`, scripts, configs, and artifacts
+- `config/agent-research-library/proposal-stack-github-captures-v1.json`
+- `config/agent-research-library/proposal-stack-n8n-bounded-v1.json`
+- `ui-capture/scripts/scrape-github-repo.mjs` (include-prefix / max-files)
+- `ui-capture/scripts/build-github-markdown-articles.mjs`
+- `ui-capture/scripts/run-proposal-stack-github-batch.mjs`
+- `ui-capture/scripts/run-proposal-stack-articles-batch.mjs`
+- `ui-capture/scripts/publish-proposal-stack-github-corpus.mjs`
+- `ui-capture/package.json` proposal-stack npm scripts
+- `.gitignore` — `artifacts/captures/` excluded from git
+
+Still unstaged on Scraper branch (separate from pilot commit):
+
+- Unstructured/Docling vendor-docs lane scripts and artifacts
 
 ## Blockers / warnings
 
 | Blocker | Owner repo | Required action |
 | --- | --- | --- |
-| Remaining Scraper vendor-docs work is unstaged | Scraper | Decide whether to create a second commit for Unstructured/Docling capture lane |
-| Remaining Data-Extraction Bible/Docling changes are unstaged | Data-Extraction | Decide whether to commit separately after review |
-| Capture artifacts may be large | Scraper / Data-Extraction | Keep heavy corpus artifacts out of coordination repo and use corpus/storage lanes |
+| n8n (#10) not captured yet | Scraper | Run bounded WATCH capture via `proposal-stack-n8n-bounded-v1.json`; non-blocking for pilot |
+| Documenso AGPL / n8n fair-code | Data-Extraction / agents | WATCH verdicts — no promotion to `10-approved-for-use/` without license review |
+| Remaining Scraper Unstructured/Docling vendor-docs work unstaged | Scraper | Separate commit when ready |
+| Raw captures must stay out of git | Scraper | Use `artifacts/captures/` locally and Z: corpus lanes only |
 
 ## Next actions
 
 | Priority | Action | Owner repo | Status |
 | --- | --- | --- | --- |
-| 1 | Decide whether to make second Scraper commit for remaining Unstructured/Docling vendor-docs work | Scraper | Pending Wesley decision |
-| 2 | Decide whether to make Data-Extraction commit for Bible/Docling changes | Data-Extraction | Pending Wesley decision |
-| 3 | Register 10 pilot URLs/sources in `00-source-registry` | Scraper / Data-Extraction | Pending |
-| 4 | Run capture → handoff → `knowledge:build` → `08-app-opportunity-map` pilot | Scraper / Data-Extraction | Pending |
+| 1 | Run bounded n8n capture (`npm run proposal-stack:scrape:n8n-bounded`) when workflow automation research is needed | Scraper | Optional / non-blocking |
+| 2 | Agent review of nine pilot sources; write adoption notes to `08-app-opportunity-map/` | Agents / Wesley | Pending |
+| 3 | Promote only reviewed items to `10-approved-for-use/` after license, evidence, security, Northstar gates | Data-Extraction / agents | Not started |
+| 4 | Merge Scraper `feat/vendor-docs-markdown-capture-v1` when vendor-docs lane review is complete | Scraper | Pending |
+| 5 | Decide on separate commits for remaining Unstructured/Docling vendor-docs work | Scraper | Pending Wesley decision |
 
 ## Reusable lessons
 
@@ -131,7 +159,22 @@ Still unstaged / not in `3e09e4c` per reported closeout:
 - Retired storage roots should be fixed in both code defaults and docs so future captures do not drift back to `TEMP L DRIVE`.
 - Keep unstaged vendor-docs work as a separate commit line from core folder-layout infrastructure.
 
+- Manifest-only Z: publish is required for large GitHub captures; full page mirror to Z: over SMB is too slow for pilot batches.
+- Handoff CLI `--package` flag parsing in existing scripts is unreliable; pilot publisher uses direct library calls.
+- n8n is peripheral workflow automation (WATCH), not a core proposal-generator dependency.
+
 ## Update log
+
+### 2026-08-01 17:34 CT — proposal-stack pilot 9/10 operational
+
+- Registry `proposal-stack-top10-v1` published (proposal-generator GitHub stack research).
+- Nine sources captured, article-built, manifest-published, handoff-accepted, and knowledge-built (ranks 1–7, 8 Unstructured existing, 9 AgencyOS).
+- Handoff package `PKG-PROPOSAL-STACK-PILOT-V1` — `ACK_ACCEPTED`, nine corpus pointers.
+- Data-Extraction `2190944` pushed: registry + `publish-proposal-stack-pilot.mjs`.
+- Scraper `0111837` pushed: batch configs, scrape path limits, article/corpus publish scripts; `artifacts/captures/` gitignored.
+- Z: manifests at `github-research/repos/{slug}/02-manifests/` (manifest-only; no bulk page copy).
+- L: opportunity map entries at `08-app-opportunity-map/` with STUDY/WATCH verdicts; nothing in `10-approved-for-use/`.
+- n8n (#10) deferred; bounded config `proposal-stack-n8n-bounded-v1.json` ready for separate WATCH capture.
 
 ### 2026-08-01 CT — Cursor / Wesley / ChatGPT
 

@@ -107,7 +107,7 @@ Do not capture:
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-08-01 |
-| Current focus | North Star compounding proof moved into Governance authority; AppBuilder remains execution worker |
+| Current focus | Agent research library layout + proposal-stack pilot 9/10 operational; n8n bounded capture deferred |
 | Workspace context | `work-progress/WORKSPACE_CONTEXT.md` |
 | Project file instructions | `work-progress/projects/README.md` |
 | Primary authority repo | CG-Platform-Governance-MCP |
@@ -191,6 +191,26 @@ Target direction:
 | 6 | Keep this valuable-work ledger updated as timestamped work proceeds | CapitalGlass-Cross-Agent | Active |
 
 ## Progress log
+
+### 2026-08-01 17:34 CT — proposal-stack pilot 9/10 operational
+
+| Field | Value |
+| --- | --- |
+| Project / Cursor ID | `agent-research-library-layout-v1` |
+| Work package | `proposal-stack-top10-v1` |
+| Source | Cursor |
+| Repos involved | `Data-Extraction`, `Scraper`, `CapitalGlass-Cross-Agent` |
+| Status | Pilot 9/10 operational |
+| Commits / PRs | `Data-Extraction 2190944` (ingestion pipeline); `Scraper 0111837` (proposal-stack batch); prior layout commits `b1d2e42`, `3e09e4c` |
+| Verification | Handoff `PKG-PROPOSAL-STACK-PILOT-V1` ACK_ACCEPTED; nine `knowledge:build` runs; manifest-only Z: publish complete |
+| Next action | Optional bounded n8n capture; agent review before any `10-approved-for-use/` promotion |
+
+Notes:
+- Proposal-generator top-10 GitHub registry published to Z: `00-source-registry` and L: `08-app-opportunity-map`.
+- Nine sources operational: Docxtemplater, Tiptap, pdfme, Gotenberg, Documenso, docx, AutoRFP, Unstructured (#8), AgencyOS.
+- n8n (#10) deferred — bounded WATCH config ready, non-blocking.
+- Raw captures excluded from git (`artifacts/captures/`); corpus on Z: only.
+- Project file updated: `work-progress/projects/2026-08-01_agent-research-library-layout-v1.md`.
 
 ### 2026-08-01 17:23 CT — docling manifest-only-fast publish
 
