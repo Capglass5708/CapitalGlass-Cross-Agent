@@ -68,6 +68,7 @@ Z:/Capital-Glass-Research/Scraper-Corpus/vendor-docs/docling/
 | 2026-08-01 CT | Supersede prior UI-reference capture with GitHub API/tree scrape | UI-reference capture is wrong lane and lacks `extracted-articles.json` |
 | 2026-08-01 CT | Build a generic GitHub markdown/articles builder | Needed for Docling and also blocks Unstructured GitHub corpus publish |
 | 2026-08-01 CT | Agents must read compact before full capture tree | Prevents expensive bulk reads and keeps retrieval governed |
+| 2026-08-01 17:23 CT | `publish-docling-corpus.mjs` uses `manifest-only-fast` by default | Avoids bulk page copy crash/timeout; publish completed in ~28 seconds vs prior 21+ minute crash |
 
 ## Delivered / reported complete
 
@@ -78,6 +79,10 @@ Z:/Capital-Glass-Research/Scraper-Corpus/vendor-docs/docling/
 - Target Z:/L:/Intelligence Hub layout specified.
 - Scraper and Data-Extraction file changes listed for implementation.
 - Verification and closeout chain specified.
+- `publish-docling-corpus.mjs` updated so publish uses `manifest-only-fast` by default.
+- Manifest-only publish completed in about 28 seconds; prior full copy path crashed after 21+ minutes.
+- Publish now writes manifests and pointers to Z:, mirrors only lightweight sections to L:, and leaves full page bytes in local capture plus DE2 cold cache.
+- Full L: mirroring of all 1,076 pages is explicitly opt-in via `npm run vendor-docs:publish:docling:full`.
 
 ## Evidence / artifact paths
 
@@ -181,6 +186,7 @@ npm run de:handoff-health
 | GitHub → articles builder | Missing | Must be implemented before corpus publish |
 | Docling interpreter | Missing | Required before deterministic DE2 knowledge build |
 | Warm retrieval ladder | Missing | Required for governed agent retrieval surface |
+| `publish-docling-corpus.mjs` default publish | Complete in ~28 seconds | Uses `manifest-only-fast`; skips bulk page copies |
 
 ## Blockers / warnings
 
@@ -192,6 +198,7 @@ npm run de:handoff-health
 | Warm retrieval ladder missing | Data-Extraction | Implement `scripts/docling/warm-retrieval-ladder.mjs` |
 | Z:/L: may be unmounted | Operator / environment | Fail fast with dry-run and document mount prerequisites |
 | GitHub API rate limits | Scraper / operator | Run off-peak or set `GITHUB_TOKEN` for higher limits |
+| Full page mirror to L: is expensive | Scraper / operator | Use `npm run vendor-docs:publish:docling:full` only when all 1,076 pages are explicitly needed on L: |
 
 ## Commits / PRs
 
@@ -222,6 +229,18 @@ npm run de:handoff-health
 - Agent retrieval should start with `L:/Capital-Glass-Intelligence-Hub/.../compacts/*-agent-compact-v1.json`, then warm retrieval snapshots, then full source only as a last resort.
 
 ## Update log
+
+### 2026-08-01 17:23 CT — Cursor / Wesley / ChatGPT
+
+- Publish now uses `manifest-only-fast` by default.
+- `publish-docling-corpus.mjs` skips bulk page copies.
+- Publish completed in about 28 seconds, compared with the previous 21+ minute crash path.
+- It publishes manifests and pointers to Z:, mirrors only lightweight sections `00-control`, `02-manifests`, and `03-provenance` to L:, and leaves full page bytes in the local capture plus DE2 cold cache.
+- Agent L: entry points:
+  - `L:/Capital-Glass-Intelligence-Hub/03-domains/vendor-docs/docling/compacts/docling-adoption-agent-compact-v1.json`.
+  - `L:/Capital-Glass-Research/Scraper-Corpus/vendor-docs/docling/02-manifests/extracted-articles-docling-github-v1.json`.
+  - `L:/Capital-Glass-Research/estimating-suite-cold-cache/intelligence/vendor-docs/docling/PKG-DE2-DOCLING-.../retrieval-snapshot.json`.
+- Use `npm run vendor-docs:publish:docling:full` only when all 1,076 pages must be mirrored to L:.
 
 ### 2026-08-01 CT — attached markdown / ChatGPT
 
