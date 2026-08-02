@@ -2,7 +2,104 @@
 
 This is the canonical map for where agents should look for reusable Capital Glass build knowledge, scraped research, app indexes, published packages, and coordination notes.
 
+The operational front door for machine-readable build assistance is now the synced master index on L:.
+
 Purpose: stop valuable information from getting scattered across chat, Cursor output, local folders, and implementation repos.
+
+## Single Operational Front Door
+
+Agents looking for available apps, repos, MCP servers, plugins, external libraries, vendor tools, handoff packages, and knowledge builds should start here:
+
+```text
+L:\Capital-Glass-Intelligence-Hub\00-master-index\
+```
+
+| File / folder | What it is |
+| --- | --- |
+| `AGENT_START_HERE.md` | Human-readable instructions for agents |
+| `INDEX.json` | Master pointer file v2 with counts and quick links |
+| `AGENT_BUILD_CATALOG.json` | Unified catalog of all indexed build-assist items |
+| `BY-KIND/` | Sliced indexes when the agent already knows the category |
+
+Current synced inventory:
+
+| Kind | Count |
+| --- | ---: |
+| Capital Glass apps | 12 |
+| Platform repos | 7 |
+| MCP servers | 18 |
+| Cursor plugins | 5 |
+| External libraries / GitHub research | 20 |
+| Vendor tools | 5 |
+| DE handoff packages | 2 |
+| Knowledge builds linked | 20 |
+
+### BY-KIND slices
+
+```text
+L:\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\capital-glass-apps.json
+L:\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\platform-repos.json
+L:\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\mcp-servers.json
+L:\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\cursor-plugins.json
+L:\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\external-libraries.json
+L:\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\vendor-tools.json
+L:\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\handoff-packages.json
+```
+
+### Agent use pattern
+
+1. Open `L:\Capital-Glass-Intelligence-Hub\00-master-index\AGENT_START_HERE.md`.
+2. Load `AGENT_BUILD_CATALOG.json` or the relevant `BY-KIND/*.json` slice.
+3. Follow the item pointers to opportunity maps, source catalogs, GitHub corpuses, capture manifests, and knowledge builds.
+4. Use Cross-Agent project files for human decisions, current status, run evidence, commits, and next actions.
+
+Example pointer shape from the unified catalog:
+
+```json
+{
+  "pointers": {
+    "opportunityMap": "L:/.../08-app-opportunity-map/pymkup.json",
+    "sourceCatalog": "L:/.../01-source-catalog/pymkup.json",
+    "githubCorpus": "Z:/.../github-research/repos/pymkup",
+    "captureManifest": "Z:/.../02-manifests/revu-opening-pymkup-github-v1.json",
+    "knowledgeBuild": "C:/Developer/repos/Data-Extraction/artifacts/.../operational-knowledge.json"
+  }
+}
+```
+
+### Sync authority
+
+The master index is rebuilt from Data-Extraction:
+
+```powershell
+cd C:\Developer\repos\Data-Extraction
+npm run agent-research-library:sync-master-index
+```
+
+It auto-syncs when a new source registry is registered or a pilot handoff package is published.
+
+Estate manifest:
+
+```text
+Data-Extraction/config/agent-research-library/estate-manifest-v1.json
+```
+
+Latest reported Data-Extraction commit for this feature: `bbddfe3` on `main`.
+
+### Known gaps
+
+| Gap | Status |
+| --- | --- |
+| `10-approved-for-use/` | Empty until agent review promotes items |
+| Rank 9 YOLO benchmark | No repo URL pinned |
+| Knowledge build paths | Some still point to local DE machine C: until warm-cache sync to L: is added |
+
+Recommended next improvement: weekly job to mirror `operational-knowledge.json` files to:
+
+```text
+L:\Capital-Glass-Intelligence-Hub\02-capability-library\
+```
+
 
 ## Canonical Rule
 
@@ -30,7 +127,7 @@ When an agent needs available apps, libraries, tools, indexes, scraped GitHub ma
 | Research selection indexes | Ranked app/library/vendor lists and adoption decisions | `Data-Extraction/config/agent-research-library/*.json` |
 | Raw scraped GitHub/site captures | Capture plans, manifests, scraped pages, URL inventories | `Scraper/ui-capture/artifacts/vendor-docs/<vendor-or-topic>/` |
 | Processed knowledge packages | Data-Extraction KBs, manifests, retrieval snapshots, operational notes | `Data-Extraction/artifacts/data-extraction-2/` |
-| Published quick-access copies | Synology/L: compact indexes and agent entry points | `L:\Capital-Glass-Research\...`, `L:\Capital-Glass-Intelligence-Hub\...` |
+| Published quick-access copies | Synology/L: compact indexes and agent entry points | `L:\Capital-Glass-Intelligence-Hub\00-master-index\`, `L:\Capital-Glass-Research\...`, `L:\Capital-Glass-Intelligence-Hub\...` |
 | Shared published mirrors | Z: published suite material when a workflow publishes there | `Z:\Capital-Glass-Dev\...` |
 | Suite app map | App registry, Bible/source map, application keys | `CG-AppBuilder-MCP/docs/SUITE_APPLICATION_BIBLE_REGISTRY.json` |
 | Suite bridges | Repo ownership, app-to-app bridges, workflow gaps | `CG-AppBuilder-MCP/docs/SUITE_BRIDGE_MAP.md` |
@@ -40,7 +137,7 @@ When an agent needs available apps, libraries, tools, indexes, scraped GitHub ma
 
 ## GitHub-Scraped Research Canonical Path
 
-When the user asks where scraped GitHub libraries/apps are stored, answer with this ladder:
+When the user asks where scraped GitHub libraries/apps are stored, start with `L:\Capital-Glass-Intelligence-Hub\00-master-index\`, then answer with this ladder:
 
 | Step | Look here | Meaning |
 | --- | --- | --- |
