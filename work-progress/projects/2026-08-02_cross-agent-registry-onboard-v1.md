@@ -55,7 +55,7 @@ Register `CapitalGlass-Cross-Agent` as a first-class coordination repository in 
 
 ## Next action
 
-Begin `cross-agent-structured-ledger-projection-v1` under Governance schema contract + AppBuilder ingestion adapter. Do not add `supabase/` or implementation code to Cross-Agent.
+Merge AppBuilder PR #264 (`ledgerOnly` compact v2). Then begin `cross-agent-structured-ledger-projection-v1` after Governance schema approval (`dc49d9c`).
 
 ## Update log
 
