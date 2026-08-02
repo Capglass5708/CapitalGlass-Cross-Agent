@@ -195,6 +195,12 @@ Target direction:
 
 ## Progress log
 
+### 2026-08-02 CT - master work document created
+
+- Created `work-progress/2026-08-02_MASTER_WORK_DOCUMENT.md` as the consolidated master document for today's work.
+- It summarizes the L: master index, Cross-Agent canonical files, Bible/PI status, Governance/AppBuilder authority work, Revu MCP boundary, parser/opening detection direction, RTX 5080 host roles, Rosewood parser run, install prompt, commits, and next actions.
+- Commit: Cross-Agent `7f454e3`.
+
 ### 2026-08-02 CT - GPU host authority clarified
 
 - Machine roles saved to `work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md` and `work-progress/projects/2026-08-01_revu-opening-detection-top10-v1.md`.
