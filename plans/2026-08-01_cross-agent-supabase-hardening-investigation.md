@@ -53,5 +53,5 @@ Acceptance:
 | Work package | Role | Status |
 | --- | --- | --- |
 | `cross-agent-registry-onboard-v1` | Platform registry identity | **Complete** (`38a162da`) |
-| `cross-agent-structured-ledger-projection-v1` | Event/projection model | Open |
-| `active-ledger-drain-and-intelligence-hub-sync-v1` | Drain `ACTIVE_WORK.md` to durable owners | Phase 0 PASS — Governance approval pending |
+| `cross-agent-structured-ledger-projection-v1` | Event/projection model | Phase 0 DRAFT — Governance schema (`dc49d9c`) |
+| `active-ledger-drain-and-intelligence-hub-sync-v1` | Drain `ACTIVE_WORK.md` to durable owners | Phases 0–3 complete — Phase 5 closeout recorded |
