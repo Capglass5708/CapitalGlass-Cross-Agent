@@ -107,7 +107,7 @@ Do not capture:
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-08-01 |
-| Current focus | Cross-Agent startup path pushed; North Star compounding proof authority committed locally; closeout gate needs clean-env rerun; proposal-stack pilot remains 9/10 operational |
+| Current focus | Cross-Agent startup path pushed; parser/Revu ledger updated; Ryzen9Desk parser run needs explicit Rosewood input and DB health confirmation; North Star closeout gate still needs clean-env rerun |
 | Workspace context | `work-progress/WORKSPACE_CONTEXT.md` |
 | Agent startup entrypoint | `AGENT_START_HERE.md` |
 | Project index | `work-progress/projects/INDEX.md` |
@@ -194,6 +194,16 @@ Target direction:
 | 6 | Keep this valuable-work ledger updated as timestamped work proceeds | CapitalGlass-Cross-Agent | Active |
 
 ## Progress log
+
+### 2026-08-01 CT - Ryzen9Desk parser run evidence captured
+
+- Project: `revu-opening-detection-top10-v1` / Computer Estimator parser lane.
+- Machine: `RYZEN9DESK`.
+- Captured as runtime/config evidence in `work-progress/projects/2026-08-01_revu-opening-detection-top10-v1.md`.
+- Torch CUDA import failed with `ncclCommResume`; CPU `torch-2.13.0+cpu` installed with CUDA unavailable.
+- Parser failure was a path mismatch: command looked for `vector_text_plan.pdf`, while Rosewood existed as `data/incoming/rosewood-permit-set.pdf`.
+- DB container `computer_estimator_db` started, but health was observed as `unhealthy` in the pasted run.
+- Next action: confirm DB health, identify exact CE parser command from repo scripts, and rerun with explicit Rosewood PDF input.
 
 ### 2026-08-01 CT — cross-agent startup path pushed
 
