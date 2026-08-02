@@ -197,6 +197,23 @@ Target direction:
 
 ## Progress log
 
+### 2026-08-01 CT - Bid Composer upgrade Phase 1 notes captured
+
+| Field | Value |
+| --- | --- |
+| Project / Cursor ID | `bid-composer-upgrade-roadmap-v1` |
+| Owner repo | `CapitalGlass-BidComposer` |
+| Status | Phase 1 implemented; shared-dev migration pending |
+| Cross-Agent project file | `work-progress/projects/2026-08-01_bid-composer-upgrade-roadmap-v1.md` |
+| Migration | `supabase/migrations/20260801120000_bid_revision_control_and_pipeline.sql` |
+| Verification | `scripts/tests/bid-revision-pipeline.test.mjs` 5 passing; typecheck passes |
+| Next action | Apply migration and smoke-test shared-dev, or start `bid-composer-phase2-document-authority-v1` |
+
+Notes:
+- Phase 1 shipped revision integrity: bid workspaces, revision timeline, merge audit, revision locks, fork/timeline/merge APIs, stored `revision_number` badges.
+- Phase 1 shipped estimator dashboard foundation: pipeline stages, saved filters, sorting, executive counts, readiness, and Issue vs Review blockers.
+- Outstanding roadmap includes Document Center intake, parser normalization, Revu overlays, scope assemblies UI, pricing lines, RFI risk register, visual proposal editor, and estimating memory feedback loop.
+
 ### 2026-08-02 CT - Governance MCP investigation
 
 - Investigated `CG-Platform-Governance-MCP` via GitHub connector.
