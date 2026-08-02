@@ -369,15 +369,45 @@ Additional Cross-Agent commits today captured parser/Rosewood run evidence and a
 
 ## L: Published Copy
 
+Ingest result: **PASS**.
+
 | Field | Value |
 | --- | --- |
 | Published path | `L:\Capital-Glass-Intelligence-Hub\00-master-index\cross-agent-master-work\2026-08-02_MASTER_WORK_DOCUMENT.md` |
 | Latest alias | `L:\Capital-Glass-Intelligence-Hub\00-master-index\cross-agent-master-work\LATEST.md` |
 | Slice index | `L:\Capital-Glass-Intelligence-Hub\00-master-index\cross-agent-master-work\INDEX.json` |
 | BY-KIND slice | `L:\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\cross-agent-master-work.json` |
-| Source commit | `7f454e3` |
-| SHA-256 | See `cross-agent-master-work/INDEX.json` (`documents[0].sha256`) |
+| Top-level index | `L:\Capital-Glass-Intelligence-Hub\00-master-index\INDEX.json` |
+| Unified catalog | `L:\Capital-Glass-Intelligence-Hub\00-master-index\AGENT_BUILD_CATALOG.json` |
+| Source commit | `1e3751c` |
+| Original creation commit | `7f454e3` |
+| Ledger pointer commit | `506a229` |
+| SHA-256 | `ee21ab007e8bda462026fc64451e7313a415424ddad529422f28faeaa48fab19` |
+| Size | 16,085 bytes / 301 lines |
+| SHA match verified | Yes |
 | Git source of truth | `CapitalGlass-Cross-Agent/work-progress/2026-08-02_MASTER_WORK_DOCUMENT.md` |
+
+Counts updated:
+
+| File | Update |
+| --- | --- |
+| `INDEX.json` | `counts.crossAgentMasterWork: 1`; `quickLinks.crossAgentMasterWork` added |
+| `AGENT_BUILD_CATALOG.json` | `counts.crossAgentMasterWork: 1`; `agentWorkflow.byKind.crossAgentMasterWork` added |
+| Catalog item | `cross-agent-master-work-2026-08-02` added |
+
+Warnings:
+
+- Cross-Agent Git remains source of truth; L: is a published copy and machine-readable pointer layer.
+- L: indexes are not in git. If `agent-research-library:sync-master-index` overwrites `INDEX.json` or `AGENT_BUILD_CATALOG.json`, re-run the ingest or merge `crossAgentMasterWork` entries back in.
+- `CG-AppBuilder-MCP 480315c2` was still reported local-only / not pushed at ingest time.
+
+Agent discovery paths:
+
+- `L:\Capital-Glass-Intelligence-Hub\00-master-index\AGENT_START_HERE.md`
+- `INDEX.json` → `quickLinks.crossAgentMasterWork`
+- `AGENT_BUILD_CATALOG.json` → item `cross-agent-master-work-2026-08-02`
+- `BY-KIND\cross-agent-master-work.json`
+- `cross-agent-master-work\LATEST.md`
 
 Cross-Agent remains the human ledger and Git history. L: holds the published readable copy and machine-readable pointers only.
 
