@@ -259,7 +259,79 @@ Scope one narrow workflow only:
 Until that package is complete, Revu MCP remains a controlled testing and takeoff-development tool, not an unattended production system.
 
 
+## Parser run evidence - Ryzen9Desk - 2026-08-01
+
+This is a live execution note for the Computer Estimator parser lane.
+
+| Field | Value |
+| --- | --- |
+| Machine | `RYZEN9DESK` |
+| Repo / lane | `Computer Estimator` parser |
+| Policy marker | `NO_EXT4_VENV` |
+| Staged PDF | `C:\Users\wesle\AppData\Local\Temp\rosewood-staging\20260717_2406 Rosewood Ave_Permit Set - Copy.pdf` |
+| Incoming PDF present | `/mnt/c/Developer/repos/Computer Estimator/data/incoming/rosewood-permit-set.pdf` |
+| Incoming PDF size observed | `39550976` bytes |
+| DB container | `computer_estimator_db` started |
+| Health check observed | `unhealthy` before/around DB restart |
+
+### Failure chain
+
+1. Torch CUDA import failed inside WSL/env:
+
+~~~text
+ImportError: /mnt/c/Developer/repos/Computer Estimator/.venv/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume
+~~~
+
+2. CPU torch wheel was downloaded and installed:
+
+~~~text
+torch-2.13.0+cpu
+CUDA available: False
+~~~
+
+3. Parser then failed on a PDF path mismatch:
+
+~~~text
+Plan parser failed: PDF not found: /mnt/c/Developer/repos/Computer Estimator/data/incoming/vector_text_plan.pdf
+~~~
+
+4. Actual Rosewood PDF existed at:
+
+~~~text
+/mnt/c/Developer/repos/Computer Estimator/data/incoming/rosewood-permit-set.pdf
+~~~
+
+### Interpretation
+
+This is not yet a parser-evidence failure. It is an execution/configuration failure:
+
+- CUDA torch/NCCL was broken for the current environment.
+- CPU torch fallback installed successfully.
+- Parser invocation/default fixture still pointed at `vector_text_plan.pdf`.
+- Rosewood file was staged under the expected incoming folder but the parser command did not target it.
+- Database service was restarted, but health was observed as `unhealthy` in the pasted run.
+
+### Next action for parser lane
+
+Run the parser with an explicit Rosewood input path after DB health is confirmed:
+
+~~~powershell
+cd "C:\Developer\repos\Computer Estimator"
+# Confirm DB/container health first.
+# Then run parser command with explicit input:
+# data/incoming/rosewood-permit-set.pdf
+~~~
+
+The exact command should be recorded once confirmed from the Computer Estimator repo scripts. Do not treat `vector_text_plan.pdf` as the target fixture for this Rosewood run.
+
 ## Update log
+
+### 2026-08-01 CT - Ryzen9Desk parser run evidence captured
+
+- Captured failed parser execution on `RYZEN9DESK` as configuration/runtime evidence, not parser-quality evidence.
+- Torch CUDA failed with `ncclCommResume`; CPU `torch-2.13.0+cpu` installed and reported CUDA unavailable.
+- Parser failed because it looked for `vector_text_plan.pdf`; actual Rosewood PDF was present as `data/incoming/rosewood-permit-set.pdf`.
+- DB container `computer_estimator_db` was started; health was observed as `unhealthy` in the pasted run.
 
 ### 2026-08-01 CT — parser and Revu operating boundary captured
 
