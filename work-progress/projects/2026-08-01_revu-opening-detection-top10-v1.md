@@ -16,8 +16,8 @@ Scope Evidence Locator Phase 2 research registry for door/window/opening detecti
 | Detection owner | `Computer Estimator` |
 | Markup binding owner | `CapitalGlassRevu` |
 | Read-only evidence MCP | `CG-Computer-Estimator-MCP` |
-| Status | **Pilot 8/10 operational** |
-| Commits / PRs | `Data-Extraction 38e5c58`; `Scraper 36cd354`; `CapitalGlass-Cross-Agent` (pending push) |
+| Status | **Pilot 8/10 operational; parser interpretation captured** |
+| Commits / PRs | `Data-Extraction 38e5c58`; `Scraper 36cd354`; `CapitalGlass-Cross-Agent` ledger update pending |
 
 ## Architecture rule (mandatory)
 
@@ -111,7 +111,163 @@ Capital Glass historical Bluebeam markups via pymkup — not public floor-plan d
 | 4 | Extract historical Bluebeam labels with pymkup from completed takeoff PDFs | Computer Estimator |
 | 5 | Keep CapitalGlassRevu takeoff workflow locked until estimator-reviewed recall demonstrated | CapitalGlassRevu |
 
+## Parser investigation — 2026-08-01
+
+### Parser goal
+
+Treat this lane as **Computer Estimator → parserEvidencePackage@1.0.0 → Bid Composer**, not Bid Composer's legacy GPT bid-sheet intake.
+
+The parser target is plan PDF evidence: regions, schedules, tags, geometry, provenance, and bounded approval state. Bid Composer is the consumer/review spine after Computer Estimator produces structured evidence.
+
+### High-signal sources for parser work
+
+| Source | Path | Parser relevance |
+| --- | --- | --- |
+| Opening detection index | `Data-Extraction/config/agent-research-library/revu-opening-detection-top10-v1.json` | Primary parser-adjacent registry for `cg-opening-locator-v1` |
+| Docling KB | `artifacts/data-extraction-2/vendor-pilot/KB-DOCLING-GITHUB-V1-2026-08-01/` | Optional layout/table/OCR benchmark path |
+| Schema pointers | `contracts/external-schema-index.json` | `parserEvidencePackage@1.0.0`, schedule kinds, Bid Composer consumer shapes |
+| Suite bridge | `docs/SUITE_BRIDGE_MAP.md` | Computer Estimator → Bid Composer bridge and documented import gaps |
+
+Low CE-parser relevance: `proposal-stack-top10-v1.json` and `artifacts/data-extraction-2/proposal-stack-pilot/`. Those belong downstream to Bid Composer / Proposal Generator output, not plan parsing.
+
+### Registry interpretation for CE
+
+| Library | Verdict | Parser contribution | CE state |
+| --- | --- | --- | --- |
+| pymkup | ADOPT | Bluebeam markup labels/UUIDs → training labels | Already in `pyproject.toml` as `pymkup>=0.8` |
+| PyMuPDF | ADOPT | Vector paths, annotations, `get_drawings()` | Used in `plan-detector` / `pdf_vectors.py` |
+| SAHI | ADOPT | Tiled inference on large plan sheets | Not integrated |
+| PaddleDetection | ADOPT | RT-DETR / PP-YOLOE; fits Paddle GPU lane | PaddleOCR yes; detection training not wired |
+| CVAT | ADOPT | Label/QA for proprietary door/window set | Not integrated |
+| CubiCasa5K | STUDY | Segmentation benchmark only; NC license | Research only |
+| FloorPlanCAD | STUDY | Metadata; project discontinued | Research only |
+| PERDAW | BENCHMARK | Early classification experiments | Shallow capture only |
+| Arch FP YOLO | WATCH | Quick proof; Ultralytics license risk | URL/licensing review needed |
+| SAM 2 | ADOPT | Mask assist for labeling, not detector | Not integrated |
+
+The registry reinforces CE's existing evidence-first model. It is not meant to rediscover `plan-detector`; it is the Phase 2 visual-detection adoption list that should sit on top of geometry and markup lanes.
+
+### Computer Estimator foundations already present
+
+| Area | Current foundation |
+| --- | --- |
+| Opening candidates | `plan-detector/` geometry-first door + storefront candidates |
+| Vector lane | Optional PyMuPDF vector extraction |
+| MCP/read bridge | Plan-detector MCP tools and pdfscribe export bridge |
+| Schedule/table lane | camelot + PaddleOCR / PP-Structure |
+| OCR floor | Tesseract CPU fallback |
+| Markup lane | pymkup for Bluebeam markup extraction/binding |
+
+### Docling parser relevance
+
+Docling is useful as a benchmark or fallback for:
+
+- Ruled schedule tables beside camelot/pdfplumber.
+- Messy raster plans needing unified layout + table extraction.
+- Local/air-gapped document conversion aligned with CE workstation policy.
+
+Current state: corpus and URL canon are indexed, but enhancement targets Office Admin knowledge intake first. The Unstructured pilot has empty enhancement candidates and no actionable parser signal yet.
+
+### Honest Data-Extraction gap
+
+The DE pilot produced useful indexes, but the deep vendor interpretation is not finished.
+
+| Artifact | State |
+| --- | --- |
+| `artifacts/data-extraction-2/revu-opening-detection-pilot/` | Knowledge builds COMPLETE, mostly metadata-only |
+| pymkup KB | 1 entity; `unsupported_vendor` unresolved claims |
+| PyMuPDF / PaddleDetection / SAHI operational knowledge | `operational-knowledge.json` empty |
+| Opening enhancement candidates | Empty |
+| Real durable index | Registry JSON, not the shallow KB artifacts |
+| Publishing script | `scripts/agent-research-library/publish-revu-opening-detection-pilot.mjs` |
+
+The index is ahead of interpretation: good registry, shallow operational API notes. Data-Extraction still needs deeper vendor KB for pymkup, PyMuPDF, and PaddleDetection.
+
+### Suite consumer gaps
+
+| Gap | Impact |
+| --- | --- |
+| Bid Composer weak on `window_schedule_row` import | Lowers parser ROI for window/opening evidence |
+| Window schedule review lane missing | Needs Bid Composer / HE review design |
+| HE MCP read tools missing for this lane | Limits downstream review automation |
+
+DE coordinates meaning, CE produces packages, and Bid Composer is the join spine.
+
+### Recommended parser priorities
+
+| Priority | Work | Owner |
+| --- | --- | --- |
+| High | Implement SAHI + PaddleDetection tiled visual detection on full architectural sheets; fuse/score-merge with plan-detector geometry instead of replacing geometry | Computer Estimator |
+| High | Build CVAT + SAM2 labeling pipeline using Capital Glass takeoff PDFs, pymkup labels, and operator corrections | Computer Estimator / Data-Extraction |
+| High | Train classes: `door_plan`, `window_plan`, `door_elevation`, `window_or_glazed_opening_elevation` | Computer Estimator |
+| Medium | Finish DE vendor interpretation for pymkup, PyMuPDF, and PaddleDetection; fix `unsupported_vendor` | Data-Extraction |
+| Medium | Run Docling spike on one schedule-heavy fixture vs camelot lattice + PP-Structure | Computer Estimator |
+| Low | Keep CubiCasa5K, PERDAW, and FloorPlanCAD as research/benchmark only | Data-Extraction |
+| Low | Keep proposal-stack pilot out of CE parser scope | Bid Composer / Proposal Generator |
+
+Docling should only be adopted if it improves provenance and bbox contracts without breaking D1/D2/D7 ordering.
+
+### Revu MCP current operating boundary
+
+Today, Revu MCP is used through Cursor on WESLEYDESK while Bluebeam Revu 21 is running. It is not yet available through Bid Composer.
+
+| Capability | Current state |
+| --- | --- |
+| Cursor MCP invocation | Verified |
+| Fixture markup execution | Verified |
+| Read-back verification | Verified |
+| Estimator Agent Lane | Verified |
+| Production documents | Locked |
+| Bid Composer export | Disabled |
+| Production workflows | None enabled |
+| Official Bluebeam host proof | Pending |
+
+Use it now for controlled fixtures, testing, reading PDFs, markup proof, and workflow development. Do not give it live bid plans for unrestricted production takeoff.
+
+Current direct-use pattern:
+
+1. Open Bluebeam Revu 21 on WESLEYDESK and sign into the correct account.
+2. Open Cursor in `C:\Developer\repos\CapitalGlassRevu`.
+3. Confirm MCP server `user-bluebeam-revu` or `bluebeam-revu` is connected.
+4. Use Run Everything mode.
+5. Give direct read-only or controlled-fixture instructions, such as page count, existing markups, page scale, controlled measurement markup, read-back, markup ID, and transaction result.
+
+Available tool classes include opening files, page counts, markup listing, add/delete markup, markup shape/state reads and writes, page scale, labels, bookmarks, stamps, custom columns, and Studio search.
+
+### Intended production use
+
+Bid Composer should eventually expose product actions, not raw MCP commands:
+
+| Bid Composer action | Underlying lane |
+| --- | --- |
+| Open in Revu | Revu MCP opens canonical PDF |
+| Prepare takeoff | CE evidence + Revu controlled setup |
+| Apply estimating toolset | Revu MCP, gated |
+| Read Revu measurements | Revu read-back/export |
+| Send approved scope to Bid Composer | Structured quantities into review lane |
+
+Nothing reaches pricing until estimator approval.
+
+### Next Revu work package
+
+Recommended next package: `revu-production-takeoff-pilot-v1`.
+
+Scope one narrow workflow only:
+
+`Document Center canonical plan → open in Revu → storefront/glass takeoff → human approval → structured export → Bid Composer review`.
+
+Until that package is complete, Revu MCP remains a controlled testing and takeoff-development tool, not an unattended production system.
+
+
 ## Update log
+
+### 2026-08-01 CT — parser and Revu operating boundary captured
+
+- Captured parser target as Computer Estimator → `parserEvidencePackage@1.0.0` → Bid Composer.
+- Recorded that Revu opening-detection and Docling are the parser-relevant DE outputs; proposal-stack is downstream and out of CE parser scope.
+- Added current Revu MCP operating boundary: Cursor/WESLEYDESK controlled fixtures verified; production documents locked; Bid Composer export disabled.
+- Defined next likely package as `revu-production-takeoff-pilot-v1` after `cg-opening-locator-v1` parser work is scoped.
+
 
 ### 2026-08-01 18:07 CT — pilot 8/10 operational; DE handoff ACK_ACCEPTED
 
