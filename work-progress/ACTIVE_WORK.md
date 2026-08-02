@@ -13,7 +13,7 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-08-02 |
-| Current focus | Cross-agent registry + active-ledger drain **closed out**; structured ledger projection Phase 0 schema drafted; merge AppBuilder PR #264 (ledgerOnly compact v2) |
+| Current focus | Structured ledger projection **Phases 0–3 milestone PASS** — Git canonical, Supabase derived index `IN_SYNC`; operational ingest + drift probe live |
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
@@ -23,10 +23,10 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 | Repo | Commit | Status | Notes |
 | --- | --- | --- | --- |
-| CG-AppBuilder-MCP | `eeaae5ec` | Merged | Active-ledger compact preflight (PR #263); closeout evidence `cd4a9005` |
-| CG-AppBuilder-MCP | PR #264 | Open | ledgerOnly compact v2 for `capital-glass-cross-agent` |
-| CG-Platform-Governance-MCP | `dc49d9c` | Pushed | Structured ledger schema contract (Phase 0 DRAFT) |
-| CapitalGlass-Cross-Agent | `dc4d8d2` | Pushed | Closeout docs + investigation plan |
+| CG-AppBuilder-MCP | `63dbeb8c` | Pushed | Structured ledger Phase 1–3 milestone — ingest, drift probe, preflight wiring |
+| CG-AppBuilder-MCP | PR #265 | Merged | ledgerOnly compact v2 + active-ledger spine (`c32c331f`; supersedes #264) |
+| CG-Platform-Governance-MCP | `a5ce4c3` | Pushed | Structured ledger schema Phase 0 **CURRENT** |
+| CapitalGlass-Cross-Agent | `474fa8d` | Pushed | Phase 0/1 status docs; milestone closeout pending this commit |
 | Data-Extraction | `e6311b5` | Pushed | L: active-work publisher (Phase 1B) |
 
 Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain/ACTIVE_WORK-2026-08-02-pre-drain.md`
@@ -37,7 +37,7 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 | --- | --- |
 | Governance decides what counts; AppBuilder executes | `CG-Platform-Governance-MCP/docs/platform/ACTIVE_LEDGER_RELEASE_AUTHORITY_CONTRACT.md` |
 | Drained authority rules | `CG-Platform-Governance-MCP/docs/platform/ACTIVE_LEDGER_AUTHORITY_RULES.md` |
-| Structured ledger schema (DRAFT) | `CG-Platform-Governance-MCP/docs/platform/CROSS_AGENT_STRUCTURED_LEDGER_CONTRACT.md` |
+| Structured ledger schema | `CG-Platform-Governance-MCP/docs/platform/CROSS_AGENT_STRUCTURED_LEDGER_CONTRACT.md` | **CURRENT** |
 | Bible-dependent work | `npm run bible:authority:gate` from CG-AppBuilder-MCP |
 | GPU host authority | `work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md` § GPU Host Authority |
 
@@ -45,15 +45,24 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 
 | Priority | Action | Owner repo | Status |
 | --- | --- | --- | --- |
-| 1 | Merge AppBuilder PR #264 (ledgerOnly compact v2) | CG-AppBuilder-MCP | Pending CI / merge |
-| 2 | Approve Governance structured ledger schema (`dc49d9c`) | CG-Platform-Governance-MCP | Pending operator |
-| 3 | Begin `cross-agent-structured-ledger-projection-v1` Phase 1 (AppBuilder ingestion) | CG-AppBuilder-MCP | Blocked on schema approval |
+| 1 | Re-run gated ingest after ledger updates (`cross-agent-ledger:ingest --apply`) | CG-AppBuilder-MCP | Recurring |
+| 2 | Run drift probe when hub/projection may be stale | CG-AppBuilder-MCP | Recurring |
+| 3 | Publish L: hub slices after ledger edits | Data-Extraction | Recurring |
 | 4 | Restart MCP for Governance compounding tools | Cursor / local MCP | Pending |
-| 5 | After ledger updates: `npm run agent-research-library:publish-active-work-ledger` | Data-Extraction | Recurring |
 
-**Default agent preflight (machine-readable):** `L:/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/active-work-open-actions.json` and `active-work-blockers.json` only — not full ledger.
+**Default agent preflight (machine-readable):** `openActions` + `blockers` only — L: hub slices when available, else Supabase derived projection (`compact-slices-only`). Not full ledger. `currentFocus` human-only (`whats-active-now --include-current-focus`).
 
 ## Progress log (last 3 entries)
+
+### 2026-08-02 CT — structured ledger projection Phases 1–3 milestone PASS
+
+| Field | Value |
+| --- | --- |
+| Work package | `cross-agent-structured-ledger-projection-v1` |
+| Status | **MILESTONE PASS** — ingest applied, drift `IN_SYNC`, derived-only verified |
+| Evidence | `CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-structured-ledger-projection-v1/milestone-closeout-v1.json` |
+| Commits | AppBuilder `63dbeb8c`; Governance `a5ce4c3` |
+| Operating model | Git canonical; Supabase derived index; agents get blockers/actions only by default |
 
 ### 2026-08-02 CT — cross-agent registry + active-ledger drain closeout
 
@@ -62,7 +71,7 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 | Work packages | `cross-agent-registry-onboard-v1`, `active-ledger-drain-and-intelligence-hub-sync-v1` |
 | Status | **Closeout PASS** — governance authorized, corpus synced, lifecycle `CLOSEOUT_AUTHORIZED` |
 | Evidence | `CG-AppBuilder-MCP/artifacts/agent-runs/active-ledger-drain-and-intelligence-hub-sync-v1/session-closeout-v3.2.json` |
-| Next WP | `cross-agent-structured-ledger-projection-v1` (Governance schema `dc49d9c` DRAFT) |
+| Next WP | `cross-agent-structured-ledger-projection-v1` Phases 1–3 **COMPLETE**; Phase 4 optional |
 
 Registry onboard: AppBuilder `38a162da` / `48a1bff1`. Structured projection schema opened at Governance `dc49d9c`.
 

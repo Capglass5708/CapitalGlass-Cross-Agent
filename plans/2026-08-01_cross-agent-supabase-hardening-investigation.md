@@ -34,24 +34,26 @@ The Cross-Agent repository has appropriate boundaries as a coordination repo. Ph
 
 Phase 0 covers **identity in `registry.repositories`** and suite/RI parity. It does **not** implement event ingestion or projections.
 
-## Phase 1+ — Structured ledger projection (OPEN)
+## Phase 1+ — Structured ledger projection (**MILESTONE PASS**)
 
 Work package: `cross-agent-structured-ledger-projection-v1`
 
+Phases 0–3 operational (AppBuilder `63dbeb8c`; Governance `a5ce4c3`). Live drift `IN_SYNC`. Milestone receipt: `CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-structured-ledger-projection-v1/milestone-closeout-v1.json`.
+
 Acceptance:
 
-1. Governance-owned schema contract.
-2. AppBuilder ingestion adapter.
-3. Append-only event model.
-4. Current-state projection.
-5. Drift detection between Git and Supabase.
-6. Platform Health dashboard integration.
-7. Git remains canonical; Supabase is a derived operational index.
+1. Governance-owned schema contract. — **PASS** (CURRENT)
+2. AppBuilder ingestion adapter. — **PASS**
+3. Append-only event model. — **PASS**
+4. Current-state projection. — **PASS**
+5. Drift detection between Git and Supabase. — **PASS** (`IN_SYNC`)
+6. Platform Health dashboard integration. — **PASS** (blockers/actions only by default)
+7. Git remains canonical; Supabase is a derived operational index. — **PASS** (derived-only verified)
 
 ## Related work packages
 
 | Work package | Role | Status |
 | --- | --- | --- |
 | `cross-agent-registry-onboard-v1` | Platform registry identity | **Complete** (`38a162da`) |
-| `cross-agent-structured-ledger-projection-v1` | Event/projection model | Phase 0 DRAFT — Governance schema (`dc49d9c`) |
+| `cross-agent-structured-ledger-projection-v1` | Event/projection model | **MILESTONE PASS** — Phases 0–3 (`63dbeb8c` / `a5ce4c3`) |
 | `active-ledger-drain-and-intelligence-hub-sync-v1` | Drain `ACTIVE_WORK.md` to durable owners | Phases 0–3 complete — Phase 5 closeout recorded |
