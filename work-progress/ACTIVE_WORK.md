@@ -26,7 +26,7 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | CG-AppBuilder-MCP | `63dbeb8c` | Pushed | Structured ledger Phase 1–3 milestone — ingest, drift probe, preflight wiring |
 | CG-AppBuilder-MCP | PR #265 | Merged | ledgerOnly compact v2 + active-ledger spine (`c32c331f`; supersedes #264) |
 | CG-Platform-Governance-MCP | `a5ce4c3` | Pushed | Structured ledger schema Phase 0 **CURRENT** |
-| CapitalGlass-Cross-Agent | `474fa8d` | Pushed | Phase 0/1 status docs; milestone closeout pending this commit |
+| CapitalGlass-Cross-Agent | `7f1448f` | Pushed | Structured ledger milestone closeout in active ledger |
 | Data-Extraction | `e6311b5` | Pushed | L: active-work publisher (Phase 1B) |
 
 Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain/ACTIVE_WORK-2026-08-02-pre-drain.md`
