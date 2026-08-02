@@ -33,6 +33,7 @@ Current synced inventory:
 | Vendor tools | 5 |
 | DE handoff packages | 2 |
 | Knowledge builds linked | 20 |
+| Cross-Agent master work docs | 1 |
 
 ### BY-KIND slices
 
@@ -44,7 +45,19 @@ L:\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\cursor-plugins.json
 L:\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\external-libraries.json
 L:\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\vendor-tools.json
 L:\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\handoff-packages.json
+L:\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\cross-agent-master-work.json
 ```
+
+### Cross-Agent master work (published copy on L:)
+
+Git source of truth: `CapitalGlass-Cross-Agent/work-progress/2026-08-02_MASTER_WORK_DOCUMENT.md`
+
+| L: path | Purpose |
+| --- | --- |
+| `cross-agent-master-work/2026-08-02_MASTER_WORK_DOCUMENT.md` | Published readable copy |
+| `cross-agent-master-work/LATEST.md` | Latest alias (full contents) |
+| `cross-agent-master-work/INDEX.json` | Machine-readable document index |
+| `BY-KIND/cross-agent-master-work.json` | Kind slice for agent discovery |
 
 ### Agent use pattern
 

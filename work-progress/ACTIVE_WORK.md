@@ -106,8 +106,8 @@ Do not capture:
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-08-01 |
-| Current focus | GPU host authority clarified: Ryzen9Desk owns RTX 5080 activation proof; WesleyDesk is 1080 Ti dev/office/L: workflow host; capture parser/GPU closeouts as runs finish |
+| Last updated | 2026-08-02 |
+| Current focus | Master work document published to L: cross-agent-master-work index; GPU/parser closeouts and AppBuilder `480315c2` push remain open |
 | Workspace context | `work-progress/WORKSPACE_CONTEXT.md` |
 | Agent startup entrypoint | `AGENT_START_HERE.md` |
 | Project index | `work-progress/projects/INDEX.md` |
@@ -121,11 +121,11 @@ Do not capture:
 
 | Repo | Commit | Status | Notes |
 | --- | --- | --- | --- |
-| CapitalGlass-Cross-Agent | `4260ed7` | Pushed | Agent startup entrypoint, project index, README startup path pointer; working tree clean; no hook warnings |
-| CG-Platform-Governance-MCP | `0f6dafd` | Local only / not pushed | `north-star-compounding-proof-v1` constitutional authority: schema, lib, MCP tools, policy modules, closeout wiring, manifest, ownership map |
-| CG-AppBuilder-MCP | `480315c2` | Local only / not pushed | AppBuilder execution adapters: Governance shims, compounding proof client, preflight/closeout wiring, Cursor rule, Bible doc, register-tools fix |
-| CapitalGlass-Cross-Agent | `76b34fe` | Pushed | Application Bible sync runbook updated |
-| CG-AppBuilder-MCP | `dc32d991` | Pushed | `bible:authority:gate` added |
+| CG-Platform-Governance-MCP | `0f6dafd` | Pushed | `north-star-compounding-proof-v1` on `origin/main` |
+| CG-AppBuilder-MCP | `480315c2` | Local only / not pushed | AppBuilder execution adapters for compounding proof authority |
+| CapitalGlass-Cross-Agent | `76b34fe` | Pushed | Application Bible sync runbook |
+| CG-AppBuilder-MCP | `dc32d991` | Pushed | `bible:authority:gate` |
+| CapitalGlass-Cross-Agent | `506a229` | Pushed | Master work document + canonical knowledge map updates |
 
 ## Current operating rules
 
@@ -194,6 +194,24 @@ Target direction:
 | 6 | Keep this valuable-work ledger updated as timestamped work proceeds | CapitalGlass-Cross-Agent | Active |
 
 ## Progress log
+
+### 2026-08-02 CT — cross-agent master work L: ingest
+
+| Field | Value |
+| --- | --- |
+| Project / Cursor ID | `cross-agent-master-work-ingest-v1` |
+| Work package | `cross-agent-master-work-ingest-v1` |
+| Source | Cursor |
+| Repos involved | `CapitalGlass-Cross-Agent` |
+| Status | Published to L: |
+| Commits / PRs | Source doc `7f454e3`; ledger base `506a229`; ingest commit pending |
+| Verification | L: copy + `cross-agent-master-work/INDEX.json` + `LATEST.md` + `BY-KIND/cross-agent-master-work.json` + top-level `INDEX.json` + `AGENT_BUILD_CATALOG.json` |
+| Next action | Commit/push Cross-Agent ledger corrections |
+
+Notes:
+- Published: `L:/Capital-Glass-Intelligence-Hub/00-master-index/cross-agent-master-work/2026-08-02_MASTER_WORK_DOCUMENT.md`
+- Git source of truth: `work-progress/2026-08-02_MASTER_WORK_DOCUMENT.md`
+- Corrected Governance `0f6dafd` push status in master doc
 
 ### 2026-08-02 CT - master work document created
 

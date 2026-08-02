@@ -151,8 +151,8 @@ Mission: move constitutional authority to Governance MCP; AppBuilder becomes exe
 
 | Repo | Reported commit | Status |
 | --- | --- | --- |
-| `CG-Platform-Governance-MCP` | `0f6dafd` | Local only / not pushed in the captured state |
-| `CG-AppBuilder-MCP` | `480315c2` | Local only / not pushed in the captured state |
+| `CG-Platform-Governance-MCP` | `0f6dafd` | Pushed | `north-star-compounding-proof-v1` constitutional authority on `origin/main` |
+| `CG-AppBuilder-MCP` | `480315c2` | Local only / not pushed | AppBuilder execution adapters for compounding proof authority |
 
 Delivered in the Governance/AppBuilder work package:
 
@@ -365,7 +365,21 @@ Additional Cross-Agent commits today captured parser/Rosewood run evidence and a
 | 7 | Benchmark Docling against CE schedule/table fixtures | Computer Estimator |
 | 8 | Add warm-cache sync of `operational-knowledge.json` to L: capability library | Data-Extraction |
 | 9 | Restart Cursor MCP for Governance tools | Operator |
-| 10 | Push or close out Governance/AppBuilder authority-shift commits if still pending | Operator / repos |
+| 10 | Push `CG-AppBuilder-MCP` `480315c2` when approved | Operator / repos |
+
+## L: Published Copy
+
+| Field | Value |
+| --- | --- |
+| Published path | `L:\Capital-Glass-Intelligence-Hub\00-master-index\cross-agent-master-work\2026-08-02_MASTER_WORK_DOCUMENT.md` |
+| Latest alias | `L:\Capital-Glass-Intelligence-Hub\00-master-index\cross-agent-master-work\LATEST.md` |
+| Slice index | `L:\Capital-Glass-Intelligence-Hub\00-master-index\cross-agent-master-work\INDEX.json` |
+| BY-KIND slice | `L:\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\cross-agent-master-work.json` |
+| Source commit | `7f454e3` |
+| SHA-256 | See `cross-agent-master-work/INDEX.json` (`documents[0].sha256`) |
+| Git source of truth | `CapitalGlass-Cross-Agent/work-progress/2026-08-02_MASTER_WORK_DOCUMENT.md` |
+
+Cross-Agent remains the human ledger and Git history. L: holds the published readable copy and machine-readable pointers only.
 
 ## Final Operating Model
 
