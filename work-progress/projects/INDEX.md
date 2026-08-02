@@ -37,6 +37,7 @@ Filename pattern: `YYYY-MM-DD_<project-id>.md` — see `work-progress/projects/R
 | `agent-research-library-layout-v1` | [2026-08-01_agent-research-library-layout-v1.md](./2026-08-01_agent-research-library-layout-v1.md) | Pilot 9/10 operational | `Data-Extraction`, `Scraper` | `Data-Extraction 2190944`; `Scraper 0111837`; layout `b1d2e42`, `3e09e4c` | Optional bounded n8n capture; agent review before any `10-approved-for-use/` promotion |
 | `docling-github-ingest-v1` | [2026-08-01_docling-github-ingest-v1.md](./2026-08-01_docling-github-ingest-v1.md) | Publish optimized — `manifest-only-fast` default | `Scraper`, `Data-Extraction` | Cross-Agent `2ecb2f5` | Use L: compact / manifest entry points; full publish only when all 1,076 pages must be mirrored |
 | `ephemeral-unstructured-github-scrape-v1` | [2026-08-01_ephemeral-unstructured-github-scrape-v1.md](./2026-08-01_ephemeral-unstructured-github-scrape-v1.md) | Scrape complete — corpus publish pending | `Scraper` (capture), `Data-Extraction` (publish) | Cross-Agent `1ff3908`, `5abae0f`, `78bbdde` | Implement shared `build-github-markdown-articles.mjs`; publish Unstructured corpus; run `knowledge:build` |
+| `bid-composer-upgrade-roadmap-v1` | [2026-08-01_bid-composer-upgrade-roadmap-v1.md](./2026-08-01_bid-composer-upgrade-roadmap-v1.md) | Phase 1 implemented; shared-dev migration pending | `CapitalGlass-BidComposer` | Cross-Agent `ed1fbea`; migration `20260801120000_bid_revision_control_and_pipeline.sql` | Apply shared DB migration or start `bid-composer-phase2-document-authority-v1` |
 | `revu-opening-detection-top10-v1` | [2026-08-01_revu-opening-detection-top10-v1.md](./2026-08-01_revu-opening-detection-top10-v1.md) | Pilot 8/10 operational; Rosewood lane status corrected | `Computer Estimator` (detection), `CapitalGlassRevu` (markup), `Data-Extraction`, `Scraper`, `Bid Composer` | `Data-Extraction 38e5c58`; `Scraper 36cd354`; Cross-Agent `ad12b11`, `531fd9b` | Do not treat Rosewood as proposal-ready; Revu markup controlled, CE parse stalled, real BC bid not started |
 
 ---
@@ -91,6 +92,12 @@ Recommended follow-on work packages (not yet project files):
 | `docling-github-ingest-v1` | Publish optimized | GitHub bulk capture + articles builder if not done |
 | `ephemeral-unstructured-github-scrape-v1` | Scrape complete | Shared `build-github-markdown-articles.mjs` |
 | `revu-opening-detection-top10-v1` | Pilot 8/10 operational | Deepen vendor KB for pymkup, PyMuPDF, PaddleDetection; keep proposal-stack out of CE parser scope |
+
+### Bid Composer
+
+| Project ID | Status | Next action |
+| --- | --- | --- |
+| `bid-composer-upgrade-roadmap-v1` | Phase 1 implemented | Apply shared DB migration; choose Phase 2 document authority or Phase 3 parser normalization |
 
 ### Computer Estimator / CapitalGlassRevu
 
