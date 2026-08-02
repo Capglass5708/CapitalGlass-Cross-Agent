@@ -324,7 +324,65 @@ cd "C:\Developer\repos\Computer Estimator"
 
 The exact command should be recorded once confirmed from the Computer Estimator repo scripts. Do not treat `vector_text_plan.pdf` as the target fixture for this Rosewood run.
 
+## Rosewood parser run - Ryzen9Desk - in progress - 2026-08-01
+
+This records the live Rosewood Computer Estimator parser run on Ryzen9Desk.
+
+| Field | Value |
+| --- | --- |
+| Host | `RYZEN9DESK` / `wesley@cg-ryzen9desk-01` |
+| Repo / lane | `Computer Estimator` plan parser |
+| Project | `Rosewood` |
+| Document ID | `1a6fda42-8c48-450e-83bf-8bb590af026b` |
+| PDF | `data/incoming/rosewood-permit-set.pdf` |
+| Source PDF size/pages | 113 MB / 192 pages |
+| Execution mode | CPU: `USE_GPU=false`, Tesseract OCR |
+| Docker Postgres | Running healthy on `:5433` |
+| WSL dependencies | Tesseract + Ghostscript installed |
+| PyTorch state | Broken CUDA PyTorch replaced with `torch-2.13.0+cpu` |
+| Output paths | `data/processed`, `data/plan-out` |
+| Z: status on Ryzen9 | Not mapped for this run; outputs local only |
+| Last observed stage | Render around page 98/192 |
+| Run log | `/tmp/rosewood-plan-parser.log` |
+
+### Monitor commands
+
+~~~bash
+ssh wesley@cg-ryzen9desk-01 'wsl -e bash -lc "tail -f /tmp/rosewood-plan-parser.log"'
+ssh wesley@cg-ryzen9desk-01 'wsl -e bash -lc "grep render_page_done /tmp/rosewood-plan-parser.log | tail -3"'
+~~~
+
+### Current interpretation
+
+- The earlier smoke run reached ingest -> OCR -> merge, then failed on embed before PyTorch was fixed.
+- Current Rosewood run is past ingest and actively rendering.
+- This is a CPU-mode validation run, not a GPU performance proof.
+- Expected render time for 192 sheets: roughly 10-15 minutes.
+- Expected OCR + embed on CPU: roughly 1-3+ hours for the full permit set.
+- Review exports should land under `C:\Developer\repos\Computer Estimator\data\plan-out\` on Ryzen9.
+- Do not expect `Z:\Plan Out` output until that share is mapped on Ryzen9.
+
+### Completion criteria to record next
+
+When complete, capture:
+
+| Required evidence | Expected value |
+| --- | --- |
+| JSON closeout | `succeeded: 1` |
+| Evidence package path(s) | Paths generated under `data/plan-out` / processed output |
+| BC relay readiness | Whether output is suitable for Bid Composer relay import |
+| Failures/warnings | Any OCR/embed/export warnings from the log |
+
 ## Update log
+
+### 2026-08-01 CT - Rosewood parser run started on Ryzen9Desk
+
+- Host: `wesley@cg-ryzen9desk-01` / `RYZEN9DESK`.
+- Project: `Rosewood`; document ID `1a6fda42-8c48-450e-83bf-8bb590af026b`.
+- Docker Postgres on `:5433` healthy; Tesseract and Ghostscript installed in WSL.
+- Broken CUDA torch replaced with CPU `torch-2.13.0+cpu`; run is CPU mode with `USE_GPU=false`.
+- 113 MB / 192-page Rosewood PDF copied to `data/incoming/rosewood-permit-set.pdf`.
+- Last observed stage: render around page 98/192; outputs are local under `data/processed` and `data/plan-out` because Z: is not mapped on Ryzen9.
 
 ### 2026-08-01 CT - Ryzen9Desk parser run evidence captured
 
