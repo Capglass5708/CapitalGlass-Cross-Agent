@@ -148,7 +148,7 @@ node scripts/scrape-github-repo.mjs --owner Unstructured-IO --repo unstructured 
 | Repo | Commit / PR | Status |
 | --- | --- | --- |
 | Scraper | Not provided | Local/reported by Cursor |
-| CapitalGlass-Cross-Agent | Pending | Project file + ledger update |
+| CapitalGlass-Cross-Agent | Phase 0 synced | Ledger intake complete; drain classification in `archive/2026-08/ledger-snapshots/phase-0-pre-drain/` |
 
 ## Next actions
 
@@ -167,6 +167,12 @@ node scripts/scrape-github-repo.mjs --owner Unstructured-IO --repo unstructured 
 - Unstructured may be valuable for Capital Glass document ingestion because it handles PDFs, Office docs, HTML, email, images/OCR, and connector-based batch ingest.
 
 ## Update log
+
+### 2026-08-02 22:30 CT — Phase 0 ledger drain classification
+
+- Resolved pending ledger update for `ephemeral-unstructured-github-scrape-v1`.
+- Drain destination: project file + Scraper capture artifacts + shared `build-github-markdown-articles.mjs` blocker in INDEX.
+- Pre-drain snapshot preserved; live `ACTIVE_WORK.md` not modified.
 
 ### 2026-08-01 CT — Cursor / Wesley / ChatGPT
 

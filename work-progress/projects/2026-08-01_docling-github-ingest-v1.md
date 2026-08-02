@@ -15,7 +15,7 @@ Ingest `docling-project/docling` as a first-class vendor-docs estate so agents c
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Authority repo | Data-Extraction / Northstar corpus policy |
 | Execution repo | Scraper / Data-Extraction |
-| Status | Planned / implementation checklist captured |
+| Status | Publish optimized — `manifest-only-fast` default |
 
 ## Repositories involved
 
@@ -206,7 +206,7 @@ npm run de:handoff-health
 | --- | --- | --- |
 | Scraper | None yet | Planned |
 | Data-Extraction | None yet | Planned |
-| CapitalGlass-Cross-Agent | Pending | Project file + ledger update |
+| CapitalGlass-Cross-Agent | Phase 0 synced | Ledger intake complete; drain classification in `archive/2026-08/ledger-snapshots/phase-0-pre-drain/` |
 
 ## Next actions
 
@@ -229,6 +229,13 @@ npm run de:handoff-health
 - Agent retrieval should start with `L:/Capital-Glass-Intelligence-Hub/.../compacts/*-agent-compact-v1.json`, then warm retrieval snapshots, then full source only as a last resort.
 
 ## Update log
+
+### 2026-08-02 22:30 CT — Phase 0 ledger drain classification
+
+- Resolved pending ledger update for `docling-github-ingest-v1`.
+- Status aligned with `projects/INDEX.md`: Publish optimized — `manifest-only-fast` default.
+- Drain destination: project file + `CANONICAL_KNOWLEDGE_LOCATIONS.md` § Docling + L: vendor-docs compact paths.
+- Pre-drain snapshot preserved; live `ACTIVE_WORK.md` not modified.
 
 ### 2026-08-01 17:23 CT — Cursor / Wesley / ChatGPT
 

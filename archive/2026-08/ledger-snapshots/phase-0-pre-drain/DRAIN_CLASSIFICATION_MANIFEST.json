@@ -1,0 +1,321 @@
+{
+  "schemaVersion": "1.0.0",
+  "manifestType": "active-ledger-drain-classification-v1",
+  "workPackageId": "active-ledger-drain-and-intelligence-hub-sync-v1",
+  "generatedAt": "2026-08-03T03:30:00Z",
+  "sourceRepository": "CapitalGlass-Cross-Agent",
+  "sourcePath": "work-progress/ACTIVE_WORK.md",
+  "sourceCommitSha": "14536296a976848cdf4a9d356ed161a4e605f317",
+  "contentHash": "5e5e59d79bfa87ca15368d12a45453d9a5f677ac3a333070bd5ddbff7c2a1036",
+  "classificationSummary": {
+    "totalItems": 27,
+    "classified": 27,
+    "unresolved": 0,
+    "percentComplete": 100
+  },
+  "sections": [
+    {
+      "id": "header-purpose",
+      "lines": "1-5",
+      "type": "static-template",
+      "destination": "retain-in-trimmed-ledger",
+      "owner": "CapitalGlass-Cross-Agent",
+      "projection": null,
+      "notes": "Title and purpose statement; keep condensed in trimmed ledger"
+    },
+    {
+      "id": "rules",
+      "lines": "7-20",
+      "type": "operating-rules",
+      "destination": "runbooks/AGENT_LEDGER_UPDATE_RUNBOOK.md",
+      "owner": "CapitalGlass-Cross-Agent",
+      "projection": "active-work-ledger.json#rulesPointer",
+      "notes": "Trimmed ledger references runbook; full rules not duplicated"
+    },
+    {
+      "id": "required-entry-format",
+      "lines": "22-56",
+      "type": "static-template",
+      "destination": "work-progress/projects/README.md",
+      "owner": "CapitalGlass-Cross-Agent",
+      "projection": null,
+      "notes": "Trimmed ledger links to README; template not inlined"
+    },
+    {
+      "id": "valuable-information-taxonomy",
+      "lines": "58-76",
+      "type": "operating-rules",
+      "destination": "runbooks/AGENT_LEDGER_UPDATE_RUNBOOK.md",
+      "owner": "CapitalGlass-Cross-Agent",
+      "projection": null,
+      "notes": "Capture requirements; archive in pre-drain snapshot"
+    },
+    {
+      "id": "cursor-paste-intake",
+      "lines": "78-103",
+      "type": "operating-rules",
+      "destination": "work-progress/WORKSPACE_CONTEXT.md",
+      "owner": "CapitalGlass-Cross-Agent",
+      "projection": null,
+      "notes": "ChatGPT intake rule; already in WORKSPACE_CONTEXT"
+    },
+    {
+      "id": "current-active-status",
+      "lines": "105-118",
+      "type": "live-status",
+      "destination": "retain-in-trimmed-ledger",
+      "owner": "CapitalGlass-Cross-Agent",
+      "projection": "L:/00-master-index/BY-KIND/active-work-ledger.json#currentStatus",
+      "notes": "Primary live surface; exported in Phase 1"
+    },
+    {
+      "id": "current-saved-work",
+      "lines": "120-131",
+      "type": "commits",
+      "destination": "retain-in-trimmed-ledger",
+      "owner": "CapitalGlass-Cross-Agent",
+      "projection": "L:/00-master-index/BY-KIND/active-work-ledger.json#savedWork",
+      "notes": "8 repo rows; parity check vs git in Phase 1 lint"
+    },
+    {
+      "id": "operating-rules-meeting-capture",
+      "lines": "135-157",
+      "type": "operating-rules",
+      "destination": "CG-Platform-Governance-MCP/docs/platform/ACTIVE_LEDGER_RELEASE_AUTHORITY_CONTRACT.md",
+      "owner": "CG-Platform-Governance-MCP",
+      "projection": "L:/00-master-index/BY-KIND/governance-authority-rules.json",
+      "notes": "Meeting repo capture policy"
+    },
+    {
+      "id": "operating-rules-bible-gate",
+      "lines": "159-174",
+      "type": "operating-rules",
+      "destination": "CG-AppBuilder-MCP/docs/platform/ACTIVE_LEDGER_OPERATING_RULES.md",
+      "owner": "CG-AppBuilder-MCP",
+      "projection": "verification/CURRENT_GATES.md",
+      "notes": "Bible gate command; pointer only in trimmed ledger"
+    },
+    {
+      "id": "operating-rules-governance-authority",
+      "lines": "176-186",
+      "type": "authority-rule",
+      "destination": "CG-Platform-Governance-MCP/docs/platform/ACTIVE_LEDGER_RELEASE_AUTHORITY_CONTRACT.md",
+      "owner": "CG-Platform-Governance-MCP",
+      "projection": "L:/00-master-index/BY-KIND/governance-authority-rules.json",
+      "notes": "Permanent: Governance decides what counts; AppBuilder executes only"
+    },
+    {
+      "id": "open-next-actions",
+      "lines": "188-196",
+      "type": "open-actions",
+      "destination": "retain-in-trimmed-ledger",
+      "owner": "CapitalGlass-Cross-Agent",
+      "projection": "L:/00-master-index/BY-KIND/active-work-open-actions.json",
+      "notes": "5 prioritized actions; default preflight slice"
+    },
+    {
+      "id": "cross-cutting-blockers",
+      "lines": "INDEX.md#cross-cutting-blockers",
+      "type": "blockers",
+      "destination": "work-progress/projects/INDEX.md",
+      "owner": "CapitalGlass-Cross-Agent",
+      "projection": "L:/00-master-index/BY-KIND/active-work-blockers.json",
+      "notes": "7 blockers in INDEX; default preflight slice; dedupe with open actions in Phase 4"
+    }
+  ],
+  "progressLogEntries": [
+    {
+      "id": "log-001",
+      "timestamp": "2026-08-02 21:02 CT",
+      "title": "north-star-compounding-proof-v1 pushed with evidence",
+      "workPackageId": "north-star-compounding-proof-v1",
+      "destination": "work-progress/projects/2026-08-01_north-star-compounding-proof-v1.md",
+      "owner": "CG-Platform-Governance-MCP",
+      "projection": "artifacts/agent-runs/north-star-compounding-proof-v1/",
+      "retainInTrimmedLedger": true,
+      "trimPriority": 1
+    },
+    {
+      "id": "log-002",
+      "timestamp": "2026-08-02 CT",
+      "title": "Cross-Agent repo cleanup and folder organization",
+      "workPackageId": "cross-agent-repo-organization-v1",
+      "destination": "archive/2026-08/ledger-snapshots/phase-0-pre-drain/ACTIVE_WORK-2026-08-02-pre-drain.md",
+      "owner": "CapitalGlass-Cross-Agent",
+      "projection": "decisions/DECISION_LOG.md",
+      "retainInTrimmedLedger": true,
+      "trimPriority": 2
+    },
+    {
+      "id": "log-003",
+      "timestamp": "2026-08-02 CT",
+      "title": "cross-agent master work L: ingest",
+      "workPackageId": "cross-agent-master-work-ingest-v1",
+      "destination": "work-progress/2026-08-02_MASTER_WORK_DOCUMENT.md",
+      "owner": "Data-Extraction",
+      "projection": "L:/00-master-index/cross-agent-master-work/",
+      "retainInTrimmedLedger": true,
+      "trimPriority": 3
+    },
+    {
+      "id": "log-004",
+      "timestamp": "2026-08-02 CT",
+      "title": "master work document created",
+      "workPackageId": "cross-agent-master-work-ingest-v1",
+      "destination": "work-progress/2026-08-02_MASTER_WORK_DOCUMENT.md",
+      "owner": "CapitalGlass-Cross-Agent",
+      "projection": "L:/00-master-index/cross-agent-master-work/LATEST.md",
+      "retainInTrimmedLedger": false,
+      "trimPriority": null
+    },
+    {
+      "id": "log-005",
+      "timestamp": "2026-08-02 CT",
+      "title": "GPU host authority clarified",
+      "workPackageId": "revu-opening-detection-top10-v1",
+      "destination": "work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md#gpu-host-authority",
+      "owner": "CapitalGlass-Cross-Agent",
+      "projection": "L:/00-master-index/BY-KIND/host-authority.json",
+      "retainInTrimmedLedger": false,
+      "trimPriority": null
+    },
+    {
+      "id": "log-006",
+      "timestamp": "2026-08-01 CT",
+      "title": "L master index made canonical front door",
+      "workPackageId": "agent-research-library-layout-v1",
+      "destination": "work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md#single-operational-front-door",
+      "owner": "Data-Extraction",
+      "projection": "L:/00-master-index/INDEX.json",
+      "retainInTrimmedLedger": false,
+      "trimPriority": null
+    },
+    {
+      "id": "log-007",
+      "timestamp": "2026-08-01 CT",
+      "title": "Rosewood parser running on Ryzen9Desk",
+      "workPackageId": "revu-opening-detection-top10-v1",
+      "destination": "work-progress/projects/2026-08-01_revu-opening-detection-top10-v1.md#rosewood-parser-run",
+      "owner": "Computer Estimator",
+      "projection": null,
+      "retainInTrimmedLedger": false,
+      "trimPriority": null
+    },
+    {
+      "id": "log-008",
+      "timestamp": "2026-08-01 CT",
+      "title": "canonical knowledge locations map created",
+      "workPackageId": "agent-research-library-layout-v1",
+      "destination": "work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md",
+      "owner": "CapitalGlass-Cross-Agent",
+      "projection": null,
+      "retainInTrimmedLedger": false,
+      "trimPriority": null
+    },
+    {
+      "id": "log-009",
+      "timestamp": "2026-08-01 CT",
+      "title": "Ryzen9Desk parser run evidence captured",
+      "workPackageId": "revu-opening-detection-top10-v1",
+      "destination": "work-progress/projects/2026-08-01_revu-opening-detection-top10-v1.md#parser-run-evidence",
+      "owner": "Computer Estimator",
+      "projection": null,
+      "retainInTrimmedLedger": false,
+      "trimPriority": null
+    },
+    {
+      "id": "log-010",
+      "timestamp": "2026-08-01 CT",
+      "title": "cross-agent startup path pushed",
+      "workPackageId": "cross-agent-startup-entrypoint-v1",
+      "destination": "AGENT_START_HERE.md",
+      "owner": "CapitalGlass-Cross-Agent",
+      "projection": null,
+      "retainInTrimmedLedger": false,
+      "trimPriority": null
+    },
+    {
+      "id": "log-011",
+      "timestamp": "2026-08-01 CT",
+      "title": "north-star-compounding-proof-v1 commits and gate rerun",
+      "workPackageId": "north-star-compounding-proof-v1",
+      "destination": "work-progress/projects/2026-08-01_north-star-compounding-proof-v1.md",
+      "owner": "CG-Platform-Governance-MCP",
+      "projection": "artifacts/agent-runs/north-star-compounding-proof-v1/",
+      "retainInTrimmedLedger": false,
+      "trimPriority": null,
+      "notes": "Superseded by log-001 (pushed state)"
+    },
+    {
+      "id": "log-012",
+      "timestamp": "2026-08-01 18:07 CT",
+      "title": "revu-opening pilot 8/10 operational",
+      "workPackageId": "revu-opening-detection-top10-v1",
+      "destination": "work-progress/projects/2026-08-01_revu-opening-detection-top10-v1.md",
+      "owner": "Computer Estimator",
+      "projection": "Data-Extraction/artifacts/data-extraction-2/revu-opening-detection-pilot/",
+      "retainInTrimmedLedger": false,
+      "trimPriority": null
+    },
+    {
+      "id": "log-013",
+      "timestamp": "2026-08-01 17:34 CT",
+      "title": "proposal-stack pilot 9/10 operational",
+      "workPackageId": "agent-research-library-layout-v1",
+      "destination": "work-progress/projects/2026-08-01_agent-research-library-layout-v1.md",
+      "owner": "Data-Extraction",
+      "projection": "L:/08-app-opportunity-map/",
+      "retainInTrimmedLedger": false,
+      "trimPriority": null
+    }
+  ],
+  "dataPreservationChecklist": {
+    "blockers": {
+      "count": 7,
+      "allMapped": true,
+      "destination": "L:/00-master-index/BY-KIND/active-work-blockers.json"
+    },
+    "openActions": {
+      "count": 5,
+      "allMapped": true,
+      "destination": "L:/00-master-index/BY-KIND/active-work-open-actions.json"
+    },
+    "authorityDecisions": {
+      "count": 3,
+      "allMapped": true,
+      "items": [
+        "Governance > AppBuilder authority",
+        "Bible gate before Bible-dependent work",
+        "RTX5080_GPU_ACTIVATION_PROVEN on RYZEN9DESK only"
+      ]
+    },
+    "evidencePaths": {
+      "allMapped": true,
+      "note": "All commit SHAs and artifact paths route to project files or agent-runs"
+    },
+    "hostAuthority": {
+      "mapped": true,
+      "destination": "CANONICAL_KNOWLEDGE_LOCATIONS.md + host-authority.json"
+    }
+  },
+  "pendingProjectFilesResolved": [
+    {
+      "projectId": "docling-github-ingest-v1",
+      "file": "work-progress/projects/2026-08-01_docling-github-ingest-v1.md",
+      "resolvedAt": "2026-08-03T03:30:00Z",
+      "action": "Status updated to Publish optimized; Cross-Agent commit row synced; ledger intake recorded in update log"
+    },
+    {
+      "projectId": "ephemeral-unstructured-github-scrape-v1",
+      "file": "work-progress/projects/2026-08-01_ephemeral-unstructured-github-scrape-v1.md",
+      "resolvedAt": "2026-08-03T03:30:00Z",
+      "action": "Cross-Agent commit row synced; ledger intake recorded in update log"
+    },
+    {
+      "projectId": "revu-opening-detection-top10-v1",
+      "file": "work-progress/projects/2026-08-01_revu-opening-detection-top10-v1.md",
+      "resolvedAt": "2026-08-03T03:30:00Z",
+      "action": "Commits/PRs row updated; ledger sync Phase 0 complete"
+    }
+  ]
+}

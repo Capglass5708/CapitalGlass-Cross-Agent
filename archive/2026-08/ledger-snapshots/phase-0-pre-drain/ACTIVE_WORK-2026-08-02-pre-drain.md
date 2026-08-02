@@ -107,7 +107,7 @@ Do not capture:
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-08-02 |
-| Current focus | Cross-Agent registry Phase 0 complete (`38a162da`); investigation branch merged; next WP `cross-agent-structured-ledger-projection-v1` or `active-ledger-drain` after Governance approval |
+| Current focus | North Star compounding proof pushed with evidence receipts; Cross-Agent repo organized with folder READMEs, repo map, gates, handoff, and ledger runbook; next WP `north-star-compounding-vertical-pilot-v1` |
 | Workspace context | `work-progress/WORKSPACE_CONTEXT.md` |
 | Agent startup entrypoint | `AGENT_START_HERE.md` |
 | Project index | `work-progress/projects/INDEX.md` |
@@ -121,7 +121,6 @@ Do not capture:
 
 | Repo | Commit | Status | Notes |
 | --- | --- | --- | --- |
-| CG-AppBuilder-MCP | `38a162da` | Pushed | Cross-Agent platform registry onboard (`capital-glass-cross-agent`) |
 | CG-Platform-Governance-MCP | `8ebcdf4` | Pushed | Evidence receipts for `north-star-compounding-proof-v1` |
 | CG-Platform-Governance-MCP | `0f6dafd` | Pushed | Constitutional authority schema, MCP tools, policy migration |
 | CG-AppBuilder-MCP | `3772d491` | Pushed | Evidence receipts + gate fixtures for `north-star-compounding-proof-v1` |
@@ -197,62 +196,6 @@ Target direction:
 | 5 | Keep this valuable-work ledger updated as timestamped work proceeds | CapitalGlass-Cross-Agent | Active |
 
 ## Progress log
-
-### 2026-08-02 CT — cross-agent registry onboard complete
-
-| Field | Value |
-| --- | --- |
-| Project / Cursor ID | `cross-agent-registry-onboard-v1` |
-| Work package | `cross-agent-registry-onboard-v1` |
-| Source | Cursor |
-| Repos involved | `CG-AppBuilder-MCP` (execution), `CapitalGlass-Cross-Agent` (coordination) |
-| Status | Complete / Pushed |
-| Commits / PRs | AppBuilder `38a162da` on `origin/main` |
-| Verification | `npm run roi:cross-agent:register` PASS; registry parity 14/14; foundation tests 20/20 |
-| Next action | Open `cross-agent-structured-ledger-projection-v1` under Governance schema contract |
-
-Notes:
-- Live Supabase `registry.repositories` row: `capital-glass-cross-agent` id `f43b1467-7226-4eb5-9acb-7862a0a6bbd6`.
-- RI registry repo #14 with `ledgerOnly: true`; suite registry aligned.
-- Investigation plan `plans/2026-08-01_cross-agent-supabase-hardening-investigation.md` updated — Phase 0 complete, projection WP still open.
-- Project file: `work-progress/projects/2026-08-02_cross-agent-registry-onboard-v1.md`.
-
-### 2026-08-01 CT - Bid Composer upgrade Phase 1 notes captured
-
-| Field | Value |
-| --- | --- |
-| Project / Cursor ID | `bid-composer-upgrade-roadmap-v1` |
-| Owner repo | `CapitalGlass-BidComposer` |
-| Status | Phase 1 implemented; shared-dev migration pending |
-| Cross-Agent project file | `work-progress/projects/2026-08-01_bid-composer-upgrade-roadmap-v1.md` |
-| Migration | `supabase/migrations/20260801120000_bid_revision_control_and_pipeline.sql` |
-| Verification | `scripts/tests/bid-revision-pipeline.test.mjs` 5 passing; typecheck passes |
-| Next action | Apply migration and smoke-test shared-dev, or start `bid-composer-phase2-document-authority-v1` |
-
-Notes:
-- Phase 1 shipped revision integrity: bid workspaces, revision timeline, merge audit, revision locks, fork/timeline/merge APIs, stored `revision_number` badges.
-- Phase 1 shipped estimator dashboard foundation: pipeline stages, saved filters, sorting, executive counts, readiness, and Issue vs Review blockers.
-- Outstanding roadmap includes Document Center intake, parser normalization, Revu overlays, scope assemblies UI, pricing lines, RFI risk register, visual proposal editor, and estimating memory feedback loop.
-
-### 2026-08-02 CT - Governance MCP investigation
-
-- Investigated `CG-Platform-Governance-MCP` via GitHub connector.
-- Project file updated: `work-progress/projects/2026-08-01_north-star-compounding-proof-v1.md`.
-- Current registry has 23 MCP tools, including compounding proof and closeout/preflight tools.
-- Latest relevant pushed commits: Governance `0f6dafd` authority feature and `8ebcdf4` evidence receipts.
-- Interpretation: Governance BLOCK/REROUTE receipts are correct when mutation root is Governance; execution belongs in AppBuilder.
-- Gaps found: README says 18 tools while registry has 23; MCP server instructions still describe older Phase 1/AppBuilder-authority wording.
-- Current ChatGPT tool surface does not expose Governance MCP tools directly; Cursor MCP restart/reconnect is still needed for local tool loading.
-
-### 2026-08-02 CT - Rosewood bid lane status corrected
-
-- Project: `CG-PROJ-ROSEWOOD` / `2406 Rosewood Ave`.
-- Project file updated: `work-progress/projects/2026-08-01_revu-opening-detection-top10-v1.md`.
-- Revu/operator intelligence lane has good progress: 13 instructor clips, transcripts, and logic instances on `L:\Capital-Glass-Research`.
-- CE parser lane is stalled: Permit PDF was in `Z:\Office\Plan Parser\Plan In\_failed\`; no completed full Rosewood parse package should be assumed.
-- Bid Composer proposal lane is not live for the real customer bid: pilot bid `2085cd1a-...` is a CE suite harness artifact, not the real 2406 Rosewood bid.
-- Revu MCP can mark up Rosewood drawings in controlled Bluebeam sessions, but it does not fix CE OCR, create `bid_*` records, or issue proposals.
-- Next operator choice: open the Rosewood permit PDF in Revu on the active MCP host and choose first sheet (`A.520.1`, elevation 7, `A.521`, etc.) if proceeding with markup.
 
 ### 2026-08-02 21:02 CT — north-star-compounding-proof-v1 pushed with evidence
 

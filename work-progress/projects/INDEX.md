@@ -33,6 +33,8 @@ Filename pattern: `YYYY-MM-DD_<project-id>.md` — see `work-progress/projects/R
 
 | Project ID | File | Status | Owner repo(s) | Last commit | Next action |
 | --- | --- | --- | --- | --- | --- |
+| `cross-agent-registry-onboard-v1` | [2026-08-02_cross-agent-registry-onboard-v1.md](./2026-08-02_cross-agent-registry-onboard-v1.md) | Complete — pushed | `CG-AppBuilder-MCP` | AppBuilder `38a162da` | Begin `cross-agent-structured-ledger-projection-v1` (Governance schema first) |
+| `active-ledger-drain-and-intelligence-hub-sync-v1` | [2026-08-02_active-ledger-drain-and-intelligence-hub-sync-v1.md](./2026-08-02_active-ledger-drain-and-intelligence-hub-sync-v1.md) | Phase 0 PASS — Governance approval pending | `CapitalGlass-Cross-Agent`, `CG-Platform-Governance-MCP`, `CG-AppBuilder-MCP`, `Data-Extraction` | Pending | Approve Governance contract; Phase 1 export after approval |
 | `north-star-compounding-proof-v1` | [2026-08-01_north-star-compounding-proof-v1.md](./2026-08-01_north-star-compounding-proof-v1.md) | Pushed — evidence receipts on `origin/main` | `CG-Platform-Governance-MCP` (authority), `CG-AppBuilder-MCP` (execution) | Governance `8ebcdf4`; AppBuilder `3772d491` | Restart MCP; clear Auto v3.2 env vars and rerun `closeout:gate`; begin `north-star-compounding-vertical-pilot-v1` |
 | `agent-research-library-layout-v1` | [2026-08-01_agent-research-library-layout-v1.md](./2026-08-01_agent-research-library-layout-v1.md) | Pilot 9/10 operational | `Data-Extraction`, `Scraper` | `Data-Extraction 2190944`; `Scraper 0111837`; layout `b1d2e42`, `3e09e4c` | Optional bounded n8n capture; agent review before any `10-approved-for-use/` promotion |
 | `docling-github-ingest-v1` | [2026-08-01_docling-github-ingest-v1.md](./2026-08-01_docling-github-ingest-v1.md) | Publish optimized — `manifest-only-fast` default | `Scraper`, `Data-Extraction` | Cross-Agent `2ecb2f5` | Use L: compact / manifest entry points; full publish only when all 1,076 pages must be mirrored |
@@ -64,6 +66,7 @@ Use this when you need to find all work touching a specific repo.
 | Project ID | Status | Next action |
 | --- | --- | --- |
 | `north-star-compounding-proof-v1` | Pushed | Begin `north-star-compounding-vertical-pilot-v1` |
+| `active-ledger-drain-and-intelligence-hub-sync-v1` | Phase 0 PASS | Approve Governance contract; Phase 2 capture after Phase 1 |
 
 Recommended follow-on work packages (not yet project files):
 
@@ -75,11 +78,14 @@ Recommended follow-on work packages (not yet project files):
 | Project ID | Status | Next action |
 | --- | --- | --- |
 | `north-star-compounding-proof-v1` | Pushed | Restart MCP; clear Auto v3.2 env vars; rerun `closeout:gate` |
+| `cross-agent-registry-onboard-v1` | Complete — pushed | Begin `cross-agent-structured-ledger-projection-v1` |
+| `active-ledger-drain-and-intelligence-hub-sync-v1` | Phase 0 PASS | Approve Governance contract; Phase 1 export in worktree |
 
 ### Data-Extraction
 
 | Project ID | Status | Next action |
 | --- | --- | --- |
+| `active-ledger-drain-and-intelligence-hub-sync-v1` | Phase 0 PASS | Approve Governance contract; extend sync after Phase 1 |
 | `agent-research-library-layout-v1` | Pilot 9/10 operational | Agent review before `10-approved-for-use/` promotion |
 | `docling-github-ingest-v1` | Publish optimized | Add Docling vendor interpreter; warm retrieval ladder |
 | `ephemeral-unstructured-github-scrape-v1` | Scrape complete | Corpus publish after shared articles builder exists |

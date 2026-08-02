@@ -17,7 +17,7 @@ Scope Evidence Locator Phase 2 research registry for door/window/opening detecti
 | Markup binding owner | `CapitalGlassRevu` |
 | Read-only evidence MCP | `CG-Computer-Estimator-MCP` |
 | Status | **Pilot 8/10 operational; parser interpretation captured** |
-| Commits / PRs | `Data-Extraction 38e5c58`; `Scraper 36cd354`; `CapitalGlass-Cross-Agent` ledger update pending |
+| Commits / PRs | `Data-Extraction 38e5c58`; `Scraper 36cd354`; `CapitalGlass-Cross-Agent` Phase 0 ledger sync complete |
 
 ## Architecture rule (mandatory)
 
@@ -90,7 +90,7 @@ Capital Glass historical Bluebeam markups via pymkup — not public floor-plan d
 | --- | --- | --- |
 | Data-Extraction | Pending | Registry JSON |
 | Scraper | Pending | Capture batch config |
-| CapitalGlass-Cross-Agent | Pending | This project file |
+| CapitalGlass-Cross-Agent | Phase 0 synced | Project file + drain classification manifest |
 
 ## Blockers
 
@@ -481,6 +481,13 @@ What it will not do alone:
 Next concrete operator choice: open the Rosewood permit PDF in Revu on the active Revu MCP host and choose the first sheet, such as `A.520.1` schedule, elevation 7, or `A.521` detail.
 
 ## Update log
+
+### 2026-08-02 22:30 CT — Phase 0 ledger drain classification
+
+- Resolved pending ledger update for `revu-opening-detection-top10-v1`.
+- GPU host authority, Rosewood parser evidence, and Revu MCP boundary already captured in this file.
+- Drain destinations: project file (primary), `CANONICAL_KNOWLEDGE_LOCATIONS.md` § GPU Host Authority, L: `host-authority.json` (Phase 1).
+- Pre-drain snapshot preserved; live `ACTIVE_WORK.md` not modified.
 
 ### 2026-08-02 CT - Rosewood bid status corrected
 
