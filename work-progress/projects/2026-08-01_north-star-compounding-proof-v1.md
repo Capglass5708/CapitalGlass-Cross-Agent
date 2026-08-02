@@ -15,7 +15,7 @@ Move North Star compounding proof authority into Governance so Governance define
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
-| Status | Committed locally; push pending |
+| Status | Pushed |
 
 ## Repositories involved
 
@@ -73,7 +73,6 @@ Hard compounding proof BLOCK only applies when platformTier.target=Compounding o
 
 | Blocker / warning | Owner repo | Required action |
 | --- | --- | --- |
-| Governance/AppBuilder commits are local only | `CG-Platform-Governance-MCP`, `CG-AppBuilder-MCP` | Push when approved |
 | Cursor MCP has not loaded new Governance tools | Local Cursor MCP runtime | Restart Cursor MCP servers |
 | Full `closeout:gate` failed because env vars polluted the test process | `CG-AppBuilder-MCP` / shell environment | Clear `CG_AUTO_V32_WORK_PACKAGE` and `CG_AUTO_V32_MATERIAL`, then rerun `npm run closeout:gate` |
 
@@ -81,8 +80,12 @@ Hard compounding proof BLOCK only applies when platformTier.target=Compounding o
 
 | Repo | Commit / PR | Status |
 | --- | --- | --- |
-| CG-Platform-Governance-MCP | `0f6dafd` — `feat(governance): add north-star-compounding-proof-v1 constitutional authority` | Local only, not pushed |
-| CG-AppBuilder-MCP | `480315c2` — `feat(governance): AppBuilder execution adapters for compounding proof authority` | Local only, not pushed |
+| CG-Platform-Governance-MCP | `0f6dafd` — `feat(governance): add north-star-compounding-proof-v1 constitutional authority` | Pushed |
+| CG-Platform-Governance-MCP | `8ebcdf4` — `chore(evidence): north-star-compounding-proof-v1 closeout receipts` | Pushed |
+| CG-AppBuilder-MCP | `480315c2` — `feat(governance): AppBuilder execution adapters for compounding proof authority` | Pushed |
+| CG-AppBuilder-MCP | `eeb012ce` — `feat(de2): add docling to supported vendor hub domains` | Pushed |
+| CG-AppBuilder-MCP | `787bb6eb` — `chore(bible): regenerate application bible snapshots` | Pushed |
+| CG-AppBuilder-MCP | `3772d491` — `chore(evidence): north-star-compounding-proof-v1 closeout receipts` | Pushed |
 
 ## Commit scopes
 
@@ -113,6 +116,15 @@ npm run closeout:gate
 - work-progress/WORKSPACE_CONTEXT.md
 
 ## Update log
+
+### 2026-08-02 21:02 CT — evidence committed and pushed
+
+- Governance evidence pushed: `8ebcdf4` (22 files — closeout receipts, lifecycle linkage, full-system verification).
+- AppBuilder evidence pushed: `3772d491` (30 files — agent-runs receipts, gate fixtures, lifecycle index, redo registry contract).
+- Also pushed: `eeb012ce` (docling vendor hub), `787bb6eb` (bible regen), `480315c2` (execution adapters).
+- Governance authority already on remote: `0f6dafd`.
+- Status updated to **Pushed**. Push blocker removed.
+- Next: restart MCP, clear Auto v3.2 env vars, rerun `closeout:gate`, begin vertical pilot WP.
 
 ### 2026-08-01 CT — Cursor closeout commit/parity update
 

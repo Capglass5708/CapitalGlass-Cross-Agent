@@ -107,7 +107,7 @@ Do not capture:
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-08-02 |
-| Current focus | Cross-Agent repo organized with folder READMEs, canonical read path, repo map, gates, handoff, and ledger runbook; GPU/parser closeouts and AppBuilder `480315c2` push remain open |
+| Current focus | North Star compounding proof pushed with evidence receipts; Cross-Agent repo organized with folder READMEs, repo map, gates, handoff, and ledger runbook; next WP `north-star-compounding-vertical-pilot-v1` |
 | Workspace context | `work-progress/WORKSPACE_CONTEXT.md` |
 | Agent startup entrypoint | `AGENT_START_HERE.md` |
 | Project index | `work-progress/projects/INDEX.md` |
@@ -121,9 +121,12 @@ Do not capture:
 
 | Repo | Commit | Status | Notes |
 | --- | --- | --- | --- |
-| CG-Platform-Governance-MCP | `0f6dafd` | Pushed | `north-star-compounding-proof-v1` on `origin/main` |
-| CG-AppBuilder-MCP | `480315c2` | Local only / not pushed | AppBuilder execution adapters for compounding proof authority |
-| CapitalGlass-Cross-Agent | `76b34fe` | Pushed | Application Bible sync runbook |
+| CG-Platform-Governance-MCP | `8ebcdf4` | Pushed | Evidence receipts for `north-star-compounding-proof-v1` |
+| CG-Platform-Governance-MCP | `0f6dafd` | Pushed | Constitutional authority schema, MCP tools, policy migration |
+| CG-AppBuilder-MCP | `3772d491` | Pushed | Evidence receipts + gate fixtures for `north-star-compounding-proof-v1` |
+| CG-AppBuilder-MCP | `787bb6eb` | Pushed | Application bible snapshot regen |
+| CG-AppBuilder-MCP | `eeb012ce` | Pushed | Docling added to supported vendor hub domains |
+| CG-AppBuilder-MCP | `480315c2` | Pushed | AppBuilder execution adapters for compounding proof authority |
 | CG-AppBuilder-MCP | `dc32d991` | Pushed | `bible:authority:gate` |
 | CapitalGlass-Cross-Agent | `506a229` | Pushed | Master work document + canonical knowledge map updates |
 
@@ -186,14 +189,33 @@ Target direction:
 
 | Priority | Action | Owner repo | Status |
 | --- | --- | --- | --- |
-| 1 | Clear leaked `CG_AUTO_V32_WORK_PACKAGE` and `CG_AUTO_V32_MATERIAL`, then rerun `npm run closeout:gate` | CG-AppBuilder-MCP / shell environment | Pending |
-| 2 | Restart MCP in Cursor so `governance_get_compounding_capture_contract` and `governance_validate_compounding_proof` load | Cursor / local MCP runtime | Pending operator action |
-| 3 | Push local commits `0f6dafd` and `480315c2` when approved | CG-Platform-Governance-MCP / CG-AppBuilder-MCP | Pending |
-| 4 | Run next work package: `north-star-compounding-vertical-pilot-v1` — harvest → Z: → next-mission retrieval | CG-Platform-Governance-MCP / CG-AppBuilder-MCP | Recommended next WP |
-| 5 | Run next work package: `platform-governance-phase4-registries-v1` — program/mission/exception registries | CG-Platform-Governance-MCP | Recommended next WP |
-| 6 | Keep this valuable-work ledger updated as timestamped work proceeds | CapitalGlass-Cross-Agent | Active |
+| 1 | Restart MCP in Cursor so `governance_get_compounding_capture_contract` and `governance_validate_compounding_proof` load | Cursor / local MCP runtime | Pending operator action |
+| 2 | Clear leaked `CG_AUTO_V32_WORK_PACKAGE` and `CG_AUTO_V32_MATERIAL`, then rerun `npm run closeout:gate` | CG-AppBuilder-MCP / shell environment | Pending |
+| 3 | Run next work package: `north-star-compounding-vertical-pilot-v1` — harvest → Z: → next-mission retrieval | CG-Platform-Governance-MCP / CG-AppBuilder-MCP | Recommended next WP |
+| 4 | Run next work package: `platform-governance-phase4-registries-v1` — program/mission/exception registries | CG-Platform-Governance-MCP | Recommended next WP |
+| 5 | Keep this valuable-work ledger updated as timestamped work proceeds | CapitalGlass-Cross-Agent | Active |
 
 ## Progress log
+
+### 2026-08-02 21:02 CT — north-star-compounding-proof-v1 pushed with evidence
+
+| Field | Value |
+| --- | --- |
+| Project / Cursor ID | `north-star-compounding-proof-v1` |
+| Work package | `north-star-compounding-proof-v1` |
+| Source | Cursor |
+| Repos involved | `CG-Platform-Governance-MCP`, `CG-AppBuilder-MCP`, `CapitalGlass-Cross-Agent` |
+| Status | Pushed |
+| Commits / PRs | Governance `8ebcdf4` (evidence), `0f6dafd` (authority); AppBuilder `3772d491` (evidence), `787bb6eb` (bible), `eeb012ce` (docling hub), `480315c2` (execution adapters) |
+| Verification | All commits pushed to `origin/main`; evidence bundles committed in both repos |
+| Next action | Restart Cursor MCP; clear Auto v3.2 env vars and rerun `closeout:gate`; begin `north-star-compounding-vertical-pilot-v1` |
+
+Notes:
+- AppBuilder evidence commit `3772d491`: 30 files — agent-runs closeout receipts, gate fixtures, lifecycle index, redo registry contract.
+- Governance evidence commit `8ebcdf4`: 22 files — closeout receipts, lifecycle linkage runs, full-system verification runs.
+- Intermediate AppBuilder commits also pushed: `eeb012ce` (docling vendor hub domain), `787bb6eb` (bible regen).
+- Push required `THREE_WAY_PUSH_APPROVED=YES` on AppBuilder.
+- Project file updated: `work-progress/projects/2026-08-01_north-star-compounding-proof-v1.md`.
 
 ### 2026-08-02 CT - Cross-Agent repo cleanup and folder organization
 
