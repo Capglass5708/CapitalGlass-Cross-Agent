@@ -107,7 +107,7 @@ Do not capture:
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-08-01 |
-| Current focus | Cross-Agent startup path pushed; parser/Revu ledger updated; Ryzen9Desk parser run needs explicit Rosewood input and DB health confirmation; North Star closeout gate still needs clean-env rerun |
+| Current focus | Rosewood parser running on Ryzen9Desk in CPU mode; monitor `/tmp/rosewood-plan-parser.log` and capture closeout when complete; North Star closeout gate still needs clean-env rerun |
 | Workspace context | `work-progress/WORKSPACE_CONTEXT.md` |
 | Agent startup entrypoint | `AGENT_START_HERE.md` |
 | Project index | `work-progress/projects/INDEX.md` |
@@ -194,6 +194,16 @@ Target direction:
 | 6 | Keep this valuable-work ledger updated as timestamped work proceeds | CapitalGlass-Cross-Agent | Active |
 
 ## Progress log
+
+### 2026-08-01 CT - Rosewood parser running on Ryzen9Desk
+
+- Project file updated: `work-progress/projects/2026-08-01_revu-opening-detection-top10-v1.md`.
+- Host: `wesley@cg-ryzen9desk-01`; project `Rosewood`; document ID `1a6fda42-8c48-450e-83bf-8bb590af026b`.
+- Docker Postgres on `:5433` healthy; Tesseract and Ghostscript installed; CUDA torch replaced with CPU `torch-2.13.0+cpu`.
+- PDF: `data/incoming/rosewood-permit-set.pdf`, 113 MB / 192 pages.
+- Last observed stage: render around page 98/192; outputs local to `data/processed` and `data/plan-out` because Z: is not mapped on Ryzen9.
+- Monitor with: `ssh wesley@cg-ryzen9desk-01 'wsl -e bash -lc "tail -f /tmp/rosewood-plan-parser.log"'`.
+- On completion, record JSON closeout, evidence package paths, warnings, and whether BC relay import can run.
 
 ### 2026-08-01 CT - canonical knowledge locations map created
 
