@@ -70,7 +70,7 @@ Permanent rule:
 | `work-progress/ACTIVE_WORK.md` | Shared editable valuable-work ledger with timestamped project/work-package entries |
 | `work-progress/WORKSPACE_CONTEXT.md` | This workspace and repo-role map |
 | `verification/application-bible-sync-runbook.md` | Bible sync/gate verification runbook |
-| `cursor-reports/2026-08-01-chatgpt-bible-access-verification.md` | ChatGPT Bible access verification handoff |
+| `verification/2026-08-01-chatgpt-bible-access-verification.md` | ChatGPT Bible access verification handoff |
 
 ## Current saved commits referenced by this workspace
 
@@ -136,4 +136,3 @@ Data-Extraction/artifacts/data-extraction-2/
 L:\Capital-Glass-Research\
 L:\Capital-Glass-Intelligence-Hub\
 ```
-

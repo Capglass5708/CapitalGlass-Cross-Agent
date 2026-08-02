@@ -107,7 +107,7 @@ Do not capture:
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-08-02 |
-| Current focus | Master work document published to L: cross-agent-master-work index; GPU/parser closeouts and AppBuilder `480315c2` push remain open |
+| Current focus | Cross-Agent repo organized with folder READMEs, canonical read path, repo map, gates, handoff, and ledger runbook; GPU/parser closeouts and AppBuilder `480315c2` push remain open |
 | Workspace context | `work-progress/WORKSPACE_CONTEXT.md` |
 | Agent startup entrypoint | `AGENT_START_HERE.md` |
 | Project index | `work-progress/projects/INDEX.md` |
@@ -194,6 +194,16 @@ Target direction:
 | 6 | Keep this valuable-work ledger updated as timestamped work proceeds | CapitalGlass-Cross-Agent | Active |
 
 ## Progress log
+
+### 2026-08-02 CT - Cross-Agent repo cleanup and folder organization
+
+- Cleaned up Cross-Agent repo structure without moving canonical published source paths.
+- Added folder-level README files for `archive/`, `chatgpt-reviews/`, `cursor-reports/`, `decisions/`, `handoffs/`, `inbox/`, `plans/`, `runbooks/`, `verification/`, and `work-progress/`.
+- Added real structure for previously planned areas: `repo-map/`, `work-progress/templates/`, and `work-progress/intake/`.
+- Added `repo-map/REPOSITORY_ROLES.md`, `decisions/DECISION_LOG.md`, `runbooks/AGENT_LEDGER_UPDATE_RUNBOOK.md`, `verification/CURRENT_GATES.md`, and `handoffs/CURRENT_HANDOFF.md`.
+- Updated `README.md` and `AGENT_START_HERE.md` read order to include `work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md`.
+- Fixed stale Bible verification pointer in `work-progress/WORKSPACE_CONTEXT.md` from `cursor-reports/` to `verification/`.
+- Removed obsolete `.gitkeep` placeholders from folders that now contain real README files.
 
 ### 2026-08-02 CT — cross-agent master work L: ingest
 

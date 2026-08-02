@@ -20,9 +20,10 @@ No implementation code, MCP servers, databases, Bible copies, app scaffolding, o
 | --- | --- | --- |
 | 1 | `AGENT_START_HERE.md` | This file — rules and orientation |
 | 2 | `work-progress/WORKSPACE_CONTEXT.md` | Active workspace, repo roles, authority split |
-| 3 | `work-progress/ACTIVE_WORK.md` | Current valuable-work ledger and progress log |
-| 4 | `work-progress/projects/INDEX.md` | Master index of all project files |
-| 5 | Relevant project file in `work-progress/projects/` | Durable notes for the specific mission you are joining |
+| 3 | `work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md` | Canonical map for L:/Z:/repo knowledge locations |
+| 4 | `work-progress/ACTIVE_WORK.md` | Current valuable-work ledger and progress log |
+| 5 | `work-progress/projects/INDEX.md` | Master index of all project files |
+| 6 | Relevant project file in `work-progress/projects/` | Durable notes for the specific mission you are joining |
 
 If a project file exists for your work package, read it before touching any implementation repo.
 
@@ -34,15 +35,17 @@ If a project file exists for your work package, read it before touching any impl
 | --- | --- |
 | Current work status and progress log | `work-progress/ACTIVE_WORK.md` |
 | Workspace and repo-role context | `work-progress/WORKSPACE_CONTEXT.md` |
+| Canonical knowledge locations | `work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md` |
+| Consolidated daily master documents | `work-progress/*_MASTER_WORK_DOCUMENT.md` |
 | One file per project / work package | `work-progress/projects/` |
 | Master project index | `work-progress/projects/INDEX.md` |
-| Final decisions (when created) | `decisions/DECISION_LOG.md` |
-| Repo authority map (when created) | `repo-map/REPOSITORY_ROLES.md` |
-| Required gates (when created) | `verification/CURRENT_GATES.md` |
-| Current handoff (when created) | `handoffs/CURRENT_HANDOFF.md` |
-| How to update the ledger (when created) | `runbooks/AGENT_LEDGER_UPDATE_RUNBOOK.md` |
-| Raw Cursor paste before distillation (when created) | `work-progress/intake/` |
-| Project file templates (when created) | `work-progress/templates/` |
+| Final decisions | `decisions/DECISION_LOG.md` |
+| Repo authority map | `repo-map/REPOSITORY_ROLES.md` |
+| Required gates | `verification/CURRENT_GATES.md` |
+| Current handoff | `handoffs/CURRENT_HANDOFF.md` |
+| How to update the ledger | `runbooks/AGENT_LEDGER_UPDATE_RUNBOOK.md` |
+| Raw Cursor paste before distillation | `work-progress/intake/` |
+| Project file templates | `work-progress/templates/` |
 | ChatGPT-authored plans | `plans/` |
 | Cursor reports after work | `cursor-reports/` |
 | Verification notes and checklists | `verification/` |
@@ -178,17 +181,19 @@ CapitalGlass-Cross-Agent/
 ├── work-progress/
 │   ├── ACTIVE_WORK.md           ← live ledger
 │   ├── WORKSPACE_CONTEXT.md     ← workspace + repo roles
+│   ├── CANONICAL_KNOWLEDGE_LOCATIONS.md
+│   ├── YYYY-MM-DD_MASTER_WORK_DOCUMENT.md
 │   ├── projects/
 │   │   ├── README.md            ← project file instructions
 │   │   ├── INDEX.md             ← master project index
 │   │   └── YYYY-MM-DD_<id>.md   ← one file per project
-│   ├── templates/               ← (planned) reusable templates
-│   └── intake/                  ← (planned) raw Cursor paste staging
-├── decisions/                   ← (planned) DECISION_LOG.md
-├── repo-map/                    ← (planned) REPOSITORY_ROLES.md
+│   ├── templates/               ← reusable templates
+│   └── intake/                  ← raw Cursor paste staging
+├── decisions/                   ← DECISION_LOG.md
+├── repo-map/                    ← REPOSITORY_ROLES.md
 ├── runbooks/                    ← operating instructions
 ├── verification/                ← gates, checklists, evidence
-├── handoffs/                    ← (planned) CURRENT_HANDOFF.md
+├── handoffs/                    ← CURRENT_HANDOFF.md
 ├── plans/                       ← ChatGPT plans
 ├── cursor-reports/              ← Cursor closeout reports
 ├── chatgpt-reviews/             ← ChatGPT reviews

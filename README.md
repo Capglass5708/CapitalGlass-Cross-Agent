@@ -2,7 +2,17 @@
 
 Cross-agent workspace for ChatGPT, Cursor, and you.
 
-**Agents: start at [`AGENT_START_HERE.md`](./AGENT_START_HERE.md), then [`work-progress/projects/INDEX.md`](./work-progress/projects/INDEX.md).**
+**Agents: start at [`AGENT_START_HERE.md`](./AGENT_START_HERE.md).**
+
+## Read order
+
+| Order | File | Purpose |
+| --- | --- | --- |
+| 1 | [`AGENT_START_HERE.md`](./AGENT_START_HERE.md) | Operating rules and first-read path |
+| 2 | [`work-progress/WORKSPACE_CONTEXT.md`](./work-progress/WORKSPACE_CONTEXT.md) | Workspace and repo ownership |
+| 3 | [`work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md`](./work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md) | Canonical map for L:/Z:/repo knowledge locations |
+| 4 | [`work-progress/ACTIVE_WORK.md`](./work-progress/ACTIVE_WORK.md) | Live ledger and current blockers |
+| 5 | [`work-progress/projects/INDEX.md`](./work-progress/projects/INDEX.md) | Project/work-package index |
 
 ## Most important rule
 
@@ -25,6 +35,7 @@ No implementation code, MCP servers, databases, Bible copies, or app scaffolding
 | `verification/` | Smoke-test prompts, pass/fail checklists, connector tests | Evidence-focused |
 | `handoffs/` | Human/agent handoff docs between ChatGPT, Cursor, you | Current work transfer |
 | `archive/` | Old reports/plans that should not guide current work | Dead reference only |
+| `repo-map/` | Durable repo ownership and role maps | Pointers only; no implementation |
 
 ## Do not add
 
