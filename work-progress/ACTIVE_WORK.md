@@ -195,6 +195,13 @@ Target direction:
 
 ## Progress log
 
+### 2026-08-01 CT - canonical knowledge locations map created
+
+- Created `work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md` as the canonical place for agents to find scraped GitHub research, available app/library indexes, processed DE packages, Synology quick-access paths, suite maps, and schema pointers.
+- Updated `AGENT_START_HERE.md` and `work-progress/WORKSPACE_CONTEXT.md` to point agents to the canonical map.
+- Canonical rule: Cross-Agent stores decisions and pointers; Scraper stores raw captures; Data-Extraction stores indexes and processed KBs; L:/Z: store published quick-access copies; implementation repos consume the knowledge.
+- Commits: Cross-Agent `d0558a0`, `e6ddb41`, `ae110e8`.
+
 ### 2026-08-01 CT - Ryzen9Desk parser run evidence captured
 
 - Project: `revu-opening-detection-top10-v1` / Computer Estimator parser lane.
