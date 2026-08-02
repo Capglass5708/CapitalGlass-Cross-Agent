@@ -89,3 +89,48 @@ Then work in the correct repo:
 - Execution adapter, sync, index, cache, harvest, or AppBuilder implementation → `CG-AppBuilder-MCP`
 
 As work proceeds, write valuable build information back into `work-progress/ACTIVE_WORK.md` using timestamped project/work-package entries.
+
+## GitHub-Scraped Research Storage Map
+
+This is standing knowledge for agents investigating available libraries, apps, frameworks, or vendor packages that can assist a build.
+
+| Layer | Purpose | Primary location |
+| --- | --- | --- |
+| Research selection index | Curated/ranked list of libraries to investigate and why they matter | `Data-Extraction/config/agent-research-library/*.json` |
+| Raw GitHub/site capture | Scraped pages, manifests, capture plans, URL inventories | `Scraper/ui-capture/artifacts/vendor-docs/<vendor-or-topic>/` |
+| Packaged DE knowledge | Data-Extraction's processed KB packages, manifests, retrieval snapshots, operational notes | `Data-Extraction/artifacts/data-extraction-2/` |
+| Published quick-access library | Synology/L: compact manifests and agent entry points for fast reuse | `L:\Capital-Glass-Research\...` and `L:\Capital-Glass-Intelligence-Hub\...` |
+| Published suite/mirror references | Z:/shared published material when a pipeline publishes there | `Z:\Capital-Glass-Dev\...` or the path named in the project file |
+| Coordination pointer | What matters, status, decisions, and exact paths for an agent | `CapitalGlass-Cross-Agent/work-progress/projects/*.md` |
+
+Agent rule:
+
+> Cross-Agent tells you what matters and where to go. Scraper holds raw captures. Data-Extraction holds indexes and processed knowledge. Synology/L:/Z: holds quick-access published copies. Implementation repos consume the knowledge; they do not become the research library.
+
+### Known scraped/indexed examples
+
+| Work | Index / package | Stored where |
+| --- | --- | --- |
+| Revu opening detection | `revu-opening-detection-top10-v1.json` | `Data-Extraction/config/agent-research-library/revu-opening-detection-top10-v1.json` |
+| Revu opening pilot KBs | `PKG-REVU-OPENING-DETECTION-PILOT-V1` | `Data-Extraction/artifacts/data-extraction-2/revu-opening-detection-pilot/` |
+| Docling GitHub ingest | `KB-DOCLING-GITHUB-V1-2026-08-01` | `Data-Extraction/artifacts/data-extraction-2/vendor-pilot/KB-DOCLING-GITHUB-V1-2026-08-01/` |
+| Docling raw capture | GitHub vendor docs capture | `Scraper/ui-capture/artifacts/vendor-docs/docling/` |
+| Docling published compact | Agent compact / manifests | `L:\Capital-Glass-Intelligence-Hub\03-domains\vendor-docs\docling\...` and `L:\Capital-Glass-Research\Scraper-Corpus\vendor-docs\docling\...` |
+| Unstructured GitHub scrape | Vendor docs capture/corpus | `Scraper/ui-capture/artifacts/vendor-docs/unstructured/` and DE publish target when processed |
+| Proposal stack pilot | Downstream proposal output libraries | `Data-Extraction/artifacts/data-extraction-2/proposal-stack-pilot/` |
+
+When an agent is asked "what available apps/libraries can help this build?", it should first inspect:
+
+```text
+Data-Extraction/config/agent-research-library/
+```
+
+Then follow the selected registry entries into:
+
+```text
+Scraper/ui-capture/artifacts/vendor-docs/
+Data-Extraction/artifacts/data-extraction-2/
+L:\Capital-Glass-Research\
+L:\Capital-Glass-Intelligence-Hub\
+```
+
