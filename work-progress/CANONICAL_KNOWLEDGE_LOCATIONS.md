@@ -159,6 +159,32 @@ When the user asks where scraped GitHub libraries/apps are stored, start with `L
 | Unstructured GitHub scrape | Vendor docs capture/corpus | `Scraper/ui-capture/artifacts/vendor-docs/unstructured/` and DE publish target when processed |
 | Proposal stack pilot | Proposal output libraries | `Data-Extraction/artifacts/data-extraction-2/proposal-stack-pilot/` |
 
+## GPU Host Authority For Opening Stack
+
+Current machine roles for the Computer Estimator / Revu opening stack:
+
+| Host | GPU | Role for this stack |
+| --- | --- | --- |
+| `WESLEYDESK` | GTX 1080 Ti | Dev / office / L: workflows; can run opening stack checks, but is not the RTX 5080 activation host today |
+| `RYZEN9DESK` / `CG-RYZEN9DESK-01` | RTX 5080 | Primary GPU target for Paddle GPU 3.x, `dev_gpu`, `gpu-activation-probe`, SAHI/PaddleDetection inference benchmarks |
+
+Canonical proof rule:
+
+> `RTX5080_GPU_ACTIVATION_PROVEN` belongs on `RYZEN9DESK`, not `WESLEYDESK`, unless the hardware is moved and a new receipt explicitly says so.
+
+Install targets:
+
+| Target | Action |
+| --- | --- |
+| RTX 5080 activation | Run on `CG-RYZEN9DESK-01`: `bash scripts/install_opening_stack_ryzen9desk.sh` plus `~/paddle-wheels` for `paddlepaddle-gpu==3.2.1` |
+| WESLEYDESK 1080 | After `sudo apt install python3.14-venv python3-pip`, run the same install script in `/home/cgbuilder/repos/Computer Estimator` if needed |
+
+WESLEYDESK may verify imports with `cest opening-stack-verify` and run CPU/GPU-limited Paddle checks, but those receipts must not be treated as RTX 5080 proof.
+
+Important distinction:
+
+`docs/handoff/GPU_WESLEYDESK_PROMOTION.md` describes a future 5080-on-WESLEYDESK 24/7 production promotion. That is separate from today's host split where RYZEN9DESK owns the 5080.
+
 ## RTX 5080 Value Lookup Pattern
 
 The L: master index may not name "RTX 5080" directly. Agents should infer 5080 build value through the apps and work packages that can use GPU acceleration.
