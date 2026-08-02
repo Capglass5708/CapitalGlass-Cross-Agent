@@ -197,6 +197,16 @@ Target direction:
 
 ## Progress log
 
+### 2026-08-02 CT - Governance MCP investigation
+
+- Investigated `CG-Platform-Governance-MCP` via GitHub connector.
+- Project file updated: `work-progress/projects/2026-08-01_north-star-compounding-proof-v1.md`.
+- Current registry has 23 MCP tools, including compounding proof and closeout/preflight tools.
+- Latest relevant pushed commits: Governance `0f6dafd` authority feature and `8ebcdf4` evidence receipts.
+- Interpretation: Governance BLOCK/REROUTE receipts are correct when mutation root is Governance; execution belongs in AppBuilder.
+- Gaps found: README says 18 tools while registry has 23; MCP server instructions still describe older Phase 1/AppBuilder-authority wording.
+- Current ChatGPT tool surface does not expose Governance MCP tools directly; Cursor MCP restart/reconnect is still needed for local tool loading.
+
 ### 2026-08-02 CT - Rosewood bid lane status corrected
 
 - Project: `CG-PROJ-ROSEWOOD` / `2406 Rosewood Ave`.
