@@ -197,6 +197,16 @@ Target direction:
 
 ## Progress log
 
+### 2026-08-02 CT - Rosewood bid lane status corrected
+
+- Project: `CG-PROJ-ROSEWOOD` / `2406 Rosewood Ave`.
+- Project file updated: `work-progress/projects/2026-08-01_revu-opening-detection-top10-v1.md`.
+- Revu/operator intelligence lane has good progress: 13 instructor clips, transcripts, and logic instances on `L:\Capital-Glass-Research`.
+- CE parser lane is stalled: Permit PDF was in `Z:\Office\Plan Parser\Plan In\_failed\`; no completed full Rosewood parse package should be assumed.
+- Bid Composer proposal lane is not live for the real customer bid: pilot bid `2085cd1a-...` is a CE suite harness artifact, not the real 2406 Rosewood bid.
+- Revu MCP can mark up Rosewood drawings in controlled Bluebeam sessions, but it does not fix CE OCR, create `bid_*` records, or issue proposals.
+- Next operator choice: open the Rosewood permit PDF in Revu on the active MCP host and choose first sheet (`A.520.1`, elevation 7, `A.521`, etc.) if proceeding with markup.
+
 ### 2026-08-02 21:02 CT — north-star-compounding-proof-v1 pushed with evidence
 
 | Field | Value |
