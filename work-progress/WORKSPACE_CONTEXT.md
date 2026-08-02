@@ -13,6 +13,7 @@ Purpose: give Wesley, ChatGPT, Cursor, and other agents a fast orientation point
 | Current focus | Move protocol authority to Governance while keeping AppBuilder as execution adapter |
 | Last updated | 2026-08-01 |
 | Valuable-work ledger | `work-progress/ACTIVE_WORK.md` |
+| Canonical knowledge map | `work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md` |
 
 ## Required writing rule
 
@@ -92,7 +93,9 @@ As work proceeds, write valuable build information back into `work-progress/ACTI
 
 ## GitHub-Scraped Research Storage Map
 
-This is standing knowledge for agents investigating available libraries, apps, frameworks, or vendor packages that can assist a build.
+Canonical source: `work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md`.
+
+This section is a quick summary for agents investigating available libraries, apps, frameworks, or vendor packages that can assist a build.
 
 | Layer | Purpose | Primary location |
 | --- | --- | --- |
