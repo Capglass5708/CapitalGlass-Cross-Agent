@@ -16,60 +16,57 @@ Drain accumulated knowledge from `work-progress/ACTIVE_WORK.md` into durable own
 | Authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | L: publish owner | Data-Extraction |
-| Status | **Phase 0 PASS** — awaiting Governance approval |
+| Status | **Phases 0–3 complete** — Phase 5 material closeout pending |
 
-## Phase 0 gate — PASS (2026-08-03)
+## Phase gates
 
-| Criterion | Result |
-| --- | --- |
-| Entries classified | 100% (27/27) |
-| Pending project files | 0 |
-| Unresolved destinations | 0 |
-| Pre-drain snapshot | Verified |
-| Secrets detected | 0 |
-| Current ledger modified | **NO** |
-| Governance contract | Ready for approval |
+| Phase | Scope | Result |
+| --- | --- | --- |
+| 0 | Classify, snapshot, reconcile project files | **PASS** |
+| 1 | Export/lint (AppBuilder) | **PASS** — `348b2133` merged (PR #262) |
+| 1B | L: BY-KIND publish (Data-Extraction) | **PASS** — `e6311b5` |
+| 2 | Governance authority rules | **PASS** — `c40eb48` |
+| 3 | Archive + activate trimmed ledger | **PASS** — Cross-Agent `d25b79b` pushed |
+| 4 | Recurring sync, lint, closeout write-back | Operational — `agent-research-library:publish-active-work-ledger` |
+| 5 | Material closeout + observer verification | **Pending** |
 
 Evidence: `archive/2026-08/ledger-snapshots/phase-0-pre-drain/`
 
-## Governance contract (approval required)
+## Governance contract
 
 `CG-Platform-Governance-MCP/docs/platform/ACTIVE_LEDGER_RELEASE_AUTHORITY_CONTRACT.md`
 
-**Status:** READY FOR APPROVAL — blocks Phase 1 AppBuilder implementation
+**Status:** APPROVED
 
-## ROI (proposed trim — not activated)
+## ROI (activated)
 
-| Metric | Before | Proposed | Target |
+| Metric | Before | After | Target |
 | --- | ---: | ---: | --- |
-| Lines | 419 | 80 | Under 150 |
-| Tokens | ~5,968 | ~1,169 | Under 1,600 |
-| Reduction | — | 80.4% | ≥73% |
-| Live log entries | 16 | 3 | ≤3 |
+| Lines | 419 | ~93 | Under 150 |
+| Live log entries | 13 (authoritative) | 3 | ≤3 |
+| Default preflight | Full Markdown | Compact JSON slices | open-actions + blockers only |
 
-Proposed file: `archive/2026-08/ledger-snapshots/phase-0-pre-drain/ACTIVE_WORK.proposed-trimmed.md`
+Archive: `archive/2026-08/ledger-snapshots/phase-0-pre-drain/`
 
 ## Next actions
 
 | Priority | Action | Owner | Status |
 | --- | --- | --- | --- |
-| 1 | **Approve Governance contract** | Operator | Pending |
-| 2 | Phase 1 export/lint in AppBuilder worktree | CG-AppBuilder-MCP | Blocked |
-| 3 | Extend Data-Extraction master-index sync | Data-Extraction | Blocked |
-| 4 | Verify L: slices; then activate trimmed ledger | Cross-Agent | Blocked |
-| 5 | Auto v3.2 material closeout | Multi-repo | Blocked |
+| 1 | Phase 5 material closeout (preflight + session closeout + `closeout:gate`) | CG-AppBuilder-MCP | In progress |
+| 2 | Restart MCP for Governance compounding tools | Operator | Pending |
+| 3 | Begin `cross-agent-structured-ledger-projection-v1` | Governance + AppBuilder | Ready after closeout |
+| 4 | Recurring `publish-active-work-ledger` after ledger updates | Data-Extraction | Operational |
 
 ## Update log
+
+### 2026-08-02 CT — Phases 0–3 complete; trimmed ledger activated
+
+- Cross-Agent `d25b79b` pushed — live ledger trimmed to current status + 3 log entries.
+- AppBuilder export/lint merged (`348b2133`); Data-Extraction L: publish (`e6311b5`).
+- Governance authority rules pushed (`c40eb48`).
+- Phase 5 material closeout remains.
 
 ### 2026-08-02 22:30 CT — Phase 0 complete
 
 - Immutable pre-drain snapshot at `archive/2026-08/ledger-snapshots/phase-0-pre-drain/`.
 - Classification manifest: 27/27 items mapped.
-- Resolved pending ledger updates: docling, unstructured, revu-opening project files.
-- Governance authority contract copied to Governance repo — READY FOR APPROVAL.
-- Proposed trimmed ledger (80 lines) — **not activated**.
-- `ACTIVE_WORK.md` hash unchanged: `5e5e59d7...`.
-
-### 2026-08-02 22:30 CT — work package drafted
-
-- Created plan at `plans/2026-08-02-active-ledger-drain-and-intelligence-hub-sync-v1/`.
