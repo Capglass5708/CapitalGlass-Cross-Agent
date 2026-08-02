@@ -324,6 +324,28 @@ cd "C:\Developer\repos\Computer Estimator"
 
 The exact command should be recorded once confirmed from the Computer Estimator repo scripts. Do not treat `vector_text_plan.pdf` as the target fixture for this Rosewood run.
 
+## GPU machine roles - 2026-08-02
+
+| Host | GPU | Role for this stack |
+| --- | --- | --- |
+| `WESLEYDESK` | GTX 1080 Ti | Dev / office / L: workflows; opening stack can run here, but it is not the 5080 activation host |
+| `RYZEN9DESK` / `CG-RYZEN9DESK-01` | RTX 5080 | Primary GPU target for Paddle GPU 3.x, `dev_gpu`, `gpu-activation-probe`, SAHI/PaddleDetection inference benchmarks |
+
+### Install / verification split
+
+| Host | Install / verification action |
+| --- | --- |
+| `CG-RYZEN9DESK-01` | Finish RTX 5080 activation using `bash scripts/install_opening_stack_ryzen9desk.sh` and `~/paddle-wheels` for `paddlepaddle-gpu==3.2.1` |
+| `WESLEYDESK` | After `sudo apt install python3.14-venv python3-pip`, run the same install script in `/home/cgbuilder/repos/Computer Estimator` if needed; use for import verification and dev checks |
+
+Receipt policy:
+
+> `RTX5080_GPU_ACTIVATION_PROVEN` belongs on `RYZEN9DESK`, not `WESLEYDESK`.
+
+WESLEYDESK 1080 can verify imports with `cest opening-stack-verify` and run CPU/GPU-limited Paddle work, but those receipts are not 5080 proof.
+
+`docs/handoff/GPU_WESLEYDESK_PROMOTION.md` describes a future 5080 on WESLEYDESK for 24/7 production. It should not be confused with today's 1080-vs-5080 split.
+
 ## Rosewood parser run - Ryzen9Desk - in progress - 2026-08-01
 
 This records the live Rosewood Computer Estimator parser run on Ryzen9Desk.
@@ -374,6 +396,13 @@ When complete, capture:
 | Failures/warnings | Any OCR/embed/export warnings from the log |
 
 ## Update log
+
+### 2026-08-02 CT - GPU machine roles clarified
+
+- Recorded `WESLEYDESK` as GTX 1080 Ti dev/office/L: workflow host, not current RTX 5080 proof host.
+- Recorded `RYZEN9DESK` / `CG-RYZEN9DESK-01` as the RTX 5080 activation and benchmark host for Paddle GPU 3.x, `dev_gpu`, `gpu-activation-probe`, SAHI/PaddleDetection.
+- Receipt rule: `RTX5080_GPU_ACTIVATION_PROVEN` belongs on RYZEN9DESK unless a later hardware move and receipt changes authority.
+- Noted that `GPU_WESLEYDESK_PROMOTION.md` is a future 5080-on-WESLEYDESK production promotion document, separate from today's host split.
 
 ### 2026-08-01 CT - Rosewood parser run started on Ryzen9Desk
 
