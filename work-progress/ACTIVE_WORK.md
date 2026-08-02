@@ -107,7 +107,7 @@ Do not capture:
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-08-01 |
-| Current focus | Rosewood parser running on Ryzen9Desk in CPU mode; monitor `/tmp/rosewood-plan-parser.log` and capture closeout when complete; North Star closeout gate still needs clean-env rerun |
+| Current focus | L: master index is now canonical front door for build-assist knowledge; Rosewood parser running on Ryzen9Desk; capture closeouts as runs finish |
 | Workspace context | `work-progress/WORKSPACE_CONTEXT.md` |
 | Agent startup entrypoint | `AGENT_START_HERE.md` |
 | Project index | `work-progress/projects/INDEX.md` |
@@ -194,6 +194,16 @@ Target direction:
 | 6 | Keep this valuable-work ledger updated as timestamped work proceeds | CapitalGlass-Cross-Agent | Active |
 
 ## Progress log
+
+### 2026-08-01 CT - L master index made canonical front door
+
+- Canonical operational front door for agents: `L:\Capital-Glass-Intelligence-Hub\00-master-index\`.
+- Key files: `AGENT_START_HERE.md`, `INDEX.json`, `AGENT_BUILD_CATALOG.json`, and `BY-KIND/*.json` slices.
+- Inventory reported synced: 12 Capital Glass apps, 7 platform repos, 18 MCP servers, 5 Cursor plugins, 20 external GitHub research libraries, 5 vendor tools, 2 DE handoff packages, 20 linked knowledge builds.
+- Data-Extraction owns sync via `npm run agent-research-library:sync-master-index`; estate manifest is `Data-Extraction/config/agent-research-library/estate-manifest-v1.json`.
+- Data-Extraction feature reported committed and pushed as `bbddfe3` on `main`.
+- Cross-Agent canonical map updated in `work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md`; Cross-Agent remains the human decision ledger, while L: master index is the machine-readable build catalog.
+- Known gaps: `10-approved-for-use/` empty until review, rank 9 YOLO URL not pinned, some knowledge build paths still local C: until warm-cache sync to L: is added.
 
 ### 2026-08-01 CT - Rosewood parser running on Ryzen9Desk
 
