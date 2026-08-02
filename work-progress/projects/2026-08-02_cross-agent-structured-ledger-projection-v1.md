@@ -14,7 +14,7 @@ Governance-owned schema contract and AppBuilder ingestion adapter for append-onl
 | Authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
-| Status | **Phase 0 DRAFT** — Governance schema contract opened |
+| Status | **Phase 0 CURRENT** — Governance schema approved; AppBuilder Phase 1 ingestion adapter landed |
 
 ## Prerequisite
 
@@ -33,8 +33,8 @@ Governance-owned schema contract and AppBuilder ingestion adapter for append-onl
 
 | Priority | Action | Owner | Status |
 | --- | --- | --- | --- |
-| 1 | Approve Governance schema contract (Phase 0) | Operator / Governance | Pending |
-| 2 | Implement AppBuilder ingestion adapter | CG-AppBuilder-MCP | Blocked |
+| 1 | Approve Governance schema contract (Phase 0) | Operator / Governance | **COMPLETE** (`cross-agent-structured-ledger-schema-approval-v1`) |
+| 2 | Implement AppBuilder ingestion adapter | CG-AppBuilder-MCP | **In progress** (dry-run + gated apply) |
 | 3 | Drift detection probe | CG-AppBuilder-MCP | Blocked |
 | 4 | Platform Health integration | CG-AppBuilder-MCP | Blocked |
 | 5 | Fix `ledgerOnly` compact v2 RI profile | CG-AppBuilder-MCP | In progress (`cross-agent-ledger-only-compact-v1`) |
