@@ -1,0 +1,91 @@
+# Canonical Knowledge Locations
+
+This is the canonical map for where agents should look for reusable Capital Glass build knowledge, scraped research, app indexes, published packages, and coordination notes.
+
+Purpose: stop valuable information from getting scattered across chat, Cursor output, local folders, and implementation repos.
+
+## Canonical Rule
+
+> Cross-Agent records what matters and where to find it. It does not store the full research corpus or implementation code.
+
+When an agent needs available apps, libraries, tools, indexes, scraped GitHub material, or reusable build knowledge, start here.
+
+## Read Order
+
+| Order | Location | Purpose |
+| --- | --- | --- |
+| 1 | `CapitalGlass-Cross-Agent/AGENT_START_HERE.md` | Agent operating rules |
+| 2 | `CapitalGlass-Cross-Agent/work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md` | This canonical map |
+| 3 | `CapitalGlass-Cross-Agent/work-progress/ACTIVE_WORK.md` | Current ledger and active blockers |
+| 4 | `CapitalGlass-Cross-Agent/work-progress/projects/INDEX.md` | Project/work-package index |
+| 5 | Relevant project file under `work-progress/projects/` | Exact decisions, paths, commits, run evidence |
+| 6 | Owning repo / Synology path named by the project file | Actual implementation or published research |
+
+## Storage Layers
+
+| Layer | Canonical role | Primary location |
+| --- | --- | --- |
+| Coordination / decisions | What matters, why, status, next actions | `CapitalGlass-Cross-Agent/work-progress/` |
+| Project-specific ledger | Durable notes for one work package | `CapitalGlass-Cross-Agent/work-progress/projects/YYYY-MM-DD_<project-id>.md` |
+| Research selection indexes | Ranked app/library/vendor lists and adoption decisions | `Data-Extraction/config/agent-research-library/*.json` |
+| Raw scraped GitHub/site captures | Capture plans, manifests, scraped pages, URL inventories | `Scraper/ui-capture/artifacts/vendor-docs/<vendor-or-topic>/` |
+| Processed knowledge packages | Data-Extraction KBs, manifests, retrieval snapshots, operational notes | `Data-Extraction/artifacts/data-extraction-2/` |
+| Published quick-access copies | Synology/L: compact indexes and agent entry points | `L:\Capital-Glass-Research\...`, `L:\Capital-Glass-Intelligence-Hub\...` |
+| Shared published mirrors | Z: published suite material when a workflow publishes there | `Z:\Capital-Glass-Dev\...` |
+| Suite app map | App registry, Bible/source map, application keys | `CG-AppBuilder-MCP/docs/SUITE_APPLICATION_BIBLE_REGISTRY.json` |
+| Suite bridges | Repo ownership, app-to-app bridges, workflow gaps | `CG-AppBuilder-MCP/docs/SUITE_BRIDGE_MAP.md` |
+| Shared schemas/contracts | Evidence packages and consumer contracts | `CG-AppBuilder-MCP/contracts/external-schema-index.json` |
+| Governance authority | North Star capture/closeout rules and compounding proof | `CG-Platform-Governance-MCP` |
+| Execution adapter | Sync, index, cache, gates, worker scripts | `CG-AppBuilder-MCP` |
+
+## GitHub-Scraped Research Canonical Path
+
+When the user asks where scraped GitHub libraries/apps are stored, answer with this ladder:
+
+| Step | Look here | Meaning |
+| --- | --- | --- |
+| 1 | `Data-Extraction/config/agent-research-library/` | Which libraries/apps were selected and why |
+| 2 | `Scraper/ui-capture/artifacts/vendor-docs/` | Raw captured GitHub/site material |
+| 3 | `Data-Extraction/artifacts/data-extraction-2/` | Processed knowledge packages |
+| 4 | `L:\Capital-Glass-Research\` and `L:\Capital-Glass-Intelligence-Hub\` | Published quick-access copies |
+| 5 | Relevant Cross-Agent project file | Current decision, owner, status, and next action |
+
+## Known Research Indexes And Packages
+
+| Work / library set | Canonical index or package | Location |
+| --- | --- | --- |
+| Revu opening detection | `revu-opening-detection-top10-v1.json` | `Data-Extraction/config/agent-research-library/revu-opening-detection-top10-v1.json` |
+| Revu opening pilot KBs | `PKG-REVU-OPENING-DETECTION-PILOT-V1` | `Data-Extraction/artifacts/data-extraction-2/revu-opening-detection-pilot/` |
+| Docling GitHub ingest | `KB-DOCLING-GITHUB-V1-2026-08-01` | `Data-Extraction/artifacts/data-extraction-2/vendor-pilot/KB-DOCLING-GITHUB-V1-2026-08-01/` |
+| Docling raw capture | GitHub vendor docs capture | `Scraper/ui-capture/artifacts/vendor-docs/docling/` |
+| Docling published compact | Agent compact and manifests | `L:\Capital-Glass-Intelligence-Hub\03-domains\vendor-docs\docling\...`, `L:\Capital-Glass-Research\Scraper-Corpus\vendor-docs\docling\...` |
+| Unstructured GitHub scrape | Vendor docs capture/corpus | `Scraper/ui-capture/artifacts/vendor-docs/unstructured/` and DE publish target when processed |
+| Proposal stack pilot | Proposal output libraries | `Data-Extraction/artifacts/data-extraction-2/proposal-stack-pilot/` |
+
+## Agent Decision Rule
+
+| Need | Go to |
+| --- | --- |
+| What is happening now? | `work-progress/ACTIVE_WORK.md` |
+| What project files exist? | `work-progress/projects/INDEX.md` |
+| What libraries/apps were researched? | `Data-Extraction/config/agent-research-library/` |
+| Where are raw scraped pages? | `Scraper/ui-capture/artifacts/vendor-docs/` |
+| Where are processed knowledge packages? | `Data-Extraction/artifacts/data-extraction-2/` |
+| Where are quick-access published copies? | `L:\Capital-Glass-Research\` and `L:\Capital-Glass-Intelligence-Hub\` |
+| How do apps/repos connect? | `CG-AppBuilder-MCP/docs/SUITE_BRIDGE_MAP.md` |
+| What schema should a producer/consumer use? | `CG-AppBuilder-MCP/contracts/external-schema-index.json` |
+| What is the constitutional capture/closeout rule? | `CG-Platform-Governance-MCP` |
+
+## What Does Not Belong Here
+
+Do not put these in Cross-Agent:
+
+- Full scraped corpuses.
+- Full Bible copies.
+- MCP server code.
+- Database migrations.
+- Secrets.
+- Large logs.
+- App implementation code.
+
+Cross-Agent should store durable pointers, decisions, evidence summaries, run results, commits, and next actions.
