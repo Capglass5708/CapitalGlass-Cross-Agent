@@ -107,7 +107,7 @@ Do not capture:
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-08-01 |
-| Current focus | L: master index is now canonical front door for build-assist knowledge; Rosewood parser running on Ryzen9Desk; capture closeouts as runs finish |
+| Current focus | GPU host authority clarified: Ryzen9Desk owns RTX 5080 activation proof; WesleyDesk is 1080 Ti dev/office/L: workflow host; capture parser/GPU closeouts as runs finish |
 | Workspace context | `work-progress/WORKSPACE_CONTEXT.md` |
 | Agent startup entrypoint | `AGENT_START_HERE.md` |
 | Project index | `work-progress/projects/INDEX.md` |
@@ -194,6 +194,13 @@ Target direction:
 | 6 | Keep this valuable-work ledger updated as timestamped work proceeds | CapitalGlass-Cross-Agent | Active |
 
 ## Progress log
+
+### 2026-08-02 CT - GPU host authority clarified
+
+- Machine roles saved to `work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md` and `work-progress/projects/2026-08-01_revu-opening-detection-top10-v1.md`.
+- `WESLEYDESK`: GTX 1080 Ti; dev / office / L: workflows; can run opening-stack import checks but is not current 5080 proof host.
+- `RYZEN9DESK` / `CG-RYZEN9DESK-01`: RTX 5080; primary GPU target for Paddle GPU 3.x, `dev_gpu`, `gpu-activation-probe`, SAHI/PaddleDetection benchmarks.
+- Receipt policy: `RTX5080_GPU_ACTIVATION_PROVEN` belongs on RYZEN9DESK, not WESLEYDESK, unless future hardware/receipt changes authority.
 
 ### 2026-08-01 CT - L master index made canonical front door
 
