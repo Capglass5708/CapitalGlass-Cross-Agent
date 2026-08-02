@@ -395,7 +395,99 @@ When complete, capture:
 | BC relay readiness | Whether output is suitable for Bid Composer relay import |
 | Failures/warnings | Any OCR/embed/export warnings from the log |
 
+## Rosewood bid status and Revu MCP fit - 2026-08-02
+
+This corrects the Rosewood project state and separates the three active lanes.
+
+| Field | Value |
+| --- | --- |
+| Project | `2406 Rosewood Ave` / `CG-PROJ-ROSEWOOD` |
+| Plan set | `20260717_2406 Rosewood Ave_Permit Set.pdf` |
+| Current bottom line | Revu/operator corpus has good progress; CE parse failed/stalled; real Bid Composer proposal has not started |
+
+### Lane 1 - Revu / operator intelligence
+
+| Area | Status |
+| --- | --- |
+| Instructor videos | 13 clips registered in `Data-Extraction/topics/bluebeam-revu/projects/rosewood/project.json` |
+| Stages covered | Cover -> floor -> schedule -> elevations -> details -> RFIs/clarifications |
+| Latest capture | `VID-ROSEWOOD-DETAIL003` - finishing schedule / exterior window notes |
+| Corpus | Transcripts + logic instances on `L:\Capital-Glass-Research` |
+| Estimating knowledge | Bound to `CG-PROJ-ROSEWOOD` + `schedule_review` for Human Estimator MCP proof target |
+
+Interpretation: this lane is operator walkthrough -> transcript -> structured estimating logic. It does not mean a Bid Composer proposal is ready.
+
+### Lane 2 - Plan parser / Computer Estimator
+
+| Item | Status |
+| --- | --- |
+| Plan In drop | Permit PDF was in `Z:\Office\Plan Parser\Plan In\_failed\`; parse never completed cleanly |
+| CE GPU on Ryzen desk | Blocked / incomplete due to Paddle wheel setup |
+| Active OCR on Ryzen | None reported in this correction |
+| L: evidence | Sample/relay docs such as `ce-relay-doc-001`, not a full Rosewood parse package |
+| Planned chain | Rosewood Plan In -> CE parse -> Bid Composer import -> issue-gate dry run |
+
+Interpretation: the CE parse chain has not finished. Do not treat Rosewood as having a completed parser evidence package yet.
+
+### Lane 3 - Bid Composer proposal
+
+| Item | Status |
+| --- | --- |
+| Pilot bid `2085cd1a-...` | CE suite test harness with door conflicts / agent lane; aliased as Rosewood in one validation artifact |
+| Real 2406 Rosewood customer bid | Not started as a live Bid Composer job |
+| Proposal issued | No - `proposalIssued: false` |
+| Release blockers | 3 remaining per wave-f1 readiness |
+| Live Rosewood bid ingestion | Blocked: needs L: corpus promote + real `bidId` + agent-lane run |
+| Active BC proposal work | Submersive `6b30e040`, PR #41, not Rosewood |
+
+Interpretation: the test harness artifact must not be confused with the real Rosewood customer bid.
+
+### Revu MCP use for Rosewood
+
+Revu MCP can be used for live markup in Bluebeam Revu, under controlled constraints.
+
+| Tool / capability | Rosewood use |
+| --- | --- |
+| `open_file` | Open the permit PDF in Revu |
+| `add_markup` | Clouds, callouts, polylines, highlights, squares, count markers |
+| `set_page_scale` | Required before length/area measurements |
+| `search` | Find window tags / sheet refs, then highlight |
+| `list_markups_in_pdf` / `get_markup_state` | Read back sheet markup state |
+| `set_markup_property` / `set_markup_shape` | Adjust existing markups |
+
+Requirements:
+
+- Revu must be running on the machine where the MCP bridge is attached, typically the active desk machine.
+- `open_file` comes first; tools operate on the active PDF in Revu.
+- PDF path must be local to that machine, for example `Z:\Office\Bids\RoseWood\20260717_2406 Rosewood Ave_Permit Set - Copy.pdf`, L:, or local disk.
+- Measurements need scale; call `set_page_scale` per sheet before dimension/area markups.
+- Revu MCP is not a substitute for CE OCR. Revu MCP is estimator/agent markup in Revu; CE still owns machine evidence extraction for Bid Composer import.
+
+Suggested Rosewood Revu workflow:
+
+1. `open_file` -> Rosewood permit PDF.
+2. `set_page_scale` -> per elevation/schedule sheet.
+3. `search` -> `W38`, `W37`, `Type 13`, and transcript-derived tags.
+4. `add_markup` -> scope clouds, callouts, and count markers.
+5. Optional export -> Plan Out or Bid Composer intake.
+
+What it will not do alone:
+
+- It will not fix the failed Plan In parse.
+- It will not create `bid_*` records in Bid Composer.
+- It will not issue a proposal.
+- Markup is evidence; estimator approval is still required.
+
+Next concrete operator choice: open the Rosewood permit PDF in Revu on the active Revu MCP host and choose the first sheet, such as `A.520.1` schedule, elevation 7, or `A.521` detail.
+
 ## Update log
+
+### 2026-08-02 CT - Rosewood bid status corrected
+
+- Separated Rosewood into three lanes: Revu/operator intelligence, CE parser, and Bid Composer proposal.
+- Recorded that Revu videos/transcripts/logic corpus have good progress, but the CE parser lane is stalled and the real Bid Composer customer bid has not started.
+- Clarified that pilot bid `2085cd1a-...` is a CE suite harness artifact aliased as Rosewood, not the live 2406 Rosewood bid.
+- Documented controlled Revu MCP markup use and constraints for Rosewood drawings.
 
 ### 2026-08-02 CT - GPU machine roles clarified
 
