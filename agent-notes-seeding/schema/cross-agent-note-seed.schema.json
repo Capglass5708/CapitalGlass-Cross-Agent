@@ -96,6 +96,22 @@
       "then": {
         "not": { "required": ["target"] }
       }
+    },
+    {
+      "if": { "properties": { "classification": { "const": "authority_decision" } } },
+      "then": {
+        "required": ["target"],
+        "properties": {
+          "canonicalOwner": { "const": "CG-Platform-Governance-MCP" },
+          "target": {
+            "required": ["system", "decisionId"],
+            "properties": {
+              "system": { "const": "governance" },
+              "decisionId": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
     }
   ]
 }

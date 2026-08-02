@@ -38,7 +38,7 @@ Full note bodies are **never** copied into the agent layer, Supabase bodies, or 
 | `known_failure` | Link to existing Failure Intelligence record + shortcut — never create duplicate repair records |
 | `active_action` | Compact pointer for active-work / agent startup path |
 | `reusable_knowledge` | Intelligence Hub compact retrieval |
-| `authority_decision` | Governance validation required before agent visibility |
+| `authority_decision` | Governance registry + gate required before agent visibility (`cross-agent-notes:governance-check`) |
 | `reference_only` | Human-readable only — never injected into Cursor context |
 
 ## Lifecycle
@@ -68,7 +68,10 @@ npm run cross-agent-notes:seed -- --seed=<seed-id> --dry-run
 npm run cross-agent-notes:seed -- --seed=<seed-id> --apply
 npm run cross-agent-notes:verify -- --seed=<seed-id>
 npm run cross-agent-notes:index -- --check
+npm run cross-agent-notes:governance-check -- --seed=<seed-id> --dry-run
 ```
+
+For `authority_decision` seeds, run **governance-check** before `--apply`. Governance APPROVE is separate from L mirror (`mirror-l`) and Supabase pointer upsert (not yet live).
 
 - **Dry-run** — schema, source provenance, classification routing, compact budget, FI/governance gates; no writes.
 - **Apply** — publish compact to Z canonical release, mirror to L, write Supabase metadata pointers, update INDEX lifecycle.
