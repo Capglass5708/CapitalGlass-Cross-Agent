@@ -13,7 +13,7 @@
 | Production safety | **PASS** |
 | Production activation | **HALTED** |
 | Dev-lane specification | **READY** |
-| Dev hosted environment | **NOT BUILT** |
+| Dev hosted environment | **HOLD** — see [`project-folder-synology-primary-v1-dev-hosted-environment`](./project-folder-synology-primary-v1-dev-hosted-environment.md) |
 | Synology-primary production readiness | **HOLD** |
 | SharePoint Slice 4 | **HOLD** |
 
@@ -97,10 +97,10 @@ Prior proof project `e15f1184-72db-47fc-9ba1-f7e9c2f8b02c` remains sample/local 
 
 ## Recommended progression
 
-1. **Commit and push** this Cross-Agent seed (active authority).
-2. Create the **dev environment contract** in CapitalGlass-Documents; record exact URLs and project references (**no secrets**).
-3. Configure **`cg-documents/dev`** (flag, unique worker token, dev roots, dev Supabase).
-4. Deploy **one pinned** Document Center commit to the **stable dev alias**.
+1. **Commit and push** this Cross-Agent seed (active authority). — **DONE**
+2. Create the **dev environment contract** in CapitalGlass-Documents; record exact URLs and project references (**no secrets**). — **DONE** (`d8826e8`)
+3. Configure **`cg-documents/dev`** (flag, unique worker token, dev roots, dev Supabase). — **PARTIAL / HOLD** ([hosted-environment WP](./project-folder-synology-primary-v1-dev-hosted-environment.md))
+4. Deploy **one pinned** Document Center commit to the **stable dev alias**. — **HOLD** (Vercel deploy BLOCKED)
 5. Confirm `claim` and `complete` exist and **reject invalid authentication**.
 6. Point **only** the dev Dashboard at dev Document Center.
 7. Install the **dev worker** on WESLEYDESK.
@@ -112,7 +112,7 @@ Prior proof project `e15f1184-72db-47fc-9ba1-f7e9c2f8b02c` remains sample/local 
 
 ## Required gates (before production)
 
-- [ ] Dev environment contract published (URLs/refs only; secrets in Doppler)
+- [x] Dev environment contract published (URLs/refs only; secrets in Doppler) — `d8826e8`
 - [ ] Isolation decisions I1–I4 implemented and verified
 - [ ] Document Center deployed to **stable dev alias** with Slice 0–3 routes
 - [ ] `POST .../claim` and `.../complete` return auth/JSON on **dev**, not 405; invalid auth rejected
@@ -147,9 +147,13 @@ Dev folders **must not** land under the production root.
 | CapitalGlass-Office-Admin | WESLEYDESK worker install (dev instance) |
 | CapitalGlass-Cross-Agent | Work package + proof receipts |
 
-## Contract (next artifact)
+## Contract
 
-`CapitalGlass-Documents/docs/PROJECT_FOLDER_SYNOLOGY_PRIMARY_DEV_ENVIRONMENT_CONTRACT.md` — to be created in step 2.
+`CapitalGlass-Documents/docs/PROJECT_FOLDER_SYNOLOGY_PRIMARY_DEV_ENVIRONMENT_CONTRACT.md` @ **`d8826e8`** (governing acceptance contract for dev deployment).
+
+## Child work package (step #3)
+
+[`project-folder-synology-primary-v1-dev-hosted-environment.md`](./project-folder-synology-primary-v1-dev-hosted-environment.md) — configure `cg-documents/dev`, deploy pinned SHA, run gates G1–G10.
 
 ## Artifacts
 

@@ -79,7 +79,7 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 
 | Priority | Action | Owner repo | Status |
 | --- | --- | --- | --- |
-| 1 | **Establish Synology-primary dev lane** (`project-folder-synology-primary-v1-dev-environment`) — DC dev deploy, dev worker on `L:\Capital-Glass-Projects-Dev`, gates before prod | CapitalGlass-Documents / Dashboard / WESLEYDESK | **ACTIVE** — prod flag turned off 2026-08-03 |
+| 1 | **Synology-primary dev lane** — child WP `project-folder-synology-primary-v1-dev-hosted-environment` (**HOLD**: Vercel BLOCKED + Supabase I2) | CapitalGlass-Documents / WESLEYDESK | **HOLD** — contract `d8826e8` PASS; hosted dev blocked |
 | 2 | Elevated deploy: `Install-CgWesleyWorkDriveMountPersistence.ps1` + verifier on WESLEY_WORK (`wesleywork-drive-mount-task-dedupe-v1`) | CapitalGlass-Office-Admin | Ready — code implemented; live probe pending |
 | 3 | Update Document Center `EXPECTED_DOCUMENT_CENTER_GIT_SHA` after intentional prod deploy (not Synology experiment) | CapitalGlass-Documents / Doppler | Pending — do not deploy Synology to prod until dev gates pass |
 | 2 | Use Windows Desktop `Capital Glass Cursor (WSL Suite).lnk`; close any Cursor windows opened from `/mnt/c` / `C:\Developer\repos` | Cursor / operator | Ongoing operating rule — WSL default verify PASS |
@@ -98,6 +98,17 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 **Default agent preflight (machine-readable):** `openActions` + `blockers` only — L: hub slices when available, else Supabase derived projection (`compact-slices-only`). Not full ledger. `currentFocus` human-only (`whats-active-now --include-current-focus`).
 
 ## Progress log (latest entries)
+
+### 2026-08-03 CT — Synology-primary step #3: hosted dev HOLD
+
+| Field | Value |
+| --- | --- |
+| Work package | `project-folder-synology-primary-v1-dev-hosted-environment` |
+| Contract | **PASS** — `d8826e8` on CapitalGlass-Documents `main` |
+| Hosted dev | **HOLD** — Vercel deploy `BLOCKED`; Supabase dev project not isolated (I2) |
+| Doppler dev | Partial — roots, unique worker token, `CLAIMED_BY`, flag **off** |
+| Stable alias | `documents-dev.capitalglasstxapps.com` registered; serves **stale f16b4ff** (not `d8826e8`); claim **405** |
+| Production | **HALTED** / **NOT touched** |
 
 ### 2026-08-03 CT — Synology-primary: halt production, open dev-environment WP
 

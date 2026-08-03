@@ -1,0 +1,19 @@
+{
+  "workPackageId": "project-folder-synology-primary-v1-dev-hosted-environment",
+  "contractRef": "CapitalGlass-Documents/docs/PROJECT_FOLDER_SYNOLOGY_PRIMARY_DEV_ENVIRONMENT_CONTRACT.md",
+  "pinnedSha": "d8826e84d9409739baee413aa937849bb57469d9",
+  "evaluatedAt": "2026-08-03T18:05:00.000Z",
+  "overall": "HOLD",
+  "gates": [
+    { "id": "G1", "name": "Dev routes exist", "status": "FAIL", "detail": "claim returns 405; dev alias serves f16b4ff not d8826e8" },
+    { "id": "G2", "name": "Dev auth", "status": "HOLD", "detail": "No live dev deployment" },
+    { "id": "G3", "name": "Dev root only", "status": "HOLD", "detail": "Worker not installed" },
+    { "id": "G4", "name": "Supabase dev state", "status": "HOLD", "detail": "Separate Supabase dev project not provisioned (I2)" },
+    { "id": "G5", "name": "Path redaction", "status": "HOLD", "detail": "No hosted dev API" },
+    { "id": "G6", "name": "Retry/idempotency", "status": "HOLD", "detail": "Not run" },
+    { "id": "G7", "name": "Worker offline", "status": "HOLD", "detail": "Not run" },
+    { "id": "G8", "name": "No prod Supabase", "status": "HOLD", "detail": "Cannot verify until dev isolated from prd Supabase" },
+    { "id": "G9", "name": "No prod L: folders", "status": "HOLD", "detail": "Worker not running" },
+    { "id": "G10", "name": "SharePoint disabled", "status": "PASS", "detail": "No SharePoint mirror enabled in dev config" }
+  ]
+}
