@@ -1,0 +1,78 @@
+{
+  "workPackageId": "wesleywork-drive-mount-task-dedupe-v1",
+  "verdict": "IMPLEMENTED_READY_FOR_LIVE_DEPLOY",
+  "protocol": "Office Admin Protocol v1.5",
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "endpoint": "CG-WESLEYWORK-01",
+  "updatedAt": "2026-08-03T15:27:00.000Z",
+  "goal": "Stop duplicate/flashing WESLEY_WORK PowerShell drive-mount health windows",
+  "rootCause": {
+    "summary": "Three scheduled tasks ran Ensure-CgWesleyWorkDriveMounts.ps1 -Mode Health every 15 minutes without IgnoreNew/Hidden discipline",
+    "tasks": [
+      {
+        "name": "CapitalGlass-WesleyWork-DriveMount-Health",
+        "disposition": "kept"
+      },
+      {
+        "name": "CapitalGlass-WesleyWork-DriveMount-LanRecheck",
+        "disposition": "removed"
+      },
+      {
+        "name": "CapitalGlass-WesleyWork-DriveMount-User-Health",
+        "disposition": "removed"
+      }
+    ]
+  },
+  "keyChanges": [
+    "Register-OfficeHiddenScheduledTask.ps1 helper",
+    "XML scheduled task registration",
+    "MultipleInstancesPolicy=IgnoreNew",
+    "Hidden=true",
+    "Scheduled health runs use -Quiet",
+    "Duplicate LanRecheck/User-Health tasks removed",
+    "User task registration no longer creates User-Health",
+    "Test-CgWesleyWorkDriveMountTaskRegistration.ps1 verifier"
+  ],
+  "finalTaskModel": [
+    {
+      "task": "DriveMount-Health",
+      "role": "Only periodic Health, every 15m"
+    },
+    {
+      "task": "DriveMount-Logon",
+      "role": "Logon remap"
+    },
+    {
+      "task": "DriveMount-Unlock",
+      "role": "Post-logon Health, 30s delay"
+    },
+    {
+      "task": "DriveMount-Startup",
+      "role": "SYSTEM boot kick"
+    },
+    {
+      "task": "PreCursorDriveGate*",
+      "role": "ForceRemap when Z: missing, distinct 1m path"
+    }
+  ],
+  "deploy": {
+    "path": "C:\\Developer\\repos\\CapitalGlass-Office-Admin\\scripts\\devices\\CG-WESLEYWORK-01",
+    "commands": [
+      ".\\Install-CgWesleyWorkDriveMountPersistence.ps1",
+      ".\\Test-CgWesleyWorkDriveMountTaskRegistration.ps1 -ExpectRegistered"
+    ],
+    "requiresElevation": true,
+    "host": "WESLEY_WORK"
+  },
+  "verification": {
+    "unitTests": {
+      "ok": true,
+      "detail": "7/7 PASS"
+    },
+    "liveProbeAfterDeploy": {
+      "ok": false,
+      "detail": "Pending elevated deploy on WESLEY_WORK"
+    }
+  },
+  "valuesPrinted": false
+}

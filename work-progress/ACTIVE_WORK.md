@@ -48,7 +48,8 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 
 | Priority | Action | Owner repo | Status |
 | --- | --- | --- | --- |
-| 1 | Update Document Center `EXPECTED_DOCUMENT_CENTER_GIT_SHA` secret to deployed SHA `f16b4ff334affe8c900cded6a6feac6480c0d848`, or redeploy from main and set secret to that SHA | CapitalGlass-Documents / Doppler | Pending ops secret update |
+| 1 | Elevated deploy: `Install-CgWesleyWorkDriveMountPersistence.ps1` + verifier on WESLEY_WORK (`wesleywork-drive-mount-task-dedupe-v1`) | CapitalGlass-Office-Admin | Ready — code implemented; live probe pending |
+| 2 | Update Document Center `EXPECTED_DOCUMENT_CENTER_GIT_SHA` secret to deployed SHA `f16b4ff334affe8c900cded6a6feac6480c0d848`, or redeploy from main and set secret to that SHA | CapitalGlass-Documents / Doppler | Pending ops secret update |
 | 2 | Use Windows Desktop `Capital Glass Cursor (WSL Suite).lnk`; close any Cursor windows opened from `/mnt/c` / `C:\Developer\repos` | Cursor / operator | Ongoing operating rule — WSL default verify PASS |
 | 2 | L: hub readable at `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index` | WESLEYDESK / WSL | Complete for seed report |
 | 3 | WSL seed structured-ledger ingest and drift probe | CG-AppBuilder-MCP | Complete — `IN_SYNC` via Doppler-backed Supabase token |
@@ -65,6 +66,21 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 **Default agent preflight (machine-readable):** `openActions` + `blockers` only — L: hub slices when available, else Supabase derived projection (`compact-slices-only`). Not full ledger. `currentFocus` human-only (`whats-active-now --include-current-focus`).
 
 ## Progress log (latest entries)
+
+### 2026-08-03 CT — WESLEY_WORK drive-mount task dedupe IMPLEMENTED
+
+| Field | Value |
+| --- | --- |
+| Work package | `wesleywork-drive-mount-task-dedupe-v1` |
+| Verdict | **IMPLEMENTED / READY FOR LIVE DEPLOY** |
+| Protocol | Office Admin Protocol v1.5 |
+| Owner repo | CapitalGlass-Office-Admin |
+| Root cause | Three 15m Health tasks without `IgnoreNew`/`Hidden` — duplicate flashing PowerShell windows |
+| Fix | Keep `DriveMount-Health` only; remove `LanRecheck` + `User-Health`; hidden XML tasks + `-Quiet` |
+| Unit tests | 7/7 PASS |
+| Receipt | `artifacts/agent-runs/wesleywork-drive-mount-task-dedupe-v1/receipt.json` |
+| Deploy | Elevated on WESLEY_WORK: `Install-CgWesleyWorkDriveMountPersistence.ps1` + `Test-CgWesleyWorkDriveMountTaskRegistration.ps1 -ExpectRegistered` |
+| Live probe | Pending after deploy |
 
 ### 2026-08-03 CT — WESLEY_WORK WSL default layout PASS
 
