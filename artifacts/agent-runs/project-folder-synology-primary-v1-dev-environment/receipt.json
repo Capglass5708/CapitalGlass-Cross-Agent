@@ -1,0 +1,39 @@
+{
+  "workPackageId": "project-folder-synology-primary-v1-dev-environment",
+  "verdict": "ACTIVE",
+  "parentWorkPackage": "project-folder-synology-primary-v1",
+  "updatedAt": "2026-08-03T17:22:00.000Z",
+  "currentVerdict": {
+    "productionSafety": "PASS",
+    "productionActivation": "HALTED",
+    "devLaneSpecification": "READY",
+    "devHostedEnvironment": "NOT_BUILT",
+    "synologyPrimaryProductionReadiness": "HOLD",
+    "sharePointSlice4": "HOLD"
+  },
+  "decision": "Halt production activation; establish hosted dev lane before promotion",
+  "rootCause": "Skipped dev/staging: local integration proof jumped directly to production Vercel deployment",
+  "lockedIsolationDecisions": {
+    "I1_stableDevHostname": "Use stable dev hostname/alias; not ephemeral Vercel preview URLs",
+    "I2_supabaseIsolation": "Prefer separate Supabase dev project; dev workers structurally incapable of claiming production jobs",
+    "I3_uniqueDevWorkerToken": "Unique PROJECT_FOLDER_PROVISION_WORKER_TOKEN in cg-documents/dev; never reuse production token",
+    "I4_serverEnforcedDevRoot": "Enforce L:\\Capital-Glass-Projects-Dev server-side; no request payload may select storage root"
+  },
+  "opsActions": {
+    "dopplerCgDocumentsPrdFlag": false,
+    "vercelProductionFlagSynced": false,
+    "productionDeploys": "cancelled or stopped",
+    "productionPromotion": "frozen until dev acceptance receipt"
+  },
+  "devLane": {
+    "documentCenter": "stable dev alias",
+    "dashboard": "dev deployment → dev Document Center only",
+    "doppler": "cg-documents/dev",
+    "supabase": "separate dev project preferred",
+    "synologyRoot": "L:\\Capital-Glass-Projects-Dev",
+    "wslRoot": "/mnt/l/Capital-Glass-Projects-Dev",
+    "worker": "office-project-folder-provision-dev",
+    "sharePoint": "disabled until dev Synology flow passes"
+  },
+  "valuesPrinted": false
+}

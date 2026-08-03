@@ -1,6 +1,7 @@
 # Work package: project-folder-synology-primary-v1
 
-**Verdict:** `PRODUCTIONIZATION_FAILED` — recovery tooling landed (deploy timeout + route probe + WESLEYDESK worker install scripts)  
+**Verdict:** `PRODUCTIONIZATION_HALTED` — dev lane required before promotion  
+**Active successor:** [`project-folder-synology-primary-v1-dev-environment`](./project-folder-synology-primary-v1-dev-environment.md)  
 **Integration proof (Slice 0–3 local):** `PASS`  
 **Last updated:** 2026-08-03
 
@@ -18,8 +19,8 @@
 | CapitalGlass-Cross-Agent | Proof artifacts committed |
 | Supabase migration | Applied to shared DB |
 | Local integration proof | **PASS** — async enqueue, worker claim/complete, L: folder tree, DB `synology_primary_active` |
-| Doppler `cg-documents/prd` | `PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED`, `PROJECT_FOLDER_PROVISION_WORKER_TOKEN` |
-| Vercel production env | Both keys synced via `sync-hybrid-worker-vercel.mjs` |
+| Doppler `cg-documents/prd` | Flag **off** as of 2026-08-03; `PROJECT_FOLDER_PROVISION_WORKER_TOKEN` retained for future promotion |
+| Vercel production env | Flag synced **false** via `sync-hybrid-worker-vercel.mjs` |
 
 ---
 
@@ -36,23 +37,19 @@
 
 ## Safe state
 
-- Flag is `true` in Doppler/Vercel env, but **old production build** — live traffic is **not** using Synology-primary yet.
+- **`PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED=false`** in Doppler `cg-documents/prd` and Vercel production (2026-08-03).
+- Production never served Synology-primary (old build; routes 405).
 - Proof project `e15f1184-72db-47fc-9ba1-f7e9c2f8b02c` is sample/local proof only (`is_sample=true`).
 - Slice 4 SharePoint mirror was **not** started.
+- **Do not re-attempt production** until [`project-folder-synology-primary-v1-dev-environment`](./project-folder-synology-primary-v1-dev-environment.md) gates pass.
 
 ---
 
-## Recovery order
+## Recovery order (superseded by dev-environment WP)
 
-1. ~~Fix Document Center production deploy hang in `deploy-production.yml` / Vercel deploy path.~~ **Done in repo** — push + run workflow.
-2. Complete one successful production deploy of CapitalGlass-Documents.
-3. Verify `claim`/`complete` routes return auth/JSON behavior, not 405 (`npm run probe:project-folder-provision-routes`).
-4. Install `office-project-folder-provision` worker on WESLEYDESK (`scripts/deploy-wesleydesk-project-folder-provision-worker.ps1`).
-5. Create one real project via `/capital-pipeline`.
-6. Confirm `L:\Capital-Glass-Projects\{folder_segment}\` exists and DB state is `synology_primary_active`.
-7. Only after that, consider Slice 4 SharePoint mirror.
+Direct production activation is **frozen**. Production promotion follows dev lane proof. See successor work package.
 
-**Runbook:** `CapitalGlass-Documents/docs/PROJECT_FOLDER_SYNOLOGY_PRIMARY_PRODUCTION_RECOVERY.md`
+~~Prior direct-production steps (deploy hang fix, prod worker, `/capital-pipeline` on prod) — **superseded** 2026-08-03.~~
 
 ---
 

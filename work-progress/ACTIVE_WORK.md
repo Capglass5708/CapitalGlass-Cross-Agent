@@ -21,15 +21,25 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 ## Current saved work
 
-### 2026-08-03 CT — RYZEN9DESK WSL2 canonical workspace (BLOCKED on wrong host)
+### 2026-08-03 CT — RYZEN9DESK managed executor (Phase 0 scaffolded)
+
+| Field | Value |
+| --- | --- |
+| Work package | `ryzen9desk-managed-executor-v1` |
+| Verdict | **Active** — persistent execution node architecture; runner install pending |
+| Tooling | `.github/workflows/ryzen9desk-executor-dispatch.yml`, `scripts/executor/*`, `npm run ryzen9desk:executor:*` |
+| Prior WP | `ryzen9desk-wsl2-canonical-workspace-v1` becomes first dispatched job (`wsl2-canonical-setup`) |
+| Next | Push scaffold → install runner on RYZEN9DESK WSL → dispatch `executor-smoke` → dispatch canonical setup |
+
+### 2026-08-03 CT — RYZEN9DESK WSL2 canonical workspace (BLOCKED — superseded by executor dispatch)
 
 | Field | Value |
 | --- | --- |
 | Work package | `ryzen9desk-wsl2-canonical-workspace-v1` |
-| Verdict | `BLOCKED` — prepared on WESLEY_WORK; must execute on RYZEN9DESK |
+| Verdict | `BLOCKED` — prepared on WESLEY_WORK; execute via managed executor on RYZEN9DESK |
 | Tooling | `npm run ryzen9desk:wsl2-canonical`, machine profile `ryzen9desk.machine.json` |
 | Receipts | `CG-AppBuilder-MCP/artifacts/agent-runs/ryzen9desk-wsl2-canonical-workspace-v1/` |
-| Next | RYZEN9DESK: pull AppBuilder ext4, run runbook, GPU smoke, WSL restart + shortcut |
+| Next | Dispatch `wsl2-canonical-setup` after runner online (see `ryzen9desk-managed-executor-v1`) |
 
 | Repo | Commit | Status | Notes |
 | --- | --- | --- | --- |
@@ -58,8 +68,9 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 
 | Priority | Action | Owner repo | Status |
 | --- | --- | --- | --- |
-| 1 | Elevated deploy: `Install-CgWesleyWorkDriveMountPersistence.ps1` + verifier on WESLEY_WORK (`wesleywork-drive-mount-task-dedupe-v1`) | CapitalGlass-Office-Admin | Ready — code implemented; live probe pending |
-| 2 | Update Document Center `EXPECTED_DOCUMENT_CENTER_GIT_SHA` secret to deployed SHA `f16b4ff334affe8c900cded6a6feac6480c0d848`, or redeploy from main and set secret to that SHA | CapitalGlass-Documents / Doppler | Pending ops secret update |
+| 1 | **Establish Synology-primary dev lane** (`project-folder-synology-primary-v1-dev-environment`) — DC dev deploy, dev worker on `L:\Capital-Glass-Projects-Dev`, gates before prod | CapitalGlass-Documents / Dashboard / WESLEYDESK | **ACTIVE** — prod flag turned off 2026-08-03 |
+| 2 | Elevated deploy: `Install-CgWesleyWorkDriveMountPersistence.ps1` + verifier on WESLEY_WORK (`wesleywork-drive-mount-task-dedupe-v1`) | CapitalGlass-Office-Admin | Ready — code implemented; live probe pending |
+| 3 | Update Document Center `EXPECTED_DOCUMENT_CENTER_GIT_SHA` after intentional prod deploy (not Synology experiment) | CapitalGlass-Documents / Doppler | Pending — do not deploy Synology to prod until dev gates pass |
 | 2 | Use Windows Desktop `Capital Glass Cursor (WSL Suite).lnk`; close any Cursor windows opened from `/mnt/c` / `C:\Developer\repos` | Cursor / operator | Ongoing operating rule — WSL default verify PASS |
 | 2 | L: hub readable at `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index` | WESLEYDESK / WSL | Complete for seed report |
 | 3 | WSL seed structured-ledger ingest and drift probe | CG-AppBuilder-MCP | Complete — `IN_SYNC` via Doppler-backed Supabase token |
@@ -76,6 +87,17 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 **Default agent preflight (machine-readable):** `openActions` + `blockers` only — L: hub slices when available, else Supabase derived projection (`compact-slices-only`). Not full ledger. `currentFocus` human-only (`whats-active-now --include-current-focus`).
 
 ## Progress log (latest entries)
+
+### 2026-08-03 CT — Synology-primary: halt production, open dev-environment WP
+
+| Field | Value |
+| --- | --- |
+| Work package | `project-folder-synology-primary-v1-dev-environment` (successor) |
+| Parent | `project-folder-synology-primary-v1` → **PRODUCTIONIZATION_HALTED** |
+| Root cause | Skipped hosted dev lane: local proof → production Vercel |
+| Ops | `PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED=false` in Doppler `cg-documents/prd` + Vercel production |
+| Dev roots | `L:\Capital-Glass-Projects-Dev` / Doppler `cg-documents/dev` |
+| Production | Frozen until dev gates pass; promotion of proven commit only |
 
 ### 2026-08-03 CT — WESLEY_WORK drive-mount task dedupe IMPLEMENTED
 
