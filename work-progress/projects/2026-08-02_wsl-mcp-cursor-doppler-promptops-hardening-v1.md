@@ -103,6 +103,58 @@ Current verification:
 - 30-second process poll showed `pwsh.exe` count 0, `powershell.exe` count 3, `cmd.exe` count 8, `node.exe` count 28.
 - No active Cloudflare reconnect storm in the last observed window; Cloudflare remained stopped/failed.
 
+
+### WSL MCP path coherence verification
+
+Latest pasted Cursor verification returned:
+
+\`\`\`text
+VERDICT: PARTIAL
+\`\`\`
+
+Fixed WSL-canonical env roots:
+
+| Location | Value |
+| --- | --- |
+| \`~/.cursor/integrations.env\` | \`LOOP_REPO_ROOT=/home/wesle/repos\` |
+| \`~/.cursor/integrations.env\` | \`PROCEDURES_REPO_ROOT=/home/wesle/repos/Capital-Glass-Procedures-\` |
+| \`~/.cursor/integrations.env\` | \`RAILWAY_MCP_PO_SERVER_CWD=/home/wesle/repos/capital-glass-po-app/server\` |
+
+Already WSL-canonical:
+
+- \`~/.cursor/mcp.json\`: all 18 stdio/HTTP launchers use \`/home/wesle/repos/...\`.
+- Active suite project \`.cursor/mcp.json\` files: clean.
+
+Still Windows-pathed or not yet authoritative:
+
+| Location | Reason |
+| --- | --- |
+| Cursor workspace root \`/mnt/c/Developer/repos/*\` | Session was opened from NTFS mount, not \`/home/wesle/repos\`; the \`/mnt/c\` project-dir was newer than the ext4 project-dir in Cursor metadata |
+| \`/mnt/c/Users/wesle/.cursor/mcp.json\` | Windows-side config preserved intentionally; 8 servers still point at \`C:/Developer/repos/...\` |
+| \`/mnt/c/Users/wesle/.cursor/integrations.env\` | Windows profile still has \`RAILWAY_MCP_PO_SERVER_CWD=C:/Cursor Projects/...\`; not WSL authority |
+| Legacy worktree/archive \`mcp.json\` files | Inactive archives, not loaded by Cursor |
+| \`npm run wsl:mcp:preflight\`, \`gate\`, \`repair-all\` in that session | Scripts were not present in the active \`package.json\`; \`npm run wsl:mcp:verify\` passed and \`npm run wsl:mcp:repair\` reported \`NO_CHANGE\` instead |
+
+MCP status from the path-coherence check:
+
+| State | Servers |
+| --- | --- |
+| Green / connected | \`cg-app-mcp\`, \`cg-diagnostic\`, \`cg-suite-wiring\`, \`sharepoint\`, \`railway\`, \`github\`, \`doppler\`, \`agent-loop\`, \`failure-intelligence-mcp\`, \`office-admin-mcp\`, \`supabase\`, \`supabase-mcp-control\`, Cloudflare HTTP variants, \`capital-glass-platform-intelligence\`, \`azure\` |
+| Red / needs auth | \`vercel\` plugin, needs \`mcp_auth\` |
+| Stopped / not active | Cloudflare stdio launcher absent from config; HTTP variants only |
+
+Log checks:
+
+- No new \`pwsh.exe\` storm.
+- No mangled Azure hook \`ENOENT\` failures after WSL reopen.
+- No new \`EADDRINUSE 127.0.0.1:15170\`; last conflict was earlier on stdio \`user-cloudflare\`, now disabled.
+
+Required next action from that verification:
+
+\`\`\`text
+Close the Cursor window and reopen the suite workspace from /home/wesle/repos/CG-AppBuilder-MCP, or the .code-workspace under ~/repos, not /mnt/c/Developer/repos.
+\`\`\`
+
 ### Doppler MCP repair
 
 Root cause:
@@ -178,6 +230,8 @@ Downstream status checked before inspection stopped:
 | `npm run wsl:mcp:smoke` | 31/31 PASS | Launcher syntax checks |
 | `npm run wsl:mcp:validate-workspace` | PASS | Data-Extraction remains NTFS-only as expected |
 | `npm run wsl:mcp:audit-secrets` | WARN | `RAILWAY_API_TOKEN` missing in Doppler `cg-shared/dev` |
+| `npm run wsl:mcp:verify` | PASS | Path-coherence verification fallback command |
+| `npm run wsl:mcp:repair` | `NO_CHANGE` | Path-coherence session fallback command |
 | `test:wsl-mcp-durable-bootstrap` | 20/20 PASS | Durable bootstrap test |
 | `doppler me` | OK | Capital Glass Suite |
 | Doppler MCP initialize probe | OK | `doppler-api-readonly` responded |
@@ -188,6 +242,8 @@ Downstream status checked before inspection stopped:
 | Blocker / warning | Owner repo / surface | Required action |
 | --- | --- | --- |
 | Cursor MCP reload needed after repair waves | Cursor / operator | `Cursor -> Settings -> MCP -> Reload` |
+| Active Cursor workspace opened from `/mnt/c/Developer/repos/*` in latest path-coherence check | Cursor / operator | Close window and reopen from `/home/wesle/repos/CG-AppBuilder-MCP` or WSL `.code-workspace` |
+| Vercel MCP plugin red / needs auth | Cursor MCP / Vercel | Complete `mcp_auth` when Vercel MCP is needed |
 | Cloudflare MCP stopped/failed on `EADDRINUSE 127.0.0.1:15170` | Cursor MCP / Cloudflare | Keep disabled or clear loopback port/OAuth conflict before enabling |
 | Legacy Windows-hosted Cursor windows can still produce mangled Azure hook path failures | Cursor / operator | Close all Windows-hosted Cursor repo windows; keep only WSL workspace open |
 | Some MCP launchers still referenced `C:/Developer/repos/...` during flash verification | CG-AppBuilder-MCP / Cursor MCP config | Finish WSL ext4 path migration if still present after reload |
@@ -228,6 +284,12 @@ Downstream status checked before inspection stopped:
 - Cross-Agent should store operational facts, decisions, artifact pointers, verification results, and next actions, not secrets or implementation code.
 
 ## Update log
+
+### 2026-08-02 CT — path-coherence and Doppler backfill
+
+- Backfilled latest Cursor path-coherence verdict: `PARTIAL`.
+- Recorded fixed WSL env roots, clean WSL MCP launcher state, preserved Windows-side config, Vercel auth red state, and required reopen-from-`/home/wesle/repos` action.
+- Reconfirmed Doppler MCP repair details and Wave 3 completion details from repeated pasted Cursor summaries.
 
 ### 2026-08-02 CT — ChatGPT extraction from pasted Cursor notes
 
