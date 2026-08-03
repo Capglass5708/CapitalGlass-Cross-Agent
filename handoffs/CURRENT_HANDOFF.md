@@ -60,7 +60,7 @@ Watch item: If terminal flashes return, check whether `C:\Users\wesle\.cursor\mc
 
 ## L: seed blocker
 
-L: remains unavailable in WSL because `\\192.168.1.109\CapitalGlass-L` is unreachable. Z: is mounted at `/mnt/z`, but the Intelligence Hub front door lives on L:, not Z:.
+L: is now reachable in WSL at `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index`. The seed compact was promoted to L:, but structured-ledger ingest is still on HOLD because the current Cursor workspace is `/mnt/c/Developer/repos/CG-AppBuilder-MCP` and ingest hit `BLOCKED_OPERATOR_APPROVAL`.
 
 Before running `cross-agent-seed-wsl-mcp-backfill-v1`:
 
@@ -74,3 +74,15 @@ bash ~/repos/CG-AppBuilder-MCP/scripts/ci/ensure-wsl-l-hub-mount.sh
 ```
 
 4. Confirm `L:\Capital-Glass-Intelligence-Hub\00-master-index` is readable.
+
+
+## Seed mission status: HOLD (partial PASS)
+
+- `cross-agent-notes:seed --apply` PASS.
+- `cross-agent-notes:verify` PASS.
+- L: mirror written: `/mnt/l/Capital-Glass-Intelligence-Hub/02-catalog/cross-agent-notes/wsl-mcp-cursor-doppler-promptops-hardening-v1.json`.
+- Drift remains UNKNOWN: `SUPABASE_PROJECTION_MISSING`.
+- Ingest blocked: `BLOCKED_OPERATOR_APPROVAL`.
+- Host check still `HOST_MODE_BLOCKED` because PWD was `/mnt/c/Developer/repos/CG-AppBuilder-MCP`.
+
+Next: reopen Cursor from `/home/wesle/repos/CG-AppBuilder-MCP`, sync/symlink ext4 Governance schema approval file if needed, then rerun ingest and drift probe.
