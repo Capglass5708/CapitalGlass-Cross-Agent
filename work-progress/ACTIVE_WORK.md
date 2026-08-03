@@ -13,7 +13,7 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-08-03 |
-| Current focus | WSL MCP drift-proof repair implemented: `mcp:repair:cursor` PASS; Cursor MCP restart and optional commit/push remain |
+| Current focus | Suite CI healing: Product Catalog, Proposal Generator, and Office Admin green; Document Center awaits deployed-SHA secret alignment |
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
@@ -48,7 +48,8 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 
 | Priority | Action | Owner repo | Status |
 | --- | --- | --- | --- |
-| 1 | Reopen Cursor from `/home/wesle/repos/CG-AppBuilder-MCP` or WSL `.code-workspace`, not `/mnt/c/Developer/repos` | Cursor / operator | Required before seed |
+| 1 | Update Document Center `EXPECTED_DOCUMENT_CENTER_GIT_SHA` secret to deployed SHA `f16b4ff334affe8c900cded6a6feac6480c0d848`, or redeploy from main and set secret to that SHA | CapitalGlass-Documents / Doppler | Pending ops secret update |
+| 2 | Reopen Cursor from `/home/wesle/repos/CG-AppBuilder-MCP` or WSL `.code-workspace`, not `/mnt/c/Developer/repos` | Cursor / operator | Required before material MCP work |
 | 2 | L: hub readable at `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index` | WESLEYDESK / WSL | Complete for seed report |
 | 3 | WSL seed structured-ledger ingest and drift probe | CG-AppBuilder-MCP | Complete — `IN_SYNC` via Doppler-backed Supabase token |
 | 3 | Reload Cursor MCP after WSL repair Waves 1-3 | Cursor / operator | Pending |
@@ -64,6 +65,18 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 **Default agent preflight (machine-readable):** `openActions` + `blockers` only — L: hub slices when available, else Supabase derived projection (`compact-slices-only`). Not full ledger. `currentFocus` human-only (`whats-active-now --include-current-focus`).
 
 ## Progress log (latest entries)
+
+### 2026-08-03 CT — suite CI healing partial PASS
+
+| Field | Value |
+| --- | --- |
+| Work package | `suite-ci-healing-v1` |
+| Status | **PARTIAL PASS** — three surfaces green; Document Center blocked on deployed-SHA secret mismatch |
+| Green | `capital-glass-product-catalog` Validate; `Cursor-ProposalGenerator` drift canary; `CapitalGlass-Office-Admin` validate-code after PR #51 merge |
+| Document Center | Workflow now uses `EXPECTED_DOCUMENT_CENTER_GIT_SHA`; production `/api/version` reports `f16b4ff` from `feat/storage-orchestrator-persistence-v1` |
+| Required next | Update Doppler/GitHub secret to `f16b4ff334affe8c900cded6a6feac6480c0d848`, or redeploy from main and set expected SHA to that deploy |
+| Backlog | Stale AppBuilder PRs #254, #252, #228, #227, #216; self-hosted nightly full closeout gate; Cross-Agent ext4 clone + ledger publish |
+| Project file | `work-progress/projects/2026-08-03_suite-ci-healing-v1.md` |
 
 ### 2026-08-03 CT — Wave 4 `mcp:repair:cursor` PASS
 
