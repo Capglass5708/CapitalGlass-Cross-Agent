@@ -34,10 +34,9 @@ Filename pattern: `YYYY-MM-DD_<project-id>.md` — see `work-progress/projects/R
 | Project ID | File | Status | Owner repo(s) | Last commit | Next action |
 | --- | --- | --- | --- | --- | --- |
 | `suite-ci-healing-v1` | [2026-08-03_suite-ci-healing-v1.md](./2026-08-03_suite-ci-healing-v1.md) | **PARTIAL PASS — Document Center secret update needed** | Product Catalog, Proposal Generator, Office Admin, Document Center | Office Admin PR #51 merged; Document Center `482561e` | Update `EXPECTED_DOCUMENT_CENTER_GIT_SHA` or redeploy Document Center from main, then rerun production smokes |
-
 | `cross-agent-registry-onboard-v1` | [2026-08-02_cross-agent-registry-onboard-v1.md](./2026-08-02_cross-agent-registry-onboard-v1.md) | Complete — closeout PASS | `CG-AppBuilder-MCP` | `38a162da` / `48a1bff1` | Recurring registry maintenance only |
 | `cross-agent-structured-ledger-projection-v1` | [2026-08-02_cross-agent-structured-ledger-projection-v1.md](./2026-08-02_cross-agent-structured-ledger-projection-v1.md) | **MILESTONE PASS** — Phases 0–3 operational | `CG-Platform-Governance-MCP`, `CG-AppBuilder-MCP` | AppBuilder `63dbeb8c`; Governance `a5ce4c3` | Recurring ingest + drift probe after ledger updates |
-| `wsl-mcp-cursor-doppler-promptops-hardening-v1` | [2026-08-02_wsl-mcp-cursor-doppler-promptops-hardening-v1.md](./2026-08-02_wsl-mcp-cursor-doppler-promptops-hardening-v1.md) | **Wave 4 implemented locally — `mcp:repair:cursor` PASS** | `CG-AppBuilder-MCP`, `Cursor-MCP-Kit`, Cursor MCP, Doppler | `mcp:repair:cursor` PASS; Supabase event `5b090a49...` | Restart Cursor MCP; optionally commit/push ext4 changes; handle Vercel / Cloudflare / `mcp:attest` separately |
+| `wsl-mcp-cursor-doppler-promptops-hardening-v1` | [2026-08-02_wsl-mcp-cursor-doppler-promptops-hardening-v1.md](./2026-08-02_wsl-mcp-cursor-doppler-promptops-hardening-v1.md) | **PASS — Cursor WSL default active; `mcp:repair:cursor` PASS** | `CG-AppBuilder-MCP`, `Cursor-MCP-Kit`, Cursor MCP, Doppler | WSL default verify PASS; `mcp:repair:cursor` PASS | Use WSL Suite shortcut; optionally commit/push ext4 changes; handle Vercel / Cloudflare / `mcp:attest` separately |
 | `active-ledger-drain-and-intelligence-hub-sync-v1` | [2026-08-02_active-ledger-drain-and-intelligence-hub-sync-v1.md](./2026-08-02_active-ledger-drain-and-intelligence-hub-sync-v1.md) | **Complete — closeout PASS** | Multi-repo | AppBuilder `cd4a9005` | Recurring L: publish only |
 | `north-star-compounding-proof-v1` | [2026-08-01_north-star-compounding-proof-v1.md](./2026-08-01_north-star-compounding-proof-v1.md) | Pushed — evidence receipts on `origin/main` | `CG-Platform-Governance-MCP` (authority), `CG-AppBuilder-MCP` (execution) | Governance `8ebcdf4`; AppBuilder `3772d491` | Restart MCP; clear Auto v3.2 env vars and rerun `closeout:gate`; begin `north-star-compounding-vertical-pilot-v1` |
 | `agent-research-library-layout-v1` | [2026-08-01_agent-research-library-layout-v1.md](./2026-08-01_agent-research-library-layout-v1.md) | Pilot 9/10 operational | `Data-Extraction`, `Scraper` | `Data-Extraction 2190944`; `Scraper 0111837`; layout `b1d2e42`, `3e09e4c` | Optional bounded n8n capture; agent review before any `10-approved-for-use/` promotion |
@@ -82,11 +81,10 @@ Recommended follow-on work packages (not yet project files):
 | Project ID | Status | Next action |
 | --- | --- | --- |
 | `suite-ci-healing-v1` | Partial PASS | After Document Center SHA alignment, inspect stale AppBuilder PRs #254, #252, #228, #227, #216 |
-
 | `north-star-compounding-proof-v1` | Pushed | Restart MCP; clear Auto v3.2 env vars; rerun `closeout:gate` |
 | `cross-agent-registry-onboard-v1` | Complete — pushed | Recurring maintenance |
 | `cross-agent-structured-ledger-projection-v1` | **MILESTONE PASS** | Recurring ingest + drift probe |
-| `wsl-mcp-cursor-doppler-promptops-hardening-v1` | Wave 4 implemented locally — `mcp:repair:cursor` PASS | Restart Cursor MCP; optionally commit/push ext4 changes; investigate Vercel auth / Cloudflare / `mcp:attest` separately |
+| `wsl-mcp-cursor-doppler-promptops-hardening-v1` | PASS — Cursor WSL default active; `mcp:repair:cursor` PASS | Use WSL Suite shortcut; optionally commit/push ext4 changes; investigate Vercel auth / Cloudflare / `mcp:attest` separately |
 | `active-ledger-drain-and-intelligence-hub-sync-v1` | Phases 0–3 complete | Phase 5 material closeout |
 
 ### Data-Extraction
@@ -132,7 +130,7 @@ Recommended follow-on work packages (not yet project files):
 | DE opening-detection KB is shallow | `revu-opening-detection-top10-v1`, `cg-opening-locator-v1` | `Data-Extraction` | Finish vendor interpretation for pymkup, PyMuPDF, PaddleDetection; fix `unsupported_vendor` |
 | Bid Composer weak on `window_schedule_row` | CE parser ROI / Bid Composer review lane | `Bid Composer` | Add window schedule import and review lane before production parser ROI is complete |
 | Revu MCP production workflow locked | `revu-production-takeoff-pilot-v1` | `CapitalGlassRevu`, `Bid Composer` | Keep Cursor fixture-only use until canonical plan → approval → export → BC review pilot passes |
-| Cursor opened from `/mnt/c` instead of ext4 WSL root | `wsl-mcp-cursor-doppler-promptops-hardening-v1` | Cursor / operator | Close window and reopen from `/home/wesle/repos/CG-AppBuilder-MCP` or WSL `.code-workspace` |
+| Cursor opened from `/mnt/c` instead of ext4 WSL root | `wsl-mcp-cursor-doppler-promptops-hardening-v1` | Cursor / operator | Regression only: WSL default verify now PASS; use `Capital Glass Cursor (WSL Suite).lnk` |
 | Vercel MCP needs auth | `wsl-mcp-cursor-doppler-promptops-hardening-v1` | Cursor / Vercel | Run `mcp_auth` when Vercel MCP is needed |
 | Cloudflare stdio OAuth loopback conflict | `wsl-mcp-cursor-doppler-promptops-hardening-v1` | Cursor / Cloudflare | Keep stdio Cloudflare disabled or clear `127.0.0.1:15170` conflict |
 
