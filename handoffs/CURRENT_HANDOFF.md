@@ -34,6 +34,7 @@ Current state:
 - AppBuilder PR #267 and CapitalGlassRevu PR #5 are merged.
 - Windows-host MCP is now disabled (`mcp.json` -> `mcp.json.windows-disabled`).
 - WSL `~/.cursor/mcp.json` is now the only active MCP authority.
+- Seed mission ledger slice is complete: compact PASS, L: mirror PASS, Supabase projection `IN_SYNC` at `5ddd274` / `9eb1c562...`.
 - Remaining recommendation: reopen from `/home/wesle/repos/CG-AppBuilder-MCP` or the WSL `.code-workspace`, then reload MCP if needed.
 - Remaining separate items: Vercel MCP auth, Cloudflare `127.0.0.1:15170` loopback conflict, optional `RAILWAY_API_TOKEN`, and `mcp:attest` auth/index parity.
 
@@ -76,13 +77,24 @@ bash ~/repos/CG-AppBuilder-MCP/scripts/ci/ensure-wsl-l-hub-mount.sh
 4. Confirm `L:\Capital-Glass-Intelligence-Hub\00-master-index` is readable.
 
 
-## Seed mission status: HOLD (partial PASS)
+## Seed mission status: ledger slice PASS
 
 - `cross-agent-notes:seed --apply` PASS.
 - `cross-agent-notes:verify` PASS.
 - L: mirror written: `/mnt/l/Capital-Glass-Intelligence-Hub/02-catalog/cross-agent-notes/wsl-mcp-cursor-doppler-promptops-hardening-v1.json`.
-- Drift remains UNKNOWN: `SUPABASE_PROJECTION_MISSING`.
-- Ingest blocked: `BLOCKED_OPERATOR_APPROVAL`.
+- Structured-ledger ingest APPLIED through `doppler run` from `cg-mcp/dev`.
+- Drift probe `IN_SYNC` at commit `5ddd274` / content hash `9eb1c562...`.
+- Supabase event appended: `5b090a49-acf4-43a3-8ffe-6705e65d7634`.
+- Prior `SUPABASE_PROJECTION_MISSING` was a local CLI-auth false negative caused by bare Supabase CLI 401.
 - Host check still `HOST_MODE_BLOCKED` because PWD was `/mnt/c/Developer/repos/CG-AppBuilder-MCP`.
 
-Next: reopen Cursor from `/home/wesle/repos/CG-AppBuilder-MCP`, sync/symlink ext4 Governance schema approval file if needed, then rerun ingest and drift probe.
+## Wave 4 next durable slice
+
+Package MCP drift prevention in `CG-AppBuilder-MCP`:
+
+1. WSL Doppler launcher parity: node-only `mcp-doppler-launch.mjs`, no `doppler run` double-hop in generated `mcp.json`.
+2. Fold `wire-cursor-app-mcps.mjs` into the WSL repair entrypoint.
+3. Extend Doppler sync to pull `DOPPLER_TOKEN` / `DOPPLER_MCP_TOKEN` into `integrations.env`.
+4. Add `npm run mcp:repair:cursor` for repair + wire + sync + verify + receipt.
+
+Keep Vercel MCP auth, Cloudflare OAuth loopback, Railway token fallback, and `mcp:attest` as separate items.
