@@ -1,0 +1,54 @@
+name: Cross-Agent index publication
+
+# v1: workflow_dispatch only. v1.1 enables push on WESLEYDESK self-hosted runner.
+
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: Operator reason for manual publication
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cross-agent-index-publication
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: [self-hosted, wesleydesk, wsl2]
+    timeout-minutes: 45
+    env:
+      INTELLIGENCE_HUB_ROOT: /mnt/l/Capital-Glass-Intelligence-Hub
+      CG_APPBUILDER_MCP_ROOT: /home/wesle/repos/CG-AppBuilder-MCP
+      CAPITALGLASS_CROSS_AGENT_ROOT: ${{ github.workspace }}
+    steps:
+      - name: Checkout pinned ref
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 1
+
+      - name: Pin publication SHA
+        run: echo "GITHUB_SHA=${{ github.sha }}" >> "$GITHUB_ENV"
+
+      - name: L mount probe
+        run: test -d /mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND
+
+      - uses: actions/setup-node@b789df37d6b7526a863bf51b65df64f3f56ffe4f
+        with:
+          node-version: '22'
+
+      - name: Run index publisher
+        run: node scripts/index/run-index-publisher.mjs
+
+      - name: Upload publication receipt
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: cross-agent-index-publication-receipt
+          path: |
+            runtime/index-publication/latest.json
+            artifacts/agent-runs/cross-agent-index-publication-v1/latest.json

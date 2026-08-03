@@ -4,8 +4,8 @@ alwaysApply: true
 canonicalOwner: CG-AppBuilder-MCP
 canonicalPath: agent-packs/three-way-agent/rules/intelligence-hub-first-read.mdc
 generatedCopy: true
-ruleVersion: 1.1.0
-canonicalContentHash: a9be1be8c68f6fd1b39bde108472dc627ae3ff5e26fb9c863cb340255af8d217
+ruleVersion: 1.2.0
+canonicalContentHash: 16efbf09064009f00ef34a3860cbb797faf581e1f61a5bc6fb555b385b9dc3ac
 ---
 
 # Intelligence Hub first-read (mandatory)
@@ -125,6 +125,20 @@ Report exactly one primary retrieval outcome:
 | `FAILOVER_GIT_LEDGER` | L: and projection insufficient; used Cross-Agent Git ledger |
 | `CACHE_HIT` | Auto v3.2 / compiled context pack reused with matching authority |
 | `CACHE_MISS` | No reusable compiled pack; index slices were live-read |
+
+## indexNeed cross-reference (v1.2.0)
+
+Cursor app repos also enforce `cross-agent-index-preflight.mdc`. Map `retrievalResult` to hub log codes:
+
+| retrievalResult | Hub log code |
+| --- | --- |
+| `INDEX_HIT_L` | `INDEX_HIT` |
+| `INDEX_HIT_SUPABASE` | `FAILOVER_SUPABASE` |
+| `INDEX_HIT_GIT` | `FAILOVER_GIT_LEDGER` |
+| `INDEX_STALE_FAILOVER` | `INDEX_STALE_FAILOVER` |
+| `INDEX_NOT_NEEDED` | (skip hub retrieval) |
+
+Preflight command: `npm run agent:index:preflight -- --query="..." --json`
 
 When both apply, log index or failover outcome first, then cache outcome.
 

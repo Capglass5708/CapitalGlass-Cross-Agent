@@ -97,7 +97,33 @@
       "executable": true,
       "docOnly": false,
       "phase": "projection",
-      "note": "Operator chain: ingest + L publish + freshness gate"
+      "note": "Operator break-glass chain: ingest + L publish + freshness gate",
+      "operatorBreakGlass": true
+    },
+    {
+      "id": "index-preflight",
+      "command": "npm run index:preflight",
+      "repo": "CapitalGlass-Cross-Agent",
+      "executable": true,
+      "docOnly": false,
+      "phase": "cursor-preflight",
+      "note": "Read-only indexNeed decision before broad repo scan"
+    },
+    {
+      "id": "index-publish-automatic",
+      "command": "npm run index:publish",
+      "repo": "CapitalGlass-Cross-Agent",
+      "executable": true,
+      "docOnly": false,
+      "phase": "projection",
+      "automaticPrimary": true,
+      "note": "GitHub Actions publisher on WESLEYDESK — replaces manual sync-publication when push trigger enabled",
+      "env": [
+        "GITHUB_SHA",
+        "INTELLIGENCE_HUB_ROOT",
+        "CG_APPBUILDER_MCP_ROOT",
+        "CAPITALGLASS_CROSS_AGENT_ROOT"
+      ]
     },
     {
       "id": "restart-mcp-cursor",

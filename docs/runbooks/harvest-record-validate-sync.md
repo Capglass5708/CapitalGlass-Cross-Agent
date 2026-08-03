@@ -23,7 +23,9 @@ Cross-Agent harvests record coordination state only. Implementation, SSH, runner
 | 8 | `npm run agent-research-library:publish-active-work-ledger` | Data-Extraction | Primary L: hub publish (operator approval) |
 | 9 | `npm run index:freshness-gate` | CapitalGlass-Cross-Agent | **Required** — Git, Supabase, and L: must share `sourceCommitSha` |
 
-**Operator one-shot** (steps 7–9): `npm run index:sync-publication` from Cross-Agent (Doppler + L: mount required).
+**Operator one-shot** (steps 7–9): `npm run index:sync-publication` from Cross-Agent (Doppler + L: mount required) — **break-glass only** after v1.
+
+**Automatic publication (v1.1):** `npm run index:publish` via GitHub Actions `index-publication.yml` on WESLEYDESK. Cursor preflight uses read-only `npm run index:preflight`.
 
 Steps 7–9 are **not** part of harvest recording. Run after ledger or manifest edits and operator approval.
 

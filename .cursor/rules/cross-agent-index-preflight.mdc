@@ -1,0 +1,76 @@
+---
+description: Cross-Agent index preflight — mandatory indexNeed decision before broad repo scan in Capital Glass app repos
+alwaysApply: true
+canonicalOwner: CG-AppBuilder-MCP
+canonicalPath: agent-packs/three-way-agent/rules/cross-agent-index-preflight.mdc
+generatedCopy: true
+ruleVersion: 1.0.0
+canonicalContentHash: 828cbc3ea88ea9c197016839b1838fcecd5a96accaddecfa48f30dae86d3b6f8
+---
+
+# Cross-Agent index preflight (mandatory)
+
+Before repo-wide grep, explore subagents, or broad file reads for tasks that may depend on suite status, blockers, ownership, or cross-repo coordination:
+
+## Step 0 order (strict)
+
+1. **MCP read-only** — `get_platform_contract`, `knowledge_summary` (and app-scoped tools when relevant).
+2. **Index preflight** — shell exception allowed for read-only classifier only:
+
+```bash
+npm run agent:index:preflight -- --query="<task summary>" --json
+# Cross-Agent repo:
+npm run index:preflight -- --query="<task summary>" --json
+```
+
+3. **Conditional compact retrieval** — only when `indexNeed` is `REQUIRED` or `OPTIONAL` and `rawScanRequired` is false.
+4. **Repo inspection** — index-directed paths only until compact slices are insufficient.
+
+Pair with `intelligence-hub-first-read.mdc` for Revu/estimating deep topics and hub failover semantics.
+
+## indexNeed outcomes
+
+| Value | Behavior |
+| --- | --- |
+| `REQUIRED` | Must retrieve compact index before repo scan; fail closed on `INDEX_REQUIRED_UNAVAILABLE` or `L_DRIVE_NOT_MOUNTED_IN_WSL` for Revu deep |
+| `OPTIONAL` | Prefer compact index; repo scan allowed when index miss |
+| `NOT_APPLICABLE` | Skip index retrieval; bounded single-repo work |
+
+## Required chat block (after preflight)
+
+```text
+Retrieval: <retrievalResult>
+Index source SHA: <sha>
+Owner repo: CapitalGlass-Cross-Agent
+Guards loaded: <count>
+Raw scan required: YES | NO
+```
+
+## Forbidden during Cursor preflight (read-only lane)
+
+- `npm run index:sync-publication`
+- `npm run index:publish`
+- `npm run index:refresh-anchors`
+- `cross-agent-ledger:ingest -- --apply`
+- `agent-research-library:publish-active-work-ledger`
+- Any L: write or publication mutation
+
+Publication runs on **WESLEYDESK GitHub Actions** (`index-publication.yml`) — not from Cursor agents.
+
+## Master preflight field
+
+`agent:preflight:app-builder-mcp` always emits `crossAgentIndex` with `indexNeed`, `retrievalResult`, `freshnessVerdict`, and `rawScanRequired`.
+
+**3-way integration:** Builder copies receipt into `BUILDER_HANDOFF.crossAgentIndex`; Critic validates via `crossAgentIndexReview`; Verifier records `crossAgentIndexDogfood`. Validate with:
+
+```bash
+npm run three-way:validate-critic-report -- --file=... --builder-handoff=...
+npm run three-way:validate-verification-report -- --file=... --builder-handoff=...
+```
+
+## Related authority
+
+- Canonical lib: `CG-AppBuilder-MCP/scripts/cross-agent-index/`
+- Index owner: `CapitalGlass-Cross-Agent`
+- Hub retrieval: `intelligence-hub-first-read.mdc` (v1.2.0 enum cross-reference)
+- Work package: `preflight-index-utilization-gate-v1`
