@@ -307,6 +307,80 @@ Important rule:
 L: cannot be faked locally. It depends on \\\\192.168.1.109\\CapitalGlass-L on WESLEYDESK. Z: is up, but the Intelligence Hub lives on L:, not Z:.
 ```
 
+
+### Seed mission report - cross-agent-seed-wsl-mcp-backfill-v1
+
+Latest pasted seed mission report:
+
+| Field | Value |
+| --- | --- |
+| Verdict | **HOLD (partial PASS)** |
+| Core seed promotion | PASS |
+| Structured-ledger ingest | BLOCKED by operator approval gate |
+| Drift | UNKNOWN because Supabase projection was not refreshed |
+| Project ID | `wsl-mcp-cursor-doppler-promptops-hardening-v1` |
+| Seed ID | `wsl-mcp-cursor-doppler-promptops-hardening-v1` |
+| Cross-Agent commit | `1c0bd9f` pushed to `origin/main` |
+| Source commit (Agent Fast Path) | `f2b3cfa` |
+| Compact hash | `5b619c288243af955efdea51b359349834284abb998f92d8186d8149d479aacb` |
+| L: mirror | `/mnt/l/Capital-Glass-Intelligence-Hub/02-catalog/cross-agent-notes/wsl-mcp-cursor-doppler-promptops-hardening-v1.json` |
+| `cross-agent-notes:seed --apply` | PASS |
+| `cross-agent-notes:verify` | PASS |
+
+Drift result:
+
+```text
+cross-agent-ledger:drift-probe -> SUPABASE_PROJECTION_MISSING
+```
+
+Ingest receipt reported:
+
+```text
+BLOCKED_OPERATOR_APPROVAL
+11 actions, 10 blockers exported
+```
+
+Evidence paths:
+
+| Evidence | Path / Status |
+| --- | --- |
+| Apply receipt | `~/repos/CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-notes-seeding-v1/wsl-mcp-cursor-doppler-promptops-hardening-v1/apply-result.json` |
+| Ingest receipt | `~/repos/CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-structured-ledger-projection-v1/ingest-apply-receipt.json` |
+| L: hub index | `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index`, readable |
+
+Host check:
+
+| Check | Status |
+| --- | --- |
+| Workspace PWD | `/mnt/c/Developer/repos/CG-AppBuilder-MCP` — `HOST_MODE_BLOCKED` |
+| `CG_REPOS_ROOT` | `/home/wesle/repos` PASS |
+| L: mounted | PASS through `\\\\wesleydesk\\CapitalGlass-L` via Tailscale |
+| `00-master-index` | PASS |
+
+What was delivered in Cross-Agent:
+
+- Agent Fast Path section on the WSL MCP project file.
+- Seed manifest and provenance pins.
+- Handoff updated: L: blocker cleared, ext4 workspace still HOLD.
+- Cross-Agent pushed at `1c0bd9f`.
+
+Required next action:
+
+```bash
+export CG_PLATFORM_GOVERNANCE_ROOT=/mnt/c/Developer/repos/CG-Platform-Governance-MCP
+cd ~/repos/CG-AppBuilder-MCP
+npm run cross-agent-ledger:ingest -- --apply
+npm run cross-agent-ledger:drift-probe
+```
+
+But first reopen Cursor from:
+
+```text
+/home/wesle/repos/CG-AppBuilder-MCP
+```
+
+Note: ext4 `~/repos/CG-Platform-Governance-MCP` is missing the schema approval file. Sync or symlink that repo to unblock ingest without NTFS fallback.
+
 ## Evidence / artifact paths
 
 | Artifact | Path / link | Status |
@@ -343,7 +417,7 @@ L: cannot be faked locally. It depends on \\\\192.168.1.109\\CapitalGlass-L on W
 | Cursor MCP reload needed after repair waves | Cursor / operator | `Cursor -> Settings -> MCP -> Reload` |
 | Workspace-root alignment still recommended | Cursor / operator | Reopen from `/home/wesle/repos/CG-AppBuilder-MCP` or WSL `.code-workspace`, not `/mnt/c/Developer/repos` |
 | Vercel MCP plugin red / needs auth | Cursor MCP / Vercel | Complete `mcp_auth` when Vercel MCP is needed |
-| L: unavailable in WSL; WESLEYDESK LAN path unreachable | WESLEYDESK / L: hub | Map Windows L: and mount `/mnt/l`; seed cannot publish `00-master-index` until this works |
+| L: hub now readable in WSL | WESLEYDESK / L: hub | L: mounted via Tailscale; blocker cleared for L: access, but ingest still HOLD on host mode/operator approval |
 | Cloudflare MCP stopped/failed on `EADDRINUSE 127.0.0.1:15170` | Cursor MCP / Cloudflare | Keep disabled or clear loopback port/OAuth conflict before enabling |
 | Legacy Windows-hosted Cursor windows can still produce mangled Azure hook path failures | Cursor / operator | Close all Windows-hosted Cursor repo windows; keep only WSL workspace open |
 | Some MCP launchers still referenced `C:/Developer/repos/...` during flash verification | CG-AppBuilder-MCP / Cursor MCP config | Finish WSL ext4 path migration if still present after reload |
@@ -425,6 +499,16 @@ bash ~/repos/CG-AppBuilder-MCP/scripts/ci/ensure-wsl-l-hub-mount.sh
 - WSL `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index` readable.
 - Agent Fast Path added for `cross-agent-notes-seeding-v1` compact projection.
 - Cursor workspace still on `/mnt/c/Developer/repos` until operator reopens ext4 root.
+
+### 2026-08-02 CT — seed mission HOLD (partial PASS)
+
+- `cross-agent-notes:seed --apply` PASS and `cross-agent-notes:verify` PASS.
+- L: mirror written under `/mnt/l/Capital-Glass-Intelligence-Hub/02-catalog/cross-agent-notes/`.
+- L: `00-master-index` readable; L: blocker cleared.
+- Structured-ledger ingest blocked by operator approval gate: `BLOCKED_OPERATOR_APPROVAL`.
+- Drift probe result: `SUPABASE_PROJECTION_MISSING`; drift remains UNKNOWN.
+- Cursor session still opened from `/mnt/c/Developer/repos/CG-AppBuilder-MCP`, so `HOST_MODE_BLOCKED` remains.
+- Next: reopen Cursor from `/home/wesle/repos/CG-AppBuilder-MCP`, sync/symlink Governance ext4 schema approval file, rerun ingest and drift probe.
 
 ### 2026-08-02 CT — WSL2 infrastructure in place; seed blocked by L: and host mode
 
