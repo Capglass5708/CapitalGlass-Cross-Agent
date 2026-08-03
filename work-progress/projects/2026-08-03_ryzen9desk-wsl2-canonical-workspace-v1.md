@@ -56,15 +56,45 @@ Make RYZEN9DESK use WSL2 as the default Cursor and Capital Glass agent environme
 
 ---
 
-## Next operator action (RYZEN9DESK)
+## Next operator action
+
+### A. WESLEY_WORK first
+
+Commit and push `CG-AppBuilder-MCP` ryzen9desk tooling to a branch RYZEN9DESK can fetch. Cross-Agent ledger on `origin/main` (`d0fe917`) does **not** include `npm run ryzen9desk:wsl2-canonical`. See AppBuilder `prep-accessibility-receipt.json`.
+
+### B. RYZEN9DESK (no blind `git pull`)
+
+```bash
+hostname
+whoami
+wslpath -w /
+cd ~/repos/CG-AppBuilder-MCP
+git status --short --branch
+git remote -v
+git fetch origin
+git log --oneline --left-right --cherry HEAD...@{upstream}
+```
+
+If clean and no unpublished local commits:
+
+```bash
+git pull --ff-only
+npm run ryzen9desk:wsl2-canonical
+nvidia-smi
+```
+
+Windows PowerShell: `wsl --shutdown`
+
+Launch **Capital Glass Cursor (RYZEN9DESK WSL)**, then:
 
 ```bash
 cd ~/repos/CG-AppBuilder-MCP
-git pull
-npm run ryzen9desk:wsl2-canonical
+npm run cursor:wsl-default:ryzen9desk:verify:json
+npm run wsl:mcp:verify
+nvidia-smi
 ```
 
-Then `wsl --shutdown`, reopen **Capital Glass Cursor (RYZEN9DESK WSL)**, pin taskbar, run `npm run cursor:wsl-default:ryzen9desk:verify:json`, and update this verdict to `PASS` only if full acceptance passes.
+**Unproven until acceptance:** WSL user `wesley`, distro `Ubuntu-24.04`, repo migration safety, L:/Z:, RTX 5080 in WSL, workspace reopen, MCP on target. Update verdict to `PASS` only after restart-and-reopen acceptance.
 
 ---
 
