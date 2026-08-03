@@ -101,12 +101,14 @@ Add a lightweight check in `CG-AppBuilder-MCP`:
 
 ### P3 — Canonical intelligence-hub-first-read update
 
-Update **canonical** rule in `CG-AppBuilder-MCP/agent-packs/three-way-agent/rules/intelligence-hub-first-read.mdc`:
+**Done** (2026-08-03) — canonical `intelligence-hub-first-read.mdc` v1.1.0 adds layered failover (`CAD-20260803-retrieval-failover-layered`); `npm run sync:three-way-agent-rule` propagated to all targets including Cross-Agent.
 
-- Add explicit **structured-ledger Supabase fallback** for suite-status/blockers only when L: unmounted
-- Keep **fail-closed** for Revu/estimating keyword topics
+~~Update **canonical** rule in `CG-AppBuilder-MCP/agent-packs/three-way-agent/rules/intelligence-hub-first-read.mdc`:~~
 
-Then: `npm run sync:three-way-agent-rule` from AppBuilder.
+~~- Add explicit **structured-ledger Supabase fallback** for suite-status/blockers only when L: unmounted~~
+~~- Keep **fail-closed** for Revu/estimating keyword topics~~
+
+~~Then: `npm run sync:three-way-agent-rule` from AppBuilder.~~
 
 ### P4 — Public visibility review
 
@@ -136,7 +138,7 @@ Drive `project-folder-synology-primary-v1-dev-environment` to gate PASS before l
 - [x] `AGENT_START_HERE.md` WSL commands + artifacts policy
 - [x] Investigation playbook (this file)
 - [ ] All evidence paths owner-qualified (P1)
-- [ ] intelligence-hub-first-read canonical sync (P3)
+- [x] intelligence-hub-first-read canonical sync (P3) — rule v1.1.0 + layered failover
 - [ ] Operator decision on public visibility (P4)
 
 ---
