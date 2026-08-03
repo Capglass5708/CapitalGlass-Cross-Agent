@@ -1,101 +1,88 @@
 # Work package: project-folder-synology-primary-v1-dev-hosted-environment
 
-**Verdict:** `HOLD` — infrastructure blockers; partial Doppler dev config only  
+**Verdict:** `DEV_ENVIRONMENT_ACCEPTED`  
 **Parent:** [`project-folder-synology-primary-v1-dev-environment.md`](./project-folder-synology-primary-v1-dev-environment.md)  
 **Contract:** `CapitalGlass-Documents/docs/PROJECT_FOLDER_SYNOLOGY_PRIMARY_DEV_ENVIRONMENT_CONTRACT.md` @ `d8826e8`  
+**Deploy candidate:** `7c0b76f` (`fix/project-folder-provision-dev-deploy`)  
 **Last updated:** 2026-08-03
 
 ---
 
-## Current verdict
+## Final verdict
 
 | Dimension | Status |
 |-----------|--------|
-| Contract committed | **PASS** (`d8826e8`) |
-| Dev hosted environment | **HOLD** |
+| Contract authority | `d8826e8` |
+| Hosted dev deploy | **READY** `7c0b76f` @ `documents-dev.capitalglasstxapps.com` |
+| Dev acceptance gates G1–G10 | **ALL PASS** |
 | Production activation | **HALTED** |
-| Production touched | **NO** |
+| Production touched | **NO** (`f16b4ff` unchanged) |
 
 ---
 
-## Pinned commit
+## Deployment
 
 | Field | Value |
 |-------|--------|
-| Repo | CapitalGlass-Documents |
-| SHA | `d8826e84d9409739baee413aa937849bb57469d9` |
-| Short | `d8826e8` |
-| Message | `docs(project-folders): add Synology-primary dev environment contract` |
+| READY deployment | `dpl_8cve5SbrQowbVfT81Azh5LhEVzeR` |
+| `buildSkipped` | `false` |
+| Alias | `https://documents-dev.capitalglasstxapps.com` |
+| `/api/version` | `gitShortSha=7c0b76f`, `environment=preview` |
+| Doppler | `cg-documents/dev` |
+| Dev Supabase ref | `mazvavlshjshwklcvxaw` |
+| Feature flag (runtime) | `PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED=true` — proved by `ensure-folder-workspace` → `provisionState=synology_primary_pending` (HTTP 202) |
 
 ---
 
-## Progress (step #3)
+## WESLEYDESK bootstrap
 
-### Completed (dev-only)
+| Field | Value |
+|-------|--------|
+| Method | Git bundle from WESLEY_WORK → SCP → `git clone` on WESLEYDESK |
+| Path | `C:\Developer\repos\CapitalGlass-Documents` |
+| HEAD | `7c0b76ffba8d085ecdf6786d93892545fe99ce53` |
+| Dev worker service | `CapitalGlass-Office-ProjectFolder-Provision-Dev` (RUNNING) |
+| Worker identity | `CG-WESLEYDESK-01-dev` |
+| Dev Synology root | `L:\Capital-Glass-Projects-Dev` |
+| Env bootstrap | Doppler `cg-documents/dev` → `.env` on worker host (values not recorded) |
 
-| Item | Evidence |
-|------|----------|
-| Contract on `main` | `d8826e8` pushed |
-| Vercel domain `documents-dev.capitalglasstxapps.com` | Registered on project `capitalglass-documents` (`verified: true`) |
-| Doppler `cg-documents/dev` partial config | `PROJECT_FOLDER_PROVISION_WORKER_TOKEN` (unique dev), `SYNOLOGY_PROJECTS_ROOT`, `SYNOLOGY_PROJECTS_WSL_ROOT`, `PROJECT_FOLDER_CLAIMED_BY=CG-WESLEYDESK-01-dev`, `DOCUMENT_CENTER_DEV_URL`, `PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED=false` |
-
-### Blocked
-
-| Blocker | Detail | Operator action |
-|---------|--------|-----------------|
-| **B1 — Vercel deploy BLOCKED** | CLI deploy `dpl_8MVyD1p1tPTBRkarx3gJtt7f7jVB` → `readyState: BLOCKED`, `buildSkipped: true`, [collaboration doc](https://vercel.com/docs/deployments/troubleshoot-project-collaboration#account-configuration) | Fix Vercel team/account collaboration config; redeploy pinned SHA to preview; `vercel alias` → `documents-dev.capitalglasstxapps.com` |
-| **B2 — I2 Supabase isolation** | `cg-documents/dev` and `cg-documents/prd` share same `SUPABASE_URL` host (`wvidyxufvcrtezzkwwse`) | Provision **separate Supabase dev project**; update `SUPABASE_URL` + service role keys in `cg-documents/dev` only |
-| **B3 — Dev alias wrong build** | `documents-dev` returns **200** but `gitSha` **f16b4ff** (not pinned `d8826e8`); `claim`/`complete` **405**; `DOCUMENT_ENGINE_URL` in dev still production | After B1: deploy `d8826e8` with `cg-documents/dev`; alias domain; wire dev URL secrets |
-| **B4 — Dev worker not installed** | `office-project-folder-provision-dev` not running on WESLEYDESK | After B1+B3: install worker with `doppler run -p cg-documents -c dev` |
-| **B5 — Dev flag off** | `PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED=false` until hosted dev proves routes | Set `true` in `cg-documents/dev` only after B1+B3 deploy live |
+**Note:** NSSM runs `run-worker-loop.mjs` (Node env loader) because PowerShell `.env` import corrupts bearer tokens for the stock `tsx` worker entry on WESLEYDESK SSH sessions.
 
 ---
 
-## Acceptance gates G1–G10
+## E2E disposable proof
 
-**Not claimed.** Hosted dev URL not serving Document Center; gates cannot run.
-
-| Gate | Status |
-|------|--------|
-| G1–G10 | **HOLD** — pending B1–B5 |
+| Field | Value |
+|-------|--------|
+| Dev project ID | `4450d73b-5ec5-47ff-9611-994aa52ff080` |
+| Project code | `DEV-SYNOLOGY-PROOF-20260803` |
+| Jobs succeeded | `f32de321`, `fa9506a7`, `d54135d1` |
+| Folder paths | 48 under dev root only |
+| Production root | No matching folder under `L:\Capital-Glass-Projects\` |
 
 ---
 
-## Sanitized deployment evidence
+## Acceptance gates (contract G1–G10)
+
+See [`gate-results.json`](../artifacts/agent-runs/project-folder-synology-primary-v1-dev-hosted-environment/gate-results.json) — all **PASS**.
+
+---
+
+## Staging prerequisite (operator)
+
+Staging Supabase lacked `project_folders` and `security_audit_log`. Applied **staging-only** DDL via management API during this run (`scripts/dev-bootstrap/staging-synology-project-folder-prereq.sql`). Production schema untouched.
+
+---
+
+## Rollback (dev lane — verified commands, no production impact)
 
 ```text
-Vercel deployment id: dpl_8MVyD1p1tPTBRkarx3gJtt7f7jVB
-Preview URL (assigned, not live): capitalglass-documents-e3n3688ky-capital-glass.vercel.app
-Target stable alias: https://documents-dev.capitalglasstxapps.com (domain registered; serves stale f16b4ff, not d8826e8)
-Production /api/version: unchanged (f16b4ff) — production not touched
-Dev /api/version gitSha: f16b4ff (WRONG — expected d8826e8)
-Dev claim route unauthenticated: 405
-Production claim route: 405 — production not touched
-Doppler dev DOCUMENT_ENGINE_URL: production origin (mispoint)
-Doppler dev SUPABASE_URL: same project ref as prd (I2 violation)
-Doppler prd PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED: false
+doppler secrets set PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED=false --project cg-documents --config dev
+# sync Vercel Preview env from Doppler dev
+C:\Tools\nssm\nssm.exe stop CapitalGlass-Office-ProjectFolder-Provision-Dev
 ```
 
----
-
-## Worker identity (dev)
-
-| Field | Value |
-|-------|--------|
-| Worker package | `office-project-folder-provision-dev` |
-| `PROJECT_FOLDER_CLAIMED_BY` | `CG-WESLEYDESK-01-dev` |
-| Synology root | `L:\Capital-Glass-Projects-Dev` |
-
----
-
-## Next operator sequence
-
-1. Resolve Vercel **BLOCKED** deploy (B1).
-2. Create/configure **separate Supabase dev project** (B2).
-3. Deploy `d8826e8` with `doppler run -p cg-documents -c dev -- vercel deploy`; alias to `documents-dev.capitalglasstxapps.com`.
-4. Wire dev URL secrets in Doppler dev (B3); set `PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED=true` (B5).
-5. Install dev worker on WESLEYDESK (B4).
-6. Run gates G1–G10; file `dev-acceptance-receipt.json`.
+Dev worker stop/start verified during G7. Flag left **enabled** so accepted dev lane remains operational.
 
 ---
 
@@ -103,3 +90,9 @@ Doppler prd PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED: false
 
 - [`receipt.json`](../artifacts/agent-runs/project-folder-synology-primary-v1-dev-hosted-environment/receipt.json)
 - [`gate-results.json`](../artifacts/agent-runs/project-folder-synology-primary-v1-dev-hosted-environment/gate-results.json)
+
+---
+
+## Next progression
+
+Separate approved work package for **production promotion** of SHA `7c0b76f` with `PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED=false` on `prd` until operator promotion step.

@@ -1,19 +1,158 @@
 {
-  "workPackageId": "project-folder-synology-primary-v1-dev-hosted-environment",
-  "contractRef": "CapitalGlass-Documents/docs/PROJECT_FOLDER_SYNOLOGY_PRIMARY_DEV_ENVIRONMENT_CONTRACT.md",
-  "pinnedSha": "d8826e84d9409739baee413aa937849bb57469d9",
-  "evaluatedAt": "2026-08-03T18:05:00.000Z",
-  "overall": "HOLD",
+  "schema": "project-folder-synology-primary-dev-gates-v1",
+  "workPackageId": "project-folder-synology-primary-v1-dev-environment-full-run",
+  "contractAuthoritySha": "d8826e84d9409739baee413aa937849bb57469d9",
+  "developmentCandidateSha": "7c0b76ffba8d085ecdf6786d93892545fe99ce53",
+  "environment": "cg-documents/dev",
+  "devSupabaseRef": "mazvavlshjshwklcvxaw",
+  "productionSupabaseRef": "wvidyxufvcrtezzkwwse",
+  "productionSha": "f16b4ff",
+  "productionTouched": false,
+  "productionActivation": "HALTED",
+  "verdict": "DEV_ENVIRONMENT_ACCEPTED",
+  "recordedAt": "2026-08-03T19:05:00Z",
+  "deployment": {
+    "readyDeploymentId": "dpl_8cve5SbrQowbVfT81Azh5LhEVzeR",
+    "alias": "https://documents-dev.capitalglasstxapps.com",
+    "buildSkipped": false,
+    "readyState": "READY"
+  },
   "gates": [
-    { "id": "G1", "name": "Dev routes exist", "status": "FAIL", "detail": "claim returns 405; dev alias serves f16b4ff not d8826e8" },
-    { "id": "G2", "name": "Dev auth", "status": "HOLD", "detail": "No live dev deployment" },
-    { "id": "G3", "name": "Dev root only", "status": "HOLD", "detail": "Worker not installed" },
-    { "id": "G4", "name": "Supabase dev state", "status": "HOLD", "detail": "Separate Supabase dev project not provisioned (I2)" },
-    { "id": "G5", "name": "Path redaction", "status": "HOLD", "detail": "No hosted dev API" },
-    { "id": "G6", "name": "Retry/idempotency", "status": "HOLD", "detail": "Not run" },
-    { "id": "G7", "name": "Worker offline", "status": "HOLD", "detail": "Not run" },
-    { "id": "G8", "name": "No prod Supabase", "status": "HOLD", "detail": "Cannot verify until dev isolated from prd Supabase" },
-    { "id": "G9", "name": "No prod L: folders", "status": "HOLD", "detail": "Worker not running" },
-    { "id": "G10", "name": "SharePoint disabled", "status": "PASS", "detail": "No SharePoint mirror enabled in dev config" }
-  ]
+    {
+      "id": "G1",
+      "name": "Dev routes exist",
+      "result": "PASS",
+      "timestamp": "2026-08-03T19:05:00Z",
+      "candidateSha": "7c0b76f",
+      "environment": "documents-dev",
+      "expected": "claim/complete return 401 without token (not 405)",
+      "observed": "unauthenticated claim=401, complete=401; /api/version gitShortSha=7c0b76f",
+      "evidence": "artifacts/agent-runs/project-folder-synology-primary-v1-dev-hosted-environment/gate-results.json#G1"
+    },
+    {
+      "id": "G2",
+      "name": "Dev auth / worker claim",
+      "result": "PASS",
+      "timestamp": "2026-08-03T19:00:20Z",
+      "candidateSha": "7c0b76f",
+      "environment": "documents-dev + CG-WESLEYDESK-01-dev",
+      "expected": "Valid dev worker token claims queued dev job",
+      "observed": "Jobs f32de321, fa9506a7, d54135d1 claimed by CG-WESLEYDESK-01-dev and reached succeeded",
+      "evidence": "staging project_folder_provision_jobs; WESLEYDESK service logs-dev/stdout.log"
+    },
+    {
+      "id": "G3",
+      "name": "Dev Synology root only",
+      "result": "PASS",
+      "timestamp": "2026-08-03T19:00:20Z",
+      "candidateSha": "7c0b76f",
+      "environment": "WESLEYDESK L:\\Capital-Glass-Projects-Dev",
+      "expected": "Folders only under dev root; never production root",
+      "observed": "Project folder created under Capital-Glass-Projects-Dev; production root PROD_ROOT_CLEAN",
+      "evidence": "WESLEYDESK dir probe; claim synologyProjectsRoot=Capital-Glass-Projects-Dev"
+    },
+    {
+      "id": "G4",
+      "name": "Supabase dev state",
+      "result": "PASS",
+      "timestamp": "2026-08-03T19:01:12Z",
+      "candidateSha": "7c0b76f",
+      "environment": "mazvavlshjshwklcvxaw",
+      "expected": "synology primary storage location active on dev project only",
+      "observed": "project_folder_storage_locations synology/primary status=active; folder_provision_mode=synology_primary_v1",
+      "evidence": "staging SQL query project 4450d73b-5ec5-47ff-9611-994aa52ff080"
+    },
+    {
+      "id": "G5",
+      "name": "Path redaction",
+      "result": "PASS",
+      "timestamp": "2026-08-03T18:56:28Z",
+      "candidateSha": "7c0b76f",
+      "environment": "documents-dev ensure-folder-workspace",
+      "expected": "Public ensure response has no local_path_hint, UNC, or WSL paths",
+      "observed": "ensure HTTP 202 JSON contains provisionState and jobId only; no localPathHint key",
+      "evidence": "dev-synology-e2e-probe ensure response"
+    },
+    {
+      "id": "G6",
+      "name": "Retry / idempotency",
+      "result": "PASS",
+      "timestamp": "2026-08-03T19:01:12Z",
+      "candidateSha": "7c0b76f",
+      "environment": "documents-dev + worker",
+      "expected": "Re-run ensure + worker complete does not corrupt state",
+      "observed": "Second ensure enqueued fa9506a7; worker succeeded; single project tree (48 paths); no duplicate failure",
+      "evidence": "staging jobs f32de321 + fa9506a7 both succeeded"
+    },
+    {
+      "id": "G7",
+      "name": "Worker offline",
+      "result": "PASS",
+      "timestamp": "2026-08-03T19:03:30Z",
+      "candidateSha": "7c0b76f",
+      "environment": "WESLEYDESK service stopped",
+      "expected": "Queue holds pending; recovery after restart",
+      "observed": "Job d54135d1 remained queued while service stopped; succeeded after nssm start",
+      "evidence": "offline worker test transcript 2026-08-03"
+    },
+    {
+      "id": "G8",
+      "name": "Production Supabase isolation",
+      "result": "PASS",
+      "timestamp": "2026-08-03T19:05:00Z",
+      "candidateSha": "7c0b76f",
+      "environment": "wvidyxufvcrtezzkwwse",
+      "expected": "No production rows for dev test project",
+      "observed": "count(project_folder_provision_jobs for dev test project)=0 on production ref",
+      "evidence": "Supabase management API query production ref"
+    },
+    {
+      "id": "G9",
+      "name": "Production storage isolation",
+      "result": "PASS",
+      "timestamp": "2026-08-03T19:00:20Z",
+      "candidateSha": "7c0b76f",
+      "environment": "L:\\Capital-Glass-Projects",
+      "expected": "No folders under production Synology root",
+      "observed": "PROD_ROOT_CLEAN for DEV-SYNOLOGY-PROOF folder segment",
+      "evidence": "WESLEYDESK dir probe"
+    },
+    {
+      "id": "G10",
+      "name": "SharePoint mirror disabled",
+      "result": "PASS",
+      "timestamp": "2026-08-03T18:56:28Z",
+      "candidateSha": "7c0b76f",
+      "environment": "documents-dev",
+      "expected": "SharePoint mirror remains off in dev",
+      "observed": "sharepoint mirror storage location status=pending metadata deferred slice_4",
+      "evidence": "staging project_folder_storage_locations sharepoint/mirror row"
+    }
+  ],
+  "featureFlagProof": {
+    "dopplerDev": "PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED=true",
+    "runtimeBehavior": "ensure-folder-workspace returns provisionState=synology_primary_pending (HTTP 202)",
+    "deploymentId": "dpl_8cve5SbrQowbVfT81Azh5LhEVzeR"
+  },
+  "wesleydesk": {
+    "bootstrapMethod": "git-bundle from WESLEY_WORK via SCP",
+    "repoPath": "C:\\Developer\\repos\\CapitalGlass-Documents",
+    "headSha": "7c0b76ffba8d085ecdf6786d93892545fe99ce53",
+    "workerService": "CapitalGlass-Office-ProjectFolder-Provision-Dev",
+    "workerLoopScript": "workers/office-project-folder-provision/run-worker-loop.mjs",
+    "claimedBy": "CG-WESLEYDESK-01-dev"
+  },
+  "rollbackProof": {
+    "documentedSteps": [
+      "doppler secrets set PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED=false --project cg-documents --config dev",
+      "C:\\Tools\\nssm\\nssm.exe stop CapitalGlass-Office-ProjectFolder-Provision-Dev",
+      "Re-enable: set flag true and nssm start (dev lane left operational)"
+    ],
+    "stopStartVerified": true,
+    "productionImpact": "none"
+  },
+  "stagingPrerequisite": {
+    "note": "Applied staging-only DDL for project_folders and security_audit_log (not in production migration ledger for this WP)",
+    "script": "CapitalGlass-Documents/scripts/dev-bootstrap/staging-synology-project-folder-prereq.sql"
+  }
 }

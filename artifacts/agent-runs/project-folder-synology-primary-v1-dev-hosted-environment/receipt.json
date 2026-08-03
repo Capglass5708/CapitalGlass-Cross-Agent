@@ -1,92 +1,40 @@
 {
-  "workPackageId": "project-folder-synology-primary-v1-dev-hosted-environment",
-  "verdict": "HOLD",
-  "parentWorkPackage": "project-folder-synology-primary-v1-dev-environment",
-  "updatedAt": "2026-08-03T18:05:00.000Z",
-  "contractCommit": {
-    "repo": "CapitalGlass-Documents",
-    "sha": "d8826e84d9409739baee413aa937849bb57469d9",
-    "shortSha": "d8826e8",
-    "message": "docs(project-folders): add Synology-primary dev environment contract"
+  "schema": "cross-agent-work-package-receipt-v1",
+  "workPackageId": "project-folder-synology-primary-v1-dev-environment-full-run",
+  "verdict": "DEV_ENVIRONMENT_ACCEPTED",
+  "recordedAt": "2026-08-03T19:05:00Z",
+  "lineage": {
+    "contractAuthoritySha": "d8826e84d9409739baee413aa937849bb57469d9",
+    "developmentCandidateSha": "7c0b76ffba8d085ecdf6786d93892545fe99ce53",
+    "previousProductionSha": "f16b4ff",
+    "finalObservedProductionSha": "f16b4ff",
+    "devSupabaseRef": "mazvavlshjshwklcvxaw",
+    "productionSupabaseRef": "wvidyxufvcrtezzkwwse",
+    "vercelCollaborationPolicy": "manual-approval",
+    "workerSourceSha": "7c0b76ffba8d085ecdf6786d93892545fe99ce53",
+    "productionTouched": false,
+    "productionActivation": "HALTED"
   },
-  "currentVerdict": {
-    "contractCommitted": "PASS",
-    "devHostedEnvironment": "HOLD",
-    "productionActivation": "HALTED",
-    "productionTouched": "NO"
+  "deployment": {
+    "project": "capitalglass-documents",
+    "dopplerConfig": "cg-documents/dev",
+    "readyDeploymentId": "dpl_8cve5SbrQowbVfT81Azh5LhEVzeR",
+    "alias": "https://documents-dev.capitalglasstxapps.com",
+    "buildSkipped": false,
+    "readyState": "READY",
+    "gitShortSha": "7c0b76f"
   },
-  "devUrls": {
-    "stableAliasTarget": "https://documents-dev.capitalglasstxapps.com",
-    "stableAliasHttpStatus": 200,
-    "stableAliasServesPinnedSha": false,
-    "stableAliasLiveGitSha": "f16b4ff334affe8c900cded6a6feac6480c0d848",
-    "stableAliasLiveGitRef": "feat/storage-orchestrator-persistence-v1",
-    "claimRouteHttpStatusUnauthenticated": 405,
-    "vercelDomainRegistered": true,
-    "previewDeploymentId": "dpl_8MVyD1p1tPTBRkarx3gJtt7f7jVB",
-    "previewUrl": "https://capitalglass-documents-e3n3688ky-capital-glass.vercel.app",
-    "previewReadyState": "BLOCKED"
-  },
-  "workerIdentity": {
-    "name": "office-project-folder-provision-dev",
-    "claimedBy": "CG-WESLEYDESK-01-dev",
-    "synologyRoot": "L:\\Capital-Glass-Projects-Dev",
-    "wslRoot": "/mnt/l/Capital-Glass-Projects-Dev"
-  },
-  "dopplerDevConfigured": {
-    "project": "cg-documents",
-    "config": "dev",
-    "keysSet": [
-      "PROJECT_FOLDER_PROVISION_WORKER_TOKEN",
-      "SYNOLOGY_PROJECTS_ROOT",
-      "SYNOLOGY_PROJECTS_WSL_ROOT",
-      "PROJECT_FOLDER_CLAIMED_BY",
-      "DOCUMENT_CENTER_DEV_URL",
-      "PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED"
+  "e2e": {
+    "disposableProjectId": "4450d73b-5ec5-47ff-9611-994aa52ff080",
+    "projectCode": "DEV-SYNOLOGY-PROOF-20260803",
+    "provisionJobsSucceeded": [
+      "f32de321-d0fd-4f34-83e9-36544314d326",
+      "fa9506a7-4f3d-454d-002d38d6434e",
+      "d54135d1-ec42-430d-a788-cf38997fe703"
     ],
-    "flagEnabled": false,
-    "uniqueDevWorkerToken": true,
-    "valuesPrinted": false
+    "folderPathCount": 48,
+    "devRootLeaf": "Capital-Glass-Projects-Dev"
   },
-  "blockers": [
-    {
-      "id": "B1",
-      "title": "Vercel deploy BLOCKED",
-      "detail": "CLI deploy readyState BLOCKED; buildSkipped; account collaboration configuration",
-      "operatorAction": "Fix Vercel team/account collaboration; redeploy d8826e8; alias documents-dev.capitalglasstxapps.com"
-    },
-    {
-      "id": "B2",
-      "title": "I2 Supabase isolation",
-      "detail": "dev and prd share same SUPABASE_URL project ref",
-      "operatorAction": "Provision separate Supabase dev project; update cg-documents/dev credentials only"
-    },
-    {
-      "id": "B3",
-      "title": "Dev alias serves wrong build",
-      "detail": "documents-dev returns HTTP 200 but gitSha f16b4ff (stale prod branch), not pinned d8826e8; claim/complete still 405",
-      "operatorAction": "After B1: deploy d8826e8 with cg-documents/dev env; alias documents-dev; set DOCUMENT_LAYER_URL, DOCUMENT_ENGINE_URL, VITE_DOCUMENT_LAYER_API_BASE_URL to dev alias"
-    },
-    {
-      "id": "B4",
-      "title": "Dev worker not installed",
-      "operatorAction": "Install office-project-folder-provision-dev on WESLEYDESK with doppler cg-documents/dev"
-    },
-    {
-      "id": "B5",
-      "title": "Dev feature flag off",
-      "detail": "PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED=false until hosted dev live",
-      "operatorAction": "Set true in cg-documents/dev only after deploy proves routes"
-    }
-  ],
-  "gatesG1G10": {
-    "status": "HOLD",
-    "claimed": false,
-    "reason": "No live hosted dev deployment"
-  },
-  "productionIsolation": {
-    "prdFlag": false,
-    "productionDeployAttempted": false,
-    "productionEnvModified": false
-  }
+  "gatesArtifact": "artifacts/agent-runs/project-folder-synology-primary-v1-dev-hosted-environment/gate-results.json",
+  "gateEvidenceHash": "832a343f4017b920ebc81e0307bc073f87c9029fc1af2e58ee707c00a75948e2"
 }
