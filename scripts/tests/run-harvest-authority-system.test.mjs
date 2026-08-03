@@ -76,15 +76,29 @@ test("HOLD packets include doNotAdvance", () => {
 });
 
 test("ownerRepo boundary exists for every packet", () => {
+  const manifest = readJson(`artifacts/agent-runs/${HARVEST_ID}/harvest-manifest-v1.json`);
   const boundary = readJson("work-progress/owner-repo-boundary-index.json");
-  assert.equal(boundary.packets.length, 6);
+  const registry = readJson("work-progress/harvest-packet-registry.json");
+  const registryPacketIds = Object.keys(registry.packets).sort();
+  const boundaryPacketIds = boundary.packets.map((p) => p.packetId).sort();
+  assert.deepEqual(
+    boundaryPacketIds,
+    registryPacketIds,
+    "boundary index must mirror harvest-packet-registry authority",
+  );
+  for (const packet of manifest.packets) {
+    const entry = boundary.packets.find((p) => p.packetId === packet.packetId);
+    assert.ok(entry, `boundary missing manifest packet ${packet.packetId}`);
+    assert.equal(entry.ownerRepo, packet.ownerRepo, `ownerRepo drift for ${packet.packetId}`);
+  }
 });
 
 test("coverage score emits with gradeAfter", () => {
+  const manifest = readJson(`artifacts/agent-runs/${HARVEST_ID}/harvest-manifest-v1.json`);
   const coverage = readJson(`artifacts/agent-runs/${HARVEST_ID}/coverage.json`);
   assert.ok(coverage.overallCoverageScore > 0);
   assert.ok(["A", "A+"].includes(coverage.gradeAfter));
-  assert.ok(coverage.metrics.packetsWithOwnerIndexed === 6);
+  assert.equal(coverage.metrics.packetsWithOwnerIndexed, manifest.packets.length);
 });
 
 test("receipt links harvestManifestHash", () => {
