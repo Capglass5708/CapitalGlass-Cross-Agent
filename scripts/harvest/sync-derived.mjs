@@ -146,6 +146,17 @@ function computeCoverage(manifest, compactDir) {
   const boundary = fs.existsSync(boundaryPath) ? readJson(boundaryPath) : { packets: [] };
   const boundaryById = Object.fromEntries(boundary.packets.map((p) => [p.packetId, p]));
 
+  const validationResultPath = path.join(path.dirname(compactDir), "validation-result.json");
+  let schemaValidationPass = false;
+  if (fs.existsSync(validationResultPath)) {
+    try {
+      const vr = JSON.parse(fs.readFileSync(validationResultPath, "utf8"));
+      schemaValidationPass = vr.schemaValidation === "PASS" && vr.verdict === "PASS";
+    } catch {
+      schemaValidationPass = false;
+    }
+  }
+
   const metrics = {
     packetsTotal: packets.length,
     packetsWithOwnerRepo: packets.filter((p) => p.ownerRepo).length,
@@ -166,6 +177,7 @@ function computeCoverage(manifest, compactDir) {
     ownerReposWithStalePointers: packets.filter(
       (p) => p.ownerIndexingStatus === "missing" && !boundaryById[p.packetId]?.currentGap,
     ).length,
+    schemaValidationPass,
   };
 
   const scored = [
@@ -178,10 +190,19 @@ function computeCoverage(manifest, compactDir) {
     metrics.packetsWithAdvancementGate / metrics.packetsTotal,
     metrics.packetsWithSupersededClaimHandling,
     metrics.ownerReposWithStalePointers === 0 ? 1 : 0.5,
+    metrics.schemaValidationPass ? 1 : 0,
   ];
   const overallCoverageScore = Math.round((scored.reduce((a, b) => a + b, 0) / scored.length) * 100) / 100;
   const grade =
-    overallCoverageScore >= 0.95 ? "A+" : overallCoverageScore >= 0.9 ? "A" : overallCoverageScore >= 0.8 ? "B" : "C";
+    metrics.packetsWithOwnerIndexed === metrics.packetsTotal &&
+    metrics.schemaValidationPass &&
+    overallCoverageScore >= 0.9
+      ? "A+"
+      : overallCoverageScore >= 0.9
+        ? "A"
+        : overallCoverageScore >= 0.8
+          ? "B"
+          : "C";
 
   return {
     schemaVersion: "cross-agent-harvest-coverage-v1@1.0.0",
@@ -216,6 +237,10 @@ function main() {
   }
 
   const harvestManifestHash = hashCanonicalJson(manifest);
+
+  for (const packet of manifest.packets) {
+    delete packet.contentHash;
+  }
 
   writeJson(manifestFile, manifest);
   writeJson(path.join(runDir, "packet-index.json"), buildPacketIndex(manifest));

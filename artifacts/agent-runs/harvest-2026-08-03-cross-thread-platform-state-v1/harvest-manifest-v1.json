@@ -79,14 +79,17 @@
     }
   ],
   "projection": {
-    "projectionSyncStatus": "not-run",
-    "hubPublishStatus": "not-run",
+    "projectionSyncStatus": "synced",
+    "hubPublishStatus": "blocked",
+    "projectionReceiptRef": "CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-structured-ledger-projection-v1/ingest-apply-receipt.json",
+    "hubPublishReceiptRef": null,
+    "hubPublishBlocker": "EPERM on L: rollback copy during publish-active-work-ledger (WSL mount permissions)",
     "syncCommandChain": [
       "npm run harvest:validate",
-      "npm run cross-agent-ledger:ingest -- --apply (CG-AppBuilder-MCP)",
-      "publish-active-work-ledger (Data-Extraction, operator approval)"
+      "CROSS_AGENT_LEDGER_INGEST_APPROVED=1 npm run cross-agent-ledger:ingest -- --apply",
+      "INTELLIGENCE_HUB_ROOT=/mnt/l/Capital-Glass-Intelligence-Hub npm run agent-research-library:publish-active-work-ledger"
     ],
-    "note": "Projection and hub publish are separate operator sync steps; not executed during harvest authority upgrade."
+    "note": "Supabase projection synced 2026-08-03; L: hub publish blocked on EPERM — operator retry from writable L: session."
   },
   "ledgerLineage": {
     "ledgerPath": "work-progress/ACTIVE_WORK.md",
@@ -149,8 +152,7 @@
       "relatedPackets": [
         "office-admin-ryzen9desk-managed-executor-bootstrap-v1",
         "wsl2-native-repo-library-migration-v1"
-      ],
-      "contentHash": "2162e2694e0bf2541bc7b30618b365086faebe07bd1a8df5901250a747fe559b"
+      ]
     },
     {
       "packetId": "active-ledger-ci-path-and-hash-stability-v1",
@@ -184,8 +186,7 @@
       "blockers": [],
       "relatedPackets": [
         "harvest-2026-08-03-cross-thread-platform-state-v1"
-      ],
-      "contentHash": "74e4ef4bb15c5c33caa89512433841945c4e3761a74b9bf1d4ecde1c34be844a"
+      ]
     },
     {
       "packetId": "project-folder-synology-primary-v1-dev-environment",
@@ -229,8 +230,7 @@
       ],
       "relatedPackets": [
         "project-folder-synology-primary-v1"
-      ],
-      "contentHash": "bf6b32597bd477a7c44af3d73a52e05bab860304866e8a77c4b0c6ebeb7edd2c"
+      ]
     },
     {
       "packetId": "cross-agent-retrieval-failover-v1.1",
@@ -263,8 +263,7 @@
       "advancementGate": "not-required",
       "doNotAdvance": [],
       "blockers": [],
-      "relatedPackets": [],
-      "contentHash": "5d88c31c53776a369c419697cee497dc91aa17ffdb1b8af3be911704669f01d5"
+      "relatedPackets": []
     },
     {
       "packetId": "wsl2-native-repo-library-migration-v1",
@@ -301,21 +300,21 @@
       ],
       "relatedPackets": [
         "ryzen9desk-managed-executor-v1"
-      ],
-      "contentHash": "f7d77875e31b501140ddbe3e10e0484c24aeec2e721e3f20ce11a2979389671d"
+      ]
     },
     {
       "packetId": "office-admin-ryzen9desk-managed-executor-bootstrap-v1",
       "packetTitle": "Office Admin RYZEN9DESK executor bootstrap boundary",
-      "state": "NEEDS_OFFICE_ADMIN_INDEXING",
+      "state": "INDEXED",
       "packetVerdict": "CODE_READY_FOR_RUNNER_BOOTSTRAP",
       "harvestVerdictContribution": "RECORDED",
       "ownerRepo": "CapitalGlass-Office-Admin",
       "ownerMcp": "user-office-admin-mcp",
-      "ownerIndexingStatus": "missing",
+      "ownerIndexingStatus": "indexed",
       "requiredOwnerArtifact": "CapitalGlass-Office-Admin/docs/runbooks/ryzen9desk-managed-executor-office-admin.md",
       "projectFile": "work-progress/projects/2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md",
       "evidenceRefs": [
+        "CapitalGlass-Office-Admin/docs/runbooks/ryzen9desk-managed-executor-office-admin.md",
         "work-progress/projects/2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md"
       ],
       "commitRefs": [
@@ -323,25 +322,22 @@
           "repo": "CapitalGlass-Cross-Agent",
           "sha": "99d69141bdcf81ab002af8438c8131888ce0d2ce",
           "note": "cross-agent boundary pointer harvest"
+        },
+        {
+          "repo": "CapitalGlass-Office-Admin",
+          "sha": "0e1c5eb4deff6b9279e931a65a97b254a007d545",
+          "note": "owner runbook indexed"
         }
       ],
-      "nextAction": "Index runbook in CapitalGlass-Office-Admin when owner repo mission runs",
-      "advancementGate": "requiredOwnerArtifact exists in Office Admin repo",
+      "nextAction": "Runner bootstrap remains CG-AppBuilder-MCP mission; do not claim MANAGED_EXECUTOR_ONLINE",
+      "advancementGate": "executor-smoke receipt on RYZEN9DESK (AppBuilder mission)",
       "doNotAdvance": [
-        "Office Admin indexed without owner repo runbook",
         "MANAGED_EXECUTOR_ONLINE"
       ],
-      "blockers": [
-        {
-          "id": "owner-index-missing",
-          "owner": "CapitalGlass-Office-Admin",
-          "summary": "Owner runbook not indexed in Office Admin repo"
-        }
-      ],
+      "blockers": [],
       "relatedPackets": [
         "ryzen9desk-managed-executor-v1"
-      ],
-      "contentHash": "68b39f5432594d7a8f1033a285259aeb52b016d38e1d0f02ec62509c805f6362"
+      ]
     }
   ]
 }

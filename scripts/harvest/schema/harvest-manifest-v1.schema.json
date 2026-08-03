@@ -3,34 +3,79 @@
   "$id": "https://capitalglass.dev/schemas/cross-agent-harvest-manifest-v1.json",
   "title": "Cross-Agent Harvest Manifest v1",
   "type": "object",
+  "additionalProperties": true,
   "required": [
     "schemaVersion",
     "harvestId",
     "missionClass",
     "sourceCommitSha",
+    "sourceBranch",
+    "sourceRepo",
     "packets",
-    "overallHarvestVerdict"
+    "overallHarvestVerdict",
+    "projection"
   ],
   "properties": {
     "schemaVersion": { "const": "cross-agent-harvest-manifest-v1@1.0.0" },
-    "harvestId": { "type": "string" },
-    "missionClass": { "type": "string" },
+    "harvestId": { "type": "string", "minLength": 1 },
+    "missionClass": { "type": "string", "minLength": 1 },
     "sourceCommitSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
-    "overallHarvestVerdict": { "type": "string" },
+    "sourceBranch": { "type": "string", "minLength": 1 },
+    "sourceRepo": { "type": "string", "minLength": 1 },
+    "overallHarvestVerdict": { "type": "string", "minLength": 1 },
+    "retrievalResult": { "type": "string" },
+    "cacheResult": { "type": "string" },
+    "doNotAdvance": { "type": "array", "items": { "type": "string" } },
+    "projection": {
+      "type": "object",
+      "required": ["projectionSyncStatus", "hubPublishStatus"],
+      "properties": {
+        "projectionSyncStatus": {
+          "enum": ["not-run", "synced", "drift", "blocked"]
+        },
+        "hubPublishStatus": {
+          "enum": ["not-run", "published", "drift", "blocked"]
+        }
+      }
+    },
     "packets": {
       "type": "array",
       "minItems": 1,
       "items": {
         "type": "object",
+        "additionalProperties": true,
         "required": [
           "packetId",
+          "packetTitle",
           "state",
           "packetVerdict",
           "ownerRepo",
           "ownerIndexingStatus",
           "projectFile",
-          "nextAction"
-        ]
+          "nextAction",
+          "advancementGate",
+          "doNotAdvance",
+          "evidenceRefs",
+          "commitRefs",
+          "blockers"
+        ],
+        "properties": {
+          "packetId": { "type": "string", "minLength": 1 },
+          "packetTitle": { "type": "string", "minLength": 1 },
+          "state": { "type": "string", "minLength": 1 },
+          "packetVerdict": { "type": "string", "minLength": 1 },
+          "ownerRepo": { "type": "string", "minLength": 1 },
+          "ownerIndexingStatus": {
+            "enum": ["indexed", "pointer-only", "missing", "not-required"]
+          },
+          "projectFile": { "type": "string", "minLength": 1 },
+          "nextAction": { "type": "string", "minLength": 1 },
+          "advancementGate": { "type": "string", "minLength": 1 },
+          "doNotAdvance": { "type": "array", "items": { "type": "string" } },
+          "evidenceRefs": { "type": "array", "items": { "type": "string" } },
+          "commitRefs": { "type": "array" },
+          "blockers": { "type": "array" }
+        }
       }
     }
   }

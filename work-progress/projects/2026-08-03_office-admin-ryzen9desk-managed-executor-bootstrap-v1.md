@@ -1,9 +1,10 @@
 # Office Admin — RYZEN9DESK managed executor bootstrap (pointer)
 
 **Work package:** `office-admin-ryzen9desk-managed-executor-bootstrap-v1`  
-**Status:** `NEEDS_OFFICE_ADMIN_INDEXING`  
+**Status:** `INDEXED`  
 **Verdict:** `CODE_READY_FOR_RUNNER_BOOTSTRAP` (coordination boundary only)  
 **Owner repo:** CapitalGlass-Office-Admin  
+**Owner artifact:** `docs/runbooks/ryzen9desk-managed-executor-office-admin.md`  
 **Harvested:** 2026-08-03 (`harvest-2026-08-03-cross-thread-platform-state-v1`)
 
 ---
@@ -22,13 +23,10 @@ This packet records that **Office Admin** owns endpoint/network/bootstrap policy
 
 ---
 
-## Office Admin indexing gap
+## Office Admin indexing
 
-When CapitalGlass-Office-Admin is ready, add:
-
-- Managed executor bootstrap runbook under Office Admin knowledge index
-- Endpoint profile linkage for `CG-RYZEN9DESK-01` / RYZEN9DESK WSL
-- IT Vault / endpoint credential boundaries (no secrets in Cross-Agent)
+- **Indexed** — `CapitalGlass-Office-Admin/docs/runbooks/ryzen9desk-managed-executor-office-admin.md` (commit `0e1c5eb`)
+- Runner bootstrap remains CG-AppBuilder-MCP mission
 
 ---
 

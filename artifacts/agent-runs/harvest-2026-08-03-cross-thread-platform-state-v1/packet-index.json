@@ -6,7 +6,7 @@
   "runMode": "derived-from-manifest",
   "retrievalOutcome": "INDEX_HIT",
   "authority": "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/harvest-manifest-v1.json",
-  "harvestManifestHash": "9db6efe1aae2155fa9142b44628905e640659bd98a43aa4a1b781c6b6e6c44cd",
+  "harvestManifestHash": "1ac11bb3a04256328a3ad7c89040926f376de46c95866a9c70935bd0872cafd9",
   "packets": [
     {
       "id": "ryzen9desk-managed-executor-v1",
@@ -118,13 +118,12 @@
     {
       "id": "office-admin-ryzen9desk-managed-executor-bootstrap-v1",
       "label": "office-admin-ryzen9desk-managed-executor-bootstrap-v1",
-      "state": "NEEDS_OFFICE_ADMIN_INDEXING",
+      "state": "INDEXED",
       "verdict": "CODE_READY_FOR_RUNNER_BOOTSTRAP",
       "ownerRepo": "CapitalGlass-Office-Admin",
-      "ownerIndexingStatus": "missing",
+      "ownerIndexingStatus": "indexed",
       "crossAgentProject": "work-progress/projects/2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md",
       "doNotAdvance": [
-        "Office Admin indexed without owner repo runbook",
         "MANAGED_EXECUTOR_ONLINE"
       ],
       "commitRefs": [
@@ -132,6 +131,11 @@
           "repo": "CapitalGlass-Cross-Agent",
           "sha": "99d69141bdcf81ab002af8438c8131888ce0d2ce",
           "note": "cross-agent boundary pointer harvest"
+        },
+        {
+          "repo": "CapitalGlass-Office-Admin",
+          "sha": "0e1c5eb4deff6b9279e931a65a97b254a007d545",
+          "note": "owner runbook indexed"
         }
       ]
     }

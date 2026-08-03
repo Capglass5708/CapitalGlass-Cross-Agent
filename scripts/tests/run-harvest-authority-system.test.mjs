@@ -4,6 +4,7 @@ import path from "node:path";
 import { execSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { hashCanonicalJson } from "../harvest/lib/hash.mjs";
+import { validateManifestSchema } from "../harvest/lib/schema-validate.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "../..");
@@ -83,6 +84,7 @@ test("coverage score emits with gradeAfter", () => {
   const coverage = readJson(`artifacts/agent-runs/${HARVEST_ID}/coverage.json`);
   assert.ok(coverage.overallCoverageScore > 0);
   assert.ok(["A", "A+", "B"].includes(coverage.gradeAfter));
+  assert.ok(coverage.metrics.packetsWithOwnerIndexed === 6);
 });
 
 test("receipt links harvestManifestHash", () => {
@@ -92,10 +94,17 @@ test("receipt links harvestManifestHash", () => {
   assert.equal(receipt.harvestManifestHash, expected);
 });
 
+test("schema validation passes on manifest", () => {
+  const manifest = readJson(`artifacts/agent-runs/${HARVEST_ID}/harvest-manifest-v1.json`);
+  const result = validateManifestSchema(manifest);
+  assert.equal(result.ok, true, result.errors?.join("; "));
+});
+
 test("validate gate passes", () => {
   execSync("node scripts/harvest/validate-harvest.mjs", { cwd: REPO_ROOT, stdio: "pipe" });
   const result = readJson(`artifacts/agent-runs/${HARVEST_ID}/validation-result.json`);
   assert.equal(result.verdict, "PASS");
+  assert.equal(result.schemaValidation, "PASS");
 });
 
 console.log(`\n# tests ${passed + failed} pass ${passed} fail ${failed}`);

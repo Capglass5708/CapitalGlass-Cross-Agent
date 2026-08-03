@@ -5,6 +5,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { hashCanonicalJson } from "./lib/hash.mjs";
+import { validateManifestSchema } from "./lib/schema-validate.mjs";
 import { REPO_ROOT, harvestRunDir, manifestPath, HARVEST_ID } from "./lib/paths.mjs";
 
 const harvestId = process.argv[2] || HARVEST_ID;
@@ -75,6 +76,11 @@ function main() {
 
   const manifest = readJson(manifestFile);
   const manifestHash = hashCanonicalJson(manifest);
+
+  const schemaResult = validateManifestSchema(manifest);
+  if (!schemaResult.ok) {
+    errors.push(...schemaResult.errors.map((e) => `schema: ${e}`));
+  }
 
   const packetIndexPath = path.join(runDir, "packet-index.json");
   const receiptPath = path.join(runDir, "receipt.json");
@@ -177,17 +183,18 @@ function main() {
   }
 
   const pass = errors.length === 0;
-  writeResult(errors, warnings, pass, manifestHash);
+  writeResult(errors, warnings, pass, manifestHash, schemaResult.ok);
   process.exit(pass ? 0 : 1);
 }
 
-function writeResult(errors, warnings, pass = false, manifestHash = null) {
+function writeResult(errors, warnings, pass = false, manifestHash = null, schemaOk = true) {
   const result = {
     schemaVersion: "cross-agent-harvest-validation-result-v1@1.0.0",
     harvestId,
     validatedAt: new Date().toISOString(),
     verdict: pass ? "PASS" : "FAIL",
     harvestManifestHash: manifestHash,
+    schemaValidation: schemaOk ? "PASS" : "FAIL",
     errorCount: errors.length,
     warningCount: warnings.length,
     errors,

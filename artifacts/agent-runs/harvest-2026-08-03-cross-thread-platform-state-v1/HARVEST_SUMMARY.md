@@ -1,6 +1,6 @@
 # Harvest summary — derived view
 
-**Authority:** `harvest-manifest-v1.json` (`9db6efe1aae2…`)
+**Authority:** `harvest-manifest-v1.json` (`1ac11bb3a042…`)
 **Work package:** `harvest-2026-08-03-cross-thread-platform-state-v1`
 **Mission class:** `harvest`
 **Verdict:** `HARVEST_COMPLETE`
@@ -17,7 +17,7 @@
 | `project-folder-synology-primary-v1-dev-environment` | HOLD | CONTRACT_PASS_HOSTED_DEV_HOLD | CapitalGlass-Documents |
 | `cross-agent-retrieval-failover-v1.1` | ADOPTED | PASS | CapitalGlass-Cross-Agent |
 | `wsl2-native-repo-library-migration-v1` | PARTIAL | FILESYSTEM_PASS_OPERATIONAL_CLEANUP_RECORDED | CG-AppBuilder-MCP |
-| `office-admin-ryzen9desk-managed-executor-bootstrap-v1` | NEEDS_OFFICE_ADMIN_INDEXING | CODE_READY_FOR_RUNNER_BOOTSTRAP | CapitalGlass-Office-Admin |
+| `office-admin-ryzen9desk-managed-executor-bootstrap-v1` | INDEXED | CODE_READY_FOR_RUNNER_BOOTSTRAP | CapitalGlass-Office-Admin |
 
 ## Global doNotAdvance
 
@@ -29,5 +29,5 @@
 
 ## Projection sync
 
-Status: `not-run` (hub: `not-run`)
+Status: `synced` (hub: `blocked`)
 
