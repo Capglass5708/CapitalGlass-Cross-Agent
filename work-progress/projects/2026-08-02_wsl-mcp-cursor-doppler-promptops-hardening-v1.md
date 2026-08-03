@@ -16,7 +16,7 @@ Capture the WSL MCP repair waves, Cursor terminal-flash diagnosis, Doppler MCP t
 | Authority repo | CG-Platform-Governance-MCP for protocol/closeout authority |
 | Execution repo | CG-AppBuilder-MCP |
 | Related repos | CapitalGlassRevu, cg-apps-hub, CapitalGlass-BidComposer, CapitalGlass-Office-Admin, Computer Estimator |
-| Status | **Active — MCP authority clean; WSL repair Waves 1-3 complete; workspace-root alignment still recommended** |
+| Status | **Blocked for seed — WSL infrastructure in place; Cursor still HOST_MODE_BLOCKED and L: offline/unreachable** |
 
 ## Repositories involved
 
@@ -224,6 +224,89 @@ Latest pasted Cursor status reports a cleaner MCP authority split:
 
 Interpretation: the original Windows-host MCP flash source is disabled. The remaining recommendation is workspace-root alignment so the active Cursor session also matches WSL authority.
 
+
+### WSL2 infrastructure and L: mount blocker
+
+Latest pasted Cursor result reports WSL2 infrastructure is in place, but seeding remains blocked by host mode and L: reachability.
+
+Root causes fixed or identified:
+
+| Issue | Cause |
+| --- | --- |
+| `HOST_MODE_BLOCKED` | Cursor workspace opened on `/mnt/c/Developer/repos/...` NTFS instead of ext4 |
+| Wrong `CG_REPOS_ROOT` | `.profile` and `.bashrc` forced `/mnt/c/Developer/repos` |
+| Agent shells missed env | Non-interactive shells returned before `cursor-wsl.env` was sourced |
+| Cross-Agent missing on ext4 | Repo only existed under NTFS |
+| L: not readable in WSL | Windows L: unmapped; `\\\\192.168.1.109\\CapitalGlass-L` unreachable, error 67 |
+
+Created / fixed in shell configuration:
+
+| File | Change |
+| --- | --- |
+| `~/.bashrc` | Sources `cursor-wsl.env` before the interactive-only gate; removed NTFS `CG_REPOS_ROOT` override |
+| `~/.profile` | Canonical ext4 paths only; sources `cursor-wsl.env` |
+| `~/.config/capital-glass/cursor-wsl.env` | `CG_REPOS_ROOT=/home/wesle/repos`; `CG_AUTHORITY_CACHE_ROOT=/mnt/d/AI Cursur Cache`; hub path vars for L: plus Z: fallback |
+
+New scripts reported in `~/repos/CG-AppBuilder-MCP`:
+
+| Script | Purpose |
+| --- | --- |
+| `scripts/ci/ensure-wsl-l-hub-mount.sh` | Mount L: at `/mnt/l` using drvfs with SMB fallback |
+| `scripts/ci/install-wsl-hub-drive-fstab.sh` | Persist Z:/L: in `/etc/fstab` |
+| `scripts/wsl/bootstrap-cross-agent-ext4.sh` | Symlink Cross-Agent into `~/repos` |
+| `scripts/wsl/ensure-windows-drive-maps.ps1` | Map Z:/L: on Windows |
+
+Bootstrapped state:
+
+| Item | Status |
+| --- | --- |
+| `/home/wesle/repos/CapitalGlass-Cross-Agent` | Symlink to NTFS checkout; readable; `ACTIVE_WORK.md` OK |
+| Z: in WSL | Mounted at `/mnt/z` |
+| WSL MCP repair | Applied through `Repair-Cursor-McpJson-Wsl.sh` |
+
+Current status from pasted result:
+
+| Check | Status |
+| --- | --- |
+| `CG_REPOS_ROOT=/home/wesle/repos` | PASS when `cursor-wsl.env` is sourced |
+| Cross-Agent on ext4 | PASS |
+| CG-AppBuilder-MCP on ext4 | PASS |
+| Z: in WSL `/mnt/z` | PASS |
+| L: in WSL `/mnt/l` | FAIL, WESLEYDESK LAN offline / `192.168.1.109` unreachable |
+| `00-master-index` on L: | BLOCKED until L: maps |
+| Cursor workspace path | FAIL, still `/mnt/c/Developer/repos` / `HOST_MODE_BLOCKED` |
+
+Required operator sequence:
+
+1. Reopen Cursor from WSL ext4:
+
+```text
+WSL: Connect to WSL -> Open Folder -> /home/wesle/repos/CG-AppBuilder-MCP
+```
+
+or use `Capital Glass Suite.WSL.code-workspace` from that path.
+
+2. When on LAN with WESLEYDESK, map L: from Windows PowerShell:
+
+```powershell
+& \\\\wsl$\\Ubuntu-24.04\\home\\wesle\\repos\\CG-AppBuilder-MCP\\scripts\\wsl\\ensure-windows-drive-maps.ps1
+```
+
+3. Then in WSL:
+
+```bash
+sudo bash ~/repos/CG-AppBuilder-MCP/scripts/ci/install-wsl-hub-drive-fstab.sh
+bash ~/repos/CG-AppBuilder-MCP/scripts/ci/ensure-wsl-l-hub-mount.sh
+```
+
+4. Re-run seed mission `cross-agent-seed-wsl-mcp-backfill-v1` from the ext4 workspace once L: shows `00-master-index`.
+
+Important rule:
+
+```text
+L: cannot be faked locally. It depends on \\\\192.168.1.109\\CapitalGlass-L on WESLEYDESK. Z: is up, but the Intelligence Hub lives on L:, not Z:.
+```
+
 ## Evidence / artifact paths
 
 | Artifact | Path / link | Status |
@@ -260,6 +343,7 @@ Interpretation: the original Windows-host MCP flash source is disabled. The rema
 | Cursor MCP reload needed after repair waves | Cursor / operator | `Cursor -> Settings -> MCP -> Reload` |
 | Workspace-root alignment still recommended | Cursor / operator | Reopen from `/home/wesle/repos/CG-AppBuilder-MCP` or WSL `.code-workspace`, not `/mnt/c/Developer/repos` |
 | Vercel MCP plugin red / needs auth | Cursor MCP / Vercel | Complete `mcp_auth` when Vercel MCP is needed |
+| L: unavailable in WSL; WESLEYDESK LAN path unreachable | WESLEYDESK / L: hub | Map Windows L: and mount `/mnt/l`; seed cannot publish `00-master-index` until this works |
 | Cloudflare MCP stopped/failed on `EADDRINUSE 127.0.0.1:15170` | Cursor MCP / Cloudflare | Keep disabled or clear loopback port/OAuth conflict before enabling |
 | Legacy Windows-hosted Cursor windows can still produce mangled Azure hook path failures | Cursor / operator | Close all Windows-hosted Cursor repo windows; keep only WSL workspace open |
 | Some MCP launchers still referenced `C:/Developer/repos/...` during flash verification | CG-AppBuilder-MCP / Cursor MCP config | Finish WSL ext4 path migration if still present after reload |
@@ -300,6 +384,14 @@ Interpretation: the original Windows-host MCP flash source is disabled. The rema
 - Cross-Agent should store operational facts, decisions, artifact pointers, verification results, and next actions, not secrets or implementation code.
 
 ## Update log
+
+### 2026-08-02 CT — WSL2 infrastructure in place; seed blocked by L: and host mode
+
+- Shell config repaired so all shells can source `cursor-wsl.env` and resolve `CG_REPOS_ROOT=/home/wesle/repos`.
+- Cross-Agent bootstrapped under `/home/wesle/repos/CapitalGlass-Cross-Agent` as a readable symlink to the NTFS checkout.
+- Z: mounted at `/mnt/z`; L: failed because `\\192.168.1.109\CapitalGlass-L` is unreachable from the current network state.
+- Cursor still needs to reopen from `/home/wesle/repos/CG-AppBuilder-MCP`; current session remains `HOST_MODE_BLOCKED` if opened from `/mnt/c/Developer/repos`.
+- Seed mission must wait until L: shows `L:\Capital-Glass-Intelligence-Hub\00-master-index\`.
 
 ### 2026-08-02 CT — clean MCP authority state reported
 
