@@ -83,7 +83,7 @@ test("ownerRepo boundary exists for every packet", () => {
 test("coverage score emits with gradeAfter", () => {
   const coverage = readJson(`artifacts/agent-runs/${HARVEST_ID}/coverage.json`);
   assert.ok(coverage.overallCoverageScore > 0);
-  assert.ok(["A", "A+", "B"].includes(coverage.gradeAfter));
+  assert.ok(["A", "A+"].includes(coverage.gradeAfter));
   assert.ok(coverage.metrics.packetsWithOwnerIndexed === 6);
 });
 
