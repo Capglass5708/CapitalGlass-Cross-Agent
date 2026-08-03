@@ -172,3 +172,18 @@ Do not mark the whole work package complete until these are resolved or explicit
 | Cursor workspace ext4 root | **HOLD** — reopen from `/home/wesle/repos/CG-AppBuilder-MCP` |
 
 Seed pipeline may proceed for structured ledger + L: compact mirror. Operator should still reopen Cursor on ext4 for material MCP work.
+
+
+## Seed run result
+
+| Field | Value |
+| --- | --- |
+| Verdict | HOLD (partial PASS) |
+| Compact seed | PASS |
+| Verify | PASS |
+| L: mirror | `/mnt/l/Capital-Glass-Intelligence-Hub/02-catalog/cross-agent-notes/wsl-mcp-cursor-doppler-promptops-hardening-v1.json` |
+| Structured-ledger ingest | `BLOCKED_OPERATOR_APPROVAL` |
+| Drift | UNKNOWN / `SUPABASE_PROJECTION_MISSING` |
+| Host mode | `HOST_MODE_BLOCKED`, PWD `/mnt/c/Developer/repos/CG-AppBuilder-MCP` |
+
+Rerun after Cursor is reopened from `/home/wesle/repos/CG-AppBuilder-MCP` and Governance ext4 schema approval state is available.
