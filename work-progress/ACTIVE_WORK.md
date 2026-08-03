@@ -12,8 +12,8 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-08-02 |
-| Current focus | WSL MCP seed compact promoted; structured-ledger ingest HOLD on operator approval and host mode; L: hub now reachable |
+| Last updated | 2026-08-03 |
+| Current focus | WSL MCP seed ledger slice complete: compact PASS, L: mirror PASS, Supabase `IN_SYNC`; host mode and MCP auth items remain separate |
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
@@ -50,7 +50,7 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 | --- | --- | --- | --- |
 | 1 | Reopen Cursor from `/home/wesle/repos/CG-AppBuilder-MCP` or WSL `.code-workspace`, not `/mnt/c/Developer/repos` | Cursor / operator | Required before seed |
 | 2 | L: hub readable at `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index` | WESLEYDESK / WSL | Complete for seed report |
-| 3 | Rerun `cross-agent-ledger:ingest -- --apply` after ext4 workspace and operator approval are ready | CG-AppBuilder-MCP | HOLD |
+| 3 | WSL seed structured-ledger ingest and drift probe | CG-AppBuilder-MCP | Complete — `IN_SYNC` via Doppler-backed Supabase token |
 | 3 | Reload Cursor MCP after WSL repair Waves 1-3 | Cursor / operator | Pending |
 | 3 | Complete Vercel MCP auth only when Vercel connector is needed | Cursor / Vercel | Pending |
 | 4 | Keep Cloudflare stdio disabled or fix `127.0.0.1:15170` OAuth loopback conflict | Cursor / Cloudflare | Pending |
@@ -65,15 +65,29 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 
 ## Progress log (latest entries)
 
+### 2026-08-03 UTC — WSL seed structured-ledger projection IN_SYNC
+
+| Field | Value |
+| --- | --- |
+| Work package | `wsl-mcp-cursor-doppler-promptops-hardening-v1` / `cross-agent-seed-wsl-mcp-backfill-v1` |
+| Status | **Ledger slice PASS** — compact PASS, L: mirror PASS, Supabase projection `IN_SYNC` |
+| Supabase projection | `capital-glass-cross-agent/current` in project `xjivcwcyyimjujbchwdf` |
+| Source commit | `5ddd274` |
+| Content hash | `9eb1c56202067a7139aa264e6a13b6465525e3e6243a678491421a2c49c0e300` |
+| Counts | 12 open actions / 10 blockers |
+| Event | `5b090a49-acf4-43a3-8ffe-6705e65d7634` |
+| Receipt | `~/repos/CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-structured-ledger-projection-v1/ingest-apply-receipt.json` |
+| Note | Bare Supabase CLI returned 401; use `doppler run` from `cg-mcp/dev` so `SUPABASE_ACCESS_TOKEN` is injected |
+
 ### 2026-08-02 CT — WSL MCP / Cursor / Doppler / PromptOps hardening backfilled
 
 | Field | Value |
 | --- | --- |
 | Work package | `wsl-mcp-cursor-doppler-promptops-hardening-v1` |
-| Status | **HOLD (partial PASS)** — seed compact promoted to L: and verified; structured-ledger ingest blocked by operator approval; drift UNKNOWN; host mode still `/mnt/c` |
+| Status | **Ledger seed slice PASS** — compact promoted to L: and verified; Supabase projection updated to `5ddd274` / `9eb1c562...`; drift `IN_SYNC`; host mode still `/mnt/c` remains separate |
 | Project file | `work-progress/projects/2026-08-02_wsl-mcp-cursor-doppler-promptops-hardening-v1.md` |
 | Verification | `wsl:mcp:smoke` 31/31 PASS; durable bootstrap 20/20 PASS; Doppler probe OK; path-coherence fallback `wsl:mcp:verify` PASS / `wsl:mcp:repair` NO_CHANGE |
-| Next action | Reopen Cursor from `/home/wesle/repos/CG-AppBuilder-MCP`, sync/symlink ext4 Governance schema approval file, then rerun `cross-agent-ledger:ingest -- --apply` and `cross-agent-ledger:drift-probe` |
+| Next action | Reopen Cursor from `/home/wesle/repos/CG-AppBuilder-MCP`; keep Vercel MCP auth, Cloudflare loopback, and `mcp:attest` as separate follow-ups |
 
 ### 2026-08-02 CT — structured ledger projection Phases 1–3 milestone PASS
 
