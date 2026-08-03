@@ -13,7 +13,7 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-08-03 |
-| Current focus | Suite CI healing: Product Catalog, Proposal Generator, and Office Admin green; Document Center awaits deployed-SHA secret alignment |
+| Current focus | WESLEY_WORK Cursor WSL default is active; suite repos organized under `/home/wesle/repos`; Document Center SHA secret remains the highest CI ops item |
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
@@ -49,7 +49,7 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 | Priority | Action | Owner repo | Status |
 | --- | --- | --- | --- |
 | 1 | Update Document Center `EXPECTED_DOCUMENT_CENTER_GIT_SHA` secret to deployed SHA `f16b4ff334affe8c900cded6a6feac6480c0d848`, or redeploy from main and set secret to that SHA | CapitalGlass-Documents / Doppler | Pending ops secret update |
-| 2 | Reopen Cursor from `/home/wesle/repos/CG-AppBuilder-MCP` or WSL `.code-workspace`, not `/mnt/c/Developer/repos` | Cursor / operator | Required before material MCP work |
+| 2 | Use Windows Desktop `Capital Glass Cursor (WSL Suite).lnk`; close any Cursor windows opened from `/mnt/c` / `C:\Developer\repos` | Cursor / operator | Ongoing operating rule — WSL default verify PASS |
 | 2 | L: hub readable at `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index` | WESLEYDESK / WSL | Complete for seed report |
 | 3 | WSL seed structured-ledger ingest and drift probe | CG-AppBuilder-MCP | Complete — `IN_SYNC` via Doppler-backed Supabase token |
 | 3 | Reload Cursor MCP after WSL repair Waves 1-3 | Cursor / operator | Pending |
@@ -65,6 +65,24 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 **Default agent preflight (machine-readable):** `openActions` + `blockers` only — L: hub slices when available, else Supabase derived projection (`compact-slices-only`). Not full ledger. `currentFocus` human-only (`whats-active-now --include-current-focus`).
 
 ## Progress log (latest entries)
+
+### 2026-08-03 CT — WESLEY_WORK WSL default layout PASS
+
+| Field | Value |
+| --- | --- |
+| Work package | `capital-glass-cursor-wsl-default-v1` / `wsl-mcp-cursor-doppler-promptops-hardening-v1` follow-on |
+| Status | **PASS** — Cursor WSL default active |
+| Default workspace | `/home/wesle/Capital-Glass-Suite.WSL.code-workspace` |
+| Full workspace | `/home/wesle/Capital-Glass-Full-Library.WSL.code-workspace` |
+| Active repo root | `/home/wesle/repos` |
+| Inventory | 39 active repos plus `_archive/` |
+| Archived | 24 stale clones moved to `_archive/worktree-clones/` |
+| Operator docs | `~/.config/capital-glass/README.md` |
+| Env authority | `~/.config/capital-glass/cursor-wsl.env` |
+| Layout manifest | `~/.config/capital-glass/wsl-layout.v1.json` |
+| Windows launcher | `Capital Glass Cursor (WSL Suite).lnk` |
+| Verify | `PASS: Cursor WSL default is active` |
+| Repair sequence | `npm run cursor:wsl-organize`; `npm run cursor:wsl-default`; `npm run cursor:wsl-default:verify` |
 
 ### 2026-08-03 CT — suite CI healing partial PASS
 
