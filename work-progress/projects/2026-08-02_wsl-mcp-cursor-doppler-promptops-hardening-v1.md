@@ -16,7 +16,7 @@ Capture the WSL MCP repair waves, Cursor terminal-flash diagnosis, Doppler MCP t
 | Authority repo | CG-Platform-Governance-MCP for protocol/closeout authority |
 | Execution repo | CG-AppBuilder-MCP |
 | Related repos | CapitalGlassRevu, cg-apps-hub, CapitalGlass-BidComposer, CapitalGlass-Office-Admin, Computer Estimator |
-| Status | **Blocked for seed — WSL infrastructure in place; Cursor still HOST_MODE_BLOCKED and L: offline/unreachable** |
+| Status | **Active — L: online via Tailscale; seed in progress; Cursor still HOST_MODE_BLOCKED until ext4 reopen** |
 
 ## Repositories involved
 
@@ -383,7 +383,48 @@ L: cannot be faked locally. It depends on \\\\192.168.1.109\\CapitalGlass-L on W
 - Token-bearing MCP launchers should have one clear local env source; wrapping MCP launchers with secret-manager commands can obscure failures.
 - Cross-Agent should store operational facts, decisions, artifact pointers, verification results, and next actions, not secrets or implementation code.
 
+## Agent Fast Path
+
+**Work package:** `cross-agent-seed-wsl-mcp-backfill-v1`  
+**Failure codes:** `HOST_MODE_BLOCKED`, `L_DRIVE_LAN_UNREACHABLE_USE_TAILSCALE`, `L_DRIVE_NOT_MOUNTED_IN_WSL`  
+**Owner route:** CG-AppBuilder-MCP + Cursor-MCP-Kit (WSL repair); CapitalGlass-Office-Admin (Windows drive maps)  
+**Canonical host:** WSL ext4 `$HOME/repos` — not `/mnt/c/Developer/repos`  
+**Env authority:** `~/.config/capital-glass/cursor-wsl.env` (`CG_REPOS_ROOT=/home/wesle/repos`)
+
+**Windows L: (WESLEY_WORK) — LAN first, Tailscale fallback:**
+
+```powershell
+net use L: \\192.168.1.109\CapitalGlass-L /persistent:yes
+# if error 67:
+net use L: \\wesleydesk\CapitalGlass-L /persistent:yes
+```
+
+**Scripted:** `CG-AppBuilder-MCP/scripts/wsl/ensure-windows-drive-maps.ps1`
+
+**WSL after Windows L: mapped:**
+
+```bash
+bash ~/repos/CG-AppBuilder-MCP/scripts/ci/ensure-wsl-l-hub-mount.sh
+```
+
+**MCP repair:** `bash /mnt/c/Developer/repos/Cursor-MCP-Kit/Repair-Cursor-McpJson-Wsl.sh`
+
+**Verify before material work:**
+
+- `pwd` under `/home/wesle/repos` (not `/mnt/c/Developer/repos`)
+- `test -d /mnt/l/Capital-Glass-Intelligence-Hub/00-master-index`
+- `curl -fsS --max-time 3 "$MCP_API_URL/health"`
+
+**Do not:** Git-mutate from NTFS workspace; use LAN-only L: map when Tailscale `wesleydesk` is reachable; paste secrets into env files.
+
 ## Update log
+
+### 2026-08-02 CT — L: remounted via Tailscale; seed pipeline unblocked
+
+- Windows L: mapped to `\\wesleydesk\CapitalGlass-L` (LAN `192.168.1.109` offline).
+- WSL `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index` readable.
+- Agent Fast Path added for `cross-agent-notes-seeding-v1` compact projection.
+- Cursor workspace still on `/mnt/c/Developer/repos` until operator reopens ext4 root.
 
 ### 2026-08-02 CT — WSL2 infrastructure in place; seed blocked by L: and host mode
 

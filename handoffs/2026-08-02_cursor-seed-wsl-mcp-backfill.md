@@ -166,11 +166,9 @@ Do not mark the whole work package complete until these are resolved or explicit
 
 ## Current blocker update
 
-The seed mission is not ready to run until these two checks pass:
-
-| Check | Required state |
+| Check | Status (2026-08-02 CT) |
 | --- | --- |
-| Cursor workspace | Opened from `/home/wesle/repos/CG-AppBuilder-MCP`, not `/mnt/c/Developer/repos` |
-| L: hub | `L:\Capital-Glass-Intelligence-Hub\00-master-index` reachable through WSL mount `/mnt/l` |
+| L: hub `/mnt/l/.../00-master-index` | **PASS** — `\\wesleydesk\CapitalGlass-L` via Tailscale |
+| Cursor workspace ext4 root | **HOLD** — reopen from `/home/wesle/repos/CG-AppBuilder-MCP` |
 
-Latest pasted status says Z: is mounted at `/mnt/z`, but L: is unavailable because WESLEYDESK `\\192.168.1.109\CapitalGlass-L` is unreachable. Do not fake L: locally for the seed. Wait for real L: and publish through the established pipeline.
+Seed pipeline may proceed for structured ledger + L: compact mirror. Operator should still reopen Cursor on ext4 for material MCP work.
