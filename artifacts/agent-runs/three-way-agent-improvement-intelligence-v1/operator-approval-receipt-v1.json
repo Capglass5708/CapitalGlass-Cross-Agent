@@ -16,10 +16,37 @@
     "M4-prepublication-verification-prep"
   ],
   "approver": "operator-review-lane",
-  "approvedAt": "2026-08-03T00:00:00.000Z",
+  "approvedAt": "2026-08-03T23:07:41Z",
   "candidateCommitShas": {
-    "status": "PENDING_PR_CREATION",
-    "note": "Populate per-repo SHAs when scoped branches are prepared"
+    "status": "MERGED_TO_MAIN",
+    "prerequisites": {
+      "CG-Platform-Governance-MCP": {
+        "pr": 15,
+        "mergeCommit": "6c44cbc21a22dd2388c0ad28d3cc3c144199f267"
+      },
+      "CapitalGlass-Cross-Agent": {
+        "pr": 2,
+        "mergeCommit": "990abe9fabee35d817012c52a7c535bf05e0202b"
+      }
+    },
+    "program": {
+      "CG-Platform-Governance-MCP": {
+        "pr": 16,
+        "mergeCommit": "270148c646d36241af98a83ee14f777c9cf41d22"
+      },
+      "CG-Failure-Intelligence-MCP": {
+        "pr": 12,
+        "mergeCommit": "01368150b27de52ceb2534ca785fccc2494da82c"
+      },
+      "CG-AppBuilder-MCP": {
+        "pr": 277,
+        "mergeCommit": "49aa77fb38ecad843d514d8f26da7c93b643941a"
+      },
+      "CapitalGlass-Cross-Agent": {
+        "pr": 3,
+        "mergeCommit": "22c870432b88df3e78ed519789992bf2c212d70d"
+      }
+    }
   },
   "publicationAuthority": {
     "cursorDirectPublishForbidden": true,
@@ -31,11 +58,16 @@
   "operationalVerdictBlocked": true,
   "blockedFinalVerdict": "THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL",
   "blockedUntil": [
-    "All five scoped PRs merged in dependency order",
-    "workflow_dispatch publication on WESLEYDESK",
-    "L:/Z:/Supabase parity receipt",
+    "workflow_dispatch publication on WESLEYDESK (run 30861202361 queued — runner pickup required)",
+    "L:/Z:/Supabase parity receipt after publication",
     "Post-publication blind retrieval without expected IDs",
     "Second identical publication idempotency proof on live publisher"
   ],
+  "mergeCompletion": {
+    "allScopedPrsMerged": true,
+    "mergedAt": "2026-08-03T23:07:41Z",
+    "publicationWorkflowRunId": "30861202361",
+    "publicationWorkflowStatus": "queued"
+  },
   "reviewVerdict": "IMPLEMENTATION_REVIEW_PASS_WITH_PRECOMMIT_GATES"
 }
