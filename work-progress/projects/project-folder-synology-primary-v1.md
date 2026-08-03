@@ -1,7 +1,8 @@
 # Work package: project-folder-synology-primary-v1
 
-**Verdict:** `PRODUCTIONIZATION_HALTED` — dev lane required before promotion  
-**Active successor:** [`project-folder-synology-primary-v1-dev-environment`](./project-folder-synology-primary-v1-dev-environment.md)  
+**Verdict:** `PRODUCTIONIZATION_HALTED` — promotion scaffolded; dev lane proven  
+**Active successor:** [`project-folder-synology-primary-v1-production-promotion`](./project-folder-synology-primary-v1-production-promotion.md)  
+**Dev reproducibility:** [`project-folder-synology-primary-v1-dev-reproducibility-hardening`](./project-folder-synology-primary-v1-dev-reproducibility-hardening.md) (`PROMOTION_CANDIDATE_READY`, SHA `e3fe6ec`)  
 **Integration proof (Slice 0–3 local):** `PASS`  
 **Last updated:** 2026-08-03
 

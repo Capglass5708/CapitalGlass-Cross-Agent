@@ -86,4 +86,4 @@ G1–G10: **ALL PASS** — see [`gate-results.json`](../artifacts/agent-runs/pro
 
 ## Next step
 
-Open **separate** production-promotion work package for SHA `e3fe6ec` only after operator approval. Do not enable `cg-documents/prd` flag until that package passes.
+Open **production promotion** work package: [`project-folder-synology-primary-v1-production-promotion.md`](./project-folder-synology-primary-v1-production-promotion.md) (SHA `e3fe6ec`). Contract: `CapitalGlass-Documents/docs/PROJECT_FOLDER_SYNOLOGY_PRIMARY_PRODUCTION_PROMOTION_CONTRACT.md`.

@@ -1,0 +1,51 @@
+{
+  "schema": "project-folder-synology-production-promotion-receipt-v1",
+  "workPackageId": "project-folder-synology-primary-v1-production-promotion",
+  "verdict": "PRODUCTION_PROMOTION_HOLD",
+  "verdictReason": "Scaffold only — awaiting operator approval and execution",
+  "recordedAt": "2026-08-03T19:40:00Z",
+  "productionActivation": "HALTED",
+  "productionTouched": false,
+  "lineage": {
+    "contractAuthoritySha": "d8826e84d9409739baee413aa937849bb57469d9",
+    "promotionCandidateSha": "e3fe6ec6af7fb7eb8328ada1f515fd01d71de3f9",
+    "devAcceptedSha": "7c0b76ffba8d085ecdf6786d93892545fe99ce53",
+    "reproducibilityEvidenceSha": "4f22aca",
+    "baselineProductionSha": "f16b4ff",
+    "targetProductionSha": "e3fe6ec",
+    "devSupabaseRef": "mazvavlshjshwklcvxaw",
+    "productionSupabaseRef": "wvidyxufvcrtezzkwwse",
+    "vercelCollaborationPolicy": "manual-approval"
+  },
+  "prerequisites": {
+    "R1_PROMOTION_CANDIDATE_READY": true,
+    "R2_PINNED_SHA_e3fe6ec": true,
+    "R3_OPERATOR_APPROVAL": false,
+    "R4_DEV_LANE_WITNESS": true,
+    "R5_PRD_FLAG_FALSE": true,
+    "R6_VERCEL_MANUAL_APPROVAL": true
+  },
+  "phases": {
+    "0_preflight": "NOT_STARTED",
+    "1_production_deploy": "NOT_STARTED",
+    "2_production_schema": "NOT_STARTED",
+    "3_production_worker": "NOT_STARTED",
+    "4_flag_enable": "NOT_STARTED",
+    "5_controlled_e2e": "NOT_STARTED",
+    "6_gates_p1_p10": "NOT_STARTED",
+    "7_rollback_proof": "NOT_STARTED",
+    "8_closeout": "NOT_STARTED"
+  },
+  "canonicalWorkerEntry": "workers/office-project-folder-provision/scripts/run-service.mjs",
+  "migrations": [
+    "20260803120000_project_folder_synology_primary.sql",
+    "20260803140000_project_folder_synology_primary_support_tables.sql"
+  ],
+  "operatorApproval": {
+    "approver": null,
+    "approvedAt": null,
+    "controlledProjectId": null
+  },
+  "gatesArtifact": "artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/gate-results.json",
+  "contractDoc": "CapitalGlass-Documents/docs/PROJECT_FOLDER_SYNOLOGY_PRIMARY_PRODUCTION_PROMOTION_CONTRACT.md"
+}

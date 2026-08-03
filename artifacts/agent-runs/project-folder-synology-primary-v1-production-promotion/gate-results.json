@@ -1,0 +1,70 @@
+{
+  "schema": "project-folder-synology-production-gates-v1",
+  "workPackageId": "project-folder-synology-primary-v1-production-promotion",
+  "candidateSha": "e3fe6ec",
+  "environment": "cg-documents/prd + production Supabase + WESLEYDESK production worker",
+  "verdict": "NOT_RUN",
+  "recordedAt": "2026-08-03T19:40:00Z",
+  "gates": [
+    {
+      "id": "P1",
+      "name": "Production routes and SHA",
+      "result": "HOLD",
+      "expected": "documents.capitalglasstxapps.com /api/version=e3fe6ec; claim/complete 401 not 405"
+    },
+    {
+      "id": "P2",
+      "name": "Production schema",
+      "result": "HOLD",
+      "expected": "check:project-folder-synology-migration passes on wvidyxufvcrtezzkwwse"
+    },
+    {
+      "id": "P3",
+      "name": "Production worker",
+      "result": "HOLD",
+      "expected": "CapitalGlass-Office-ProjectFolder-Provision RUNNING; run-service.mjs; CG-WESLEYDESK-01"
+    },
+    {
+      "id": "P4",
+      "name": "Production Synology root only",
+      "result": "HOLD",
+      "expected": "Folders only under L:\\Capital-Glass-Projects\\"
+    },
+    {
+      "id": "P5",
+      "name": "Production Supabase isolation",
+      "result": "HOLD",
+      "expected": "Provision rows only on production ref for promoted project"
+    },
+    {
+      "id": "P6",
+      "name": "Path redaction",
+      "result": "HOLD",
+      "expected": "No path hints in public ensure response"
+    },
+    {
+      "id": "P7",
+      "name": "Idempotency and recovery",
+      "result": "HOLD",
+      "expected": "Re-ensure and worker restart safe"
+    },
+    {
+      "id": "P8",
+      "name": "Dev lane regression",
+      "result": "HOLD",
+      "expected": "documents-dev and dev worker unchanged"
+    },
+    {
+      "id": "P9",
+      "name": "SharePoint mirror off",
+      "result": "HOLD",
+      "expected": "Slice 4 not started"
+    },
+    {
+      "id": "P10",
+      "name": "Production rollback",
+      "result": "HOLD",
+      "expected": "Flag off + worker stop reverts new-project path; dev unaffected"
+    }
+  ]
+}
