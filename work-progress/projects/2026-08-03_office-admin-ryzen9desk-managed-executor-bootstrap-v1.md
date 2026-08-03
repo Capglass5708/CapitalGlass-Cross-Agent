@@ -25,7 +25,8 @@ This packet records that **Office Admin** owns endpoint/network/bootstrap policy
 
 ## Office Admin indexing
 
-- **Indexed** — `CapitalGlass-Office-Admin/docs/runbooks/ryzen9desk-managed-executor-office-admin.md` (commit `0e1c5eb`)
+- **Indexed** — `CapitalGlass-Office-Admin/docs/runbooks/ryzen9desk-managed-executor-office-admin.md` (commit `820a956` on branch `feat/ryzen9desk-managed-executor-office-admin-runbook-v1`, PR #52)
+- WESLEY_WORK Office Admin checkout: `/home/wesle/repos/CapitalGlass-Office-Admin` (not `/home/wesley/repos`, which is RYZEN9DESK-only on this estate)
 - Runner bootstrap remains CG-AppBuilder-MCP mission
 
 ---
