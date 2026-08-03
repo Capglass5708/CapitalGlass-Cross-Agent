@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "prerequisite-gates-receipt-v1",
+  "programId": "three-way-agent-improvement-intelligence-v1",
+  "verdict": "PRECOMMIT_VERIFICATION_PASS_WITH_PREREQUISITE_GATE_REPAIRS",
+  "operationalVerdict": "BLOCKED",
+  "blockedFinalVerdict": "THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL",
+  "generatedAt": "2026-08-03T23:00:00.000Z",
+  "prerequisites": {
+    "governance-wsl-path-normalization-v1": {
+      "repo": "CG-Platform-Governance-MCP",
+      "workPackage": "docs/work-packages/governance-wsl-path-normalization-v1.md",
+      "status": "READY_FOR_SCOPED_PR",
+      "pathScopedGates": {
+        "governance-lifecycle-equivalence": "PASS (12/12)",
+        "cross-platform-repo-path": "PASS (3/3)"
+      },
+      "fullNpmTest": {
+        "status": "BLOCKED_ON_MIXED_BRANCH",
+        "note": "governance-tools expects 21 tools; improvement branch registers 23. Path-only PR from main should pass."
+      }
+    },
+    "cross-agent-harvest-owner-boundary-v1": {
+      "repo": "CapitalGlass-Cross-Agent",
+      "workPackage": "docs/work-packages/cross-agent-harvest-owner-boundary-v1.md",
+      "status": "READY_FOR_SCOPED_PR",
+      "gates": {
+        "test:harvest": "PASS (11/11)",
+        "harvest:validate": "PASS"
+      },
+      "rootCause": "Cumulative boundary index (11) vs stale hardcoded manifest count (6); registry authority confirms 11 legitimate packets"
+    }
+  },
+  "appBuilderCheckout": {
+    "featureWorktree": "/home/wesle/repos/CG-AppBuilder-MCP",
+    "featureBranch": "fix/ryzen9desk-repo-library-readonly-pass",
+    "featureWorktreeClean": false,
+    "canonicalCheckoutProtected": "NOT_VERIFIED_FROM_FEATURE_WORKTREE",
+    "checkCanonicalAuthorityCheckoutOnFeature": "FAIL_EXPECTED",
+    "note": "Run check:canonical-authority-checkout from protected canonical checkout after feature commits; record both statuses separately"
+  },
+  "platformHealth": {
+    "slice": 7,
+    "blocksProgram": false,
+    "cleanMainProbe": {
+      "worktree": "/tmp/ph-clean-main-probe",
+      "baseCommit": "5b3e435",
+      "typecheck": "PASS",
+      "verdict": "CLEAN_MAIN_TYPECHECK_PASS",
+      "note": "Doc-only read-model PR can proceed separately; current feature branch has unrelated merge conflicts"
+    }
+  },
+  "programPrOrderAfterPrerequisites": [
+    "CG-Platform-Governance-MCP (improvement contract)",
+    "CG-Failure-Intelligence-MCP",
+    "CG-AppBuilder-MCP",
+    "CapitalGlass-Cross-Agent (improvement pointers)",
+    "capital-glass-platform-health (read model, separate)"
+  ]
+}

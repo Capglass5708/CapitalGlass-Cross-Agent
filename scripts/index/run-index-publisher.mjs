@@ -44,6 +44,18 @@ function computeContentHash(pinnedSha) {
     pinnedSha,
     readJsonSafe(path.join(REPO_ROOT, 'work-progress/ACTIVE_WORK.md')) ?? '',
     readJsonSafe(path.join(REPO_ROOT, 'work-progress/command-index.json')) ?? '',
+    readJsonSafe(
+      path.join(
+        REPO_ROOT,
+        'work-progress/pointers/three-way-agent-improvement-intelligence-v1.json',
+      ),
+    ) ?? '',
+    readJsonSafe(
+      path.join(
+        APP_BUILDER_ROOT,
+        'artifacts/agent-runs/_app-building-harvest/improvement-candidates/registry-manifest-v1.json',
+      ),
+    ) ?? '',
   ];
   return createHash('sha256').update(JSON.stringify(inputs)).digest('hex');
 }
