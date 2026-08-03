@@ -33,6 +33,8 @@ Filename pattern: `YYYY-MM-DD_<project-id>.md` — see `work-progress/projects/R
 
 | Project ID | File | Status | Owner repo(s) | Last commit | Next action |
 | --- | --- | --- | --- | --- | --- |
+| `suite-ci-healing-v1` | [2026-08-03_suite-ci-healing-v1.md](./2026-08-03_suite-ci-healing-v1.md) | **PARTIAL PASS — Document Center secret update needed** | Product Catalog, Proposal Generator, Office Admin, Document Center | Office Admin PR #51 merged; Document Center `482561e` | Update `EXPECTED_DOCUMENT_CENTER_GIT_SHA` or redeploy Document Center from main, then rerun production smokes |
+
 | `cross-agent-registry-onboard-v1` | [2026-08-02_cross-agent-registry-onboard-v1.md](./2026-08-02_cross-agent-registry-onboard-v1.md) | Complete — closeout PASS | `CG-AppBuilder-MCP` | `38a162da` / `48a1bff1` | Recurring registry maintenance only |
 | `cross-agent-structured-ledger-projection-v1` | [2026-08-02_cross-agent-structured-ledger-projection-v1.md](./2026-08-02_cross-agent-structured-ledger-projection-v1.md) | **MILESTONE PASS** — Phases 0–3 operational | `CG-Platform-Governance-MCP`, `CG-AppBuilder-MCP` | AppBuilder `63dbeb8c`; Governance `a5ce4c3` | Recurring ingest + drift probe after ledger updates |
 | `wsl-mcp-cursor-doppler-promptops-hardening-v1` | [2026-08-02_wsl-mcp-cursor-doppler-promptops-hardening-v1.md](./2026-08-02_wsl-mcp-cursor-doppler-promptops-hardening-v1.md) | **Wave 4 implemented locally — `mcp:repair:cursor` PASS** | `CG-AppBuilder-MCP`, `Cursor-MCP-Kit`, Cursor MCP, Doppler | `mcp:repair:cursor` PASS; Supabase event `5b090a49...` | Restart Cursor MCP; optionally commit/push ext4 changes; handle Vercel / Cloudflare / `mcp:attest` separately |
@@ -79,6 +81,8 @@ Recommended follow-on work packages (not yet project files):
 
 | Project ID | Status | Next action |
 | --- | --- | --- |
+| `suite-ci-healing-v1` | Partial PASS | After Document Center SHA alignment, inspect stale AppBuilder PRs #254, #252, #228, #227, #216 |
+
 | `north-star-compounding-proof-v1` | Pushed | Restart MCP; clear Auto v3.2 env vars; rerun `closeout:gate` |
 | `cross-agent-registry-onboard-v1` | Complete — pushed | Recurring maintenance |
 | `cross-agent-structured-ledger-projection-v1` | **MILESTONE PASS** | Recurring ingest + drift probe |
@@ -131,6 +135,8 @@ Recommended follow-on work packages (not yet project files):
 | Cursor opened from `/mnt/c` instead of ext4 WSL root | `wsl-mcp-cursor-doppler-promptops-hardening-v1` | Cursor / operator | Close window and reopen from `/home/wesle/repos/CG-AppBuilder-MCP` or WSL `.code-workspace` |
 | Vercel MCP needs auth | `wsl-mcp-cursor-doppler-promptops-hardening-v1` | Cursor / Vercel | Run `mcp_auth` when Vercel MCP is needed |
 | Cloudflare stdio OAuth loopback conflict | `wsl-mcp-cursor-doppler-promptops-hardening-v1` | Cursor / Cloudflare | Keep stdio Cloudflare disabled or clear `127.0.0.1:15170` conflict |
+
+| Document Center deployed SHA secret mismatch | `suite-ci-healing-v1`, `CapitalGlass-Documents` production smokes | `CapitalGlass-Documents` / Doppler | Update `EXPECTED_DOCUMENT_CENTER_GIT_SHA` to `f16b4ff334affe8c900cded6a6feac6480c0d848`, or redeploy from main and update the secret to that deploy SHA |
 
 ---
 
