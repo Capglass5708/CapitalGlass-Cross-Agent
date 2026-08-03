@@ -72,8 +72,9 @@ const contradictions = [
   { id: "C11", claimA: "route probe at promotion time", claimB: "Cross-Agent closeout is operational proof", relationship: "layered-evidence", classification: "current", winner: "both", explanation: "Probe proves routes; closeout proves full lifecycle", evidence: ["E006", "E011"] },
 ];
 
-function qa(id, q, alts, short, detail, status, scope, paths, commits, keywords, entities, related = [], supersedes = [], dna = [], priority = "high") {
+function qa(ihPfspId, id, q, alts, short, detail, status, scope, paths, commits, keywords, entities, related = [], supersedes = [], dna = [], priority = "high") {
   return {
+    ihPfspId,
     questionId: id,
     canonicalQuestion: q,
     alternateQuestions: alts,
@@ -99,22 +100,28 @@ function qa(id, q, alts, short, detail, status, scope, paths, commits, keywords,
 }
 
 const qaRecords = [
-  qa("Q001", "Where are new project folders stored?", ["project folder location", "synology root production"], "Production new-project folders are created under L:\\Capital-Glass-Projects\\ on CG-WESLEYDESK-01.", "Synology-primary provisioning writes physical folders beneath the canonical production root L:\\Capital-Glass-Projects\\. Dev uses L:\\Capital-Glass-Projects-Dev\\. Metadata and jobs live in production Supabase wvidyxufvcrtezzkwwse.", "current", "production", ["artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"], ["5ca89f5"], ["synology", "root", "L drive"], ["production", "synology", "worker"]),
-  qa("Q002", "What SHA is live in production?", ["production deploy sha", "documents version"], "Promotion landed at 5a436d1; live /api/version may advance (e.g. 0f84735) as descendant commits deploy.", "Authorized promotion application merge SHA is 5a436d1 (PR #91). Current production alias may show later docs-only commits that remain descendants of the promotion merge. Candidate app source remains e3fe6ec.", "current", "production", ["artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"], ["5ca89f5"], ["sha", "5a436d1", "e3fe6ec"], ["production", "vercel"]),
-  qa("Q003", "Why is deployed SHA 5a436d1 instead of e3fe6ec?", ["merge sha vs candidate"], "PR #91 merged to main producing merge commit 5a436d1; application source matches e3fe6ec plus docs.", "e3fe6ec is the reproducible application candidate. e0d9d8c added promotion contract docs only. 5a436d1 is the merge commit deployed to production.", "current", "lineage", ["artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"], ["5ca89f5"], ["lineage", "e3fe6ec", "5a436d1"], ["git"]),
-  qa("Q004", "Is Synology-primary operational in production?", ["is production live", "can we use synology folders"], "Yes — for new production projects only, during stabilization observe-only.", "PRODUCTION_PROMOTION_PASS; flag true; worker Running; canary PASS. Historical projects not migrated.", "current", "production", ["artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json", "artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/canary-receipt.json"], ["5ca89f5"], ["operational", "production"], ["production"]),
-  qa("Q005", "What worker handles production?", ["production service name"], "CapitalGlass-Office-ProjectFolder-Provision on CG-WESLEYDESK-01.", "NSSM service running node run-service.mjs with prd config. Identity CG-WESLEYDESK-01.", "current", "production", ["artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"], ["5ca89f5"], ["worker", "nssm"], ["worker"]),
-  qa("Q006", "What worker handles dev?", ["dev service"], "CapitalGlass-Office-ProjectFolder-Provision-Dev with identity CG-WESLEYDESK-01-dev.", "Separate service, dev root, dev Supabase, dev token.", "current", "dev", ["artifacts/agent-runs/project-folder-synology-primary-v1-dev-hosted-environment/receipt.json"], ["8ecf43e"], ["dev", "worker"], ["dev"]),
-  qa("Q007", "Are dev and production isolated?", ["dev prod separation"], "Yes — separate Supabase projects, roots, workers, and Doppler configs.", "Dev: mazvavlshjshwklcvxaw, L:\\Capital-Glass-Projects-Dev\\. Prod: wvidyxufvcrtezzkwwse, L:\\Capital-Glass-Projects\\.", "current", "both", ["artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"], ["5ca89f5"], ["isolation", "dev", "prod"], ["isolation"]),
-  qa("Q008", "Is historical migration active?", ["migrate existing projects"], "No — frozen; not started.", "Stabilization forbids historical project migration. New projects only.", "current", "policy", ["work-progress/projects/project-folder-synology-primary-v1-production-promotion.md"], ["5ca89f5"], ["historical", "migration"], ["migration"], [], ["historical migration active"], ["historical migration", "SharePoint Slice 4"], "critical"),
-  qa("Q009", "Is SharePoint mirroring active for project folders?", ["sharepoint slice 4"], "No — SharePoint Slice 4 not started; frozen.", "Synology-primary project-folder workflow does not create SharePoint mirror. Unrelated SharePoint document workflows unchanged.", "current", "policy", ["docs/PROJECT_FOLDER_SYNOLOGY_PRIMARY_PRODUCTION_PROMOTION_CONTRACT.md"], ["e0d9d8c"], ["sharepoint", "mirror"], ["sharepoint"], [], [], ["SharePoint Slice 4", "storage expansion"], "critical"),
-  qa("Q010", "What is stabilization mode?", ["24 hour window"], "Observe-only for 24 hours; no storage expansion.", "Monitor queue, worker, folders, cross-contamination, DC errors. No historical migration or SharePoint Slice 4.", "current", "operations", ["work-progress/projects/project-folder-synology-primary-v1-production-promotion.md"], ["5ca89f5"], ["stabilization"], ["operations"], [], [], ["start hardening", "expand storage"], "critical"),
-  qa("Q011", "Is rollback available?", ["how to rollback"], "Yes — ROLLBACK_READY; not executed.", "Flag off, sync Vercel, stop worker, optional promote f16b4ff deployment.", "current", "rollback", ["artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/rollback-receipt.json"], ["5ca89f5"], ["rollback"], ["rollback"]),
-  qa("Q012", "What is the production canary?", ["canary project"], "PROD-SYNOLOGY-CANARY-20260803 — PASS.", "Project e0c74c03-9bbc-41c1-9d4d-b93e8a825332; job 89fcc82e succeeded; synology primary active.", "current", "verification", ["artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/canary-receipt.json"], ["5ca89f5"], ["canary"], ["canary"]),
-  qa("Q013", "Is the whole Document Center hosted on Synology?", ["document center on synology"], "No — Vercel hosts the app; Supabase holds metadata; Synology holds new project folder binaries.", "Scope is project-folder provisioning workflow only, not entire Document Center relocation.", "current", "architecture", ["docs/PROJECT_FOLDER_SYNOLOGY_PRIMARY_CONTRACT.md"], ["d8826e8"], ["architecture", "scope"], ["architecture"]),
-  qa("Q014", "Can a client override the Synology root?", ["path injection", "traversal"], "No — server-enforced roots; traversal/UNC/alternate drive rejected.", "validateConfig.ts enforces environment isolation and path rules at worker startup.", "current", "security", ["workers/office-project-folder-provision/src/validateConfig.ts"], ["e3fe6ec"], ["security", "traversal"], ["security"]),
-  qa("Q015", "What hardening comes next?", ["post stabilization"], "Five-item backlog after 24h stabilization.", "Vercel CLI pin, CI fixes, queue dedup, Doppler on WESLEYDESK, Platform Health metrics.", "planned", "backlog", ["work-progress/projects/project-folder-synology-primary-v1-production-promotion.md"], ["5ca89f5"], ["hardening"], ["backlog"], [], [], [], "medium"),
-  qa("Q016", "Where is detailed evidence?", ["evidence location"], "CapitalGlass-Cross-Agent artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/", "Receipt, gates, canary, rollback; Documents contracts and worker at e3fe6ec/5a436d1 lineage.", "current", "evidence", ["artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"], ["5ca89f5"], ["evidence"], ["evidence"], [], [], [], "critical"),
+  qa("IH-PFSP-001", "Q001", "Where are new project folders stored?", ["project folder location", "synology root production", "where are folders stored"], "Production new-project folders are created under L:\\Capital-Glass-Projects\\ on CG-WESLEYDESK-01.", "Synology-primary provisioning writes physical folders beneath the canonical production root L:\\Capital-Glass-Projects\\. Dev uses L:\\Capital-Glass-Projects-Dev\\. Metadata and jobs live in production Supabase wvidyxufvcrtezzkwwse.", "current", "production", ["artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"], ["5ca89f5"], ["synology", "root", "L drive"], ["production", "synology", "worker"]),
+  qa("IH-PFSP-002", "Q017", "Where does Document Center save project files?", ["document center project files", "where does DC save files"], "New project folder trees are provisioned on Synology L: by the office worker; Document Center on Vercel orchestrates jobs only.", "Physical project-folder binaries for new projects land under L:\\Capital-Glass-Projects\\ (prod) via the provision worker. Document Center does not store folder trees on Vercel or in Supabase bytes.", "current", "production", ["artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"], ["5ca89f5"], ["document center", "save", "files"], ["production", "document-center"]),
+  qa("IH-PFSP-003", "Q013", "Is the whole Document Center hosted on Synology?", ["document center on synology", "is DC on synology"], "No — Vercel hosts the app; Supabase holds metadata; Synology holds new project folder binaries.", "Scope is project-folder provisioning workflow only, not entire Document Center relocation.", "current", "architecture", ["docs/PROJECT_FOLDER_SYNOLOGY_PRIMARY_CONTRACT.md"], ["d8826e8"], ["architecture", "scope"], ["architecture"]),
+  qa("IH-PFSP-004", "Q018", "What remains on Vercel?", ["what stays on vercel", "vercel hosts what"], "Vercel hosts the CapitalGlass-Documents application, API routes, and feature flags.", "Project-folder claim/complete/reconcile HTTP routes run on Vercel; binary folder creation is delegated to the WESLEYDESK worker.", "current", "architecture", ["artifacts/agent-runs/project-folder-synology-primary-v1/production-route-probe.json"], ["e3486a1"], ["vercel", "architecture"], ["vercel"]),
+  qa("IH-PFSP-005", "Q019", "What remains in Supabase?", ["supabase role", "what is in supabase"], "Supabase holds project_folder_provision_jobs, metadata, and canonical project identity — not folder binaries.", "Production ref wvidyxufvcrtezzkwwse stores queue rows and job state; dev uses mazvavlshjshwklcvxaw.", "current", "architecture", ["supabase/migrations/20260803140000_project_folder_synology_primary_support_tables.sql"], ["e3fe6ec"], ["supabase", "metadata"], ["supabase"]),
+  qa("IH-PFSP-006", "Q020", "Which machine creates the folders?", ["which host creates folders", "wesleydesk worker host"], "CG-WESLEYDESK-01 via NSSM services.", "Both dev and production provision workers run on WESLEYDESK with separate roots and Supabase refs.", "current", "operations", ["artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"], ["5ca89f5"], ["wesleydesk", "machine"], ["worker"]),
+  qa("IH-PFSP-007", "Q005", "What worker handles production?", ["production service name", "production worker service"], "CapitalGlass-Office-ProjectFolder-Provision on CG-WESLEYDESK-01.", "NSSM service running node run-service.mjs with prd config. Identity CG-WESLEYDESK-01.", "current", "production", ["artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"], ["5ca89f5"], ["worker", "nssm"], ["worker"]),
+  qa("IH-PFSP-008", "Q006", "What worker handles dev?", ["dev service", "dev worker name"], "CapitalGlass-Office-ProjectFolder-Provision-Dev with identity CG-WESLEYDESK-01-dev.", "Separate service, dev root, dev Supabase, dev token.", "current", "dev", ["artifacts/agent-runs/project-folder-synology-primary-v1-dev-hosted-environment/receipt.json"], ["8ecf43e"], ["dev", "worker"], ["dev"]),
+  qa("IH-PFSP-009", "Q021", "What is the production Synology root?", ["production synology root", "L drive production root"], "L:\\Capital-Glass-Projects\\", "Canonical production root enforced by worker validateConfig; traversal and alternate drives rejected.", "current", "production", ["artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"], ["5ca89f5"], ["root", "production"], ["synology"]),
+  qa("IH-PFSP-010", "Q022", "What is the dev Synology root?", ["dev synology root", "L drive dev root"], "L:\\Capital-Glass-Projects-Dev\\", "Dev lane root isolated from production; used for G1–G10 acceptance and regression.", "current", "dev", ["artifacts/agent-runs/project-folder-synology-primary-v1-dev-hosted-environment/receipt.json"], ["8ecf43e"], ["root", "dev"], ["synology"]),
+  qa("IH-PFSP-011", "Q007", "Are dev and production isolated?", ["dev prod separation", "are dev and production isolated"], "Yes — separate Supabase projects, roots, workers, and Doppler configs.", "Dev: mazvavlshjshwklcvxaw, L:\\Capital-Glass-Projects-Dev\\. Prod: wvidyxufvcrtezzkwwse, L:\\Capital-Glass-Projects\\.", "current", "both", ["artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"], ["5ca89f5"], ["isolation", "dev", "prod"], ["isolation"]),
+  qa("IH-PFSP-012", "Q023", "Which Supabase project is production?", ["production supabase ref", "prod supabase project"], "wvidyxufvcrtezzkwwse", "Production Document Center and project-folder jobs use the production Supabase project ref wvidyxufvcrtezzkwwse.", "current", "production", ["artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"], ["5ca89f5"], ["supabase", "production"], ["supabase"]),
+  qa("IH-PFSP-013", "Q024", "Which Supabase project is dev?", ["dev supabase ref", "dev supabase project"], "mazvavlshjshwklcvxaw", "Dev hosted environment uses separate Supabase project mazvavlshjshwklcvxaw.", "current", "dev", ["artifacts/agent-runs/project-folder-synology-primary-v1-dev-hosted-environment/receipt.json"], ["8ecf43e"], ["supabase", "dev"], ["supabase"]),
+  qa("IH-PFSP-014", "Q002", "What SHA is live in production?", ["production deploy sha", "documents version", "live application sha"], "Promotion landed at 5a436d1; live /api/version may advance (e.g. 0f84735) as descendant commits deploy.", "Authorized promotion application merge SHA is 5a436d1 (PR #91). Current production alias may show later docs-only commits that remain descendants of the promotion merge. Candidate app source remains e3fe6ec.", "current", "production", ["artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"], ["5ca89f5"], ["sha", "5a436d1", "e3fe6ec"], ["production", "vercel"]),
+  qa("IH-PFSP-015", "Q003", "Why is deployed SHA 5a436d1 instead of e3fe6ec?", ["merge sha vs candidate", "why not e3fe6ec deployed"], "PR #91 merged to main producing merge commit 5a436d1; application source matches e3fe6ec plus docs.", "e3fe6ec is the reproducible application candidate. e0d9d8c added promotion contract docs only. 5a436d1 is the merge commit deployed to production.", "current", "lineage", ["artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"], ["5ca89f5"], ["lineage", "e3fe6ec", "5a436d1"], ["git"]),
+  qa("IH-PFSP-016", "Q025", "Which PR promoted the feature?", ["promotion pr", "pr 91", "what were p1-p10", "production canary"], "CapitalGlass-Documents PR #91 merged at 5a436d1; P1–P10 ALL PASS.", "PR #91 feat(project-folders): Synology-primary production promotion candidate e3fe6ec. Canary PROD-SYNOLOGY-CANARY-20260803 PASS; gate-results.json documents P1–P10.", "current", "lineage", ["pull/91", "artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/gate-results.json"], ["5a436d1"], ["pr", "91", "p1", "p10"], ["github", "verification"]),
+  qa("IH-PFSP-017", "Q004", "Is Synology-primary operational in production?", ["is production live", "can we use synology folders", "can wesley test now", "should folder be manually created"], "Yes — for new production projects only, during stabilization observe-only.", "PRODUCTION_PROMOTION_PASS; flag true; worker Running; canary PASS. Create a new production project to test; worker creates folders — do not manually create folders.", "current", "production", ["artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json", "artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/canary-receipt.json"], ["5ca89f5"], ["operational", "production"], ["production"]),
+  qa("IH-PFSP-018", "Q008", "Is historical migration active?", ["migrate existing projects", "are existing projects migrated", "is historical migration active"], "No — frozen; not started.", "Stabilization forbids historical project migration. New projects only.", "current", "policy", ["work-progress/projects/project-folder-synology-primary-v1-production-promotion.md"], ["5ca89f5"], ["historical", "migration"], ["migration"], [], ["historical migration active"], ["historical migration", "SharePoint Slice 4"], "critical"),
+  qa("IH-PFSP-019", "Q009", "Is SharePoint mirroring active for project folders?", ["sharepoint slice 4", "is sharepoint still used for project folders", "sharepoint mirroring project folders"], "No — SharePoint Slice 4 not started; frozen for project-folder workflow.", "Synology-primary project-folder workflow does not create SharePoint mirror. Unrelated SharePoint document binary workflows for Document Center remain unchanged.", "current", "policy", ["docs/PROJECT_FOLDER_SYNOLOGY_PRIMARY_PRODUCTION_PROMOTION_CONTRACT.md"], ["e0d9d8c"], ["sharepoint", "mirror"], ["sharepoint"], [], [], ["SharePoint Slice 4", "storage expansion"], "critical"),
+  qa("IH-PFSP-020", "Q010", "What is stabilization mode?", ["24 hour window", "what must be monitored during stabilization", "what changes are forbidden during stabilization", "what hardening work comes next"], "Observe-only for 24 hours; no storage expansion.", "Monitor queue, worker, folders, cross-contamination, DC errors, SharePoint mirror attempts. Post-stabilization hardening backlog: Vercel CLI pin, CI fixes, queue dedup, Doppler on WESLEYDESK, Platform Health metrics.", "current", "operations", ["work-progress/projects/project-folder-synology-primary-v1-production-promotion.md"], ["5ca89f5"], ["stabilization"], ["operations"], [], [], ["start hardening", "expand storage"], "critical"),
+  qa("IH-PFSP-021", "Q011", "Is rollback available?", ["how to rollback", "was rollback executed"], "Yes — ROLLBACK_READY; not executed.", "Flag off, sync Vercel, stop worker, optional promote f16b4ff deployment. Rollback receipt proves readiness only.", "current", "rollback", ["artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/rollback-receipt.json"], ["5ca89f5"], ["rollback"], ["rollback"]),
+  qa("IH-PFSP-022", "Q016", "Where is detailed evidence?", ["evidence location", "which commits prove the work", "git authority versus intelligence hub", "are physical paths exposed in api"], "Git harvest at artifacts/agent-runs/harvest-project-folder-synology-primary-chat-v1/ is canonical; L: and Supabase are validated projections.", "Receipt, gates, canary, rollback under production-promotion; harvest manifest owns Q&A index. Paths are server-enforced; clients cannot override roots.", "current", "evidence", ["artifacts/agent-runs/harvest-project-folder-synology-primary-chat-v1/harvest-manifest-v1.json"], ["5066731"], ["evidence", "authority"], ["evidence"], [], [], [], "critical"),
 ];
 
 const compactRetrieval = {
@@ -162,20 +169,57 @@ const commands = [
   { commandId: "CMD007", name: "harvest validate", command: "npm run harvest:validate -- harvest-project-folder-synology-primary-chat-v1", host: "WSL", repo: "CapitalGlass-Cross-Agent", mutationClass: "verification", approval: "none", authority: "harvest-manifest-v1.json" },
 ];
 
+const retrievalQuestions = [
+  { retrievalId: "RQ01", ihPfspId: "IH-PFSP-001", query: "Where are new project folders stored?" },
+  { retrievalId: "RQ02", ihPfspId: "IH-PFSP-002", query: "Where does Document Center save project files?" },
+  { retrievalId: "RQ03", ihPfspId: "IH-PFSP-003", query: "Is the whole Document Center hosted on Synology?" },
+  { retrievalId: "RQ04", ihPfspId: "IH-PFSP-004", query: "What remains on Vercel?" },
+  { retrievalId: "RQ05", ihPfspId: "IH-PFSP-005", query: "What remains in Supabase?" },
+  { retrievalId: "RQ06", ihPfspId: "IH-PFSP-006", query: "Which machine creates the folders?" },
+  { retrievalId: "RQ07", ihPfspId: "IH-PFSP-007", query: "What worker service handles production?" },
+  { retrievalId: "RQ08", ihPfspId: "IH-PFSP-008", query: "What worker handles dev?" },
+  { retrievalId: "RQ09", ihPfspId: "IH-PFSP-009", query: "What is the production Synology root?" },
+  { retrievalId: "RQ10", ihPfspId: "IH-PFSP-010", query: "What is the dev Synology root?" },
+  { retrievalId: "RQ11", ihPfspId: "IH-PFSP-011", query: "Are dev and production isolated?" },
+  { retrievalId: "RQ12", ihPfspId: "IH-PFSP-012", query: "Which Supabase project is production?" },
+  { retrievalId: "RQ13", ihPfspId: "IH-PFSP-013", query: "Which Supabase project is dev?" },
+  { retrievalId: "RQ14", ihPfspId: "IH-PFSP-014", query: "What SHA is live in production?" },
+  { retrievalId: "RQ15", ihPfspId: "IH-PFSP-015", query: "Why is deployed SHA 5a436d1 instead of candidate e3fe6ec?" },
+  { retrievalId: "RQ16", ihPfspId: "IH-PFSP-016", query: "Which PR promoted the feature?" },
+  { retrievalId: "RQ17", ihPfspId: "IH-PFSP-017", query: "Can Wesley test the feature now?" },
+  { retrievalId: "RQ18", ihPfspId: "IH-PFSP-018", query: "Is historical migration active?" },
+  { retrievalId: "RQ19", ihPfspId: "IH-PFSP-019", query: "Is SharePoint still used for project folders?" },
+  { retrievalId: "RQ20", ihPfspId: "IH-PFSP-020", query: "What is the current stabilization mode?" },
+  { retrievalId: "RQ21", ihPfspId: "IH-PFSP-021", query: "Was rollback executed?" },
+  { retrievalId: "RQ22", ihPfspId: "IH-PFSP-022", query: "Where is the detailed evidence?" },
+  { retrievalId: "RQ23", ihPfspId: "IH-PFSP-016", query: "What were P1–P10?" },
+  { retrievalId: "RQ24", ihPfspId: "IH-PFSP-022", query: "What is Git authority versus Intelligence Hub?" },
+];
+
+const ihPfspMapping = qaRecords.map((r) => ({
+  ihPfspId: r.ihPfspId,
+  questionId: r.questionId,
+  canonicalQuestion: r.canonicalQuestion,
+  hubCatalogPath: `02-catalog/knowledge-objects/cross-agent-harvest/${r.ihPfspId}.json`,
+}));
+
 const benchmark = {
-  schemaVersion: "cross-agent-harvest-retrieval-benchmark-v1@1.0.0",
+  schemaVersion: "cross-agent-harvest-retrieval-benchmark-v1@1.1.0",
   harvestId: HARVEST_ID,
   testedAt: AS_OF,
-  questionsTested: 16,
-  exactAnswerAccuracy: 1,
-  authorityCitationCoverage: 1,
-  currentVsHistoricalAccuracy: 1,
-  doNotAdvanceCompliance: 1,
-  ownerBoundaryCompliance: 1,
-  rawScanRequiredRate: 0,
+  seedRecordCount: 22,
+  questionsTested: 24,
+  retrievalLayer: "intelligence-hub-L-catalog",
+  retrievalQuestions,
+  exactAnswerAccuracy: null,
+  authorityCitationCoverage: null,
+  currentVsHistoricalAccuracy: null,
+  doNotAdvanceCompliance: null,
+  ownerBoundaryCompliance: null,
+  rawScanRequiredRate: null,
   fileReductionEstimate: 0.85,
   tokenReductionEstimate: 0.8,
-  verdict: "PASS",
+  verdict: "PENDING_HUB_RUN",
 };
 
 writeJson("evidence-ledger.json", { schemaVersion: "cross-agent-harvest-evidence-ledger-v1@1.0.0", harvestId: HARVEST_ID, entries: evidenceLedger });
@@ -185,5 +229,17 @@ writeJson("qa-index.json", { schemaVersion: "cross-agent-harvest-qa-index-v1@1.0
 writeJson("compact-retrieval-records.json", compactRetrieval);
 writeJson("command-extract.json", { schemaVersion: "cross-agent-harvest-command-extract-v1@1.0.0", harvestId: HARVEST_ID, commands });
 writeJson("retrieval-benchmark.json", benchmark);
+writeJson("intelligence-hub-seed-manifest.json", {
+  schemaVersion: "cross-agent-harvest-intelligence-hub-seed-v1@1.0.0",
+  harvestId: HARVEST_ID,
+  workPackageId: "complete-project-folder-synology-intelligence-publication-v1",
+  seedRecordCount: 22,
+  retrievalQuestionCount: 24,
+  catalogDomain: "cross-agent-harvest",
+  gitAuthorityCommit: "5066731c2a245a45cf1bd76b3c4d7ff2b7c4c523",
+  mapping: ihPfspMapping,
+  retrievalQuestions,
+  byKindSlice: "00-master-index/BY-KIND/cross-agent-harvest-project-folder-synology.json",
+});
 
 console.log("Generated supplementary harvest artifacts in", RUN_DIR);
