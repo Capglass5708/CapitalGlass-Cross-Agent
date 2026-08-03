@@ -18,6 +18,47 @@ Current focus:
 - CG Platform Intelligence Bible reads need connector reauthentication if `oauth_refresh_token_missing` appears.
 
 
+## WESLEY_WORK Cursor WSL default - 2026-08-03
+
+WESLEY_WORK is organized for WSL-first Cursor work.
+
+Use this launcher by default:
+
+```text
+Windows Desktop/Capital Glass Cursor (WSL Suite).lnk
+```
+
+Canonical paths:
+
+| Item | Path |
+| --- | --- |
+| Default workspace | `/home/wesle/Capital-Glass-Suite.WSL.code-workspace` |
+| Full library workspace | `/home/wesle/Capital-Glass-Full-Library.WSL.code-workspace` |
+| Active repos | `/home/wesle/repos` |
+| Archived stale clones | `/home/wesle/repos/_archive/worktree-clones/` |
+| Operator docs | `~/.config/capital-glass/README.md` |
+| Env authority | `~/.config/capital-glass/cursor-wsl.env` |
+| Layout manifest | `~/.config/capital-glass/wsl-layout.v1.json` |
+
+Verification:
+
+```text
+PASS: Cursor WSL default is active
+```
+
+Rules:
+
+- Open Cursor through the WSL Suite shortcut or Remote-WSL workspace.
+- Do not open `C:\Developer\repos` or `/mnt/c/Developer/repos` for agent work.
+- If drift appears, run from `~/repos/CG-AppBuilder-MCP`:
+
+```bash
+npm run cursor:wsl-organize
+npm run cursor:wsl-default
+npm run cursor:wsl-default:verify
+```
+
+
 ## Suite CI healing - 2026-08-03
 
 Current CI-healing state is recorded in:
@@ -53,7 +94,7 @@ Current state:
 - Windows-host MCP is now disabled (`mcp.json` -> `mcp.json.windows-disabled`).
 - WSL `~/.cursor/mcp.json` is now the only active MCP authority.
 - Seed mission ledger slice is complete: compact PASS, L: mirror PASS, Supabase projection `IN_SYNC` at `5ddd274` / `9eb1c562...`.
-- Remaining recommendation: reopen from `/home/wesle/repos/CG-AppBuilder-MCP` or the WSL `.code-workspace`, then reload MCP if needed.
+- WSL default layout now verifies PASS; use `Capital Glass Cursor (WSL Suite).lnk` or the WSL Suite workspace by default.
 - Remaining separate items: Vercel MCP auth, Cloudflare `127.0.0.1:15170` loopback conflict, optional `RAILWAY_API_TOKEN`, and `mcp:attest` auth/index parity.
 
 
@@ -71,7 +112,7 @@ Seed work package:
 cross-agent-seed-wsl-mcp-backfill-v1
 ```
 
-Run seeding/ingest from `/home/wesle/repos/CG-AppBuilder-MCP`, not from `/mnt/c/Developer/repos`.
+Run seeding/ingest from `/home/wesle/repos/CG-AppBuilder-MCP`, not from `/mnt/c/Developer/repos`. Treat any `/mnt/c` Cursor window as `HOST_MODE_BLOCKED` regression.
 
 
 Watch item: If terminal flashes return, check whether `C:\Users\wesle\.cursor\mcp.json` was recreated and caused Windows-host MCP reconnects.
@@ -104,7 +145,7 @@ bash ~/repos/CG-AppBuilder-MCP/scripts/ci/ensure-wsl-l-hub-mount.sh
 - Drift probe `IN_SYNC` at commit `5ddd274` / content hash `9eb1c562...`.
 - Supabase event appended: `5b090a49-acf4-43a3-8ffe-6705e65d7634`.
 - Prior `SUPABASE_PROJECTION_MISSING` was a local CLI-auth false negative caused by bare Supabase CLI 401.
-- Host check still `HOST_MODE_BLOCKED` because PWD was `/mnt/c/Developer/repos/CG-AppBuilder-MCP`.
+- Prior host check was `HOST_MODE_BLOCKED`; current WESLEY_WORK layout now reports `PASS: Cursor WSL default is active`.
 
 ## Wave 4 durable repair status: implemented locally
 
