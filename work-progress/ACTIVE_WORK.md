@@ -13,7 +13,7 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-08-02 |
-| Current focus | WSL MCP authority clean; Cursor seeding handoff ready; structured ledger projection remains Git canonical and Supabase derived index `IN_SYNC` |
+| Current focus | WSL MCP infrastructure in place; seed blocked until Cursor opens from ext4 and L: `/mnt/l` reaches WESLEYDESK `00-master-index` |
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
@@ -48,8 +48,9 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 
 | Priority | Action | Owner repo | Status |
 | --- | --- | --- | --- |
-| 1 | Reopen Cursor from `/home/wesle/repos/CG-AppBuilder-MCP` or WSL `.code-workspace`, not `/mnt/c/Developer/repos` | Cursor / operator | Recommended |
-| 2 | Reload Cursor MCP after WSL repair Waves 1-3 | Cursor / operator | Pending |
+| 1 | Reopen Cursor from `/home/wesle/repos/CG-AppBuilder-MCP` or WSL `.code-workspace`, not `/mnt/c/Developer/repos` | Cursor / operator | Required before seed |
+| 2 | Map Windows L: and mount `/mnt/l`; verify `L:\Capital-Glass-Intelligence-Hub\00-master-index` | WESLEYDESK / WSL | Blocked until LAN path reachable |
+| 3 | Reload Cursor MCP after WSL repair Waves 1-3 | Cursor / operator | Pending |
 | 3 | Complete Vercel MCP auth only when Vercel connector is needed | Cursor / Vercel | Pending |
 | 4 | Keep Cloudflare stdio disabled or fix `127.0.0.1:15170` OAuth loopback conflict | Cursor / Cloudflare | Pending |
 | 5 | Investigate `mcp:attest` auth smoke / index parity separately from MCP path repair | CG-AppBuilder-MCP | Pending |
@@ -68,10 +69,10 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 | Field | Value |
 | --- | --- |
 | Work package | `wsl-mcp-cursor-doppler-promptops-hardening-v1` |
-| Status | **Active** — MCP authority clean; WSL MCP repair Waves 1-3 complete; Doppler repaired; AppBuilder PR #267 and Revu PR #5 merged |
+| Status | **Blocked for seed** — WSL infrastructure in place; Cursor still must reopen from ext4 and L: is offline/unreachable from WSL |
 | Project file | `work-progress/projects/2026-08-02_wsl-mcp-cursor-doppler-promptops-hardening-v1.md` |
 | Verification | `wsl:mcp:smoke` 31/31 PASS; durable bootstrap 20/20 PASS; Doppler probe OK; path-coherence fallback `wsl:mcp:verify` PASS / `wsl:mcp:repair` NO_CHANGE |
-| Next action | Reopen Cursor from `/home/wesle/repos/CG-AppBuilder-MCP` when convenient, reload MCP if needed, then run `handoffs/2026-08-02_cursor-seed-wsl-mcp-backfill.md` as `cross-agent-seed-wsl-mcp-backfill-v1` |
+| Next action | Reopen Cursor from `/home/wesle/repos/CG-AppBuilder-MCP`; when WESLEYDESK/L: is reachable, mount `/mnt/l`, verify `00-master-index`, then run `cross-agent-seed-wsl-mcp-backfill-v1` |
 
 ### 2026-08-02 CT — structured ledger projection Phases 1–3 milestone PASS
 
