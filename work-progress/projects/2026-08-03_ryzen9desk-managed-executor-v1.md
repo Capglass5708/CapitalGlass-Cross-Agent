@@ -45,7 +45,7 @@ Make RYZEN9DESK a **persistent managed execution node** so WESLEY_WORK submits a
 | 2026-08-03 | SSH retained as recovery channel only | Operator bootstrap and break-glass |
 | 2026-08-03 | No Synology/OneDrive/SMB live git sync | GitHub is transport; ext4 `~/repos` is canonical on each host |
 | 2026-08-03 | Windows bridge is separate narrow allowlist | WSL cannot do taskbar pins, drive maps, Revu host ops reliably |
-| 2026-08-03 | Supersedes ad-hoc SSH-per-mission for routine work | Prior WP blocked because agent ran on WESLEY_WORK |
+| 2026-08-03 | `workflow_dispatch` requires workflow on `main` — feature branch alone insufficient | GitHub only exposes dispatch reliably from default branch |
 
 ## Relationship to prior work
 
@@ -121,11 +121,10 @@ Executor returns: `PASS` | `HOLD` | `BLOCKED` | `FAILED` with artifact receipts.
 
 | Priority | Action | Owner | Status |
 | --- | --- | --- | --- |
-| 1 | Push AppBuilder executor scaffold to branch RYZEN9DESK can fetch | CG-AppBuilder-MCP | Pending |
-| 2 | On RYZEN9DESK WSL: install runner service + labels | Operator | Pending |
-| 3 | Dispatch `executor-smoke` workflow; confirm receipt artifact | Operator | Pending |
-| 4 | Dispatch `wsl2-canonical-setup` for prior WP | Operator | Pending |
-| 5 | Document Windows bridge allowlist in Office-Admin | CapitalGlass-Office-Admin | Planned |
+| 1 | Push `feat/ryzen9desk-managed-executor-v1`, open PR, merge to `main` after review | WESLEY_WORK | **Next** |
+| 2 | Create runner group `ryzen9desk-managed` + environment `ryzen9desk-managed-execution` | Operator (GitHub UI) | Pending merge |
+| 3 | RYZEN9DESK WSL: `git checkout main && git pull --ff-only` then install runner | RYZEN9DESK | Pending |
+| 4 | Dispatch sequence from WESLEY_WORK (workflow on `main` required) | Operator | Pending |
 
 ## Reusable lessons
 
@@ -133,9 +132,21 @@ Executor returns: `PASS` | `HOLD` | `BLOCKED` | `FAILED` with artifact receipts.
 - **GitHub Actions self-hosted runner is the fastest managed-executor MVP** before building custom Supabase job queue.
 - **Allowlist job profiles, not commands** — workflow inputs select profiles; profiles map to fixed npm scripts.
 
+### Dispatch order (after merge to `main` + runner online)
+
+1. `executor-smoke`
+2. `host-preflight`
+3. `repo-library-preflight`
+4. `wsl2-canonical-setup` (requires environment approval)
+5. `gpu-smoke`
+6. `mcp-verify` (requires environment approval)
+7. `storage-verify`
+8. `full-acceptance-readonly`
+
 ## Update log
 
-### 2026-08-03 — Cursor
+### 2026-08-03 — Operator correction
 
-- Architecture approved; work package opened as successor to blocked `ryzen9desk-wsl2-canonical-workspace-v1`.
-- Phase 0 scaffolding prepared in CG-AppBuilder-MCP.
+- `workflow_dispatch` must live on `main` before runner install or dispatch.
+- RYZEN9DESK pulls `main`, not feature branch.
+- Verdict unchanged: `CODE_READY_FOR_RUNNER_BOOTSTRAP`.
