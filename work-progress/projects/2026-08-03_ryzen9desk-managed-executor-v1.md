@@ -14,7 +14,22 @@ Make RYZEN9DESK a **persistent managed execution node** so WESLEY_WORK submits a
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Authority repo | CapitalGlass-Office-Admin (network/Tailscale), CG-Platform-Governance-MCP (ledger) |
 | Execution repo | CG-AppBuilder-MCP (runner install, workflows, allowlists) |
-| Status | **Phase 0 — CODE_READY_FOR_RUNNER_BOOTSTRAP** |
+| Status | **CODE_READY_FOR_RUNNER_BOOTSTRAP** |
+
+**State machine (honest progression — do not skip):**
+
+| Verdict | Meaning | Gate |
+| --- | --- | --- |
+| `CODE_READY_FOR_RUNNER_BOOTSTRAP` | Phase 0 code complete on WESLEY_WORK; PR open | **Current** — awaiting PR #268 merge to `main` |
+| `MANAGED_EXECUTOR_ONLINE` | Persistent runner proven on RYZEN9DESK | `executor-smoke` receipt from RYZEN9DESK only |
+| `PARTIAL_REMOTE_PASS` | Remote acceptance without GUI | After full readonly profile chain |
+| `PASS` | Operator GUI acceptance recorded | Cursor Remote-WSL confirmed on RYZEN9DESK |
+
+**Next real checkpoint:** [PR #268](https://github.com/Capglass5708/CG-AppBuilder-MCP/pull/268) merged to `main` — not runner install yet.
+
+**After merge:** install from RYZEN9DESK WSL on `main`. First meaningful proof = `executor-smoke` receipt produced by RYZEN9DESK → advance to `MANAGED_EXECUTOR_ONLINE`.
+
+Do not claim RYZEN9DESK outcomes from WESLEY_WORK preparation.
 
 ## Repositories involved
 
@@ -121,10 +136,11 @@ Executor returns: `PASS` | `HOLD` | `BLOCKED` | `FAILED` with artifact receipts.
 
 | Priority | Action | Owner | Status |
 | --- | --- | --- | --- |
-| 1 | Push `feat/ryzen9desk-managed-executor-v1`, open PR, merge to `main` after review | WESLEY_WORK | **Next** |
-| 2 | Create runner group `ryzen9desk-managed` + environment `ryzen9desk-managed-execution` | Operator (GitHub UI) | Pending merge |
-| 3 | RYZEN9DESK WSL: `git checkout main && git pull --ff-only` then install runner | RYZEN9DESK | Pending |
-| 4 | Dispatch sequence from WESLEY_WORK (workflow on `main` required) | Operator | Pending |
+| 1 | **Merge PR #268 to `main`** | WESLEY_WORK / reviewer | **Next checkpoint** |
+| 2 | Create runner group + environment (after merge) | Operator (GitHub UI) | Blocked on #1 |
+| 3 | RYZEN9DESK WSL: `main` pull + runner install | RYZEN9DESK | Blocked on #1–#2 |
+| 4 | Dispatch `executor-smoke` → receipt from RYZEN9DESK → `MANAGED_EXECUTOR_ONLINE` | WESLEY_WORK dispatch | Blocked on #3 |
+| 5 | Remaining dispatch chain (host-preflight → … → full-acceptance-readonly) | Operator | After #4 |
 
 ## Reusable lessons
 
@@ -145,8 +161,8 @@ Executor returns: `PASS` | `HOLD` | `BLOCKED` | `FAILED` with artifact receipts.
 
 ## Update log
 
-### 2026-08-03 — Operator correction
+### 2026-08-03 — State machine discipline
 
-- `workflow_dispatch` must live on `main` before runner install or dispatch.
-- RYZEN9DESK pulls `main`, not feature branch.
-- Verdict unchanged: `CODE_READY_FOR_RUNNER_BOOTSTRAP`.
+- Verdict stays `CODE_READY_FOR_RUNNER_BOOTSTRAP` until PR #268 merges — not runner install.
+- Advance to `MANAGED_EXECUTOR_ONLINE` only after `executor-smoke` receipt from RYZEN9DESK.
+- Avoids “prepared on WESLEY_WORK, claimed on RYZEN9DESK” failure mode.
