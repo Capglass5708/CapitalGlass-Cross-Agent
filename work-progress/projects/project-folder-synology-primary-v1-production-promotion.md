@@ -4,7 +4,8 @@
 **Operational:** `PRODUCTION_SYNOLOGY_PRIMARY_OPERATIONAL=true`  
 **Parent:** [`project-folder-synology-primary-v1.md`](./project-folder-synology-primary-v1.md)  
 **Contract:** `CapitalGlass-Documents/docs/PROJECT_FOLDER_SYNOLOGY_PRIMARY_PRODUCTION_PROMOTION_CONTRACT.md`  
-**Last updated:** 2026-08-03
+**Last updated:** 2026-08-03 (stabilization window declared)  
+**Mode:** **24-hour stabilization** — no storage expansion; no historical migration; no SharePoint Slice 4
 
 ---
 
@@ -65,7 +66,35 @@
 
 ---
 
-## Monitoring
+## 24-hour stabilization window (active)
+
+**Correct next move:** observe and monitor — not another storage expansion.
+
+| Monitor | Signal |
+|---------|--------|
+| `project_folder_provision_jobs` queue depth | Unexpected growth or stuck `queued` rows |
+| Job quality | Failed, stuck, or duplicate succeeded jobs |
+| Production worker | Restarts, error loops, claim failures on WESLEYDESK |
+| Synology root | Unexpected folders under `L:\Capital-Glass-Projects\` |
+| Isolation | Dev/production cross-contamination (dev root, dev Supabase) |
+| Document Center | New application errors on production |
+| SharePoint boundary | Any mirror/population attempts for this workflow |
+
+**Frozen until stabilization ends:** historical-project migration; SharePoint Slice 4.
+
+---
+
+## Post-stabilization hardening package (queued — do not start during stabilization)
+
+1. Upgrade `deploy-production.yml` from `vercel@41.4.1` to **≥47.2.2**
+2. Resolve unrelated CI `verify:ci` failures so admin merge is not required again
+3. Enforce queue-level deduplication so re-ensure cannot create a second succeeded job
+4. Harden production `.env` permissions; restore native Doppler access on WESLEYDESK
+5. Add worker health and queue depth to Platform Health
+
+---
+
+## Monitoring (standing)
 
 - Watch `project_folder_provision_jobs` queue depth on `wvidyxufvcrtezzkwwse`
 - Watch production worker service health on WESLEYDESK

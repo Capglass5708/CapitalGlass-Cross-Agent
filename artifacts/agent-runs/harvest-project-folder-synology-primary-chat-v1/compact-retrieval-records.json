@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-retrieval-v1@1.0.0",
+  "harvestId": "harvest-project-folder-synology-primary-chat-v1",
+  "asOf": "2026-08-03T21:00:00.000Z",
+  "records": [
+    {
+      "recordId": "current-state-synology-primary-v1",
+      "currentState": true,
+      "retrievalPriority": "critical",
+      "rawScanRequired": false,
+      "shortAnswer": "Synology-primary project-folder provisioning is LIVE in production for new projects only.",
+      "facts": {
+        "live": true,
+        "productionUrl": "https://documents.capitalglasstxapps.com",
+        "promotionDeploySha": "5a436d1",
+        "candidateSha": "e3fe6ec",
+        "currentLiveShaNote": "Descendant commits (e.g. 0f84735) may be live; promotion merge remains authority",
+        "flag": "PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED=true (prd)",
+        "worker": "CapitalGlass-Office-ProjectFolder-Provision RUNNING on CG-WESLEYDESK-01",
+        "productionRoot": "L:\\Capital-Glass-Projects\\",
+        "devRoot": "L:\\Capital-Glass-Projects-Dev\\",
+        "productionSupabase": "wvidyxufvcrtezzkwwse",
+        "devSupabase": "mazvavlshjshwklcvxaw",
+        "metadataSystemOfRecord": "Supabase production",
+        "physicalFilesSystemOfRecord": "Synology L: for new project folders",
+        "frozen": [
+          "historical migration",
+          "SharePoint Slice 4",
+          "storage expansion during stabilization"
+        ],
+        "monitoring": [
+          "queue depth",
+          "worker health",
+          "unexpected folders",
+          "dev/prod contamination",
+          "DC errors"
+        ],
+        "doNotAdvance": [
+          "historical migration",
+          "SharePoint Slice 4",
+          "storage expansion",
+          "production config changes during stabilization"
+        ],
+        "stabilization": "24h observe-only active",
+        "evidence": "artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"
+      }
+    }
+  ]
+}

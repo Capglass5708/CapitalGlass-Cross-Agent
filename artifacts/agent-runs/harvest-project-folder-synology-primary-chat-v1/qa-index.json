@@ -1,0 +1,602 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-project-folder-synology-primary-chat-v1",
+  "chatTranscriptCoverage": "PARTIAL",
+  "records": [
+    {
+      "questionId": "Q001",
+      "canonicalQuestion": "Where are new project folders stored?",
+      "alternateQuestions": [
+        "project folder location",
+        "synology root production"
+      ],
+      "shortAnswer": "Production new-project folders are created under L:\\Capital-Glass-Projects\\ on CG-WESLEYDESK-01.",
+      "detailedAnswer": "Synology-primary provisioning writes physical folders beneath the canonical production root L:\\Capital-Glass-Projects\\. Dev uses L:\\Capital-Glass-Projects-Dev\\. Metadata and jobs live in production Supabase wvidyxufvcrtezzkwwse.",
+      "currentStatus": "current",
+      "answerScope": "production",
+      "asOf": "2026-08-03T21:00:00.000Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"
+      ],
+      "authorityCommit": [
+        "5ca89f5"
+      ],
+      "evidenceUrls": [
+        "CapitalGlass-Cross-Agent/artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"
+      ],
+      "confidence": "verified",
+      "keywords": [
+        "synology",
+        "root",
+        "L drive"
+      ],
+      "entities": [
+        "production",
+        "synology",
+        "worker"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "high"
+    },
+    {
+      "questionId": "Q002",
+      "canonicalQuestion": "What SHA is live in production?",
+      "alternateQuestions": [
+        "production deploy sha",
+        "documents version"
+      ],
+      "shortAnswer": "Promotion landed at 5a436d1; live /api/version may advance (e.g. 0f84735) as descendant commits deploy.",
+      "detailedAnswer": "Authorized promotion application merge SHA is 5a436d1 (PR #91). Current production alias may show later docs-only commits that remain descendants of the promotion merge. Candidate app source remains e3fe6ec.",
+      "currentStatus": "current",
+      "answerScope": "production",
+      "asOf": "2026-08-03T21:00:00.000Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"
+      ],
+      "authorityCommit": [
+        "5ca89f5"
+      ],
+      "evidenceUrls": [
+        "CapitalGlass-Cross-Agent/artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"
+      ],
+      "confidence": "verified",
+      "keywords": [
+        "sha",
+        "5a436d1",
+        "e3fe6ec"
+      ],
+      "entities": [
+        "production",
+        "vercel"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "high"
+    },
+    {
+      "questionId": "Q003",
+      "canonicalQuestion": "Why is deployed SHA 5a436d1 instead of e3fe6ec?",
+      "alternateQuestions": [
+        "merge sha vs candidate"
+      ],
+      "shortAnswer": "PR #91 merged to main producing merge commit 5a436d1; application source matches e3fe6ec plus docs.",
+      "detailedAnswer": "e3fe6ec is the reproducible application candidate. e0d9d8c added promotion contract docs only. 5a436d1 is the merge commit deployed to production.",
+      "currentStatus": "current",
+      "answerScope": "lineage",
+      "asOf": "2026-08-03T21:00:00.000Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"
+      ],
+      "authorityCommit": [
+        "5ca89f5"
+      ],
+      "evidenceUrls": [
+        "CapitalGlass-Cross-Agent/artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"
+      ],
+      "confidence": "verified",
+      "keywords": [
+        "lineage",
+        "e3fe6ec",
+        "5a436d1"
+      ],
+      "entities": [
+        "git"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "high"
+    },
+    {
+      "questionId": "Q004",
+      "canonicalQuestion": "Is Synology-primary operational in production?",
+      "alternateQuestions": [
+        "is production live",
+        "can we use synology folders"
+      ],
+      "shortAnswer": "Yes — for new production projects only, during stabilization observe-only.",
+      "detailedAnswer": "PRODUCTION_PROMOTION_PASS; flag true; worker Running; canary PASS. Historical projects not migrated.",
+      "currentStatus": "current",
+      "answerScope": "production",
+      "asOf": "2026-08-03T21:00:00.000Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json",
+        "artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/canary-receipt.json"
+      ],
+      "authorityCommit": [
+        "5ca89f5"
+      ],
+      "evidenceUrls": [
+        "CapitalGlass-Cross-Agent/artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json",
+        "CapitalGlass-Cross-Agent/artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/canary-receipt.json"
+      ],
+      "confidence": "verified",
+      "keywords": [
+        "operational",
+        "production"
+      ],
+      "entities": [
+        "production"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "high"
+    },
+    {
+      "questionId": "Q005",
+      "canonicalQuestion": "What worker handles production?",
+      "alternateQuestions": [
+        "production service name"
+      ],
+      "shortAnswer": "CapitalGlass-Office-ProjectFolder-Provision on CG-WESLEYDESK-01.",
+      "detailedAnswer": "NSSM service running node run-service.mjs with prd config. Identity CG-WESLEYDESK-01.",
+      "currentStatus": "current",
+      "answerScope": "production",
+      "asOf": "2026-08-03T21:00:00.000Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"
+      ],
+      "authorityCommit": [
+        "5ca89f5"
+      ],
+      "evidenceUrls": [
+        "CapitalGlass-Cross-Agent/artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"
+      ],
+      "confidence": "verified",
+      "keywords": [
+        "worker",
+        "nssm"
+      ],
+      "entities": [
+        "worker"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "high"
+    },
+    {
+      "questionId": "Q006",
+      "canonicalQuestion": "What worker handles dev?",
+      "alternateQuestions": [
+        "dev service"
+      ],
+      "shortAnswer": "CapitalGlass-Office-ProjectFolder-Provision-Dev with identity CG-WESLEYDESK-01-dev.",
+      "detailedAnswer": "Separate service, dev root, dev Supabase, dev token.",
+      "currentStatus": "current",
+      "answerScope": "dev",
+      "asOf": "2026-08-03T21:00:00.000Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/project-folder-synology-primary-v1-dev-hosted-environment/receipt.json"
+      ],
+      "authorityCommit": [
+        "8ecf43e"
+      ],
+      "evidenceUrls": [
+        "CapitalGlass-Cross-Agent/artifacts/agent-runs/project-folder-synology-primary-v1-dev-hosted-environment/receipt.json"
+      ],
+      "confidence": "verified",
+      "keywords": [
+        "dev",
+        "worker"
+      ],
+      "entities": [
+        "dev"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "high"
+    },
+    {
+      "questionId": "Q007",
+      "canonicalQuestion": "Are dev and production isolated?",
+      "alternateQuestions": [
+        "dev prod separation"
+      ],
+      "shortAnswer": "Yes — separate Supabase projects, roots, workers, and Doppler configs.",
+      "detailedAnswer": "Dev: mazvavlshjshwklcvxaw, L:\\Capital-Glass-Projects-Dev\\. Prod: wvidyxufvcrtezzkwwse, L:\\Capital-Glass-Projects\\.",
+      "currentStatus": "current",
+      "answerScope": "both",
+      "asOf": "2026-08-03T21:00:00.000Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"
+      ],
+      "authorityCommit": [
+        "5ca89f5"
+      ],
+      "evidenceUrls": [
+        "CapitalGlass-Cross-Agent/artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"
+      ],
+      "confidence": "verified",
+      "keywords": [
+        "isolation",
+        "dev",
+        "prod"
+      ],
+      "entities": [
+        "isolation"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "high"
+    },
+    {
+      "questionId": "Q008",
+      "canonicalQuestion": "Is historical migration active?",
+      "alternateQuestions": [
+        "migrate existing projects"
+      ],
+      "shortAnswer": "No — frozen; not started.",
+      "detailedAnswer": "Stabilization forbids historical project migration. New projects only.",
+      "currentStatus": "current",
+      "answerScope": "policy",
+      "asOf": "2026-08-03T21:00:00.000Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "work-progress/projects/project-folder-synology-primary-v1-production-promotion.md"
+      ],
+      "authorityCommit": [
+        "5ca89f5"
+      ],
+      "evidenceUrls": [
+        "CapitalGlass-Cross-Agent/work-progress/projects/project-folder-synology-primary-v1-production-promotion.md"
+      ],
+      "confidence": "verified",
+      "keywords": [
+        "historical",
+        "migration"
+      ],
+      "entities": [
+        "migration"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [
+        "historical migration active"
+      ],
+      "doNotAdvance": [
+        "historical migration",
+        "SharePoint Slice 4"
+      ],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical"
+    },
+    {
+      "questionId": "Q009",
+      "canonicalQuestion": "Is SharePoint mirroring active for project folders?",
+      "alternateQuestions": [
+        "sharepoint slice 4"
+      ],
+      "shortAnswer": "No — SharePoint Slice 4 not started; frozen.",
+      "detailedAnswer": "Synology-primary project-folder workflow does not create SharePoint mirror. Unrelated SharePoint document workflows unchanged.",
+      "currentStatus": "current",
+      "answerScope": "policy",
+      "asOf": "2026-08-03T21:00:00.000Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "docs/PROJECT_FOLDER_SYNOLOGY_PRIMARY_PRODUCTION_PROMOTION_CONTRACT.md"
+      ],
+      "authorityCommit": [
+        "e0d9d8c"
+      ],
+      "evidenceUrls": [
+        "CapitalGlass-Cross-Agent/docs/PROJECT_FOLDER_SYNOLOGY_PRIMARY_PRODUCTION_PROMOTION_CONTRACT.md"
+      ],
+      "confidence": "verified",
+      "keywords": [
+        "sharepoint",
+        "mirror"
+      ],
+      "entities": [
+        "sharepoint"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [
+        "SharePoint Slice 4",
+        "storage expansion"
+      ],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical"
+    },
+    {
+      "questionId": "Q010",
+      "canonicalQuestion": "What is stabilization mode?",
+      "alternateQuestions": [
+        "24 hour window"
+      ],
+      "shortAnswer": "Observe-only for 24 hours; no storage expansion.",
+      "detailedAnswer": "Monitor queue, worker, folders, cross-contamination, DC errors. No historical migration or SharePoint Slice 4.",
+      "currentStatus": "current",
+      "answerScope": "operations",
+      "asOf": "2026-08-03T21:00:00.000Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "work-progress/projects/project-folder-synology-primary-v1-production-promotion.md"
+      ],
+      "authorityCommit": [
+        "5ca89f5"
+      ],
+      "evidenceUrls": [
+        "CapitalGlass-Cross-Agent/work-progress/projects/project-folder-synology-primary-v1-production-promotion.md"
+      ],
+      "confidence": "verified",
+      "keywords": [
+        "stabilization"
+      ],
+      "entities": [
+        "operations"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [
+        "start hardening",
+        "expand storage"
+      ],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical"
+    },
+    {
+      "questionId": "Q011",
+      "canonicalQuestion": "Is rollback available?",
+      "alternateQuestions": [
+        "how to rollback"
+      ],
+      "shortAnswer": "Yes — ROLLBACK_READY; not executed.",
+      "detailedAnswer": "Flag off, sync Vercel, stop worker, optional promote f16b4ff deployment.",
+      "currentStatus": "current",
+      "answerScope": "rollback",
+      "asOf": "2026-08-03T21:00:00.000Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/rollback-receipt.json"
+      ],
+      "authorityCommit": [
+        "5ca89f5"
+      ],
+      "evidenceUrls": [
+        "CapitalGlass-Cross-Agent/artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/rollback-receipt.json"
+      ],
+      "confidence": "verified",
+      "keywords": [
+        "rollback"
+      ],
+      "entities": [
+        "rollback"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "high"
+    },
+    {
+      "questionId": "Q012",
+      "canonicalQuestion": "What is the production canary?",
+      "alternateQuestions": [
+        "canary project"
+      ],
+      "shortAnswer": "PROD-SYNOLOGY-CANARY-20260803 — PASS.",
+      "detailedAnswer": "Project e0c74c03-9bbc-41c1-9d4d-b93e8a825332; job 89fcc82e succeeded; synology primary active.",
+      "currentStatus": "current",
+      "answerScope": "verification",
+      "asOf": "2026-08-03T21:00:00.000Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/canary-receipt.json"
+      ],
+      "authorityCommit": [
+        "5ca89f5"
+      ],
+      "evidenceUrls": [
+        "CapitalGlass-Cross-Agent/artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/canary-receipt.json"
+      ],
+      "confidence": "verified",
+      "keywords": [
+        "canary"
+      ],
+      "entities": [
+        "canary"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "high"
+    },
+    {
+      "questionId": "Q013",
+      "canonicalQuestion": "Is the whole Document Center hosted on Synology?",
+      "alternateQuestions": [
+        "document center on synology"
+      ],
+      "shortAnswer": "No — Vercel hosts the app; Supabase holds metadata; Synology holds new project folder binaries.",
+      "detailedAnswer": "Scope is project-folder provisioning workflow only, not entire Document Center relocation.",
+      "currentStatus": "current",
+      "answerScope": "architecture",
+      "asOf": "2026-08-03T21:00:00.000Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "docs/PROJECT_FOLDER_SYNOLOGY_PRIMARY_CONTRACT.md"
+      ],
+      "authorityCommit": [
+        "d8826e8"
+      ],
+      "evidenceUrls": [
+        "CapitalGlass-Cross-Agent/docs/PROJECT_FOLDER_SYNOLOGY_PRIMARY_CONTRACT.md"
+      ],
+      "confidence": "verified",
+      "keywords": [
+        "architecture",
+        "scope"
+      ],
+      "entities": [
+        "architecture"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "high"
+    },
+    {
+      "questionId": "Q014",
+      "canonicalQuestion": "Can a client override the Synology root?",
+      "alternateQuestions": [
+        "path injection",
+        "traversal"
+      ],
+      "shortAnswer": "No — server-enforced roots; traversal/UNC/alternate drive rejected.",
+      "detailedAnswer": "validateConfig.ts enforces environment isolation and path rules at worker startup.",
+      "currentStatus": "current",
+      "answerScope": "security",
+      "asOf": "2026-08-03T21:00:00.000Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "workers/office-project-folder-provision/src/validateConfig.ts"
+      ],
+      "authorityCommit": [
+        "e3fe6ec"
+      ],
+      "evidenceUrls": [
+        "CapitalGlass-Cross-Agent/workers/office-project-folder-provision/src/validateConfig.ts"
+      ],
+      "confidence": "verified",
+      "keywords": [
+        "security",
+        "traversal"
+      ],
+      "entities": [
+        "security"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "high"
+    },
+    {
+      "questionId": "Q015",
+      "canonicalQuestion": "What hardening comes next?",
+      "alternateQuestions": [
+        "post stabilization"
+      ],
+      "shortAnswer": "Five-item backlog after 24h stabilization.",
+      "detailedAnswer": "Vercel CLI pin, CI fixes, queue dedup, Doppler on WESLEYDESK, Platform Health metrics.",
+      "currentStatus": "planned",
+      "answerScope": "backlog",
+      "asOf": "2026-08-03T21:00:00.000Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "work-progress/projects/project-folder-synology-primary-v1-production-promotion.md"
+      ],
+      "authorityCommit": [
+        "5ca89f5"
+      ],
+      "evidenceUrls": [
+        "CapitalGlass-Cross-Agent/work-progress/projects/project-folder-synology-primary-v1-production-promotion.md"
+      ],
+      "confidence": "verified",
+      "keywords": [
+        "hardening"
+      ],
+      "entities": [
+        "backlog"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "medium"
+    },
+    {
+      "questionId": "Q016",
+      "canonicalQuestion": "Where is detailed evidence?",
+      "alternateQuestions": [
+        "evidence location"
+      ],
+      "shortAnswer": "CapitalGlass-Cross-Agent artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/",
+      "detailedAnswer": "Receipt, gates, canary, rollback; Documents contracts and worker at e3fe6ec/5a436d1 lineage.",
+      "currentStatus": "current",
+      "answerScope": "evidence",
+      "asOf": "2026-08-03T21:00:00.000Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"
+      ],
+      "authorityCommit": [
+        "5ca89f5"
+      ],
+      "evidenceUrls": [
+        "CapitalGlass-Cross-Agent/artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"
+      ],
+      "confidence": "verified",
+      "keywords": [
+        "evidence"
+      ],
+      "entities": [
+        "evidence"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical"
+    }
+  ]
+}
