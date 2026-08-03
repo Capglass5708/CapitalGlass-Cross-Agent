@@ -29,6 +29,7 @@ work-progress/projects/2026-08-02_wsl-mcp-cursor-doppler-promptops-hardening-v1.
 Current state:
 
 - WSL MCP repair Waves 1-3 are reported complete.
+- WSL2 shell/bootstrap infrastructure is now in place.
 - Doppler MCP is repaired and verified; secrets are not stored here.
 - AppBuilder PR #267 and CapitalGlassRevu PR #5 are merged.
 - Windows-host MCP is now disabled (`mcp.json` -> `mcp.json.windows-disabled`).
@@ -55,3 +56,21 @@ Run seeding/ingest from `/home/wesle/repos/CG-AppBuilder-MCP`, not from `/mnt/c/
 
 
 Watch item: If terminal flashes return, check whether `C:\Users\wesle\.cursor\mcp.json` was recreated and caused Windows-host MCP reconnects.
+
+
+## L: seed blocker
+
+L: remains unavailable in WSL because `\\192.168.1.109\CapitalGlass-L` is unreachable. Z: is mounted at `/mnt/z`, but the Intelligence Hub front door lives on L:, not Z:.
+
+Before running `cross-agent-seed-wsl-mcp-backfill-v1`:
+
+1. Open Cursor from `/home/wesle/repos/CG-AppBuilder-MCP`.
+2. Map Windows L: when WESLEYDESK is reachable.
+3. Run:
+
+```bash
+sudo bash ~/repos/CG-AppBuilder-MCP/scripts/ci/install-wsl-hub-drive-fstab.sh
+bash ~/repos/CG-AppBuilder-MCP/scripts/ci/ensure-wsl-l-hub-mount.sh
+```
+
+4. Confirm `L:\Capital-Glass-Intelligence-Hub\00-master-index` is readable.
