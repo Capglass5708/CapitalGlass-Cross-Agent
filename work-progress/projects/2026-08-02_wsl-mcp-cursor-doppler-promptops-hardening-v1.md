@@ -419,6 +419,45 @@ doppler run -- env CG_REPOS_ROOT=/home/wesle/repos \
 
 Current verdict: seed mission ledger slice is complete: compact PASS, L: mirror PASS, Supabase `IN_SYNC`. Still open and separate: `HOST_MODE_BLOCKED`, Vercel MCP auth, Cloudflare OAuth loopback, and `mcp:attest`.
 
+### Wave 4 recommendation — drift-proof MCP repair
+
+Latest pasted analysis identifies the real outage pattern as unchecked drift across four layers: Doppler truth, `integrations.env`, `mcp.json` wiring, and WSL/Windows path semantics. The durable fix is a one-button repair plus continuous verification, not another manual checklist.
+
+| Failure class | What broke | Durable fix |
+| --- | --- | --- |
+| Secret drift | `DOPPLER_TOKEN` / `DOPPLER_MCP_TOKEN` were missing or stale while Doppler CLI login still worked | Sync Doppler MCP tokens into `integrations.env` from `cg-shared/dev` |
+| Sync gap | `integrations:sync-doppler` did not pull the tokens that boot Doppler MCP | Extend sync to include `DOPPLER_TOKEN`, `DOPPLER_MCP_TOKEN`, and `CURSOR_DOPPLER_SERVICE_TOKEN` if used |
+| Wiring drift | App spokes were not part of the repair script | Fold `node scripts/wire-cursor-app-mcps.mjs` into WSL repair |
+| Path drift | `mcp.json` pointed at `/mnt/c/Developer/repos` while canonical work is `/home/wesle/repos` | Verify should fail unsafe `/mnt/c` paths when Windows fallback is disabled |
+| WSL/Windows parity | WSL repair emitted `doppler run` + launcher while Windows repair used node-only launcher | Align WSL Doppler entry to `command: node`, args `mcp-doppler-launch.mjs` only |
+| Host-specific paths | `RAILWAY_MCP_PO_SERVER_CWD` in Doppler is Windows-shaped | Add WSL override or post-sync rewrite to ext4 paths |
+
+Smallest durable implementation slice:
+
+1. Align WSL Doppler MCP launcher with Windows repair: node-only launcher, no `doppler run` double-hop.
+2. Fold app spoke wiring into `wsl:mcp:repair` / `Repair-Cursor-McpJson-Wsl.sh`.
+3. Extend `sync-integrations-env-from-doppler.mjs` to pull Doppler MCP tokens.
+4. Add `npm run mcp:repair:cursor` as repair + wire + sync + verify + receipt.
+
+Follow-on hardening:
+
+- WSL path overrides after sync for `RAILWAY_MCP_PO_SERVER_CWD`, `LOOP_REPO_ROOT`, and similar path-like keys.
+- Strengthen `verify-wsl-mcp.mjs` to fail unsafe `/mnt/c` paths, wrong Doppler launcher pattern, missing app spokes, and missing required integration keys.
+- Add daily `wsl:mcp:verify --json` receipt without silently rewriting `mcp.json`.
+- Keep PM2 `mcp:health:once` / integrations health in baseline.
+- Reconcile Doppler sync with encrypted vault backup after integration updates.
+
+Operator health-dashboard commands:
+
+```bash
+cd ~/repos/CG-AppBuilder-MCP
+npm run wsl:mcp:verify -- --json | jq '{status, errors, checks: [.checks[] | {name, status}]}'
+npm run mcp:suite-health
+node scripts/integrations-preflight.mjs
+```
+
+Cursor diagnostic surface: `cg-diagnostic -> integrations_health_summary` after MCP restart.
+
 ## Evidence / artifact paths
 
 | Artifact | Path / link | Status |
@@ -485,7 +524,7 @@ Current verdict: seed mission ledger slice is complete: compact PASS, L: mirror 
 | 4 | Add `RAILWAY_API_TOKEN` to Doppler `cg-shared/dev` only if headless fallback is required | Doppler / Railway | Optional |
 | 5 | Investigate `mcp:attest` auth smoke / index parity separately | CG-AppBuilder-MCP | Pending |
 | 6 | Investigate Office Admin deploy-gate / Windows actor only if still failing | CapitalGlass-Office-Admin | Pending |
-| 7 | After ledger updates, run Cross-Agent ingest/drift flow | CG-AppBuilder-MCP | Recurring |
+| 7 | Package Wave 4 `mcp:repair:cursor` durable repair slice (A+B+C+script) | CG-AppBuilder-MCP | Recommended next implementation |
 
 ## Reusable lessons
 
@@ -537,6 +576,13 @@ bash ~/repos/CG-AppBuilder-MCP/scripts/ci/ensure-wsl-l-hub-mount.sh
 - WSL `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index` readable.
 - Agent Fast Path added for `cross-agent-notes-seeding-v1` compact projection.
 - Cursor workspace still on `/mnt/c/Developer/repos` until operator reopens ext4 root.
+
+### 2026-08-03 CT — Wave 4 drift-proof repair package scoped
+
+- Captured root cause as drift across Doppler truth, `integrations.env`, `mcp.json`, and WSL/Windows path semantics.
+- Recommended smallest repo slice: WSL Doppler node-only parity, repair includes app spokes, sync pulls Doppler MCP tokens, and one `mcp:repair:cursor` entrypoint.
+- Recommended stricter verify: fail `/mnt/c` paths, wrong Doppler double-hop launcher, missing app spokes, and missing integration keys.
+- Recommended automation: daily verify receipt, PM2 integrations health, optional shell-start degraded warning, and post-sync vault reconciliation.
 
 ### 2026-08-03 UTC — structured ledger updated to IN_SYNC
 
