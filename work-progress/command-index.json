@@ -1,0 +1,111 @@
+{
+  "schemaVersion": "cross-agent-command-index-v1@1.0.0",
+  "updatedAt": "2026-08-03T19:39:43.176Z",
+  "sourceCommitSha": "87b096d41f410ca64f7badba093ae416282bea73",
+  "authority": "docs/runbooks/harvest-record-validate-sync.md",
+  "commands": [
+    {
+      "id": "harvest-sync-derived",
+      "command": "npm run harvest:sync-derived",
+      "repo": "CapitalGlass-Cross-Agent",
+      "executable": true,
+      "docOnly": false,
+      "phase": "harvest-record",
+      "runbookStep": 2
+    },
+    {
+      "id": "harvest-validate",
+      "command": "npm run harvest:validate",
+      "repo": "CapitalGlass-Cross-Agent",
+      "executable": true,
+      "docOnly": false,
+      "phase": "harvest-record",
+      "runbookStep": 4
+    },
+    {
+      "id": "test-harvest",
+      "command": "npm run test:harvest",
+      "repo": "CapitalGlass-Cross-Agent",
+      "executable": true,
+      "docOnly": false,
+      "phase": "harvest-record",
+      "runbookStep": 5
+    },
+    {
+      "id": "index-refresh-anchors",
+      "command": "npm run index:refresh-anchors",
+      "repo": "CapitalGlass-Cross-Agent",
+      "executable": true,
+      "docOnly": false,
+      "phase": "continuity"
+    },
+    {
+      "id": "cross-agent-ledger-ingest",
+      "command": "npm run cross-agent-ledger:ingest -- --apply",
+      "repo": "CG-AppBuilder-MCP",
+      "executable": true,
+      "docOnly": false,
+      "phase": "projection",
+      "runbookStep": 6,
+      "requiresApproval": "CROSS_AGENT_LEDGER_INGEST_APPROVED=1"
+    },
+    {
+      "id": "cross-agent-ledger-drift-probe",
+      "command": "npm run cross-agent-ledger:drift-probe",
+      "repo": "CG-AppBuilder-MCP",
+      "executable": true,
+      "docOnly": false,
+      "phase": "projection"
+    },
+    {
+      "id": "publish-active-work-ledger",
+      "command": "npm run agent-research-library:publish-active-work-ledger",
+      "repo": "Data-Extraction",
+      "executable": true,
+      "docOnly": false,
+      "phase": "projection",
+      "runbookStep": 7,
+      "env": [
+        "INTELLIGENCE_HUB_ROOT",
+        "CG_APPBUILDER_MCP_ROOT",
+        "CAPITALGLASS_CROSS_AGENT_ROOT"
+      ]
+    },
+    {
+      "id": "active-ledger-sync-publish",
+      "command": "npm run active-ledger:sync -- --publish",
+      "repo": "CG-AppBuilder-MCP",
+      "executable": true,
+      "docOnly": false,
+      "phase": "projection",
+      "runbookStep": "7b",
+      "note": "AppBuilder fallback when Data-Extraction publish path unavailable"
+    },
+    {
+      "id": "index-freshness-gate",
+      "command": "npm run index:freshness-gate",
+      "repo": "CapitalGlass-Cross-Agent",
+      "executable": true,
+      "docOnly": false,
+      "phase": "projection",
+      "runbookStep": 8
+    },
+    {
+      "id": "index-sync-publication",
+      "command": "npm run index:sync-publication",
+      "repo": "CapitalGlass-Cross-Agent",
+      "executable": true,
+      "docOnly": false,
+      "phase": "projection",
+      "note": "Operator chain: ingest + L publish + freshness gate"
+    },
+    {
+      "id": "restart-mcp-cursor",
+      "command": "Restart MCP in Cursor",
+      "repo": "operator",
+      "executable": false,
+      "docOnly": true,
+      "phase": "operator"
+    }
+  ]
+}

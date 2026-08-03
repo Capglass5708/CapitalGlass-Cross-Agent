@@ -248,7 +248,23 @@ function main() {
   fs.writeFileSync(path.join(runDir, "HARVEST_SUMMARY.md"), buildSummary(manifest, harvestManifestHash), "utf8");
   writeJson(path.join(runDir, "coverage.json"), computeCoverage(manifest, compactDir));
 
+  refreshPacketRegistryFromGit();
+
   console.log(`sync-derived: OK harvestManifestHash=${harvestManifestHash}`);
+}
+
+function refreshPacketRegistryFromGit() {
+  const registryPath = path.join(REPO_ROOT, "work-progress/harvest-packet-registry.json");
+  if (!fs.existsSync(registryPath)) return;
+  const gitHead = execSync("git rev-parse HEAD", { cwd: REPO_ROOT, encoding: "utf8" }).trim();
+  const now = new Date().toISOString();
+  const registry = readJson(registryPath);
+  registry.updatedAt = now;
+  for (const packet of Object.values(registry.packets)) {
+    packet.lastUpdatedCommit = gitHead;
+    packet.lastUpdatedAt = now;
+  }
+  writeJson(registryPath, registry);
 }
 
 main();

@@ -1,7 +1,8 @@
 # Harvest record → validate → sync runbook
 
 **Work package pattern:** `harvest-YYYY-MM-DD-<slug>-v1`  
-**Authority:** `artifacts/agent-runs/<harvest-id>/harvest-manifest-v1.json`
+**Authority:** `artifacts/agent-runs/<harvest-id>/harvest-manifest-v1.json`  
+**Command index (machine):** `work-progress/command-index.json`
 
 Cross-Agent harvests record coordination state only. Implementation, SSH, runner install, and deploy mutations belong in owner repos.
 
@@ -12,14 +13,19 @@ Cross-Agent harvests record coordination state only. Implementation, SSH, runner
 | Step | Command | Repo | Purpose |
 | --- | --- | --- | --- |
 | 1 | Edit `harvest-manifest-v1.json` | CapitalGlass-Cross-Agent | Canonical machine authority |
-| 2 | `npm run harvest:sync-derived` | CapitalGlass-Cross-Agent | Regenerate compact records, receipt, packet-index, coverage |
+| 2 | `npm run harvest:sync-derived` | CapitalGlass-Cross-Agent | Regenerate compact records, receipt, packet-index, coverage; refresh packet registry SHAs |
 | 3 | `npm run harvest:render-index` | CapitalGlass-Cross-Agent | Update INDEX.md generated section |
 | 4 | `npm run harvest:validate` | CapitalGlass-Cross-Agent | Gate before commit |
 | 5 | `npm run test:harvest` | CapitalGlass-Cross-Agent | Regression tests |
-| 6 | `npm run cross-agent-ledger:ingest -- --apply` | CG-AppBuilder-MCP | Supabase projection (separate step) |
-| 7 | `publish-active-work-ledger` | Data-Extraction | L: hub publish (operator approval) |
+| 6 | `npm run index:refresh-anchors` | CapitalGlass-Cross-Agent | Refresh handoff ledger anchor + continuity metadata |
+| 7 | `npm run cross-agent-ledger:ingest -- --apply` | CG-AppBuilder-MCP | Supabase projection (requires `CROSS_AGENT_LEDGER_INGEST_APPROVED=1`) |
+| 7b | `npm run active-ledger:sync -- --publish` | CG-AppBuilder-MCP | **Fallback** L: publish when Data-Extraction path unavailable |
+| 8 | `npm run agent-research-library:publish-active-work-ledger` | Data-Extraction | Primary L: hub publish (operator approval) |
+| 9 | `npm run index:freshness-gate` | CapitalGlass-Cross-Agent | **Required** — Git, Supabase, and L: must share `sourceCommitSha` |
 
-Steps 6–7 are **not** part of harvest recording. Run only after ledger edits and operator approval.
+**Operator one-shot** (steps 7–9): `npm run index:sync-publication` from Cross-Agent (Doppler + L: mount required).
+
+Steps 7–9 are **not** part of harvest recording. Run after ledger or manifest edits and operator approval.
 
 ---
 
@@ -28,8 +34,25 @@ Steps 6–7 are **not** part of harvest recording. Run only after ledger edits a
 1. **One manifest** — `harvest-manifest-v1.json` is the machine source of truth.
 2. **Derived views** — `packet-index.json`, `receipt.json`, `HARVEST_SUMMARY.md`, `compact-records/`, `coverage.json` are generated.
 3. **Registries** — `work-progress/harvest-packet-registry.json`, `owner-repo-boundary-index.json`, `harvest-verdict-registry.json` track cross-harvest continuity.
-4. **INDEX section** — rows between `HARVEST-PACKET-INDEX:START/END` are generated only.
-5. **No secrets** — forbidden keys: token, secret, password, authorization, bearer, apiKey, privateKey.
+4. **Command index** — `work-progress/command-index.json` lists executable vs doc-only commands (`executable: false` for operator UI steps).
+5. **INDEX section** — rows between `HARVEST-PACKET-INDEX:START/END` are generated only.
+6. **No secrets** — forbidden keys: token, secret, password, authorization, bearer, apiKey, privateKey.
+
+---
+
+## Freshness gate (fail-closed)
+
+After any Cross-Agent push that affects the ledger or harvest authority:
+
+```bash
+npm run cross-agent-ledger:ingest -- --apply    # CG-AppBuilder-MCP
+npm run agent-research-library:publish-active-work-ledger  # Data-Extraction
+npm run index:freshness-gate                      # CapitalGlass-Cross-Agent
+```
+
+Receipt: `artifacts/agent-runs/cross-agent-index-freshness-gate-v1/latest.json`
+
+All three layers must report the same `sourceCommitSha` as `git rev-parse HEAD`.
 
 ---
 
@@ -51,4 +74,4 @@ Steps 6–7 are **not** part of harvest recording. Run only after ledger edits a
 
 `artifacts/agent-runs/<harvest-id>/validation-result.json`
 
-Commit harvest changes only when validation PASS.
+Commit harvest changes only when validation PASS **and** `index:freshness-gate` PASS after publication sync.

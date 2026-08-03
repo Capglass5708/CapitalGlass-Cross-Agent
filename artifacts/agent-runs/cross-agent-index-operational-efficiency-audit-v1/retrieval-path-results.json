@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-08-03T19:39:47.438Z",
+  "ladder": {
+    "layer1_L": {
+      "available": true,
+      "outcome": "INDEX_HIT",
+      "sourceCommitSha": "8b4b1551a9b00d89f041d8911e21502bd521127b",
+      "inSyncWithGit": false
+    },
+    "layer2_Supabase": {
+      "outcome": "PROBE_FAILED",
+      "sourceCommitSha": null,
+      "inSyncWithGit": false
+    },
+    "layer3_Git": {
+      "outcome": "FAILOVER_GIT_LEDGER",
+      "sourceCommitSha": "87b096d41f410ca64f7badba093ae416282bea73",
+      "files": [
+        "work-progress/ACTIVE_WORK.md",
+        "work-progress/projects/INDEX.md",
+        "handoffs/CURRENT_HANDOFF.md"
+      ]
+    }
+  },
+  "simulatedFailures": {
+    "lUnavailable": "Read handoff failover table — layer 2 Supabase",
+    "supabaseUnavailable": "Read ACTIVE_WORK.md + INDEX.md — layer 3 Git"
+  },
+  "latencyMs": {
+    "note": "Harness retrieval latency only — not full agent-response latency",
+    "indexed": {
+      "harnessRetrievalLatencyMs": {
+        "p50": 0.04590300000018033,
+        "p95": 137.5216479999999
+      }
+    },
+    "raw": {
+      "harnessRetrievalLatencyMs": {
+        "p50": 0.6224899999997433,
+        "p95": 456.76102600000013
+      }
+    }
+  }
+}
