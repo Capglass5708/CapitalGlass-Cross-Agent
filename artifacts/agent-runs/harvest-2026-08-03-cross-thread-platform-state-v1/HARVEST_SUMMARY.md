@@ -1,6 +1,6 @@
 # Harvest summary — derived view
 
-**Authority:** `harvest-manifest-v1.json` (`efadc8b5d267…`)
+**Authority:** `harvest-manifest-v1.json` (`82f28d3f703f…`)
 **Work package:** `harvest-2026-08-03-cross-thread-platform-state-v1`
 **Mission class:** `harvest`
 **Verdict:** `HARVEST_COMPLETE`
