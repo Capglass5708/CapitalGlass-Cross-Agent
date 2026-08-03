@@ -108,52 +108,52 @@ Current verification:
 
 Latest pasted Cursor verification returned:
 
-\`\`\`text
+```text
 VERDICT: PARTIAL
-\`\`\`
+```
 
 Fixed WSL-canonical env roots:
 
 | Location | Value |
 | --- | --- |
-| \`~/.cursor/integrations.env\` | \`LOOP_REPO_ROOT=/home/wesle/repos\` |
-| \`~/.cursor/integrations.env\` | \`PROCEDURES_REPO_ROOT=/home/wesle/repos/Capital-Glass-Procedures-\` |
-| \`~/.cursor/integrations.env\` | \`RAILWAY_MCP_PO_SERVER_CWD=/home/wesle/repos/capital-glass-po-app/server\` |
+| `~/.cursor/integrations.env` | `LOOP_REPO_ROOT=/home/wesle/repos` |
+| `~/.cursor/integrations.env` | `PROCEDURES_REPO_ROOT=/home/wesle/repos/Capital-Glass-Procedures-` |
+| `~/.cursor/integrations.env` | `RAILWAY_MCP_PO_SERVER_CWD=/home/wesle/repos/capital-glass-po-app/server` |
 
 Already WSL-canonical:
 
-- \`~/.cursor/mcp.json\`: all 18 stdio/HTTP launchers use \`/home/wesle/repos/...\`.
-- Active suite project \`.cursor/mcp.json\` files: clean.
+- `~/.cursor/mcp.json`: all 18 stdio/HTTP launchers use `/home/wesle/repos/...`.
+- Active suite project `.cursor/mcp.json` files: clean.
 
 Still Windows-pathed or not yet authoritative:
 
 | Location | Reason |
 | --- | --- |
-| Cursor workspace root \`/mnt/c/Developer/repos/*\` | Session was opened from NTFS mount, not \`/home/wesle/repos\`; the \`/mnt/c\` project-dir was newer than the ext4 project-dir in Cursor metadata |
-| \`/mnt/c/Users/wesle/.cursor/mcp.json\` | Windows-side config preserved intentionally; 8 servers still point at \`C:/Developer/repos/...\` |
-| \`/mnt/c/Users/wesle/.cursor/integrations.env\` | Windows profile still has \`RAILWAY_MCP_PO_SERVER_CWD=C:/Cursor Projects/...\`; not WSL authority |
-| Legacy worktree/archive \`mcp.json\` files | Inactive archives, not loaded by Cursor |
-| \`npm run wsl:mcp:preflight\`, \`gate\`, \`repair-all\` in that session | Scripts were not present in the active \`package.json\`; \`npm run wsl:mcp:verify\` passed and \`npm run wsl:mcp:repair\` reported \`NO_CHANGE\` instead |
+| Cursor workspace root `/mnt/c/Developer/repos/*` | Session was opened from NTFS mount, not `/home/wesle/repos`; the `/mnt/c` project-dir was newer than the ext4 project-dir in Cursor metadata |
+| `/mnt/c/Users/wesle/.cursor/mcp.json` | Windows-side config preserved intentionally; 8 servers still point at `C:/Developer/repos/...` |
+| `/mnt/c/Users/wesle/.cursor/integrations.env` | Windows profile still has `RAILWAY_MCP_PO_SERVER_CWD=C:/Cursor Projects/...`; not WSL authority |
+| Legacy worktree/archive `mcp.json` files | Inactive archives, not loaded by Cursor |
+| `npm run wsl:mcp:preflight`, `gate`, `repair-all` in that session | Scripts were not present in the active `package.json`; `npm run wsl:mcp:verify` passed and `npm run wsl:mcp:repair` reported `NO_CHANGE` instead |
 
 MCP status from the path-coherence check:
 
 | State | Servers |
 | --- | --- |
-| Green / connected | \`cg-app-mcp\`, \`cg-diagnostic\`, \`cg-suite-wiring\`, \`sharepoint\`, \`railway\`, \`github\`, \`doppler\`, \`agent-loop\`, \`failure-intelligence-mcp\`, \`office-admin-mcp\`, \`supabase\`, \`supabase-mcp-control\`, Cloudflare HTTP variants, \`capital-glass-platform-intelligence\`, \`azure\` |
-| Red / needs auth | \`vercel\` plugin, needs \`mcp_auth\` |
+| Green / connected | `cg-app-mcp`, `cg-diagnostic`, `cg-suite-wiring`, `sharepoint`, `railway`, `github`, `doppler`, `agent-loop`, `failure-intelligence-mcp`, `office-admin-mcp`, `supabase`, `supabase-mcp-control`, Cloudflare HTTP variants, `capital-glass-platform-intelligence`, `azure` |
+| Red / needs auth | `vercel` plugin, needs `mcp_auth` |
 | Stopped / not active | Cloudflare stdio launcher absent from config; HTTP variants only |
 
 Log checks:
 
-- No new \`pwsh.exe\` storm.
-- No mangled Azure hook \`ENOENT\` failures after WSL reopen.
-- No new \`EADDRINUSE 127.0.0.1:15170\`; last conflict was earlier on stdio \`user-cloudflare\`, now disabled.
+- No new `pwsh.exe` storm.
+- No mangled Azure hook `ENOENT` failures after WSL reopen.
+- No new `EADDRINUSE 127.0.0.1:15170`; last conflict was earlier on stdio `user-cloudflare`, now disabled.
 
 Required next action from that verification:
 
-\`\`\`text
+```text
 Close the Cursor window and reopen the suite workspace from /home/wesle/repos/CG-AppBuilder-MCP, or the .code-workspace under ~/repos, not /mnt/c/Developer/repos.
-\`\`\`
+```
 
 ### Doppler MCP repair
 
@@ -169,7 +169,7 @@ Fixes reported:
 - Updated `~/.cursor/integrations.env` and mirrored to `C:\Users\wesle\.cursor\integrations.env`.
 - Updated Doppler canonical secrets: `DOPPLER_MCP_TOKEN`, `DOPPLER_TOKEN`, `CURSOR_DOPPLER_SERVICE_TOKEN`.
 - Fixed Doppler MCP launcher to `node .../mcp-doppler-launch.mjs` only.
-- Created encrypted vault backups under `D:\Admin Keys\Capital-Glass-IT-Vault\02-Secrets\04-Apps-Doppler\`.
+- Created encrypted vault backups under `D:\Admin Keys\Capital-Glass-IT-Vault\02-Secrets\04-Apps-Doppler`.
 - Created no-secrets receipt: `D:\Admin Keys\CG-MACHINE-2\DOPPLER-MCP-REPAIR-2026-08-02.txt`.
 
 Verification:
@@ -216,7 +216,7 @@ Downstream status checked before inspection stopped:
 | WSL next ROI runbook | `CG-AppBuilder-MCP/docs/runbooks/wsl-mcp-next-roi.md` | Reported updated through Wave 3 |
 | Repair orchestrator | `CG-AppBuilder-MCP/scripts/wsl/repair-all-wsl-mcp.sh` | Reported expanded to 11 steps |
 | Doppler no-secrets receipt | `D:\Admin Keys\CG-MACHINE-2\DOPPLER-MCP-REPAIR-2026-08-02.txt` | Reported written |
-| Doppler encrypted vault backups | `D:\Admin Keys\Capital-Glass-IT-Vault\02-Secrets\04-Apps-Doppler\` | Reported written; secrets not copied here |
+| Doppler encrypted vault backups | `D:\Admin Keys\Capital-Glass-IT-Vault\02-Secrets\04-Apps-Doppler` | Reported written; secrets not copied here |
 | AppBuilder PR #267 | `https://github.com/Capglass5708/CG-AppBuilder-MCP/pull/267` | Merged |
 | Revu PR #5 | `https://github.com/Capglass5708/CapitalGlassRevu/pull/5` | Merged |
 
