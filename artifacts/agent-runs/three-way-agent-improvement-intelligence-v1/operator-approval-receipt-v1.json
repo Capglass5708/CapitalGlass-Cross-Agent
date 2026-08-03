@@ -58,16 +58,21 @@
   "operationalVerdictBlocked": true,
   "blockedFinalVerdict": "THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL",
   "blockedUntil": [
-    "workflow_dispatch publication on WESLEYDESK (run 30861202361 queued — runner pickup required)",
+    "workflow_dispatch publication on WESLEYDESK (authoritative run 30861642734 @ 3e51aa7 only)",
     "L:/Z:/Supabase parity receipt after publication",
-    "Post-publication blind retrieval without expected IDs",
-    "Second identical publication idempotency proof on live publisher"
+    "Post-publication blind retrieval without expected improvement IDs",
+    "Second identical publication idempotency proof on live publisher (NOOP_CURRENT)"
   ],
   "mergeCompletion": {
     "allScopedPrsMerged": true,
     "mergedAt": "2026-08-03T23:07:41Z",
-    "publicationWorkflowRunId": "30861202361",
-    "publicationWorkflowStatus": "queued"
+    "closeoutCommitSha": "3e51aa754576f7d148901e440365f714f56be455",
+    "authoritativePublicationRunId": "30861642734",
+    "authoritativePublicationSha": "3e51aa754576f7d148901e440365f714f56be455",
+    "publicationWorkflowStatus": "queued",
+    "supersededPublicationRunId": "30861202361",
+    "supersededRunDisposition": "cancelled_before_runner_pickup",
+    "supersededRunCancelReason": "Prevent duplicate publication and conflicting receipts; publish only latest Cross-Agent state"
   },
   "reviewVerdict": "IMPLEMENTATION_REVIEW_PASS_WITH_PRECOMMIT_GATES"
 }
