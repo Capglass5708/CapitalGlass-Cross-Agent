@@ -16,7 +16,7 @@ Capture the WSL MCP repair waves, Cursor terminal-flash diagnosis, Doppler MCP t
 | Authority repo | CG-Platform-Governance-MCP for protocol/closeout authority |
 | Execution repo | CG-AppBuilder-MCP |
 | Related repos | CapitalGlassRevu, cg-apps-hub, CapitalGlass-BidComposer, CapitalGlass-Office-Admin, Computer Estimator |
-| Status | **Ledger seed slice PASS — compact PASS, L: mirror PASS, Supabase projection IN_SYNC at `5ddd274`; MCP host/auth items remain separate** |
+| Status | **MCP repair Wave 4 implemented and verified — `mcp:repair:cursor` PASS; seed ledger slice IN_SYNC; Cursor MCP restart pending** |
 
 ## Repositories involved
 
@@ -419,9 +419,9 @@ doppler run -- env CG_REPOS_ROOT=/home/wesle/repos \
 
 Current verdict: seed mission ledger slice is complete: compact PASS, L: mirror PASS, Supabase `IN_SYNC`. Still open and separate: `HOST_MODE_BLOCKED`, Vercel MCP auth, Cloudflare OAuth loopback, and `mcp:attest`.
 
-### Wave 4 recommendation — drift-proof MCP repair
+### Wave 4 implemented — drift-proof MCP repair
 
-Latest pasted analysis identifies the real outage pattern as unchecked drift across four layers: Doppler truth, `integrations.env`, `mcp.json` wiring, and WSL/Windows path semantics. The durable fix is a one-button repair plus continuous verification, not another manual checklist.
+Latest pasted implementation result closes the smallest durable Wave 4 slice. The outage pattern was unchecked drift across four layers: Doppler truth, `integrations.env`, `mcp.json` wiring, and WSL/Windows path semantics. The durable fix is now a one-command repair flow plus hard verification.
 
 | Failure class | What broke | Durable fix |
 | --- | --- | --- |
@@ -432,12 +432,15 @@ Latest pasted analysis identifies the real outage pattern as unchecked drift acr
 | WSL/Windows parity | WSL repair emitted `doppler run` + launcher while Windows repair used node-only launcher | Align WSL Doppler entry to `command: node`, args `mcp-doppler-launch.mjs` only |
 | Host-specific paths | `RAILWAY_MCP_PO_SERVER_CWD` in Doppler is Windows-shaped | Add WSL override or post-sync rewrite to ext4 paths |
 
-Smallest durable implementation slice:
+Implemented durable slice:
 
-1. Align WSL Doppler MCP launcher with Windows repair: node-only launcher, no `doppler run` double-hop.
-2. Fold app spoke wiring into `wsl:mcp:repair` / `Repair-Cursor-McpJson-Wsl.sh`.
-3. Extend `sync-integrations-env-from-doppler.mjs` to pull Doppler MCP tokens.
-4. Add `npm run mcp:repair:cursor` as repair + wire + sync + verify + receipt.
+1. `npm run mcp:repair:cursor` runs repair, app-spoke wiring, normalization, Doppler sync, WSL path overrides, and hard verification.
+2. `npm run mcp:repair:cursor:json` provides machine-readable output.
+3. WSL Doppler MCP now uses node-only `mcp-doppler-launch.mjs`, matching Windows repair.
+4. Doppler sync now pulls `DOPPLER_MCP_TOKEN` / `DOPPLER_TOKEN` from `cg-shared`.
+5. WSL path overrides rewrite Windows/NTFS paths in `integrations.env` and `mcp.json`.
+6. Verification now fails NTFS paths, wrong Doppler wiring, missing Doppler token, and missing app spokes.
+7. Repair receipt is written to `~/.cursor/backups/mcp-repair-cursor-*.json`.
 
 Follow-on hardening:
 
@@ -524,7 +527,7 @@ Cursor diagnostic surface: `cg-diagnostic -> integrations_health_summary` after 
 | 4 | Add `RAILWAY_API_TOKEN` to Doppler `cg-shared/dev` only if headless fallback is required | Doppler / Railway | Optional |
 | 5 | Investigate `mcp:attest` auth smoke / index parity separately | CG-AppBuilder-MCP | Pending |
 | 6 | Investigate Office Admin deploy-gate / Windows actor only if still failing | CapitalGlass-Office-Admin | Pending |
-| 7 | Package Wave 4 `mcp:repair:cursor` durable repair slice (A+B+C+script) | CG-AppBuilder-MCP | Recommended next implementation |
+| 7 | Commit and push Wave 4 `mcp:repair:cursor` changes from ext4 worktrees | CG-AppBuilder-MCP / Cursor-MCP-Kit | Pending if operator wants remote promotion |
 
 ## Reusable lessons
 
@@ -576,6 +579,18 @@ bash ~/repos/CG-AppBuilder-MCP/scripts/ci/ensure-wsl-l-hub-mount.sh
 - WSL `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index` readable.
 - Agent Fast Path added for `cross-agent-notes-seeding-v1` compact projection.
 - Cursor workspace still on `/mnt/c/Developer/repos` until operator reopens ext4 root.
+
+### 2026-08-03 CT — Wave 4 `mcp:repair:cursor` implemented and verified
+
+- New command: `npm run mcp:repair:cursor` from `~/repos/CG-AppBuilder-MCP`.
+- Flow order: `wsl:mcp:repair` -> `wire-cursor-app-mcps` -> `normalize-cursor-mcp-json` -> `integrations:sync-doppler` -> WSL path overrides -> `wsl:mcp:verify`.
+- Machine-readable variant: `npm run mcp:repair:cursor:json`.
+- Receipt: `~/.cursor/backups/mcp-repair-cursor-*.json`.
+- Verification on WESLEY_WORK: `mcp:repair:cursor` PASS and `wsl:mcp:verify` PASS.
+- Verify coverage: 26 servers, 8 app spokes, ext4 paths, and Doppler node-only wiring.
+- Repo changes live on ext4 at `~/repos/CG-AppBuilder-MCP` and `~/repos/Cursor-MCP-Kit`.
+- Operator next step: Cursor -> Settings -> MCP -> Restart, then optionally `npm run mcp:ack-cursor-restart`.
+- Remote promotion still pending if the operator wants the ext4 worktree changes committed and pushed.
 
 ### 2026-08-03 CT — Wave 4 drift-proof repair package scoped
 
