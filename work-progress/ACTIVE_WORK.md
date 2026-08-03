@@ -21,6 +21,16 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 ## Current saved work
 
+### 2026-08-03 CT — RYZEN9DESK WSL2 canonical workspace (BLOCKED on wrong host)
+
+| Field | Value |
+| --- | --- |
+| Work package | `ryzen9desk-wsl2-canonical-workspace-v1` |
+| Verdict | `BLOCKED` — prepared on WESLEY_WORK; must execute on RYZEN9DESK |
+| Tooling | `npm run ryzen9desk:wsl2-canonical`, machine profile `ryzen9desk.machine.json` |
+| Receipts | `CG-AppBuilder-MCP/artifacts/agent-runs/ryzen9desk-wsl2-canonical-workspace-v1/` |
+| Next | RYZEN9DESK: pull AppBuilder ext4, run runbook, GPU smoke, WSL restart + shortcut |
+
 | Repo | Commit | Status | Notes |
 | --- | --- | --- | --- |
 | CG-AppBuilder-MCP | PR #267 | Merged | PromptOps suite index refresh + ext4 repos-root fixes |
