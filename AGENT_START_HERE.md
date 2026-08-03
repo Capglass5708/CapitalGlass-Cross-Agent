@@ -24,6 +24,7 @@ No implementation code, MCP servers, databases, Bible copies, app scaffolding, o
 | 4 | `work-progress/ACTIVE_WORK.md` | Current valuable-work ledger and progress log |
 | 5 | `work-progress/projects/INDEX.md` | Master index of all project files |
 | 6 | Relevant project file in `work-progress/projects/` | Durable notes for the specific mission you are joining |
+| 7 | `plans/2026-08-03_cross-agent-repo-hygiene-and-agent-investigation-v1.md` | Investigation playbook when auditing or onboarding to this repo |
 
 If a project file exists for your work package, read it before touching any implementation repo.
 
@@ -61,6 +62,9 @@ Do **not** add or implement here:
 - App source code, MCP server code, migrations, or build artifacts
 - Secrets, credentials, database dumps, or copied Bible content
 - Long raw logs or full command output
+- **Build artifacts** (compiled bundles, `node_modules`, large generated corpora)
+
+**Approved exception — proof receipts:** Compact JSON verification receipts under `artifacts/agent-runs/<work-package-id>/` **may** be committed when they are durable closeout or gate evidence (not application build output). Always name the **owner repo** when citing receipts that live outside this repo. Decision ID: `CAD-20260803-cross-agent-proof-receipts-exception`.
 
 Link to owning repos, commits, PRs, artifact paths, and verification files instead.
 
@@ -154,6 +158,15 @@ Do **not** capture: repeated filler, long unneeded output, secrets, full source 
 ## Verification gates (current)
 
 Before Bible-dependent work in `CG-AppBuilder-MCP`:
+
+**WSL (canonical — use this):**
+
+```bash
+cd /home/wesle/repos/CG-AppBuilder-MCP
+doppler run -p cg-mcp -c dev -- npm run bible:authority:gate
+```
+
+**Windows (legacy recovery only — not for agent work):**
 
 ```powershell
 cd C:\Developer\repos\CG-AppBuilder-MCP

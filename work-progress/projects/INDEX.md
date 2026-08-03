@@ -42,6 +42,8 @@ Filename pattern: `YYYY-MM-DD_<project-id>.md` — see `work-progress/projects/R
 | `cross-agent-registry-onboard-v1` | [2026-08-02_cross-agent-registry-onboard-v1.md](./2026-08-02_cross-agent-registry-onboard-v1.md) | Complete — closeout PASS | `CG-AppBuilder-MCP` | `38a162da` / `48a1bff1` | Recurring registry maintenance only |
 | `cross-agent-structured-ledger-projection-v1` | [2026-08-02_cross-agent-structured-ledger-projection-v1.md](./2026-08-02_cross-agent-structured-ledger-projection-v1.md) | **MILESTONE PASS** — Phases 0–3 operational | `CG-Platform-Governance-MCP`, `CG-AppBuilder-MCP` | AppBuilder `63dbeb8c`; Governance `a5ce4c3` | Recurring ingest + drift probe after ledger updates |
 | `wsl-mcp-cursor-doppler-promptops-hardening-v1` | [2026-08-02_wsl-mcp-cursor-doppler-promptops-hardening-v1.md](./2026-08-02_wsl-mcp-cursor-doppler-promptops-hardening-v1.md) | **PASS — Cursor WSL default active; `mcp:repair:cursor` PASS** | `CG-AppBuilder-MCP`, `Cursor-MCP-Kit`, Cursor MCP, Doppler | WSL default verify PASS; `mcp:repair:cursor` PASS | Use WSL Suite shortcut; optionally commit/push ext4 changes; handle Vercel / Cloudflare / `mcp:attest` separately |
+| `z-ai-cache-single-canonical-authority-v1` | [2026-08-02_z-ai-cache-single-canonical-authority-v1.md](./2026-08-02_z-ai-cache-single-canonical-authority-v1.md) | **Complete — three-host aligned** | `CG-AppBuilder-MCP` | `b3ae65d2` | Recurring `ai-cache-z-master:three-host-status` probe only |
+| `z-drive-disconnect-recurrence-v1` | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | **Active — pre-session gate** | CapitalGlass-Office-Admin | FI + Office Admin script | ForceRemap Z: before material sessions on WESLEY_WORK |
 | `active-ledger-drain-and-intelligence-hub-sync-v1` | [2026-08-02_active-ledger-drain-and-intelligence-hub-sync-v1.md](./2026-08-02_active-ledger-drain-and-intelligence-hub-sync-v1.md) | **Complete — closeout PASS** | Multi-repo | AppBuilder `cd4a9005` | Recurring L: publish only |
 | `north-star-compounding-proof-v1` | [2026-08-01_north-star-compounding-proof-v1.md](./2026-08-01_north-star-compounding-proof-v1.md) | Pushed — evidence receipts on `origin/main` | `CG-Platform-Governance-MCP` (authority), `CG-AppBuilder-MCP` (execution) | Governance `8ebcdf4`; AppBuilder `3772d491` | Restart MCP; clear Auto v3.2 env vars and rerun `closeout:gate`; begin `north-star-compounding-vertical-pilot-v1` |
 | `agent-research-library-layout-v1` | [2026-08-01_agent-research-library-layout-v1.md](./2026-08-01_agent-research-library-layout-v1.md) | Pilot 9/10 operational | `Data-Extraction`, `Scraper` | `Data-Extraction 2190944`; `Scraper 0111837`; layout `b1d2e42`, `3e09e4c` | Optional bounded n8n capture; agent review before any `10-approved-for-use/` promotion |
@@ -74,12 +76,19 @@ Use this when you need to find all work touching a specific repo.
 | Project ID | Status | Next action |
 | --- | --- | --- |
 | `north-star-compounding-proof-v1` | Pushed | Begin `north-star-compounding-vertical-pilot-v1` |
-| `active-ledger-drain-and-intelligence-hub-sync-v1` | Phases 0–3 complete | Phase 5 material closeout |
+| `active-ledger-drain-and-intelligence-hub-sync-v1` | Complete — closeout PASS | Recurring L: publish after ledger edits |
 
 Recommended follow-on work packages (not yet project files):
 
 - `north-star-compounding-vertical-pilot-v1` — harvest → Z: → next-mission retrieval
 - `platform-governance-phase4-registries-v1` — program/mission/exception registries
+
+### CapitalGlass-Office-Admin
+
+| Project ID | Status | Next action |
+| --- | --- | --- |
+| `wesleywork-drive-mount-task-dedupe-v1` | IMPLEMENTED — live deploy pending | Elevated deploy + verifier on WESLEY_WORK |
+| `z-drive-disconnect-recurrence-v1` | Active — pre-session gate | ForceRemap Z: before material sessions |
 
 ### CG-AppBuilder-MCP
 
@@ -90,7 +99,8 @@ Recommended follow-on work packages (not yet project files):
 | `cross-agent-registry-onboard-v1` | Complete — pushed | Recurring maintenance |
 | `cross-agent-structured-ledger-projection-v1` | **MILESTONE PASS** | Recurring ingest + drift probe |
 | `wsl-mcp-cursor-doppler-promptops-hardening-v1` | PASS — Cursor WSL default active; `mcp:repair:cursor` PASS | Use WSL Suite shortcut; optionally commit/push ext4 changes; investigate Vercel auth / Cloudflare / `mcp:attest` separately |
-| `active-ledger-drain-and-intelligence-hub-sync-v1` | Phases 0–3 complete | Phase 5 material closeout |
+| `z-ai-cache-single-canonical-authority-v1` | Complete — three-host aligned | Recurring `ai-cache-z-master:three-host-status` probe only |
+| `active-ledger-drain-and-intelligence-hub-sync-v1` | Complete — closeout PASS | Recurring L: publish after ledger edits |
 
 ### Data-Extraction
 

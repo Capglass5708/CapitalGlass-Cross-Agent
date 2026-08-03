@@ -35,10 +35,12 @@ powershell -NoProfile -ExecutionPolicy Bypass -File "C:\ProgramData\CapitalGlass
 
 ## Evidence
 
-| Evidence | Path | Result |
-| --- | --- | --- |
-| Reconnect receipt | CG-AppBuilder-MCP `artifacts/agent-runs/z-drive-disconnect-recurrence-v1/z-drive-reconnect-receipt.json` | ForceRemap verified |
-| Phase 2 gate | CG-AppBuilder-MCP `artifacts/agent-runs/z-drive-pre-session-gate-hardening-v1/phase-2-deploy-receipt.json` | Pre-session gate shipped |
+| Evidence | Owner repo | Path (repo-relative) | Result |
+| --- | --- | --- | --- |
+| Reconnect receipt | `CG-AppBuilder-MCP` | `artifacts/agent-runs/z-drive-disconnect-recurrence-v1/z-drive-reconnect-receipt.json` | ForceRemap verified — **not stored in Cross-Agent** |
+| Phase 2 gate | `CG-AppBuilder-MCP` | `artifacts/agent-runs/z-drive-pre-session-gate-hardening-v1/phase-2-deploy-receipt.json` | Pre-session gate shipped — **not stored in Cross-Agent** |
+
+If a path 404s in Cross-Agent, resolve from the **owner repo** at the commit cited in `ACTIVE_WORK.md`, not from this meeting repo.
 
 ## Update Log
 

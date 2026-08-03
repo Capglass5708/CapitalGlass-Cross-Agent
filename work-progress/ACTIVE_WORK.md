@@ -13,13 +13,24 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-08-03 |
-| Current focus | WESLEY_WORK Cursor WSL default is active; suite repos organized under `/home/wesle/repos`; Document Center SHA secret remains the highest CI ops item |
+| Current focus | Cross-Agent repo hygiene + agent investigation playbook; RYZEN9DESK managed executor bootstrap; Synology dev lane; Document Center SHA CI item |
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Project index | `work-progress/projects/INDEX.md` |
 
 ## Current saved work
+
+### 2026-08-03 CT — Cross-Agent repo hygiene and agent investigation playbook
+
+| Field | Value |
+| --- | --- |
+| Work package | `cross-agent-repo-hygiene-and-agent-investigation-v1` |
+| Verdict | **Docs PASS** — handoff reconciled; index/decision log expanded; investigation plan added |
+| Files | `handoffs/CURRENT_HANDOFF.md`, `plans/2026-08-03_cross-agent-repo-hygiene-and-agent-investigation-v1.md`, `decisions/DECISION_LOG.md`, `projects/INDEX.md`, `AGENT_START_HERE.md` |
+| Cleared blockers | Removed stale ingest HOLD and `/mnt/c` contradiction from handoff; unified retrieval failover contract |
+| Remaining | Owner-qualify all 404 evidence paths; sync canonical `intelligence-hub-first-read` in AppBuilder; operator public-visibility review |
+| Next | Commit/push Cross-Agent; republish L: + Supabase if ledger hash changes |
 
 ### 2026-08-03 CT — RYZEN9DESK managed executor (Phase 0 scaffolded)
 

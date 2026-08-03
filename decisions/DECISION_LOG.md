@@ -1,15 +1,23 @@
 # Decision Log
 
-Record final decisions that should guide future agents.
+Record final decisions that should guide future agents. Each row must have a **Decision ID** when the decision is durable enough to cite in project files or gates.
 
-| Date | Decision | Why | Owner / source | Related file |
-| --- | --- | --- | --- | --- |
-| 2026-08-02 | Cross-Agent is the human ledger; L: master index is the machine-readable front door | Prevents chat-only knowledge loss and keeps implementation out of the meeting repo | Wesley / Cross-Agent cleanup | `work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md` |
+| Date | Decision ID | Decision | Why | Owner / source | Related file |
+| --- | --- | --- | --- | --- | --- |
+| 2026-08-02 | `CAD-20260802-cross-agent-ledger-machine-front-door` | Cross-Agent is the human ledger; L: master index is the machine-readable front door | Prevents chat-only knowledge loss; implementation stays out of the meeting repo | Wesley / Cross-Agent cleanup | `work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md` |
+| 2026-08-02 | `CAD-20260802-z-ai-cache-single-canonical-authority` | Z: `AI-Cache-Authority` is the only global writer for `CURRENT/current-ai-cache-release.json`; host-local caches are read-through only | Stops three-host cache drift and false `cacheIsAuthoritative` claims | `z-ai-cache-single-canonical-authority-v1` | `work-progress/projects/2026-08-02_z-ai-cache-single-canonical-authority-v1.md` |
+| 2026-08-02 | `CAD-20260802-wsl-ext4-default-repos` | Agent Git mutation root is `/home/wesle/repos` on WSL ext4; `/mnt/c/Developer/repos` is legacy read-only recovery | NTFS clones caused stale ledger reads and wrong `CG_REPOS_ROOT` | `wsl-mcp-cursor-doppler-promptops-hardening-v1` | `handoffs/CURRENT_HANDOFF.md` |
+| 2026-08-02 | `CAD-20260802-structured-ledger-supabase-projection` | Supabase structured-ledger projection is the **fallback** for suite blockers/open actions when L: is unmounted; ingest requires Doppler + operator approval flag | Enables WSL agents without L: while keeping Git ledger authoritative for edits | `cross-agent-structured-ledger-projection-v1` | `work-progress/projects/2026-08-02_cross-agent-structured-ledger-projection-v1.md` |
+| 2026-08-02 | `CAD-20260802-governance-appbuilder-authority-split` | Governance MCP owns constitutional capture/closeout validation; App Builder owns execution, harvest, Bible sync, and cache compile | Prevents protocol duplication and wrong closeout authority | `north-star-compounding-proof-v1` | `work-progress/WORKSPACE_CONTEXT.md` |
+| 2026-08-03 | `CAD-20260803-ryzen9desk-managed-executor` | Routine RYZEN9DESK work uses self-hosted GitHub Actions runner + allowlisted `job_profile`; SSH is break-glass only | Fixes wrong-host execution (`ryzen9desk-wsl2-canonical-workspace-v1` blocked on WESLEY_WORK) | `ryzen9desk-managed-executor-v1` | `work-progress/projects/2026-08-03_ryzen9desk-managed-executor-v1.md` |
+| 2026-08-03 | `CAD-20260803-synology-primary-dev-before-prod` | `project-folder-synology-primary-v1` productionization stays **HALTED** until `project-folder-synology-primary-v1-dev-environment` gates pass | Integration PASS ≠ production-ready; prod productionization previously FAILED | `project-folder-synology-primary-v1` | `work-progress/projects/project-folder-synology-primary-v1.md` |
+| 2026-08-03 | `CAD-20260803-cross-agent-proof-receipts-exception` | Committed `artifacts/agent-runs/<work-package>/` JSON receipts are **approved** in Cross-Agent when they are compact verification proof, not build artifacts | Reconciles "no generated artifacts" rule with durable closeout evidence | This hygiene plan | `AGENT_START_HERE.md` |
+| 2026-08-03 | `CAD-20260803-retrieval-failover-layered` | L: BY-KIND first for suite status; Supabase projection second; Git `ACTIVE_WORK.md` third; Revu/estimating topics fail-closed without L: | One failover contract for all agents | This hygiene plan | `handoffs/CURRENT_HANDOFF.md`, `plans/2026-08-03_cross-agent-repo-hygiene-and-agent-investigation-v1.md` |
 
 ## Agent Fast Path
 
-**Decision ID:** `CAD-20260802-cross-agent-ledger-machine-front-door`  
-**Authority:** CG-Platform-Governance-MCP (registry-approved)  
-**Rule:** Cross-Agent is the human ledger — coordination notes and decisions live here; seeding engines live in CG-AppBuilder-MCP only.  
-**Machine front door:** `L:\Capital-Glass-Intelligence-Hub\MASTER_INDEX.md` for retrieval; Z canonical cache for promoted compacts.  
-**Do not:** treat chat transcripts, host-local caches, or Supabase pointer artifacts as canonical note bodies.
+**Primary decision:** `CAD-20260802-cross-agent-ledger-machine-front-door`  
+**Authority:** Cross-Agent (human ledger) + L: index (machine retrieval) + owner repos (implementation)  
+**Rule:** Cross-Agent describes work; seeds and tooling live in owner repos (especially `CG-AppBuilder-MCP`).  
+**Machine front door:** `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index` (WSL) or `L:\Capital-Glass-Intelligence-Hub\00-master-index` (Windows).  
+**Do not:** treat chat transcripts, unqualified local paths, or Supabase alone as canonical for Revu/estimating index topics when L: is mountable.
