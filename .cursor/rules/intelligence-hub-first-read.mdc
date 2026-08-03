@@ -1,0 +1,123 @@
+---
+description: Intelligence Hub first-read — mandatory compact index retrieval before Revu, estimating, MCP, or suite-status investigation
+alwaysApply: true
+canonicalOwner: CG-AppBuilder-MCP
+canonicalPath: agent-packs/three-way-agent/rules/intelligence-hub-first-read.mdc
+generatedCopy: true
+ruleVersion: 1.0.0
+canonicalContentHash: 0c0c5b332adf90681b07b239249a35de51c1c6a016036f5ea13210777e0d5fa4
+---
+
+# Intelligence Hub first-read (mandatory)
+
+For **Revu / estimating / MCP / suite-status** questions, **retrieve from the Intelligence Hub first**. Inspect repos only when the index points there.
+
+This is a **mechanical gate**, not a preference. Violations (repo-wide grep, subagents, or full L: scan before compact slices) invalidate the answer.
+
+## Trigger topics
+
+Apply when the task may involve any of:
+
+- Revu MCP, Bluebeam Revu, CapitalGlassRevu, plan markup, takeoff
+- Computer Estimator, opening detection, `cg-opening-locator-v1`, parser evidence
+- Suite MCP status, work packages, blockers, active ledger
+- Bid Composer estimating intake, `revu-production-takeoff-pilot-v1`
+- `revu-opening-detection-top10-v1`, `revu-mcp-production-workflow-locked`
+
+## Mount check (fail closed)
+
+```bash
+test -d /mnt/l/Capital-Glass-Intelligence-Hub/00-master-index
+```
+
+| Result | Action |
+| --- | --- |
+| Directory missing | Report **`L_DRIVE_NOT_MOUNTED_IN_WSL`** and stop. Do not guess from repo grep. |
+| Directory present | Continue mandatory retrieval order below. |
+
+Windows path: `L:\Capital-Glass-Intelligence-Hub\00-master-index`
+
+## Mandatory retrieval order
+
+**Do not** run repo-wide grep, launch explore subagents, or recursively scan L: before these steps.
+
+### 1. Front door
+
+`/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index`
+
+Read `AGENT_START_HERE.md` and `INDEX.json` when topic scope is unclear.
+
+### 2. Compact slices (required)
+
+Read in this order (small JSON only):
+
+1. `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/active-work-blockers.json`
+2. `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/mcp-servers.json`
+3. `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/cross-agent-master-work/` (project pointers for the active topic)
+
+Optional only when blockers/MCP slice insufficient:
+
+- `BY-KIND/active-work-open-actions.json`
+- `AGENT_BUILD_CATALOG.json` (lookup by id, not full-file injection)
+
+### 3. Revu MCP keyword targets
+
+When the question touches Revu MCP or plan markup, search **only within the slices above** for:
+
+- `revu-mcp-production-workflow-locked`
+- `revu-opening-detection-top10-v1`
+- `revu-production-takeoff-pilot-v1`
+- `cg-opening-locator-v1`
+- `Computer Estimator`, `CapitalGlassRevu`, `Bid Composer`
+
+### 4. Answer from indexed facts first
+
+State conclusions from compact/indexed facts before opening any repo file.
+
+### 5. Repo inspection (index-directed only)
+
+Open source artifacts **only** when the index provides an explicit pointer (project file path, contract path, knowledge build path).
+
+Forbidden before index retrieval completes:
+
+- Repo-wide `grep` / codebase search across suite repos
+- `Task` / explore subagents for broad discovery
+- Full-drive or recursive L: scan outside `00-master-index`
+
+## Cache / index logging (required in response)
+
+Report exactly one primary retrieval outcome:
+
+| Code | Meaning |
+| --- | --- |
+| `INDEX_HIT` | Compact slices contained enough facts to answer |
+| `INDEX_MISS` | Slices read but topic not indexed; name missing pointer before repo fallback |
+| `L_DRIVE_NOT_MOUNTED_IN_WSL` | Mount check failed; stopped |
+| `CACHE_HIT` | Auto v3.2 / compiled context pack reused with matching authority |
+| `CACHE_MISS` | No reusable compiled pack; index slices were live-read |
+
+When both apply, log index outcome first, then cache outcome.
+
+## Acceptance example — “Can Revu MCP mark up plans on its own?”
+
+From index only, in under 30 seconds, without subagents or repo grep first:
+
+- **No** unattended production markup yet.
+- **Computer Estimator** owns detection.
+- **Revu MCP / CapitalGlassRevu** owns approved markup placement and read-back.
+- **Human estimator approval** is mandatory.
+- **Bid Composer** receives only structured, approved quantities.
+- **Next package:** `revu-production-takeoff-pilot-v1`.
+- **Blocker:** `revu-mcp-production-workflow-locked`.
+
+Log: `INDEX_HIT` (and `CACHE_HIT` or `CACHE_MISS` if compile lane was checked).
+
+## AI cache lane (material sessions)
+
+When Auto v3.2 material preflight applies, prefer compiled authority when `cacheKeyHash` matches. Index slices remain the **first** read even when cache exists. Do not skip index retrieval because a cache pack is present.
+
+## Related authority
+
+- Hub front door: `L:/Capital-Glass-Intelligence-Hub/00-master-index/AGENT_START_HERE.md`
+- Cross-Agent project files: `CapitalGlass-Cross-Agent/work-progress/projects/`
+- Suite cache authority: `Z:/Capital-Glass-Intelligence-Hub/AI-Cache-Authority` (compile/reuse lane; L: is retrieval mirror)
