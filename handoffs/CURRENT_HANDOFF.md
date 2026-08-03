@@ -48,6 +48,18 @@ Use this order for **suite status, blockers, and active work** — not for Revu/
 
 ---
 
+## Index preflight estate rollout (2026-08-03)
+
+| Item | Status |
+| --- | --- |
+| Estate rule propagation | **PASS** — `cross-agent-index-preflight-estate-wide-v1` (26 targets SYNCED) |
+| Office Admin absorption | **Partial** — rule on `chore/cross-agent-index-preflight-estate-wide-v1` @ `17ab7ae`; merge/rebase into owner branch before absorbed |
+| Next gate | **`FRESH_CURSOR_INDEX_DOGFOOD_PASS`** — `sessionReceiptPath` + first-action index evidence + `rawScanRequired` honored (fresh session only) |
+
+Artifacts: `CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-index-preflight-estate-wide-v1/`
+
+---
+
 ## Top open work (from project index)
 
 | Priority | Project | Status | Next action |

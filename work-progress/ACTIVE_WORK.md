@@ -21,6 +21,17 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 ## Current saved work
 
+### 2026-08-03 CT — Cross-Agent index preflight estate-wide (rule propagation complete)
+
+| Field | Value |
+| --- | --- |
+| Work package | `cross-agent-index-preflight-estate-wide-v1` |
+| Verdict | **CROSS_AGENT_INDEX_PREFLIGHT_ESTATE_WIDE_PASS** — 26 SYNCED, 6 EXCLUDED |
+| Artifacts | CG-AppBuilder-MCP `artifacts/agent-runs/cross-agent-index-preflight-estate-wide-v1/` (`coverage-table.json`, `operational-verdict.json`, `closeout-manifest.json`) |
+| Preserved | `PREFLIGHT_INDEX_UTILIZATION_V1_PASS`; `PREFLIGHT_INDEX_3WAY_INTEGRATION_PASS`; `AUTO_PUBLISHER_V1_1_STAGED_NOT_ACTIVE` |
+| Ledger note — Office Admin | Functionally covered; **not owner-branch absorbed**. Side branch `chore/cross-agent-index-preflight-estate-wide-v1` @ `17ab7ae` needs normal merge/rebase before absorption. |
+| Next promotion | **`FRESH_CURSOR_INDEX_DOGFOOD_PASS`** — not more rule copying. Requires `sessionReceiptPath`, first-action evidence, `rawScanRequired=false` honored in a **fresh** Cursor session (build chats do not count). |
+
 ### 2026-08-03 CT — Cross-thread platform state harvest
 
 | Field | Value |
