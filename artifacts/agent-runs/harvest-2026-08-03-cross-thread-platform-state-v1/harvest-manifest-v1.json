@@ -80,16 +80,16 @@
   ],
   "projection": {
     "projectionSyncStatus": "synced",
-    "hubPublishStatus": "blocked",
+    "hubPublishStatus": "published",
     "projectionReceiptRef": "CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-structured-ledger-projection-v1/ingest-apply-receipt.json",
-    "hubPublishReceiptRef": null,
-    "hubPublishBlocker": "EPERM on L: rollback copy during publish-active-work-ledger (WSL mount permissions)",
+    "hubPublishReceiptRef": "Data-Extraction/artifacts/agent-runs/active-ledger-drain-and-intelligence-hub-sync-v1/phase-1b-publish-receipt.json",
+    "hubPublishBlocker": null,
     "syncCommandChain": [
       "npm run harvest:validate",
       "CROSS_AGENT_LEDGER_INGEST_APPROVED=1 npm run cross-agent-ledger:ingest -- --apply",
       "INTELLIGENCE_HUB_ROOT=/mnt/l/Capital-Glass-Intelligence-Hub npm run agent-research-library:publish-active-work-ledger"
     ],
-    "note": "Supabase projection synced 2026-08-03; L: hub publish blocked on EPERM — operator retry from writable L: session."
+    "note": "Supabase projection and L: hub publish synced 2026-08-03 at Cross-Agent 8b4b155; WSL drvfs copyFileSync workaround applied in Data-Extraction publish helper."
   },
   "ledgerLineage": {
     "ledgerPath": "work-progress/ACTIVE_WORK.md",
@@ -325,8 +325,8 @@
         },
         {
           "repo": "CapitalGlass-Office-Admin",
-          "sha": "0e1c5eb4deff6b9279e931a65a97b254a007d545",
-          "note": "owner runbook indexed"
+          "sha": "820a956",
+          "note": "owner runbook pushed feat/ryzen9desk-managed-executor-office-admin-runbook-v1 (PR #52); cherry-pick of 0e1c5eb"
         }
       ],
       "nextAction": "Runner bootstrap remains CG-AppBuilder-MCP mission; do not claim MANAGED_EXECUTOR_ONLINE",

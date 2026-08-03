@@ -1,6 +1,6 @@
 # Harvest summary — derived view
 
-**Authority:** `harvest-manifest-v1.json` (`1ac11bb3a042…`)
+**Authority:** `harvest-manifest-v1.json` (`efadc8b5d267…`)
 **Work package:** `harvest-2026-08-03-cross-thread-platform-state-v1`
 **Mission class:** `harvest`
 **Verdict:** `HARVEST_COMPLETE`
@@ -29,5 +29,5 @@
 
 ## Projection sync
 
-Status: `synced` (hub: `blocked`)
+Status: `synced` (hub: `published`)
 
