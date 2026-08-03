@@ -88,13 +88,18 @@ bash ~/repos/CG-AppBuilder-MCP/scripts/ci/ensure-wsl-l-hub-mount.sh
 - Prior `SUPABASE_PROJECTION_MISSING` was a local CLI-auth false negative caused by bare Supabase CLI 401.
 - Host check still `HOST_MODE_BLOCKED` because PWD was `/mnt/c/Developer/repos/CG-AppBuilder-MCP`.
 
-## Wave 4 next durable slice
+## Wave 4 durable repair status: implemented locally
 
-Package MCP drift prevention in `CG-AppBuilder-MCP`:
+MCP drift prevention is implemented in `CG-AppBuilder-MCP` / `Cursor-MCP-Kit`:
 
-1. WSL Doppler launcher parity: node-only `mcp-doppler-launch.mjs`, no `doppler run` double-hop in generated `mcp.json`.
-2. Fold `wire-cursor-app-mcps.mjs` into the WSL repair entrypoint.
-3. Extend Doppler sync to pull `DOPPLER_TOKEN` / `DOPPLER_MCP_TOKEN` into `integrations.env`.
-4. Add `npm run mcp:repair:cursor` for repair + wire + sync + verify + receipt.
+1. New command: `npm run mcp:repair:cursor`.
+2. Flow: `wsl:mcp:repair` -> app-spoke wiring -> MCP JSON normalization -> Doppler sync -> WSL path overrides -> hard verify.
+3. Machine-readable command: `npm run mcp:repair:cursor:json`.
+4. Receipt: `~/.cursor/backups/mcp-repair-cursor-*.json`.
+5. Verified on WESLEY_WORK: `mcp:repair:cursor` PASS and `wsl:mcp:verify` PASS.
+
+Operator next: Cursor -> Settings -> MCP -> Restart, then optional `npm run mcp:ack-cursor-restart`.
+
+Remote promotion next: commit and push ext4 changes in `~/repos/CG-AppBuilder-MCP` and `~/repos/Cursor-MCP-Kit` if Wesley wants them on GitHub.
 
 Keep Vercel MCP auth, Cloudflare OAuth loopback, Railway token fallback, and `mcp:attest` as separate items.
