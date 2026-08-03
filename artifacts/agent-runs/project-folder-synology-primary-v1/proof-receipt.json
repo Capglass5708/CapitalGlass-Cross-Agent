@@ -1,0 +1,72 @@
+{
+  "workPackageId": "project-folder-synology-primary-v1",
+  "slice": "0-3",
+  "startedAt": "2026-08-03T07:20:24.838Z",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "id": "flag_enabled",
+      "ok": true,
+      "detail": "PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED=true"
+    },
+    {
+      "id": "worker_token_configured",
+      "ok": true,
+      "detail": "PROJECT_FOLDER_PROVISION_WORKER_TOKEN set"
+    },
+    {
+      "id": "migration_applied",
+      "ok": true,
+      "detail": "migration tables queryable"
+    },
+    {
+      "id": "ensure_folder_workspace_pending",
+      "ok": true,
+      "detail": "HTTP 202 provisionState=synology_primary_pending"
+    },
+    {
+      "id": "no_path_hints_in_public_response",
+      "ok": true,
+      "detail": "ensure-folder-workspace response has no localPathHint"
+    },
+    {
+      "id": "worker_claim",
+      "ok": true,
+      "detail": "claimed=true jobId=6c3bf8dd-bcd9-49de-8319-23425fba89c4"
+    },
+    {
+      "id": "worker_complete",
+      "ok": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "id": "l_drive_folder_exists",
+      "ok": true,
+      "detail": "/mnt/l/Capital-Glass-Projects/CG-PROOF-mscwggig - Synology Proof mscwggig"
+    },
+    {
+      "id": "synology_primary_active",
+      "ok": true,
+      "detail": "status=active"
+    },
+    {
+      "id": "local_path_hint_server_only",
+      "ok": true,
+      "detail": "hint in DB only, not in public ensure response"
+    },
+    {
+      "id": "provision_job_succeeded",
+      "ok": true,
+      "detail": "status=succeeded"
+    }
+  ],
+  "valuesPrinted": false,
+  "projectId": "e15f1184-72db-47fc-9ba1-f7e9c2f8b02c",
+  "folderSegment": "CG-PROOF-mscwggig - Synology Proof mscwggig",
+  "jobId": "6c3bf8dd-bcd9-49de-8319-23425fba89c4",
+  "primaryFolderRoot": "/mnt/l/Capital-Glass-Projects/CG-PROOF-mscwggig - Synology Proof mscwggig",
+  "finishedAt": "2026-08-03T07:21:40.656Z",
+  "folderPathsCreated": 48,
+  "deployedRoutesVerified": false,
+  "deployNote": "Production documents.capitalglasstxapps.com returns 405 on claim/complete until CapitalGlass-Documents deploy includes new routes."
+}
