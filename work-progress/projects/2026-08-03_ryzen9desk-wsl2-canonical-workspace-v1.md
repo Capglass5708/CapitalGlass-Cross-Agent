@@ -58,11 +58,13 @@ Make RYZEN9DESK use WSL2 as the default Cursor and Capital Glass agent environme
 
 ## Next operator action
 
+**Preferred path (2026-08-03):** use managed executor `ryzen9desk-managed-executor-v1` — dispatch `wsl2-canonical-setup` from WESLEY_WORK via GitHub Actions instead of manual SSH. See `work-progress/projects/2026-08-03_ryzen9desk-managed-executor-v1.md`.
+
 ### A. WESLEY_WORK first
 
-Commit and push `CG-AppBuilder-MCP` ryzen9desk tooling to a branch RYZEN9DESK can fetch. Cross-Agent ledger on `origin/main` (`d0fe917`) does **not** include `npm run ryzen9desk:wsl2-canonical`. See AppBuilder `prep-accessibility-receipt.json`.
+Commit and push `CG-AppBuilder-MCP` ryzen9desk + executor tooling to a branch RYZEN9DESK runner can fetch.
 
-### B. RYZEN9DESK (no blind `git pull`)
+### B. RYZEN9DESK (legacy manual path — use executor when runner is online)
 
 ```bash
 hostname
