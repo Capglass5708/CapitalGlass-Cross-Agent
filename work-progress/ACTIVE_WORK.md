@@ -13,7 +13,7 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-08-03 |
-| Current focus | WSL MCP seed ledger slice complete; next durable slice is drift-proof MCP repair (`mcp:repair:cursor`) across Doppler/env/mcp.json/path layers |
+| Current focus | WSL MCP drift-proof repair implemented: `mcp:repair:cursor` PASS; Cursor MCP restart and optional commit/push remain |
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
@@ -54,7 +54,7 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 | 3 | Reload Cursor MCP after WSL repair Waves 1-3 | Cursor / operator | Pending |
 | 3 | Complete Vercel MCP auth only when Vercel connector is needed | Cursor / Vercel | Pending |
 | 4 | Keep Cloudflare stdio disabled or fix `127.0.0.1:15170` OAuth loopback conflict | Cursor / Cloudflare | Pending |
-| 5 | Package Wave 4 durable MCP repair: WSL Doppler node-only parity, app-spoke wiring, Doppler token sync, `mcp:repair:cursor` | CG-AppBuilder-MCP | Recommended |
+| 5 | Commit and push Wave 4 `mcp:repair:cursor` changes from ext4 worktrees if remote promotion is desired | CG-AppBuilder-MCP / Cursor-MCP-Kit | Pending operator decision |
 | 6 | Run Cursor seeding handoff `cross-agent-seed-wsl-mcp-backfill-v1` from `~/repos/CG-AppBuilder-MCP` | CG-AppBuilder-MCP | Pending |
 | 7 | Re-run gated ingest after ledger updates (`cross-agent-ledger:ingest --apply`) | CG-AppBuilder-MCP | Recurring |
 | 8 | Run drift probe when hub/projection may be stale | CG-AppBuilder-MCP | Recurring |
@@ -65,15 +65,29 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 
 ## Progress log (latest entries)
 
+### 2026-08-03 CT — Wave 4 `mcp:repair:cursor` PASS
+
+| Field | Value |
+| --- | --- |
+| Work package | `wsl-mcp-cursor-doppler-promptops-hardening-v1` follow-on |
+| Status | **Implemented and verified locally** |
+| Command | `npm run mcp:repair:cursor` |
+| Machine output | `npm run mcp:repair:cursor:json` |
+| Receipt | `~/.cursor/backups/mcp-repair-cursor-*.json` |
+| Verification | PASS — 26 servers, 8 app spokes, ext4 paths, Doppler node-only wiring OK |
+| Changed repos | `~/repos/CG-AppBuilder-MCP`, `~/repos/Cursor-MCP-Kit` |
+| Operator next | Cursor -> Settings -> MCP -> Restart, then optional `npm run mcp:ack-cursor-restart` |
+| Remote promotion | Pending if Wesley wants changes committed and pushed |
+
 ### 2026-08-03 CT — Wave 4 drift-proof MCP repair scoped
 
 | Field | Value |
 | --- | --- |
 | Work package | `wsl-mcp-cursor-doppler-promptops-hardening-v1` follow-on |
-| Status | **Recommended next implementation** |
+| Status | **Implemented and verified locally** |
 | Root cause class | Drift across Doppler truth, `integrations.env`, `mcp.json`, and WSL/Windows path semantics |
-| Smallest slice | A+B+C+script: WSL Doppler node-only parity; repair includes app spokes; sync pulls Doppler MCP tokens; add `npm run mcp:repair:cursor` |
-| Operator command today | `wsl:mcp:verify -- --json`, `mcp:suite-health`, `integrations-preflight.mjs`, then Cursor MCP restart |
+| Delivered slice | `npm run mcp:repair:cursor`: repair + app spokes + normalization + Doppler token sync + WSL path overrides + hard verify + receipt |
+| Verification | `mcp:repair:cursor` PASS; `wsl:mcp:verify` PASS with 26 servers, 8 spokes, ext4 paths, Doppler wiring OK |
 | Separate operator item | Add `RAILWAY_API_TOKEN` to Doppler for headless Railway fallback |
 
 ### 2026-08-03 UTC — WSL seed structured-ledger projection IN_SYNC
