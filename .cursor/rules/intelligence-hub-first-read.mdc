@@ -4,8 +4,8 @@ alwaysApply: true
 canonicalOwner: CG-AppBuilder-MCP
 canonicalPath: agent-packs/three-way-agent/rules/intelligence-hub-first-read.mdc
 generatedCopy: true
-ruleVersion: 1.0.0
-canonicalContentHash: 0c0c5b332adf90681b07b239249a35de51c1c6a016036f5ea13210777e0d5fa4
+ruleVersion: 1.1.0
+canonicalContentHash: a9be1be8c68f6fd1b39bde108472dc627ae3ff5e26fb9c863cb340255af8d217
 ---
 
 # Intelligence Hub first-read (mandatory)
@@ -24,18 +24,43 @@ Apply when the task may involve any of:
 - Bid Composer estimating intake, `revu-production-takeoff-pilot-v1`
 - `revu-opening-detection-top10-v1`, `revu-mcp-production-workflow-locked`
 
-## Mount check (fail closed)
+**Two retrieval classes** (do not conflate):
+
+| Class | Topics | L: unmounted behavior |
+| --- | --- | --- |
+| **Revu / estimating / MCP deep** | Revu markup, opening detection, parser evidence, estimating intake | **Fail closed** — `L_DRIVE_NOT_MOUNTED_IN_WSL`; no repo grep substitute |
+| **Suite status / blockers / active work** | Work packages, blockers, open actions, host authority, ledger state | **Layered failover** — see § Retrieval failover below |
+
+Decision ID: `CAD-20260803-retrieval-failover-layered` (`CapitalGlass-Cross-Agent/decisions/DECISION_LOG.md`).
+
+## Mount check
 
 ```bash
 test -d /mnt/l/Capital-Glass-Intelligence-Hub/00-master-index
 ```
 
-| Result | Action |
-| --- | --- |
-| Directory missing | Report **`L_DRIVE_NOT_MOUNTED_IN_WSL`** and stop. Do not guess from repo grep. |
-| Directory present | Continue mandatory retrieval order below. |
-
 Windows path: `L:\Capital-Glass-Intelligence-Hub\00-master-index`
+
+| Result | Revu / estimating / MCP deep | Suite status / blockers / active work |
+| --- | --- | --- |
+| Directory **missing** | Report **`L_DRIVE_NOT_MOUNTED_IN_WSL`** and stop | Use **layered failover** (§ below); log `L_DRIVE_NOT_MOUNTED_IN_WSL` then continue failover lane |
+| Directory **present** | Continue mandatory L: retrieval order below | Continue mandatory L: retrieval order below |
+
+## Retrieval failover (layered contract)
+
+**Single contract** — also recorded in `CapitalGlass-Cross-Agent/handoffs/CURRENT_HANDOFF.md`.
+
+Use this order for **suite status, blockers, and active work only** when L: `00-master-index` is not mounted or compact slices are stale:
+
+| Priority | Source | When |
+| --- | --- | --- |
+| 1 | L: `BY-KIND/*.json` + `cross-agent-master-work/` | `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index` is mounted |
+| 2 | Supabase structured-ledger projection | L: missing; run drift probe / ingest from `CG-AppBuilder-MCP` with Doppler (`cross-agent-ledger:ingest`, `cross-agent-ledger:drift-probe`) |
+| 3 | Git ledger (Cross-Agent) | `work-progress/ACTIVE_WORK.md` + `work-progress/projects/INDEX.md` + `handoffs/CURRENT_HANDOFF.md` |
+
+**Forbidden:** treating Supabase projection or Git ledger alone as sufficient for **Revu / estimating / MCP deep** topics when L: is mountable — those topics remain L:-first and fail closed without L:.
+
+**Cleared blockers (do not re-block):** structured-ledger ingest HOLD, `/mnt/c` host blocker, `SUPABASE_PROJECTION_MISSING` false negative when WSL ext4 + Doppler ingest is operational. Re-run ingest only after **new** `ACTIVE_WORK.md` edits.
 
 ## Mandatory retrieval order
 
@@ -53,11 +78,14 @@ Read in this order (small JSON only):
 
 1. `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/active-work-blockers.json`
 2. `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/mcp-servers.json`
-3. `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/cross-agent-master-work/` (project pointers for the active topic)
+3. `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/host-authority.json`
+4. `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/cross-agent-master-work/` (project pointers for the active topic)
 
 Optional only when blockers/MCP slice insufficient:
 
 - `BY-KIND/active-work-open-actions.json`
+- `BY-KIND/whats-active-now.json`
+- `BY-KIND/active-work-ledger.json` (full ledger — explicit retrieval only)
 - `AGENT_BUILD_CATALOG.json` (lookup by id, not full-file injection)
 
 ### 3. Revu MCP keyword targets
@@ -92,11 +120,13 @@ Report exactly one primary retrieval outcome:
 | --- | --- |
 | `INDEX_HIT` | Compact slices contained enough facts to answer |
 | `INDEX_MISS` | Slices read but topic not indexed; name missing pointer before repo fallback |
-| `L_DRIVE_NOT_MOUNTED_IN_WSL` | Mount check failed; stopped |
+| `L_DRIVE_NOT_MOUNTED_IN_WSL` | Mount check failed; **Revu/estimating stops**; suite status may continue failover lane |
+| `FAILOVER_SUPABASE` | L: unavailable; used structured-ledger projection |
+| `FAILOVER_GIT_LEDGER` | L: and projection insufficient; used Cross-Agent Git ledger |
 | `CACHE_HIT` | Auto v3.2 / compiled context pack reused with matching authority |
 | `CACHE_MISS` | No reusable compiled pack; index slices were live-read |
 
-When both apply, log index outcome first, then cache outcome.
+When both apply, log index or failover outcome first, then cache outcome.
 
 ## Acceptance example — “Can Revu MCP mark up plans on its own?”
 
@@ -120,4 +150,6 @@ When Auto v3.2 material preflight applies, prefer compiled authority when `cache
 
 - Hub front door: `L:/Capital-Glass-Intelligence-Hub/00-master-index/AGENT_START_HERE.md`
 - Cross-Agent project files: `CapitalGlass-Cross-Agent/work-progress/projects/`
+- Cross-Agent failover contract: `CapitalGlass-Cross-Agent/handoffs/CURRENT_HANDOFF.md` (§ Retrieval failover)
+- Structured ledger ingest: `CG-AppBuilder-MCP` — `npm run cross-agent-ledger:ingest`, `npm run cross-agent-ledger:drift-probe`
 - Suite cache authority: `Z:/Capital-Glass-Intelligence-Hub/AI-Cache-Authority` (compile/reuse lane; L: is retrieval mirror)
