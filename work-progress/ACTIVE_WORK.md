@@ -13,7 +13,7 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-08-02 |
-| Current focus | Structured ledger projection **Phases 0–3 milestone PASS** — Git canonical, Supabase derived index `IN_SYNC`; operational ingest + drift probe live |
+| Current focus | WSL MCP / Cursor / Doppler / PromptOps hardening backfilled; structured ledger projection remains Git canonical and Supabase derived index `IN_SYNC` |
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
@@ -23,6 +23,9 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 | Repo | Commit | Status | Notes |
 | --- | --- | --- | --- |
+| CG-AppBuilder-MCP | PR #267 | Merged | PromptOps suite index refresh + ext4 repos-root fixes |
+| CapitalGlassRevu | PR #5 | Merged | WSL root-fs preflight, application-bible/foundation CI fixes |
+| CapitalGlass-Cross-Agent | `15f0e5e` | Pushed | Added WSL MCP hardening project file from pasted Cursor results |
 | CG-AppBuilder-MCP | `63dbeb8c` | Pushed | Structured ledger Phase 1–3 milestone — ingest, drift probe, preflight wiring |
 | CG-AppBuilder-MCP | PR #265 | Merged | ledgerOnly compact v2 + active-ledger spine (`c32c331f`; supersedes #264) |
 | CG-Platform-Governance-MCP | `a5ce4c3` | Pushed | Structured ledger schema Phase 0 **CURRENT** |
@@ -45,14 +48,29 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 
 | Priority | Action | Owner repo | Status |
 | --- | --- | --- | --- |
-| 1 | Re-run gated ingest after ledger updates (`cross-agent-ledger:ingest --apply`) | CG-AppBuilder-MCP | Recurring |
-| 2 | Run drift probe when hub/projection may be stale | CG-AppBuilder-MCP | Recurring |
-| 3 | Publish L: hub slices after ledger edits | Data-Extraction | Recurring |
-| 4 | Restart MCP for Governance compounding tools | Cursor / local MCP | Pending |
+| 1 | Reopen Cursor from `/home/wesle/repos/CG-AppBuilder-MCP` or WSL `.code-workspace`, not `/mnt/c/Developer/repos` | Cursor / operator | Pending |
+| 2 | Reload Cursor MCP after WSL repair Waves 1-3 | Cursor / operator | Pending |
+| 3 | Complete Vercel MCP auth only when Vercel connector is needed | Cursor / Vercel | Pending |
+| 4 | Keep Cloudflare stdio disabled or fix `127.0.0.1:15170` OAuth loopback conflict | Cursor / Cloudflare | Pending |
+| 5 | Investigate `mcp:attest` auth smoke / index parity separately from MCP path repair | CG-AppBuilder-MCP | Pending |
+| 6 | Re-run gated ingest after ledger updates (`cross-agent-ledger:ingest --apply`) | CG-AppBuilder-MCP | Recurring |
+| 7 | Run drift probe when hub/projection may be stale | CG-AppBuilder-MCP | Recurring |
+| 8 | Publish L: hub slices after ledger edits | Data-Extraction | Recurring |
+| 9 | Restart MCP for Governance compounding tools | Cursor / local MCP | Pending |
 
 **Default agent preflight (machine-readable):** `openActions` + `blockers` only — L: hub slices when available, else Supabase derived projection (`compact-slices-only`). Not full ledger. `currentFocus` human-only (`whats-active-now --include-current-focus`).
 
-## Progress log (last 3 entries)
+## Progress log (latest entries)
+
+### 2026-08-02 CT — WSL MCP / Cursor / Doppler / PromptOps hardening backfilled
+
+| Field | Value |
+| --- | --- |
+| Work package | `wsl-mcp-cursor-doppler-promptops-hardening-v1` |
+| Status | **Active** — WSL MCP repair Waves 1-3 complete; path coherence `PARTIAL`; Doppler repaired; AppBuilder PR #267 and Revu PR #5 merged |
+| Project file | `work-progress/projects/2026-08-02_wsl-mcp-cursor-doppler-promptops-hardening-v1.md` |
+| Verification | `wsl:mcp:smoke` 31/31 PASS; durable bootstrap 20/20 PASS; Doppler probe OK; path-coherence fallback `wsl:mcp:verify` PASS / `wsl:mcp:repair` NO_CHANGE |
+| Next action | Reopen Cursor from `/home/wesle/repos/CG-AppBuilder-MCP`, reload MCP, then handle Vercel auth / Cloudflare loopback / `mcp:attest` separately |
 
 ### 2026-08-02 CT — structured ledger projection Phases 1–3 milestone PASS
 
