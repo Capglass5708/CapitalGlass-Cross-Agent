@@ -2,7 +2,11 @@
   "workPackageId": "project-folder-synology-primary-v1",
   "slice": "0-3",
   "startedAt": "2026-08-03T07:20:24.838Z",
+  "finishedAt": "2026-08-03T07:21:40.656Z",
+  "integrationVerdict": "PASS",
+  "productionizationVerdict": "PRODUCTIONIZATION_FAILED",
   "verdict": "PASS",
+  "verdictNote": "integrationVerdict only; see productionization block for live deploy status",
   "checks": [
     {
       "id": "flag_enabled",
@@ -65,8 +69,66 @@
   "folderSegment": "CG-PROOF-mscwggig - Synology Proof mscwggig",
   "jobId": "6c3bf8dd-bcd9-49de-8319-23425fba89c4",
   "primaryFolderRoot": "/mnt/l/Capital-Glass-Projects/CG-PROOF-mscwggig - Synology Proof mscwggig",
-  "finishedAt": "2026-08-03T07:21:40.656Z",
   "folderPathsCreated": 48,
   "deployedRoutesVerified": false,
+  "productionization": {
+    "verdict": "PRODUCTIONIZATION_FAILED",
+    "updatedAt": "2026-08-03T15:17:00.000Z",
+    "shipped": {
+      "capitalGlassDocuments": ["c1eee88", "440ce33"],
+      "capitalGlassProjectDashboard": "8125afd",
+      "dopplerCgDocumentsPrd": [
+        "PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED",
+        "PROJECT_FOLDER_PROVISION_WORKER_TOKEN"
+      ],
+      "vercelProductionEnvSynced": true
+    },
+    "failed": {
+      "productionDeploy": {
+        "ok": false,
+        "runs": [
+          {
+            "id": "30793778182",
+            "url": "https://github.com/Capglass5708/CapitalGlass-Documents/actions/runs/30793778182",
+            "conclusion": "cancelled",
+            "detail": "hung on Vercel production deploy"
+          },
+          {
+            "id": "30826482567",
+            "url": "https://github.com/Capglass5708/CapitalGlass-Documents/actions/runs/30826482567",
+            "conclusion": "cancelled",
+            "detail": "cancelled per STOP"
+          }
+        ]
+      },
+      "productionRoutes": {
+        "ok": false,
+        "claimHttp": 405,
+        "completeHttp": 405
+      },
+      "wesleydeskWorker": {
+        "ok": false,
+        "detail": "not installed; SSH Host key verification failed from WESLEY_WORK; poll claim_failed:405"
+      },
+      "capitalPipelineE2E": {
+        "ok": false,
+        "detail": "no real production project create proven"
+      }
+    },
+    "safeState": {
+      "flagTrueButOldBuild": true,
+      "proofProjectSampleOnly": true,
+      "slice4NotStarted": true
+    },
+    "recoveryOrder": [
+      "Fix Document Center production deploy hang in deploy-production.yml / Vercel deploy path",
+      "Complete one successful production deploy of CapitalGlass-Documents",
+      "Verify claim/complete routes return auth/JSON behavior, not 405",
+      "Install office-project-folder-provision worker on WESLEYDESK with Doppler cg-documents/prd",
+      "Create one real project via /capital-pipeline",
+      "Confirm L:\\Capital-Glass-Projects\\{folder_segment}\\ exists and DB synology_primary_active",
+      "Only after that, consider Slice 4 SharePoint mirror"
+    ]
+  },
   "deployNote": "Production documents.capitalglasstxapps.com returns 405 on claim/complete until CapitalGlass-Documents deploy includes new routes."
 }
