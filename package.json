@@ -1,0 +1,13 @@
+{
+  "name": "capital-glass-cross-agent",
+  "private": true,
+  "type": "module",
+  "description": "Capital Glass coordination repo — harvest authority tooling",
+  "scripts": {
+    "harvest:sync-derived": "node scripts/harvest/sync-derived.mjs",
+    "harvest:validate": "node scripts/harvest/validate-harvest.mjs",
+    "harvest:render-index": "node scripts/harvest/render-harvest-index.mjs",
+    "harvest:coverage": "node scripts/harvest/sync-derived.mjs && node scripts/harvest/print-coverage.mjs",
+    "test:harvest": "node scripts/tests/run-harvest-authority-system.test.mjs"
+  }
+}

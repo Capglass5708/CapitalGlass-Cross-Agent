@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-03-cross-thread-platform-state-v1",
+  "packetId": "ryzen9desk-managed-executor-v1",
+  "state": "RUNNER_BOOTSTRAP_CHECKPOINT_STARTED",
+  "packetVerdict": "CODE_READY_FOR_RUNNER_BOOTSTRAP",
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "CG-AppBuilder-MCP mission: RYZEN9DESK WSL install from main + dispatch executor-smoke receipt",
+  "evidenceRefs": [
+    "CG-AppBuilder-MCP/.github/workflows/ryzen9desk-executor-dispatch.yml",
+    "CG-AppBuilder-MCP/scripts/executor/ryzen9desk-executor-allowlist.json"
+  ],
+  "doNotAdvance": [
+    "MANAGED_EXECUTOR_ONLINE",
+    "RYZEN9DESK acceptance",
+    "GPU smoke",
+    "MCP verify",
+    "WSL canonicalization"
+  ],
+  "advancementGate": "executor-smoke receipt produced on RYZEN9DESK only",
+  "contentHash": "2162e2694e0bf2541bc7b30618b365086faebe07bd1a8df5901250a747fe559b"
+}

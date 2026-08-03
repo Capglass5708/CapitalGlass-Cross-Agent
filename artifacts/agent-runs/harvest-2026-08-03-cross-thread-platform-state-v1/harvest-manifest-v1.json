@@ -1,0 +1,347 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-03-cross-thread-platform-state-v1",
+  "missionClass": "harvest",
+  "sourceCommitSha": "99d69141bdcf81ab002af8438c8131888ce0d2ce",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-03T18:45:00.000Z",
+  "updatedAt": "2026-08-03T18:46:26.513Z",
+  "retrievalResult": "INDEX_HIT",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "MANAGED_EXECUTOR_ONLINE",
+    "Synology dev hosted env PASS",
+    "Synology production readiness",
+    "Office Admin indexed without owner repo runbook",
+    "WSL migration COMPLETE without per-repo verification"
+  ],
+  "generatedViews": [
+    "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/packet-index.json",
+    "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/HARVEST_SUMMARY.md",
+    "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/receipt.json",
+    "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/compact-records",
+    "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/coverage.json",
+    "work-progress/projects/INDEX.md"
+  ],
+  "validationRefs": [
+    "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/validation-result.json"
+  ],
+  "ownerRepoSummary": [
+    {
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "packetCount": 3
+    },
+    {
+      "ownerRepo": "CapitalGlass-Documents",
+      "packetCount": 1
+    },
+    {
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "packetCount": 1
+    },
+    {
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "packetCount": 1
+    }
+  ],
+  "commitEvidence": [
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "sha": "99d69141bdcf81ab002af8438c8131888ce0d2ce",
+      "role": "harvest-record-commit"
+    },
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "sha": "8fe7cf05534b28da9180df9da08b5d2123dc5dc8",
+      "role": "executor-pr-merge"
+    },
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "sha": "2cd8eba9",
+      "role": "active-ledger-ci-fix"
+    },
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "sha": "3fb8c9bb",
+      "role": "active-ledger-ci-fix"
+    },
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "sha": "8251465",
+      "role": "retrieval-failover-handoff"
+    },
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "sha": "b0c9fe21",
+      "role": "retrieval-failover-rule-sync"
+    }
+  ],
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "syncCommandChain": [
+      "npm run harvest:validate",
+      "npm run cross-agent-ledger:ingest -- --apply (CG-AppBuilder-MCP)",
+      "publish-active-work-ledger (Data-Extraction, operator approval)"
+    ],
+    "note": "Projection and hub publish are separate operator sync steps; not executed during harvest authority upgrade."
+  },
+  "ledgerLineage": {
+    "ledgerPath": "work-progress/ACTIVE_WORK.md",
+    "ledgerContentHashBefore": "f732e0e6f552dc1ee84427318b44adc48ed28d3d42a2a08bd58236c0c500fc97",
+    "ledgerContentHashAfter": "e0e97e145c131e1d48c306afc809ef986be08ff1cfeb5fd7508d27b91b23f7ae"
+  },
+  "supersededClaims": [
+    {
+      "packetId": "ryzen9desk-managed-executor-v1",
+      "claim": "PR #268 open / awaiting merge",
+      "supersededBy": "PR #268 merged to CG-AppBuilder-MCP main at 8fe7cf05",
+      "recordedAt": "2026-08-03T18:45:00.000Z"
+    },
+    {
+      "packetId": "harvest-2026-08-03-cross-thread-platform-state-v1",
+      "claim": "Harvest commit pending in INDEX",
+      "supersededBy": "Harvest committed and pushed at 99d69141",
+      "recordedAt": "2026-08-03T19:30:00.000Z"
+    }
+  ],
+  "packets": [
+    {
+      "packetId": "ryzen9desk-managed-executor-v1",
+      "packetTitle": "RYZEN9DESK managed executor",
+      "state": "RUNNER_BOOTSTRAP_CHECKPOINT_STARTED",
+      "packetVerdict": "CODE_READY_FOR_RUNNER_BOOTSTRAP",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "CG-AppBuilder-MCP/docs/work-packages/ryzen9desk-managed-executor-v1.md",
+      "projectFile": "work-progress/projects/2026-08-03_ryzen9desk-managed-executor-v1.md",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/.github/workflows/ryzen9desk-executor-dispatch.yml",
+        "CG-AppBuilder-MCP/scripts/executor/ryzen9desk-executor-allowlist.json"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "8fe7cf05534b28da9180df9da08b5d2123dc5dc8",
+          "note": "PR #268 merge"
+        }
+      ],
+      "nextAction": "CG-AppBuilder-MCP mission: RYZEN9DESK WSL install from main + dispatch executor-smoke receipt",
+      "advancementGate": "executor-smoke receipt produced on RYZEN9DESK only",
+      "doNotAdvance": [
+        "MANAGED_EXECUTOR_ONLINE",
+        "RYZEN9DESK acceptance",
+        "GPU smoke",
+        "MCP verify",
+        "WSL canonicalization"
+      ],
+      "blockers": [
+        {
+          "id": "runner-offline",
+          "owner": "CG-AppBuilder-MCP",
+          "summary": "Runner service not proven online on RYZEN9DESK"
+        }
+      ],
+      "relatedPackets": [
+        "office-admin-ryzen9desk-managed-executor-bootstrap-v1",
+        "wsl2-native-repo-library-migration-v1"
+      ],
+      "contentHash": "2162e2694e0bf2541bc7b30618b365086faebe07bd1a8df5901250a747fe559b"
+    },
+    {
+      "packetId": "active-ledger-ci-path-and-hash-stability-v1",
+      "packetTitle": "Active ledger CI path and hash stability",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "CG-AppBuilder-MCP/scripts/intelligence-hub/lib/canonical-json.mjs",
+      "projectFile": "work-progress/projects/2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/scripts/tests/run-active-ledger-paths.test.mjs"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "2cd8eba9",
+          "note": "canonical JSON undefined omission"
+        },
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "3fb8c9bb",
+          "note": "CI L mount decoupling"
+        }
+      ],
+      "nextAction": "None unless test:active-ledger-sync regresses on main",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "blockers": [],
+      "relatedPackets": [
+        "harvest-2026-08-03-cross-thread-platform-state-v1"
+      ],
+      "contentHash": "74e4ef4bb15c5c33caa89512433841945c4e3761a74b9bf1d4ecde1c34be844a"
+    },
+    {
+      "packetId": "project-folder-synology-primary-v1-dev-environment",
+      "packetTitle": "Synology-primary dev hosted environment",
+      "state": "HOLD",
+      "packetVerdict": "CONTRACT_PASS_HOSTED_DEV_HOLD",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CapitalGlass-Documents",
+      "ownerMcp": "user-document-center-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "CapitalGlass-Documents/docs/project-folder-synology-primary contract artifacts",
+      "projectFile": "work-progress/projects/project-folder-synology-primary-v1-dev-hosted-environment.md",
+      "evidenceRefs": [
+        "work-progress/projects/project-folder-synology-primary-v1-dev-hosted-environment.md"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Documents",
+          "sha": "d8826e8",
+          "note": "contract PASS"
+        }
+      ],
+      "nextAction": "Resolve Vercel BLOCKED deploy and Supabase dev isolation (owner: CapitalGlass-Documents)",
+      "advancementGate": "hosted dev gates G1-G10 PASS on dev lane",
+      "doNotAdvance": [
+        "Synology dev hosted env PASS",
+        "Synology production readiness",
+        "Production deploy or flag enablement"
+      ],
+      "blockers": [
+        {
+          "id": "vercel-blocked",
+          "owner": "CapitalGlass-Documents",
+          "summary": "Vercel deploy BLOCKED"
+        },
+        {
+          "id": "supabase-i2",
+          "owner": "CapitalGlass-Documents",
+          "summary": "Supabase dev project not isolated"
+        }
+      ],
+      "relatedPackets": [
+        "project-folder-synology-primary-v1"
+      ],
+      "contentHash": "bf6b32597bd477a7c44af3d73a52e05bab860304866e8a77c4b0c6ebeb7edd2c"
+    },
+    {
+      "packetId": "cross-agent-retrieval-failover-v1.1",
+      "packetTitle": "Cross-Agent retrieval failover v1.1",
+      "state": "ADOPTED",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerMcp": null,
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "decisions/DECISION_LOG.md",
+      "projectFile": "handoffs/CURRENT_HANDOFF.md",
+      "evidenceRefs": [
+        "decisions/DECISION_LOG.md",
+        "handoffs/CURRENT_HANDOFF.md"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "8251465",
+          "note": "handoff failover contract"
+        },
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "b0c9fe21",
+          "note": "intelligence-hub-first-read rule sync"
+        }
+      ],
+      "nextAction": "Recurring: use layered failover for suite status when L: unavailable",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "contentHash": "5d88c31c53776a369c419697cee497dc91aa17ffdb1b8af3be911704669f01d5"
+    },
+    {
+      "packetId": "wsl2-native-repo-library-migration-v1",
+      "packetTitle": "WSL2 native repo library migration",
+      "state": "PARTIAL",
+      "packetVerdict": "FILESYSTEM_PASS_OPERATIONAL_CLEANUP_RECORDED",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "CG-AppBuilder-MCP/docs/CURSOR_WSL_REMOTE_SETUP.md",
+      "projectFile": "work-progress/projects/2026-08-03_wsl2-native-repo-library-migration-v1.md",
+      "evidenceRefs": [
+        "work-progress/projects/2026-08-03_wsl2-native-repo-library-migration-v1.md"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "99d69141bdcf81ab002af8438c8131888ce0d2ce",
+          "note": "harvest pointer record"
+        }
+      ],
+      "nextAction": "Per-repo ext4 verification; RYZEN9DESK alignment via separate executor mission",
+      "advancementGate": "per-repo ext4 gate evidence on each suite repo",
+      "doNotAdvance": [
+        "WSL migration COMPLETE without per-repo verification"
+      ],
+      "blockers": [
+        {
+          "id": "per-repo-unverified",
+          "owner": "CG-AppBuilder-MCP",
+          "summary": "Not every repo verified on ext4 canonical root"
+        }
+      ],
+      "relatedPackets": [
+        "ryzen9desk-managed-executor-v1"
+      ],
+      "contentHash": "f7d77875e31b501140ddbe3e10e0484c24aeec2e721e3f20ce11a2979389671d"
+    },
+    {
+      "packetId": "office-admin-ryzen9desk-managed-executor-bootstrap-v1",
+      "packetTitle": "Office Admin RYZEN9DESK executor bootstrap boundary",
+      "state": "NEEDS_OFFICE_ADMIN_INDEXING",
+      "packetVerdict": "CODE_READY_FOR_RUNNER_BOOTSTRAP",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerMcp": "user-office-admin-mcp",
+      "ownerIndexingStatus": "missing",
+      "requiredOwnerArtifact": "CapitalGlass-Office-Admin/docs/runbooks/ryzen9desk-managed-executor-office-admin.md",
+      "projectFile": "work-progress/projects/2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md",
+      "evidenceRefs": [
+        "work-progress/projects/2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "99d69141bdcf81ab002af8438c8131888ce0d2ce",
+          "note": "cross-agent boundary pointer harvest"
+        }
+      ],
+      "nextAction": "Index runbook in CapitalGlass-Office-Admin when owner repo mission runs",
+      "advancementGate": "requiredOwnerArtifact exists in Office Admin repo",
+      "doNotAdvance": [
+        "Office Admin indexed without owner repo runbook",
+        "MANAGED_EXECUTOR_ONLINE"
+      ],
+      "blockers": [
+        {
+          "id": "owner-index-missing",
+          "owner": "CapitalGlass-Office-Admin",
+          "summary": "Owner runbook not indexed in Office Admin repo"
+        }
+      ],
+      "relatedPackets": [
+        "ryzen9desk-managed-executor-v1"
+      ],
+      "contentHash": "68b39f5432594d7a8f1033a285259aeb52b016d38e1d0f02ec62509c805f6362"
+    }
+  ]
+}

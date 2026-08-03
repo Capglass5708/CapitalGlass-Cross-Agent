@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "cross-agent-harvest-verdict-registry-v1@1.0.0",
+  "updatedAt": "2026-08-03T19:30:00.000Z",
+  "definitions": {
+    "harvestVerdict": {
+      "description": "Did the harvest mission complete successfully?",
+      "allowed": ["HARVEST_COMPLETE", "HARVEST_PARTIAL", "HARVEST_BLOCKED", "NOT_RUN"]
+    },
+    "packetVerdict": {
+      "description": "Domain outcome for the work package being harvested",
+      "allowed": [
+        "PASS",
+        "HOLD",
+        "BLOCKED",
+        "READY",
+        "NOT_RUN",
+        "MERGED",
+        "INDEXED",
+        "POINTER_ONLY",
+        "MISSING",
+        "COMPLETE",
+        "PARTIAL",
+        "SUPERSEDED",
+        "CODE_READY_FOR_RUNNER_BOOTSTRAP",
+        "CONTRACT_PASS_HOSTED_DEV_HOLD",
+        "FILESYSTEM_PASS_OPERATIONAL_CLEANUP_RECORDED"
+      ]
+    },
+    "packetState": {
+      "description": "Descriptive current state label",
+      "allowed": [
+        "RUNNER_BOOTSTRAP_CHECKPOINT_STARTED",
+        "COMPLETE",
+        "HOLD",
+        "ADOPTED",
+        "PARTIAL",
+        "NEEDS_OFFICE_ADMIN_INDEXING",
+        "BLOCKED",
+        "NOT_RUN"
+      ]
+    },
+    "ownerIndexingStatus": {
+      "description": "Whether owner repo has indexed the required artifact",
+      "allowed": ["indexed", "pointer-only", "missing", "not-required"]
+    },
+    "advancementGate": {
+      "description": "Evidence required before state promotion",
+      "examples": ["executor-smoke receipt produced on RYZEN9DESK only", "not-required"]
+    },
+    "doNotAdvance": {
+      "description": "Claims or states that must not be promoted without new evidence",
+      "allowedMarkers": ["DO_NOT_ADVANCE", "MANAGED_EXECUTOR_ONLINE"]
+    },
+    "projectionSyncStatus": {
+      "allowed": ["not-run", "synced", "drift", "blocked"]
+    },
+    "hubPublishStatus": {
+      "allowed": ["not-run", "published", "drift", "blocked"]
+    }
+  },
+  "separationRules": [
+    "harvestVerdict answers whether harvest recording completed",
+    "packetVerdict answers domain outcome for the packet work",
+    "packetState is descriptive and may differ from packetVerdict",
+    "advancementGate defines evidence required to promote state",
+    "doNotAdvance lists forbidden premature promotions"
+  ]
+}
