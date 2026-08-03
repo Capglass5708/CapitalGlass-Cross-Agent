@@ -16,7 +16,7 @@ Capture the WSL MCP repair waves, Cursor terminal-flash diagnosis, Doppler MCP t
 | Authority repo | CG-Platform-Governance-MCP for protocol/closeout authority |
 | Execution repo | CG-AppBuilder-MCP |
 | Related repos | CapitalGlassRevu, cg-apps-hub, CapitalGlass-BidComposer, CapitalGlass-Office-Admin, Computer Estimator |
-| Status | **Active — L: online via Tailscale; seed in progress; Cursor still HOST_MODE_BLOCKED until ext4 reopen** |
+| Status | **Ledger seed slice PASS — compact PASS, L: mirror PASS, Supabase projection IN_SYNC at `5ddd274`; MCP host/auth items remain separate** |
 
 ## Repositories involved
 
@@ -381,6 +381,44 @@ But first reopen Cursor from:
 
 Note: ext4 `~/repos/CG-Platform-Governance-MCP` is missing the schema approval file. Sync or symlink that repo to unblock ingest without NTFS fallback.
 
+### Live structured-ledger sync update
+
+Latest pasted Cursor result supersedes the earlier `UNKNOWN / SUPABASE_PROJECTION_MISSING` drift interpretation. The live Supabase projection existed; the local probe was unauthorized when run outside Doppler. After running the ingest through `doppler run` from `cg-mcp/dev`, the structured ledger is current.
+
+| Field | Before | After |
+| --- | --- | --- |
+| Projection ID | `capital-glass-cross-agent/current` | `capital-glass-cross-agent/current` |
+| Supabase project | `xjivcwcyyimjujbchwdf` | `xjivcwcyyimjujbchwdf` |
+| Commit | `7f1448f` | `5ddd274` |
+| Content hash | `89d143dc...` | `9eb1c562...` |
+| Open actions | 4 | 12 |
+| Blockers | 7 | 10 |
+| Schema authority | `UNKNOWN` | `CURRENT` |
+| Last synced | `2026-08-02 19:51 UTC` | `2026-08-03 02:40 UTC` |
+| New event | n/a | `5b090a49-acf4-43a3-8ffe-6705e65d7634` |
+| Drift probe | false-negative `SUPABASE_PROJECTION_MISSING` | `IN_SYNC` |
+
+Receipt:
+
+```text
+~/repos/CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-structured-ledger-projection-v1/ingest-apply-receipt.json
+```
+
+Repeatable WSL command pattern:
+
+```bash
+cd ~/repos/CG-AppBuilder-MCP
+doppler run -- env \
+  CROSS_AGENT_LEDGER_INGEST_APPROVED=1 \
+  CG_PLATFORM_GOVERNANCE_ROOT=/home/wesle/repos/CG-Platform-Governance-MCP \
+  CG_REPOS_ROOT=/home/wesle/repos \
+  npm run cross-agent-ledger:ingest -- --apply
+doppler run -- env CG_REPOS_ROOT=/home/wesle/repos \
+  npm run cross-agent-ledger:drift-probe
+```
+
+Current verdict: seed mission ledger slice is complete: compact PASS, L: mirror PASS, Supabase `IN_SYNC`. Still open and separate: `HOST_MODE_BLOCKED`, Vercel MCP auth, Cloudflare OAuth loopback, and `mcp:attest`.
+
 ## Evidence / artifact paths
 
 | Artifact | Path / link | Status |
@@ -499,6 +537,16 @@ bash ~/repos/CG-AppBuilder-MCP/scripts/ci/ensure-wsl-l-hub-mount.sh
 - WSL `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index` readable.
 - Agent Fast Path added for `cross-agent-notes-seeding-v1` compact projection.
 - Cursor workspace still on `/mnt/c/Developer/repos` until operator reopens ext4 root.
+
+### 2026-08-03 UTC — structured ledger updated to IN_SYNC
+
+- Ingest applied through `doppler run` because bare Supabase CLI returned 401.
+- Supabase projection advanced from `7f1448f` / `89d143dc...` to `5ddd274` / `9eb1c562...`.
+- Counts refreshed from 4 open actions / 7 blockers to 12 open actions / 10 blockers.
+- `schemaAuthority` moved from `UNKNOWN` to `CURRENT`.
+- Drift probe returned `IN_SYNC`; previous `SUPABASE_PROJECTION_MISSING` was a local CLI-auth false negative.
+- New ledger event: `5b090a49-acf4-43a3-8ffe-6705e65d7634`.
+- Remaining work is outside the ledger sync slice: reopen Cursor from ext4, Vercel MCP auth, Cloudflare OAuth loopback, and `mcp:attest`.
 
 ### 2026-08-02 CT — seed mission HOLD (partial PASS)
 
