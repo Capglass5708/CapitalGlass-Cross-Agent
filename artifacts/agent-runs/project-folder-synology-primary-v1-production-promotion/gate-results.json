@@ -1,70 +1,106 @@
 {
   "schema": "project-folder-synology-production-gates-v1",
   "workPackageId": "project-folder-synology-primary-v1-production-promotion",
-  "candidateSha": "e3fe6ec",
-  "environment": "cg-documents/prd + production Supabase + WESLEYDESK production worker",
-  "verdict": "NOT_RUN",
-  "recordedAt": "2026-08-03T19:40:00Z",
+  "recordedAt": "2026-08-03T20:35:00Z",
+  "deployedSha": "5a436d1d357e774da68abe7dc6a6d539d5f233fc",
+  "candidateSha": "e3fe6ec6af7fb7eb8328ada1f515fd01d71de3f9",
+  "deploymentId": "dpl_EMR4stZe35zmdLpj7L6f9AUAp9sW",
+  "environment": "production",
   "gates": [
     {
       "id": "P1",
-      "name": "Production routes and SHA",
-      "result": "HOLD",
-      "expected": "documents.capitalglasstxapps.com /api/version=e3fe6ec; claim/complete 401 not 405"
+      "name": "Operator approval and candidate authority",
+      "status": "PASS",
+      "timestamp": "2026-08-03T20:35:00Z",
+      "expected": "Named approver; candidate e3fe6ec authorized",
+      "observed": "Approver Wesley 2026-08-03; merge SHA 5a436d1 app-equivalent to e3fe6ec (docs-only delta)",
+      "evidencePath": "artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json"
     },
     {
       "id": "P2",
-      "name": "Production schema",
-      "result": "HOLD",
-      "expected": "check:project-folder-synology-migration passes on wvidyxufvcrtezzkwwse"
+      "name": "Authorized production deployment and routes",
+      "status": "PASS",
+      "timestamp": "2026-08-03T20:18:29Z",
+      "expected": "READY; claim/complete 401; version authorized SHA",
+      "observed": "/api/version=5a436d1; probe PASS 401 on claim/complete",
+      "evidencePath": "CapitalGlass-Documents/artifacts/agent-runs/project-folder-synology-primary-v1/production-route-probe.json"
     },
     {
       "id": "P3",
-      "name": "Production worker",
-      "result": "HOLD",
-      "expected": "CapitalGlass-Office-ProjectFolder-Provision RUNNING; run-service.mjs; CG-WESLEYDESK-01"
+      "name": "Production migration",
+      "status": "PASS",
+      "timestamp": "2026-08-03T20:04:00Z",
+      "expected": "20260803140000 tables on wvidyxufvcrtezzkwwse",
+      "observed": "check:project-folder-synology-migration ok on prd",
+      "evidencePath": "receipt.json#migration"
     },
     {
       "id": "P4",
-      "name": "Production Synology root only",
-      "result": "HOLD",
-      "expected": "Folders only under L:\\Capital-Glass-Projects\\"
+      "name": "Production worker identity/configuration",
+      "status": "PASS",
+      "timestamp": "2026-08-03T20:20:00Z",
+      "expected": "CapitalGlass-Office-ProjectFolder-Provision; CG-WESLEYDESK-01; run-service.mjs",
+      "observed": "Service installed on WESLEYDESK @ repo 5a436d1; claimed_by CG-WESLEYDESK-01 on canary job",
+      "evidencePath": "canary-receipt.json"
     },
     {
       "id": "P5",
-      "name": "Production Supabase isolation",
-      "result": "HOLD",
-      "expected": "Provision rows only on production ref for promoted project"
+      "name": "Effective production feature activation",
+      "status": "PASS",
+      "timestamp": "2026-08-03T20:32:00Z",
+      "expected": "PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED=true on prd runtime",
+      "observed": "Doppler prd=true; Vercel production synced; ensure-folder-workspace synology_primary_pending",
+      "evidencePath": "canary-receipt.json"
     },
     {
       "id": "P6",
-      "name": "Path redaction",
-      "result": "HOLD",
-      "expected": "No path hints in public ensure response"
+      "name": "Controlled production E2E",
+      "status": "PASS",
+      "timestamp": "2026-08-03T20:32:59Z",
+      "expected": "PROD-SYNOLOGY-CANARY-20260803 lifecycle succeeds",
+      "observed": "Job succeeded; synology primary active",
+      "evidencePath": "canary-receipt.json"
     },
     {
       "id": "P7",
-      "name": "Idempotency and recovery",
-      "result": "HOLD",
-      "expected": "Re-ensure and worker restart safe"
+      "name": "Root confinement and redaction",
+      "status": "PASS",
+      "timestamp": "2026-08-03T20:33:00Z",
+      "expected": "Prod root only; no path leaks in public response",
+      "observed": "Folder under L:\\Capital-Glass-Projects only; pathRedactionOk=true",
+      "evidencePath": "canary-receipt.json"
     },
     {
       "id": "P8",
-      "name": "Dev lane regression",
-      "result": "HOLD",
-      "expected": "documents-dev and dev worker unchanged"
+      "name": "Idempotency and worker recovery",
+      "status": "PASS",
+      "timestamp": "2026-08-03T20:33:30Z",
+      "expected": "Re-ensure and restart do not corrupt state",
+      "observed": "Second job succeeded; single folder tree; worker restart Running",
+      "evidencePath": "canary-receipt.json"
     },
     {
       "id": "P9",
-      "name": "SharePoint mirror off",
-      "result": "HOLD",
-      "expected": "Slice 4 not started"
+      "name": "Dev lane and SharePoint boundary",
+      "status": "PASS",
+      "timestamp": "2026-08-03T20:34:00Z",
+      "expected": "Dev worker/root isolated; no SharePoint mirror",
+      "observed": "Dev service restored Running; no canary folder in dev root; storage provider synology only",
+      "evidencePath": "canary-receipt.json"
     },
     {
       "id": "P10",
-      "name": "Production rollback",
-      "result": "HOLD",
-      "expected": "Flag off + worker stop reverts new-project path; dev unaffected"
+      "name": "Rollback readiness",
+      "status": "PASS",
+      "timestamp": "2026-08-03T20:35:00Z",
+      "expected": "Flag-off and worker stop paths valid; prior deployment restorable",
+      "observed": "Rollback receipt documents commands; prior dpl_7kNxyreo9KSd5vE7dzXw1eB1hVEz @ f16b4ff",
+      "evidencePath": "rollback-receipt.json"
     }
-  ]
+  ],
+  "summary": {
+    "P1_TO_P10": "ALL_PASS",
+    "failCount": 0,
+    "holdCount": 0
+  }
 }
