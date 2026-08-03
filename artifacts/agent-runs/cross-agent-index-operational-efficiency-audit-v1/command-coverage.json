@@ -1,9 +1,9 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedAt": "2026-08-03T19:39:47.438Z",
-  "indexedCommands": 9,
-  "relevantCommands": 10,
-  "coverageRate": 0.9,
+  "generatedAt": "2026-08-03T19:43:42.623Z",
+  "indexedCommands": 12,
+  "relevantCommands": 12,
+  "coverageRate": 1,
   "catalog": [
     {
       "command": "npm run harvest:validate",
@@ -57,7 +57,21 @@
     {
       "command": "npm run active-ledger:sync -- --publish",
       "repo": "CG-AppBuilder-MCP",
-      "indexed": false,
+      "indexed": true,
+      "executable": true,
+      "docOnly": false
+    },
+    {
+      "command": "npm run index:freshness-gate",
+      "repo": "CapitalGlass-Cross-Agent",
+      "indexed": true,
+      "executable": true,
+      "docOnly": false
+    },
+    {
+      "command": "npm run index:sync-publication",
+      "repo": "CapitalGlass-Cross-Agent",
+      "indexed": true,
       "executable": true,
       "docOnly": false
     },
@@ -77,7 +91,7 @@
     }
   ],
   "docVsExecutable": {
-    "executableIndexed": 8,
+    "executableIndexed": 11,
     "docOnlyIndexed": 1
   }
 }

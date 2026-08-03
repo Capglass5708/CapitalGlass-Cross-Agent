@@ -7,9 +7,10 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { resolveGitHead } from "./lib/git-head.mjs";
+import { resolveAppBuilderRoot } from "./lib/resolve-repo-roots.mjs";
 
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
-const APP_BUILDER_ROOT = process.env.CG_APPBUILDER_MCP_ROOT || path.join(REPO_ROOT, "../CG-AppBuilder-MCP");
+const APP_BUILDER_ROOT = resolveAppBuilderRoot(REPO_ROOT);
 const HUB_ROOT =
   process.env.INTELLIGENCE_HUB_ROOT?.trim() ||
   process.env.CG_INTELLIGENCE_HUB_ROOT?.trim() ||
@@ -22,10 +23,16 @@ function readJson(filePath) {
 function probeSupabase() {
   const cmd =
     `doppler run --project cg-mcp --config dev -- npm run cross-agent-ledger:drift-probe -- --repo=${REPO_ROOT} --json`;
-  const out = execSync(cmd, { cwd: APP_BUILDER_ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
-  const line = out.split("\n").find((l) => l.trim().startsWith("{"));
-  if (!line) throw new Error("drift-probe produced no JSON");
-  return JSON.parse(line);
+  let out = "";
+  try {
+    out = execSync(cmd, { cwd: APP_BUILDER_ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+  } catch (err) {
+    out = `${err.stdout ?? ""}${err.stderr ?? ""}`;
+  }
+  const start = out.indexOf("{");
+  const end = out.lastIndexOf("}");
+  if (start < 0 || end <= start) throw new Error("drift-probe produced no JSON");
+  return JSON.parse(out.slice(start, end + 1));
 }
 
 function readHubSha() {

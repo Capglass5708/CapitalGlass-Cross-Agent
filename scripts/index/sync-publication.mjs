@@ -5,10 +5,11 @@
 import { execSync } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { resolveAppBuilderRoot, resolveDataExtractionRoot } from "./lib/resolve-repo-roots.mjs";
 
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
-const APP_BUILDER_ROOT = process.env.CG_APPBUILDER_MCP_ROOT || path.join(REPO_ROOT, "../CG-AppBuilder-MCP");
-const DATA_EXTRACTION_ROOT = process.env.DATA_EXTRACTION_ROOT || path.join(REPO_ROOT, "../Data-Extraction");
+const APP_BUILDER_ROOT = resolveAppBuilderRoot(REPO_ROOT);
+const DATA_EXTRACTION_ROOT = resolveDataExtractionRoot(REPO_ROOT);
 const HUB_ROOT = process.env.INTELLIGENCE_HUB_ROOT || "/mnt/l/Capital-Glass-Intelligence-Hub";
 
 function run(cmd, cwd, env = {}) {

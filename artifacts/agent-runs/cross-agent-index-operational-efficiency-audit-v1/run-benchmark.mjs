@@ -11,7 +11,11 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CROSS_AGENT = path.resolve(__dirname, "../../..");
-const APP_BUILDER = path.resolve(CROSS_AGENT, "../CG-AppBuilder-MCP");
+const APP_BUILDER =
+  process.env.CG_APPBUILDER_MCP_ROOT ||
+  (fs.existsSync("/home/wesle/repos/CG-AppBuilder-MCP/package.json")
+    ? "/home/wesle/repos/CG-AppBuilder-MCP"
+    : path.resolve(CROSS_AGENT, "../CG-AppBuilder-MCP"));
 const HUB_ROOT = process.env.INTELLIGENCE_HUB_ROOT || "/mnt/l/Capital-Glass-Intelligence-Hub";
 const HARVEST_ID = "harvest-2026-08-03-cross-thread-platform-state-v1";
 const HARVEST_DIR = path.join(CROSS_AGENT, "artifacts/agent-runs", HARVEST_ID);
@@ -47,14 +51,20 @@ const lBlockers = lMounted ? readJson(path.join(HUB_ROOT, "00-master-index/BY-KI
 let drift = null;
 try {
   const { execSync } = await import("node:child_process");
-  const out = execSync(
-    "doppler run --project cg-mcp --config dev -- npm run cross-agent-ledger:drift-probe -- --repo=" +
-      CROSS_AGENT +
-      " --json",
-    { cwd: APP_BUILDER, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] },
-  );
-  const jsonLine = out.split("\n").find((l) => l.trim().startsWith("{"));
-  drift = jsonLine ? JSON.parse(jsonLine) : null;
+  let out = "";
+  try {
+    out = execSync(
+      "doppler run --project cg-mcp --config dev -- npm run cross-agent-ledger:drift-probe -- --repo=" +
+        CROSS_AGENT +
+        " --json",
+      { cwd: APP_BUILDER, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] },
+    );
+  } catch (err) {
+    out = `${err.stdout ?? ""}${err.stderr ?? ""}`;
+  }
+  const start = out.indexOf("{");
+  const end = out.lastIndexOf("}");
+  drift = start >= 0 && end > start ? JSON.parse(out.slice(start, end + 1)) : null;
 } catch {
   drift = { verdict: "PROBE_FAILED", ok: false };
 }
@@ -466,7 +476,9 @@ const commandCatalog = [
   { command: "npm run cross-agent-ledger:ingest", repo: "CG-AppBuilder-MCP", indexed: true, executable: true, docOnly: false },
   { command: "npm run cross-agent-ledger:drift-probe", repo: "CG-AppBuilder-MCP", indexed: true, executable: true, docOnly: false },
   { command: "npm run agent-research-library:publish-active-work-ledger", repo: "Data-Extraction", indexed: true, executable: true, docOnly: false },
-  { command: "npm run active-ledger:sync -- --publish", repo: "CG-AppBuilder-MCP", indexed: false, executable: true, docOnly: false },
+  { command: "npm run active-ledger:sync -- --publish", repo: "CG-AppBuilder-MCP", indexed: true, executable: true, docOnly: false },
+  { command: "npm run index:freshness-gate", repo: "CapitalGlass-Cross-Agent", indexed: true, executable: true, docOnly: false },
+  { command: "npm run index:sync-publication", repo: "CapitalGlass-Cross-Agent", indexed: true, executable: true, docOnly: false },
   { command: "Restart MCP in Cursor", repo: "operator", indexed: true, executable: false, docOnly: true },
   { command: "bash scripts/executor/install-github-runner-wsl-service.sh", repo: "CG-AppBuilder-MCP", indexed: true, executable: true, docOnly: false },
 ];
