@@ -16,7 +16,7 @@ Capture the WSL MCP repair waves, Cursor terminal-flash diagnosis, Doppler MCP t
 | Authority repo | CG-Platform-Governance-MCP for protocol/closeout authority |
 | Execution repo | CG-AppBuilder-MCP |
 | Related repos | CapitalGlassRevu, cg-apps-hub, CapitalGlass-BidComposer, CapitalGlass-Office-Admin, Computer Estimator |
-| Status | **MCP repair Wave 4 implemented and verified — `mcp:repair:cursor` PASS; seed ledger slice IN_SYNC; Cursor MCP restart pending** |
+| Status | **Cursor WSL default active — `cursor:wsl-default:verify` PASS; 39 active repos under `~/repos`; stale clones archived; MCP repair PASS** |
 
 ## Repositories involved
 
@@ -419,6 +419,42 @@ doppler run -- env CG_REPOS_ROOT=/home/wesle/repos \
 
 Current verdict: seed mission ledger slice is complete: compact PASS, L: mirror PASS, Supabase `IN_SYNC`. Still open and separate: `HOST_MODE_BLOCKED`, Vercel MCP auth, Cloudflare OAuth loopback, and `mcp:attest`.
 
+### Cursor WSL default enforcement implemented
+
+Latest pasted WESLEY_WORK layout report confirms the default operating mode is now organized and verified.
+
+| Layer | State |
+| --- | --- |
+| Default workspace | `/home/wesle/Capital-Glass-Suite.WSL.code-workspace` — open this by default |
+| Full library workspace | `/home/wesle/Capital-Glass-Full-Library.WSL.code-workspace` |
+| Active repo root | `/home/wesle/repos` |
+| Repo inventory | 39 active repos plus `_archive/` |
+| Stale worktree clones | 24 moved to `/home/wesle/repos/_archive/worktree-clones/` — not deleted |
+| Operator config | `~/.config/capital-glass/README.md`, `cursor-wsl.env`, `wsl-layout.v1.json` |
+| Windows launcher | Desktop shortcut `Capital Glass Cursor (WSL Suite).lnk` |
+| Legacy launchers | Moved to `Windows Desktop/Capital Glass Shortcuts/_legacy/` |
+| Windows MCP config | Quarantined as `mcp.json.windows-disabled` |
+| Verify | `PASS: Cursor WSL default is active` |
+
+Default operator rule:
+
+```text
+Launch Cursor via Windows Desktop -> Capital Glass Cursor (WSL Suite).lnk
+or Remote-WSL -> /home/wesle/Capital-Glass-Suite.WSL.code-workspace
+Never open C:\Developer\repos or /mnt/c/Developer/repos for agent work.
+```
+
+Repair/verify sequence:
+
+```bash
+cd ~/repos/CG-AppBuilder-MCP
+npm run cursor:wsl-organize
+npm run cursor:wsl-default
+npm run cursor:wsl-default:verify
+```
+
+Side/experimental repos not in the manifest were intentionally left alone: Rewire, WatchDog, `capital-glass-idea-vault`, worktrees, and similar. They can be archived in a later cleanup if needed.
+
 ### Wave 4 implemented — drift-proof MCP repair
 
 Latest pasted implementation result closes the smallest durable Wave 4 slice. The outage pattern was unchecked drift across four layers: Doppler truth, `integrations.env`, `mcp.json` wiring, and WSL/Windows path semantics. The durable fix is now a one-command repair flow plus hard verification.
@@ -494,8 +530,8 @@ Cursor diagnostic surface: `cg-diagnostic -> integrations_health_summary` after 
 
 | Blocker / warning | Owner repo / surface | Required action |
 | --- | --- | --- |
-| Cursor MCP reload needed after repair waves | Cursor / operator | `Cursor -> Settings -> MCP -> Reload` |
-| Workspace-root alignment still recommended | Cursor / operator | Reopen from `/home/wesle/repos/CG-AppBuilder-MCP` or WSL `.code-workspace`, not `/mnt/c/Developer/repos` |
+| Cursor MCP restart after repair/default enforcement | Cursor / operator | Restart MCP after opening via WSL Suite shortcut |
+| WSL workspace default now verified | Cursor / operator | Use `Capital Glass Cursor (WSL Suite).lnk`; close any old NTFS Cursor windows |
 | Vercel MCP plugin red / needs auth | Cursor MCP / Vercel | Complete `mcp_auth` when Vercel MCP is needed |
 | L: hub now readable in WSL | WESLEYDESK / L: hub | L: mounted via Tailscale; blocker cleared for L: access, but ingest still HOLD on host mode/operator approval |
 | Cloudflare MCP stopped/failed on `EADDRINUSE 127.0.0.1:15170` | Cursor MCP / Cloudflare | Keep disabled or clear loopback port/OAuth conflict before enabling |
@@ -521,7 +557,7 @@ Cursor diagnostic surface: `cg-diagnostic -> integrations_health_summary` after 
 
 | Priority | Action | Owner repo / surface | Status |
 | --- | --- | --- | --- |
-| 1 | Reload Cursor MCP after WSL repair waves | Cursor / operator | Pending operator action |
+| 1 | Use `Capital Glass Cursor (WSL Suite).lnk`; close any Cursor windows opened from Windows/NTFS paths | Cursor / operator | Ongoing operating rule |
 | 2 | Re-run or inspect `cg-apps-hub` Validate/Vercel failures after PR #267 merge | cg-apps-hub | Pending |
 | 3 | Keep Cloudflare MCP disabled until `127.0.0.1:15170` OAuth loopback conflict is resolved | Cursor MCP / Cloudflare | Pending |
 | 4 | Add `RAILWAY_API_TOKEN` to Doppler `cg-shared/dev` only if headless fallback is required | Doppler / Railway | Optional |
@@ -540,7 +576,7 @@ Cursor diagnostic surface: `cg-diagnostic -> integrations_health_summary` after 
 ## Agent Fast Path
 
 **Work package:** `cross-agent-seed-wsl-mcp-backfill-v1`  
-**Failure codes:** `HOST_MODE_BLOCKED`, `L_DRIVE_LAN_UNREACHABLE_USE_TAILSCALE`, `L_DRIVE_NOT_MOUNTED_IN_WSL`  
+**Failure codes:** `HOST_MODE_BLOCKED` now indicates a regression from verified WSL default; `L_DRIVE_LAN_UNREACHABLE_USE_TAILSCALE`, `L_DRIVE_NOT_MOUNTED_IN_WSL`  
 **Owner route:** CG-AppBuilder-MCP + Cursor-MCP-Kit (WSL repair); CapitalGlass-Office-Admin (Windows drive maps)  
 **Canonical host:** WSL ext4 `$HOME/repos` — not `/mnt/c/Developer/repos`  
 **Env authority:** `~/.config/capital-glass/cursor-wsl.env` (`CG_REPOS_ROOT=/home/wesle/repos`)
@@ -561,7 +597,7 @@ net use L: \\wesleydesk\CapitalGlass-L /persistent:yes
 bash ~/repos/CG-AppBuilder-MCP/scripts/ci/ensure-wsl-l-hub-mount.sh
 ```
 
-**MCP repair:** `bash /mnt/c/Developer/repos/Cursor-MCP-Kit/Repair-Cursor-McpJson-Wsl.sh`
+**Default repair:** `npm run cursor:wsl-default` then `npm run mcp:repair:cursor` from `~/repos/CG-AppBuilder-MCP`
 
 **Verify before material work:**
 
@@ -579,6 +615,18 @@ bash ~/repos/CG-AppBuilder-MCP/scripts/ci/ensure-wsl-l-hub-mount.sh
 - WSL `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index` readable.
 - Agent Fast Path added for `cross-agent-notes-seeding-v1` compact projection.
 - Cursor workspace still on `/mnt/c/Developer/repos` until operator reopens ext4 root.
+
+### 2026-08-03 CT — Cursor WSL default active on WESLEY_WORK
+
+- `/home/wesle/Capital-Glass-Suite.WSL.code-workspace` is the default workspace.
+- `/home/wesle/repos` is the active repo root with 39 repos plus `_archive/`.
+- 24 stale clones were moved to `_archive/worktree-clones/` without deletion.
+- Duplicate workspace files and duplicate `cursor-wsl.env` exports were cleaned up.
+- Windows Desktop has `Capital Glass Cursor (WSL Suite).lnk` as the launcher.
+- Old `.bat` launchers were moved to `Capital Glass Shortcuts/_legacy/`.
+- Windows `mcp.json` is quarantined as `mcp.json.windows-disabled`.
+- `cursor:wsl-default:verify` reports PASS.
+- Remaining operator habit: close any Cursor window opened from Windows/NTFS and reopen via the WSL Suite shortcut.
 
 ### 2026-08-03 CT — Wave 4 `mcp:repair:cursor` implemented and verified
 
