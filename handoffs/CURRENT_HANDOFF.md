@@ -34,3 +34,20 @@ Current state:
 - Latest path-coherence verdict is `PARTIAL` because Cursor was still opened from `/mnt/c/Developer/repos/*` in the checked session.
 - Required next action: close that Cursor window and reopen from `/home/wesle/repos/CG-AppBuilder-MCP` or the WSL `.code-workspace`, then reload MCP.
 - Remaining separate items: Vercel MCP auth, Cloudflare `127.0.0.1:15170` loopback conflict, optional `RAILWAY_API_TOKEN`, and `mcp:attest` auth/index parity.
+
+
+## Cursor seeding handoff
+
+Cursor should seed the WSL MCP / Cursor / Doppler / PromptOps backfill through:
+
+```text
+handoffs/2026-08-02_cursor-seed-wsl-mcp-backfill.md
+```
+
+Seed work package:
+
+```text
+cross-agent-seed-wsl-mcp-backfill-v1
+```
+
+Run seeding/ingest from `/home/wesle/repos/CG-AppBuilder-MCP`, not from `/mnt/c/Developer/repos`.
