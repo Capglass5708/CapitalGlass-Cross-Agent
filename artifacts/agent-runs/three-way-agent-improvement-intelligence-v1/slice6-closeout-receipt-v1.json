@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "three-way-improvement-slice6-closeout-receipt-v1",
+  "programId": "three-way-agent-improvement-intelligence-v1",
+  "verdict": "MERGED_PENDING_SLICE6_PUBLICATION",
+  "blockedFinalVerdict": "THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL",
+  "generatedAt": "2026-08-03T23:20:00Z",
+  "authoritativePublication": {
+    "workflowRunId": "30861642734",
+    "workflowUrl": "https://github.com/Capglass5708/CapitalGlass-Cross-Agent/actions/runs/30861642734",
+    "pinnedSha": "3e51aa754576f7d148901e440365f714f56be455",
+    "closeoutReceiptSha": "6260df2",
+    "supersededRunId": "30861202361",
+    "supersededDisposition": "cancelled"
+  },
+  "gates": {
+    "publicationWorkflow": {
+      "status": "pending",
+      "requiredVerdict": "PUBLISH_PASS",
+      "receiptPath": "runtime/index-publication/latest.json"
+    },
+    "layerParity": {
+      "status": "pending",
+      "required": ["git", "intelligenceHub", "supabase"],
+      "freshnessGatePath": "artifacts/agent-runs/cross-agent-index-freshness-gate-v1/latest.json"
+    },
+    "postPublicationBlindRetrieval": {
+      "status": "pending",
+      "mode": "query_only_without_expected_improvement_ids",
+      "forbidden": ["IMP-0001", "IMP-0002", "IMP-0003", "IMP-0004"]
+    },
+    "liveSecondPublicationIdempotency": {
+      "status": "pending",
+      "requiredVerdict": "NOOP_CURRENT",
+      "method": "second workflow_dispatch on unchanged SHA or publisher replay with identical contentHash"
+    }
+  },
+  "awardConditions": [
+    "publicationWorkflow.requiredVerdict",
+    "layerParity.all layers IN_SYNC or PASS",
+    "postPublicationBlindRetrieval PASS",
+    "liveSecondPublicationIdempotency NOOP_CURRENT"
+  ]
+}
