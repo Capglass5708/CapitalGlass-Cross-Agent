@@ -16,7 +16,7 @@ Capture the WSL MCP repair waves, Cursor terminal-flash diagnosis, Doppler MCP t
 | Authority repo | CG-Platform-Governance-MCP for protocol/closeout authority |
 | Execution repo | CG-AppBuilder-MCP |
 | Related repos | CapitalGlassRevu, cg-apps-hub, CapitalGlass-BidComposer, CapitalGlass-Office-Admin, Computer Estimator |
-| Status | **Active — WSL MCP repair Waves 1-3 complete; remaining auth/Cloudflare/downstream workflow actions** |
+| Status | **Active — MCP authority clean; WSL repair Waves 1-3 complete; workspace-root alignment still recommended** |
 
 ## Repositories involved
 
@@ -208,6 +208,22 @@ Downstream status checked before inspection stopped:
 - `Capglass5708/cg-apps-hub` latest commit `ba2fb27d4f7f0e89aaf42e54b39b527b133badf4` still showed two Vercel failures: `Vercel - v0-capital-glass-apps-dashboard` and `Vercel - cg-apps-hub`.
 - `Capglass5708/CapitalGlass-BidComposer` latest commit `93d87a27bcd6c925bb50d3a85c65573a0d6db773` showed Vercel success.
 
+
+### Clean MCP authority state
+
+Latest pasted Cursor status reports a cleaner MCP authority split:
+
+| Item | State |
+| --- | --- |
+| Windows-host MCP config | Disabled by renaming `mcp.json` to `mcp.json.windows-disabled` |
+| Active MCP authority | WSL `~/.cursor/mcp.json` only |
+| Repo paths in `integrations.env` | Pointed at `/home/wesle/repos` |
+| Flash recurrence warning | If flashes return, likely MCP reconnecting on Windows host again |
+| Windows-side file to watch | `C:\Users\wesle\.cursor\mcp.json` should not be silently recreated |
+| Remaining recommended alignment | Reopen workspace from `/home/wesle/repos/...`, not `/mnt/c/Developer/repos/...` |
+
+Interpretation: the original Windows-host MCP flash source is disabled. The remaining recommendation is workspace-root alignment so the active Cursor session also matches WSL authority.
+
 ## Evidence / artifact paths
 
 | Artifact | Path / link | Status |
@@ -242,7 +258,7 @@ Downstream status checked before inspection stopped:
 | Blocker / warning | Owner repo / surface | Required action |
 | --- | --- | --- |
 | Cursor MCP reload needed after repair waves | Cursor / operator | `Cursor -> Settings -> MCP -> Reload` |
-| Active Cursor workspace opened from `/mnt/c/Developer/repos/*` in latest path-coherence check | Cursor / operator | Close window and reopen from `/home/wesle/repos/CG-AppBuilder-MCP` or WSL `.code-workspace` |
+| Workspace-root alignment still recommended | Cursor / operator | Reopen from `/home/wesle/repos/CG-AppBuilder-MCP` or WSL `.code-workspace`, not `/mnt/c/Developer/repos` |
 | Vercel MCP plugin red / needs auth | Cursor MCP / Vercel | Complete `mcp_auth` when Vercel MCP is needed |
 | Cloudflare MCP stopped/failed on `EADDRINUSE 127.0.0.1:15170` | Cursor MCP / Cloudflare | Keep disabled or clear loopback port/OAuth conflict before enabling |
 | Legacy Windows-hosted Cursor windows can still produce mangled Azure hook path failures | Cursor / operator | Close all Windows-hosted Cursor repo windows; keep only WSL workspace open |
@@ -284,6 +300,14 @@ Downstream status checked before inspection stopped:
 - Cross-Agent should store operational facts, decisions, artifact pointers, verification results, and next actions, not secrets or implementation code.
 
 ## Update log
+
+### 2026-08-02 CT — clean MCP authority state reported
+
+- Windows-host MCP disabled by renaming `mcp.json` to `mcp.json.windows-disabled`.
+- WSL `~/.cursor/mcp.json` is now the only active MCP authority.
+- `integrations.env` repo paths point at `/home/wesle/repos`.
+- Remaining recommendation: reopen Cursor workspace from `/home/wesle/repos/...` instead of `/mnt/c/Developer/repos/...`.
+- Watch item: if flashes return, check whether `C:\Users\wesle\.cursor\mcp.json` was recreated.
 
 ### 2026-08-02 CT — path-coherence and Doppler backfill
 
