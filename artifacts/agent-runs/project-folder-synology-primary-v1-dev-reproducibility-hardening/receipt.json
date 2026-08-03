@@ -1,0 +1,68 @@
+{
+  "schema": "project-folder-synology-reproducibility-hardening-v1",
+  "workPackageId": "project-folder-synology-primary-v1-dev-reproducibility-hardening",
+  "verdict": "PROMOTION_CANDIDATE_READY",
+  "recordedAt": "2026-08-03T19:30:00Z",
+  "lineage": {
+    "contractAuthoritySha": "d8826e84d9409739baee413aa937849bb57469d9",
+    "acceptedDevSha": "7c0b76ffba8d085ecdf6786d93892545fe99ce53",
+    "reproducibleCandidateSha": "e3fe6ec6af7fb7eb8328ada1f515fd01d71de3f9",
+    "crossAgentAcceptedEvidenceSha": "8ecf43e",
+    "productionSha": "f16b4ff",
+    "productionTouched": false,
+    "productionActivation": "HALTED"
+  },
+  "canonicalWorkerEntry": "workers/office-project-folder-provision/scripts/run-service.mjs",
+  "migrationId": "20260803140000_project_folder_synology_primary_support_tables.sql",
+  "deployment": {
+    "readyDeploymentId": "dpl_GEBGFvHU4vpZhqy1tkzF3rfdXBSV",
+    "alias": "https://documents-dev.capitalglasstxapps.com",
+    "buildSkipped": false,
+    "gitShortSha": "e3fe6ec"
+  },
+  "wesleydeskParity": {
+    "repoHead": "e3fe6ec6af7fb7eb8328ada1f515fd01d71de3f9",
+    "service": "CapitalGlass-Office-ProjectFolder-Provision-Dev",
+    "nssmApplication": "C:\\Program Files\\nodejs\\node.exe",
+    "nssmAppParameters": "scripts/run-service.mjs --env-file .env",
+    "localOverlayRemoved": true,
+    "e2eJobId": "d10f536e-3a66-4aeb-a647-ef61f876d634",
+    "e2eProjectId": "a877adf9-6669-411a-8757-aa7ae9b29d17"
+  },
+  "deterministicCommands": [
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run test:project-folder-worker-config",
+      "exitCode": 0,
+      "tests": 4
+    },
+    {
+      "command": "npm run test:project-folder-synology",
+      "exitCode": 0,
+      "tests": 2
+    },
+    {
+      "command": "doppler run -p cg-documents -c dev -- npm run check:project-folder-synology-migration",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0
+    },
+    {
+      "command": "node --test tests/project-folder-synology-primary.test.ts (undocumented)",
+      "exitCode": 1,
+      "note": "ERR_MODULE_NOT_FOUND \u2014 use npm run test:project-folder-synology instead"
+    },
+    {
+      "command": "npm test -- tests/project-folder-synology-primary.test.ts | tail -15 (background prior run)",
+      "exitCode": 0,
+      "note": "Exit 0 is from tail(1), not npm test; full suite uses tsx via manifest"
+    }
+  ],
+  "gatesArtifact": "artifacts/agent-runs/project-folder-synology-primary-v1-dev-reproducibility-hardening/gate-results.json",
+  "gateEvidenceHash": "26e487d1642cfbfa957fd02c1058a03cd95b9ee9fe97f8accdccfa174da9a01b"
+}
