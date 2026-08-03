@@ -53,10 +53,11 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 | 3 | Complete Vercel MCP auth only when Vercel connector is needed | Cursor / Vercel | Pending |
 | 4 | Keep Cloudflare stdio disabled or fix `127.0.0.1:15170` OAuth loopback conflict | Cursor / Cloudflare | Pending |
 | 5 | Investigate `mcp:attest` auth smoke / index parity separately from MCP path repair | CG-AppBuilder-MCP | Pending |
-| 6 | Re-run gated ingest after ledger updates (`cross-agent-ledger:ingest --apply`) | CG-AppBuilder-MCP | Recurring |
-| 7 | Run drift probe when hub/projection may be stale | CG-AppBuilder-MCP | Recurring |
-| 8 | Publish L: hub slices after ledger edits | Data-Extraction | Recurring |
-| 9 | Restart MCP for Governance compounding tools | Cursor / local MCP | Pending |
+| 6 | Run Cursor seeding handoff `cross-agent-seed-wsl-mcp-backfill-v1` from `~/repos/CG-AppBuilder-MCP` | CG-AppBuilder-MCP | Pending |
+| 7 | Re-run gated ingest after ledger updates (`cross-agent-ledger:ingest --apply`) | CG-AppBuilder-MCP | Recurring |
+| 8 | Run drift probe when hub/projection may be stale | CG-AppBuilder-MCP | Recurring |
+| 9 | Publish L: hub slices after ledger edits | Data-Extraction | Recurring |
+| 10 | Restart MCP for Governance compounding tools | Cursor / local MCP | Pending |
 
 **Default agent preflight (machine-readable):** `openActions` + `blockers` only — L: hub slices when available, else Supabase derived projection (`compact-slices-only`). Not full ledger. `currentFocus` human-only (`whats-active-now --include-current-focus`).
 
@@ -70,7 +71,7 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 | Status | **Active** — WSL MCP repair Waves 1-3 complete; path coherence `PARTIAL`; Doppler repaired; AppBuilder PR #267 and Revu PR #5 merged |
 | Project file | `work-progress/projects/2026-08-02_wsl-mcp-cursor-doppler-promptops-hardening-v1.md` |
 | Verification | `wsl:mcp:smoke` 31/31 PASS; durable bootstrap 20/20 PASS; Doppler probe OK; path-coherence fallback `wsl:mcp:verify` PASS / `wsl:mcp:repair` NO_CHANGE |
-| Next action | Reopen Cursor from `/home/wesle/repos/CG-AppBuilder-MCP`, reload MCP, then handle Vercel auth / Cloudflare loopback / `mcp:attest` separately |
+| Next action | Reopen Cursor from `/home/wesle/repos/CG-AppBuilder-MCP`, reload MCP, then run `handoffs/2026-08-02_cursor-seed-wsl-mcp-backfill.md` as `cross-agent-seed-wsl-mcp-backfill-v1` |
 
 ### 2026-08-02 CT — structured ledger projection Phases 1–3 milestone PASS
 
