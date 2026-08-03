@@ -18,6 +18,24 @@ Current focus:
 - CG Platform Intelligence Bible reads need connector reauthentication if `oauth_refresh_token_missing` appears.
 
 
+## Suite CI healing - 2026-08-03
+
+Current CI-healing state is recorded in:
+
+```text
+work-progress/projects/2026-08-03_suite-ci-healing-v1.md
+```
+
+State:
+
+- `capital-glass-product-catalog`: Validate green after door-hardware publish module allowlist + PromptOps refresh.
+- `Cursor-ProposalGenerator`: drift canary green after Roy Street anchor marked `optionalOnForbidden` for 403 smoke actor.
+- `CapitalGlass-Office-Admin`: PR #51 merged; validate-code green with CI test-actor and refreshed knowledge index.
+- `CapitalGlass-Documents`: workflow correctly uses `EXPECTED_DOCUMENT_CENTER_GIT_SHA`, but production smokes fail because the secret does not match deployed `/api/version`.
+
+Next recommended action: update `EXPECTED_DOCUMENT_CENTER_GIT_SHA` to `f16b4ff334affe8c900cded6a6feac6480c0d848`, or redeploy Document Center from main and set the secret to that deploy SHA. Then rerun Production Hardening Smokes. After that, move to stale AppBuilder PRs #254, #252, #228, #227, #216.
+
+
 ## WSL MCP / Cursor hardening - 2026-08-02
 
 WSL MCP / Cursor hardening is now a live project file:
