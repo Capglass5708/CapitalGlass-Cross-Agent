@@ -21,6 +21,17 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 ## Current saved work
 
+### 2026-08-03 CT — Cross-Agent index current + AI Cache Layer 0
+
+| Field | Value |
+| --- | --- |
+| Work package | `cross-agent-index-current-ai-cache-v1` |
+| Verdict | **CROSS_AGENT_INDEX_CURRENT_PASS**; **CROSS_AGENT_INDEX_AI_CACHE_LAYER0_PASS**; **FRESH_CURSOR_INDEX_DOGFOOD_PASS** |
+| Publication | Git/Supabase/L: aligned @ `56e9a32` via `index:sync-publication` |
+| AI Cache | Layer 0 mirror; operator `npm run agent:index:ai-cache:refresh` |
+| Dogfood | `INDEX_HIT_AI_CACHE`, `freshnessVerdict=CURRENT`, `rawScanRequired=false` |
+| Artifacts | CG-AppBuilder-MCP `artifacts/agent-runs/cross-agent-index-current-ai-cache-v1/` + `fresh-cursor-index-dogfood-v1/session-receipt.json` |
+
 ### 2026-08-03 CT — Cross-Agent index preflight estate-wide (rule propagation complete)
 
 | Field | Value |
