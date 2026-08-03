@@ -158,6 +158,23 @@ function main() {
   }
 
   if (!fs.existsSync(boundaryPath)) errors.push("owner-repo-boundary-index.json missing");
+  else {
+    const boundary = readJson(boundaryPath);
+    const registry = fs.existsSync(registryPath) ? readJson(registryPath) : { packets: {} };
+    const registryIds = Object.keys(registry.packets || {}).sort();
+    const boundaryIds = (boundary.packets || []).map((p) => p.packetId).sort();
+    if (registryIds.length && JSON.stringify(boundaryIds) !== JSON.stringify(registryIds)) {
+      errors.push("owner-repo-boundary-index packet IDs must match harvest-packet-registry authority");
+    }
+    for (const packet of manifest.packets) {
+      const entry = (boundary.packets || []).find((p) => p.packetId === packet.packetId);
+      if (!entry) {
+        errors.push(`owner boundary missing manifest packet ${packet.packetId}`);
+      } else if (entry.ownerRepo !== packet.ownerRepo) {
+        errors.push(`owner boundary ownerRepo drift for ${packet.packetId}`);
+      }
+    }
+  }
   if (!fs.existsSync(verdictRegistryPath)) errors.push("harvest-verdict-registry.json missing");
 
   const indexContent = fs.readFileSync(indexPath, "utf8");
