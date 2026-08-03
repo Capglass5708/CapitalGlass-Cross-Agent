@@ -31,8 +31,9 @@ Current state:
 - WSL MCP repair Waves 1-3 are reported complete.
 - Doppler MCP is repaired and verified; secrets are not stored here.
 - AppBuilder PR #267 and CapitalGlassRevu PR #5 are merged.
-- Latest path-coherence verdict is `PARTIAL` because Cursor was still opened from `/mnt/c/Developer/repos/*` in the checked session.
-- Required next action: close that Cursor window and reopen from `/home/wesle/repos/CG-AppBuilder-MCP` or the WSL `.code-workspace`, then reload MCP.
+- Windows-host MCP is now disabled (`mcp.json` -> `mcp.json.windows-disabled`).
+- WSL `~/.cursor/mcp.json` is now the only active MCP authority.
+- Remaining recommendation: reopen from `/home/wesle/repos/CG-AppBuilder-MCP` or the WSL `.code-workspace`, then reload MCP if needed.
 - Remaining separate items: Vercel MCP auth, Cloudflare `127.0.0.1:15170` loopback conflict, optional `RAILWAY_API_TOKEN`, and `mcp:attest` auth/index parity.
 
 
@@ -51,3 +52,6 @@ cross-agent-seed-wsl-mcp-backfill-v1
 ```
 
 Run seeding/ingest from `/home/wesle/repos/CG-AppBuilder-MCP`, not from `/mnt/c/Developer/repos`.
+
+
+Watch item: If terminal flashes return, check whether `C:\Users\wesle\.cursor\mcp.json` was recreated and caused Windows-host MCP reconnects.
