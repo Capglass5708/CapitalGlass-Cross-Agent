@@ -2,7 +2,7 @@
 
 Master index of all project files in `work-progress/projects/`.
 
-**Last updated:** 2026-08-03
+**Last updated:** 2026-08-03 (harvest `harvest-2026-08-03-cross-thread-platform-state-v1`)
 
 Read `AGENT_START_HERE.md` and `work-progress/ACTIVE_WORK.md` before working on any project listed here.
 
@@ -33,7 +33,11 @@ Filename pattern: `YYYY-MM-DD_<project-id>.md` — see `work-progress/projects/R
 
 | Project ID | File | Status | Owner repo(s) | Last commit | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `ryzen9desk-managed-executor-v1` | [2026-08-03_ryzen9desk-managed-executor-v1.md](./2026-08-03_ryzen9desk-managed-executor-v1.md) | **CODE_READY_FOR_RUNNER_BOOTSTRAP** — PR #268 merge next | `CG-AppBuilder-MCP` | PR #268 open | Merge #268 to `main`; then RYZEN9DESK install + executor-smoke → `MANAGED_EXECUTOR_ONLINE` |
+| `harvest-2026-08-03-cross-thread-platform-state-v1` | [2026-08-03_harvest-2026-08-03-cross-thread-platform-state-v1.md](./2026-08-03_harvest-2026-08-03-cross-thread-platform-state-v1.md) | **COMPLETE** — `HARVEST_COMPLETE` | CapitalGlass-Cross-Agent | Harvest commit pending | Recurring ingest + L: publish when operator approves |
+| `ryzen9desk-managed-executor-v1` | [2026-08-03_ryzen9desk-managed-executor-v1.md](./2026-08-03_ryzen9desk-managed-executor-v1.md) | **RUNNER_BOOTSTRAP_CHECKPOINT_STARTED** — PR #268 merged | `CG-AppBuilder-MCP` | `8fe7cf05` on AppBuilder `main` | CG-AppBuilder-MCP mission: RYZEN9DESK install + `executor-smoke` → `MANAGED_EXECUTOR_ONLINE` |
+| `active-ledger-ci-path-and-hash-stability-v1` | [2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md](./2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md) | **PASS** | `CG-AppBuilder-MCP` | `2cd8eba9`, `3fb8c9bb` | None — close unless CI regresses |
+| `office-admin-ryzen9desk-managed-executor-bootstrap-v1` | [2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md](./2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md) | **NEEDS_OFFICE_ADMIN_INDEXING** | CapitalGlass-Office-Admin | — | Index runbook in Office Admin when ready |
+| `wsl2-native-repo-library-migration-v1` | [2026-08-03_wsl2-native-repo-library-migration-v1.md](./2026-08-03_wsl2-native-repo-library-migration-v1.md) | **PARTIAL** — filesystem PASS | `CG-AppBuilder-MCP` | — | Per-repo ext4 verification; RYZEN9DESK alignment separate |
 | `ryzen9desk-wsl2-canonical-workspace-v1` | [2026-08-03_ryzen9desk-wsl2-canonical-workspace-v1.md](./2026-08-03_ryzen9desk-wsl2-canonical-workspace-v1.md) | **BLOCKED — use managed executor** | `CG-AppBuilder-MCP`, RYZEN9DESK operator | Tooling prepared on WESLEY_WORK | Dispatch via `ryzen9desk-managed-executor-v1` (`job_profile: wsl2-canonical-setup`) |
 | `wesleywork-drive-mount-task-dedupe-v1` | [2026-08-03_wesleywork-drive-mount-task-dedupe-v1.md](./2026-08-03_wesleywork-drive-mount-task-dedupe-v1.md) | **IMPLEMENTED — ready for live deploy** | CapitalGlass-Office-Admin | Code in owner repo | Elevated deploy on WESLEY_WORK: `Install-CgWesleyWorkDriveMountPersistence.ps1` + verifier; live probe pending |
 | `project-folder-synology-primary-v1-dev-hosted-environment` | [project-folder-synology-primary-v1-dev-hosted-environment.md](./project-folder-synology-primary-v1-dev-hosted-environment.md) | **HOLD** — step #3 hosted dev | CapitalGlass-Documents, WESLEYDESK | Contract `d8826e8`; partial Doppler dev | Fix Vercel BLOCKED deploy; separate Supabase dev; alias `documents-dev`; gates G1–G10 |

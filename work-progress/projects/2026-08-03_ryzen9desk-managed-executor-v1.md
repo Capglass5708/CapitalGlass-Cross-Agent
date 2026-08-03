@@ -14,20 +14,23 @@ Make RYZEN9DESK a **persistent managed execution node** so WESLEY_WORK submits a
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Authority repo | CapitalGlass-Office-Admin (network/Tailscale), CG-Platform-Governance-MCP (ledger) |
 | Execution repo | CG-AppBuilder-MCP (runner install, workflows, allowlists) |
-| Status | **CODE_READY_FOR_RUNNER_BOOTSTRAP** |
+| Status | **RUNNER_BOOTSTRAP_CHECKPOINT_STARTED** (`CODE_READY_FOR_RUNNER_BOOTSTRAP`) |
 
 **State machine (honest progression — do not skip):**
 
 | Verdict | Meaning | Gate |
 | --- | --- | --- |
-| `CODE_READY_FOR_RUNNER_BOOTSTRAP` | Phase 0 code complete on WESLEY_WORK; PR open | **Current** — awaiting PR #268 merge to `main` |
+| `CODE_READY_FOR_RUNNER_BOOTSTRAP` | Phase 0 code on `main`; PR merged | **Met** — PR #268 merged `8fe7cf05` |
+| `RUNNER_BOOTSTRAP_CHECKPOINT_STARTED` | Bootstrap scoped to CG-AppBuilder-MCP mission | **Current** — runner install + smoke pending on RYZEN9DESK |
 | `MANAGED_EXECUTOR_ONLINE` | Persistent runner proven on RYZEN9DESK | `executor-smoke` receipt from RYZEN9DESK only |
 | `PARTIAL_REMOTE_PASS` | Remote acceptance without GUI | After full readonly profile chain |
 | `PASS` | Operator GUI acceptance recorded | Cursor Remote-WSL confirmed on RYZEN9DESK |
 
-**Next real checkpoint:** [PR #268](https://github.com/Capglass5708/CG-AppBuilder-MCP/pull/268) merged to `main` — not runner install yet.
+**Merge record:** PR #268 merged to `main` — SHA `8fe7cf05534b28da9180df9da08b5d2123dc5dc8`.
 
-**After merge:** install from RYZEN9DESK WSL on `main`. First meaningful proof = `executor-smoke` receipt produced by RYZEN9DESK → advance to `MANAGED_EXECUTOR_ONLINE`.
+**Next real checkpoint:** RYZEN9DESK WSL install from `main` + dispatch `executor-smoke` → advance to `MANAGED_EXECUTOR_ONLINE`. **Owner mission:** CG-AppBuilder-MCP (not Cross-Agent harvest).
+
+**Recorded coordination (2026-08-03 harvest):** GitHub environment `ryzen9desk-managed-execution` created; personal account requires **repo-scoped** runner (no org runner group). One runner registration observed **offline** — do **not** claim online until smoke receipt exists.
 
 Do not claim RYZEN9DESK outcomes from WESLEY_WORK preparation.
 
@@ -92,8 +95,8 @@ Do not claim RYZEN9DESK outcomes from WESLEY_WORK preparation.
 
 | Command / check | Result | Notes |
 | --- | --- | --- |
-| Runner registered with labels `self-hosted,ryzen9desk,wsl2,gpu` | Pending | One-time on RYZEN9DESK |
-| `workflow_dispatch` smoke job | Pending | `job_profile: executor-smoke` |
+| Runner registered with labels `self-hosted,ryzen9desk,wsl2,gpu` | **Partial** | Registration observed offline; install service pending on RYZEN9DESK |
+| `workflow_dispatch` smoke job | Pending | `job_profile: executor-smoke` — blocked until runner online |
 | `ryzen9desk-wsl2-canonical` via dispatch | Pending | Unblocks prior WP |
 | Machine identity preflight on runner | Pending | Must FAIL on WESLEY_WORK, PASS on RYZEN9DESK |
 
@@ -101,8 +104,8 @@ Do not claim RYZEN9DESK outcomes from WESLEY_WORK preparation.
 
 | Blocker | Owner | Required action |
 | --- | --- | --- |
-| Runner not installed on RYZEN9DESK | Operator | Run install script once; register with GitHub org/repo |
-| Prior WP tooling may not be on `main` | CG-AppBuilder-MCP | Push executor scaffold + ryzen9desk runbook branch |
+| Runner service not running on RYZEN9DESK | CG-AppBuilder-MCP / operator | Install from `main` on RYZEN9DESK WSL; personal account = repo-scoped runner only |
+| Personal account has no org runner groups | Operator | Do not use `--runnergroup` on install; repo-scoped registration only |
 | Windows bridge not built | CapitalGlass-Office-Admin | Phase 2 — scheduled-task allowlist |
 | Cursor shortcut / Remote-WSL confirm | Operator | Remains manual; not automatable via WSL worker |
 
@@ -118,7 +121,7 @@ Executor returns: `PASS` | `HOLD` | `BLOCKED` | `FAILED` with artifact receipts.
 
 | Phase | Scope | Status |
 | --- | --- | --- |
-| 0 | GitHub self-hosted runner + dispatch workflow + allowlist | **In progress** |
+| 0 | GitHub self-hosted runner + dispatch workflow + allowlist | **Merged to `main`** — bootstrap checkpoint started |
 | 1 | First production job: `ryzen9desk-wsl2-canonical-workspace-v1` | Pending runner |
 | 2 | Windows host bridge (drive maps, MCP quarantine, shortcuts) | Planned |
 | 3 | Cross-Agent / Supabase job ledger + approval gates | Planned |
@@ -136,9 +139,9 @@ Executor returns: `PASS` | `HOLD` | `BLOCKED` | `FAILED` with artifact receipts.
 
 | Priority | Action | Owner | Status |
 | --- | --- | --- | --- |
-| 1 | **Merge PR #268 to `main`** | WESLEY_WORK / reviewer | **Next checkpoint** |
-| 2 | Create runner group + environment (after merge) | Operator (GitHub UI) | Blocked on #1 |
-| 3 | RYZEN9DESK WSL: `main` pull + runner install | RYZEN9DESK | Blocked on #1–#2 |
+| 1 | **Merge PR #268 to `main`** | WESLEY_WORK / reviewer | **Done** — `8fe7cf05` |
+| 2 | Environment `ryzen9desk-managed-execution` | Operator (GitHub UI) | **Done** (no protection rules on free tier) |
+| 3 | RYZEN9DESK WSL: `main` pull + runner install | CG-AppBuilder-MCP mission | **Next** — separate from Cross-Agent harvest |
 | 4 | Dispatch `executor-smoke` → receipt from RYZEN9DESK → `MANAGED_EXECUTOR_ONLINE` | WESLEY_WORK dispatch | Blocked on #3 |
 | 5 | Remaining dispatch chain (host-preflight → … → full-acceptance-readonly) | Operator | After #4 |
 
@@ -166,3 +169,10 @@ Executor returns: `PASS` | `HOLD` | `BLOCKED` | `FAILED` with artifact receipts.
 - Verdict stays `CODE_READY_FOR_RUNNER_BOOTSTRAP` until PR #268 merges — not runner install.
 - Advance to `MANAGED_EXECUTOR_ONLINE` only after `executor-smoke` receipt from RYZEN9DESK.
 - Avoids “prepared on WESLEY_WORK, claimed on RYZEN9DESK” failure mode.
+
+### 2026-08-03 — Post-merge harvest record
+
+- PR #268 merged (`8fe7cf05`); workflow on `main`.
+- State advanced to `RUNNER_BOOTSTRAP_CHECKPOINT_STARTED` — bootstrap owned by CG-AppBuilder-MCP mission.
+- Harvest packet: `harvest-2026-08-03-cross-thread-platform-state-v1`.
+- Do **not** claim `MANAGED_EXECUTOR_ONLINE` until `executor-smoke` receipt from RYZEN9DESK.

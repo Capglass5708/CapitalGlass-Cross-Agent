@@ -13,13 +13,24 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-08-03 |
-| Current focus | Cross-Agent repo hygiene + agent investigation playbook; RYZEN9DESK managed executor bootstrap; Synology dev lane; Document Center SHA CI item |
+| Current focus | Harvest complete (`harvest-2026-08-03-cross-thread-platform-state-v1`); RYZEN9DESK bootstrap deferred to CG-AppBuilder-MCP; Synology dev lane HOLD |
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Project index | `work-progress/projects/INDEX.md` |
 
 ## Current saved work
+
+### 2026-08-03 CT — Cross-thread platform state harvest
+
+| Field | Value |
+| --- | --- |
+| Work package | `harvest-2026-08-03-cross-thread-platform-state-v1` |
+| Verdict | **HARVEST_COMPLETE** — 6/6 packets recorded |
+| Artifacts | `artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/` (`receipt.json`, `HARVEST_SUMMARY.md`, `packet-index.json`) |
+| Project file | `work-progress/projects/2026-08-03_harvest-2026-08-03-cross-thread-platform-state-v1.md` |
+| Constraints | No SSH, no runner install, no AppBuilder edits, no L: publish in harvest commit |
+| Remaining | RYZEN9DESK bootstrap (AppBuilder mission); Office Admin indexing; Synology dev blockers; recurring ingest |
 
 ### 2026-08-03 CT — Cross-Agent repo hygiene and agent investigation playbook
 
@@ -32,15 +43,15 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Remaining | Owner-qualify all 404 evidence paths; sync canonical `intelligence-hub-first-read` in AppBuilder; operator public-visibility review |
 | Next | Commit/push Cross-Agent; republish L: + Supabase if ledger hash changes |
 
-### 2026-08-03 CT — RYZEN9DESK managed executor (Phase 0 scaffolded)
+### 2026-08-03 CT — RYZEN9DESK managed executor (Phase 0 on `main`; bootstrap checkpoint)
 
 | Field | Value |
 | --- | --- |
 | Work package | `ryzen9desk-managed-executor-v1` |
-| Verdict | **Active** — persistent execution node architecture; runner install pending |
+| Verdict | **RUNNER_BOOTSTRAP_CHECKPOINT_STARTED** — PR #268 merged `8fe7cf05`; bootstrap is CG-AppBuilder-MCP mission |
 | Tooling | `.github/workflows/ryzen9desk-executor-dispatch.yml`, `scripts/executor/*`, `npm run ryzen9desk:executor:*` |
 | Prior WP | `ryzen9desk-wsl2-canonical-workspace-v1` becomes first dispatched job (`wsl2-canonical-setup`) |
-| Next | Push scaffold → install runner on RYZEN9DESK WSL → dispatch `executor-smoke` → dispatch canonical setup |
+| Next | RYZEN9DESK install + `executor-smoke` — **do not claim** `MANAGED_EXECUTOR_ONLINE` until receipt |
 
 ### 2026-08-03 CT — RYZEN9DESK WSL2 canonical workspace (BLOCKED — superseded by executor dispatch)
 
@@ -98,6 +109,16 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 **Default agent preflight (machine-readable):** `openActions` + `blockers` only — L: hub slices when available, else Supabase derived projection (`compact-slices-only`). Not full ledger. `currentFocus` human-only (`whats-active-now --include-current-focus`).
 
 ## Progress log (latest entries)
+
+### 2026-08-03 CT — harvest-2026-08-03-cross-thread-platform-state-v1 HARVEST_COMPLETE
+
+| Field | Value |
+| --- | --- |
+| Work package | `harvest-2026-08-03-cross-thread-platform-state-v1` |
+| Verdict | **HARVEST_COMPLETE** — 6 packets: executor checkpoint, active-ledger CI PASS, Synology dev HOLD, retrieval failover PASS, WSL migration PARTIAL, Office Admin pointer |
+| Receipt | `artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/receipt.json` |
+| Retrieval | `INDEX_HIT` (L: mounted) |
+| Forbidden honored | No SSH, runner install, AppBuilder changes, or L: publish |
 
 ### 2026-08-03 CT — Synology-primary step #3: hosted dev HOLD
 
