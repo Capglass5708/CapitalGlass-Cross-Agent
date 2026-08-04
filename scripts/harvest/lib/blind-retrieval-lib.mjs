@@ -38,8 +38,9 @@ export function loadSeedsForBlindRetrieval(repoRoot, harvestId) {
   if (fs.existsSync(seedDir)) {
     return fs
       .readdirSync(seedDir)
-      .filter((f) => f.endsWith(".json"))
-      .map((f) => JSON.parse(fs.readFileSync(path.join(seedDir, f), "utf8")));
+      .filter((f) => f.endsWith(".json") && f !== "seed-packet-index.json")
+      .map((f) => JSON.parse(fs.readFileSync(path.join(seedDir, f), "utf8")))
+      .filter((seed) => seed.seedId);
   }
 
   const qaPath = path.join(runDir, "qa-index.json");
