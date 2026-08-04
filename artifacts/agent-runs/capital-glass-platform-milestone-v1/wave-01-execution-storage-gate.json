@@ -5,77 +5,77 @@
   "name": "Restore Execution And Storage Authority",
   "finalGate": "EXECUTION_STORAGE_AUTHORITY_PASS",
   "verdict": "FAIL_STOP",
-  "recordedAt": "2026-08-04T16:40:00Z",
+  "recordedAt": "2026-08-04T18:10:00Z",
+  "receiptKind": "delta-progress",
   "priorAuthority": {
     "agent2Ledger": "6893286",
-    "partialStopReceipts": "ac8690e"
+    "partialStopReceipts": "ac8690e",
+    "originalWave1FullGateStop": "0b68e70",
+    "note": "0b68e70 remains the original full-gate stop receipt; this file is the latest delta state"
   },
+  "clearedSinceOriginalStop": [
+    "workflow 30924982497 completed success",
+    "WESLEY_WORK drive-mount verifier PASS",
+    "L: readable Windows + WSL",
+    "Direct Connect SSH recovery partial (ProgramData kit path)"
+  ],
   "proof": {
     "runner": {
       "pass": false,
       "name": "ryzen9desk-wsl2-CG-RYZEN9DESK-01",
       "status": "offline",
-      "busy": false
+      "busy": false,
+      "systemdService": "inactive",
+      "note": "04-enable-runner-service.sh requires sudo on RYZEN9DESK WSL"
     },
     "workflow30924982497": {
-      "pass": false,
-      "status": "queued",
-      "url": "https://github.com/Capglass5708/CG-AppBuilder-MCP/actions/runs/30924982497"
+      "pass": true,
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Capglass5708/CG-AppBuilder-MCP/actions/runs/30924982497",
+      "artifact": "ryzen9desk-executor-receipt-ryzen9desk-managed-executor-v1-30924982497"
     },
     "wesleyWorkDriveMountVerifier": {
-      "pass": false,
-      "installerElevatedRequired": true,
+      "pass": true,
       "verifier": "Test-CgWesleyWorkDriveMountTaskRegistration.ps1 -ExpectRegistered",
-      "findings": [
-        "MISSING_EXPECTED: CapitalGlass-WesleyWork-DriveMount-Logon",
-        "MISSING_EXPECTED: CapitalGlass-WesleyWork-DriveMount-Startup",
-        "NOT_HIDDEN on Health/Unlock/PreCursorDriveGate tasks"
-      ]
+      "verdict": "PASS"
     },
     "lDriveReadable": {
-      "pass": false,
-      "windowsPath": "L:\\Capital-Glass-Intelligence-Hub\\00-master-index",
-      "wslPath": "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index",
-      "forceRemapClassification": "SMB_PORT_BLOCKED",
-      "outageLog": "C:\\ProgramData\\CapitalGlass\\OfficeAdmin\\logs\\NETWORK-OUTAGE-2026-08-04-113807.json"
+      "pass": true,
+      "windowsPath": "L:\\Capital-Glass-Intelligence-Hub\\00-master-index\\AGENT_START_HERE.md",
+      "wslPath": "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/AGENT_START_HERE.md"
     },
     "zBibleMasterCurrent": {
       "pass": false,
       "verdict": "Z_MASTER_THREE_HOST_BIBLE_TRUTH_BLOCKED",
       "truthVerdict": "Z_MASTER_UNAVAILABLE",
-      "zAiCacheMounted": true,
-      "note": "Z drvfs mount OK in WSL; bible master staging release not published / hosts unreachable"
+      "zAiCacheMounted": true
     },
     "cursorHostMode": {
       "pass": true,
       "verdict": "PASS",
-      "action": "npm run cursor:wsl-default",
-      "receipt": "/home/wesle/.cursor/backups/cursor-wsl-default-2026-08-04T16-36-00-496Z.json"
+      "receipt": "/home/wesle/.cursor/backups/cursor-wsl-default-2026-08-04T18-03-00-224Z.json"
     }
   },
+  "remainingBlockers": [
+    "RYZEN9DESK runner systemd inactive — enable via 04-enable-runner-service.sh (sudo)",
+    "Z bible master sync blocked — bible-z-master:sync-host on WESLEY_WORK after runner green"
+  ],
   "operatorActionsRequired": [
     {
       "machine": "RYZEN9DESK",
-      "action": "Start GitHub Actions runner: cd ~/actions-runner && sudo ./svc.sh start",
-      "unblocks": ["workflow 30924982497"]
+      "action": "bash /mnt/c/ProgramData/CapitalGlass/DirectConnect/wsl/04-enable-runner-service.sh && sudo systemctl status actions.runner*",
+      "unblocks": ["runner online / idle"]
     },
     {
       "machine": "WESLEY_WORK",
-      "action": "Elevated PowerShell: Install-CgWesleyWorkDriveMountPersistence.ps1 then Test-CgWesleyWorkDriveMountTaskRegistration.ps1 -ExpectRegistered",
-      "path": "C:\\Developer\\repos\\CapitalGlass-Office-Admin\\scripts\\devices\\CG-WESLEYWORK-01\\",
-      "unblocks": ["L: mount", "drive-mount verifier"]
-    },
-    {
-      "machine": "WESLEY_WORK",
-      "action": "If L: still missing after installer: investigate SMB_PORT_BLOCKED from ForceRemap (NAS SMB 445 probe OK; ZMAP failed — UNC cwd issue during agent-invoked remap)",
-      "unblocks": ["L: readable in WSL"]
-    },
-    {
-      "machine": "suite",
-      "action": "After L: restored: npm run bible-z-master:sync-host -- --apply --verify --attest --json from WESLEY_WORK with Z mounted",
+      "action": "cd ~/repos/CG-AppBuilder-MCP && npm run bible-z-master:sync-host -- --apply --verify --attest --json",
       "unblocks": ["Z bible master current"]
     }
   ],
+  "deferredNonBlocking": [
+    "IT Vault bootstrap: D:\\Admin Keys\\Capital-Glass-IT-Vault\\RUN-MANUAL\\BOOTSTRAP-WESLEYWORK-VAULT-ELEVATION-Admin.cmd (future unattended elevation only)"
+  ],
   "autoContinueToWave2": false,
-  "stopReason": "EXECUTION_STORAGE_AUTHORITY_PASS not met — runner offline, L: unreadable, Z bible master blocked, drive-mount verifier FAIL"
+  "stopReason": "EXECUTION_STORAGE_AUTHORITY_PASS not met — RYZEN9DESK runner offline/inactive and Z bible master sync blocked"
 }
