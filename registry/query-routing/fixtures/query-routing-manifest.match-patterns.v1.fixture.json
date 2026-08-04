@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "query-routing-manifest-v1@1.0.0",
+  "workPackageId": "cross-agent-query-routing-authority-publication-v1-fixture",
+  "maintainer": "CapitalGlass-Cross-Agent",
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "routes": [
+    {
+      "queryClass": "repository-health",
+      "matchPatterns": [
+        "repo",
+        "repository",
+        "dirty",
+        "pull",
+        "bulk pull",
+        "safely",
+        "every"
+      ],
+      "primaryDatasetId": "git-estate",
+      "datasetIds": [
+        "git-estate",
+        "active-ledger",
+        "authority-estate",
+        "command-estate"
+      ],
+      "compactOnly": true
+    },
+    {
+      "queryClass": "authority-placement",
+      "matchPatterns": [
+        "document placement",
+        "who owns",
+        "document layer owner"
+      ],
+      "primaryDatasetId": "authority-estate",
+      "datasetIds": [
+        "authority-estate"
+      ],
+      "compactOnly": true
+    }
+  ],
+  "defaultRoute": {
+    "primaryDatasetId": "intelligence-hub-index",
+    "datasetIds": [
+      "intelligence-hub-index",
+      "active-ledger"
+    ],
+    "compactOnly": true
+  }
+}

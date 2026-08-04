@@ -1,0 +1,214 @@
+{
+  "schemaVersion": "query-routing-manifest-v1@1.0.0",
+  "workPackageId": "cross-agent-query-routing-authority-publication-v1",
+  "maintainer": "CapitalGlass-Cross-Agent",
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "routes": [
+    {
+      "queryClass": "repository-health",
+      "keywords": [
+        "repo",
+        "repository",
+        "dirty",
+        "behind",
+        "ahead",
+        "pull",
+        "branch",
+        "git pull",
+        "bulk pull",
+        "ff-only",
+        "safely",
+        "every",
+        "git estate",
+        "pull every repo",
+        "pull all repos"
+      ],
+      "primaryDataset": "git-estate",
+      "supportingDatasets": [
+        "active-ledger",
+        "authority-estate",
+        "command-estate"
+      ],
+      "compactOnly": true
+    },
+    {
+      "queryClass": "authority-placement",
+      "keywords": [
+        "document placement",
+        "owns",
+        "ownership",
+        "who owns",
+        "document layer owner"
+      ],
+      "primaryDataset": "authority-estate",
+      "supportingDatasets": [],
+      "compactOnly": true
+    },
+    {
+      "queryClass": "ownership-conflict",
+      "keywords": [
+        "authoritative",
+        "wrong repo",
+        "derivative",
+        "conflict",
+        "authority",
+        "may mutate",
+        "write to"
+      ],
+      "primaryDataset": "authority-estate",
+      "supportingDatasets": [
+        "application-estate",
+        "active-ledger",
+        "database-estate"
+      ],
+      "compactOnly": true
+    },
+    {
+      "queryClass": "suite-status",
+      "keywords": [
+        "blocker",
+        "work package",
+        "active",
+        "mission",
+        "closeout",
+        "open action",
+        "ledger"
+      ],
+      "primaryDataset": "active-ledger",
+      "supportingDatasets": [
+        "intelligence-hub-index"
+      ],
+      "compactOnly": true
+    },
+    {
+      "queryClass": "machine-capability",
+      "keywords": [
+        "mount",
+        "L drive",
+        "hot cache",
+        "GPU",
+        "runner",
+        "WSL",
+        "machine role",
+        "WESLEY_WORK",
+        "ryzen9desk"
+      ],
+      "primaryDataset": "infrastructure-estate",
+      "supportingDatasets": [
+        "git-estate",
+        "failure-intelligence"
+      ],
+      "compactOnly": true
+    },
+    {
+      "queryClass": "safe-command",
+      "keywords": [
+        "npm run",
+        "command",
+        "script",
+        "gate",
+        "receipt",
+        "dry-run"
+      ],
+      "primaryDataset": "command-estate",
+      "supportingDatasets": [
+        "workflow-estate",
+        "authority-estate"
+      ],
+      "compactOnly": true
+    },
+    {
+      "queryClass": "application-identity",
+      "keywords": [
+        "which app",
+        "app key",
+        "application bible",
+        "deploy target",
+        "vercel",
+        "railway"
+      ],
+      "primaryDataset": "application-estate",
+      "supportingDatasets": [
+        "git-estate",
+        "deployment-estate",
+        "authority-estate"
+      ],
+      "compactOnly": true
+    },
+    {
+      "queryClass": "project-document-location",
+      "keywords": [
+        "plans",
+        "drawing",
+        "permit",
+        "document",
+        "sheet",
+        "project folder",
+        "synology"
+      ],
+      "primaryDataset": "document-estate",
+      "supportingDatasets": [
+        "project-estate",
+        "authority-estate",
+        "storage-estate"
+      ],
+      "compactOnly": true
+    },
+    {
+      "queryClass": "table-ownership",
+      "keywords": [
+        "table",
+        "schema",
+        "migration",
+        "supabase",
+        "RLS",
+        "database owns"
+      ],
+      "primaryDataset": "database-estate",
+      "supportingDatasets": [
+        "authority-estate",
+        "application-estate"
+      ],
+      "compactOnly": true
+    },
+    {
+      "queryClass": "contract-identity",
+      "keywords": [
+        "schema version",
+        "receipt schema",
+        "contract",
+        "deprecated",
+        "producer",
+        "consumer"
+      ],
+      "primaryDataset": "schema-contract-estate",
+      "supportingDatasets": [
+        "authority-estate",
+        "command-estate"
+      ],
+      "compactOnly": true
+    },
+    {
+      "queryClass": "preflight",
+      "keywords": [
+        "all systems go",
+        "preflight",
+        "ready to work",
+        "blockers before"
+      ],
+      "primaryDataset": "all-systems-go",
+      "supportingDatasets": [
+        "infrastructure-estate",
+        "git-estate"
+      ],
+      "compactOnly": true
+    }
+  ],
+  "fallback": {
+    "primaryDataset": "intelligence-hub-index",
+    "supportingDatasets": [
+      "active-ledger"
+    ],
+    "compactOnly": true
+  }
+}

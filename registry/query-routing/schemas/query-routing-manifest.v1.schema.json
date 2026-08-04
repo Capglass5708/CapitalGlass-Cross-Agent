@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "capital-glass/query-routing-manifest-v1.schema.json",
+  "title": "QueryRoutingManifestV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "routes"],
+  "properties": {
+    "schemaVersion": {
+      "const": "query-routing-manifest-v1@1.0.0"
+    },
+    "workPackageId": { "type": "string", "minLength": 1 },
+    "maintainer": { "type": "string", "minLength": 1 },
+    "ownerRepo": { "type": "string", "minLength": 1 },
+    "routes": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/route" }
+    },
+    "fallback": { "$ref": "#/$defs/fallbackRoute" },
+    "defaultRoute": { "$ref": "#/$defs/fallbackRoute" }
+  },
+  "anyOf": [{ "required": ["fallback"] }, { "required": ["defaultRoute"] }],
+  "$defs": {
+    "datasetId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "patternList": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "keywordsRoute": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["queryClass", "keywords", "primaryDataset", "compactOnly"],
+      "properties": {
+        "queryClass": { "type": "string", "minLength": 1 },
+        "keywords": { "$ref": "#/$defs/patternList" },
+        "primaryDataset": { "$ref": "#/$defs/datasetId" },
+        "supportingDatasets": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/datasetId" }
+        },
+        "compactOnly": { "type": "boolean" }
+      }
+    },
+    "matchPatternsRoute": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["queryClass", "matchPatterns", "primaryDatasetId", "datasetIds", "compactOnly"],
+      "properties": {
+        "queryClass": { "type": "string", "minLength": 1 },
+        "matchPatterns": { "$ref": "#/$defs/patternList" },
+        "primaryDatasetId": { "$ref": "#/$defs/datasetId" },
+        "datasetIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/datasetId" }
+        },
+        "compactOnly": { "type": "boolean" }
+      }
+    },
+    "route": {
+      "oneOf": [
+        { "$ref": "#/$defs/keywordsRoute" },
+        { "$ref": "#/$defs/matchPatternsRoute" }
+      ]
+    },
+    "fallbackRoute": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["primaryDataset", "compactOnly"],
+          "properties": {
+            "queryClass": { "type": "string" },
+            "primaryDataset": { "$ref": "#/$defs/datasetId" },
+            "supportingDatasets": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/datasetId" }
+            },
+            "compactOnly": { "type": "boolean" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["primaryDatasetId", "datasetIds", "compactOnly"],
+          "properties": {
+            "queryClass": { "type": "string" },
+            "primaryDatasetId": { "$ref": "#/$defs/datasetId" },
+            "datasetIds": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "$ref": "#/$defs/datasetId" }
+            },
+            "compactOnly": { "type": "boolean" }
+          }
+        }
+      ]
+    }
+  }
+}
