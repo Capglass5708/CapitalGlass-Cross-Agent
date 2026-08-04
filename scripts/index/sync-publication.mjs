@@ -31,7 +31,7 @@ function main() {
     DATA_EXTRACTION_ROOT,
   );
   run(
-    `INTELLIGENCE_HUB_ROOT=${HUB_ROOT} CAPITALGLASS_CROSS_AGENT_ROOT=${REPO_ROOT} npm run intelligence-hub:thread-autopsy:project-supabase -- --apply --json`,
+    `INTELLIGENCE_HUB_ROOT=${HUB_ROOT} CAPITALGLASS_CROSS_AGENT_ROOT=${REPO_ROOT} doppler run --project cg-mcp --config dev -- npm run intelligence-hub:thread-autopsy:project-supabase -- --apply --json`,
     APP_BUILDER_ROOT,
   );
   run("npm run index:freshness-gate", REPO_ROOT, {
