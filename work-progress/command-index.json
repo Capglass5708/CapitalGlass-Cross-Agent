@@ -1,7 +1,7 @@
 {
-  "schemaVersion": "cross-agent-command-index-v1@1.0.0",
-  "updatedAt": "2026-08-03T19:43:15.339Z",
-  "sourceCommitSha": "8e4fd409ac4b08b4c94da729c4ad9ba0be8fe35a",
+  "schemaVersion": "cross-agent-command-index-v1@1.1.0",
+  "updatedAt": "2026-08-04T00:25:00.000Z",
+  "sourceCommitSha": "38b69383f214e6d180c565626d2df1e817f29d3f",
   "authority": "docs/runbooks/harvest-record-validate-sync.md",
   "commands": [
     {
@@ -20,7 +20,9 @@
       "executable": true,
       "docOnly": false,
       "phase": "harvest-record",
-      "runbookStep": 4
+      "runbookStep": 4,
+      "provesGate": "HARVEST_COMPLETE",
+      "gateId": "harvest-authority-validate"
     },
     {
       "id": "test-harvest",
@@ -88,7 +90,29 @@
       "executable": true,
       "docOnly": false,
       "phase": "projection",
-      "runbookStep": 8
+      "runbookStep": 8,
+      "provesGate": "INDEX_LAYER_PARITY",
+      "gateId": "cross-agent-index-freshness"
+    },
+    {
+      "id": "index-compile-control-slices",
+      "command": "npm run index:compile-control-slices",
+      "repo": "CapitalGlass-Cross-Agent",
+      "executable": true,
+      "docOnly": false,
+      "phase": "projection",
+      "provesGate": "CONTROL_SLICES_CURRENT",
+      "gateId": "intelligence-hub-control-slices-compile"
+    },
+    {
+      "id": "index-blind-retrieval",
+      "command": "npm run harvest:blind-retrieval",
+      "repo": "CapitalGlass-Cross-Agent",
+      "executable": true,
+      "docOnly": false,
+      "phase": "projection",
+      "provesGate": "BLIND_RETRIEVAL_PASS",
+      "gateId": "hub-blind-retrieval-benchmark"
     },
     {
       "id": "index-sync-publication",
@@ -117,6 +141,8 @@
       "docOnly": false,
       "phase": "projection",
       "automaticPrimary": true,
+      "provesGate": "HUB_PUBLICATION_CURRENT",
+      "gateId": "index-publication-workflow",
       "note": "GitHub Actions publisher on WESLEYDESK — replaces manual sync-publication when push trigger enabled",
       "env": [
         "GITHUB_SHA",
@@ -124,6 +150,40 @@
         "CG_APPBUILDER_MCP_ROOT",
         "CAPITALGLASS_CROSS_AGENT_ROOT"
       ]
+    },
+    {
+      "id": "auto-publisher-run-once",
+      "command": "doppler run -- npm run intelligence-hub:auto-publisher:once",
+      "repo": "CG-AppBuilder-MCP",
+      "executable": true,
+      "docOnly": false,
+      "phase": "projection",
+      "host": "CG-WESLEYDESK-01",
+      "provesGate": "AUTO_PUBLISHER_IDEMPOTENT",
+      "gateId": "auto-publisher-v1-1-activation",
+      "note": "Staged — not active until operator enables schedule"
+    },
+    {
+      "id": "direct-connect-persistence-proof",
+      "command": "Office Admin cold-reboot persistence checklist",
+      "repo": "CapitalGlass-Office-Admin",
+      "executable": false,
+      "docOnly": true,
+      "phase": "operator",
+      "host": "RYZEN9DESK",
+      "provesGate": "PERSISTENT_AVAILABILITY_PASS",
+      "gateId": "direct-connect-cold-reboot"
+    },
+    {
+      "id": "managed-executor-health-probe",
+      "command": "CG-AppBuilder-MCP managed executor health probe",
+      "repo": "CG-AppBuilder-MCP",
+      "executable": false,
+      "docOnly": true,
+      "phase": "operator",
+      "host": "RYZEN9DESK",
+      "provesGate": "MANAGED_EXECUTOR_ONLINE",
+      "gateId": "ryzen9desk-executor-health"
     },
     {
       "id": "wesleydesk-runner-preflight",

@@ -14,7 +14,12 @@ Make RYZEN9DESK a **persistent managed execution node** so WESLEY_WORK submits a
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Authority repo | CapitalGlass-Office-Admin (network/Tailscale), CG-Platform-Governance-MCP (ledger) |
 | Execution repo | CG-AppBuilder-MCP (runner install, workflows, allowlists) |
-| Status | **RUNNER_BOOTSTRAP_CHECKPOINT_STARTED** (`CODE_READY_FOR_RUNNER_BOOTSTRAP`) |
+| Status | **FULL_ACCEPTANCE_READONLY_PASS** (Direct Connect); runner bootstrap coordination continues |
+| Product name | **Direct Connect** — WESLEY_WORK → GitHub Actions → RYZEN9DESK WSL runner (not "No SSH" except historical) |
+| Canonical kit parent | `Z:\Office\Wes\Direct Connect\` |
+| RYZEN kit | `Z:\Office\Wes\Direct Connect\Ryzen Direct Connect` |
+| WESLEY_WORK kit | `Z:\Office\Wes\Direct Connect\Wesley Work Direct Connect` |
+| Related | `direct-connect-persistent-controller-v1` — persistence not proven |
 
 **State machine (honest progression — do not skip):**
 

@@ -12,14 +12,38 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-08-03 |
-| Current focus | Harvest complete (`harvest-2026-08-03-cross-thread-platform-state-v1`); RYZEN9DESK bootstrap deferred to CG-AppBuilder-MCP; Synology dev lane HOLD |
+| Last updated | 2026-08-04 |
+| Current focus | Intelligence Hub expansion wave 1 (control slices); Slice 6 `MERGED_AWAITING_HUB_PUBLICATION`; Direct Connect persistence unproven |
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Project index | `work-progress/projects/INDEX.md` |
 
 ## Current saved work
+
+### 2026-08-04 CT — intelligence-hub-capability-expansion-v1 wave 1
+
+| Field | Value |
+| --- | --- |
+| Work package | `intelligence-hub-capability-expansion-v1` |
+| Verdict | **EXPANSION_CONTRACT_NEEDED** — wave 1 artifacts + compile script **DONE** |
+| Artifacts | `artifacts/agent-runs/intelligence-hub-capability-expansion-v1/` (`recommended-roi.json`, `expansion-contract-v1.json`, `compile-receipt-v1.json`) |
+| Authority maps | `work-progress/blocker-to-action-map.json`, `work-progress/do-not-advance-registry.json`, `command-index.json` v1.1 |
+| Compiled slices | `work-progress/intelligence-hub-slices/` (15 files via `npm run index:compile-control-slices`) |
+| Tests | `npm run test:index-control-slices` — 7/7 PASS |
+| Next | Commit to main; operator `index:publish` on WESLEYDESK after Slice 6 workflow 30861642734 |
+
+### 2026-08-03 CT — harvest-current-cross-thread-state-v2 HARVEST_COMPLETE
+
+| Field | Value |
+| --- | --- |
+| Work package | `harvest-current-cross-thread-state-v2` |
+| Verdict | **HARVEST_COMPLETE** — 9/9 packets recorded |
+| Artifacts | `artifacts/agent-runs/harvest-current-cross-thread-state-v2/` (`receipt.json`, `HARVEST_SUMMARY.md`, `packet-index.json`, `compact-records/`, `coverage.json`) |
+| Project file | `work-progress/projects/2026-08-03_harvest-current-cross-thread-state-v2.md` |
+| Retrieval | `INDEX_HIT` (L: mounted @ `a0f0e86`) |
+| Preserved | `PERSISTENT_AVAILABILITY_PASS` not awarded; `THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL` not claimed; Slice 6 HOLD; `AUTO_PUBLISHER_V1_1_STAGED_NOT_ACTIVE` |
+| Constraints | No product code changes, no L: publish, no SSH/Direct Connect recovery |
 
 ### 2026-08-03 CT — Cross-Agent index current + AI Cache Layer 0
 
@@ -131,6 +155,16 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 **Default agent preflight (machine-readable):** `openActions` + `blockers` only — L: hub slices when available, else Supabase derived projection (`compact-slices-only`). Not full ledger. `currentFocus` human-only (`whats-active-now --include-current-focus`).
 
 ## Progress log (latest entries)
+
+### 2026-08-03 CT — harvest-current-cross-thread-state-v2 HARVEST_COMPLETE
+
+| Field | Value |
+| --- | --- |
+| Work package | `harvest-current-cross-thread-state-v2` |
+| Verdict | **HARVEST_COMPLETE** — 9 packets: Direct Connect persistence, executor readonly pass, Synology IH publication, index freshness, auto-publisher staged, three-way precommit, governance path repair, harvest boundary repair, Platform Health deferred |
+| Receipt | `artifacts/agent-runs/harvest-current-cross-thread-state-v2/receipt.json` |
+| Retrieval | `INDEX_HIT` |
+| Forbidden honored | No product mutations, no L: publish, no SSH recovery |
 
 ### 2026-08-03 CT — harvest-2026-08-03-cross-thread-platform-state-v1 HARVEST_COMPLETE
 
