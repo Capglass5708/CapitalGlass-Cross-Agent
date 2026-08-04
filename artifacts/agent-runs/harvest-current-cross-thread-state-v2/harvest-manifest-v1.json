@@ -1,0 +1,418 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-current-cross-thread-state-v2",
+  "missionClass": "harvest",
+  "sourceCommitSha": "22c870432b88df3e78ed519789992bf2c212d70d",
+  "sourceBranch": "feat/three-way-agent-improvement-intelligence-cross-agent-v1",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-03T23:10:00.000Z",
+  "updatedAt": "2026-08-03T23:10:00.000Z",
+  "retrievalResult": "INDEX_HIT",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "PERSISTENT_AVAILABILITY_PASS",
+    "THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL",
+    "Slice 6 advancement for three-way-agent-improvement-intelligence-v1",
+    "AUTO_PUBLISHER_V1_1_STAGED_NOT_ACTIVE",
+    "MANAGED_EXECUTOR_ONLINE without cold-reboot persistence proof",
+    "Production deploy or Synology production mutation"
+  ],
+  "generatedViews": [
+    "artifacts/agent-runs/harvest-current-cross-thread-state-v2/packet-index.json",
+    "artifacts/agent-runs/harvest-current-cross-thread-state-v2/HARVEST_SUMMARY.md",
+    "artifacts/agent-runs/harvest-current-cross-thread-state-v2/receipt.json",
+    "artifacts/agent-runs/harvest-current-cross-thread-state-v2/compact-records",
+    "artifacts/agent-runs/harvest-current-cross-thread-state-v2/coverage.json",
+    "work-progress/projects/INDEX.md"
+  ],
+  "validationRefs": [
+    "artifacts/agent-runs/harvest-current-cross-thread-state-v2/validation-result.json"
+  ],
+  "ownerRepoSummary": [
+    {
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "packetCount": 1
+    },
+    {
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "packetCount": 2
+    },
+    {
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "packetCount": 4
+    },
+    {
+      "ownerRepo": "CG-Platform-Governance-MCP",
+      "packetCount": 1
+    },
+    {
+      "ownerRepo": "CapitalGlass-Documents",
+      "packetCount": 0
+    }
+  ],
+  "commitEvidence": [
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "sha": "a0f0e868845774ca790188076bd85fdc6d6b2b8f",
+      "role": "main-head-index-receipts"
+    },
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "sha": "33870986081a2a5725f88d0847593bf9b91cd3ac",
+      "role": "synology-ih-pfsp-pr1-merge"
+    },
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "sha": "67baa9d5",
+      "role": "intelligence-hub-index-ai-cache-freshness"
+    },
+    {
+      "repo": "CapitalGlass-Documents",
+      "sha": "5a436d1",
+      "role": "production-promotion-unchanged"
+    },
+    {
+      "repo": "CapitalGlass-Documents",
+      "sha": "0f84735",
+      "role": "production-live-unchanged"
+    }
+  ],
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": null,
+    "note": "Harvest records state only — no L:/Z:/Supabase publication in this mission"
+  },
+  "ledgerLineage": {
+    "ledgerPath": "work-progress/ACTIVE_WORK.md",
+    "ledgerContentHashBefore": "d71688b9d7e91cd7508ea961f97024f4f8f7786c51323a96b64040c7ced8ab3b",
+    "ledgerContentHashAfter": "477b6f65bae27d9b05f6b2ee6f24c82bab9bdf85e8e8ed2344c535cfeb9745dd"
+  },
+  "supersededClaims": [
+    {
+      "packetId": "ryzen9desk-managed-executor-v1",
+      "claim": "RUNNER_BOOTSTRAP_CHECKPOINT_STARTED as sole verdict",
+      "supersededBy": "FULL_ACCEPTANCE_READONLY_PASS for Direct Connect readonly acceptance; bootstrap coordination continues",
+      "recordedAt": "2026-08-03T23:10:00.000Z"
+    },
+    {
+      "packetId": "harvest-2026-08-03-cross-thread-platform-state-v1",
+      "claim": "Latest cross-thread harvest authority",
+      "supersededBy": "harvest-current-cross-thread-state-v2 for packets A–I in this thread",
+      "recordedAt": "2026-08-03T23:10:00.000Z"
+    }
+  ],
+  "packets": [
+    {
+      "packetId": "direct-connect-persistent-controller-v1",
+      "packetTitle": "Direct Connect persistent controller",
+      "state": "INSTALLED_PERSISTENCE_UNPROVEN",
+      "packetVerdict": "HOLD",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerMcp": "user-office-admin-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "Z:/Office/Wes/Direct Connect/Ryzen Direct Connect/persistent-controller/",
+      "projectFile": "work-progress/projects/2026-08-03_direct-connect-persistent-controller-v1.md",
+      "evidenceRefs": [
+        "work-progress/projects/2026-08-03_direct-connect-persistent-controller-v1.md",
+        "CapitalGlass-DirectConnect-PersistentController-Startup",
+        "CapitalGlass-DirectConnect-PersistentController-Health"
+      ],
+      "commitRefs": [],
+      "nextAction": "Cold reboot / wsl --shutdown without SSH repair → controller receipt PASS → runner online ≥5 min → WESLEY_WORK storage-verify PASS",
+      "advancementGate": "cold-reboot self-heal without manual SSH repair",
+      "doNotAdvance": [
+        "PERSISTENT_AVAILABILITY_PASS"
+      ],
+      "blockers": [
+        {
+          "id": "cold-reboot-failed",
+          "owner": "CapitalGlass-Office-Admin",
+          "summary": "Cold reboot self-heal previously failed; storage verify only passed after SSH/manual recovery (run 30859284939)"
+        }
+      ],
+      "relatedPackets": [
+        "ryzen9desk-managed-executor-v1"
+      ]
+    },
+    {
+      "packetId": "ryzen9desk-managed-executor-v1",
+      "packetTitle": "RYZEN9DESK managed executor (Direct Connect)",
+      "state": "FULL_ACCEPTANCE_READONLY_PASS",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "CG-AppBuilder-MCP/docs/work-packages/ryzen9desk-managed-executor-v1.md",
+      "projectFile": "work-progress/projects/2026-08-03_ryzen9desk-managed-executor-v1.md",
+      "evidenceRefs": [
+        "Z:/Office/Wes/Direct Connect/",
+        "Z:/Office/Wes/Direct Connect/Ryzen Direct Connect",
+        "Z:/Office/Wes/Direct Connect/Wesley Work Direct Connect",
+        "CG-AppBuilder-MCP/.github/workflows/ryzen9desk-executor-dispatch.yml"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "8fe7cf05534b28da9180df9da08b5d2123dc5dc8",
+          "note": "PR #268 merge — executor dispatch"
+        }
+      ],
+      "nextAction": "Prove persistent availability via direct-connect-persistent-controller-v1 cold-reboot protocol",
+      "advancementGate": "PERSISTENT_AVAILABILITY_PASS after cold reboot without SSH repair",
+      "doNotAdvance": [
+        "PERSISTENT_AVAILABILITY_PASS",
+        "MANAGED_EXECUTOR_ONLINE without persistence proof"
+      ],
+      "blockers": [],
+      "relatedPackets": [
+        "direct-connect-persistent-controller-v1"
+      ]
+    },
+    {
+      "packetId": "complete-project-folder-synology-intelligence-publication-v1",
+      "packetTitle": "Synology IH-PFSP intelligence publication",
+      "state": "PUBLICATION_COMPLETE",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerMcp": null,
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "artifacts/agent-runs/harvest-project-folder-synology-primary-chat-v1/intelligence-hub-seed-manifest.json",
+      "projectFile": "work-progress/projects/2026-08-03_complete-project-folder-synology-intelligence-publication-v1.md",
+      "evidenceRefs": [
+        "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/cross-agent-harvest-project-folder-synology.json",
+        "work-progress/projects/2026-08-03_complete-project-folder-synology-intelligence-publication-v1.md"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "33870986081a2a5725f88d0847593bf9b91cd3ac",
+          "note": "PR #1 merge"
+        },
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "2853050",
+          "note": "Hub seed + tooling"
+        },
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "efcbd5a",
+          "note": "Pre-merge evidence"
+        },
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "20923ea",
+          "note": "Post-merge publication receipt"
+        },
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "a0f0e868845774ca790188076bd85fdc6d6b2b8f",
+          "note": "Main HEAD index receipts"
+        }
+      ],
+      "nextAction": "Recurring index:freshness-gate after ledger edits; production observe-only",
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Historical migration",
+        "SharePoint Slice 4",
+        "Production mutation during stabilization"
+      ],
+      "blockers": [],
+      "relatedPackets": [
+        "harvest-project-folder-synology-primary-chat-v1"
+      ]
+    },
+    {
+      "packetId": "intelligence-hub-index-ai-cache-freshness-v1",
+      "packetTitle": "Intelligence Hub index freshness + AI-cache-first preflight",
+      "state": "FOUNDATION_PASS",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "CG-AppBuilder-MCP commit 67baa9d5",
+      "projectFile": "work-progress/projects/2026-08-03_intelligence-hub-index-ai-cache-freshness-v1.md",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP artifacts for index freshness module",
+        "indexResult=INDEX_HIT_AI_CACHE",
+        "freshnessVerdict=CURRENT"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "67baa9d5",
+          "note": "feat(intelligence-hub): Git→L→Z index freshness and AI-cache-first preflight"
+        }
+      ],
+      "nextAction": "cross-agent-index-auto-publisher-activation-v1 — enable and prove post-commit publication",
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "AUTO_PUBLISHER_V1_1_ACTIVE"
+      ],
+      "blockers": [],
+      "relatedPackets": [
+        "cross-agent-index-auto-publisher-activation-v1"
+      ]
+    },
+    {
+      "packetId": "cross-agent-index-auto-publisher-activation-v1",
+      "packetTitle": "Cross-Agent index auto-publisher activation",
+      "state": "STAGED_NOT_ACTIVE",
+      "packetVerdict": "HOLD",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerMcp": null,
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "scripts/index/run-index-publisher.mjs",
+      "projectFile": "work-progress/projects/2026-08-03_cross-agent-index-auto-publisher-activation-v1.md",
+      "evidenceRefs": [
+        "work-progress/projects/2026-08-03_cross-agent-index-auto-publisher-activation-v1.md"
+      ],
+      "commitRefs": [],
+      "nextAction": "Enable publisher trigger; prove post-commit publication after new Cross-Agent commit",
+      "advancementGate": "post-commit index:publish PASS with trigger enabled",
+      "doNotAdvance": [
+        "AUTO_PUBLISHER_V1_1_STAGED_NOT_ACTIVE",
+        "Mark active without post-commit publication proof"
+      ],
+      "blockers": [
+        {
+          "id": "publisher-not-enabled",
+          "owner": "CapitalGlass-Cross-Agent",
+          "summary": "Auto-publisher trigger not activated"
+        }
+      ],
+      "relatedPackets": [
+        "intelligence-hub-index-ai-cache-freshness-v1"
+      ]
+    },
+    {
+      "packetId": "three-way-agent-improvement-intelligence-v1",
+      "packetTitle": "Three-way agent improvement intelligence",
+      "state": "SLICE_6_HOLD",
+      "packetVerdict": "PRECOMMIT_VERIFICATION_PASS_WITH_PREREQUISITE_GATE_REPAIRS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "CG-AppBuilder-MCP/artifacts/agent-runs/_app-building-harvest/improvement-candidates/registry-manifest-v1.json",
+      "projectFile": "work-progress/projects/2026-08-03_three-way-agent-improvement-intelligence-v1.md",
+      "evidenceRefs": [
+        "work-progress/pointers/three-way-agent-improvement-intelligence-v1.json",
+        "publication idempotency fixture PASS",
+        "FI npm test 72/72 PASS"
+      ],
+      "commitRefs": [],
+      "nextAction": "Scoped PRs for prerequisite gate repairs; do not advance Slice 6",
+      "advancementGate": "operator approval for Slice 6 and program PRs",
+      "doNotAdvance": [
+        "THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL",
+        "Slice 6 advancement",
+        "Program PR creation without approval"
+      ],
+      "blockers": [
+        {
+          "id": "slice-6-hold",
+          "owner": "CG-AppBuilder-MCP",
+          "summary": "Slice 6 remains HOLD; program PRs not created"
+        }
+      ],
+      "relatedPackets": [
+        "governance-wsl-path-normalization-v1",
+        "cross-agent-harvest-owner-boundary-v1"
+      ]
+    },
+    {
+      "packetId": "governance-wsl-path-normalization-v1",
+      "packetTitle": "Governance WSL path normalization",
+      "state": "GATE_REPAIR_COMPLETE",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-Platform-Governance-MCP",
+      "ownerMcp": null,
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "CG-Platform-Governance-MCP cross-platform-repo-path tests",
+      "projectFile": "work-progress/projects/2026-08-03_governance-wsl-path-normalization-v1.md",
+      "evidenceRefs": [
+        "governance-lifecycle-equivalence.test.mjs 12/12 PASS",
+        "cross-platform-repo-path.test.mjs 3/3 PASS"
+      ],
+      "commitRefs": [],
+      "nextAction": "Scoped PR from main with path-only files",
+      "advancementGate": "scoped PR merged",
+      "doNotAdvance": [
+        "Full npm test 140/140 claim from mixed branch 138/140"
+      ],
+      "blockers": [],
+      "relatedPackets": [
+        "three-way-agent-improvement-intelligence-v1"
+      ]
+    },
+    {
+      "packetId": "cross-agent-harvest-owner-boundary-v1",
+      "packetTitle": "Cross-Agent harvest owner boundary gate repair",
+      "state": "GATE_REPAIR_COMPLETE",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerMcp": null,
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "work-progress/owner-repo-boundary-index.json",
+      "projectFile": "work-progress/projects/2026-08-03_cross-agent-harvest-owner-boundary-v1.md",
+      "evidenceRefs": [
+        "docs/work-packages/cross-agent-harvest-owner-boundary-v1.md",
+        "npm run test:harvest 11/11 PASS",
+        "npm run harvest:validate PASS"
+      ],
+      "commitRefs": [],
+      "nextAction": "Scoped PR from main with harvest-boundary files only",
+      "advancementGate": "scoped PR merged",
+      "doNotAdvance": [],
+      "blockers": [],
+      "relatedPackets": [
+        "three-way-agent-improvement-intelligence-v1"
+      ]
+    },
+    {
+      "packetId": "platform-health-read-model-slice-7-v1",
+      "packetTitle": "Platform Health read-model Slice 7",
+      "state": "DEFERRED",
+      "packetVerdict": "HOLD",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerMcp": null,
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "work-progress/projects/2026-08-03_platform-health-read-model-slice-7-v1.md",
+      "projectFile": "work-progress/projects/2026-08-03_platform-health-read-model-slice-7-v1.md",
+      "evidenceRefs": [
+        "main 5b3e435 typecheck PASS",
+        "feature branch merge conflicts noted"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "5b3e435",
+          "note": "clean main typecheck"
+        }
+      ],
+      "nextAction": "Separate cleanup work package if needed; does not block core program",
+      "advancementGate": "operator scopes Slice 7 cleanup",
+      "doNotAdvance": [
+        "Block core program on Slice 7"
+      ],
+      "blockers": [
+        {
+          "id": "feature-branch-conflicts",
+          "owner": "CapitalGlass-Cross-Agent",
+          "summary": "Feature branch has pre-existing merge conflicts"
+        }
+      ],
+      "relatedPackets": []
+    }
+  ]
+}

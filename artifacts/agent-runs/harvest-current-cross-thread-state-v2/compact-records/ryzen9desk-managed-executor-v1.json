@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-current-cross-thread-state-v2",
+  "packetId": "ryzen9desk-managed-executor-v1",
+  "state": "FULL_ACCEPTANCE_READONLY_PASS",
+  "packetVerdict": "PASS",
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Prove persistent availability via direct-connect-persistent-controller-v1 cold-reboot protocol",
+  "evidenceRefs": [
+    "Z:/Office/Wes/Direct Connect/",
+    "Z:/Office/Wes/Direct Connect/Ryzen Direct Connect",
+    "Z:/Office/Wes/Direct Connect/Wesley Work Direct Connect",
+    "CG-AppBuilder-MCP/.github/workflows/ryzen9desk-executor-dispatch.yml"
+  ],
+  "doNotAdvance": [
+    "PERSISTENT_AVAILABILITY_PASS",
+    "MANAGED_EXECUTOR_ONLINE without persistence proof"
+  ],
+  "advancementGate": "PERSISTENT_AVAILABILITY_PASS after cold reboot without SSH repair",
+  "contentHash": "30c4acfe97b6a4562b4f08f286bc0a22e428881902d8483b18ef280fb5cecceb"
+}

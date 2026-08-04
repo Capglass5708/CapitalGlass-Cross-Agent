@@ -2,7 +2,7 @@
 
 Master index of all project files in `work-progress/projects/`.
 
-**Last updated:** 2026-08-03 (harvest `harvest-2026-08-03-cross-thread-platform-state-v1`)
+**Last updated:** 2026-08-04 (harvest v2 + intelligence-hub-capability-expansion-v1)
 
 Read `AGENT_START_HERE.md` and `work-progress/ACTIVE_WORK.md` before working on any project listed here.
 
@@ -38,11 +38,15 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 
 | Packet ID | State | Verdict | Owner repo | Project file | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `project-folder-synology-primary-v1` | SUPERSEDED_BY_PRODUCTION_PASS | PROGRAM_FOUNDATION_COMPLETE | CapitalGlass-Documents | [project-folder-synology-primary-v1.md](./project-folder-synology-primary-v1.md) | Use production-promotion packet for current ops; parent doc is historical context |
-| `project-folder-synology-primary-v1-dev-hosted-environment` | DEV_ENVIRONMENT_ACCEPTED | PASS | CapitalGlass-Documents | [project-folder-synology-primary-v1-dev-hosted-environment.md](./project-folder-synology-primary-v1-dev-hosted-environment.md) | Maintain dev lane as regression witness; do not stop dev worker during stabilization |
-| `project-folder-synology-primary-v1-dev-reproducibility-hardening` | PROMOTION_CANDIDATE_READY | PASS | CapitalGlass-Documents | [project-folder-synology-primary-v1-dev-reproducibility-hardening.md](./project-folder-synology-primary-v1-dev-reproducibility-hardening.md) | Candidate e3fe6ec remains authoritative app source; deployed as 5a436d1 merge |
-| `project-folder-synology-primary-v1-production-promotion` | STABILIZATION_OBSERVE_ONLY | PRODUCTION_PROMOTION_PASS | CapitalGlass-Documents | [project-folder-synology-primary-v1-production-promotion.md](./project-folder-synology-primary-v1-production-promotion.md) | 24h monitoring only; open post-stabilization hardening after window |
-| `harvest-project-folder-synology-primary-chat-v1` | HARVEST_COMPLETE | HARVEST_COMPLETE | CapitalGlass-Cross-Agent | [harvest-project-folder-synology-primary-chat-v1.md](./harvest-project-folder-synology-primary-chat-v1.md) | Publish to Intelligence Hub; use qa-index for agent retrieval |
+| `direct-connect-persistent-controller-v1` | INSTALLED_PERSISTENCE_UNPROVEN | HOLD | CapitalGlass-Office-Admin | [2026-08-03_direct-connect-persistent-controller-v1.md](./2026-08-03_direct-connect-persistent-controller-v1.md) | Cold reboot / wsl --shutdown without SSH repair → controller receipt PASS → runner online ≥5 min → WESLEY_WORK storage-verify PASS |
+| `ryzen9desk-managed-executor-v1` | FULL_ACCEPTANCE_READONLY_PASS | PASS | CG-AppBuilder-MCP | [2026-08-03_ryzen9desk-managed-executor-v1.md](./2026-08-03_ryzen9desk-managed-executor-v1.md) | Prove persistent availability via direct-connect-persistent-controller-v1 cold-reboot protocol |
+| `complete-project-folder-synology-intelligence-publication-v1` | PUBLICATION_COMPLETE | PASS | CapitalGlass-Cross-Agent | [2026-08-03_complete-project-folder-synology-intelligence-publication-v1.md](./2026-08-03_complete-project-folder-synology-intelligence-publication-v1.md) | Recurring index:freshness-gate after ledger edits; production observe-only |
+| `intelligence-hub-index-ai-cache-freshness-v1` | FOUNDATION_PASS | PASS | CG-AppBuilder-MCP | [2026-08-03_intelligence-hub-index-ai-cache-freshness-v1.md](./2026-08-03_intelligence-hub-index-ai-cache-freshness-v1.md) | cross-agent-index-auto-publisher-activation-v1 — enable and prove post-commit publication |
+| `cross-agent-index-auto-publisher-activation-v1` | STAGED_NOT_ACTIVE | HOLD | CapitalGlass-Cross-Agent | [2026-08-03_cross-agent-index-auto-publisher-activation-v1.md](./2026-08-03_cross-agent-index-auto-publisher-activation-v1.md) | Enable publisher trigger; prove post-commit publication after new Cross-Agent commit |
+| `three-way-agent-improvement-intelligence-v1` | SLICE_6_HOLD | PRECOMMIT_VERIFICATION_PASS_WITH_PREREQUISITE_GATE_REPAIRS | CG-AppBuilder-MCP | [2026-08-03_three-way-agent-improvement-intelligence-v1.md](./2026-08-03_three-way-agent-improvement-intelligence-v1.md) | Scoped PRs for prerequisite gate repairs; do not advance Slice 6 |
+| `governance-wsl-path-normalization-v1` | GATE_REPAIR_COMPLETE | PASS | CG-Platform-Governance-MCP | [2026-08-03_governance-wsl-path-normalization-v1.md](./2026-08-03_governance-wsl-path-normalization-v1.md) | Scoped PR from main with path-only files |
+| `cross-agent-harvest-owner-boundary-v1` | GATE_REPAIR_COMPLETE | PASS | CapitalGlass-Cross-Agent | [2026-08-03_cross-agent-harvest-owner-boundary-v1.md](./2026-08-03_cross-agent-harvest-owner-boundary-v1.md) | Scoped PR from main with harvest-boundary files only |
+| `platform-health-read-model-slice-7-v1` | DEFERRED | HOLD | CapitalGlass-Cross-Agent | [2026-08-03_platform-health-read-model-slice-7-v1.md](./2026-08-03_platform-health-read-model-slice-7-v1.md) | Separate cleanup work package if needed; does not block core program |
 
 <!-- HARVEST-PACKET-INDEX:END -->
 
@@ -51,7 +55,13 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 | Project ID | File | Status | Owner repo(s) | Last commit | Next action |
 | --- | --- | --- | --- | --- | --- |
 | `chat-thread-harvest-protocol-hot-cache-roi-v1` | [2026-08-03_chat-thread-harvest-protocol-hot-cache-roi-v1.md](./2026-08-03_chat-thread-harvest-protocol-hot-cache-roi-v1.md) | **INDEXED** — protocol additions recorded | CapitalGlass-Cross-Agent, CG-AppBuilder-MCP, CG-Platform-Governance-MCP | GitHub contents API | Implement schema/generator validation in AppBuilder if enforced |
-| `harvest-2026-08-03-cross-thread-platform-state-v1` | [2026-08-03_harvest-2026-08-03-cross-thread-platform-state-v1.md](./2026-08-03_harvest-2026-08-03-cross-thread-platform-state-v1.md) | **COMPLETE** — `HARVEST_COMPLETE` | CapitalGlass-Cross-Agent | Harvest commit pending | Recurring ingest + L: publish when operator approves |
+| `harvest-current-cross-thread-state-v2` | [2026-08-03_harvest-current-cross-thread-state-v2.md](./2026-08-03_harvest-current-cross-thread-state-v2.md) | **COMPLETE** — `HARVEST_COMPLETE` | CapitalGlass-Cross-Agent | Commit pending | `index:publish` on WESLEYDESK |
+| `intelligence-hub-capability-expansion-v1` | [2026-08-03_intelligence-hub-capability-expansion-v1.md](./2026-08-03_intelligence-hub-capability-expansion-v1.md) | **WAVE1_READY** — control slices compiled | CapitalGlass-Cross-Agent | Commit pending | Publish after Slice 6 gates |
+| `three-way-agent-improvement-intelligence-v1` | [2026-08-03_three-way-agent-improvement-intelligence-v1.md](./2026-08-03_three-way-agent-improvement-intelligence-v1.md) | **MERGED_AWAITING_HUB_PUBLICATION** | CG-AppBuilder-MCP | PR stack merged | Workflow 30861642734 + freshness + blind retrieval |
+| `direct-connect-persistent-controller-v1` | [2026-08-03_direct-connect-persistent-controller-v1.md](./2026-08-03_direct-connect-persistent-controller-v1.md) | **HOLD** — persistence unproven | CapitalGlass-Office-Admin | RYZEN9DESK | Cold reboot proof |
+| `cross-agent-index-auto-publisher-activation-v1` | [2026-08-03_cross-agent-index-auto-publisher-activation-v1.md](./2026-08-03_cross-agent-index-auto-publisher-activation-v1.md) | **HOLD** — staged not active | CapitalGlass-Cross-Agent | — | After Slice 6 publication PASS |
+| `platform-health-read-model-slice-7-v1` | [2026-08-03_platform-health-read-model-slice-7-v1.md](./2026-08-03_platform-health-read-model-slice-7-v1.md) | **DEFERRED** | capital-glass-platform-health | — | PR #31 independent |
+| `harvest-2026-08-03-cross-thread-platform-state-v1` | [2026-08-03_harvest-2026-08-03-cross-thread-platform-state-v1.md](./2026-08-03_harvest-2026-08-03-cross-thread-platform-state-v1.md) | **COMPLETE** — superseded by harvest v2 | CapitalGlass-Cross-Agent | Prior harvest | Historical reference |
 | `ryzen9desk-managed-executor-v1` | [2026-08-03_ryzen9desk-managed-executor-v1.md](./2026-08-03_ryzen9desk-managed-executor-v1.md) | **RUNNER_BOOTSTRAP_CHECKPOINT_STARTED** — PR #268 merged | `CG-AppBuilder-MCP` | `8fe7cf05` on AppBuilder `main` | CG-AppBuilder-MCP mission: RYZEN9DESK install + `executor-smoke` → `MANAGED_EXECUTOR_ONLINE` |
 | `active-ledger-ci-path-and-hash-stability-v1` | [2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md](./2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md) | **PASS** | `CG-AppBuilder-MCP` | `2cd8eba9`, `3fb8c9bb` | None — close unless CI regresses |
 | `office-admin-ryzen9desk-managed-executor-bootstrap-v1` | [2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md](./2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md) | **NEEDS_OFFICE_ADMIN_INDEXING** | CapitalGlass-Office-Admin | — | Index runbook in Office Admin when ready |

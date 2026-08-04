@@ -12,8 +12,8 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-08-03 |
-| Current focus | Harvest complete (`harvest-2026-08-03-cross-thread-platform-state-v1`); RYZEN9DESK bootstrap deferred to CG-AppBuilder-MCP; Synology dev lane HOLD |
+| Last updated | 2026-08-04 |
+| Current focus | Slice 6 `MERGED_AWAITING_HUB_PUBLICATION`; harvest v2 + hub expansion wave 1 ready to commit/publish |
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
@@ -33,6 +33,27 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Owner boundary | Cross-Agent records; AppBuilder implements tooling; Governance owns required protocol authority |
 | Next | Implement schema/generator validation in AppBuilder if these become enforced fields |
 
+### 2026-08-04 CT — intelligence-hub-capability-expansion-v1 wave 1
+
+| Field | Value |
+| --- | --- |
+| Work package | `intelligence-hub-capability-expansion-v1` |
+| Verdict | **WAVE1_READY** — compile script + control slices + blocker map |
+| Artifacts | `artifacts/agent-runs/intelligence-hub-capability-expansion-v1/` |
+| Authority maps | `blocker-to-action-map.json`, `do-not-advance-registry.json`, `command-index.json` v1.1 |
+| Compiled slices | `work-progress/intelligence-hub-slices/` (`npm run index:compile-control-slices`) |
+| Tests | `test:index-control-slices` 7/7 PASS |
+| Next | Push + `index:publish` on WESLEYDESK after Slice 6 workflow 30861642734 |
+
+### 2026-08-03 CT — harvest-current-cross-thread-state-v2 HARVEST_COMPLETE
+
+| Field | Value |
+| --- | --- |
+| Work package | `harvest-current-cross-thread-state-v2` |
+| Verdict | **HARVEST_COMPLETE** — 9/9 packets; `harvest:validate` PASS |
+| Artifacts | `artifacts/agent-runs/harvest-current-cross-thread-state-v2/` |
+| Preserved | `THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL` not claimed; Slice 6 publication pending |
+| Next | Commit + hub publish with expansion slices |
 
 ### 2026-08-03 CT — Cross-Agent index current + AI Cache Layer 0
 
