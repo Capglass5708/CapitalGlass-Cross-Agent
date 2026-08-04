@@ -1,42 +1,19 @@
 {
   "schemaVersion": "cross-agent-index-publication-receipt-v1@1.0.0",
-  "generatedAt": "2026-08-04T02:06:31.930Z",
-  "runId": "local-1785809157707",
-  "pinnedSha": "f6e380de63eb573f203c4b6423a9e87a046b8498",
-  "publishedSha": "f6e380de63eb573f203c4b6423a9e87a046b8498",
-  "contentHash": "abb356d96384904e1a95af003c7f836059d77048c6758d95cd2bf3d1d9e60de9",
-  "verdict": "PUBLISH_PASS",
+  "generatedAt": "2026-08-04T02:10:23.719Z",
+  "runId": "local-1785809404765",
+  "pinnedSha": "2d291010d2d448972b6cb9f69e051a8d58357c27",
+  "contentHash": "fd4b6daadc6285d748aff59f150efe49344a92290ee45053a54dba5e7c2033f3",
+  "verdict": "PUBLICATION_HOLD",
   "layers": {
-    "git": {
-      "sourceCommitSha": "f6e380de63eb573f203c4b6423a9e87a046b8498"
-    },
     "intelligenceHub": {
       "mounted": true,
       "path": "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index"
     }
   },
-  "freshnessGate": {
-    "schemaVersion": "cross-agent-index-freshness-gate-v1@1.0.0",
-    "generatedAt": "2026-08-04T02:06:31.916Z",
-    "verdict": "PASS",
-    "gitHead": "f6e380de63eb573f203c4b6423a9e87a046b8498",
-    "layers": {
-      "git": {
-        "sourceCommitSha": "f6e380de63eb573f203c4b6423a9e87a046b8498"
-      },
-      "supabase": {
-        "sourceCommitSha": "f6e380de63eb573f203c4b6423a9e87a046b8498",
-        "verdict": "IN_SYNC",
-        "inSync": true
-      },
-      "intelligenceHub": {
-        "sourceCommitSha": "f6e380de63eb573f203c4b6423a9e87a046b8498",
-        "available": true,
-        "inSync": true,
-        "path": "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/active-work-ledger/LATEST.json"
-      }
-    },
-    "issues": []
-  },
-  "durationMs": 34230
+  "freshnessGate": null,
+  "durationMs": 18960,
+  "issues": [
+    "Command failed: INTELLIGENCE_HUB_ROOT=/mnt/l/Capital-Glass-Intelligence-Hub CG_APPBUILDER_MCP_ROOT=/home/wesle/repos/CG-AppBuilder-MCP CAPITALGLASS_CROSS_AGENT_ROOT=/home/wesle/repos/CapitalGlass-Cross-Agent npm run agent-research-library:publish-active-work-ledger -- --repo=/home/wesle/repos/CapitalGlass-Cross-Agent --json"
+  ]
 }
