@@ -27,7 +27,7 @@ jobs:
       CAPITALGLASS_CROSS_AGENT_ROOT: ${{ github.workspace }}
     steps:
       - name: Checkout pinned ref
-        uses: actions/checkout@f43a0e5ff2bd294095638e18286a9b3e4e4c80c8
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           fetch-depth: 1
 
@@ -46,7 +46,7 @@ jobs:
 
       - name: Upload publication receipt
         if: always()
-        uses: actions/upload-artifact@26f96dfa697d400d5afdd50ce9da1e7f0835745a
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: cross-agent-index-publication-receipt
           path: |

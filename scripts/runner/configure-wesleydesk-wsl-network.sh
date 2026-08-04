@@ -21,18 +21,13 @@ case "${WIN_NAME^^}" in
 esac
 
 mkdir -p /etc
-if [[ -f "$WSL_CONF" ]] && grep -q 'generateResolvConf' "$WSL_CONF"; then
-  sed -i 's/^generateResolvConf.*/generateResolvConf = false/' "$WSL_CONF"
-else
-  if [[ -f "$WSL_CONF" ]] && ! grep -q '^\[network\]' "$WSL_CONF"; then
-    printf '\n[network]\ngenerateResolvConf = false\n' >>"$WSL_CONF"
-  elif [[ ! -f "$WSL_CONF" ]]; then
-    cat >"$WSL_CONF" <<EOF
+cat >"$WSL_CONF" <<'EOF'
+[boot]
+systemd=true
+
 [network]
 generateResolvConf = false
 EOF
-  fi
-fi
 
 printf 'nameserver %s\n' "$NAMESERVER" >"$RESOLV_CONF"
 chmod 644 "$RESOLV_CONF"
