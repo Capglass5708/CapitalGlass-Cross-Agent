@@ -1,6 +1,6 @@
 {
-  "schemaVersion": "query-routing-manifest-v1@1.0.0",
-  "workPackageId": "cross-agent-query-routing-authority-publication-v1",
+  "schemaVersion": "query-routing-manifest-v1@1.1.0",
+  "workPackageId": "hot-cache-expansion-capital-glass-v1",
   "maintainer": "CapitalGlass-Cross-Agent",
   "ownerRepo": "CapitalGlass-Cross-Agent",
   "routes": [
@@ -68,15 +68,90 @@
       "keywords": [
         "closeout:gate",
         "closeout gate",
+        "closeout:sync-evidence",
         "closeout:explain",
+        "protocol-13b",
         "ship gate",
-        "ship"
+        "push origin main"
       ],
       "primaryDataset": "command-estate",
       "supportingDatasets": [
-        "workflow-estate",
         "receipt-registry",
+        "active-ledger"
+      ],
+      "compactOnly": true
+    },
+    {
+      "queryClass": "deploy-gate",
+      "keywords": [
+        "deploy:gate",
+        "deploy gate",
+        "deploy readiness",
+        "mcp:document-contract-check",
+        "contract:document-layer"
+      ],
+      "primaryDataset": "command-estate",
+      "supportingDatasets": [
+        "authority-estate",
+        "receipt-registry"
+      ],
+      "compactOnly": true
+    },
+    {
+      "queryClass": "mcp-preflight",
+      "keywords": [
+        "agent:preflight",
+        "mcp:doctor",
+        "get_platform_contract",
+        "knowledge_summary",
+        "mcp preflight"
+      ],
+      "primaryDataset": "command-estate",
+      "supportingDatasets": [
         "authority-estate"
+      ],
+      "compactOnly": true
+    },
+    {
+      "queryClass": "document-layer",
+      "keywords": [
+        "document layer",
+        "document center",
+        "sharepoint canonical",
+        "project_documents",
+        "display_name"
+      ],
+      "primaryDataset": "authority-estate",
+      "supportingDatasets": [
+        "intelligence-hub-domains"
+      ],
+      "compactOnly": true
+    },
+    {
+      "queryClass": "harvest-record",
+      "keywords": [
+        "harvest",
+        "compounding proof",
+        "session-closeout",
+        "north-star"
+      ],
+      "primaryDataset": "active-ledger",
+      "supportingDatasets": [
+        "receipt-registry"
+      ],
+      "compactOnly": true
+    },
+    {
+      "queryClass": "suite-wiring",
+      "keywords": [
+        "suite wiring",
+        "resolve_wiring_path",
+        "list_suite_bridges",
+        "bff wiring"
+      ],
+      "primaryDataset": "authority-estate",
+      "supportingDatasets": [
+        "command-estate"
       ],
       "compactOnly": true
     },
@@ -87,7 +162,6 @@
         "work package",
         "active",
         "mission",
-        "closeout",
         "open action",
         "ledger"
       ],
