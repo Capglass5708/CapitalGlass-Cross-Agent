@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-M2-RECEIPT-GOVERNANCE-SPLIT-001",
+  "kind": "failure-pattern",
+  "title": "M2 closeout receipt: preserve formal governance on proof re-run",
+  "summary": "Re-running M2 proof must append latestProofRun; never overwrite formalM2Pass, PR, prod SHA, or buildId.",
+  "retrievalQuestions": [
+    "Why did M2 closeout receipt lose formalM2Pass after proof re-run?",
+    "How should closeout-receipt.json handle formal vs latest proof runs?"
+  ],
+  "evidenceRefs": [
+    "4e741bb",
+    "9b5a5dc",
+    "bf98b4a"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Proof script re-run after formal M2 PASS closeout",
+    "startAt": [
+      "CapitalGlass-Documents/artifacts/agent-runs/l-drop-to-review-queue-proof-v1/closeout-receipt.json"
+    ],
+    "runPreflight": [
+      "jq .formalM2Pass closeout-receipt.json"
+    ],
+    "doNot": [
+      "Overwrite receipt with proof-runner output only",
+      "Remove governance block on docs commit"
+    ],
+    "proveBeforeClaiming": [
+      "formalM2Pass: true",
+      "formalProofRun and latestProofRun both present"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Documents",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}
