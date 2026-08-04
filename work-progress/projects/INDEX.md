@@ -38,12 +38,9 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 
 | Packet ID | State | Verdict | Owner repo | Project file | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `ryzen9desk-managed-executor-v1` | RUNNER_BOOTSTRAP_CHECKPOINT_STARTED | CODE_READY_FOR_RUNNER_BOOTSTRAP | CG-AppBuilder-MCP | [2026-08-03_ryzen9desk-managed-executor-v1.md](./2026-08-03_ryzen9desk-managed-executor-v1.md) | CG-AppBuilder-MCP mission: RYZEN9DESK WSL install from main + dispatch executor-smoke receipt |
-| `active-ledger-ci-path-and-hash-stability-v1` | COMPLETE | PASS | CG-AppBuilder-MCP | [2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md](./2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md) | None unless test:active-ledger-sync regresses on main |
-| `project-folder-synology-primary-v1-dev-environment` | HOLD | CONTRACT_PASS_HOSTED_DEV_HOLD | CapitalGlass-Documents | [project-folder-synology-primary-v1-dev-hosted-environment.md](./project-folder-synology-primary-v1-dev-hosted-environment.md) | Resolve Vercel BLOCKED deploy and Supabase dev isolation (owner: CapitalGlass-Documents) |
-| `cross-agent-retrieval-failover-v1.1` | ADOPTED | PASS | CapitalGlass-Cross-Agent | handoffs/CURRENT_HANDOFF.md | Recurring: use layered failover for suite status when L: unavailable |
-| `wsl2-native-repo-library-migration-v1` | PARTIAL | FILESYSTEM_PASS_OPERATIONAL_CLEANUP_RECORDED | CG-AppBuilder-MCP | [2026-08-03_wsl2-native-repo-library-migration-v1.md](./2026-08-03_wsl2-native-repo-library-migration-v1.md) | Per-repo ext4 verification; RYZEN9DESK alignment via separate executor mission |
-| `office-admin-ryzen9desk-managed-executor-bootstrap-v1` | INDEXED | CODE_READY_FOR_RUNNER_BOOTSTRAP | CapitalGlass-Office-Admin | [2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md](./2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md) | Runner bootstrap remains CG-AppBuilder-MCP mission; do not claim MANAGED_EXECUTOR_ONLINE |
+| `harvest-storage-pointer-authority-v1` | POLICY_ACTIVE | PASS | CapitalGlass-Cross-Agent | [2026-08-04_harvest-storage-pointer-authority-v1.md](./2026-08-04_harvest-storage-pointer-authority-v1.md) | Edit protocols on L first; mirror Z; keep Git pointers only |
+| `chat-improvement-extract-chatgpt-v1` | ACTIVE | PASS | CapitalGlass-Cross-Agent | [2026-08-04_chat-improvement-extract-chatgpt-v1.md](./2026-08-04_chat-improvement-extract-chatgpt-v1.md) | Attach L or Z file to ChatGPT with Cursor chat export |
+| `harvest-2026-08-04-harvest-storage-chatgpt-lane-v1` | HARVEST_COMPLETE | HARVEST_COMPLETE | CapitalGlass-Cross-Agent | [2026-08-04_harvest-storage-chatgpt-lane-v1.md](./2026-08-04_harvest-storage-chatgpt-lane-v1.md) | npm run harvest:publish-intelligence-full -- --harvest-id=harvest-2026-08-04-harvest-storage-chatgpt-lane-v1 |
 
 <!-- HARVEST-PACKET-INDEX:END -->
 

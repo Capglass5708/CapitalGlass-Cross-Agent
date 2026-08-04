@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "cross-agent-harvest-operational-publication-receipt-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-harvest-storage-chatgpt-lane-v1",
+  "generatedAt": "2026-08-04T02:11:00.000Z",
+  "startedAt": "2026-08-04T02:06:00.000Z",
+  "verdict": "OPERATIONAL",
+  "sourceCommitSha": "e0a0ef989d9b30bf989608a6dfb93186af24536e",
+  "tier": "T2",
+  "authorityModel": "CHAT_THREAD_STRUCTURED_TRUTH",
+  "intelligenceHubRoot": "/mnt/l/Capital-Glass-Intelligence-Hub",
+  "layers": {
+    "git": {
+      "path": "artifacts/agent-runs/harvest-2026-08-04-harvest-storage-chatgpt-lane-v1/harvest-manifest-v1.json",
+      "sourceCommitSha": "e0a0ef989d9b30bf989608a6dfb93186af24536e"
+    },
+    "lCatalog": {
+      "ok": true,
+      "seedCount": 3,
+      "byKindSlice": "00-master-index/BY-KIND/thread-autopsy-index.json"
+    },
+    "lLedger": {
+      "ok": false,
+      "blocker": "Supabase CLI linux-x64 binary missing in WSL — run index:sync-publication from Windows or install supabase CLI on WSL"
+    },
+    "cHotRouting": {
+      "ok": false,
+      "code": "HOOK_RUNTIME_EXPORT_FAIL",
+      "error": "loadHookRuntimeContract export missing in hook-runtime-contract.mjs"
+    },
+    "zAiCache": {
+      "ok": true,
+      "code": "PUBLISH_PASS",
+      "path": "/mnt/z/Capital-Glass-Intelligence-Hub/AI-Cache-Authority/objects/intelligence-hub-index/current-index-bundle.v1.json",
+      "sourceCommitSha": "e0a0ef989d9b30bf989608a6dfb93186af24536e"
+    }
+  },
+  "stages": [
+    {
+      "label": "publish-hub-seed",
+      "ok": true,
+      "verdict": "PUBLISH_PASS"
+    },
+    {
+      "label": "hub-slices",
+      "ok": true
+    },
+    {
+      "label": "skip-ledger-sync",
+      "ok": false,
+      "reason": "WSL supabase CLI"
+    },
+    {
+      "label": "hot-routing-index",
+      "ok": false
+    },
+    {
+      "label": "z-ai-cache-index",
+      "ok": true
+    }
+  ],
+  "contentHash": "9d67c52a6960160d64f04a69c9e5b8566944e76079a22b8ac0ab5061e51a917e"
+}

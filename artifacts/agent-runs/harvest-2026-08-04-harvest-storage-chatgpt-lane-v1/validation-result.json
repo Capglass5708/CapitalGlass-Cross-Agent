@@ -1,16 +1,26 @@
 {
   "schemaVersion": "cross-agent-harvest-validation-result-v1@1.0.0",
   "harvestId": "harvest-2026-08-04-harvest-storage-chatgpt-lane-v1",
-  "validatedAt": "2026-08-04T02:02:28.284Z",
-  "verdict": "PASS",
-  "harvestManifestHash": "d9c4c3100d7284d787e06ca779830ccc816e3a094820c60f8370af9442198996",
+  "validatedAt": "2026-08-04T02:09:46.413Z",
+  "verdict": "FAIL",
+  "harvestManifestHash": "b0808fbc9ddafe2d7b1006cbc760e03db5c0baba90478c4f2c6879fa4f7ba1a8",
   "schemaValidation": "PASS",
-  "threadAutopsyValidation": "PASS",
+  "threadAutopsyValidation": "FAIL",
   "threadAutopsyTier": "T2",
-  "errorCount": 0,
-  "warningCount": 1,
-  "errors": [],
+  "errorCount": 4,
+  "warningCount": 6,
+  "errors": [
+    "INDEX generated section missing packet harvest-storage-pointer-authority-v1",
+    "INDEX generated section missing packet chat-improvement-extract-chatgpt-v1",
+    "INDEX generated section missing packet harvest-2026-08-04-harvest-storage-chatgpt-lane-v1",
+    "duplication preflight: harvest already published on L: with different sourceCommitSha — set manifest.supersession or use --allow-republish"
+  ],
   "warnings": [
-    "seed-packet-index.json missing for T2+"
+    "INDEX.md may lack row for work-progress/projects/2026-08-04_harvest-storage-pointer-authority-v1.md outside generated section",
+    "INDEX.md may lack row for work-progress/projects/2026-08-04_chat-improvement-extract-chatgpt-v1.md outside generated section",
+    "INDEX.md may lack row for work-progress/projects/2026-08-04_harvest-storage-chatgpt-lane-v1.md outside generated section",
+    "duplication preflight: seedId IH-CHATGPT-IMPROVEMENT-EXTRACT-001 already on L: — publish will block without supersession",
+    "duplication preflight: seedId IH-STORAGE-HARVEST-POINTER-AUTHORITY-001 already on L: — publish will block without supersession",
+    "duplication preflight: seedId IH-SUPABASE-LEDGER-POINTER-001 already on L: — publish will block without supersession"
   ]
 }

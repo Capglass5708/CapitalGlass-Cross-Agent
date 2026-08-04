@@ -1,7 +1,7 @@
 {
   "schemaVersion": "cross-agent-harvest-duplication-preflight-receipt-v1@1.0.0",
   "harvestId": "harvest-2026-08-04-harvest-storage-chatgpt-lane-v1",
-  "generatedAt": "2026-08-04T02:02:35.556Z",
+  "generatedAt": "2026-08-04T02:09:46.412Z",
   "mode": "validate",
   "hubRoot": "/mnt/l/Capital-Glass-Intelligence-Hub",
   "sourcesConsulted": {
@@ -16,21 +16,46 @@
       "active-work-open-actions.json"
     ],
     "hubSliceHashes": {
-      "active-work-blockers.json": "de1ca07bc3cc1bc3c127d7c993e038d3453a0dec882ab667c040cae867d83726",
-      "thread-autopsy-index.json": "db2e67e0e36972de4f9eec8089a0ffc9de49b9cb47bfa71f16b4e85a87e820cb",
-      "do-not-advance.json": "80af185c7c694a4fa887a130a2bc57f2f525b8b7d85d94981ed656b9c4bd852d",
-      "active-work-open-actions.json": "b2926da4c1f75232ad1417d2a285c178a412649897a09391dcffa07fda5b1599"
+      "active-work-blockers.json": "0de0dae23f2685d95a6c832d3311a91fe29f801d30045e957d838d7bead7f6d8",
+      "thread-autopsy-index.json": "f5dcb47704382da3ff8c5061960ab8c3c97566057f019d76b416c7e4d5477b68",
+      "do-not-advance.json": "034b8ba6e8a3310eb11bf59ea169ee0eb8eb781acb476c5bf8393acf58f99868",
+      "active-work-open-actions.json": "dd3c56414bf43957a1bf3e14a39e9dc741ea67954f0052729e38b6dbe18ae050"
     }
   },
   "findings": {
     "harvestCollisions": [],
-    "republishBlock": null,
-    "seedIdCollisions": [],
+    "republishBlock": {
+      "type": "harvest-id-republish",
+      "harvestId": "harvest-2026-08-04-harvest-storage-chatgpt-lane-v1",
+      "existingSourceCommitSha": "6049bf12e459ce4040c2befe23239a1593e21f4a",
+      "nextSourceCommitSha": "e0a0ef989d9b30bf989608a6dfb93186af24536e",
+      "message": "harvest already published on L: with different sourceCommitSha — set manifest.supersession or use --allow-republish"
+    },
+    "seedIdCollisions": [
+      {
+        "type": "seed-id",
+        "seedId": "IH-CHATGPT-IMPROVEMENT-EXTRACT-001",
+        "existingFile": "IH-CHATGPT-IMPROVEMENT-EXTRACT-001.json",
+        "existingHarvestId": "harvest-2026-08-04-harvest-storage-chatgpt-lane-v1"
+      },
+      {
+        "type": "seed-id",
+        "seedId": "IH-STORAGE-HARVEST-POINTER-AUTHORITY-001",
+        "existingFile": "IH-STORAGE-HARVEST-POINTER-AUTHORITY-001.json",
+        "existingHarvestId": "harvest-2026-08-04-harvest-storage-chatgpt-lane-v1"
+      },
+      {
+        "type": "seed-id",
+        "seedId": "IH-SUPABASE-LEDGER-POINTER-001",
+        "existingFile": "IH-SUPABASE-LEDGER-POINTER-001.json",
+        "existingHarvestId": "harvest-2026-08-04-harvest-storage-chatgpt-lane-v1"
+      }
+    ],
     "semanticDuplicates": [],
     "packetOverlaps": []
   },
-  "verdict": "PASS",
-  "errorCount": 0,
-  "warningCount": 0,
-  "contentHash": "8c478007672b19a8d490619a858a051e5a9c48cad4c097add2cd42d185975777"
+  "verdict": "DUPLICATE_BLOCKED",
+  "errorCount": 1,
+  "warningCount": 3,
+  "contentHash": "2f4d635d85c0670f0a0ef515d6c598d10b40dba17312f75a0befe547635dec01"
 }

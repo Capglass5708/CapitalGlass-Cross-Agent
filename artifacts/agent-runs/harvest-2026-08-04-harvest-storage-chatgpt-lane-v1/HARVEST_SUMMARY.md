@@ -1,6 +1,6 @@
 # Harvest summary — derived view
 
-**Authority:** `harvest-manifest-v1.json` (`d9c4c3100d72…`)
+**Authority:** `harvest-manifest-v1.json` (`b8e7de896c75…`)
 **Work package:** `harvest-2026-08-04-harvest-storage-chatgpt-lane-v1`
 **Mission class:** `harvest`
 **Verdict:** `HARVEST_COMPLETE`
@@ -20,9 +20,8 @@
 
 - HARVEST_PROTOCOL_ON_GITHUB_FULL
 - FULLY_SEEDED
-- OPERATIONAL
 
 ## Projection sync
 
-Status: `not-run` (hub: `not-run`)
+Status: `partial` (hub: `published`)
 
