@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-test-autopsy-t1-v1",
+  "missionClass": "harvest",
+  "sourceCommitSha": "0000000000000000000000000000000000000001",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "retrievalResult": "INDEX_HIT",
+  "doNotAdvance": ["MANAGED_EXECUTOR_ONLINE"],
+  "threadAutopsy": {
+    "tier": "T1",
+    "bundlePath": "artifacts/agent-runs/harvest-test-autopsy-t1-v1/thread-autopsy-bundle.json",
+    "counts": { "waste": 0, "seeds": 0, "roiItems": 1, "operatorFriction": 0 }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run"
+  },
+  "packets": [
+    {
+      "packetId": "test-autopsy-packet-v1",
+      "packetTitle": "Test autopsy packet",
+      "state": "RECORDED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "not-required",
+      "projectFile": "work-progress/projects/2026-08-03_harvest-2026-08-03-cross-thread-platform-state-v1.md",
+      "nextAction": "None",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "evidenceRefs": ["artifacts/agent-runs/harvest-test-autopsy-t1-v1/thread-autopsy-bundle.json"],
+      "commitRefs": [],
+      "blockers": []
+    }
+  ]
+}

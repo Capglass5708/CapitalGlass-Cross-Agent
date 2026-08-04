@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-PG-WORKSPACESYNCED-PERSIST-001",
+  "kind": "blocker",
+  "title": "workspaceSynced gate blocks client pricing persist on expired pilot",
+  "summary": "On 360 Power production pilot, Mark Up edits do not persist to proposal-editable-workspace within 30s because canPersistWorkspacePayload requires workspaceSynced === true. E2e uses authorized server-sync PUT as test-only fallback.",
+  "retrievalQuestions": [
+    "Why does Proposal Generator pricing not save to editable-workspace on expired pilot?",
+    "What is workspaceSynced and why does it block client persist in PG?"
+  ],
+  "evidenceRefs": [
+    "src/lib/projects/can-persist-workspace-payload.ts",
+    "artifacts/agent-runs/harvest-2026-08-03-pg-estimator-trust-closure-v1/thread-event-inventory.json",
+    "/tmp/pg-estimator-trust-final9.log"
+  ],
+  "sourcePacketIds": ["pg-pricing-editable-workspace-persist-v1"],
+  "executionDeltaRefs": ["ED-002"],
+  "wasteIds": ["TW-002"],
+  "roiRank": 2,
+  "futureAgentInstructions": {
+    "whenThisAppears": "Client persist timeout in estimator-trust e2e or persistVia=server-sync in logs",
+    "startAt": [
+      "src/lib/projects/can-persist-workspace-payload.ts",
+      "artifacts/agent-runs/harvest-2026-08-03-pg-estimator-trust-closure-v1/seed-packets/IH-THREAD-PG-WORKSPACESYNCED-PERSIST-001.json"
+    ],
+    "runPreflight": [],
+    "doNot": [
+      "Treat server-sync PUT in e2e as proof of product persist",
+      "Ignore workspaceSynced false when debugging save failures"
+    ],
+    "proveBeforeClaiming": [
+      "Client persist converges within wait without server-sync fallback",
+      "GET proposal-editable-workspace matches UI grand after edit without manual PUT"
+    ]
+  },
+  "ownerRepo": "Cursor-ProposalGenerator-1",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-03-pg-estimator-trust-closure-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-THREAD-PG-E2E-MARKUP-LOCATOR-001",
+      "questionId": "IHTHREADPGE2",
+      "canonicalQuestion": "How do I change Mark Up Report grand total in Playwright without editing Total Perimeter?",
+      "alternateQuestions": [
+        "Which pricing field should PG e2e bump to move grand total reliably?"
+      ],
+      "shortAnswer": "Broad div.filter on Mark Up Report matches wrong inputs (Total Perimeter instead of Subcontractor Cost). Use getByText(label) + ancestor div xpath for number input. Prefer Subcontractor Cost +$5000 under Outside Costs.",
+      "detailedAnswer": "Playwright Mark Up Report currency field locators",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T01:42:39.687Z",
+      "authorityRepo": "Cursor-ProposalGenerator-1",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-03-pg-estimator-trust-closure-v1/seed-packets/IH-THREAD-PG-E2E-MARKUP-LOCATOR-001.json"
+      ],
+      "authorityCommit": [
+        "be91a38"
+      ],
+      "evidenceUrls": [
+        "e2e/helpers/estimator-trust.ts",
+        "artifacts/agent-runs/harvest-2026-08-03-pg-estimator-trust-closure-v1/thread-autopsy-bundle.json"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-03-pg-estimator-trust-closure-v1"
+      ],
+      "entities": [
+        "Cursor-ProposalGenerator-1"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "PG e2e pricing edit does not change grand total or edits wrong field",
+        "startAt": [
+          "e2e/helpers/estimator-trust.ts"
+        ],
+        "runPreflight": [],
+        "doNot": [
+          "Use first number input on page or broad div.filter for currency fields",
+          "Bump door hardware or markup % expecting stable grand total change"
+        ],
+        "proveBeforeClaiming": [
+          "Poll grand total after Subcontractor Cost edit confirms UI moved",
+          "Error-context snapshot shows correct input received value"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "lesson"
+    },
+    {
+      "ihPfspId": "IH-THREAD-PG-ESTIMATOR-PRICING-AUTHORITY-001",
+      "questionId": "IHTHREADPGES",
+      "canonicalQuestion": "Why does Proposal Generator Mark Up Report show wrong total after reload when server pricing changed?",
+      "alternateQuestions": [
+        "What gate proves estimator-trust closure beyond infrastructure smokes?"
+      ],
+      "shortAnswer": "Production 360 Power: server editable-workspace holds edited grand ($10,957.94) but Mark Up UI and preview cover re-hydrate to $0 or door-only $5,545.44 after reload. Client persist does not converge (workspaceSynced false). Do not declare app closed on infra smokes alone.",
+      "detailedAnswer": "PG estimator-trust pricing authority — UI vs editable-workspace vs preview",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T01:42:39.688Z",
+      "authorityRepo": "Cursor-ProposalGenerator-1",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-03-pg-estimator-trust-closure-v1/seed-packets/IH-THREAD-PG-ESTIMATOR-PRICING-AUTHORITY-001.json"
+      ],
+      "authorityCommit": [
+        "be91a38"
+      ],
+      "evidenceUrls": [
+        "artifacts/agent-runs/harvest-2026-08-03-pg-estimator-trust-closure-v1/thread-event-inventory.json",
+        "artifacts/agent-runs/harvest-2026-08-03-pg-estimator-trust-closure-v1/thread-autopsy-bundle.json",
+        "e2e/estimator-trust-closure.spec.ts"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-03-pg-estimator-trust-closure-v1"
+      ],
+      "entities": [
+        "Cursor-ProposalGenerator-1"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "futureAgentInstructions": {
+        "whenThisAppears": "PG closure, Mark Up pricing, preview cover $0, or editable-workspace drift on production pilot",
+        "startAt": [
+          "BY-KIND/thread-autopsy-index.json",
+          "artifacts/agent-runs/harvest-2026-08-03-pg-estimator-trust-closure-v1/seed-packets/IH-THREAD-PG-ESTIMATOR-PRICING-AUTHORITY-001.json"
+        ],
+        "runPreflight": [
+          "npm run test:e2e:estimator-trust-closure:doppler"
+        ],
+        "doNot": [
+          "Claim ESTIMATOR_TRUST_CLOSED or app closed on infra smokes PASS alone",
+          "PUT alignment from localStorage without localGrand > 100 and localGrand == UI",
+          "Fake PASS when reload UI != server grand"
+        ],
+        "proveBeforeClaiming": [
+          "PLAYWRIGHT_BASE_URL=https://proposal.capitalglasstxapps.com npm run test:e2e:estimator-trust-closure:doppler PASS all stages",
+          "Reload Mark Up grand matches server after edit",
+          "Preview cover shows working price; approve/PDF shows issued; drift visible after second edit"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-THREAD-PG-WORKSPACESYNCED-PERSIST-001",
+      "questionId": "IHTHREADPGWO",
+      "canonicalQuestion": "Why does Proposal Generator pricing not save to editable-workspace on expired pilot?",
+      "alternateQuestions": [
+        "What is workspaceSynced and why does it block client persist in PG?"
+      ],
+      "shortAnswer": "On 360 Power production pilot, Mark Up edits do not persist to proposal-editable-workspace within 30s because canPersistWorkspacePayload requires workspaceSynced === true. E2e uses authorized server-sync PUT as test-only fallback.",
+      "detailedAnswer": "workspaceSynced gate blocks client pricing persist on expired pilot",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T01:42:39.688Z",
+      "authorityRepo": "Cursor-ProposalGenerator-1",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-03-pg-estimator-trust-closure-v1/seed-packets/IH-THREAD-PG-WORKSPACESYNCED-PERSIST-001.json"
+      ],
+      "authorityCommit": [
+        "be91a38"
+      ],
+      "evidenceUrls": [
+        "src/lib/projects/can-persist-workspace-payload.ts",
+        "artifacts/agent-runs/harvest-2026-08-03-pg-estimator-trust-closure-v1/thread-event-inventory.json",
+        "/tmp/pg-estimator-trust-final9.log"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "blocker",
+        "harvest-2026-08-03-pg-estimator-trust-closure-v1"
+      ],
+      "entities": [
+        "Cursor-ProposalGenerator-1"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Client persist timeout in estimator-trust e2e or persistVia=server-sync in logs",
+        "startAt": [
+          "src/lib/projects/can-persist-workspace-payload.ts",
+          "artifacts/agent-runs/harvest-2026-08-03-pg-estimator-trust-closure-v1/seed-packets/IH-THREAD-PG-WORKSPACESYNCED-PERSIST-001.json"
+        ],
+        "runPreflight": [],
+        "doNot": [
+          "Treat server-sync PUT in e2e as proof of product persist",
+          "Ignore workspaceSynced false when debugging save failures"
+        ],
+        "proveBeforeClaiming": [
+          "Client persist converges within wait without server-sync fallback",
+          "GET proposal-editable-workspace matches UI grand after edit without manual PUT"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "blocker"
+    }
+  ]
+}

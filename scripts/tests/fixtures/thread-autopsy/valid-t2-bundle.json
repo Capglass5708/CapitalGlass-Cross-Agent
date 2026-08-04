@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-test-autopsy-t2-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "retrieval",
+      "description": "Broad grep before scout",
+      "evidenceRefs": ["turn-5"],
+      "estimatedImpact": "high",
+      "savedBy": "agent:index:scout",
+      "roiRank": 1
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "User re-pasted hub facts",
+      "operatorCost": "medium",
+      "systemFix": "Scout preflight first",
+      "evidenceRefs": ["turn-8"],
+      "linkedWasteIds": ["TW-001"]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Deploy verification",
+      "actualExecution": {
+        "steps": ["Checked GitHub status only"],
+        "outcome": "FAIL"
+      },
+      "optimalExecution": {
+        "steps": ["DOM marker check on alias"],
+        "outcome": "Would catch stale alias"
+      },
+      "deltaCost": { "time": "high", "tokens": "medium", "operatorFrustration": "high" }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Claimed deploy PASS from CI only",
+      "whyItWasWrong": "Alias can lag HEAD",
+      "correctFirstMove": "DOM proof on stable URL",
+      "preventiveControl": "do-not-advance STAGING_ALIAS_SERVES_CORRECT_BUILD",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Alias DOM gate before deploy PASS",
+      "whyItPays": "Blocks false green",
+      "effort": "low",
+      "savedWasteIds": ["TW-001"],
+      "seedAs": "runbook"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "STAGING_ALIAS_SERVES_CORRECT_BUILD",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": ["measureLayerCount >= 1 on stable alias"],
+      "lastKnownEvidence": ["/tmp/staging-smoke.json"]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": ["active-work-blockers.json", "thread-autopsy-index.json"],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-03T12:00:00.000Z",
+    "preflightReceiptHash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  }
+}

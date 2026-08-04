@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-EXAMPLE-001",
+  "kind": "lesson",
+  "title": "Replace with one-line lesson title",
+  "summary": "One sentence optimized for retrieval.",
+  "retrievalQuestions": [
+    "What question should retrieve this seed?",
+    "What alternate phrasing would an agent use?"
+  ],
+  "evidenceRefs": ["artifacts/agent-runs/<harvest-id>/validation-result.json"],
+  "sourcePacketIds": ["<packet-id>"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Describe the triggering situation",
+    "startAt": ["BY-KIND/thread-autopsy-index.json", "work-progress/command-index.json"],
+    "runPreflight": ["npm run agent:index:scout -- --json"],
+    "doNot": ["Claim PASS without receipt evidence"],
+    "proveBeforeClaiming": ["List proof commands or DOM checks"]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

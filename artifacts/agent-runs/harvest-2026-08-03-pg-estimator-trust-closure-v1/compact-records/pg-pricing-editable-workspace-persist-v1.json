@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-03-pg-estimator-trust-closure-v1",
+  "packetId": "pg-pricing-editable-workspace-persist-v1",
+  "state": "PRODUCT_FIX_REQUIRED",
+  "packetVerdict": "BLOCKED",
+  "ownerRepo": "Cursor-ProposalGenerator-1",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Persist Mark Up edits to proposal-editable-workspace; hydrate full pricing including outsideCosts on reload and preview",
+  "evidenceRefs": [
+    "src/lib/projects/can-persist-workspace-payload.ts",
+    "artifacts/agent-runs/harvest-2026-08-03-pg-estimator-trust-closure-v1/seed-packets/IH-THREAD-PG-WORKSPACESYNCED-PERSIST-001.json",
+    "/tmp/pg-estimator-trust-final9.log"
+  ],
+  "doNotAdvance": [
+    "Rely on e2e server-sync PUT as production behavior",
+    "PUT alignment from zero/stale localStorage"
+  ],
+  "advancementGate": "Client persist converges OR hydrate loads server grand without resetLocalProposalState showing $0 cover",
+  "contentHash": "d50d804519199fe6a7167b7c27aa67ee530ba9cc430690b6ba4bf43d588e3d5b"
+}

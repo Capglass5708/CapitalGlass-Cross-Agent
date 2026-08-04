@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "cross-agent-do-not-advance-registry-v1@1.0.0",
+  "updatedAt": "2026-08-03T00:00:00.000Z",
+  "authority": "docs/runbooks/chat-thread-closeout-autopsy-harvest-v1.md",
+  "hubSlicePath": "00-master-index/BY-KIND/do-not-advance.json",
+  "hubSliceSchema": "intelligence-hub-do-not-advance-slice-v1@1.0.0",
+  "entries": [
+    {
+      "claimId": "PERSISTENT_AVAILABILITY_PASS",
+      "forbiddenUntil": "direct-connect-cold-reboot-persistence proof on RYZEN9DESK",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "proofCommandIds": ["direct-connect-persistence-proof"]
+    },
+    {
+      "claimId": "MANAGED_EXECUTOR_ONLINE",
+      "forbiddenUntil": "persistence proof + executor health probe PASS",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "proofCommandIds": ["managed-executor-health-probe"]
+    },
+    {
+      "claimId": "THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL",
+      "forbiddenUntil": "post_merge_publication complete + blind retrieval PASS + idempotency NOOP_CURRENT",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "proofCommandIds": ["index-freshness-gate", "index-blind-retrieval", "auto-publisher-run-once"]
+    },
+    {
+      "claimId": "AUTO_PUBLISHER_V1_1_ACTIVE",
+      "forbiddenUntil": "scheduled publisher active on WESLEYDESK with activation receipt",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "proofCommandIds": ["auto-publisher-run-once"]
+    },
+    {
+      "claimId": "UNATTENDED_PRODUCTION_MARKUP",
+      "forbiddenUntil": "revu-production-takeoff-pilot-v1 complete with human approval",
+      "ownerRepo": "CapitalGlassRevu",
+      "proofCommandIds": []
+    },
+    {
+      "claimId": "HARVEST_V2_HUB_CURRENT",
+      "forbiddenUntil": "harvest v2 committed and index:publish PASS on WESLEYDESK",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "proofCommandIds": ["harvest-validate", "index-publish"]
+    },
+    {
+      "claimId": "STAGING_ALIAS_SERVES_CORRECT_BUILD",
+      "forbiddenUntil": "DOM measured-renderer markers on stable alias + alias maps to current dev HEAD deployment",
+      "ownerRepo": "Cursor-ProposalGenerator",
+      "proofCommandIds": [],
+      "sourceHarvestId": null,
+      "lastKnownEvidence": []
+    },
+    {
+      "claimId": "THREAD_AUTOPSY_HUB_CURRENT",
+      "forbiddenUntil": "thread-autopsy-index.json published with matching sourceCommitSha + blind retrieval PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "proofCommandIds": ["harvest-validate", "harvest-blind-retrieval", "index-freshness-gate"]
+    },
+    {
+      "claimId": "ESTIMATOR_TRUST_CLOSED",
+      "forbiddenUntil": "test:e2e:estimator-trust-closure:doppler PASS on production — reload UI, preview working, approve/PDF issued, post-approval drift",
+      "ownerRepo": "Cursor-ProposalGenerator-1",
+      "proofCommandIds": ["npm run test:e2e:estimator-trust-closure:doppler"],
+      "sourceHarvestId": "harvest-2026-08-03-pg-estimator-trust-closure-v1",
+      "lastKnownEvidence": [
+        "/tmp/pg-estimator-trust-final9.log",
+        "artifacts/agent-runs/harvest-2026-08-03-pg-estimator-trust-closure-v1/thread-autopsy-bundle.json"
+      ]
+    },
+    {
+      "claimId": "PROPOSAL_GENERATOR_APP_CLOSED",
+      "forbiddenUntil": "ESTIMATOR_TRUST_CLOSED + staging editable-workspace Supabase env fixed",
+      "ownerRepo": "Cursor-ProposalGenerator-1",
+      "proofCommandIds": ["npm run test:e2e:estimator-trust-closure:doppler"],
+      "sourceHarvestId": "harvest-2026-08-03-pg-estimator-trust-closure-v1",
+      "lastKnownEvidence": ["estimator-trust FAIL verdict", "staging Supabase env not configured"]
+    }
+  ]
+}

@@ -38,11 +38,9 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 
 | Packet ID | State | Verdict | Owner repo | Project file | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `project-folder-synology-primary-v1` | SUPERSEDED_BY_PRODUCTION_PASS | PROGRAM_FOUNDATION_COMPLETE | CapitalGlass-Documents | [project-folder-synology-primary-v1.md](./project-folder-synology-primary-v1.md) | Use production-promotion packet for current ops; parent doc is historical context |
-| `project-folder-synology-primary-v1-dev-hosted-environment` | DEV_ENVIRONMENT_ACCEPTED | PASS | CapitalGlass-Documents | [project-folder-synology-primary-v1-dev-hosted-environment.md](./project-folder-synology-primary-v1-dev-hosted-environment.md) | Maintain dev lane as regression witness; do not stop dev worker during stabilization |
-| `project-folder-synology-primary-v1-dev-reproducibility-hardening` | PROMOTION_CANDIDATE_READY | PASS | CapitalGlass-Documents | [project-folder-synology-primary-v1-dev-reproducibility-hardening.md](./project-folder-synology-primary-v1-dev-reproducibility-hardening.md) | Candidate e3fe6ec remains authoritative app source; deployed as 5a436d1 merge |
-| `project-folder-synology-primary-v1-production-promotion` | STABILIZATION_OBSERVE_ONLY | PRODUCTION_PROMOTION_PASS | CapitalGlass-Documents | [project-folder-synology-primary-v1-production-promotion.md](./project-folder-synology-primary-v1-production-promotion.md) | 24h monitoring only; open post-stabilization hardening after window |
-| `harvest-project-folder-synology-primary-chat-v1` | HARVEST_COMPLETE | HARVEST_COMPLETE | CapitalGlass-Cross-Agent | [harvest-project-folder-synology-primary-chat-v1.md](./harvest-project-folder-synology-primary-chat-v1.md) | Publish to Intelligence Hub; use qa-index for agent retrieval |
+| `pg-estimator-trust-closure-v1` | ESTIMATOR_TRUST_BLOCKED | FAIL | Cursor-ProposalGenerator-1 | [2026-08-03_pg-estimator-trust-closure-v1.md](./2026-08-03_pg-estimator-trust-closure-v1.md) | Fix pricing persist + hydrate; re-run test:e2e:estimator-trust-closure:doppler on production 360 Power |
+| `pg-pricing-editable-workspace-persist-v1` | PRODUCT_FIX_REQUIRED | BLOCKED | Cursor-ProposalGenerator-1 | [2026-08-03_pg-pricing-editable-workspace-persist-v1.md](./2026-08-03_pg-pricing-editable-workspace-persist-v1.md) | Persist Mark Up edits to proposal-editable-workspace; hydrate full pricing including outsideCosts on reload and preview |
+| `harvest-2026-08-03-pg-estimator-trust-closure-v1` | HARVEST_COMPLETE | HARVEST_COMPLETE | CapitalGlass-Cross-Agent | [2026-08-03_harvest-pg-estimator-trust-closure-v1.md](./2026-08-03_harvest-pg-estimator-trust-closure-v1.md) | Operator: npm run harvest:publish-intelligence-full -- --harvest-id=harvest-2026-08-03-pg-estimator-trust-closure-v1 |
 
 <!-- HARVEST-PACKET-INDEX:END -->
 

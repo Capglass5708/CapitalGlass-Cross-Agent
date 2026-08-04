@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-03-pg-estimator-trust-closure-v1",
+  "packetId": "pg-estimator-trust-closure-v1",
+  "state": "ESTIMATOR_TRUST_BLOCKED",
+  "packetVerdict": "FAIL",
+  "ownerRepo": "Cursor-ProposalGenerator-1",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Fix pricing persist + hydrate; re-run test:e2e:estimator-trust-closure:doppler on production 360 Power",
+  "evidenceRefs": [
+    "e2e/estimator-trust-closure.spec.ts",
+    "e2e/helpers/estimator-trust.ts",
+    "/tmp/pg-estimator-trust-final9.log",
+    "artifacts/agent-runs/harvest-2026-08-03-pg-estimator-trust-closure-v1/thread-event-inventory.json"
+  ],
+  "doNotAdvance": [
+    "ESTIMATOR_TRUST_CLOSED",
+    "PROPOSAL_GENERATOR_APP_CLOSED",
+    "Declare app closed on infra smokes alone"
+  ],
+  "advancementGate": "estimator-trust e2e PASS all four stages with dollar totals without server-sync fallback",
+  "contentHash": "d2d766a277338b2257bdbcbb82dc992e5b2dd936dce656b8df699c97e255cf10"
+}

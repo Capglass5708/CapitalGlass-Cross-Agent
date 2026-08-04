@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-TEST-001",
+  "kind": "failure-pattern",
+  "title": "Staging alias can serve stale bundle",
+  "summary": "Vercel CI green does not prove stable alias serves current dev HEAD.",
+  "retrievalQuestions": [
+    "Why does staging show old renderer after dev merge?",
+    "What proves the stable alias serves the correct deployment?"
+  ],
+  "evidenceRefs": ["artifacts/agent-runs/harvest-test-autopsy-t2-v1/validation-result.json"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Staging returns 200 but wrong bundle",
+    "startAt": ["BY-KIND/thread-autopsy-index.json"],
+    "runPreflight": ["npm run agent:index:scout -- --json"],
+    "doNot": ["Claim PASS from GitHub status alone"],
+    "proveBeforeClaiming": ["DOM measureLayerCount >= 1"]
+  },
+  "ownerRepo": "Cursor-ProposalGenerator",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

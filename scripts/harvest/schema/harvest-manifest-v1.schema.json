@@ -26,6 +26,25 @@
     "retrievalResult": { "type": "string" },
     "cacheResult": { "type": "string" },
     "doNotAdvance": { "type": "array", "items": { "type": "string" } },
+    "threadAutopsy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tier", "bundlePath"],
+      "properties": {
+        "tier": { "enum": ["T0", "T1", "T2", "T3"] },
+        "bundlePath": { "type": "string", "minLength": 1 },
+        "seedPacketIndexPath": { "type": "string" },
+        "counts": {
+          "type": "object",
+          "properties": {
+            "waste": { "type": "integer", "minimum": 0 },
+            "seeds": { "type": "integer", "minimum": 0 },
+            "roiItems": { "type": "integer", "minimum": 0 },
+            "operatorFriction": { "type": "integer", "minimum": 0 }
+          }
+        }
+      }
+    },
     "projection": {
       "type": "object",
       "required": ["projectionSyncStatus", "hubPublishStatus"],

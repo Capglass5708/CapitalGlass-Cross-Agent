@@ -5,9 +5,13 @@ import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const SCHEMA_PATH = path.join(__dirname, "../schema/harvest-manifest-v1.schema.json");
+const SCHEMA_DIR = path.join(__dirname, "../schema");
+const MANIFEST_SCHEMA_PATH = path.join(SCHEMA_DIR, "harvest-manifest-v1.schema.json");
+const AUTOPSY_BUNDLE_SCHEMA_PATH = path.join(SCHEMA_DIR, "thread-autopsy-bundle-v1.schema.json");
+const SEED_PACKET_SCHEMA_PATH = path.join(SCHEMA_DIR, "harvest-seed-packet-v1.schema.json");
 
 let ajvInstance;
+const compiledValidators = new Map();
 
 function getAjv() {
   if (!ajvInstance) {
@@ -17,16 +21,32 @@ function getAjv() {
   return ajvInstance;
 }
 
-export function validateManifestSchema(manifest) {
-  const schema = JSON.parse(fs.readFileSync(SCHEMA_PATH, "utf8"));
+function validateAgainstSchemaFile(schemaPath, data, label) {
   const ajv = getAjv();
-  const validate = ajv.compile(schema);
-  const valid = validate(manifest);
+  let validate = compiledValidators.get(schemaPath);
+  if (!validate) {
+    const schema = JSON.parse(fs.readFileSync(schemaPath, "utf8"));
+    validate = ajv.compile(schema);
+    compiledValidators.set(schemaPath, validate);
+  }
+  const valid = validate(data);
   if (valid) {
     return { ok: true, errors: [] };
   }
   const errors = (validate.errors || []).map(
-    (err) => `${err.instancePath || "/"} ${err.message}`.trim(),
+    (err) => `${label}${err.instancePath || "/"} ${err.message}`.trim(),
   );
   return { ok: false, errors };
+}
+
+export function validateManifestSchema(manifest) {
+  return validateAgainstSchemaFile(MANIFEST_SCHEMA_PATH, manifest, "manifest ");
+}
+
+export function validateThreadAutopsyBundleSchema(bundle) {
+  return validateAgainstSchemaFile(AUTOPSY_BUNDLE_SCHEMA_PATH, bundle, "bundle ");
+}
+
+export function validateHarvestSeedPacketSchema(seed) {
+  return validateAgainstSchemaFile(SEED_PACKET_SCHEMA_PATH, seed, "seed ");
 }

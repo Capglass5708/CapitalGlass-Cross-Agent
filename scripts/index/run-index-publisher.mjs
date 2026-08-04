@@ -10,6 +10,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { resolveGitHead } from './lib/git-head.mjs';
 import { resolveAppBuilderRoot, resolveDataExtractionRoot } from './lib/resolve-repo-roots.mjs';
+import { syncDoNotAdvanceToHub, registerThreadAutopsyHubIndex } from '../harvest/lib/register-hub-index.mjs';
+import { resolveHubRoot } from '../harvest/lib/publish-hub-seed-lib.mjs';
 
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const APP_BUILDER_ROOT = resolveAppBuilderRoot(REPO_ROOT);
@@ -146,6 +148,15 @@ function main() {
       `INTELLIGENCE_HUB_ROOT=${HUB_ROOT} CG_APPBUILDER_MCP_ROOT=${APP_BUILDER_ROOT} CAPITALGLASS_CROSS_AGENT_ROOT=${REPO_ROOT} npm run agent-research-library:publish-active-work-ledger -- --repo=${REPO_ROOT} --json`,
       DATA_EXTRACTION_ROOT,
     );
+
+    const hubRoot = resolveHubRoot({ INTELLIGENCE_HUB_ROOT: HUB_ROOT });
+    const gitHead = pinnedSha;
+    const dna = syncDoNotAdvanceToHub({ repoRoot: REPO_ROOT, hubRoot });
+    const reg = registerThreadAutopsyHubIndex({ hubRoot, gitHead });
+    console.log(
+      `index publisher hub sync: do-not-advance=${dna.ok ? dna.entryCount : "FAIL"} thread-autopsy-index=${reg.ok ? "ok" : "partial"}`,
+    );
+
     run('npm run index:freshness-gate', REPO_ROOT, {
       CG_APPBUILDER_MCP_ROOT: APP_BUILDER_ROOT,
       INTELLIGENCE_HUB_ROOT: HUB_ROOT,

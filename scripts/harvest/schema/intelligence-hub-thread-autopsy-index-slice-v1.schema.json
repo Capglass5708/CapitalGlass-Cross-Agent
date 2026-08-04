@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://capitalglass.dev/schemas/intelligence-hub-thread-autopsy-index-slice-v1.json",
+  "title": "Intelligence Hub Thread Autopsy Index Slice v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "sourceCommitSha",
+    "updatedAt",
+    "harvestCount",
+    "harvests",
+    "criticalSeedIds",
+    "retrievalHint"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "intelligence-hub-thread-autopsy-index-slice-v1@1.0.0" },
+    "sourceCommitSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "harvestCount": { "type": "integer", "minimum": 0 },
+    "harvests": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/harvestPointer" }
+    },
+    "criticalSeedIds": { "type": "array", "items": { "type": "string" } },
+    "retrievalHint": { "type": "string" }
+  },
+  "$defs": {
+    "harvestPointer": {
+      "type": "object",
+      "required": ["harvestId", "subject", "tier", "seedIds", "catalogRoot", "gitAuthorityPath"],
+      "properties": {
+        "harvestId": { "type": "string" },
+        "subject": { "type": "string" },
+        "tier": { "enum": ["T0", "T1", "T2", "T3"] },
+        "seedIds": { "type": "array", "items": { "type": "string" } },
+        "roiTop3": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["rank", "title"],
+            "properties": {
+              "rank": { "type": "integer" },
+              "title": { "type": "string" },
+              "seedId": { "type": "string" }
+            }
+          }
+        },
+        "doNotAdvanceRefs": { "type": "array", "items": { "type": "string" } },
+        "catalogRoot": { "type": "string" },
+        "gitAuthorityPath": { "type": "string" }
+      }
+    }
+  }
+}

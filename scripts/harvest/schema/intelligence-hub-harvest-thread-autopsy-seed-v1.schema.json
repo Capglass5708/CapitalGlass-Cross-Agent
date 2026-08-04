@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://capitalglass.dev/schemas/intelligence-hub-harvest-thread-autopsy-seed-v1.json",
+  "title": "Intelligence Hub Harvest Thread Autopsy Seed Knowledge Object v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["envelope", "body"],
+  "properties": {
+    "envelope": { "$ref": "#/$defs/envelope" },
+    "body": { "$ref": "#/$defs/body" }
+  },
+  "$defs": {
+    "envelope": {
+      "type": "object",
+      "required": [
+        "knowledgeDomain",
+        "knowledgeObjectType",
+        "knowledgeObjectId",
+        "schemaVersion",
+        "provenanceClass",
+        "cacheEligibility",
+        "verificationState",
+        "retrievalTier",
+        "contentHash"
+      ],
+      "properties": {
+        "knowledgeDomain": { "const": "cross-agent-harvest" },
+        "knowledgeObjectType": { "const": "harvest-thread-autopsy-seed" },
+        "knowledgeObjectId": { "type": "string" },
+        "schemaVersion": { "const": "1.0.0" },
+        "provenanceClass": { "const": "HARVEST_AUTHORITY" },
+        "authoritySource": { "type": "object" },
+        "cacheEligibility": { "enum": ["retrieval_eligible", "metadata_only"] },
+        "verificationState": { "enum": ["VERIFIED", "PARTIALLY_VERIFIED", "UNVERIFIED"] },
+        "retrievalTier": { "enum": ["critical", "standard", "historical"] },
+        "contentHash": { "type": "string" }
+      }
+    },
+    "body": {
+      "type": "object",
+      "required": [
+        "seedId",
+        "kind",
+        "title",
+        "summary",
+        "canonicalQuestion",
+        "alternateQuestions",
+        "shortAnswer",
+        "retrievalQuestions",
+        "futureAgentInstructions",
+        "evidenceRefs",
+        "promotionClass",
+        "status"
+      ],
+      "properties": {
+        "seedId": { "type": "string" },
+        "kind": { "type": "string" },
+        "title": { "type": "string" },
+        "summary": { "type": "string" },
+        "canonicalQuestion": { "type": "string" },
+        "alternateQuestions": { "type": "array", "items": { "type": "string" } },
+        "shortAnswer": { "type": "string" },
+        "detailedAnswer": { "type": "string" },
+        "retrievalQuestions": { "type": "array", "items": { "type": "string" }, "minItems": 2 },
+        "futureAgentInstructions": { "type": "object" },
+        "evidenceRefs": { "type": "array", "items": { "type": "string" } },
+        "executionDeltaRefs": { "type": "array", "items": { "type": "string" } },
+        "wasteIds": { "type": "array", "items": { "type": "string" } },
+        "operatorFrictionIds": { "type": "array", "items": { "type": "string" } },
+        "roiRank": { "type": "integer" },
+        "doNotAdvance": { "type": "array", "items": { "type": "string" } },
+        "promotionClass": { "enum": ["AUTOMATIC", "POLICY_GATED", "HUMAN_REVIEW"] },
+        "status": { "enum": ["CANDIDATE", "APPROVED", "REJECTED", "QUARANTINED"] },
+        "authorityRepo": { "type": "string" },
+        "authorityPath": { "type": "array", "items": { "type": "string" } },
+        "harvestId": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "cross-agent-harvest-packet-index-v1@1.0.0",
+  "workPackageId": "harvest-2026-08-03-pg-estimator-trust-closure-v1",
+  "generatedAt": "2026-08-04T01:42:00.000Z",
+  "missionClass": "harvest",
+  "runMode": "derived-from-manifest",
+  "retrievalOutcome": "INDEX_HIT_AI_CACHE",
+  "authority": "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/harvest-manifest-v1.json",
+  "harvestManifestHash": "e0cf0d4bb42e53cbecc4a626326d9daa32226a7ed05ee83fa5396d65c928182f",
+  "packets": [
+    {
+      "id": "pg-estimator-trust-closure-v1",
+      "label": "pg-estimator-trust-closure-v1",
+      "state": "ESTIMATOR_TRUST_BLOCKED",
+      "verdict": "FAIL",
+      "ownerRepo": "Cursor-ProposalGenerator-1",
+      "ownerIndexingStatus": "indexed",
+      "crossAgentProject": "work-progress/projects/2026-08-03_pg-estimator-trust-closure-v1.md",
+      "doNotAdvance": [
+        "ESTIMATOR_TRUST_CLOSED",
+        "PROPOSAL_GENERATOR_APP_CLOSED",
+        "Declare app closed on infra smokes alone"
+      ],
+      "commitRefs": [
+        {
+          "repo": "Cursor-ProposalGenerator-1",
+          "sha": "4e965b4f24556a150db4c58eb4ddf50484406a7c",
+          "note": "estimator-trust e2e + helpers (session work)"
+        }
+      ]
+    },
+    {
+      "id": "pg-pricing-editable-workspace-persist-v1",
+      "label": "pg-pricing-editable-workspace-persist-v1",
+      "state": "PRODUCT_FIX_REQUIRED",
+      "verdict": "BLOCKED",
+      "ownerRepo": "Cursor-ProposalGenerator-1",
+      "ownerIndexingStatus": "indexed",
+      "crossAgentProject": "work-progress/projects/2026-08-03_pg-pricing-editable-workspace-persist-v1.md",
+      "doNotAdvance": [
+        "Rely on e2e server-sync PUT as production behavior",
+        "PUT alignment from zero/stale localStorage"
+      ],
+      "commitRefs": [
+        {
+          "repo": "Cursor-ProposalGenerator-1",
+          "sha": "4e965b4f24556a150db4c58eb4ddf50484406a7c"
+        }
+      ]
+    },
+    {
+      "id": "harvest-2026-08-03-pg-estimator-trust-closure-v1",
+      "label": "harvest-2026-08-03-pg-estimator-trust-closure-v1",
+      "state": "HARVEST_COMPLETE",
+      "verdict": "HARVEST_COMPLETE",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "crossAgentProject": "work-progress/projects/2026-08-03_harvest-pg-estimator-trust-closure-v1.md",
+      "doNotAdvance": [
+        "OPERATIONAL",
+        "FULLY_SEEDED"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "be91a38b23af151cc65f08e3bf2c09907cc6a511"
+        }
+      ]
+    }
+  ]
+}

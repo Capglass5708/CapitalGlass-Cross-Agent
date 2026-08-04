@@ -4,6 +4,9 @@
 **Authority:** `artifacts/agent-runs/<harvest-id>/harvest-manifest-v1.json`  
 **Command index (machine):** `work-progress/command-index.json`
 
+**Thread autopsy protocol:** [chat-thread-closeout-autopsy-harvest-v1.md](./chat-thread-closeout-autopsy-harvest-v1.md)  
+**Intelligence Hub accommodation:** [thread-autopsy-hub-accommodation-v1.md](../intelligence-hub/thread-autopsy-hub-accommodation-v1.md)
+
 Cross-Agent harvests record coordination state only. Implementation, SSH, runner install, and deploy mutations belong in owner repos.
 
 ---
@@ -15,7 +18,8 @@ Cross-Agent harvests record coordination state only. Implementation, SSH, runner
 | 1 | Edit `harvest-manifest-v1.json` | CapitalGlass-Cross-Agent | Canonical machine authority |
 | 2 | `npm run harvest:sync-derived` | CapitalGlass-Cross-Agent | Regenerate compact records, receipt, packet-index, coverage; refresh packet registry SHAs |
 | 3 | `npm run harvest:render-index` | CapitalGlass-Cross-Agent | Update INDEX.md generated section |
-| 4 | `npm run harvest:validate` | CapitalGlass-Cross-Agent | Gate before commit |
+| 4 | `npm run harvest:validate` | CapitalGlass-Cross-Agent | Gate before commit (includes thread autopsy when `threadAutopsy` set) |
+| 4b | `npm run harvest:validate-autopsy -- --harvest-id=<id>` | CapitalGlass-Cross-Agent | Autopsy-only gate |
 | 5 | `npm run test:harvest` | CapitalGlass-Cross-Agent | Regression tests |
 | 6 | `npm run index:refresh-anchors` | CapitalGlass-Cross-Agent | Refresh handoff ledger anchor + continuity metadata |
 | 7 | `npm run cross-agent-ledger:ingest -- --apply` | CG-AppBuilder-MCP | Supabase projection (requires `CROSS_AGENT_LEDGER_INGEST_APPROVED=1`) |

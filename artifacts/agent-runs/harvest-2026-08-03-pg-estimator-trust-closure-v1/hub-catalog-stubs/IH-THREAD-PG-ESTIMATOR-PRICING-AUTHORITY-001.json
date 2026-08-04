@@ -1,0 +1,85 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-thread-pg-estimator-pricing-authority-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "be91a38b23af151cc65f08e3bf2c09907cc6a511",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-03-pg-estimator-trust-closure-v1",
+      "seedId": "IH-THREAD-PG-ESTIMATOR-PRICING-AUTHORITY-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T01:42:39.688Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "critical",
+    "contentHash": "88e6c91ea457b250380f1cacca8345e4a985834246ea4c60e02c1277bbe46d8f"
+  },
+  "body": {
+    "seedId": "IH-THREAD-PG-ESTIMATOR-PRICING-AUTHORITY-001",
+    "kind": "failure-pattern",
+    "title": "PG estimator-trust pricing authority — UI vs editable-workspace vs preview",
+    "summary": "Production 360 Power: server editable-workspace holds edited grand ($10,957.94) but Mark Up UI and preview cover re-hydrate to $0 or door-only $5,545.44 after reload. Client persist does not converge (workspaceSynced false). Do not declare app closed on infra smokes alone.",
+    "canonicalQuestion": "Why does Proposal Generator Mark Up Report show wrong total after reload when server pricing changed?",
+    "alternateQuestions": [
+      "What gate proves estimator-trust closure beyond infrastructure smokes?"
+    ],
+    "shortAnswer": "Production 360 Power: server editable-workspace holds edited grand ($10,957.94) but Mark Up UI and preview cover re-hydrate to $0 or door-only $5,545.44 after reload. Client persist does not converge (workspaceSynced false). Do not declare app closed on infra smokes alone.",
+    "detailedAnswer": "PG estimator-trust pricing authority — UI vs editable-workspace vs preview",
+    "retrievalQuestions": [
+      "Why does Proposal Generator Mark Up Report show wrong total after reload when server pricing changed?",
+      "What gate proves estimator-trust closure beyond infrastructure smokes?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "PG closure, Mark Up pricing, preview cover $0, or editable-workspace drift on production pilot",
+      "startAt": [
+        "BY-KIND/thread-autopsy-index.json",
+        "artifacts/agent-runs/harvest-2026-08-03-pg-estimator-trust-closure-v1/seed-packets/IH-THREAD-PG-ESTIMATOR-PRICING-AUTHORITY-001.json"
+      ],
+      "runPreflight": [
+        "npm run test:e2e:estimator-trust-closure:doppler"
+      ],
+      "doNot": [
+        "Claim ESTIMATOR_TRUST_CLOSED or app closed on infra smokes PASS alone",
+        "PUT alignment from localStorage without localGrand > 100 and localGrand == UI",
+        "Fake PASS when reload UI != server grand"
+      ],
+      "proveBeforeClaiming": [
+        "PLAYWRIGHT_BASE_URL=https://proposal.capitalglasstxapps.com npm run test:e2e:estimator-trust-closure:doppler PASS all stages",
+        "Reload Mark Up grand matches server after edit",
+        "Preview cover shows working price; approve/PDF shows issued; drift visible after second edit"
+      ]
+    },
+    "evidenceRefs": [
+      "artifacts/agent-runs/harvest-2026-08-03-pg-estimator-trust-closure-v1/thread-event-inventory.json",
+      "artifacts/agent-runs/harvest-2026-08-03-pg-estimator-trust-closure-v1/thread-autopsy-bundle.json",
+      "e2e/estimator-trust-closure.spec.ts"
+    ],
+    "executionDeltaRefs": [
+      "ED-002"
+    ],
+    "wasteIds": [
+      "TW-002",
+      "TW-004",
+      "TW-005"
+    ],
+    "operatorFrictionIds": [],
+    "roiRank": 1,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "Cursor-ProposalGenerator-1",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-03-pg-estimator-trust-closure-v1/seed-packets/IH-THREAD-PG-ESTIMATOR-PRICING-AUTHORITY-001.json"
+    ],
+    "harvestId": "harvest-2026-08-03-pg-estimator-trust-closure-v1"
+  }
+}

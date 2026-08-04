@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "cross-agent-thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-03-pg-estimator-trust-closure-v1",
+  "sourceThread": "Cursor Proposal Generator — estimator-trust closure / 360 Power pricing authority",
+  "events": [
+    {
+      "eventId": "EV-001",
+      "phase": "context",
+      "summary": "User defined business closure gate: Mark Up edit → save/reload → preview working price → approve → PDF issued → post-approval drift visibility",
+      "evidenceRefs": ["chat:user closure checklist"]
+    },
+    {
+      "eventId": "EV-002",
+      "phase": "infra",
+      "summary": "Authenticated staging/production smokes 25/25 PASS — infrastructure closure achieved earlier in thread",
+      "evidenceRefs": ["artifacts/agent-runs/proposal-generator-staging-e2e-closure-v1/closeout-manifest.json"]
+    },
+    {
+      "eventId": "EV-003",
+      "phase": "investigation",
+      "summary": "Estimator-trust e2e built; production runs failed on pricing edit (wrong Playwright locators, auto-sync fields, server/UI split ~5545 vs ~55770)",
+      "evidenceRefs": ["/tmp/pg-estimator-trust-production2.log", "e2e/helpers/estimator-trust.ts"]
+    },
+    {
+      "eventId": "EV-004",
+      "phase": "operator-friction",
+      "summary": "User requested full articulate explanation of the problem — agent had been reporting infra PASS without business closure",
+      "evidenceRefs": ["chat:user WHAT IS THE PROBLEM FULL ARTICULATE"]
+    },
+    {
+      "eventId": "EV-005",
+      "phase": "authorization",
+      "summary": "User authorized align/reset 360 Power editable workspace (expired pilot) and full production estimator-trust gate with dollar totals at each stage",
+      "evidenceRefs": ["chat:user 360 Power expired authorized reset"]
+    },
+    {
+      "eventId": "EV-006",
+      "phase": "fix",
+      "summary": "Restored server baseline $5545.44 via API PUT; fixed e2e locators (subcontractor cost), v6 localStorage read, stale-write retry",
+      "evidenceRefs": ["doppler curl editable-workspace", "/tmp/pg-estimator-trust-final4.log"]
+    },
+    {
+      "eventId": "EV-007",
+      "phase": "gate-run",
+      "summary": "Best run: baseline UI/server $5545.44; after +$5k subcontractor UI/server $10957.94 via server-sync PUT (client persist did not converge in 30s)",
+      "evidenceRefs": ["/tmp/pg-estimator-trust-final9.log"]
+    },
+    {
+      "eventId": "EV-008",
+      "phase": "failure",
+      "summary": "After reload: Mark Up UI $0 or $5545 while server holds $10957.94; preview after resetLocalProposalState shows $0 cover — hydrate does not restore edited pricing",
+      "evidenceRefs": ["/tmp/pg-estimator-trust-final9.log", "/tmp/pg-estimator-trust-final8.log"]
+    },
+    {
+      "eventId": "EV-009",
+      "phase": "mistake",
+      "summary": "Alignment PUT from stale v5 localStorage once zeroed server pricing (grand 0) — required explicit door-hardware restore",
+      "evidenceRefs": ["doppler node serverGrand 0 before restore"]
+    },
+    {
+      "eventId": "EV-010",
+      "phase": "harvest",
+      "summary": "User invoked chat-thread-closeout-autopsy-harvest-v1 protocol",
+      "evidenceRefs": ["z:/Capital-Glass-Dev/Harvest/protocol/chat-thread-closeout-autopsy-harvest-v1.md"]
+    }
+  ]
+}

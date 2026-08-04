@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-PG-E2E-MARKUP-LOCATOR-001",
+  "kind": "lesson",
+  "title": "Playwright Mark Up Report currency field locators",
+  "summary": "Broad div.filter on Mark Up Report matches wrong inputs (Total Perimeter instead of Subcontractor Cost). Use getByText(label) + ancestor div xpath for number input. Prefer Subcontractor Cost +$5000 under Outside Costs.",
+  "retrievalQuestions": [
+    "How do I change Mark Up Report grand total in Playwright without editing Total Perimeter?",
+    "Which pricing field should PG e2e bump to move grand total reliably?"
+  ],
+  "evidenceRefs": [
+    "e2e/helpers/estimator-trust.ts",
+    "artifacts/agent-runs/harvest-2026-08-03-pg-estimator-trust-closure-v1/thread-autopsy-bundle.json"
+  ],
+  "sourcePacketIds": ["pg-estimator-trust-closure-v1"],
+  "executionDeltaRefs": ["ED-001"],
+  "wasteIds": ["TW-001"],
+  "roiRank": 3,
+  "futureAgentInstructions": {
+    "whenThisAppears": "PG e2e pricing edit does not change grand total or edits wrong field",
+    "startAt": ["e2e/helpers/estimator-trust.ts"],
+    "runPreflight": [],
+    "doNot": [
+      "Use first number input on page or broad div.filter for currency fields",
+      "Bump door hardware or markup % expecting stable grand total change"
+    ],
+    "proveBeforeClaiming": [
+      "Poll grand total after Subcontractor Cost edit confirms UI moved",
+      "Error-context snapshot shows correct input received value"
+    ]
+  },
+  "ownerRepo": "Cursor-ProposalGenerator-1",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}

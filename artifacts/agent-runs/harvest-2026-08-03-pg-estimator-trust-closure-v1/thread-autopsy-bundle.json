@@ -1,0 +1,301 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-03-pg-estimator-trust-closure-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "verification",
+      "description": "Multiple e2e iterations used broad div.filter locators that edited Total Perimeter instead of pricing fields — appeared as 'pricing does not change'",
+      "evidenceRefs": [
+        "e2e/helpers/estimator-trust.ts locator fix",
+        "test-results error-context Total Perimeter 5000"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "currencyInputByFieldLabel via getByText + ancestor xpath for field labels",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "rework",
+      "description": "Repeated production estimator-trust runs (~10+) chasing persist/hydration without fixing workspaceSynced persist path first",
+      "evidenceRefs": [
+        "/tmp/pg-estimator-trust-final4.log",
+        "/tmp/pg-estimator-trust-final9.log"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Product fix: editable-workspace persist on pricing edit; e2e gate documents client vs server-sync path",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "context",
+      "description": "Read server grand via localStorage v5 key while app writes v6 envelope — alignment skipped or mis-read local pricing",
+      "evidenceRefs": [
+        "src/lib/projects/proposal-workspace-local-cache-v6.ts",
+        "Browser local pricing missing error"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "readBrowserPricingSnapshot checks cg-proposal-state-v6 then v5",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "operator_attention",
+      "description": "Operator required full articulate problem statement after infra smokes declared green without estimator-trust closure",
+      "evidenceRefs": [
+        "chat:user WHAT IS THE PROBLEM FULL ARTICULATE"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Separate infra smoke PASS from estimator-trust business gate in closeout templates",
+      "roiRank": 4
+    },
+    {
+      "wasteId": "TW-005",
+      "type": "agent",
+      "description": "Bad alignment PUT propagated zeroed local pricing to server, wiping editable-workspace grand total",
+      "evidenceRefs": [
+        "doppler node serverGrand 0 after mis-align"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Refuse PUT when localGrand <= 100 or localGrand != UI; patchServerPricingToUiBaseline recipe",
+      "roiRank": 5
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Agent implied closure from 25/25 smokes without Mark Up → preview → approve → PDF → drift proof",
+      "operatorCost": "high",
+      "frequency": "once",
+      "systemFix": "Mandatory estimator-trust gate + explicit FAIL verdict in harvest do-not-advance",
+      "evidenceRefs": [
+        "chat:user closure criteria",
+        "chat:user WHAT IS THE PROBLEM"
+      ],
+      "linkedWasteIds": [
+        "TW-004"
+      ]
+    },
+    {
+      "frictionId": "OF-002",
+      "trigger": "Operator had to authorize 360 Power reset and demand dollar totals per stage",
+      "operatorCost": "medium",
+      "frequency": "once",
+      "systemFix": "Expired pilot reset recipe in e2e preflight; log stage totals in estimator-trust spec",
+      "evidenceRefs": [
+        "chat:user authorized reset production gate"
+      ],
+      "linkedWasteIds": [
+        "TW-002"
+      ]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Need to change Mark Up Report grand total in e2e on production pilot",
+      "actualExecution": {
+        "steps": [
+          "Bump Interior/Exterior door hardware or markup %",
+          "Poll grand total with broad div.filter locators"
+        ],
+        "outcome": "FAIL — edited wrong input or auto-sync reverted",
+        "evidenceRefs": [
+          "/tmp/pg-estimator-trust-production2.log"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Open Shared / Outside Costs",
+          "Bump Subcontractor Cost with tight label-scoped locator",
+          "Confirm grand total poll changes"
+        ],
+        "outcome": "UI moves immediately",
+        "requiredPreflight": [
+          "Read pricing page field structure from error-context snapshot"
+        ]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "high",
+        "operatorFrustration": "medium"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Prove save → reload → preview working price after edit",
+      "actualExecution": {
+        "steps": [
+          "UI edit + authorized server PUT",
+          "page.reload or resetLocalProposalState",
+          "Expect Mark Up UI and preview cover to match $10957.94"
+        ],
+        "outcome": "FAIL — server $10957.94 but UI/preview $0 or $5545.44",
+        "evidenceRefs": [
+          "/tmp/pg-estimator-trust-final9.log"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Fix client persist (workspaceSynced) OR hydrate path loads full server pricing including outsideCosts",
+          "Then run estimator-trust without server-sync fallback"
+        ],
+        "outcome": "Reload and preview would show working price from DB authority",
+        "requiredPreflight": [
+          "canPersistWorkspacePayload audit",
+          "resolve-authoritative-proposal-pricing on hydrate"
+        ]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "high",
+        "operatorFrustration": "high"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Declared infra closure sufficient without estimator-trust business gate",
+      "whereItHappened": "Prior thread segment before user articulate request",
+      "whyItWasWrong": "Smokes do not prove pricing authority across UI, editable-workspace, preview, PDF",
+      "correctFirstMove": "Run test:e2e:estimator-trust-closure:doppler on production with stage dollar logging",
+      "preventiveControl": "pg-estimator-trust gate in closeout; harvest do-not-advance ESTIMATOR_TRUST_NOT_CLOSED",
+      "seedTarget": "IH-THREAD-PG-ESTIMATOR-PRICING-AUTHORITY-001",
+      "executionDeltaId": "ED-002"
+    },
+    {
+      "wrongMoveId": "WM-002",
+      "summary": "Synced local v5/zero pricing to server via alignment PUT",
+      "whereItHappened": "alignServerPricingWithUi early iterations",
+      "whyItWasWrong": "Wiped server grand to 0; contradicted door-synced production truth",
+      "correctFirstMove": "patchServerPricingToUiBaseline with door-hardware recipe; refuse PUT when local != UI",
+      "preventiveControl": "Guard rails in e2e/helpers/estimator-trust.ts syncSubcontractorCostToServer",
+      "seedTarget": "IH-THREAD-PG-ESTIMATOR-PRICING-AUTHORITY-001",
+      "executionDeltaId": "ED-002"
+    },
+    {
+      "wrongMoveId": "WM-003",
+      "summary": "Used parent div.filter locators for currency fields on Mark Up Report",
+      "whereItHappened": "e2e/helpers/estimator-trust.ts bump helpers",
+      "whyItWasWrong": "First number input on page was Total Perimeter — grand total unchanged",
+      "correctFirstMove": "getByText(label) + ancestor div xpath to scoped input",
+      "preventiveControl": "E2e helper currencyInputByFieldLabel pattern",
+      "seedTarget": "IH-THREAD-PG-E2E-MARKUP-LOCATOR-001",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DU-001",
+      "subject": "360 Power server pricing contamination (~$55k seed vs ~$5.5k UI)",
+      "firstKnownInstance": "Earlier ensurePilotMarkupWorkspace seeds in thread",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "repeatedInstances": [
+        "final4",
+        "final6",
+        "final8",
+        "final9 log runs"
+      ],
+      "whyRepeated": "Server editable-workspace not reconciled to door-synced UI before edit tests",
+      "avoidableBy": "Pilot reset recipe in estimator-trust preflight; index slice for PG pricing authority",
+      "recommendedAction": "add_guard"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Fix pricing hydrate + client persist for editable-workspace",
+      "whyItPays": "Unblocks real estimator save/reload/preview without API PUT fallback",
+      "effort": "high",
+      "ownerRepo": "Cursor-ProposalGenerator-1",
+      "savedWasteIds": [
+        "TW-002",
+        "TW-005"
+      ],
+      "seedAs": "owner-artifact",
+      "suggestedWorkPackageId": "pg-pricing-editable-workspace-persist-v1"
+    },
+    {
+      "rank": 2,
+      "title": "Estimator-trust e2e as mandatory production gate separate from smokes",
+      "whyItPays": "Prevents false app-closure from infra-only green",
+      "effort": "low",
+      "ownerRepo": "Cursor-ProposalGenerator-1",
+      "savedWasteIds": [
+        "TW-004"
+      ],
+      "seedAs": "command",
+      "suggestedWorkPackageId": "pg-estimator-trust-closure-v1"
+    },
+    {
+      "rank": 3,
+      "title": "Mark Up Report Playwright field locator standard",
+      "whyItPays": "Eliminates false negatives on pricing e2e",
+      "effort": "low",
+      "ownerRepo": "Cursor-ProposalGenerator-1",
+      "savedWasteIds": [
+        "TW-001"
+      ],
+      "seedAs": "test",
+      "suggestedWorkPackageId": "pg-estimator-trust-closure-v1"
+    },
+    {
+      "rank": 4,
+      "title": "Expired pilot 360 Power reset script for closure tests",
+      "whyItPays": "Deterministic baseline without manual doppler PUT",
+      "effort": "medium",
+      "ownerRepo": "Cursor-ProposalGenerator-1",
+      "savedWasteIds": [
+        "TW-002"
+      ],
+      "seedAs": "command",
+      "suggestedWorkPackageId": "pg-estimator-trust-closure-v1"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "ESTIMATOR_TRUST_CLOSED",
+      "currentStatus": "BLOCKED",
+      "doNotClaimUntil": [
+        "test:e2e:estimator-trust-closure:doppler PASS on production with client persist OR documented product fix",
+        "Reload Mark Up UI grand matches server after edit",
+        "Preview cover shows working price after DB hydrate",
+        "Approve + print PDF hold issued price",
+        "Post-approval drift banner visible after second edit"
+      ],
+      "lastKnownEvidence": [
+        "/tmp/pg-estimator-trust-final9.log",
+        "artifacts/agent-runs/harvest-2026-08-03-pg-estimator-trust-closure-v1/thread-event-inventory.json"
+      ],
+      "proofCommandId": "npm run test:e2e:estimator-trust-closure:doppler"
+    },
+    {
+      "awardOrVerdict": "PROPOSAL_GENERATOR_APP_CLOSED",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "ESTIMATOR_TRUST_CLOSED",
+        "staging editable-workspace Supabase env fixed for segment API"
+      ],
+      "lastKnownEvidence": [
+        "estimator-trust FAIL verdict",
+        "staging Supabase env not configured"
+      ],
+      "proofCommandId": "npm run test:e2e:estimator-trust-closure:doppler"
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "do-not-advance.json",
+      "active-work-open-actions.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-04T01:43:07.097Z",
+    "preflightReceiptHash": "8a792e84506b3537f570aeb506f43ff344e88e29dc94ae78d7d6ac4d5026a2d9"
+  }
+}
