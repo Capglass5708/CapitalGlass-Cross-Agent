@@ -8,9 +8,11 @@
 
 | Wave | Package | Verdict | Commit |
 |------|---------|---------|--------|
-| 8 | `harvest-publication-single-flight-v1` | `WAVE8_ACCEPTED` (pending commit) | — |
-| 9 | `harvest-git-retention-enforcement-v1` | `WAVE9_ACCEPTED` (pending commit) | — |
-| 10 | `harvest-publication-authority-dogfood-v1` | `WAVE10_ACCEPTED` (pending commit) | — |
+| 8 | `harvest-publication-single-flight-v1` | `WAVE8_ACCEPTED` | `19e63a8` |
+| 9 | `harvest-git-retention-enforcement-v1` | `WAVE9_ACCEPTED` | `4674561` |
+| 10 | `harvest-publication-authority-dogfood-v1` | `WAVE10_ACCEPTED` | `e946c8e` |
+
+**Branch head:** `e946c8e` (pushed)
 
 ## Wave 8 — single-flight
 
@@ -31,8 +33,8 @@
 
 ## Next
 
-1. Three wave commits + push (`THREE_WAY_PUSH_APPROVED=YES`)
-2. Full regression receipt
-3. Security audit
-4. PR create/update
-5. `MERGE_READY` decision packet
+1. ~~Three wave commits + push~~ **DONE** (`e946c8e`)
+2. ~~Full regression receipt~~ **FULL_REGRESSION_PASS** (113 + 10 AppBuilder)
+3. ~~Security audit~~ **SECURITY_AUDIT_PASS**
+4. ~~PR create/update~~ PR #278 (AppBuilder), PR #4 (Cross-Agent)
+5. **MERGE_READY** — awaiting operator approval
