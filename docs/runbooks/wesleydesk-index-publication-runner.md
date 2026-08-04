@@ -66,12 +66,20 @@ Verify: `systemctl is-enabled actions.runner.Capglass5708-CapitalGlass-Cross-Age
 
 ### Post-Windows-reboot recovery
 
-WSL stops on Windows reboot. `/etc/wsl.conf` must include `[boot] systemd=true` (set by `runner:configure-wsl-network`). After reboot:
+WSL stops on Windows reboot until something starts it. **Permanent fix:** install the logon scheduled task once on WESLEYDESK (elevated PowerShell):
+
+```powershell
+cd ~\repos\CapitalGlass-Cross-Agent   # or WSL path after git pull
+powershell -ExecutionPolicy Bypass -File scripts/runner/install-wesleydesk-runner-autostart.ps1
+```
+
+**Manual recovery** (any time runner shows offline):
 
 ```bash
-wsl.exe -d Ubuntu-24.04 -u root bash ~/repos/CapitalGlass-Cross-Agent/scripts/runner/configure-wesleydesk-wsl-network.sh
-wsl.exe -d Ubuntu-24.04 -u root bash -lc 'cd /home/wesley/actions-runner-cross-agent && ./svc.sh start'
+wsl.exe -d Ubuntu-24.04 -u root bash /home/wesley/repos/CapitalGlass-Cross-Agent/scripts/runner/ensure-wesleydesk-runner-wsl.sh
 ```
+
+The ensure script writes `wsl.conf` (`systemd=true`), enables `cg-wesleydesk-resolv.service`, and starts the GitHub Actions runner unit.
 
 ### Runner version
 
