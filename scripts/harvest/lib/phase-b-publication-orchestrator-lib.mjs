@@ -26,6 +26,12 @@ import {
   readPointerCandidate,
 } from "./publication-pointer-candidate-lib.mjs";
 import { publishZCacheFromL } from "./z-cache-publication-adapter-lib.mjs";
+import {
+  acquirePublicationLock,
+  isPhaseBAlreadyComplete,
+  LOCK_SCOPES,
+  releasePublicationLock,
+} from "./harvest-publication-lock-lib.mjs";
 
 export function readDurablePublicationContext(hubRoot, harvestId, payloadHash) {
   const layout = bundleLayout(hubRoot, harvestId, payloadHash);
@@ -132,7 +138,76 @@ export function createDefaultOperationWriter() {
  * Phase B orchestrator — deterministic stage order, injectable adapters for tests.
  * Does not mutate Git, artifacts/agent-runs, or harvest source trees.
  */
-export function runPhaseBPublication({
+export function runPhaseBPublication(params) {
+  if (params?.usePublicationLock === false) {
+    return runPhaseBPublicationCore(params);
+  }
+  return runPhaseBPublicationWithLock(params);
+}
+
+function runPhaseBPublicationWithLock({
+  hubRoot,
+  harvestId,
+  payloadHash,
+  publicationLockOwnerId = `phase-b-${process.pid}`,
+  resumeToken = null,
+  ...rest
+} = {}) {
+  const acquired = acquirePublicationLock({
+    hubRoot,
+    harvestId,
+    payloadHash,
+    scope: LOCK_SCOPES.PHASE_B,
+    ownerId: publicationLockOwnerId,
+    resumeToken: resumeToken ?? undefined,
+  });
+  if (!acquired.ok) {
+    return {
+      ok: false,
+      phaseBVerdict: PHASE_B_VERDICTS.BLOCKED,
+      harvestId,
+      payloadHash,
+      lockVerdict: acquired.verdict,
+      lock: acquired.lock ?? null,
+      startedAt: new Date().toISOString(),
+      completedAt: new Date().toISOString(),
+    };
+  }
+  const token = acquired.resumeToken;
+  try {
+    if (isPhaseBAlreadyComplete(hubRoot, harvestId, payloadHash)) {
+      const noop = runPhaseBPublicationCore({
+        hubRoot,
+        harvestId,
+        payloadHash,
+        ...rest,
+      });
+      return {
+        ...noop,
+        lockVerdict: "NOOP_CURRENT",
+        postLockReread: true,
+      };
+    }
+    const result = runPhaseBPublicationCore({
+      hubRoot,
+      harvestId,
+      payloadHash,
+      ...rest,
+    });
+    return { ...result, lockVerdict: acquired.verdict };
+  } finally {
+    releasePublicationLock({
+      hubRoot,
+      harvestId,
+      payloadHash,
+      scope: LOCK_SCOPES.PHASE_B,
+      ownerId: publicationLockOwnerId,
+      resumeToken: token,
+    });
+  }
+}
+
+function runPhaseBPublicationCore({
   hubRoot,
   harvestId,
   payloadHash,
