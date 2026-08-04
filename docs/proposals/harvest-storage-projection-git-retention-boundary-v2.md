@@ -7,6 +7,8 @@
 **Decision required:** Yes  
 **Canonical status:** Not canonical; do not enforce until approved
 
+**Remediation plan:** [harvest-publication-authority-remediation-plan-v1.md](./harvest-publication-authority-remediation-plan-v1.md) — implementation waves; corrected Phase A/B/C lifecycle.
+
 ## Summary
 
 One harvest was producing too many representations, artifacts, receipts, and commits. This proposal defines **where each representation lives** and caps Cross-Agent Git to **minimal lineage pointers**. It does not implement validators or redefine harvest tiers — those remain in canonical runbooks.

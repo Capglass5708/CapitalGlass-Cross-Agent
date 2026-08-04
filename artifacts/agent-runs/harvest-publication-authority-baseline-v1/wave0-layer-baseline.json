@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "harvest-publication-authority-wave0-baseline-v1@1.0.0",
+  "recordedAt": "2026-08-04T03:45:00.000Z",
+  "workPackage": "harvest-publication-authority-baseline-v1",
+  "governanceDecisionId": "CAD-20260804-HARVEST-L-DURABLE-POINTER-PLANES",
+  "policyBaseline": {
+    "proposal": "docs/proposals/harvest-storage-projection-git-retention-boundary-v2.md",
+    "branch": "growth-branch-1",
+    "commit": "3f7cd6b"
+  },
+  "remediationPlan": "docs/proposals/harvest-publication-authority-remediation-plan-v1.md",
+  "method": "read-only inspection — no publication commands run",
+  "priorOperationalClaimsInvalidForMigration": true,
+  "scenarios": [
+    {
+      "scenarioId": "harvest-publication-ingest-closeout",
+      "harvestId": "harvest-2026-08-04-harvest-publication-ingest-closeout-v1",
+      "authoritySourceCommit": "bc6fd818c091e72a47ea9cc689b731431e6b93f7",
+      "layers": {
+        "harvestRecording": "HARVEST_COMPLETE — manifest + 20+ Git artifact files under artifacts/agent-runs/",
+        "lDurability": "PARTIAL — 4 seed catalog objects on L:; no complete durable bundle at 02-catalog/harvests/<id>/<payloadHash>/",
+        "zCache": "PUBLISHED — operational-publication-receipt reports zAiCache.ok=true",
+        "supabaseProjection": "UNKNOWN_FROM_ARTIFACT — ledger sync failed pre-artifact-write per operational receipt",
+        "gitPointer": "ABSENT — no harvest-publication-pointer-v1.json; full payload duplicated in Git",
+        "indexFreshness": "UNKNOWN — tied to HEAD at publish time, not content hash",
+        "hotRouting": "FAILED — hot-routing-index stage error in operational receipt"
+      },
+      "falseOperationalEvidence": {
+        "file": "artifacts/agent-runs/harvest-2026-08-04-harvest-publication-ingest-closeout-v1/operational-publication-receipt.json",
+        "claimedVerdict": "OPERATIONAL",
+        "contradictions": [
+          "layers.lLedger.ok=false",
+          "layers.cHotRouting.ok=false",
+          "stages includes sync-derived and render-index (Git mutations during publish)"
+        ]
+      },
+      "gitArtifactCount": 20,
+      "lSeedCatalogCount": 4,
+      "completeLBundlePresent": false
+    },
+    {
+      "scenarioId": "three-way-improvement-slice6",
+      "harvestId": "harvest-2026-08-04-three-way-improvement-slice6-thread-v1",
+      "authoritySourceCommit": "57f443b0fb2fe876dc4ec0c33d4f77d8a56709cf",
+      "layers": {
+        "harvestRecording": "HARVEST_COMPLETE — manifest overallHarvestVerdict=HARVEST_COMPLETE; hubPublishStatus=published in projection",
+        "lDurability": "PARTIAL — seeds published via hub-seed path; 5 seed-packets in Git; no complete L: durable bundle directory",
+        "zCache": "UNKNOWN — no operational-publication-receipt in harvest dir; index publish referenced @57f443b",
+        "supabaseProjection": "CLAIMED_SYNCED — projection.projectionSyncStatus=synced in manifest; not independently verified in this baseline",
+        "gitPointer": "ABSENT — no harvest-publication-pointer-v1.json; compact-records/ and seed-packets/ in Git",
+        "indexFreshness": "CLAIMED_PASS @57f443b — HEAD-based; treadmill risk on subsequent commits",
+        "hotRouting": "UNKNOWN"
+      },
+      "falseOperationalEvidence": {
+        "file": null,
+        "claimedVerdict": "THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL (manifest supersededClaims / project file)",
+        "contradictions": [
+          "Complete harvest reconstructable from L: alone — not proven",
+          "Git retains full thread-autopsy-bundle.json and seed-packets/"
+        ]
+      },
+      "gitArtifactCount": 18,
+      "lSeedCatalogCount": "subset of 55 total catalog seeds on L:",
+      "completeLBundlePresent": false
+    },
+    {
+      "scenarioId": "ledger-ingest-git-mutation",
+      "harvestId": null,
+      "description": "cross-agent-ledger:ingest BLOCKED_GIT_MUTATION during publication pipeline",
+      "authoritySourceCommit": null,
+      "layers": {
+        "harvestRecording": "N/A — infrastructure failure class",
+        "lDurability": "N/A",
+        "zCache": "N/A",
+        "supabaseProjection": "BLOCKED — ingest guard detected Git worktree mutation during multi-stage publish",
+        "gitPointer": "N/A",
+        "indexFreshness": "BLOCKED_OR_STALE when ingest fails",
+        "hotRouting": "N/A"
+      },
+      "evidence": {
+        "projectFile": "work-progress/projects/2026-08-04_intelligence-hub-thread-autopsy-publication-v1.md",
+        "ingestGuard": "CG-AppBuilder-MCP/scripts/cross-agent-ledger/ingest.mjs — BLOCKED_GIT_MUTATION",
+        "rootCause": "Publisher runs sync-derived/render-index/receipt writes in same worktree ingest observes",
+        "resolutionNote": "APPLIED after resolving mutation — not a durable fix; Wave 4 snapshot ingest required"
+      }
+    }
+  ],
+  "crossCuttingFindings": [
+    "No 02-catalog/harvests/<harvestId>/<payloadHash>/ durable bundle exists on L:",
+    "Operational receipts claim OPERATIONAL while optional/required layers failed",
+    "Git retains full harvest payloads contrary to v2 pointer budget",
+    "Publication pointer not separated from manifest; written before L: complete in prior protocol",
+    "Freshness tied to HEAD not manifestHash/payloadHash"
+  ]
+}
