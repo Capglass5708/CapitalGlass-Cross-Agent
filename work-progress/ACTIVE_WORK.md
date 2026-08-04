@@ -13,7 +13,7 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-08-04 |
-| Current focus | Slice 6 **CLOSED** @ `acd94ba` — `THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL`; next: auto-publisher v1.1 |
+| Current focus | T2 harvest recorded — `harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1`; next: auto-publisher v1.1 + hub seed publish |
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
@@ -32,6 +32,17 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Added fields | `scoutHotCacheProof`, `recommendedRoi`, `commands`, `authorityLineage`, `staleAuthorityComparison` |
 | Owner boundary | Cross-Agent records; AppBuilder implements tooling; Governance owns required protocol authority |
 | Next | Implement schema/generator validation in AppBuilder if these become enforced fields |
+
+### 2026-08-04 CT — harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1 (T2 autopsy)
+
+| Field | Value |
+| --- | --- |
+| Work package | `harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1` |
+| Verdict | **HARVEST_COMPLETE** — 3 packets, 4 seed candidates, 6 waste items |
+| Artifacts | `artifacts/agent-runs/harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1/` |
+| Thread | WESLEYDESK runner bootstrap, Slice 6 closeout, reboot persistence fix |
+| Publication | Git only — hub `not-run` (operator: `harvest:publish-hub-seed` + `index:publish` on WESLEYDESK) |
+| Next | Cold-reboot runner persistence proof; auto-publisher v1.1 activation |
 
 ### 2026-08-04 CT — intelligence-hub-capability-expansion-v1 wave 1
 

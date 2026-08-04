@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-SLICE6-CLOSEOUT-001",
+  "kind": "verification-gate",
+  "title": "Slice 6 award requires live publication receipt not ledger alone",
+  "summary": "THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL needs PUBLISH_PASS, freshness PASS, blind retrieval PASS, and NOOP_CURRENT at published SHA.",
+  "retrievalQuestions": [
+    "What gates must pass before THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL?",
+    "How do I verify Slice 6 is actually closed?",
+    "What is the difference between MERGED_PENDING and OPERATIONAL?"
+  ],
+  "evidenceRefs": [
+    "artifacts/agent-runs/three-way-agent-improvement-intelligence-v1/slice6-closeout-receipt-v1.json",
+    "npm run harvest:slice6-blind-retrieval"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Ledger says Slice 6 pending but main has advanced",
+    "startAt": ["slice6-closeout-receipt-v1.json", "runtime/index-publication/latest.json"],
+    "runPreflight": ["npm run index:freshness-gate", "npm run harvest:slice6-blind-retrieval"],
+    "doNot": ["Trust MERGED_PENDING receipt without updated gates", "Re-dispatch superseded workflow runs"],
+    "proveBeforeClaiming": ["all four gates in slice6-closeout-receipt status pass"]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}

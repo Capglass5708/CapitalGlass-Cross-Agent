@@ -1,6 +1,6 @@
 {
   "schemaVersion": "do-not-advance-registry-v1@1.0.0",
-  "updatedAt": "2026-08-04T00:20:00.000Z",
+  "updatedAt": "2026-08-04T01:30:00.000Z",
   "ownerRepo": "CapitalGlass-Cross-Agent",
   "description": "Verdicts and operational claims that must NOT be awarded without named proof gates.",
   "entries": [
@@ -20,10 +20,13 @@
     },
     {
       "claimId": "THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL",
-      "forbiddenUntil": "post_merge_publication complete + blind retrieval PASS + idempotency NOOP_CURRENT",
+      "status": "CLEARED",
+      "clearedAt": "2026-08-04T01:08:00.000Z",
+      "forbiddenUntil": null,
       "ownerRepo": "CapitalGlass-Cross-Agent",
-      "proofCommandIds": ["index-freshness-gate", "index-blind-retrieval", "auto-publisher-run-once"],
-      "harvestPacketId": "three-way-agent-improvement-intelligence-v1"
+      "proofCommandIds": ["index-freshness-gate", "index-blind-retrieval", "harvest:slice6-blind-retrieval"],
+      "harvestPacketId": "three-way-agent-improvement-intelligence-v1",
+      "lastKnownEvidence": "artifacts/agent-runs/three-way-agent-improvement-intelligence-v1/slice6-closeout-receipt-v1.json @ acd94ba"
     },
     {
       "claimId": "AUTO_PUBLISHER_V1_1_ACTIVE",
@@ -38,6 +41,13 @@
       "ownerRepo": "CapitalGlassRevu",
       "proofCommandIds": [],
       "harvestPacketId": null
+    },
+    {
+      "claimId": "WESLEYDESK_RUNNER_PERSISTENT",
+      "forbiddenUntil": "runner-smoke SUCCESS after Windows cold reboot without manual SSH",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "proofCommandIds": ["runner-smoke-gha", "wesleydesk-runner-ensure"],
+      "harvestPacketId": "cross-agent-index-auto-publisher-activation-v1"
     },
     {
       "claimId": "HARVEST_V2_HUB_CURRENT",

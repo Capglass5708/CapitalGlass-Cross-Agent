@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-WESLEYDESK-REBOOT-001",
+  "kind": "failure-pattern",
+  "title": "WESLEYDESK runner goes offline after Windows reboot",
+  "summary": "WSL stops when idle; systemd may be off until wsl.conf updated; DNS resolv.conf lost — use ensure script and Windows scheduled tasks.",
+  "retrievalQuestions": [
+    "Why is the GitHub runner offline after WESLEYDESK reboot?",
+    "How do I recover the Cross-Agent runner without reinstalling?",
+    "What scheduled tasks keep WSL runner alive?"
+  ],
+  "evidenceRefs": [
+    "scripts/runner/ensure-wesleydesk-runner-wsl.sh",
+    "scripts/runner/install-wesleydesk-runner-autostart.ps1",
+    "GHA run 30867255487",
+    "GHA run 30868225285"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Runner offline after Windows reboot on WESLEYDESK",
+    "startAt": ["scripts/runner/ensure-wesleydesk-runner-wsl.sh", "docs/runbooks/wesleydesk-index-publication-runner.md"],
+    "runPreflight": ["wsl.exe -d Ubuntu-24.04 -u root bash .../ensure-wesleydesk-runner-wsl.sh"],
+    "doNot": ["Re-register runner before ensure script", "Skip wsl.conf systemd=true check"],
+    "proveBeforeClaiming": ["runner-smoke workflow SUCCESS", "systemctl is-active github-runner-cross-agent"]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}
