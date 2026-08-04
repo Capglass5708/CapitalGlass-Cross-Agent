@@ -1,6 +1,6 @@
 # Harvest summary — derived view
 
-**Authority:** `harvest-manifest-v1.json` (`56876f63b450…`)
+**Authority:** `harvest-manifest-v1.json` (`c51ca6315ec3…`)
 **Work package:** `harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1`
 **Mission class:** `harvest`
 **Verdict:** `HARVEST_COMPLETE`
@@ -26,5 +26,5 @@
 
 ## Projection sync
 
-Status: `not-run` (hub: `published`)
+Status: `synced` (hub: `published`)
 
