@@ -1,0 +1,246 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-THREAD-GHA-ACTION-PINS-001",
+      "questionId": "IHTHREADGHAA",
+      "canonicalQuestion": "Why did runner-smoke fail with unable to resolve action?",
+      "alternateQuestions": [
+        "Which checkout SHA is known good for WESLEYDESK runner?",
+        "Should I bump action versions without testing runner-smoke?"
+      ],
+      "shortAnswer": "actions/checkout and upload-artifact must pin to known-good commit SHAs; bad pins fail runner-smoke before publication.",
+      "detailedAnswer": "GHA unable to resolve action after floating SHA drift",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T01:33:54.922Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1/seed-packets/IH-THREAD-GHA-ACTION-PINS-001.json"
+      ],
+      "authorityCommit": [
+        "ae1c427"
+      ],
+      "evidenceUrls": [
+        "GHA run 30867255487",
+        "commit acd94ba",
+        ".github/workflows/runner-smoke.yml"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Self-hosted job fails at actions/checkout or upload-artifact resolve",
+        "startAt": [
+          ".github/workflows/runner-smoke.yml",
+          "GHA run logs"
+        ],
+        "runPreflight": [
+          "gh workflow run runner-smoke.yml"
+        ],
+        "doNot": [
+          "Bump action SHAs without runner-smoke proof",
+          "Use node24-incompatible runner versions"
+        ],
+        "proveBeforeClaiming": [
+          "runner-smoke SUCCESS after pin change"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-THREAD-SLICE6-CLOSEOUT-001",
+      "questionId": "IHTHREADSLIC",
+      "canonicalQuestion": "What gates must pass before THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL?",
+      "alternateQuestions": [
+        "How do I verify Slice 6 is actually closed?",
+        "What is the difference between MERGED_PENDING and OPERATIONAL?"
+      ],
+      "shortAnswer": "THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL needs PUBLISH_PASS, freshness PASS, blind retrieval PASS, and NOOP_CURRENT at published SHA.",
+      "detailedAnswer": "Slice 6 award requires live publication receipt not ledger alone",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T01:33:54.922Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1/seed-packets/IH-THREAD-SLICE6-CLOSEOUT-001.json"
+      ],
+      "authorityCommit": [
+        "ae1c427"
+      ],
+      "evidenceUrls": [
+        "artifacts/agent-runs/three-way-agent-improvement-intelligence-v1/slice6-closeout-receipt-v1.json",
+        "npm run harvest:slice6-blind-retrieval"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "verification-gate",
+        "harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Ledger says Slice 6 pending but main has advanced",
+        "startAt": [
+          "slice6-closeout-receipt-v1.json",
+          "runtime/index-publication/latest.json"
+        ],
+        "runPreflight": [
+          "npm run index:freshness-gate",
+          "npm run harvest:slice6-blind-retrieval"
+        ],
+        "doNot": [
+          "Trust MERGED_PENDING receipt without updated gates",
+          "Re-dispatch superseded workflow runs"
+        ],
+        "proveBeforeClaiming": [
+          "all four gates in slice6-closeout-receipt status pass"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "verification-gate"
+    },
+    {
+      "ihPfspId": "IH-THREAD-WESLEYDESK-REBOOT-001",
+      "questionId": "IHTHREADWESL",
+      "canonicalQuestion": "Why is the GitHub runner offline after WESLEYDESK reboot?",
+      "alternateQuestions": [
+        "How do I recover the Cross-Agent runner without reinstalling?",
+        "What scheduled tasks keep WSL runner alive?"
+      ],
+      "shortAnswer": "WSL stops when idle; systemd may be off until wsl.conf updated; DNS resolv.conf lost — use ensure script and Windows scheduled tasks.",
+      "detailedAnswer": "WESLEYDESK runner goes offline after Windows reboot",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T01:33:54.922Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1/seed-packets/IH-THREAD-WESLEYDESK-REBOOT-001.json"
+      ],
+      "authorityCommit": [
+        "ae1c427"
+      ],
+      "evidenceUrls": [
+        "scripts/runner/ensure-wesleydesk-runner-wsl.sh",
+        "scripts/runner/install-wesleydesk-runner-autostart.ps1",
+        "GHA run 30867255487",
+        "GHA run 30868225285"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Runner offline after Windows reboot on WESLEYDESK",
+        "startAt": [
+          "scripts/runner/ensure-wesleydesk-runner-wsl.sh",
+          "docs/runbooks/wesleydesk-index-publication-runner.md"
+        ],
+        "runPreflight": [
+          "wsl.exe -d Ubuntu-24.04 -u root bash .../ensure-wesleydesk-runner-wsl.sh"
+        ],
+        "doNot": [
+          "Re-register runner before ensure script",
+          "Skip wsl.conf systemd=true check"
+        ],
+        "proveBeforeClaiming": [
+          "runner-smoke workflow SUCCESS",
+          "systemctl is-active github-runner-cross-agent"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-THREAD-WESLEYDESK-RUNNER-001",
+      "questionId": "IHTHREADWESL",
+      "canonicalQuestion": "Why is index-publication.yml stuck queued?",
+      "alternateQuestions": [
+        "Which host must run the Cross-Agent GitHub Actions runner?",
+        "What proves the WESLEYDESK runner is online?"
+      ],
+      "shortAnswer": "index-publication.yml requires self-hosted runner on WESLEYDESK WSL2; WESLEY_WORK cannot satisfy runs-on labels.",
+      "detailedAnswer": "Cross-Agent index publication queues with zero WESLEYDESK runners",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T01:33:54.922Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1/seed-packets/IH-THREAD-WESLEYDESK-RUNNER-001.json"
+      ],
+      "authorityCommit": [
+        "ae1c427"
+      ],
+      "evidenceUrls": [
+        "docs/runbooks/wesleydesk-index-publication-runner.md",
+        "GHA run 30861642734",
+        "commit 80e4d67"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Publication workflow queued with no runner",
+        "startAt": [
+          "docs/runbooks/wesleydesk-index-publication-runner.md",
+          "work-progress/command-index.json#wesleydesk-runner-install"
+        ],
+        "runPreflight": [
+          "npm run runner:preflight"
+        ],
+        "doNot": [
+          "Run runner install from WESLEY_WORK",
+          "Claim infrastructure fixed without gh runners API check"
+        ],
+        "proveBeforeClaiming": [
+          "gh api repos/Capglass5708/CapitalGlass-Cross-Agent/actions/runners",
+          "runner-smoke SUCCESS"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    }
+  ]
+}

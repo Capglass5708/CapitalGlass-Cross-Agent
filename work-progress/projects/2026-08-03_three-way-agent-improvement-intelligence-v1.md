@@ -11,29 +11,29 @@ Three-way agent improvement intelligence program — all scoped PRs merged; awai
 | Work package | `three-way-agent-improvement-intelligence-v1` |
 | Owner repo | CG-AppBuilder-MCP |
 | Coordination pointer | `work-progress/pointers/three-way-agent-improvement-intelligence-v1.json` |
-| Status | **SLICE6_RUNNER_VERSION_FAIL** |
+| Status | **THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL** |
 
 ## Verdict lineage
 
 | Verdict | When |
 | --- | --- |
 | Previous | `MERGED_PENDING_SLICE6_PUBLICATION` |
-| Current | **HOLD** — run `30861642734` failed (runner 2.323.0 / node24) |
+| Current | **OPERATIONAL** — local WESLEYDESK publisher @ `acd94ba` (all four gates PASS) |
 
-## Publication (blocked @ WESLEYDESK)
+## Publication (complete @ WESLEYDESK local publisher)
 
 | Field | Value |
 | --- | --- |
-| Target SHA | `3e51aa754576f7d148901e440365f714f56be455` |
-| Failed run | `30861642734` — conclusion **failure** |
-| Blocker | WESLEYDESK runner must be **2.336+**; complete AppBuilder clone |
+| Published SHA | `acd94ba6d5855bda1298d248188f6ae4faa32edf` |
+| Closeout receipt | `artifacts/agent-runs/three-way-agent-improvement-intelligence-v1/slice6-closeout-receipt-v1.json` |
+| Authority note | GHA run `30861642734` failed pre-fix; superseded by closeout harvest |
 
-## Gates (not complete)
+## Gates (all pass @ acd94ba)
 
-1. Publication workflow → **FAIL** (30861642734)
-2. Layer parity → not run
-3. Post-publication blind retrieval → not run
-4. Live idempotency → not run
+1. Publication workflow → `PUBLISH_PASS` ✓
+2. Layer parity → freshness `PASS` ✓
+3. Post-publication blind retrieval → `POST_PUBLICATION_BLIND_RETRIEVAL_PASS` ✓
+4. Live idempotency → `NOOP_CURRENT` ✓
 
 ## Merge stack (complete)
 
@@ -48,11 +48,9 @@ Three-way agent improvement intelligence program — all scoped PRs merged; awai
 
 Receipt: `artifacts/agent-runs/three-way-agent-improvement-intelligence-v1/merge-completion-receipt-v1.json`
 
-## Publication (superseded — see blocked section above)
+## Harvest authority
 
-Historical note: prior draft claimed operational; superseded by `harvest-2026-08-03-direct-connect-slice6-autopsy-v1`.
-
-## Gates (historical draft removed)
+Reconciled by `harvest-2026-08-04-hub-publication-verify-autopsy-v1` — closeout receipt authority over thread-failed GHA run.
 
 ## Not claimed
 
@@ -74,5 +72,5 @@ Historical note: prior draft claimed operational; superseded by `harvest-2026-08
 
 ## Do not advance
 
-- ~~`THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL` until all four publication gates pass~~ **CLEARED** @ `acd94ba` (see slice6-closeout-receipt-v1.json)
+- `AUTO_PUBLISHER_V1_1_ACTIVE` (scheduled publisher — separate work package)
 - Re-dispatch cancelled workflow run `30861202361`

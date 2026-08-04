@@ -1,0 +1,114 @@
+{
+  "schemaVersion": "thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-hub-publication-verify-autopsy-v1",
+  "tier": "T2",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "generatedAt": "2026-08-04T01:40:00.000Z",
+  "retrieval": {
+    "primaryOutcome": "INDEX_HIT",
+    "cacheOutcome": "CACHE_MISS",
+    "scoutCommand": "npm run agent:index:scout -- --json",
+    "scoutRepo": "CG-AppBuilder-MCP",
+    "sourceCommitSha": "ae1c427e2249d53f71ba81fe35319c07c32dfaed"
+  },
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "commandIndexConsulted": true,
+    "hubSlicesConsulted": [
+      "BY-KIND/thread-autopsy-index.json",
+      "BY-KIND/do-not-advance.json",
+      "work-progress/harvest-packet-registry.json"
+    ],
+    "duplicateWork": [
+      {
+        "duplicateId": "DUP-101",
+        "topic": "Hub manual seed publish vs compile-seed-packets pipeline",
+        "firstKnownInstance": "harvest-2026-08-03-direct-connect-slice6-autopsy-v1 hub-thread-autopsy-publication-receipt",
+        "whyMissed": "Two publish paths used in same session before pipeline generalized"
+      }
+    ]
+  },
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-101",
+      "type": "verification",
+      "description": "index:freshness-gate FAIL after catalog publish — ledger not re-synced to ae1c427",
+      "evidenceRefs": ["cross-agent-index-freshness-gate-v1/latest.json"],
+      "estimatedImpact": "medium",
+      "savedBy": "Run index:publish immediately after hub seed publish at same SHA",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-102",
+      "type": "context",
+      "description": "Conflicting Slice 6 verdicts across harvest manifests (FAIL vs OPERATIONAL)",
+      "evidenceRefs": ["harvest-2026-08-03-direct-connect-slice6-autopsy-v1", "harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1"],
+      "estimatedImpact": "high",
+      "savedBy": "Authority hierarchy: slice6-closeout-receipt > failed GHA run in thread",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-103",
+      "type": "tool",
+      "description": "Ad-hoc node inline publish before compile-seed-packets tooling landed",
+      "evidenceRefs": ["TE-102"],
+      "estimatedImpact": "low",
+      "savedBy": "harvest:compile-seed-packets + harvest:publish-hub-seed",
+      "roiRank": 3
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-101",
+      "trigger": "User asked verify hub — had to distinguish catalog populated vs freshness PASS",
+      "operatorCost": "medium",
+      "systemFix": "Single hub verification runbook: catalog count + freshness gate + thread-autopsy-index",
+      "linkedWasteIds": ["TW-101"]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-101",
+      "situation": "Report harvest to Intelligence Hub",
+      "actualExecution": {
+        "steps": ["Manual node publish 8 seeds", "Later pipeline publish 4 seeds", "Skipped index:publish at ae1c427"],
+        "outcome": "PARTIAL",
+        "evidenceRefs": ["12 catalog files on L:", "freshness-gate FAIL"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "harvest:compile-seed-packets per harvest",
+          "harvest:publish-hub-seed per harvest",
+          "index:publish at same SHA",
+          "index:freshness-gate"
+        ],
+        "outcome": "FULLY_SEEDED with parity",
+        "requiredPreflight": ["npm run agent:index:scout -- --json"]
+      },
+      "deltaCost": { "time": "medium", "tokens": "low", "operatorFrustration": "low" }
+    }
+  ],
+  "roiBacklog": [
+    { "rank": 1, "title": "Atomic hub publish chain script (compile + publish + index:publish + freshness)", "savedWasteIds": ["TW-101"], "ownerRepo": "CapitalGlass-Cross-Agent", "promotionClass": "AUTOMATIC" },
+    { "rank": 2, "title": "Harvest authority reconciliation gate for conflicting packet verdicts", "savedWasteIds": ["TW-102"], "ownerRepo": "CapitalGlass-Cross-Agent", "promotionClass": "POLICY_GATED" },
+    { "rank": 3, "title": "Hub verify one-liner (seed count + freshness + thread-autopsy-index)", "savedWasteIds": ["OF-101"], "ownerRepo": "CapitalGlass-Cross-Agent", "promotionClass": "AUTOMATIC" }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "claim": "FULLY_SEEDED",
+      "forbiddenUntil": "index:freshness-gate PASS at current git HEAD",
+      "proofCommandIds": ["index-freshness-gate", "index-publish"],
+      "evidenceRefs": ["freshness-gate FAIL ae1c427 vs a833852"]
+    }
+  ],
+  "mistakes": [
+    {
+      "wrongMoveId": "WM-101",
+      "summary": "Claimed hub not populated when only freshness drifted",
+      "actualExecution": "Risk of conflating catalog presence with ledger parity",
+      "optimalExecution": "Report catalog PASS and freshness FAIL separately",
+      "preventiveControl": "IH-HUB-CATALOG-VERIFY-001 seed"
+    }
+  ]
+}

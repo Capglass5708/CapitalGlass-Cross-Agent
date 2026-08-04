@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "cross-agent-harvest-seed-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-hub-publication-verify-autopsy-v1",
+  "subject": "Intelligence Hub thread autopsy seed publication",
+  "tier": "T2",
+  "seedRecordCount": 4,
+  "retrievalQuestions": [
+    {
+      "retrievalId": "RQ01",
+      "seedId": "IH-HARVEST-AUTHORITY-RECONCILE-001",
+      "query": "Which harvest authority wins when Slice 6 verdicts conflict?"
+    },
+    {
+      "retrievalId": "RQ02",
+      "seedId": "IH-HARVEST-AUTHORITY-RECONCILE-001",
+      "query": "Is THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL awarded?"
+    },
+    {
+      "retrievalId": "RQ11",
+      "seedId": "IH-HUB-CATALOG-VERIFY-001",
+      "query": "How do I verify harvest seeds reached the Intelligence Hub?"
+    },
+    {
+      "retrievalId": "RQ12",
+      "seedId": "IH-HUB-CATALOG-VERIFY-001",
+      "query": "Does catalog populated mean FULLY_SEEDED?"
+    },
+    {
+      "retrievalId": "RQ21",
+      "seedId": "IH-HUB-COMPILE-SEED-PIPELINE-001",
+      "query": "How do I publish thread autopsy seeds to the Intelligence Hub?"
+    },
+    {
+      "retrievalId": "RQ22",
+      "seedId": "IH-HUB-COMPILE-SEED-PIPELINE-001",
+      "query": "What replaced manual hub seed publish?"
+    },
+    {
+      "retrievalId": "RQ31",
+      "seedId": "IH-HUB-FRESHNESS-DRIFT-001",
+      "query": "Why does index:freshness-gate FAIL after hub seed publish?"
+    },
+    {
+      "retrievalId": "RQ32",
+      "seedId": "IH-HUB-FRESHNESS-DRIFT-001",
+      "query": "L: sourceCommitSha does not match git HEAD"
+    }
+  ],
+  "roiTop3": [
+    {
+      "rank": 1,
+      "title": "Atomic hub publish chain script (compile + publish + index:publish + freshness)",
+      "seedId": null
+    },
+    {
+      "rank": 2,
+      "title": "Harvest authority reconciliation gate for conflicting packet verdicts",
+      "seedId": null
+    },
+    {
+      "rank": 3,
+      "title": "Hub verify one-liner (seed count + freshness + thread-autopsy-index)",
+      "seedId": null
+    }
+  ],
+  "byKindSlice": "00-master-index/BY-KIND/thread-autopsy-index.json",
+  "catalogRoot": "02-catalog/knowledge-objects/cross-agent-harvest"
+}

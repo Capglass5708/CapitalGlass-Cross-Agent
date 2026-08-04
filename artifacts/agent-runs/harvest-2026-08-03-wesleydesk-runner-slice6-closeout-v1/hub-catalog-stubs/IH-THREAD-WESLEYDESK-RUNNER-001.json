@@ -1,0 +1,79 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-thread-wesleydesk-runner-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "ae1c427e2249d53f71ba81fe35319c07c32dfaed",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1",
+      "seedId": "IH-THREAD-WESLEYDESK-RUNNER-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T01:33:54.923Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "742c592d1dcbd0d2d47eb0435faa9ebc1e5a7956fbbac837be29da072478a1ad"
+  },
+  "body": {
+    "seedId": "IH-THREAD-WESLEYDESK-RUNNER-001",
+    "kind": "failure-pattern",
+    "title": "Cross-Agent index publication queues with zero WESLEYDESK runners",
+    "summary": "index-publication.yml requires self-hosted runner on WESLEYDESK WSL2; WESLEY_WORK cannot satisfy runs-on labels.",
+    "canonicalQuestion": "Why is index-publication.yml stuck queued?",
+    "alternateQuestions": [
+      "Which host must run the Cross-Agent GitHub Actions runner?",
+      "What proves the WESLEYDESK runner is online?"
+    ],
+    "shortAnswer": "index-publication.yml requires self-hosted runner on WESLEYDESK WSL2; WESLEY_WORK cannot satisfy runs-on labels.",
+    "detailedAnswer": "Cross-Agent index publication queues with zero WESLEYDESK runners",
+    "retrievalQuestions": [
+      "Why is index-publication.yml stuck queued?",
+      "Which host must run the Cross-Agent GitHub Actions runner?",
+      "What proves the WESLEYDESK runner is online?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Publication workflow queued with no runner",
+      "startAt": [
+        "docs/runbooks/wesleydesk-index-publication-runner.md",
+        "work-progress/command-index.json#wesleydesk-runner-install"
+      ],
+      "runPreflight": [
+        "npm run runner:preflight"
+      ],
+      "doNot": [
+        "Run runner install from WESLEY_WORK",
+        "Claim infrastructure fixed without gh runners API check"
+      ],
+      "proveBeforeClaiming": [
+        "gh api repos/Capglass5708/CapitalGlass-Cross-Agent/actions/runners",
+        "runner-smoke SUCCESS"
+      ]
+    },
+    "evidenceRefs": [
+      "docs/runbooks/wesleydesk-index-publication-runner.md",
+      "GHA run 30861642734",
+      "commit 80e4d67"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Cross-Agent",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1/seed-packets/IH-THREAD-WESLEYDESK-RUNNER-001.json"
+    ],
+    "harvestId": "harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1"
+  }
+}

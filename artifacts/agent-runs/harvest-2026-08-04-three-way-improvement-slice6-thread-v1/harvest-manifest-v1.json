@@ -2,7 +2,7 @@
   "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
   "harvestId": "harvest-2026-08-04-three-way-improvement-slice6-thread-v1",
   "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
-  "sourceCommitSha": "15d3d4601642e790d6cc52d4671505bae5f772df",
+  "sourceCommitSha": "ae1c427e2249d53f71ba81fe35319c07c32dfaed",
   "sourceBranch": "main",
   "sourceRepo": "CapitalGlass-Cross-Agent",
   "createdAt": "2026-08-04T02:30:00.000Z",
@@ -21,11 +21,11 @@
     "bundlePath": "artifacts/agent-runs/harvest-2026-08-04-three-way-improvement-slice6-thread-v1/thread-autopsy-bundle.json",
     "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-04-three-way-improvement-slice6-thread-v1/seed-packet-index.json",
     "counts": {
-      "waste": 4,
-      "seeds": 4,
-      "roiItems": 3,
+      "waste": 5,
+      "seeds": 5,
+      "roiItems": 4,
       "operatorFriction": 2,
-      "executionDeltas": 2
+      "executionDeltas": 3
     }
   },
   "projection": {
@@ -36,8 +36,8 @@
   },
   "ledgerLineage": {
     "ledgerPath": "work-progress/ACTIVE_WORK.md",
-    "ledgerContentHashBefore": "0c1b5454b30c3cabfdcd6fd31df969f653166a9ae8d5e37e8fa5330f2245f939",
-    "ledgerContentHashAfter": "9c9fad86db81bf96f11dd7e074ad66da9e2b67fb1d649371ed6142bce70e7910"
+    "ledgerContentHashBefore": "c79fe9fb1a9e1c8167c5119be6fb9678456f8f956ce3f9703a734c389ca49d08",
+    "ledgerContentHashAfter": "c79fe9fb1a9e1c8167c5119be6fb9678456f8f956ce3f9703a734c389ca49d08"
   },
   "supersededClaims": [
     {
@@ -56,7 +56,7 @@
   "commitEvidence": [
     {
       "repo": "CapitalGlass-Cross-Agent",
-      "sha": "15d3d4601642e790d6cc52d4671505bae5f772df",
+      "sha": "ae1c427e2249d53f71ba81fe35319c07c32dfaed",
       "role": "harvest-record-commit"
     },
     {
@@ -294,6 +294,46 @@
       "harvestVerdictContribution": "RECORDED",
       "ownerMcp": null,
       "requiredOwnerArtifact": null,
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "164bda7",
+          "note": "harvest v2 + expansion wave 1"
+        },
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "fb4867f",
+          "note": "milestone receipts"
+        }
+      ],
+      "blockers": [],
+      "relatedPackets": [
+        "harvest-current-cross-thread-state-v2"
+      ],
+      "packetKind": "protocol_upgrade",
+      "packetId": "intelligence-hub-capability-expansion-v1",
+      "packetTitle": "Intelligence Hub capability expansion wave 1",
+      "state": "WAVE1_SHIPPED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-03_intelligence-hub-capability-expansion-v1.md",
+      "evidenceRefs": [
+        "artifacts/agent-runs/intelligence-hub-capability-expansion-v1/milestone-receipt-v1.json",
+        "work-progress/blocker-to-action-map.json",
+        "work-progress/intelligence-hub-slices/",
+        "scripts/index/compile-control-slices.mjs"
+      ],
+      "nextAction": "Operator harvest:publish-hub-seed after validate; integrate slice copy into index publisher",
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "FULLY_SEEDED without operator harvest:publish-hub-seed"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": null,
+      "requiredOwnerArtifact": null,
       "commitRefs": [],
       "blockers": [],
       "relatedPackets": [],
@@ -311,7 +351,7 @@
       "nextAction": "Separate cleanup work package if needed",
       "advancementGate": "operator scope approval",
       "doNotAdvance": [
-        "Blocks Slice 6 operational award"
+        "Independent of Slice 6 — merge PR #31 separately"
       ]
     }
   ]

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-HARVEST-AUTHORITY-RECONCILE-001",
+  "kind": "protocol_upgrade",
+  "title": "Reconcile conflicting harvest verdicts by evidence hierarchy",
+  "summary": "When harvest manifests disagree, slice6-closeout-receipt and blind-retrieval receipts outrank failed GHA runs in thread narrative.",
+  "retrievalQuestions": [
+    "Which harvest authority wins when Slice 6 verdicts conflict?",
+    "Is THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL awarded?"
+  ],
+  "evidenceRefs": [
+    "artifacts/agent-runs/three-way-agent-improvement-intelligence-v1/slice6-closeout-receipt-v1.json",
+    "harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1",
+    "github run 30861642734"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Conflicting THREE_WAY or Slice 6 states across harvests",
+    "startAt": [
+      "artifacts/agent-runs/three-way-agent-improvement-intelligence-v1/slice6-closeout-receipt-v1.json",
+      "work-progress/do-not-advance-registry.json"
+    ],
+    "runPreflight": ["npm run agent:index:scout -- --json"],
+    "doNot": ["Award OPERATIONAL from failed GHA alone when closeout receipt exists"],
+    "proveBeforeClaiming": ["slice6-closeout-receipt-v1.json", "post-publication-blind-retrieval PASS"]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

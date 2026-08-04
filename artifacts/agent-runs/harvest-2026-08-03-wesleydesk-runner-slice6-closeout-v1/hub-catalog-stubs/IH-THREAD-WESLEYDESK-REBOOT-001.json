@@ -1,0 +1,80 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-thread-wesleydesk-reboot-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "ae1c427e2249d53f71ba81fe35319c07c32dfaed",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1",
+      "seedId": "IH-THREAD-WESLEYDESK-REBOOT-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T01:33:54.923Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "7c5d90af627d2093b1d9eafe36863f92add32c38ded997dc233cea70b56a2fb4"
+  },
+  "body": {
+    "seedId": "IH-THREAD-WESLEYDESK-REBOOT-001",
+    "kind": "failure-pattern",
+    "title": "WESLEYDESK runner goes offline after Windows reboot",
+    "summary": "WSL stops when idle; systemd may be off until wsl.conf updated; DNS resolv.conf lost — use ensure script and Windows scheduled tasks.",
+    "canonicalQuestion": "Why is the GitHub runner offline after WESLEYDESK reboot?",
+    "alternateQuestions": [
+      "How do I recover the Cross-Agent runner without reinstalling?",
+      "What scheduled tasks keep WSL runner alive?"
+    ],
+    "shortAnswer": "WSL stops when idle; systemd may be off until wsl.conf updated; DNS resolv.conf lost — use ensure script and Windows scheduled tasks.",
+    "detailedAnswer": "WESLEYDESK runner goes offline after Windows reboot",
+    "retrievalQuestions": [
+      "Why is the GitHub runner offline after WESLEYDESK reboot?",
+      "How do I recover the Cross-Agent runner without reinstalling?",
+      "What scheduled tasks keep WSL runner alive?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Runner offline after Windows reboot on WESLEYDESK",
+      "startAt": [
+        "scripts/runner/ensure-wesleydesk-runner-wsl.sh",
+        "docs/runbooks/wesleydesk-index-publication-runner.md"
+      ],
+      "runPreflight": [
+        "wsl.exe -d Ubuntu-24.04 -u root bash .../ensure-wesleydesk-runner-wsl.sh"
+      ],
+      "doNot": [
+        "Re-register runner before ensure script",
+        "Skip wsl.conf systemd=true check"
+      ],
+      "proveBeforeClaiming": [
+        "runner-smoke workflow SUCCESS",
+        "systemctl is-active github-runner-cross-agent"
+      ]
+    },
+    "evidenceRefs": [
+      "scripts/runner/ensure-wesleydesk-runner-wsl.sh",
+      "scripts/runner/install-wesleydesk-runner-autostart.ps1",
+      "GHA run 30867255487",
+      "GHA run 30868225285"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Cross-Agent",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1/seed-packets/IH-THREAD-WESLEYDESK-REBOOT-001.json"
+    ],
+    "harvestId": "harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1"
+  }
+}

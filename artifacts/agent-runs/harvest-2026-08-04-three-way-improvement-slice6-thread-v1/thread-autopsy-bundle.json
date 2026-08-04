@@ -14,7 +14,7 @@
     ],
     "commandIndexConsulted": true,
     "duplicateWorkFound": true,
-    "notes": "Supersedes harvest-current-cross-thread-state-v2 SLICE_6_HOLD on three-way packet"
+    "notes": "Supersedes harvest-current-cross-thread-state-v2 SLICE_6_HOLD; expansion wave 1 overlaps v2 three-way packet — recorded as DW-002"
   },
   "wasteLedgerStatus": "POPULATED",
   "waste": [
@@ -61,6 +61,18 @@
       "estimatedImpact": "high",
       "savedBy": "Runner registration token from WESLEY_WORK gh before SSH install",
       "roiRank": 4
+    },
+    {
+      "wasteId": "TW-005",
+      "type": "rework",
+      "description": "Parallel harvest v2 and expansion wave 1 packets without immediate supersession link",
+      "evidenceRefs": [
+        "TE-010",
+        "harvest-current-cross-thread-state-v2"
+      ],
+      "estimatedImpact": "low",
+      "savedBy": "Link expansion milestone to harvest manifest supersededClaims at commit time",
+      "roiRank": 5
     }
   ],
   "operatorFriction": [
@@ -150,6 +162,42 @@
         "tokens": "low",
         "operatorFrustration": "low"
       }
+    },
+    {
+      "executionDeltaId": "ED-003",
+      "situation": "Milestone closeout: harvest v2 + expansion wave 1 + Slice 6 publication in one thread",
+      "actualExecution": {
+        "steps": [
+          "Commits 164bda7/fb4867f",
+          "Local index:publish break-glass on WESLEY_WORK",
+          "Manual BY-KIND control slice copy",
+          "T2 autopsy harvest deferred to user t2 request"
+        ],
+        "outcome": "PASS_WITH_BREAK_GLASS",
+        "evidenceRefs": [
+          "TE-010",
+          "TE-012",
+          "intelligence-hub-capability-expansion-v1/milestone-receipt-v1.json"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "WESLEYDESK runner online",
+          "Single GHA index-publication PUBLISH_PASS",
+          "compile-control-slices integrated in run-index-publisher.mjs",
+          "T2 harvest in same session as milestone commits"
+        ],
+        "outcome": "No manual cp; harvest closes before operator handoff",
+        "requiredPreflight": [
+          "gh api runners",
+          "npm run index:freshness-gate"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "low"
+      }
     }
   ],
   "duplicateWork": [
@@ -159,6 +207,13 @@
       "firstKnownInstance": "harvest-current-cross-thread-state-v2",
       "thisThreadAction": "Recorded OPERATIONAL with closeout receipt",
       "whyMissed": "Closeout landed after v2 harvest commit"
+    },
+    {
+      "duplicateId": "DW-002",
+      "topic": "intelligence-hub expansion vs harvest v2 three-way state",
+      "firstKnownInstance": "harvest-current-cross-thread-state-v2",
+      "thisThreadAction": "Separate expansion milestone receipt + T2 manifest packet intelligence-hub-capability-expansion-v1",
+      "whyMissed": "Wave 1 and v2 harvest committed in same milestone push without cross-link"
     }
   ],
   "roiBacklog": [
@@ -186,6 +241,15 @@
       "title": "GHA action pins compatible with desk network cache",
       "savedWasteIds": [
         "TW-003"
+      ],
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "promotionClass": "HUMAN_REVIEW"
+    },
+    {
+      "rank": 4,
+      "title": "Integrate compile-control-slices into index publisher (wave 2)",
+      "savedWasteIds": [
+        "TW-005"
       ],
       "ownerRepo": "CapitalGlass-Cross-Agent",
       "promotionClass": "HUMAN_REVIEW"

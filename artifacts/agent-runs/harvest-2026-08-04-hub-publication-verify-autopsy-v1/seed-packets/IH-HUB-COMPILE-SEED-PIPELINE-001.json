@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-HUB-COMPILE-SEED-PIPELINE-001",
+  "kind": "command",
+  "title": "Generalized harvest seed compile and hub publish pipeline",
+  "summary": "Use harvest:compile-seed-packets then harvest:publish-hub-seed --harvest-id=<id> instead of ad-hoc node scripts.",
+  "retrievalQuestions": [
+    "How do I publish thread autopsy seeds to the Intelligence Hub?",
+    "What replaced manual hub seed publish?"
+  ],
+  "evidenceRefs": [
+    "scripts/harvest/compile-seed-packets.mjs",
+    "scripts/harvest/lib/publish-hub-seed-lib.mjs",
+    "npm run harvest:publish-hub-seed"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Publishing harvest seeds to L:",
+    "startAt": ["Z:/Capital-Glass-Dev/Harvest/protocol/chat-thread-closeout-autopsy-harvest-v1.md"],
+    "runPreflight": ["npm run harvest:validate -- <harvest-id>"],
+    "doNot": ["Use inline node publish scripts when pipeline exists"],
+    "proveBeforeClaiming": ["hub-publication-receipt.json verdict PUBLISH_PASS"]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}

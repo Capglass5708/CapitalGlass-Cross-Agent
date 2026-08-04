@@ -1,7 +1,7 @@
 {
   "schemaVersion": "thread-event-inventory-v1@1.0.0",
   "harvestId": "harvest-2026-08-04-three-way-improvement-slice6-thread-v1",
-  "threadScope": "three-way-agent-improvement-intelligence-v1 Slice 6 publication closeout",
+  "threadScope": "Slice 6 closeout + hub expansion + chat-thread-closeout-autopsy T2 (this thread)",
   "generatedAt": "2026-08-04T02:30:00.000Z",
   "events": [
     {
@@ -66,9 +66,31 @@
       "eventId": "TE-008",
       "phase": "operator",
       "summary": "User corrected run cancellation and Direct Connect path",
-      "evidenceRefs": [
-        "user messages"
-      ]
+      "evidenceRefs": ["user messages"]
+    },
+    {
+      "eventId": "TE-009",
+      "phase": "planning",
+      "summary": "Milestone task list for harvest v2 + expansion + Slice 6 publication",
+      "evidenceRefs": ["chat thread milestone plan"]
+    },
+    {
+      "eventId": "TE-010",
+      "phase": "execution",
+      "summary": "Committed 164bda7/fb4867f; index:publish PUBLISH_PASS; workflow checkout node20 fix",
+      "evidenceRefs": ["runtime/index-publication/latest.json", "164bda7", "fb4867f"]
+    },
+    {
+      "eventId": "TE-011",
+      "phase": "operator",
+      "summary": "User stop then requested Z: chat-thread-closeout-autopsy-harvest-v1 T2",
+      "evidenceRefs": ["Z:/Capital-Glass-Dev/Harvest/protocol/chat-thread-closeout-autopsy-harvest-v1.md"]
+    },
+    {
+      "eventId": "TE-012",
+      "phase": "harvest",
+      "summary": "T2 autopsy harvest generated harvest-2026-08-04-three-way-improvement-slice6-thread-v1",
+      "evidenceRefs": ["scripts/harvest/generate-slice6-thread-harvest.mjs"]
     }
   ]
 }

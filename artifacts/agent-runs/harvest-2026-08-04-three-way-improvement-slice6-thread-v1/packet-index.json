@@ -6,7 +6,7 @@
   "runMode": "derived-from-manifest",
   "retrievalOutcome": "INDEX_HIT",
   "authority": "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/harvest-manifest-v1.json",
-  "harvestManifestHash": "b2edca8487a9543dfcfa67a3790ef7b715bc0fb4fe23e8da039bcd37fc0de48f",
+  "harvestManifestHash": "f16bf42c306a8945745686bcd2f695c984d6a132b78765e7cf2992e76c098d52",
   "packets": [
     {
       "id": "direct-connect-persistent-controller-v1",
@@ -135,6 +135,30 @@
       ]
     },
     {
+      "id": "intelligence-hub-capability-expansion-v1",
+      "label": "intelligence-hub-capability-expansion-v1",
+      "state": "WAVE1_SHIPPED",
+      "verdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "crossAgentProject": "work-progress/projects/2026-08-03_intelligence-hub-capability-expansion-v1.md",
+      "doNotAdvance": [
+        "FULLY_SEEDED without operator harvest:publish-hub-seed"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "164bda7",
+          "note": "harvest v2 + expansion wave 1"
+        },
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "fb4867f",
+          "note": "milestone receipts"
+        }
+      ]
+    },
+    {
       "id": "platform-health-read-model-slice-7-v1",
       "label": "platform-health-read-model-slice-7-v1",
       "state": "DEFERRED",
@@ -143,7 +167,7 @@
       "ownerIndexingStatus": "indexed",
       "crossAgentProject": "work-progress/projects/2026-08-03_platform-health-read-model-slice-7-v1.md",
       "doNotAdvance": [
-        "Blocks Slice 6 operational award"
+        "Independent of Slice 6 — merge PR #31 separately"
       ],
       "commitRefs": []
     }

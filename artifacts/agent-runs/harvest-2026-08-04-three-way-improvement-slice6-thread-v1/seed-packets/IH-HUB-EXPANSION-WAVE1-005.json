@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-HUB-EXPANSION-WAVE1-005",
+  "kind": "capability-expansion",
+  "title": "Intelligence Hub capability expansion wave 1 (control slices)",
+  "summary": "Wave 1 shipped blocker-to-action map, do-not-advance registry, compile-control-slices.mjs, and BY-KIND control slices; hub seed publish remains operator-only.",
+  "retrievalQuestions": [
+    "What control slices exist for Intelligence Hub wave 1?",
+    "How do I compile BY-KIND control slices for Cross-Agent index?"
+  ],
+  "evidenceRefs": [
+    "artifacts/agent-runs/intelligence-hub-capability-expansion-v1/milestone-receipt-v1.json",
+    "work-progress/blocker-to-action-map.json",
+    "work-progress/do-not-advance-registry.json",
+    "scripts/index/compile-control-slices.mjs",
+    "TE-010"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Intelligence Hub expansion or control-slice publication",
+    "startAt": [
+      "artifacts/agent-runs/intelligence-hub-capability-expansion-v1/milestone-receipt-v1.json",
+      "work-progress/intelligence-hub-slices/"
+    ],
+    "runPreflight": [
+      "npm run test:index-control-slices",
+      "npm run index:compile-control-slices"
+    ],
+    "doNot": [
+      "Claim FULLY_SEEDED without operator harvest:publish-hub-seed",
+      "Run index:publish from Cursor agent",
+      "Duplicate harvest v2 three-way packet state without supersession check"
+    ],
+    "proveBeforeClaiming": [
+      "milestone-receipt-v1.json verdict WAVE1_SHIPPED",
+      "BY-KIND control slices present after operator publish or manual cp"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/active-work-blockers.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

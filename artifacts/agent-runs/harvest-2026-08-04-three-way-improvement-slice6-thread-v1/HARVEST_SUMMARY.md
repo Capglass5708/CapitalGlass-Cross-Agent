@@ -1,6 +1,6 @@
 # Harvest summary — derived view
 
-**Authority:** `harvest-manifest-v1.json` (`b2edca8487a9…`)
+**Authority:** `harvest-manifest-v1.json` (`f16bf42c306a…`)
 **Work package:** `harvest-2026-08-04-three-way-improvement-slice6-thread-v1`
 **Mission class:** `chat-thread-closeout-autopsy-harvest-v1`
 **Verdict:** `HARVEST_COMPLETE`
@@ -20,6 +20,7 @@
 | `three-way-agent-improvement-intelligence-v1` | OPERATIONAL_CLOSEOUT_COMPLETE | THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL | CG-AppBuilder-MCP |
 | `governance-wsl-path-normalization-v1` | MERGED_COMPLETE | PASS | CG-Platform-Governance-MCP |
 | `cross-agent-harvest-owner-boundary-v1` | MERGED_COMPLETE | PASS | CapitalGlass-Cross-Agent |
+| `intelligence-hub-capability-expansion-v1` | WAVE1_SHIPPED | PASS | CapitalGlass-Cross-Agent |
 | `platform-health-read-model-slice-7-v1` | DEFERRED | HOLD | CapitalGlass-Cross-Agent |
 
 ## Global doNotAdvance
