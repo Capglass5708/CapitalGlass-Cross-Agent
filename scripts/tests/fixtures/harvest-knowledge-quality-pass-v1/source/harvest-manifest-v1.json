@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-knowledge-quality-pass-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "000000000000000000000000000000000002",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-01-01T00:00:00.000Z",
+  "updatedAt": "2026-01-01T00:00:00.000Z",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-knowledge-quality-pass-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-knowledge-quality-pass-v1/seed-packet-index.json",
+    "counts": { "waste": 0, "seeds": 2, "roiItems": 1, "operatorFriction": 0, "executionDeltas": 1 }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run"
+  },
+  "packets": [
+    {
+      "packetId": "quality-pass-packet-a",
+      "packetTitle": "Ledger ingest must not read live worktree",
+      "state": "RECORDED",
+      "packetVerdict": "RECORDED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "not-required",
+      "projectFile": "work-progress/projects/harvest-knowledge-quality-gate-v1.md",
+      "nextAction": "none",
+      "advancementGate": "none",
+      "doNotAdvance": [],
+      "evidenceRefs": ["EVT-001"],
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetId": "quality-pass-packet-b",
+      "packetTitle": "Pointer commits must not trigger republication treadmill",
+      "state": "RECORDED",
+      "packetVerdict": "RECORDED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "not-required",
+      "projectFile": "work-progress/projects/harvest-knowledge-quality-gate-v1.md",
+      "nextAction": "none",
+      "advancementGate": "none",
+      "doNotAdvance": [],
+      "evidenceRefs": ["EVT-002"],
+      "commitRefs": [],
+      "blockers": []
+    }
+  ]
+}

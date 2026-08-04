@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "harvestId",
+    "materialEvents",
+    "decisions",
+    "corrections",
+    "durableClaims",
+    "contradictions",
+    "mistakes",
+    "blindRetrieval",
+    "humanReview"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "harvest-knowledge-quality-evidence-v1@1.0.0" },
+    "harvestId": { "type": "string", "minLength": 1 },
+    "materialEvents": { "type": "array" },
+    "decisions": { "type": "array" },
+    "corrections": { "type": "array" },
+    "durableClaims": { "type": "array" },
+    "contradictions": { "type": "array" },
+    "mistakes": { "type": "array" },
+    "blindRetrieval": { "type": "array" },
+    "humanReview": { "type": "object" }
+  },
+  "additionalProperties": false
+}

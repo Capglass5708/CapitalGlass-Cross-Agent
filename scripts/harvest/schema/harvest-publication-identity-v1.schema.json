@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://capitalglass.dev/schemas/harvest-publication-identity-v1.json",
+  "title": "Harvest Publication Identity v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "harvestId",
+    "harvestTier",
+    "manifestHash",
+    "payloadHash",
+    "authoritySourceCommit",
+    "requiredLayers",
+    "retrievalEligible",
+    "aiCacheEligible",
+    "supersedes"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "harvest-publication-identity-v1@1.0.0" },
+    "harvestId": { "type": "string", "minLength": 1 },
+    "harvestTier": { "enum": ["T0", "T1", "T2", "T3"] },
+    "manifestHash": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "payloadHash": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "authoritySourceCommit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "requiredLayers": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "enum": ["L", "Z", "SUPABASE", "GIT_POINTER", "RETRIEVAL_VERIFY"] },
+      "uniqueItems": true
+    },
+    "retrievalEligible": { "type": "boolean" },
+    "aiCacheEligible": { "type": "boolean" },
+    "supersedes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "priorHash", "reason"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "priorHash": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+          "reason": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

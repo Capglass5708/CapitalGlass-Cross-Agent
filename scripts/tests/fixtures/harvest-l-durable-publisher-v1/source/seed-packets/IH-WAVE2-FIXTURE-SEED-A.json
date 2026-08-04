@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-WAVE2-FIXTURE-SEED-A",
+  "kind": "lesson",
+  "title": "Stage complete payload on L before publish",
+  "status": "CANDIDATE",
+  "retrievalQuestions": ["How do we stage harvest payloads?", "Where does Phase A write durable bundles?"],
+  "evidenceRefs": ["EVT-001"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "harvest publication",
+    "startAt": "HARVEST-LIFECYCLE-PHASES-v1.md",
+    "runPreflight": "harvest:stage-l-durable",
+    "doNot": ["commit publication pointer before L publish"],
+    "proveBeforeClaiming": ["payloadHash on L staging"]
+  }
+}

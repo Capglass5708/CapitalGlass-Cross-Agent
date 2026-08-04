@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harvest-publication-lock-v1@1.0.0",
+  "title": "Harvest publication lock v1",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "harvestId",
+    "payloadHash",
+    "scope",
+    "ownerId",
+    "runId",
+    "host",
+    "acquiredAt",
+    "heartbeatAt",
+    "expiresAt",
+    "status",
+    "resumeTokenHash",
+    "recoveryPolicy"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "harvest-publication-lock-v1@1.0.0" },
+    "harvestId": { "type": "string" },
+    "payloadHash": { "type": "string", "pattern": "^sha256:" },
+    "scope": { "enum": ["PHASE_B_PUBLICATION", "PHASE_C_POINTER"] },
+    "ownerId": { "type": "string" },
+    "runId": { "type": "string" },
+    "host": { "type": "string" },
+    "processId": { "type": ["number", "null"] },
+    "acquiredAt": { "type": "string" },
+    "heartbeatAt": { "type": "string" },
+    "expiresAt": { "type": "string" },
+    "status": { "enum": ["ACTIVE", "RELEASED", "STALE_RECOVERED"] },
+    "resumeTokenHash": { "type": "string" },
+    "recoveryPolicy": { "type": "string" }
+  },
+  "additionalProperties": false
+}

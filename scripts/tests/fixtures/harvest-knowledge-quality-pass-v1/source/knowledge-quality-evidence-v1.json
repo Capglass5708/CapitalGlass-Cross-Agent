@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "harvest-knowledge-quality-evidence-v1@1.0.0",
+  "harvestId": "harvest-knowledge-quality-pass-v1",
+  "materialEvents": [
+    {
+      "eventId": "EVT-001",
+      "summary": "ledger ingest reported BLOCKED_GIT_MUTATION on live worktree",
+      "material": true,
+      "representations": ["failure", "mistake", "correction", "evidence", "do_not_advance"]
+    },
+    {
+      "eventId": "EVT-002",
+      "summary": "receipt commits moved Git HEAD and caused freshness treadmill",
+      "material": true,
+      "representations": ["decision", "result", "protocol_improvement", "future_action", "evidence"]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "DEC-001",
+      "eventRefs": ["EVT-002"],
+      "decision": "Use content-hash freshness instead of Git HEAD for harvest publication",
+      "reason": "Pointer-only commits were invalidating durable L: harvests",
+      "alternativesRejected": ["Continue comparing freshness to Git HEAD"],
+      "consequences": ["Phase C pointer no longer triggers republication treadmill"],
+      "authority": "operator",
+      "evidenceRefs": ["turn-pointer-2"]
+    }
+  ],
+  "corrections": [
+    {
+      "id": "COR-001",
+      "material": true,
+      "incorrectAgentClaim": "Supabase ledger ingest can read the live Cross-Agent worktree during publication",
+      "operatorCorrection": "Projection must consume immutable snapshot input only",
+      "correctedTruth": "AppBuilder projector reads compact JSON input; live worktree mutation is forbidden",
+      "futureAgentRule": "Never use cross-agent-ledger live-worktree ingest for harvest publication",
+      "affectedRecords": ["quality-pass-packet-a"]
+    }
+  ],
+  "durableClaims": [
+    {
+      "id": "CLM-001",
+      "claim": "L: owns the complete durable harvest authority",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["turn-ledger-1", "turn-pointer-2"],
+      "eventRefs": ["EVT-001", "EVT-002"]
+    },
+    {
+      "id": "CLM-002",
+      "claim": "Supabase stores compact projection and L: pointer only",
+      "confidence": "OPERATOR_ASSERTED",
+      "evidenceRefs": ["turn-ledger-1"],
+      "eventRefs": ["EVT-001"]
+    }
+  ],
+  "contradictions": [],
+  "mistakes": [
+    {
+      "id": "MIST-001",
+      "eventRefs": ["EVT-001"],
+      "attemptedAction": "Run ledger ingest against live mutable worktree during publication",
+      "whyItSeemedReasonable": "Ingest historically read active work-progress files for freshness",
+      "actualOutcome": "BLOCKED_GIT_MUTATION and unsafe coupling to Git state",
+      "rootCause": "Publication path reused live worktree ingest instead of immutable snapshot",
+      "optimalFirstMove": "Build compact projection from L: durable catalog and invoke AppBuilder projector",
+      "preventiveControl": "NO_LIVE_WORKTREE_READ_PASS gate and snapshot-only adapter"
+    }
+  ],
+  "blindRetrieval": [
+    {
+      "question": "Why did ledger ingest report BLOCKED_GIT_MUTATION during harvest publication?",
+      "expectedSeedId": "IH-QUALITY-PASS-SEED-A",
+      "lessonFocus": "live-worktree-ingest-blocked",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "When should an existing harvest seed return NOOP_CURRENT instead of republishing?",
+      "expectedSeedId": "IH-QUALITY-PASS-SEED-B",
+      "lessonFocus": "noop-idempotency",
+      "genericKeywordOnly": false
+    }
+  ],
+  "humanReview": {
+    "required": false,
+    "reasons": []
+  }
+}

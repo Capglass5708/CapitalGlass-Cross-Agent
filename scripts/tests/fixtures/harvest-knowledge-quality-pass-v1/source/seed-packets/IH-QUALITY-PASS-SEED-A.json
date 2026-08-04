@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-QUALITY-PASS-SEED-A",
+  "kind": "failure-pattern",
+  "title": "Do not ingest live worktree during publication",
+  "summary": "Ledger ingest against a mutable worktree causes BLOCKED_GIT_MUTATION. Harvest publication must use immutable L: durable context and AppBuilder snapshot projection instead of live worktree reads.",
+  "status": "CANDIDATE",
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "promotionClass": "POLICY_GATED",
+  "retrievalQuestions": [
+    "Why did ledger ingest report BLOCKED_GIT_MUTATION?",
+    "What causes BLOCKED_GIT_MUTATION during harvest publication?"
+  ],
+  "evidenceRefs": ["EVT-001", "turn-ledger-1"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "harvest supabase projection or ledger ingest",
+    "startAt": ["work-progress/projects/cross-agent-harvest-snapshot-projection-v1.md"],
+    "runPreflight": ["harvest:validate-knowledge-quality"],
+    "doNot": ["use cross-agent-ledger live-worktree ingest for publication"],
+    "proveBeforeClaiming": ["NO_LIVE_WORKTREE_READ_PASS"]
+  }
+}

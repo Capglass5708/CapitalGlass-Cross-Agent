@@ -1,0 +1,44 @@
+{
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "harvestId",
+    "threadCoverage",
+    "decisionIntegrity",
+    "userCorrections",
+    "evidenceCoverage",
+    "contradictionResolution",
+    "seedQuality",
+    "blindRetrieval",
+    "humanReview",
+    "knowledgeVerdict",
+    "publicationEligibility"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "harvest-knowledge-quality-receipt-v1@1.0.0" },
+    "harvestId": { "type": "string", "minLength": 1 },
+    "threadCoverage": {
+      "type": "object",
+      "required": ["status", "materialEvents", "coveredEvents", "coverageRatio"],
+      "properties": {
+        "status": { "type": "string" },
+        "materialEvents": { "type": "number" },
+        "coveredEvents": { "type": "number" },
+        "coverageRatio": { "type": "number" }
+      }
+    },
+    "decisionIntegrity": { "type": "object" },
+    "userCorrections": { "type": "object" },
+    "evidenceCoverage": { "type": "object" },
+    "contradictionResolution": { "type": "object" },
+    "seedQuality": { "type": "object" },
+    "blindRetrieval": { "type": "object" },
+    "humanReview": { "type": "object" },
+    "knowledgeVerdict": { "type": "string" },
+    "publicationEligibility": { "type": "string" },
+    "structuralVerdict": { "type": "string" },
+    "failures": { "type": "array", "items": { "type": "string" } },
+    "generatedAt": { "type": "string" }
+  },
+  "additionalProperties": true
+}
