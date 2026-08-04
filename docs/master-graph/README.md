@@ -25,7 +25,9 @@ artifacts/agent-runs/cg-master-graph-planning-transfer-v1/
 
 | Document | Classification |
 | --- | --- |
-| `CG-MASTER-GRAPH-STARTER.md` | MOVE_CANONICAL → graph repo (next) |
+| `CG-MASTER-GRAPH-STARTER.md` | DONE on graph `main` (`ea7758d`) |
+| `CG-MASTER-GRAPH-GLOSSARY-v1.md` | DONE on graph `main` (`6a4e96e`) |
+| `CG-MASTER-GRAPH-STATE-MODEL-v1.md` | DONE on graph `main` (`6a4e96e`) |
 | `CG-MASTER-GRAPH-ROADMAP-v1.md` | REMAIN_CROSS_AGENT |
 | `CG-MASTER-GRAPH-ENTERPRISE-KNOWLEDGE-INTAKE-PLAN-v1.md` | SPLIT |
 | `CG-MASTER-GRAPH-CONSTITUTION-v1.md` | DONE in graph repo |
