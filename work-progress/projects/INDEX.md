@@ -38,10 +38,12 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 
 | Packet ID | State | Verdict | Owner repo | Project file | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `operational-publish-friction-v1` | HARVEST_COMPLETE | PASS | CapitalGlass-Cross-Agent | artifacts/agent-runs/harvest-2026-08-04-operational-publish-friction-v1/HARVEST_SUMMARY.md | Operator: harvest:publish-intelligence-full when ready |
-| `ingest-git-mutation-operational-v1` | DOCUMENTED | PASS | CG-AppBuilder-MCP | artifacts/agent-runs/harvest-2026-08-04-operational-publish-friction-v1/thread-event-inventory.json | Run ledger sync only on clean git; use --skip-ledger-sync when drift-probe IN_SYNC |
-| `index-freshness-receipt-treadmill-v1` | DOCUMENTED | PASS | CapitalGlass-Cross-Agent | scripts/index/freshness-gate.mjs | One index:publish at stable HEAD; avoid republish loop after each receipt commit |
-| `harvest-render-index-operational-gate-v1` | FIXED | PASS | CapitalGlass-Cross-Agent | scripts/harvest/lib/publish-intelligence-full-lib.mjs | None — render-index stage wired in publish-intelligence-full-lib |
+| `ryzen9desk-managed-executor-v1` | RUNNER_BOOTSTRAP_CHECKPOINT_STARTED | CODE_READY_FOR_RUNNER_BOOTSTRAP | CG-AppBuilder-MCP | [2026-08-03_ryzen9desk-managed-executor-v1.md](./2026-08-03_ryzen9desk-managed-executor-v1.md) | CG-AppBuilder-MCP mission: RYZEN9DESK WSL install from main + dispatch executor-smoke receipt |
+| `active-ledger-ci-path-and-hash-stability-v1` | COMPLETE | PASS | CG-AppBuilder-MCP | [2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md](./2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md) | None unless test:active-ledger-sync regresses on main |
+| `project-folder-synology-primary-v1-dev-environment` | HOLD | CONTRACT_PASS_HOSTED_DEV_HOLD | CapitalGlass-Documents | [project-folder-synology-primary-v1-dev-hosted-environment.md](./project-folder-synology-primary-v1-dev-hosted-environment.md) | Resolve Vercel BLOCKED deploy and Supabase dev isolation (owner: CapitalGlass-Documents) |
+| `cross-agent-retrieval-failover-v1.1` | ADOPTED | PASS | CapitalGlass-Cross-Agent | handoffs/CURRENT_HANDOFF.md | Recurring: use layered failover for suite status when L: unavailable |
+| `wsl2-native-repo-library-migration-v1` | PARTIAL | FILESYSTEM_PASS_OPERATIONAL_CLEANUP_RECORDED | CG-AppBuilder-MCP | [2026-08-03_wsl2-native-repo-library-migration-v1.md](./2026-08-03_wsl2-native-repo-library-migration-v1.md) | Per-repo ext4 verification; RYZEN9DESK alignment via separate executor mission |
+| `office-admin-ryzen9desk-managed-executor-bootstrap-v1` | INDEXED | CODE_READY_FOR_RUNNER_BOOTSTRAP | CapitalGlass-Office-Admin | [2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md](./2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md) | Runner bootstrap remains CG-AppBuilder-MCP mission; do not claim MANAGED_EXECUTOR_ONLINE |
 
 <!-- HARVEST-PACKET-INDEX:END -->
 
