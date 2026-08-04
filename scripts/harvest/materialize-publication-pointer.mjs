@@ -1,34 +1,32 @@
 #!/usr/bin/env node
 /**
- * Phase C preparation only — reads L: pointer candidate and validates Phase B state.
- * Does not commit Git pointers or trigger republication.
+ * Phase C — materialize harvest-publication-pointer-v1.json and record L: phase-c receipt.
+ * Apply requires PHASE_C_POINTER_APPROVED=1. Never embeds the Git commit SHA in the pointer file.
  */
-import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { resolveHubRoot } from "./lib/l-durable-bundle-lib.mjs";
-import { readPointerCandidate } from "./lib/publication-pointer-candidate-lib.mjs";
-import { PHASE_B_VERDICTS } from "./lib/publication-layer-verdict-lib.mjs";
-import { HARVEST_ID } from "./lib/paths.mjs";
-
-const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
-const GIT_POINTER_FILENAME = "harvest-publication-pointer-v1.json";
+import { resolveHubRoot } from "./lib/publish-hub-seed-lib.mjs";
+import { materializePhaseCPointer } from "./lib/phase-c-pointer-materialization-lib.mjs";
+import { HARVEST_ID, REPO_ROOT } from "./lib/paths.mjs";
 
 function parseArgs(argv) {
   let harvestId = HARVEST_ID;
   let payloadHash = null;
   let hubRoot = resolveHubRoot();
+  let repoRoot = REPO_ROOT;
   for (const arg of argv) {
     if (arg.startsWith("--harvest-id=")) harvestId = arg.slice("--harvest-id=".length);
     else if (arg.startsWith("--payload-hash=")) payloadHash = arg.slice("--payload-hash=".length);
     else if (arg.startsWith("--hub-root=")) hubRoot = arg.slice("--hub-root=".length);
+    else if (arg.startsWith("--repo-root=")) repoRoot = arg.slice("--repo-root=".length);
   }
   return {
     harvestId,
     payloadHash,
     hubRoot,
-    dryRun: argv.includes("--dry-run"),
+    repoRoot,
+    apply: argv.includes("--apply"),
     json: argv.includes("--json"),
   };
 }
@@ -40,54 +38,31 @@ function main() {
     process.exit(1);
   }
 
-  const candidate = readPointerCandidate(args.hubRoot, args.harvestId, args.payloadHash);
-  if (!candidate) {
-    console.error("harvest:materialize-pointer FAIL — pointer candidate missing on L:");
-    process.exit(1);
-  }
-
-  if (candidate.receiptCommit !== null) {
-    console.error("harvest:materialize-pointer FAIL — receiptCommit must be null before Phase C");
-    process.exit(1);
-  }
-
-  const allowedVerdicts = [PHASE_B_VERDICTS.COMPLETE, PHASE_B_VERDICTS.NOOP];
-  if (!allowedVerdicts.includes(candidate.phaseBVerdict)) {
-    console.error(
-      `harvest:materialize-pointer FAIL — phaseBVerdict=${candidate.phaseBVerdict} (requires PHASE_B_COMPLETE or NOOP_CURRENT)`,
-    );
-    process.exit(1);
-  }
-
-  const gitPointerPath = path.join(
-    REPO_ROOT,
-    "artifacts/agent-runs",
-    args.harvestId,
-    GIT_POINTER_FILENAME,
-  );
-
-  const materialization = {
-    verdict: "POINTER_CANDIDATE_VALID",
+  const result = materializePhaseCPointer({
+    hubRoot: args.hubRoot,
     harvestId: args.harvestId,
     payloadHash: args.payloadHash,
-    candidatePath: candidate,
-    plannedGitPointerPath: path.relative(REPO_ROOT, gitPointerPath),
-    receiptCommit: null,
-    note: "Phase C commits harvest-publication-pointer-v1.json separately; not executed automatically.",
-  };
-
-  if (args.dryRun) {
-    materialization.dryRun = true;
-    materialization.wouldWrite = gitPointerPath;
-  }
+    repoRoot: path.resolve(args.repoRoot),
+    apply: args.apply,
+  });
 
   if (args.json) {
-    console.log(JSON.stringify(materialization, null, 2));
+    console.log(JSON.stringify(result, null, 2));
   } else {
-    console.log(`harvest:materialize-pointer ${materialization.verdict}`);
-    console.log(`  candidate harvestId=${args.harvestId}`);
-    console.log(`  planned path=${materialization.plannedGitPointerPath}`);
-    console.log(`  receiptCommit remains null until Phase C commit`);
+    console.log(`harvest:materialize-pointer ${result.verdict}`);
+    if (result.commit?.gitPointerCommit) {
+      console.log(`  gitPointerCommit=${result.commit.gitPointerCommit}`);
+    }
+    if (result.lReceipt?.receiptRel) {
+      console.log(`  phaseCReceipt=${result.lReceipt.receiptRel}`);
+    }
+    if (result.failures?.length) {
+      console.log(`  failures=${result.failures.join(",")}`);
+    }
+  }
+
+  if (!result.ok) {
+    process.exit(1);
   }
 }
 
