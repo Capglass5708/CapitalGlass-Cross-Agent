@@ -1,0 +1,81 @@
+{
+  "schema": "capital-glass-gated-wave-receipt-v1",
+  "milestoneId": "capital-glass-platform-milestone-v1",
+  "wave": 1,
+  "name": "Restore Execution And Storage Authority",
+  "finalGate": "EXECUTION_STORAGE_AUTHORITY_PASS",
+  "verdict": "FAIL_STOP",
+  "recordedAt": "2026-08-04T16:40:00Z",
+  "priorAuthority": {
+    "agent2Ledger": "6893286",
+    "partialStopReceipts": "ac8690e"
+  },
+  "proof": {
+    "runner": {
+      "pass": false,
+      "name": "ryzen9desk-wsl2-CG-RYZEN9DESK-01",
+      "status": "offline",
+      "busy": false
+    },
+    "workflow30924982497": {
+      "pass": false,
+      "status": "queued",
+      "url": "https://github.com/Capglass5708/CG-AppBuilder-MCP/actions/runs/30924982497"
+    },
+    "wesleyWorkDriveMountVerifier": {
+      "pass": false,
+      "installerElevatedRequired": true,
+      "verifier": "Test-CgWesleyWorkDriveMountTaskRegistration.ps1 -ExpectRegistered",
+      "findings": [
+        "MISSING_EXPECTED: CapitalGlass-WesleyWork-DriveMount-Logon",
+        "MISSING_EXPECTED: CapitalGlass-WesleyWork-DriveMount-Startup",
+        "NOT_HIDDEN on Health/Unlock/PreCursorDriveGate tasks"
+      ]
+    },
+    "lDriveReadable": {
+      "pass": false,
+      "windowsPath": "L:\\Capital-Glass-Intelligence-Hub\\00-master-index",
+      "wslPath": "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index",
+      "forceRemapClassification": "SMB_PORT_BLOCKED",
+      "outageLog": "C:\\ProgramData\\CapitalGlass\\OfficeAdmin\\logs\\NETWORK-OUTAGE-2026-08-04-113807.json"
+    },
+    "zBibleMasterCurrent": {
+      "pass": false,
+      "verdict": "Z_MASTER_THREE_HOST_BIBLE_TRUTH_BLOCKED",
+      "truthVerdict": "Z_MASTER_UNAVAILABLE",
+      "zAiCacheMounted": true,
+      "note": "Z drvfs mount OK in WSL; bible master staging release not published / hosts unreachable"
+    },
+    "cursorHostMode": {
+      "pass": true,
+      "verdict": "PASS",
+      "action": "npm run cursor:wsl-default",
+      "receipt": "/home/wesle/.cursor/backups/cursor-wsl-default-2026-08-04T16-36-00-496Z.json"
+    }
+  },
+  "operatorActionsRequired": [
+    {
+      "machine": "RYZEN9DESK",
+      "action": "Start GitHub Actions runner: cd ~/actions-runner && sudo ./svc.sh start",
+      "unblocks": ["workflow 30924982497"]
+    },
+    {
+      "machine": "WESLEY_WORK",
+      "action": "Elevated PowerShell: Install-CgWesleyWorkDriveMountPersistence.ps1 then Test-CgWesleyWorkDriveMountTaskRegistration.ps1 -ExpectRegistered",
+      "path": "C:\\Developer\\repos\\CapitalGlass-Office-Admin\\scripts\\devices\\CG-WESLEYWORK-01\\",
+      "unblocks": ["L: mount", "drive-mount verifier"]
+    },
+    {
+      "machine": "WESLEY_WORK",
+      "action": "If L: still missing after installer: investigate SMB_PORT_BLOCKED from ForceRemap (NAS SMB 445 probe OK; ZMAP failed — UNC cwd issue during agent-invoked remap)",
+      "unblocks": ["L: readable in WSL"]
+    },
+    {
+      "machine": "suite",
+      "action": "After L: restored: npm run bible-z-master:sync-host -- --apply --verify --attest --json from WESLEY_WORK with Z mounted",
+      "unblocks": ["Z bible master current"]
+    }
+  ],
+  "autoContinueToWave2": false,
+  "stopReason": "EXECUTION_STORAGE_AUTHORITY_PASS not met — runner offline, L: unreadable, Z bible master blocked, drive-mount verifier FAIL"
+}
