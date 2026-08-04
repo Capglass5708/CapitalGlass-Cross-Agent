@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-GOV-OWNERSHIP-PREFIX-011",
+  "kind": "lesson",
+  "title": "governance-material work packages need owner prefix in ownership-lib",
+  "summary": "WORK_PACKAGE_OWNER_PREFIXES must include governance-material in governance-ownership-lib.mjs—not only governance-material-preflight-lib.mjs—to avoid mutation-root REROUTE.",
+  "retrievalQuestions": [
+    "Why does governance-material-preflight REROUTE to AppBuilder mutation root?",
+    "Where is inferWorkPackageOwner defined for governance harvest packages?"
+  ],
+  "evidenceRefs": [
+    "CG-Platform-Governance-MCP d1789e2 governance-ownership-lib.mjs",
+    "mutationRootLinkage ownership inferredOwner mismatch"
+  ],
+  "executionDeltaRefs": ["ED-001"],
+  "wasteIds": ["TW-002"],
+  "operatorFrictionIds": [],
+  "roiRank": 1,
+  "futureAgentInstructions": {
+    "whenThisAppears": "governance:material-preflight PASS but mutationRootLinkage REROUTE",
+    "startAt": [
+      "CG-Platform-Governance-MCP/scripts/suite-governance/governance-ownership-lib.mjs",
+      "CG-Platform-Governance-MCP/scripts/suite-governance/governance-material-preflight-lib.mjs"
+    ],
+    "runPreflight": ["npm run governance:material-preflight -- --json"],
+    "doNot": [
+      "Add owner prefix only to preflight-lib",
+      "Assume preflight PASS implies mutation-root linkage PASS"
+    ],
+    "proveBeforeClaiming": [
+      "mutationRootLinkage.reasonCodes empty",
+      "inferredRepoKey matches mutation repo registry key"
+    ]
+  },
+  "ownerRepo": "CG-Platform-Governance-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

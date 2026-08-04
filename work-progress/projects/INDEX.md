@@ -38,13 +38,12 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 
 | Packet ID | State | Verdict | Owner repo | Project file | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `ultimate-sdlc-dark-package-go-v1` | GO | PASS | CG-AppBuilder-MCP | [ultimate-sdlc-dark-package-go-v1.md](./ultimate-sdlc-dark-package-go-v1.md) | Use 0924fd5d receipt + asg-go-closeout-final-20260804.json as startup authority |
-| `receipt-lineage-warn-to-go-v1` | RECORDED | PASS | CG-AppBuilder-MCP | [receipt-lineage-warn-to-go-v1.md](./receipt-lineage-warn-to-go-v1.md) | Parse newest receipt before narrating blockers; compare 2a75fd59 vs 0924fd5d |
-| `shared-db-investigate-first-v1` | RECONCILIATION_COMPLETE | PASS | CG-AppBuilder-MCP | [shared-db-investigate-first-v1.md](./shared-db-investigate-first-v1.md) | requires-investigation=0 before snapshot refresh; 169 EXPECTED_MIGRATION remain documented |
-| `bounded-command-closeout-v1` | RECORDED | PASS | CG-AppBuilder-MCP | [bounded-command-closeout-v1.md](./bounded-command-closeout-v1.md) | Use bounded one-shot refresh; do not invoke refresh-worker script |
-| `adjacent-repo-local-drift-v1` | LOCAL_ONLY | PASS | Cursor-ProposalGenerator | [adjacent-repo-local-drift-v1.md](./adjacent-repo-local-drift-v1.md) | Repo-owned follow-up: commit/push PG migration renumbers separately from AppBuilder GO |
-| `chatgpt-ultimate-sdlc-thread-v1` | HARVEST_COMPLETE | HARVEST_COMPLETE | CapitalGlass-Cross-Agent | [harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1.md](./harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1.md) | npm run harvest:publish-intelligence-full -- --harvest-id=harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1 |
-| `asg-hardening-authority-v1` | GO | PASS | CG-AppBuilder-MCP | [asg-hardening-authority-v1.md](./asg-hardening-authority-v1.md) | Retrieve from Z asg-operational-authority-v1 + formal GO receipt 06111bc4 |
+| `ryzen9desk-managed-executor-v1` | RUNNER_BOOTSTRAP_CHECKPOINT_STARTED | CODE_READY_FOR_RUNNER_BOOTSTRAP | CG-AppBuilder-MCP | [2026-08-03_ryzen9desk-managed-executor-v1.md](./2026-08-03_ryzen9desk-managed-executor-v1.md) | CG-AppBuilder-MCP mission: RYZEN9DESK WSL install from main + dispatch executor-smoke receipt |
+| `active-ledger-ci-path-and-hash-stability-v1` | COMPLETE | PASS | CG-AppBuilder-MCP | [2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md](./2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md) | None unless test:active-ledger-sync regresses on main |
+| `project-folder-synology-primary-v1-dev-environment` | HOLD | CONTRACT_PASS_HOSTED_DEV_HOLD | CapitalGlass-Documents | [project-folder-synology-primary-v1-dev-hosted-environment.md](./project-folder-synology-primary-v1-dev-hosted-environment.md) | Resolve Vercel BLOCKED deploy and Supabase dev isolation (owner: CapitalGlass-Documents) |
+| `cross-agent-retrieval-failover-v1.1` | ADOPTED | PASS | CapitalGlass-Cross-Agent | handoffs/CURRENT_HANDOFF.md | Recurring: use layered failover for suite status when L: unavailable |
+| `wsl2-native-repo-library-migration-v1` | PARTIAL | FILESYSTEM_PASS_OPERATIONAL_CLEANUP_RECORDED | CG-AppBuilder-MCP | [2026-08-03_wsl2-native-repo-library-migration-v1.md](./2026-08-03_wsl2-native-repo-library-migration-v1.md) | Per-repo ext4 verification; RYZEN9DESK alignment via separate executor mission |
+| `office-admin-ryzen9desk-managed-executor-bootstrap-v1` | INDEXED | CODE_READY_FOR_RUNNER_BOOTSTRAP | CapitalGlass-Office-Admin | [2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md](./2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md) | Runner bootstrap remains CG-AppBuilder-MCP mission; do not claim MANAGED_EXECUTOR_ONLINE |
 
 <!-- HARVEST-PACKET-INDEX:END -->
 

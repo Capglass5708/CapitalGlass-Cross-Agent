@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-GOV-PREFLIGHT-LINKAGE-010",
+  "kind": "runbook",
+  "title": "Material session closeout seeds governance preflight when absent",
+  "summary": "auto:v3:session-closeout calls ensureGovernanceMaterialPreflightLinkage to avoid PREFLIGHT_LINKAGE_MISSING when no prior governance-material-preflight receipt exists.",
+  "retrievalQuestions": [
+    "Why does material closeout emit PREFLIGHT_LINKAGE_MISSING?",
+    "How does session closeout seed governance material preflight linkage?"
+  ],
+  "evidenceRefs": [
+    "CG-AppBuilder-MCP c709d378 session-closeout-lib.mjs",
+    "run-governance-closeout-gate.test.mjs Material closeout seeds linkage"
+  ],
+  "executionDeltaRefs": ["ED-001"],
+  "wasteIds": ["TW-002"],
+  "roiRank": 3,
+  "futureAgentInstructions": {
+    "whenThisAppears": "GOVERNANCE_CLOSEOUT_BLOCKED or PREFLIGHT_LINKAGE_MISSING on material closeout",
+    "startAt": [
+      "CG-AppBuilder-MCP/scripts/auto-protocol-v3/session-closeout-lib.mjs",
+      "runtime/work-package-lifecycle-index/<work-package>.json"
+    ],
+    "runPreflight": [
+      "npm run governance:material-preflight -- --mission-class=closeout (before closeout decision)"
+    ],
+    "doNot": [
+      "Reopen closed missions like ultimate-sdlc-runner-hardening-and-ai-cache-v1 to fix linkage",
+      "Use mutation temp repo as controlPlaneRoot for preflight seeding"
+    ],
+    "proveBeforeClaiming": [
+      "governance-material-preflight-v1.json exists on mutation repo",
+      "closeout decision preflightDecisionRef non-null"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}
