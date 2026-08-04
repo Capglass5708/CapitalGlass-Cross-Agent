@@ -307,8 +307,33 @@ export function publishLDurableBundle({
   options = {},
 }) {
   const layout = bundleLayout(hubRoot, harvestId, payloadHash);
+  const catalogComplete =
+    fs.existsSync(layout.catalogRoot) && isBundlePublicationComplete(layout.catalogRoot);
 
   if (!fs.existsSync(layout.stagingRoot)) {
+    if (catalogComplete) {
+      const catalogMeta = readBundleMetadata(layout.catalogRoot);
+      if (catalogMeta && catalogMeta.identity.payloadHash === payloadHash) {
+        const catalogVerify = verifyInventoryAgainstPayload(layout.catalogRoot, catalogMeta.inventory);
+        const receipt = {
+          schemaVersion: RECEIPT_SCHEMA_VERSION,
+          harvestId,
+          manifestHash: catalogMeta.identity.manifestHash,
+          payloadHash: catalogMeta.identity.payloadHash,
+          authoritySourceCommit: catalogMeta.identity.authoritySourceCommit,
+          stagingPath: layout.stagingRel,
+          durablePath: layout.catalogRel,
+          fileCount: catalogVerify.fileCount,
+          byteCount: catalogVerify.byteCount,
+          hashVerification: catalogVerify.ok ? "PASS" : "FAIL",
+          publicationMethod: "NOOP",
+          verdict: "NOOP_CURRENT",
+          generatedAt: new Date().toISOString(),
+        };
+        writeOperationReceipt(layout, receipt);
+        return receipt;
+      }
+    }
     throw new Error("MISSING_STAGED_BUNDLE");
   }
 
@@ -343,9 +368,10 @@ export function publishLDurableBundle({
     }
   }
 
-  const catalogComplete = fs.existsSync(layout.catalogRoot) && isBundlePublicationComplete(layout.catalogRoot);
+  const catalogCompleteAfterStaging =
+    fs.existsSync(layout.catalogRoot) && isBundlePublicationComplete(layout.catalogRoot);
 
-  if (catalogComplete) {
+  if (catalogCompleteAfterStaging) {
     const catalogMeta = readBundleMetadata(layout.catalogRoot);
     if (catalogMeta && inventoriesMatch(catalogMeta.inventory, inventory)) {
       const receipt = {
