@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "capital-glass/hot-cache-dataset-registry-v1.schema.json",
+  "title": "HotCacheDatasetRegistryV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "datasets"],
+  "properties": {
+    "schemaVersion": {
+      "const": "hot-cache-dataset-registry-v1@1.0.0"
+    },
+    "workPackageId": { "type": "string" },
+    "ownerRepo": { "type": "string" },
+    "platformDefaults": { "type": "object" },
+    "freshnessClasses": { "type": "object" },
+    "datasets": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/datasetRegistration" }
+    }
+  },
+  "$defs": {
+    "datasetId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "datasetRegistration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["datasetId", "freshnessClass", "dependsOnDatasets", "missOk"],
+      "properties": {
+        "datasetId": { "$ref": "#/$defs/datasetId" },
+        "manifestPath": { "type": "string", "pattern": "^registry/" },
+        "freshnessClass": { "type": "string" },
+        "defaultTtlSeconds": { "type": "integer", "minimum": 1 },
+        "lPublicationPath": { "type": "string" },
+        "dependsOnDatasets": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/datasetId" }
+        },
+        "missOk": { "type": "boolean" }
+      }
+    }
+  }
+}
