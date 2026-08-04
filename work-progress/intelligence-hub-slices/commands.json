@@ -1,0 +1,208 @@
+{
+  "schemaVersion": "intelligence-hub-commands-slice-v1@1.0.0",
+  "sourceCommitSha": "38b69383f214e6d180c565626d2df1e817f29d3f",
+  "updatedAt": "2026-08-04T00:33:05.509Z",
+  "commandCount": 20,
+  "commands": [
+    {
+      "id": "harvest-sync-derived",
+      "command": "npm run harvest:sync-derived",
+      "repo": "CapitalGlass-Cross-Agent",
+      "phase": "harvest-record",
+      "provesGate": null,
+      "gateId": null,
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "harvest-validate",
+      "command": "npm run harvest:validate",
+      "repo": "CapitalGlass-Cross-Agent",
+      "phase": "harvest-record",
+      "provesGate": "HARVEST_COMPLETE",
+      "gateId": "harvest-authority-validate",
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "test-harvest",
+      "command": "npm run test:harvest",
+      "repo": "CapitalGlass-Cross-Agent",
+      "phase": "harvest-record",
+      "provesGate": null,
+      "gateId": null,
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "index-refresh-anchors",
+      "command": "npm run index:refresh-anchors",
+      "repo": "CapitalGlass-Cross-Agent",
+      "phase": "continuity",
+      "provesGate": null,
+      "gateId": null,
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "cross-agent-ledger-ingest",
+      "command": "npm run cross-agent-ledger:ingest -- --apply",
+      "repo": "CG-AppBuilder-MCP",
+      "phase": "projection",
+      "provesGate": null,
+      "gateId": null,
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "cross-agent-ledger-drift-probe",
+      "command": "npm run cross-agent-ledger:drift-probe",
+      "repo": "CG-AppBuilder-MCP",
+      "phase": "projection",
+      "provesGate": null,
+      "gateId": null,
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "publish-active-work-ledger",
+      "command": "npm run agent-research-library:publish-active-work-ledger",
+      "repo": "Data-Extraction",
+      "phase": "projection",
+      "provesGate": null,
+      "gateId": null,
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "active-ledger-sync-publish",
+      "command": "npm run active-ledger:sync -- --publish",
+      "repo": "CG-AppBuilder-MCP",
+      "phase": "projection",
+      "provesGate": null,
+      "gateId": null,
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "index-freshness-gate",
+      "command": "npm run index:freshness-gate",
+      "repo": "CapitalGlass-Cross-Agent",
+      "phase": "projection",
+      "provesGate": "INDEX_LAYER_PARITY",
+      "gateId": "cross-agent-index-freshness",
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "index-compile-control-slices",
+      "command": "npm run index:compile-control-slices",
+      "repo": "CapitalGlass-Cross-Agent",
+      "phase": "projection",
+      "provesGate": "CONTROL_SLICES_CURRENT",
+      "gateId": "intelligence-hub-control-slices-compile",
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "index-blind-retrieval",
+      "command": "npm run harvest:blind-retrieval",
+      "repo": "CapitalGlass-Cross-Agent",
+      "phase": "projection",
+      "provesGate": "BLIND_RETRIEVAL_PASS",
+      "gateId": "hub-blind-retrieval-benchmark",
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "index-sync-publication",
+      "command": "npm run index:sync-publication",
+      "repo": "CapitalGlass-Cross-Agent",
+      "phase": "projection",
+      "provesGate": null,
+      "gateId": null,
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "index-preflight",
+      "command": "npm run index:preflight",
+      "repo": "CapitalGlass-Cross-Agent",
+      "phase": "cursor-preflight",
+      "provesGate": null,
+      "gateId": null,
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "index-publish-automatic",
+      "command": "npm run index:publish",
+      "repo": "CapitalGlass-Cross-Agent",
+      "phase": "projection",
+      "provesGate": "HUB_PUBLICATION_CURRENT",
+      "gateId": "index-publication-workflow",
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "auto-publisher-run-once",
+      "command": "doppler run -- npm run intelligence-hub:auto-publisher:once",
+      "repo": "CG-AppBuilder-MCP",
+      "phase": "projection",
+      "provesGate": "AUTO_PUBLISHER_IDEMPOTENT",
+      "gateId": "auto-publisher-v1-1-activation",
+      "host": "CG-WESLEYDESK-01",
+      "executable": true
+    },
+    {
+      "id": "direct-connect-persistence-proof",
+      "command": "Office Admin cold-reboot persistence checklist",
+      "repo": "CapitalGlass-Office-Admin",
+      "phase": "operator",
+      "provesGate": "PERSISTENT_AVAILABILITY_PASS",
+      "gateId": "direct-connect-cold-reboot",
+      "host": "RYZEN9DESK",
+      "executable": false
+    },
+    {
+      "id": "managed-executor-health-probe",
+      "command": "CG-AppBuilder-MCP managed executor health probe",
+      "repo": "CG-AppBuilder-MCP",
+      "phase": "operator",
+      "provesGate": "MANAGED_EXECUTOR_ONLINE",
+      "gateId": "ryzen9desk-executor-health",
+      "host": "RYZEN9DESK",
+      "executable": false
+    },
+    {
+      "id": "wesleydesk-runner-preflight",
+      "command": "npm run runner:preflight",
+      "repo": "CapitalGlass-Cross-Agent",
+      "phase": "runner-bootstrap",
+      "provesGate": null,
+      "gateId": null,
+      "host": "CG-WESLEYDESK-01",
+      "executable": true
+    },
+    {
+      "id": "wesleydesk-runner-install",
+      "command": "npm run runner:install",
+      "repo": "CapitalGlass-Cross-Agent",
+      "phase": "runner-bootstrap",
+      "provesGate": null,
+      "gateId": null,
+      "host": "CG-WESLEYDESK-01",
+      "executable": true
+    },
+    {
+      "id": "restart-mcp-cursor",
+      "command": "Restart MCP in Cursor",
+      "repo": "operator",
+      "phase": "operator",
+      "provesGate": null,
+      "gateId": null,
+      "host": null,
+      "executable": false
+    }
+  ]
+}

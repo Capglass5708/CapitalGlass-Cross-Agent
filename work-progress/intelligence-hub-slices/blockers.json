@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "intelligence-hub-blockers-slice-v1@1.0.0",
+  "updatedAt": "2026-08-04T00:20:00.000Z",
+  "openCount": 6,
+  "blockers": [
+    {
+      "blockerId": "slice6-post-merge-publication",
+      "severity": "critical",
+      "title": "Slice 6 post-merge hub publication",
+      "state": "OPEN",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "hostAuthority": "WESLEYDESK",
+      "nextAction": "Complete GitHub Actions publication workflow run 30861642734; verify layer parity (git/L/Supabase) and blind retrieval",
+      "commandIds": [
+        "index-freshness-gate",
+        "index-publish",
+        "index-blind-retrieval"
+      ],
+      "doNotAdvance": [
+        "THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL"
+      ]
+    },
+    {
+      "blockerId": "direct-connect-cold-reboot-persistence",
+      "severity": "high",
+      "title": "Direct Connect cold-reboot persistence unproven",
+      "state": "OPEN",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "hostAuthority": "RYZEN9DESK",
+      "nextAction": "Cold reboot RYZEN9DESK; verify Direct Connect service auto-starts and tunnel reachable",
+      "commandIds": [
+        "direct-connect-persistence-proof"
+      ],
+      "doNotAdvance": [
+        "PERSISTENT_AVAILABILITY_PASS",
+        "MANAGED_EXECUTOR_ONLINE"
+      ]
+    },
+    {
+      "blockerId": "auto-publisher-staged-not-active",
+      "severity": "medium",
+      "title": "Cross-Agent index auto-publisher staged not active",
+      "state": "OPEN",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "hostAuthority": "WESLEYDESK",
+      "nextAction": "Activate scheduled auto-publisher after Slice 6 publication PASS; prove idempotent NOOP_CURRENT",
+      "commandIds": [
+        "auto-publisher-run-once",
+        "index-freshness-gate"
+      ],
+      "doNotAdvance": [
+        "AUTO_PUBLISHER_V1_1_ACTIVE"
+      ]
+    },
+    {
+      "blockerId": "harvest-v2-publication-not-run",
+      "severity": "low",
+      "title": "Harvest v2 artifacts not yet published to hub",
+      "state": "OPEN",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "hostAuthority": "WESLEYDESK",
+      "nextAction": "Commit harvest v2 + expansion slices; run index:publish after compile-control-slices",
+      "commandIds": [
+        "harvest-validate",
+        "index-compile-control-slices",
+        "index-publish"
+      ],
+      "doNotAdvance": []
+    },
+    {
+      "blockerId": "platform-health-slice7-deferred",
+      "severity": "medium",
+      "title": "Platform Health read model slice 7 deferred",
+      "state": "DEFERRED",
+      "ownerRepo": "capital-glass-platform-health",
+      "hostAuthority": "WESLEYDESK",
+      "nextAction": "Merge PR #31 (feat/improvement-intelligence-read-model-v1) independently of Slice 6",
+      "commandIds": [],
+      "doNotAdvance": []
+    },
+    {
+      "blockerId": "synology-vercel-hosted-dev-blocked",
+      "severity": "high",
+      "title": "Synology primary hosted dev (Vercel) blocked",
+      "state": "OPEN",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "hostAuthority": "WESLEYDESK",
+      "nextAction": "Resolve Vercel deploy blocker and Supabase I2; verify Document Center SHA parity",
+      "commandIds": [],
+      "doNotAdvance": []
+    },
+    {
+      "blockerId": "revu-mcp-production-workflow-locked",
+      "severity": "medium",
+      "title": "Revu MCP production workflow locked",
+      "state": "OPEN",
+      "ownerRepo": "CapitalGlassRevu",
+      "hostAuthority": "WESLEYDESK",
+      "nextAction": "Complete revu-production-takeoff-pilot-v1 with human estimator approval gate",
+      "commandIds": [],
+      "doNotAdvance": [
+        "UNATTENDED_PRODUCTION_MARKUP"
+      ]
+    }
+  ]
+}
