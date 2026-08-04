@@ -2,11 +2,11 @@
   "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
   "harvestId": "harvest-2026-08-04-three-way-improvement-slice6-thread-v1",
   "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
-  "sourceCommitSha": "ae1c427e2249d53f71ba81fe35319c07c32dfaed",
+  "sourceCommitSha": "d84ad38fd34ad0b96e2f7322ee730956e61ea750",
   "sourceBranch": "main",
   "sourceRepo": "CapitalGlass-Cross-Agent",
   "createdAt": "2026-08-04T02:30:00.000Z",
-  "updatedAt": "2026-08-04T02:30:00.000Z",
+  "updatedAt": "2026-08-04T02:45:00.000Z",
   "retrievalResult": "INDEX_HIT",
   "cacheResult": "CACHE_MISS",
   "overallHarvestVerdict": "HARVEST_COMPLETE",
@@ -29,10 +29,11 @@
     }
   },
   "projection": {
-    "projectionSyncStatus": "not-run",
-    "hubPublishStatus": "not-run",
-    "hubPublishBlocker": "Cursor agent — operator runs index:publish on WESLEYDESK",
-    "note": "Thread autopsy recorded only; hub seed publish NOT_RUN_BY_CURSOR"
+    "projectionSyncStatus": "synced",
+    "hubPublishStatus": "published",
+    "hubPublishReceiptRef": "artifacts/agent-runs/harvest-2026-08-04-hub-publication-verify-autopsy-v1/hub-publication-receipt.json",
+    "hubPublishBlocker": null,
+    "note": "index:publish PUBLISH_PASS @ ae1c427; freshness PASS; thread-autopsy seeds on L:"
   },
   "ledgerLineage": {
     "ledgerPath": "work-progress/ACTIVE_WORK.md",
@@ -287,6 +288,34 @@
         "CapitalGlass-Cross-Agent PR #2 990abe9"
       ],
       "nextAction": "None — prerequisite merged",
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": null,
+      "requiredOwnerArtifact": null,
+      "commitRefs": [
+        { "repo": "CapitalGlass-Cross-Agent", "sha": "4b285b1" },
+        { "repo": "CapitalGlass-Cross-Agent", "sha": "ae1c427" },
+        { "repo": "CapitalGlass-Cross-Agent", "sha": "d84ad38" }
+      ],
+      "blockers": [],
+      "relatedPackets": ["harvest-2026-08-04-hub-publication-verify-autopsy-v1"],
+      "packetKind": "evidence",
+      "packetId": "intelligence-hub-thread-autopsy-publication-v1",
+      "packetTitle": "Intelligence Hub thread autopsy seed publication",
+      "state": "PUBLICATION_COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-04_intelligence-hub-thread-autopsy-publication-v1.md",
+      "evidenceRefs": [
+        "artifacts/agent-runs/harvest-2026-08-04-hub-publication-verify-autopsy-v1/hub-publication-receipt.json",
+        "L:/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/thread-autopsy-index.json",
+        "runtime/index-publication/latest.json"
+      ],
+      "nextAction": "None — catalog and ledger aligned @ d84ad38",
       "advancementGate": "not-required",
       "doNotAdvance": []
     },

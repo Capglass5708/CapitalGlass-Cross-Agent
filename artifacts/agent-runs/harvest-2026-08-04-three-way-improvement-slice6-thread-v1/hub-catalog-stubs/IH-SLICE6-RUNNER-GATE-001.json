@@ -1,0 +1,75 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-slice6-runner-gate-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "d84ad38fd34ad0b96e2f7322ee730956e61ea750",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-three-way-improvement-slice6-thread-v1",
+      "seedId": "IH-SLICE6-RUNNER-GATE-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T01:44:54.497Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "a39bbe95e76ab82090ca2195c0b0fb2c4daf42a8b51c439d71d2f370ba22823e"
+  },
+  "body": {
+    "seedId": "IH-SLICE6-RUNNER-GATE-001",
+    "kind": "failure-pattern",
+    "title": "Cross-Agent publication requires WESLEYDESK runner before dispatch",
+    "summary": "index-publication.yml on CapitalGlass-Cross-Agent needs self-hosted wesleydesk runner; zero runners causes multi-hour queue.",
+    "canonicalQuestion": "Why is Cross-Agent index publication stuck queued?",
+    "alternateQuestions": [
+      "How many self-hosted runners does Cross-Agent have?"
+    ],
+    "shortAnswer": "index-publication.yml on CapitalGlass-Cross-Agent needs self-hosted wesleydesk runner; zero runners causes multi-hour queue.",
+    "detailedAnswer": "Cross-Agent publication requires WESLEYDESK runner before dispatch",
+    "retrievalQuestions": [
+      "Why is Cross-Agent index publication stuck queued?",
+      "How many self-hosted runners does Cross-Agent have?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Slice 6 or index-publication workflow_dispatch",
+      "startAt": [
+        "WesleyDesk Direct Connect/AGENT_START_HERE.md",
+        "BY-KIND/host-authority.json"
+      ],
+      "runPreflight": [
+        "gh api repos/Capglass5708/CapitalGlass-Cross-Agent/actions/runners"
+      ],
+      "doNot": [
+        "Dispatch from WESLEY_WORK RYZEN runner for Cross-Agent repo",
+        "Assume queue means success"
+      ],
+      "proveBeforeClaiming": [
+        "total_count >= 1 with labels self-hosted,wesleydesk,wsl2"
+      ]
+    },
+    "evidenceRefs": [
+      "TE-004",
+      "thread-autopsy-bundle.json#TW-001"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Cross-Agent",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-three-way-improvement-slice6-thread-v1/seed-packets/IH-SLICE6-RUNNER-GATE-001.json"
+    ],
+    "harvestId": "harvest-2026-08-04-three-way-improvement-slice6-thread-v1"
+  }
+}

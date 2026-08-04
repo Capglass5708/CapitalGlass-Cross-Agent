@@ -17,7 +17,12 @@
     "tier": "T2",
     "bundlePath": "artifacts/agent-runs/harvest-2026-08-04-hub-publication-verify-autopsy-v1/thread-autopsy-bundle.json",
     "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-04-hub-publication-verify-autopsy-v1/seed-packets/seed-packet-index.json",
-    "counts": { "waste": 3, "seeds": 4, "roiItems": 3, "operatorFriction": 1 }
+    "counts": {
+      "waste": 3,
+      "seeds": 4,
+      "roiItems": 3,
+      "operatorFriction": 1
+    }
   },
   "projection": {
     "projectionSyncStatus": "synced",
@@ -25,7 +30,11 @@
     "hubPublishBlocker": null,
     "note": "Catalog + ledger parity @ ae1c427 — index:freshness-gate PASS"
   },
-  "ledgerLineage": { "ledgerPath": "work-progress/ACTIVE_WORK.md" },
+  "ledgerLineage": {
+    "ledgerPath": "work-progress/ACTIVE_WORK.md",
+    "ledgerContentHashBefore": "c79fe9fb1a9e1c8167c5119be6fb9678456f8f956ce3f9703a734c389ca49d08",
+    "ledgerContentHashAfter": "c79fe9fb1a9e1c8167c5119be6fb9678456f8f956ce3f9703a734c389ca49d08"
+  },
   "supersededClaims": [
     {
       "packetId": "harvest-2026-08-03-direct-connect-slice6-autopsy-v1",
@@ -55,7 +64,16 @@
         "artifacts/agent-runs/harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1/hub-publication-receipt.json",
         "L:/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/thread-autopsy-index.json"
       ],
-      "commitRefs": [{ "repo": "CapitalGlass-Cross-Agent", "sha": "4b285b1" }, { "repo": "CapitalGlass-Cross-Agent", "sha": "ae1c427" }],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "4b285b1"
+        },
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "ae1c427"
+        }
+      ],
       "nextAction": "None — catalog and ledger aligned",
       "advancementGate": "not-required",
       "doNotAdvance": [],
@@ -74,7 +92,12 @@
         "artifacts/agent-runs/three-way-agent-improvement-intelligence-v1/slice6-closeout-receipt-v1.json",
         "harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1"
       ],
-      "commitRefs": [{ "repo": "CapitalGlass-Cross-Agent", "sha": "acd94ba6d5855bda1298d248188f6ae4faa32edf" }],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "acd94ba6d5855bda1298d248188f6ae4faa32edf"
+        }
+      ],
       "nextAction": "None for Slice 6 — auto-publisher is separate",
       "advancementGate": "not-required",
       "doNotAdvance": [],
@@ -89,12 +112,27 @@
       "ownerRepo": "CapitalGlass-Cross-Agent",
       "ownerIndexingStatus": "indexed",
       "projectFile": "work-progress/projects/2026-08-03_cross-agent-index-auto-publisher-activation-v1.md",
-      "evidenceRefs": ["harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1/hub-publication-receipt.json"],
-      "commitRefs": [{ "repo": "CapitalGlass-Cross-Agent", "sha": "15d3d4601642e790d6cc52d4671505bae5f772df" }],
+      "evidenceRefs": [
+        "harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1/hub-publication-receipt.json"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "15d3d4601642e790d6cc52d4671505bae5f772df"
+        }
+      ],
       "nextAction": "Enable GHA auto-publisher trigger; prove NOOP_CURRENT",
       "advancementGate": "AUTO_PUBLISHER_V1_1_ACTIVE with post-commit proof",
-      "doNotAdvance": ["AUTO_PUBLISHER_V1_1_ACTIVE"],
-      "blockers": [{ "id": "auto-publisher-staged", "owner": "CapitalGlass-Cross-Agent", "summary": "Runner online; scheduled publisher not active" }]
+      "doNotAdvance": [
+        "AUTO_PUBLISHER_V1_1_ACTIVE"
+      ],
+      "blockers": [
+        {
+          "id": "auto-publisher-staged",
+          "owner": "CapitalGlass-Cross-Agent",
+          "summary": "Runner online; scheduled publisher not active"
+        }
+      ]
     },
     {
       "packetId": "intelligence-hub-index-ai-cache-freshness-v1",
@@ -105,11 +143,15 @@
       "ownerRepo": "CG-AppBuilder-MCP",
       "ownerIndexingStatus": "indexed",
       "projectFile": "work-progress/projects/2026-08-03_intelligence-hub-index-ai-cache-freshness-v1.md",
-      "evidenceRefs": ["artifacts/agent-runs/cross-agent-index-freshness-gate-v1/latest.json"],
+      "evidenceRefs": [
+        "artifacts/agent-runs/cross-agent-index-freshness-gate-v1/latest.json"
+      ],
       "commitRefs": [],
       "nextAction": "None — freshness gate PASS @ ae1c427",
       "advancementGate": "not-required",
-      "doNotAdvance": ["AUTO_PUBLISHER_V1_1_ACTIVE"],
+      "doNotAdvance": [
+        "AUTO_PUBLISHER_V1_1_ACTIVE"
+      ],
       "blockers": []
     }
   ]

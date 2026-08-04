@@ -1,0 +1,73 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-slice6-proof-commands-004",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "d84ad38fd34ad0b96e2f7322ee730956e61ea750",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-three-way-improvement-slice6-thread-v1",
+      "seedId": "IH-SLICE6-PROOF-COMMANDS-004"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T01:44:54.497Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "3ee96d55965043a8560f8d811e2957e33934e8ee81a2c31356ee853add8272bf"
+  },
+  "body": {
+    "seedId": "IH-SLICE6-PROOF-COMMANDS-004",
+    "kind": "command-receipt",
+    "title": "Slice 6 publication proof command chain",
+    "summary": "Prove publication: local or GHA PUBLISH_PASS, freshness PASS, blind retrieval PASS, second run NOOP_CURRENT.",
+    "canonicalQuestion": "What commands prove Slice 6 publication gates?",
+    "alternateQuestions": [],
+    "shortAnswer": "Prove publication: local or GHA PUBLISH_PASS, freshness PASS, blind retrieval PASS, second run NOOP_CURRENT.",
+    "detailedAnswer": "Slice 6 publication proof command chain",
+    "retrievalQuestions": [
+      "What commands prove Slice 6 publication gates?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Verifying Slice 6 publication closeout",
+      "startAt": [
+        "work-progress/command-index.json"
+      ],
+      "runPreflight": [
+        "npm run index:freshness-gate",
+        "npm run harvest:slice6-blind-retrieval"
+      ],
+      "doNot": [
+        "Run index:publish from Cursor agent"
+      ],
+      "proveBeforeClaiming": [
+        "PUBLISH_PASS",
+        "POST_PUBLICATION_BLIND_RETRIEVAL_PASS",
+        "NOOP_CURRENT"
+      ]
+    },
+    "evidenceRefs": [
+      "work-progress/command-index.json",
+      "slice6-closeout-receipt-v1.json"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "AUTOMATIC",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Cross-Agent",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-three-way-improvement-slice6-thread-v1/seed-packets/IH-SLICE6-PROOF-COMMANDS-004.json"
+    ],
+    "harvestId": "harvest-2026-08-04-three-way-improvement-slice6-thread-v1"
+  }
+}
