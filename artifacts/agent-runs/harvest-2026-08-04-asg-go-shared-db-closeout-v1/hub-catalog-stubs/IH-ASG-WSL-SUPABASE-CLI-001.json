@@ -1,0 +1,78 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-asg-wsl-supabase-cli-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "eb56714a296602c3eb796d43169629e0081fa5bd",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-asg-go-shared-db-closeout-v1",
+      "seedId": "IH-ASG-WSL-SUPABASE-CLI-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T20:56:45.499Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "critical",
+    "contentHash": "af8a6594aeeb5f6c01b0c534f558f82ef3efbd7d6a0347ec4c59abb642ea6854"
+  },
+  "body": {
+    "seedId": "IH-ASG-WSL-SUPABASE-CLI-001",
+    "kind": "failure-pattern",
+    "title": "WSL shared-db audit requires npx supabase not Windows global shim",
+    "summary": "On CG-RYZEN9DESK WSL, bare `supabase` resolves to /mnt/c/.../npm/supabase without linux-x64 binary; use npx --yes supabase or scripts/lib/supabase-cli-spawn.mjs.",
+    "canonicalQuestion": "Why does cg:shared-db:audit fail on WSL with No matching Supabase CLI binary?",
+    "alternateQuestions": [
+      "What is the canonical Supabase CLI invocation for CG-AppBuilder-MCP on Linux?"
+    ],
+    "shortAnswer": "On CG-RYZEN9DESK WSL, bare `supabase` resolves to /mnt/c/.../npm/supabase without linux-x64 binary; use npx --yes supabase or scripts/lib/supabase-cli-spawn.mjs.",
+    "detailedAnswer": "WSL shared-db audit requires npx supabase not Windows global shim",
+    "retrievalQuestions": [
+      "Why does cg:shared-db:audit fail on WSL with No matching Supabase CLI binary?",
+      "What is the canonical Supabase CLI invocation for CG-AppBuilder-MCP on Linux?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Live shared-db audit or snapshot fails on WSL with linux-x64 CLI error",
+      "startAt": [
+        "scripts/lib/supabase-cli-spawn.mjs",
+        "docs/SHARED_DB_MIGRATIONS.md"
+      ],
+      "runPreflight": [
+        "export CG_SHARED_DB_WORKDIR=/home/wesley/repos/capital-glass-po-app",
+        "doppler run -- npm run cg:shared-db:audit -- --json"
+      ],
+      "doNot": [
+        "Rely on /mnt/c npm global supabase on WSL",
+        "Use --skip-live to avoid fixing CLI when operator asked for live GO"
+      ],
+      "proveBeforeClaiming": [
+        "supabase db query --linked returns ledger rows",
+        "linked_workdir in snapshot JSON is WSL path"
+      ]
+    },
+    "evidenceRefs": [
+      "CG-AppBuilder-MCP/scripts/lib/supabase-cli-spawn.mjs",
+      "4ff9eaa3",
+      "EVT-405"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": 1,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-asg-go-shared-db-closeout-v1/seed-packets/IH-ASG-WSL-SUPABASE-CLI-001.json"
+    ],
+    "harvestId": "harvest-2026-08-04-asg-go-shared-db-closeout-v1"
+  }
+}

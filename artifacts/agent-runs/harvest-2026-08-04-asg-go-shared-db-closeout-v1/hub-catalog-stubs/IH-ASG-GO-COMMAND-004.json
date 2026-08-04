@@ -1,0 +1,78 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-asg-go-command-004",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "eb56714a296602c3eb796d43169629e0081fa5bd",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-asg-go-shared-db-closeout-v1",
+      "seedId": "IH-ASG-GO-COMMAND-004"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T20:56:45.498Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "12e04c17d4964ac783d0695d81efb94ad6eb00c9b8244dd6af47cde0fac1bfb8"
+  },
+  "body": {
+    "seedId": "IH-ASG-GO-COMMAND-004",
+    "kind": "command",
+    "title": "Formal All Systems Go GO command chain (live-capable)",
+    "summary": "After git push and shared-db reconciliation: clean tree, Doppler, CG_SHARED_DB_WORKDIR, run-dark-package-v1 without --skip-live.",
+    "canonicalQuestion": "What command proves All Systems Go GO on CG-AppBuilder-MCP?",
+    "alternateQuestions": [
+      "When must --skip-live not be used for ASG?"
+    ],
+    "shortAnswer": "After git push and shared-db reconciliation: clean tree, Doppler, CG_SHARED_DB_WORKDIR, run-dark-package-v1 without --skip-live.",
+    "detailedAnswer": "Formal All Systems Go GO command chain (live-capable)",
+    "retrievalQuestions": [
+      "What command proves All Systems Go GO on CG-AppBuilder-MCP?",
+      "When must --skip-live not be used for ASG?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Operator asks for formal GO or systemsGoVerdict GO",
+      "startAt": [
+        "docs/platform/ALL_SYSTEMS_GO_RUNBOOK.md",
+        "runtime/agent-preflight/app-builder-mcp/latest.json"
+      ],
+      "runPreflight": [
+        "npm run agent:index:scout -- --json",
+        "npm run agent:preflight:app-builder-mcp"
+      ],
+      "doNot": [
+        "Use --skip-live when live verification is possible",
+        "Do not run refresh-worker script for closeout"
+      ],
+      "proveBeforeClaiming": [
+        "systemsGoVerdict GO in dark-runner-receipt.json",
+        "zeroWritesProven true",
+        "all six lanes PASS"
+      ]
+    },
+    "evidenceRefs": [
+      "0924fd5d dark-runner-receipt",
+      "asg-go-closeout-final-20260804.json"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": 4,
+    "doNotAdvance": [],
+    "promotionClass": "AUTOMATIC",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-asg-go-shared-db-closeout-v1/seed-packets/IH-ASG-GO-COMMAND-004.json"
+    ],
+    "harvestId": "harvest-2026-08-04-asg-go-shared-db-closeout-v1"
+  }
+}

@@ -1,6 +1,6 @@
 # Harvest summary — derived view
 
-**Authority:** `harvest-manifest-v1.json` (`477371959e03…`)
+**Authority:** `harvest-manifest-v1.json` (`9b0a4e08b0e0…`)
 **Work package:** `harvest-2026-08-04-asg-go-shared-db-closeout-v1`
 **Mission class:** `chat-thread-closeout-autopsy-harvest-v1`
 **Verdict:** `HARVEST_COMPLETE`
@@ -25,9 +25,9 @@
 - Refresh shared-db snapshot while requires-investigation > 0
 - Claim cg:shared-db:audit exit 0 while 169 EXPECTED_MIGRATION files remain unapplied
 - OPERATIONAL before harvest:publish-intelligence-full PASS
-- Run token-refresh-worker.mjs for ASG closeout
+- Run refresh-worker script for ASG closeout
 
 ## Projection sync
 
-Status: `pending` (hub: `not-run`)
+Status: `synced` (hub: `published`)
 
