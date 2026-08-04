@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-ASG-SHARED-DB-GATE-002",
+  "kind": "runbook",
+  "title": "All Systems Go shared-db-impact PASS after reconciliation not zero pending files",
+  "summary": "shared-db-impact lane PASS when requires-investigation=0, live ledger available, and committed snapshot is fresh vs live — not when every migration file is applied.",
+  "retrievalQuestions": [
+    "Why is shared-db-impact WARN with 169 pending migrations?",
+    "When does All Systems Go shared-db lane PASS after reconciliation?"
+  ],
+  "evidenceRefs": [
+    "scripts/ultimate-sdlc-runner/lib/shared-db-impact-simulate.mjs",
+    "0924fd5d dark-runner-receipt",
+    "closeout-reconciliation-report.json"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "ASG WARN only on shared-db-impact with high pendingVsLive",
+    "startAt": [
+      "artifacts/shared-db-migration-backlog-reconciliation-v1/closeout-reconciliation-report.json",
+      "docs/work-packages/shared-db-migration-backlog-reconciliation-v1.md"
+    ],
+    "runPreflight": [
+      "npm run cg:shared-db:reconcile-inventory",
+      "node scripts/shared-db-migration-backlog/generate-closeout-reconciliation-report.mjs"
+    ],
+    "doNot": [
+      "Waive unexplained requires-investigation items",
+      "Refresh snapshot while UNAUTHORIZED_OR_UNEXPLAINED > 0",
+      "Claim GO requires applying all 169 pending migrations"
+    ],
+    "proveBeforeClaiming": [
+      "requires-investigation count 0",
+      "snapshot drift status ok",
+      "shared-db-impact lane PASS on live ASG run"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 2,
+  "sourcePacketIds": ["asg-shared-db-gate-v1"]
+}

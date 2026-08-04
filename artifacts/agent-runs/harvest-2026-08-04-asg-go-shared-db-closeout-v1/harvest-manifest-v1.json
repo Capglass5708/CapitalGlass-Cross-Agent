@@ -1,0 +1,209 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-asg-go-shared-db-closeout-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "74d758ae6363b003238c64cdf83c1e4a45c9aedc",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-04T20:50:00.000Z",
+  "updatedAt": "2026-08-04T20:50:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "rawScanRequired": false,
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "subject": "All Systems Go GO — shared-db reconciliation, WSL Supabase CLI, CG-AppBuilder-MCP 4ff9eaa3",
+  "doNotAdvance": [
+    "systemsGoVerdict GO without live-capable run when WSL Supabase CLI works",
+    "Refresh shared-db snapshot while requires-investigation > 0",
+    "Claim cg:shared-db:audit exit 0 while 169 EXPECTED_MIGRATION files remain unapplied",
+    "OPERATIONAL before harvest:publish-intelligence-full PASS",
+    "Run token-refresh-worker.mjs for ASG closeout"
+  ],
+  "threadAutopsy": {
+    "tier": "T3",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-04-asg-go-shared-db-closeout-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-04-asg-go-shared-db-closeout-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 4,
+      "seeds": 4,
+      "roiItems": 3,
+      "operatorFriction": 1,
+      "executionDeltas": 1
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "pending",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": null,
+    "note": "Phase A complete — operator requested make operational"
+  },
+  "ledgerLineage": {
+    "ledgerPath": "work-progress/ACTIVE_WORK.md",
+    "ledgerContentHashBefore": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096",
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  },
+  "supersededClaims": [],
+  "commitEvidence": [
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "sha": "4ff9eaa3cdb99e272215e5b68e4d310f07c0a07c",
+      "role": "shared-db-reconciliation-and-asg-go"
+    },
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "sha": "7c7c1521c85955e7b9afbaa7db3822a636a6b388",
+      "role": "scout-rules-push-prior"
+    }
+  ],
+  "packets": [
+    {
+      "packetId": "ultimate-sdlc-runner-go-v1",
+      "packetTitle": "All Systems Go formal GO — ultimate-sdlc-runner-dark-package-v1",
+      "packetKind": "evidence",
+      "state": "GO",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "CURRENT_AUTHORITY",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "docs/work-packages/ultimate-sdlc-runner-dark-package-v1.md",
+      "nextAction": "Use receipt 0924fd5d as proof before material suite work",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/artifacts/agent-runs/ultimate-sdlc-runner-dark-package-v1/0924fd5d-e143-4875-a4f1-0a4346f18ba5/dark-runner-receipt.json",
+        "EVT-408"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "4ff9eaa3"
+        }
+      ],
+      "blockers": []
+    },
+    {
+      "packetId": "shared-db-reconciliation-v1",
+      "packetTitle": "Shared DB migration backlog reconciliation — snapshot fresh",
+      "packetKind": "decision",
+      "state": "RECONCILIATION_COMPLETE",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "docs/work-packages/shared-db-migration-backlog-reconciliation-v1.md",
+      "nextAction": "Apply EXPECTED_MIGRATION files via owning-repo flows; do not refresh snapshot without classification",
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Snapshot refresh with UNAUTHORIZED_OR_UNEXPLAINED > 0"
+      ],
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/artifacts/shared-db-migration-backlog-reconciliation-v1/closeout-reconciliation-report.json",
+        "CG-AppBuilder-MCP/docs/schema/shared-db-schema.snapshot.json",
+        "EVT-406",
+        "EVT-407"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "4ff9eaa3"
+        }
+      ],
+      "blockers": []
+    },
+    {
+      "packetId": "wsl-supabase-cli-spawn-v1",
+      "packetTitle": "WSL Supabase CLI spawn helper",
+      "packetKind": "protocol_upgrade",
+      "state": "SHIPPED",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "nextAction": "Use scripts/lib/supabase-cli-spawn.mjs in all cg-shared-db scripts",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/scripts/lib/supabase-cli-spawn.mjs",
+        "EVT-405"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "4ff9eaa3"
+        }
+      ],
+      "blockers": []
+    },
+    {
+      "packetId": "asg-shared-db-gate-alignment-v1",
+      "packetTitle": "shared-db-impact lane — reconciliation complete gate",
+      "packetKind": "protocol_upgrade",
+      "state": "SHIPPED",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "nextAction": "Do not treat pending migration file count alone as block2Risk after classification",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/scripts/ultimate-sdlc-runner/lib/shared-db-impact-simulate.mjs",
+        "EVT-407"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "4ff9eaa3"
+        }
+      ],
+      "blockers": []
+    },
+    {
+      "packetId": "asg-go-command-v1",
+      "packetTitle": "Formal ASG GO command — live without skip-live",
+      "packetKind": "command",
+      "state": "PROVEN",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "nextAction": "Clean git tree; doppler + CG_SHARED_DB_WORKDIR; node scripts/ultimate-sdlc-runner/run-dark-package-v1.mjs --no-cache",
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "--skip-live when live verification possible"
+      ],
+      "evidenceRefs": [
+        "EVT-408",
+        "IH-ASG-GO-COMMAND-004"
+      ],
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetId": "harvest-2026-08-04-asg-go-shared-db-closeout-v1",
+      "packetTitle": "This harvest — ASG GO thread autopsy",
+      "packetKind": "evidence",
+      "state": "HARVEST_COMPLETE",
+      "packetVerdict": "HARVEST_COMPLETE",
+      "harvestVerdictContribution": "INDEX_AUTHORITY",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-04-asg-go-shared-db-closeout-v1.md",
+      "nextAction": "npm run harvest:publish-intelligence-full -- --harvest-id=harvest-2026-08-04-asg-go-shared-db-closeout-v1",
+      "advancementGate": "harvest:publish-intelligence-full PASS",
+      "doNotAdvance": [
+        "OPERATIONAL before Phase B"
+      ],
+      "evidenceRefs": [
+        "artifacts/agent-runs/harvest-2026-08-04-asg-go-shared-db-closeout-v1/harvest-manifest-v1.json"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "74d758ae"
+        }
+      ],
+      "blockers": []
+    }
+  ]
+}

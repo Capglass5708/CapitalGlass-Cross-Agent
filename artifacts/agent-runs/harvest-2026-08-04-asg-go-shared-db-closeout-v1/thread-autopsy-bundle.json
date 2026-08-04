@@ -1,0 +1,205 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-asg-go-shared-db-closeout-v1",
+  "tier": "T3",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-401",
+      "type": "tool",
+      "description": "cg-shared-db-audit used Windows npm supabase shim on WSL — linux-x64 binary missing",
+      "evidenceRefs": [
+        "EVT-405"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "scripts/lib/supabase-cli-spawn.mjs → npx --yes supabase on linux",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-402",
+      "type": "verification",
+      "description": "shared-db-impact WARN from pending file count while 169 legitimately-pending migrations documented",
+      "evidenceRefs": [
+        "EVT-403",
+        "EVT-407"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Gate uses requires-investigation=0 + fresh snapshot, not pendingVsLive>0 alone",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-403",
+      "type": "rework",
+      "description": "git-parity WARN from untracked artifacts/agent-runs during ASG run",
+      "evidenceRefs": [
+        "EVT-403",
+        "b76f993c receipt"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Clean tree before ASG or --output-dir outside repo; move untracked receipts aside",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-404",
+      "type": "retrieval",
+      "description": "Restored stale preflight artifact from history instead of regenerating when contract-audit flaky",
+      "evidenceRefs": [
+        "EVT-403"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Run agent:preflight after material infra fixes; do not copy old PASS without re-run",
+      "roiRank": 4
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-401",
+      "trigger": "User had to issue second mission to reach GO after push-only closeout left shared-db WARN",
+      "operatorCost": "medium",
+      "systemFix": "Treat shared-db reconciliation as explicit closeout gate before claiming one-step-short-of-GO",
+      "evidenceRefs": [
+        "EVT-404"
+      ],
+      "linkedWasteIds": [
+        "TW-402"
+      ]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-401",
+      "situation": "Reach ASG GO after git push",
+      "actualExecution": {
+        "steps": [
+          "Push commits",
+          "ASG with stale preflight copy",
+          "WARN on shared-db pending count"
+        ],
+        "outcome": "WARN",
+        "evidenceRefs": [
+          "EVT-402",
+          "EVT-403"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Install WSL Supabase CLI path",
+          "Reconcile + classify migrations",
+          "Refresh snapshot",
+          "Align shared-db-impact gate",
+          "Clean git tree",
+          "ASG live without --skip-live"
+        ],
+        "outcome": "GO",
+        "requiredPreflight": [
+          "npm run agent:index:scout",
+          "cg:shared-db:audit --json"
+        ]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "high",
+        "operatorFrustration": "medium"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-401",
+      "summary": "Moved git-tracked artifacts/agent-runs breaking git-parity with deleted paths",
+      "whyItWasWrong": "DIRTY_WORKTREE from D entries on tracked harvest artifacts",
+      "correctFirstMove": "Move only untracked receipt dirs or use git checkout -- artifacts/ before ASG",
+      "preventiveControl": "IH-ASG-GIT-PARITY-CLEAN-003",
+      "executionDeltaId": "ED-401",
+      "actualExecution": "mv entire artifacts/agent-runs",
+      "optimalExecution": "mv only untracked ultimate-sdlc-runner-dark-package-v1 subdirs"
+    },
+    {
+      "wrongMoveId": "WM-402",
+      "summary": "Treated block2Risk pendingVsSnapshot>0 as permanent GO blocker without reconciliation taxonomy",
+      "whyItWasWrong": "169 EXPECTED_MIGRATION files are truthful backlog, not unauthorized drift",
+      "correctFirstMove": "Classify all requires-investigation; refresh snapshot to live; gate on investigation count + snapshot freshness",
+      "preventiveControl": "IH-ASG-SHARED-DB-GATE-002",
+      "executionDeltaId": "ED-401",
+      "actualExecution": "Assumed GO impossible with pending migrations",
+      "optimalExecution": "Reconciliation complete + snapshot ok → PASS"
+    }
+  ],
+  "duplicateWork": [],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Canonical WSL Supabase CLI spawn in all cg-shared-db scripts",
+      "whyItPays": "Unblocks live audit/snapshot on RYZEN9DESK WSL without Windows shim",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-401"
+      ],
+      "seedAs": "rule"
+    },
+    {
+      "rank": 2,
+      "title": "shared-db-impact PASS when reconciliation complete",
+      "whyItPays": "ASG GO without hiding 169 legitimately-pending migrations",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-402"
+      ],
+      "seedAs": "rule"
+    },
+    {
+      "rank": 3,
+      "title": "Clean-tree ASG runbook for git-parity",
+      "whyItPays": "Avoid false DIRTY_WORKTREE from local receipts",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-403"
+      ],
+      "seedAs": "runbook"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "systemsGoVerdict: GO",
+      "currentStatus": "CLOSED",
+      "doNotClaimUntil": [
+        "0924fd5d dark-runner-receipt systemsGoVerdict GO"
+      ],
+      "lastKnownEvidence": [
+        "0924fd5d dark-runner-receipt",
+        "4ff9eaa3 origin/main"
+      ]
+    },
+    {
+      "awardOrVerdict": "cg:shared-db:audit exit 0",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "All migration files have ledger entries OR documented removal"
+      ],
+      "lastKnownEvidence": [
+        "169 pending migration files vs live ledger — EXPECTED_MIGRATION classified"
+      ]
+    },
+    {
+      "awardOrVerdict": "OPERATIONAL harvest",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "harvest:publish-intelligence-full PASS"
+      ],
+      "lastKnownEvidence": [
+        "HARVEST_COMPLETE pre-publish"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "commandIndexConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "work-progress/harvest-packet-registry.json"
+    ],
+    "checkedAt": "2026-08-04T20:50:48.707Z",
+    "preflightReceiptHash": "e15a6a0a05d0d3863544033798c03f4b6651f8f6475ff793d4ccf9702ac17179"
+  }
+}

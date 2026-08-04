@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-ASG-GIT-PARITY-CLEAN-003",
+  "kind": "failure-pattern",
+  "title": "All Systems Go git-parity requires clean tree — untracked receipts count as dirty",
+  "summary": "Untracked artifacts/agent-runs/ultimate-sdlc-runner-dark-package-v1/* causes DIRTY_WORKTREE; move aside before formal GO run.",
+  "retrievalQuestions": [
+    "Why is git-parity WARN after shared-db PASS?",
+    "How to run All Systems Go without dirty worktree on CG-AppBuilder-MCP?"
+  ],
+  "evidenceRefs": [
+    "b76f993c dark-runner-receipt",
+    "0924fd5d dark-runner-receipt",
+    "EVT-403"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "git-parity DIRTY_WORKTREE with untracked artifacts after ASG",
+    "startAt": ["scripts/ultimate-sdlc-runner/lib/git-parity-state.mjs"],
+    "runPreflight": ["git status --short"],
+    "doNot": [
+      "mv entire artifacts/agent-runs if tracked files exist",
+      "Commit receipt artifacts just to clear parity unless operator requests"
+    ],
+    "proveBeforeClaiming": ["git status --short empty before ASG", "git-parity lane PASS in receipt"]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 3,
+  "sourcePacketIds": ["asg-git-parity-clean-v1"]
+}
