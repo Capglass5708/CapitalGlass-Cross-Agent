@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "cross-agent-code-touch-summary-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1",
+  "ownerRepos": [
+    {
+      "repo": "cg-apps-hub",
+      "branch": "main",
+      "commitSha": "c7d87a7",
+      "paths": ["pnpm-lock.yaml", "CORS union for HUB_CORS_ALLOWED_ORIGINS"],
+      "nature": "deploy unblock + DC origin CORS"
+    },
+    {
+      "repo": "CapitalGlass-Documents",
+      "branch": "main",
+      "commitSha": "bb3a535",
+      "paths": ["staged-intake BFF 401 contract"],
+      "nature": "explicit auth rejection not empty queue"
+    },
+    {
+      "repo": "Cursor-ProposalGenerator-1",
+      "branch": "main",
+      "commitSha": "acfe6b41",
+      "paths": [
+        "next.config.ts",
+        "e2e/lib/production-smoke-auth.ts",
+        "e2e/*.spec.ts",
+        "package.json",
+        "artifacts/agent-runs/proposal-generator-staging-e2e-closure-v1/"
+      ],
+      "nature": "staging E2E closure 25/25 + Vercel env sync"
+    },
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "branch": "main",
+      "commitSha": "f6e88e2c",
+      "paths": [
+        "scripts/intelligence-hub/index-freshness/",
+        "scripts/auto-protocol-v3/check-auto-v32-session-env-policy.mjs",
+        "package.json"
+      ],
+      "nature": "scout hot index + Auto v3.2 session env policy (partial uncommitted)"
+    },
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "main",
+      "commitSha": "11909aa2bd8be93fd4ef661f4162c30ea9c3dc90",
+      "paths": ["artifacts/agent-runs/harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1/"],
+      "nature": "thread autopsy harvest record"
+    }
+  ],
+  "crossAgentTouches": [],
+  "productionDataMutations": []
+}

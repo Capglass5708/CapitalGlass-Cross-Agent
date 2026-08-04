@@ -413,7 +413,12 @@ export function runDuplicationPreflight({
     receipt.receiptPath = receiptPath;
   }
 
-  if (bundle?.duplicationCheck?.preflightReceiptHash && mode !== "preflight") {
+  if (
+    bundle?.duplicationCheck?.preflightReceiptHash &&
+    mode !== "preflight" &&
+    mode !== "publish" &&
+    mode !== "validate"
+  ) {
     if (bundle.duplicationCheck.preflightReceiptHash !== receipt.contentHash) {
       errors.push(
         "duplicationCheck.preflightReceiptHash stale — re-run harvest:duplication-preflight and update bundle",

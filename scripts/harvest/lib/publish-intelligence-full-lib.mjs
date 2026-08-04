@@ -13,6 +13,7 @@ import {
   registerThreadAutopsyHubIndex,
   syncDoNotAdvanceToHub,
 } from "./register-hub-index.mjs";
+import { fanoutHostAiCache } from "./host-ai-cache-fanout-lib.mjs";
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
@@ -140,6 +141,7 @@ export function publishIntelligenceFull({
   dryRun = false,
   allowRepublish = false,
   allowSupersedeSeedIds = [],
+  syncHosts = null,
 } = {}) {
   const runDir = path.join(repoRoot, "artifacts/agent-runs", harvestId);
   const manifestPath = path.join(runDir, "harvest-manifest-v1.json");
@@ -184,6 +186,7 @@ export function publishIntelligenceFull({
         skipLedgerSync ? "skip-ledger-sync" : "index:sync-publication",
         "publish-hot-routing-index",
         "intelligence-hub:index-freshness:publish",
+        syncHosts ? `host-ai-cache-fanout:${Array.isArray(syncHosts) ? syncHosts.join(",") : syncHosts}` : "skip-host-fanout",
       ],
     };
   }
@@ -193,6 +196,13 @@ export function publishIntelligenceFull({
       runStep(
         "sync-derived",
         `node scripts/harvest/sync-derived.mjs ${harvestId}`,
+        repoRoot,
+      ),
+    );
+    stages.push(
+      runStep(
+        "render-index",
+        `node scripts/harvest/render-harvest-index.mjs ${harvestId}`,
         repoRoot,
       ),
     );
@@ -221,7 +231,7 @@ export function publishIntelligenceFull({
       return { ok: false, verdict: "DUPLICATE_BLOCKED", duplication, stages };
     }
 
-    stages.push(runStep("validate", `node scripts/harvest/validate-harvest.mjs ${harvestId}`, repoRoot));
+    stages.push(runStep("validate", `node scripts/harvest/validate-harvest.mjs ${harvestId}${allowRepublish ? " --allow-republish" : ""}`, repoRoot));
     if (manifest.threadAutopsy) {
       stages.push(
         runStep(
@@ -313,6 +323,34 @@ export function publishIntelligenceFull({
       stages.push({ label: "z-ai-cache-index", ok: false, error: String(err.message ?? err) });
     }
 
+    let hostFanout = { ok: true, code: "SYNC_HOSTS_DISABLED", hosts: [] };
+    if (syncHosts) {
+      hostFanout = fanoutHostAiCache({
+        appBuilderRoot,
+        hubRoot,
+        syncHosts,
+        dryRun: false,
+      });
+      stages.push({
+        label: "host-ai-cache-fanout",
+        ok: hostFanout.ok,
+        code: hostFanout.code,
+        hostCount: hostFanout.hostCount,
+        attemptedCount: hostFanout.attemptedCount,
+      });
+      if (!hostFanout.ok) {
+        return {
+          ok: false,
+          verdict: "HOST_FANOUT_FAIL",
+          hostFanout,
+          stages,
+          errors: [
+            `host fanout failed at ${hostFanout.hardFailure?.hostId ?? "unknown"}:${hostFanout.hardFailure?.stage ?? "unknown"}`,
+          ],
+        };
+      }
+    }
+
     const receipt = {
       schemaVersion: "cross-agent-harvest-operational-publication-receipt-v1@1.0.0",
       harvestId,
@@ -333,6 +371,7 @@ export function publishIntelligenceFull({
         lLedger: { ok: !skipLedgerSync },
         cHotRouting: hotRouting,
         zAiCache: aiCachePublish,
+        hostFanout,
       },
       stages,
       contentHash: hashCanonicalJson({ harvestId, gitHead, stages }),

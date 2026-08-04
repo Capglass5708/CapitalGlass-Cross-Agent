@@ -1,0 +1,78 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-thread-pg-infra-vs-business-gate-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "e0a0ef989d9b30bf989608a6dfb93186af24536e",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1",
+      "seedId": "IH-THREAD-PG-INFRA-VS-BUSINESS-GATE-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T02:10:09.289Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "ae38fac65c1925bf4daca4d2de72a1f78cab8248139174e27be8c1ad388bca4c"
+  },
+  "body": {
+    "seedId": "IH-THREAD-PG-INFRA-VS-BUSINESS-GATE-001",
+    "kind": "lesson",
+    "title": "PG 25/25 infra smokes do not close estimator-trust business gate",
+    "summary": "Authenticated staging/production smokes PASS proves routes, auth, and cache gates — not Mark Up pricing authority across save, reload, preview, approve, and PDF. Separate estimator-trust e2e required before PROPOSAL_GENERATOR_APP_CLOSED.",
+    "canonicalQuestion": "Can I close Proposal Generator after 25/25 authenticated smokes?",
+    "alternateQuestions": [
+      "What gate proves pricing authority beyond infra smokes?"
+    ],
+    "shortAnswer": "Authenticated staging/production smokes PASS proves routes, auth, and cache gates — not Mark Up pricing authority across save, reload, preview, approve, and PDF. Separate estimator-trust e2e required before PROPOSAL_GENERATOR_APP_CLOSED.",
+    "detailedAnswer": "PG 25/25 infra smokes do not close estimator-trust business gate",
+    "retrievalQuestions": [
+      "Can I close Proposal Generator after 25/25 authenticated smokes?",
+      "What gate proves pricing authority beyond infra smokes?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Operator asks if PG is closed after staging E2E green",
+      "startAt": [
+        "BY-KIND/thread-autopsy-index.json",
+        "harvest-2026-08-03-pg-estimator-trust-closure-v1"
+      ],
+      "runPreflight": [
+        "npm run test:e2e:estimator-trust-closure:doppler"
+      ],
+      "doNot": [
+        "Claim PROPOSAL_GENERATOR_APP_CLOSED on smokes alone",
+        "Merge infra closure verdict with estimator-trust FAIL"
+      ],
+      "proveBeforeClaiming": [
+        "estimator-trust e2e PASS all stages with dollar totals",
+        "Harvest do-not-advance ESTIMATOR_TRUST_CLOSED satisfied"
+      ]
+    },
+    "evidenceRefs": [
+      "harvest-2026-08-03-pg-estimator-trust-closure-v1",
+      "artifacts/agent-runs/proposal-generator-staging-e2e-closure-v1/closeout-manifest.json"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [
+      "TW-005"
+    ],
+    "operatorFrictionIds": [],
+    "roiRank": 4,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "Cursor-ProposalGenerator-1",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1/seed-packets/IH-THREAD-PG-INFRA-VS-BUSINESS-GATE-001.json"
+    ],
+    "harvestId": "harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1"
+  }
+}

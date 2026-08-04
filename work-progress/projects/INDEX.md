@@ -38,9 +38,7 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 
 | Packet ID | State | Verdict | Owner repo | Project file | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `harvest-storage-pointer-authority-v1` | POLICY_ACTIVE | PASS | CapitalGlass-Cross-Agent | [2026-08-04_harvest-storage-pointer-authority-v1.md](./2026-08-04_harvest-storage-pointer-authority-v1.md) | Edit protocols on L first; mirror Z; keep Git pointers only |
-| `chat-improvement-extract-chatgpt-v1` | ACTIVE | PASS | CapitalGlass-Cross-Agent | [2026-08-04_chat-improvement-extract-chatgpt-v1.md](./2026-08-04_chat-improvement-extract-chatgpt-v1.md) | Attach L or Z file to ChatGPT with Cursor chat export |
-| `harvest-2026-08-04-harvest-storage-chatgpt-lane-v1` | HARVEST_COMPLETE | HARVEST_COMPLETE | CapitalGlass-Cross-Agent | [2026-08-04_harvest-storage-chatgpt-lane-v1.md](./2026-08-04_harvest-storage-chatgpt-lane-v1.md) | npm run harvest:publish-intelligence-full -- --harvest-id=harvest-2026-08-04-harvest-storage-chatgpt-lane-v1 |
+| `cursor-harvest-protocol-session-v1` | COMPLETE | PASS | CapitalGlass-Cross-Agent | docs/runbooks/chat-thread-closeout-autopsy-harvest-v1.md | Operator: harvest:publish-intelligence-full when ready |
 
 <!-- HARVEST-PACKET-INDEX:END -->
 

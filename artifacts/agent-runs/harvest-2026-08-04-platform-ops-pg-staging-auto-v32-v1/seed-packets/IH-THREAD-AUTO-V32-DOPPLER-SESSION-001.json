@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-AUTO-V32-DOPPLER-SESSION-001",
+  "kind": "runbook",
+  "title": "CG_AUTO_V32_* session-scoped only — never Doppler or cursor-wsl.env",
+  "summary": "Auto v3.2 work package and material flags must be inline shell exports for preflight/closeout only. Doppler carries app secrets; CG_AUTO_V32_* in Doppler or ~/.config/capital-glass/cursor-wsl.env causes contamination or false audit paths.",
+  "retrievalQuestions": [
+    "Where should CG_AUTO_V32_WORK_PACKAGE be set?",
+    "How to verify Auto v3.2 env is not contaminated on Doppler estate?"
+  ],
+  "evidenceRefs": [
+    "CG-AppBuilder-MCP scripts/auto-protocol-v3/check-auto-v32-session-env-policy.mjs",
+    "CG-AppBuilder-MCP artifacts/agent-runs/auto-v32-env-decontamination-v1/session-env-policy-receipt.json"
+  ],
+  "sourcePacketIds": ["auto-v32-env-decontamination-v1"],
+  "executionDeltaRefs": ["ED-003"],
+  "wasteIds": [],
+  "roiRank": 2,
+  "futureAgentInstructions": {
+    "whenThisAppears": "AUTO_V32_ENV_CONTAMINATION or operator says all env is Doppler",
+    "startAt": ["npm run check:auto-v32-session-env-policy"],
+    "runPreflight": ["npm run check:auto-v32-session-env-policy -- --json"],
+    "doNot": [
+      "Add CG_AUTO_V32_* to Doppler projects",
+      "Export CG_AUTO_V32_* in cursor-wsl.env",
+      "Leave stale CG_AUTO_V32_WORK_PACKAGE in parent shell across missions"
+    ],
+    "proveBeforeClaiming": [
+      "check:auto-v32-session-env-policy ok true",
+      "bindingOnlyGate verdict PASS with clean shell"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

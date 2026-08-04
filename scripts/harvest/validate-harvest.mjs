@@ -200,7 +200,12 @@ function main() {
     warnings.push("no supersededClaims in manifest");
   }
 
-  const autopsyResult = validateThreadAutopsy({ manifest, runDir, repoRoot: REPO_ROOT });
+  const autopsyResult = validateThreadAutopsy({
+    manifest,
+    runDir,
+    repoRoot: REPO_ROOT,
+    allowRepublish: process.argv.includes("--allow-republish"),
+  });
   if (!autopsyResult.skipped) {
     errors.push(...autopsyResult.errors);
     warnings.push(...autopsyResult.warnings);
