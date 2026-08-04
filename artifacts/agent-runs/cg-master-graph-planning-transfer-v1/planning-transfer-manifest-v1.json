@@ -168,7 +168,8 @@
       "classification": "COPY_PINNED",
       "canonicalRepo": "CapitalGlass-Cross-Agent",
       "action": "Operator opener pointing to graph repo validate gate",
-      "status": "PLANNED_NOT_ON_BRANCH"
+      "status": "DONE",
+      "crossAgentCommit": "pending-hub-publication-closeout"
     },
     {
       "path": "docs/enterprise-discovery/",
@@ -185,8 +186,21 @@
   ],
   "nextPackages": [
     {
+      "id": "data-extraction-master-graph-contributor-v1",
+      "action": "Data-Extraction contracts/master-graph pointer + contributor implementation",
+      "status": "POINTER_DONE"
+    },
+    {
+      "id": "capital-glass-lz-continuous-graph-observation-v1",
+      "action": "Continuous graph observation lane (deferred program package)"
+    }
+  ],
+  "completedPackages": [
+    {
       "id": "cg-master-graph-hub-publication-v1",
-      "action": "Project foundation release to L:/Z: Intelligence Hub catalog (operator-gated)"
+      "verdict": "PUBLISHED_TO_INTELLIGENCE_HUB",
+      "contentHash": "sha256:832a0de7c436f35a439aa6afc1c83762d82c853278f771e60573ff5846c3fb95",
+      "receipt": "artifacts/agent-runs/cg-master-graph-hub-publication-v1/hub-publication-receipt-v1.json"
     }
   ]
 }
