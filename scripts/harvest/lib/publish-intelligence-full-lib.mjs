@@ -24,6 +24,32 @@ function writeJson(filePath, value) {
   fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
 }
 
+/** npm lifecycle lines (e.g. `> script-name`) break JSON.parse on combined stdout. */
+function parseJsonFromProcessOutput(stdout) {
+  const text = String(stdout ?? "").trim();
+  try {
+    return JSON.parse(text);
+  } catch {
+    const start = text.lastIndexOf("{");
+    const end = text.lastIndexOf("}");
+    if (start >= 0 && end > start) {
+      return JSON.parse(text.slice(start, end + 1));
+    }
+    throw new Error(`no JSON object in process output: ${text.slice(0, 200)}`);
+  }
+}
+
+function runAppBuilderJsonScript(appBuilderRoot, scriptRel, args = [], env = {}) {
+  const scriptPath = path.join(appBuilderRoot, scriptRel);
+  const cmd = `node ${JSON.stringify(scriptPath)} ${args.join(" ")}`.trim();
+  const stdout = execSync(cmd, {
+    cwd: appBuilderRoot,
+    env: { ...process.env, ...env },
+    encoding: "utf8",
+  });
+  return parseJsonFromProcessOutput(stdout);
+}
+
 function runStep(label, cmd, cwd, env = {}) {
   console.log(`\n=== ${label} ===`);
   console.log(`> ${cmd}`);
@@ -298,13 +324,12 @@ export function publishIntelligenceFull({
 
     let hotRouting = { ok: false, code: "SKIP" };
     try {
-      const hotCmd = "npm run intelligence-hub:publish-hot-routing-index -- --json";
-      const hotOut = execSync(hotCmd, {
-        cwd: appBuilderRoot,
-        env: { ...process.env, INTELLIGENCE_HUB_ROOT: hubRoot },
-        encoding: "utf8",
-      });
-      hotRouting = JSON.parse(hotOut);
+      hotRouting = runAppBuilderJsonScript(
+        appBuilderRoot,
+        "scripts/intelligence-hub/index-freshness/publish-hot-routing-index.mjs",
+        ["--json"],
+        { INTELLIGENCE_HUB_ROOT: hubRoot },
+      );
       stages.push({ label: "hot-routing-index", ok: hotRouting.ok, code: hotRouting.code });
     } catch (err) {
       stages.push({ label: "hot-routing-index", ok: false, error: String(err.message ?? err) });
@@ -312,13 +337,12 @@ export function publishIntelligenceFull({
 
     let aiCachePublish = { ok: false, code: "SKIP" };
     try {
-      const zCmd = "npm run intelligence-hub:index-freshness:publish -- --json";
-      const zOut = execSync(zCmd, {
-        cwd: appBuilderRoot,
-        env: { ...process.env, INTELLIGENCE_HUB_ROOT: hubRoot },
-        encoding: "utf8",
-      });
-      const parsed = JSON.parse(zOut);
+      const parsed = runAppBuilderJsonScript(
+        appBuilderRoot,
+        "scripts/intelligence-hub/index-freshness/run-index-freshness-pipeline.mjs",
+        ["--json"],
+        { INTELLIGENCE_HUB_ROOT: hubRoot },
+      );
       aiCachePublish = parsed.receipt?.layers?.zAiCache ?? parsed.aiCachePublish ?? { ok: true };
       stages.push({ label: "z-ai-cache-index", ok: aiCachePublish.ok !== false, code: aiCachePublish.code });
     } catch (err) {
@@ -385,17 +409,15 @@ export function publishIntelligenceFull({
     let supabaseProjection = { ok: false, code: "SKIP" };
     if (!skipSupabaseProjection) {
       try {
-        const supabaseCmd = `npm run intelligence-hub:thread-autopsy:project-supabase -- --harvest-id=${harvestId} --apply --json`;
-        const supabaseOut = execSync(supabaseCmd, {
-          cwd: appBuilderRoot,
-          env: {
-            ...process.env,
+        supabaseProjection = runAppBuilderJsonScript(
+          appBuilderRoot,
+          "scripts/intelligence-hub/thread-autopsy/project-supabase.mjs",
+          [`--harvest-id=${harvestId}`, "--apply", "--json"],
+          {
             INTELLIGENCE_HUB_ROOT: hubRoot,
             CAPITALGLASS_CROSS_AGENT_ROOT: repoRoot,
           },
-          encoding: "utf8",
-        });
-        supabaseProjection = JSON.parse(supabaseOut);
+        );
         stages.push({
           label: "thread-autopsy-supabase",
           ok: supabaseProjection.apply?.ok !== false,
