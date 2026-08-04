@@ -48,3 +48,9 @@ If a path 404s in Cross-Agent, resolve from the **owner repo** at the commit cit
 
 - Source note prepared for `cross-agent-notes-seeding-v1` compact projection.
 - Full note body remains canonical here; agent layer receives pointers only.
+
+### 2026-08-04 — Thread harvest harvest-2026-08-04-z-l-drive-offlan-session-v1
+
+- Off-LAN ForceRemap: **Z OK** (Tailscale cg-server), **L blocked** (desk SMB unreachable).
+- WSL drvfs ghost mount documented (WM-001).
+- Seeds: IH-Z-L-OFFLAN-PARTIAL-001, IH-WSL-DRVF-GHOST-002, IH-Z-FORCE-REMAP-CWD-003.
