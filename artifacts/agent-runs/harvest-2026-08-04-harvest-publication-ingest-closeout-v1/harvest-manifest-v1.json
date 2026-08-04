@@ -1,0 +1,116 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-harvest-publication-ingest-closeout-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "57f443b0fb2fe876dc4ec0c33d4f77d8a56709cf",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-04T02:05:00.000Z",
+  "updatedAt": "2026-08-04T02:05:00.000Z",
+  "retrievalResult": "INDEX_HIT",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": ["AUTO_PUBLISHER_V1_1_ACTIVE"],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-04-harvest-publication-ingest-closeout-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-04-harvest-publication-ingest-closeout-v1/seed-packet-index.json",
+    "counts": { "waste": 3, "seeds": 4, "roiItems": 3, "operatorFriction": 1 }
+  },
+  "projection": {
+    "projectionSyncStatus": "synced",
+    "hubPublishStatus": "published",
+    "hubPublishBlocker": null,
+    "note": "4 seeds published; index:publish pending at commit SHA"
+  },
+  "ledgerLineage": { "ledgerPath": "work-progress/ACTIVE_WORK.md" },
+  "supersededClaims": [
+    {
+      "packetId": "harvest-2026-08-04-hub-publication-verify-autopsy-v1",
+      "claim": "intelligence-hub-thread-autopsy-publication PARTIAL_PASS / freshness DRIFT",
+      "supersededBy": "index:freshness-gate PASS @ 57f443b + this closeout harvest",
+      "recordedAt": "2026-08-04T02:05:00.000Z"
+    }
+  ],
+  "packets": [
+    {
+      "packetId": "intelligence-hub-thread-autopsy-publication-v1",
+      "packetTitle": "Intelligence Hub thread autopsy seed publication",
+      "state": "PUBLICATION_COMPLETE",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "OPERATIONAL",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-04_intelligence-hub-thread-autopsy-publication-v1.md",
+      "evidenceRefs": [
+        "artifacts/agent-runs/harvest-2026-08-04-hub-publication-verify-autopsy-v1/hub-publication-receipt.json",
+        "runtime/index-publication/latest.json",
+        "artifacts/agent-runs/cross-agent-index-freshness-gate-v1/latest.json"
+      ],
+      "commitRefs": [
+        { "repo": "CapitalGlass-Cross-Agent", "sha": "d84ad38" },
+        { "repo": "CapitalGlass-Cross-Agent", "sha": "5b8d675" },
+        { "repo": "CapitalGlass-Cross-Agent", "sha": "57f443b" }
+      ],
+      "nextAction": "None — catalog + ledger parity @ 57f443b",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "blockers": []
+    },
+    {
+      "packetId": "intelligence-hub-index-ai-cache-freshness-v1",
+      "packetTitle": "Index freshness / ledger parity",
+      "state": "FOUNDATION_PASS",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-03_intelligence-hub-index-ai-cache-freshness-v1.md",
+      "evidenceRefs": ["artifacts/agent-runs/cross-agent-index-freshness-gate-v1/latest.json"],
+      "commitRefs": [{ "repo": "CapitalGlass-Cross-Agent", "sha": "57f443b0fb2fe876dc4ec0c33d4f77d8a56709cf" }],
+      "nextAction": "Re-run index:publish after each main push",
+      "advancementGate": "not-required",
+      "doNotAdvance": ["AUTO_PUBLISHER_V1_1_ACTIVE"],
+      "blockers": []
+    },
+    {
+      "packetId": "active-ledger-ci-path-and-hash-stability-v1",
+      "packetTitle": "Cross-agent ledger ingest git-mutation guard",
+      "state": "INGEST_GUARD_DOCUMENTED",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/scripts/cross-agent-ledger/lib/derived-only-verify.mjs",
+        "CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-structured-ledger-projection-v1/ingest-apply-receipt.json"
+      ],
+      "commitRefs": [],
+      "nextAction": "None — operational workaround documented in seeds",
+      "advancementGate": "not-required",
+      "doNotAdvance": ["Run harvest:sync-derived during cross-agent-ledger:ingest --apply"],
+      "blockers": []
+    },
+    {
+      "packetId": "cross-agent-harvest-owner-boundary-v1",
+      "packetTitle": "Harvest closeout publish chain",
+      "state": "PIPELINE_OPERATIONAL",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-04_intelligence-hub-thread-autopsy-publication-v1.md",
+      "evidenceRefs": [
+        "scripts/harvest/compile-seed-packets.mjs",
+        "scripts/harvest/lib/compile-seed-packets-lib.mjs",
+        "harvest-2026-08-04-hub-publication-verify-autopsy-v1"
+      ],
+      "commitRefs": [{ "repo": "CapitalGlass-Cross-Agent", "sha": "d84ad38fd34ad0b96e2f7322ee730956e61ea750" }],
+      "nextAction": "Wire harvest:publish-intelligence-full one-shot when ready",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "blockers": []
+    }
+  ]
+}

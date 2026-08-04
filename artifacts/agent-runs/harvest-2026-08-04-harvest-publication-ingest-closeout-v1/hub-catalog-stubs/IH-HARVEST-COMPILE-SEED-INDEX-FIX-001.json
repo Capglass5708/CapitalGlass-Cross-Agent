@@ -1,0 +1,73 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-harvest-compile-seed-index-fix-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "d9bc8a65e5b898221d31479dbd69385ccec0f99e",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-harvest-publication-ingest-closeout-v1",
+      "seedId": "IH-HARVEST-COMPILE-SEED-INDEX-FIX-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T02:05:36.103Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "b133d57cedd95727572cee1b87f2d21f8a6263acf2cde6c924b802f1983e3d19"
+  },
+  "body": {
+    "seedId": "IH-HARVEST-COMPILE-SEED-INDEX-FIX-001",
+    "kind": "lesson",
+    "title": "compile-seed-packets must skip seed-packet-index.json",
+    "summary": "listSeedPackets read index file as seed → TypeError seedId undefined. Filter seed-packet-index.json and require seedId.",
+    "canonicalQuestion": "harvest:compile-seed-packets TypeError seedId replace",
+    "alternateQuestions": [
+      "Why did compile seed packets fail?"
+    ],
+    "shortAnswer": "listSeedPackets read index file as seed → TypeError seedId undefined. Filter seed-packet-index.json and require seedId.",
+    "detailedAnswer": "compile-seed-packets must skip seed-packet-index.json",
+    "retrievalQuestions": [
+      "harvest:compile-seed-packets TypeError seedId replace",
+      "Why did compile seed packets fail?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "harvest:compile-seed-packets crashes on replace",
+      "startAt": [
+        "scripts/harvest/lib/compile-seed-packets-lib.mjs"
+      ],
+      "runPreflight": [
+        "npm run harvest:compile-seed-packets -- --harvest-id=<id>"
+      ],
+      "doNot": [
+        "Hand-edit qa-index.json without recompiling from seed-packets/"
+      ],
+      "proveBeforeClaiming": [
+        "compile-seed-packets-receipt.json verdict PASS"
+      ]
+    },
+    "evidenceRefs": [
+      "scripts/harvest/lib/compile-seed-packets-lib.mjs#listSeedPackets",
+      "harvest-2026-08-04-hub-publication-verify-autopsy-v1"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "AUTOMATIC",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Cross-Agent",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-harvest-publication-ingest-closeout-v1/seed-packets/IH-HARVEST-COMPILE-SEED-INDEX-FIX-001.json"
+    ],
+    "harvestId": "harvest-2026-08-04-harvest-publication-ingest-closeout-v1"
+  }
+}

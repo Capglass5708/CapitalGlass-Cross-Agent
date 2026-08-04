@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-harvest-publication-ingest-closeout-v1",
+  "generatedAt": "2026-08-04T02:05:00.000Z",
+  "sourceCommitSha": "57f443b0fb2fe876dc4ec0c33d4f77d8a56709cf",
+  "events": [
+    {
+      "eventId": "TE-201",
+      "turn": "~1",
+      "actor": "user",
+      "summary": "Re-run chat-thread-closeout-autopsy harvest with new changes",
+      "evidenceRefs": ["chat-thread-closeout-autopsy-harvest-v1.md"]
+    },
+    {
+      "eventId": "TE-202",
+      "turn": "~2",
+      "actor": "agent",
+      "summary": "Completed hub-publication-verify autopsy: validate PASS, compile-seed-packets fix, hub publish 4 seeds, index:publish @ ae1c427, freshness PASS",
+      "evidenceRefs": [
+        "artifacts/agent-runs/harvest-2026-08-04-hub-publication-verify-autopsy-v1/hub-publication-receipt.json",
+        "artifacts/agent-runs/cross-agent-index-freshness-gate-v1/latest.json"
+      ]
+    },
+    {
+      "eventId": "TE-203",
+      "turn": "~3",
+      "actor": "user",
+      "summary": "Asked if second harvest run was better than partial first run",
+      "evidenceRefs": []
+    },
+    {
+      "eventId": "TE-204",
+      "turn": "~4",
+      "actor": "user",
+      "summary": "Requested commit of harvest artifacts",
+      "evidenceRefs": ["d84ad38", "5b8d675"]
+    },
+    {
+      "eventId": "TE-205",
+      "turn": "~5",
+      "actor": "agent",
+      "summary": "index:publish failed — cross-agent-ledger:ingest BLOCKED_GIT_MUTATION after 5b8d675 push",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-structured-ledger-projection-v1/ingest-apply-receipt.json"
+      ]
+    },
+    {
+      "eventId": "TE-206",
+      "turn": "~6",
+      "actor": "user",
+      "summary": "Requested fix ingest",
+      "evidenceRefs": []
+    },
+    {
+      "eventId": "TE-207",
+      "turn": "~7",
+      "actor": "agent",
+      "summary": "Ingest APPLIED @ 57f443b; drift-probe IN_SYNC; index:publish PUBLISH_PASS; index:freshness-gate PASS",
+      "evidenceRefs": [
+        "runtime/index-publication/latest.json",
+        "artifacts/agent-runs/cross-agent-index-freshness-gate-v1/latest.json"
+      ]
+    },
+    {
+      "eventId": "TE-208",
+      "turn": "~8",
+      "actor": "user",
+      "summary": "Run chat-thread-closeout-autopsy harvest protocol again",
+      "evidenceRefs": ["chat-thread-closeout-autopsy-harvest-v1.md"]
+    }
+  ]
+}

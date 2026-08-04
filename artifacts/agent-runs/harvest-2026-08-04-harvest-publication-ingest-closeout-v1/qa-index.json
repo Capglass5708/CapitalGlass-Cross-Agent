@@ -1,0 +1,235 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-harvest-publication-ingest-closeout-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-HARVEST-COMPILE-SEED-INDEX-FIX-001",
+      "questionId": "IHHARVESTCOM",
+      "canonicalQuestion": "harvest:compile-seed-packets TypeError seedId replace",
+      "alternateQuestions": [
+        "Why did compile seed packets fail?"
+      ],
+      "shortAnswer": "listSeedPackets read index file as seed → TypeError seedId undefined. Filter seed-packet-index.json and require seedId.",
+      "detailedAnswer": "compile-seed-packets must skip seed-packet-index.json",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T02:05:36.102Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-harvest-publication-ingest-closeout-v1/seed-packets/IH-HARVEST-COMPILE-SEED-INDEX-FIX-001.json"
+      ],
+      "authorityCommit": [
+        "d9bc8a6"
+      ],
+      "evidenceUrls": [
+        "scripts/harvest/lib/compile-seed-packets-lib.mjs#listSeedPackets",
+        "harvest-2026-08-04-hub-publication-verify-autopsy-v1"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-04-harvest-publication-ingest-closeout-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "harvest:compile-seed-packets crashes on replace",
+        "startAt": [
+          "scripts/harvest/lib/compile-seed-packets-lib.mjs"
+        ],
+        "runPreflight": [
+          "npm run harvest:compile-seed-packets -- --harvest-id=<id>"
+        ],
+        "doNot": [
+          "Hand-edit qa-index.json without recompiling from seed-packets/"
+        ],
+        "proveBeforeClaiming": [
+          "compile-seed-packets-receipt.json verdict PASS"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "lesson"
+    },
+    {
+      "ihPfspId": "IH-HARVEST-PUBLISH-SHA-CHAIN-001",
+      "questionId": "IHHARVESTPUB",
+      "canonicalQuestion": "What is the harvest operational publish order?",
+      "alternateQuestions": [
+        "Why does freshness-gate fail after commit?",
+        "How do I complete a T2 thread autopsy harvest?"
+      ],
+      "shortAnswer": "Every main push needs index:publish at that SHA or freshness-gate FAILs. Commit harvest before publish.",
+      "detailedAnswer": "Harvest closeout SHA chain: validate → compile → hub seed → commit → index:publish → freshness",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T02:05:36.103Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-harvest-publication-ingest-closeout-v1/seed-packets/IH-HARVEST-PUBLISH-SHA-CHAIN-001.json"
+      ],
+      "authorityCommit": [
+        "d9bc8a6"
+      ],
+      "evidenceUrls": [
+        "Z:/Capital-Glass-Dev/Harvest/protocol/chat-thread-closeout-autopsy-harvest-v1.md",
+        "artifacts/agent-runs/harvest-2026-08-04-harvest-publication-ingest-closeout-v1/thread-autopsy-bundle.json#ED-202"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "command",
+        "harvest-2026-08-04-harvest-publication-ingest-closeout-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Thread autopsy harvest closeout",
+        "startAt": [
+          "harvest-manifest-v1.json",
+          "chat-thread-closeout-autopsy-harvest-v1.md"
+        ],
+        "runPreflight": [
+          "npm run harvest:validate",
+          "npm run harvest:compile-seed-packets -- --harvest-id=<id>",
+          "npm run harvest:publish-hub-seed -- --harvest-id=<id>"
+        ],
+        "doNot": [
+          "Claim FULLY_SEEDED with only catalog seeds",
+          "Skip index:publish after git push"
+        ],
+        "proveBeforeClaiming": [
+          "index:freshness-gate PASS at current HEAD"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "command"
+    },
+    {
+      "ihPfspId": "IH-INGEST-DRIFT-PROBE-001",
+      "questionId": "IHINGESTDRIF",
+      "canonicalQuestion": "How do I verify Supabase ledger matches git?",
+      "alternateQuestions": [
+        "What command proves ingest succeeded?"
+      ],
+      "shortAnswer": "After ingest APPLIED, run cross-agent-ledger:drift-probe — expect IN_SYNC before index:publish.",
+      "detailedAnswer": "Prove ledger parity after ingest with drift-probe",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T02:05:36.103Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-harvest-publication-ingest-closeout-v1/seed-packets/IH-INGEST-DRIFT-PROBE-001.json"
+      ],
+      "authorityCommit": [
+        "d9bc8a6"
+      ],
+      "evidenceUrls": [
+        "work-progress/command-index.json#cross-agent-ledger-drift-probe",
+        "CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-structured-ledger-projection-v1/drift-probe-latest.json"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "command",
+        "harvest-2026-08-04-harvest-publication-ingest-closeout-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "After fixing ingest or pushing Cross-Agent main",
+        "startAt": [
+          "work-progress/command-index.json"
+        ],
+        "runPreflight": [
+          "cd CG-AppBuilder-MCP && doppler run -- npm run cross-agent-ledger:drift-probe -- --repo=CapitalGlass-Cross-Agent"
+        ],
+        "doNot": [
+          "Skip drift-probe when ingest receipt shows DRIFT_DETECTED in priorDrift only — re-run after APPLIED"
+        ],
+        "proveBeforeClaiming": [
+          "drift-probe verdict IN_SYNC"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "command"
+    },
+    {
+      "ihPfspId": "IH-INGEST-GIT-MUTATION-GUARD-001",
+      "questionId": "IHINGESTGITM",
+      "canonicalQuestion": "Why did cross-agent-ledger:ingest fail?",
+      "alternateQuestions": [
+        "What is BLOCKED_GIT_MUTATION?",
+        "How do I fix ingest failure during index:publish?"
+      ],
+      "shortAnswer": "BLOCKED_GIT_MUTATION means before/after git porcelain differed — not Supabase. Freeze harvest sync during ingest.",
+      "detailedAnswer": "Cross-agent ledger ingest blocks when Git changes during apply",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T02:05:36.103Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-harvest-publication-ingest-closeout-v1/seed-packets/IH-INGEST-GIT-MUTATION-GUARD-001.json"
+      ],
+      "authorityCommit": [
+        "d9bc8a6"
+      ],
+      "evidenceUrls": [
+        "CG-AppBuilder-MCP/scripts/cross-agent-ledger/lib/derived-only-verify.mjs",
+        "CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-structured-ledger-projection-v1/ingest-apply-receipt.json"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-04-harvest-publication-ingest-closeout-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "futureAgentInstructions": {
+        "whenThisAppears": "index:publish fails at ingest step",
+        "startAt": [
+          "ingest-apply-receipt.json#derivedOnly"
+        ],
+        "runPreflight": [
+          "git -C CapitalGlass-Cross-Agent status --porcelain"
+        ],
+        "doNot": [
+          "Assume Doppler or Supabase outage first",
+          "Run harvest:sync-derived during ingest --apply"
+        ],
+        "proveBeforeClaiming": [
+          "derivedOnly.beforePorcelain === afterPorcelain",
+          "verdict APPLIED"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "lesson"
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-harvest-publication-ingest-closeout-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "commandIndexConsulted": true,
+    "hubSlicesConsulted": [
+      "BY-KIND/thread-autopsy-index.json",
+      "work-progress/harvest-packet-registry.json",
+      "work-progress/command-index.json"
+    ],
+    "checkedAt": "2026-08-04T02:05:00.000Z"
+  },
+  "waste": [
+    {
+      "wasteId": "TW-201",
+      "type": "verification",
+      "description": "index:publish after commit without stable ingest left freshness FAIL until ingest fixed",
+      "evidenceRefs": ["TE-205", "5b8d675"],
+      "estimatedImpact": "medium",
+      "savedBy": "After every main push, run index:publish with stable git during ingest",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-202",
+      "type": "tool",
+      "description": "ingest BLOCKED_GIT_MUTATION from concurrent harvest file writes during apply",
+      "evidenceRefs": ["ingest-apply-receipt.json#derivedOnly"],
+      "estimatedImpact": "high",
+      "savedBy": "Freeze Cross-Agent git mutations during cross-agent-ledger:ingest --apply",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-203",
+      "type": "rework",
+      "description": "Multiple commit cycles before ledger parity stable at 57f443b",
+      "evidenceRefs": ["d84ad38", "5b8d675", "57f443b"],
+      "estimatedImpact": "low",
+      "savedBy": "Single commit including harvest + publication receipts before index:publish",
+      "roiRank": 3
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-201",
+      "trigger": "User asked fix ingest separately after commit broke publish",
+      "operatorCost": "medium",
+      "systemFix": "IH-INGEST-GIT-MUTATION-GUARD-001 seed + command-index pointer",
+      "linkedWasteIds": ["TW-202"]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-201",
+      "situation": "index:publish after pushing harvest commit",
+      "actualExecution": {
+        "steps": ["Push 5b8d675", "Run index:publish", "ingest FAIL BLOCKED_GIT_MUTATION"],
+        "outcome": "FAIL",
+        "evidenceRefs": ["TE-205"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Ensure no harvest:sync-derived running",
+          "cross-agent-ledger:ingest --apply with stable porcelain",
+          "index:publish",
+          "index:freshness-gate"
+        ],
+        "outcome": "PASS",
+        "requiredPreflight": ["git status stable during ingest window"]
+      },
+      "deltaCost": { "time": "medium", "tokens": "low", "operatorFrustration": "medium" }
+    },
+    {
+      "executionDeltaId": "ED-202",
+      "situation": "Complete hub harvest operational chain across thread",
+      "actualExecution": {
+        "steps": [
+          "Partial first hub-publication run",
+          "Second run with compile fix @ ae1c427",
+          "Ingest fix closeout @ 57f443b"
+        ],
+        "outcome": "PASS",
+        "evidenceRefs": ["harvest-2026-08-04-hub-publication-verify-autopsy-v1", "TE-207"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "harvest:validate → compile-seed-packets → publish-hub-seed",
+          "commit harvest",
+          "index:publish (stable git)",
+          "index:freshness-gate"
+        ],
+        "outcome": "Single-pass operational",
+        "requiredPreflight": ["BY-KIND/thread-autopsy-index.json"]
+      },
+      "deltaCost": { "time": "high", "tokens": "medium", "operatorFrustration": "low" }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-201",
+      "summary": "Diagnosed ingest as Supabase outage instead of BLOCKED_GIT_MUTATION",
+      "whyItWasWrong": "Receipt derivedOnly shows porcelain changed during apply — not a DB error",
+      "correctFirstMove": "Read ingest-apply-receipt.json derivedOnly.beforePorcelain vs afterPorcelain",
+      "preventiveControl": "IH-INGEST-GIT-MUTATION-GUARD-001",
+      "executionDeltaId": "ED-201"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-201",
+      "subject": "Second harvest on hub publication thread",
+      "firstKnownInstance": "harvest-2026-08-04-hub-publication-verify-autopsy-v1",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "whyRepeated": "Closeout continued with commits, ingest fix, and operational publish",
+      "avoidableBy": "Run full protocol once through index:freshness-gate before first commit",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Ingest git-mutation guard runbook",
+      "whyItPays": "Stops false Supabase diagnosis and repeated index:publish failures",
+      "effort": "low",
+      "seedAs": "runbook",
+      "savedWasteIds": ["TW-202"],
+      "ownerRepo": "CG-AppBuilder-MCP"
+    },
+    {
+      "rank": 2,
+      "title": "Harvest closeout SHA chain (commit → publish → freshness)",
+      "whyItPays": "Prevents freshness drift after every harvest commit",
+      "effort": "low",
+      "seedAs": "command",
+      "savedWasteIds": ["TW-201", "TW-203"],
+      "ownerRepo": "CapitalGlass-Cross-Agent"
+    },
+    {
+      "rank": 3,
+      "title": "Ledger drift-probe after ingest APPLIED",
+      "whyItPays": "Confirms Supabase parity before claiming publish ready",
+      "effort": "low",
+      "seedAs": "command",
+      "savedWasteIds": ["TW-201"],
+      "ownerRepo": "CG-AppBuilder-MCP"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "AUTO_PUBLISHER_V1_1_ACTIVE",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": ["GHA push-trigger index-publication with NOOP_CURRENT proof"],
+      "lastKnownEvidence": ["cross-agent-index-auto-publisher-activation-v1 HOLD"]
+    },
+    {
+      "awardOrVerdict": "FULLY_SEEDED",
+      "currentStatus": "CLOSED",
+      "doNotClaimUntil": ["index:freshness-gate PASS at current HEAD"],
+      "lastKnownEvidence": [
+        "index:freshness-gate PASS @ 57f443b",
+        "runtime/index-publication/latest.json PUBLISH_PASS"
+      ]
+    }
+  ]
+}

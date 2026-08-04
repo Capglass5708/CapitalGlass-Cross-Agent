@@ -2,7 +2,7 @@
 
 ## Summary
 
-Thread autopsy harvest seeds published to L: Intelligence Hub catalog and `BY-KIND/thread-autopsy-index.json`.
+Thread autopsy harvest seeds published to L: Intelligence Hub catalog and `BY-KIND/thread-autopsy-index.json`. **Operational @ 57f443b.**
 
 ## Workspace
 
@@ -10,24 +10,24 @@ Thread autopsy harvest seeds published to L: Intelligence Hub catalog and `BY-KI
 | --- | --- |
 | Work package | `intelligence-hub-thread-autopsy-publication-v1` |
 | Owner repo | CapitalGlass-Cross-Agent |
-| Status | **HUB_CATALOG_POPULATED_FRESHNESS_DRIFT** |
-| Verdict | **PARTIAL_PASS** |
+| Status | **PUBLICATION_COMPLETE** |
+| Verdict | **PASS** |
 
-## Publication evidence (2026-08-04)
+## Publication evidence (2026-08-04 closeout)
 
 | Layer | Verdict | Detail |
 | --- | --- | --- |
-| Catalog seeds on L: | **12/12 PASS** | `02-catalog/knowledge-objects/cross-agent-harvest/` |
-| `thread-autopsy-index.json` | **Updated** | 3 harvests indexed |
-| Manual publish receipt | `PUBLISH_PASS` @ `a833852` | 8 seeds |
-| Pipeline publish receipt | `PUBLISH_PASS` @ `ae1c427` | 4 seeds (wesleydesk closeout) |
-| `index:freshness-gate` | **FAIL** | L: ledger `a833852` ≠ git `ae1c427` |
+| Catalog seeds on L: | **38+ files** | `02-catalog/knowledge-objects/cross-agent-harvest/` |
+| `thread-autopsy-index.json` | **Updated** | Multiple harvests indexed |
+| `index:publish` | **PUBLISH_PASS** | @ `57f443b` |
+| `index:freshness-gate` | **PASS** | @ `57f443b` |
+| `cross-agent-ledger:ingest` | **APPLIED** | After resolving BLOCKED_GIT_MUTATION |
 
 ## Do not advance
 
-- `FULLY_SEEDED` without `index:freshness-gate PASS` at current HEAD
-- Treat catalog presence as ledger parity
+- `AUTO_PUBLISHER_V1_1_ACTIVE` — GHA scheduled publisher not proven
+- Run `harvest:sync-derived` during `cross-agent-ledger:ingest --apply`
 
-## Next action
+## Harvest authority
 
-Run `npm run index:publish` at current HEAD to clear freshness drift.
+Latest closeout: `harvest-2026-08-04-harvest-publication-ingest-closeout-v1`

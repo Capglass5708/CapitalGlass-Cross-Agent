@@ -1,0 +1,79 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-harvest-publish-sha-chain-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "d9bc8a65e5b898221d31479dbd69385ccec0f99e",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-harvest-publication-ingest-closeout-v1",
+      "seedId": "IH-HARVEST-PUBLISH-SHA-CHAIN-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T02:05:36.104Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "2454477ff833041b72a2260ec8098427416e5dd17c02e142d7af36e06011eac9"
+  },
+  "body": {
+    "seedId": "IH-HARVEST-PUBLISH-SHA-CHAIN-001",
+    "kind": "command",
+    "title": "Harvest closeout SHA chain: validate → compile → hub seed → commit → index:publish → freshness",
+    "summary": "Every main push needs index:publish at that SHA or freshness-gate FAILs. Commit harvest before publish.",
+    "canonicalQuestion": "What is the harvest operational publish order?",
+    "alternateQuestions": [
+      "Why does freshness-gate fail after commit?",
+      "How do I complete a T2 thread autopsy harvest?"
+    ],
+    "shortAnswer": "Every main push needs index:publish at that SHA or freshness-gate FAILs. Commit harvest before publish.",
+    "detailedAnswer": "Harvest closeout SHA chain: validate → compile → hub seed → commit → index:publish → freshness",
+    "retrievalQuestions": [
+      "What is the harvest operational publish order?",
+      "Why does freshness-gate fail after commit?",
+      "How do I complete a T2 thread autopsy harvest?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Thread autopsy harvest closeout",
+      "startAt": [
+        "harvest-manifest-v1.json",
+        "chat-thread-closeout-autopsy-harvest-v1.md"
+      ],
+      "runPreflight": [
+        "npm run harvest:validate",
+        "npm run harvest:compile-seed-packets -- --harvest-id=<id>",
+        "npm run harvest:publish-hub-seed -- --harvest-id=<id>"
+      ],
+      "doNot": [
+        "Claim FULLY_SEEDED with only catalog seeds",
+        "Skip index:publish after git push"
+      ],
+      "proveBeforeClaiming": [
+        "index:freshness-gate PASS at current HEAD"
+      ]
+    },
+    "evidenceRefs": [
+      "Z:/Capital-Glass-Dev/Harvest/protocol/chat-thread-closeout-autopsy-harvest-v1.md",
+      "artifacts/agent-runs/harvest-2026-08-04-harvest-publication-ingest-closeout-v1/thread-autopsy-bundle.json#ED-202"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": 2,
+    "doNotAdvance": [],
+    "promotionClass": "AUTOMATIC",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Cross-Agent",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-harvest-publication-ingest-closeout-v1/seed-packets/IH-HARVEST-PUBLISH-SHA-CHAIN-001.json"
+    ],
+    "harvestId": "harvest-2026-08-04-harvest-publication-ingest-closeout-v1"
+  }
+}
