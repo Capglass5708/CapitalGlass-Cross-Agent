@@ -1,0 +1,51 @@
+{
+  "schema": "cross-agent-work-package-receipt-v1",
+  "workPackageId": "document-center-synology-dev-lane-v1",
+  "agentLane": "Agent 2 — Document Center & Synology dev",
+  "verdict": "LANE_CLOSEOUT_PASS",
+  "recordedAt": "2026-08-04T16:55:00Z",
+  "productionHardeningSmokes": {
+    "workflowRunId": "30925269106",
+    "workflowUrl": "https://github.com/Capglass5708/CapitalGlass-Documents/actions/runs/30925269106",
+    "verdict": "PASS"
+  },
+  "deployedShaPins": {
+    "dopplerProject": "cg-documents",
+    "dopplerConfig": "prd",
+    "EXPECTED_DOCUMENT_CENTER_GIT_SHA": "03f6d241ebf7c170c9f64d0bbfe50dd320fe231b",
+    "EXPECTED_PROJECT_DASHBOARD_GIT_SHA": "1ad3312756e311a29f4a8162b9a4e2d2b0572283",
+    "githubSecretsSynced": true,
+    "syncScript": "CapitalGlass-Documents/scripts/security/sync-production-smoke-github-secrets.mjs --apply"
+  },
+  "productionIdentity": {
+    "url": "https://documents.capitalglasstxapps.com",
+    "gitShortSha": "03f6d24",
+    "environment": "production",
+    "buildId": "dpl_F2ZTFTfb2UZ1GU4x73xyik6EebQ8",
+    "touchedDuringRepair": false
+  },
+  "devAliasRepair": {
+    "regressionObservedAt": "2026-08-04T15:33:55Z",
+    "regressionSymptom": "documents-dev served production deployment 03f6d24; claim probed wrong path returned 405",
+    "repairAction": "vercel alias set dpl_8cve5SbrQowbVfT81Azh5LhEVzeR documents-dev.capitalglasstxapps.com",
+    "repairOutcome": "PASS",
+    "devUrl": "https://documents-dev.capitalglasstxapps.com",
+    "gitShortSha": "7c0b76f",
+    "fullSha": "7c0b76ffba8d085ecdf6786d93892545fe99ce53",
+    "environment": "preview",
+    "buildId": "dpl_8cve5SbrQowbVfT81Azh5LhEVzeR",
+    "claimRoute": "/api/internal/documents/project-folder-provision/claim",
+    "claimUnauthenticatedStatus": 401,
+    "completeRoute": "/api/internal/documents/project-folder-provision/complete",
+    "completeUnauthenticatedStatus": 401
+  },
+  "productionSynologyFlag": {
+    "dopplerName": "PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED",
+    "dopplerConfig": "cg-documents/prd",
+    "value": "true",
+    "intentionallyRetained": true,
+    "authority": "project-folder-synology-primary-v1-production-promotion — PRODUCTION_PROMOTION_PASS supersedes earlier HALTED contract in ACTIVE_WORK",
+    "revertForbiddenUnless": "newer authoritative promotion receipt explicitly revokes production activation"
+  },
+  "nextOwner": "Agent 3 — cross-agent-ledger:ingest --apply after ledger commit"
+}

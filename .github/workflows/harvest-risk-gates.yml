@@ -1,0 +1,43 @@
+name: harvest-risk-gates
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  harvest-authority-gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Configure git identity for fixture tests
+        run: |
+          git config user.email "ci@capitalglass.local"
+          git config user.name "Capital Glass CI"
+      - run: npm ci
+      - name: Risk remediation suite
+        run: npm run test:harvest:risk-remediation
+      - name: Git retention
+        run: npm run test:harvest:git-retention
+      - name: PR governance diff gate
+        if: github.event_name == 'pull_request'
+        run: npm run harvest:check-pr-governance -- --base-ref=${{ github.event.pull_request.base.sha }} --head-ref=HEAD --json
+      - name: PR metadata churn gate
+        if: github.event_name == 'pull_request'
+        run: npm run harvest:check-metadata-churn -- --mode=pr-diff --base-ref=${{ github.event.pull_request.base.sha }} --head-ref=HEAD --json
+      - name: Publication identity
+        run: npm run test:harvest:identity
+      - name: Metadata churn staged mode smoke
+        run: npm run harvest:check-metadata-churn -- --mode=staged --json
+      - name: PR governance unit tests
+        run: npm run test:harvest:pr-governance
+      - name: Record companion-dependent suite skip
+        run: |
+          echo "SKIPPED_IN_GITHUB_ACTIONS: test:harvest:layered-verdict, test:harvest:authority-dogfood, test:harvest:phase-c, test:harvest:content-freshness"
+          echo "Reason: CG-AppBuilder-MCP companion repo is private; run full integration in WSL2 estate checkout."

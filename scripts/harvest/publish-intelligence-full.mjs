@@ -12,6 +12,7 @@ import { fileURLToPath } from "node:url";
 
 import { publishIntelligenceFull } from "./lib/publish-intelligence-full-lib.mjs";
 import { publishIntelligencePhaseB } from "./lib/publish-intelligence-phase-b-lib.mjs";
+import { guardLegacyPublication } from "./lib/harvest-legacy-publication-guard-lib.mjs";
 import { parseSyncHostsInput } from "./lib/host-ai-cache-fanout-lib.mjs";
 import { HARVEST_ID } from "./lib/paths.mjs";
 
@@ -109,6 +110,21 @@ function main() {
 
   if (args.pipeline !== "legacy") {
     console.error(`harvest:publish-intelligence-full FAIL — unknown pipeline=${args.pipeline}`);
+    process.exit(1);
+  }
+
+  const legacyGuard = guardLegacyPublication({
+    repoRoot: REPO_ROOT,
+    harvestId: args.harvestId,
+    pipeline: "legacy",
+  });
+  if (!legacyGuard.ok) {
+    if (args.json) {
+      console.log(JSON.stringify(legacyGuard, null, 2));
+    } else {
+      console.error(`harvest:publish-intelligence-full ${legacyGuard.verdict}`);
+      for (const e of legacyGuard.errors ?? []) console.error(`  - ${e}`);
+    }
     process.exit(1);
   }
 

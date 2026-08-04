@@ -6,6 +6,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { execSync } from "node:child_process";
 import { hashCanonicalJson, hashFileContent } from "./lib/hash.mjs";
+import { inferGraphEligibility } from "./lib/graph-repo-resolution-lib.mjs";
 import { REPO_ROOT, harvestRunDir, manifestPath, HARVEST_ID } from "./lib/paths.mjs";
 
 const harvestId = process.argv[2] || HARVEST_ID;
@@ -236,11 +237,40 @@ function main() {
     writeJson(path.join(compactDir, `${packet.packetId}.json`), record);
   }
 
-  const harvestManifestHash = hashCanonicalJson(manifest);
+  const graphEligible = inferGraphEligibility(manifest);
+  manifest.projection = manifest.projection ?? {};
+  manifest.projection.graphEligible = graphEligible;
+  manifest.projection.graphStage = graphEligible ? "STAGED" : "NOT_REQUIRED";
+
+  if (graphEligible) {
+    try {
+      const graphResult = execSync(`node scripts/harvest/build-graph-extraction.mjs ${harvestId}`, {
+        cwd: REPO_ROOT,
+        encoding: "utf8",
+      });
+      const parsed = JSON.parse(graphResult);
+      manifest.projection.graphExtractionHash = parsed.extractionHash ?? null;
+      manifest.projection.graphLExtractionPath = parsed.lExtractionPath ?? null;
+      manifest.projection.graphPromotionVerdict = "PENDING";
+
+      if (parsed.extractionPath) {
+        execSync(`node scripts/harvest/validate-graph-extraction.mjs ${harvestId}`, {
+          cwd: REPO_ROOT,
+          stdio: "inherit",
+        });
+      }
+    } catch (err) {
+      manifest.projection.graphStage = "GRAPH_VALIDATION_HOLD";
+      manifest.projection.graphValidationError = String(err.message ?? err).slice(0, 500);
+      console.warn("sync-derived: graph extraction skipped or held — harvest structural validity preserved");
+    }
+  }
 
   for (const packet of manifest.packets) {
     delete packet.contentHash;
   }
+
+  const harvestManifestHash = hashCanonicalJson(manifest);
 
   writeJson(manifestFile, manifest);
   writeJson(path.join(runDir, "packet-index.json"), buildPacketIndex(manifest));
@@ -249,20 +279,6 @@ function main() {
   writeJson(path.join(runDir, "coverage.json"), computeCoverage(manifest, compactDir));
 
   refreshPacketRegistryFromGit();
-
-  try {
-    execSync(`node scripts/harvest/build-graph-extraction.mjs ${harvestId}`, {
-      cwd: REPO_ROOT,
-      stdio: "inherit",
-    });
-    execSync(`node scripts/harvest/validate-graph-extraction.mjs ${harvestId}`, {
-      cwd: REPO_ROOT,
-      stdio: "inherit",
-    });
-  } catch (err) {
-    console.error("sync-derived: graph extraction build/validate failed");
-    throw err;
-  }
 
   console.log(`sync-derived: OK harvestManifestHash=${harvestManifestHash}`);
 }

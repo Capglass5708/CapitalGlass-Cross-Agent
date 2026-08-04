@@ -1,0 +1,73 @@
+{
+  "schema": "capital-glass-platform-milestone-receipt-v1",
+  "milestoneId": "capital-glass-platform-milestone-v1",
+  "verdict": "PARTIAL_MILESTONE_STOP",
+  "recordedAt": "2026-08-04T16:06:00Z",
+  "wavesCompleted": 2,
+  "wavesStopped": [1, 3],
+  "wavesPartial": [4, 5],
+  "waveSummaries": {
+    "wave1": {
+      "verdict": "FAIL_STOP",
+      "receipt": "wave-01-gate.json",
+      "blockers": ["runner offline", "workflow 30924982497 queued", "L: unmounted", "drive-mount verifier FAIL", "HOST_MODE_BLOCKED"]
+    },
+    "wave2": {
+      "verdict": "PASS",
+      "receipt": "wave-02-gate.json",
+      "ledgerCommit": "6893286a69aca4bc46e914a8b69d11b12656172d",
+      "ingest": "APPLIED IN_SYNC",
+      "agent2Closed": true
+    },
+    "wave3": {
+      "verdict": "FAIL_STOP",
+      "receipt": "wave-03-gate.json",
+      "blockers": ["Z_MASTER_UNAVAILABLE", "auto-v32 BLOCKED", "app-builder preflight BLOCKED"]
+    },
+    "wave4": {
+      "verdict": "PARTIAL_PASS",
+      "receipt": "wave-04-gate.json",
+      "scout": "INDEX_HIT_AI_CACHE CURRENT rawScanRequired=false",
+      "publication": "AUTO_PUBLISHER_V1_1_STAGED_NOT_ACTIVE"
+    },
+    "wave5": {
+      "verdict": "NOT_RUN",
+      "note": "integrations_health overall yellow — DC operational green; runner/mount/governance not reconciled in health surface"
+    },
+    "wave6": {
+      "verdict": "FAIL",
+      "reason": "Prior wave stops prevent coherent milestone close"
+    }
+  },
+  "coherentStateAchieved": {
+    "documentCenterProductionSmokes": "PASS run 30925269106",
+    "synologyProduction": "ACTIVE per PRODUCTION_PROMOTION_PASS",
+    "devAliasRepaired": "7c0b76f @ dpl_8cve5SbrQowbVfT81Azh5LhEVzeR",
+    "ledgerIngest": "APPLIED @ 6893286",
+    "scoutRetrieval": "INDEX_HIT_AI_CACHE CURRENT",
+    "runnerOnline": false,
+    "lDriveMounted": false,
+    "governanceCompoundingPilot": false,
+    "platformHealthFullyGreen": false
+  },
+  "blockerClassification": {
+    "operatorAction": [
+      "RYZEN9DESK: restart actions-runner service (runner offline)",
+      "WESLEY_WORK: elevated Install-CgWesleyWorkDriveMountPersistence.ps1",
+      "Mount L: Intelligence Hub on WESLEY_WORK",
+      "Reconnect Cursor via WSL Suite shortcut (HOST_MODE_BLOCKED)"
+    ],
+    "codeFix": [
+      "de-handoff-health",
+      "check:three-way-agent-rule-sync",
+      "suite:contract-gate",
+      "guard:mcp-runtime-freshness"
+    ],
+    "ledgerCorrection": [],
+    "infraStorageUnavailable": [
+      "Z_MASTER_THREE_HOST_BIBLE_TRUTH_BLOCKED",
+      "SUPABASE_PROJECTION_MISSING on drift-probe read (ingest row IN_SYNC)"
+    ]
+  },
+  "nextWaveWhenUnblocked": 1
+}

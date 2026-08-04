@@ -1,0 +1,147 @@
+{
+  "schemaVersion": "cross-agent-wsl-integration-regression-receipt-v1@1.0.0",
+  "workPackageId": "cross-agent-medium-critical-risk-remediation-v1",
+  "generatedAt": "2026-08-04T14:36:00.000Z",
+  "verdict": "CODE_READY_INTEGRATION_PASS_LIVE_STORAGE_PENDING",
+  "executionEnvironment": "WSL2_NATIVE",
+  "readOnly": true,
+  "noLWrites": true,
+  "noZWrites": true,
+  "noMerge": true,
+  "noCutover": true,
+  "lMount": false,
+  "zMount": false,
+  "repositories": {
+    "crossAgent": {
+      "branch": "feat/cross-agent-risk-remediation-v1",
+      "headSha": "16c22ee789e0588474b42812023850f42fd61d53",
+      "headShort": "16c22ee",
+      "path": "/home/wesle/repos/CapitalGlass-Cross-Agent"
+    },
+    "appBuilder": {
+      "siblingPresent": true,
+      "headSha": "cd2f049581d15b455fbaabc71d2df9587535bb48",
+      "headShort": "cd2f0495",
+      "path": "/home/wesle/repos/CG-AppBuilder-MCP"
+    }
+  },
+  "mergeBaseWithMain": "3b6f34582c5ac4c5f50b61e4739af7cc835949aa",
+  "githubCiSelfContained": {
+    "greenRunId": 30917782838,
+    "greenHeadSha": "bd0cd68fc16335a6855a819d7d5800537f9b8b34",
+    "url": "https://github.com/Capglass5708/CapitalGlass-Cross-Agent/actions/runs/30917782838"
+  },
+  "portableResolutionFix": {
+    "file": "scripts/tests/run-harvest-risk-remediation.test.mjs",
+    "reason": "PORTABLE_REPO_RESOLUTION_PASS false positive on standard WSL sibling path /home/wesle/repos/CG-MASTER-GRAPH",
+    "resolutionMethodsAccepted": [
+      "sibling",
+      "CG_REPOS_ROOT",
+      "CG_MASTER_GRAPH_ROOT",
+      "explicit"
+    ],
+    "committedInThisPush": true,
+    "commitSha": "16c22ee789e0588474b42812023850f42fd61d53"
+  },
+  "prePushSelfContainedVerification": {
+    "verifiedAt": "2026-08-04T14:36:00.000Z",
+    "suites": [
+      "test:harvest",
+      "test:harvest:phase-b",
+      "test:harvest:single-flight",
+      "test:harvest:knowledge-quality",
+      "test:harvest:risk-remediation",
+      "test:harvest:git-retention",
+      "harvest:check-pr-governance",
+      "harvest:check-metadata-churn (pr-diff)",
+      "test:harvest:identity",
+      "harvest:check-metadata-churn (staged)",
+      "test:harvest:pr-governance"
+    ],
+    "exitCode": 0,
+    "summary": "All self-contained CI-parity gates PASS before push"
+  },
+  "commands": [
+    {
+      "name": "test:harvest:risk-remediation",
+      "command": "npm run test:harvest:risk-remediation",
+      "cwd": "/home/wesle/repos/CapitalGlass-Cross-Agent",
+      "exitCode": 0,
+      "summary": "12/12 tests; PORTABLE_REPO_RESOLUTION_PASS after sibling-resolution fix"
+    },
+    {
+      "name": "test:harvest:git-retention",
+      "command": "npm run test:harvest:git-retention",
+      "cwd": "/home/wesle/repos/CapitalGlass-Cross-Agent",
+      "exitCode": 0,
+      "summary": "12/12 tests; HARVEST_GIT_RETENTION_PASS"
+    },
+    {
+      "name": "test:harvest:identity",
+      "command": "npm run test:harvest:identity",
+      "cwd": "/home/wesle/repos/CapitalGlass-Cross-Agent",
+      "exitCode": 0,
+      "summary": "10/10 tests"
+    },
+    {
+      "name": "test:harvest:pr-governance",
+      "command": "npm run test:harvest:pr-governance",
+      "cwd": "/home/wesle/repos/CapitalGlass-Cross-Agent",
+      "exitCode": 0,
+      "summary": "3/3 tests"
+    },
+    {
+      "name": "harvest:check-pr-governance",
+      "command": "node scripts/harvest/check-pr-governance.mjs --base-ref=3b6f34582c5ac4c5f50b61e4739af7cc835949aa --json",
+      "cwd": "/home/wesle/repos/CapitalGlass-Cross-Agent",
+      "exitCode": 0,
+      "summary": "PR_GOVERNANCE_PASS"
+    },
+    {
+      "name": "harvest:check-metadata-churn-pr-diff",
+      "command": "node scripts/harvest/check-metadata-churn.mjs --mode=pr-diff --base-ref=3b6f34582c5ac4c5f50b61e4739af7cc835949aa --head-ref=HEAD --json",
+      "cwd": "/home/wesle/repos/CapitalGlass-Cross-Agent",
+      "exitCode": 0,
+      "summary": "METADATA_RETENTION_PASS"
+    },
+    {
+      "name": "test:harvest:layered-verdict",
+      "command": "npm run test:harvest:layered-verdict",
+      "cwd": "/home/wesle/repos/CapitalGlass-Cross-Agent",
+      "exitCode": 0,
+      "summary": "15/15 tests; Wave 7 gates PASS (AppBuilder sibling required)"
+    },
+    {
+      "name": "test:harvest:authority-dogfood",
+      "command": "npm run test:harvest:authority-dogfood",
+      "cwd": "/home/wesle/repos/CapitalGlass-Cross-Agent",
+      "exitCode": 0,
+      "summary": "all incident gates PASS"
+    },
+    {
+      "name": "test:harvest:phase-c",
+      "command": "npm run test:harvest:phase-c",
+      "cwd": "/home/wesle/repos/CapitalGlass-Cross-Agent",
+      "exitCode": 0,
+      "summary": "10/10 tests"
+    },
+    {
+      "name": "test:harvest:content-freshness",
+      "command": "npm run test:harvest:content-freshness",
+      "cwd": "/home/wesle/repos/CapitalGlass-Cross-Agent",
+      "exitCode": 0,
+      "summary": "11/11 tests; Wave 6 gates PASS"
+    },
+    {
+      "name": "CG-AppBuilder-MCP:test:cross-agent-harvest-projection",
+      "command": "npm --prefix ../CG-AppBuilder-MCP run test:cross-agent-harvest-projection",
+      "cwd": "/home/wesle/repos/CapitalGlass-Cross-Agent",
+      "exitCode": 0,
+      "summary": "10/10 tests"
+    }
+  ],
+  "mergeReady": false,
+  "liveStorageGate": "PENDING",
+  "nextStep": "Wait for PR #6 CI green on portable-fix head; then authorized synthetic L: smoke",
+  "receiptPath": "artifacts/agent-runs/cross-agent-medium-critical-risk-remediation-v1/wsl-integration-regression-receipt.json"
+}

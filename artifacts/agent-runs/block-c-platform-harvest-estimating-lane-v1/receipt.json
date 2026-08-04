@@ -1,0 +1,107 @@
+{
+  "schemaVersion": "block-c-lane-closeout-receipt-v1@1.0.0",
+  "workPackageId": "block-c-platform-harvest-estimating-lane-v1",
+  "agentLane": "Agent 3 — Platform, harvest & estimating",
+  "generatedAt": "2026-08-04T16:05:00.000Z",
+  "verdict": "BLOCK_C_LANE_CLOSEOUT_PASS_WITH_OPERATOR_DEFERRALS",
+  "waves": {
+    "compoundingPilot": {
+      "status": "CLOSED",
+      "verdict": "VERTICAL_PILOT_CLOSEOUT_PASS",
+      "artifacts": [
+        "CG-AppBuilder-MCP/artifacts/agent-runs/north-star-compounding-vertical-pilot-v1/session-closeout-v3.2.json",
+        "CG-AppBuilder-MCP/artifacts/agent-runs/north-star-compounding-vertical-pilot-v1/governance-closeout-decision-v1.json"
+      ]
+    },
+    "structuredLedger": {
+      "status": "PASS",
+      "verdict": "IN_SYNC",
+      "command": "doppler run -- npm run cross-agent-ledger:drift-probe -- --json",
+      "repair": "Added --output-format json to supabase db query in scripts/derived-intel/lib/live-db.mjs (JSONB parse fix)",
+      "gitHead": "6893286a69aca4bc46e914a8b69d11b12656172d",
+      "contentHash": "e2325e4f17b24f2c5377fe2e30fdad6ac9137e266c1b67c4dde0716185601b6d",
+      "supabaseReadError": null,
+      "receipt": "CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-structured-ledger-projection-v1/drift-probe-latest.json"
+    },
+    "lRetrievalAuthority": {
+      "status": "OPERATOR_BLOCKED",
+      "verdict": "L_DRIVE_NOT_MOUNTED_IN_WSL",
+      "attempts": [
+        "drvfs L: — special device L: does not exist on WESLEY_WORK",
+        "SMB //192.168.1.109/CapitalGlass-L — mount error 113 (host unreachable / off-LAN)"
+      ],
+      "repairScript": "CG-AppBuilder-MCP/scripts/ci/ensure-wsl-l-hub-mount.sh",
+      "operatorAction": "Map L: on Windows to \\\\192.168.1.109\\CapitalGlass-L when on LAN, or run publication from WESLEYDESK",
+      "failoverActive": {
+        "scout": "INDEX_HIT_AI_CACHE",
+        "indexPreflight": "FAILOVER_GIT_LEDGER",
+        "supabaseDriftProbe": "IN_SYNC"
+      },
+      "deepRevuEstimating": "Still fail-closed without L: per intelligence-hub-first-read"
+    },
+    "harvestFollowUps": {
+      "status": "DEFERRED_OPERATOR",
+      "packages": [
+        {
+          "id": "harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1",
+          "harvestVerdict": "HARVEST_COMPLETE",
+          "publication": "DEFERRED — harvest:publish-hub-seed + index:publish on WESLEYDESK when L/Z authority available",
+          "receipt": "artifacts/agent-runs/harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1/receipt.json"
+        },
+        {
+          "id": "harvest-2026-08-03-cross-thread-platform-state-v1",
+          "harvestVerdict": "HARVEST_COMPLETE",
+          "publication": "Git complete; L: hub publish deferred pending mount",
+          "receipt": "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/receipt.json"
+        },
+        {
+          "id": "chat-thread-harvest-protocol-hot-cache-roi-v1",
+          "harvestVerdict": "DOCS_ADDED",
+          "publication": "AppBuilder schema validation pending if fields enforced",
+          "receipt": "artifacts/agent-runs/chat-thread-harvest-protocol-hot-cache-roi-v1/"
+        }
+      ],
+      "justification": "Wave 3 requires WESLEYDESK operator lane with L: mounted; not executable from WESLEY_WORK off-LAN"
+    },
+    "estimatingReadOnly": {
+      "status": "READ_ONLY_ADVANCED",
+      "verdict": "8/10 operational — 2 fixture blockers documented",
+      "productionWorkflowLock": "HONORED — revu-mcp-production-workflow-locked unchanged",
+      "remainingFixtureBlockers": [
+        {
+          "id": "rank-9-arch-fp-yolo-benchmark-repo-url-unknown",
+          "rank": 9,
+          "resource": "Arch FP YOLO benchmark",
+          "gate": "Pin exact GitHub URL + Ultralytics license review before WATCH → ADOPT"
+        },
+        {
+          "id": "de-opening-detection-kb-is-shallow",
+          "rank": "1-5 operational knowledge",
+          "resource": "pymkup, PyMuPDF, PaddleDetection vendor KB",
+          "gate": "Finish DE vendor interpretation; resolve unsupported_vendor before 10/10 claim"
+        }
+      ],
+      "nextBuildPackage": "cg-opening-locator-v1",
+      "owners": ["Computer Estimator", "Data-Extraction"],
+      "projectFile": "work-progress/projects/2026-08-01_revu-opening-detection-top10-v1.md"
+    }
+  },
+  "crossAgentBlockersForLane": [],
+  "laneMutationsAvoided": [
+    "ryzen9desk-managed-executor-v1",
+    "document-center-synology-dev-lane-v1",
+    "infrastructure-executor-lane-v1"
+  ],
+  "codeChanges": [
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "path": "scripts/derived-intel/lib/live-db.mjs",
+      "reason": "Wave 1 Supabase projection read-back JSON parse repair"
+    }
+  ],
+  "retrieval": {
+    "primary": "INDEX_HIT_AI_CACHE",
+    "ledgerDrift": "IN_SYNC",
+    "lHub": "L_DRIVE_NOT_MOUNTED_IN_WSL"
+  }
+}

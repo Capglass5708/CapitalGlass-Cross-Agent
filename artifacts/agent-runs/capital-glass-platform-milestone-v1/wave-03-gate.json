@@ -1,0 +1,40 @@
+{
+  "schema": "capital-glass-gated-wave-receipt-v1",
+  "milestoneId": "capital-glass-platform-milestone-v1",
+  "wave": 3,
+  "name": "Governance Compounding Pilot Unblock",
+  "verdict": "FAIL_STOP",
+  "recordedAt": "2026-08-04T16:05:00Z",
+  "gates": {
+    "governanceCaptureContract": {
+      "pass": true,
+      "schemaVersion": "north-star-compounding-proof-v1"
+    },
+    "materialPreflightAutoV32": {
+      "pass": false,
+      "verdict": "BLOCKED",
+      "blockers": [
+        "bible-z-master: Z_MASTER_THREE_HOST_BIBLE_TRUTH_BLOCKED",
+        "operatorAction: npm run bible-z-master:sync-host -- --apply --verify --attest --json"
+      ]
+    },
+    "appBuilderPreflight": {
+      "pass": false,
+      "verdict": "BLOCKED",
+      "blockers": [
+        "de-handoff-health",
+        "check:three-way-agent-rule-sync",
+        "suite:contract-gate",
+        "guard:mcp-runtime-freshness"
+      ]
+    },
+    "zMasterAuthority": {
+      "pass": false,
+      "verdict": "Z_MASTER_UNAVAILABLE",
+      "zAiCacheMounted": true,
+      "lDriveMounted": false
+    }
+  },
+  "stopReason": "Storage/bible authority blocker — Z master three-host bible truth blocked; L: not mounted",
+  "autoMoveToWave4": false
+}

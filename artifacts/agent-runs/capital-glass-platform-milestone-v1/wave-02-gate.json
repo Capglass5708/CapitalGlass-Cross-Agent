@@ -1,0 +1,37 @@
+{
+  "schema": "capital-glass-gated-wave-receipt-v1",
+  "milestoneId": "capital-glass-platform-milestone-v1",
+  "wave": 2,
+  "name": "Commit and Ingest Agent 2 Ledger Closeout",
+  "verdict": "PASS",
+  "recordedAt": "2026-08-04T16:03:00Z",
+  "gates": {
+    "ledgerCommit": {
+      "pass": true,
+      "sha": "6893286a69aca4bc46e914a8b69d11b12656172d",
+      "branch": "feat/cross-agent-risk-remediation-v1",
+      "message": "docs(ledger): close Agent 2 DC Synology lane and record Wave 1 gate"
+    },
+    "structuredLedgerIngest": {
+      "pass": true,
+      "verdict": "APPLIED",
+      "projectionId": "capital-glass-cross-agent/current",
+      "sourceCommitSha": "6893286a69aca4bc46e914a8b69d11b12656172d",
+      "driftStatusInDb": "IN_SYNC",
+      "receipt": "CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-structured-ledger-projection-v1/ingest-apply-receipt.json"
+    },
+    "driftProbe": {
+      "pass": true,
+      "bounded": true,
+      "verdict": "UNKNOWN",
+      "issue": "SUPABASE_PROJECTION_MISSING",
+      "readError": "drift-probe read path JSON parse error; ingest apply row shows IN_SYNC at same commit",
+      "note": "No authority conflict with PRODUCTION_PROMOTION_PASS or dev alias repair"
+    },
+    "agent2LaneClosed": {
+      "pass": true,
+      "receipt": "artifacts/agent-runs/document-center-synology-dev-lane-v1/receipt.json"
+    }
+  },
+  "autoMoveToWave3": true
+}

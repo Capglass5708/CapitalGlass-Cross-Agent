@@ -56,6 +56,8 @@ function withRepo(fn) {
   fs.mkdirSync(path.join(repoRoot, "artifacts/agent-runs"), { recursive: true });
   fs.writeFileSync(path.join(repoRoot, "README.md"), "# retention\n");
   execFileSync("git", ["init"], { cwd: repoRoot });
+  execFileSync("git", ["config", "user.email", "retention-test@capitalglass.local"], { cwd: repoRoot });
+  execFileSync("git", ["config", "user.name", "Retention Test"], { cwd: repoRoot });
   execFileSync("git", ["add", "."], { cwd: repoRoot });
   execFileSync("git", ["commit", "-m", "init"], { cwd: repoRoot });
   try {
