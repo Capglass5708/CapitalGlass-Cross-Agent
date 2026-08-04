@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "cross-agent-recommended-roi-v1@1.0.0",
+  "workPackageId": "chat-thread-harvest-protocol-hot-cache-roi-v1",
+  "items": [
+    {
+      "rank": 1,
+      "item": "Enforce scoutHotCacheProof in harvest manifests",
+      "why": "Prevents agents from treating stale Git fallback as healthy Intelligence Hub retrieval.",
+      "effort": "medium",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "acceptanceGate": "harvest:validate fails when scout proof is missing or stale unless explicitly waived",
+      "doNotAdvance": [
+        "Hot-cache scout health"
+      ]
+    },
+    {
+      "rank": 2,
+      "item": "Add command extraction to harvest generator",
+      "why": "Commands are the cheapest repeatable proof path and should not be buried in prose.",
+      "effort": "medium",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "acceptanceGate": "commands.json generated with repo, host, purpose, expectedResult, dangerLevel, requiresApproval"
+    },
+    {
+      "rank": 3,
+      "item": "Add authorityLineage and staleAuthorityComparison",
+      "why": "Prevents stale L:/Z:/Supabase surfaces from overwriting newer Git or receipt truth.",
+      "effort": "medium",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "acceptanceGate": "harvest summary labels stale layers and never silently reconciles by memory"
+    },
+    {
+      "rank": 4,
+      "item": "Promote required harvest fields to Governance if they become pass/fail gates",
+      "why": "Governance decides what counts; AppBuilder should not become protocol authority.",
+      "effort": "medium",
+      "ownerRepo": "CG-Platform-Governance-MCP",
+      "acceptanceGate": "Governance contract names required harvest fields and validation behavior"
+    },
+    {
+      "rank": 5,
+      "item": "Publish recommended ROI into Intelligence Hub compact slices",
+      "why": "Future scout turns should see not only blockers but ranked next improvements.",
+      "effort": "low",
+      "ownerRepo": "Data-Extraction / CG-AppBuilder-MCP",
+      "acceptanceGate": "L: 00-master-index or BY-KIND slice exposes recommended ROI for current harvest"
+    }
+  ]
+}
