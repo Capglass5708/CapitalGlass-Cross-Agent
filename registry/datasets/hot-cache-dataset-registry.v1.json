@@ -1,9 +1,12 @@
 {
-  "schemaVersion": "hot-cache-dataset-registry-v1@1.0.0",
-  "workPackageId": "cross-agent-hot-cache-dataset-registry-publication-v1",
+  "schemaVersion": "hot-cache-dataset-registry-v1@1.1.0",
+  "workPackageId": "hot-cache-expansion-capital-glass-v1",
   "ownerRepo": "CapitalGlass-Cross-Agent",
   "platformDefaults": {
     "budgets": {
+      "routingBundleMaxBytes": 32768,
+      "envelopeMaxBytes": 8192,
+      "lazyCatalogMaxBytes": 4096,
       "compactMaxBytes": 65536,
       "compactMaxRecords": 25
     }
@@ -19,6 +22,7 @@
   "datasets": [
     {
       "datasetId": "active-ledger",
+      "manifestPath": "registry/active-ledger/active-ledger-manifest.v1.json",
       "freshnessClass": "authority-registry",
       "defaultTtlSeconds": 86400,
       "dependsOnDatasets": [],
@@ -48,6 +52,7 @@
     },
     {
       "datasetId": "command-estate",
+      "manifestPath": "registry/command-estate/command-estate-manifest.v1.json",
       "freshnessClass": "authority-registry",
       "defaultTtlSeconds": 86400,
       "dependsOnDatasets": [],
@@ -98,6 +103,14 @@
       "missOk": true
     },
     {
+      "datasetId": "intelligence-hub-domains",
+      "manifestPath": "registry/intelligence-hub-domains/intelligence-hub-domains-manifest.v1.json",
+      "freshnessClass": "authority-registry",
+      "defaultTtlSeconds": 86400,
+      "dependsOnDatasets": ["authority-estate"],
+      "missOk": true
+    },
+    {
       "datasetId": "intelligence-hub-index",
       "freshnessClass": "authority-registry",
       "defaultTtlSeconds": 86400,
@@ -106,6 +119,14 @@
     },
     {
       "datasetId": "project-estate",
+      "freshnessClass": "authority-registry",
+      "defaultTtlSeconds": 86400,
+      "dependsOnDatasets": [],
+      "missOk": true
+    },
+    {
+      "datasetId": "receipt-registry",
+      "manifestPath": "registry/receipt-registry/receipt-registry-manifest.v1.json",
       "freshnessClass": "authority-registry",
       "defaultTtlSeconds": 86400,
       "dependsOnDatasets": [],
