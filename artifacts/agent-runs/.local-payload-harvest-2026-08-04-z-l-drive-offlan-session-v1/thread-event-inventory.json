@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-z-l-drive-offlan-session-v1",
+  "threadScope": "Z AND L IS UNAVAILABLE AGAIN — WESLEY_WORK off-LAN drive session",
+  "generatedAt": "2026-08-04T06:01:00.000Z",
+  "events": [
+    {
+      "id": "TE-001",
+      "phase": "operator",
+      "summary": "User reported Z and L unavailable again",
+      "evidenceRefs": ["user message turn 1"]
+    },
+    {
+      "id": "TE-002",
+      "phase": "diagnosis",
+      "summary": "WSL showed /mnt/l and /mnt/z readable; index preflight STALE (FAILOVER_GIT_LEDGER)",
+      "evidenceRefs": ["agent:index:preflight holdReason=CACHE_AND_L_STALE_OR_MISSING"]
+    },
+    {
+      "id": "TE-003",
+      "phase": "diagnosis",
+      "summary": "Windows Test-Path Z:\\Capital-Glass-Dev False, L:\\...\\INDEX.json False",
+      "evidenceRefs": ["powershell Test-Path after WSL mount check"]
+    },
+    {
+      "id": "TE-004",
+      "phase": "repair",
+      "summary": "ForceRemap: nasLan445=False deskLan445=False tailscale=True; Z remapped via cg-server",
+      "evidenceRefs": ["Ensure-CgWesleyWorkDriveMounts.ps1 log"]
+    },
+    {
+      "id": "TE-005",
+      "phase": "repair",
+      "summary": "PARTIAL_DRIVE_AVAILABILITY zOk=True lOk=False; desk SMB and Tailscale L path unavailable",
+      "evidenceRefs": ["NETWORK-OUTAGE-2026-08-03-220459.json"]
+    },
+    {
+      "id": "TE-006",
+      "phase": "verification",
+      "summary": "Post-remap Windows Z True, L False; cg-server:445 True; cg-wesleydesk-01:445 False",
+      "evidenceRefs": ["Test-NetConnection probes"]
+    }
+  ]
+}

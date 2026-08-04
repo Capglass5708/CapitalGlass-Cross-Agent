@@ -1,0 +1,342 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-chatgpt-full-autopsy-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-IMPROVE-CHATGPT-LANE-001",
+      "questionId": "IHIMPROVECHA",
+      "canonicalQuestion": "How should ChatGPT harvest a Cursor thread?",
+      "alternateQuestions": [
+        "What verdict should a ChatGPT-only harvest use?"
+      ],
+      "shortAnswer": "ChatGPT harvests should be labeled as draft-only and handed to Cursor for validation.",
+      "detailedAnswer": "ChatGPT visible-context harvest lane",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T07:14:23.159Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-chatgpt-full-autopsy-v1/seed-packets/IH-IMPROVE-CHATGPT-LANE-001.json"
+      ],
+      "authorityCommit": [
+        "39f8178"
+      ],
+      "evidenceUrls": [
+        "attached ChatGPT harvest protocol",
+        "current thread request to run this"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "decision",
+        "harvest-2026-08-04-chatgpt-full-autopsy-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Thread or task references IH-IMPROVE-CHATGPT-LANE-001",
+        "startAt": [
+          "docs/protocols/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md"
+        ],
+        "runPreflight": [
+          "npm run harvest:duplication-preflight -- --harvest-id=<id>"
+        ],
+        "doNot": [
+          "claim HARVEST_COMPLETE from ChatGPT draft",
+          "skip Cursor validation"
+        ],
+        "proveBeforeClaiming": [
+          "harvest:validate PASS",
+          "chatgpt-ingest-receipt.json INGEST_PASS"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "decision"
+    },
+    {
+      "ihPfspId": "IH-IMPROVE-MODE-GUARD-002",
+      "questionId": "IHIMPROVEMOD",
+      "canonicalQuestion": "What should an agent do when Wesley says concept-only?",
+      "alternateQuestions": [
+        "What does STOP_NOW require?"
+      ],
+      "shortAnswer": "Agents should declare work mode and honor concept-only/stop instructions before any tool or file action.",
+      "detailedAnswer": "Mode-first execution and hard guards",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T07:14:23.159Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-chatgpt-full-autopsy-v1/seed-packets/IH-IMPROVE-MODE-GUARD-002.json"
+      ],
+      "authorityCommit": [
+        "39f8178"
+      ],
+      "evidenceUrls": [
+        "visible thread corrections: concept-only, do not write code, just stop"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "decision",
+        "harvest-2026-08-04-chatgpt-full-autopsy-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Thread or task references IH-IMPROVE-MODE-GUARD-002",
+        "startAt": [
+          "docs/protocols/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md"
+        ],
+        "runPreflight": [
+          "npm run harvest:duplication-preflight -- --harvest-id=<id>"
+        ],
+        "doNot": [
+          "claim HARVEST_COMPLETE from ChatGPT draft",
+          "skip Cursor validation"
+        ],
+        "proveBeforeClaiming": [
+          "harvest:validate PASS",
+          "chatgpt-ingest-receipt.json INGEST_PASS"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "decision"
+    },
+    {
+      "ihPfspId": "IH-IMPROVE-SEED-DISTILLATION-003",
+      "questionId": "IHIMPROVESEE",
+      "canonicalQuestion": "Should raw ChatGPT harvest findings be committed?",
+      "alternateQuestions": [
+        "How do we avoid Git bloat while preserving thread intelligence?"
+      ],
+      "shortAnswer": "Raw ChatGPT findings should become compact, validated seed packets before Git publication.",
+      "detailedAnswer": "Distill raw findings into compact seed packets",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T07:14:23.159Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-chatgpt-full-autopsy-v1/seed-packets/IH-IMPROVE-SEED-DISTILLATION-003.json"
+      ],
+      "authorityCommit": [
+        "39f8178"
+      ],
+      "evidenceUrls": [
+        "visible thread question about commit vs push and Git bloat"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "command",
+        "harvest-2026-08-04-chatgpt-full-autopsy-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Thread or task references IH-IMPROVE-SEED-DISTILLATION-003",
+        "startAt": [
+          "docs/protocols/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md"
+        ],
+        "runPreflight": [
+          "npm run harvest:duplication-preflight -- --harvest-id=<id>"
+        ],
+        "doNot": [
+          "claim HARVEST_COMPLETE from ChatGPT draft",
+          "skip Cursor validation"
+        ],
+        "proveBeforeClaiming": [
+          "harvest:validate PASS",
+          "chatgpt-ingest-receipt.json INGEST_PASS"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "command"
+    },
+    {
+      "ihPfspId": "IH-THREAD-CHATGPT-HARVEST-001",
+      "questionId": "IHTHREADCHAT",
+      "canonicalQuestion": "Can ChatGPT claim HARVEST_COMPLETE?",
+      "alternateQuestions": [
+        "What verdict should a ChatGPT thread autopsy use?"
+      ],
+      "shortAnswer": "ChatGPT harvests are draft-only",
+      "detailedAnswer": "ChatGPT harvests are draft-only",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T07:14:23.159Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-chatgpt-full-autopsy-v1/seed-packets/IH-THREAD-CHATGPT-HARVEST-001.json"
+      ],
+      "authorityCommit": [
+        "39f8178"
+      ],
+      "evidenceUrls": [
+        "attached ChatGPT protocol"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-04-chatgpt-full-autopsy-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "User asks ChatGPT to run a harvest protocol",
+        "startAt": [
+          "attached ChatGPT protocol"
+        ],
+        "runPreflight": [
+          "record INDEX_NOT_AVAILABLE_IN_CHAT_CONTEXT"
+        ],
+        "doNot": [
+          "claim INDEX_HIT",
+          "claim HARVEST_COMPLETE",
+          "claim FULLY_SEEDED"
+        ],
+        "proveBeforeClaiming": [
+          "Cursor validation receipts"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "runbook"
+    },
+    {
+      "ihPfspId": "IH-THREAD-CONCEPT-STOP-002",
+      "questionId": "IHTHREADCONC",
+      "canonicalQuestion": "What should an agent do when Wesley says concept-only?",
+      "alternateQuestions": [
+        "What should an agent do when Wesley says stop?"
+      ],
+      "shortAnswer": "Concept-only and stop are hard action gates",
+      "detailedAnswer": "Concept-only and stop are hard action gates",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T07:14:23.159Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-chatgpt-full-autopsy-v1/seed-packets/IH-THREAD-CONCEPT-STOP-002.json"
+      ],
+      "authorityCommit": [
+        "39f8178"
+      ],
+      "evidenceUrls": [
+        "visible thread corrections"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-04-chatgpt-full-autopsy-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "User says concept-only, do not write code, or stop",
+        "startAt": [
+          "latest user instruction"
+        ],
+        "runPreflight": [
+          "none"
+        ],
+        "doNot": [
+          "call tools",
+          "edit files",
+          "continue previous plan"
+        ],
+        "proveBeforeClaiming": [
+          "new explicit permission"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-THREAD-GIT-BLOAT-003",
+      "questionId": "IHTHREADGITB",
+      "canonicalQuestion": "Should raw ChatGPT harvest findings be pushed to Git?",
+      "alternateQuestions": [
+        "Which harvest artifacts belong in Cross-Agent Git?"
+      ],
+      "shortAnswer": "Commit distilled harvest intelligence, not raw drafts",
+      "detailedAnswer": "Commit distilled harvest intelligence, not raw drafts",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T07:14:23.159Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-chatgpt-full-autopsy-v1/seed-packets/IH-THREAD-GIT-BLOAT-003.json"
+      ],
+      "authorityCommit": [
+        "39f8178"
+      ],
+      "evidenceUrls": [
+        "visible thread Git bloat question"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-04-chatgpt-full-autopsy-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "User asks whether to commit or push findings",
+        "startAt": [
+          "harvest storage policy"
+        ],
+        "runPreflight": [
+          "classify raw draft vs canonical seed"
+        ],
+        "doNot": [
+          "push raw long Markdown by default"
+        ],
+        "proveBeforeClaiming": [
+          "distilled seed packets and validation receipt"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "lesson"
+    }
+  ]
+}

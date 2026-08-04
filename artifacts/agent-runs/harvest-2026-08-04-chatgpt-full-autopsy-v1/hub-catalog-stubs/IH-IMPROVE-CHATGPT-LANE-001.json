@@ -1,0 +1,75 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-improve-chatgpt-lane-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "39f817819cc91cd8f154279c11b6423e1f05dcb5",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-chatgpt-full-autopsy-v1",
+      "seedId": "IH-IMPROVE-CHATGPT-LANE-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T07:14:23.160Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "b0c98b209cb9afaf48c6e3bdea2cab623b4d10b09dfe6e7fa157df6255068788"
+  },
+  "body": {
+    "seedId": "IH-IMPROVE-CHATGPT-LANE-001",
+    "kind": "decision",
+    "title": "ChatGPT visible-context harvest lane",
+    "summary": "ChatGPT harvests should be labeled as draft-only and handed to Cursor for validation.",
+    "canonicalQuestion": "How should ChatGPT harvest a Cursor thread?",
+    "alternateQuestions": [
+      "What verdict should a ChatGPT-only harvest use?"
+    ],
+    "shortAnswer": "ChatGPT harvests should be labeled as draft-only and handed to Cursor for validation.",
+    "detailedAnswer": "ChatGPT visible-context harvest lane",
+    "retrievalQuestions": [
+      "How should ChatGPT harvest a Cursor thread?",
+      "What verdict should a ChatGPT-only harvest use?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Thread or task references IH-IMPROVE-CHATGPT-LANE-001",
+      "startAt": [
+        "docs/protocols/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md"
+      ],
+      "runPreflight": [
+        "npm run harvest:duplication-preflight -- --harvest-id=<id>"
+      ],
+      "doNot": [
+        "claim HARVEST_COMPLETE from ChatGPT draft",
+        "skip Cursor validation"
+      ],
+      "proveBeforeClaiming": [
+        "harvest:validate PASS",
+        "chatgpt-ingest-receipt.json INGEST_PASS"
+      ]
+    },
+    "evidenceRefs": [
+      "attached ChatGPT harvest protocol",
+      "current thread request to run this"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Cross-Agent",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-chatgpt-full-autopsy-v1/seed-packets/IH-IMPROVE-CHATGPT-LANE-001.json"
+    ],
+    "harvestId": "harvest-2026-08-04-chatgpt-full-autopsy-v1"
+  }
+}
