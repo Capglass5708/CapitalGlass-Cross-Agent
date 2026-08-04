@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-WESLEYDESK-ESTABLISH-001",
+  "kind": "command",
+  "title": "WESLEYDESK kit deploy when Z: unmounted in desk WSL",
+  "summary": "Use ESTABLISH_WESLEYDESK.sh from WESLEY_WORK (SSH+tar) — desk WSL cannot read Z: Office path directly.",
+  "retrievalQuestions": [
+    "How do I deploy WesleyDesk Direct Connect kit?",
+    "Why does desk WSL not see Z: Office paths?"
+  ],
+  "evidenceRefs": [
+    "Z:/Office/Wes/Direct Connect/ESTABLISH_WESLEYDESK.sh",
+    "work-progress/projects/2026-08-03_wesleydesk-direct-connect-kit-v1.md"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Need to install or update WESLEYDESK Direct Connect from WESLEY_WORK",
+    "startAt": [
+      "Z:/Office/Wes/Direct Connect/ESTABLISH_WESLEYDESK.sh",
+      "WesleyDesk Direct Connect/AGENT_START_HERE.md"
+    ],
+    "runPreflight": [
+      "ssh cgremoteadmin@wesleydesk.tail49f063.ts.net hostname"
+    ],
+    "doNot": [
+      "Assume /mnt/z on desk WSL",
+      "Start multi-hour full clone without shallow sync option"
+    ],
+    "proveBeforeClaiming": [
+      "~/direct-connect/wesleydesk kit present on desk",
+      "04-runner-health.sh PASS after env fix"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}

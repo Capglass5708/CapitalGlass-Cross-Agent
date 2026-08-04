@@ -2,33 +2,30 @@
 
 ## Summary
 
-Persistent controller package for **Direct Connect** on RYZEN9DESK — keeps WESLEY_WORK → GitHub Actions → RYZEN9DESK WSL runner available without manual SSH recovery after reboot.
+RYZEN9DESK Direct Connect **persistent controller** — idempotent systemd/Windows task layer that keeps the WSL GitHub Actions runner available across reboot without manual SSH repair.
 
 ## Workspace
 
 | Field | Value |
 | --- | --- |
 | Work package | `direct-connect-persistent-controller-v1` |
-| Date opened | 2026-08-03 |
 | Owner repo | CapitalGlass-Office-Admin |
-| Coordination repo | CapitalGlass-Cross-Agent |
-| Status | **INSTALLED — persistence not proven** |
+| Kit path | `Z:\Office\Wes\Direct Connect\Ryzen Direct Connect\persistent-controller\` |
+| Install path | `C:\ProgramData\CapitalGlass\DirectConnect` on RYZEN9DESK |
+| Status | **INSTALLED_PERSISTENCE_UNPROVEN** |
+| Verdict | **HOLD** |
 
-## Current state
+## Thread evidence (2026-08-03)
 
-| Item | Value |
-| --- | --- |
-| Install location | `Z:\Office\Wes\Direct Connect\Ryzen Direct Connect\persistent-controller\` |
-| SYSTEM tasks | `CapitalGlass-DirectConnect-PersistentController-Startup`, `CapitalGlass-DirectConnect-PersistentController-Health` |
-| Storage verify | PASS on run `30859284939` **after SSH/manual recovery** — does not prove cold-boot persistence |
-| `PERSISTENT_AVAILABILITY_PASS` | **NOT awarded** |
-| Cold reboot self-heal | Previously **failed** |
-
-## Required next proof
-
-Cold reboot or `wsl --shutdown` **without** SSH repair → controller receipt PASS → runner online ≥5 min → WESLEY_WORK `storage-verify` PASS.
+- Controller scripts deployed with file lock, Windows mutex, health-mode noop when healthy
+- `TEST_PROTOCOL.md` step 1 attempted; cold-reboot / 10-min soak **not completed**
+- Run `30859284939` PASS **excluded** — storage-verify succeeded only after SSH/manual recovery
+- Run `30861386284` connectivity `storage-verify` PASS — does **not** prove persistence
 
 ## Do not advance
 
-- `PERSISTENT_AVAILABILITY_PASS`
-- Treating post-SSH storage verify as persistence proof
+- `PERSISTENT_AVAILABILITY_PASS` until clean post-reboot dispatch without SSH repair
+
+## Next action
+
+Complete `TEST_PROTOCOL.md`: soak → cold reboot without logon/SSH → `DISPATCH_PERSISTENCE_GATE.sh` from WESLEY_WORK → controller receipt PASS.

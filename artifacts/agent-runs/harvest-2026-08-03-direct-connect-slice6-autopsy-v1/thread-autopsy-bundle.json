@@ -1,0 +1,222 @@
+{
+  "schemaVersion": "thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-03-direct-connect-slice6-autopsy-v1",
+  "tier": "T2",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "generatedAt": "2026-08-04T01:35:00.000Z",
+  "retrieval": {
+    "primaryOutcome": "INDEX_HIT",
+    "cacheOutcome": "CACHE_MISS",
+    "scoutCommand": "npm run agent:index:scout -- --json",
+    "scoutRepo": "CG-AppBuilder-MCP",
+    "sourceCommitSha": "acd94ba6d5855bda1298d248188f6ae4faa32edf"
+  },
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "registryPath": "work-progress/harvest-packet-registry.json",
+    "commandIndexConsulted": true,
+    "commandIndexPath": "work-progress/command-index.json",
+    "hubSlicesConsulted": [
+      "BY-KIND/active-work-blockers.json",
+      "work-progress/intelligence-hub-slices/domains/direct-connect.json",
+      "work-progress/intelligence-hub-slices/domains/three-way-improvement.json"
+    ],
+    "duplicateWork": [
+      {
+        "duplicateId": "DUP-001",
+        "topic": "Ryzen executor bootstrap / SSH recovery",
+        "firstKnownInstance": "harvest-current-cross-thread-state-v2 / ryzen9desk-managed-executor-v1",
+        "priorIndexSlice": "work-progress/harvest-packet-registry.json#ryzen9desk-managed-executor-v1",
+        "whyMissed": "Thread re-executed SSH bootstrap before checking prior harvest HOLD on PERSISTENT_AVAILABILITY_PASS"
+      },
+      {
+        "duplicateId": "DUP-002",
+        "topic": "Slice 6 publication gate",
+        "firstKnownInstance": "harvest-current-cross-thread-state-v2 / three-way-agent-improvement-intelligence-v1",
+        "priorIndexSlice": "work-progress/do-not-advance-registry.json#THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL",
+        "whyMissed": "Dispatch attempted before runner version preflight"
+      }
+    ]
+  },
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "host",
+      "description": "Long git clone of CG-AppBuilder-MCP on WESLEYDESK over SSH timed out (~89 min)",
+      "evidenceRefs": ["transcript SSH exit 255", "wesleydesk-direct-connect-kit-v1"],
+      "estimatedImpact": "high",
+      "savedBy": "Shallow clone + ESTABLISH_WESLEYDESK 02-sync-repos.sh with retry; verify runner version before dispatch",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "verification",
+      "description": "index-publication.yml dispatched on runner 2.323.0 without node24 capability check",
+      "evidenceRefs": ["github run 30861642734"],
+      "estimatedImpact": "high",
+      "savedBy": "04-runner-health.sh must gate on runner --version >= 2.336 before Slice 6 dispatch",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "rework",
+      "description": "Persistent controller journalctl/listening race fixed after failed TEST_PROTOCOL step 1",
+      "evidenceRefs": ["persistent-controller/wsl/persistent-controller.sh"],
+      "estimatedImpact": "medium",
+      "savedBy": "Run VERIFY_CONTROLLER_RECEIPT.ps1 before soak test",
+      "roiRank": 4
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "operator_attention",
+      "description": "User corrected PR strategy (no cherry-pick to main; new PR for 912f9adc)",
+      "evidenceRefs": ["transcript turn 62"],
+      "estimatedImpact": "medium",
+      "savedBy": "Check merged PR state before proposing cherry-pick",
+      "roiRank": 5
+    },
+    {
+      "wasteId": "TW-005",
+      "type": "context",
+      "description": "wesleydesk.env RUNNER_SERVICE typo caused false-negative health check while systemd was active",
+      "evidenceRefs": ["WesleyDesk Direct Connect/wsl/config/wesleydesk.env"],
+      "estimatedImpact": "low",
+      "savedBy": "Derive service name from systemd list-units pattern in 04-runner-health.sh",
+      "roiRank": 3
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "User said pause during long WESLEYDESK install",
+      "operatorCost": "high",
+      "systemFix": "Preflight runner version + repo symlink before multi-hour clone",
+      "evidenceRefs": ["transcript user pause"],
+      "linkedWasteIds": ["TW-001", "TW-002"]
+    },
+    {
+      "frictionId": "OF-002",
+      "trigger": "User elevated SSH explicitly after agent hesitated",
+      "operatorCost": "medium",
+      "systemFix": "Direct Connect kit AGENT_START_HERE must list approved bootstrap SSH scope vs daily no-SSH",
+      "evidenceRefs": ["transcript turn 13"],
+      "linkedWasteIds": ["DUP-001"]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Slice 6 index-publication on WESLEYDESK",
+      "actualExecution": {
+        "steps": [
+          "Brought runner online",
+          "Dispatched index-publication.yml run 30861642734 at 3e51aa7"
+        ],
+        "outcome": "FAIL",
+        "evidenceRefs": ["github run 30861642734"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Compare runner --version to Ryzen baseline (2.336.0)",
+          "Upgrade runner if node24 unsupported",
+          "Complete CG-AppBuilder-MCP clone + repos symlink",
+          "Run 04-runner-health.sh PASS",
+          "Then dispatch publication"
+        ],
+        "outcome": "Would have blocked wasted failed run",
+        "requiredPreflight": ["npm run agent:index:scout -- --json", "04-runner-health.sh"]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "medium",
+        "operatorFrustration": "medium"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Award PERSISTENT_AVAILABILITY_PASS",
+      "actualExecution": {
+        "steps": [
+          "storage-verify PASS after manual SSH recovery (30859284939)",
+          "Later connectivity PASS 30861386284 treated as progress signal"
+        ],
+        "outcome": "Correctly withheld PASS",
+        "evidenceRefs": ["run 30859284939 excluded", "do-not-advance-registry"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Exclude SSH-recovery runs from persistence acceptance explicitly in receipt",
+          "Complete cold reboot protocol before any persistence discussion"
+        ],
+        "outcome": "Clearer operator messaging",
+        "requiredPreflight": ["TEST_PROTOCOL.md", "DISPATCH_PERSISTENCE_GATE.sh"]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Runner version gate before Slice 6 dispatch",
+      "savedWasteIds": ["TW-002"],
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "promotionClass": "POLICY_GATED"
+    },
+    {
+      "rank": 2,
+      "title": "WESLEYDESK shallow-sync repos script (avoid full clone timeout)",
+      "savedWasteIds": ["TW-001"],
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "promotionClass": "AUTOMATIC"
+    },
+    {
+      "rank": 3,
+      "title": "Auto-detect systemd runner service name in health script",
+      "savedWasteIds": ["TW-005"],
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "promotionClass": "AUTOMATIC"
+    },
+    {
+      "rank": 4,
+      "title": "Direct Connect three-host AGENT_START_HERE single index",
+      "savedWasteIds": ["OF-002"],
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "promotionClass": "HUMAN_REVIEW"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "claim": "PERSISTENT_AVAILABILITY_PASS",
+      "forbiddenUntil": "cold-reboot persistence proof without SSH repair",
+      "proofCommandIds": ["direct-connect-persistence-proof"],
+      "evidenceRefs": ["run 30859284939 excluded"]
+    },
+    {
+      "claim": "THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL",
+      "forbiddenUntil": "publication PUBLISH_PASS + freshness + blind retrieval + NOOP_CURRENT",
+      "proofCommandIds": ["index-freshness-gate", "harvest:blind-retrieval"],
+      "evidenceRefs": ["github run 30861642734 failure"]
+    }
+  ],
+  "mistakes": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Dispatched node24 workflow on runner 2.323.0",
+      "actualExecution": "Run 30861642734 failed at actions/checkout setup",
+      "optimalExecution": "Runner version preflight >= 2.336.0 before dispatch",
+      "preventiveControl": "04-runner-health.sh version check; seed IH-THREAD-WESLEYDESK-RUNNER-NODE24-001"
+    },
+    {
+      "wrongMoveId": "WM-002",
+      "summary": "Project file claimed THREE_WAY operational without run 30861642734 pass",
+      "actualExecution": "2026-08-03_three-way-agent-improvement-intelligence-v1.md states OPERATIONAL",
+      "optimalExecution": "Hold SLICE6_HOLD until GitHub run receipt proves gates",
+      "preventiveControl": "Harvest supersededClaims; do-not-advance registry"
+    }
+  ]
+}

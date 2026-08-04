@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-03-direct-connect-slice6-autopsy-v1",
+  "packetId": "ryzen9desk-managed-executor-v1",
+  "state": "CONNECTIVITY_PASS_PERSISTENCE_HOLD",
+  "packetVerdict": "PASS",
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Prove persistence via direct-connect-persistent-controller-v1 before PERSISTENT_AVAILABILITY_PASS",
+  "evidenceRefs": [
+    "github run 30861386284",
+    "github run 30850804818",
+    "Z:/Office/Wes/Direct Connect/"
+  ],
+  "doNotAdvance": [
+    "PERSISTENT_AVAILABILITY_PASS",
+    "MANAGED_EXECUTOR_ONLINE without persistence proof"
+  ],
+  "advancementGate": "PERSISTENT_AVAILABILITY_PASS after cold reboot without SSH repair",
+  "contentHash": "a190b2dbd53e9748aa840ca4d3daea4e9768c9db4a38dfee8532068240f5fd1c"
+}

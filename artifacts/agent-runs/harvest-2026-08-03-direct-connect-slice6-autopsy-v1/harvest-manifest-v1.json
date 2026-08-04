@@ -1,0 +1,190 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-03-direct-connect-slice6-autopsy-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "15d3d4601642e790d6cc52d4671505bae5f772df",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-04T01:35:00.000Z",
+  "updatedAt": "2026-08-04T01:35:00.000Z",
+  "retrievalResult": "INDEX_HIT",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "PERSISTENT_AVAILABILITY_PASS",
+    "THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL",
+    "MANAGED_EXECUTOR_ONLINE without cold-reboot persistence proof",
+    "Re-dispatch cancelled run 30861202361"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-03-direct-connect-slice6-autopsy-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-03-direct-connect-slice6-autopsy-v1/seed-packets/seed-packet-index.json",
+    "counts": {
+      "waste": 5,
+      "seeds": 4,
+      "roiItems": 4,
+      "operatorFriction": 2
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": null,
+    "note": "Cursor records only — operator runs harvest:publish-hub-seed and index:publish"
+  },
+  "ledgerLineage": {
+    "ledgerPath": "work-progress/ACTIVE_WORK.md",
+    "ledgerContentHashBefore": "0c1b5454b30c3cabfdcd6fd31df969f653166a9ae8d5e37e8fa5330f2245f939",
+    "ledgerContentHashAfter": "0c1b5454b30c3cabfdcd6fd31df969f653166a9ae8d5e37e8fa5330f2245f939"
+  },
+  "supersededClaims": [
+    {
+      "packetId": "three-way-agent-improvement-intelligence-v1",
+      "claim": "THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL in project file without run 30861642734 pass",
+      "supersededBy": "SLICE6_RUNNER_VERSION_FAIL — github run 30861642734 conclusion failure",
+      "recordedAt": "2026-08-04T01:35:00.000Z"
+    },
+    {
+      "packetId": "harvest-current-cross-thread-state-v2",
+      "claim": "Latest Direct Connect / Slice 6 thread authority",
+      "supersededBy": "harvest-2026-08-03-direct-connect-slice6-autopsy-v1 for this Cursor thread",
+      "recordedAt": "2026-08-04T01:35:00.000Z"
+    }
+  ],
+  "packets": [
+    {
+      "packetId": "direct-connect-persistent-controller-v1",
+      "packetTitle": "Direct Connect persistent controller (RYZEN9DESK)",
+      "state": "INSTALLED_PERSISTENCE_UNPROVEN",
+      "packetVerdict": "HOLD",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerMcp": "user-office-admin-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "Z:/Office/Wes/Direct Connect/Ryzen Direct Connect/persistent-controller/",
+      "projectFile": "work-progress/projects/2026-08-03_direct-connect-persistent-controller-v1.md",
+      "evidenceRefs": [
+        "work-progress/projects/2026-08-03_direct-connect-persistent-controller-v1.md",
+        "Z:/Office/Wes/Direct Connect/TEST_PROTOCOL.md",
+        "github run 30859284939 excluded"
+      ],
+      "commitRefs": [],
+      "nextAction": "Complete TEST_PROTOCOL cold reboot → DISPATCH_PERSISTENCE_GATE without SSH repair",
+      "advancementGate": "cold-reboot self-heal without manual SSH repair",
+      "doNotAdvance": [
+        "PERSISTENT_AVAILABILITY_PASS"
+      ],
+      "blockers": [
+        {
+          "id": "persistence-unproven",
+          "owner": "CapitalGlass-Office-Admin",
+          "summary": "Controller installed; soak and cold-reboot protocol incomplete"
+        }
+      ]
+    },
+    {
+      "packetId": "ryzen9desk-managed-executor-v1",
+      "packetTitle": "RYZEN9DESK managed executor (Direct Connect)",
+      "state": "CONNECTIVITY_PASS_PERSISTENCE_HOLD",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "CG-AppBuilder-MCP/docs/work-packages/ryzen9desk-managed-executor-v1.md",
+      "projectFile": "work-progress/projects/2026-08-03_ryzen9desk-managed-executor-v1.md",
+      "evidenceRefs": [
+        "github run 30861386284",
+        "github run 30850804818",
+        "Z:/Office/Wes/Direct Connect/"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "49aa77fb",
+          "note": "main aligned on Ryzen and WESLEY_WORK"
+        }
+      ],
+      "nextAction": "Prove persistence via direct-connect-persistent-controller-v1 before PERSISTENT_AVAILABILITY_PASS",
+      "advancementGate": "PERSISTENT_AVAILABILITY_PASS after cold reboot without SSH repair",
+      "doNotAdvance": [
+        "PERSISTENT_AVAILABILITY_PASS",
+        "MANAGED_EXECUTOR_ONLINE without persistence proof"
+      ],
+      "blockers": []
+    },
+    {
+      "packetId": "wesleydesk-direct-connect-kit-v1",
+      "packetTitle": "WESLEYDESK Direct Connect kit (Slice 6 publication host)",
+      "state": "RUNNER_ONLINE_DEPS_INCOMPLETE",
+      "packetVerdict": "HOLD",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerMcp": "user-office-admin-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "Z:/Office/Wes/Direct Connect/WesleyDesk Direct Connect/",
+      "projectFile": "work-progress/projects/2026-08-03_wesleydesk-direct-connect-kit-v1.md",
+      "evidenceRefs": [
+        "Z:/Office/Wes/Direct Connect/WesleyDesk Direct Connect/",
+        "github run 30861642734",
+        "~/direct-connect/wesleydesk on WESLEYDESK"
+      ],
+      "commitRefs": [],
+      "nextAction": "Upgrade runner to 2.336+, complete AppBuilder clone, fix wesleydesk.env service name, re-dispatch publication",
+      "advancementGate": "index-publication.yml PUBLISH_PASS on WESLEYDESK",
+      "doNotAdvance": [
+        "THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL"
+      ],
+      "blockers": [
+        {
+          "id": "runner-node24-unsupported",
+          "owner": "CapitalGlass-Office-Admin",
+          "summary": "Runner 2.323.0 cannot execute actions/checkout node24"
+        },
+        {
+          "id": "appbuilder-clone-incomplete",
+          "owner": "CG-AppBuilder-MCP",
+          "summary": "CG-AppBuilder-MCP missing at /home/wesle/repos on desk WSL"
+        }
+      ]
+    },
+    {
+      "packetId": "three-way-agent-improvement-intelligence-v1",
+      "packetTitle": "Three-way agent improvement intelligence (Slice 6)",
+      "state": "SLICE6_RUNNER_VERSION_FAIL",
+      "packetVerdict": "HOLD",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "artifacts/agent-runs/three-way-agent-improvement-intelligence-v1/merge-completion-receipt-v1.json",
+      "projectFile": "work-progress/projects/2026-08-03_three-way-agent-improvement-intelligence-v1.md",
+      "evidenceRefs": [
+        "github run 30861642734",
+        "github run 30861202361 cancelled",
+        "CapitalGlass-Cross-Agent/.github/workflows/index-publication.yml @ 3e51aa7"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "3e51aa754576f7d148901e440365f714f56be455",
+          "note": "index-publication head at failed run"
+        }
+      ],
+      "nextAction": "Fix WESLEYDESK runner/deps → re-dispatch publication → freshness + blind retrieval + idempotency",
+      "advancementGate": "post_merge_publication complete + blind retrieval PASS + NOOP_CURRENT",
+      "doNotAdvance": [
+        "THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL",
+        "Re-dispatch cancelled run 30861202361"
+      ],
+      "blockers": [
+        {
+          "id": "publication-run-failed",
+          "owner": "CapitalGlass-Cross-Agent",
+          "summary": "Run 30861642734 failed — runner version node24"
+        }
+      ]
+    }
+  ]
+}

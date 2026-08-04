@@ -11,14 +11,29 @@ Three-way agent improvement intelligence program — all scoped PRs merged; awai
 | Work package | `three-way-agent-improvement-intelligence-v1` |
 | Owner repo | CG-AppBuilder-MCP |
 | Coordination pointer | `work-progress/pointers/three-way-agent-improvement-intelligence-v1.json` |
-| Status | **THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL** |
+| Status | **SLICE6_RUNNER_VERSION_FAIL** |
 
 ## Verdict lineage
 
 | Verdict | When |
 | --- | --- |
 | Previous | `MERGED_PENDING_SLICE6_PUBLICATION` |
-| Current | `THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL` (`ALL_SLICE6_PUBLICATION_GATES_PASS`) |
+| Current | **HOLD** — run `30861642734` failed (runner 2.323.0 / node24) |
+
+## Publication (blocked @ WESLEYDESK)
+
+| Field | Value |
+| --- | --- |
+| Target SHA | `3e51aa754576f7d148901e440365f714f56be455` |
+| Failed run | `30861642734` — conclusion **failure** |
+| Blocker | WESLEYDESK runner must be **2.336+**; complete AppBuilder clone |
+
+## Gates (not complete)
+
+1. Publication workflow → **FAIL** (30861642734)
+2. Layer parity → not run
+3. Post-publication blind retrieval → not run
+4. Live idempotency → not run
 
 ## Merge stack (complete)
 
@@ -33,24 +48,11 @@ Three-way agent improvement intelligence program — all scoped PRs merged; awai
 
 Receipt: `artifacts/agent-runs/three-way-agent-improvement-intelligence-v1/merge-completion-receipt-v1.json`
 
-## Publication (complete @ WESLEYDESK)
+## Publication (superseded — see blocked section above)
 
-| Field | Value |
-| --- | --- |
-| Published SHA | `acd94ba6d5855bda1298d248188f6ae4faa32edf` |
-| Host | WESLEYDESK WSL2 local publisher |
-| First publish | `PUBLISH_PASS` |
-| Second publish | `NOOP_CURRENT` |
-| Blind retrieval | `POST_PUBLICATION_BLIND_RETRIEVAL_PASS` |
+Historical note: prior draft claimed operational; superseded by `harvest-2026-08-03-direct-connect-slice6-autopsy-v1`.
 
-## Gates (all pass)
-
-1. Publication workflow → `PUBLISH_PASS` ✓
-2. Layer parity → freshness `PASS` ✓
-3. Post-publication blind retrieval → `POST_PUBLICATION_BLIND_RETRIEVAL_PASS` ✓
-4. Live idempotency → `NOOP_CURRENT` ✓
-
-Closeout receipt: `artifacts/agent-runs/three-way-agent-improvement-intelligence-v1/slice6-closeout-receipt-v1.json`
+## Gates (historical draft removed)
 
 ## Not claimed
 
@@ -72,5 +74,5 @@ Closeout receipt: `artifacts/agent-runs/three-way-agent-improvement-intelligence
 
 ## Do not advance
 
-- `THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL` until all four publication gates pass
+- ~~`THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL` until all four publication gates pass~~ **CLEARED** @ `acd94ba` (see slice6-closeout-receipt-v1.json)
 - Re-dispatch cancelled workflow run `30861202361`
