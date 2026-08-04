@@ -8,6 +8,7 @@ import {
   computePayloadHash,
   INVENTORY_SCHEMA_VERSION,
 } from "./publication-identity-lib.mjs";
+import { assertKnowledgeQualityForStaging } from "./knowledge-quality-gate-lib.mjs";
 
 export { resolveHubRoot };
 
@@ -190,6 +191,8 @@ export function stageLDurableBundle({
   if (manifest.harvestId !== harvestId) {
     throw new Error(`HARVEST_ID_MISMATCH:${manifest.harvestId}`);
   }
+
+  assertKnowledgeQualityForStaging({ manifest, runDir: sourceRunDir });
 
   const identity = buildPublicationIdentity({ manifest, runDir: sourceRunDir, options });
   const inventory = buildDurablePayloadInventory({

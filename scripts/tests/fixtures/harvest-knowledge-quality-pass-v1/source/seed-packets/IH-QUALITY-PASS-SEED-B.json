@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-QUALITY-PASS-SEED-B",
+  "kind": "lesson",
+  "title": "Identical harvest publication returns NOOP_CURRENT",
+  "summary": "Repeat publication with the same payloadHash must not republish L:, Z:, or Supabase. Pointer-only Git commits must not change payload identity or trigger republication.",
+  "status": "CANDIDATE",
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "promotionClass": "POLICY_GATED",
+  "retrievalQuestions": [
+    "When should an existing harvest seed return NOOP_CURRENT instead of republishing?",
+    "How does NOOP_CURRENT prevent a freshness treadmill?"
+  ],
+  "evidenceRefs": ["EVT-002", "turn-pointer-2"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "harvest republication or freshness check",
+    "startAt": ["HARVEST-LIFECYCLE-PHASES-v1.md"],
+    "runPreflight": ["harvest:publish-l-durable"],
+    "doNot": ["republish because Git HEAD moved"],
+    "proveBeforeClaiming": ["payloadHash unchanged", "PUBLICATION_COMPLETE.json present"]
+  }
+}

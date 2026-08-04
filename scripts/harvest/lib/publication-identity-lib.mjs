@@ -59,6 +59,8 @@ export const DURABLE_ARTIFACT_SPECS = [
   { logicalPath: "validation-result.json", required: false, tierMin: "T0", glob: false },
   { logicalPath: "thread-autopsy-validation-result.json", required: false, tierMin: "T1", glob: false },
   { logicalPath: "duplication-preflight-receipt.json", required: false, tierMin: "T1", glob: false },
+  { logicalPath: "harvest-knowledge-quality-receipt-v1.json", required: false, tierMin: "T0", glob: false },
+  { logicalPath: "knowledge-quality-evidence-v1.json", required: false, tierMin: "T0", glob: false },
 ];
 
 const TIER_ORDER = { T0: 0, T1: 1, T2: 2, T3: 3 };
