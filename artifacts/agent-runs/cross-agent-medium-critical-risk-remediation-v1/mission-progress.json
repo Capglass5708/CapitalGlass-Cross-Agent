@@ -1,31 +1,36 @@
 {
   "schemaVersion": "cross-agent-risk-remediation-mission-progress-v1@1.0.0",
   "workPackageId": "cross-agent-medium-critical-risk-remediation-v1",
-  "updatedAt": "2026-08-04T14:00:00.000Z",
+  "updatedAt": "2026-08-04T14:10:00.000Z",
   "executionEnvironment": "WSL2_NATIVE",
   "wsl2Verdict": "WSL2_NATIVE_WORKSPACE_PASS",
   "lMount": "L_DRIVE_NOT_MOUNTED_IN_WSL",
   "zMount": "Z_NOT_MOUNTED",
+  "priorVerdictCorrection": "MERGE_READY was premature; superseded by MERGE_HOLD_CI_AND_DIFF_ENFORCEMENT",
+  "ci": {
+    "failedRunId": 30916540321,
+    "failedReason": "git retention fixture tests require local git user.email in temp repos",
+    "repairStatus": "FIX_PUSHED_PENDING_GREEN"
+  },
   "waves": {
-    "A": { "status": "WAVE_ACCEPTED", "gates": ["LEGACY_REAL_HARVEST_BLOCK_PASS", "LEGACY_ALIAS_BLOCK_PASS", "NO_PREBLOCK_WRITES_PASS"] },
-    "B": { "status": "WAVE_ACCEPTED", "gates": ["UNIVERSAL_GIT_RETENTION_PASS", "PR_DIFF_RETENTION_GATE_PASS"] },
-    "C": { "status": "WAVE_ACCEPTED", "gates": ["SKIP_LEDGER_NO_FALSE_OPERATIONAL_PASS", "NO_FALSE_OPERATIONAL_PASS"] },
-    "D": { "status": "WAVE_ACCEPTED", "gates": ["METADATA_CHURN_GATE_PASS", "NOOP_COMMIT_PASS"] },
-    "E": { "status": "WAVE_ACCEPTED", "gates": ["GRAPH_EXTRACTION_L_STAGING_PASS", "GRAPH_GIT_POINTER_ONLY_PASS"] },
-    "F": { "status": "WAVE_ACCEPTED", "gates": ["HARVEST_GRAPH_DECOUPLING_PASS", "PORTABLE_REPO_RESOLUTION_PASS"] },
-    "G": { "status": "WAVE_ACCEPTED", "gates": ["CI_RETENTION_GATE_PASS", "CI_METADATA_GATE_PASS", "CANONICAL_ENTRYPOINT_PASS"] },
-    "H": { "status": "WAVE_ACCEPTED", "gates": ["INCIDENT_LEGACY_PATH_PREVENTED", "FULL_CORRECTED_LIFECYCLE_PASS"] }
+    "A": { "status": "WAVE_ACCEPTED" },
+    "B": { "status": "WAVE_ACCEPTED" },
+    "C": { "status": "WAVE_ACCEPTED" },
+    "D": { "status": "WAVE_ACCEPTED" },
+    "E": { "status": "WAVE_ACCEPTED", "liveStorageProof": "PENDING_L_MOUNT" },
+    "F": { "status": "WAVE_ACCEPTED" },
+    "G": { "status": "WAVE_ACCEPTED", "note": "PR-diff governance added; CI green pending" },
+    "H": { "status": "WAVE_ACCEPTED" }
+  },
+  "testClassification": {
+    "authoritySystemMain": "11/11 PASS",
+    "authoritySystemHeadAfterSyncDerivedFix": "11/11 PASS",
+    "classification": "MISSION_INTRODUCED_REGRESSION_FIXED",
+    "receipt": "artifacts/agent-runs/cross-agent-medium-critical-risk-remediation-v1/preexisting-test-proof-receipt.json"
   },
   "branch": "feat/cross-agent-risk-remediation-v1",
-  "companionBranches": {
-    "CG-MASTER-GRAPH": "feat/harvest-graph-intake-boundary-v1",
-    "CG-AppBuilder-MCP": "main (no integration branch required)"
-  },
-  "regressionVerdict": "FULL_RISK_REMEDIATION_REGRESSION_PASS",
-  "securityAudit": "SECURITY_AUDIT_PASS",
-  "historicalPlan": "HISTORICAL_REMEDIATION_PLAN_READY",
-  "mergeReady": true,
-  "mergeVerdict": "MERGE_READY",
-  "operatorApprovalRequired": "APPROVE CROSS-AGENT RISK REMEDIATION MERGE AND CUTOVER",
-  "liveAcceptanceRequired": "APPROVE LIVE RISK-REMEDIATION HARVEST FOR <HARVEST_ID>"
+  "mergeReady": false,
+  "mergeVerdict": "MERGE_HOLD_CI_AND_DIFF_ENFORCEMENT",
+  "codeReadyVerdict": "CODE_READY_WITH_LIVE_STORAGE_GATE_PENDING",
+  "operatorApprovalRequired": "APPROVE CROSS-AGENT RISK REMEDIATION MERGE AND CUTOVER"
 }

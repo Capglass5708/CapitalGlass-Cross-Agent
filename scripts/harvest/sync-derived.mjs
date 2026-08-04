@@ -237,20 +237,6 @@ function main() {
     writeJson(path.join(compactDir, `${packet.packetId}.json`), record);
   }
 
-  const harvestManifestHash = hashCanonicalJson(manifest);
-
-  for (const packet of manifest.packets) {
-    delete packet.contentHash;
-  }
-
-  writeJson(manifestFile, manifest);
-  writeJson(path.join(runDir, "packet-index.json"), buildPacketIndex(manifest));
-  writeJson(path.join(runDir, "receipt.json"), buildReceipt(manifest, harvestManifestHash, ledgerBeforeHash, ledgerAfter));
-  fs.writeFileSync(path.join(runDir, "HARVEST_SUMMARY.md"), buildSummary(manifest, harvestManifestHash), "utf8");
-  writeJson(path.join(runDir, "coverage.json"), computeCoverage(manifest, compactDir));
-
-  refreshPacketRegistryFromGit();
-
   const graphEligible = inferGraphEligibility(manifest);
   manifest.projection = manifest.projection ?? {};
   manifest.projection.graphEligible = graphEligible;
@@ -280,7 +266,19 @@ function main() {
     }
   }
 
+  for (const packet of manifest.packets) {
+    delete packet.contentHash;
+  }
+
+  const harvestManifestHash = hashCanonicalJson(manifest);
+
   writeJson(manifestFile, manifest);
+  writeJson(path.join(runDir, "packet-index.json"), buildPacketIndex(manifest));
+  writeJson(path.join(runDir, "receipt.json"), buildReceipt(manifest, harvestManifestHash, ledgerBeforeHash, ledgerAfter));
+  fs.writeFileSync(path.join(runDir, "HARVEST_SUMMARY.md"), buildSummary(manifest, harvestManifestHash), "utf8");
+  writeJson(path.join(runDir, "coverage.json"), computeCoverage(manifest, compactDir));
+
+  refreshPacketRegistryFromGit();
 
   console.log(`sync-derived: OK harvestManifestHash=${harvestManifestHash}`);
 }
