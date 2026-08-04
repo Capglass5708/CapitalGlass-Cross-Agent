@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-infrastructure-executor-lane-v1",
+  "packetId": "programdata-v14-reinstall-v1",
+  "state": "RECORDED",
+  "packetVerdict": "REWORK",
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Merge Office Admin v1.5; run elevated Install-CgWesleyWorkDriveMountPersistence.ps1",
+  "evidenceRefs": [
+    "artifacts/agent-runs/wesleywork-drive-mount-task-dedupe-v1/receipt.json",
+    "C:/ProgramData/CapitalGlass/OfficeAdmin/PRIVATE/Register-CgWesleyWorkDriveMountTasks.ps1",
+    "thread-autopsy-bundle.json#TW-005"
+  ],
+  "doNotAdvance": [
+    "Use one-shot fix-drive-mount-tasks-v15.ps1 as long-term path after v1.5 merge"
+  ],
+  "advancementGate": "DRIVE-MOUNT-PERSISTENCE.json protocol v1.5 + verifier PASS",
+  "contentHash": "553549730f9df2ba6cb69e8113824693a740ce42742c4315b3b06384f9644860"
+}

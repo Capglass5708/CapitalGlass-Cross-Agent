@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "cross-agent-thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-chatgpt-full-autopsy-v1",
+  "events": [
+    {
+      "eventId": "EVT-001",
+      "whatHappened": "User designed a Cursor thread-harvest protocol.",
+      "actor": "User",
+      "evidence": "Visible chat",
+      "stateChange": "Protocol topic began"
+    },
+    {
+      "eventId": "EVT-002",
+      "whatHappened": "User requested concept-only review and no code.",
+      "actor": "User",
+      "evidence": "Visible chat",
+      "stateChange": "Scope narrowed"
+    },
+    {
+      "eventId": "EVT-003",
+      "whatHappened": "Assistant drifted into artifact/file work.",
+      "actor": "Assistant",
+      "evidence": "Visible chat summary",
+      "stateChange": "Wrong move"
+    },
+    {
+      "eventId": "EVT-004",
+      "whatHappened": "User said stop.",
+      "actor": "User",
+      "evidence": "Visible chat",
+      "stateChange": "Stop guard should apply"
+    },
+    {
+      "eventId": "EVT-005",
+      "whatHappened": "User asked whether protocol works for ChatGPT using chat data.",
+      "actor": "User",
+      "evidence": "Visible chat",
+      "stateChange": "ChatGPT lane introduced"
+    },
+    {
+      "eventId": "EVT-006",
+      "whatHappened": "User asked whether to push or only commit draft findings.",
+      "actor": "User",
+      "evidence": "Visible chat",
+      "stateChange": "Git storage policy issue"
+    },
+    {
+      "eventId": "EVT-007",
+      "whatHappened": "User attached updated ChatGPT protocol and said run it.",
+      "actor": "User",
+      "evidence": "Attached file",
+      "stateChange": "Source authority set"
+    },
+    {
+      "eventId": "EVT-008",
+      "whatHappened": "Assistant ran protocol in `DRAFT_FILE` / `CHAT_CONTEXT_ONLY` mode.",
+      "actor": "Assistant",
+      "evidence": "This file",
+      "stateChange": "Draft output produced"
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "schemaVersion": "infrastructure-executor-bootstrap-v1@1.0.0",
+  "workPackageId": "infrastructure-executor-lane-v1",
+  "missionBlock": "BLOCK-A",
+  "generatedAt": "2026-08-04T15:38:00.000Z",
+  "controlHost": "WESLEY_WORK",
+  "executionHost": "WESLEY_WORK",
+  "agentSession": {
+    "cursorHostMode": "HOST_MODE_BLOCKED",
+    "cursorHostModeDetail": "Windows mcp.json active; references C:/Developer/repos — run npm run cursor:wsl-default and reconnect via WSL Suite shortcut",
+    "wslVerifyReceipt": "/home/wesle/.cursor/backups/cursor-wsl-default-2026-08-04T15-34-29-114Z.json"
+  },
+  "retrieval": {
+    "primary": "FAILOVER_GIT_LEDGER",
+    "lDriveMounted": false
+  },
+  "verdict": "PARTIAL_PROGRESS_OPERATOR_ACTION_REQUIRED",
+  "operatorCheckpoint": {
+    "probedAt": "2026-08-04T15:50:00.000Z",
+    "runnerOnline": false,
+    "driveMountVerifierPass": false,
+    "runnerName": "ryzen9desk-wsl2-CG-RYZEN9DESK-01",
+    "runnerStatus": "offline"
+  },
+  "operatorCautions": [
+    {
+      "id": "ryzen9desk-runner-restart-first",
+      "source": "operator",
+      "recordedAt": "2026-08-04T15:50:00.000Z",
+      "rule": "If RYZEN9DESK runner service is already installed, restart the persistent controller/service first. Use a new registration token only when GitHub has dropped the existing registration or the installer confirms re-registration is required.",
+      "reason": "Duplicate runner listeners previously caused session conflicts on RYZEN9DESK."
+    }
+  ],
+  "workPackages": {
+    "ryzen9desk-managed-executor-v1": {
+      "stateMachineVerdict": "RUNNER_BOOTSTRAP_CHECKPOINT_STARTED",
+      "targetVerdict": "MANAGED_EXECUTOR_ONLINE",
+      "githubRunner": {
+        "name": "ryzen9desk-wsl2-CG-RYZEN9DESK-01",
+        "status": "offline",
+        "labels": [
+          "self-hosted",
+          "Linux",
+          "X64",
+          "ryzen9desk",
+          "wsl2",
+          "gpu",
+          "computer-estimator"
+        ]
+      },
+      "preflightFromWesleyWork": {
+        "verdict": "BLOCKED_WRONG_HOST",
+        "expected": true,
+        "note": "Host gate correctly rejects WESLEY_WORK execution"
+      },
+      "workflowDispatch": {
+        "runId": 30924982497,
+        "url": "https://github.com/Capglass5708/CG-AppBuilder-MCP/actions/runs/30924982497",
+        "jobProfile": "executor-smoke",
+        "status": "queued",
+        "blocker": "Runner offline — job will not execute until RYZEN9DESK runner service starts"
+      },
+      "sshProbe": {
+        "target": "cg-ryzen9desk-01",
+        "result": "Permission denied (publickey) — bootstrap must happen on RYZEN9DESK console or approved SSH key"
+      },
+      "operatorStepsOnRyzen9desk": [
+        "Open WSL on RYZEN9DESK (Ubuntu 24.04, user wesley)",
+        "CAUTION: restart existing runner service first — do NOT register a second listener unless GitHub dropped the registration or installer requires re-register (duplicate listeners caused session conflicts)",
+        "If ~/actions-runner exists: cd ~/actions-runner && sudo ./svc.sh status; if stopped: sudo ./svc.sh start; re-check GitHub runner page for online",
+        "If service missing or GitHub shows runner removed: cd ~/repos/CG-AppBuilder-MCP && git checkout main && git pull --ff-only",
+        "Only then: GitHub → Settings → Actions → Runners → registration token → export REGISTRATION_TOKEN=<short-lived> → bash scripts/executor/install-github-runner-wsl-service.sh",
+        "Confirm single listener: sudo systemctl status 'actions.runner.*' — one active unit only",
+        "From WESLEY_WORK: monitor queued run 30924982497 or re-dispatch executor-smoke after online",
+        "Download artifact ryzen9desk-executor-receipt — advance to MANAGED_EXECUTOR_ONLINE only after RYZEN9DESK receipt"
+      ],
+      "nextJobAfterOnline": "wsl2-canonical-setup for ryzen9desk-wsl2-canonical-workspace-v1"
+    },
+    "wesleywork-drive-mount-task-dedupe-v1": {
+      "stateVerdict": "IMPLEMENTED_LIVE_DEPLOY_PENDING",
+      "verifierRun": {
+        "script": "Test-CgWesleyWorkDriveMountTaskRegistration.ps1 -ExpectRegistered",
+        "result": "FAIL",
+        "findings": [
+          "MISSING_EXPECTED: CapitalGlass-WesleyWork-DriveMount-Logon",
+          "MISSING_EXPECTED: CapitalGlass-WesleyWork-DriveMount-Startup",
+          "NOT_HIDDEN: DriveMount-Health, DriveMount-Unlock, PreCursorDriveGate tasks",
+          "Duplicate PreCursorDriveGate / PreCursorDriveGate-Logon entries"
+        ],
+        "positiveSignals": [
+          "LanRecheck and User-Health tasks absent (dedupe partial)",
+          "IgnoreNew overlap policy present on existing tasks"
+        ]
+      },
+      "elevatedInstallAttempt": {
+        "method": "Start-Process -Verb RunAs Install-CgWesleyWorkDriveMountPersistence.ps1",
+        "result": "No state change — likely UAC not approved or install did not complete",
+        "verifierAfter": "FAIL unchanged"
+      },
+      "operatorStepsOnWesleyWork": [
+        "Open elevated PowerShell on WESLEY_WORK",
+        "cd C:\\Developer\\repos\\CapitalGlass-Office-Admin\\scripts\\devices\\CG-WESLEYWORK-01",
+        ".\\Install-CgWesleyWorkDriveMountPersistence.ps1",
+        ".\\Test-CgWesleyWorkDriveMountTaskRegistration.ps1 -ExpectRegistered",
+        "Observe one 15-minute Health cycle — confirm no flashing PowerShell windows"
+      ]
+    },
+    "wsl2-native-repo-library-migration-v1": {
+      "host": "WESLEY_WORK",
+      "verdict": "FILESYSTEM_PASS",
+      "verifyCommand": "npm run wsl:verify-repo-library",
+      "summary": "ext4=29 symlink=1 linked=0 missing=0",
+      "reposRoot": "/home/wesle/repos",
+      "note": "RYZEN9DESK alignment deferred to executor mission"
+    },
+    "z-drive-disconnect-recurrence-v1": {
+      "action": "Use Office Admin ForceRemap before material sessions needing Z:/AI cache",
+      "status": "documented — no probe run this session"
+    }
+  },
+  "nextActions": [
+    {
+      "priority": 1,
+      "action": "On RYZEN9DESK: restart existing runner service (~/actions-runner sudo ./svc.sh start) — re-register only if GitHub dropped registration or installer requires it",
+      "owner": "operator / RYZEN9DESK"
+    },
+    {
+      "priority": 2,
+      "action": "On WESLEY_WORK: elevated Install-CgWesleyWorkDriveMountPersistence.ps1 with UAC approval",
+      "owner": "operator / WESLEY_WORK"
+    },
+    {
+      "priority": 3,
+      "action": "Reconnect Cursor via Capital Glass Cursor (WSL Suite).lnk — clear HOST_MODE_BLOCKED",
+      "owner": "operator"
+    },
+    {
+      "priority": 4,
+      "action": "Monitor workflow run 30924982497 after runner online",
+      "owner": "WESLEY_WORK agent"
+    }
+  ],
+  "valuesPrinted": false
+}

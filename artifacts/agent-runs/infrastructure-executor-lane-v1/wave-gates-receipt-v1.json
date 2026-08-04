@@ -1,0 +1,116 @@
+{
+  "schemaVersion": "infrastructure-executor-wave-gates-v1@1.0.0",
+  "workPackageId": "infrastructure-executor-lane-v1",
+  "generatedAt": "2026-08-04T15:56:00.000Z",
+  "lastRecheckAt": "2026-08-04T17:50:00.000Z",
+  "lastRecheckVerdict": "WAVE_A_PASS_WAVE_B_ENV_BLOCKED",
+  "retrieval": "INDEX_HIT",
+  "controlHost": "WESLEY_WORK",
+  "waves": {
+    "waveA": {
+      "name": "Infrastructure Unblock",
+      "verdict": "PASS",
+      "gates": {
+        "runnerOnline": {
+          "pass": true,
+          "evidence": {
+            "name": "ryzen9desk-wsl2-CG-RYZEN9DESK-01",
+            "status": "online",
+            "busy": false,
+            "restartedAt": "2026-08-04T17:46:00.000Z",
+            "method": "ssh cg-ryzen9desk-01 -> wsl systemctl restart actions.runner.*"
+          }
+        },
+        "executorSmokeRun30924982497": {
+          "pass": true,
+          "evidence": {
+            "runId": 30924982497,
+            "status": "completed",
+            "conclusion": "success",
+            "executionHost": "RYZEN9DESK",
+            "receipt": "artifacts/agent-runs/infrastructure-executor-lane-v1/executor-smoke-receipt-30924982497.json"
+          }
+        },
+        "driveMountVerifierPass": {
+          "pass": true,
+          "evidence": {
+            "script": "Test-CgWesleyWorkDriveMountTaskRegistration.ps1 -ExpectRegistered",
+            "elevatedVerdict": "PASS",
+            "elevatedExitCode": 0,
+            "remediationScript": "artifacts/agent-runs/infrastructure-executor-lane-v1/fix-drive-mount-tasks-v15.ps1",
+            "note": "v1.5 hidden-task remediation via RunAs; SYSTEM Startup visible only under elevation"
+          }
+        }
+      }
+    },
+    "waveB": {
+      "name": "Managed Executor Online",
+      "verdict": "BLOCKED_ENV_APPROVAL",
+      "dependsOn": "waveA",
+      "dispatch": {
+        "runId": 30935396892,
+        "jobProfile": "wsl2-canonical-setup",
+        "workPackageId": "ryzen9desk-wsl2-canonical-workspace-v1",
+        "conclusion": "cancelled",
+        "blocker": "GitHub environment ryzen9desk-managed-execution approval required",
+        "url": "https://github.com/Capglass5708/CG-AppBuilder-MCP/actions/runs/30935396892"
+      },
+      "operatorAction": "Approve environment deployment on run 30935396892 or re-dispatch wsl2-canonical-setup after approval"
+    },
+    "waveC": {
+      "name": "Storage And Retrieval Authority",
+      "verdict": "PASS",
+      "gates": {
+        "lDriveMounted": {
+          "pass": true,
+          "path": "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index"
+        },
+        "zDriveMounted": {
+          "pass": true,
+          "path": "/mnt/z/Capital-Glass-Intelligence-Hub"
+        },
+        "aiCacheThreeHostAligned": {
+          "pass": true,
+          "verdict": "Z_MASTER_THREE_HOST_AI_CACHE_ALIGNED",
+          "releaseId": "AI-CACHE-RELEASE-20260731-a7456ad58195"
+        },
+        "driveMountPersistence": {
+          "pass": true,
+          "gatedOn": "waveA.driveMountVerifierPass"
+        }
+      }
+    },
+    "waveD": {
+      "name": "Ledger Closeout",
+      "verdict": "IN_PROGRESS",
+      "artifacts": [
+        "artifacts/agent-runs/infrastructure-executor-lane-v1/bootstrap-checkpoint-v1.json",
+        "artifacts/agent-runs/infrastructure-executor-lane-v1/wave-gates-receipt-v1.json",
+        "artifacts/agent-runs/infrastructure-executor-lane-v1/fix-drive-mount-tasks-v15.ps1"
+      ],
+      "pending": [
+        "cross-agent-ledger:ingest --apply after receipt commit",
+        "Promote ryzen9desk-managed-executor-v1 to MANAGED_EXECUTOR_ONLINE after Wave B receipt"
+      ]
+    },
+    "waveE": {
+      "name": "Auto-Publisher Prep",
+      "verdict": "PARTIAL_READY",
+      "gates": {
+        "autoPublisherActivation": {
+          "pass": true,
+          "verdict": "ACTIVE",
+          "provenPostCommitTrigger": true
+        },
+        "wave2Remaining": {
+          "blockedOn": [
+            "waveB wsl2-canonical-setup receipt",
+            "GitHub environment approval for mutation profiles"
+          ]
+        }
+      }
+    }
+  },
+  "overallVerdict": "WAVE_A_PASS — Wave B blocked on GitHub env approval; C PASS; E partial",
+  "valuesPrinted": false
+}

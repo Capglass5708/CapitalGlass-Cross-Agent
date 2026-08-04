@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-RUNNER-RESTART-ONLY-001",
+  "kind": "command",
+  "title": "RYZEN9DESK runner: restart service before re-register",
+  "summary": "When runner shows offline but registration exists, restart systemd actions.runner service via Direct Connect SSH — do not register a second listener.",
+  "retrievalQuestions": [
+    "How to bring ryzen9desk-wsl2-CG-RYZEN9DESK-01 online without duplicate listener?",
+    "When is re-registration required on RYZEN9DESK?"
+  ],
+  "evidenceRefs": [
+    "artifacts/agent-runs/infrastructure-executor-lane-v1/reregister-ryzen9desk-runner.sh",
+    "artifacts/agent-runs/infrastructure-executor-lane-v1/bootstrap-checkpoint-v1.json"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "GitHub runner offline but smoke previously passed on RYZEN9DESK",
+    "startAt": ["ssh -F ~/.ssh/config cg-ryzen9desk-01"],
+    "runPreflight": ["gh api repos/Capglass5708/CG-AppBuilder-MCP/actions/runners"],
+    "doNot": ["Register second listener without GitHub dropped registration"],
+    "proveBeforeClaiming": ["runner status online", "single systemd unit active"]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/host-authority.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}

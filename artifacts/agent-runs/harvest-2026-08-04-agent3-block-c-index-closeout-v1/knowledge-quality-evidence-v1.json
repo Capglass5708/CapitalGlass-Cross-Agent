@@ -1,0 +1,195 @@
+{
+  "schemaVersion": "harvest-knowledge-quality-evidence-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-agent3-block-c-index-closeout-v1",
+  "materialEvents": [
+    {
+      "eventId": "TE-001",
+      "summary": "User resumed Block C with L: hub mounted after off-LAN blocked state",
+      "material": true,
+      "representations": ["correction", "evidence", "do_not_advance"]
+    },
+    {
+      "eventId": "TE-002",
+      "summary": "index:publish PUBLISH_PASS @ 0b68e705; slice6 hub-seed 4 seeds updated",
+      "material": true,
+      "representations": ["result", "command", "evidence"]
+    },
+    {
+      "eventId": "TE-003",
+      "summary": "Drift probe IN_SYNC with Doppler; false negative without Doppler",
+      "material": true,
+      "representations": ["faster_path", "evidence", "command"]
+    },
+    {
+      "eventId": "TE-004",
+      "summary": "User ordered hot AI-cache alignment chain as next Block C move",
+      "material": true,
+      "representations": ["decision", "evidence", "future_action"]
+    },
+    {
+      "eventId": "TE-005",
+      "summary": "Hot routing alone left agent:index:preflight FAILOVER_GIT_LEDGER STALE",
+      "material": true,
+      "representations": ["mistake", "failure", "evidence"]
+    },
+    {
+      "eventId": "TE-006",
+      "summary": "Three-command chain achieved INDEX_HIT_AI_CACHE CURRENT @ 7827e75a",
+      "material": true,
+      "representations": ["result", "command", "evidence"]
+    },
+    {
+      "eventId": "TE-007",
+      "summary": "Office Admin v1.5 scripts on C: only until PR #54 worktree",
+      "material": true,
+      "representations": ["protocol_improvement", "evidence", "future_action"]
+    },
+    {
+      "eventId": "TE-008",
+      "summary": "Cross-Agent PR #6 MERGEABLE CLEAN harvest-authority-gates PASS",
+      "material": true,
+      "representations": ["evidence", "result", "future_action"]
+    },
+    {
+      "eventId": "TE-009",
+      "summary": "Wave B run 30935396892 BLOCKED_OPERATOR_APPROVAL not runner offline",
+      "material": true,
+      "representations": ["blocker", "failure", "evidence"]
+    },
+    {
+      "eventId": "TE-010",
+      "summary": "User invoked CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1 RUN",
+      "material": true,
+      "representations": ["protocol_improvement", "evidence", "do_not_advance"]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "DEC-301",
+      "eventRefs": ["TE-004", "TE-006"],
+      "decision": "Run intelligence-hub:index-freshness:publish + index:publish + hot-routing before claiming INDEX_HIT_AI_CACHE",
+      "reason": "agent:index:preflight resolves Z bundle; hot routing alone left Z/L misaligned at git HEAD",
+      "alternativesRejected": [
+        "publish-hot-routing-index only",
+        "Skip L republish when git HEAD advanced past first publish"
+      ],
+      "consequences": [
+        "INDEX_HIT_AI_CACHE CURRENT @ 7827e75a",
+        "Scout and preflight aligned on hot-ai-cache tier"
+      ],
+      "authority": "agent",
+      "evidenceRefs": ["TE-005", "TE-006", "IH-THREAD-AGENT3-HOT-CACHE-ALIGN-001"]
+    },
+    {
+      "id": "DEC-302",
+      "eventRefs": ["TE-009"],
+      "decision": "Treat Wave B failure as CG_EXECUTOR_APPROVAL_REF gate not runner repair",
+      "reason": "Job executed on ryzen9desk-wsl2-CG-RYZEN9DESK-01 with BLOCKED_OPERATOR_APPROVAL",
+      "alternativesRejected": [
+        "Reinstall runner",
+        "Restart Wave A bootstrap"
+      ],
+      "consequences": [
+        "Operator must supply approval ref before wsl2-canonical-setup rerun"
+      ],
+      "authority": "operator",
+      "evidenceRefs": ["TE-009", "run 30935396892", "IH-THREAD-EXECUTOR-WAVE-B-APPROVAL-001"]
+    }
+  ],
+  "corrections": [
+    {
+      "id": "COR-301",
+      "material": true,
+      "incorrectAgentClaim": "Treated Wave B failure as runner still offline",
+      "operatorCorrection": "Run 30935396892 executed on RYZEN9DESK — blocked on CG_EXECUTOR_APPROVAL_REF",
+      "correctedTruth": "Mutation-profile approval gate BLOCKED_OPERATOR_APPROVAL",
+      "futureAgentRule": "Read job log for BLOCKED_OPERATOR_APPROVAL before runner reinstall",
+      "affectedRecords": ["WM-002", "IH-THREAD-EXECUTOR-WAVE-B-APPROVAL-001"]
+    },
+    {
+      "id": "COR-302",
+      "material": true,
+      "incorrectAgentClaim": "Assumed hot-routing-index publish sufficient for INDEX_HIT_AI_CACHE",
+      "operatorCorrection": "User ordered full hot AI-cache alignment chain after L transport",
+      "correctedTruth": "Z bundle + L publish at canonical git SHA required before preflight PASS",
+      "futureAgentRule": "Run three-command alignment checklist in IH-THREAD-AGENT3-HOT-CACHE-ALIGN-001",
+      "affectedRecords": ["WM-001", "ED-001"]
+    }
+  ],
+  "durableClaims": [
+    {
+      "id": "CLM-301",
+      "claim": "INDEX_HIT_AI_CACHE achieved @ 7827e75a after Z bundle + L publish + hot routing",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["TE-006", "agent:index:preflight JSON"],
+      "eventRefs": ["TE-005", "TE-006"]
+    },
+    {
+      "id": "CLM-302",
+      "claim": "Cross-Agent PR #6 MERGEABLE with harvest-authority-gates PASS @ 7827e75a",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["TE-008", "gh pr view 6"],
+      "eventRefs": ["TE-008"]
+    },
+    {
+      "id": "CLM-303",
+      "claim": "Wave B run 30935396892 failed BLOCKED_OPERATOR_APPROVAL when CG_EXECUTOR_APPROVAL_REF empty",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["TE-009", "run 30935396892"],
+      "eventRefs": ["TE-009"]
+    }
+  ],
+  "contradictions": [],
+  "mistakes": [
+    {
+      "id": "MIST-301",
+      "eventRefs": ["TE-005"],
+      "attemptedAction": "npm run intelligence-hub:publish-hot-routing-index then agent:index:preflight",
+      "whyItSeemedReasonable": "Hot routing index is scout first-stop per estate hooks",
+      "actualOutcome": "FAILOVER_GIT_LEDGER STALE rawScanRequired true",
+      "rootCause": "Z AI-cache bundle and L slices not aligned to git HEAD 7827e75a",
+      "optimalFirstMove": "intelligence-hub:index-freshness:publish then index:publish then hot routing",
+      "preventiveControl": "IH-THREAD-AGENT3-HOT-CACHE-ALIGN-001"
+    },
+    {
+      "id": "MIST-302",
+      "eventRefs": ["TE-009"],
+      "attemptedAction": "Diagnose Wave B as runner offline after earlier runner outage",
+      "whyItSeemedReasonable": "Prior session had RYZEN9DESK runner offline blocking Wave A",
+      "actualOutcome": "Misdiagnosis risk; job ran on correct runner",
+      "rootCause": "BLOCKED_OPERATOR_APPROVAL mutation profile gate",
+      "optimalFirstMove": "Read GHA log for approval ref requirement",
+      "preventiveControl": "IH-THREAD-EXECUTOR-WAVE-B-APPROVAL-001"
+    }
+  ],
+  "blindRetrieval": [
+    {
+      "question": "How do I align hot AI cache when scout says Z misaligned?",
+      "expectedSeedId": "IH-THREAD-AGENT3-HOT-CACHE-ALIGN-001",
+      "lessonFocus": "hot-cache-alignment",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "Why did Wave B wsl2-canonical-setup fail on RYZEN9DESK?",
+      "expectedSeedId": "IH-THREAD-EXECUTOR-WAVE-B-APPROVAL-001",
+      "lessonFocus": "executor-approval-gate",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "Is Cross-Agent risk remediation ready to merge?",
+      "expectedSeedId": "IH-THREAD-CROSS-AGENT-PR6-MERGE-001",
+      "lessonFocus": "pr6-merge-readiness",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "Where is WESLEY_WORK drive mount v1.5 persistence?",
+      "expectedSeedId": "IH-THREAD-OFFICE-ADMIN-V15-DRIVE-001",
+      "lessonFocus": "office-admin-v15",
+      "genericKeywordOnly": false
+    }
+  ],
+  "humanReview": {
+    "required": false,
+    "reasons": []
+  }
+}

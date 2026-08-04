@@ -1,0 +1,146 @@
+{
+  "schemaVersion": "harvest-knowledge-quality-evidence-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-wesleywork-z-l-mobility-closure-v1",
+  "materialEvents": [
+    {
+      "eventId": "TE-001",
+      "summary": "Gated wave WESLEYWORK Z L mobility ERROR_86 repair mission opened",
+      "material": true,
+      "representations": ["decision", "evidence", "future_action"]
+    },
+    {
+      "eventId": "TE-002",
+      "summary": "ERROR_86 from unsafe SMB credential delivery via cmd net use on WESLEY_WORK",
+      "material": true,
+      "representations": ["failure", "mistake", "correction", "evidence", "do_not_advance"]
+    },
+    {
+      "eventId": "TE-003",
+      "summary": "PARTIAL_DRIVE_AVAILABILITY_OFFLAN_TAILSCALE_L classification locked",
+      "material": true,
+      "representations": ["result", "evidence", "decision"]
+    },
+    {
+      "eventId": "TE-004",
+      "summary": "OfficeLanDriveMapping credential-safe New-PSDrive mapping shipped in PR 53",
+      "material": true,
+      "representations": ["result", "protocol_improvement", "evidence", "command"]
+    },
+    {
+      "eventId": "TE-005",
+      "summary": "AppBuilder scout mobility routing and signature expansion in PR 280",
+      "material": true,
+      "representations": ["result", "protocol_improvement", "evidence"]
+    },
+    {
+      "eventId": "TE-006",
+      "summary": "Live ForceRemap PARTIAL_DRIVE_AVAILABILITY_OFFLAN_TAILSCALE_L lOk True verified",
+      "material": true,
+      "representations": ["result", "evidence", "command"]
+    },
+    {
+      "eventId": "TE-007",
+      "summary": "CORE SYSTEMS GO locked; full ALL SYSTEMS GO withheld pending L catalog",
+      "material": true,
+      "representations": ["decision", "do_not_advance", "evidence"]
+    },
+    {
+      "eventId": "TE-008",
+      "summary": "All four scout recurrence queries route after signature expansion dc83be1f",
+      "material": true,
+      "representations": ["result", "evidence"]
+    },
+    {
+      "eventId": "TE-009",
+      "summary": "Next mission wesleywork-z-l-pr-merge-publication-closeout-v1 scoped",
+      "material": true,
+      "representations": ["future_action", "protocol_improvement", "decision"]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "DEC-001",
+      "eventRefs": ["TE-007"],
+      "decision": "Lock CORE SYSTEMS GO for drive repair; withhold full ALL SYSTEMS GO until L catalog publication",
+      "reason": "Hot AI Cache alone is not durable L hub memory",
+      "alternativesRejected": ["Single ALL SYSTEMS GO label after hot routing publish only"],
+      "consequences": ["Publication closeout mission required before full acceptance phrase"],
+      "authority": "operator",
+      "evidenceRefs": ["TE-007", "verify-only table"]
+    }
+  ],
+  "corrections": [
+    {
+      "id": "COR-001",
+      "material": true,
+      "incorrectAgentClaim": "Generic Z L disconnected queries routed to mobility packet before signature expansion",
+      "operatorCorrection": "Expand wesley-work-drive-mobility matchers for compound Z L strings",
+      "correctedTruth": "dc83be1f closes all four required scout recurrence queries",
+      "futureAgentRule": "Run mobility signature tests before claiming first-read coverage complete",
+      "affectedRecords": ["scout-signature-expansion-v1"]
+    }
+  ],
+  "durableClaims": [
+    {
+      "id": "CLM-001",
+      "claim": "WESLEY_WORK canonical kit achieves PARTIAL_DRIVE_AVAILABILITY_OFFLAN_TAILSCALE_L with Tailscale L",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["TE-006", "terminals/405765", "live-verification-receipt.json"],
+      "eventRefs": ["TE-006"]
+    },
+    {
+      "id": "CLM-002",
+      "claim": "ERROR_86 root cause was unsafe cmd net use credential path not invalid SMB creds",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["TE-002", "WM-001", "213cbc8"],
+      "eventRefs": ["TE-002", "TE-004"]
+    }
+  ],
+  "contradictions": [],
+  "mistakes": [
+    {
+      "id": "MIST-001",
+      "eventRefs": ["TE-002"],
+      "attemptedAction": "Map L drive using cmd net use with password string interpolation",
+      "whyItSeemedReasonable": "Legacy OfficeLanDriveMapping used cmdkey and net use patterns",
+      "actualOutcome": "ERROR_86 logon failure with valid vault credentials",
+      "rootCause": "Special characters in vault password break cmd line interpolation",
+      "optimalFirstMove": "Invoke-OfficeCredentialSafeDriveMap with PSCredential and New-PSDrive",
+      "preventiveControl": "Test-OfficeDriveAuthorityV2Gate blocks unsafe net use pattern"
+    },
+    {
+      "id": "MIST-002",
+      "eventRefs": ["TE-006"],
+      "attemptedAction": "ForceRemap with live Tailscale probe during long remap loop",
+      "whyItSeemedReasonable": "Probe at map time reflects current network truth",
+      "actualOutcome": "SKIP L and ERROR_86_REGRESSION when probe flapped mid-run",
+      "rootCause": "Uncached probes during multi-minute remap window",
+      "optimalFirstMove": "Cache deskLan445 and deskTailscale445 at Ensure script entry",
+      "preventiveControl": "Cached probe variables in Ensure-CgWesleyWorkDriveMounts.ps1"
+    }
+  ],
+  "blindRetrieval": [
+    {
+      "question": "WESLEY_WORK ERROR_86 L drive New-PSDrive credential-safe remap",
+      "expectedSeedId": "IH-Z-L-OFFLAN-PARTIAL-001-WESLEYWORK-ERROR86-PSDRIVE-FIX",
+      "lessonFocus": "error-86-psdrive-fix",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "CORE SYSTEMS GO versus ALL SYSTEMS GO WESLEY_WORK Z L mobility",
+      "expectedSeedId": "IH-THREAD-WESLEYWORK-ZL-CORE-SYSTEMS-GO-001",
+      "lessonFocus": "core-systems-go-boundary",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "What blocks full ALL SYSTEMS GO for WESLEY_WORK Z L mobility",
+      "expectedSeedId": "IH-THREAD-WESLEYWORK-ZL-PUBLICATION-CLOSEOUT-001",
+      "lessonFocus": "publication-closeout",
+      "genericKeywordOnly": false
+    }
+  ],
+  "humanReview": {
+    "required": false,
+    "reasons": []
+  }
+}

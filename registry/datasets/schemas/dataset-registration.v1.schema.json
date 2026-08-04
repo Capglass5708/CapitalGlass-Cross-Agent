@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dataset-registration.v1.schema.json",
+  "title": "Hot Cache Dataset Registration",
+  "type": "object",
+  "required": [
+    "datasetId",
+    "displayName",
+    "authorityRepo",
+    "manifestPath",
+    "compilerOwner",
+    "indexSchemaVersion",
+    "freshnessClass",
+    "authoritative"
+  ],
+  "properties": {
+    "datasetId": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "displayName": { "type": "string" },
+    "authorityRepo": { "type": "string" },
+    "manifestPath": { "type": "string" },
+    "compilerOwner": { "type": "string" },
+    "compilerPlugin": { "type": "string" },
+    "compileCommand": { "type": "string" },
+    "publishCommand": { "type": "string" },
+    "indexSchemaVersion": { "type": "string" },
+    "queryClasses": { "type": "array", "items": { "type": "string" } },
+    "indexVariants": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "full",
+          "compact",
+          "by-machine",
+          "by-project",
+          "by-application",
+          "by-owner",
+          "by-status",
+          "by-kind",
+          "recent",
+          "search-dictionary",
+          "relationships",
+          "tombstone"
+        ]
+      }
+    },
+    "scope": { "enum": ["global", "machine-aware", "project-aware"] },
+    "freshnessClass": { "type": "string" },
+    "defaultTtlSeconds": { "type": "integer", "minimum": 60 },
+    "compactInjectionAllowed": { "type": "boolean" },
+    "fullIndexOnDemand": { "type": "boolean" },
+    "hotCacheObjectRel": { "type": "string" },
+    "lPublicationPath": { "type": "string" },
+    "authoritative": { "type": "boolean" },
+    "invalidationTriggers": { "type": "array", "items": { "type": "string" } },
+    "dependsOnDatasets": { "type": "array", "items": { "type": "string" } },
+    "dependencyPolicy": {
+      "type": "object",
+      "properties": {
+        "requireFresh": { "type": "boolean" },
+        "maximumDependencyAgeSeconds": { "type": "integer" },
+        "onDependencyFailure": {
+          "enum": ["FAIL_CLOSED", "PUBLISH_DEGRADED", "SKIP_PUBLISH"]
+        }
+      }
+    },
+    "budgets": {
+      "type": "object",
+      "properties": {
+        "compactMaxBytes": { "type": "integer" },
+        "compactMaxRecords": { "type": "integer" },
+        "fullMaxBytes": { "type": "integer" },
+        "relationshipMaxEdges": { "type": "integer" },
+        "agentInjectionMaxTokens": { "type": "integer" }
+      }
+    }
+  },
+  "additionalProperties": true
+}

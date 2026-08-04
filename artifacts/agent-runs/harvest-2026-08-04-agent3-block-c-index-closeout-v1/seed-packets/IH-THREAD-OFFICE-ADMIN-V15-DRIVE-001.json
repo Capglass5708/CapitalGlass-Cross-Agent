@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-OFFICE-ADMIN-V15-DRIVE-001",
+  "kind": "runbook",
+  "title": "Office Admin v1.5 WESLEY_WORK drive-mount task dedupe deploy",
+  "summary": "PR #54 lands hidden scheduled tasks (IgnoreNew, Hidden) removing LanRecheck/User-Health duplicates; elevated Install + Test verifier on WESLEY_WORK.",
+  "retrievalQuestions": [
+    "Where is WESLEY_WORK drive mount v1.5 persistence?",
+    "How to stop flashing PowerShell health windows on WESLEY_WORK?",
+    "Office Admin PR 54 drive mount dedupe?"
+  ],
+  "evidenceRefs": [
+    "TE-007",
+    "CapitalGlass-Office-Admin PR #54",
+    "wesleywork-drive-mount-task-dedupe-v1"
+  ],
+  "wasteIds": ["TW-003"],
+  "roiRank": 2,
+  "futureAgentInstructions": {
+    "whenThisAppears": "WESLEY_WORK periodic drive health flashing or duplicate scheduled tasks",
+    "startAt": [
+      "CapitalGlass-Office-Admin scripts/devices/CG-WESLEYWORK-01/",
+      "work-progress/projects/2026-08-03_wesleywork-drive-mount-task-dedupe-v1.md"
+    ],
+    "runPreflight": [
+      "office_get_agent_preflight"
+    ],
+    "doNot": [
+      "Trust C:\\Developer-only scripts without ext4 PR merge",
+      "Register LanRecheck + Health duplicate periodic tasks"
+    ],
+    "proveBeforeClaiming": [
+      "Merge PR #54 (and mobility base PR first)",
+      "Elevated: Install-CgWesleyWorkDriveMountPersistence.ps1",
+      "Test-CgWesleyWorkDriveMountTaskRegistration.ps1 -ExpectRegistered → PASS"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "HUMAN_REVIEW",
+  "status": "CANDIDATE"
+}

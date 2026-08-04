@@ -1,0 +1,193 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-wesleywork-z-l-mobility-closure-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-THREAD-WESLEYWORK-ZL-CORE-SYSTEMS-GO-001",
+      "questionId": "IHTHREADWESL",
+      "canonicalQuestion": "Is WESLEY_WORK Z L recovery ALL SYSTEMS GO?",
+      "alternateQuestions": [
+        "What is CORE SYSTEMS GO vs ALL SYSTEMS GO for WESLEY_WORK drives?",
+        "Can I claim ALL SYSTEMS GO from hot AI Cache only?"
+      ],
+      "shortAnswer": "Drive repair is CORE SYSTEMS GO (canonical kit, New-PSDrive, Tailscale L). Full ALL SYSTEMS GO requires merge + WESLEYDESK publication + L catalog durable packet — not hot cache alone.",
+      "detailedAnswer": "WESLEY_WORK Z/L mobility: CORE SYSTEMS GO vs full ALL SYSTEMS GO",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T19:23:50.858Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-wesleywork-z-l-mobility-closure-v1/seed-packets/IH-THREAD-WESLEYWORK-ZL-CORE-SYSTEMS-GO-001.json"
+      ],
+      "authorityCommit": [
+        "3de8a66"
+      ],
+      "evidenceUrls": [
+        "harvest-2026-08-04-wesleywork-z-l-mobility-closure-v1",
+        "live-verification-receipt.json",
+        "PR #53 #280 #7"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-04-wesleywork-z-l-mobility-closure-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "WESLEY_WORK Z L mobility closeout or ALL SYSTEMS GO claim",
+        "startAt": [
+          "IH-Z-L-OFFLAN-PARTIAL-001-WESLEYWORK-ERROR86-PSDRIVE-FIX",
+          "docs/devices/CG-WESLEYWORK-01/WESLEYWORK-Z-L-MOBILITY.md"
+        ],
+        "runPreflight": [
+          "npm run agent:index:scout -- --query=WESLEY_WORK Z L drive disconnected --json"
+        ],
+        "doNot": [
+          "Claim full ALL SYSTEMS GO when L catalog lacks IH-Z-L-OFFLAN-PARTIAL-001-WESLEYWORK-ERROR86-PSDRIVE-FIX",
+          "Reopen drive-kit repair without fresh live regression",
+          "Use cmd /c net use password interpolation"
+        ],
+        "proveBeforeClaiming": [
+          "CORE SYSTEMS GO: ForceRemap PARTIAL_DRIVE_AVAILABILITY_OFFLAN_TAILSCALE_L from cd C:\\",
+          "ALL SYSTEMS GO: four-query table + L BY-KIND catalog hit"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "lesson"
+    },
+    {
+      "ihPfspId": "IH-THREAD-WESLEYWORK-ZL-PUBLICATION-CLOSEOUT-001",
+      "questionId": "IHTHREADWESL",
+      "canonicalQuestion": "What blocks full ALL SYSTEMS GO for WESLEY_WORK Z L?",
+      "alternateQuestions": [
+        "How to publish WESLEY_WORK mobility packet to L hub catalog?",
+        "Which PRs must merge for WESLEY_WORK drive mobility?"
+      ],
+      "shortAnswer": "After CORE SYSTEMS GO drive repair, close with wesleywork-z-l-pr-merge-publication-closeout-v1: merge #53/#280/#7, run index-publication.yml, verify L catalog contains full mobility packet ID.",
+      "detailedAnswer": "WESLEY_WORK Z/L publication closure: merge PRs then WESLEYDESK index-publication",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T19:23:50.858Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-wesleywork-z-l-mobility-closure-v1/seed-packets/IH-THREAD-WESLEYWORK-ZL-PUBLICATION-CLOSEOUT-001.json"
+      ],
+      "authorityCommit": [
+        "3de8a66"
+      ],
+      "evidenceUrls": [
+        "wesleywork-z-l-pr-merge-publication-closeout-v1",
+        "MERGE_BLOCKED CI receipts",
+        "index-publication.yml queued"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-04-wesleywork-z-l-mobility-closure-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "WESLEY_WORK mobility MERGE_BLOCKED or PUBLICATION_BLOCKED",
+        "startAt": [
+          "work-progress/harvest-packet-registry.json",
+          "BY-KIND/thread-autopsy-index.json"
+        ],
+        "runPreflight": [
+          "npm run harvest:duplication-preflight -- --harvest-id=harvest-2026-08-04-wesleywork-z-l-mobility-closure-v1"
+        ],
+        "doNot": [
+          "Run harvest:publish-intelligence-full from Cursor without operator make operational",
+          "Merge PRs with failing required CI without documented waiver",
+          "Patch consumer repos for drive mapping"
+        ],
+        "proveBeforeClaiming": [
+          "gh pr view 53 280 7 mergedAt",
+          "grep IH-Z-L-OFFLAN-PARTIAL-001-WESLEYWORK-ERROR86-PSDRIVE-FIX on L BY-KIND",
+          "operational-publication-receipt.json"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "lesson"
+    },
+    {
+      "ihPfspId": "IH-Z-L-OFFLAN-PARTIAL-001-WESLEYWORK-ERROR86-PSDRIVE-FIX",
+      "questionId": "IHZLOFFLANPA",
+      "canonicalQuestion": "WESLEY_WORK Z L drive disconnected",
+      "alternateQuestions": [
+        "WESLEY_WORK ERROR_86 L drive",
+        "Why does New-PSDrive work but net use fails on WESLEY_WORK?"
+      ],
+      "shortAnswer": "Laptop mobility: Z on LAN NAS; L on desk LAN or Tailscale wesleydesk. ERROR_86 from unsafe net use — fix New-PSDrive PSCredential in OfficeLanDriveMapping.ps1. Cached probes prevent SKIP L.",
+      "detailedAnswer": "WESLEY_WORK Z/L off-LAN partial availability and ERROR_86 L-drive fix",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T19:23:50.858Z",
+      "authorityRepo": "CapitalGlass-Office-Admin",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-wesleywork-z-l-mobility-closure-v1/seed-packets/IH-Z-L-OFFLAN-PARTIAL-001-WESLEYWORK-ERROR86-PSDRIVE-FIX.json"
+      ],
+      "authorityCommit": [
+        "3de8a66"
+      ],
+      "evidenceUrls": [
+        "213cbc8",
+        "dc83be1f",
+        "live-verification-receipt.json",
+        "terminals/405765"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-04-wesleywork-z-l-mobility-closure-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Office-Admin"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "ERROR_86, off LAN Tailscale wesleydesk, PARTIAL_DRIVE_AVAILABILITY_OFFLAN_TAILSCALE_L",
+        "startAt": [
+          "CapitalGlass-Office-Admin/docs/devices/CG-WESLEYWORK-01/WESLEYWORK-Z-L-MOBILITY.md"
+        ],
+        "runPreflight": [
+          "cd C:\\",
+          "Ensure-CgWesleyWorkDriveMounts.ps1 -Mode ForceRemap",
+          "npm run agent:index:scout -- --query=WESLEY_WORK ERROR_86 L drive --json"
+        ],
+        "doNot": [
+          "cmd /c net use with password on command line",
+          "Treat 192.168.1.109 down as failure when wesleydesk:445 up",
+          "ForceRemap from WSL UNC cwd"
+        ],
+        "proveBeforeClaiming": [
+          "classification=PARTIAL_DRIVE_AVAILABILITY_OFFLAN_TAILSCALE_L",
+          "L:\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-Z-L-OFFLAN-PARTIAL-001",
+  "kind": "failure-pattern",
+  "title": "WESLEY_WORK off-LAN may restore Z via Tailscale but not L",
+  "summary": "When nasLan445 and deskLan445 are false, ForceRemap can map Z to cg-server but L requires WESLEYDESK SMB.",
+  "retrievalQuestions": [
+    "Why is Z available but L missing on WESLEY_WORK remote?",
+    "What does PARTIAL_DRIVE_AVAILABILITY mean for ForceRemap?"
+  ],
+  "evidenceRefs": [
+    "TE-005",
+    "NETWORK-OUTAGE-2026-08-03-220459.json"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "User reports Z and L unavailable on WESLEY_WORK off-LAN",
+    "startAt": [
+      "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md"
+    ],
+    "runPreflight": [
+      "Test-NetConnection cg-wesleydesk-01 -Port 445",
+      "Test-Path Z:\\Capital-Glass-Dev"
+    ],
+    "doNot": [
+      "Claim full drive recovery when lOk=False",
+      "Patch consumer apps for mapping"
+    ],
+    "proveBeforeClaiming": [
+      "Windows Test-Path for both Z probe and L index path"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

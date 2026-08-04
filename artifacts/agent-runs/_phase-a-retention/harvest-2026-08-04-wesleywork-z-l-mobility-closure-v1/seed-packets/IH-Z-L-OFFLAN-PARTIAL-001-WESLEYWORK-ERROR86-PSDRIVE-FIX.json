@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-Z-L-OFFLAN-PARTIAL-001-WESLEYWORK-ERROR86-PSDRIVE-FIX",
+  "kind": "failure-pattern",
+  "title": "WESLEY_WORK Z/L off-LAN partial availability and ERROR_86 L-drive fix",
+  "summary": "Laptop mobility: Z on LAN NAS; L on desk LAN or Tailscale wesleydesk. ERROR_86 from unsafe net use — fix New-PSDrive PSCredential in OfficeLanDriveMapping.ps1. Cached probes prevent SKIP L.",
+  "retrievalQuestions": [
+    "WESLEY_WORK Z L drive disconnected",
+    "WESLEY_WORK ERROR_86 L drive",
+    "Why does New-PSDrive work but net use fails on WESLEY_WORK?"
+  ],
+  "evidenceRefs": [
+    "213cbc8",
+    "dc83be1f",
+    "live-verification-receipt.json",
+    "terminals/405765"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "ERROR_86, off LAN Tailscale wesleydesk, PARTIAL_DRIVE_AVAILABILITY_OFFLAN_TAILSCALE_L",
+    "startAt": [
+      "CapitalGlass-Office-Admin/docs/devices/CG-WESLEYWORK-01/WESLEYWORK-Z-L-MOBILITY.md"
+    ],
+    "runPreflight": [
+      "cd C:\\",
+      "Ensure-CgWesleyWorkDriveMounts.ps1 -Mode ForceRemap",
+      "npm run agent:index:scout -- --query=WESLEY_WORK ERROR_86 L drive --json"
+    ],
+    "doNot": [
+      "cmd /c net use with password on command line",
+      "Treat 192.168.1.109 down as failure when wesleydesk:445 up",
+      "ForceRemap from WSL UNC cwd"
+    ],
+    "proveBeforeClaiming": [
+      "classification=PARTIAL_DRIVE_AVAILABILITY_OFFLAN_TAILSCALE_L",
+      "L:\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

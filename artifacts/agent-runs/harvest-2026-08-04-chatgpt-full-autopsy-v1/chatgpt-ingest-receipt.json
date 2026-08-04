@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "chatgpt-ingest-receipt-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-chatgpt-full-autopsy-v1",
+  "verdict": "INGEST_PASS",
+  "ingestedAt": "2026-08-04T07:02:14.424Z",
+  "inputPath": "/mnt/c/Users/wesle/Pictures/chatgpt-full-autopsy-and-improvement-findings-v1.md",
+  "inputHash": "ef1dfbe154a3d8d6c11046b8e8169f2dad87480b6b0d28af1e05d01058aca70f",
+  "seedCount": 6,
+  "seedIds": [
+    "IH-IMPROVE-CHATGPT-LANE-001",
+    "IH-IMPROVE-MODE-GUARD-002",
+    "IH-IMPROVE-SEED-DISTILLATION-003",
+    "IH-THREAD-CHATGPT-HARVEST-001",
+    "IH-THREAD-CONCEPT-STOP-002",
+    "IH-THREAD-GIT-BLOAT-003"
+  ],
+  "runDir": "artifacts/agent-runs/harvest-2026-08-04-chatgpt-full-autopsy-v1",
+  "nextSteps": [
+    "npm run harvest:duplication-preflight -- --harvest-id=harvest-2026-08-04-chatgpt-full-autopsy-v1",
+    "npm run harvest:sync-derived -- harvest-2026-08-04-chatgpt-full-autopsy-v1",
+    "npm run harvest:validate -- harvest-2026-08-04-chatgpt-full-autopsy-v1",
+    "npm run harvest:validate-autopsy -- --harvest-id=harvest-2026-08-04-chatgpt-full-autopsy-v1"
+  ]
+}

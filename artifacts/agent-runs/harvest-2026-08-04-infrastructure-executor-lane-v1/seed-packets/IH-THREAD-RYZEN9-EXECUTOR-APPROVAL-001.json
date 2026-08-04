@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-RYZEN9-EXECUTOR-APPROVAL-001",
+  "kind": "blocker",
+  "title": "RYZEN9DESK mutation profiles need approval_ref plus GitHub environment",
+  "summary": "wsl2-canonical-setup and mcp-verify require both ryzen9desk-managed-execution env approval AND workflow approval_ref input.",
+  "retrievalQuestions": [
+    "Why did run 30935396892 fail after environment approval?",
+    "What approval_ref should wsl2-canonical-setup use?"
+  ],
+  "evidenceRefs": [
+    "https://github.com/Capglass5708/CG-AppBuilder-MCP/actions/runs/30935396892",
+    "CG-AppBuilder-MCP/scripts/executor/ryzen9desk-executor-allowlist.json"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Dispatching mutation job_profile on ryzen9desk-executor-dispatch workflow",
+    "startAt": ["CG-AppBuilder-MCP/.github/workflows/ryzen9desk-executor-dispatch.yml"],
+    "runPreflight": ["gh workflow run ... -f approval_ref=<lane-id>"],
+    "doNot": ["Assume GitHub environment approval alone satisfies requiresApproval"],
+    "proveBeforeClaiming": ["Executor receipt verdict PASS not BLOCKED_OPERATOR_APPROVAL"]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/active-work-blockers.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

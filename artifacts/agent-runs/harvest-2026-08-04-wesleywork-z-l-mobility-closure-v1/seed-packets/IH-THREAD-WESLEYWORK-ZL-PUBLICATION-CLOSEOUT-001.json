@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-WESLEYWORK-ZL-PUBLICATION-CLOSEOUT-001",
+  "kind": "lesson",
+  "title": "WESLEY_WORK Z/L publication closure: merge PRs then WESLEYDESK index-publication",
+  "summary": "After CORE SYSTEMS GO drive repair, close with wesleywork-z-l-pr-merge-publication-closeout-v1: merge #53/#280/#7, run index-publication.yml, verify L catalog contains full mobility packet ID.",
+  "retrievalQuestions": [
+    "What blocks full ALL SYSTEMS GO for WESLEY_WORK Z L?",
+    "How to publish WESLEY_WORK mobility packet to L hub catalog?",
+    "Which PRs must merge for WESLEY_WORK drive mobility?"
+  ],
+  "evidenceRefs": [
+    "wesleywork-z-l-pr-merge-publication-closeout-v1",
+    "MERGE_BLOCKED CI receipts",
+    "index-publication.yml queued"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "WESLEY_WORK mobility MERGE_BLOCKED or PUBLICATION_BLOCKED",
+    "startAt": [
+      "work-progress/harvest-packet-registry.json",
+      "BY-KIND/thread-autopsy-index.json"
+    ],
+    "runPreflight": ["npm run harvest:duplication-preflight -- --harvest-id=harvest-2026-08-04-wesleywork-z-l-mobility-closure-v1"],
+    "doNot": [
+      "Run harvest:publish-intelligence-full from Cursor without operator make operational",
+      "Merge PRs with failing required CI without documented waiver",
+      "Patch consumer repos for drive mapping"
+    ],
+    "proveBeforeClaiming": [
+      "gh pr view 53 280 7 mergedAt",
+      "grep IH-Z-L-OFFLAN-PARTIAL-001-WESLEYWORK-ERROR86-PSDRIVE-FIX on L BY-KIND",
+      "operational-publication-receipt.json"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

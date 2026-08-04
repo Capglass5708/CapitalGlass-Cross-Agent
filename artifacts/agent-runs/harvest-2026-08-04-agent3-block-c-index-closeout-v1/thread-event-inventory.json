@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "cross-agent-thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-agent3-block-c-index-closeout-v1",
+  "events": [
+    {
+      "eventId": "TE-001",
+      "id": "TE-001",
+      "whatHappened": "User resumed Block C lane with L: hub mounted after prior OPERATOR_BLOCKED off-LAN state.",
+      "actor": "User",
+      "evidence": "User message: RESUME L IS UP",
+      "stateChange": "L: transport wave unblocked"
+    },
+    {
+      "eventId": "TE-002",
+      "id": "TE-002",
+      "whatHappened": "index:publish PUBLISH_PASS at Cross-Agent git SHA 0b68e705; slice6 harvest hub-seed updated (4 seeds).",
+      "actor": "Agent",
+      "evidence": "index publisher receipt runtime/index-publication/latest.json",
+      "stateChange": "L BY-KIND slices aligned to 0b68e705"
+    },
+    {
+      "eventId": "TE-003",
+      "id": "TE-003",
+      "whatHappened": "Drift probe IN_SYNC with Doppler after ingest; without Doppler showed SUPABASE_PROJECTION_MISSING false negative.",
+      "actor": "Agent",
+      "evidence": "cross-agent-ledger:drift-probe receipts",
+      "stateChange": "Structured ledger projection verified"
+    },
+    {
+      "eventId": "TE-004",
+      "id": "TE-004",
+      "whatHappened": "User ordered hot AI-cache alignment to 0b68e705 as next move after Block C L: closeout.",
+      "actor": "User",
+      "evidence": "User queue: Align hot AI-cache → Office Admin v1.5 → Wave B → Cross-Agent merge",
+      "stateChange": "Scout first-stop mission defined"
+    },
+    {
+      "eventId": "TE-005",
+      "id": "TE-005",
+      "whatHappened": "publish-hot-routing-index wrote D: at 0b68e705 but agent:index:preflight still FAILOVER_GIT_LEDGER until Z bundle + L republish at git HEAD 7827e75a.",
+      "actor": "Agent",
+      "evidence": "agent-index-preflight-latest.json tier mismatch",
+      "stateChange": "Learned hot routing alone insufficient for preflight INDEX_HIT_AI_CACHE"
+    },
+    {
+      "eventId": "TE-006",
+      "id": "TE-006",
+      "whatHappened": "intelligence-hub:index-freshness:publish + index:publish + hot-routing refresh achieved INDEX_HIT_AI_CACHE CURRENT @ 7827e75a rawScanRequired false.",
+      "actor": "Agent",
+      "evidence": "agent:index:preflight and agent:index:scout JSON",
+      "stateChange": "ALL SYSTEMS GO on AI Cache first stop"
+    },
+    {
+      "eventId": "TE-007",
+      "id": "TE-007",
+      "whatHappened": "Office Admin v1.5 drive-mount scripts existed on C:\\Developer only; PR #54 opened from clean worktree with Register-OfficeHiddenScheduledTask + task dedupe.",
+      "actor": "Agent",
+      "evidence": "CapitalGlass-Office-Admin PR #54 commit 576ae8e",
+      "stateChange": "Durable v1.5 repo-backed fix in flight"
+    },
+    {
+      "eventId": "TE-008",
+      "id": "TE-008",
+      "whatHappened": "Cross-Agent PR #6 updated with merge-readiness table; MERGEABLE CLEAN harvest-authority-gates PASS.",
+      "actor": "Agent",
+      "evidence": "gh pr view 6",
+      "stateChange": "Risk remediation branch ready for operator merge"
+    },
+    {
+      "eventId": "TE-009",
+      "id": "TE-009",
+      "whatHappened": "Wave B run 30935396892 executed on ryzen9desk-wsl2-CG-RYZEN9DESK-01; failed BLOCKED_OPERATOR_APPROVAL CG_EXECUTOR_APPROVAL_REF empty (not runner offline).",
+      "actor": "Operator/CI",
+      "evidence": "User report run 30935396892",
+      "stateChange": "Executor lane gated on approval ref not infrastructure"
+    },
+    {
+      "eventId": "TE-010",
+      "id": "TE-010",
+      "whatHappened": "User invoked CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1 protocol RUN on this thread.",
+      "actor": "User",
+      "evidence": "Z: protocol attach + RUN",
+      "stateChange": "Phase A harvest encoding started"
+    }
+  ]
+}

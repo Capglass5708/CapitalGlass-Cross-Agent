@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-IMPROVE-GRAPH-PROJECTION-BOUNDARY-V1",
+  "kind": "decision",
+  "title": "IH-IMPROVE-GRAPH-PROJECTION-BOUNDARY-V1",
+  "summary": "IH-IMPROVE-GRAPH-PROJECTION-BOUNDARY-V1",
+  "retrievalQuestions": [
+    "Which system owns extracted drawing values versus graph relationships?",
+    "What information may CG Master Graph project from Document Center?"
+  ],
+  "evidenceRefs": [
+    "current-chat:master-graph-side-chat-decision",
+    "attachment:CG-MASTER-GRAPH-readme-summary"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Thread or task references IH-IMPROVE-GRAPH-PROJECTION-BOUNDARY-V1",
+    "startAt": [
+      "docs/protocols/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md"
+    ],
+    "runPreflight": [
+      "npm run harvest:duplication-preflight -- --harvest-id=<id>"
+    ],
+    "doNot": [
+      "claim HARVEST_COMPLETE from ChatGPT draft",
+      "skip Cursor validation"
+    ],
+    "proveBeforeClaiming": [
+      "harvest:validate PASS",
+      "chatgpt-ingest-receipt.json INGEST_PASS"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

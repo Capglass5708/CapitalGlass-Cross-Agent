@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-WESLEYWORK-DRIVE-V15-001",
+  "kind": "failure-pattern",
+  "title": "ProgramData v1.4 register scripts undo v1.5 drive-mount dedupe",
+  "summary": "Install from stale PRIVATE copies re-creates LanRecheck, visible tasks, and missing hidden Startup until repo v1.5 is deployed.",
+  "retrievalQuestions": [
+    "Why does drive mount verifier fail after Install-CgWesleyWorkDriveMountPersistence?",
+    "What is the durable fix vs fix-drive-mount-tasks-v15.ps1 one-shot?"
+  ],
+  "evidenceRefs": [
+    "artifacts/agent-runs/infrastructure-executor-lane-v1/fix-drive-mount-tasks-v15.ps1",
+    "work-progress/projects/2026-08-04_wesleywork-drive-mount-v15-office-admin-land-v1.md",
+    "scripts/tests/wesleywork-drive-mount-task-dedupe-v1.test.mjs"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "WESLEY_WORK drive mount verifier FAIL or duplicate Health tasks",
+    "startAt": [
+      "CapitalGlass-Office-Admin/scripts/devices/CG-WESLEYWORK-01/Register-CgWesleyWorkDriveMountTasks.ps1",
+      "C:/ProgramData/CapitalGlass/OfficeAdmin/DRIVE-MOUNT-PERSISTENCE.json"
+    ],
+    "runPreflight": [
+      "node --test scripts/tests/wesleywork-drive-mount-task-dedupe-v1.test.mjs",
+      "Test-CgWesleyWorkDriveMountTaskRegistration.ps1 -ExpectRegistered"
+    ],
+    "doNot": [
+      "Treat wesleywork-drive-mount-task-dedupe-v1 CODE_COMPLETE receipt as live deploy",
+      "Use one-shot fix as long-term path after v1.5 merge"
+    ],
+    "proveBeforeClaiming": ["protocol v1.5 in DRIVE-MOUNT-PERSISTENCE.json", "verifier PASS"]
+  },
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

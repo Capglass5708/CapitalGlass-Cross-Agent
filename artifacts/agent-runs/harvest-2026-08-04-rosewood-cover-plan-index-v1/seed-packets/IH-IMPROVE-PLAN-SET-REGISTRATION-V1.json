@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-IMPROVE-PLAN-SET-REGISTRATION-V1",
+  "kind": "lesson",
+  "title": "IH-IMPROVE-PLAN-SET-REGISTRATION-V1",
+  "summary": "IH-IMPROVE-PLAN-SET-REGISTRATION-V1",
+  "retrievalQuestions": [
+    "What is the canonical Capital Glass schema for registering a drawing plan set?",
+    "Where are cover-sheet facts and sheet-to-page mappings stored?"
+  ],
+  "evidenceRefs": [
+    "current-chat:normalized-tables-decision",
+    "current-chat:rosewood-r1a-extraction"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Thread or task references IH-IMPROVE-PLAN-SET-REGISTRATION-V1",
+    "startAt": [
+      "docs/protocols/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md"
+    ],
+    "runPreflight": [
+      "npm run harvest:duplication-preflight -- --harvest-id=<id>"
+    ],
+    "doNot": [
+      "claim HARVEST_COMPLETE from ChatGPT draft",
+      "skip Cursor validation"
+    ],
+    "proveBeforeClaiming": [
+      "harvest:validate PASS",
+      "chatgpt-ingest-receipt.json INGEST_PASS"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

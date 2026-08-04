@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "1.0.0",
+  "workPackageId": "ryzen9desk-managed-executor-v1",
+  "jobProfile": "executor-smoke",
+  "approvalRef": null,
+  "runId": "30924982497",
+  "controlHost": "WESLEY_WORK",
+  "executionHost": "RYZEN9DESK",
+  "executionEnvironment": "WSL2",
+  "runnerName": "ryzen9desk-wsl2-CG-RYZEN9DESK-01",
+  "runnerLabels": [],
+  "repository": "Capglass5708/CG-AppBuilder-MCP",
+  "workflowRef": "refs/heads/main",
+  "workflowSha": "cd2f049581d15b455fbaabc71d2df9587535bb48",
+  "allowlistHash": "99f29cf0b78cbaffef56198e1099ab0185fa4ef9f68f660d6330bbfacea74f4d",
+  "startedAt": "2026-08-04T17:37:49.336Z",
+  "completedAt": "2026-08-04T17:37:49.609Z",
+  "verdict": "PASS",
+  "steps": [
+    {
+      "type": "npm",
+      "script": "ryzen9desk:executor:preflight",
+      "ok": true,
+      "status": 0,
+      "stdout": "> ryzen9desk:executor:preflight\n> node scripts/executor/ryzen9desk-executor-preflight.mjs\n\nverdict=PASS artifact=/home/wesley/actions-runner/_work/CG-AppBuilder-MCP/CG-AppBuilder-MCP/artifacts/agent-runs/ryzen9desk-managed-executor-v1/executor-preflight-receipt.json",
+      "stderr": ""
+    },
+    {
+      "type": "shell",
+      "commandKey": "hostname",
+      "optional": false,
+      "ok": true,
+      "status": 0,
+      "stdout": "CG-RYZEN9DESK-01",
+      "stderr": ""
+    },
+    {
+      "type": "shell",
+      "commandKey": "nvidia-smi",
+      "optional": true,
+      "ok": true,
+      "status": 0,
+      "stdout": "Tue Aug  4 12:37:49 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 590.57                 Driver Version: 591.86         CUDA Version: 13.1     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 5080        On  |   00000000:01:00.0  On |                  N/A |\n|  0%   34C    P8             29W /  360W |    2543MiB /  16303MiB |      4%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|  No running processes found                                                             |\n+-----------------------------------------------------------------------------------------+",
+      "stderr": ""
+    }
+  ],
+  "artifacts": [],
+  "errors": [],
+  "nextAction": null,
+  "host": {
+    "wslHostname": "CG-RYZEN9DESK-01",
+    "windowsComputerName": "CG-RYZEN9DESK-01",
+    "wslUser": "wesley",
+    "wslDistro": "Ubuntu-24.04",
+    "tailscaleName": "cg-ryzen9desk-01",
+    "machineRole": "ryzen9desk"
+  }
+}

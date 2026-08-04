@@ -1,0 +1,306 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-wesleywork-z-l-mobility-closure-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "rework",
+      "description": "First ForceRemap SKIP L despite tailscale=True — mid-run probe flap before cached probes fix",
+      "evidenceRefs": [
+        "terminals/405764",
+        "ERROR_86_REGRESSION classification"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Cached nasLan445/deskLan445/deskTailscale445 at Ensure script start",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "retrieval",
+      "description": "Generic Z L drive disconnected query missed firstRead until signature expansion (dc83be1f)",
+      "evidenceRefs": [
+        "verify-only table pre-expansion",
+        "TE-008"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Expanded wesley-work-drive-mobility signatures + compound matchers",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "verification",
+      "description": "Multiple verify-only passes needed to lock CORE SYSTEMS GO vs ALL SYSTEMS GO boundary",
+      "evidenceRefs": [
+        "user verify-only prompts",
+        "TE-007"
+      ],
+      "estimatedImpact": "low",
+      "savedBy": "Single closeout verdict seed with explicit do-not-advance guards",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "deploy",
+      "description": "PR merge blocked by unrelated CI (manifest sync, active-ledger test, harvest gates)",
+      "evidenceRefs": [
+        "PR #53 validate-code",
+        "PR #280 closeout gate",
+        "PR #7 harvest-risk-gates"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "wesleywork-z-l-pr-merge-publication-closeout-v1 with CI fix/waive scope",
+      "roiRank": 4
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Operator locked verdict tiers to prevent overclaiming ALL SYSTEMS GO before L catalog publish",
+      "operatorCost": "medium",
+      "systemFix": "Harvest seed with CORE_SYSTEMS_GO vs ALL_SYSTEMS_GO do-not-advance map",
+      "evidenceRefs": [
+        "TE-007",
+        "TE-009"
+      ],
+      "linkedWasteIds": [
+        "TW-003"
+      ]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "L drive map failed with ERROR_86 on WESLEY_WORK",
+      "actualExecution": {
+        "steps": [
+          "cmd /c net use with password string interpolation in OfficeLanDriveMapping.ps1"
+        ],
+        "outcome": "ERROR_86 logon failure despite valid vault creds",
+        "evidenceRefs": [
+          "TE-002",
+          "WM-001"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "New-PSDrive -Persist with PSCredential object",
+          "Never pass password through cmd.exe"
+        ],
+        "outcome": "L maps via wesleydesk Tailscale when desk LAN down",
+        "requiredPreflight": [
+          "office.get_drive_connectivity_matrix"
+        ],
+        "evidenceRefs": [
+          "Invoke-OfficeCredentialSafeDriveMap",
+          "TE-006"
+        ]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "medium",
+        "operatorFrustration": "high"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "ForceRemap after Z map with intermittent Tailscale probe",
+      "actualExecution": {
+        "steps": [
+          "Live Test-NetConnection during long remap loop",
+          "SKIP L when probe flapped false mid-run"
+        ],
+        "outcome": "ERROR_86_REGRESSION zOk=True lOk=False",
+        "evidenceRefs": [
+          "terminals/405764"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Cache 445 probes at script entry",
+          "Use cached deskTailscale445 for L eligibility"
+        ],
+        "outcome": "PARTIAL_DRIVE_AVAILABILITY_OFFLAN_TAILSCALE_L on pass 1",
+        "requiredPreflight": [
+          "Ensure-CgWesleyWorkDriveMounts cached probes"
+        ],
+        "evidenceRefs": [
+          "terminals/405765",
+          "TE-006"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "low",
+        "operatorFrustration": "medium"
+      }
+    },
+    {
+      "executionDeltaId": "ED-003",
+      "situation": "Claim full ALL SYSTEMS GO from hot AI Cache alone",
+      "actualExecution": {
+        "steps": [
+          "Hot routing index published",
+          "Two generic queries missed firstRead initially"
+        ],
+        "outcome": "Risk of overclaiming durable publication complete",
+        "evidenceRefs": [
+          "verify-only pre-dc83be1f"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Expand signatures",
+          "Merge PRs",
+          "WESLEYDESK index-publication.yml",
+          "L catalog hit for full packet ID"
+        ],
+        "outcome": "ALL SYSTEMS GO only when four-query table + L catalog pass",
+        "requiredPreflight": [
+          "npm run agent:index:scout -- --query=..."
+        ]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "SMB password via cmd /c net use $Pass interpolation",
+      "whereItHappened": "OfficeLanDriveMapping.ps1 legacy map path",
+      "whyItWasWrong": "Special characters in vault password cause ERROR_86",
+      "correctFirstMove": "Invoke-OfficeCredentialSafeDriveMap with PSCredential",
+      "preventiveControl": "Test-OfficeDriveAuthorityV2Gate blocks unsafe net use pattern",
+      "seedTarget": "IH-Z-L-OFFLAN-PARTIAL-001-WESLEYWORK-ERROR86-PSDRIVE-FIX",
+      "executionDeltaId": "ED-001"
+    },
+    {
+      "wrongMoveId": "WM-002",
+      "summary": "Mid-run Tailscale probe without cache caused SKIP L",
+      "whereItHappened": "Ensure-CgWesleyWorkDriveMounts ForceRemap",
+      "whyItWasWrong": "Long remap window allows 445 probe flap",
+      "correctFirstMove": "Cache probes at script start",
+      "preventiveControl": "Cached probe variables in Ensure script",
+      "seedTarget": "IH-Z-L-OFFLAN-PARTIAL-001-WESLEYWORK-ERROR86-PSDRIVE-FIX",
+      "executionDeltaId": "ED-002"
+    },
+    {
+      "wrongMoveId": "WM-003",
+      "summary": "Claim ALL SYSTEMS GO when L hub catalog has 0 hits for durable packet",
+      "whereItHappened": "Closeout verification turns",
+      "whyItWasWrong": "Hot cache alone is not durable L catalog publication",
+      "correctFirstMove": "Verdict FIRST_STOP_AI_CACHE_PASS_ALL_SYSTEMS_GO_NOT_FULLY_DURABLE",
+      "preventiveControl": "Do-not-advance on ALL_SYSTEMS_GO until L BY-KIND contains full seed ID",
+      "seedTarget": "IH-THREAD-WESLEYWORK-ZL-CORE-SYSTEMS-GO-001",
+      "executionDeltaId": "ED-003"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "WESLEY_WORK Z/L off-LAN mobility",
+      "firstKnownInstance": "harvest-2026-08-04-z-l-drive-offlan-session-v1",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "whyRepeated": "Same mobility class — this thread adds ERROR_86 fix, signature expansion, closeout verdict",
+      "whyMissed": "Continuation session — prior harvest covered partial availability not credential-safe remap",
+      "avoidableBy": "Load IH-Z-L-OFFLAN-PARTIAL-001 seeds before new investigation",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "wesleywork-z-l-pr-merge-publication-closeout-v1",
+      "whyItPays": "Unlocks full ALL SYSTEMS GO and durable L catalog memory",
+      "effort": "medium",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "savedWasteIds": [
+        "TW-004"
+      ],
+      "seedAs": "runbook",
+      "suggestedWorkPackageId": "wesleywork-z-l-pr-merge-publication-closeout-v1"
+    },
+    {
+      "rank": 2,
+      "title": "Fix unrelated PR CI blockers for mobility PRs",
+      "whyItPays": "Unblocks merge of drive + scout + seed fixes",
+      "effort": "low",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "savedWasteIds": [
+        "TW-004"
+      ],
+      "seedAs": "command",
+      "suggestedWorkPackageId": "wesleywork-z-l-pr-merge-publication-closeout-v1"
+    },
+    {
+      "rank": 3,
+      "title": "Trim Cross-Agent PR #7 to seed-only scope",
+      "whyItPays": "Prevents bloated merge and harvest gate failures",
+      "effort": "low",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "savedWasteIds": [
+        "TW-004"
+      ],
+      "seedAs": "index-slice",
+      "suggestedWorkPackageId": "wesleywork-z-l-pr-merge-publication-closeout-v1"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "ALL_SYSTEMS_GO",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "All four recurrence queries firstReadSolutionPacketId match IH-Z-L-OFFLAN-PARTIAL-001-WESLEYWORK-ERROR86-PSDRIVE-FIX",
+        "L hub catalog slice contains full packet ID",
+        "PR #53 #280 #7 merged",
+        "WESLEYDESK index-publication.yml success after merge"
+      ],
+      "lastKnownEvidence": [
+        "verify-only 2026-08-04",
+        "lCatalogHits 0"
+      ],
+      "proofCommandId": "four-query-scout-verify-table-v1"
+    },
+    {
+      "awardOrVerdict": "CORE_SYSTEMS_GO",
+      "currentStatus": "CLOSED",
+      "doNotClaimUntil": [
+        "Canonical kit live verification receipt on WESLEY_WORK"
+      ],
+      "lastKnownEvidence": [
+        "TE-006",
+        "live-verification-receipt.json",
+        "terminals/405765"
+      ],
+      "proofCommandId": "ensure-force-remap-from-c-drive-v1"
+    },
+    {
+      "awardOrVerdict": "DRIVE_REPAIR_REOPEN",
+      "currentStatus": "BLOCKED",
+      "doNotClaimUntil": [
+        "Fresh live regression on canonical kit only"
+      ],
+      "lastKnownEvidence": [
+        "TE-009"
+      ],
+      "proofCommandId": "not-required"
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "work-progress/harvest-packet-registry.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-04T18:37:25.694Z",
+    "note": "Pending harvest:duplication-preflight stamp",
+    "preflightReceiptHash": "9ce5e38aa2e4fd9b34e016f8ddf01d08fda60562a8330db13a6c4ac11cdf0467"
+  }
+}

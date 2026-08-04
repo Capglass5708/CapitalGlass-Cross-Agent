@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-wesleywork-z-l-mobility-closure-v1",
+  "threadScope": "WESLEY_WORK Z/L mobility ERROR_86 repair, signature expansion, CORE SYSTEMS GO closeout, publication gap",
+  "generatedAt": "2026-08-04T18:30:00.000Z",
+  "events": [
+    {
+      "eventId": "TE-001",
+      "phase": "mission",
+      "summary": "Gated wave: WESLEYWORK-Z-L-MOBILITY-ERROR86-AICACHE-FIRST-READ-V1 — drive repair + scout first-read",
+      "evidenceRefs": [
+        "user gated wave prompt",
+        "WESLEYWORK-Z-L-MOBILITY-ERROR86-AICACHE-FIRST-READ-V1"
+      ],
+      "id": "TE-001"
+    },
+    {
+      "eventId": "TE-002",
+      "phase": "diagnosis",
+      "summary": "ERROR_86 from cmd /c net use password interpolation; New-PSDrive PSCredential proved valid creds",
+      "evidenceRefs": [
+        "OfficeLanDriveMapping.ps1 unsafe path",
+        "live New-PSDrive success"
+      ],
+      "id": "TE-002"
+    },
+    {
+      "eventId": "TE-003",
+      "phase": "diagnosis",
+      "summary": "PARTIAL_DRIVE_AVAILABILITY_OFFLAN_TAILSCALE_L — Z LAN NAS, L wesleydesk Tailscale when 109 down",
+      "evidenceRefs": [
+        "Test-NetConnection probes",
+        "classification table"
+      ],
+      "id": "TE-003"
+    },
+    {
+      "eventId": "TE-004",
+      "phase": "repair",
+      "summary": "Office Admin: Invoke-OfficeCredentialSafeDriveMap, cached SMB probes in Ensure script",
+      "evidenceRefs": [
+        "PR #53",
+        "commit 213cbc8",
+        "wesleywork-drive-mobility-error86-v1.test.mjs"
+      ],
+      "id": "TE-004"
+    },
+    {
+      "eventId": "TE-005",
+      "phase": "repair",
+      "summary": "AppBuilder scout mobility routing + hot routing index solution packet",
+      "evidenceRefs": [
+        "PR #280",
+        "commits 642ba8a8, 9be5d777, dc83be1f"
+      ],
+      "id": "TE-005"
+    },
+    {
+      "eventId": "TE-006",
+      "phase": "verification",
+      "summary": "Live ForceRemap: first run SKIP L (probe flap); second run PARTIAL_DRIVE_AVAILABILITY_OFFLAN_TAILSCALE_L lOk=True",
+      "evidenceRefs": [
+        "terminals 405764",
+        "terminals 405765",
+        "live-verification-receipt.json"
+      ],
+      "id": "TE-006"
+    },
+    {
+      "eventId": "TE-007",
+      "phase": "closeout",
+      "summary": "Locked CORE SYSTEMS GO for drive repair; withheld full ALL SYSTEMS GO pending L catalog publication",
+      "evidenceRefs": [
+        "user closeout turns",
+        "verify-only four-query table"
+      ],
+      "id": "TE-007"
+    },
+    {
+      "eventId": "TE-008",
+      "phase": "closure",
+      "summary": "Signature expansion closed — all 4 recurrence queries route via scout; MERGE_BLOCKED on PR CI",
+      "evidenceRefs": [
+        "dc83be1f",
+        "24 mobility tests pass",
+        "PR #53 #280 #7 OPEN"
+      ],
+      "id": "TE-008"
+    },
+    {
+      "eventId": "TE-009",
+      "phase": "protocol",
+      "summary": "Next mission scoped: wesleywork-z-l-pr-merge-publication-closeout-v1 — no drive repair reopen",
+      "evidenceRefs": [
+        "user closure boundary turn"
+      ],
+      "id": "TE-009"
+    }
+  ]
+}

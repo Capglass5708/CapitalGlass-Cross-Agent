@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "publication-generation.v1.schema.json",
+  "title": "Dataset Publication Generation Pointer",
+  "type": "object",
+  "required": ["schemaVersion", "datasetId", "publicationGeneration", "generationPath"],
+  "properties": {
+    "schemaVersion": { "const": "publication-generation-pointer-v1@1.0.0" },
+    "datasetId": { "type": "string" },
+    "publicationGeneration": { "type": "string" },
+    "generationPath": { "type": "string" },
+    "publishedAt": { "type": "string", "format": "date-time" },
+    "machineRole": { "type": "string" },
+    "checksumsPath": { "type": "string" },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    }
+  },
+  "additionalProperties": true
+}

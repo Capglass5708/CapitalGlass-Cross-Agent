@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-Z-FORCE-REMAP-CWD-003",
+  "kind": "runbook",
+  "title": "Run WESLEY_WORK ForceRemap from Windows C:\\ not WSL UNC cwd",
+  "summary": "Invoking Ensure-CgWesleyWorkDriveMounts.ps1 via powershell.exe from a WSL working directory spams CMD UNC errors.",
+  "retrievalQuestions": [
+    "What is the canonical Z L repair command on WESLEY_WORK?",
+    "Why does ForceRemap show UNC paths are not supported?"
+  ],
+  "evidenceRefs": [
+    "FI-20260802-z-drive-unmapped-in-wesle-session-net-use-z-retu",
+    "TE-004"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Z drive disconnect on WESLEY_WORK daily session",
+    "startAt": [
+      "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md"
+    ],
+    "runPreflight": [
+      "failure_preflight Z_DRIVE_NOT_MOUNTED_IN_DAILY_SESSION"
+    ],
+    "doNot": [
+      "Improvise net use loops (RA-004)",
+      "Grep repos for UNC paths"
+    ],
+    "proveBeforeClaiming": [
+      "Test-Path Z:\\Capital-Glass-Dev after ForceRemap from cd C:\\"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "targetSlice": "work-progress/command-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "index-record.v1.schema.json",
+  "title": "Hot Cache Index Record",
+  "type": "object",
+  "required": ["recordId", "identities", "declared", "observed", "derived"],
+  "properties": {
+    "recordId": { "type": "string" },
+    "identities": {
+      "type": "object",
+      "properties": {
+        "repoId": { "type": ["string", "null"] },
+        "appId": { "type": ["string", "null"] },
+        "projectId": { "type": ["string", "null"] },
+        "documentId": { "type": ["string", "null"] },
+        "workflowId": { "type": ["string", "null"] },
+        "machineId": { "type": ["string", "null"] }
+      }
+    },
+    "declared": { "type": "object" },
+    "observed": { "type": "object" },
+    "derived": { "type": "object" },
+    "relationships": { "type": "array" },
+    "classification": { "type": "object" },
+    "freshness": { "type": "object" },
+    "provenance": { "type": "object", "additionalProperties": true },
+    "verification": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "enum": ["VERIFIED", "OBSERVED", "INFERRED", "UNVERIFIED", "CONFLICTED"]
+        },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "method": { "type": "string" },
+        "verifiedAt": { "type": "string" },
+        "verifiedBy": { "type": "string" }
+      }
+    },
+    "conflicts": { "type": "array" },
+    "ranking": {
+      "type": "object",
+      "properties": {
+        "priority": { "type": "number" },
+        "recencyScore": { "type": "number" },
+        "authorityScore": { "type": "number" },
+        "operationalRelevance": { "type": "number" }
+      }
+    }
+  },
+  "additionalProperties": true
+}

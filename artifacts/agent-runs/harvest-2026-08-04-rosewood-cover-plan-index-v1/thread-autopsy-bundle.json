@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-rosewood-cover-plan-index-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "NONE_FOUND",
+  "noneFoundEvidence": "Waste ledger headings in findings use prose format; no markdown table rows parsed by ingest",
+  "waste": [],
+  "operatorFriction": [],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Storage model for Rosewood cover/index extraction",
+      "actualExecution": {
+        "steps": [
+          "Considered project_documents.metadata JSON blob",
+          "Moved to normalized Supabase tables after operator pushback"
+        ],
+        "outcome": "SUBOPTIMAL"
+      },
+      "optimalExecution": {
+        "steps": [
+          "Inventory existing Document Center tables first",
+          "Define schema delta before proposing target model"
+        ],
+        "outcome": "OPTIMAL"
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "medium"
+      },
+      "preventiveControl": "Schema inventory before architecture proposal"
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Master Graph timing during operational schema design",
+      "actualExecution": {
+        "steps": [
+          "Introduced CG Master Graph during Rosewood persistence discussion"
+        ],
+        "outcome": "SUBOPTIMAL"
+      },
+      "optimalExecution": {
+        "steps": [
+          "Stabilize operational Supabase IDs first",
+          "Open separate graph projection work package"
+        ],
+        "outcome": "OPTIMAL"
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "medium",
+        "operatorFrustration": "low"
+      },
+      "preventiveControl": "Side-chat boundary for graph design"
+    },
+    {
+      "executionDeltaId": "ED-003",
+      "situation": "Operator review capture for R1A extraction",
+      "actualExecution": {
+        "steps": [
+          "Operator decisions described in chat prose"
+        ],
+        "outcome": "SUBOPTIMAL"
+      },
+      "optimalExecution": {
+        "steps": [
+          "Capture structured review objects tied to extracted-field IDs"
+        ],
+        "outcome": "OPTIMAL"
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "low",
+        "operatorFrustration": "medium"
+      },
+      "preventiveControl": "Append-only review decision records"
+    },
+    {
+      "executionDeltaId": "ED-004",
+      "situation": "Rosewood 192-page plan index completeness proof",
+      "actualExecution": {
+        "steps": [
+          "Reported a few page mappings and 17 glazing-relevant sheets"
+        ],
+        "outcome": "SUBOPTIMAL"
+      },
+      "optimalExecution": {
+        "steps": [
+          "Produce complete 192-page reconciliation before declaring index complete"
+        ],
+        "outcome": "OPTIMAL"
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "low",
+        "operatorFrustration": "medium"
+      },
+      "preventiveControl": "Plan-index completeness gate"
+    }
+  ],
+  "wrongMoves": [],
+  "duplicateWork": [],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Finalize normalized plan-set table contract",
+      "whyItPays": "Every drawing set needs the same identity and indexing foundation (IM-001)",
+      "effort": "medium",
+      "savedWasteIds": [],
+      "seedAs": "rule"
+    },
+    {
+      "rank": 2,
+      "title": "Index all 192 Rosewood pages and reconcile cover/index authority",
+      "whyItPays": "Eliminates repeated full-PDF scans and incorrect page routing (IM-003)",
+      "effort": "medium",
+      "savedWasteIds": [],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 3,
+      "title": "Document Supabase vs Master Graph authority split",
+      "whyItPays": "Prevents duplicated truth across operational DB and graph projection (IM-002)",
+      "effort": "low",
+      "savedWasteIds": [],
+      "seedAs": "rule"
+    },
+    {
+      "rank": 4,
+      "title": "Persist R1A operator review decisions as durable records",
+      "whyItPays": "Preserves provenance and enables correction history (IM-005)",
+      "effort": "medium",
+      "savedWasteIds": [],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 5,
+      "title": "Open Master Graph projection only after stable Supabase IDs",
+      "whyItPays": "Reduces context drift and prevents graph scope expansion (IM-004)",
+      "effort": "low",
+      "savedWasteIds": [],
+      "seedAs": "runbook"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "HARVEST_COMPLETE",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "harvest:validate PASS"
+      ],
+      "lastKnownEvidence": [
+        "ChatGPT DRAFT_READY_FOR_CURSOR_VALIDATION only"
+      ]
+    },
+    {
+      "awardOrVerdict": "FULLY_SEEDED",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "harvest:publish-intelligence-full receipt"
+      ],
+      "lastKnownEvidence": [
+        "hubPublishStatus not-run"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "work-progress/harvest-packet-registry.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-04T19:22:50.857Z",
+    "note": "Rosewood harvest distinct from chatgpt-full-autopsy lane harvest",
+    "preflightReceiptHash": "53ecbfb37064b952340bafa1329f1c36e4f50945b3dc1d1af771a3bf9b48191f"
+  }
+}

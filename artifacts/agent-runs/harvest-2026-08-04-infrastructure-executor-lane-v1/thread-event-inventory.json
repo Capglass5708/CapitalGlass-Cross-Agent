@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "cross-agent-thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-infrastructure-executor-lane-v1",
+  "events": [
+    {
+      "eventId": "EVT-001",
+      "id": "EVT-001",
+      "whatHappened": "User requested Block A infrastructure-executor lane with gated Waves A–E.",
+      "actor": "User",
+      "evidenceRefs": [
+        "agent-transcript infrastructure-executor-lane-v1"
+      ],
+      "stateChange": "Mission scoped to Wave A–E chain"
+    },
+    {
+      "eventId": "EVT-002",
+      "whatHappened": "RYZEN9DESK runner re-registered after GitHub dropped stale registration; smoke run 30924982497 completed success on RYZEN9DESK.",
+      "actor": "Assistant",
+      "evidenceRefs": [
+        "artifacts/agent-runs/infrastructure-executor-lane-v1/executor-smoke-receipt-30924982497.json",
+        "https://github.com/Capglass5708/CG-AppBuilder-MCP/actions/runs/30924982497"
+      ],
+      "stateChange": "Wave A gates 1–2 PASS",
+      "id": "EVT-002"
+    },
+    {
+      "eventId": "EVT-003",
+      "whatHappened": "Drive mount verifier FAIL until elevated v1.5 one-shot fix (fix-drive-mount-tasks-v15.ps1).",
+      "actor": "Assistant",
+      "evidenceRefs": [
+        "artifacts/agent-runs/infrastructure-executor-lane-v1/fix-drive-mount-tasks-v15.ps1",
+        "CapitalGlass-Office-Admin/scripts/devices/CG-WESLEYWORK-01/Test-CgWesleyWorkDriveMountTaskRegistration.ps1"
+      ],
+      "stateChange": "Wave A gate 3 PASS under elevation",
+      "id": "EVT-003"
+    },
+    {
+      "eventId": "EVT-004",
+      "whatHappened": "User authorized full auth; ProgramData v1.4 register scripts re-emitted LanRecheck/visible tasks after partial install.",
+      "actor": "User+Assistant",
+      "evidenceRefs": [
+        "artifacts/agent-runs/wesleywork-drive-mount-task-dedupe-v1/receipt.json",
+        "C:/ProgramData/CapitalGlass/OfficeAdmin/PRIVATE/Register-CgWesleyWorkDriveMountTasks.ps1"
+      ],
+      "stateChange": "Root cause: CODE_COMPLETE receipt but v1.4 still on disk",
+      "id": "EVT-004"
+    },
+    {
+      "eventId": "EVT-005",
+      "whatHappened": "Wave B dispatch 30935396892: GitHub env approved but job failed BLOCKED_OPERATOR_APPROVAL (missing approval_ref).",
+      "actor": "Assistant",
+      "evidenceRefs": [
+        "https://github.com/Capglass5708/CG-AppBuilder-MCP/actions/runs/30935396892"
+      ],
+      "stateChange": "Wave B blocked on mutation approval_ref",
+      "id": "EVT-005"
+    },
+    {
+      "eventId": "EVT-006",
+      "whatHappened": "Re-dispatch 30938861704 with approval_ref=infrastructure-executor-lane-v1-wave-b-v1; queued for ryzen9desk-managed-execution env approval.",
+      "actor": "Assistant",
+      "evidenceRefs": [
+        "https://github.com/Capglass5708/CG-AppBuilder-MCP/actions/runs/30938861704"
+      ],
+      "stateChange": "Wave B awaiting operator env approval",
+      "id": "EVT-006"
+    },
+    {
+      "eventId": "EVT-007",
+      "whatHappened": "User sealed Wave A frozen green; instructed no rerun of runner/smoke/drive verifier unless regression.",
+      "actor": "User",
+      "evidenceRefs": [
+        "visible chat turn 2026-08-04"
+      ],
+      "stateChange": "Wave A do-not-advance guard established",
+      "id": "EVT-007"
+    },
+    {
+      "eventId": "EVT-008",
+      "whatHappened": "Office Admin v1.5 landed in CapitalGlass-Office-Admin repo; unit tests 7/7 pass; follow-up receipt created.",
+      "actor": "Assistant",
+      "evidenceRefs": [
+        "work-progress/projects/2026-08-04_wesleywork-drive-mount-v15-office-admin-land-v1.md",
+        "scripts/tests/wesleywork-drive-mount-task-dedupe-v1.test.mjs"
+      ],
+      "stateChange": "Durable fix path replaces one-shot script after merge",
+      "id": "EVT-008"
+    },
+    {
+      "eventId": "EVT-009",
+      "whatHappened": "User invoked CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1 RUN on this thread.",
+      "actor": "User",
+      "evidenceRefs": [
+        "Z:/Capital-Glass-Dev/Harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"
+      ],
+      "stateChange": "Phase A harvest encoding started",
+      "id": "EVT-009"
+    }
+  ]
+}

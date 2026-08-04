@@ -1,0 +1,476 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-chatgpt-full-autopsy-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "operator_attention",
+      "description": "User had to repeat concept-only",
+      "evidenceRefs": [],
+      "estimatedImpact": "high",
+      "savedBy": "Hard guard"
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "operator_attention",
+      "description": "User had to say stop",
+      "evidenceRefs": [],
+      "estimatedImpact": "high",
+      "savedBy": "`STOP_NOW`"
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "context",
+      "description": "Prior implementation context polluted concept work",
+      "evidenceRefs": [],
+      "estimatedImpact": "high",
+      "savedBy": "Latest-instruction check"
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "verification",
+      "description": "Risk of ChatGPT overclaiming validation",
+      "evidenceRefs": [],
+      "estimatedImpact": "high",
+      "savedBy": "Publication truth table"
+    },
+    {
+      "wasteId": "TW-005",
+      "type": "rework",
+      "description": "Raw Markdown could bloat Git",
+      "evidenceRefs": [],
+      "estimatedImpact": "medium",
+      "savedBy": "Distill seed packets"
+    },
+    {
+      "wasteId": "TW-006",
+      "type": "retrieval",
+      "description": "Harvest status repeated from prose",
+      "evidenceRefs": [],
+      "estimatedImpact": "high",
+      "savedBy": "Registry-first lookup"
+    },
+    {
+      "wasteId": "TW-007",
+      "type": "context",
+      "description": "Review/draft/implementation blurred",
+      "evidenceRefs": [],
+      "estimatedImpact": "high",
+      "savedBy": "Mode declaration"
+    },
+    {
+      "wasteId": "TW-008",
+      "type": "verification",
+      "description": "ChatGPT cannot run receipts",
+      "evidenceRefs": [],
+      "estimatedImpact": "medium",
+      "savedBy": "Cursor handoff"
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Concept-only repeated",
+      "operatorCost": "high",
+      "systemFix": "`CONCEPT_ONLY_NO_WRITE`",
+      "evidenceRefs": [],
+      "linkedWasteIds": []
+    },
+    {
+      "frictionId": "OF-002",
+      "trigger": "Stop instruction required",
+      "operatorCost": "high",
+      "systemFix": "`STOP_NOW`",
+      "evidenceRefs": [],
+      "linkedWasteIds": []
+    },
+    {
+      "frictionId": "OF-003",
+      "trigger": "User had to ask whether ChatGPT can use protocol",
+      "operatorCost": "medium",
+      "systemFix": "ChatGPT lane",
+      "evidenceRefs": [],
+      "linkedWasteIds": []
+    },
+    {
+      "frictionId": "OF-004",
+      "trigger": "User asked about commit/push bloat",
+      "operatorCost": "medium",
+      "systemFix": "Storage policy",
+      "evidenceRefs": [],
+      "linkedWasteIds": []
+    },
+    {
+      "frictionId": "OF-005",
+      "trigger": "User provided updated source file",
+      "operatorCost": "medium",
+      "systemFix": "`SOURCE_AUTHORITY`",
+      "evidenceRefs": [],
+      "linkedWasteIds": []
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Concept-only request",
+      "actualExecution": {
+        "steps": [
+          "Agent continued action path"
+        ],
+        "outcome": "SUBOPTIMAL"
+      },
+      "optimalExecution": {
+        "steps": [
+          "Declare `REVIEW_ONLY` and stop file work"
+        ],
+        "outcome": "OPTIMAL"
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "high",
+        "operatorFrustration": "high"
+      },
+      "preventiveControl": "`CONCEPT_ONLY_NO_WRITE`"
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Stop instruction",
+      "actualExecution": {
+        "steps": [
+          "Prior task momentum persisted"
+        ],
+        "outcome": "SUBOPTIMAL"
+      },
+      "optimalExecution": {
+        "steps": [
+          "Stop all action"
+        ],
+        "outcome": "OPTIMAL"
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "high",
+        "operatorFrustration": "high"
+      },
+      "preventiveControl": "`STOP_NOW`"
+    },
+    {
+      "executionDeltaId": "ED-003",
+      "situation": "ChatGPT using Cursor protocol",
+      "actualExecution": {
+        "steps": [
+          "Risk of validation overclaim"
+        ],
+        "outcome": "SUBOPTIMAL"
+      },
+      "optimalExecution": {
+        "steps": [
+          "Label `CHAT_CONTEXT_ONLY`"
+        ],
+        "outcome": "OPTIMAL"
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "high",
+        "operatorFrustration": "high"
+      },
+      "preventiveControl": "Retrieval truth footer"
+    },
+    {
+      "executionDeltaId": "ED-004",
+      "situation": "Git bloat question",
+      "actualExecution": {
+        "steps": [
+          "Raw draft could be treated as authority"
+        ],
+        "outcome": "SUBOPTIMAL"
+      },
+      "optimalExecution": {
+        "steps": [
+          "Distill to compact seeds"
+        ],
+        "outcome": "OPTIMAL"
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "medium"
+      },
+      "preventiveControl": "Storage policy"
+    },
+    {
+      "executionDeltaId": "ED-005",
+      "situation": "Repeated completion checks",
+      "actualExecution": {
+        "steps": [
+          "Prose status reinterpreted"
+        ],
+        "outcome": "SUBOPTIMAL"
+      },
+      "optimalExecution": {
+        "steps": [
+          "Registry-first lookup in Cursor"
+        ],
+        "outcome": "OPTIMAL"
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "high",
+        "operatorFrustration": "high"
+      },
+      "preventiveControl": "Duplication preflight"
+    },
+    {
+      "executionDeltaId": "ED-006",
+      "situation": "Multi-host work",
+      "actualExecution": {
+        "steps": [
+          "Host truth repeated"
+        ],
+        "outcome": "SUBOPTIMAL"
+      },
+      "optimalExecution": {
+        "steps": [
+          "Require host proof packets"
+        ],
+        "outcome": "OPTIMAL"
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "medium"
+      },
+      "preventiveControl": "Host authority preflight"
+    },
+    {
+      "executionDeltaId": "ED-007",
+      "situation": "Multiple protocol versions",
+      "actualExecution": {
+        "steps": [
+          "Prior drafts could override newest file"
+        ],
+        "outcome": "SUBOPTIMAL"
+      },
+      "optimalExecution": {
+        "steps": [
+          "Follow attached source"
+        ],
+        "outcome": "OPTIMAL"
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "medium"
+      },
+      "preventiveControl": "`SOURCE_AUTHORITY`"
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Concept-only was not honored fast enough",
+      "whyItWasWrong": "User narrowed scope; agent continued implementation path",
+      "correctFirstMove": "Declare REVIEW_ONLY and stop tool/file work",
+      "preventiveControl": "CONCEPT_ONLY_NO_WRITE",
+      "executionDeltaId": "ED-001"
+    },
+    {
+      "wrongMoveId": "WM-002",
+      "summary": "Prior plan momentum overrode latest instruction",
+      "whyItWasWrong": "STOP_NOW and latest user instruction were not honored",
+      "correctFirstMove": "Halt all action until new explicit permission",
+      "preventiveControl": "STOP_NOW",
+      "executionDeltaId": "ED-002"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DUP-001",
+      "subject": "Harvest completeness",
+      "whyRepeated": "ChatGPT cannot query registry",
+      "firstKnownInstance": "Cross-Agent harvest registry",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "avoidableBy": "Cursor duplication preflight",
+      "recommendedAction": "add_guard"
+    },
+    {
+      "duplicateId": "DUP-002",
+      "subject": "Index freshness and scout behavior",
+      "whyRepeated": "ChatGPT cannot run scout",
+      "firstKnownInstance": "Intelligence Hub scout lane",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "avoidableBy": "Label unavailable",
+      "recommendedAction": "add_guard"
+    },
+    {
+      "duplicateId": "DUP-003",
+      "subject": "Host execution proof",
+      "whyRepeated": "Multi-host pasted reports",
+      "firstKnownInstance": "Host authority records",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "avoidableBy": "Host proof packets",
+      "recommendedAction": "add_guard"
+    },
+    {
+      "duplicateId": "DUP-004",
+      "subject": "Publication vs recording",
+      "whyRepeated": "Similar PASS/HOLD language",
+      "firstKnownInstance": "Harvest protocol",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "avoidableBy": "Publication truth table",
+      "recommendedAction": "add_guard"
+    },
+    {
+      "duplicateId": "DUP-005",
+      "subject": "Concept vs implementation",
+      "whyRepeated": "Mode not declared early enough",
+      "firstKnownInstance": "User corrections",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "avoidableBy": "First-sentence mode",
+      "recommendedAction": "add_guard"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Treat concept-only and stop as absolute no-action gates",
+      "whyItPays": "Prevents the highest-friction failure in this thread",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-001",
+        "TW-002"
+      ],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 2,
+      "title": "Label ChatGPT outputs as `CHAT_CONTEXT_ONLY`",
+      "whyItPays": "Prevents false validation and publication claims",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-001",
+        "TW-002"
+      ],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 3,
+      "title": "Do not push raw draft Markdown by default",
+      "whyItPays": "Prevents Git bloat while preserving learning",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-001",
+        "TW-002"
+      ],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 4,
+      "title": "Declare mode in first sentence: `REVIEW_ONLY`, `DRAFT_FILE`, `EDIT_EXISTING`, `IMPLEMENT_REPO`, or `PUBLISH_OPERATOR`",
+      "whyItPays": "Removes ambiguity before work begins",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-001",
+        "TW-002"
+      ],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 5,
+      "title": "Always end with publication truth table",
+      "whyItPays": "Stops `FULLY_SEEDED` confusion",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-001",
+        "TW-002"
+      ],
+      "seedAs": "runbook"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "HARVEST_COMPLETE",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "Cursor validation PASS"
+      ],
+      "lastKnownEvidence": [
+        "ChatGPT draft only — publication not-run"
+      ]
+    },
+    {
+      "awardOrVerdict": "FULLY_SEEDED",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "Hub publish + freshness + retrieval proof"
+      ],
+      "lastKnownEvidence": [
+        "ChatGPT draft only — publication not-run"
+      ]
+    },
+    {
+      "awardOrVerdict": "INDEX_HIT",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "Actual scout receipt"
+      ],
+      "lastKnownEvidence": [
+        "ChatGPT draft only — publication not-run"
+      ]
+    },
+    {
+      "awardOrVerdict": "OPERATIONAL",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "Operator publication receipts"
+      ],
+      "lastKnownEvidence": [
+        "ChatGPT draft only — publication not-run"
+      ]
+    },
+    {
+      "awardOrVerdict": "Raw findings belong in Git",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "Operator promotion decision"
+      ],
+      "lastKnownEvidence": [
+        "ChatGPT draft only — publication not-run"
+      ]
+    },
+    {
+      "awardOrVerdict": "Concept-only permits file action",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "Explicit edit permission"
+      ],
+      "lastKnownEvidence": [
+        "ChatGPT draft only — publication not-run"
+      ]
+    },
+    {
+      "awardOrVerdict": "Stop can be ignored",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "New instruction after stop"
+      ],
+      "lastKnownEvidence": [
+        "ChatGPT draft only — publication not-run"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "work-progress/harvest-packet-registry.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-04T07:04:06.867Z",
+    "note": "Pending harvest:duplication-preflight after ingest",
+    "preflightReceiptHash": "b8ac49a57784de7183d724a8f984fbb372ee1a50b14cfbdaa080971ab19aeacb"
+  }
+}

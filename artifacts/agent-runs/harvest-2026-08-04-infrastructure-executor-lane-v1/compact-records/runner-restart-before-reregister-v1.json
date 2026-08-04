@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-infrastructure-executor-lane-v1",
+  "packetId": "runner-restart-before-reregister-v1",
+  "state": "RECORDED",
+  "packetVerdict": "PASS",
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Document restart-only in host-authority slice via seed IH-THREAD-RUNNER-RESTART-ONLY-001",
+  "evidenceRefs": [
+    "artifacts/agent-runs/infrastructure-executor-lane-v1/reregister-ryzen9desk-runner.sh",
+    "thread-autopsy-bundle.json#ED-003"
+  ],
+  "doNotAdvance": [
+    "Register second listener without GitHub dropped registration"
+  ],
+  "advancementGate": "gh api runners shows online",
+  "contentHash": "1513caa92eb32352a2f1817cb3a18ace39471b32732d6d2f55d864a06f5a0af6"
+}

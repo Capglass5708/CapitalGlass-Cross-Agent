@@ -1,0 +1,177 @@
+{
+  "schemaVersion": "manifest-common-v1@1.0.0",
+  "datasetId": "authority-estate",
+  "workPackageId": "capital-glass-ai-hot-cache-consumption-authority-operations-v1",
+  "authority": {
+    "repo": "CapitalGlass-Cross-Agent",
+    "path": "registry/authority-estate/authority-estate-manifest.v1.json",
+    "maintainer": "CapitalGlass-Cross-Agent"
+  },
+  "governance": {
+    "editMode": "human-maintained-seed",
+    "reviewRequired": true,
+    "generatedFieldsForbidden": false,
+    "compilerEnrichmentAllowed": true
+  },
+  "freshnessClass": "authority-registry",
+  "classification": {
+    "sensitivity": "INTERNAL",
+    "containsSecrets": false,
+    "cacheAllowed": true,
+    "externalModelAllowed": false,
+    "retentionClass": "OPERATIONAL"
+  },
+  "platformSources": {
+    "mcpAuthorityRegistry": "CG-AppBuilder-MCP/docs/platform-registry/mcp-authority-registry-v1.json",
+    "domainOwnership": "CG-AppBuilder-MCP/docs/platform-registry/domain-ownership-v1.json",
+    "documentLayerContract": "CG-AppBuilder-MCP/docs/DOCUMENT_LAYER_CONTRACT.md",
+    "storageAuthority": "CG-AppBuilder-MCP/docs/platform/storage-authority/DATABASE_SCHEMA_OWNERSHIP.md"
+  },
+  "conflictResolutionRules": [
+    {
+      "ruleId": "document-binary-sharepoint",
+      "domain": "document-binary",
+      "authoritativeSystem": "sharepoint",
+      "mutationOwner": "CapitalGlass-Documents",
+      "derivativeSystems": ["supabase_storage_transient", "intake_onedrive"],
+      "resolution": "SharePoint owns current binary; Document Layer owns metadata and identity."
+    },
+    {
+      "ruleId": "document-identity-layer",
+      "domain": "project-document-identity",
+      "authoritativeSystem": "document-layer",
+      "mutationOwner": "CapitalGlass-Documents",
+      "derivativeSystems": ["dashboard", "po", "email", "pipeline"],
+      "resolution": "Apps delegate; no app-local document engines."
+    },
+    {
+      "ruleId": "suite-index-cross-agent",
+      "domain": "suite-index-publication",
+      "authoritativeSystem": "CapitalGlass-Cross-Agent",
+      "mutationOwner": "CapitalGlass-Cross-Agent",
+      "derivativeSystems": ["L-hub-mirror", "hot-ai-cache", "supabase-projection"],
+      "resolution": "Cross-Agent publishes; mirrors are derivative-only."
+    },
+    {
+      "ruleId": "hot-cache-derivative",
+      "domain": "ai-hot-cache",
+      "authoritativeSystem": "CapitalGlass-Cross-Agent",
+      "mutationOwner": "CG-AppBuilder-MCP",
+      "derivativeSystems": ["host-local-ai-cache"],
+      "resolution": "Hot cache never authoritative; compile/publish from Cross-Agent manifests."
+    }
+  ],
+  "records": [
+    {
+      "recordId": "domain-document-center",
+      "identities": { "domainKey": "document-center", "appId": "document-center" },
+      "declared": {
+        "displayName": "Document Center / Document Layer",
+        "authoritativeSystem": "CapitalGlass-Documents",
+        "mutationOwner": "CapitalGlass-Documents",
+        "derivativeOnlyConsumers": ["capital-glass-project-dashboard", "capital-glass-po-app", "cg-apps-hub"],
+        "authorityKind": "document-layer-service",
+        "contractRefs": ["DOCUMENT_LAYER_CONTRACT", "DOCUMENT_CENTER_SHAREPOINT_CANONICAL_BINARY_AUTHORITY"]
+      },
+      "classification": { "sensitivity": "INTERNAL", "cacheAllowed": true, "externalModelAllowed": false }
+    },
+    {
+      "recordId": "domain-bid-composer",
+      "identities": { "domainKey": "bid-composer", "appId": "bid-composer" },
+      "declared": {
+        "displayName": "Bid Composer",
+        "authoritativeSystem": "CapitalGlass-BidComposer",
+        "mutationOwner": "CapitalGlass-BidComposer",
+        "derivativeOnlyConsumers": ["CG-Human-Estimator-MCP", "CG-Computer-Estimator-MCP"],
+        "authorityKind": "estimating-workflow",
+        "notes": "bid_* persistence owner; parser evidence immutable snapshots."
+      },
+      "classification": { "sensitivity": "INTERNAL", "cacheAllowed": true, "externalModelAllowed": false }
+    },
+    {
+      "recordId": "domain-data-extraction",
+      "identities": { "domainKey": "data-extraction", "appId": "data-extraction" },
+      "declared": {
+        "displayName": "Data Extraction",
+        "authoritativeSystem": "Data-Extraction",
+        "mutationOwner": "Data-Extraction",
+        "derivativeOnlyConsumers": ["document-center", "bid-composer"],
+        "authorityKind": "extraction-pipeline"
+      },
+      "classification": { "sensitivity": "INTERNAL", "cacheAllowed": true, "externalModelAllowed": false }
+    },
+    {
+      "recordId": "domain-app-builder",
+      "identities": { "domainKey": "app-builder-mcp", "appId": "app-builder-mcp" },
+      "declared": {
+        "displayName": "CG App Builder MCP",
+        "authoritativeSystem": "CG-AppBuilder-MCP",
+        "mutationOwner": "CG-AppBuilder-MCP",
+        "derivativeOnlyConsumers": ["hot-ai-cache", "platform-intelligence-mcp"],
+        "authorityKind": "control-plane-execution",
+        "notes": "Compile/publish/orchestrate; governance constitutional policy in CG-Platform-Governance-MCP."
+      },
+      "classification": { "sensitivity": "INTERNAL", "cacheAllowed": true, "externalModelAllowed": false }
+    },
+    {
+      "recordId": "domain-cross-agent",
+      "identities": { "domainKey": "cross-agent", "appId": "cross-agent" },
+      "declared": {
+        "displayName": "CapitalGlass Cross-Agent",
+        "authoritativeSystem": "CapitalGlass-Cross-Agent",
+        "mutationOwner": "CapitalGlass-Cross-Agent",
+        "derivativeOnlyConsumers": ["L-hub-mirror", "supabase-structured-ledger"],
+        "authorityKind": "suite-ledger-and-index-authority"
+      },
+      "classification": { "sensitivity": "INTERNAL", "cacheAllowed": true, "externalModelAllowed": false }
+    },
+    {
+      "recordId": "domain-hub-auth",
+      "identities": { "domainKey": "hub", "appId": "hub" },
+      "declared": {
+        "displayName": "Hub / Auth",
+        "authoritativeSystem": "cg-apps-hub",
+        "mutationOwner": "cg-apps-hub",
+        "derivativeOnlyConsumers": ["all-suite-apps"],
+        "authorityKind": "auth-bff-only",
+        "notes": "Hub owns auth only; not documents or projects."
+      },
+      "classification": { "sensitivity": "INTERNAL", "cacheAllowed": true, "externalModelAllowed": false }
+    },
+    {
+      "recordId": "domain-contacts-identity",
+      "identities": { "domainKey": "contacts", "appId": "contacts" },
+      "declared": {
+        "displayName": "Contacts Canonical Identity",
+        "authoritativeSystem": "capital-glass-contacts",
+        "mutationOwner": "capital-glass-contacts",
+        "derivativeOnlyConsumers": ["po", "pipeline", "email", "hub"],
+        "authorityKind": "crm-identity",
+        "contractRefs": ["contacts-canonical-identity"]
+      },
+      "classification": { "sensitivity": "INTERNAL", "cacheAllowed": true, "externalModelAllowed": false }
+    },
+    {
+      "recordId": "domain-governance-mcp",
+      "identities": { "domainKey": "platform-governance", "appId": "platform-governance-mcp" },
+      "declared": {
+        "displayName": "Platform Governance MCP",
+        "authoritativeSystem": "CG-Platform-Governance-MCP",
+        "mutationOwner": "CG-Platform-Governance-MCP",
+        "derivativeOnlyConsumers": ["CG-AppBuilder-MCP"],
+        "authorityKind": "constitutional-policy",
+        "notes": "Decides what must be captured; App Builder executes."
+      },
+      "classification": { "sensitivity": "INTERNAL", "cacheAllowed": true, "externalModelAllowed": false }
+    }
+  ],
+  "unresolvedConflicts": [
+    {
+      "conflictId": "pipeline-document-routes-transitional",
+      "domain": "document-upload-routes",
+      "status": "UNRESOLVED",
+      "description": "Legacy Pipeline document routes remain transitional; consumers must use Document Layer routes only.",
+      "preferredAuthority": "CapitalGlass-Documents"
+    }
+  ]
+}

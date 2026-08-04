@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-rosewood-cover-plan-index-v1",
+  "missionClass": "harvest",
+  "sourceCommitSha": "3de8a660d1f6d056cc88ee5e5ad05438e6542cb2",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "overallHarvestVerdict": "HARVEST_VALIDATION_PENDING",
+  "retrievalResult": "INDEX_HIT",
+  "chatgptIngest": {
+    "sourcePath": "/mnt/c/Users/wesle/Pictures/chat-thread-autopsy-findings-rosewood-cover-plan-index-v1.md",
+    "sourceHash": "fe3b6455f8fbaa0f8f6c6d42aa42ac2e233f1db63fd9d35d911db68a95e12337",
+    "protocol": "chat-thread-closeout-autopsy-harvest-chatgpt-v1",
+    "lane": "CHAT_CONTEXT_ONLY",
+    "draftVerdict": "DRAFT_READY_FOR_CURSOR_VALIDATION",
+    "authorityClass": "non-authoritative"
+  },
+  "doNotAdvance": [
+    "HARVEST_COMPLETE",
+    "FULLY_SEEDED",
+    "OPERATIONAL"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-04-rosewood-cover-plan-index-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-04-rosewood-cover-plan-index-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 0,
+      "seeds": 5,
+      "roiItems": 5,
+      "operatorFriction": 0
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "synced",
+    "hubPublishStatus": "published",
+    "graphEligible": true,
+    "graphStage": "GRAPH_VALIDATION_HOLD",
+    "graphExtractionHash": "sha256:2cb4f1ae7dda3716a4acc233530e4b90d9e370af4dedacffe990ae1fa5602531",
+    "graphLExtractionPath": "_staging/graph-extractions/harvest-2026-08-04-rosewood-cover-plan-index-v1/787f3ba1019f7cf0ca7d6b4c8c6f1815890e638e3fcf07c824aca495ad1d7159/graph-extraction.json",
+    "graphPromotionVerdict": "PENDING",
+    "graphValidationError": "Command failed: node scripts/harvest/validate-graph-extraction.mjs harvest-2026-08-04-rosewood-cover-plan-index-v1"
+  },
+  "packets": [
+    {
+      "packetId": "2026-08-04-rosewood-cover-plan-index-v1",
+      "packetTitle": "Rosewood cover sheet and plan index — normalized plan-set registration",
+      "state": "VALIDATION_PENDING",
+      "packetVerdict": "HOLD",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "docs/protocols/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md",
+      "nextAction": "harvest:duplication-preflight → validate → operator publish",
+      "advancementGate": "harvest:validate PASS",
+      "doNotAdvance": [
+        "HARVEST_COMPLETE",
+        "FULLY_SEEDED"
+      ],
+      "evidenceRefs": [
+        "/mnt/c/Users/wesle/Pictures/chat-thread-autopsy-findings-rosewood-cover-plan-index-v1.md",
+        "artifacts/agent-runs/harvest-2026-08-04-rosewood-cover-plan-index-v1/",
+        "docs/protocols/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md"
+      ],
+      "commitRefs": [
+        "3de8a660d1f6d056cc88ee5e5ad05438e6542cb2"
+      ],
+      "blockers": [],
+      "packetKind": "decision",
+      "harvestVerdictContribution": "RECORDED"
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerPath": "work-progress/ACTIVE_WORK.md",
+    "ledgerContentHashBefore": "48637a82e74530a2895e52e240b9e0a0f4d89154aec924e574806b2412b0d90e",
+    "ledgerContentHashAfter": "6215d53ae5d9c92818742a87149cedd3158da67c7ee040d18b0ca86f003f5d17"
+  },
+  "updatedAt": "2026-08-04T19:18:52.984Z"
+}

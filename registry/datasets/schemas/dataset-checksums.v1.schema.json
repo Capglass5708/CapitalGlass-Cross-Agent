@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dataset-checksums.v1.schema.json",
+  "title": "Dataset Publication Checksums",
+  "type": "object",
+  "required": ["schemaVersion", "datasetId", "publicationGeneration", "artifacts"],
+  "properties": {
+    "schemaVersion": { "const": "dataset-checksums-v1@1.0.0" },
+    "datasetId": { "type": "string" },
+    "publicationGeneration": { "type": "string" },
+    "publishedAt": { "type": "string", "format": "date-time" },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+    }
+  },
+  "additionalProperties": false
+}

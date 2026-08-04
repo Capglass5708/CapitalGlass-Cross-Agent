@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-MASTER-GRAPH-PROJECTION-GUARD-V1",
+  "kind": "lesson",
+  "title": "IH-THREAD-MASTER-GRAPH-PROJECTION-GUARD-V1",
+  "summary": "IH-THREAD-MASTER-GRAPH-PROJECTION-GUARD-V1",
+  "retrievalQuestions": [
+    "Should Master Graph store extracted project values?",
+    "What must be persisted before graph contribution?"
+  ],
+  "evidenceRefs": [
+    "current-chat:EVT-009",
+    "current-chat:EVT-010"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "A project extraction lane proposes Master Graph participation.",
+    "startAt": [
+      "Identify the authoritative operational IDs and systems first."
+    ],
+    "runPreflight": [
+      "Validate repository participation and contribution-envelope schemas."
+    ],
+    "doNot": [
+      "Do not make Master Graph the primary operational database.",
+      "Do not contribute unpersisted or guessed IDs.",
+      "Do not copy full OCR payloads into canonical graph truth."
+    ],
+    "proveBeforeClaiming": [
+      "Supabase records exist.",
+      "Contribution envelope validates.",
+      "Graph compile and publish receipts exist."
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

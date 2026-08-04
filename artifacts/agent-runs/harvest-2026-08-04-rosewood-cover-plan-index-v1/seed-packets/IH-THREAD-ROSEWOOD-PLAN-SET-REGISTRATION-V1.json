@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-ROSEWOOD-PLAN-SET-REGISTRATION-V1",
+  "kind": "runbook",
+  "title": "IH-THREAD-ROSEWOOD-PLAN-SET-REGISTRATION-V1",
+  "summary": "IH-THREAD-ROSEWOOD-PLAN-SET-REGISTRATION-V1",
+  "retrievalQuestions": [
+    "How should a canonical drawing set be registered before extraction?",
+    "What gates prove a plan set and page index are ready?"
+  ],
+  "evidenceRefs": [
+    "current-chat:EVT-001",
+    "current-chat:EVT-006",
+    "current-chat:EVT-008"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "A new project drawing PDF has been ingested.",
+    "startAt": [
+      "Confirm project ID, document ID, source hash, cover sheet, and index authority."
+    ],
+    "runPreflight": [
+      "Search for existing active plan-set and sheet-index records before creating new ones."
+    ],
+    "doNot": [
+      "Do not infer missing owner or drawing project number.",
+      "Do not begin takeoff before index completeness passes.",
+      "Do not store the whole plan index only as an opaque JSON blob."
+    ],
+    "proveBeforeClaiming": [
+      "Every PDF page is accounted for.",
+      "Cover and index authorities are linked.",
+      "Operator review is recorded."
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

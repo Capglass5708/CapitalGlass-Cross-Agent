@@ -1,0 +1,184 @@
+{
+  "schemaVersion": "harvest-knowledge-quality-evidence-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-infrastructure-executor-lane-v1",
+  "materialEvents": [
+    {
+      "eventId": "EVT-001",
+      "summary": "User scoped Block A infrastructure-executor lane Waves A–E",
+      "material": true,
+      "representations": ["decision", "future_action"]
+    },
+    {
+      "eventId": "EVT-002",
+      "summary": "Executor smoke 30924982497 success on RYZEN9DESK",
+      "material": true,
+      "representations": ["result", "evidence", "command"]
+    },
+    {
+      "eventId": "EVT-003",
+      "summary": "Drive mount verifier PASS only after elevated v1.5 one-shot fix",
+      "material": true,
+      "representations": ["failure", "correction", "evidence", "repeated_work"]
+    },
+    {
+      "eventId": "EVT-004",
+      "summary": "ProgramData v1.4 register scripts re-emitted LanRecheck after partial install",
+      "material": true,
+      "representations": ["mistake", "repeated_work", "protocol_improvement"]
+    },
+    {
+      "eventId": "EVT-005",
+      "summary": "Wave B run 30935396892 failed BLOCKED_OPERATOR_APPROVAL without approval_ref",
+      "material": true,
+      "representations": ["blocker", "mistake", "evidence"]
+    },
+    {
+      "eventId": "EVT-006",
+      "summary": "Re-dispatch 30938861704 with approval_ref queued for env approval",
+      "material": true,
+      "representations": ["command", "blocker", "future_action"]
+    },
+    {
+      "eventId": "EVT-007",
+      "summary": "User sealed Wave A frozen — no gate rework",
+      "material": true,
+      "representations": ["decision", "do_not_advance", "correction"]
+    },
+    {
+      "eventId": "EVT-008",
+      "summary": "Office Admin v1.5 landed in repo; unit tests 7/7 pass",
+      "material": true,
+      "representations": ["result", "protocol_improvement", "future_action"]
+    },
+    {
+      "eventId": "EVT-009",
+      "summary": "User invoked CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1",
+      "material": true,
+      "representations": ["future_action", "protocol_improvement"]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "DEC-001",
+      "eventRefs": ["EVT-007", "EVT-002", "EVT-003"],
+      "decision": "Wave A sealed PASS — do not rerun runner/smoke/drive verifier unless regression",
+      "reason": "All three Wave A gates passed with receipts; operator explicitly froze Wave A",
+      "alternativesRejected": [
+        "Re-dispatch executor-smoke on every recheck",
+        "Re-register runner when offline without checking GitHub registration"
+      ],
+      "consequences": [
+        "Recheck inspects Wave B run 30938861704 only",
+        "Runner restart-only policy applies"
+      ],
+      "authority": "wave-gates-receipt-v1.json + user instruction",
+      "evidenceRefs": ["EVT-007", "executor-smoke-receipt-30924982497.json"]
+    },
+    {
+      "id": "DEC-002",
+      "eventRefs": ["EVT-005", "EVT-006"],
+      "decision": "Wave B requires dual gate: approval_ref plus ryzen9desk-managed-execution env",
+      "reason": "Run 30935396892 failed after env approval alone",
+      "alternativesRejected": ["Treat GitHub environment approval as sole mutation gate"],
+      "consequences": ["Future dispatches must include approval_ref on requiresApproval profiles"],
+      "authority": "ryzen9desk-executor-allowlist.json + run 30935396892",
+      "evidenceRefs": ["EVT-005", "EVT-006"]
+    }
+  ],
+  "corrections": [
+    {
+      "id": "COR-001",
+      "material": true,
+      "incorrectAgentClaim": "wesleywork-drive-mount-task-dedupe-v1 CODE_COMPLETE implied live v1.5 deploy",
+      "operatorCorrection": "ProgramData v1.4 still on disk; Install re-created LanRecheck tasks",
+      "correctedTruth": "Repo v1.5 is durable fix; elevated Install after merge replaces one-shot script",
+      "futureAgentRule": "Require live verifier PASS and protocol v1.5 in DRIVE-MOUNT-PERSISTENCE.json before CODE_COMPLETE deploy claims",
+      "affectedRecords": ["IH-THREAD-WESLEYWORK-DRIVE-V15-001", "programdata-v14-reinstall-v1"]
+    },
+    {
+      "id": "COR-002",
+      "material": true,
+      "incorrectAgentClaim": "Wave B unblocked after GitHub environment approval on 30935396892",
+      "operatorCorrection": "Job failed BLOCKED_OPERATOR_APPROVAL — missing approval_ref",
+      "correctedTruth": "Mutation profiles need approval_ref workflow input in addition to env gate",
+      "futureAgentRule": "Always dispatch with approval_ref for requiresApproval job profiles",
+      "affectedRecords": ["IH-THREAD-RYZEN9-EXECUTOR-APPROVAL-001", "wave-b-env-only-mistake-v1"]
+    }
+  ],
+  "durableClaims": [
+    {
+      "id": "CLM-001",
+      "claim": "Wave A executor smoke 30924982497 succeeded on RYZEN9DESK",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["executor-smoke-receipt-30924982497.json", "EVT-002"],
+      "eventRefs": ["EVT-002"]
+    },
+    {
+      "id": "CLM-002",
+      "claim": "Wave B remains blocked until run 30938861704 completes with env approval",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["EVT-006", "run 30938861704"],
+      "eventRefs": ["EVT-005", "EVT-006"]
+    },
+    {
+      "id": "CLM-003",
+      "claim": "Office Admin v1.5 repo changes pass unit tests but are not yet deployed to ProgramData",
+      "confidence": "PARTIALLY_VERIFIED",
+      "evidenceRefs": ["EVT-008", "wesleywork-drive-mount-task-dedupe-v1.test.mjs"],
+      "eventRefs": ["EVT-008", "EVT-004"]
+    }
+  ],
+  "contradictions": [],
+  "mistakes": [
+    {
+      "id": "MIST-001",
+      "eventRefs": ["EVT-005"],
+      "attemptedAction": "Dispatched wsl2-canonical-setup after env approval without approval_ref",
+      "whyItSeemedReasonable": "GitHub environment gate appeared to be the mutation approval mechanism",
+      "actualOutcome": "BLOCKED_OPERATOR_APPROVAL on run 30935396892",
+      "rootCause": "requiresApproval profiles use separate approval_ref workflow input",
+      "optimalFirstMove": "gh workflow run with approval_ref=infrastructure-executor-lane-v1-wave-b-v1 on first dispatch",
+      "preventiveControl": "IH-THREAD-RYZEN9-EXECUTOR-APPROVAL-001"
+    },
+    {
+      "id": "MIST-002",
+      "eventRefs": ["EVT-004", "EVT-003"],
+      "attemptedAction": "Ran Install from ProgramData v1.4 after dedupe receipt CODE_COMPLETE",
+      "whyItSeemedReasonable": "Receipt marked CODE_COMPLETE for dedupe package",
+      "actualOutcome": "LanRecheck and visible tasks re-emitted; verifier FAIL until one-shot v1.5 fix",
+      "rootCause": "Receipt claimed complete before live Register scripts updated",
+      "optimalFirstMove": "Land repo v1.5 and verify protocol version before Install",
+      "preventiveControl": "IH-THREAD-WESLEYWORK-DRIVE-V15-001"
+    }
+  ],
+  "blindRetrieval": [
+    {
+      "question": "When is Wave A frozen in infrastructure-executor-lane-v1?",
+      "expectedSeedId": "IH-THREAD-INFRA-WAVE-A-FROZEN-001",
+      "lessonFocus": "wave-a-frozen-guard",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "Why did run 30935396892 fail after environment approval?",
+      "expectedSeedId": "IH-THREAD-RYZEN9-EXECUTOR-APPROVAL-001",
+      "lessonFocus": "dual-approval-gate",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "Why does drive mount verifier fail after Install-CgWesleyWorkDriveMountPersistence?",
+      "expectedSeedId": "IH-THREAD-WESLEYWORK-DRIVE-V15-001",
+      "lessonFocus": "programdata-v14-regression",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "How to bring ryzen9desk-wsl2-CG-RYZEN9DESK-01 online without duplicate listener?",
+      "expectedSeedId": "IH-THREAD-RUNNER-RESTART-ONLY-001",
+      "lessonFocus": "runner-restart-only",
+      "genericKeywordOnly": false
+    }
+  ],
+  "humanReview": {
+    "required": false,
+    "reasons": []
+  }
+}

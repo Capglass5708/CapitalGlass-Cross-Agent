@@ -1,0 +1,268 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-infrastructure-executor-lane-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "3de8a660d1f6d056cc88ee5e5ad05438e6542cb2",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-04T20:20:00.000Z",
+  "updatedAt": "2026-08-04T20:20:00.000Z",
+  "retrievalResult": "INDEX_HIT",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "Re-run Wave A runner/smoke/drive gates after PASS unless regression proven",
+    "Re-register RYZEN9DESK runner unless GitHub dropped registration",
+    "Claim MANAGED_EXECUTOR_ONLINE without wsl2-canonical-setup receipt on RYZEN9DESK",
+    "Claim OPERATIONAL from Phase A Git push alone",
+    "Treat wesleywork-drive-mount-task-dedupe-v1 CODE_COMPLETE as live v1.5 deploy"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-04-infrastructure-executor-lane-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-04-infrastructure-executor-lane-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 5,
+      "seeds": 4,
+      "roiItems": 3,
+      "operatorFriction": 3,
+      "executionDeltas": 3
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Phase B — operator runs harvest:publish-intelligence-full",
+    "graphEligible": true,
+    "graphStage": "GRAPH_VALIDATION_HOLD",
+    "graphExtractionHash": "sha256:85906d0cf74765d4d1c3e6aba96790c865f799cbdd45ae1f029f7367925b312c",
+    "graphLExtractionPath": "_staging/graph-extractions/harvest-2026-08-04-infrastructure-executor-lane-v1/97769f88b5292db42bacf723e3b00831d8418e8501610555cf4dd3af9ae31349/graph-extraction.json",
+    "graphPromotionVerdict": "PENDING",
+    "graphValidationError": "Command failed: node scripts/harvest/validate-graph-extraction.mjs harvest-2026-08-04-infrastructure-executor-lane-v1"
+  },
+  "ledgerLineage": {
+    "ledgerPath": "work-progress/ACTIVE_WORK.md",
+    "ledgerContentHashBefore": "48637a82e74530a2895e52e240b9e0a0f4d89154aec924e574806b2412b0d90e",
+    "ledgerContentHashAfter": "6215d53ae5d9c92818742a87149cedd3158da67c7ee040d18b0ca86f003f5d17"
+  },
+  "supersededClaims": [],
+  "packets": [
+    {
+      "packetId": "infra-wave-a-sealed-v1",
+      "packetTitle": "Wave A sealed PASS — runner, smoke, drive verifier frozen",
+      "packetKind": "decision",
+      "state": "SEALED",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-04_infrastructure-executor-lane-v1.md",
+      "evidenceRefs": [
+        "artifacts/agent-runs/infrastructure-executor-lane-v1/wave-gates-receipt-v1.json",
+        "artifacts/agent-runs/infrastructure-executor-lane-v1/executor-smoke-receipt-30924982497.json",
+        "https://github.com/Capglass5708/CG-AppBuilder-MCP/actions/runs/30924982497"
+      ],
+      "commitRefs": [],
+      "nextAction": "On recheck: inspect Wave B run 30938861704 only",
+      "advancementGate": "Wave B receipt with executionHost RYZEN9DESK",
+      "doNotAdvance": [
+        "Re-dispatch executor-smoke 30924982497",
+        "Re-run drive mount verifier",
+        "Re-register runner unless GitHub dropped registration"
+      ],
+      "blockers": []
+    },
+    {
+      "packetId": "wave-b-dual-approval-gate-v1",
+      "packetTitle": "Wave B blocked — mutation profile needs approval_ref plus GitHub environment",
+      "packetKind": "blocker",
+      "state": "BLOCKED",
+      "packetVerdict": "BLOCKED_OPERATOR_APPROVAL",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-04_infrastructure-executor-lane-v1.md",
+      "evidenceRefs": [
+        "https://github.com/Capglass5708/CG-AppBuilder-MCP/actions/runs/30935396892",
+        "https://github.com/Capglass5708/CG-AppBuilder-MCP/actions/runs/30938861704",
+        "CG-AppBuilder-MCP/scripts/executor/ryzen9desk-executor-allowlist.json"
+      ],
+      "commitRefs": [],
+      "nextAction": "Operator approve ryzen9desk-managed-execution on run 30938861704; say recheck",
+      "advancementGate": "wsl2-canonical-setup receipt verdict PASS on RYZEN9DESK",
+      "doNotAdvance": [
+        "Assume GitHub environment approval alone satisfies requiresApproval"
+      ],
+      "blockers": [
+        "ryzen9desk-managed-execution environment approval pending on 30938861704"
+      ]
+    },
+    {
+      "packetId": "wave-b-env-only-mistake-v1",
+      "packetTitle": "Wrong move — dispatched wsl2-canonical-setup without approval_ref",
+      "packetKind": "mistake",
+      "state": "RECORDED",
+      "packetVerdict": "FAIL",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-04_infrastructure-executor-lane-v1.md",
+      "actualExecution": "Dispatched mutation profile after env approval only; job failed BLOCKED_OPERATOR_APPROVAL",
+      "optimalExecution": "Include approval_ref=infrastructure-executor-lane-v1-wave-b-v1 on first dispatch",
+      "preventiveControl": "IH-THREAD-RYZEN9-EXECUTOR-APPROVAL-001",
+      "evidenceRefs": [
+        "https://github.com/Capglass5708/CG-AppBuilder-MCP/actions/runs/30935396892",
+        "thread-autopsy-bundle.json#WM-001"
+      ],
+      "commitRefs": [],
+      "nextAction": "Use approval_ref on all requiresApproval mutation dispatches",
+      "advancementGate": "Executor receipt not BLOCKED_OPERATOR_APPROVAL",
+      "doNotAdvance": [],
+      "blockers": []
+    },
+    {
+      "packetId": "programdata-v14-reinstall-v1",
+      "packetTitle": "Repeated work — v1.4 ProgramData install undid drive-mount dedupe",
+      "packetKind": "repeated_work",
+      "state": "RECORDED",
+      "packetVerdict": "REWORK",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-04_wesleywork-drive-mount-v15-office-admin-land-v1.md",
+      "duplicateId": "DW-PROGRAMDATA-V14",
+      "firstKnownInstance": "wesleywork-drive-mount-task-dedupe-v1 receipt CODE_COMPLETE",
+      "priorIndexSlice": "artifacts/agent-runs/wesleywork-drive-mount-task-dedupe-v1/receipt.json",
+      "whyMissed": "CODE_COMPLETE claimed before live Register scripts updated to v1.5",
+      "evidenceRefs": [
+        "artifacts/agent-runs/wesleywork-drive-mount-task-dedupe-v1/receipt.json",
+        "C:/ProgramData/CapitalGlass/OfficeAdmin/PRIVATE/Register-CgWesleyWorkDriveMountTasks.ps1",
+        "thread-autopsy-bundle.json#TW-005"
+      ],
+      "commitRefs": [],
+      "nextAction": "Merge Office Admin v1.5; run elevated Install-CgWesleyWorkDriveMountPersistence.ps1",
+      "advancementGate": "DRIVE-MOUNT-PERSISTENCE.json protocol v1.5 + verifier PASS",
+      "doNotAdvance": [
+        "Use one-shot fix-drive-mount-tasks-v15.ps1 as long-term path after v1.5 merge"
+      ],
+      "blockers": []
+    },
+    {
+      "packetId": "runner-restart-before-reregister-v1",
+      "packetTitle": "Faster path — restart systemd runner service before re-register",
+      "packetKind": "faster_path",
+      "state": "RECORDED",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-04_infrastructure-executor-lane-v1.md",
+      "situation": "RYZEN9DESK runner offline while Wave B job queued",
+      "whatHappened": "Considered full re-register; restarted actions.runner systemd unit only",
+      "rightFirstMove": "ssh cg-ryzen9desk-01 → wsl systemctl restart actions.runner.*",
+      "requiredGuard": "Re-register only if GitHub dropped registration",
+      "evidenceRefs": [
+        "artifacts/agent-runs/infrastructure-executor-lane-v1/reregister-ryzen9desk-runner.sh",
+        "thread-autopsy-bundle.json#ED-003"
+      ],
+      "commitRefs": [],
+      "nextAction": "Document restart-only in host-authority slice via seed IH-THREAD-RUNNER-RESTART-ONLY-001",
+      "advancementGate": "gh api runners shows online",
+      "doNotAdvance": [
+        "Register second listener without GitHub dropped registration"
+      ],
+      "blockers": []
+    },
+    {
+      "packetId": "wave-b-dispatch-command-v1",
+      "packetTitle": "Proof command — dispatch wsl2-canonical-setup with approval_ref",
+      "packetKind": "command",
+      "state": "RECORDED",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-04_infrastructure-executor-lane-v1.md",
+      "command": "gh workflow run ryzen9desk-executor-dispatch.yml -f job_profile=wsl2-canonical-setup -f approval_ref=infrastructure-executor-lane-v1-wave-b-v1",
+      "host": "WESLEY_WORK or operator workstation with gh auth",
+      "provesGate": "Wave B wsl2-canonical-setup on RYZEN9DESK",
+      "expectedPassSignal": "Run conclusion success; receipt executionHost RYZEN9DESK",
+      "evidenceRefs": [
+        "https://github.com/Capglass5708/CG-AppBuilder-MCP/actions/runs/30938861704"
+      ],
+      "commitRefs": [],
+      "nextAction": "Approve environment; verify run completes",
+      "advancementGate": "Executor receipt in infrastructure-executor-lane-v1 artifacts",
+      "doNotAdvance": [],
+      "blockers": []
+    },
+    {
+      "packetId": "wave-a-smoke-evidence-v1",
+      "packetTitle": "Evidence — executor smoke 30924982497 success on RYZEN9DESK",
+      "packetKind": "evidence",
+      "state": "RECORDED",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-04_infrastructure-executor-lane-v1.md",
+      "type": "github-actions-run",
+      "pathOrSha": "30924982497",
+      "provesWhat": "Wave A gate 2 — managed executor smoke on RYZEN9DESK",
+      "evidenceRefs": [
+        "artifacts/agent-runs/infrastructure-executor-lane-v1/executor-smoke-receipt-30924982497.json",
+        "https://github.com/Capglass5708/CG-AppBuilder-MCP/actions/runs/30924982497"
+      ],
+      "commitRefs": [],
+      "nextAction": "Do not re-dispatch; cite receipt on Wave A frozen guard",
+      "advancementGate": "receipt.verdict success",
+      "doNotAdvance": [
+        "Re-dispatch executor-smoke"
+      ],
+      "blockers": []
+    },
+    {
+      "packetId": "office-admin-drive-v15-protocol-v1",
+      "packetTitle": "Protocol upgrade — Office Admin v1.5 hidden drive-mount tasks",
+      "packetKind": "protocol_upgrade",
+      "state": "CODE_COMPLETE",
+      "packetVerdict": "PENDING_DEPLOY",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-04_wesleywork-drive-mount-v15-office-admin-land-v1.md",
+      "seedAs": "IH-THREAD-WESLEYWORK-DRIVE-V15-001",
+      "promotionClass": "POLICY_GATED",
+      "futureAgentInstructions": {
+        "whenThisAppears": "WESLEY_WORK drive mount verifier FAIL or duplicate Health tasks",
+        "startAt": [
+          "CapitalGlass-Office-Admin/scripts/devices/CG-WESLEYWORK-01/Register-CgWesleyWorkDriveMountTasks.ps1"
+        ],
+        "runPreflight": [
+          "node --test scripts/tests/wesleywork-drive-mount-task-dedupe-v1.test.mjs"
+        ],
+        "doNot": [
+          "Treat dedupe receipt CODE_COMPLETE as live deploy"
+        ],
+        "proveBeforeClaiming": [
+          "protocol v1.5 in DRIVE-MOUNT-PERSISTENCE.json",
+          "Test-CgWesleyWorkDriveMountTaskRegistration.ps1 PASS"
+        ]
+      },
+      "evidenceRefs": [
+        "work-progress/projects/2026-08-04_wesleywork-drive-mount-v15-office-admin-land-v1.md",
+        "scripts/tests/wesleywork-drive-mount-task-dedupe-v1.test.mjs",
+        "artifacts/agent-runs/wesleywork-drive-mount-v15-office-admin-land-v1/receipt.json"
+      ],
+      "commitRefs": [],
+      "nextAction": "Commit/push CapitalGlass-Office-Admin; elevated Install on WESLEY_WORK",
+      "advancementGate": "Live verifier PASS without one-shot script",
+      "doNotAdvance": [
+        "Claim deploy complete from repo-only changes"
+      ],
+      "blockers": [
+        "CapitalGlass-Office-Admin v1.5 commit/push pending"
+      ]
+    }
+  ]
+}

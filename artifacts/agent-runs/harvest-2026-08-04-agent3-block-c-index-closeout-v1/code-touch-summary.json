@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "cross-agent-code-touch-summary-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-agent3-block-c-index-closeout-v1",
+  "touches": [
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "paths": [
+        "runtime/index-publication/latest.json",
+        "artifacts/agent-runs/harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1/hub-publication-receipt.json"
+      ],
+      "nature": "operator-publication",
+      "commitRefs": ["7827e75a9ec85cd3ff972997c59aec68da7aed7e"],
+      "note": "index:publish + harvest hub seed; no new code commits in this thread"
+    },
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "paths": [
+        "artifacts/agent-runs/intelligence-hub-index-ai-cache-freshness-v1/",
+        "scripts/intelligence-hub/index-freshness/"
+      ],
+      "nature": "operator-index-publish",
+      "commitRefs": ["0776988f on main (prior session drift fix)"],
+      "note": "hot-routing-index + index-freshness:publish commands only"
+    },
+    {
+      "repo": "CapitalGlass-Office-Admin",
+      "paths": [
+        "scripts/devices/common/Register-OfficeHiddenScheduledTask.ps1",
+        "scripts/devices/CG-WESLEYWORK-01/Register-CgWesleyWorkDriveMountTasks.ps1",
+        "scripts/devices/CG-WESLEYWORK-01/Test-CgWesleyWorkDriveMountTaskRegistration.ps1"
+      ],
+      "nature": "implementation",
+      "commitRefs": ["576ae8e on feat/wesleywork-drive-mount-v15-v1"],
+      "note": "PR #54 stacks on fix/wesleywork-drive-mobility-error86"
+    }
+  ],
+  "noTouchRepos": [
+    "CG-Platform-Governance-MCP",
+    "CG-MASTER-GRAPH"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-thread-rosewood-plan-set-registration-v1",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "3de8a660d1f6d056cc88ee5e5ad05438e6542cb2",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-rosewood-cover-plan-index-v1",
+      "seedId": "IH-THREAD-ROSEWOOD-PLAN-SET-REGISTRATION-V1"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T19:24:52.172Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "95bb6e854110c2edebf441b8313b1f43fc72f5a0426ac5a974ee417573c435fd"
+  },
+  "body": {
+    "seedId": "IH-THREAD-ROSEWOOD-PLAN-SET-REGISTRATION-V1",
+    "kind": "runbook",
+    "title": "IH-THREAD-ROSEWOOD-PLAN-SET-REGISTRATION-V1",
+    "summary": "IH-THREAD-ROSEWOOD-PLAN-SET-REGISTRATION-V1",
+    "canonicalQuestion": "How should a canonical drawing set be registered before extraction?",
+    "alternateQuestions": [
+      "What gates prove a plan set and page index are ready?"
+    ],
+    "shortAnswer": "IH-THREAD-ROSEWOOD-PLAN-SET-REGISTRATION-V1",
+    "detailedAnswer": "IH-THREAD-ROSEWOOD-PLAN-SET-REGISTRATION-V1",
+    "retrievalQuestions": [
+      "How should a canonical drawing set be registered before extraction?",
+      "What gates prove a plan set and page index are ready?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "A new project drawing PDF has been ingested.",
+      "startAt": [
+        "Confirm project ID, document ID, source hash, cover sheet, and index authority."
+      ],
+      "runPreflight": [
+        "Search for existing active plan-set and sheet-index records before creating new ones."
+      ],
+      "doNot": [
+        "Do not infer missing owner or drawing project number.",
+        "Do not begin takeoff before index completeness passes.",
+        "Do not store the whole plan index only as an opaque JSON blob."
+      ],
+      "proveBeforeClaiming": [
+        "Every PDF page is accounted for.",
+        "Cover and index authorities are linked.",
+        "Operator review is recorded."
+      ]
+    },
+    "evidenceRefs": [
+      "current-chat:EVT-001",
+      "current-chat:EVT-006",
+      "current-chat:EVT-008"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Cross-Agent",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-rosewood-cover-plan-index-v1/seed-packets/IH-THREAD-ROSEWOOD-PLAN-SET-REGISTRATION-V1.json"
+    ],
+    "harvestId": "harvest-2026-08-04-rosewood-cover-plan-index-v1"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-INFRA-WAVE-A-FROZEN-001",
+  "kind": "lesson",
+  "title": "Infrastructure lane Wave A sealed — no gate rework",
+  "summary": "After Wave A PASS (runner online, smoke 30924982497, drive verifier), do not rerun those gates unless a later gate proves regression.",
+  "retrievalQuestions": [
+    "When is Wave A frozen in infrastructure-executor-lane-v1?",
+    "Can I re-dispatch executor-smoke after Wave A PASS?"
+  ],
+  "evidenceRefs": [
+    "artifacts/agent-runs/infrastructure-executor-lane-v1/wave-gates-receipt-v1.json",
+    "artifacts/agent-runs/infrastructure-executor-lane-v1/executor-smoke-receipt-30924982497.json"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Recheck or continue infrastructure-executor-lane-v1 after Wave A PASS",
+    "startAt": [
+      "artifacts/agent-runs/infrastructure-executor-lane-v1/wave-gates-receipt-v1.json"
+    ],
+    "runPreflight": ["gh run view 30938861704 --repo Capglass5708/CG-AppBuilder-MCP"],
+    "doNot": [
+      "Re-register runner unless GitHub dropped registration",
+      "Re-dispatch smoke 30924982497",
+      "Re-run drive verifier unless regression"
+    ],
+    "proveBeforeClaiming": ["Wave B receipt with executionHost RYZEN9DESK"]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

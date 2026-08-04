@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-CONCEPT-STOP-002",
+  "kind": "failure-pattern",
+  "title": "Concept-only and stop are hard action gates",
+  "summary": "Concept-only and stop are hard action gates",
+  "retrievalQuestions": [
+    "What should an agent do when Wesley says concept-only?",
+    "What should an agent do when Wesley says stop?"
+  ],
+  "evidenceRefs": [
+    "visible thread corrections"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "User says concept-only, do not write code, or stop",
+    "startAt": [
+      "latest user instruction"
+    ],
+    "runPreflight": [
+      "none"
+    ],
+    "doNot": [
+      "call tools",
+      "edit files",
+      "continue previous plan"
+    ],
+    "proveBeforeClaiming": [
+      "new explicit permission"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

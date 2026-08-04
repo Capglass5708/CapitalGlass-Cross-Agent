@@ -1,0 +1,206 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-agent3-block-c-index-closeout-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "7827e75a9ec85cd3ff972997c59aec68da7aed7e",
+  "sourceBranch": "feat/cross-agent-risk-remediation-v1",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-04T20:15:00.000Z",
+  "updatedAt": "2026-08-04T20:15:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_HIT",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "Claim INDEX_HIT_AI_CACHE from hot-routing-index publish alone",
+    "Diagnose Wave B as runner offline when log shows BLOCKED_OPERATOR_APPROVAL",
+    "Run harvest:publish-intelligence-full without operator make operational"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-04-agent3-block-c-index-closeout-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-04-agent3-block-c-index-closeout-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 3,
+      "seeds": 4,
+      "roiItems": 3,
+      "operatorFriction": 1,
+      "executionDeltas": 2
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "graphEligible": true,
+    "graphStage": "GRAPH_VALIDATION_HOLD",
+    "graphExtractionHash": "sha256:d2a55e0529d65d224b4db56b4f07d8c9a49a291efb43630675d64dd4276e15c3",
+    "graphLExtractionPath": "_staging/graph-extractions/harvest-2026-08-04-agent3-block-c-index-closeout-v1/a67707eb25e1f95d7c8cf2de02a2798cbfcda83debc8986bdc95360b998b1d0a/graph-extraction.json",
+    "graphPromotionVerdict": "PENDING",
+    "graphValidationError": "Command failed: node scripts/harvest/validate-graph-extraction.mjs harvest-2026-08-04-agent3-block-c-index-closeout-v1"
+  },
+  "packets": [
+    {
+      "packetKind": "outcome",
+      "packetId": "block-c-l-transport-complete-v1",
+      "packetTitle": "Block C L: transport + hot AI-cache alignment @ 7827e75a",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "evidenceRefs": [
+        "TE-002",
+        "TE-006"
+      ],
+      "nextAction": "Merge PR #6",
+      "advancementGate": "operator-merge",
+      "doNotAdvance": [],
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "projectFile": "work-progress/projects/INDEX.md",
+      "commitRefs": [
+        "7827e75a"
+      ],
+      "blockers": []
+    },
+    {
+      "packetKind": "blocker",
+      "packetId": "executor-wave-b-approval-ref-v1",
+      "packetTitle": "Wave B gated on CG_EXECUTOR_APPROVAL_REF",
+      "state": "OPEN",
+      "packetVerdict": "BLOCKED_OPERATOR_APPROVAL",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "blockerId": "CG_EXECUTOR_APPROVAL_REF_EMPTY",
+      "status": "OPEN",
+      "proofCommandId": "run-30935396892",
+      "evidenceRefs": [
+        "TE-009"
+      ],
+      "nextAction": "Operator supply approval ref; rerun wsl2-canonical-setup",
+      "advancementGate": "mutation-profile-approval",
+      "doNotAdvance": [
+        "Runner reinstall"
+      ],
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "projectFile": "work-progress/projects/2026-08-03_ryzen9desk-managed-executor-v1.md",
+      "commitRefs": [],
+      "blockers": [
+        "CG_EXECUTOR_APPROVAL_REF"
+      ]
+    },
+    {
+      "packetKind": "mistake",
+      "packetId": "hot-cache-preflight-tier-confusion-v1",
+      "packetTitle": "Hot routing vs Z bundle for agent:index:preflight",
+      "state": "FIXED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "evidenceRefs": [
+        "WM-001",
+        "ED-001",
+        "TE-005",
+        "TE-006"
+      ],
+      "nextAction": "not-required",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "harvestVerdictContribution": "RECORDED",
+      "wrongMoveId": "WM-001",
+      "actualExecution": "publish-hot-routing-index then agent:index:preflight",
+      "optimalExecution": "index-freshness:publish + index:publish + hot-routing + preflight",
+      "preventiveControl": "IH-THREAD-AGENT3-HOT-CACHE-ALIGN-001",
+      "ownerMcp": "user-cg-app-mcp",
+      "projectFile": "work-progress/projects/INDEX.md",
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetKind": "command",
+      "packetId": "hot-cache-alignment-chain-v1",
+      "packetTitle": "Three-command hot AI-cache alignment chain",
+      "state": "RECORDED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "command": "intelligence-hub:index-freshness:publish && index:publish && intelligence-hub:publish-hot-routing-index",
+      "host": "WESLEY_WORK WSL",
+      "provesGate": "INDEX_HIT_AI_CACHE",
+      "expectedPassSignal": "freshnessVerdict CURRENT rawScanRequired false",
+      "evidenceRefs": [
+        "TE-006"
+      ],
+      "nextAction": "not-required",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "projectFile": "work-progress/projects/INDEX.md",
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetKind": "evidence",
+      "packetId": "cross-agent-pr6-merge-ready-v1",
+      "packetTitle": "PR #6 MERGEABLE harvest-risk-gates PASS",
+      "state": "RECORDED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "type": "receipt",
+      "pathOrSha": "https://github.com/Capglass5708/CapitalGlass-Cross-Agent/pull/6",
+      "provesWhat": "Risk remediation branch ready for main merge",
+      "evidenceRefs": [
+        "TE-008"
+      ],
+      "nextAction": "Operator merge PR #6",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "projectFile": "work-progress/projects/INDEX.md",
+      "commitRefs": [
+        "7827e75a"
+      ],
+      "blockers": []
+    },
+    {
+      "packetKind": "protocol_upgrade",
+      "packetId": "office-admin-v15-pr54-v1",
+      "packetTitle": "Office Admin PR #54 durable drive-mount v1.5",
+      "state": "IN_FLIGHT",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerIndexingStatus": "indexed",
+      "seedAs": "IH-THREAD-OFFICE-ADMIN-V15-DRIVE-001",
+      "promotionClass": "HUMAN_REVIEW",
+      "evidenceRefs": [
+        "TE-007",
+        "PR #54"
+      ],
+      "nextAction": "Review and merge PR #54; elevated deploy on WESLEY_WORK",
+      "advancementGate": "live-probe",
+      "doNotAdvance": [
+        "Claim IMPLEMENTED without PR merge"
+      ],
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-office-admin-mcp",
+      "projectFile": "work-progress/projects/2026-08-03_wesleywork-drive-mount-task-dedupe-v1.md",
+      "commitRefs": [
+        "576ae8e"
+      ],
+      "blockers": []
+    }
+  ],
+  "supersededClaims": [],
+  "seedPacketIds": [
+    "IH-THREAD-AGENT3-HOT-CACHE-ALIGN-001",
+    "IH-THREAD-EXECUTOR-WAVE-B-APPROVAL-001",
+    "IH-THREAD-CROSS-AGENT-PR6-MERGE-001",
+    "IH-THREAD-OFFICE-ADMIN-V15-DRIVE-001"
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": "48637a82e74530a2895e52e240b9e0a0f4d89154aec924e574806b2412b0d90e",
+    "ledgerContentHashAfter": "6215d53ae5d9c92818742a87149cedd3158da67c7ee040d18b0ca86f003f5d17"
+  }
+}

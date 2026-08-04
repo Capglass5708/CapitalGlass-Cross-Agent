@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-IMPROVE-INDEX-FIRST-EXTRACTION-V1",
+  "kind": "command",
+  "title": "IH-IMPROVE-INDEX-FIRST-EXTRACTION-V1",
+  "summary": "IH-IMPROVE-INDEX-FIRST-EXTRACTION-V1",
+  "retrievalQuestions": [
+    "Has the plan set been fully indexed before downstream extraction?",
+    "Which PDF page contains a requested drawing sheet?"
+  ],
+  "evidenceRefs": [
+    "current-chat:rosewood-page-map",
+    "current-chat:192-page-background-scan"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Thread or task references IH-IMPROVE-INDEX-FIRST-EXTRACTION-V1",
+    "startAt": [
+      "docs/protocols/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md"
+    ],
+    "runPreflight": [
+      "npm run harvest:duplication-preflight -- --harvest-id=<id>"
+    ],
+    "doNot": [
+      "claim HARVEST_COMPLETE from ChatGPT draft",
+      "skip Cursor validation"
+    ],
+    "proveBeforeClaiming": [
+      "harvest:validate PASS",
+      "chatgpt-ingest-receipt.json INGEST_PASS"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

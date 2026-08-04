@@ -1,0 +1,296 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-infrastructure-executor-lane-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "rework",
+      "description": "Multiple elevated drive-mount install attempts before ISO delay + Register-ScheduledTask Startup fix",
+      "evidenceRefs": [
+        "artifacts/agent-runs/infrastructure-executor-lane-v1/fix-drive-mount-tasks-v15.ps1"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Land Office Admin v1.5 in repo; Install-CgWesleyWorkDriveMountPersistence.ps1 after merge",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "verification",
+      "description": "Wave B env approval treated as sufficient; mutation profile also requires approval_ref",
+      "evidenceRefs": [
+        "https://github.com/Capglass5708/CG-AppBuilder-MCP/actions/runs/30935396892"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Dispatch wsl2-canonical-setup with --approval-ref on first dispatch",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "host",
+      "description": "Runner offline while Wave B job queued ~30+ minutes",
+      "evidenceRefs": [
+        "gh api runners ryzen9desk status offline"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "systemctl start actions.runner.* via Direct Connect SSH before watching run",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "operator_attention",
+      "description": "User repeated Wave A frozen / recheck protocol multiple times to prevent gate rework",
+      "evidenceRefs": [
+        "visible chat 2026-08-04"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Persist wave-gates-receipt do-not-advance for Wave A",
+      "roiRank": 4
+    },
+    {
+      "wasteId": "TW-005",
+      "type": "context",
+      "description": "v1.5 dedupe marked CODE_COMPLETE in receipt but Register scripts remained v1.4 on disk",
+      "evidenceRefs": [
+        "artifacts/agent-runs/wesleywork-drive-mount-task-dedupe-v1/receipt.json"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Require npm test + live verifier after receipt before CODE_COMPLETE",
+      "roiRank": 5
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "User had to say YOU HAVE FULL AUTH PROCEED for elevated drive fix",
+      "operatorCost": "high",
+      "systemFix": "Office Admin v1.5 installer as durable path; document RunAs requirement once",
+      "evidenceRefs": [
+        "visible chat"
+      ],
+      "linkedWasteIds": [
+        "TW-001"
+      ]
+    },
+    {
+      "frictionId": "OF-002",
+      "trigger": "User restated Wave A frozen and exact recheck steps for Wave B",
+      "operatorCost": "medium",
+      "systemFix": "Seed packet IH-THREAD-INFRA-WAVE-A-FROZEN-001",
+      "evidenceRefs": [
+        "visible chat"
+      ],
+      "linkedWasteIds": [
+        "TW-004"
+      ]
+    },
+    {
+      "frictionId": "OF-003",
+      "trigger": "GitHub environment approval required twice (30935396892 then 30938861704)",
+      "operatorCost": "medium",
+      "systemFix": "Document env + approval_ref as dual gate for mutation profiles",
+      "evidenceRefs": [
+        "runs 30935396892",
+        "30938861704"
+      ],
+      "linkedWasteIds": [
+        "TW-002"
+      ]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "WESLEY_WORK drive mount task registration verifier",
+      "actualExecution": {
+        "steps": [
+          "Ran Install-CgWesleyWorkDriveMountPersistence from v1.4 ProgramData",
+          "Partial success then PreCursor XML failure",
+          "One-shot elevated fix with ISO delays"
+        ],
+        "outcome": "PASS only under elevation; non-admin misses SYSTEM Startup",
+        "evidenceRefs": [
+          "Test-CgWesleyWorkDriveMountTaskRegistration.ps1 elevated PASS"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Land v1.5 Register scripts in repo first",
+          "Install copies hidden helper to PRIVATE",
+          "Single elevated Install run"
+        ],
+        "outcome": "Verifier PASS without one-shot script",
+        "requiredPreflight": [
+          "node --test wesleywork-drive-mount-task-dedupe-v1.test.mjs"
+        ]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "medium",
+        "operatorFrustration": "high"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Wave B wsl2-canonical-setup dispatch",
+      "actualExecution": {
+        "steps": [
+          "Dispatched without approval_ref",
+          "Env approved",
+          "Job failed BLOCKED_OPERATOR_APPROVAL"
+        ],
+        "outcome": "FAIL",
+        "evidenceRefs": [
+          "run 30935396892"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Dispatch with approval_ref=infrastructure-executor-lane-v1-wave-b-v1",
+          "Approve ryzen9desk-managed-execution",
+          "Ensure runner online"
+        ],
+        "outcome": "Job executes on RYZEN9DESK",
+        "requiredPreflight": [
+          "gh run view",
+          "gh api runners"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "low",
+        "operatorFrustration": "medium"
+      }
+    },
+    {
+      "executionDeltaId": "ED-003",
+      "situation": "RYZEN9DESK runner availability",
+      "actualExecution": {
+        "steps": [
+          "Runner offline while job queued",
+          "Full re-register considered",
+          "Restart systemd service only"
+        ],
+        "outcome": "online without re-register",
+        "evidenceRefs": [
+          "ssh cg-ryzen9desk-01 systemctl start"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Restart existing runner service first per operator caution",
+          "Re-register only if GitHub dropped registration"
+        ],
+        "outcome": "No duplicate listener risk",
+        "requiredPreflight": [
+          "gh api repos/.../actions/runners"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Treated GitHub environment approval as sole mutation gate",
+      "whereItHappened": "Wave B first dispatch run 30935396892",
+      "whyItWasWrong": "requiresApproval mutation profiles need approval_ref workflow input",
+      "correctFirstMove": "gh workflow run with approval_ref=infrastructure-executor-lane-v1-wave-b-v1",
+      "preventiveControl": "IH-THREAD-RYZEN9-EXECUTOR-APPROVAL-001",
+      "seedTarget": "IH-THREAD-RYZEN9-EXECUTOR-APPROVAL-001",
+      "executionDeltaId": "ED-002"
+    },
+    {
+      "wrongMoveId": "WM-002",
+      "summary": "Relied on CODE_COMPLETE receipt while live Register scripts were still v1.4",
+      "whereItHappened": "Install-CgWesleyWorkDriveMountPersistence from ProgramData",
+      "whyItWasWrong": "Install re-emitted LanRecheck and visible tasks undoing dedupe",
+      "correctFirstMove": "Land repo v1.5 before claiming deploy complete",
+      "preventiveControl": "Live verifier + unit test gate on CODE_COMPLETE",
+      "seedTarget": "IH-THREAD-WESLEYWORK-DRIVE-V15-001",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Merge Office Admin v1.5 and deploy via Install script",
+      "whyItPays": "Eliminates one-shot drive fix rework and LanRecheck regression",
+      "effort": "medium",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "savedWasteIds": [
+        "TW-001",
+        "TW-005"
+      ],
+      "seedAs": "runbook",
+      "suggestedWorkPackageId": "wesleywork-drive-mount-v15-office-admin-land-v1"
+    },
+    {
+      "rank": 2,
+      "title": "Executor dispatch template includes approval_ref for mutation profiles",
+      "whyItPays": "Prevents BLOCKED_OPERATOR_APPROVAL after env approval",
+      "effort": "low",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "savedWasteIds": [
+        "TW-002"
+      ],
+      "seedAs": "command",
+      "suggestedWorkPackageId": "infrastructure-executor-lane-v1"
+    },
+    {
+      "rank": 3,
+      "title": "Wave gate receipt encodes Wave A frozen do-not-advance",
+      "whyItPays": "Stops operator repeating frozen gate instructions",
+      "effort": "low",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "savedWasteIds": [
+        "TW-004"
+      ],
+      "seedAs": "index-slice",
+      "suggestedWorkPackageId": "infrastructure-executor-lane-v1"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "Wave A complete / re-verify",
+      "currentStatus": "CLOSED",
+      "doNotClaimUntil": [
+        "Regression evidence from Wave B+ gate failure only"
+      ],
+      "lastKnownEvidence": [
+        "artifacts/agent-runs/infrastructure-executor-lane-v1/wave-gates-receipt-v1.json",
+        "executor-smoke-receipt-30924982497.json"
+      ],
+      "proofCommandId": "CMD-WAVE-A-SEALED"
+    },
+    {
+      "awardOrVerdict": "MANAGED_EXECUTOR_ONLINE",
+      "currentStatus": "BLOCKED",
+      "doNotClaimUntil": [
+        "wsl2-canonical-setup receipt verdict PASS on RYZEN9DESK",
+        "run 30938861704 conclusion success"
+      ],
+      "lastKnownEvidence": [
+        "run 30938861704 queued pending env approval"
+      ],
+      "proofCommandId": "CMD-WAVE-B-RECEIPT"
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "commandIndexConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "work-progress/harvest-packet-registry.json"
+    ],
+    "checkedAt": "2026-08-04T19:19:06.056Z",
+    "preflightReceiptHash": "384f8fb8b2752e84dc3dc1d1da410faaeb14a12225949d2a016bcfa255743dbc"
+  }
+}

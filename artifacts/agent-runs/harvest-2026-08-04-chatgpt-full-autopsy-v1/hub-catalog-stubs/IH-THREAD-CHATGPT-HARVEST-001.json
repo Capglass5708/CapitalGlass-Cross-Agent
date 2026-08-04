@@ -1,0 +1,74 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-thread-chatgpt-harvest-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "39f817819cc91cd8f154279c11b6423e1f05dcb5",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-chatgpt-full-autopsy-v1",
+      "seedId": "IH-THREAD-CHATGPT-HARVEST-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T07:14:23.161Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "0230d700fcbb473829d657ea9a5cb1c0516cdbb7c19988bbf6753baef791ad26"
+  },
+  "body": {
+    "seedId": "IH-THREAD-CHATGPT-HARVEST-001",
+    "kind": "runbook",
+    "title": "ChatGPT harvests are draft-only",
+    "summary": "ChatGPT harvests are draft-only",
+    "canonicalQuestion": "Can ChatGPT claim HARVEST_COMPLETE?",
+    "alternateQuestions": [
+      "What verdict should a ChatGPT thread autopsy use?"
+    ],
+    "shortAnswer": "ChatGPT harvests are draft-only",
+    "detailedAnswer": "ChatGPT harvests are draft-only",
+    "retrievalQuestions": [
+      "Can ChatGPT claim HARVEST_COMPLETE?",
+      "What verdict should a ChatGPT thread autopsy use?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "User asks ChatGPT to run a harvest protocol",
+      "startAt": [
+        "attached ChatGPT protocol"
+      ],
+      "runPreflight": [
+        "record INDEX_NOT_AVAILABLE_IN_CHAT_CONTEXT"
+      ],
+      "doNot": [
+        "claim INDEX_HIT",
+        "claim HARVEST_COMPLETE",
+        "claim FULLY_SEEDED"
+      ],
+      "proveBeforeClaiming": [
+        "Cursor validation receipts"
+      ]
+    },
+    "evidenceRefs": [
+      "attached ChatGPT protocol"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Cross-Agent",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-chatgpt-full-autopsy-v1/seed-packets/IH-THREAD-CHATGPT-HARVEST-001.json"
+    ],
+    "harvestId": "harvest-2026-08-04-chatgpt-full-autopsy-v1"
+  }
+}

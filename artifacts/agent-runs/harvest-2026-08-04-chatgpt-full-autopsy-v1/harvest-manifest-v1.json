@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-chatgpt-full-autopsy-v1",
+  "missionClass": "harvest",
+  "sourceCommitSha": "af9cd6c8560b5918b2d415e9b0f4dd312ba6da9d",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "overallHarvestVerdict": "HARVEST_VALIDATION_PENDING",
+  "retrievalResult": "INDEX_HIT",
+  "chatgptIngest": {
+    "sourcePath": "/mnt/c/Users/wesle/Pictures/chatgpt-full-autopsy-and-improvement-findings-v1.md",
+    "sourceHash": "ef1dfbe154a3d8d6c11046b8e8169f2dad87480b6b0d28af1e05d01058aca70f",
+    "protocol": "chat-thread-closeout-autopsy-harvest-chatgpt-v1",
+    "lane": "CHAT_CONTEXT_ONLY",
+    "draftVerdict": "DRAFT_READY_FOR_CURSOR_VALIDATION",
+    "authorityClass": "non-authoritative"
+  },
+  "doNotAdvance": [
+    "HARVEST_COMPLETE",
+    "FULLY_SEEDED",
+    "OPERATIONAL"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-04-chatgpt-full-autopsy-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-04-chatgpt-full-autopsy-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 8,
+      "seeds": 6,
+      "roiItems": 5,
+      "operatorFriction": 5
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run"
+  },
+  "packets": [
+    {
+      "packetId": "2026-08-04-chatgpt-full-autopsy-v1",
+      "packetTitle": "ChatGPT full autopsy — mode guards, seed distillation, ingest lane",
+      "state": "VALIDATION_PENDING",
+      "packetVerdict": "HOLD",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "docs/protocols/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md",
+      "nextAction": "harvest:duplication-preflight → validate → operator publish",
+      "advancementGate": "harvest:validate PASS",
+      "doNotAdvance": [
+        "HARVEST_COMPLETE",
+        "FULLY_SEEDED"
+      ],
+      "evidenceRefs": [
+        "/mnt/c/Users/wesle/Pictures/chatgpt-full-autopsy-and-improvement-findings-v1.md",
+        "artifacts/agent-runs/harvest-2026-08-04-chatgpt-full-autopsy-v1/",
+        "docs/protocols/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md"
+      ],
+      "commitRefs": [
+        "af9cd6c8560b5918b2d415e9b0f4dd312ba6da9d"
+      ],
+      "blockers": [],
+      "packetKind": "decision",
+      "harvestVerdictContribution": "RECORDED"
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerPath": "work-progress/ACTIVE_WORK.md",
+    "ledgerContentHashBefore": "c79fe9fb1a9e1c8167c5119be6fb9678456f8f956ce3f9703a734c389ca49d08",
+    "ledgerContentHashAfter": "c79fe9fb1a9e1c8167c5119be6fb9678456f8f956ce3f9703a734c389ca49d08"
+  },
+  "updatedAt": "2026-08-04T07:02:14.424Z"
+}

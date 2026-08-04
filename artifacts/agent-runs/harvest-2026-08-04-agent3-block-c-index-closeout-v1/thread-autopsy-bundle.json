@@ -1,0 +1,247 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-agent3-block-c-index-closeout-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "retrieval",
+      "description": "Checked agent:index:preflight before Z AI-cache bundle aligned — fell back to FAILOVER_GIT_LEDGER with rawScanRequired true",
+      "evidenceRefs": [
+        "TE-005",
+        "holdReason CACHE_AND_L_STALE_OR_MISSING"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Run intelligence-hub:index-freshness:publish then republish L + hot routing at same git SHA",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "verification",
+      "description": "Drift probe without Doppler reported SUPABASE_PROJECTION_MISSING when projection was actually reachable",
+      "evidenceRefs": [
+        "TE-003"
+      ],
+      "estimatedImpact": "low",
+      "savedBy": "Always doppler run -- npm run cross-agent-ledger:drift-probe",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "deploy",
+      "description": "Office Admin v1.5 scripts lived on C: DrvFS checkout only — not durable until worktree PR #54",
+      "evidenceRefs": [
+        "TE-007"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Canonical WSL ext4 worktree + PR before claiming IMPLEMENTED",
+      "roiRank": 2
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Wave B failed with BLOCKED_OPERATOR_APPROVAL — easy to misread as runner offline",
+      "operatorCost": "medium",
+      "systemFix": "Seed packet documents CG_EXECUTOR_APPROVAL_REF requirement with run ID proof",
+      "evidenceRefs": [
+        "TE-009",
+        "run 30935396892"
+      ],
+      "linkedWasteIds": []
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Hot AI-cache misaligned (Z af9cd6c vs L 0b68e705) after Block C L publish",
+      "actualExecution": {
+        "steps": [
+          "npm run intelligence-hub:publish-hot-routing-index only",
+          "npm run agent:index:preflight"
+        ],
+        "outcome": "FAILOVER_GIT_LEDGER STALE",
+        "evidenceRefs": [
+          "TE-005"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "npm run intelligence-hub:index-freshness:publish (Z bundle)",
+          "npm run index:publish (L slices at current git HEAD)",
+          "npm run intelligence-hub:publish-hot-routing-index",
+          "npm run agent:index:preflight"
+        ],
+        "outcome": "INDEX_HIT_AI_CACHE CURRENT aligned SHA",
+        "requiredPreflight": [
+          "agent:index:scout"
+        ],
+        "evidenceRefs": [
+          "TE-006"
+        ]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Executor Wave B appeared blocked after runner was offline earlier in day",
+      "actualExecution": {
+        "steps": [
+          "Assume runner/Wave A still blocking Wave B"
+        ],
+        "outcome": "Wrong diagnosis risk",
+        "evidenceRefs": [
+          "ACTIVE_WORK infrastructure-executor-lane-v1"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Read job log for BLOCKED_OPERATOR_APPROVAL",
+          "Supply CG_EXECUTOR_APPROVAL_REF",
+          "Rerun wsl2-canonical-setup"
+        ],
+        "outcome": "Mutation profile gate satisfied",
+        "requiredPreflight": [
+          "executor-smoke receipt + approval ref"
+        ],
+        "evidenceRefs": [
+          "TE-009",
+          "run 30935396892"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "low",
+        "operatorFrustration": "medium"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Treating hot-routing-index publish as sufficient for agent:index:preflight INDEX_HIT_AI_CACHE",
+      "whereItHappened": "CG-AppBuilder-MCP index freshness lane",
+      "whyItWasWrong": "agent:index:preflight resolves Z bundle first; scout uses hot cache",
+      "correctFirstMove": "intelligence-hub:index-freshness:publish + align L at canonical git SHA",
+      "preventiveControl": "Three-command alignment checklist in seed IH-THREAD-AGENT3-HOT-CACHE-ALIGN-001",
+      "seedTarget": "IH-THREAD-AGENT3-HOT-CACHE-ALIGN-001",
+      "executionDeltaId": "ED-001"
+    },
+    {
+      "wrongMoveId": "WM-002",
+      "summary": "Diagnosing Wave B as runner offline after run executed on RYZEN9DESK",
+      "whereItHappened": "Executor lane closeout",
+      "whyItWasWrong": "Intentional mutation-profile gate BLOCKED_OPERATOR_APPROVAL",
+      "correctFirstMove": "Set CG_EXECUTOR_APPROVAL_REF and rerun same job",
+      "preventiveControl": "IH-THREAD-EXECUTOR-WAVE-B-APPROVAL-001",
+      "seedTarget": "IH-THREAD-EXECUTOR-WAVE-B-APPROVAL-001",
+      "executionDeltaId": "ED-002"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "L: index publication after mount",
+      "firstKnownInstance": "harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1",
+      "priorIndexSlice": "BY-KIND/active-work-blockers.json",
+      "whyRepeated": "Block C resume re-ran index:publish when L came back online",
+      "whyMissed": "Prior session ended OPERATOR_BLOCKED — republication required for new git SHA",
+      "avoidableBy": "Check L slice sourceCommitSha vs git HEAD before publish",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Merge Cross-Agent PR #6 risk remediation",
+      "whyItPays": "Lands harvest gates + Block C receipts on main; unblocks ledger truth",
+      "effort": "low",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "savedWasteIds": [],
+      "seedAs": "runbook",
+      "suggestedWorkPackageId": "cross-agent-risk-remediation-v1"
+    },
+    {
+      "rank": 2,
+      "title": "Merge Office Admin PR #54 + elevated WESLEY_WORK deploy",
+      "whyItPays": "Durable v1.5 hidden drive tasks — stops flashing health windows",
+      "effort": "medium",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "savedWasteIds": [
+        "TW-003"
+      ],
+      "seedAs": "runbook",
+      "suggestedWorkPackageId": "wesleywork-drive-mount-task-dedupe-v1"
+    },
+    {
+      "rank": 3,
+      "title": "Executor Wave B with CG_EXECUTOR_APPROVAL_REF",
+      "whyItPays": "Completes wsl2-canonical-setup after runner proved online",
+      "effort": "low",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "savedWasteIds": [],
+      "seedAs": "command",
+      "suggestedWorkPackageId": "infrastructure-executor-lane-v1"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "INDEX_HIT_AI_CACHE_FROM_HOT_ROUTING_ALONE",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "intelligence-hub:index-freshness:publish completes",
+        "index:publish aligns L slices at canonical git HEAD",
+        "agent:index:preflight shows rawScanRequired false"
+      ],
+      "lastKnownEvidence": [
+        "TE-005 FAILOVER_GIT_LEDGER STALE before three-command chain",
+        "TE-006 INDEX_HIT_AI_CACHE @ 7827e75a after alignment"
+      ],
+      "proofCommandId": "agent:index:preflight"
+    },
+    {
+      "awardOrVerdict": "WAVE_B_RUNNER_OFFLINE_DIAGNOSIS",
+      "currentStatus": "OPEN",
+      "doNotClaimUntil": [
+        "CG_EXECUTOR_APPROVAL_REF supplied",
+        "wsl2-canonical-setup rerun succeeds"
+      ],
+      "lastKnownEvidence": [
+        "GHA run 30935396892 BLOCKED_OPERATOR_APPROVAL on RYZEN9DESK runner",
+        "TE-009 executor lane evidence"
+      ],
+      "proofCommandId": "wsl2-canonical-setup"
+    },
+    {
+      "awardOrVerdict": "HARVEST_PHASE_B_OPERATIONAL",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "Operator explicitly says make operational",
+        "harvest:publish-intelligence-full completes with operational receipt"
+      ],
+      "lastKnownEvidence": [
+        "CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1 Phase A only",
+        "duplication-preflight PASS"
+      ],
+      "proofCommandId": "harvest:publish-intelligence-full"
+    }
+  ],
+  "duplicationCheck": {
+    "preflightReceiptPath": "artifacts/agent-runs/harvest-2026-08-04-agent3-block-c-index-closeout-v1/duplication-preflight-receipt.json",
+    "preflightReceiptHash": "e3da282f499a5439ea1e6ea47bad9f51e3ac530797cbe1ac3da1046a8e850d20",
+    "verdict": "PASS",
+    "registryConsulted": true,
+    "commandIndexConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "work-progress/harvest-packet-registry.json"
+    ],
+    "checkedAt": "2026-08-04T19:15:53.069Z"
+  }
+}

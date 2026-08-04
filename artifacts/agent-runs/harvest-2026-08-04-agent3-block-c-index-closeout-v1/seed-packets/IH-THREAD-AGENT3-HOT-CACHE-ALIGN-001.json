@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-AGENT3-HOT-CACHE-ALIGN-001",
+  "kind": "runbook",
+  "title": "Align hot AI-cache + Z bundle + L hub to git HEAD",
+  "summary": "After L: mount or ledger publish, align all three index tiers: Z AI-cache bundle, L BY-KIND slices, and D hot routing — then verify agent:index:preflight INDEX_HIT_AI_CACHE.",
+  "retrievalQuestions": [
+    "How do I align hot AI cache when scout says Z misaligned?",
+    "Why does publish-hot-routing-index alone not fix agent:index:preflight?",
+    "What commands achieve INDEX_HIT_AI_CACHE CURRENT?"
+  ],
+  "evidenceRefs": [
+    "TE-005",
+    "TE-006",
+    "harvest-2026-08-04-agent3-block-c-index-closeout-v1"
+  ],
+  "executionDeltaRefs": ["ED-001"],
+  "wasteIds": ["TW-001"],
+  "roiRank": 1,
+  "futureAgentInstructions": {
+    "whenThisAppears": "Hot AI-cache misaligned or FAILOVER_GIT_LEDGER after L publish",
+    "startAt": [
+      "CG-AppBuilder-MCP npm run agent:index:preflight -- --json",
+      "L:/00-master-index/BY-KIND/active-work-blockers.json sourceCommitSha"
+    ],
+    "runPreflight": [
+      "npm run agent:index:scout -- --json"
+    ],
+    "doNot": [
+      "Claim INDEX_HIT_AI_CACHE after hot-routing-index only",
+      "Broad repo grep before index tiers"
+    ],
+    "proveBeforeClaiming": [
+      "cd CG-AppBuilder-MCP && npm run intelligence-hub:index-freshness:publish",
+      "cd CapitalGlass-Cross-Agent && npm run index:publish",
+      "cd CG-AppBuilder-MCP && npm run intelligence-hub:publish-hot-routing-index",
+      "npm run agent:index:preflight -- --json → INDEX_HIT_AI_CACHE CURRENT rawScanRequired false"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}

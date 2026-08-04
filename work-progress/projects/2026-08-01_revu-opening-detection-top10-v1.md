@@ -527,6 +527,17 @@ Next concrete operator choice: open the Rosewood permit PDF in Revu on the activ
 - Defined next likely package as `revu-production-takeoff-pilot-v1` after `cg-opening-locator-v1` parser work is scoped.
 
 
+### 2026-08-04 CT — Block C Wave 4 read-only advancement (Agent 3)
+
+| Field | Value |
+| --- | --- |
+| Lane | `block-c-platform-harvest-estimating-lane-v1` |
+| Status | **8/10 operational** — production workflow lock honored |
+| Path to 10/10 | (1) Pin Rank-9 Arch FP YOLO repo URL + license review; (2) DE vendor KB depth for pymkup/PyMuPDF/PaddleDetection (`unsupported_vendor` fix) |
+| Next build | `cg-opening-locator-v1` — SAHI + PaddleDetection tiled detection fused with plan-detector geometry |
+| Forbidden | Production Revu takeoff / unattended markup (`revu-mcp-production-workflow-locked`) |
+| Receipt | `artifacts/agent-runs/block-c-platform-harvest-estimating-lane-v1/receipt.json` |
+
 ### 2026-08-01 18:07 CT — pilot 8/10 operational; DE handoff ACK_ACCEPTED
 
 - GitHub captures complete for ranks 1–6, 8, 10 (8 sources).

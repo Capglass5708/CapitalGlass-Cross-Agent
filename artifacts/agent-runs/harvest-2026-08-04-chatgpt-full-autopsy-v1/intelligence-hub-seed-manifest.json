@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "cross-agent-harvest-seed-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-chatgpt-full-autopsy-v1",
+  "subject": "ChatGPT full autopsy — mode guards, seed distillation, ingest lane",
+  "tier": "T2",
+  "seedRecordCount": 6,
+  "retrievalQuestions": [
+    {
+      "retrievalId": "RQ01",
+      "seedId": "IH-IMPROVE-CHATGPT-LANE-001",
+      "query": "How should ChatGPT harvest a Cursor thread?"
+    },
+    {
+      "retrievalId": "RQ02",
+      "seedId": "IH-IMPROVE-CHATGPT-LANE-001",
+      "query": "What verdict should a ChatGPT-only harvest use?"
+    },
+    {
+      "retrievalId": "RQ11",
+      "seedId": "IH-IMPROVE-MODE-GUARD-002",
+      "query": "What should an agent do when Wesley says concept-only?"
+    },
+    {
+      "retrievalId": "RQ12",
+      "seedId": "IH-IMPROVE-MODE-GUARD-002",
+      "query": "What does STOP_NOW require?"
+    },
+    {
+      "retrievalId": "RQ21",
+      "seedId": "IH-IMPROVE-SEED-DISTILLATION-003",
+      "query": "Should raw ChatGPT harvest findings be committed?"
+    },
+    {
+      "retrievalId": "RQ22",
+      "seedId": "IH-IMPROVE-SEED-DISTILLATION-003",
+      "query": "How do we avoid Git bloat while preserving thread intelligence?"
+    },
+    {
+      "retrievalId": "RQ31",
+      "seedId": "IH-THREAD-CHATGPT-HARVEST-001",
+      "query": "Can ChatGPT claim HARVEST_COMPLETE?"
+    },
+    {
+      "retrievalId": "RQ32",
+      "seedId": "IH-THREAD-CHATGPT-HARVEST-001",
+      "query": "What verdict should a ChatGPT thread autopsy use?"
+    },
+    {
+      "retrievalId": "RQ41",
+      "seedId": "IH-THREAD-CONCEPT-STOP-002",
+      "query": "What should an agent do when Wesley says concept-only?"
+    },
+    {
+      "retrievalId": "RQ42",
+      "seedId": "IH-THREAD-CONCEPT-STOP-002",
+      "query": "What should an agent do when Wesley says stop?"
+    },
+    {
+      "retrievalId": "RQ51",
+      "seedId": "IH-THREAD-GIT-BLOAT-003",
+      "query": "Should raw ChatGPT harvest findings be pushed to Git?"
+    },
+    {
+      "retrievalId": "RQ52",
+      "seedId": "IH-THREAD-GIT-BLOAT-003",
+      "query": "Which harvest artifacts belong in Cross-Agent Git?"
+    }
+  ],
+  "roiTop3": [
+    {
+      "rank": 1,
+      "title": "Treat concept-only and stop as absolute no-action gates",
+      "seedId": null
+    },
+    {
+      "rank": 2,
+      "title": "Label ChatGPT outputs as `CHAT_CONTEXT_ONLY`",
+      "seedId": null
+    },
+    {
+      "rank": 3,
+      "title": "Do not push raw draft Markdown by default",
+      "seedId": null
+    }
+  ],
+  "byKindSlice": "00-master-index/BY-KIND/thread-autopsy-index.json",
+  "catalogRoot": "02-catalog/knowledge-objects/cross-agent-harvest"
+}

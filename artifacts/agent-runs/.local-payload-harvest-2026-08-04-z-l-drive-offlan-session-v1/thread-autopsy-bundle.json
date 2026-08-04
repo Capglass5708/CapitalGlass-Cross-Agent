@@ -1,0 +1,219 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-z-l-drive-offlan-session-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "host",
+      "description": "Initial diagnosis trusted WSL drvfs mount before Windows Test-Path",
+      "evidenceRefs": [
+        "TE-002",
+        "TE-003"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Windows Test-Path Z and L before reporting mount status",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "operator_attention",
+      "description": "Recurring Z/L disconnect off-LAN — user had to report again",
+      "evidenceRefs": [
+        "TE-001",
+        "z-drive-disconnect-recurrence-v1"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "FI shortcut PSC-Z-DRIVE-WESLEYWORK-FORCE-REMAP + Windows-side health task",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "tool",
+      "description": "ForceRemap launched from WSL repo cwd caused CMD UNC path noise",
+      "evidenceRefs": [
+        "TE-004"
+      ],
+      "estimatedImpact": "low",
+      "savedBy": "cd C:\\ before invoking powershell.exe -File ...ForceRemap",
+      "roiRank": 3
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "User reported drives unavailable while agent initially saw WSL paths OK",
+      "operatorCost": "high",
+      "systemFix": "Dual-layer probe: Windows Test-Path + WSL path in drive health runbook",
+      "evidenceRefs": [
+        "TE-001",
+        "TE-003"
+      ],
+      "linkedWasteIds": [
+        "TW-001",
+        "TW-002"
+      ]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "User reports Z and L unavailable on WESLEY_WORK",
+      "actualExecution": {
+        "steps": [
+          "Checked /mnt/l and /mnt/z in WSL — appeared OK",
+          "Ran index preflight — FAILOVER_GIT_LEDGER STALE",
+          "Later discovered Windows Z/L both False"
+        ],
+        "outcome": "Delayed accurate diagnosis",
+        "evidenceRefs": [
+          "TE-002",
+          "TE-003"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Windows Test-Path Z:\\Capital-Glass-Dev and L index path first",
+          "If False, run canonical ForceRemap from cd C:\\",
+          "Report PARTIAL vs full availability with SMB probe evidence"
+        ],
+        "outcome": "Immediate operator-accurate status",
+        "requiredPreflight": [
+          "office.get_drive_connectivity_matrix"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "high"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "ForceRemap off-LAN session",
+      "actualExecution": {
+        "steps": [
+          "Invoked Ensure-CgWesleyWorkDriveMounts.ps1 from WSL shell cwd",
+          "Z mapped via Tailscale cg-server; L skipped — desk SMB unavailable"
+        ],
+        "outcome": "PARTIAL_DRIVE_AVAILABILITY",
+        "evidenceRefs": [
+          "TE-004",
+          "TE-005"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "cd C:\\ before ForceRemap",
+          "Confirm WESLEYDESK online for L: or state LAN requirement clearly"
+        ],
+        "outcome": "Clean remap log + clear L blocker message",
+        "requiredPreflight": [
+          "Test-NetConnection cg-wesleydesk-01 -Port 445"
+        ]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "medium"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Reported L/Z mounts OK based on WSL drvfs alone",
+      "whereItHappened": "Initial thread diagnosis",
+      "whyItWasWrong": "Windows drive letters were disconnected; WSL retained stale 9p mounts",
+      "correctFirstMove": "powershell Test-Path on Z:\\Capital-Glass-Dev and L:\\...\\INDEX.json",
+      "preventiveControl": "Dual-layer drive health check in agent runbook",
+      "executionDeltaId": "ED-001",
+      "seedTarget": "IH-WSL-DRVF-GHOST-002"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "Z drive disconnect off-LAN WESLEY_WORK",
+      "whyRepeated": "Same recurrence class as z-drive-disconnect-recurrence-v1",
+      "firstKnownInstance": "FI-20260802-z-drive-unmapped-in-wesle-session-net-use-z-retu",
+      "priorIndexSlice": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "whyMissed": "L: failure mode (desk SMB) not captured in prior Z-only receipt",
+      "avoidableBy": "harvest:duplication-preflight before recording",
+      "recommendedAction": "canonicalize"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Windows-first drive probe before WSL path claims",
+      "whyItPays": "Stops false 'mounts OK' when drvfs is ghost-cached",
+      "effort": "low",
+      "seedAs": "runbook",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "savedWasteIds": [
+        "TW-001"
+      ]
+    },
+    {
+      "rank": 2,
+      "title": "L: desk SMB prerequisite in off-LAN ForceRemap messaging",
+      "whyItPays": "Sets operator expectation when only Z restores via Tailscale",
+      "effort": "medium",
+      "seedAs": "index-slice",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "savedWasteIds": [
+        "TW-002"
+      ]
+    },
+    {
+      "rank": 3,
+      "title": "ForceRemap launcher cwd guard (C:\\ not WSL UNC)",
+      "whyItPays": "Eliminates CMD UNC errors during remap",
+      "effort": "low",
+      "seedAs": "command",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "savedWasteIds": [
+        "TW-003"
+      ]
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "INDEX_HIT",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "Windows Test-Path L:\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json",
+        "index:freshness-gate PASS without holdReason"
+      ],
+      "lastKnownEvidence": [
+        "FAILOVER_GIT_LEDGER",
+        "CACHE_AND_L_STALE_OR_MISSING"
+      ]
+    },
+    {
+      "awardOrVerdict": "FULL_Z_AND_L_OPERATIONAL",
+      "currentStatus": "BLOCKED",
+      "doNotClaimUntil": [
+        "lOk=True in Ensure-CgWesleyWorkDriveMounts classification",
+        "cg-wesleydesk-01:445 or 192.168.1.109:445 reachable"
+      ],
+      "lastKnownEvidence": [
+        "PARTIAL_DRIVE_AVAILABILITY zOk=True lOk=False"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "do-not-advance.json",
+      "active-work-open-actions.json"
+    ],
+    "commandIndexConsulted": true,
+    "preflightReceiptHash": "8fc22af64ad62f32af75a6d30ad36b545d6b374e08e2f44000f00de82ae7f56d",
+    "checkedAt": "2026-08-04T06:06:01.627Z"
+  }
+}

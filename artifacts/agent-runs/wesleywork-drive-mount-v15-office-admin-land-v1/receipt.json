@@ -1,0 +1,37 @@
+{
+  "workPackageId": "wesleywork-drive-mount-v15-office-admin-land-v1",
+  "parentPackage": "wesleywork-drive-mount-task-dedupe-v1",
+  "infrastructureLane": "infrastructure-executor-lane-v1",
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "endpoint": "CG-WESLEYWORK-01",
+  "protocol": "Office Admin Protocol v1.5",
+  "createdAt": "2026-08-04T18:20:00.000Z",
+  "verdict": "CODE_LANDED_PENDING_DEPLOY",
+  "problem": "ProgramData PRIVATE still deployed v1.4 Register-CgWesleyWorkDriveMountTasks.ps1, re-registering visible duplicate Health/LanRecheck tasks and undoing one-shot remediation.",
+  "proofOfRepair": {
+    "oneShotScript": "CapitalGlass-Cross-Agent/artifacts/agent-runs/infrastructure-executor-lane-v1/fix-drive-mount-tasks-v15.ps1",
+    "elevatedVerifier": "PASS",
+    "waveAGate": "SEALED — do not rerun unless regression"
+  },
+  "repoChanges": [
+    "scripts/devices/CG-WESLEYWORK-01/Register-CgWesleyWorkDriveMountTasks.ps1",
+    "scripts/devices/common/Register-OfficeDriveMountLifecycleTasks.ps1",
+    "scripts/devices/common/Register-OfficeHiddenScheduledTask.ps1",
+    "scripts/devices/CG-WESLEYWORK-01/Register-CgWesleyWorkPreCursorDriveGateTask.ps1",
+    "scripts/devices/CG-WESLEYWORK-01/Register-CgWesleyWorkDriveMountUserTasks.ps1",
+    "scripts/devices/CG-WESLEYWORK-01/Ensure-CgWesleyWorkDriveMounts.ps1",
+    "scripts/devices/CG-WESLEYWORK-01/Invoke-CgWesleyWorkPreCursorDriveGate.ps1",
+    "scripts/devices/CG-WESLEYWORK-01/Install-CgWesleyWorkDriveMountPersistence.ps1"
+  ],
+  "verification": {
+    "unitTest": "node --test scripts/tests/wesleywork-drive-mount-task-dedupe-v1.test.mjs",
+    "liveDeploy": "Install-CgWesleyWorkDriveMountPersistence.ps1 (elevated WESLEY_WORK)",
+    "liveProbe": "Test-CgWesleyWorkDriveMountTaskRegistration.ps1 -ExpectRegistered"
+  },
+  "deployNote": "After merge, run Install (not the one-shot fix) on WESLEY_WORK to sync ProgramData PRIVATE from repo v1.5 sources.",
+  "blocksRegression": [
+    "CapitalGlass-WesleyWork-DriveMount-LanRecheck",
+    "CapitalGlass-WesleyWork-DriveMount-User-Health",
+    "bare schtasks /create without Hidden/IgnoreNew"
+  ]
+}

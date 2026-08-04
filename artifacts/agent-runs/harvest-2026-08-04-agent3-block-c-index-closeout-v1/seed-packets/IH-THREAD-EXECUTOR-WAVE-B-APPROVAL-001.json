@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-EXECUTOR-WAVE-B-APPROVAL-001",
+  "kind": "blocker",
+  "title": "Wave B blocked on CG_EXECUTOR_APPROVAL_REF not runner offline",
+  "summary": "RYZEN9DESK executor run 30935396892 executed but failed BLOCKED_OPERATOR_APPROVAL because mutation profile requires CG_EXECUTOR_APPROVAL_REF.",
+  "retrievalQuestions": [
+    "Why did Wave B wsl2-canonical-setup fail on RYZEN9DESK?",
+    "Is the executor runner offline or approval missing?",
+    "What is CG_EXECUTOR_APPROVAL_REF for mutation profile?"
+  ],
+  "evidenceRefs": [
+    "TE-009",
+    "run 30935396892",
+    "infrastructure-executor-lane-v1"
+  ],
+  "executionDeltaRefs": ["ED-002"],
+  "roiRank": 3,
+  "futureAgentInstructions": {
+    "whenThisAppears": "Executor Wave B failure after runner came online",
+    "startAt": [
+      "Job log for wsl2-canonical-setup",
+      "BLOCKED_OPERATOR_APPROVAL message"
+    ],
+    "runPreflight": [
+      "gh run view 30935396892 --log-failed"
+    ],
+    "doNot": [
+      "Re-register runner when job reached executor host",
+      "Restart Wave A for approval-gate failures"
+    ],
+    "proveBeforeClaiming": [
+      "Log shows ryzen9desk-wsl2-CG-RYZEN9DESK-01 runner",
+      "CG_EXECUTOR_APPROVAL_REF populated",
+      "Rerun wsl2-canonical-setup"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "HUMAN_REVIEW",
+  "status": "CANDIDATE"
+}

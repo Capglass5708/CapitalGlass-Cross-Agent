@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-WESLEYWORK-ZL-CORE-SYSTEMS-GO-001",
+  "kind": "lesson",
+  "title": "WESLEY_WORK Z/L mobility: CORE SYSTEMS GO vs full ALL SYSTEMS GO",
+  "summary": "Drive repair is CORE SYSTEMS GO (canonical kit, New-PSDrive, Tailscale L). Full ALL SYSTEMS GO requires merge + WESLEYDESK publication + L catalog durable packet — not hot cache alone.",
+  "retrievalQuestions": [
+    "Is WESLEY_WORK Z L recovery ALL SYSTEMS GO?",
+    "What is CORE SYSTEMS GO vs ALL SYSTEMS GO for WESLEY_WORK drives?",
+    "Can I claim ALL SYSTEMS GO from hot AI Cache only?"
+  ],
+  "evidenceRefs": [
+    "harvest-2026-08-04-wesleywork-z-l-mobility-closure-v1",
+    "live-verification-receipt.json",
+    "PR #53 #280 #7"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "WESLEY_WORK Z L mobility closeout or ALL SYSTEMS GO claim",
+    "startAt": [
+      "IH-Z-L-OFFLAN-PARTIAL-001-WESLEYWORK-ERROR86-PSDRIVE-FIX",
+      "docs/devices/CG-WESLEYWORK-01/WESLEYWORK-Z-L-MOBILITY.md"
+    ],
+    "runPreflight": ["npm run agent:index:scout -- --query=WESLEY_WORK Z L drive disconnected --json"],
+    "doNot": [
+      "Claim full ALL SYSTEMS GO when L catalog lacks IH-Z-L-OFFLAN-PARTIAL-001-WESLEYWORK-ERROR86-PSDRIVE-FIX",
+      "Reopen drive-kit repair without fresh live regression",
+      "Use cmd /c net use password interpolation"
+    ],
+    "proveBeforeClaiming": [
+      "CORE SYSTEMS GO: ForceRemap PARTIAL_DRIVE_AVAILABILITY_OFFLAN_TAILSCALE_L from cd C:\\",
+      "ALL SYSTEMS GO: four-query table + L BY-KIND catalog hit"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

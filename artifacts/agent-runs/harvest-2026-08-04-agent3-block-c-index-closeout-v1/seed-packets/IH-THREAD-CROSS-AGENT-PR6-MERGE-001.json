@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-CROSS-AGENT-PR6-MERGE-001",
+  "kind": "runbook",
+  "title": "Cross-Agent PR #6 merge readiness — risk remediation + Block C",
+  "summary": "feat/cross-agent-risk-remediation-v1 @ 7827e75a is MERGEABLE with harvest-authority-gates PASS; merge then ingest + drift probe.",
+  "retrievalQuestions": [
+    "Is Cross-Agent risk remediation ready to merge?",
+    "What is PR #6 status for harvest gates?",
+    "Post-merge ledger ingest steps?"
+  ],
+  "evidenceRefs": [
+    "TE-008",
+    "PR #6",
+    "7827e75a"
+  ],
+  "roiRank": 1,
+  "futureAgentInstructions": {
+    "whenThisAppears": "Cross-Agent feature branch merge to main",
+    "startAt": [
+      "gh pr view 6",
+      "https://github.com/Capglass5708/CapitalGlass-Cross-Agent/pull/6"
+    ],
+    "runPreflight": [
+      "gh pr checks 6"
+    ],
+    "doNot": [
+      "Commit unrelated dirty harvest artifacts in operator WIP tree",
+      "Claim OPERATIONAL without post-merge ingest IN_SYNC"
+    ],
+    "proveBeforeClaiming": [
+      "harvest-authority-gates PASS",
+      "mergeStateStatus CLEAN",
+      "doppler run -- npm run cross-agent-ledger:ingest -- --apply",
+      "drift-probe IN_SYNC"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}
