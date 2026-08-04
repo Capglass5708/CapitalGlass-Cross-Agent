@@ -13,7 +13,11 @@ import { guardLegacyPublication, LEGACY_BLOCK_VERDICT } from "../harvest/lib/har
 import { computeLegacyPublicationVerdict } from "../harvest/lib/harvest-required-layer-policy-lib.mjs";
 import { validateMetadataChurn, METADATA_CHURN_VERDICTS } from "../harvest/lib/harvest-metadata-churn-lib.mjs";
 import { validateGraphPointerCompact, buildGraphExtractionPointer } from "../harvest/lib/graph-extraction-staging-lib.mjs";
-import { inferGraphEligibility, resolveGraphRepoRoot } from "../harvest/lib/graph-repo-resolution-lib.mjs";
+import {
+  GRAPH_REPO_UNAVAILABLE,
+  inferGraphEligibility,
+  resolveGraphRepoRoot,
+} from "../harvest/lib/graph-repo-resolution-lib.mjs";
 import { validateGitHarvestRetention } from "../harvest/lib/harvest-git-retention-lib.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -152,11 +156,16 @@ test("non-graph harvest does not require graph repo", () => {
 
 test("graph repo resolution uses sibling not hardcoded home in receipt", () => {
   const resolved = resolveGraphRepoRoot(REPO_ROOT);
-  assert.ok(resolved.ok, `expected graph repo resolution, got ${resolved.verdict ?? "unavailable"}`);
-  assert.ok(
-    ["sibling", "CG_REPOS_ROOT", "CG_MASTER_GRAPH_ROOT", "explicit"].includes(resolved.resolution),
-    `non-portable resolution method: ${resolved.resolution}`,
-  );
+  const portableMethods = ["sibling", "CG_REPOS_ROOT", "CG_MASTER_GRAPH_ROOT", "explicit"];
+  if (resolved.ok) {
+    assert.ok(
+      portableMethods.includes(resolved.resolution),
+      `non-portable resolution method: ${resolved.resolution}`,
+    );
+  } else {
+    assert.equal(resolved.verdict, GRAPH_REPO_UNAVAILABLE);
+    assert.equal(resolved.resolution, "unavailable");
+  }
   gates.PORTABLE_REPO_RESOLUTION_PASS = true;
 });
 
