@@ -1,17 +1,17 @@
 {
   "schemaVersion": "cross-agent-harvest-operational-publication-receipt-v1@1.0.0",
   "harvestId": "harvest-2026-08-04-harvest-storage-chatgpt-lane-v1",
-  "generatedAt": "2026-08-04T02:11:00.000Z",
+  "generatedAt": "2026-08-04T02:13:00.000Z",
   "startedAt": "2026-08-04T02:06:00.000Z",
   "verdict": "OPERATIONAL",
-  "sourceCommitSha": "e0a0ef989d9b30bf989608a6dfb93186af24536e",
+  "sourceCommitSha": "befee0ed172c9ccdd04aaa95de2bb136c1fabafb",
   "tier": "T2",
   "authorityModel": "CHAT_THREAD_STRUCTURED_TRUTH",
   "intelligenceHubRoot": "/mnt/l/Capital-Glass-Intelligence-Hub",
   "layers": {
     "git": {
       "path": "artifacts/agent-runs/harvest-2026-08-04-harvest-storage-chatgpt-lane-v1/harvest-manifest-v1.json",
-      "sourceCommitSha": "e0a0ef989d9b30bf989608a6dfb93186af24536e"
+      "sourceCommitSha": "befee0ed172c9ccdd04aaa95de2bb136c1fabafb"
     },
     "lCatalog": {
       "ok": true,
@@ -19,19 +19,20 @@
       "byKindSlice": "00-master-index/BY-KIND/thread-autopsy-index.json"
     },
     "lLedger": {
-      "ok": false,
-      "blocker": "Supabase CLI linux-x64 binary missing in WSL — run index:sync-publication from Windows or install supabase CLI on WSL"
+      "ok": true,
+      "receipt": "CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-structured-ledger-projection-v1/ingest-apply-receipt.json"
     },
     "cHotRouting": {
-      "ok": false,
-      "code": "HOOK_RUNTIME_EXPORT_FAIL",
-      "error": "loadHookRuntimeContract export missing in hook-runtime-contract.mjs"
+      "ok": true,
+      "code": "PUBLISH_PASS",
+      "indexPath": "/mnt/c/AI Cursur Cache/objects/intelligence-hub-index/current-hot-routing-index.v1.json",
+      "sourceCommitSha": "82f817c3c0bda5e7feb09ab18ee985b9349f4a65"
     },
     "zAiCache": {
       "ok": true,
       "code": "PUBLISH_PASS",
       "path": "/mnt/z/Capital-Glass-Intelligence-Hub/AI-Cache-Authority/objects/intelligence-hub-index/current-index-bundle.v1.json",
-      "sourceCommitSha": "e0a0ef989d9b30bf989608a6dfb93186af24536e"
+      "sourceCommitSha": "befee0ed172c9ccdd04aaa95de2bb136c1fabafb"
     }
   },
   "stages": [
@@ -45,18 +46,25 @@
       "ok": true
     },
     {
-      "label": "skip-ledger-sync",
-      "ok": false,
-      "reason": "WSL supabase CLI"
+      "label": "ledger-sync",
+      "ok": true,
+      "verdict": "APPLIED"
     },
     {
       "label": "hot-routing-index",
-      "ok": false
+      "ok": true,
+      "verdict": "PUBLISH_PASS"
     },
     {
       "label": "z-ai-cache-index",
-      "ok": true
+      "ok": true,
+      "verdict": "PUBLISH_PASS"
+    },
+    {
+      "label": "index-freshness-gate",
+      "ok": true,
+      "verdict": "PASS"
     }
   ],
-  "contentHash": "9d67c52a6960160d64f04a69c9e5b8566944e76079a22b8ac0ab5061e51a917e"
+  "contentHash": "b045d88a6289dd97ef165dba5f3ee402275f1794a37689e99e312823398e029a"
 }
