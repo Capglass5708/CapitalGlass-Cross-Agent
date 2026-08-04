@@ -21,6 +21,18 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 ## Current saved work
 
+### 2026-08-04 CT — harvest-2026-08-04-wesleywork-z-l-mobility-closure-v1 (Phase B durable)
+
+| Field | Value |
+| --- | --- |
+| Work package | `harvest-2026-08-04-wesleywork-z-l-mobility-closure-v1` |
+| Operational label | **PHASE_B_COMPLETE — FIRST_STOP_AI_CACHE_PASS_ALL_SYSTEMS_GO_NOT_FULLY_DURABLE** |
+| Harvest payload | **DURABLE** — L `02-catalog`, Z cache, Supabase, `BY-HARVEST` pointer (`payloadHash` `2508dff55…`) |
+| Not fully durable | Operational first-read (`hub-catalog`, BY-KIND slices) + Git Phase C pointer — **not** harvest payload |
+| Drive repair | **CORE SYSTEMS GO** — do not reopen without fresh canonical-kit live regression |
+| Next mission | `wesleywork-z-l-pr-merge-publication-closeout-v1` — see `work-progress/projects/wesleywork-z-l-pr-merge-publication-closeout-v1.md` |
+| ALL SYSTEMS GO | **WITHHELD** until hub-catalog hit + four-query table with L Catalog = YES on every row |
+
 ### 2026-08-04 CT — block-c-platform-harvest-estimating-lane-v1 (Agent 3 lane closeout)
 
 | Field | Value |
