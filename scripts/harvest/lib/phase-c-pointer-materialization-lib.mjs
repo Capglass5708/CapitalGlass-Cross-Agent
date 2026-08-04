@@ -13,6 +13,13 @@ import {
   POINTER_CANDIDATE_SCHEMA,
   PHASE_B_RECEIPT_FILENAME,
 } from "./publication-pointer-candidate-lib.mjs";
+import { validateGitHarvestRetention } from "./harvest-git-retention-lib.mjs";
+import {
+  acquirePublicationLock,
+  isPhaseCAlreadyComplete,
+  LOCK_SCOPES,
+  releasePublicationLock,
+} from "./harvest-publication-lock-lib.mjs";
 
 export const GIT_POINTER_SCHEMA = "harvest-publication-pointer-v1@1.0.0";
 export const GIT_POINTER_FILENAME = "harvest-publication-pointer-v1.json";
@@ -229,7 +236,11 @@ export function validateGitPointerBudget(pointer, repoRoot, harvestId) {
   const runDir = harvestRunDir(repoRoot, harvestId);
   if (fs.existsSync(runDir)) {
     const entries = fs.readdirSync(runDir);
-    const allowed = new Set([GIT_POINTER_FILENAME]);
+    const allowed = new Set([
+      GIT_POINTER_FILENAME,
+      "harvest-manifest-v1.json",
+      "HARVEST_SUMMARY.md",
+    ]);
     for (const entry of entries) {
       if (!allowed.has(entry)) {
         failures.push(`PHASE_C_POINTER_BUDGET:unexpected_run_file:${entry}`);
@@ -245,6 +256,26 @@ export function validateGitPointerBudget(pointer, repoRoot, harvestId) {
     failures,
     verdict: failures.length === 0 ? "PHASE_C_POINTER_BUDGET_PASS" : "PHASE_C_HOLD",
   };
+}
+
+function writeCompactHarvestManifest(repoRoot, harvestId, validation) {
+  const runDir = harvestRunDir(repoRoot, harvestId);
+  fs.mkdirSync(runDir, { recursive: true });
+  const manifestPath = path.join(runDir, "harvest-manifest-v1.json");
+  if (fs.existsSync(manifestPath)) {
+    return readJson(manifestPath);
+  }
+  const identity = validation.published?.identity ?? validation.candidate ?? {};
+  const manifest = {
+    schemaVersion: "cross-agent-harvest-manifest-v1@1.0.0",
+    harvestId,
+    manifestHash: identity.manifestHash,
+    payloadHash: identity.payloadHash,
+    authoritySourceCommit: identity.authoritySourceCommit ?? null,
+    generatedAt: new Date().toISOString(),
+  };
+  fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
+  return manifest;
 }
 
 export function writeGitPointer(repoRoot, harvestId, pointer) {
@@ -305,6 +336,73 @@ export function materializePhaseCPointer({
   repoRoot,
   apply = false,
   env = process.env,
+  usePublicationLock = true,
+  publicationLockOwnerId = `phase-c-${process.pid}`,
+  resumeToken = null,
+}) {
+  if (usePublicationLock === false) {
+    return materializePhaseCPointerCore({
+      hubRoot,
+      harvestId,
+      payloadHash,
+      repoRoot,
+      apply,
+      env,
+    });
+  }
+  const acquired = acquirePublicationLock({
+    hubRoot,
+    harvestId,
+    payloadHash,
+    scope: LOCK_SCOPES.PHASE_C,
+    ownerId: publicationLockOwnerId,
+    resumeToken: resumeToken ?? undefined,
+  });
+  if (!acquired.ok) {
+    return {
+      ok: false,
+      verdict: acquired.verdict,
+      lock: acquired.lock ?? null,
+    };
+  }
+  const token = acquired.resumeToken;
+  try {
+    if (isPhaseCAlreadyComplete(repoRoot, harvestId, payloadHash)) {
+      return {
+        ok: true,
+        verdict: "NOOP_CURRENT",
+        lockVerdict: "NOOP_CURRENT",
+        postLockReread: true,
+      };
+    }
+    const result = materializePhaseCPointerCore({
+      hubRoot,
+      harvestId,
+      payloadHash,
+      repoRoot,
+      apply,
+      env,
+    });
+    return { ...result, lockVerdict: acquired.verdict };
+  } finally {
+    releasePublicationLock({
+      hubRoot,
+      harvestId,
+      payloadHash,
+      scope: LOCK_SCOPES.PHASE_C,
+      ownerId: publicationLockOwnerId,
+      resumeToken: token,
+    });
+  }
+}
+
+function materializePhaseCPointerCore({
+  hubRoot,
+  harvestId,
+  payloadHash,
+  repoRoot,
+  apply = false,
+  env = process.env,
 }) {
   const validation = validatePhaseCInputs({ hubRoot, harvestId, payloadHash, repoRoot });
   if (!validation.ok) {
@@ -356,6 +454,25 @@ export function materializePhaseCPointer({
       ok: false,
       verdict: "PHASE_C_HOLD",
       failures: ["BLOCKED_OPERATOR_APPROVAL:PHASE_C_POINTER_APPROVED"],
+    };
+  }
+
+  const manifestPath = path.join(harvestRunDir(repoRoot, harvestId), "harvest-manifest-v1.json");
+  const manifest = writeCompactHarvestManifest(repoRoot, harvestId, validation);
+  const retention = validateGitHarvestRetention({
+    repoRoot,
+    harvestId,
+    manifest,
+    pointer,
+    mode: "new",
+    stage: "pre-commit",
+  });
+  if (!retention.ok) {
+    return {
+      ok: false,
+      verdict: "PHASE_C_HOLD",
+      failures: retention.failures,
+      gitRetention: retention,
     };
   }
 
