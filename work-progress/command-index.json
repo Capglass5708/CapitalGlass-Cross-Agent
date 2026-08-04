@@ -126,6 +126,26 @@
       ]
     },
     {
+      "id": "wesleydesk-runner-preflight",
+      "command": "npm run runner:preflight",
+      "repo": "CapitalGlass-Cross-Agent",
+      "executable": true,
+      "docOnly": false,
+      "phase": "runner-bootstrap",
+      "host": "CG-WESLEYDESK-01",
+      "note": "Host + L: + sibling repo checks before runner install"
+    },
+    {
+      "id": "wesleydesk-runner-install",
+      "command": "npm run runner:install",
+      "repo": "CapitalGlass-Cross-Agent",
+      "executable": true,
+      "docOnly": false,
+      "phase": "runner-bootstrap",
+      "host": "CG-WESLEYDESK-01",
+      "note": "One-time self-hosted runner for index-publication.yml — see docs/runbooks/wesleydesk-index-publication-runner.md"
+    },
+    {
       "id": "restart-mcp-cursor",
       "command": "Restart MCP in Cursor",
       "repo": "operator",

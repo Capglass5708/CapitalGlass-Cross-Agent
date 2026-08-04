@@ -1,0 +1,46 @@
+name: WESLEYDESK index publication runner smoke
+
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: Operator reason for smoke check
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cross-agent-wesleydesk-runner-smoke
+  cancel-in-progress: false
+
+jobs:
+  smoke:
+    runs-on: [self-hosted, wesleydesk, wsl2]
+    timeout-minutes: 10
+    env:
+      INTELLIGENCE_HUB_ROOT: /mnt/l/Capital-Glass-Intelligence-Hub
+      CAPITALGLASS_CROSS_AGENT_ROOT: ${{ github.workspace }}
+    steps:
+      - name: Checkout pinned ref
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@b789df37d6b7526a863bf51b65df64f3f56ffe4f
+        with:
+          node-version: '22'
+
+      - name: Runner host + L mount preflight
+        run: node scripts/runner/wesleydesk-index-publication-preflight.mjs --json
+
+      - name: List runner labels (debug)
+        run: echo "runner=$RUNNER_NAME labels on job matrix self-hosted,wesleydesk,wsl2"
+
+      - name: Upload smoke receipt
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: wesleydesk-runner-smoke-receipt
+          path: artifacts/agent-runs/cross-agent-index-auto-publisher-activation-v1/wesleydesk-runner-preflight.json
