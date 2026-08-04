@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-WAVE2-FIXTURE-SEED-B",
+  "kind": "failure-pattern",
+  "title": "Never overwrite content-addressed L bundles",
+  "status": "CANDIDATE",
+  "retrievalQuestions": ["What is BLOCKED_AUTHORITY_CONFLICT?", "How does NOOP_CURRENT work?"],
+  "evidenceRefs": ["EVT-002"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "harvest republish",
+    "startAt": "publication-identity",
+    "runPreflight": "harvest:publish-l-durable",
+    "doNot": ["republish Slice 6 before Wave 10"],
+    "proveBeforeClaiming": ["PUBLICATION_COMPLETE.json present"]
+  }
+}
