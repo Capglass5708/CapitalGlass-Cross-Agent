@@ -13,6 +13,7 @@ npm run harvest:sync-derived -- <harvest-id>
 npm run harvest:validate -- <harvest-id>
 npm run harvest:validate-autopsy -- --harvest-id=<id>
 npm run harvest:publish-intelligence-full -- --harvest-id=<id>   # seeds only — not protocol files
+npm run harvest:publish-intelligence-full -- --harvest-id=<id> --sync-hosts=wesley_work,wesleydesk   # + D:/S: hot cache fanout from Z:
 npm run harvest:ingest-chatgpt-findings -- --input=<findings.md> --harvest-id=<id>
 ```
 
