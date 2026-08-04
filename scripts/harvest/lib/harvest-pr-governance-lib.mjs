@@ -7,6 +7,7 @@ import {
   buildPrDiffContentPairs,
   extractHarvestIdFromPath,
   governedChanges,
+  isRealHarvestRunId,
   listChangedFiles,
   resolveDiffRefs,
 } from "./harvest-pr-diff-lib.mjs";
@@ -124,6 +125,10 @@ export function validatePrGovernance({
   }
 
   for (const harvestId of harvestIds) {
+    if (!isRealHarvestRunId(harvestId)) {
+      warnings.push(`PR_DIFF_RETENTION_SKIPPED:mission_run_dir:${harvestId}`);
+      continue;
+    }
     const mode = changes.some(
       (c) =>
         c.path.startsWith(`artifacts/agent-runs/${harvestId}/`) &&

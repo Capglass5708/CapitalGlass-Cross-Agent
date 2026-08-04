@@ -98,6 +98,11 @@ export function extractHarvestIdFromPath(relPath) {
   return match ? match[1] : null;
 }
 
+/** Real harvest run ids follow harvest-YYYY-MM-DD-* ; mission/work-package dirs are excluded. */
+export function isRealHarvestRunId(harvestId) {
+  return /^harvest-\d{4}-\d{2}-\d{2}-/.test(harvestId);
+}
+
 export function governedChanges(changes) {
   return changes.filter((c) => isGovernedPath(c.path) || (c.from && isGovernedPath(c.from)));
 }
