@@ -1,0 +1,444 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-chatgpt-autopsy-findings-v1",
+  "tier": "T2",
+  "ingestionLane": "CHATGPT_VISIBLE_CONTEXT",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "operator_attention",
+      "description": "User had to repeatedly enforce concept-only / stop boundaries",
+      "evidenceRefs": [
+        "User corrections in this chat"
+      ],
+      "savedBy": "Hard mode gate before action",
+      "estimatedImpact": "high",
+      "roiRank": null
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "context",
+      "description": "Prior implementation momentum bled into a concept discussion",
+      "evidenceRefs": [
+        "Current thread summary"
+      ],
+      "savedBy": "Sanity check latest user instruction before every final/tool action",
+      "estimatedImpact": "high",
+      "roiRank": null
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "retrieval",
+      "description": "Harvest/index status was repeatedly debated instead of starting from a registry authority",
+      "evidenceRefs": [
+        "Multiple pasted status reports"
+      ],
+      "savedBy": "Mandatory duplication detector",
+      "estimatedImpact": "high",
+      "roiRank": null
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "claiming",
+      "description": "Risk of overstating ChatGPT output as validated harvest",
+      "evidenceRefs": [
+        "Attached protocol requires commands/receipts"
+      ],
+      "savedBy": "`NOT_RUN_BY_CURSOR` publication label",
+      "estimatedImpact": "high",
+      "roiRank": null
+    },
+    {
+      "wasteId": "TW-005",
+      "type": "tool",
+      "description": "File edits were attempted when user wanted concept review",
+      "evidenceRefs": [
+        "Prior correction sequence"
+      ],
+      "savedBy": "Ask `review vs edit vs implement` when ambiguous",
+      "estimatedImpact": "high",
+      "roiRank": null
+    },
+    {
+      "wasteId": "TW-006",
+      "type": "verification",
+      "description": "Chat-only context cannot run protocol validators",
+      "evidenceRefs": [
+        "Source protocol command chain"
+      ],
+      "savedBy": "Produce draft findings only",
+      "estimatedImpact": "medium",
+      "roiRank": null
+    },
+    {
+      "wasteId": "TW-007",
+      "type": "scope",
+      "description": "The system mixed protocol design, implementation, publication, and review in one flow",
+      "evidenceRefs": [
+        "Conversation history"
+      ],
+      "savedBy": "Separate lanes and verdicts",
+      "estimatedImpact": "high",
+      "roiRank": null
+    },
+    {
+      "wasteId": "TW-008",
+      "type": "rework",
+      "description": "Earlier protocol drafts needed correction because action mode was not explicit",
+      "evidenceRefs": [
+        "Current artifact lineage"
+      ],
+      "savedBy": "Add execution mode section",
+      "estimatedImpact": "medium",
+      "roiRank": null
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "User had to say concept-only more than once",
+      "operatorCost": "high",
+      "systemFix": "Treat concept-only as hard no-write guard",
+      "evidenceRefs": [
+        "Current chat summary"
+      ],
+      "linkedWasteIds": []
+    },
+    {
+      "frictionId": "OF-002",
+      "trigger": "User had to say `JUST STOP`",
+      "operatorCost": "high",
+      "systemFix": "Stop all tool/file actions immediately",
+      "evidenceRefs": [
+        "Current chat summary"
+      ],
+      "linkedWasteIds": []
+    },
+    {
+      "frictionId": "OF-003",
+      "trigger": "User had to ask whether the file can work here",
+      "operatorCost": "medium",
+      "systemFix": "Add ChatGPT visible-context mode",
+      "evidenceRefs": [
+        "Current chat"
+      ],
+      "linkedWasteIds": []
+    },
+    {
+      "frictionId": "OF-004",
+      "trigger": "User had to provide many status reports for indexing/hub state",
+      "operatorCost": "high",
+      "systemFix": "Scout and registry retrieval before asking user",
+      "evidenceRefs": [
+        "Pasted reports in chat"
+      ],
+      "linkedWasteIds": []
+    },
+    {
+      "frictionId": "OF-005",
+      "trigger": "User had to keep separating concept from implementation",
+      "operatorCost": "high",
+      "systemFix": "Add mode labels to protocol and assistant first response",
+      "evidenceRefs": [
+        "Current chat"
+      ],
+      "linkedWasteIds": []
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "User asked for concept-only improvement",
+      "actualExecution": {
+        "steps": [
+          "Assistant continued toward file edits"
+        ],
+        "outcome": "FAIL"
+      },
+      "optimalExecution": {
+        "steps": [
+          "Confirm `REVIEW_ONLY` mode and avoid file mutation"
+        ],
+        "outcome": "Would improve"
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "high"
+      },
+      "preventiveControl": "Mode gate before tools"
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "User said `JUST STOP`",
+      "actualExecution": {
+        "steps": [
+          "Prior plan context still lingered in the session"
+        ],
+        "outcome": "FAIL"
+      },
+      "optimalExecution": {
+        "steps": [
+          "Stop immediately; do not inspect new attachments"
+        ],
+        "outcome": "Would improve"
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "high"
+      },
+      "preventiveControl": "Hard stop guard"
+    },
+    {
+      "executionDeltaId": "ED-003",
+      "situation": "Protocol designed for Cursor was applied in ChatGPT",
+      "actualExecution": {
+        "steps": [
+          "Initial framing risked implying full validation"
+        ],
+        "outcome": "FAIL"
+      },
+      "optimalExecution": {
+        "steps": [
+          "Label `CHAT_CONTEXT_ONLY` and `NOT_RUN_BY_CURSOR`"
+        ],
+        "outcome": "Would improve"
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "medium"
+      },
+      "preventiveControl": "Environment capability declaration"
+    },
+    {
+      "executionDeltaId": "ED-004",
+      "situation": "Harvest status was discussed repeatedly",
+      "actualExecution": {
+        "steps": [
+          "Multiple reports checked and rechecked completion state"
+        ],
+        "outcome": "FAIL"
+      },
+      "optimalExecution": {
+        "steps": [
+          "Start from harvest registry and do-not-advance map"
+        ],
+        "outcome": "Would improve"
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "high"
+      },
+      "preventiveControl": "Duplication detector"
+    },
+    {
+      "executionDeltaId": "ED-005",
+      "situation": "User wanted conceptual SDLC protocol",
+      "actualExecution": {
+        "steps": [
+          "Agent behavior drifted toward implementation mechanics"
+        ],
+        "outcome": "FAIL"
+      },
+      "optimalExecution": {
+        "steps": [
+          "Separate concept protocol from repo implementation"
+        ],
+        "outcome": "Would improve"
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "high"
+      },
+      "preventiveControl": "`REVIEW_ONLY` / `IMPLEMENT_REPO` split"
+    },
+    {
+      "executionDeltaId": "ED-006",
+      "situation": "User asked if protocol works for ChatGPT",
+      "actualExecution": {
+        "steps": [
+          "Needed distinction between draft and validated harvest"
+        ],
+        "outcome": "FAIL"
+      },
+      "optimalExecution": {
+        "steps": [
+          "Define two modes immediately"
+        ],
+        "outcome": "Would improve"
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "high"
+      },
+      "preventiveControl": "Add ChatGPT mode to protocol"
+    },
+    {
+      "executionDeltaId": "ED-007",
+      "situation": "Source protocol requires command receipts",
+      "actualExecution": {
+        "steps": [
+          "ChatGPT cannot produce them here"
+        ],
+        "outcome": "FAIL"
+      },
+      "optimalExecution": {
+        "steps": [
+          "Prepare draft and hand off to Cursor for validation"
+        ],
+        "outcome": "Would improve"
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "high"
+      },
+      "preventiveControl": "`DRAFT_READY_FOR_CURSOR_VALIDATION` verdict"
+    }
+  ],
+  "wrongMoves": [],
+  "duplicateWork": [
+    {
+      "duplicateId": "DUP-001",
+      "subject": "Is the harvest complete or not?",
+      "whyRepeated": "Cross-Agent harvest manifests / do-not-advance registry",
+      "firstKnownInstance": "Cross-Agent harvest manifests / do-not-advance registry",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "whyMissed": "Chat context included many pasted status reports but no live registry query",
+      "avoidableBy": "Start every harvest-status question at registry + BY-KIND slices",
+      "recommendedAction": "Start every harvest-status question at registry + BY-KIND slices"
+    },
+    {
+      "duplicateId": "DUP-002",
+      "subject": "Can agents claim PASS from partial runtime evidence?",
+      "whyRepeated": "Existing do-not-advance patterns",
+      "firstKnownInstance": "Existing do-not-advance patterns",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "whyMissed": "PASS/HOLD language repeated across reports",
+      "avoidableBy": "Every award needs required evidence table",
+      "recommendedAction": "Every award needs required evidence table"
+    },
+    {
+      "duplicateId": "DUP-003",
+      "subject": "Index-first rule kept being re-established",
+      "whyRepeated": "Intelligence Hub first-read rule and scout lane",
+      "firstKnownInstance": "Intelligence Hub first-read rule and scout lane",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "whyMissed": "Some sessions did not trigger scout automatically",
+      "avoidableBy": "Inject scout preflight and log retrieval code",
+      "recommendedAction": "Inject scout preflight and log retrieval code"
+    },
+    {
+      "duplicateId": "DUP-004",
+      "subject": "Wrong host / WSL context confusion",
+      "whyRepeated": "Host authority and Direct Connect records",
+      "firstKnownInstance": "Host authority and Direct Connect records",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "whyMissed": "Multiple hosts with similar repo paths",
+      "avoidableBy": "Require host identity in every execution packet",
+      "recommendedAction": "Require host identity in every execution packet"
+    },
+    {
+      "duplicateId": "DUP-005",
+      "subject": "Publication vs recording separation",
+      "whyRepeated": "Harvest protocol command chain",
+      "firstKnownInstance": "Harvest protocol command chain",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "whyMissed": "Reports often mixed Git commit, Hub publish, and projection sync",
+      "avoidableBy": "Separate `recorded`, `published`, `freshness`, and `retrieved` states",
+      "recommendedAction": "Separate `recorded`, `published`, `freshness`, and `retrieved` states"
+    }
+  ],
+  "roiBacklog": [],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "DNA-001",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "Hub publish + freshness gate + retrieval proof"
+      ],
+      "lastKnownEvidence": [
+        "`FULLY_SEEDED`"
+      ]
+    },
+    {
+      "awardOrVerdict": "DNA-002",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "Canonical JSON artifacts + validator PASS"
+      ],
+      "lastKnownEvidence": [
+        "`HARVEST_COMPLETE` for this file"
+      ]
+    },
+    {
+      "awardOrVerdict": "DNA-003",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "Actual index preflight receipt"
+      ],
+      "lastKnownEvidence": [
+        "`INDEX_HIT`"
+      ]
+    },
+    {
+      "awardOrVerdict": "DNA-004",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "Published receipt at L:/Z:/projection layers"
+      ],
+      "lastKnownEvidence": [
+        "`PUBLISH_PASS`"
+      ]
+    },
+    {
+      "awardOrVerdict": "DNA-005",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "No file mutation unless authorized"
+      ],
+      "lastKnownEvidence": [
+        "`CONCEPT_ONLY` work completed with code edits"
+      ]
+    },
+    {
+      "awardOrVerdict": "DNA-006",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "User explicitly requested edit/replace of source protocol"
+      ],
+      "lastKnownEvidence": [
+        "`Source protocol updated`"
+      ]
+    },
+    {
+      "awardOrVerdict": "DNA-007",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "Cursor command receipts"
+      ],
+      "lastKnownEvidence": [
+        "`Repo validation passed`"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "commandIndexConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "do-not-advance.json",
+      "active-work-open-actions.json"
+    ],
+    "checkedAt": "2026-08-04T01:46:39.464Z",
+    "chatContextNote": "Must run harvest:duplication-preflight in Cursor before validate PASS",
+    "preflightReceiptHash": "124fec607e887df467b55d401e51ac47eff4595cdf6ece05a1e5e1502aaa26f0"
+  }
+}

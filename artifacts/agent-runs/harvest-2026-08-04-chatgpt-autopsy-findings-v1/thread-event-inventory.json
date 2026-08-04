@@ -1,0 +1,76 @@
+{
+  "events": [
+    {
+      "eventId": "EVT-001",
+      "description": "User asked whether the Cursor-oriented protocol could also work here using only chat data.",
+      "actor": "User",
+      "evidenceRefs": [
+        "Current chat"
+      ],
+      "stateChange": "Established chat-only feasibility question"
+    },
+    {
+      "eventId": "EVT-002",
+      "description": "Assistant confirmed yes, but with chat-only evidence limits.",
+      "actor": "Assistant",
+      "evidenceRefs": [
+        "Current chat"
+      ],
+      "stateChange": "Introduced distinction between Cursor mode and ChatGPT mode"
+    },
+    {
+      "eventId": "EVT-003",
+      "description": "User asked to treat the attached file as source of truth and produce a Markdown findings file.",
+      "actor": "User",
+      "evidenceRefs": [
+        "Current chat + attachment"
+      ],
+      "stateChange": "Source authority became attached protocol"
+    },
+    {
+      "eventId": "EVT-004",
+      "description": "Assistant read the attached protocol and created this findings artifact.",
+      "actor": "Assistant",
+      "evidenceRefs": [
+        "Current chat"
+      ],
+      "stateChange": "Draft harvest findings produced"
+    },
+    {
+      "eventId": "EVT-005",
+      "description": "Prior segment included user saying `CONCEPT ONLY`, `DONT WRITE CODE`, and `JUST STOP`.",
+      "actor": "User",
+      "evidenceRefs": [
+        "Current chat summary"
+      ],
+      "stateChange": "Establishes a major operator-friction and instruction-following lesson"
+    },
+    {
+      "eventId": "EVT-006",
+      "description": "Prior segment included assistant continuing file edits after the concept-only correction.",
+      "actor": "Assistant",
+      "evidenceRefs": [
+        "Current chat summary"
+      ],
+      "stateChange": "Wrong-move pattern identified"
+    },
+    {
+      "eventId": "EVT-007",
+      "description": "Prior segment included extensive system work summaries: WSL2, Direct Connect, Intelligence Hub, Synology, proposal generator, and harvest indexing.",
+      "actor": "User-provided reports",
+      "evidenceRefs": [
+        "Current chat"
+      ],
+      "stateChange": "Multiple durable seed domains identified"
+    },
+    {
+      "eventId": "EVT-008",
+      "description": "User focused the current task away from implementation and toward concept/protocol/file findings.",
+      "actor": "User",
+      "evidenceRefs": [
+        "Current chat"
+      ],
+      "stateChange": "Scope narrowed to conceptual harvest findings"
+    }
+  ]
+}

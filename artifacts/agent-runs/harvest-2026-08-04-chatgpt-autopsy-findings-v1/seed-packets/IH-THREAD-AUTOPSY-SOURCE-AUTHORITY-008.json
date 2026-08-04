@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-AUTOPSY-SOURCE-AUTHORITY-008",
+  "kind": "protocol-upgrade",
+  "title": "Newest attached protocol overrides prior drafts",
+  "summary": "When the user names an attached file as source of truth, agents must follow that file instead of earlier summaries or memory.",
+  "retrievalQuestions": [
+    "What should an agent do when Wesley attaches a protocol and calls it source of truth?",
+    "How should prior protocol drafts be handled after a newer attachment appears?"
+  ],
+  "evidenceRefs": [
+    "current chat: user said treat this file as the source of truth"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "User attaches a protocol and says it is source of truth",
+    "startAt": [
+      "the attached file"
+    ],
+    "runPreflight": [
+      "read full attached source"
+    ],
+    "doNot": [
+      "apply older protocol drafts",
+      "use memory as higher authority"
+    ],
+    "proveBeforeClaiming": [
+      "findings cite the attached protocol's required sections"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

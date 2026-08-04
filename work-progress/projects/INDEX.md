@@ -38,9 +38,12 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 
 | Packet ID | State | Verdict | Owner repo | Project file | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `pg-estimator-trust-closure-v1` | ESTIMATOR_TRUST_BLOCKED | FAIL | Cursor-ProposalGenerator-1 | [2026-08-03_pg-estimator-trust-closure-v1.md](./2026-08-03_pg-estimator-trust-closure-v1.md) | Fix pricing persist + hydrate; re-run test:e2e:estimator-trust-closure:doppler on production 360 Power |
-| `pg-pricing-editable-workspace-persist-v1` | PRODUCT_FIX_REQUIRED | BLOCKED | Cursor-ProposalGenerator-1 | [2026-08-03_pg-pricing-editable-workspace-persist-v1.md](./2026-08-03_pg-pricing-editable-workspace-persist-v1.md) | Persist Mark Up edits to proposal-editable-workspace; hydrate full pricing including outsideCosts on reload and preview |
-| `harvest-2026-08-03-pg-estimator-trust-closure-v1` | HARVEST_COMPLETE | HARVEST_COMPLETE | CapitalGlass-Cross-Agent | [2026-08-03_harvest-pg-estimator-trust-closure-v1.md](./2026-08-03_harvest-pg-estimator-trust-closure-v1.md) | Operator: npm run harvest:publish-intelligence-full -- --harvest-id=harvest-2026-08-03-pg-estimator-trust-closure-v1 |
+| `ryzen9desk-managed-executor-v1` | RUNNER_BOOTSTRAP_CHECKPOINT_STARTED | CODE_READY_FOR_RUNNER_BOOTSTRAP | CG-AppBuilder-MCP | [2026-08-03_ryzen9desk-managed-executor-v1.md](./2026-08-03_ryzen9desk-managed-executor-v1.md) | CG-AppBuilder-MCP mission: RYZEN9DESK WSL install from main + dispatch executor-smoke receipt |
+| `active-ledger-ci-path-and-hash-stability-v1` | COMPLETE | PASS | CG-AppBuilder-MCP | [2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md](./2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md) | None unless test:active-ledger-sync regresses on main |
+| `project-folder-synology-primary-v1-dev-environment` | HOLD | CONTRACT_PASS_HOSTED_DEV_HOLD | CapitalGlass-Documents | [project-folder-synology-primary-v1-dev-hosted-environment.md](./project-folder-synology-primary-v1-dev-hosted-environment.md) | Resolve Vercel BLOCKED deploy and Supabase dev isolation (owner: CapitalGlass-Documents) |
+| `cross-agent-retrieval-failover-v1.1` | ADOPTED | PASS | CapitalGlass-Cross-Agent | handoffs/CURRENT_HANDOFF.md | Recurring: use layered failover for suite status when L: unavailable |
+| `wsl2-native-repo-library-migration-v1` | PARTIAL | FILESYSTEM_PASS_OPERATIONAL_CLEANUP_RECORDED | CG-AppBuilder-MCP | [2026-08-03_wsl2-native-repo-library-migration-v1.md](./2026-08-03_wsl2-native-repo-library-migration-v1.md) | Per-repo ext4 verification; RYZEN9DESK alignment via separate executor mission |
+| `office-admin-ryzen9desk-managed-executor-bootstrap-v1` | INDEXED | CODE_READY_FOR_RUNNER_BOOTSTRAP | CapitalGlass-Office-Admin | [2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md](./2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md) | Runner bootstrap remains CG-AppBuilder-MCP mission; do not claim MANAGED_EXECUTOR_ONLINE |
 
 <!-- HARVEST-PACKET-INDEX:END -->
 

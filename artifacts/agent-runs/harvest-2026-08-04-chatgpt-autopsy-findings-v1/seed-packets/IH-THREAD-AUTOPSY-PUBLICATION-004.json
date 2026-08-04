@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-AUTOPSY-PUBLICATION-004",
+  "kind": "failure-pattern",
+  "title": "Recording is not publication",
+  "summary": "A harvest file, Git commit, or chat finding is not Intelligence Hub publication until Hub publish, freshness, and retrieval proofs exist.",
+  "retrievalQuestions": [
+    "When is a thread harvest fully seeded into the Intelligence Hub?",
+    "What is the difference between HARVEST_COMPLETE and FULLY_SEEDED?"
+  ],
+  "evidenceRefs": [
+    "attached protocol: publication is separate from recording",
+    "attached protocol: do not claim FULLY_SEEDED without index freshness gate"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "User asks whether a harvest has been seeded",
+    "startAt": [
+      "harvest manifest",
+      "publication receipt",
+      "freshness gate receipt"
+    ],
+    "runPreflight": [
+      "index:freshness-gate when authorized"
+    ],
+    "doNot": [
+      "claim seeded from markdown or Git alone"
+    ],
+    "proveBeforeClaiming": [
+      "Git, L:, Z:, projection, and retrieval proof"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

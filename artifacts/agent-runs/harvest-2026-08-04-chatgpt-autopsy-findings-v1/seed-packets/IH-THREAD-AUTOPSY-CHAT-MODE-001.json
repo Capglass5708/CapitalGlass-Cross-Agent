@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-AUTOPSY-CHAT-MODE-001",
+  "kind": "protocol-upgrade",
+  "title": "ChatGPT visible-context harvest mode",
+  "summary": "ChatGPT can draft thread-autopsy findings from visible chat context, but must not claim repo, index, or Hub validation.",
+  "retrievalQuestions": [
+    "Can chat-thread-closeout-autopsy-harvest-v1 run in ChatGPT without Cursor repo access?",
+    "What verdict should a ChatGPT-only harvest use before Cursor validation?"
+  ],
+  "evidenceRefs": [
+    "current chat: user asked whether protocol can work here",
+    "attached protocol: command chain requires Cursor/repo validation"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "User asks to use a Cursor harvest protocol inside ChatGPT",
+    "startAt": [
+      "attached protocol",
+      "visible conversation context"
+    ],
+    "runPreflight": [
+      "record INDEX_NOT_AVAILABLE_IN_CHAT_CONTEXT"
+    ],
+    "doNot": [
+      "claim INDEX_HIT",
+      "claim HARVEST_COMPLETE",
+      "claim FULLY_SEEDED"
+    ],
+    "proveBeforeClaiming": [
+      "Cursor validation receipts"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

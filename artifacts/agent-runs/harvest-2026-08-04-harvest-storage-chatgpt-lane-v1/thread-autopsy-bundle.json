@@ -1,0 +1,192 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-harvest-storage-chatgpt-lane-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "context",
+      "description": "Full protocol markdown duplicated in Cross-Agent Git before pointer slimming (~900 lines)",
+      "evidenceRefs": [
+        "11909aa"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "HARVEST-STORAGE-POLICY-v1 — L canonical, Git pointers only",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "agent",
+      "description": "Supabase projection_body stored full ledger JSON duplicate before pointer sanitize",
+      "evidenceRefs": [
+        "f63668a4"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "supabase-pointer-sanitize.mjs on cross-agent-ledger:ingest",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "operator_attention",
+      "description": "User had to ask whether Z protocol file reflected storage policy updates",
+      "evidenceRefs": [
+        "chat:user Z file updated?"
+      ],
+      "estimatedImpact": "low",
+      "savedBy": "Authority table + Lane C in main protocol; L→Z sync after L edits",
+      "roiRank": 4
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Unclear which layer holds full protocol vs pointers",
+      "operatorCost": "medium",
+      "frequency": "once",
+      "systemFix": "HARVEST-STORAGE-POLICY-v1 + authority table in main protocol",
+      "evidenceRefs": [
+        "chat:user github bloat / local hub"
+      ],
+      "linkedWasteIds": [
+        "TW-001"
+      ]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Keep harvest protocols without bloating GitHub",
+      "actualExecution": {
+        "steps": [
+          "Full runbooks in Cross-Agent docs/"
+        ],
+        "outcome": "Large Git commits, duplicate with Z:",
+        "evidenceRefs": [
+          "pre-11909aa"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "L: 03-protocols/harvest full text",
+          "Git pointer stubs only",
+          "Z: operator mirror",
+          "Supabase pointers on ingest"
+        ],
+        "outcome": "Small Git pushes; estate retrieval from L/Z",
+        "requiredPreflight": [
+          "HARVEST-STORAGE-POLICY-v1"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "low",
+        "operatorFrustration": "medium"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Treating ChatGPT as source of truth for code paths",
+      "whereItHappened": "ChatGPT lane design before improvement-extract",
+      "whyItWasWrong": "Code claims need Cursor cross-check in Git",
+      "correctFirstMove": "chat-improvement-extract with CROSS_CHECK_CANDIDATE + UNVERIFIED",
+      "preventiveControl": "chat-improvement-extract-chatgpt-v1.md",
+      "seedTarget": "IH-STORAGE-CHATGPT-IMPROVEMENT-001",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DU-001",
+      "subject": "Protocol prose in Git, Z:, and L:",
+      "firstKnownInstance": "Cross-Agent docs/runbooks full copy",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "repeatedInstances": [
+        "Z Harvest/protocol",
+        "L 03-protocols/harvest"
+      ],
+      "whyRepeated": "No storage policy before this session",
+      "avoidableBy": "HARVEST-STORAGE-POLICY-v1 single canonical on L",
+      "recommendedAction": "add_guard"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Harvest storage policy L/Git/Z/Supabase",
+      "whyItPays": "Small Git pushes; correct retrieval layer; no DB prose bloat",
+      "effort": "low",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "savedWasteIds": [
+        "TW-001",
+        "TW-002"
+      ],
+      "seedAs": "owner-artifact",
+      "suggestedWorkPackageId": "harvest-storage-pointer-authority-v1"
+    },
+    {
+      "rank": 2,
+      "title": "ChatGPT improvement-extract lane",
+      "whyItPays": "Token-focused Cursor→ChatGPT handoff without false authority",
+      "effort": "low",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "savedWasteIds": [
+        "TW-003"
+      ],
+      "seedAs": "owner-artifact",
+      "suggestedWorkPackageId": "chat-improvement-extract-chatgpt-v1"
+    },
+    {
+      "rank": 3,
+      "title": "Supabase pointer-only ingest enforcement",
+      "whyItPays": "Ledger projection_body no longer duplicates full JSON",
+      "effort": "low",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "savedWasteIds": [
+        "TW-002"
+      ],
+      "seedAs": "command",
+      "suggestedWorkPackageId": "harvest-storage-pointer-authority-v1"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "HARVEST_PROTOCOL_ON_GITHUB_FULL",
+      "currentStatus": "BLOCKED",
+      "doNotClaimUntil": [
+        "Protocol prose only on L: and Z:",
+        "Git docs/ remain pointer stubs"
+      ],
+      "lastKnownEvidence": [
+        "11909aa",
+        "HARVEST-STORAGE-POLICY-v1.md"
+      ],
+      "proofCommandId": "git diff docs/runbooks/chat-thread-closeout-autopsy-harvest-v1.md"
+    },
+    {
+      "awardOrVerdict": "ESTIMATOR_TRUST_CLOSED",
+      "currentStatus": "BLOCKED",
+      "doNotClaimUntil": [
+        "harvest-2026-08-03-pg-estimator-trust-closure-v1 gate PASS"
+      ],
+      "lastKnownEvidence": [
+        "harvest-2026-08-03-pg-estimator-trust-closure-v1"
+      ],
+      "proofCommandId": "npm run test:e2e:estimator-trust-closure:doppler"
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "do-not-advance.json",
+      "active-work-open-actions.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-04T02:02:15.025Z",
+    "preflightReceiptHash": "8c478007672b19a8d490619a858a051e5a9c48cad4c097add2cd42d185975777"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-supabase-ledger-pointer-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "11909aa2bd8be93fd4ef661f4162c30ea9c3dc90",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-harvest-storage-chatgpt-lane-v1",
+      "seedId": "IH-SUPABASE-LEDGER-POINTER-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T02:02:35.655Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "adaf27524228417bc3d9c2dbe2d02ed2c69883453f2255bca6a32672aea4e07f"
+  },
+  "body": {
+    "seedId": "IH-SUPABASE-LEDGER-POINTER-001",
+    "kind": "architecture",
+    "title": "Supabase cross-agent ledger — pointer-only projection on ingest",
+    "summary": "cross-agent-ledger:ingest --apply uses supabase-pointer-sanitize: truncated open_actions/blockers/saved_work with authorityPath; projection_body is pointer manifest not full ledger JSON.",
+    "canonicalQuestion": "What gets written to Supabase on cross-agent ledger ingest?",
+    "alternateQuestions": [
+      "How to avoid bloating Supabase with harvest protocol prose?"
+    ],
+    "shortAnswer": "cross-agent-ledger:ingest --apply uses supabase-pointer-sanitize: truncated open_actions/blockers/saved_work with authorityPath; projection_body is pointer manifest not full ledger JSON.",
+    "detailedAnswer": "Supabase cross-agent ledger — pointer-only projection on ingest",
+    "retrievalQuestions": [
+      "What gets written to Supabase on cross-agent ledger ingest?",
+      "How to avoid bloating Supabase with harvest protocol prose?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "cross-agent-ledger ingest or Supabase projection drift",
+      "startAt": [
+        "CG-AppBuilder-MCP/scripts/cross-agent-ledger/lib/supabase-pointer-sanitize.mjs"
+      ],
+      "runPreflight": [
+        "npm run test:supabase-pointer-sanitize in CG-AppBuilder-MCP"
+      ],
+      "doNot": [
+        "Store full ACTIVE_WORK prose or protocol markdown in projection_body"
+      ],
+      "proveBeforeClaiming": [
+        "projection_body schemaVersion cross-agent-ledger-supabase-pointer-body-v1",
+        "policy supabase-pointer-only-v1@1.0.0"
+      ]
+    },
+    "evidenceRefs": [
+      "CG-AppBuilder-MCP/scripts/cross-agent-ledger/lib/supabase-pointer-sanitize.mjs",
+      "HARVEST-STORAGE-POLICY-v1.md"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": 3,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-harvest-storage-chatgpt-lane-v1/seed-packets/IH-SUPABASE-LEDGER-POINTER-001.json"
+    ],
+    "harvestId": "harvest-2026-08-04-harvest-storage-chatgpt-lane-v1"
+  }
+}

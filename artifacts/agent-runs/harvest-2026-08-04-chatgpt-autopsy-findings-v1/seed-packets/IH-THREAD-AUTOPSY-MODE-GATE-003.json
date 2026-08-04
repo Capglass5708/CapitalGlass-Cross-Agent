@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-AUTOPSY-MODE-GATE-003",
+  "kind": "protocol-upgrade",
+  "title": "Declare artifact mode before acting",
+  "summary": "For reusable protocol requests, the agent should declare REVIEW_ONLY, DRAFT_FILE, EDIT_EXISTING, or IMPLEMENT_REPO before taking action.",
+  "retrievalQuestions": [
+    "How should an agent distinguish review from implementation in a protocol thread?",
+    "What mode labels prevent accidental file mutation?"
+  ],
+  "evidenceRefs": [
+    "current chat: user separated concept-only from file creation"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "User asks for protocol review, file prep, or implementation in the same topic",
+    "startAt": [
+      "latest explicit user instruction"
+    ],
+    "runPreflight": [
+      "state selected mode in first sentence"
+    ],
+    "doNot": [
+      "infer implementation permission from conceptual approval"
+    ],
+    "proveBeforeClaiming": [
+      "mode matches user wording"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

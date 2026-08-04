@@ -321,10 +321,12 @@ export function runDuplicationPreflight({
   });
 
   if (bundle) {
-    errors.push(...validateConsultationClaims({ bundle, sources }));
-    const claimedHash = bundle.duplicationCheck?.preflightReceiptHash;
-    if (!claimedHash && mode === "validate") {
-      errors.push("duplicationCheck.preflightReceiptHash missing — run harvest:duplication-preflight first");
+    if (mode !== "preflight") {
+      errors.push(...validateConsultationClaims({ bundle, sources }));
+      const claimedHash = bundle.duplicationCheck?.preflightReceiptHash;
+      if (!claimedHash && mode === "validate") {
+        errors.push("duplicationCheck.preflightReceiptHash missing — run harvest:duplication-preflight first");
+      }
     }
   }
 
@@ -411,7 +413,7 @@ export function runDuplicationPreflight({
     receipt.receiptPath = receiptPath;
   }
 
-  if (bundle?.duplicationCheck?.preflightReceiptHash) {
+  if (bundle?.duplicationCheck?.preflightReceiptHash && mode !== "preflight") {
     if (bundle.duplicationCheck.preflightReceiptHash !== receipt.contentHash) {
       errors.push(
         "duplicationCheck.preflightReceiptHash stale — re-run harvest:duplication-preflight and update bundle",

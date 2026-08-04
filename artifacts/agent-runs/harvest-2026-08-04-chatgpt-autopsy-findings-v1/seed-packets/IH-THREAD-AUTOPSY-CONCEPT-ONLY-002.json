@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-AUTOPSY-CONCEPT-ONLY-002",
+  "kind": "failure-pattern",
+  "title": "Concept-only means no file edits or implementation",
+  "summary": "When the user says concept-only or do not write code, the agent must stop implementation behavior and respond in review/planning mode only.",
+  "retrievalQuestions": [
+    "What should an agent do when Wesley says concept only?",
+    "How should Cursor handle do not write code during protocol design?"
+  ],
+  "evidenceRefs": [
+    "current chat summary: user said concept only and JUST STOP"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "User says concept only, do not write code, or stop",
+    "startAt": [
+      "latest user instruction"
+    ],
+    "runPreflight": [
+      "none; obey immediately"
+    ],
+    "doNot": [
+      "call tools",
+      "edit files",
+      "continue prior plan"
+    ],
+    "proveBeforeClaiming": [
+      "user gives new explicit permission to continue"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

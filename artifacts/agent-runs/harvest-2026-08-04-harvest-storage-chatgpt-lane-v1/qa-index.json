@@ -1,0 +1,175 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-harvest-storage-chatgpt-lane-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-CHATGPT-IMPROVEMENT-EXTRACT-001",
+      "questionId": "IHCHATGPTIMP",
+      "canonicalQuestion": "How should I feed a Cursor chat to ChatGPT for harvest without treating ChatGPT as source of truth?",
+      "alternateQuestions": [
+        "What verdict should ChatGPT use for improvement-only extraction?"
+      ],
+      "shortAnswer": "Feed chat-improvement-extract-chatgpt-v1.md with Cursor chat. Output improvements (token/arch/speed/intelligence). Code claims are CROSS_CHECK_CANDIDATE until Cursor verifies in Git.",
+      "detailedAnswer": "ChatGPT improvement-extract lane for Cursor chats",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T02:02:35.655Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-harvest-storage-chatgpt-lane-v1/seed-packets/IH-CHATGPT-IMPROVEMENT-EXTRACT-001.json"
+      ],
+      "authorityCommit": [
+        "11909aa"
+      ],
+      "evidenceUrls": [
+        "L:/Capital-Glass-Intelligence-Hub/03-protocols/harvest/chat-improvement-extract-chatgpt-v1.md",
+        "Z:/Capital-Glass-Dev/Harvest/protocol/chat-improvement-extract-chatgpt-v1.md"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-04-harvest-storage-chatgpt-lane-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Operator wants ChatGPT to digest a Cursor session",
+        "startAt": [
+          "L:…/chat-improvement-extract-chatgpt-v1.md"
+        ],
+        "runPreflight": [],
+        "doNot": [
+          "Claim HARVEST_COMPLETE or INDEX_HIT in ChatGPT",
+          "Promote code seeds without XC cross-check in Cursor"
+        ],
+        "proveBeforeClaiming": [
+          "Output verdict DRAFT_IMPROVEMENTS_FOR_CURSOR_VALIDATION",
+          "XC rows UNVERIFIED until grep/MCP in owning repo"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "lesson"
+    },
+    {
+      "ihPfspId": "IH-STORAGE-HARVEST-POINTER-AUTHORITY-001",
+      "questionId": "IHSTORAGEHAR",
+      "canonicalQuestion": "Where should full harvest protocol markdown live vs GitHub?",
+      "alternateQuestions": [
+        "What does Supabase store for cross-agent ledger ingest?"
+      ],
+      "shortAnswer": "Full harvest protocol prose lives on L: 03-protocols/harvest and Z operator copy. Cross-Agent Git keeps pointer stubs and harvest JSON. Supabase stores truncated ledger slices and pointer projection_body only.",
+      "detailedAnswer": "Harvest protocol storage — L full, Git pointers, Supabase metadata only",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T02:02:35.655Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-harvest-storage-chatgpt-lane-v1/seed-packets/IH-STORAGE-HARVEST-POINTER-AUTHORITY-001.json"
+      ],
+      "authorityCommit": [
+        "11909aa"
+      ],
+      "evidenceUrls": [
+        "L:/Capital-Glass-Intelligence-Hub/03-protocols/harvest/HARVEST-STORAGE-POLICY-v1.md",
+        "CapitalGlass-Cross-Agent commit 11909aa",
+        "CG-AppBuilder-MCP commit f63668a4"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "architecture",
+        "harvest-2026-08-04-harvest-storage-chatgpt-lane-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Harvest protocol edits, Git bloat, or ledger Supabase ingest",
+        "startAt": [
+          "L:/Capital-Glass-Intelligence-Hub/03-protocols/harvest/HARVEST-STORAGE-POLICY-v1.md",
+          "BY-KIND/thread-autopsy-index.json"
+        ],
+        "runPreflight": [],
+        "doNot": [
+          "Commit full protocol markdown to Cross-Agent GitHub",
+          "Store protocol prose or full ledger JSON in Supabase projection_body"
+        ],
+        "proveBeforeClaiming": [
+          "docs/runbooks/*.md are pointer stubs linking to L:",
+          "cross-agent-ledger:ingest uses supabase-pointer-sanitize.mjs"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "architecture"
+    },
+    {
+      "ihPfspId": "IH-SUPABASE-LEDGER-POINTER-001",
+      "questionId": "IHSUPABASELE",
+      "canonicalQuestion": "What gets written to Supabase on cross-agent ledger ingest?",
+      "alternateQuestions": [
+        "How to avoid bloating Supabase with harvest protocol prose?"
+      ],
+      "shortAnswer": "cross-agent-ledger:ingest --apply uses supabase-pointer-sanitize: truncated open_actions/blockers/saved_work with authorityPath; projection_body is pointer manifest not full ledger JSON.",
+      "detailedAnswer": "Supabase cross-agent ledger — pointer-only projection on ingest",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T02:02:35.655Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-harvest-storage-chatgpt-lane-v1/seed-packets/IH-SUPABASE-LEDGER-POINTER-001.json"
+      ],
+      "authorityCommit": [
+        "11909aa"
+      ],
+      "evidenceUrls": [
+        "CG-AppBuilder-MCP/scripts/cross-agent-ledger/lib/supabase-pointer-sanitize.mjs",
+        "HARVEST-STORAGE-POLICY-v1.md"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "architecture",
+        "harvest-2026-08-04-harvest-storage-chatgpt-lane-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "cross-agent-ledger ingest or Supabase projection drift",
+        "startAt": [
+          "CG-AppBuilder-MCP/scripts/cross-agent-ledger/lib/supabase-pointer-sanitize.mjs"
+        ],
+        "runPreflight": [
+          "npm run test:supabase-pointer-sanitize in CG-AppBuilder-MCP"
+        ],
+        "doNot": [
+          "Store full ACTIVE_WORK prose or protocol markdown in projection_body"
+        ],
+        "proveBeforeClaiming": [
+          "projection_body schemaVersion cross-agent-ledger-supabase-pointer-body-v1",
+          "policy supabase-pointer-only-v1@1.0.0"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "architecture"
+    }
+  ]
+}

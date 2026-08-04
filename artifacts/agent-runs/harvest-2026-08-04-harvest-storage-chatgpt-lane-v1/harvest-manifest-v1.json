@@ -1,0 +1,138 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-harvest-storage-chatgpt-lane-v1",
+  "missionClass": "harvest",
+  "sourceCommitSha": "11909aa2bd8be93fd4ef661f4162c30ea9c3dc90",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-04T02:00:00.000Z",
+  "updatedAt": "2026-08-04T02:00:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_HIT",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-04-harvest-storage-chatgpt-lane-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-04-harvest-storage-chatgpt-lane-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 3,
+      "seeds": 3,
+      "roiItems": 3,
+      "operatorFriction": 1
+    }
+  },
+  "doNotAdvance": [
+    "HARVEST_PROTOCOL_ON_GITHUB_FULL",
+    "FULLY_SEEDED",
+    "OPERATIONAL"
+  ],
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": null,
+    "note": "Phase A — operator publish optional"
+  },
+  "ledgerLineage": {
+    "ledgerPath": "work-progress/ACTIVE_WORK.md",
+    "ledgerContentHashBefore": "d71688b9d7e91cd7508ea961f97024f4f8f7786c51323a96b64040c7ced8ab3b",
+    "ledgerContentHashAfter": "d71688b9d7e91cd7508ea961f97024f4f8f7786c51323a96b64040c7ced8ab3b"
+  },
+  "supersededClaims": [
+    {
+      "packetId": "harvest-storage-pointer-authority-v1",
+      "claim": "Full protocol markdown in Cross-Agent Git",
+      "supersededBy": "11909aa pointer stubs + L: 03-protocols/harvest canonical",
+      "recordedAt": "2026-08-04T02:00:00.000Z"
+    }
+  ],
+  "packets": [
+    {
+      "packetId": "harvest-storage-pointer-authority-v1",
+      "packetTitle": "Harvest storage policy — L/Git/Z/Supabase layers",
+      "state": "POLICY_ACTIVE",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "CURRENT_AUTHORITY",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerMcp": null,
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "L:/Capital-Glass-Intelligence-Hub/03-protocols/harvest/HARVEST-STORAGE-POLICY-v1.md",
+      "projectFile": "work-progress/projects/2026-08-04_harvest-storage-pointer-authority-v1.md",
+      "evidenceRefs": [
+        "L:/Capital-Glass-Intelligence-Hub/03-protocols/harvest/HARVEST-STORAGE-POLICY-v1.md",
+        "CG-AppBuilder-MCP/scripts/cross-agent-ledger/lib/supabase-pointer-sanitize.mjs",
+        "CapitalGlass-Cross-Agent commit 11909aa"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "11909aa2bd8be93fd4ef661f4162c30ea9c3dc90"
+        },
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "f63668a4"
+        }
+      ],
+      "nextAction": "Edit protocols on L first; mirror Z; keep Git pointers only",
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "HARVEST_PROTOCOL_ON_GITHUB_FULL"
+      ],
+      "blockers": []
+    },
+    {
+      "packetId": "chat-improvement-extract-chatgpt-v1",
+      "packetTitle": "ChatGPT improvement-extract input protocol",
+      "state": "ACTIVE",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "L:/Capital-Glass-Intelligence-Hub/03-protocols/harvest/chat-improvement-extract-chatgpt-v1.md",
+      "projectFile": "work-progress/projects/2026-08-04_chat-improvement-extract-chatgpt-v1.md",
+      "evidenceRefs": [
+        "L:/Capital-Glass-Intelligence-Hub/03-protocols/harvest/chat-improvement-extract-chatgpt-v1.md",
+        "Z:/Capital-Glass-Dev/Harvest/protocol/chat-improvement-extract-chatgpt-v1.md"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "11909aa2bd8be93fd4ef661f4162c30ea9c3dc90"
+        }
+      ],
+      "nextAction": "Attach L or Z file to ChatGPT with Cursor chat export",
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Treat ChatGPT output as source of truth for code"
+      ],
+      "blockers": []
+    },
+    {
+      "packetId": "harvest-2026-08-04-harvest-storage-chatgpt-lane-v1",
+      "packetTitle": "Thread harvest — storage policy + ChatGPT lane",
+      "state": "HARVEST_COMPLETE",
+      "packetVerdict": "HARVEST_COMPLETE",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "artifacts/agent-runs/harvest-2026-08-04-harvest-storage-chatgpt-lane-v1/harvest-manifest-v1.json",
+      "projectFile": "work-progress/projects/2026-08-04_harvest-storage-chatgpt-lane-v1.md",
+      "evidenceRefs": [
+        "artifacts/agent-runs/harvest-2026-08-04-harvest-storage-chatgpt-lane-v1/thread-autopsy-bundle.json",
+        "artifacts/agent-runs/harvest-2026-08-04-harvest-storage-chatgpt-lane-v1/seed-packets/"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "11909aa2bd8be93fd4ef661f4162c30ea9c3dc90"
+        }
+      ],
+      "nextAction": "npm run harvest:publish-intelligence-full -- --harvest-id=harvest-2026-08-04-harvest-storage-chatgpt-lane-v1",
+      "advancementGate": "operational-publication-receipt.json",
+      "doNotAdvance": [
+        "OPERATIONAL",
+        "FULLY_SEEDED"
+      ],
+      "blockers": []
+    }
+  ]
+}

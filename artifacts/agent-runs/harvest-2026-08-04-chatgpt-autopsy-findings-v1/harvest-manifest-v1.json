@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-chatgpt-autopsy-findings-v1",
+  "missionClass": "harvest",
+  "sourceCommitSha": "0ed0659a5eca3223810d330e4725aacb286ada6a",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "overallHarvestVerdict": "HARVEST_PARTIAL",
+  "retrievalResult": "INDEX_NOT_AVAILABLE_IN_CHAT_CONTEXT",
+  "ingestionLane": "CHATGPT_VISIBLE_CONTEXT",
+  "sourceFindingsPath": "/mnt/c/Users/Wesley/Downloads/chat-thread-autopsy-findings-from-current-chat-v1.md",
+  "doNotAdvance": [
+    "FULLY_SEEDED",
+    "INDEX_HIT_FROM_CHAT_CONTEXT",
+    "PUBLISH_PASS_FROM_CHAT_CONTEXT"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-04-chatgpt-autopsy-findings-v1/thread-autopsy-bundle.json",
+    "counts": {
+      "waste": 8,
+      "seeds": 8,
+      "roiItems": 0,
+      "operatorFriction": 5
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run"
+  },
+  "packets": [
+    {
+      "packetId": "harvest-2026-08-04-chatgpt-autopsy-findings-v1-chatgpt-ingest-v1",
+      "packetTitle": "ChatGPT thread autopsy findings ingest",
+      "state": "DRAFT_READY_FOR_CURSOR_VALIDATION",
+      "packetVerdict": "HARVEST_PARTIAL",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "not-required",
+      "projectFile": "artifacts/agent-runs/harvest-2026-08-04-chatgpt-autopsy-findings-v1/chatgpt-findings-source.md",
+      "nextAction": "Run harvest:duplication-preflight and validate",
+      "advancementGate": "harvest:validate-autopsy PASS",
+      "doNotAdvance": [
+        "FULLY_SEEDED"
+      ],
+      "evidenceRefs": [
+        "/mnt/c/Users/Wesley/Downloads/chat-thread-autopsy-findings-from-current-chat-v1.md"
+      ],
+      "commitRefs": [],
+      "blockers": []
+    }
+  ]
+}

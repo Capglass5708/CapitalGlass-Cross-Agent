@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-AUTOPSY-DUPLICATION-005",
+  "kind": "failure-pattern",
+  "title": "Repeated harvest status checks need registry-first lookup",
+  "summary": "When a thread repeatedly asks whether a milestone is complete, agents should start from registry and do-not-advance records rather than re-investigating from prose.",
+  "retrievalQuestions": [
+    "How should an agent check whether a harvest milestone is complete?",
+    "Where should agents look before re-investigating Slice 6 or harvest publication status?"
+  ],
+  "evidenceRefs": [
+    "current chat: repeated pasted status reports and completion checks"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "User asks whether a harvest, Slice, publication, or index work is complete",
+    "startAt": [
+      "work-progress/harvest-packet-registry.json",
+      "work-progress/do-not-advance-registry.json",
+      "BY-KIND/thread-autopsy-index.json"
+    ],
+    "runPreflight": [
+      "npm run agent:index:scout -- --json"
+    ],
+    "doNot": [
+      "start with broad repo grep",
+      "trust stale prose summaries"
+    ],
+    "proveBeforeClaiming": [
+      "current registry state and required gate receipts"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

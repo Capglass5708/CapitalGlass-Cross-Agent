@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "cross-agent-thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-harvest-storage-chatgpt-lane-v1",
+  "sourceThread": "Cursor — PG estimator-trust, ChatGPT improvement lane, harvest storage L/Git/Z/Supabase",
+  "events": [
+    {
+      "eventId": "EV-001",
+      "phase": "harvest",
+      "summary": "Prior segment: PG estimator-trust T2 harvest FAIL; e2e committed; pg-estimator-trust-closure-v1",
+      "evidenceRefs": ["harvest-2026-08-03-pg-estimator-trust-closure-v1", "bbabba8e"]
+    },
+    {
+      "eventId": "EV-002",
+      "phase": "protocol",
+      "summary": "User invoked chat-thread-closeout-autopsy-harvest-v1; ChatGPT feed focused on improvements + cross-check only",
+      "evidenceRefs": ["chat-improvement-extract-chatgpt-v1.md"]
+    },
+    {
+      "eventId": "EV-003",
+      "phase": "policy",
+      "summary": "Storage split: L full protocols, Git pointers, Z operator copy; Supabase pointers only",
+      "evidenceRefs": ["HARVEST-STORAGE-POLICY-v1.md", "11909aa", "f63668a4"]
+    },
+    {
+      "eventId": "EV-004",
+      "phase": "sync",
+      "summary": "Main protocol authority model + Lane C updated on L; synced to Z Harvest/protocol",
+      "evidenceRefs": ["Z:/Capital-Glass-Dev/Harvest/protocol/chat-thread-closeout-autopsy-harvest-v1.md"]
+    },
+    {
+      "eventId": "EV-005",
+      "phase": "gate-run",
+      "summary": "User requested run chat-thread-closeout-autopsy-harvest-v1 on this thread",
+      "evidenceRefs": ["chat:user run protocol"]
+    }
+  ]
+}

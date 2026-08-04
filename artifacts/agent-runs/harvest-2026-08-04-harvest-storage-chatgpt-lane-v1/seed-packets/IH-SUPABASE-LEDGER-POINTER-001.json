@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-SUPABASE-LEDGER-POINTER-001",
+  "kind": "architecture",
+  "title": "Supabase cross-agent ledger — pointer-only projection on ingest",
+  "summary": "cross-agent-ledger:ingest --apply uses supabase-pointer-sanitize: truncated open_actions/blockers/saved_work with authorityPath; projection_body is pointer manifest not full ledger JSON.",
+  "retrievalQuestions": [
+    "What gets written to Supabase on cross-agent ledger ingest?",
+    "How to avoid bloating Supabase with harvest protocol prose?"
+  ],
+  "evidenceRefs": [
+    "CG-AppBuilder-MCP/scripts/cross-agent-ledger/lib/supabase-pointer-sanitize.mjs",
+    "HARVEST-STORAGE-POLICY-v1.md"
+  ],
+  "sourcePacketIds": ["harvest-storage-pointer-authority-v1"],
+  "roiRank": 3,
+  "futureAgentInstructions": {
+    "whenThisAppears": "cross-agent-ledger ingest or Supabase projection drift",
+    "startAt": ["CG-AppBuilder-MCP/scripts/cross-agent-ledger/lib/supabase-pointer-sanitize.mjs"],
+    "runPreflight": ["npm run test:supabase-pointer-sanitize in CG-AppBuilder-MCP"],
+    "doNot": ["Store full ACTIVE_WORK prose or protocol markdown in projection_body"],
+    "proveBeforeClaiming": [
+      "projection_body schemaVersion cross-agent-ledger-supabase-pointer-body-v1",
+      "policy supabase-pointer-only-v1@1.0.0"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

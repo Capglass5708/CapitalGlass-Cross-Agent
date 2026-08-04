@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-AUTOPSY-HOST-EXECUTION-007",
+  "kind": "failure-pattern",
+  "title": "Host execution must be proven, not inferred",
+  "summary": "Multi-host work needs explicit host identity and runner/context receipts before claiming execution-state awards.",
+  "retrievalQuestions": [
+    "How should agents prove work ran on RYZEN9DESK instead of WESLEY_WORK?",
+    "What prevents wrong-host execution claims in Direct Connect work?"
+  ],
+  "evidenceRefs": [
+    "current chat history: Direct Connect and RYZEN9DESK wrong-host issues"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Work package depends on a specific machine or runner",
+    "startAt": [
+      "host-authority slice",
+      "runner receipt",
+      "machine profile"
+    ],
+    "runPreflight": [
+      "hostname/whoami/runner receipt check"
+    ],
+    "doNot": [
+      "accept control-host preparation as target-host acceptance"
+    ],
+    "proveBeforeClaiming": [
+      "execution receipt from required host"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}
