@@ -6,6 +6,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { hashCanonicalJson } from "./lib/hash.mjs";
 import { validateManifestSchema } from "./lib/schema-validate.mjs";
+import { validateThreadAutopsy } from "./lib/validate-thread-autopsy.mjs";
 import { REPO_ROOT, harvestRunDir, manifestPath, HARVEST_ID } from "./lib/paths.mjs";
 
 const harvestId = process.argv[2] || HARVEST_ID;
@@ -199,12 +200,25 @@ function main() {
     warnings.push("no supersededClaims in manifest");
   }
 
+  const autopsyResult = validateThreadAutopsy({
+    manifest,
+    runDir,
+    repoRoot: REPO_ROOT,
+    allowRepublish: process.argv.includes("--allow-republish"),
+  });
+  if (!autopsyResult.skipped) {
+    errors.push(...autopsyResult.errors);
+    warnings.push(...autopsyResult.warnings);
+  } else {
+    warnings.push(...autopsyResult.warnings);
+  }
+
   const pass = errors.length === 0;
-  writeResult(errors, warnings, pass, manifestHash, schemaResult.ok);
+  writeResult(errors, warnings, pass, manifestHash, schemaResult.ok, autopsyResult);
   process.exit(pass ? 0 : 1);
 }
 
-function writeResult(errors, warnings, pass = false, manifestHash = null, schemaOk = true) {
+function writeResult(errors, warnings, pass = false, manifestHash = null, schemaOk = true, autopsyResult = null) {
   const result = {
     schemaVersion: "cross-agent-harvest-validation-result-v1@1.0.0",
     harvestId,
@@ -212,6 +226,12 @@ function writeResult(errors, warnings, pass = false, manifestHash = null, schema
     verdict: pass ? "PASS" : "FAIL",
     harvestManifestHash: manifestHash,
     schemaValidation: schemaOk ? "PASS" : "FAIL",
+    threadAutopsyValidation: autopsyResult?.skipped
+      ? "SKIPPED"
+      : autopsyResult?.errors?.length
+        ? "FAIL"
+        : "PASS",
+    threadAutopsyTier: autopsyResult?.tier ?? null,
     errorCount: errors.length,
     warningCount: warnings.length,
     errors,

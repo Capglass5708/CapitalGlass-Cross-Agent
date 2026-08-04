@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-PG-INFRA-VS-BUSINESS-GATE-001",
+  "kind": "lesson",
+  "title": "PG 25/25 infra smokes do not close estimator-trust business gate",
+  "summary": "Authenticated staging/production smokes PASS proves routes, auth, and cache gates — not Mark Up pricing authority across save, reload, preview, approve, and PDF. Separate estimator-trust e2e required before PROPOSAL_GENERATOR_APP_CLOSED.",
+  "retrievalQuestions": [
+    "Can I close Proposal Generator after 25/25 authenticated smokes?",
+    "What gate proves pricing authority beyond infra smokes?"
+  ],
+  "evidenceRefs": [
+    "harvest-2026-08-03-pg-estimator-trust-closure-v1",
+    "artifacts/agent-runs/proposal-generator-staging-e2e-closure-v1/closeout-manifest.json"
+  ],
+  "sourcePacketIds": ["proposal-generator-staging-e2e-closure-v1"],
+  "executionDeltaRefs": [],
+  "wasteIds": ["TW-005"],
+  "roiRank": 4,
+  "futureAgentInstructions": {
+    "whenThisAppears": "Operator asks if PG is closed after staging E2E green",
+    "startAt": ["BY-KIND/thread-autopsy-index.json", "harvest-2026-08-03-pg-estimator-trust-closure-v1"],
+    "runPreflight": ["npm run test:e2e:estimator-trust-closure:doppler"],
+    "doNot": [
+      "Claim PROPOSAL_GENERATOR_APP_CLOSED on smokes alone",
+      "Merge infra closure verdict with estimator-trust FAIL"
+    ],
+    "proveBeforeClaiming": [
+      "estimator-trust e2e PASS all stages with dollar totals",
+      "Harvest do-not-advance ESTIMATOR_TRUST_CLOSED satisfied"
+    ]
+  },
+  "ownerRepo": "Cursor-ProposalGenerator-1",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

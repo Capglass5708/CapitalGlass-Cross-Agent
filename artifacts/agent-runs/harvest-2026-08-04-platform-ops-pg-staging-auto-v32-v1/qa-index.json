@@ -1,0 +1,239 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-THREAD-AUTO-V32-DOPPLER-SESSION-001",
+      "questionId": "IHTHREADAUTO",
+      "canonicalQuestion": "Where should CG_AUTO_V32_WORK_PACKAGE be set?",
+      "alternateQuestions": [
+        "How to verify Auto v3.2 env is not contaminated on Doppler estate?"
+      ],
+      "shortAnswer": "Auto v3.2 work package and material flags must be inline shell exports for preflight/closeout only. Doppler carries app secrets; CG_AUTO_V32_* in Doppler or ~/.config/capital-glass/cursor-wsl.env causes contamination or false audit paths.",
+      "detailedAnswer": "CG_AUTO_V32_* session-scoped only — never Doppler or cursor-wsl.env",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T02:10:09.288Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1/seed-packets/IH-THREAD-AUTO-V32-DOPPLER-SESSION-001.json"
+      ],
+      "authorityCommit": [
+        "e0a0ef9"
+      ],
+      "evidenceUrls": [
+        "CG-AppBuilder-MCP scripts/auto-protocol-v3/check-auto-v32-session-env-policy.mjs",
+        "CG-AppBuilder-MCP artifacts/agent-runs/auto-v32-env-decontamination-v1/session-env-policy-receipt.json"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "AUTO_V32_ENV_CONTAMINATION or operator says all env is Doppler",
+        "startAt": [
+          "npm run check:auto-v32-session-env-policy"
+        ],
+        "runPreflight": [
+          "npm run check:auto-v32-session-env-policy -- --json"
+        ],
+        "doNot": [
+          "Add CG_AUTO_V32_* to Doppler projects",
+          "Export CG_AUTO_V32_* in cursor-wsl.env",
+          "Leave stale CG_AUTO_V32_WORK_PACKAGE in parent shell across missions"
+        ],
+        "proveBeforeClaiming": [
+          "check:auto-v32-session-env-policy ok true",
+          "bindingOnlyGate verdict PASS with clean shell"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "runbook"
+    },
+    {
+      "ihPfspId": "IH-THREAD-HUB-DEPLOY-LOCKFILE-CORS-001",
+      "questionId": "IHTHREADHUBD",
+      "canonicalQuestion": "Why is Hub staged intake route 404 after merge?",
+      "alternateQuestions": [
+        "Hub CORS blocks documents.capitalglasstxapps.com after env change"
+      ],
+      "shortAnswer": "cg-apps-hub /api/dashboard/documents/staged stayed 404 when pnpm-lock.yaml stale (ERR_PNPM_OUTDATED_LOCKFILE). After route shipped, HUB_CORS_ALLOWED_ORIGINS env replaced satellite list and dropped Document Center until union fix.",
+      "detailedAnswer": "Hub staged route 404 from failed Vercel builds + CORS list replacement",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T02:10:09.288Z",
+      "authorityRepo": "cg-apps-hub",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1/seed-packets/IH-THREAD-HUB-DEPLOY-LOCKFILE-CORS-001.json"
+      ],
+      "authorityCommit": [
+        "e0a0ef9"
+      ],
+      "evidenceUrls": [
+        "cg-apps-hub commits 0d729e5, c7d87a7",
+        "artifacts/agent-runs/harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1/thread-event-inventory.json EV-002"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1"
+      ],
+      "entities": [
+        "cg-apps-hub"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Hub staged intake 404 or DC embed cannot auth to Hub session",
+        "startAt": [
+          "Vercel cg-apps-hub build logs",
+          "HUB_CORS_ALLOWED_ORIGINS value"
+        ],
+        "runPreflight": [
+          "curl -I https://capitalglasstxapps.com/api/dashboard/documents/staged"
+        ],
+        "doNot": [
+          "Assume 404 means route not in git without checking deploy status",
+          "Replace CORS allowlist without unioning production satellite origins"
+        ],
+        "proveBeforeClaiming": [
+          "Unauthenticated staged returns 401 UNAUTHORIZED JSON not empty array",
+          "OPTIONS /api/auth/session from DC origin returns Access-Control-Allow-Origin"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-THREAD-PG-INFRA-VS-BUSINESS-GATE-001",
+      "questionId": "IHTHREADPGIN",
+      "canonicalQuestion": "Can I close Proposal Generator after 25/25 authenticated smokes?",
+      "alternateQuestions": [
+        "What gate proves pricing authority beyond infra smokes?"
+      ],
+      "shortAnswer": "Authenticated staging/production smokes PASS proves routes, auth, and cache gates — not Mark Up pricing authority across save, reload, preview, approve, and PDF. Separate estimator-trust e2e required before PROPOSAL_GENERATOR_APP_CLOSED.",
+      "detailedAnswer": "PG 25/25 infra smokes do not close estimator-trust business gate",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T02:10:09.288Z",
+      "authorityRepo": "Cursor-ProposalGenerator-1",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1/seed-packets/IH-THREAD-PG-INFRA-VS-BUSINESS-GATE-001.json"
+      ],
+      "authorityCommit": [
+        "e0a0ef9"
+      ],
+      "evidenceUrls": [
+        "harvest-2026-08-03-pg-estimator-trust-closure-v1",
+        "artifacts/agent-runs/proposal-generator-staging-e2e-closure-v1/closeout-manifest.json"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1"
+      ],
+      "entities": [
+        "Cursor-ProposalGenerator-1"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Operator asks if PG is closed after staging E2E green",
+        "startAt": [
+          "BY-KIND/thread-autopsy-index.json",
+          "harvest-2026-08-03-pg-estimator-trust-closure-v1"
+        ],
+        "runPreflight": [
+          "npm run test:e2e:estimator-trust-closure:doppler"
+        ],
+        "doNot": [
+          "Claim PROPOSAL_GENERATOR_APP_CLOSED on smokes alone",
+          "Merge infra closure verdict with estimator-trust FAIL"
+        ],
+        "proveBeforeClaiming": [
+          "estimator-trust e2e PASS all stages with dollar totals",
+          "Harvest do-not-advance ESTIMATOR_TRUST_CLOSED satisfied"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "lesson"
+    },
+    {
+      "ihPfspId": "IH-THREAD-PG-STAGING-SUPABASE-VERCEL-001",
+      "questionId": "IHTHREADPGST",
+      "canonicalQuestion": "Why does proposal staging show degraded toolbar with 503 APIs?",
+      "alternateQuestions": [
+        "What env vars must Vercel staging have for PG Supabase client?"
+      ],
+      "shortAnswer": "proposal-staging APIs return 503 and workspace shows degraded toolbar when cg-proposal-generator-staging Vercel project missing NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY synced from Doppler.",
+      "detailedAnswer": "PG staging degraded toolbar when Vercel lacks NEXT_PUBLIC_SUPABASE_*",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T02:10:09.288Z",
+      "authorityRepo": "Cursor-ProposalGenerator-1",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1/seed-packets/IH-THREAD-PG-STAGING-SUPABASE-VERCEL-001.json"
+      ],
+      "authorityCommit": [
+        "e0a0ef9"
+      ],
+      "evidenceUrls": [
+        "Cursor-ProposalGenerator-1 artifacts/agent-runs/proposal-generator-staging-e2e-closure-v1/closeout-manifest.json",
+        "artifacts/agent-runs/harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1/thread-event-inventory.json EV-003"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1"
+      ],
+      "entities": [
+        "Cursor-ProposalGenerator-1"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Staging PG E2E red with degraded toolbar or API 503",
+        "startAt": [
+          "Doppler cg-proposal-generator prd",
+          "Vercel cg-proposal-generator-staging env"
+        ],
+        "runPreflight": [
+          "doppler secrets get NEXT_PUBLIC_SUPABASE_URL NEXT_PUBLIC_SUPABASE_ANON_KEY"
+        ],
+        "doNot": [
+          "Chase Playwright spec changes before verifying Vercel public Supabase env",
+          "Assume green production smoke means staging env parity"
+        ],
+        "proveBeforeClaiming": [
+          "curl staging API route returns non-503",
+          "NEXT_PUBLIC_SUPABASE_* present on Vercel staging project"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    }
+  ]
+}

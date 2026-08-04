@@ -1,0 +1,323 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "deploy",
+      "description": "Hub staged route 404 for days while Vercel builds failed on ERR_PNPM_OUTDATED_LOCKFILE — production never received /api/dashboard/documents/staged",
+      "evidenceRefs": [
+        "cg-apps-hub commit 0d729e5",
+        "chat:hub deploy blocker"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Verify Vercel build status before live acceptance; lockfile sync gate on dependency adds",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "verification",
+      "description": "PG staging appeared broken (degraded toolbar) while root cause was missing NEXT_PUBLIC_SUPABASE_* on Vercel staging — not application code",
+      "evidenceRefs": [
+        "chat:staging infra diagnosis",
+        "cg-proposal-generator-staging Vercel env"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "npm run check:auto-v32-session-env-policy + Doppler→Vercel public env parity checklist before E2E",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "context",
+      "description": "28-day-old staging deploy masked recent fixes until env sync + redeploy",
+      "evidenceRefs": [
+        "proposal-staging deployment age in thread"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Check Vercel deployment SHA vs HEAD before blaming test harness",
+      "roiRank": 4
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "tool",
+      "description": "agent:index:scout CLI broken (loadHookRuntimeContract export missing) — scout preflight could not run at harvest Phase 0",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP run-intelligence-hub-scout.mjs SyntaxError"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Fix hook-runtime-contract export; run scout hook smoke before claiming INDEX_HIT",
+      "roiRank": 5
+    },
+    {
+      "wasteId": "TW-005",
+      "type": "operator_attention",
+      "description": "User had to request full articulate problem statement and explicit ROI ranking after partial closures",
+      "evidenceRefs": [
+        "chat:user WHAT IS THE PROBLEM",
+        "chat:user next highest ROI"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Separate infra smoke PASS from env parity and business gates in closeout templates",
+      "roiRank": 3
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Staging E2E red while production cache smoke green — env mismatch not surfaced early",
+      "operatorCost": "high",
+      "frequency": "once",
+      "systemFix": "Doppler→Vercel staging public env sync checklist in PG deploy runbook",
+      "evidenceRefs": [
+        "EV-003",
+        "EV-006"
+      ],
+      "linkedWasteIds": [
+        "TW-002",
+        "TW-005"
+      ]
+    },
+    {
+      "frictionId": "OF-002",
+      "trigger": "Hub live acceptance blocked on deploy failures unrelated to auth code",
+      "operatorCost": "medium",
+      "frequency": "once",
+      "systemFix": "pnpm lockfile CI gate on cg-apps-hub before merge",
+      "evidenceRefs": [
+        "EV-002",
+        "TW-001"
+      ],
+      "linkedWasteIds": [
+        "TW-001"
+      ]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "PG staging authenticated smokes failing with degraded workspace toolbar",
+      "actualExecution": {
+        "steps": [
+          "Rerun E2E harness iterations",
+          "Adjust Playwright specs and auth helpers"
+        ],
+        "outcome": "FAIL — APIs 503; Supabase client uninitialized",
+        "evidenceRefs": [
+          "staging API 503 before env sync"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "curl staging /api health routes",
+          "Compare Vercel cg-proposal-generator-staging env vs Doppler prd public keys",
+          "Sync NEXT_PUBLIC_SUPABASE_* then redeploy"
+        ],
+        "outcome": "Would unblock APIs before E2E churn",
+        "requiredPreflight": [
+          "Doppler secrets get NEXT_PUBLIC_SUPABASE_URL",
+          "vercel env ls"
+        ]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "medium",
+        "operatorFrustration": "high"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Hub staged intake live acceptance after code merge",
+      "actualExecution": {
+        "steps": [
+          "Poll /api/dashboard/documents/staged",
+          "Assume 404 means route not merged"
+        ],
+        "outcome": "FAIL — 404 from stale production deploy; builds failing on lockfile",
+        "evidenceRefs": [
+          "Vercel ERR_PNPM_OUTDATED_LOCKFILE"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Check Vercel deployment list + build logs",
+          "Fix pnpm-lock.yaml",
+          "Redeploy production then run 3 live checks"
+        ],
+        "outcome": "401 UNAUTHORIZED not empty queue — 3/3 PASS",
+        "requiredPreflight": [
+          "gh api deployment status or Vercel dashboard"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "low",
+        "operatorFrustration": "medium"
+      }
+    },
+    {
+      "executionDeltaId": "ED-003",
+      "situation": "Auto v3.2 material session on WSL",
+      "actualExecution": {
+        "steps": [
+          "Suspect Doppler contamination for CG_AUTO_V32_*",
+          "Run broad env audit"
+        ],
+        "outcome": "PASS — Doppler clean; contamination is session-shell only",
+        "evidenceRefs": [
+          "session-env-policy-receipt.json"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "npm run check:auto-v32-session-env-policy",
+          "Inline CG_AUTO_V32_* only for preflight/closeout",
+          "Never add to Doppler or cursor-wsl.env"
+        ],
+        "outcome": "Immediate PASS with operator rule encoded",
+        "requiredPreflight": [
+          "check:auto-v32-session-env-policy"
+        ]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Treated staging E2E failures as test/code defects before Vercel public Supabase env parity",
+      "whereItHappened": "PG staging closure thread segment",
+      "whyItWasWrong": "NEXT_PUBLIC_SUPABASE_* missing → API 503 → degraded mode unrelated to spec logic",
+      "correctFirstMove": "Doppler→Vercel staging env sync for public Supabase keys",
+      "preventiveControl": "PG staging deploy checklist + seed IH-THREAD-PG-STAGING-SUPABASE-VERCEL-001",
+      "seedTarget": "IH-THREAD-PG-STAGING-SUPABASE-VERCEL-001",
+      "executionDeltaId": "ED-001"
+    },
+    {
+      "wrongMoveId": "WM-002",
+      "summary": "Hub CORS env override replaced satellite list without union — Document Center origin dropped",
+      "whereItHappened": "cg-apps-hub HUB_CORS_ALLOWED_ORIGINS configuration",
+      "whyItWasWrong": "DC embed could not complete session preflight even when route existed",
+      "correctFirstMove": "Union env override with production satellite origins list",
+      "preventiveControl": "CORS union fix c7d87a7 pattern in hub deploy review",
+      "seedTarget": "IH-THREAD-HUB-DEPLOY-LOCKFILE-CORS-001",
+      "executionDeltaId": "ED-002"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "PG infra smoke vs business closure",
+      "firstKnownInstance": "harvest-2026-08-03-pg-estimator-trust-closure-v1",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "whyRepeated": "25/25 staging smokes closed while estimator-trust business gate remains open in parallel harvest",
+      "avoidableBy": "Load IH-THREAD-PG-ESTIMATOR-PRICING-AUTHORITY-001 before claiming app closed",
+      "recommendedAction": "add_guard"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "PG production parity smoke on proposal.capitalglasstxapps.com",
+      "whyItPays": "Staging CURRENT; production may lag c33df1fe/acfe6b41",
+      "effort": "low",
+      "ownerRepo": "Cursor-ProposalGenerator-1",
+      "savedWasteIds": [
+        "TW-003"
+      ],
+      "seedAs": "command",
+      "suggestedWorkPackageId": "proposal-generator-production-parity-v1"
+    },
+    {
+      "rank": 2,
+      "title": "Doppler→Vercel public env parity gate for PG staging",
+      "whyItPays": "Prevents 503 degraded toolbar false negatives",
+      "effort": "low",
+      "ownerRepo": "Cursor-ProposalGenerator-1",
+      "savedWasteIds": [
+        "TW-002"
+      ],
+      "seedAs": "rule",
+      "suggestedWorkPackageId": "pg-vercel-public-env-parity-v1"
+    },
+    {
+      "rank": 3,
+      "title": "Repair scout CLI hook-runtime-contract export",
+      "whyItPays": "Restores agent:index:scout and hot-cache preflight lane",
+      "effort": "low",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "savedWasteIds": [
+        "TW-004"
+      ],
+      "seedAs": "owner-artifact",
+      "suggestedWorkPackageId": "intelligence-hub-scout-cli-repair-v1"
+    },
+    {
+      "rank": 4,
+      "title": "Z-master bible sync on WSL (BLOCK_Z_MASTER_UNAVAILABLE)",
+      "whyItPays": "Unblocks material Auto v3.2 preflight on ryzen9desk",
+      "effort": "medium",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "savedWasteIds": [],
+      "seedAs": "command",
+      "suggestedWorkPackageId": "z-master-bible-wsl-sync-v1"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "PROPOSAL_GENERATOR_APP_CLOSED",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "test:e2e:estimator-trust-closure:doppler PASS on production",
+        "PG production parity smoke PASS after deploy"
+      ],
+      "lastKnownEvidence": [
+        "harvest-2026-08-03-pg-estimator-trust-closure-v1 FAIL",
+        "staging 25/25 only infra lane"
+      ],
+      "proofCommandId": "npm run test:e2e:estimator-trust-closure:doppler"
+    },
+    {
+      "awardOrVerdict": "AUTO_V32_MATERIAL_PREFLIGHT_PASS",
+      "currentStatus": "BLOCKED",
+      "doNotClaimUntil": [
+        "BLOCK_Z_MASTER_UNAVAILABLE resolved OR binding-only preflight",
+        "npm run check:auto-v32-session-env-policy PASS"
+      ],
+      "lastKnownEvidence": [
+        "auto-v32-latest.json blockers Z_MASTER",
+        "session-env-policy-receipt.json ok true"
+      ],
+      "proofCommandId": "npm run check:auto-v32-session-env-policy"
+    },
+    {
+      "awardOrVerdict": "OPERATIONAL_HARVEST",
+      "currentStatus": "OPEN",
+      "doNotClaimUntil": [
+        "harvest:publish-intelligence-full PASS",
+        "operational-publication-receipt.json exists"
+      ],
+      "lastKnownEvidence": [
+        "hubPublishStatus not-run"
+      ],
+      "proofCommandId": "npm run harvest:publish-intelligence-full -- --harvest-id=harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1"
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "do-not-advance.json",
+      "active-work-open-actions.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-04T02:06:53.869Z",
+    "preflightReceiptHash": "474d2d7be4cdb7260838ffc77326f422c5b1da84316c48ddf363ed6ff3d8f8ba"
+  }
+}

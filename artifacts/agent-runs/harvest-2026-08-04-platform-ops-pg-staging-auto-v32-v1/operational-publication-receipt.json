@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "cross-agent-harvest-operational-publication-receipt-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1",
+  "generatedAt": "2026-08-04T02:10:23.096Z",
+  "startedAt": "2026-08-04T02:09:49.480Z",
+  "verdict": "OPERATIONAL",
+  "sourceCommitSha": "e0a0ef989d9b30bf989608a6dfb93186af24536e",
+  "tier": "T2",
+  "authorityModel": "CHAT_THREAD_STRUCTURED_TRUTH",
+  "intelligenceHubRoot": "/mnt/l/Capital-Glass-Intelligence-Hub",
+  "layers": {
+    "git": {
+      "path": "/home/wesley/repos/CapitalGlass-Cross-Agent/artifacts/agent-runs/harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1/harvest-manifest-v1.json",
+      "sourceCommitSha": "e0a0ef989d9b30bf989608a6dfb93186af24536e"
+    },
+    "lCatalog": {
+      "ok": true,
+      "seedCount": 4,
+      "byKindSlice": "00-master-index/BY-KIND/thread-autopsy-index.json"
+    },
+    "lLedger": {
+      "ok": false
+    },
+    "cHotRouting": {
+      "ok": false,
+      "code": "SKIP"
+    },
+    "zAiCache": {
+      "ok": false,
+      "code": "SKIP"
+    },
+    "hostFanout": {
+      "ok": true,
+      "code": "SYNC_HOSTS_DISABLED",
+      "hosts": []
+    }
+  },
+  "stages": [
+    {
+      "label": "sync-derived",
+      "ok": true
+    },
+    {
+      "label": "render-index",
+      "ok": true
+    },
+    {
+      "label": "duplication-preflight",
+      "ok": true,
+      "verdict": "PASS"
+    },
+    {
+      "label": "validate",
+      "ok": true
+    },
+    {
+      "label": "validate-autopsy",
+      "ok": true
+    },
+    {
+      "label": "blind-retrieval",
+      "ok": true,
+      "verdict": "BLIND_RETRIEVAL_PASS"
+    },
+    {
+      "label": "hub-slices",
+      "ok": true,
+      "doNotAdvanceCount": 10,
+      "threadAutopsyIndex": "00-master-index/BY-KIND/thread-autopsy-index.json"
+    },
+    {
+      "label": "hot-routing-index",
+      "ok": false,
+      "error": "Command failed: npm run intelligence-hub:publish-hot-routing-index -- --json\nfile:///home/wesley/repos/CG-AppBuilder-MCP/scripts/intelligence-hub/index-freshness/lib/hook-runtime-env.mjs:9\nimport { loadHookRuntimeContract } from \"./hook-runtime-contract.mjs\";\n         ^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: The requested module './hook-runtime-contract.mjs' does not provide an export named 'loadHookRuntimeContract'\n    at #asyncInstantiate (node:internal/modules/esm/module_job:327:21)\n    at async ModuleJob.run (node:internal/modules/esm/module_job:431:5)\n    at async node:internal/modules/esm/loader:643:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.18.0\n"
+    },
+    {
+      "label": "z-ai-cache-index",
+      "ok": false,
+      "error": "Command failed: npm run intelligence-hub:index-freshness:publish -- --json\nfile:///home/wesley/repos/CG-AppBuilder-MCP/scripts/active-ledger/publish-to-hub.mjs:103\n      throw new Error(`Read-back failed: ${filename}`);\n            ^\n\nError: Read-back failed: active-work-ledger.json\n    at publishSlicesToHub (file:///home/wesley/repos/CG-AppBuilder-MCP/scripts/active-ledger/publish-to-hub.mjs:103:13)\n    at publishCatalogFromGitLedger (file:///home/wesley/repos/CG-AppBuilder-MCP/scripts/intelligence-hub/index-freshness/lib/catalog-publisher.mjs:53:24)\n    at main (file:///home/wesley/repos/CG-AppBuilder-MCP/scripts/intelligence-hub/index-freshness/run-index-freshness-pipeline.mjs:38:22)\n    at file:///home/wesley/repos/CG-AppBuilder-MCP/scripts/intelligence-hub/index-freshness/run-index-freshness-pipeline.mjs:86:1\n    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)\n    at async node:internal/modules/esm/loader:643:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.18.0\n"
+    }
+  ],
+  "contentHash": "c2ea12287f5d76f9162f32ec2cf4212cb4c753f9f120f542740026a06fba2e05"
+}

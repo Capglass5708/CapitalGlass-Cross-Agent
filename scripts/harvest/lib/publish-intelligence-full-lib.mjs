@@ -6,12 +6,14 @@ import { resolveAppBuilderRoot, resolveDataExtractionRoot } from "../../index/li
 import { resolveGitHead } from "../../index/lib/git-head.mjs";
 import { runBlindRetrievalBenchmark } from "./blind-retrieval-lib.mjs";
 import { compileSeedPackets } from "./compile-seed-packets-lib.mjs";
+import { runDuplicationPreflight } from "./duplication-preflight-lib.mjs";
 import { hashCanonicalJson } from "./hash.mjs";
 import { publishHubSeed, resolveHubRoot } from "./publish-hub-seed-lib.mjs";
 import {
   registerThreadAutopsyHubIndex,
   syncDoNotAdvanceToHub,
 } from "./register-hub-index.mjs";
+import { fanoutHostAiCache } from "./host-ai-cache-fanout-lib.mjs";
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
@@ -137,6 +139,9 @@ export function publishIntelligenceFull({
   skipBlindRetrieval = false,
   skipLedgerSync = false,
   dryRun = false,
+  allowRepublish = false,
+  allowSupersedeSeedIds = [],
+  syncHosts = null,
 } = {}) {
   const runDir = path.join(repoRoot, "artifacts/agent-runs", harvestId);
   const manifestPath = path.join(runDir, "harvest-manifest-v1.json");
@@ -169,7 +174,7 @@ export function publishIntelligenceFull({
       hubRoot,
       plannedStages: [
         "sync-derived",
-        "render-index",
+        "duplication-preflight",
         "validate",
         "validate-autopsy",
         "test:harvest",
@@ -181,21 +186,12 @@ export function publishIntelligenceFull({
         skipLedgerSync ? "skip-ledger-sync" : "index:sync-publication",
         "publish-hot-routing-index",
         "intelligence-hub:index-freshness:publish",
+        syncHosts ? `host-ai-cache-fanout:${Array.isArray(syncHosts) ? syncHosts.join(",") : syncHosts}` : "skip-host-fanout",
       ],
     };
   }
 
   try {
-    if (!skipLedgerSync) {
-      stages.push(
-        runStep("ledger-sync", "npm run index:sync-publication", repoRoot, {
-          INTELLIGENCE_HUB_ROOT: hubRoot,
-          CG_APPBUILDER_MCP_ROOT: appBuilderRoot,
-          DATA_EXTRACTION_ROOT: dataExtractionRoot,
-        }),
-      );
-    }
-
     stages.push(
       runStep(
         "sync-derived",
@@ -210,7 +206,32 @@ export function publishIntelligenceFull({
         repoRoot,
       ),
     );
-    stages.push(runStep("validate", `node scripts/harvest/validate-harvest.mjs ${harvestId}`, repoRoot));
+
+    const bundlePath = path.join(runDir, "thread-autopsy-bundle.json");
+    const bundle = fs.existsSync(bundlePath) ? readJson(bundlePath) : null;
+    const duplication = runDuplicationPreflight({
+      repoRoot,
+      harvestId,
+      runDir,
+      manifest,
+      bundle,
+      hubRoot,
+      gitHead,
+      mode: "publish",
+      allowRepublish,
+      allowSupersedeSeedIds,
+      writeReceipt: true,
+    });
+    stages.push({
+      label: "duplication-preflight",
+      ok: duplication.ok,
+      verdict: duplication.verdict,
+    });
+    if (!duplication.ok) {
+      return { ok: false, verdict: "DUPLICATE_BLOCKED", duplication, stages };
+    }
+
+    stages.push(runStep("validate", `node scripts/harvest/validate-harvest.mjs ${harvestId}${allowRepublish ? " --allow-republish" : ""}`, repoRoot));
     if (manifest.threadAutopsy) {
       stages.push(
         runStep(
@@ -237,7 +258,14 @@ export function publishIntelligenceFull({
         }
         stages.push({ label: "blind-retrieval", ok: true, verdict: blind.verdict });
       }
-      hubPublish = publishHubSeed({ repoRoot, harvestId, gitHead, hubRoot });
+      hubPublish = publishHubSeed({
+        repoRoot,
+        harvestId,
+        gitHead,
+        hubRoot,
+        allowRepublish,
+        allowSupersedeSeedIds,
+      });
     } else {
       hubPublish = publishT1IndexOnly({ repoRoot, harvestId, gitHead, hubRoot });
       stages.push({ label: "publish-t1-index-only", ok: true });
@@ -255,6 +283,16 @@ export function publishIntelligenceFull({
       doNotAdvanceCount: dna.entryCount,
       threadAutopsyIndex: reg.slicePath,
     });
+
+    if (!skipLedgerSync) {
+      stages.push(
+        runStep("ledger-sync", "npm run index:sync-publication", repoRoot, {
+          INTELLIGENCE_HUB_ROOT: hubRoot,
+          CG_APPBUILDER_MCP_ROOT: appBuilderRoot,
+          DATA_EXTRACTION_ROOT: dataExtractionRoot,
+        }),
+      );
+    }
 
     let hotRouting = { ok: false, code: "SKIP" };
     try {
@@ -285,6 +323,34 @@ export function publishIntelligenceFull({
       stages.push({ label: "z-ai-cache-index", ok: false, error: String(err.message ?? err) });
     }
 
+    let hostFanout = { ok: true, code: "SYNC_HOSTS_DISABLED", hosts: [] };
+    if (syncHosts) {
+      hostFanout = fanoutHostAiCache({
+        appBuilderRoot,
+        hubRoot,
+        syncHosts,
+        dryRun: false,
+      });
+      stages.push({
+        label: "host-ai-cache-fanout",
+        ok: hostFanout.ok,
+        code: hostFanout.code,
+        hostCount: hostFanout.hostCount,
+        attemptedCount: hostFanout.attemptedCount,
+      });
+      if (!hostFanout.ok) {
+        return {
+          ok: false,
+          verdict: "HOST_FANOUT_FAIL",
+          hostFanout,
+          stages,
+          errors: [
+            `host fanout failed at ${hostFanout.hardFailure?.hostId ?? "unknown"}:${hostFanout.hardFailure?.stage ?? "unknown"}`,
+          ],
+        };
+      }
+    }
+
     const receipt = {
       schemaVersion: "cross-agent-harvest-operational-publication-receipt-v1@1.0.0",
       harvestId,
@@ -302,9 +368,10 @@ export function publishIntelligenceFull({
           seedCount: hubPublish.publishedIds?.length ?? 0,
           byKindSlice: "00-master-index/BY-KIND/thread-autopsy-index.json",
         },
-        lLedger: { ok: !skipLedgerSync, phase: "pre-artifact-write" },
+        lLedger: { ok: !skipLedgerSync },
         cHotRouting: hotRouting,
         zAiCache: aiCachePublish,
+        hostFanout,
       },
       stages,
       contentHash: hashCanonicalJson({ harvestId, gitHead, stages }),

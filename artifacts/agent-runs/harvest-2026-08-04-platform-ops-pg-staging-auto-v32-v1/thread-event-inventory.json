@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "cross-agent-thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1",
+  "sourceThread": "Cursor — Hub staged intake closeout, PG staging E2E 25/25, Auto v3.2 env decontamination, scout hot-cache lane",
+  "events": [
+    {
+      "eventId": "EV-001",
+      "phase": "scout",
+      "summary": "Intelligence Hub hot-cache scout optimization shipped on CG-AppBuilder-MCP (C: routing index first read)",
+      "evidenceRefs": ["CG-AppBuilder-MCP commits f6e88e2c, d52b9814"]
+    },
+    {
+      "eventId": "EV-002",
+      "phase": "closeout",
+      "summary": "Hub staged intake auth closed — 3/3 live checks after lockfile + CORS union fix and production deploy",
+      "evidenceRefs": [
+        "cg-apps-hub commits 0d729e5, c7d87a7, 7614759",
+        "artifacts/agent-runs/hub-document-center-staged-intake-auth-v1/closeout-receipt.json"
+      ]
+    },
+    {
+      "eventId": "EV-003",
+      "phase": "diagnosis",
+      "summary": "PG staging toolbar degraded — APIs 503; root cause missing NEXT_PUBLIC_SUPABASE_URL/ANON_KEY on cg-proposal-generator-staging Vercel project",
+      "evidenceRefs": [
+        "chat:staging infra misconfig diagnosis",
+        "Doppler cg-proposal-generator prd → Vercel staging sync"
+      ]
+    },
+    {
+      "eventId": "EV-004",
+      "phase": "gate-run",
+      "summary": "PG authenticated staging E2E closed 25/25 PASS on live proposal-staging.capitalglasstxapps.com",
+      "evidenceRefs": [
+        "Cursor-ProposalGenerator-1 commit acfe6b41",
+        "artifacts/agent-runs/proposal-generator-staging-e2e-closure-v1/closeout-manifest.json"
+      ]
+    },
+    {
+      "eventId": "EV-005",
+      "phase": "fix",
+      "summary": "Staging route redirect /intelligence/reports and hosted smoke auth hostname support (c33df1fe)",
+      "evidenceRefs": ["Cursor-ProposalGenerator-1 commit c33df1fe"]
+    },
+    {
+      "eventId": "EV-006",
+      "phase": "operator-friction",
+      "summary": "User requested full articulate staging problem after infra symptoms; ranked next ROI (Auto v3.2 env, PG prod parity, DC git SHA, WESLEY_WORK)",
+      "evidenceRefs": ["chat:user WHAT IS THE PROBLEM", "chat:user next highest ROI"]
+    },
+    {
+      "eventId": "EV-007",
+      "phase": "fix",
+      "summary": "Auto v3.2 env decontamination — verified CG_AUTO_V32_* absent from Doppler and cursor-wsl.env; added check:auto-v32-session-env-policy gate",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP scripts/auto-protocol-v3/check-auto-v32-session-env-policy.mjs",
+        "artifacts/agent-runs/auto-v32-env-decontamination-v1/session-env-policy-receipt.json"
+      ]
+    },
+    {
+      "eventId": "EV-008",
+      "phase": "blocker",
+      "summary": "Material preflight BLOCKED on BLOCK_Z_MASTER_UNAVAILABLE (Z: bible authority) — separate from env contamination",
+      "evidenceRefs": ["CG-AppBuilder-MCP runtime/agent-preflight/app-builder-mcp/auto-v32-latest.json"]
+    },
+    {
+      "eventId": "EV-009",
+      "phase": "harvest",
+      "summary": "User invoked chat-thread-closeout-autopsy-harvest-v1 protocol from Z: Harvest mirror",
+      "evidenceRefs": ["z:/Capital-Glass-Dev/Harvest/protocol/chat-thread-closeout-autopsy-harvest-v1.md"]
+    },
+    {
+      "eventId": "EV-010",
+      "phase": "tool-failure",
+      "summary": "agent:index:scout CLI failed — hook-runtime-contract.mjs missing export loadHookRuntimeContract",
+      "evidenceRefs": ["CG-AppBuilder-MCP scout SyntaxError on run-intelligence-hub-scout.mjs"]
+    }
+  ]
+}

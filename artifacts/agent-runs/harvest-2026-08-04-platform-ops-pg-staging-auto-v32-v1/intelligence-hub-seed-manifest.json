@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "cross-agent-harvest-seed-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1",
+  "subject": "Hub Document Center staged intake session auth",
+  "tier": "T2",
+  "seedRecordCount": 4,
+  "retrievalQuestions": [
+    {
+      "retrievalId": "RQ01",
+      "seedId": "IH-THREAD-AUTO-V32-DOPPLER-SESSION-001",
+      "query": "Where should CG_AUTO_V32_WORK_PACKAGE be set?"
+    },
+    {
+      "retrievalId": "RQ02",
+      "seedId": "IH-THREAD-AUTO-V32-DOPPLER-SESSION-001",
+      "query": "How to verify Auto v3.2 env is not contaminated on Doppler estate?"
+    },
+    {
+      "retrievalId": "RQ11",
+      "seedId": "IH-THREAD-HUB-DEPLOY-LOCKFILE-CORS-001",
+      "query": "Why is Hub staged intake route 404 after merge?"
+    },
+    {
+      "retrievalId": "RQ12",
+      "seedId": "IH-THREAD-HUB-DEPLOY-LOCKFILE-CORS-001",
+      "query": "Hub CORS blocks documents.capitalglasstxapps.com after env change"
+    },
+    {
+      "retrievalId": "RQ21",
+      "seedId": "IH-THREAD-PG-INFRA-VS-BUSINESS-GATE-001",
+      "query": "Can I close Proposal Generator after 25/25 authenticated smokes?"
+    },
+    {
+      "retrievalId": "RQ22",
+      "seedId": "IH-THREAD-PG-INFRA-VS-BUSINESS-GATE-001",
+      "query": "What gate proves pricing authority beyond infra smokes?"
+    },
+    {
+      "retrievalId": "RQ31",
+      "seedId": "IH-THREAD-PG-STAGING-SUPABASE-VERCEL-001",
+      "query": "Why does proposal staging show degraded toolbar with 503 APIs?"
+    },
+    {
+      "retrievalId": "RQ32",
+      "seedId": "IH-THREAD-PG-STAGING-SUPABASE-VERCEL-001",
+      "query": "What env vars must Vercel staging have for PG Supabase client?"
+    }
+  ],
+  "roiTop3": [
+    {
+      "rank": 1,
+      "title": "PG production parity smoke on proposal.capitalglasstxapps.com",
+      "seedId": "IH-THREAD-PG-STAGING-SUPABASE-VERCEL-001"
+    },
+    {
+      "rank": 2,
+      "title": "Doppler→Vercel public env parity gate for PG staging",
+      "seedId": "IH-THREAD-AUTO-V32-DOPPLER-SESSION-001"
+    },
+    {
+      "rank": 3,
+      "title": "Repair scout CLI hook-runtime-contract export",
+      "seedId": "IH-THREAD-HUB-DEPLOY-LOCKFILE-CORS-001"
+    }
+  ],
+  "byKindSlice": "00-master-index/BY-KIND/thread-autopsy-index.json",
+  "catalogRoot": "02-catalog/knowledge-objects/cross-agent-harvest"
+}

@@ -2,7 +2,7 @@
 
 Master index of all project files in `work-progress/projects/`.
 
-**Last updated:** 2026-08-04 (harvest v2 + intelligence-hub-capability-expansion-v1)
+**Last updated:** 2026-08-03 (harvest `harvest-2026-08-03-cross-thread-platform-state-v1`)
 
 Read `AGENT_START_HERE.md` and `work-progress/ACTIVE_WORK.md` before working on any project listed here.
 
@@ -38,12 +38,7 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 
 | Packet ID | State | Verdict | Owner repo | Project file | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `ryzen9desk-managed-executor-v1` | RUNNER_BOOTSTRAP_CHECKPOINT_STARTED | CODE_READY_FOR_RUNNER_BOOTSTRAP | CG-AppBuilder-MCP | [2026-08-03_ryzen9desk-managed-executor-v1.md](./2026-08-03_ryzen9desk-managed-executor-v1.md) | CG-AppBuilder-MCP mission: RYZEN9DESK WSL install from main + dispatch executor-smoke receipt |
-| `active-ledger-ci-path-and-hash-stability-v1` | COMPLETE | PASS | CG-AppBuilder-MCP | [2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md](./2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md) | None unless test:active-ledger-sync regresses on main |
-| `project-folder-synology-primary-v1-dev-environment` | HOLD | CONTRACT_PASS_HOSTED_DEV_HOLD | CapitalGlass-Documents | [project-folder-synology-primary-v1-dev-hosted-environment.md](./project-folder-synology-primary-v1-dev-hosted-environment.md) | Resolve Vercel BLOCKED deploy and Supabase dev isolation (owner: CapitalGlass-Documents) |
-| `cross-agent-retrieval-failover-v1.1` | ADOPTED | PASS | CapitalGlass-Cross-Agent | handoffs/CURRENT_HANDOFF.md | Recurring: use layered failover for suite status when L: unavailable |
-| `wsl2-native-repo-library-migration-v1` | PARTIAL | FILESYSTEM_PASS_OPERATIONAL_CLEANUP_RECORDED | CG-AppBuilder-MCP | [2026-08-03_wsl2-native-repo-library-migration-v1.md](./2026-08-03_wsl2-native-repo-library-migration-v1.md) | Per-repo ext4 verification; RYZEN9DESK alignment via separate executor mission |
-| `office-admin-ryzen9desk-managed-executor-bootstrap-v1` | INDEXED | CODE_READY_FOR_RUNNER_BOOTSTRAP | CapitalGlass-Office-Admin | [2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md](./2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md) | Runner bootstrap remains CG-AppBuilder-MCP mission; do not claim MANAGED_EXECUTOR_ONLINE |
+| `cursor-harvest-protocol-session-v1` | COMPLETE | PASS | CapitalGlass-Cross-Agent | docs/runbooks/chat-thread-closeout-autopsy-harvest-v1.md | Operator: harvest:publish-intelligence-full when ready |
 
 <!-- HARVEST-PACKET-INDEX:END -->
 
@@ -51,14 +46,7 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 
 | Project ID | File | Status | Owner repo(s) | Last commit | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `chat-thread-harvest-protocol-hot-cache-roi-v1` | [2026-08-03_chat-thread-harvest-protocol-hot-cache-roi-v1.md](./2026-08-03_chat-thread-harvest-protocol-hot-cache-roi-v1.md) | **INDEXED** — protocol additions recorded | CapitalGlass-Cross-Agent, CG-AppBuilder-MCP, CG-Platform-Governance-MCP | GitHub contents API | Implement schema/generator validation in AppBuilder if enforced |
-| `harvest-current-cross-thread-state-v2` | [2026-08-03_harvest-current-cross-thread-state-v2.md](./2026-08-03_harvest-current-cross-thread-state-v2.md) | **COMPLETE** — `HARVEST_COMPLETE` | CapitalGlass-Cross-Agent | Commit pending | `index:publish` on WESLEYDESK |
-| `intelligence-hub-capability-expansion-v1` | [2026-08-03_intelligence-hub-capability-expansion-v1.md](./2026-08-03_intelligence-hub-capability-expansion-v1.md) | **SHIPPED** — wave 1 @ `164bda7` | CapitalGlass-Cross-Agent | `164bda7` | Slice 6 blind retrieval; auto-publisher wave 2 |
-| `three-way-agent-improvement-intelligence-v1` | [2026-08-03_three-way-agent-improvement-intelligence-v1.md](./2026-08-03_three-way-agent-improvement-intelligence-v1.md) | **PUBLICATION_COMPLETE** — blind retrieval pending | CG-AppBuilder-MCP | `164bda7` hub publish | Post-publication blind retrieval only |
-| `direct-connect-persistent-controller-v1` | [2026-08-03_direct-connect-persistent-controller-v1.md](./2026-08-03_direct-connect-persistent-controller-v1.md) | **HOLD** — persistence unproven | CapitalGlass-Office-Admin | RYZEN9DESK | Cold reboot proof |
-| `cross-agent-index-auto-publisher-activation-v1` | [2026-08-03_cross-agent-index-auto-publisher-activation-v1.md](./2026-08-03_cross-agent-index-auto-publisher-activation-v1.md) | **HOLD** — staged not active | CapitalGlass-Cross-Agent | — | After Slice 6 publication PASS |
-| `platform-health-read-model-slice-7-v1` | [2026-08-03_platform-health-read-model-slice-7-v1.md](./2026-08-03_platform-health-read-model-slice-7-v1.md) | **DEFERRED** | capital-glass-platform-health | — | PR #31 independent |
-| `harvest-2026-08-03-cross-thread-platform-state-v1` | [2026-08-03_harvest-2026-08-03-cross-thread-platform-state-v1.md](./2026-08-03_harvest-2026-08-03-cross-thread-platform-state-v1.md) | **COMPLETE** — superseded by harvest v2 | CapitalGlass-Cross-Agent | Prior harvest | Historical reference |
+| `harvest-2026-08-03-cross-thread-platform-state-v1` | [2026-08-03_harvest-2026-08-03-cross-thread-platform-state-v1.md](./2026-08-03_harvest-2026-08-03-cross-thread-platform-state-v1.md) | **COMPLETE** — `HARVEST_COMPLETE` | CapitalGlass-Cross-Agent | Harvest commit pending | Recurring ingest + L: publish when operator approves |
 | `ryzen9desk-managed-executor-v1` | [2026-08-03_ryzen9desk-managed-executor-v1.md](./2026-08-03_ryzen9desk-managed-executor-v1.md) | **RUNNER_BOOTSTRAP_CHECKPOINT_STARTED** — PR #268 merged | `CG-AppBuilder-MCP` | `8fe7cf05` on AppBuilder `main` | CG-AppBuilder-MCP mission: RYZEN9DESK install + `executor-smoke` → `MANAGED_EXECUTOR_ONLINE` |
 | `active-ledger-ci-path-and-hash-stability-v1` | [2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md](./2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md) | **PASS** | `CG-AppBuilder-MCP` | `2cd8eba9`, `3fb8c9bb` | None — close unless CI regresses |
 | `office-admin-ryzen9desk-managed-executor-bootstrap-v1` | [2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md](./2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md) | **NEEDS_OFFICE_ADMIN_INDEXING** | CapitalGlass-Office-Admin | — | Index runbook in Office Admin when ready |
