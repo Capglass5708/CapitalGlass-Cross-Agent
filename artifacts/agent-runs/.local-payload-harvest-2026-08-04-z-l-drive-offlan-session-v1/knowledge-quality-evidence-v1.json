@@ -1,0 +1,131 @@
+{
+  "schemaVersion": "harvest-knowledge-quality-evidence-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-z-l-drive-offlan-session-v1",
+  "materialEvents": [
+    {
+      "eventId": "TE-001",
+      "summary": "User reported Z and L unavailable again on WESLEY_WORK",
+      "material": true,
+      "representations": ["failure", "blocker", "evidence", "repeated_work"]
+    },
+    {
+      "eventId": "TE-002",
+      "summary": "WSL drvfs showed /mnt/l and /mnt/z readable while index preflight FAILOVER_GIT_LEDGER STALE",
+      "material": true,
+      "representations": ["mistake", "evidence", "faster_path", "repeated_work"]
+    },
+    {
+      "eventId": "TE-003",
+      "summary": "Windows Test-Path proved Z and L drive letters disconnected despite WSL paths",
+      "material": true,
+      "representations": ["correction", "evidence", "mistake", "do_not_advance"]
+    },
+    {
+      "eventId": "TE-004",
+      "summary": "ForceRemap off-LAN remapped Z via Tailscale cg-server; CMD UNC noise from WSL cwd",
+      "material": true,
+      "representations": ["command", "result", "evidence", "faster_path"]
+    },
+    {
+      "eventId": "TE-005",
+      "summary": "PARTIAL_DRIVE_AVAILABILITY classification zOk True lOk False desk SMB unavailable",
+      "material": true,
+      "representations": ["decision", "result", "blocker", "evidence", "do_not_advance"]
+    },
+    {
+      "eventId": "TE-006",
+      "summary": "SMB probes cg-server 445 True cg-wesleydesk-01 445 False confirmed L blocker",
+      "material": true,
+      "representations": ["evidence", "result", "protocol_improvement", "future_action"]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "DEC-001",
+      "eventRefs": ["TE-005", "TE-006"],
+      "decision": "Report PARTIAL_DRIVE_AVAILABILITY — Z restored via Tailscale; L blocked until WESLEYDESK SMB or office LAN",
+      "reason": "ForceRemap log and Test-NetConnection proved Z OK and L unreachable off-LAN",
+      "alternativesRejected": [
+        "Claim full Z and L recovery because WSL /mnt/l listed directories",
+        "Treat index STALE as drive unmounted without Windows Test-Path"
+      ],
+      "consequences": [
+        "Agents use FAILOVER_GIT_LEDGER until L Windows path is True",
+        "Operator must wake WESLEYDESK or join LAN for L remap"
+      ],
+      "authority": "Ensure-CgWesleyWorkDriveMounts.ps1 classification + Test-NetConnection probes",
+      "evidenceRefs": ["TE-005", "NETWORK-OUTAGE-2026-08-03-220459.json", "TE-006"]
+    }
+  ],
+  "corrections": [
+    {
+      "id": "COR-001",
+      "material": true,
+      "incorrectAgentClaim": "Initial thread response implied WSL /mnt/l and /mnt/z meant drives were available",
+      "operatorCorrection": "User reported Z AND L UNAVAILABLE — Windows layer was the truth surface",
+      "correctedTruth": "WSL drvfs can retain ghost mounts; Windows Test-Path Z and L paths required first",
+      "futureAgentRule": "Always probe Windows Test-Path before claiming Z or L operational; log PARTIAL when zOk/lOk diverge",
+      "affectedRecords": ["wsl-drvfs-ghost-mount-v1", "IH-WSL-DRVF-GHOST-002"]
+    }
+  ],
+  "durableClaims": [
+    {
+      "id": "CLM-001",
+      "claim": "Off-LAN WESLEY_WORK ForceRemap can restore Z via cg-server Tailscale but not L without desk SMB",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["TE-004", "TE-005", "TE-006"],
+      "eventRefs": ["TE-004", "TE-005", "TE-006"]
+    },
+    {
+      "id": "CLM-002",
+      "claim": "WSL /mnt/l readability does not prove Windows L: Intelligence Hub index is reachable",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["TE-002", "TE-003", "COR-001"],
+      "eventRefs": ["TE-002", "TE-003"]
+    },
+    {
+      "id": "CLM-003",
+      "claim": "Canonical repair is Ensure-CgWesleyWorkDriveMounts.ps1 -Mode ForceRemap from Windows cd C:\\",
+      "confidence": "PARTIALLY_VERIFIED",
+      "evidenceRefs": ["FI-20260802-z-drive-unmapped-in-wesle-session-net-use-z-retu", "TE-004"],
+      "eventRefs": ["TE-004"]
+    }
+  ],
+  "contradictions": [],
+  "mistakes": [
+    {
+      "id": "MIST-001",
+      "eventRefs": ["TE-002", "TE-003"],
+      "attemptedAction": "Diagnosed drive health from WSL drvfs /mnt/l and /mnt/z before Windows Test-Path",
+      "whyItSeemedReasonable": "Intelligence Hub scout and index preflight use WSL paths; mounts appeared in mount table",
+      "actualOutcome": "Windows Z and L were False while WSL still listed hub directories",
+      "rootCause": "drvfs ghost cache after Windows drive disconnect",
+      "optimalFirstMove": "powershell Test-Path Z:\\Capital-Glass-Dev and L index path before any INDEX_HIT claim",
+      "preventiveControl": "Dual-layer drive probe in z-drive pre-session and harvest seeds IH-WSL-DRVF-GHOST-002"
+    }
+  ],
+  "blindRetrieval": [
+    {
+      "question": "Why is Z available but L missing on WESLEY_WORK remote off-LAN?",
+      "expectedSeedId": "IH-Z-L-OFFLAN-PARTIAL-001",
+      "lessonFocus": "partial-drive-availability-off-lan",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "Why does WSL show L mounted but Windows cannot read L index JSON?",
+      "expectedSeedId": "IH-WSL-DRVF-GHOST-002",
+      "lessonFocus": "wsl-drvfs-ghost-mount",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "What is the canonical ForceRemap command when Z drive disconnects on WESLEY_WORK?",
+      "expectedSeedId": "IH-Z-FORCE-REMAP-CWD-003",
+      "lessonFocus": "force-remap-canonical-command",
+      "genericKeywordOnly": false
+    }
+  ],
+  "humanReview": {
+    "required": false,
+    "reasons": []
+  }
+}

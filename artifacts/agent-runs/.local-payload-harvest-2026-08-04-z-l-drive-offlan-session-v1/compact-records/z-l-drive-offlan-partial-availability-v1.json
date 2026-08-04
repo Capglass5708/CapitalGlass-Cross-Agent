@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-z-l-drive-offlan-session-v1",
+  "packetId": "z-l-drive-offlan-partial-availability-v1",
+  "state": "PARTIAL_DRIVE_AVAILABILITY",
+  "packetVerdict": "Z_OK_L_BLOCKED_OFF_LAN",
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Wake WESLEYDESK + Tailscale SMB or join office LAN; rerun Ensure-CgWesleyWorkDriveMounts.ps1 -Mode ForceRemap from cd C:\\",
+  "evidenceRefs": [
+    "C:/ProgramData/CapitalGlass/OfficeAdmin/logs/NETWORK-OUTAGE-2026-08-03-220459.json",
+    "ForceRemap classification=PARTIAL_DRIVE_AVAILABILITY zOk=True lOk=False",
+    "thread-autopsy-bundle.json#ED-001"
+  ],
+  "doNotAdvance": [
+    "INDEX_HIT on L: while Windows L: path is False",
+    "Claim OPERATIONAL index freshness while holdReason=CACHE_AND_L_STALE_OR_MISSING"
+  ],
+  "advancementGate": "Test-Path L:\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json",
+  "contentHash": "9ccd6ac7e34ee896569f01d30f0029a0284fc748d5d697a1a5f0000ede0d7819"
+}

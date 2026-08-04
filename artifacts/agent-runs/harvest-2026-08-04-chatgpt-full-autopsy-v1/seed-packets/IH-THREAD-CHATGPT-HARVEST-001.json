@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-CHATGPT-HARVEST-001",
+  "kind": "runbook",
+  "title": "ChatGPT harvests are draft-only",
+  "summary": "ChatGPT harvests are draft-only",
+  "retrievalQuestions": [
+    "Can ChatGPT claim HARVEST_COMPLETE?",
+    "What verdict should a ChatGPT thread autopsy use?"
+  ],
+  "evidenceRefs": [
+    "attached ChatGPT protocol"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "User asks ChatGPT to run a harvest protocol",
+    "startAt": [
+      "attached ChatGPT protocol"
+    ],
+    "runPreflight": [
+      "record INDEX_NOT_AVAILABLE_IN_CHAT_CONTEXT"
+    ],
+    "doNot": [
+      "claim INDEX_HIT",
+      "claim HARVEST_COMPLETE",
+      "claim FULLY_SEEDED"
+    ],
+    "proveBeforeClaiming": [
+      "Cursor validation receipts"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

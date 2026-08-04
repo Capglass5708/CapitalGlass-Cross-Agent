@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "code-touch-summary-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-z-l-drive-offlan-session-v1",
+  "generatedAt": "2026-08-04T06:01:00.000Z",
+  "repos": [
+    {
+      "repo": "CapitalGlass-Office-Admin",
+      "role": "drive mount authority",
+      "paths": [
+        "C:/ProgramData/CapitalGlass/OfficeAdmin/PRIVATE/Ensure-CgWesleyWorkDriveMounts.ps1"
+      ]
+    },
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "role": "index preflight / z-drive pre-session gate",
+      "paths": [
+        "docs/work-packages/z-drive-pre-session-gate-hardening-v1.md"
+      ]
+    }
+  ],
+  "operatorCommands": [
+    "Ensure-CgWesleyWorkDriveMounts.ps1 -Mode ForceRemap",
+    "Test-Path Z:\\Capital-Glass-Dev",
+    "Test-Path L:\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json"
+  ]
+}

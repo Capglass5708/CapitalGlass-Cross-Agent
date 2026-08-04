@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-z-l-drive-offlan-session-v1",
+  "packetId": "wsl-drvfs-ghost-mount-v1",
+  "state": "DOCUMENTED",
+  "packetVerdict": "PASS",
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Verify drives on Windows layer first; wsl --shutdown after Windows remap",
+  "evidenceRefs": [
+    "WSL test -d /mnt/l OK while Windows Test-Path L:\\... INDEX.json False",
+    "thread-autopsy-bundle.json#WM-001",
+    "docs/work-packages/z-drive-pre-session-gate-hardening-v1.md"
+  ],
+  "doNotAdvance": [],
+  "advancementGate": "not-required",
+  "contentHash": "870597af0a9a8bdf189aad1cf96980700fea82f91dcfa916063fa72f9a1e3cd3"
+}

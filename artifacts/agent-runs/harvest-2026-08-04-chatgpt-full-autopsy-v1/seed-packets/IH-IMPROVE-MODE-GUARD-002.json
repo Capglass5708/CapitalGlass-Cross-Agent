@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-IMPROVE-MODE-GUARD-002",
+  "kind": "decision",
+  "title": "Mode-first execution and hard guards",
+  "summary": "Agents should declare work mode and honor concept-only/stop instructions before any tool or file action.",
+  "retrievalQuestions": [
+    "What should an agent do when Wesley says concept-only?",
+    "What does STOP_NOW require?"
+  ],
+  "evidenceRefs": [
+    "visible thread corrections: concept-only, do not write code, just stop"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Thread or task references IH-IMPROVE-MODE-GUARD-002",
+    "startAt": [
+      "docs/protocols/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md"
+    ],
+    "runPreflight": [
+      "npm run harvest:duplication-preflight -- --harvest-id=<id>"
+    ],
+    "doNot": [
+      "claim HARVEST_COMPLETE from ChatGPT draft",
+      "skip Cursor validation"
+    ],
+    "proveBeforeClaiming": [
+      "harvest:validate PASS",
+      "chatgpt-ingest-receipt.json INGEST_PASS"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

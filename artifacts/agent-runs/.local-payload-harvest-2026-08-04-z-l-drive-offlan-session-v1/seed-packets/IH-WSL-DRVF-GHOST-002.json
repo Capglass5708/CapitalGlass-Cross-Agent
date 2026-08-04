@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-WSL-DRVF-GHOST-002",
+  "kind": "lesson",
+  "title": "WSL /mnt/l and /mnt/z can lie when Windows drives are disconnected",
+  "summary": "drvfs may serve stale cached directory listings after Windows unmaps Z: or L:; always verify Windows layer.",
+  "retrievalQuestions": [
+    "Why does WSL show L mounted but Windows cannot read L index?",
+    "How to detect ghost drvfs mounts for Intelligence Hub?"
+  ],
+  "evidenceRefs": [
+    "TE-002",
+    "TE-003",
+    "thread-autopsy-bundle.json#WM-001"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Agent checks /mnt/l before Windows drive health",
+    "startAt": [
+      "docs/work-packages/z-drive-pre-session-gate-hardening-v1.md"
+    ],
+    "runPreflight": [
+      "powershell Test-Path 'Z:\\Capital-Glass-Dev'",
+      "powershell Test-Path 'L:\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json'"
+    ],
+    "doNot": [
+      "Log INDEX_HIT based on WSL path alone",
+      "Skip ForceRemap because WSL lists /mnt/z"
+    ],
+    "proveBeforeClaiming": [
+      "Windows and WSL probe agreement or explicit PARTIAL verdict"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

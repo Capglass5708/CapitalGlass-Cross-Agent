@@ -1,0 +1,74 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-improve-seed-distillation-003",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "39f817819cc91cd8f154279c11b6423e1f05dcb5",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-chatgpt-full-autopsy-v1",
+      "seedId": "IH-IMPROVE-SEED-DISTILLATION-003"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T07:14:23.160Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "df0717f16e9ddc0b4b7819e24b4308e926e373500aa1ad93a08facb0f65d414c"
+  },
+  "body": {
+    "seedId": "IH-IMPROVE-SEED-DISTILLATION-003",
+    "kind": "command",
+    "title": "Distill raw findings into compact seed packets",
+    "summary": "Raw ChatGPT findings should become compact, validated seed packets before Git publication.",
+    "canonicalQuestion": "Should raw ChatGPT harvest findings be committed?",
+    "alternateQuestions": [
+      "How do we avoid Git bloat while preserving thread intelligence?"
+    ],
+    "shortAnswer": "Raw ChatGPT findings should become compact, validated seed packets before Git publication.",
+    "detailedAnswer": "Distill raw findings into compact seed packets",
+    "retrievalQuestions": [
+      "Should raw ChatGPT harvest findings be committed?",
+      "How do we avoid Git bloat while preserving thread intelligence?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Thread or task references IH-IMPROVE-SEED-DISTILLATION-003",
+      "startAt": [
+        "docs/protocols/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md"
+      ],
+      "runPreflight": [
+        "npm run harvest:duplication-preflight -- --harvest-id=<id>"
+      ],
+      "doNot": [
+        "claim HARVEST_COMPLETE from ChatGPT draft",
+        "skip Cursor validation"
+      ],
+      "proveBeforeClaiming": [
+        "harvest:validate PASS",
+        "chatgpt-ingest-receipt.json INGEST_PASS"
+      ]
+    },
+    "evidenceRefs": [
+      "visible thread question about commit vs push and Git bloat"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Cross-Agent",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-chatgpt-full-autopsy-v1/seed-packets/IH-IMPROVE-SEED-DISTILLATION-003.json"
+    ],
+    "harvestId": "harvest-2026-08-04-chatgpt-full-autopsy-v1"
+  }
+}
