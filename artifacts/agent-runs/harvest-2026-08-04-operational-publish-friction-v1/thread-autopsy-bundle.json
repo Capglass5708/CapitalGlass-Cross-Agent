@@ -1,0 +1,255 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-operational-publish-friction-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-301",
+      "type": "rework",
+      "description": "Multiple publish-intelligence-full attempts before OPERATIONAL due to validate and ingest gates",
+      "evidenceRefs": [
+        "EVT-302",
+        "EVT-304",
+        "EVT-306"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "harvest:render-index in pipeline + --skip-ledger-sync when drift-probe IN_SYNC",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-302",
+      "type": "operator_attention",
+      "description": "User had to stop agent chasing index:publish after each receipt commit",
+      "evidenceRefs": [
+        "EVT-307"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "IH-FRESHNESS-TREADMILL-001 seed — one publish at stable HEAD only",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-303",
+      "type": "verification",
+      "description": "Ledger ingest blocked while operational pipeline wrote harvest artifacts to git",
+      "evidenceRefs": [
+        "EVT-304",
+        "EVT-305"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Ledger sync before writes OR clean git + skip-ledger-sync",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-304",
+      "type": "tool",
+      "description": "publish-intelligence-full not in Cross-Agent package.json until copied from Z:",
+      "evidenceRefs": [
+        "EVT-302",
+        "d6ae097"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Keep Z: Harvest and Cross-Agent scripts in sync",
+      "roiRank": 4
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-301",
+      "trigger": "Agent continued index:publish loop after operational was already complete",
+      "operatorCost": "high",
+      "systemFix": "Stop after OPERATIONAL receipt; freshness drift from receipt commits is expected and optional",
+      "evidenceRefs": [
+        "EVT-307"
+      ],
+      "linkedWasteIds": [
+        "TW-302"
+      ]
+    },
+    {
+      "frictionId": "OF-302",
+      "trigger": "Operational publish appeared stuck without clear status",
+      "operatorCost": "medium",
+      "systemFix": "Report OPERATIONAL vs freshness drift separately in closeout summary",
+      "evidenceRefs": [
+        "EVT-306",
+        "EVT-307"
+      ],
+      "linkedWasteIds": [
+        "TW-301"
+      ]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-301",
+      "situation": "User asked make operational for ingest-closeout harvest",
+      "actualExecution": {
+        "steps": [
+          "Run publish-intelligence-full with ledger sync after hub writes",
+          "Retry after reorder",
+          "Chase index:publish after each commit"
+        ],
+        "outcome": "PARTIAL then OPERATIONAL with skip-ledger-sync",
+        "evidenceRefs": [
+          "EVT-304",
+          "EVT-305",
+          "EVT-306"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Confirm drift-probe IN_SYNC",
+          "Commit clean tree",
+          "harvest:publish-intelligence-full --skip-ledger-sync",
+          "Single index:publish only if operator wants freshness parity"
+        ],
+        "outcome": "OPERATIONAL without operator stop",
+        "requiredPreflight": [
+          "cross-agent-ledger:drift-probe",
+          "git status --porcelain"
+        ]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "high",
+        "operatorFrustration": "high"
+      }
+    },
+    {
+      "executionDeltaId": "ED-302",
+      "situation": "harvest:validate failed inside operational pipeline",
+      "actualExecution": {
+        "steps": [
+          "Run validate before INDEX generated section updated"
+        ],
+        "outcome": "FAIL — missing packet IDs in INDEX.md",
+        "evidenceRefs": [
+          "EVT-302"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "harvest:render-index before harvest:validate"
+        ],
+        "outcome": "PASS",
+        "requiredPreflight": [
+          "harvest:render-index"
+        ]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-301",
+      "summary": "Ran index:sync-publication inside operational pipeline while git was dirty from hub publish",
+      "whyItWasWrong": "derived-only-verify blocks ingest when porcelain changes during apply",
+      "correctFirstMove": "Ledger sync on clean git first, or --skip-ledger-sync when IN_SYNC",
+      "preventiveControl": "publish-intelligence-full-lib ledger-sync ordering + skip flag",
+      "executionDeltaId": "ED-301"
+    },
+    {
+      "wrongMoveId": "WM-302",
+      "summary": "Repeated index:publish after pinning receipt commits",
+      "whyItWasWrong": "Each receipt commit advances git HEAD past L:/Supabase SHA — creates apparent drift",
+      "correctFirstMove": "Treat OPERATIONAL receipt as done; batch receipt commits or accept one final publish",
+      "preventiveControl": "IH-FRESHNESS-TREADMILL-001",
+      "executionDeltaId": "ED-301"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-301",
+      "subject": "BLOCKED_GIT_MUTATION during ledger ingest",
+      "whyRepeated": "Same guard documented in ingest-closeout harvest IH-INGEST-GIT-MUTATION-GUARD-001",
+      "firstKnownInstance": "harvest-2026-08-04-harvest-publication-ingest-closeout-v1 / IH-INGEST-GIT-MUTATION-GUARD-001",
+      "priorIndexSlice": "02-catalog/knowledge-objects/cross-agent-harvest/IH-INGEST-GIT-MUTATION-GUARD-001.json",
+      "whyMissed": "Operational pipeline re-hit same failure mode in new context",
+      "avoidableBy": "Load existing seed before recording new semantic duplicate",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Operational pipeline ledger-sync ordering",
+      "whyItPays": "Eliminates BLOCKED_GIT_MUTATION during make operational",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-301",
+        "TW-303"
+      ],
+      "seedAs": "command"
+    },
+    {
+      "rank": 2,
+      "title": "Stop freshness treadmill after OPERATIONAL",
+      "whyItPays": "Prevents operator stop / wasted index:publish cycles",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-302"
+      ],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 3,
+      "title": "render-index in publish-intelligence-full",
+      "whyItPays": "Unblocks validate gate on first operational run",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-304"
+      ],
+      "seedAs": "command"
+    },
+    {
+      "rank": 4,
+      "title": "Z: → Cross-Agent script sync for publish-intelligence-full",
+      "whyItPays": "Operator one-shot works without Z: mount for script copy",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-304"
+      ],
+      "seedAs": "runbook"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "FULLY_SEEDED_WITHOUT_OPERATIONAL_RECEIPT",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "operational-publication-receipt.json for target harvest-id"
+      ],
+      "lastKnownEvidence": [
+        "ingest-closeout harvest OPERATIONAL @ 1225cc9",
+        "this harvest hubPublishStatus: not-run"
+      ]
+    },
+    {
+      "awardOrVerdict": "INDEX_FRESHNESS_PASS",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "index:freshness-gate PASS at current HEAD"
+      ],
+      "lastKnownEvidence": [
+        "L:/Supabase at fe5c101; git at e343896 — DRIFT expected after commits"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "commandIndexConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "do-not-advance.json",
+      "active-work-open-actions.json"
+    ],
+    "checkedAt": "2026-08-04T06:07:29.461Z",
+    "preflightReceiptHash": "8ed9e8e6a86f17d8848acb4b794ab72b11869a731fe935cb881d7e2c8fbcd886"
+  }
+}

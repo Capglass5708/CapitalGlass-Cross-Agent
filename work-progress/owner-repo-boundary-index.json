@@ -1,7 +1,7 @@
 {
   "schemaVersion": "cross-agent-owner-repo-boundary-index-v1@1.0.0",
   "updatedAt": "2026-08-04T02:23:40.394Z",
-  "latestHarvestId": "harvest-2026-08-04-cursor-harvest-protocol-session-v1",
+  "latestHarvestId": "harvest-2026-08-04-operational-publish-friction-v1",
   "packets": [
     {
       "packetId": "active-ledger-ci-path-and-hash-stability-v1",
@@ -51,6 +51,46 @@
       "requiredOwnerArtifact": "docs/runbooks/chat-thread-closeout-autopsy-harvest-v1.md",
       "crossAgentRole": "harvest coordination pointer",
       "ownerRepoRole": "implementation and owner artifacts",
+      "currentGap": null
+    },
+    {
+      "packetId": "operational-publish-friction-v1",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerMcp": null,
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "artifacts/agent-runs/harvest-2026-08-04-operational-publish-friction-v1/harvest-manifest-v1.json",
+      "crossAgentRole": "harvest coordination pointer",
+      "ownerRepoRole": "publish-intelligence-full pipeline",
+      "currentGap": null
+    },
+    {
+      "packetId": "ingest-git-mutation-operational-v1",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "CG-AppBuilder-MCP/scripts/cross-agent-ledger/lib/derived-only-verify.mjs",
+      "crossAgentRole": "harvest record of ingest guard",
+      "ownerRepoRole": "ledger ingest implementation",
+      "currentGap": null
+    },
+    {
+      "packetId": "index-freshness-receipt-treadmill-v1",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerMcp": null,
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "scripts/index/freshness-gate.mjs",
+      "crossAgentRole": "harvest coordination pointer",
+      "ownerRepoRole": "index freshness gate",
+      "currentGap": null
+    },
+    {
+      "packetId": "harvest-render-index-operational-gate-v1",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerMcp": null,
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "scripts/harvest/lib/publish-intelligence-full-lib.mjs",
+      "crossAgentRole": "harvest coordination pointer",
+      "ownerRepoRole": "operational publish pipeline",
       "currentGap": null
     },
     {
@@ -232,6 +272,36 @@
       "crossAgentRole": "partial migration harvest record",
       "ownerRepoRole": "WSL policy, cursor repair scripts, layout manifests",
       "currentGap": "Per-repo ext4 verification incomplete"
+    },
+    {
+      "packetId": "z-l-drive-offlan-partial-availability-v1",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerMcp": "user-office-admin-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "C:/ProgramData/CapitalGlass/OfficeAdmin/PRIVATE/Ensure-CgWesleyWorkDriveMounts.ps1",
+      "crossAgentRole": "thread autopsy harvest pointer",
+      "ownerRepoRole": "WESLEY_WORK off-LAN Z partial / L down (desk SMB unreachable)",
+      "currentGap": "L: requires WESLEYDESK SMB when off-LAN"
+    },
+    {
+      "packetId": "wsl-drvfs-ghost-mount-v1",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerMcp": "user-office-admin-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "CG-AppBuilder-MCP/docs/work-packages/z-drive-pre-session-gate-hardening-v1.md",
+      "crossAgentRole": "thread autopsy harvest pointer",
+      "ownerRepoRole": "WSL drvfs ghost mount masks Windows Z/L disconnect",
+      "currentGap": null
+    },
+    {
+      "packetId": "z-drive-force-remap-wsl-cwd-v1",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerMcp": "user-office-admin-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "C:/ProgramData/CapitalGlass/OfficeAdmin/PRIVATE/Ensure-CgWesleyWorkDriveMounts.ps1",
+      "crossAgentRole": "thread autopsy harvest pointer",
+      "ownerRepoRole": "ForceRemap must run from Windows cwd (not WSL UNC cwd)",
+      "currentGap": null
     }
   ]
 }

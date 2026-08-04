@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-FRESHNESS-TREADMILL-001",
+  "kind": "failure-pattern",
+  "title": "Index freshness treadmill after receipt commits",
+  "summary": "Committing index-publication receipts advances git HEAD past L:/Supabase SHA; repeated index:publish after each commit is a loop, not a blocker for OPERATIONAL harvest.",
+  "retrievalQuestions": [
+    "What is the index freshness treadmill after operational publish?",
+    "Should I keep running index:publish after OPERATIONAL receipt exists?",
+    "How do I explain freshness FAIL when harvest is already OPERATIONAL?"
+  ],
+  "evidenceRefs": [
+    "artifacts/agent-runs/cross-agent-index-freshness-gate-v1/latest.json",
+    "EVT-307",
+    "82f817c"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Operator says stop or freshness FAIL after OPERATIONAL receipt exists",
+    "startAt": [
+      "artifacts/agent-runs/<harvest-id>/operational-publication-receipt.json",
+      "npm run index:freshness-gate"
+    ],
+    "runPreflight": [],
+    "doNot": [
+      "Loop index:publish after every receipt commit",
+      "Treat freshness DRIFT as failed operational publish when OPERATIONAL receipt exists"
+    ],
+    "proveBeforeClaiming": [
+      "operational-publication-receipt.json verdict OPERATIONAL",
+      "Explain git HEAD vs L: SHA delta separately from harvest status"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 2,
+  "sourcePacketIds": ["index-freshness-receipt-treadmill-v1"]
+}

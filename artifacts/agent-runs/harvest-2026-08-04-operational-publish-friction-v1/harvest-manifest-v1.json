@@ -1,0 +1,154 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-operational-publish-friction-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "e3438962a98382ed822abc904dc6bb19c7545a6b",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-04T06:00:00.000Z",
+  "updatedAt": "2026-08-04T06:00:00.000Z",
+  "retrievalResult": "INDEX_HIT",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "AUTO_PUBLISHER_V1_1_ACTIVE",
+    "FULLY_SEEDED_WITHOUT_OPERATIONAL_RECEIPT"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-04-operational-publish-friction-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-04-operational-publish-friction-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 4,
+      "seeds": 4,
+      "roiItems": 4,
+      "operatorFriction": 2
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": null,
+    "note": "Phase A complete; operator may run harvest:publish-intelligence-full"
+  },
+  "ledgerLineage": {
+    "ledgerPath": "work-progress/ACTIVE_WORK.md",
+    "ledgerContentHashBefore": "c79fe9fb1a9e1c8167c5119be6fb9678456f8f956ce3f9703a734c389ca49d08",
+    "ledgerContentHashAfter": "c79fe9fb1a9e1c8167c5119be6fb9678456f8f956ce3f9703a734c389ca49d08"
+  },
+  "supersededClaims": [],
+  "packets": [
+    {
+      "packetId": "operational-publish-friction-v1",
+      "packetTitle": "Make operational: publish-intelligence-full wiring and git-mutation friction",
+      "state": "HARVEST_COMPLETE",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "COORDINATION",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "artifacts/agent-runs/harvest-2026-08-04-operational-publish-friction-v1/HARVEST_SUMMARY.md",
+      "evidenceRefs": [
+        "artifacts/agent-runs/harvest-2026-08-04-harvest-publication-ingest-closeout-v1/operational-publication-receipt.json",
+        "scripts/harvest/publish-intelligence-full.mjs",
+        "scripts/harvest/lib/publish-intelligence-full-lib.mjs",
+        "e343896"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "d6ae097"
+        },
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "f0f275c"
+        },
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "1225cc9"
+        },
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "e343896"
+        }
+      ],
+      "nextAction": "Operator: harvest:publish-intelligence-full when ready",
+      "advancementGate": "operational-publication-receipt.json for this harvest-id",
+      "doNotAdvance": [
+        "FULLY_SEEDED_WITHOUT_OPERATIONAL_RECEIPT"
+      ],
+      "blockers": []
+    },
+    {
+      "packetId": "ingest-git-mutation-operational-v1",
+      "packetTitle": "BLOCKED_GIT_MUTATION during operational ledger sync",
+      "state": "DOCUMENTED",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "BLOCKER",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "artifacts/agent-runs/harvest-2026-08-04-operational-publish-friction-v1/thread-event-inventory.json",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-structured-ledger-projection-v1/ingest-apply-receipt.json#derivedOnly",
+        "artifacts/agent-runs/harvest-2026-08-04-harvest-publication-ingest-closeout-v1/seed-packets/IH-INGEST-GIT-MUTATION-GUARD-001.json"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "2d29101"
+        }
+      ],
+      "nextAction": "Run ledger sync only on clean git; use --skip-ledger-sync when drift-probe IN_SYNC",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "blockers": []
+    },
+    {
+      "packetId": "index-freshness-receipt-treadmill-v1",
+      "packetTitle": "Index freshness treadmill after receipt commits",
+      "state": "DOCUMENTED",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "FASTER_PATH",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "scripts/index/freshness-gate.mjs",
+      "evidenceRefs": [
+        "artifacts/agent-runs/cross-agent-index-freshness-gate-v1/latest.json",
+        "user turn: stop whats the problem"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "82f817c"
+        }
+      ],
+      "nextAction": "One index:publish at stable HEAD; avoid republish loop after each receipt commit",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "blockers": []
+    },
+    {
+      "packetId": "harvest-render-index-operational-gate-v1",
+      "packetTitle": "render-index required before harvest:validate in operational pipeline",
+      "state": "FIXED",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "PROTOCOL_UPGRADE",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "scripts/harvest/lib/publish-intelligence-full-lib.mjs",
+      "evidenceRefs": [
+        "f0f275c",
+        "work-progress/projects/INDEX.md#HARVEST-PACKET-INDEX"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "f0f275c"
+        }
+      ],
+      "nextAction": "None — render-index stage wired in publish-intelligence-full-lib",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "blockers": []
+    }
+  ]
+}
