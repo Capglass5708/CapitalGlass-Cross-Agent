@@ -5,7 +5,7 @@ canonicalOwner: CG-AppBuilder-MCP
 canonicalPath: agent-packs/three-way-agent/rules/intelligence-hub-first-read.mdc
 generatedCopy: true
 ruleVersion: 1.2.0
-canonicalContentHash: 1547b2990957be45044a954c067b4c94e6a1a191c226d4e0d89bd9be9d5b9815
+canonicalContentHash: f077a1a14771c0d21c4326e9b7e54c9de601ec1cfc31f51ae37d6065dd9faa43
 ---
 
 # Intelligence Hub first-read (mandatory)
@@ -149,7 +149,7 @@ When Auto v3.2 material preflight applies, prefer compiled authority when `cache
 
 ## Scout lane (estate-wide hooks)
 
-The 3-way **scout** tier runs before builder on every Cursor turn via estate-synced hooks (`npm run sync:intelligence-hub-scout-hooks`). Scout injects `agent:index:scout` brief and mandates retrieval code logging in every response. See `intelligence-hub-scout-lane.mdc`.
+The 3-way **scout** tier runs before builder on every Cursor turn via estate-synced hooks (`npm run sync:intelligence-hub-scout-hooks`). Scout reads the **machine-local hot AI cache (C: on ryzen9desk)** routing index first (`indexTier=hot-ai-cache`), then Z/L detail only when needed. Contract: `agent-packs/three-way-agent/contracts/intelligence-hub-scout-hook-runtime.v1.json`. Publish routing index: `npm run intelligence-hub:publish-hot-routing-index`.
 
 ## Related authority
 
