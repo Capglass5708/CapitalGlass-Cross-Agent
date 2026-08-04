@@ -192,6 +192,9 @@ export function publishIntelligenceFull({
         repoRoot,
       ),
     );
+    stages.push(
+      runStep("render-index", `node scripts/harvest/render-harvest-index.mjs ${harvestId}`, repoRoot),
+    );
     stages.push(runStep("validate", `node scripts/harvest/validate-harvest.mjs ${harvestId}`, repoRoot));
     if (manifest.threadAutopsy) {
       stages.push(
