@@ -21,6 +21,19 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 ## Current saved work
 
+### 2026-08-04 CT — block-c-platform-harvest-estimating-lane-v1 (Agent 3 lane closeout)
+
+| Field | Value |
+| --- | --- |
+| Work package | `block-c-platform-harvest-estimating-lane-v1` |
+| Verdict | **BLOCK_C_LANE_CLOSEOUT_PASS_WITH_OPERATOR_DEFERRALS** |
+| Wave 1 ledger | **IN_SYNC** — drift probe PASS after `live-db.mjs` JSON output fix |
+| Wave 2 L: | **OPERATOR_BLOCKED** — L: unmapped off-LAN; scout `INDEX_HIT_AI_CACHE` failover active |
+| Wave 3 harvest | **DEFERRED** — publish on WESLEYDESK when L: available |
+| Wave 4 estimating | **READ_ONLY_ADVANCED** — 8/10; fixture blockers documented; prod lock honored |
+| Receipt | `artifacts/agent-runs/block-c-platform-harvest-estimating-lane-v1/receipt.json` |
+| Next | Operator L: map on LAN; WESLEYDESK harvest publish; `cg-opening-locator-v1` build (CE) |
+
 ### 2026-08-04 CT — north-star-compounding-vertical-pilot-v1 (Agent 3 closeout)
 
 | Field | Value |
