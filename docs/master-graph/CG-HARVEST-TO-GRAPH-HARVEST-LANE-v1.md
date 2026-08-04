@@ -47,6 +47,14 @@ cd "$HOME/repos/CG-MASTER-GRAPH"
 npm run graph:validate-extraction -- /path/to/graph-extraction.json
 ```
 
+Cross-Agent automation (after `harvest:sync-derived`):
+
+```bash
+npm run harvest:build-graph-extraction -- <harvest-id>
+npm run harvest:validate-graph-extraction -- <harvest-id>
+npm run harvest:promote-graph-seed -- <harvest-id>   # copies to CG-MASTER-GRAPH/graph/seeds
+```
+
 ## Harvest orchestration flow
 
 ```text

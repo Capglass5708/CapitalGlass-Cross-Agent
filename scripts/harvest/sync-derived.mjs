@@ -250,6 +250,20 @@ function main() {
 
   refreshPacketRegistryFromGit();
 
+  try {
+    execSync(`node scripts/harvest/build-graph-extraction.mjs ${harvestId}`, {
+      cwd: REPO_ROOT,
+      stdio: "inherit",
+    });
+    execSync(`node scripts/harvest/validate-graph-extraction.mjs ${harvestId}`, {
+      cwd: REPO_ROOT,
+      stdio: "inherit",
+    });
+  } catch (err) {
+    console.error("sync-derived: graph extraction build/validate failed");
+    throw err;
+  }
+
   console.log(`sync-derived: OK harvestManifestHash=${harvestManifestHash}`);
 }
 

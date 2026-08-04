@@ -213,6 +213,25 @@ function main() {
     warnings.push(...autopsyResult.warnings);
   }
 
+  const graphExtractionPath = path.join(runDir, "graph-extraction.json");
+  const graphValidationPath = path.join(runDir, "graph-extraction-validation-result.json");
+  if (!fs.existsSync(graphExtractionPath)) {
+    errors.push("graph-extraction.json missing — run harvest:sync-derived");
+  } else {
+    const extraction = readJson(graphExtractionPath);
+    if (extraction.harvestId !== harvestId) {
+      errors.push("graph-extraction harvestId mismatch");
+    }
+    if (!fs.existsSync(graphValidationPath)) {
+      errors.push("graph-extraction-validation-result.json missing");
+    } else {
+      const graphVal = readJson(graphValidationPath);
+      if (graphVal.verdict !== "PASS") {
+        errors.push(`graph extraction validation ${graphVal.verdict}`);
+      }
+    }
+  }
+
   const pass = errors.length === 0;
   writeResult(errors, warnings, pass, manifestHash, schemaResult.ok, autopsyResult);
   process.exit(pass ? 0 : 1);

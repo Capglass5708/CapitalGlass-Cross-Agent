@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-graph-extraction-fixture-v1",
+  "missionClass": "harvest",
+  "sourceCommitSha": "0000000000000000000000000000000000000000",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "updatedAt": "2026-08-04T08:00:00.000Z",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run"
+  },
+  "packets": [
+    {
+      "packetId": "fixture-packet-a-v1",
+      "packetTitle": "Fixture packet A",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/INDEX.md",
+      "nextAction": "none",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "evidenceRefs": ["work-progress/projects/INDEX.md"],
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": ["fixture-packet-b-v1"]
+    },
+    {
+      "packetId": "fixture-packet-b-v1",
+      "packetTitle": "Fixture packet B",
+      "state": "HOLD",
+      "packetVerdict": "HOLD",
+      "ownerRepo": "CapitalGlass-Documents",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/INDEX.md",
+      "nextAction": "resolve hold",
+      "advancementGate": "gate",
+      "doNotAdvance": ["do not advance"],
+      "evidenceRefs": ["work-progress/projects/INDEX.md"],
+      "commitRefs": [],
+      "blockers": [
+        {
+          "id": "fixture-blocker",
+          "owner": "CapitalGlass-Documents",
+          "summary": "Fixture blocker"
+        }
+      ],
+      "relatedPackets": []
+    }
+  ]
+}
