@@ -2,11 +2,11 @@
   "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
   "harvestId": "harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1",
   "missionClass": "harvest",
-  "sourceCommitSha": "15d3d4601642e790d6cc52d4671505bae5f772df",
+  "sourceCommitSha": "d84ad38fd34ad0b96e2f7322ee730956e61ea750",
   "sourceBranch": "main",
   "sourceRepo": "CapitalGlass-Cross-Agent",
   "createdAt": "2026-08-04T01:30:00.000Z",
-  "updatedAt": "2026-08-04T01:30:00.000Z",
+  "updatedAt": "2026-08-04T02:20:00.000Z",
   "retrievalResult": "INDEX_HIT",
   "cacheResult": "CACHE_MISS",
   "overallHarvestVerdict": "HARVEST_COMPLETE",
@@ -15,7 +15,7 @@
     "Claim GHA publication PASS when only local WESLEYDESK publisher ran",
     "Claim runner persistence without post-reboot runner-smoke SUCCESS",
     "Re-open slice6-post-merge-publication without new regression evidence",
-    "Run index:publish or harvest:publish-hub-seed from Cursor"
+    "Run index:publish from Cursor (operator WESLEYDESK only)"
   ],
   "threadAutopsy": {
     "tier": "T2",
@@ -32,14 +32,15 @@
   },
   "projection": {
     "projectionSyncStatus": "not-run",
-    "hubPublishStatus": "not-run",
+    "hubPublishStatus": "published",
     "hubPublishBlocker": null,
-    "note": "Recording only — operator runs index:publish and harvest:publish-hub-seed on WESLEYDESK"
+    "hubPublicationReceipt": "artifacts/agent-runs/harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1/hub-publication-receipt.json",
+    "note": "Hub seed published to L: @ ae1c427; full operational publish (ledger/Z/C) requires harvest:publish-intelligence-full on WESLEYDESK"
   },
   "ledgerLineage": {
     "ledgerPath": "work-progress/ACTIVE_WORK.md",
-    "ledgerContentHashBefore": "0c1b5454b30c3cabfdcd6fd31df969f653166a9ae8d5e37e8fa5330f2245f939",
-    "ledgerContentHashAfter": "9c9fad86db81bf96f11dd7e074ad66da9e2b67fb1d649371ed6142bce70e7910"
+    "ledgerContentHashBefore": "c79fe9fb1a9e1c8167c5119be6fb9678456f8f956ce3f9703a734c389ca49d08",
+    "ledgerContentHashAfter": "c79fe9fb1a9e1c8167c5119be6fb9678456f8f956ce3f9703a734c389ca49d08"
   },
   "supersededClaims": [
     {

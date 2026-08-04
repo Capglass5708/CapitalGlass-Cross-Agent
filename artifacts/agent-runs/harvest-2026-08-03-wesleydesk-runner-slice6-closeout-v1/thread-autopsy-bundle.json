@@ -1,15 +1,8 @@
 {
-  "schemaVersion": "thread-autopsy-bundle-v1@1.0.0",
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
   "harvestId": "harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1",
   "tier": "T2",
-  "recordedAt": "2026-08-04T01:30:00.000Z",
-  "retrieval": {
-    "primaryOutcome": "INDEX_HIT",
-    "cacheOutcome": "CACHE_MISS",
-    "scoutCommand": "npm run agent:index:scout -- --json",
-    "sourceCommitSha": "acd94ba6d5855bda1298d248188f6ae4faa32edf",
-    "rawScanRequired": false
-  },
+  "wasteLedgerStatus": "POPULATED",
   "duplicationCheck": {
     "registryConsulted": true,
     "commandIndexConsulted": true,
@@ -17,9 +10,8 @@
       "BY-KIND/active-work-blockers.json",
       "work-progress/harvest-packet-registry.json"
     ],
-    "duplicatesFound": 2
+    "checkedAt": "2026-08-04T02:15:00.000Z"
   },
-  "wasteLedgerStatus": "POPULATED",
   "waste": [
     {
       "wasteId": "TW-001",
@@ -212,148 +204,134 @@
       }
     }
   ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Treated ledger Slice 6 state as runtime truth without publication receipt",
+      "whereItHappened": "Slice 6 closeout investigation",
+      "whyItWasWrong": "Ledger can lag runtime; award requires live publication receipt at current SHA",
+      "correctFirstMove": "Read runtime/index-publication/latest.json and freshness gate first",
+      "preventiveControl": "harvest:slice6-blind-retrieval + receipt hash check",
+      "seedTarget": "IH-THREAD-SLICE6-CLOSEOUT-001",
+      "executionDeltaId": "ED-002"
+    },
+    {
+      "wrongMoveId": "WM-002",
+      "summary": "Declared runner done without reboot persistence proof",
+      "whereItHappened": "WESLEYDESK runner bootstrap closeout",
+      "whyItWasWrong": "Runner went offline after Windows reboot until watchdog tasks installed",
+      "correctFirstMove": "Install watchdog + prove runner-smoke post-reboot before closeout",
+      "preventiveControl": "ensure-wesleydesk-runner-wsl.sh in install path",
+      "seedTarget": "IH-THREAD-WESLEYDESK-REBOOT-001",
+      "executionDeltaId": "ED-003"
+    }
+  ],
   "duplicateWork": [
     {
       "duplicateId": "DW-001",
-      "description": "Runner bootstrap overlap with ryzen9desk-managed-executor-v1 patterns",
+      "subject": "Runner bootstrap overlap with ryzen9desk-managed-executor-v1 patterns",
       "firstKnownInstance": "harvest-current-cross-thread-state-v2 / ryzen9desk-managed-executor-v1",
       "priorIndexSlice": "work-progress/harvest-packet-registry.json",
-      "whyMissed": "Different host (WESLEYDESK vs RYZEN9DESK) — acceptable parallel but install scripts should share lib",
-      "evidenceRefs": ["work-progress/projects/2026-08-03_ryzen9desk-managed-executor-v1.md"]
+      "whyRepeated": "Different host (WESLEYDESK vs RYZEN9DESK) — acceptable parallel but install scripts should share lib",
+      "avoidableBy": "Shared runner lib between desk hosts",
+      "recommendedAction": "canonicalize"
     },
     {
       "duplicateId": "DW-002",
-      "description": "Publication closeout attempted before runner existed — repeated queue diagnosis",
+      "subject": "Publication closeout attempted before runner existed — repeated queue diagnosis",
       "firstKnownInstance": "cross-agent-index-publication-v1 / GHA 30861642734",
       "priorIndexSlice": "BY-KIND/active-work-blockers.json",
-      "whyMissed": "Infrastructure blocker not indexed as runner-missing until this thread",
-      "evidenceRefs": ["GHA run 30861642734"]
+      "whyRepeated": "Infrastructure blocker not indexed as runner-missing until this thread",
+      "avoidableBy": "Index runner-missing blocker in active-work-blockers slice",
+      "recommendedAction": "index"
     }
   ],
   "roiBacklog": [
     {
       "rank": 1,
       "title": "WESLEYDESK runner install one-shot with persistence baked in",
+      "whyItPays": "Eliminates post-reboot operator fix-it cycles and TW-003/TW-006 waste",
+      "effort": "medium",
       "savedWasteIds": ["TW-003", "TW-006"],
       "ownerRepo": "CapitalGlass-Cross-Agent",
-      "promotionClass": "POLICY_GATED",
-      "description": "Merge ensure script + scheduled tasks into runner:install default path"
+      "seedAs": "runbook",
+      "suggestedWorkPackageId": "wesleydesk-runner-persistence-v1"
     },
     {
       "rank": 2,
       "title": "Host-authority preflight gate before any GHA runner work",
+      "whyItPays": "Prevents wasted install attempts from wrong host (TW-001)",
+      "effort": "low",
       "savedWasteIds": ["TW-001"],
       "ownerRepo": "CapitalGlass-Cross-Agent",
-      "promotionClass": "POLICY_GATED",
-      "description": "Fail closed if mutation host !== WESLEYDESK for index-publication"
+      "seedAs": "rule",
+      "suggestedWorkPackageId": "host-authority-runner-gate-v1"
     },
     {
       "rank": 3,
       "title": "Slice 6 closeout verifier script",
+      "whyItPays": "Single command checks receipt + live SHA + blind retrieval (TW-004)",
+      "effort": "low",
       "savedWasteIds": ["TW-004"],
       "ownerRepo": "CapitalGlass-Cross-Agent",
-      "promotionClass": "AUTOMATIC",
-      "description": "Single command checks receipt + live SHA + blind retrieval"
+      "seedAs": "command",
+      "suggestedWorkPackageId": "slice6-closeout-verifier-v1"
     },
     {
       "rank": 4,
       "title": "Auto-publisher v1.1 activation work package",
+      "whyItPays": "Unlocks push-triggered index publication after runner persistence proven",
+      "effort": "medium",
       "savedWasteIds": [],
       "ownerRepo": "CapitalGlass-Cross-Agent",
-      "promotionClass": "HUMAN_REVIEW",
-      "description": "Push trigger on index-publication.yml after runner persistence proven"
+      "seedAs": "owner-artifact",
+      "suggestedWorkPackageId": "cross-agent-index-auto-publisher-activation-v1"
     },
     {
       "rank": 5,
       "title": "Merge AppBuilder drift-probe fix to main",
+      "whyItPays": "Unblocks structured-ledger ingest parity for index freshness lane",
+      "effort": "low",
       "savedWasteIds": [],
       "ownerRepo": "CG-AppBuilder-MCP",
-      "promotionClass": "HUMAN_REVIEW",
-      "description": "feat/three-way-agent-improvement-intelligence-appbuilder-v1 @ 0f790b9a"
+      "seedAs": "owner-artifact",
+      "suggestedWorkPackageId": "three-way-agent-improvement-intelligence-appbuilder-v1"
     }
   ],
   "doNotAdvanceMap": [
     {
-      "claimId": "THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL",
-      "status": "CLEARED",
-      "lastKnownEvidence": "slice6-closeout-receipt-v1.json @ acd94ba all gates PASS",
-      "forbiddenUntil": null
+      "awardOrVerdict": "THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL",
+      "currentStatus": "CLOSED",
+      "doNotClaimUntil": ["Slice 6 regression with new evidence"],
+      "lastKnownEvidence": [
+        "slice6-closeout-receipt-v1.json @ acd94ba all gates PASS",
+        "artifacts/agent-runs/three-way-agent-improvement-intelligence-v1/post-publication-blind-retrieval-v1.json"
+      ]
     },
     {
-      "claimId": "AUTO_PUBLISHER_V1_1_ACTIVE",
-      "status": "ACTIVE_GUARD",
-      "lastKnownEvidence": "cross-agent-index-auto-publisher-activation-v1 RUNNER_ONLINE only",
-      "forbiddenUntil": "workflow-path NOOP_CURRENT with push trigger"
+      "awardOrVerdict": "AUTO_PUBLISHER_V1_1_ACTIVE",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "workflow-path NOOP_CURRENT with push trigger",
+        "GHA index-publication SUCCESS on new commit"
+      ],
+      "lastKnownEvidence": [
+        "cross-agent-index-auto-publisher-activation-v1 RUNNER_ONLINE only",
+        "GHA run 30866381810 local publisher PASS"
+      ],
+      "proofCommandId": "index-publication-push-trigger"
     },
     {
-      "claimId": "WESLEYDESK_RUNNER_PERSISTENT",
-      "status": "ACTIVE_GUARD",
-      "lastKnownEvidence": "GHA 30868225285 after reboot fix — cold reboot proof still pending",
-      "forbiddenUntil": "runner-smoke SUCCESS after Windows reboot without manual SSH"
-    }
-  ],
-  "mistakes": [
-    {
-      "wrongMoveId": "WM-001",
-      "summary": "Treated ledger Slice 6 state as runtime truth without publication receipt",
-      "actualExecution": "Award investigation delayed until user pushed proceed",
-      "optimalExecution": "Read runtime/index-publication/latest.json and freshness gate first",
-      "preventiveControl": "harvest:slice6-blind-retrieval + receipt hash check",
-      "evidenceRefs": ["TE-005"]
-    },
-    {
-      "wrongMoveId": "WM-002",
-      "summary": "Declared runner done without reboot persistence proof",
-      "actualExecution": "Runner offline after reboot; user fix it",
-      "optimalExecution": "Install watchdog + prove runner-smoke post-reboot before closeout",
-      "preventiveControl": "ensure-wesleydesk-runner-wsl.sh in install path",
-      "evidenceRefs": ["TE-007", "TE-008"]
-    }
-  ],
-  "commands": [
-    {
-      "commandId": "wesleydesk-runner-ensure",
-      "command": "wsl.exe -d Ubuntu-24.04 -u root bash /home/wesley/repos/CapitalGlass-Cross-Agent/scripts/runner/ensure-wesleydesk-runner-wsl.sh",
-      "host": "WESLEYDESK Windows",
-      "provesGate": "runner-online-recovery",
-      "expectedPassSignal": "github-runner-cross-agent active"
-    },
-    {
-      "commandId": "runner-smoke-gha",
-      "command": "gh workflow run runner-smoke.yml",
-      "host": "WESLEY_WORK",
-      "provesGate": "gha-runner-labels",
-      "expectedPassSignal": "workflow SUCCESS on self-hosted wesleydesk wsl2"
-    },
-    {
-      "commandId": "slice6-blind-retrieval",
-      "command": "npm run harvest:slice6-blind-retrieval",
-      "host": "WESLEYDESK WSL",
-      "provesGate": "post-publication-blind-retrieval",
-      "expectedPassSignal": "POST_PUBLICATION_BLIND_RETRIEVAL_PASS"
-    },
-    {
-      "commandId": "index-freshness-gate",
-      "command": "npm run index:freshness-gate",
-      "host": "WESLEYDESK WSL",
-      "provesGate": "layer-parity",
-      "expectedPassSignal": "PASS with matching sourceCommitSha"
-    }
-  ],
-  "protocolUpgrades": [
-    {
-      "upgradeId": "PU-001",
-      "seedAs": "IH-THREAD-WESLEYDESK-RUNNER-001",
-      "ownerRepo": "CapitalGlass-Cross-Agent",
-      "promotionClass": "POLICY_GATED",
-      "summary": "WESLEYDESK index publication requires self-hosted runner on desk — not WESLEY_WORK",
-      "futureAgentInstructions": {
-        "whenThisAppears": "index-publication.yml queued forever",
-        "startAt": ["docs/runbooks/wesleydesk-index-publication-runner.md", "BY-KIND/host-authority.json"],
-        "runPreflight": ["npm run runner:preflight"],
-        "doNot": ["Install runner from WESLEY_WORK", "Claim Slice 6 without live publication receipt"],
-        "proveBeforeClaiming": ["gh api .../actions/runners total_count > 0", "runner-smoke SUCCESS"]
-      }
+      "awardOrVerdict": "WESLEYDESK_RUNNER_PERSISTENT",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "runner-smoke SUCCESS after Windows cold reboot without manual SSH"
+      ],
+      "lastKnownEvidence": [
+        "GHA 30868225285 after reboot fix",
+        "ensure-wesleydesk-runner-wsl.sh + scheduled tasks installed"
+      ],
+      "proofCommandId": "runner-smoke-post-reboot"
     }
   ]
 }

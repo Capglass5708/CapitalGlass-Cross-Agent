@@ -1,6 +1,6 @@
 # Harvest summary — derived view
 
-**Authority:** `harvest-manifest-v1.json` (`d2faaee5aed2…`)
+**Authority:** `harvest-manifest-v1.json` (`56876f63b450…`)
 **Work package:** `harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1`
 **Mission class:** `harvest`
 **Verdict:** `HARVEST_COMPLETE`
@@ -22,9 +22,9 @@
 - Claim GHA publication PASS when only local WESLEYDESK publisher ran
 - Claim runner persistence without post-reboot runner-smoke SUCCESS
 - Re-open slice6-post-merge-publication without new regression evidence
-- Run index:publish or harvest:publish-hub-seed from Cursor
+- Run index:publish from Cursor (operator WESLEYDESK only)
 
 ## Projection sync
 
-Status: `not-run` (hub: `not-run`)
+Status: `not-run` (hub: `published`)
 

@@ -1,42 +1,19 @@
 {
   "schemaVersion": "cross-agent-index-publication-receipt-v1@1.0.0",
-  "generatedAt": "2026-08-04T01:44:47.856Z",
-  "runId": "local-1785807851009",
-  "pinnedSha": "d84ad38fd34ad0b96e2f7322ee730956e61ea750",
-  "publishedSha": "d84ad38fd34ad0b96e2f7322ee730956e61ea750",
-  "contentHash": "bf52893be6aaac3a59ae63653b511a4c677e8ced709f728d26e539308aec750e",
-  "verdict": "PUBLISH_PASS",
+  "generatedAt": "2026-08-04T01:46:00.446Z",
+  "runId": "local-1785807949808",
+  "pinnedSha": "fee63bb366027632dcc9ec9199f464b16e31439f",
+  "contentHash": "a0cf355aab198acc373788a1359f97dbd17cf15c05de29c9bc89b0ca1c616038",
+  "verdict": "PUBLICATION_HOLD",
   "layers": {
-    "git": {
-      "sourceCommitSha": "d84ad38fd34ad0b96e2f7322ee730956e61ea750"
-    },
     "intelligenceHub": {
       "mounted": true,
       "path": "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index"
     }
   },
-  "freshnessGate": {
-    "schemaVersion": "cross-agent-index-freshness-gate-v1@1.0.0",
-    "generatedAt": "2026-08-04T01:44:47.832Z",
-    "verdict": "PASS",
-    "gitHead": "d84ad38fd34ad0b96e2f7322ee730956e61ea750",
-    "layers": {
-      "git": {
-        "sourceCommitSha": "d84ad38fd34ad0b96e2f7322ee730956e61ea750"
-      },
-      "supabase": {
-        "sourceCommitSha": "d84ad38fd34ad0b96e2f7322ee730956e61ea750",
-        "verdict": "IN_SYNC",
-        "inSync": true
-      },
-      "intelligenceHub": {
-        "sourceCommitSha": "d84ad38fd34ad0b96e2f7322ee730956e61ea750",
-        "available": true,
-        "inSync": true,
-        "path": "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/active-work-ledger/LATEST.json"
-      }
-    },
-    "issues": []
-  },
-  "durationMs": 36858
+  "freshnessGate": null,
+  "durationMs": 10644,
+  "issues": [
+    "Command failed: CROSS_AGENT_LEDGER_INGEST_APPROVED=1 doppler run --project cg-mcp --config dev -- npm run cross-agent-ledger:ingest -- --apply --repo=/home/wesle/repos/CapitalGlass-Cross-Agent"
+  ]
 }
