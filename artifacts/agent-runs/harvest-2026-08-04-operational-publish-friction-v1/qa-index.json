@@ -1,0 +1,242 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-operational-publish-friction-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-FRESHNESS-TREADMILL-001",
+      "questionId": "IHFRESHNESST",
+      "canonicalQuestion": "What is the index freshness treadmill after operational publish?",
+      "alternateQuestions": [
+        "Should I keep running index:publish after OPERATIONAL receipt exists?",
+        "How do I explain freshness FAIL when harvest is already OPERATIONAL?"
+      ],
+      "shortAnswer": "Committing index-publication receipts advances git HEAD past L:/Supabase SHA; repeated index:publish after each commit is a loop, not a blocker for OPERATIONAL harvest.",
+      "detailedAnswer": "Index freshness treadmill after receipt commits",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T06:21:22.111Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-operational-publish-friction-v1/seed-packets/IH-FRESHNESS-TREADMILL-001.json"
+      ],
+      "authorityCommit": [
+        "92ade4b"
+      ],
+      "evidenceUrls": [
+        "artifacts/agent-runs/cross-agent-index-freshness-gate-v1/latest.json",
+        "EVT-307",
+        "82f817c"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-04-operational-publish-friction-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Operator says stop or freshness FAIL after OPERATIONAL receipt exists",
+        "startAt": [
+          "artifacts/agent-runs/<harvest-id>/operational-publication-receipt.json",
+          "npm run index:freshness-gate"
+        ],
+        "runPreflight": [],
+        "doNot": [
+          "Loop index:publish after every receipt commit",
+          "Treat freshness DRIFT as failed operational publish when OPERATIONAL receipt exists"
+        ],
+        "proveBeforeClaiming": [
+          "operational-publication-receipt.json verdict OPERATIONAL",
+          "Explain git HEAD vs L: SHA delta separately from harvest status"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-OPERATIONAL-LEDGER-SYNC-ORDER-001",
+      "questionId": "IHOPERATIONA",
+      "canonicalQuestion": "Why does publish-intelligence-full fail at ledger-sync?",
+      "alternateQuestions": [
+        "Where should ledger sync run relative to sync-derived and hub publish?",
+        "How do I make a harvest operational without BLOCKED_GIT_MUTATION?"
+      ],
+      "shortAnswer": "harvest:publish-intelligence-full must not run index:sync-publication while harvest writes dirty git; use --skip-ledger-sync when drift-probe IN_SYNC.",
+      "detailedAnswer": "Operational publish: ledger sync only on clean git or skip when IN_SYNC",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T06:21:22.111Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-operational-publish-friction-v1/seed-packets/IH-OPERATIONAL-LEDGER-SYNC-ORDER-001.json"
+      ],
+      "authorityCommit": [
+        "92ade4b"
+      ],
+      "evidenceUrls": [
+        "scripts/harvest/lib/publish-intelligence-full-lib.mjs",
+        "CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-structured-ledger-projection-v1/ingest-apply-receipt.json#derivedOnly",
+        "1225cc9"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "command",
+        "harvest-2026-08-04-operational-publish-friction-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "futureAgentInstructions": {
+        "whenThisAppears": "make operational or harvest:publish-intelligence-full fails at index:sync-publication",
+        "startAt": [
+          "CG-AppBuilder-MCP cross-agent-ledger:drift-probe",
+          "git -C CapitalGlass-Cross-Agent status --porcelain"
+        ],
+        "runPreflight": [
+          "npm run cross-agent-ledger:drift-probe -- --repo=CapitalGlass-Cross-Agent"
+        ],
+        "doNot": [
+          "Run index:sync-publication while sync-derived or hub publish is writing files",
+          "Assume Supabase outage when verdict is BLOCKED_GIT_MUTATION"
+        ],
+        "proveBeforeClaiming": [
+          "drift-probe IN_SYNC or ingest APPLIED",
+          "operational-publication-receipt.json verdict OPERATIONAL"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "command"
+    },
+    {
+      "ihPfspId": "IH-OPERATIONAL-SKIP-LEDGER-FLAG-001",
+      "questionId": "IHOPERATIONA",
+      "canonicalQuestion": "What CLI flag skips ledger sync in publish-intelligence-full?",
+      "alternateQuestions": [
+        "Break-glass operational publish without index:sync-publication?",
+        "How was ingest-closeout harvest made OPERATIONAL?"
+      ],
+      "shortAnswer": "When cross-agent-ledger:drift-probe is IN_SYNC and ingest would hit BLOCKED_GIT_MUTATION, run harvest:publish-intelligence-full --skip-ledger-sync.",
+      "detailedAnswer": "Break-glass: --skip-ledger-sync for operational publish",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T06:21:22.111Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-operational-publish-friction-v1/seed-packets/IH-OPERATIONAL-SKIP-LEDGER-FLAG-001.json"
+      ],
+      "authorityCommit": [
+        "92ade4b"
+      ],
+      "evidenceUrls": [
+        "artifacts/agent-runs/harvest-2026-08-04-harvest-publication-ingest-closeout-v1/operational-publication-receipt.json",
+        "scripts/harvest/publish-intelligence-full.mjs"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-04-operational-publish-friction-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Operational publish blocked at ledger-sync but drift-probe IN_SYNC",
+        "startAt": [
+          "npm run cross-agent-ledger:drift-probe",
+          "ingest-apply-receipt.json"
+        ],
+        "runPreflight": [
+          "npm run harvest:publish-intelligence-full -- --harvest-id=<id> --dry-run"
+        ],
+        "doNot": [
+          "Skip ledger sync when drift-probe shows DRIFT_DETECTED",
+          "Claim FULLY_SEEDED if lLedger.ok is false without separate ingest proof"
+        ],
+        "proveBeforeClaiming": [
+          "operational-publication-receipt.json",
+          "drift-probe IN_SYNC or ingest APPLIED at current HEAD"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "runbook"
+    },
+    {
+      "ihPfspId": "IH-RENDER-INDEX-OPERATIONAL-GATE-001",
+      "questionId": "IHRENDERINDE",
+      "canonicalQuestion": "Why does harvest:validate fail with INDEX generated section missing packet?",
+      "alternateQuestions": [
+        "What runs before validate in publish-intelligence-full?",
+        "How do I fix missing HARVEST-PACKET-INDEX rows?"
+      ],
+      "shortAnswer": "publish-intelligence-full must run harvest:render-index before harvest:validate or INDEX.md generated section lacks manifest packet IDs.",
+      "detailedAnswer": "harvest:render-index before validate in operational pipeline",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T06:21:22.111Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-operational-publish-friction-v1/seed-packets/IH-RENDER-INDEX-OPERATIONAL-GATE-001.json"
+      ],
+      "authorityCommit": [
+        "92ade4b"
+      ],
+      "evidenceUrls": [
+        "f0f275c",
+        "scripts/harvest/lib/publish-intelligence-full-lib.mjs",
+        "work-progress/projects/INDEX.md"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "command",
+        "harvest-2026-08-04-operational-publish-friction-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "harvest:validate FAIL missing packet in INDEX generated section",
+        "startAt": [
+          "work-progress/projects/INDEX.md#HARVEST-PACKET-INDEX"
+        ],
+        "runPreflight": [
+          "npm run harvest:render-index -- <harvest-id>"
+        ],
+        "doNot": [
+          "Hand-edit INDEX generated table without re-running render-index"
+        ],
+        "proveBeforeClaiming": [
+          "harvest:validate PASS",
+          "INDEX contains all manifest packetIds"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "command"
+    }
+  ]
+}

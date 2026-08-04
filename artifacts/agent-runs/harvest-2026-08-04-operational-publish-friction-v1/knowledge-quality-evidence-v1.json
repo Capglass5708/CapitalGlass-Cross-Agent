@@ -1,0 +1,165 @@
+{
+  "schemaVersion": "harvest-knowledge-quality-evidence-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-operational-publish-friction-v1",
+  "materialEvents": [
+    {
+      "eventId": "EVT-301",
+      "summary": "Operator requested make operational for ingest-closeout harvest",
+      "material": true,
+      "representations": ["decision", "command", "future_action", "evidence"]
+    },
+    {
+      "eventId": "EVT-302",
+      "summary": "First operational run failed validate — INDEX missing manifest packet rows",
+      "material": true,
+      "representations": ["failure", "mistake", "faster_path", "evidence"]
+    },
+    {
+      "eventId": "EVT-303",
+      "summary": "harvest:render-index added before validate; validate PASS",
+      "material": true,
+      "representations": ["correction", "command", "protocol_improvement", "result"]
+    },
+    {
+      "eventId": "EVT-304",
+      "summary": "Ledger ingest blocked with BLOCKED_GIT_MUTATION after hub publish dirtied git",
+      "material": true,
+      "representations": ["failure", "blocker", "mistake", "evidence", "do_not_advance"]
+    },
+    {
+      "eventId": "EVT-305",
+      "summary": "Reordered ledger sync; still blocked by freshness receipt write during ingest",
+      "material": true,
+      "representations": ["failure", "repeated_work", "evidence", "faster_path"]
+    },
+    {
+      "eventId": "EVT-306",
+      "summary": "OPERATIONAL achieved with --skip-ledger-sync when drift-probe IN_SYNC",
+      "material": true,
+      "representations": ["decision", "result", "command", "evidence"]
+    },
+    {
+      "eventId": "EVT-307",
+      "summary": "Operator stopped agent chasing index:publish after OPERATIONAL",
+      "material": true,
+      "representations": ["correction", "failure", "repeated_work", "do_not_advance"]
+    },
+    {
+      "eventId": "EVT-308",
+      "summary": "Background index:publish at fe5c101; second run aborted",
+      "material": true,
+      "representations": ["result", "evidence", "protocol_improvement", "future_action"]
+    },
+    {
+      "eventId": "EVT-309",
+      "summary": "Thread autopsy harvest requested on operational friction session",
+      "material": true,
+      "representations": ["decision", "protocol_improvement", "evidence", "future_action"]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "DEC-301",
+      "eventRefs": ["EVT-306"],
+      "decision": "Use harvest:publish-intelligence-full --skip-ledger-sync when cross-agent-ledger drift-probe is IN_SYNC",
+      "reason": "Ledger ingest blocks on git porcelain changes from operational pipeline artifact writes",
+      "alternativesRejected": [
+        "Keep index:sync-publication inside pipeline after hub writes",
+        "Loop index:publish after every receipt commit"
+      ],
+      "consequences": [
+        "OPERATIONAL receipt without blocking on transient git dirty state",
+        "Freshness drift may remain until single batch publish at stable HEAD"
+      ],
+      "authority": "operator",
+      "evidenceRefs": ["EVT-304", "EVT-305", "EVT-306"]
+    }
+  ],
+  "corrections": [
+    {
+      "id": "COR-301",
+      "material": true,
+      "incorrectAgentClaim": "Continued index:publish loop was required to finish operational publish",
+      "operatorCorrection": "Stop — OPERATIONAL was already complete; freshness treadmill is separate",
+      "correctedTruth": "OPERATIONAL receipt is the harvest publish verdict; index freshness drift from receipt commits is expected and optional",
+      "futureAgentRule": "After OPERATIONAL receipt exists, do not loop index:publish unless operator explicitly requests freshness parity",
+      "affectedRecords": ["IH-FRESHNESS-TREADMILL-001", "OF-301"]
+    }
+  ],
+  "durableClaims": [
+    {
+      "id": "CLM-301",
+      "claim": "publish-intelligence-full must run harvest:render-index before harvest:validate",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["EVT-302", "EVT-303", "f0f275c"],
+      "eventRefs": ["EVT-302", "EVT-303"]
+    },
+    {
+      "id": "CLM-302",
+      "claim": "Ledger ingest during operational publish fails with BLOCKED_GIT_MUTATION when git is dirty from hub writes",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["EVT-304", "EVT-305"],
+      "eventRefs": ["EVT-304", "EVT-305"]
+    },
+    {
+      "id": "CLM-303",
+      "claim": "Receipt commits advance git HEAD past L:/Supabase SHA causing apparent freshness drift without invalidating OPERATIONAL harvest",
+      "confidence": "PARTIALLY_VERIFIED",
+      "evidenceRefs": ["EVT-307", "EVT-308", "cross-agent-index-freshness-gate-v1/latest.json"],
+      "eventRefs": ["EVT-307", "EVT-308"]
+    }
+  ],
+  "contradictions": [],
+  "mistakes": [
+    {
+      "id": "MIST-301",
+      "eventRefs": ["EVT-304", "EVT-305"],
+      "attemptedAction": "Run index:sync-publication inside operational pipeline after hub catalog writes",
+      "whyItSeemedReasonable": "Legacy publish-intelligence-full always ended with ledger sync",
+      "actualOutcome": "BLOCKED_GIT_MUTATION — ingest refuses dirty worktree",
+      "rootCause": "Operational pipeline writes harvest artifacts before ledger sync",
+      "optimalFirstMove": "Drift-probe IN_SYNC then --skip-ledger-sync OR ledger sync on clean git before writes",
+      "preventiveControl": "IH-OPERATIONAL-LEDGER-SYNC-ORDER-001 and pipeline reorder in publish-intelligence-full-lib"
+    },
+    {
+      "id": "MIST-302",
+      "eventRefs": ["EVT-307", "EVT-308"],
+      "attemptedAction": "Repeated index:publish after each receipt commit",
+      "whyItSeemedReasonable": "Freshness gate reported DRIFT after commits",
+      "actualOutcome": "Operator stop — treadmill without operational benefit",
+      "rootCause": "Receipt commits advance HEAD; each publish pins new SHA",
+      "optimalFirstMove": "Treat OPERATIONAL receipt as done; explain drift separately",
+      "preventiveControl": "IH-FRESHNESS-TREADMILL-001"
+    }
+  ],
+  "blindRetrieval": [
+    {
+      "question": "Why does harvest:validate fail with missing packet IDs in INDEX generated section during operational publish?",
+      "expectedSeedId": "IH-RENDER-INDEX-OPERATIONAL-GATE-001",
+      "lessonFocus": "render-index-before-validate",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "What is the index freshness treadmill after OPERATIONAL harvest publish?",
+      "expectedSeedId": "IH-FRESHNESS-TREADMILL-001",
+      "lessonFocus": "freshness-treadmill-after-receipt-commits",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "What CLI flag skips ledger sync in publish-intelligence-full?",
+      "expectedSeedId": "IH-OPERATIONAL-SKIP-LEDGER-FLAG-001",
+      "lessonFocus": "skip-ledger-when-in-sync",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "What order should ledger sync run relative to hub publish writes?",
+      "expectedSeedId": "IH-OPERATIONAL-LEDGER-SYNC-ORDER-001",
+      "lessonFocus": "ledger-sync-ordering",
+      "genericKeywordOnly": false
+    }
+  ],
+  "humanReview": {
+    "required": false,
+    "reasons": []
+  }
+}

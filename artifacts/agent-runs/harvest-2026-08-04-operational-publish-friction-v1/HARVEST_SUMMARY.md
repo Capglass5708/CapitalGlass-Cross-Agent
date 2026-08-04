@@ -1,6 +1,6 @@
 # Harvest summary — derived view
 
-**Authority:** `harvest-manifest-v1.json` (`43a276402637…`)
+**Authority:** `harvest-manifest-v1.json` (`6cfc8187d73e…`)
 **Work package:** `harvest-2026-08-04-operational-publish-friction-v1`
 **Mission class:** `chat-thread-closeout-autopsy-harvest-v1`
 **Verdict:** `HARVEST_COMPLETE`
@@ -24,5 +24,5 @@
 
 ## Projection sync
 
-Status: `not-run` (hub: `not-run`)
+Status: `synced` (hub: `published`)
 

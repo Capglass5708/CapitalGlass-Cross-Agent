@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "cross-agent-harvest-operational-publication-receipt-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-operational-publish-friction-v1",
+  "generatedAt": "2026-08-04T06:23:00.266Z",
+  "startedAt": "2026-08-04T06:20:03.852Z",
+  "verdict": "OPERATIONAL",
+  "sourceCommitSha": "92ade4b0346531027f5edb550df74d91e2b05ef5",
+  "tier": "T2",
+  "authorityModel": "CHAT_THREAD_STRUCTURED_TRUTH",
+  "intelligenceHubRoot": "/mnt/l/Capital-Glass-Intelligence-Hub",
+  "layers": {
+    "git": {
+      "path": "/home/wesle/repos/CapitalGlass-Cross-Agent/artifacts/agent-runs/harvest-2026-08-04-operational-publish-friction-v1/harvest-manifest-v1.json",
+      "sourceCommitSha": "92ade4b0346531027f5edb550df74d91e2b05ef5"
+    },
+    "lCatalog": {
+      "ok": true,
+      "seedCount": 4,
+      "byKindSlice": "00-master-index/BY-KIND/thread-autopsy-index.json"
+    },
+    "lLedger": {
+      "ok": false
+    },
+    "cHotRouting": {
+      "ok": false,
+      "code": "SKIP"
+    },
+    "zAiCache": {
+      "ok": true
+    },
+    "hostFanout": {
+      "ok": true,
+      "code": "SYNC_HOSTS_DISABLED",
+      "hosts": []
+    },
+    "supabaseThreadAutopsy": {
+      "ok": false,
+      "code": "SUPABASE_PROJECTION_FAIL",
+      "error": "Command failed: npm run intelligence-hub:thread-autopsy:project-supabase -- --harvest-id=harvest-2026-08-04-operational-publish-friction-v1 --apply --json\nnpm notice run intelligence-hub:thread-autopsy:project-supabase\nnpm notice run node scripts/intelligence-hub/thread-autopsy/project-supabase.mjs --harvest-id=harvest-2026-08-04-operational-publish-friction-v1 --apply --json\nnpm notice run npx\nnpm notice run 'supabase' db query --linked --dns-resolver https -f /home/wesle/repos/CG-AppBuilder-MCP/artifacts/agent-runs/platform-intelligence-graph-v1a/v1a2/.live-upsert-hub-slice-thread-autopsy-index.sql\nInitialising login role...\n\n"
+    }
+  },
+  "stages": [
+    {
+      "label": "sync-derived",
+      "ok": true
+    },
+    {
+      "label": "render-index",
+      "ok": true
+    },
+    {
+      "label": "duplication-preflight",
+      "ok": true,
+      "verdict": "PASS"
+    },
+    {
+      "label": "validate",
+      "ok": true
+    },
+    {
+      "label": "validate-autopsy",
+      "ok": true
+    },
+    {
+      "label": "blind-retrieval",
+      "ok": true,
+      "verdict": "BLIND_RETRIEVAL_PASS"
+    },
+    {
+      "label": "hub-slices",
+      "ok": true,
+      "doNotAdvanceCount": 7,
+      "threadAutopsyIndex": "00-master-index/BY-KIND/thread-autopsy-index.json"
+    },
+    {
+      "label": "hot-routing-index",
+      "ok": false,
+      "error": "Command failed: npm run intelligence-hub:publish-hot-routing-index -- --json\nnpm notice run intelligence-hub:publish-hot-routing-index\nnpm notice run node scripts/intelligence-hub/index-freshness/publish-hot-routing-index.mjs --json\nfile:///home/wesle/repos/CG-AppBuilder-MCP/scripts/intelligence-hub/index-freshness/lib/hook-runtime-contract.mjs:19\n    throw new Error(`hook runtime contract missing: ${contractPath}`);\n          ^\n\nError: hook runtime contract missing: /mnt/c/Developer/repos/CG-AppBuilder-MCP/agent-packs/three-way-agent/contracts/intelligence-hub-scout-hook-runtime.v1.json\n    at loadHookRuntimeContract (file:///home/wesle/repos/CG-AppBuilder-MCP/scripts/intelligence-hub/index-freshness/lib/hook-runtime-contract.mjs:19:11)\n    at publishHotRoutingIndex (file:///home/wesle/repos/CG-AppBuilder-MCP/scripts/intelligence-hub/index-freshness/lib/hot-routing-index.mjs:135:24)\n    at file:///home/wesle/repos/CG-AppBuilder-MCP/scripts/intelligence-hub/index-freshness/publish-hot-routing-index.mjs:38:16\n    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)\n    at async node:internal/modules/esm/loader:643:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.18.0\n"
+    },
+    {
+      "label": "z-ai-cache-index",
+      "ok": true
+    },
+    {
+      "label": "thread-autopsy-supabase",
+      "ok": false,
+      "error": "Command failed: npm run intelligence-hub:thread-autopsy:project-supabase -- --harvest-id=harvest-2026-08-04-operational-publish-friction-v1 --apply --json\nnpm notice run intelligence-hub:thread-autopsy:project-supabase\nnpm notice run node scripts/intelligence-hub/thread-autopsy/project-supabase.mjs --harvest-id=harvest-2026-08-04-operational-publish-friction-v1 --apply --json\nnpm notice run npx\nnpm notice run 'supabase' db query --linked --dns-resolver https -f /home/wesle/repos/CG-AppBuilder-MCP/artifacts/agent-runs/platform-intelligence-graph-v1a/v1a2/.live-upsert-hub-slice-thread-autopsy-index.sql\nInitialising login role...\n\n"
+    }
+  ],
+  "contentHash": "af4a747d8089fbb25cd03383e8446976ddef2f6e0f516ba58e73a927a0ee0346"
+}

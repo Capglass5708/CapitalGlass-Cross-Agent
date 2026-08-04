@@ -1,0 +1,78 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-operational-skip-ledger-flag-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "92ade4b0346531027f5edb550df74d91e2b05ef5",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-operational-publish-friction-v1",
+      "seedId": "IH-OPERATIONAL-SKIP-LEDGER-FLAG-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T06:21:22.111Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "6e570002d499ad971aaece97c4a8336fd92559e4c22af7df0fa312a0db3a32ee"
+  },
+  "body": {
+    "seedId": "IH-OPERATIONAL-SKIP-LEDGER-FLAG-001",
+    "kind": "runbook",
+    "title": "Break-glass: --skip-ledger-sync for operational publish",
+    "summary": "When cross-agent-ledger:drift-probe is IN_SYNC and ingest would hit BLOCKED_GIT_MUTATION, run harvest:publish-intelligence-full --skip-ledger-sync.",
+    "canonicalQuestion": "What CLI flag skips ledger sync in publish-intelligence-full?",
+    "alternateQuestions": [
+      "Break-glass operational publish without index:sync-publication?",
+      "How was ingest-closeout harvest made OPERATIONAL?"
+    ],
+    "shortAnswer": "When cross-agent-ledger:drift-probe is IN_SYNC and ingest would hit BLOCKED_GIT_MUTATION, run harvest:publish-intelligence-full --skip-ledger-sync.",
+    "detailedAnswer": "Break-glass: --skip-ledger-sync for operational publish",
+    "retrievalQuestions": [
+      "What CLI flag skips ledger sync in publish-intelligence-full?",
+      "Break-glass operational publish without index:sync-publication?",
+      "How was ingest-closeout harvest made OPERATIONAL?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Operational publish blocked at ledger-sync but drift-probe IN_SYNC",
+      "startAt": [
+        "npm run cross-agent-ledger:drift-probe",
+        "ingest-apply-receipt.json"
+      ],
+      "runPreflight": [
+        "npm run harvest:publish-intelligence-full -- --harvest-id=<id> --dry-run"
+      ],
+      "doNot": [
+        "Skip ledger sync when drift-probe shows DRIFT_DETECTED",
+        "Claim FULLY_SEEDED if lLedger.ok is false without separate ingest proof"
+      ],
+      "proveBeforeClaiming": [
+        "operational-publication-receipt.json",
+        "drift-probe IN_SYNC or ingest APPLIED at current HEAD"
+      ]
+    },
+    "evidenceRefs": [
+      "artifacts/agent-runs/harvest-2026-08-04-harvest-publication-ingest-closeout-v1/operational-publication-receipt.json",
+      "scripts/harvest/publish-intelligence-full.mjs"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": 4,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Cross-Agent",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-operational-publish-friction-v1/seed-packets/IH-OPERATIONAL-SKIP-LEDGER-FLAG-001.json"
+    ],
+    "harvestId": "harvest-2026-08-04-operational-publish-friction-v1"
+  }
+}

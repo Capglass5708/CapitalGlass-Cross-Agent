@@ -20,7 +20,7 @@
       "artifacts/agent-runs/<harvest-id>/operational-publication-receipt.json",
       "npm run index:freshness-gate"
     ],
-    "runPreflight": [],
+    "runPreflight": ["npm run index:freshness-gate"],
     "doNot": [
       "Loop index:publish after every receipt commit",
       "Treat freshness DRIFT as failed operational publish when OPERATIONAL receipt exists"
