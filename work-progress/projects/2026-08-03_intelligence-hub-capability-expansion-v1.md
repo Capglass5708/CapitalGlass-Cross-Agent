@@ -5,7 +5,7 @@
 | Work package | `intelligence-hub-capability-expansion-v1` |
 | Date | 2026-08-03 |
 | Owner repo | CapitalGlass-Cross-Agent |
-| Verdict | `EXPANSION_CONTRACT_NEEDED` → wave 1 **IN_PROGRESS** |
+| Verdict | `WAVE1_SHIPPED` @ `164bda7` |
 | Mission class | harvest / index / organize |
 
 ## Objective

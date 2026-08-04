@@ -13,7 +13,7 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-08-04 |
-| Current focus | Slice 6 `MERGED_AWAITING_HUB_PUBLICATION`; harvest v2 + hub expansion wave 1 ready to commit/publish |
+| Current focus | Hub published @ `164bda7`; expansion wave 1 SHIPPED; Slice 6 blind retrieval gate remains |
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
@@ -38,12 +38,11 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Field | Value |
 | --- | --- |
 | Work package | `intelligence-hub-capability-expansion-v1` |
-| Verdict | **WAVE1_READY** — compile script + control slices + blocker map |
-| Artifacts | `artifacts/agent-runs/intelligence-hub-capability-expansion-v1/` |
-| Authority maps | `blocker-to-action-map.json`, `do-not-advance-registry.json`, `command-index.json` v1.1 |
-| Compiled slices | `work-progress/intelligence-hub-slices/` (`npm run index:compile-control-slices`) |
-| Tests | `test:index-control-slices` 7/7 PASS |
-| Next | Push + `index:publish` on WESLEYDESK after Slice 6 workflow 30861642734 |
+| Verdict | **WAVE1_SHIPPED** — `PUBLISH_PASS` @ `164bda7` |
+| Artifacts | `artifacts/agent-runs/intelligence-hub-capability-expansion-v1/` (`milestone-receipt-v1.json`) |
+| Publication | Git/Supabase/L: aligned; control slices on L: BY-KIND |
+| Tests | `test:index-control-slices` 7/7 PASS; idempotency `NOOP_CURRENT` |
+| Next | Slice 6 post-publication blind retrieval; wave 2 auto-publisher |
 
 ### 2026-08-03 CT — harvest-current-cross-thread-state-v2 HARVEST_COMPLETE
 
@@ -52,8 +51,8 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Work package | `harvest-current-cross-thread-state-v2` |
 | Verdict | **HARVEST_COMPLETE** — 9/9 packets; `harvest:validate` PASS |
 | Artifacts | `artifacts/agent-runs/harvest-current-cross-thread-state-v2/` |
-| Preserved | `THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL` not claimed; Slice 6 publication pending |
-| Next | Commit + hub publish with expansion slices |
+| Preserved | `THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL` not claimed; hub published @ `164bda7` |
+| Next | Post-publication blind retrieval for Slice 6 |
 
 ### 2026-08-03 CT — Cross-Agent index current + AI Cache Layer 0
 

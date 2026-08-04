@@ -1,16 +1,16 @@
 {
   "schemaVersion": "intelligence-hub-blockers-slice-v1@1.0.0",
   "updatedAt": "2026-08-04T00:20:00.000Z",
-  "openCount": 6,
+  "openCount": 4,
   "blockers": [
     {
       "blockerId": "slice6-post-merge-publication",
       "severity": "critical",
       "title": "Slice 6 post-merge hub publication",
-      "state": "OPEN",
+      "state": "PARTIAL",
       "ownerRepo": "CapitalGlass-Cross-Agent",
       "hostAuthority": "WESLEYDESK",
-      "nextAction": "Complete GitHub Actions publication workflow run 30861642734; verify layer parity (git/L/Supabase) and blind retrieval",
+      "nextAction": "Implement post-publication blind retrieval (IMP-0001..0004 forbidden in query); then evaluate THREE_WAY operational award",
       "commandIds": [
         "index-freshness-gate",
         "index-publish",
@@ -56,7 +56,7 @@
       "blockerId": "harvest-v2-publication-not-run",
       "severity": "low",
       "title": "Harvest v2 artifacts not yet published to hub",
-      "state": "OPEN",
+      "state": "CLOSED",
       "ownerRepo": "CapitalGlass-Cross-Agent",
       "hostAuthority": "WESLEYDESK",
       "nextAction": "Commit harvest v2 + expansion slices; run index:publish after compile-control-slices",
