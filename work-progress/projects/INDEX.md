@@ -38,12 +38,12 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 
 | Packet ID | State | Verdict | Owner repo | Project file | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `ultimate-sdlc-runner-go-v1` | GO | PASS | CG-AppBuilder-MCP | [ultimate-sdlc-runner-go-v1.md](./ultimate-sdlc-runner-go-v1.md) | Use receipt 0924fd5d as proof before material suite work |
-| `shared-db-reconciliation-v1` | RECONCILIATION_COMPLETE | PASS | CG-AppBuilder-MCP | [shared-db-reconciliation-v1.md](./shared-db-reconciliation-v1.md) | Apply EXPECTED_MIGRATION files via owning-repo flows; do not refresh snapshot without classification |
-| `wsl-supabase-cli-spawn-v1` | SHIPPED | PASS | CG-AppBuilder-MCP | [wsl-supabase-cli-spawn-v1.md](./wsl-supabase-cli-spawn-v1.md) | Use scripts/lib/supabase-cli-spawn.mjs in all cg-shared-db scripts |
-| `asg-shared-db-gate-alignment-v1` | SHIPPED | PASS | CG-AppBuilder-MCP | [asg-shared-db-gate-alignment-v1.md](./asg-shared-db-gate-alignment-v1.md) | Do not treat pending migration file count alone as block2Risk after classification |
-| `asg-go-command-v1` | PROVEN | PASS | CG-AppBuilder-MCP | [asg-go-command-v1.md](./asg-go-command-v1.md) | Clean git tree; doppler + CG_SHARED_DB_WORKDIR; node scripts/ultimate-sdlc-runner/run-dark-package-v1.mjs --no-cache |
-| `harvest-2026-08-04-asg-go-shared-db-closeout-v1` | HARVEST_COMPLETE | HARVEST_COMPLETE | CapitalGlass-Cross-Agent | [harvest-2026-08-04-asg-go-shared-db-closeout-v1.md](./harvest-2026-08-04-asg-go-shared-db-closeout-v1.md) | npm run harvest:publish-intelligence-full -- --harvest-id=harvest-2026-08-04-asg-go-shared-db-closeout-v1 |
+| `ryzen9desk-managed-executor-v1` | RUNNER_BOOTSTRAP_CHECKPOINT_STARTED | CODE_READY_FOR_RUNNER_BOOTSTRAP | CG-AppBuilder-MCP | [2026-08-03_ryzen9desk-managed-executor-v1.md](./2026-08-03_ryzen9desk-managed-executor-v1.md) | CG-AppBuilder-MCP mission: RYZEN9DESK WSL install from main + dispatch executor-smoke receipt |
+| `active-ledger-ci-path-and-hash-stability-v1` | COMPLETE | PASS | CG-AppBuilder-MCP | [2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md](./2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md) | None unless test:active-ledger-sync regresses on main |
+| `project-folder-synology-primary-v1-dev-environment` | HOLD | CONTRACT_PASS_HOSTED_DEV_HOLD | CapitalGlass-Documents | [project-folder-synology-primary-v1-dev-hosted-environment.md](./project-folder-synology-primary-v1-dev-hosted-environment.md) | Resolve Vercel BLOCKED deploy and Supabase dev isolation (owner: CapitalGlass-Documents) |
+| `cross-agent-retrieval-failover-v1.1` | ADOPTED | PASS | CapitalGlass-Cross-Agent | handoffs/CURRENT_HANDOFF.md | Recurring: use layered failover for suite status when L: unavailable |
+| `wsl2-native-repo-library-migration-v1` | PARTIAL | FILESYSTEM_PASS_OPERATIONAL_CLEANUP_RECORDED | CG-AppBuilder-MCP | [2026-08-03_wsl2-native-repo-library-migration-v1.md](./2026-08-03_wsl2-native-repo-library-migration-v1.md) | Per-repo ext4 verification; RYZEN9DESK alignment via separate executor mission |
+| `office-admin-ryzen9desk-managed-executor-bootstrap-v1` | INDEXED | CODE_READY_FOR_RUNNER_BOOTSTRAP | CapitalGlass-Office-Admin | [2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md](./2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md) | Runner bootstrap remains CG-AppBuilder-MCP mission; do not claim MANAGED_EXECUTOR_ONLINE |
 
 <!-- HARVEST-PACKET-INDEX:END -->
 

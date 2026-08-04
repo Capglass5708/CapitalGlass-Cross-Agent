@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-BOUNDED-COMMAND-CLOSEOUT-V1",
+  "kind": "failure-pattern",
+  "title": "Persistent workers must not be used as closeout one-shot commands",
+  "summary": "refresh-worker script sleeps for days; closeout gates must use bounded one-shot refresh commands that exit with evidence.",
+  "retrievalQuestions": [
+    "Why did refresh-worker hang during All Systems Go closeout?",
+    "What command pattern should replace sleeping workers in gates?"
+  ],
+  "evidenceRefs": [
+    "TW-002",
+    "EVT-004",
+    "IM-004",
+    "chatgpt-findings-source.md#TW-002"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Closeout invokes worker, poller, daemon, or long sleep",
+    "startAt": ["CG-AppBuilder-MCP/docs/platform/ALL_SYSTEMS_GO_RUNBOOK.md"],
+    "runPreflight": ["Read script header for daemon vs one-shot lifecycle"],
+    "doNot": [
+      "Wait for persistent worker inside closeout run",
+      "Treat timeout as functional failure without checking sleep"
+    ],
+    "proveBeforeClaiming": [
+      "Command exits within gate timeout",
+      "No background worker remains",
+      "Bounded evidence emitted"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 3,
+  "sourcePacketIds": ["bounded-command-closeout-v1"]
+}

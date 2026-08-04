@@ -1,0 +1,167 @@
+{
+  "schemaVersion": "harvest-knowledge-quality-evidence-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1",
+  "materialEvents": [
+    {
+      "eventId": "EVT-001",
+      "summary": "Near-GO reported with git-parity as sole yellow lane",
+      "material": true,
+      "representations": ["evidence", "mistake", "do_not_advance"]
+    },
+    {
+      "eventId": "EVT-002",
+      "summary": "Git push completed to 4ff9eaa3 on origin/main",
+      "material": true,
+      "representations": ["result", "command", "evidence"]
+    },
+    {
+      "eventId": "EVT-003",
+      "summary": "Post-push receipt showed shared-db-impact WARN not git-only blocker",
+      "material": true,
+      "representations": ["failure", "correction", "blocker", "evidence"]
+    },
+    {
+      "eventId": "EVT-004",
+      "summary": "Database root causes and skip-live / WSL CLI path issues",
+      "material": true,
+      "representations": ["failure", "blocker", "evidence", "faster_path"]
+    },
+    {
+      "eventId": "EVT-005",
+      "summary": "Investigate-first remediation sequence adopted",
+      "material": true,
+      "representations": ["decision", "protocol_improvement", "evidence"]
+    },
+    {
+      "eventId": "EVT-006",
+      "summary": "Shared-db reconciliation completed with investigation zero",
+      "material": true,
+      "representations": ["result", "command", "evidence", "protocol_improvement"]
+    },
+    {
+      "eventId": "EVT-007",
+      "summary": "Formal GO receipt 0924fd5d six PASS lanes zeroWritesProven",
+      "material": true,
+      "representations": ["result", "evidence", "command", "do_not_advance"]
+    },
+    {
+      "eventId": "EVT-008",
+      "summary": "Adjacent repo local migration renumber disclosed",
+      "material": true,
+      "representations": ["decision", "evidence", "future_action", "protocol_improvement"]
+    },
+    {
+      "eventId": "EVT-009",
+      "summary": "Mission closed with adjacent work separated from GO",
+      "material": true,
+      "representations": ["decision", "result", "evidence"]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "DEC-001",
+      "eventRefs": ["EVT-005", "EVT-006"],
+      "decision": "Classify shared-db drift before snapshot refresh; no severity downgrade for GO",
+      "reason": "Snapshot-only refresh could hide unexplained drift",
+      "alternativesRejected": [
+        "Force snapshot refresh immediately",
+        "Downgrade shared-db WARN severity"
+      ],
+      "consequences": [
+        "Truthful GO with documented EXPECTED_MIGRATION backlog",
+        "requiresInvestigation cleared to zero"
+      ],
+      "authority": "operator",
+      "evidenceRefs": ["closeout-reconciliation-report.json", "asg-go-closeout-final-20260804.json"]
+    },
+    {
+      "id": "DEC-002",
+      "eventRefs": ["EVT-003", "EVT-007"],
+      "decision": "Receipt-first closeout — newest dark-runner-receipt is verdict authority",
+      "reason": "Git-only blocker narrative was stale after post-push receipt",
+      "alternativesRejected": [
+        "Continue narrating from pre-push summary"
+      ],
+      "consequences": [
+        "Lane delta visible between 2a75fd59 WARN and 0924fd5d GO"
+      ],
+      "authority": "cursor-verified",
+      "evidenceRefs": ["2a75fd59", "0924fd5d", "IM-001"]
+    }
+  ],
+  "corrections": [],
+  "durableClaims": [
+    {
+      "id": "CLM-001",
+      "claim": "0924fd5d receipt records systemsGoVerdict GO with zeroWritesProven true and six PASS lanes",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["0924fd5d dark-runner-receipt", "asg-go-closeout-final-20260804.json"],
+      "eventRefs": ["EVT-007"]
+    },
+    {
+      "id": "CLM-002",
+      "claim": "origin/main at CG-AppBuilder-MCP is 4ff9eaa3",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["git rev-parse origin/main", "EVT-002"],
+      "eventRefs": ["EVT-002"]
+    },
+    {
+      "id": "CLM-003",
+      "claim": "requiresInvestigation is zero in closeout reconciliation report",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["closeout-reconciliation-report.json requiresInvestigation: []"],
+      "eventRefs": ["EVT-006"]
+    },
+    {
+      "id": "CLM-004",
+      "claim": "test:ultimate-sdlc-runner-dark-package passed 26/26",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["asg-go-closeout-final-20260804.json testsAndGates"],
+      "eventRefs": ["EVT-007"]
+    },
+    {
+      "id": "CLM-005",
+      "claim": "Cursor-ProposalGenerator has local unpushed migration renumber",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["git status Cursor-ProposalGenerator", "EVT-008"],
+      "eventRefs": ["EVT-008"]
+    }
+  ],
+  "contradictions": [],
+  "mistakes": [
+    {
+      "id": "MIST-001",
+      "eventRefs": ["EVT-001", "EVT-003"],
+      "attemptedAction": "Narrate git-parity as sole remaining blocker before parsing post-push receipt",
+      "whyItSeemedReasonable": "Pre-push state showed only git-parity yellow",
+      "actualOutcome": "Post-push receipt showed shared-db-impact WARN",
+      "rootCause": "Closeout state narrated from memory before receipt normalization",
+      "optimalFirstMove": "Open newest receipt immediately after push",
+      "preventiveControl": "IH-THREAD-ASG-RECEIPT-AUTHORITY-V1"
+    }
+  ],
+  "blindRetrieval": [
+    {
+      "question": "What should determine the final All Systems Go verdict?",
+      "expectedSeedId": "IH-THREAD-ASG-RECEIPT-AUTHORITY-V1",
+      "lessonFocus": "receipt-authority",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "Why should a shared-db snapshot not be refreshed immediately?",
+      "expectedSeedId": "IH-THREAD-SHARED-DB-RECONCILE-BEFORE-SNAPSHOT-V1",
+      "lessonFocus": "investigate-before-snapshot",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "Why did refresh-worker hang during All Systems Go closeout?",
+      "expectedSeedId": "IH-THREAD-BOUNDED-COMMAND-CLOSEOUT-V1",
+      "lessonFocus": "bounded-closeout-commands",
+      "genericKeywordOnly": false
+    }
+  ],
+  "humanReview": {
+    "required": false,
+    "reasons": []
+  }
+}
