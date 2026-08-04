@@ -1,6 +1,6 @@
 # Harvest summary — derived view
 
-**Authority:** `harvest-manifest-v1.json` (`7c11cd85a999…`)
+**Authority:** `harvest-manifest-v1.json` (`f1960b5a6e39…`)
 **Work package:** `harvest-2026-08-04-three-way-improvement-slice6-thread-v1`
 **Mission class:** `chat-thread-closeout-autopsy-harvest-v1`
 **Verdict:** `HARVEST_COMPLETE`
@@ -16,7 +16,7 @@
 | `ryzen9desk-managed-executor-v1` | FULL_ACCEPTANCE_READONLY_PASS | PASS | CG-AppBuilder-MCP |
 | `complete-project-folder-synology-intelligence-publication-v1` | PUBLICATION_COMPLETE | PASS | CapitalGlass-Cross-Agent |
 | `intelligence-hub-index-ai-cache-freshness-v1` | FOUNDATION_PASS | PASS | CG-AppBuilder-MCP |
-| `cross-agent-index-auto-publisher-activation-v1` | STAGED_NOT_ACTIVE | HOLD | CapitalGlass-Cross-Agent |
+| `cross-agent-index-auto-publisher-activation-v1` | RUNNER_OFFLINE_HOLD | HOLD | CapitalGlass-Cross-Agent |
 | `three-way-agent-improvement-intelligence-v1` | OPERATIONAL_CLOSEOUT_COMPLETE | THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL | CG-AppBuilder-MCP |
 | `governance-wsl-path-normalization-v1` | MERGED_COMPLETE | PASS | CG-Platform-Governance-MCP |
 | `cross-agent-harvest-owner-boundary-v1` | MERGED_COMPLETE | PASS | CapitalGlass-Cross-Agent |

@@ -2,11 +2,11 @@
   "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
   "harvestId": "harvest-2026-08-04-three-way-improvement-slice6-thread-v1",
   "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
-  "sourceCommitSha": "d84ad38fd34ad0b96e2f7322ee730956e61ea750",
+  "sourceCommitSha": "57f443b0fb2fe876dc4ec0c33d4f77d8a56709cf",
   "sourceBranch": "main",
   "sourceRepo": "CapitalGlass-Cross-Agent",
   "createdAt": "2026-08-04T02:30:00.000Z",
-  "updatedAt": "2026-08-04T02:45:00.000Z",
+  "updatedAt": "2026-08-04T02:03:00.000Z",
   "retrievalResult": "INDEX_HIT",
   "cacheResult": "CACHE_MISS",
   "overallHarvestVerdict": "HARVEST_COMPLETE",
@@ -21,11 +21,11 @@
     "bundlePath": "artifacts/agent-runs/harvest-2026-08-04-three-way-improvement-slice6-thread-v1/thread-autopsy-bundle.json",
     "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-04-three-way-improvement-slice6-thread-v1/seed-packet-index.json",
     "counts": {
-      "waste": 5,
+      "waste": 6,
       "seeds": 5,
-      "roiItems": 4,
-      "operatorFriction": 2,
-      "executionDeltas": 3
+      "roiItems": 5,
+      "operatorFriction": 3,
+      "executionDeltas": 4
     }
   },
   "projection": {
@@ -33,7 +33,7 @@
     "hubPublishStatus": "published",
     "hubPublishReceiptRef": "artifacts/agent-runs/harvest-2026-08-04-hub-publication-verify-autopsy-v1/hub-publication-receipt.json",
     "hubPublishBlocker": null,
-    "note": "index:publish PUBLISH_PASS @ ae1c427; freshness PASS; thread-autopsy seeds on L:"
+    "note": "index:publish PUBLISH_PASS @ ae1c427; scout CURRENT @ 57f443b; TE-015/016 SSH runner install FAIL"
   },
   "ledgerLineage": {
     "ledgerPath": "work-progress/ACTIVE_WORK.md",
@@ -175,13 +175,14 @@
       "packetKind": "blocker",
       "packetId": "cross-agent-index-auto-publisher-activation-v1",
       "packetTitle": "Cross-Agent index auto-publisher activation",
-      "state": "STAGED_NOT_ACTIVE",
+      "state": "RUNNER_OFFLINE_HOLD",
       "packetVerdict": "HOLD",
       "ownerRepo": "CapitalGlass-Cross-Agent",
       "ownerIndexingStatus": "indexed",
       "projectFile": "work-progress/projects/2026-08-03_cross-agent-index-auto-publisher-activation-v1.md",
       "evidenceRefs": [
-        "Slice 6 used local publisher break-glass at acd94ba"
+        "Slice 6 used local publisher break-glass at acd94ba",
+        "TE-015 TE-016 SSH Broken pipe; wesleydesk-wsl2-cross-agent offline"
       ],
       "nextAction": "Enable scheduled publisher on WESLEYDESK after operator approval",
       "advancementGate": "post-commit publication receipt on new Cross-Agent commit",

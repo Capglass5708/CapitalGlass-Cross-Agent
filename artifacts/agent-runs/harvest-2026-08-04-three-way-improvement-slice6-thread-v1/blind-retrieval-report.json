@@ -1,10 +1,10 @@
 {
   "schemaVersion": "cross-agent-harvest-blind-retrieval-benchmark-v1@1.0.0",
   "harvestId": "harvest-2026-08-04-three-way-improvement-slice6-thread-v1",
-  "testedAt": "2026-08-04T01:45:21.800Z",
+  "testedAt": "2026-08-04T02:04:21.199Z",
   "blindQueryOnly": true,
   "seedCount": 5,
-  "fixtureCount": 9,
+  "fixtureCount": 10,
   "results": [
     {
       "query": "What control slices exist for Intelligence Hub wave 1?",
@@ -166,6 +166,34 @@
         {
           "seedId": "IH-SLICE6-RUNNER-GATE-001",
           "score": 3
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "What pass signals confirm PUBLISH_PASS and NOOP_CURRENT for index publication?",
+      "returnedId": "IH-SLICE6-PROOF-COMMANDS-004",
+      "expectedSeedId": "IH-SLICE6-PROOF-COMMANDS-004",
+      "topK": [
+        {
+          "seedId": "IH-SLICE6-PROOF-COMMANDS-004",
+          "score": 10
+        },
+        {
+          "seedId": "IH-SLICE6-OPERATIONAL-RECEIPT-003",
+          "score": 7
+        },
+        {
+          "seedId": "IH-HUB-EXPANSION-WAVE1-005",
+          "score": 4
+        },
+        {
+          "seedId": "IH-SLICE6-RUNNER-GATE-001",
+          "score": 2
+        },
+        {
+          "seedId": "IH-SLICE6-DIRECT-CONNECT-KIT-002",
+          "score": 1
         }
       ],
       "pass": true

@@ -10,7 +10,10 @@
   ],
   "evidenceRefs": [
     "TE-004",
-    "thread-autopsy-bundle.json#TW-001"
+    "TE-015",
+    "TE-016",
+    "thread-autopsy-bundle.json#TW-001",
+    "thread-autopsy-bundle.json#TW-006"
   ],
   "futureAgentInstructions": {
     "whenThisAppears": "Slice 6 or index-publication workflow_dispatch",
@@ -23,7 +26,8 @@
     ],
     "doNot": [
       "Dispatch from WESLEY_WORK RYZEN runner for Cross-Agent repo",
-      "Assume queue means success"
+      "Assume queue means success",
+      "Install wesleydesk-wsl2-cross-agent via long SSH from WESLEY_WORK (Broken pipe ~129min)"
     ],
     "proveBeforeClaiming": [
       "total_count >= 1 with labels self-hosted,wesleydesk,wsl2"

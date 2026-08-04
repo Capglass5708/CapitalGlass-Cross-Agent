@@ -1,19 +1,42 @@
 {
   "schemaVersion": "cross-agent-index-publication-receipt-v1@1.0.0",
-  "generatedAt": "2026-08-04T01:46:00.446Z",
-  "runId": "local-1785807949808",
-  "pinnedSha": "fee63bb366027632dcc9ec9199f464b16e31439f",
-  "contentHash": "a0cf355aab198acc373788a1359f97dbd17cf15c05de29c9bc89b0ca1c616038",
-  "verdict": "PUBLICATION_HOLD",
+  "generatedAt": "2026-08-04T02:01:18.414Z",
+  "runId": "local-1785808684542",
+  "pinnedSha": "57f443b0fb2fe876dc4ec0c33d4f77d8a56709cf",
+  "publishedSha": "57f443b0fb2fe876dc4ec0c33d4f77d8a56709cf",
+  "contentHash": "7225951f4493f6cd9019bad2d810ecf94573676594535c0c369f860fde929818",
+  "verdict": "PUBLISH_PASS",
   "layers": {
+    "git": {
+      "sourceCommitSha": "57f443b0fb2fe876dc4ec0c33d4f77d8a56709cf"
+    },
     "intelligenceHub": {
       "mounted": true,
       "path": "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index"
     }
   },
-  "freshnessGate": null,
-  "durationMs": 10644,
-  "issues": [
-    "Command failed: CROSS_AGENT_LEDGER_INGEST_APPROVED=1 doppler run --project cg-mcp --config dev -- npm run cross-agent-ledger:ingest -- --apply --repo=/home/wesle/repos/CapitalGlass-Cross-Agent"
-  ]
+  "freshnessGate": {
+    "schemaVersion": "cross-agent-index-freshness-gate-v1@1.0.0",
+    "generatedAt": "2026-08-04T02:01:18.396Z",
+    "verdict": "PASS",
+    "gitHead": "57f443b0fb2fe876dc4ec0c33d4f77d8a56709cf",
+    "layers": {
+      "git": {
+        "sourceCommitSha": "57f443b0fb2fe876dc4ec0c33d4f77d8a56709cf"
+      },
+      "supabase": {
+        "sourceCommitSha": "57f443b0fb2fe876dc4ec0c33d4f77d8a56709cf",
+        "verdict": "IN_SYNC",
+        "inSync": true
+      },
+      "intelligenceHub": {
+        "sourceCommitSha": "57f443b0fb2fe876dc4ec0c33d4f77d8a56709cf",
+        "available": true,
+        "inSync": true,
+        "path": "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/active-work-ledger/LATEST.json"
+      }
+    },
+    "issues": []
+  },
+  "durationMs": 193880
 }
