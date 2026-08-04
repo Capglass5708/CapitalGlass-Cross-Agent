@@ -1,0 +1,39 @@
+{
+  "schema": "capital-glass-gated-wave-receipt-v1",
+  "milestoneId": "capital-glass-platform-milestone-v1",
+  "wave": 1,
+  "name": "Stabilize Execution Infrastructure",
+  "verdict": "FAIL_STOP",
+  "recordedAt": "2026-08-04T16:02:00Z",
+  "gates": {
+    "runnerOnline": {
+      "pass": false,
+      "evidence": {
+        "name": "ryzen9desk-wsl2-CG-RYZEN9DESK-01",
+        "status": "offline",
+        "busy": false
+      },
+      "operatorAction": "On RYZEN9DESK: restart actions-runner service (sudo ./svc.sh start in ~/actions-runner)"
+    },
+    "requiredWorkflow30924982497": {
+      "pass": false,
+      "status": "queued",
+      "url": "https://github.com/Capglass5708/CG-AppBuilder-MCP/actions/runs/30924982497",
+      "blocker": "Waiting for runner online"
+    },
+    "mountVerifier": {
+      "pass": false,
+      "lDrive": "MISSING /mnt/l/Capital-Glass-Intelligence-Hub/00-master-index",
+      "zDrive": "OK /mnt/z/Capital-Glass-Intelligence-Hub/AI-Cache-Authority",
+      "wesleyWorkMounts": "D: OK, S: OK",
+      "driveMountVerifier": "FAIL — elevated Install-CgWesleyWorkDriveMountPersistence.ps1 pending on WESLEY_WORK"
+    },
+    "wslDefaultVerify": {
+      "pass": false,
+      "verdict": "HOST_MODE_BLOCKED",
+      "note": "Windows mcp.json active; use Capital Glass Cursor (WSL Suite).lnk"
+    }
+  },
+  "autoMoveToWave2": false,
+  "parallelLaneNote": "Wave 2 (ledger commit/ingest) does not require runner; proceeding on independent scope."
+}

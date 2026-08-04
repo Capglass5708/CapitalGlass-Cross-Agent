@@ -4,7 +4,21 @@
 **Parent:** [`project-folder-synology-primary-v1-dev-environment.md`](./project-folder-synology-primary-v1-dev-environment.md)  
 **Contract:** `CapitalGlass-Documents/docs/PROJECT_FOLDER_SYNOLOGY_PRIMARY_DEV_ENVIRONMENT_CONTRACT.md` @ `d8826e8`  
 **Deploy candidate:** `7c0b76f` (`fix/project-folder-provision-dev-deploy`)  
-**Last updated:** 2026-08-03
+**Last updated:** 2026-08-04
+
+---
+
+## Alias regression repair (2026-08-04)
+
+| Field | Value |
+|-------|--------|
+| Regression | `documents-dev.capitalglasstxapps.com` served production deployment `03f6d24` instead of dev witness `7c0b76f` |
+| Repair | `vercel alias set dpl_8cve5SbrQowbVfT81Azh5LhEVzeR documents-dev.capitalglasstxapps.com` |
+| Post-repair identity | `7c0b76f`, `environment=preview`, `dpl_8cve5SbrQowbVfT81Azh5LhEVzeR` |
+| Claim (unauthenticated) | **401** on `/api/internal/documents/project-folder-provision/claim` |
+| Complete (unauthenticated) | **401** on `/api/internal/documents/project-folder-provision/complete` |
+| Production touched | **NO** |
+| Receipt | `artifacts/agent-runs/document-center-synology-dev-lane-v1/receipt.json` |
 
 ---
 
@@ -15,8 +29,8 @@
 | Contract authority | `d8826e8` |
 | Hosted dev deploy | **READY** `7c0b76f` @ `documents-dev.capitalglasstxapps.com` |
 | Dev acceptance gates G1–G10 | **ALL PASS** |
-| Production activation | **HALTED** |
-| Production touched | **NO** (`f16b4ff` unchanged) |
+| Production activation | **OPERATIONAL** — `PRODUCTION_PROMOTION_PASS`; prod flag retained `true` |
+| Production touched | **NO** (`f16b4ff` unchanged at acceptance; current prod `03f6d24` separate) |
 
 ---
 

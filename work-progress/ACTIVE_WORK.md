@@ -13,13 +13,57 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-08-04 |
-| Current focus | Blocker gate sweep shipped — 3 cleared, 5 domain-gated; next: DC production smoke rerun + auto-publisher v1.1 |
+| Current focus | **Wave A blocked (Block A)** — RYZEN9DESK runner restart + WESLEY_WORK drive-mount; parallel: DC smokes **PASS** (Agent 2) |
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Project index | `work-progress/projects/INDEX.md` |
 
 ## Current saved work
+
+### 2026-08-04 CT — north-star-compounding-vertical-pilot-v1 (Agent 3 closeout)
+
+| Field | Value |
+| --- | --- |
+| Work package | `north-star-compounding-vertical-pilot-v1` |
+| Verdict | **VERTICAL_PILOT_CLOSEOUT_PASS** — Z bible sync CURRENT; Auto v3.2 material compile PASS; Governance closeout authorized |
+| Z bible | `BIBLE-RELEASE-20260731-cf36e8116d90` — WESLEY_WORK CURRENT (542 files); required `sudo mount -t drvfs Z: /mnt/z` on WESLEY_WORK WSL |
+| Auto v3.2 | `agent:preflight:auto-v32` PASS_WITH_WARNINGS; cache reuse ~98%; `closeoutRecorded: true` |
+| Governance | `governance-closeout-decision-v1.json` → **PASS**; `session-closeout-v3.2.json` recorded |
+| Index dogfood | `fresh-cursor-index-dogfood-v1/session-receipt.json` — INDEX_HIT_AI_CACHE, rawScanRequired=false |
+| Corpus sync | **BLOCKED_DESTINATION_UNAVAILABLE** — `Z:/Capital-Glass-Dev/TOKEN Usage Reports` (needs full Z: tree on WESLEY_WORK) |
+| Artifacts | `CG-AppBuilder-MCP/artifacts/agent-runs/north-star-compounding-vertical-pilot-v1/` |
+| Next | `platform-governance-phase4-registries-v1`; Supabase drift probe repair; L: mount for hub publish |
+
+### 2026-08-04 CT — infrastructure-executor-lane-v1 (Block A Waves A–E)
+
+| Field | Value |
+| --- | --- |
+| Work package | `infrastructure-executor-lane-v1` |
+| Verdict | **WAVE_A_BLOCKED_OPERATOR** — Waves C/E partial; B/D gated on A |
+| Wave A | Runner **offline**; smoke [30924982497](https://github.com/Capglass5708/CG-AppBuilder-MCP/actions/runs/30924982497) **queued**; drive-mount verifier **FAIL** |
+| Wave B | **GATED** — `wsl2-canonical-setup` after fresh `executor-smoke` receipt |
+| Wave C | **PARTIAL_PASS** — Z: mounted; AI cache `Z_MASTER_THREE_HOST_AI_CACHE_ALIGNED`; L: not mounted |
+| Wave D | Receipts written (`wave-gates-receipt-v1.json`); ingest after Wave A |
+| Wave E | Auto-publisher **ACTIVE** on Z; Wave 2 blocked on runner + L: |
+| Operator caution | Restart `~/actions-runner` on RYZEN9DESK — no duplicate registration |
+| Receipt | `artifacts/agent-runs/infrastructure-executor-lane-v1/wave-gates-receipt-v1.json` |
+| Next | Operator Wave A → **recheck** → Wave B–D closeout |
+
+### 2026-08-04 CT — document-center-synology-dev-lane-v1 (Agent 2)
+
+| Field | Value |
+| --- | --- |
+| Work package | `document-center-synology-dev-lane-v1` |
+| Verdict | **LANE_CLOSEOUT_PASS** — production smokes green; dev alias repaired; SHA pins corrected |
+| Production smokes | **PASS** — [run 30925269106](https://github.com/Capglass5708/CapitalGlass-Documents/actions/runs/30925269106) |
+| SHA pins (Doppler `cg-documents/prd`) | `EXPECTED_DOCUMENT_CENTER_GIT_SHA` → `03f6d241ebf7c170c9f64d0bbfe50dd320fe231b`; `EXPECTED_PROJECT_DASHBOARD_GIT_SHA` → `1ad3312756e311a29f4a8162b9a4e2d2b0572283`; GitHub secrets synced |
+| Dev alias regression | `documents-dev` had drifted to production `03f6d24` / claim **405** on wrong path |
+| Dev alias repair | `vercel alias` → `dpl_8cve5SbrQowbVfT81Azh5LhEVzeR` (`7c0b76f`, preview); claim/complete unauthenticated **401** on internal routes |
+| Production | **NOT touched** during repair — remains `03f6d24` / `dpl_F2ZTFTfb2UZ1GU4x73xyik6EebQ8` |
+| Production Synology flag | **`PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED=true`** in `cg-documents/prd` — **intentionally retained**; `PRODUCTION_PROMOTION_PASS` supersedes stale HALTED rows in this ledger |
+| Receipt | `artifacts/agent-runs/document-center-synology-dev-lane-v1/receipt.json` |
+| Next | Agent 3: `cross-agent-ledger:ingest --apply`; review stale AppBuilder PRs after DC green |
 
 ### 2026-08-04 CT — active-ledger-blocker-gate-sweep-v1
 
@@ -168,9 +212,9 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 
 | Priority | Action | Owner repo | Status |
 | --- | --- | --- | --- |
-| 1 | **Synology-primary dev lane** — child WP `project-folder-synology-primary-v1-dev-hosted-environment` (**HOLD**: Vercel BLOCKED + Supabase I2) | CapitalGlass-Documents / WESLEYDESK | **HOLD** — contract `d8826e8` PASS; hosted dev blocked |
-| 2 | Elevated deploy: `Install-CgWesleyWorkDriveMountPersistence.ps1` + verifier on WESLEY_WORK (`wesleywork-drive-mount-task-dedupe-v1`) | CapitalGlass-Office-Admin | Ready — code implemented; live probe pending |
-| 3 | Rerun Document Center production smokes after SHA pin (`suite-ci-healing-v1`) | CapitalGlass-Documents | **Ready** — Doppler + GitHub `EXPECTED_DOCUMENT_CENTER_GIT_SHA` synced 2026-08-04 |
+| 1 | Elevated deploy: `Install-CgWesleyWorkDrivePersistence.ps1` + verifier on WESLEY_WORK (`wesleywork-drive-mount-task-dedupe-v1`) | CapitalGlass-Office-Admin | Ready — code implemented; live probe pending |
+| 2 | Structured-ledger ingest after ledger edits (`cross-agent-ledger:ingest --apply`) | CG-AppBuilder-MCP / Agent 3 | **Ready** — post `document-center-synology-dev-lane-v1` ledger update |
+| 3 | Review stale AppBuilder PRs #254, #252, #228, #227, #216 (`suite-ci-healing-v1` follow-up) | CG-AppBuilder-MCP | Ready — DC production smokes green |
 | 2 | Use Windows Desktop `Capital Glass Cursor (WSL Suite).lnk`; close any Cursor windows opened from `/mnt/c` / `C:\Developer\repos` | Cursor / operator | Ongoing operating rule — WSL default verify PASS |
 | 2 | L: hub readable at `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index` | WESLEYDESK / WSL | Complete for seed report |
 | 3 | WSL seed structured-ledger ingest and drift probe | CG-AppBuilder-MCP | Complete — `IN_SYNC` via Doppler-backed Supabase token |
@@ -187,6 +231,17 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 **Default agent preflight (machine-readable):** `openActions` + `blockers` only — L: hub slices when available, else Supabase derived projection (`compact-slices-only`). Not full ledger. `currentFocus` human-only (`whats-active-now --include-current-focus`).
 
 ## Progress log (latest entries)
+
+### 2026-08-04 CT — document-center-synology-dev-lane-v1 (Agent 2)
+
+| Field | Value |
+| --- | --- |
+| Work package | `document-center-synology-dev-lane-v1` |
+| Verdict | **LANE_CLOSEOUT_PASS** |
+| Production smokes | **PASS** @ GitHub run `30925269106` after SHA pin correction to deployed `03f6d24` |
+| Dev witness | Alias repair `documents-dev` → `7c0b76f` (`dpl_8cve5SbrQowbVfT81Azh5LhEVzeR`); internal claim/complete **401** without token |
+| Production flag | Retained `true` per `PRODUCTION_PROMOTION_PASS` — do not revert on stale HALTED ledger text alone |
+| Receipt | `artifacts/agent-runs/document-center-synology-dev-lane-v1/receipt.json` |
 
 ### 2026-08-03 CT — harvest-2026-08-03-cross-thread-platform-state-v1 HARVEST_COMPLETE
 
@@ -351,6 +406,6 @@ Project file: `work-progress/projects/2026-08-02_active-ledger-drain-and-intelli
 | --- | --- |
 | Work package | `north-star-compounding-proof-v1` |
 | Status | Pushed |
-| Next action | Restart MCP; begin `north-star-compounding-vertical-pilot-v1` |
+| Next action | ~~begin `north-star-compounding-vertical-pilot-v1`~~ **DONE** — see 2026-08-04 vertical pilot closeout |
 
 Older entries: `archive/2026-08/ledger-snapshots/phase-0-pre-drain/ACTIVE_WORK-2026-08-02-pre-drain.md`

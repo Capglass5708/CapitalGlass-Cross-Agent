@@ -1,8 +1,8 @@
 # Work package: project-folder-synology-primary-v1-dev-environment
 
-**Verdict:** `ACTIVE` — dev lane required before any production promotion  
-**Supersedes production activation for:** `project-folder-synology-primary-v1`  
-**Last updated:** 2026-08-03
+**Verdict:** `ACTIVE` — dev witness lane; production promoted per sibling WP  
+**Supersedes production activation for:** `project-folder-synology-primary-v1` (historical HALTED text — superseded by `PRODUCTION_PROMOTION_PASS`)  
+**Last updated:** 2026-08-04
 
 ---
 
@@ -11,7 +11,7 @@
 | Dimension | Status |
 |-----------|--------|
 | Production safety | **PASS** |
-| Production activation | **HALTED** |
+| Production activation | **OPERATIONAL** — see [`project-folder-synology-primary-v1-production-promotion`](./project-folder-synology-primary-v1-production-promotion.md) (`PRODUCTION_PROMOTION_PASS`; flag `true` in `cg-documents/prd`) |
 | Dev-lane specification | **READY** |
 | Dev hosted environment | **HOLD** — see [`project-folder-synology-primary-v1-dev-hosted-environment`](./project-folder-synology-primary-v1-dev-hosted-environment.md) |
 | Synology-primary production readiness | **HOLD** |
@@ -33,10 +33,10 @@ local integration proof → production Vercel deployment
 
 | Action | Status |
 |--------|--------|
-| `PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED` in Doppler `cg-documents/prd` | **`false`** (2026-08-03) |
+| `PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED` in Doppler `cg-documents/prd` | **`true`** — retained per `PRODUCTION_PROMOTION_PASS` (2026-08-03); do not revert on stale HALTED ledger text alone |
 | Production Vercel env sync | Flag set to `false` via `sync-hybrid-worker-vercel.mjs` |
 | In-flight production deploys | Cancelled / stale local `vercel deploy` killed |
-| Production promotion | **Frozen** until dev lane gates pass |
+| Production promotion | **Complete** — separate WP [`project-folder-synology-primary-v1-production-promotion`](./project-folder-synology-primary-v1-production-promotion.md) |
 
 ---
 
@@ -91,7 +91,7 @@ Prior proof project `e15f1184-72db-47fc-9ba1-f7e9c2f8b02c` remains sample/local 
 
 | Variable | Dev | Production |
 |----------|-----|------------|
-| `PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED` | `true` | **`false`** until promotion |
+| `PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED` | `true` | **`true`** — `PRODUCTION_PROMOTION_PASS` |
 
 ---
 
