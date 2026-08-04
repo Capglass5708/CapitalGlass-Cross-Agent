@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-SLICE6-RUNNER-GATE-001",
+  "kind": "failure-pattern",
+  "title": "Cross-Agent publication requires WESLEYDESK runner before dispatch",
+  "summary": "index-publication.yml on CapitalGlass-Cross-Agent needs self-hosted wesleydesk runner; zero runners causes multi-hour queue.",
+  "retrievalQuestions": [
+    "Why is Cross-Agent index publication stuck queued?",
+    "How many self-hosted runners does Cross-Agent have?"
+  ],
+  "evidenceRefs": [
+    "TE-004",
+    "thread-autopsy-bundle.json#TW-001"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Slice 6 or index-publication workflow_dispatch",
+    "startAt": [
+      "WesleyDesk Direct Connect/AGENT_START_HERE.md",
+      "BY-KIND/host-authority.json"
+    ],
+    "runPreflight": [
+      "gh api repos/Capglass5708/CapitalGlass-Cross-Agent/actions/runners"
+    ],
+    "doNot": [
+      "Dispatch from WESLEY_WORK RYZEN runner for Cross-Agent repo",
+      "Assume queue means success"
+    ],
+    "proveBeforeClaiming": [
+      "total_count >= 1 with labels self-hosted,wesleydesk,wsl2"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

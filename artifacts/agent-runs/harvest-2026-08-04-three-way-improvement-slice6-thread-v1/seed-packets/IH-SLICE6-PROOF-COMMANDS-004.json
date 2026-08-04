@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-SLICE6-PROOF-COMMANDS-004",
+  "kind": "command-receipt",
+  "title": "Slice 6 publication proof command chain",
+  "summary": "Prove publication: local or GHA PUBLISH_PASS, freshness PASS, blind retrieval PASS, second run NOOP_CURRENT.",
+  "retrievalQuestions": [
+    "What commands prove Slice 6 publication gates?"
+  ],
+  "evidenceRefs": [
+    "work-progress/command-index.json",
+    "slice6-closeout-receipt-v1.json"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Verifying Slice 6 publication closeout",
+    "startAt": [
+      "work-progress/command-index.json"
+    ],
+    "runPreflight": [
+      "npm run index:freshness-gate",
+      "npm run harvest:slice6-blind-retrieval"
+    ],
+    "doNot": [
+      "Run index:publish from Cursor agent"
+    ],
+    "proveBeforeClaiming": [
+      "PUBLISH_PASS",
+      "POST_PUBLICATION_BLIND_RETRIEVAL_PASS",
+      "NOOP_CURRENT"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "work-progress/command-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}

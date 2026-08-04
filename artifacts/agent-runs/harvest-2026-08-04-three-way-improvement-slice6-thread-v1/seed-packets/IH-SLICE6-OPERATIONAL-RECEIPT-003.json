@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-SLICE6-OPERATIONAL-RECEIPT-003",
+  "kind": "decision-receipt",
+  "title": "THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL closeout authority",
+  "summary": "Operational award at acd94ba via local publisher with four gates PASS; cancelled run 30861202361 must not retry.",
+  "retrievalQuestions": [
+    "Is three-way improvement intelligence operational?",
+    "Which publication run was cancelled for Slice 6?"
+  ],
+  "evidenceRefs": [
+    "artifacts/agent-runs/three-way-agent-improvement-intelligence-v1/slice6-closeout-receipt-v1.json"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Claiming THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL",
+    "startAt": [
+      "artifacts/agent-runs/three-way-agent-improvement-intelligence-v1/slice6-closeout-receipt-v1.json"
+    ],
+    "runPreflight": [
+      "Read gates section — all four must pass"
+    ],
+    "doNot": [
+      "Re-dispatch workflow run 30861202361",
+      "Claim hub FULLY_SEEDED without operator publish"
+    ],
+    "proveBeforeClaiming": [
+      "slice6-closeout-receipt-v1.json verdict OPERATIONAL",
+      "runtime/index-publication/latest.json NOOP_CURRENT"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}

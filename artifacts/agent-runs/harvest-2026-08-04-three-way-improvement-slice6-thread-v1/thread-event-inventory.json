@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-three-way-improvement-slice6-thread-v1",
+  "threadScope": "three-way-agent-improvement-intelligence-v1 Slice 6 publication closeout",
+  "generatedAt": "2026-08-04T02:30:00.000Z",
+  "events": [
+    {
+      "eventId": "TE-001",
+      "phase": "planning",
+      "summary": "Ranked ROI; merge order for six program PRs",
+      "evidenceRefs": [
+        "IMP-0001..0004 UNPROVEN"
+      ]
+    },
+    {
+      "eventId": "TE-002",
+      "phase": "execution",
+      "summary": "Merged PR stack Governance→Cross-Agent→FI→AppBuilder",
+      "evidenceRefs": [
+        "merge-completion-receipt-v1.json"
+      ]
+    },
+    {
+      "eventId": "TE-003",
+      "phase": "publication",
+      "summary": "Dispatched 30861642734; cancelled superseded 30861202361",
+      "evidenceRefs": [
+        "GitHub runs"
+      ]
+    },
+    {
+      "eventId": "TE-004",
+      "phase": "blocker",
+      "summary": "Cross-Agent had zero self-hosted runners ~75min queue",
+      "evidenceRefs": [
+        "gh api runners total_count=0"
+      ]
+    },
+    {
+      "eventId": "TE-005",
+      "phase": "infrastructure",
+      "summary": "Runner 2.323.0 failed node24; upgraded 2.336.0",
+      "evidenceRefs": [
+        "30861642734 failure",
+        "30866381810 success"
+      ]
+    },
+    {
+      "eventId": "TE-006",
+      "phase": "closeout",
+      "summary": "OPERATIONAL via local publisher @ acd94ba NOOP idempotency",
+      "evidenceRefs": [
+        "slice6-closeout-receipt-v1.json"
+      ]
+    },
+    {
+      "eventId": "TE-007",
+      "phase": "regression",
+      "summary": "Later GHA runs failed action SHA resolution",
+      "evidenceRefs": [
+        "30867016509",
+        "30867255487"
+      ]
+    },
+    {
+      "eventId": "TE-008",
+      "phase": "operator",
+      "summary": "User corrected run cancellation and Direct Connect path",
+      "evidenceRefs": [
+        "user messages"
+      ]
+    }
+  ]
+}
