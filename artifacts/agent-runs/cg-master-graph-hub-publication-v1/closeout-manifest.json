@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "cg-closeout-manifest-v1",
+  "workPackageId": "cg-master-graph-hub-publication-v1",
+  "parentWorkPackage": "capital-glass-master-graph-foundation-v1",
+  "missionClass": "closeout",
+  "generatedAt": "2026-08-04T08:21:00.000Z",
+  "host": "WESLEY_WORK",
+  "verdict": "PASS",
+  "releaseState": "LOCAL_RUNTIME_VALIDATED",
+  "foundationState": "CG_MASTER_GRAPH_FOUNDATION_VALIDATED",
+  "repositories": {
+    "CG-MASTER-GRAPH": {
+      "mergeCommit": "e796c13a4f259c5a513c43076bad70a9420d5f66",
+      "branch": "main"
+    },
+    "CapitalGlass-Cross-Agent": {
+      "mergeCommit": "65166d2",
+      "branch": "main"
+    },
+    "Data-Extraction": {
+      "mergeCommit": "a03b1ea",
+      "branch": "main",
+      "scope": "contracts/master-graph pointer only"
+    }
+  },
+  "release": {
+    "releaseId": "release:foundation-v1",
+    "contentHash": "sha256:832a0de7c436f35a439aa6afc1c83762d82c853278f771e60573ff5846c3fb95",
+    "counts": { "nodes": 43, "edges": 36, "extractions": 2 }
+  },
+  "publication": {
+    "verdict": "PUBLISHED_TO_INTELLIGENCE_HUB",
+    "hubRoot": "/mnt/l/Capital-Glass-Intelligence-Hub",
+    "aiCacheRoot": "/mnt/z/Capital-Glass-Intelligence-Hub/AI-Cache-Authority",
+    "receipt": "hub-publication-receipt-v1.json",
+    "validateCommand": "npm run master-graph:publish-hub"
+  },
+  "gatesRun": [
+    "npm run validate (CG-MASTER-GRAPH)",
+    "npm run graph:publish:suite",
+    "npm run master-graph:publish-hub (Cross-Agent)",
+    "run-graph-hub-publish.test.mjs"
+  ],
+  "artifacts": [
+    "artifacts/agent-runs/cg-master-graph-hub-publication-v1/hub-publication-receipt-v1.json",
+    "artifacts/agent-runs/cg-master-graph-planning-transfer-v1/planning-transfer-manifest-v1.json",
+    "docs/master-graph/CG-MASTER-GRAPH-FOUNDATION-CURSOR-OPENER-v1.md"
+  ],
+  "nextPackages": [
+    "data-extraction-master-graph-contributor-v1",
+    "capital-glass-lz-continuous-graph-observation-v1"
+  ],
+  "enhancementRecommendations": [
+    {
+      "classification": "next-work-package",
+      "summary": "Implement Data-Extraction graph contributor emission beyond POINTER_ONLY stub"
+    },
+    {
+      "classification": "immediate-fix",
+      "summary": "None blocking — publish-hub path resolution fixed in 65166d2"
+    }
+  ],
+  "retrieval": {
+    "primary": "INDEX_HIT_AI_CACHE",
+    "indexTier": "hot-ai-cache",
+    "cache": "CACHE_MISS"
+  }
+}
