@@ -5,15 +5,28 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { validateMetadataChurn } from "./lib/harvest-metadata-churn-lib.mjs";
+import {
+  buildPrDiffContentPairs,
+  listChangedFiles,
+  resolveDiffRefs,
+} from "./lib/harvest-pr-diff-lib.mjs";
 
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
 function parseArgs(argv) {
-  let mode = "staged";
+  const args = {
+    mode: "staged",
+    baseRef: null,
+    headRef: "HEAD",
+    json: false,
+  };
   for (const arg of argv) {
-    if (arg.startsWith("--mode=")) mode = arg.slice("--mode=".length);
+    if (arg.startsWith("--mode=")) args.mode = arg.slice("--mode=".length);
+    else if (arg.startsWith("--base-ref=")) args.baseRef = arg.slice("--base-ref=".length);
+    else if (arg.startsWith("--head-ref=")) args.headRef = arg.slice("--head-ref=".length);
+    else if (arg === "--json") args.json = true;
   }
-  return { mode, json: argv.includes("--json") };
+  return args;
 }
 
 function listStagedFiles() {
@@ -38,20 +51,48 @@ function filePair(rel) {
   return { before, after };
 }
 
+function collectPrDiffFiles(baseRef, headRef) {
+  const refs = resolveDiffRefs({ repoRoot: REPO_ROOT, baseRef, headRef });
+  const changes = listChangedFiles({ repoRoot: REPO_ROOT, ...refs });
+  return {
+    refs,
+    files: changes
+      .filter((c) => (c.status === "A" || c.status === "M") && c.path.endsWith(".json"))
+      .map((c) => c.path),
+  };
+}
+
 function main() {
   const args = parseArgs(process.argv.slice(2));
-  const files = listStagedFiles();
-  const beforeContent = {};
-  const afterContent = {};
+  let files = [];
+  let beforeContent = {};
+  let afterContent = {};
+  let meta = { mode: args.mode };
 
-  for (const rel of files) {
-    try {
-      const pair = filePair(rel);
-      beforeContent[rel] = pair.before;
-      afterContent[rel] = pair.after;
-    } catch {
-      afterContent[rel] = fs.readFileSync(path.join(REPO_ROOT, rel), "utf8");
+  if (args.mode === "pr-diff") {
+    const { refs, files: prFiles } = collectPrDiffFiles(args.baseRef, args.headRef);
+    files = prFiles;
+    const pairs = buildPrDiffContentPairs({
+      repoRoot: REPO_ROOT,
+      baseRef: refs.baseRef,
+      headRef: refs.headRef,
+      files,
+    });
+    beforeContent = pairs.beforeContent;
+    afterContent = pairs.afterContent;
+    meta = { mode: args.mode, baseRef: refs.baseRef, headRef: refs.headRef, fileCount: files.length };
+  } else {
+    files = listStagedFiles();
+    for (const rel of files) {
+      try {
+        const pair = filePair(rel);
+        beforeContent[rel] = pair.before;
+        afterContent[rel] = pair.after;
+      } catch {
+        afterContent[rel] = fs.readFileSync(path.join(REPO_ROOT, rel), "utf8");
+      }
     }
+    meta = { mode: args.mode, fileCount: files.length };
   }
 
   const result = validateMetadataChurn({
@@ -61,10 +102,12 @@ function main() {
     afterContent,
   });
 
+  const payload = { ...meta, ...result };
+
   if (args.json) {
-    console.log(JSON.stringify(result, null, 2));
+    console.log(JSON.stringify(payload, null, 2));
   } else {
-    console.log(`harvest:check-metadata-churn ${result.verdict}`);
+    console.log(`harvest:check-metadata-churn ${result.verdict} mode=${args.mode} files=${files.length}`);
     for (const f of result.failures) console.error(`  - ${f}`);
   }
 
