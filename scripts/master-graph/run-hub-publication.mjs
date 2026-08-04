@@ -7,8 +7,9 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const REPO_ROOT = path.resolve(__dirname, "../../..");
-const GRAPH_ROOT = process.env.CG_MASTER_GRAPH_ROOT ?? path.resolve(REPO_ROOT, "../CG-MASTER-GRAPH");
+const REPO_ROOT = path.resolve(__dirname, "../../");
+const GRAPH_ROOT =
+  process.env.CG_MASTER_GRAPH_ROOT ?? path.resolve(REPO_ROOT, "../CG-MASTER-GRAPH");
 
 function run(cmd) {
   execSync(cmd, { cwd: GRAPH_ROOT, stdio: "inherit" });
