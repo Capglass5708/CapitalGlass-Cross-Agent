@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "code-touch-summary-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-wesleywork-l-windows-closeout-v1",
+  "generatedAt": "2026-08-04T06:46:00.000Z",
+  "repos": [
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "role": "mount authority + scout hook",
+      "paths": [
+        "scripts/wsl/lib/wsl-mount-authority-lib.mjs",
+        "agent-packs/three-way-agent/hooks/intelligence-hub-scout-inject.mjs",
+        "scripts/intelligence-hub/index-freshness/lib/hook-runtime-contract.mjs"
+      ],
+      "note": "Session edits — ship via owner repo closeout"
+    },
+    {
+      "repo": "CapitalGlass-Office-Admin",
+      "role": "L drive user-session remap",
+      "paths": [
+        "scripts/devices/CG-WESLEYWORK-01/Map-CgWesleyWorkLInUserSession.ps1"
+      ]
+    }
+  ],
+  "operatorCommands": [
+    "npm run wsl:mount-authority-drives -- --json",
+    "Map-CgWesleyWorkLInUserSession.ps1",
+    "net use L:",
+    "Pin-CgWesleyWorkDrivesQuickAccess.ps1"
+  ]
+}

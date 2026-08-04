@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-WESLEYWORK-L-TAILSCALE-REMAP-001",
+  "kind": "failure-pattern",
+  "title": "WESLEY_WORK L: off-LAN — remap via wesleydesk Tailscale hostname",
+  "summary": "When 192.168.1.109 LAN is down but Tailscale reaches WESLEYDESK, map L: with Map-CgWesleyWorkLInUserSession.ps1 to \\\\wesleydesk\\CapitalGlass-L.",
+  "retrievalQuestions": [
+    "Why is L drive unavailable in Explorer on WESLEY_WORK away from office?",
+    "How do I remap L when desk LAN IP does not ping?"
+  ],
+  "evidenceRefs": [
+    "harvest-2026-08-04-wesleywork-l-windows-closeout-v1",
+    "Map-CgWesleyWorkLInUserSession.ps1 session output"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "User cannot open L:\\ in File Explorer on WESLEY_WORK",
+    "startAt": [
+      "office.get_drive_connectivity_matrix",
+      "cmd.exe net use L:"
+    ],
+    "runPreflight": [
+      "Map-CgWesleyWorkLInUserSession.ps1 from C:\\Developer\\repos\\...\\CG-WESLEYWORK-01"
+    ],
+    "doNot": [
+      "Trust WSL /mnt/l alone",
+      "Use LAN 192.168.1.109 when ping fails"
+    ],
+    "proveBeforeClaiming": [
+      "net use L: Status OK",
+      "WIN_L_INDEX_OK"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}
