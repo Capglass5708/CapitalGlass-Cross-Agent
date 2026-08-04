@@ -186,6 +186,16 @@ export function publishIntelligenceFull({
   }
 
   try {
+    if (!skipLedgerSync) {
+      stages.push(
+        runStep("ledger-sync", "npm run index:sync-publication", repoRoot, {
+          INTELLIGENCE_HUB_ROOT: hubRoot,
+          CG_APPBUILDER_MCP_ROOT: appBuilderRoot,
+          DATA_EXTRACTION_ROOT: dataExtractionRoot,
+        }),
+      );
+    }
+
     stages.push(
       runStep(
         "sync-derived",
@@ -246,16 +256,6 @@ export function publishIntelligenceFull({
       threadAutopsyIndex: reg.slicePath,
     });
 
-    if (!skipLedgerSync) {
-      stages.push(
-        runStep("ledger-sync", "npm run index:sync-publication", repoRoot, {
-          INTELLIGENCE_HUB_ROOT: hubRoot,
-          CG_APPBUILDER_MCP_ROOT: appBuilderRoot,
-          DATA_EXTRACTION_ROOT: dataExtractionRoot,
-        }),
-      );
-    }
-
     let hotRouting = { ok: false, code: "SKIP" };
     try {
       const hotCmd = "npm run intelligence-hub:publish-hot-routing-index -- --json";
@@ -302,7 +302,7 @@ export function publishIntelligenceFull({
           seedCount: hubPublish.publishedIds?.length ?? 0,
           byKindSlice: "00-master-index/BY-KIND/thread-autopsy-index.json",
         },
-        lLedger: { ok: !skipLedgerSync },
+        lLedger: { ok: !skipLedgerSync, phase: "pre-artifact-write" },
         cHotRouting: hotRouting,
         zAiCache: aiCachePublish,
       },
