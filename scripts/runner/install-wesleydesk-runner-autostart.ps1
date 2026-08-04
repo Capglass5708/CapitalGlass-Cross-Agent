@@ -1,25 +1,24 @@
-# Install Windows logon task to wake WSL and start the Cross-Agent runner on WESLEYDESK.
-# Run from elevated PowerShell on CG-WESLEYDESK-01 (or via SSH as cgremoteadmin if permitted).
+# Install Windows tasks to keep WSL + Cross-Agent runner online on WESLEYDESK.
+# Run from elevated PowerShell on CG-WESLEYDESK-01.
 $ErrorActionPreference = 'Stop'
 
-$TaskName = 'CapitalGlass-WESLEYDESK-WSL-Runner-Autostart'
+$TaskPrefix = 'CapitalGlass-WESLEYDESK-WSL-Runner'
 $WslDistro = 'Ubuntu-24.04'
 $EnsureScript = '/home/wesley/repos/CapitalGlass-Cross-Agent/scripts/runner/ensure-wesleydesk-runner-wsl.sh'
-$TaskCommand = "wsl.exe -d $WslDistro -u root bash -lc `"$EnsureScript`""
 
 $hostName = $env:COMPUTERNAME
 if ($hostName -notmatch '^(WESLEYDESK|CG-WESLEYDESK)') {
   throw "Host gate FAIL: expected WESLEYDESK, got $hostName"
 }
 
-$action = New-ScheduledTaskAction -Execute 'wsl.exe' -Argument "-d $WslDistro -u root bash -lc `"$EnsureScript`""
-$trigger = New-ScheduledTaskTrigger -AtLogOn
+$action = New-ScheduledTaskAction -Execute 'wsl.exe' -Argument "-d $WslDistro -u root bash $EnsureScript"
 $principal = New-ScheduledTaskPrincipal -UserId 'SYSTEM' -LogonType ServiceAccount -RunLevel Highest
-$settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
+$settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable -MultipleInstances IgnoreNew
 
-Register-ScheduledTask -TaskName $TaskName -Action $action -Trigger $trigger -Principal $principal -Settings $settings -Force | Out-Null
-Write-Host "Scheduled task installed: $TaskName"
-Write-Host "Command: $TaskCommand"
+Register-ScheduledTask -TaskName "$TaskPrefix-Autostart" -Action $action -Trigger (New-ScheduledTaskTrigger -AtLogOn) -Principal $principal -Settings $settings -Force | Out-Null
+Register-ScheduledTask -TaskName "$TaskPrefix-Startup" -Action $action -Trigger (New-ScheduledTaskTrigger -AtStartup) -Principal $principal -Settings $settings -Force | Out-Null
+$watchdogTrigger = New-ScheduledTaskTrigger -Once -At (Get-Date).Date -RepetitionInterval (New-TimeSpan -Minutes 5) -RepetitionDuration ([TimeSpan]::MaxValue)
+Register-ScheduledTask -TaskName "$TaskPrefix-Watchdog" -Action $action -Trigger $watchdogTrigger -Principal $principal -Settings $settings -Force | Out-Null
 
-# Immediate ensure
-& wsl.exe -d $WslDistro -u root bash -lc $EnsureScript
+Write-Host "Installed: ${TaskPrefix}-Autostart, -Startup, -Watchdog (5m)"
+& wsl.exe -d $WslDistro -u root bash $EnsureScript
