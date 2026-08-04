@@ -5,7 +5,7 @@ canonicalOwner: CG-AppBuilder-MCP
 canonicalPath: agent-packs/three-way-agent/rules/intelligence-hub-first-read.mdc
 generatedCopy: true
 ruleVersion: 1.2.0
-canonicalContentHash: 16efbf09064009f00ef34a3860cbb797faf581e1f61a5bc6fb555b385b9dc3ac
+canonicalContentHash: 1547b2990957be45044a954c067b4c94e6a1a191c226d4e0d89bd9be9d5b9815
 ---
 
 # Intelligence Hub first-read (mandatory)
@@ -118,6 +118,7 @@ Report exactly one primary retrieval outcome:
 
 | Code | Meaning |
 | --- | --- |
+| `INDEX_HIT_AI_CACHE` | Z AI-cache index bundle served compact slices (scout preflight tier 1) |
 | `INDEX_HIT` | Compact slices contained enough facts to answer |
 | `INDEX_MISS` | Slices read but topic not indexed; name missing pointer before repo fallback |
 | `L_DRIVE_NOT_MOUNTED_IN_WSL` | Mount check failed; **Revu/estimating stops**; suite status may continue failover lane |
@@ -125,20 +126,6 @@ Report exactly one primary retrieval outcome:
 | `FAILOVER_GIT_LEDGER` | L: and projection insufficient; used Cross-Agent Git ledger |
 | `CACHE_HIT` | Auto v3.2 / compiled context pack reused with matching authority |
 | `CACHE_MISS` | No reusable compiled pack; index slices were live-read |
-
-## indexNeed cross-reference (v1.2.0)
-
-Cursor app repos also enforce `cross-agent-index-preflight.mdc`. Map `retrievalResult` to hub log codes:
-
-| retrievalResult | Hub log code |
-| --- | --- |
-| `INDEX_HIT_L` | `INDEX_HIT` |
-| `INDEX_HIT_SUPABASE` | `FAILOVER_SUPABASE` |
-| `INDEX_HIT_GIT` | `FAILOVER_GIT_LEDGER` |
-| `INDEX_STALE_FAILOVER` | `INDEX_STALE_FAILOVER` |
-| `INDEX_NOT_NEEDED` | (skip hub retrieval) |
-
-Preflight command: `npm run agent:index:preflight -- --query="..." --json`
 
 When both apply, log index or failover outcome first, then cache outcome.
 
@@ -159,6 +146,10 @@ Log: `INDEX_HIT` (and `CACHE_HIT` or `CACHE_MISS` if compile lane was checked).
 ## AI cache lane (material sessions)
 
 When Auto v3.2 material preflight applies, prefer compiled authority when `cacheKeyHash` matches. Index slices remain the **first** read even when cache exists. Do not skip index retrieval because a cache pack is present.
+
+## Scout lane (estate-wide hooks)
+
+The 3-way **scout** tier runs before builder on every Cursor turn via estate-synced hooks (`npm run sync:intelligence-hub-scout-hooks`). Scout injects `agent:index:scout` brief and mandates retrieval code logging in every response. See `intelligence-hub-scout-lane.mdc`.
 
 ## Related authority
 
