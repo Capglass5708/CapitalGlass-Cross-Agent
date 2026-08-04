@@ -1,36 +1,48 @@
 {
   "schemaVersion": "cross-agent-risk-remediation-mission-progress-v1@1.0.0",
   "workPackageId": "cross-agent-medium-critical-risk-remediation-v1",
-  "updatedAt": "2026-08-04T14:10:00.000Z",
-  "executionEnvironment": "WSL2_NATIVE",
+  "updatedAt": "202-08-04T14:15:00.000Z",
+  "priorVerdictCorrection": "MERGE_READY retracted; reviewer findings accepted",
+  "verdict": "MERGE_HOLD_CI_AND_DIFF_ENFORCEMENT",
+  "codeReadyVerdict": "CODE_READY_WITH_LIVE_STORAGE_GATE_PENDING",
   "wsl2Verdict": "WSL2_NATIVE_WORKSPACE_PASS",
   "lMount": "L_DRIVE_NOT_MOUNTED_IN_WSL",
-  "zMount": "Z_NOT_MOUNTED",
-  "priorVerdictCorrection": "MERGE_READY was premature; superseded by MERGE_HOLD_CI_AND_DIFF_ENFORCEMENT",
   "ci": {
-    "failedRunId": 30916540321,
-    "failedReason": "git retention fixture tests require local git user.email in temp repos",
-    "repairStatus": "FIX_PUSHED_PENDING_GREEN"
+    "failedRuns": [30916540321, 30917392578, 30917490843, 30917565512, 30917684957],
+    "rootCauses": [
+      "git retention temp repos lacked user.email (fixed 85b17f1)",
+      "PR governance blocked mission receipt dirs (fixed 8c71533)",
+      "layered verdict requires private CG-AppBuilder-MCP checkout (404 in GHA)",
+      "metadata churn used staged-only mode (fixed pr-diff mode 85b17f1)"
+    ],
+    "repairCommits": ["7cb688a", "85b17f1", "8c71533", "8620f0d"],
+    "pendingGreenRun": true,
+    "companionIntegrationPolicy": "SKIPPED_IN_GITHUB_ACTIONS; run in WSL2 estate checkout"
   },
-  "waves": {
-    "A": { "status": "WAVE_ACCEPTED" },
-    "B": { "status": "WAVE_ACCEPTED" },
-    "C": { "status": "WAVE_ACCEPTED" },
-    "D": { "status": "WAVE_ACCEPTED" },
-    "E": { "status": "WAVE_ACCEPTED", "liveStorageProof": "PENDING_L_MOUNT" },
-    "F": { "status": "WAVE_ACCEPTED" },
-    "G": { "status": "WAVE_ACCEPTED", "note": "PR-diff governance added; CI green pending" },
-    "H": { "status": "WAVE_ACCEPTED" }
+  "prDiffEnforcement": {
+    "workflowScope": "all pull_request events",
+    "governedPaths": [
+      "artifacts/agent-runs/**",
+      "artifacts/index/**",
+      "runtime/**",
+      "work-progress/**",
+      "docs/master-graph/**",
+      "graph/**"
+    ],
+    "commands": [
+      "harvest:check-pr-governance",
+      "harvest:check-metadata-churn --mode=pr-diff"
+    ]
   },
   "testClassification": {
-    "authoritySystemMain": "11/11 PASS",
-    "authoritySystemHeadAfterSyncDerivedFix": "11/11 PASS",
-    "classification": "MISSION_INTRODUCED_REGRESSION_FIXED",
-    "receipt": "artifacts/agent-runs/cross-agent-medium-critical-risk-remediation-v1/preexisting-test-proof-receipt.json"
+    "receipt": "artifacts/agent-runs/cross-agent-medium-critical-risk-remediation-v1/preexisting-test-proof-receipt.json",
+    "originMainAuthority": "11/11 PASS",
+    "headAfterSyncDerivedFix": "11/11 PASS",
+    "classification": "MISSION_INTRODUCED_REGRESSION_FIXED"
   },
   "branch": "feat/cross-agent-risk-remediation-v1",
+  "headSha": "8620f0d",
+  "pr": "https://github.com/Capglass5708/CapitalGlass-Cross-Agent/pull/6",
   "mergeReady": false,
-  "mergeVerdict": "MERGE_HOLD_CI_AND_DIFF_ENFORCEMENT",
-  "codeReadyVerdict": "CODE_READY_WITH_LIVE_STORAGE_GATE_PENDING",
   "operatorApprovalRequired": "APPROVE CROSS-AGENT RISK REMEDIATION MERGE AND CUTOVER"
 }

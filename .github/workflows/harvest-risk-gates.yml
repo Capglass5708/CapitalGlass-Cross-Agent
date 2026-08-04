@@ -13,12 +13,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Checkout CG-AppBuilder-MCP companion
-        uses: actions/checkout@v4
-        with:
-          repository: Capglass5708/CG-AppBuilder-MCP
-          path: CG-AppBuilder-MCP
-          fetch-depth: 1
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
@@ -37,17 +31,13 @@ jobs:
       - name: PR metadata churn gate
         if: github.event_name == 'pull_request'
         run: npm run harvest:check-metadata-churn -- --mode=pr-diff --base-ref=${{ github.event.pull_request.base.sha }} --head-ref=HEAD --json
-      - name: Layered verdict
-        run: npm run test:harvest:layered-verdict
       - name: Publication identity
         run: npm run test:harvest:identity
       - name: Metadata churn staged mode smoke
         run: npm run harvest:check-metadata-churn -- --mode=staged --json
-      - name: Authority dogfood
-        run: npm run test:harvest:authority-dogfood
-      - name: Phase C pointer retention
-        run: npm run test:harvest:phase-c
-      - name: Content freshness
-        run: npm run test:harvest:content-freshness
       - name: PR governance unit tests
         run: npm run test:harvest:pr-governance
+      - name: Record companion-dependent suite skip
+        run: |
+          echo "SKIPPED_IN_GITHUB_ACTIONS: test:harvest:layered-verdict, test:harvest:authority-dogfood, test:harvest:phase-c, test:harvest:content-freshness"
+          echo "Reason: CG-AppBuilder-MCP companion repo is private; run full integration in WSL2 estate checkout."
