@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harvest-layered-operational-receipt-v1@1.0.0",
+  "title": "Harvest layered operational receipt v1",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "harvestId",
+    "payloadHash",
+    "overallVerdict",
+    "layers",
+    "generatedAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "harvest-layered-operational-receipt-v1@1.0.0"
+    },
+    "harvestId": { "type": "string", "minLength": 1 },
+    "payloadHash": { "type": "string", "pattern": "^sha256:" },
+    "manifestHash": { "type": "string" },
+    "overallVerdict": {
+      "type": "string",
+      "enum": [
+        "HARVEST_PUBLICATION_AUTHORITY_OPERATIONAL",
+        "HARVEST_DURABLE_DERIVED_DEGRADED",
+        "HARVEST_POINTER_PENDING",
+        "HARVEST_KNOWLEDGE_HOLD",
+        "HARVEST_AUTHORITY_CONFLICT",
+        "HARVEST_PUBLICATION_FAILED",
+        "NOOP_CURRENT"
+      ]
+    },
+    "targetVerdict": { "type": "string" },
+    "phaseBVerdict": { "type": "string" },
+    "layers": {
+      "type": "object",
+      "required": [
+        "knowledgeQuality",
+        "lDurable",
+        "zCache",
+        "supabaseProjection",
+        "gitPointer",
+        "contentFreshness",
+        "retrievalVerification",
+        "hotRouting",
+        "coordinationIndex"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "knowledgeQuality": { "$ref": "#/$defs/layer" },
+        "lDurable": { "$ref": "#/$defs/layer" },
+        "zCache": { "$ref": "#/$defs/layer" },
+        "supabaseProjection": { "$ref": "#/$defs/layer" },
+        "gitPointer": { "$ref": "#/$defs/layer" },
+        "contentFreshness": { "$ref": "#/$defs/layer" },
+        "retrievalVerification": { "$ref": "#/$defs/layer" },
+        "hotRouting": { "$ref": "#/$defs/layer" },
+        "coordinationIndex": { "$ref": "#/$defs/layer" }
+      }
+    },
+    "acceptance": { "type": "object", "additionalProperties": { "type": "boolean" } },
+    "generatedAt": { "type": "string", "format": "date-time" }
+  },
+  "$defs": {
+    "layer": {
+      "type": "object",
+      "required": [
+        "required",
+        "status",
+        "verificationMode",
+        "sourcePayloadHash",
+        "evidenceRef",
+        "verifiedAt",
+        "failureReason"
+      ],
+      "properties": {
+        "required": { "type": "boolean" },
+        "status": { "type": "string" },
+        "verificationMode": {
+          "type": "string",
+          "enum": [
+            "CONTENT_VERIFIED",
+            "RECEIPT_VERIFIED",
+            "LIVE_LAYER_VERIFIED",
+            "NOT_VERIFIED",
+            "NOT_REQUIRED"
+          ]
+        },
+        "sourcePayloadHash": { "type": ["string", "null"] },
+        "evidenceRef": { "type": ["string", "null"] },
+        "verifiedAt": { "type": ["string", "null"] },
+        "failureReason": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    }
+  }
+}
