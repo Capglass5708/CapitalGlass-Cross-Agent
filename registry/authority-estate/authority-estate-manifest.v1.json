@@ -1,0 +1,158 @@
+{
+  "schemaVersion": "authority-estate-manifest-v1@1.0.0",
+  "workPackageId": "cross-agent-hot-cache-dataset-registry-publication-v1",
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "records": [
+    {
+      "recordId": "document-center",
+      "identities": {
+        "domainKey": "document-center",
+        "appId": "document-center"
+      },
+      "declared": {
+        "authoritativeSystem": "CapitalGlass-Documents",
+        "mutationOwner": "CapitalGlass-Documents",
+        "derivativeOnlyConsumers": [
+          "cg-apps-hub",
+          "capital-glass-project-dashboard"
+        ],
+        "authorityKind": "domain",
+        "owns": [
+          "document placement",
+          "document layer",
+          "project documents",
+          "canonical naming",
+          "sharepoint population"
+        ]
+      },
+      "classification": {
+        "sensitivity": "INTERNAL",
+        "cacheAllowed": true,
+        "externalModelAllowed": false
+      }
+    },
+    {
+      "recordId": "app-builder-mcp",
+      "identities": {
+        "domainKey": "app-builder-mcp",
+        "appId": "app-builder-mcp"
+      },
+      "declared": {
+        "authoritativeSystem": "CG-AppBuilder-MCP",
+        "mutationOwner": "CG-AppBuilder-MCP",
+        "derivativeOnlyConsumers": [
+          "cg-apps-hub",
+          "capital-glass-project-dashboard"
+        ],
+        "authorityKind": "domain",
+        "owns": [
+          "mcp control plane",
+          "application bibles",
+          "suite wiring registry",
+          "hot cache platform"
+        ]
+      },
+      "classification": {
+        "sensitivity": "INTERNAL",
+        "cacheAllowed": true,
+        "externalModelAllowed": false
+      }
+    },
+    {
+      "recordId": "cross-agent",
+      "identities": {
+        "domainKey": "cross-agent",
+        "appId": "cross-agent"
+      },
+      "declared": {
+        "authoritativeSystem": "CapitalGlass-Cross-Agent",
+        "mutationOwner": "CapitalGlass-Cross-Agent",
+        "derivativeOnlyConsumers": [
+          "cg-apps-hub",
+          "capital-glass-project-dashboard"
+        ],
+        "authorityKind": "domain",
+        "owns": [
+          "active work ledger",
+          "index publication",
+          "hot-cache registries",
+          "cross-agent handoffs"
+        ]
+      },
+      "classification": {
+        "sensitivity": "INTERNAL",
+        "cacheAllowed": true,
+        "externalModelAllowed": false
+      }
+    },
+    {
+      "recordId": "hub",
+      "identities": {
+        "domainKey": "hub",
+        "appId": "hub"
+      },
+      "declared": {
+        "authoritativeSystem": "cg-apps-hub",
+        "mutationOwner": "cg-apps-hub",
+        "derivativeOnlyConsumers": [
+          "cg-apps-hub",
+          "capital-glass-project-dashboard"
+        ],
+        "authorityKind": "domain",
+        "owns": [
+          "hub launcher",
+          "auth consumer bff",
+          "suite app shell"
+        ]
+      },
+      "classification": {
+        "sensitivity": "INTERNAL",
+        "cacheAllowed": true,
+        "externalModelAllowed": false
+      }
+    },
+    {
+      "recordId": "document-layer",
+      "identities": {
+        "domainKey": "document-layer",
+        "appId": "document-center"
+      },
+      "declared": {
+        "authoritativeSystem": "CapitalGlass-Documents",
+        "mutationOwner": "CapitalGlass-Documents",
+        "derivativeOnlyConsumers": [
+          "cg-apps-hub",
+          "capital-glass-project-dashboard"
+        ],
+        "authorityKind": "domain",
+        "owns": [
+          "document engine",
+          "storage routing"
+        ]
+      },
+      "classification": {
+        "sensitivity": "INTERNAL",
+        "cacheAllowed": true,
+        "externalModelAllowed": false
+      }
+    }
+  ],
+  "conflictResolutionRules": [
+    {
+      "ruleId": "document-layer-owner",
+      "precedence": "manifest-declared",
+      "winner": "declared.mutationOwner"
+    }
+  ],
+  "unresolvedConflicts": [
+    {
+      "conflictId": "document-layer-vs-hub-derivative",
+      "status": "UNRESOLVED",
+      "domains": [
+        "document-center",
+        "hub"
+      ],
+      "note": "Hub consumes document layer; mutation remains in CapitalGlass-Documents"
+    }
+  ]
+}
