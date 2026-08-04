@@ -1,0 +1,40 @@
+name: harvest-risk-gates
+
+on:
+  pull_request:
+    paths:
+      - "scripts/harvest/**"
+      - "scripts/tests/run-harvest-*.test.mjs"
+      - "package.json"
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/harvest/**"
+      - "scripts/tests/run-harvest-*.test.mjs"
+
+jobs:
+  harvest-authority-gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm ci
+      - name: Risk remediation suite
+        run: npm run test:harvest:risk-remediation
+      - name: Git retention
+        run: npm run test:harvest:git-retention
+      - name: Layered verdict
+        run: npm run test:harvest:layered-verdict
+      - name: Publication identity
+        run: npm run test:harvest:identity
+      - name: Metadata churn (no staged files)
+        run: npm run harvest:check-metadata-churn -- --json
+      - name: Authority dogfood
+        run: npm run test:harvest:authority-dogfood
+      - name: Phase C pointer retention
+        run: npm run test:harvest:phase-c
+      - name: Content freshness
+        run: npm run test:harvest:content-freshness

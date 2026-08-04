@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Build graph-extraction.json from harvest-manifest-v1.json.
+ * Build graph extraction into L: staging (not Cross-Agent Git).
  */
 import fs from "node:fs";
 import { harvestRunDir, manifestPath, HARVEST_ID } from "./lib/paths.mjs";
@@ -16,20 +16,24 @@ if (!fs.existsSync(manifestFile)) {
 }
 
 const manifest = JSON.parse(fs.readFileSync(manifestFile, "utf8"));
-const { extraction, outPath } = writeGraphExtraction(runDir, manifest);
+const result = writeGraphExtraction(runDir, manifest);
 
 console.log(
   JSON.stringify(
     {
-      verdict: "PASS",
+      verdict: result.verdict ?? "PASS",
       harvestId,
-      path: outPath,
-      extractionId: extraction.extractionId,
-      counts: {
-        nodes: extraction.nodes.length,
-        edges: extraction.edges.length,
-        warnings: extraction.warnings.length,
-      },
+      graphEligible: result.graphEligible,
+      extractionPath: result.outPath,
+      extractionHash: result.staging?.extractionHash ?? result.pointer?.extractionHash ?? null,
+      lExtractionPath: result.pointer?.lExtractionPath ?? null,
+      counts: result.extraction
+        ? {
+            nodes: result.extraction.nodes.length,
+            edges: result.extraction.edges.length,
+            warnings: result.extraction.warnings.length,
+          }
+        : null,
     },
     null,
     2,

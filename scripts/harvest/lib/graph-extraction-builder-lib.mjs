@@ -2,6 +2,14 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { REPO_ROOT } from "./paths.mjs";
+import { hashFileContent } from "./hash.mjs";
+import {
+  buildGraphExtractionPointer,
+  writeGraphExtractionStaging,
+  validateGraphPointerCompact,
+} from "./graph-extraction-staging-lib.mjs";
+import { inferGraphEligibility } from "./graph-repo-resolution-lib.mjs";
+import { resolveHubRoot } from "./publish-hub-seed-lib.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_MAP_PATH = path.join(__dirname, "graph-repository-id-map.v1.json");
@@ -172,9 +180,60 @@ export function buildGraphExtractionFromManifest(manifest, options = {}) {
 }
 
 export function writeGraphExtraction(runDir, manifest, options = {}) {
+  const graphEligible = inferGraphEligibility(manifest);
+  if (!graphEligible) {
+    return {
+      extraction: null,
+      outPath: null,
+      graphEligible: false,
+      verdict: "GRAPH_NOT_REQUIRED",
+    };
+  }
+
   const extraction = buildGraphExtractionFromManifest(manifest, options);
-  const outPath = path.join(runDir, "graph-extraction.json");
-  fs.mkdirSync(runDir, { recursive: true });
-  fs.writeFileSync(outPath, `${JSON.stringify(extraction, null, 2)}\n`, "utf8");
-  return { extraction, outPath };
+  const hubRoot = options.hubRoot ?? resolveHubRoot();
+  let staging;
+  try {
+    staging = writeGraphExtractionStaging({
+      hubRoot,
+      harvestId: manifest.harvestId,
+      extractionBody: extraction,
+    });
+  } catch (err) {
+    const tmpDir = path.join(runDir, ".tmp-graph-staging");
+    fs.mkdirSync(tmpDir, { recursive: true });
+    const tmpPath = path.join(tmpDir, "graph-extraction.json");
+    fs.writeFileSync(tmpPath, `${JSON.stringify(extraction, null, 2)}\n`, "utf8");
+    staging = {
+      ok: true,
+      extractionHash: `sha256:${hashFileContent(fs.readFileSync(tmpPath, "utf8"))}`,
+      lExtractionPath: null,
+      layout: { extractionPath: tmpPath },
+      noop: false,
+      stagingFallback: "local_tmp",
+    };
+  }
+
+  const pointer = buildGraphExtractionPointer({
+    harvestId: manifest.harvestId,
+    payloadHash: manifest.payloadHash ?? null,
+    extractionHash: staging.extractionHash,
+    lExtractionPath: staging.lExtractionPath,
+    nodeCount: extraction.nodes?.length ?? 0,
+    edgeCount: extraction.edges?.length ?? 0,
+    promotionVerdict: "PENDING",
+  });
+  const pointerCheck = validateGraphPointerCompact(pointer);
+  if (!pointerCheck.ok) {
+    throw new Error(pointerCheck.failures.join("; "));
+  }
+
+  return {
+    extraction,
+    outPath: staging.layout?.extractionPath ?? null,
+    pointer,
+    graphEligible: true,
+    staging,
+    verdict: "GRAPH_STAGED",
+  };
 }

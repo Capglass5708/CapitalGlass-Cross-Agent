@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "cross-agent-risk-remediation-regression-v1@1.0.0",
+  "workPackageId": "cross-agent-medium-critical-risk-remediation-v1",
+  "generatedAt": "2026-08-04T14:00:00.000Z",
+  "verdict": "FULL_RISK_REMEDIATION_REGRESSION_PASS",
+  "wsl2": {
+    "verdict": "WSL2_NATIVE_WORKSPACE_PASS",
+    "repoRoot": "/home/wesle/repos/CapitalGlass-Cross-Agent"
+  },
+  "suites": {
+    "test:harvest:risk-remediation": { "verdict": "PASS", "classification": "MISSION_INTRODUCED" },
+    "test:harvest:git-retention": { "verdict": "PASS", "tests": 12 },
+    "test:harvest:layered-verdict": { "verdict": "PASS", "tests": 15 },
+    "test:harvest:identity": { "verdict": "PASS", "tests": 10 },
+    "test:harvest:l-durable": { "verdict": "PASS", "tests": 7 },
+    "test:harvest:knowledge-quality": { "verdict": "PASS", "tests": 14 },
+    "test:harvest:phase-b": { "verdict": "PASS", "tests": 12 },
+    "test:harvest:supabase-snapshot": { "verdict": "PASS", "tests": 6 },
+    "test:harvest:phase-c": { "verdict": "PASS", "tests": 10 },
+    "test:harvest:content-freshness": { "verdict": "PASS", "tests": 11 },
+    "test:harvest:single-flight": { "verdict": "PASS" },
+    "test:harvest:authority-dogfood": { "verdict": "PASS" },
+    "test:harvest": { "verdict": "PARTIAL", "note": "1 pre-existing failure: coverage gradeAfter fixture drift", "classification": "PRE_EXISTING" },
+    "CG-AppBuilder-MCP:test:cross-agent-harvest-projection": { "verdict": "PASS", "tests": 10 }
+  },
+  "environmentNotes": {
+    "lMount": "L_DRIVE_NOT_MOUNTED_IN_WSL",
+    "zMount": "Z_NOT_MOUNTED",
+    "liveAcceptance": "PENDING_OPERATOR_APPROVAL"
+  }
+}

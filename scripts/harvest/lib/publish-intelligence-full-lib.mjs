@@ -14,6 +14,8 @@ import {
   syncDoNotAdvanceToHub,
 } from "./register-hub-index.mjs";
 import { fanoutHostAiCache } from "./host-ai-cache-fanout-lib.mjs";
+import { guardLegacyPublication } from "./harvest-legacy-publication-guard-lib.mjs";
+import { computeLegacyPublicationVerdict } from "./harvest-required-layer-policy-lib.mjs";
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
@@ -151,6 +153,20 @@ export function publishIntelligenceFull({
 
   if (!fs.existsSync(manifestPath)) {
     return { ok: false, verdict: "HARVEST_MISSING", errors: [`missing ${manifestPath}`] };
+  }
+
+  const legacyGuard = guardLegacyPublication({
+    repoRoot,
+    harvestId,
+    pipeline: "legacy",
+  });
+  if (!legacyGuard.ok) {
+    return {
+      ok: false,
+      verdict: legacyGuard.verdict,
+      errors: legacyGuard.errors,
+      classification: legacyGuard.classification,
+    };
   }
 
   if (!fs.existsSync(path.join(hubRoot, "00-master-index", "BY-KIND"))) {
@@ -353,35 +369,6 @@ export function publishIntelligenceFull({
       }
     }
 
-    const receipt = {
-      schemaVersion: "cross-agent-harvest-operational-publication-receipt-v1@1.0.0",
-      harvestId,
-      generatedAt: new Date().toISOString(),
-      startedAt,
-      verdict: "OPERATIONAL",
-      sourceCommitSha: gitHead,
-      tier,
-      authorityModel: "CHAT_THREAD_STRUCTURED_TRUTH",
-      intelligenceHubRoot: hubRoot,
-      layers: {
-        git: { path: manifestPath, sourceCommitSha: gitHead },
-        lCatalog: {
-          ok: hasSeeds,
-          seedCount: hubPublish.publishedIds?.length ?? 0,
-          byKindSlice: "00-master-index/BY-KIND/thread-autopsy-index.json",
-        },
-        lLedger: { ok: !skipLedgerSync },
-        cHotRouting: hotRouting,
-        zAiCache: aiCachePublish,
-        hostFanout,
-      },
-      stages,
-      contentHash: hashCanonicalJson({ harvestId, gitHead, stages }),
-    };
-
-    const receiptPath = path.join(runDir, "operational-publication-receipt.json");
-    writeJson(receiptPath, receipt);
-
     let supabaseProjection = { ok: false, code: "SKIP" };
     if (!skipSupabaseProjection) {
       try {
@@ -408,13 +395,60 @@ export function publishIntelligenceFull({
       }
     }
 
-    receipt.layers.supabaseThreadAutopsy = supabaseProjection;
-    receipt.contentHash = hashCanonicalJson({ harvestId, gitHead, stages });
-    writeJson(receiptPath, receipt);
+    const layerVerdict = computeLegacyPublicationVerdict({
+      manifest,
+      skipLedgerSync,
+      skipSupabaseProjection,
+      lPublishOk: hubPublish.ok,
+      hubPublishOk: hubPublish.ok,
+      supabaseProjection,
+    });
+
+    const receipt = {
+      schemaVersion: "cross-agent-harvest-operational-publication-receipt-v1@1.0.0",
+      harvestId,
+      generatedAt: new Date().toISOString(),
+      startedAt,
+      verdict: layerVerdict.verdict,
+      degraded: layerVerdict.degraded ?? false,
+      degradedReasons: layerVerdict.degradedReasons ?? [],
+      sourceCommitSha: gitHead,
+      tier: layerVerdict.tier ?? tier,
+      authorityModel: "CHAT_THREAD_STRUCTURED_TRUTH",
+      intelligenceHubRoot: hubRoot,
+      layers: {
+        git: { path: manifestPath, sourceCommitSha: gitHead },
+        lCatalog: {
+          ok: hasSeeds,
+          seedCount: hubPublish.publishedIds?.length ?? 0,
+          byKindSlice: "00-master-index/BY-KIND/thread-autopsy-index.json",
+        },
+        lLedger: {
+          ok: !skipLedgerSync,
+          status: skipLedgerSync ? "SKIPPED_REQUIRED" : "CURRENT",
+        },
+        supabaseProjection: {
+          ok: supabaseProjection.ok !== false,
+          status: skipSupabaseProjection ? "SKIPPED_REQUIRED" : supabaseProjection.ok ? "CURRENT" : "FAILED_REQUIRED",
+        },
+        cHotRouting: hotRouting,
+        zAiCache: aiCachePublish,
+        hostFanout,
+      },
+      stages,
+      contentHash: hashCanonicalJson({ harvestId, gitHead, stages }),
+    };
+
+    const receiptPath = path.join(runDir, "operational-publication-receipt.json");
+    if (layerVerdict.allowOperationalReceipt) {
+      writeJson(receiptPath, receipt);
+    }
 
     updateManifestProjection(runDir, {
-      hubPublishStatus: "published",
-      operationalReceiptPath: `artifacts/agent-runs/${harvestId}/operational-publication-receipt.json`,
+      hubPublishStatus: layerVerdict.ok ? "published" : "degraded",
+      operationalReceiptPath: layerVerdict.allowOperationalReceipt
+        ? `artifacts/agent-runs/${harvestId}/operational-publication-receipt.json`
+        : null,
     });
     stages.push(
       runStep(
@@ -424,7 +458,25 @@ export function publishIntelligenceFull({
       ),
     );
 
-    return { ok: true, verdict: "OPERATIONAL", receipt, receiptPath, stages };
+    if (!layerVerdict.ok) {
+      return {
+        ok: false,
+        verdict: layerVerdict.verdict,
+        receipt: layerVerdict.allowOperationalReceipt ? receipt : null,
+        receiptPath: layerVerdict.allowOperationalReceipt ? receiptPath : null,
+        stages,
+        errors: layerVerdict.degradedReasons,
+      };
+    }
+
+    return {
+      ok: true,
+      verdict: layerVerdict.verdict,
+      degraded: layerVerdict.degraded,
+      receipt: layerVerdict.allowOperationalReceipt ? receipt : null,
+      receiptPath: layerVerdict.allowOperationalReceipt ? receiptPath : null,
+      stages,
+    };
   } catch (err) {
     return {
       ok: false,

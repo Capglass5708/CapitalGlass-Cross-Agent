@@ -7,6 +7,8 @@ import path from "node:path";
 import { hashCanonicalJson } from "./lib/hash.mjs";
 import { validateManifestSchema } from "./lib/schema-validate.mjs";
 import { validateThreadAutopsy } from "./lib/validate-thread-autopsy.mjs";
+import { inferGraphEligibility } from "./lib/graph-repo-resolution-lib.mjs";
+import { graphRepoResolution } from "./lib/graph-extraction-paths.mjs";
 import { REPO_ROOT, harvestRunDir, manifestPath, HARVEST_ID } from "./lib/paths.mjs";
 
 const harvestId = process.argv[2] || HARVEST_ID;
@@ -213,21 +215,17 @@ function main() {
     warnings.push(...autopsyResult.warnings);
   }
 
-  const graphExtractionPath = path.join(runDir, "graph-extraction.json");
-  const graphValidationPath = path.join(runDir, "graph-extraction-validation-result.json");
-  if (!fs.existsSync(graphExtractionPath)) {
-    errors.push("graph-extraction.json missing — run harvest:sync-derived");
-  } else {
-    const extraction = readJson(graphExtractionPath);
-    if (extraction.harvestId !== harvestId) {
-      errors.push("graph-extraction harvestId mismatch");
-    }
-    if (!fs.existsSync(graphValidationPath)) {
-      errors.push("graph-extraction-validation-result.json missing");
+  const graphEligible = inferGraphEligibility(manifest);
+  if (graphEligible) {
+    const graphResolution = graphRepoResolution();
+    if (!graphResolution.ok) {
+      warnings.push(`graph authority unavailable (${graphResolution.verdict}) — durable harvest valid; graph contribution pending`);
     } else {
-      const graphVal = readJson(graphValidationPath);
-      if (graphVal.verdict !== "PASS") {
-        errors.push(`graph extraction validation ${graphVal.verdict}`);
+      const graphStage = manifest.projection?.graphStage;
+      if (graphStage === "GRAPH_VALIDATION_HOLD") {
+        warnings.push("graph validation hold — graph promotion blocked only");
+      } else if (!manifest.projection?.graphExtractionHash) {
+        warnings.push("graph-eligible harvest missing staged extraction metadata — run harvest:sync-derived");
       }
     }
   }

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "cross-agent-risk-remediation-preflight-baseline-v1@1.0.0",
+  "workPackageId": "cross-agent-medium-critical-risk-remediation-v1",
+  "generatedAt": "2026-08-04T00:00:00.000Z",
+  "verdict": "RISK_REMEDIATION_BASELINE_CAPTURED",
+  "wsl2": {
+    "verdict": "WSL2_NATIVE_WORKSPACE_PASS",
+    "repoRoot": "/home/wesle/repos/CapitalGlass-Cross-Agent",
+    "lMount": false,
+    "zMount": false
+  },
+  "repositories": {
+    "CapitalGlass-Cross-Agent": {
+      "branch": "feat/cross-agent-risk-remediation-v1",
+      "base": "main",
+      "head": "pending-commit"
+    },
+    "CG-MASTER-GRAPH": {
+      "branch": "feat/harvest-graph-intake-boundary-v1",
+      "base": "main"
+    },
+    "CG-AppBuilder-MCP": {
+      "branch": "main",
+      "integrationBranchRequired": false
+    }
+  },
+  "baselineTests": {
+    "test:harvest:git-retention": "PASS",
+    "test:harvest:risk-remediation": "PASS"
+  },
+  "inventoryNotes": {
+    "legacyPipelineDefault": "harvest:publish-intelligence-full pipeline=legacy",
+    "skipLedgerSyncFlag": "present in publish-intelligence-full",
+    "graphExtractionInGit": "remediation redirects to L staging / tmp"
+  }
+}

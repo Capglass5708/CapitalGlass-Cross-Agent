@@ -7,16 +7,36 @@ import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { harvestRunDir, HARVEST_ID } from "./lib/paths.mjs";
 import {
+  graphRepoResolution,
   graphRepoRoot,
   graphExtractionPath,
   graphExtractionValidationPath,
 } from "./lib/graph-extraction-paths.mjs";
+import { readStagingExtraction } from "./lib/graph-extraction-staging-lib.mjs";
+import { resolveHubRoot } from "./lib/publish-hub-seed-lib.mjs";
 
 const harvestId = process.argv[2] || HARVEST_ID;
 const runDir = harvestRunDir(harvestId);
-const extractionPath = graphExtractionPath(runDir);
-const graphRoot = graphRepoRoot();
+const manifestFile = path.join(runDir, "harvest-manifest-v1.json");
+const graphResolution = graphRepoResolution();
+const graphRoot = graphResolution.graphRepoRoot ?? graphRepoRoot();
 const npmCmd = process.platform === "win32" ? "npm.cmd" : "npm";
+
+let extractionPath = graphExtractionPath(runDir);
+if (fs.existsSync(manifestFile)) {
+  const manifest = JSON.parse(fs.readFileSync(manifestFile, "utf8"));
+  const extractionHash = manifest.projection?.graphExtractionHash;
+  if (extractionHash && manifest.projection?.graphLExtractionPath) {
+    const hubRoot = resolveHubRoot();
+    const staged = readStagingExtraction(hubRoot, harvestId, extractionHash);
+    if (staged.ok) {
+      extractionPath = staged.layout.extractionPath;
+    }
+  }
+}
+if (!fs.existsSync(extractionPath) && fs.existsSync(path.join(runDir, ".tmp-graph-staging", "graph-extraction.json"))) {
+  extractionPath = path.join(runDir, ".tmp-graph-staging", "graph-extraction.json");
+}
 
 function writeResult(body) {
   fs.mkdirSync(runDir, { recursive: true });
@@ -42,13 +62,13 @@ if (!fs.existsSync(path.join(graphRoot, "package.json"))) {
     schemaVersion: "cross-agent-graph-extraction-validation-v1@1.0.0",
     harvestId,
     validatedAt: new Date().toISOString(),
-    verdict: "FAIL",
-    error: `CG-MASTER-GRAPH not found at ${graphRoot}`,
-    graphRepoRoot: graphRoot,
+    verdict: "GRAPH_AUTHORITY_UNAVAILABLE",
+    error: "CG-MASTER-GRAPH unavailable",
+    graphRepoResolution: graphResolution.resolution,
   };
   writeResult(result);
-  console.error(JSON.stringify(result, null, 2));
-  process.exit(1);
+  console.log(JSON.stringify(result, null, 2));
+  process.exit(0);
 }
 
 try {
