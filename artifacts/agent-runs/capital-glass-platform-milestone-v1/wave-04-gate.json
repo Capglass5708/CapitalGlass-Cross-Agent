@@ -1,0 +1,31 @@
+{
+  "schema": "capital-glass-gated-wave-receipt-v1",
+  "milestoneId": "capital-glass-platform-milestone-v1",
+  "wave": 4,
+  "name": "Intelligence Hub Scout Freshness",
+  "verdict": "PARTIAL_PASS",
+  "recordedAt": "2026-08-04T16:05:30Z",
+  "note": "Assessed after Wave 3 stop — scout lane usable via Z/hot-cache failover despite L: unmounted",
+  "gates": {
+    "scoutIndex": {
+      "pass": true,
+      "indexResult": "INDEX_HIT_AI_CACHE",
+      "freshnessVerdict": "CURRENT",
+      "rawScanRequired": false,
+      "indexTier": "hot-ai-cache",
+      "hotCachePath": "/mnt/d/AI Cursur Cache/objects/intelligence-hub-index/current-hot-routing-index.v1.json"
+    },
+    "lDriveFallback": {
+      "pass": false,
+      "mounted": false,
+      "failover": "FAILOVER_GIT_LEDGER + hot AI cache"
+    },
+    "publication": {
+      "pass": false,
+      "autoPublisherStatus": "AUTO_PUBLISHER_V1_1_STAGED_NOT_ACTIVE",
+      "note": "Publication not current for full PUBLICATION_PASS gate"
+    }
+  },
+  "autoMoveToWave5": false,
+  "blockedBy": "Wave 3 stop + publication gate not PUBLICATION_PASS"
+}
