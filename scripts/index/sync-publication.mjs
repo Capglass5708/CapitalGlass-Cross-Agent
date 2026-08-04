@@ -30,6 +30,10 @@ function main() {
     `INTELLIGENCE_HUB_ROOT=${HUB_ROOT} CG_APPBUILDER_MCP_ROOT=${APP_BUILDER_ROOT} CAPITALGLASS_CROSS_AGENT_ROOT=${REPO_ROOT} npm run agent-research-library:publish-active-work-ledger -- --repo=${REPO_ROOT} --json`,
     DATA_EXTRACTION_ROOT,
   );
+  run(
+    `INTELLIGENCE_HUB_ROOT=${HUB_ROOT} CAPITALGLASS_CROSS_AGENT_ROOT=${REPO_ROOT} npm run intelligence-hub:thread-autopsy:project-supabase -- --apply --json`,
+    APP_BUILDER_ROOT,
+  );
   run("npm run index:freshness-gate", REPO_ROOT, {
     CG_APPBUILDER_MCP_ROOT: APP_BUILDER_ROOT,
     INTELLIGENCE_HUB_ROOT: HUB_ROOT,

@@ -138,6 +138,7 @@ export function publishIntelligenceFull({
   skipTests = false,
   skipBlindRetrieval = false,
   skipLedgerSync = false,
+  skipSupabaseProjection = false,
   dryRun = false,
   allowRepublish = false,
   allowSupersedeSeedIds = [],
@@ -187,6 +188,7 @@ export function publishIntelligenceFull({
         "publish-hot-routing-index",
         "intelligence-hub:index-freshness:publish",
         syncHosts ? `host-ai-cache-fanout:${Array.isArray(syncHosts) ? syncHosts.join(",") : syncHosts}` : "skip-host-fanout",
+        skipSupabaseProjection ? "skip-thread-autopsy-supabase" : "thread-autopsy-supabase-projection",
       ],
     };
   }
@@ -379,6 +381,37 @@ export function publishIntelligenceFull({
 
     const receiptPath = path.join(runDir, "operational-publication-receipt.json");
     writeJson(receiptPath, receipt);
+
+    let supabaseProjection = { ok: false, code: "SKIP" };
+    if (!skipSupabaseProjection) {
+      try {
+        const supabaseCmd = `npm run intelligence-hub:thread-autopsy:project-supabase -- --harvest-id=${harvestId} --apply --json`;
+        const supabaseOut = execSync(supabaseCmd, {
+          cwd: appBuilderRoot,
+          env: {
+            ...process.env,
+            INTELLIGENCE_HUB_ROOT: hubRoot,
+            CAPITALGLASS_CROSS_AGENT_ROOT: repoRoot,
+          },
+          encoding: "utf8",
+        });
+        supabaseProjection = JSON.parse(supabaseOut);
+        stages.push({
+          label: "thread-autopsy-supabase",
+          ok: supabaseProjection.apply?.ok !== false,
+          verdict: supabaseProjection.verdict,
+          counts: supabaseProjection.counts,
+        });
+      } catch (err) {
+        supabaseProjection = { ok: false, code: "SUPABASE_PROJECTION_FAIL", error: String(err.message ?? err) };
+        stages.push({ label: "thread-autopsy-supabase", ok: false, error: supabaseProjection.error });
+      }
+    }
+
+    receipt.layers.supabaseThreadAutopsy = supabaseProjection;
+    receipt.contentHash = hashCanonicalJson({ harvestId, gitHead, stages });
+    writeJson(receiptPath, receipt);
+
     updateManifestProjection(runDir, {
       hubPublishStatus: "published",
       operationalReceiptPath: `artifacts/agent-runs/${harvestId}/operational-publication-receipt.json`,

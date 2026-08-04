@@ -38,7 +38,10 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 
 | Packet ID | State | Verdict | Owner repo | Project file | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `cursor-harvest-protocol-session-v1` | COMPLETE | PASS | CapitalGlass-Cross-Agent | docs/runbooks/chat-thread-closeout-autopsy-harvest-v1.md | Operator: harvest:publish-intelligence-full when ready |
+| `intelligence-hub-thread-autopsy-publication-v1` | PUBLICATION_COMPLETE | PASS | CapitalGlass-Cross-Agent | [2026-08-04_intelligence-hub-thread-autopsy-publication-v1.md](./2026-08-04_intelligence-hub-thread-autopsy-publication-v1.md) | None — catalog and ledger aligned |
+| `three-way-agent-improvement-intelligence-v1` | OPERATIONAL | THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL | CG-AppBuilder-MCP | [2026-08-03_three-way-agent-improvement-intelligence-v1.md](./2026-08-03_three-way-agent-improvement-intelligence-v1.md) | None for Slice 6 — auto-publisher is separate |
+| `cross-agent-index-auto-publisher-activation-v1` | RUNNER_ONLINE_AUTO_PUBLISHER_HOLD | HOLD | CapitalGlass-Cross-Agent | [2026-08-03_cross-agent-index-auto-publisher-activation-v1.md](./2026-08-03_cross-agent-index-auto-publisher-activation-v1.md) | Enable GHA auto-publisher trigger; prove NOOP_CURRENT |
+| `intelligence-hub-index-ai-cache-freshness-v1` | FOUNDATION_PASS | PASS | CG-AppBuilder-MCP | [2026-08-03_intelligence-hub-index-ai-cache-freshness-v1.md](./2026-08-03_intelligence-hub-index-ai-cache-freshness-v1.md) | None — freshness gate PASS @ ae1c427 |
 
 <!-- HARVEST-PACKET-INDEX:END -->
 
