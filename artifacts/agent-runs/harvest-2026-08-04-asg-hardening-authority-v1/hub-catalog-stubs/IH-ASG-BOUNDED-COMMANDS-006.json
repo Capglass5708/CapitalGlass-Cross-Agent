@@ -1,0 +1,78 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-asg-bounded-commands-006",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "bb02387dc21dbc86659ea78b2d1a35bbc812fa12",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-asg-hardening-authority-v1",
+      "seedId": "IH-ASG-BOUNDED-COMMANDS-006"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T22:04:13.833Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "91bba66526797618bda7c539eaf3e0a4674becc3b295b818ed8c1101553b4c6a"
+  },
+  "body": {
+    "seedId": "IH-ASG-BOUNDED-COMMANDS-006",
+    "kind": "runbook",
+    "title": "ASG bounded command policy — allowed runner invocations",
+    "summary": "Runner audits subprocess commands against bounded-commands.json; unauthorized patterns fail the bounded-command lane.",
+    "canonicalQuestion": "Which shell commands are allowed during All Systems Go dark runner?",
+    "alternateQuestions": [
+      "Where is bounded command policy defined for ASG?"
+    ],
+    "shortAnswer": "Runner audits subprocess commands against bounded-commands.json; unauthorized patterns fail the bounded-command lane.",
+    "detailedAnswer": "ASG bounded command policy — allowed runner invocations",
+    "retrievalQuestions": [
+      "Which shell commands are allowed during All Systems Go dark runner?",
+      "Where is bounded command policy defined for ASG?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Agent proposes unrestricted shell during ASG runner work",
+      "startAt": [
+        "CG-AppBuilder-MCP/scripts/ultimate-sdlc-runner/config/bounded-commands.json",
+        "CG-AppBuilder-MCP/scripts/ultimate-sdlc-runner/lib/bounded-command-policy.mjs",
+        "Z:/Capital-Glass-Intelligence-Hub/AI-Cache-Authority/operational-control/all-systems-go/asg-operational-authority-v1"
+      ],
+      "runPreflight": [
+        "npm run test:asg-hardening"
+      ],
+      "doNot": [
+        "Add destructive commands without bounded-commands.json update and Verifier proof",
+        "Bypass bounded-command lane with ad-hoc npm scripts"
+      ],
+      "proveBeforeClaiming": [
+        "boundedCommandAudit.verdict PASS in receipt",
+        "Proposed command matches allow pattern or has explicit approval"
+      ]
+    },
+    "evidenceRefs": [
+      "06111bc4 formal GO receipt",
+      "bounded-commands.json",
+      "bounded-command-policy.mjs"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": 2,
+    "doNotAdvance": [],
+    "promotionClass": "AUTOMATIC",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-asg-hardening-authority-v1/seed-packets/IH-ASG-BOUNDED-COMMANDS-006.json"
+    ],
+    "harvestId": "harvest-2026-08-04-asg-hardening-authority-v1"
+  }
+}

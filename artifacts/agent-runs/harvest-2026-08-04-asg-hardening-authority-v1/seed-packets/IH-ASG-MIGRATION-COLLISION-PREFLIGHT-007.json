@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-ASG-MIGRATION-COLLISION-PREFLIGHT-007",
+  "kind": "runbook",
+  "title": "ASG migration collision preflight — shared-db filename drift classes",
+  "summary": "Before live lanes, runner classifies cross-repo migration filename collisions as UNAUTHORIZED or INTENTIONAL_APPROVED_DRIFT.",
+  "retrievalQuestions": [
+    "How does ASG preflight detect migration filename collisions?",
+    "When is identical migration filename across repos approved drift?"
+  ],
+  "evidenceRefs": [
+    "06111bc4 formal GO receipt",
+    "migration-collision-preflight.mjs"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "shared-db lane WARN or migration collision during ASG",
+    "startAt": [
+      "CG-AppBuilder-MCP/scripts/ultimate-sdlc-runner/lib/migration-collision-preflight.mjs",
+      "CG-AppBuilder-MCP/artifacts/agent-runs/ultimate-sdlc-runner-hardening-and-ai-cache-v1/06111bc4-fb53-4e50-98a9-b02659c770c5/dark-runner-receipt.json"
+    ],
+    "runPreflight": [
+      "npm run cg:shared-db:audit"
+    ],
+    "doNot": [
+      "Rename migrations to mask collisions without reconcile inventory update",
+      "Skip preflight when live DB lane runs"
+    ],
+    "proveBeforeClaiming": [
+      "migrationCollisionPreflight.verdict PASS or documented INTENTIONAL_APPROVED_DRIFT",
+      "requires-investigation reconciled when claiming shared-db PASS"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE",
+  "roiRank": 3,
+  "sourcePacketIds": ["asg-hardening-authority-v1"]
+}

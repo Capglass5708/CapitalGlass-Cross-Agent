@@ -1,0 +1,120 @@
+{
+  "packetKind": "graph-extraction",
+  "schemaVersion": "cg-master-graph-extraction-v1",
+  "extractionId": "extraction:harvest-2026-08-04-asg-hardening-authority-v1",
+  "harvestId": "harvest-2026-08-04-asg-hardening-authority-v1",
+  "workPackageId": "harvest-2026-08-04-asg-hardening-authority-v1",
+  "producer": {
+    "repositoryId": "repo:capitalglass-cross-agent",
+    "capability": "harvest-graph-extraction",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "id": "harvest:harvest-2026-08-04-asg-hardening-authority-v1",
+      "nodeType": "Harvest",
+      "displayName": "harvest-2026-08-04-asg-hardening-authority-v1",
+      "lifecycleState": "lifecycle:canonical",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "missionClass": "asg-hardening-authority-pointer-harvest-v1",
+        "sourceCommitSha": "bb02387dc21dbc86659ea78b2d1a35bbc812fa12",
+        "retrievalResult": "INDEX_HIT"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-04T22:10:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-asg-hardening-authority-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-asg-hardening-authority-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:asg-hardening-authority-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "ASG hardened operational authority pointer harvest",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "GO",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/asg-hardening-authority-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-04T22:10:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-asg-hardening-authority-v1/compact-records/asg-hardening-authority-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-asg-hardening-authority-v1/compact-records/asg-hardening-authority-v1.json"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:harvest-harvest-2026-08-04-asg-hardening-authority-v1-contains-workpackage-asg-hardening-authority-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-asg-hardening-authority-v1",
+      "targetId": "workpackage:asg-hardening-authority-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-04T22:10:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-asg-hardening-authority-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-asg-hardening-authority-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-asg-hardening-authority-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:asg-hardening-authority-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-04T22:10:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-asg-hardening-authority-v1/compact-records/asg-hardening-authority-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-asg-hardening-authority-v1/compact-records/asg-hardening-authority-v1.json"
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "provenance": {
+    "producerRepositoryId": "repo:capitalglass-cross-agent",
+    "producerCapability": "harvest-graph-extraction",
+    "sourceAuthority": "authority:cross-agent-harvest",
+    "classification": "observed",
+    "verificationState": "verified",
+    "recordedAt": "2026-08-04T22:10:00.000Z",
+    "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-asg-hardening-authority-v1/harvest-manifest-v1.json",
+    "sourceAnchorDetail": {
+      "anchorType": "file-path",
+      "locator": "artifacts/agent-runs/harvest-2026-08-04-asg-hardening-authority-v1/harvest-manifest-v1.json"
+    }
+  }
+}

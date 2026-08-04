@@ -1,0 +1,78 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-asg-receipt-lineage-005",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "bb02387dc21dbc86659ea78b2d1a35bbc812fa12",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-asg-hardening-authority-v1",
+      "seedId": "IH-ASG-RECEIPT-LINEAGE-005"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T22:04:13.833Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "critical",
+    "contentHash": "4d2214557c88970ebede20d095bf7ff8e1cb46207d9f13f89ce3cc6a9560b0ec"
+  },
+  "body": {
+    "seedId": "IH-ASG-RECEIPT-LINEAGE-005",
+    "kind": "runbook",
+    "title": "ASG receipt lineage — compare lane verdicts against prior receipt",
+    "summary": "Hardened runner records receipt lineage: lane verdict comparisons (NEW/UNCHANGED/IMPROVED/REGRESSED) against the previous work-package receipt.",
+    "canonicalQuestion": "How does ASG detect lane regression between runner receipts?",
+    "alternateQuestions": [
+      "Where is receipt lineage computed for ultimate-sdlc-runner?"
+    ],
+    "shortAnswer": "Hardened runner records receipt lineage: lane verdict comparisons (NEW/UNCHANGED/IMPROVED/REGRESSED) against the previous work-package receipt.",
+    "detailedAnswer": "ASG receipt lineage — compare lane verdicts against prior receipt",
+    "retrievalQuestions": [
+      "How does ASG detect lane regression between runner receipts?",
+      "Where is receipt lineage computed for ultimate-sdlc-runner?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Agent asks about receipt regression or lane lineage",
+      "startAt": [
+        "Z:/Capital-Glass-Intelligence-Hub/AI-Cache-Authority/operational-control/all-systems-go/asg-operational-authority-v1/06-agent-entry/compact.json",
+        "CG-AppBuilder-MCP/scripts/ultimate-sdlc-runner/lib/receipt-lineage.mjs",
+        "CG-AppBuilder-MCP/artifacts/agent-runs/ultimate-sdlc-runner-hardening-and-ai-cache-v1/06111bc4-fb53-4e50-98a9-b02659c770c5/dark-runner-receipt.json"
+      ],
+      "runPreflight": [
+        "npm run all-systems-go:validate-receipt -- --receipt=<path> --require-formal-go"
+      ],
+      "doNot": [
+        "Treat dark-package-v1 receipt as current authority",
+        "Claim REGRESSED without reading receiptLineage block"
+      ],
+      "proveBeforeClaiming": [
+        "receiptLineage.laneComparisons present in formal GO receipt",
+        "No REGRESSED lanes for material GO claim"
+      ]
+    },
+    "evidenceRefs": [
+      "06111bc4 formal GO receipt",
+      "Z asg-operational-authority-v1/01-runner-contract",
+      "receipt-lineage.mjs"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": 1,
+    "doNotAdvance": [],
+    "promotionClass": "AUTOMATIC",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-asg-hardening-authority-v1/seed-packets/IH-ASG-RECEIPT-LINEAGE-005.json"
+    ],
+    "harvestId": "harvest-2026-08-04-asg-hardening-authority-v1"
+  }
+}

@@ -44,6 +44,7 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 | `bounded-command-closeout-v1` | RECORDED | PASS | CG-AppBuilder-MCP | [bounded-command-closeout-v1.md](./bounded-command-closeout-v1.md) | Use bounded one-shot refresh; do not invoke refresh-worker script |
 | `adjacent-repo-local-drift-v1` | LOCAL_ONLY | PASS | Cursor-ProposalGenerator | [adjacent-repo-local-drift-v1.md](./adjacent-repo-local-drift-v1.md) | Repo-owned follow-up: commit/push PG migration renumbers separately from AppBuilder GO |
 | `chatgpt-ultimate-sdlc-thread-v1` | HARVEST_COMPLETE | HARVEST_COMPLETE | CapitalGlass-Cross-Agent | [harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1.md](./harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1.md) | npm run harvest:publish-intelligence-full -- --harvest-id=harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1 |
+| `asg-hardening-authority-v1` | GO | PASS | CG-AppBuilder-MCP | [asg-hardening-authority-v1.md](./asg-hardening-authority-v1.md) | Retrieve from Z asg-operational-authority-v1 + formal GO receipt 06111bc4 |
 
 <!-- HARVEST-PACKET-INDEX:END -->
 

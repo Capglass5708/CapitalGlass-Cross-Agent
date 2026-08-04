@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-ASG-BOUNDED-COMMANDS-006",
+  "kind": "runbook",
+  "title": "ASG bounded command policy — allowed runner invocations",
+  "summary": "Runner audits subprocess commands against bounded-commands.json; unauthorized patterns fail the bounded-command lane.",
+  "retrievalQuestions": [
+    "Which shell commands are allowed during All Systems Go dark runner?",
+    "Where is bounded command policy defined for ASG?"
+  ],
+  "evidenceRefs": [
+    "06111bc4 formal GO receipt",
+    "bounded-commands.json",
+    "bounded-command-policy.mjs"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Agent proposes unrestricted shell during ASG runner work",
+    "startAt": [
+      "CG-AppBuilder-MCP/scripts/ultimate-sdlc-runner/config/bounded-commands.json",
+      "CG-AppBuilder-MCP/scripts/ultimate-sdlc-runner/lib/bounded-command-policy.mjs",
+      "Z:/Capital-Glass-Intelligence-Hub/AI-Cache-Authority/operational-control/all-systems-go/asg-operational-authority-v1"
+    ],
+    "runPreflight": [
+      "npm run test:asg-hardening"
+    ],
+    "doNot": [
+      "Add destructive commands without bounded-commands.json update and Verifier proof",
+      "Bypass bounded-command lane with ad-hoc npm scripts"
+    ],
+    "proveBeforeClaiming": [
+      "boundedCommandAudit.verdict PASS in receipt",
+      "Proposed command matches allow pattern or has explicit approval"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE",
+  "roiRank": 2,
+  "sourcePacketIds": ["asg-hardening-authority-v1"]
+}
