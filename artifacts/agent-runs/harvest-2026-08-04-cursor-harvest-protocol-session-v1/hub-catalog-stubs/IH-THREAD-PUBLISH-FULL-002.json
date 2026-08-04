@@ -1,0 +1,74 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-thread-publish-full-002",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "234ab40a24af1b57babd260f5d69cabb3a5bd2de",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-cursor-harvest-protocol-session-v1",
+      "seedId": "IH-THREAD-PUBLISH-FULL-002"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T02:23:44.423Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "34dfbfebd38ca9f6b4716ec93cf1a128bf556588d1a3f40cf2a00eb4bb9f5397"
+  },
+  "body": {
+    "seedId": "IH-THREAD-PUBLISH-FULL-002",
+    "kind": "failure-pattern",
+    "title": "Recording harvest in Git is not operational on L/Z/C",
+    "summary": "harvest:validate PASS in Git does not seed the Intelligence Hub. Run harvest:publish-intelligence-full after operator approval.",
+    "canonicalQuestion": "How do I make a thread harvest operational on L drive and Z AI cache?",
+    "alternateQuestions": [
+      "What is the difference between HARVEST_COMPLETE and OPERATIONAL?"
+    ],
+    "shortAnswer": "harvest:validate PASS in Git does not seed the Intelligence Hub. Run harvest:publish-intelligence-full after operator approval.",
+    "detailedAnswer": "Recording harvest in Git is not operational on L/Z/C",
+    "retrievalQuestions": [
+      "How do I make a thread harvest operational on L drive and Z AI cache?",
+      "What is the difference between HARVEST_COMPLETE and OPERATIONAL?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "User asks if harvest protocol publishes to Intelligence Hub automatically",
+      "startAt": [
+        "artifacts/agent-runs/<harvest-id>/harvest-manifest-v1.json"
+      ],
+      "runPreflight": [
+        "check projection.hubPublishStatus"
+      ],
+      "doNot": [
+        "claim FULLY_SEEDED from Git record alone",
+        "run publish without operator make operational"
+      ],
+      "proveBeforeClaiming": [
+        "operational-publication-receipt.json"
+      ]
+    },
+    "evidenceRefs": [
+      "docs/runbooks/chat-thread-closeout-autopsy-harvest-v1.md Make it operational section",
+      "scripts/harvest/publish-intelligence-full.mjs"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Cross-Agent",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-cursor-harvest-protocol-session-v1/seed-packets/IH-THREAD-PUBLISH-FULL-002.json"
+    ],
+    "harvestId": "harvest-2026-08-04-cursor-harvest-protocol-session-v1"
+  }
+}

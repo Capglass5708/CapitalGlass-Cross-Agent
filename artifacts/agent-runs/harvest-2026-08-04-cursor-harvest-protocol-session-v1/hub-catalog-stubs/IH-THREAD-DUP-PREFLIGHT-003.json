@@ -1,0 +1,75 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-thread-dup-preflight-003",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "234ab40a24af1b57babd260f5d69cabb3a5bd2de",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-cursor-harvest-protocol-session-v1",
+      "seedId": "IH-THREAD-DUP-PREFLIGHT-003"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T02:23:44.423Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "158642728c4b764ac03e500c209c6f461af56a5b0025c7ab090e5d27c5206220"
+  },
+  "body": {
+    "seedId": "IH-THREAD-DUP-PREFLIGHT-003",
+    "kind": "command",
+    "title": "Run duplication-preflight before validate and publish",
+    "summary": "harvest:duplication-preflight auto-consults registry, hub slices, and L catalog; blocks duplicate seedIds and semantic retrieval collisions.",
+    "canonicalQuestion": "How does thread autopsy prevent duplicate seed packets on the Intelligence Hub?",
+    "alternateQuestions": [
+      "What command stamps preflightReceiptHash on the autopsy bundle?"
+    ],
+    "shortAnswer": "harvest:duplication-preflight auto-consults registry, hub slices, and L catalog; blocks duplicate seedIds and semantic retrieval collisions.",
+    "detailedAnswer": "Run duplication-preflight before validate and publish",
+    "retrievalQuestions": [
+      "How does thread autopsy prevent duplicate seed packets on the Intelligence Hub?",
+      "What command stamps preflightReceiptHash on the autopsy bundle?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Recording T1+ thread autopsy with seed packets",
+      "startAt": [
+        "work-progress/harvest-packet-registry.json",
+        "BY-KIND/thread-autopsy-index.json"
+      ],
+      "runPreflight": [
+        "npm run harvest:duplication-preflight -- --harvest-id=<id>"
+      ],
+      "doNot": [
+        "hand-edit preflightReceiptHash",
+        "skip duplicateWork when preflight finds overlap"
+      ],
+      "proveBeforeClaiming": [
+        "duplication-preflight-receipt.json verdict PASS"
+      ]
+    },
+    "evidenceRefs": [
+      "scripts/harvest/lib/duplication-preflight-lib.mjs",
+      "scripts/tests/run-duplication-preflight.test.mjs"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "AUTOMATIC",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Cross-Agent",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-cursor-harvest-protocol-session-v1/seed-packets/IH-THREAD-DUP-PREFLIGHT-003.json"
+    ],
+    "harvestId": "harvest-2026-08-04-cursor-harvest-protocol-session-v1"
+  }
+}
