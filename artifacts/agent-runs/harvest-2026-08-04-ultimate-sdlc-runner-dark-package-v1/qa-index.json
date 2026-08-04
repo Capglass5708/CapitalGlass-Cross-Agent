@@ -1,0 +1,189 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-THREAD-ASG-RECEIPT-AUTHORITY-V1",
+      "questionId": "IHTHREADASGR",
+      "canonicalQuestion": "What should determine the final All Systems Go verdict?",
+      "alternateQuestions": [
+        "Why did the blocker change from git-parity to shared-db after push?"
+      ],
+      "shortAnswer": "Do not narrate blockers from memory or Git status alone; parse the newest dark-runner-receipt lane table before any GO/WARN claim.",
+      "detailedAnswer": "Newest runner receipt is the sole closeout verdict authority",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T21:02:20.922Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1/seed-packets/IH-THREAD-ASG-RECEIPT-AUTHORITY-V1.json"
+      ],
+      "authorityCommit": [
+        "2dfd206"
+      ],
+      "evidenceUrls": [
+        "2a75fd59 dark-runner-receipt",
+        "0924fd5d dark-runner-receipt",
+        "EVT-003",
+        "IM-001"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Closeout summary claims one blocker or GO without citing receipt path",
+        "startAt": [
+          "CG-AppBuilder-MCP/artifacts/agent-runs/ultimate-sdlc-runner-dark-package-v1/0924fd5d-e143-4875-a4f1-0a4346f18ba5/dark-runner-receipt.json"
+        ],
+        "runPreflight": [
+          "Open newest receipt; compare to prior WARN receipt if exists"
+        ],
+        "doNot": [
+          "Reuse earlier lane interpretation after push",
+          "Declare GO from Git status alone"
+        ],
+        "proveBeforeClaiming": [
+          "Receipt path and recordedAt quoted",
+          "All lane results parsed",
+          "systemsGoVerdict matches receipt"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "runbook"
+    },
+    {
+      "ihPfspId": "IH-THREAD-BOUNDED-COMMAND-CLOSEOUT-V1",
+      "questionId": "IHTHREADBOUN",
+      "canonicalQuestion": "Why did refresh-worker hang during All Systems Go closeout?",
+      "alternateQuestions": [
+        "What command pattern should replace sleeping workers in gates?"
+      ],
+      "shortAnswer": "refresh-worker script sleeps for days; closeout gates must use bounded one-shot refresh commands that exit with evidence.",
+      "detailedAnswer": "Persistent workers must not be used as closeout one-shot commands",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T21:02:20.922Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1/seed-packets/IH-THREAD-BOUNDED-COMMAND-CLOSEOUT-V1.json"
+      ],
+      "authorityCommit": [
+        "2dfd206"
+      ],
+      "evidenceUrls": [
+        "TW-002",
+        "EVT-004",
+        "IM-004",
+        "chatgpt-findings-source.md#TW-002"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Closeout invokes worker, poller, daemon, or long sleep",
+        "startAt": [
+          "CG-AppBuilder-MCP/docs/platform/ALL_SYSTEMS_GO_RUNBOOK.md"
+        ],
+        "runPreflight": [
+          "Read script header for daemon vs one-shot lifecycle"
+        ],
+        "doNot": [
+          "Wait for persistent worker inside closeout run",
+          "Treat timeout as functional failure without checking sleep"
+        ],
+        "proveBeforeClaiming": [
+          "Command exits within gate timeout",
+          "No background worker remains",
+          "Bounded evidence emitted"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-THREAD-SHARED-DB-RECONCILE-BEFORE-SNAPSHOT-V1",
+      "questionId": "IHTHREADSHAR",
+      "canonicalQuestion": "Why should a shared-db snapshot not be refreshed immediately?",
+      "alternateQuestions": [
+        "How was shared-db-impact moved from WARN to PASS during ultimate-sdlc closeout?"
+      ],
+      "shortAnswer": "Investigate requires-investigation to zero, classify pending migrations, then refresh snapshot — never force acceptance to obtain GO.",
+      "detailedAnswer": "Classify and reconcile shared-database drift before refreshing snapshot",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T21:02:20.922Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1/seed-packets/IH-THREAD-SHARED-DB-RECONCILE-BEFORE-SNAPSHOT-V1.json"
+      ],
+      "authorityCommit": [
+        "2dfd206"
+      ],
+      "evidenceUrls": [
+        "closeout-reconciliation-report.json",
+        "asg-go-closeout-final-20260804.json",
+        "EVT-006",
+        "IM-005"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "shared-db-impact WARN with pendingVsSnapshot or requires-investigation",
+        "startAt": [
+          "CG-AppBuilder-MCP/artifacts/shared-db-migration-backlog-reconciliation-v1/closeout-reconciliation-report.json"
+        ],
+        "runPreflight": [
+          "npm run cg:shared-db:reconcile-inventory",
+          "Verify live target projectRef wvidyxufvcrtezzkwwse"
+        ],
+        "doNot": [
+          "Force snapshot acceptance",
+          "Downgrade gate severity for cosmetic GO",
+          "Hide expected pending migrations"
+        ],
+        "proveBeforeClaiming": [
+          "requiresInvestigation array empty",
+          "UNAUTHORIZED_OR_UNEXPLAINED count zero",
+          "snapshot driftStatus ok"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "lesson"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-thread-asg-receipt-authority-v1",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "2dfd206cd0f01fbda14b0da16e287d1f399ee91c",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1",
+      "seedId": "IH-THREAD-ASG-RECEIPT-AUTHORITY-V1"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T21:02:20.923Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "critical",
+    "contentHash": "71c90cf489b9433577d6ffb391cad3a001effee326d646042ff6ce7f349722ac"
+  },
+  "body": {
+    "seedId": "IH-THREAD-ASG-RECEIPT-AUTHORITY-V1",
+    "kind": "runbook",
+    "title": "Newest runner receipt is the sole closeout verdict authority",
+    "summary": "Do not narrate blockers from memory or Git status alone; parse the newest dark-runner-receipt lane table before any GO/WARN claim.",
+    "canonicalQuestion": "What should determine the final All Systems Go verdict?",
+    "alternateQuestions": [
+      "Why did the blocker change from git-parity to shared-db after push?"
+    ],
+    "shortAnswer": "Do not narrate blockers from memory or Git status alone; parse the newest dark-runner-receipt lane table before any GO/WARN claim.",
+    "detailedAnswer": "Newest runner receipt is the sole closeout verdict authority",
+    "retrievalQuestions": [
+      "What should determine the final All Systems Go verdict?",
+      "Why did the blocker change from git-parity to shared-db after push?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Closeout summary claims one blocker or GO without citing receipt path",
+      "startAt": [
+        "CG-AppBuilder-MCP/artifacts/agent-runs/ultimate-sdlc-runner-dark-package-v1/0924fd5d-e143-4875-a4f1-0a4346f18ba5/dark-runner-receipt.json"
+      ],
+      "runPreflight": [
+        "Open newest receipt; compare to prior WARN receipt if exists"
+      ],
+      "doNot": [
+        "Reuse earlier lane interpretation after push",
+        "Declare GO from Git status alone"
+      ],
+      "proveBeforeClaiming": [
+        "Receipt path and recordedAt quoted",
+        "All lane results parsed",
+        "systemsGoVerdict matches receipt"
+      ]
+    },
+    "evidenceRefs": [
+      "2a75fd59 dark-runner-receipt",
+      "0924fd5d dark-runner-receipt",
+      "EVT-003",
+      "IM-001"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": 1,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1/seed-packets/IH-THREAD-ASG-RECEIPT-AUTHORITY-V1.json"
+    ],
+    "harvestId": "harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1"
+  }
+}
