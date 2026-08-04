@@ -54,3 +54,8 @@ If a path 404s in Cross-Agent, resolve from the **owner repo** at the commit cit
 - Off-LAN ForceRemap: **Z OK** (Tailscale cg-server), **L blocked** (desk SMB unreachable).
 - WSL drvfs ghost mount documented (WM-001).
 - Seeds: IH-Z-L-OFFLAN-PARTIAL-001, IH-WSL-DRVF-GHOST-002, IH-Z-FORCE-REMAP-CWD-003.
+
+### 2026-08-04 — Thread harvest harvest-2026-08-04-wesleywork-l-windows-closeout-v1
+
+- Windows L: remapped via Tailscale wesleydesk; ext4 repos root fix in mount gate.
+- Seeds: IH-WESLEYWORK-L-TAILSCALE-REMAP-001, IH-MOUNT-AUTHORITY-EXT4-REPOS-001, IH-WINDOWS-L-VS-WSL-L-001.

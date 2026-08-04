@@ -1,0 +1,132 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-wesleywork-l-windows-closeout-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "7eeaa4bbe6040487bb5a32f7beabbb16aff87d71",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-04T06:46:00.000Z",
+  "updatedAt": "2026-08-04T06:46:00.000Z",
+  "retrievalResult": "INDEX_HIT",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "Report L online from WSL /mnt/l alone on WESLEY_WORK",
+    "Claim INDEX_HIT when Windows L:\\...\\INDEX.json is False",
+    "Re-pin cursor-wsl.env CG_REPOS_ROOT to /mnt/c/Developer/repos",
+    "Improvise net use / UNC discovery (RA-004)"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-04-wesleywork-l-windows-closeout-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-04-wesleywork-l-windows-closeout-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 4,
+      "seeds": 3,
+      "roiItems": 3,
+      "operatorFriction": 2,
+      "executionDeltas": 2
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Phase B — operator runs harvest:publish-intelligence-full",
+    "note": "Phase A manifest only; supersedes partial resolution in z-l-drive-offlan-session-v1"
+  },
+  "ledgerLineage": {
+    "ledgerPath": "work-progress/ACTIVE_WORK.md",
+    "ledgerContentHashBefore": "c79fe9fb1a9e1c8167c5119be6fb9678456f8f956ce3f9703a734c389ca49d08",
+    "ledgerContentHashAfter": "c79fe9fb1a9e1c8167c5119be6fb9678456f8f956ce3f9703a734c389ca49d08"
+  },
+  "supersededClaims": [],
+  "supersedes": {
+    "harvestId": "harvest-2026-08-04-z-l-drive-offlan-session-v1",
+    "reason": "Same recurrence thread — Windows L remap + ext4 path authority fix"
+  },
+  "packets": [
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-office-admin-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [
+        "z-l-drive-offlan-partial-availability-v1"
+      ],
+      "packetKind": "blocker",
+      "packetId": "windows-l-unmapped-explorer-v1",
+      "packetTitle": "Windows L: unmapped — Explorer unavailable while WSL /mnt/l may look OK",
+      "state": "RESOLVED_SESSION",
+      "packetVerdict": "L_REMAPPED_VIA_TAILSCALE_HOSTNAME",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "evidenceRefs": [
+        "net use L: before repair — connection not found",
+        "net use L: after — \\\\wesleydesk\\CapitalGlass-L OK",
+        "WIN_L_INDEX_OK after Map-CgWesleyWorkLInUserSession.ps1",
+        "thread-autopsy-bundle.json#ED-001"
+      ],
+      "nextAction": "Elevated Install-CgWesleyWorkDriveMountPersistence.ps1; verify logon task remaps L when LAN 109 down but Tailscale up",
+      "advancementGate": "cmd.exe net use L: shows OK and Test-Path L:\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json",
+      "doNotAdvance": [
+        "Report L online from WSL /mnt/l alone",
+        "Claim INDEX_HIT on L hub while Windows L:\\ unavailable"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-office-admin-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [
+        "CG-AppBuilder-MCP scripts/wsl/lib/wsl-mount-authority-lib.mjs (session uncommitted)"
+      ],
+      "blockers": [],
+      "relatedPackets": [],
+      "packetKind": "protocol_upgrade",
+      "packetId": "mount-authority-ext4-repos-root-v1",
+      "packetTitle": "Mount gate must use resolveWslReposRoot — not injected CG_REPOS_ROOT",
+      "state": "FIXED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "evidenceRefs": [
+        "wsl-mount-authority-lib.mjs evaluateMountAuthorityGate reposRoot fix",
+        "cursor-wsl.env CG_REPOS_ROOT=/home/wesle/repos after repair",
+        "scout INDEX_MISS hook runtime contract on NTFS path"
+      ],
+      "nextAction": "Ship CG-AppBuilder-MCP mount/scout fixes; run wsl:mount-authority-drives after Cursor restart",
+      "advancementGate": "npm run wsl:mount-authority-drives -- --json verdict PASS",
+      "doNotAdvance": [
+        "Hand-edit cursor-wsl.env CG_REPOS_ROOT to /mnt/c/Developer/repos"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-office-admin-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "packetKind": "command",
+      "packetId": "wesleywork-l-tailscale-remap-command-v1",
+      "packetTitle": "Map L on WESLEY_WORK off-LAN via Map-CgWesleyWorkLInUserSession.ps1",
+      "state": "RECORDED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "evidenceRefs": [
+        "Map-CgWesleyWorkLInUserSession.ps1 output [OK] L: mapped via \\\\wesleydesk\\CapitalGlass-L",
+        "192.168.1.109 ping fail; 100.93.199.27 Tailscale SMB 445 open"
+      ],
+      "nextAction": "Operator quick fix: C:\\Developer\\repos\\CapitalGlass-Office-Admin\\scripts\\devices\\CG-WESLEYWORK-01\\Map-CgWesleyWorkLInUserSession.ps1",
+      "advancementGate": "net use L: Status OK",
+      "doNotAdvance": [
+        "Improvise net use without credential bundle (RA-004)"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "cross-agent-harvest-packet-index-v1@1.0.0",
+  "workPackageId": "harvest-2026-08-04-wesleywork-l-windows-closeout-v1",
+  "generatedAt": "2026-08-04T06:46:00.000Z",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "runMode": "derived-from-manifest",
+  "retrievalOutcome": "INDEX_HIT",
+  "authority": "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/harvest-manifest-v1.json",
+  "harvestManifestHash": "c2c636a5e3df643f115e546e6fe6fd5766b9634f3094becfa99b65697a970d44",
+  "packets": [
+    {
+      "id": "windows-l-unmapped-explorer-v1",
+      "label": "windows-l-unmapped-explorer-v1",
+      "state": "RESOLVED_SESSION",
+      "verdict": "L_REMAPPED_VIA_TAILSCALE_HOSTNAME",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerIndexingStatus": "indexed",
+      "crossAgentProject": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "doNotAdvance": [
+        "Report L online from WSL /mnt/l alone",
+        "Claim INDEX_HIT on L hub while Windows L:\\ unavailable"
+      ],
+      "commitRefs": []
+    },
+    {
+      "id": "mount-authority-ext4-repos-root-v1",
+      "label": "mount-authority-ext4-repos-root-v1",
+      "state": "FIXED",
+      "verdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "crossAgentProject": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "doNotAdvance": [
+        "Hand-edit cursor-wsl.env CG_REPOS_ROOT to /mnt/c/Developer/repos"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP scripts/wsl/lib/wsl-mount-authority-lib.mjs (session uncommitted)"
+      ]
+    },
+    {
+      "id": "wesleywork-l-tailscale-remap-command-v1",
+      "label": "wesleywork-l-tailscale-remap-command-v1",
+      "state": "RECORDED",
+      "verdict": "PASS",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerIndexingStatus": "indexed",
+      "crossAgentProject": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "doNotAdvance": [
+        "Improvise net use without credential bundle (RA-004)"
+      ],
+      "commitRefs": []
+    }
+  ]
+}

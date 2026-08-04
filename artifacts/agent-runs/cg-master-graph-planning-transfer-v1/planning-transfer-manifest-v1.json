@@ -1,0 +1,187 @@
+{
+  "schemaVersion": "cg-planning-transfer-manifest-v1",
+  "manifestId": "planning-transfer-manifest-v1",
+  "workPackageId": "cg-master-graph-planning-transfer-v1",
+  "recordedAt": "2026-08-04T07:00:00.000Z",
+  "sourceBranch": "origin/started-a-graph",
+  "sourceForkCommit": "a36f30e7693fe3b94111e4e7388bd99beddaa2c7",
+  "graphFoundationMerge": {
+    "repository": "Capglass5708/CG-MASTER-GRAPH",
+    "pullRequest": 1,
+    "mergeCommit": "03e6630a6dacaf4d6c35e5937c9d062007c894fb",
+    "foundationState": "CG_MASTER_GRAPH_FOUNDATION_VALIDATED",
+    "contentHash": "sha256:9a63e2d805e0dae3a98b6b702854b13989332b4d72289ca81a1a818eb4ebfeb0"
+  },
+  "policy": "Do not merge started-a-graph wholesale. Transfer by classification only.",
+  "classifications": {
+    "MOVE_CANONICAL": "Canonical authority moves to CG-MASTER-GRAPH",
+    "COPY_PINNED": "Cross-Agent retains pinned pointer to graph canonical",
+    "REMAIN_CROSS_AGENT": "Planning/orchestration stays in CapitalGlass-Cross-Agent",
+    "SPLIT": "Divide by authority boundary across repos",
+    "DONE": "Already transferred via foundation PR #1"
+  },
+  "documents": [
+    {
+      "path": "docs/CG-MASTER-GRAPH-CONSTITUTION-v1.md",
+      "sourceOnBranch": "docs/master-graph/CG-MASTER-GRAPH-CONSTITUTION-v1.md",
+      "classification": "DONE",
+      "canonicalRepo": "CG-MASTER-GRAPH",
+      "canonicalPath": "docs/CG-MASTER-GRAPH-CONSTITUTION-v1.md",
+      "notes": "Merged in PR #1"
+    },
+    {
+      "path": "docs/CG-MASTER-GRAPH-CHARTER-v1.md",
+      "classification": "DONE",
+      "canonicalRepo": "CG-MASTER-GRAPH",
+      "notes": "Created during foundation implementation"
+    },
+    {
+      "path": "docs/AUTHORITY-MODEL-v1.md",
+      "classification": "DONE",
+      "canonicalRepo": "CG-MASTER-GRAPH",
+      "notes": "Partial coverage of planned AUTHORITY-MATRIX"
+    },
+    {
+      "path": "docs/REPOSITORY-PARTICIPATION-v1.md",
+      "classification": "DONE",
+      "canonicalRepo": "CG-MASTER-GRAPH"
+    },
+    {
+      "path": "docs/WSL2-DEVELOPMENT-AUTHORITY-v1.md",
+      "classification": "DONE",
+      "canonicalRepo": "CG-MASTER-GRAPH",
+      "notes": "Supersedes hardcoded /home/wesley paths in starter draft"
+    },
+    {
+      "path": "docs/master-graph/CG-MASTER-GRAPH-STARTER.md",
+      "classification": "MOVE_CANONICAL",
+      "canonicalRepo": "CG-MASTER-GRAPH",
+      "canonicalPath": "docs/CG-MASTER-GRAPH-STARTER.md",
+      "action": "Copy from started-a-graph; rewrite paths to $HOME/repos pattern",
+      "status": "NEXT"
+    },
+    {
+      "path": "docs/master-graph/CG-MASTER-GRAPH-ROADMAP-v1.md",
+      "classification": "REMAIN_CROSS_AGENT",
+      "canonicalRepo": "CapitalGlass-Cross-Agent",
+      "action": "Keep orchestration roadmap; add pointer from graph repo",
+      "status": "PIN_POINTER_IN_GRAPH"
+    },
+    {
+      "path": "docs/master-graph/CG-MASTER-GRAPH-ENTERPRISE-KNOWLEDGE-INTAKE-PLAN-v1.md",
+      "classification": "SPLIT",
+      "canonicalRepo": "CapitalGlass-Cross-Agent",
+      "splitTargets": {
+        "graphSchemasAndCompiler": "CG-MASTER-GRAPH",
+        "dataExtractionIntake": "Data-Extraction",
+        "harvestOrchestration": "CapitalGlass-Cross-Agent"
+      },
+      "action": "Remain as program authority in Cross-Agent until split packages land",
+      "status": "REMAIN"
+    },
+    {
+      "path": "docs/platform-standards/CG-REPOSITORY-CREATION-PROTOCOL-v1.md",
+      "classification": "REMAIN_CROSS_AGENT",
+      "canonicalRepo": "CapitalGlass-Cross-Agent",
+      "notes": "Suite-wide protocol; graph repo consumes via registry participation"
+    },
+    {
+      "path": "docs/platform-standards/CG-REPOSITORY-LIFECYCLE-STANDARD-v1.md",
+      "classification": "REMAIN_CROSS_AGENT",
+      "canonicalRepo": "CapitalGlass-Cross-Agent"
+    },
+    {
+      "path": "docs/master-graph/README.md",
+      "classification": "COPY_PINNED",
+      "canonicalRepo": "CapitalGlass-Cross-Agent",
+      "action": "Index with links to graph canonical docs",
+      "status": "NEXT"
+    },
+    {
+      "path": "docs/master-graph/CG-MASTER-GRAPH-DECISIONS-v1.md",
+      "classification": "REMAIN_CROSS_AGENT",
+      "status": "PLANNED_NOT_ON_BRANCH"
+    },
+    {
+      "path": "docs/master-graph/CG-MASTER-GRAPH-MVP-SCOPE-v1.md",
+      "classification": "SPLIT",
+      "splitTargets": {
+        "graphMvp": "CG-MASTER-GRAPH",
+        "programMvp": "CapitalGlass-Cross-Agent"
+      },
+      "status": "PLANNED_NOT_ON_BRANCH"
+    },
+    {
+      "path": "docs/master-graph/CG-MASTER-GRAPH-GLOSSARY-v1.md",
+      "classification": "MOVE_CANONICAL",
+      "canonicalRepo": "CG-MASTER-GRAPH",
+      "status": "PLANNED_NOT_ON_BRANCH"
+    },
+    {
+      "path": "docs/master-graph/CG-MASTER-GRAPH-STATE-MODEL-v1.md",
+      "classification": "MOVE_CANONICAL",
+      "canonicalRepo": "CG-MASTER-GRAPH",
+      "status": "PLANNED_NOT_ON_BRANCH"
+    },
+    {
+      "path": "docs/master-graph/CG-MASTER-GRAPH-AUTHORITY-MATRIX-v1.md",
+      "classification": "SPLIT",
+      "notes": "AUTHORITY-MODEL-v1 partially covers; expand in graph repo",
+      "status": "PLANNED_NOT_ON_BRANCH"
+    },
+    {
+      "path": "docs/master-graph/CG-MASTER-GRAPH-SOURCE-PRIORITY-v1.md",
+      "classification": "MOVE_CANONICAL",
+      "canonicalRepo": "CG-MASTER-GRAPH",
+      "status": "PLANNED_NOT_ON_BRANCH"
+    },
+    {
+      "path": "docs/master-graph/CG-MASTER-GRAPH-RISKS-AND-NON-GOALS-v1.md",
+      "classification": "MOVE_CANONICAL",
+      "canonicalRepo": "CG-MASTER-GRAPH",
+      "status": "PLANNED_NOT_ON_BRANCH"
+    },
+    {
+      "path": "docs/master-graph/CG-HARVEST-TO-GRAPH-CONTRACT-v1.md",
+      "classification": "SPLIT",
+      "splitTargets": {
+        "extractionSchemas": "CG-MASTER-GRAPH/schemas",
+        "harvestOrchestration": "CapitalGlass-Cross-Agent"
+      },
+      "status": "PLANNED_NOT_ON_BRANCH"
+    },
+    {
+      "path": "docs/master-graph/CG-MASTER-GRAPH-FOUNDATION-CURSOR-OPENER-v1.md",
+      "classification": "COPY_PINNED",
+      "canonicalRepo": "CapitalGlass-Cross-Agent",
+      "action": "Operator opener pointing to graph repo validate gate",
+      "status": "PLANNED_NOT_ON_BRANCH"
+    },
+    {
+      "path": "docs/enterprise-discovery/",
+      "classification": "REMAIN_CROSS_AGENT",
+      "canonicalRepo": "CapitalGlass-Cross-Agent",
+      "notes": "Entire CG-EDF planning area",
+      "status": "PLANNED_NOT_ON_BRANCH"
+    }
+  ],
+  "forbiddenActions": [
+    "Merge started-a-graph into CG-MASTER-GRAPH without per-document classification",
+    "Merge started-a-graph into main without rebase onto current harvest work",
+    "Treat Cross-Agent harvest pipeline deletions on started-a-graph as intentional"
+  ],
+  "nextPackages": [
+    {
+      "id": "cg-master-graph-starter-transfer-v1",
+      "action": "MOVE_CANONICAL CG-MASTER-GRAPH-STARTER.md with $HOME/repos paths"
+    },
+    {
+      "id": "cg-master-graph-glossary-state-v1",
+      "action": "MOVE_CANONICAL glossary and state model docs"
+    },
+    {
+      "id": "cross-agent-harvest-graph-contract-split-v1",
+      "action": "SPLIT harvest-to-graph contract across graph schemas and Cross-Agent harvest"
+    }
+  ]
+}

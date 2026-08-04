@@ -7,18 +7,21 @@
     "registryConsulted": true,
     "commandIndexConsulted": true,
     "hubSlicesConsulted": [
-      "BY-KIND/active-work-blockers.json",
-      "BY-KIND/thread-autopsy-index.json",
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
       "work-progress/harvest-packet-registry.json"
     ],
-    "checkedAt": "2026-08-04T01:50:00.000Z"
+    "checkedAt": "2026-08-04T06:32:32.513Z",
+    "preflightReceiptHash": "286304c9c16985ab58b0275e8ed756449d8d9fe7b3899be132eed06444e1cc84"
   },
   "waste": [
     {
       "wasteId": "TW-001",
       "type": "host",
       "description": "Dispatched index-publication before verifying Cross-Agent runners",
-      "evidenceRefs": ["TE-004"],
+      "evidenceRefs": [
+        "TE-004"
+      ],
       "estimatedImpact": "high",
       "savedBy": "gh api .../actions/runners before workflow_dispatch",
       "roiRank": 1
@@ -27,7 +30,9 @@
       "wasteId": "TW-002",
       "type": "host",
       "description": "Confused Wesley Work vs WesleyDesk Direct Connect kits",
-      "evidenceRefs": ["Z:/Office/Wes/Direct Connect"],
+      "evidenceRefs": [
+        "Z:/Office/Wes/Direct Connect"
+      ],
       "estimatedImpact": "high",
       "savedBy": "Read WesleyDesk Direct Connect/AGENT_START_HERE.md first",
       "roiRank": 2
@@ -36,7 +41,9 @@
       "wasteId": "TW-003",
       "type": "rework",
       "description": "Multiple GHA dispatches after one PUBLISH_PASS",
-      "evidenceRefs": ["TE-007"],
+      "evidenceRefs": [
+        "TE-007"
+      ],
       "estimatedImpact": "medium",
       "savedBy": "Verify runner online + action pins before re-dispatch",
       "roiRank": 3
@@ -45,7 +52,9 @@
       "wasteId": "TW-004",
       "type": "operator_attention",
       "description": "ESTABLISH_WESLEYDESK SSH timeout; user clarified Z: path",
-      "evidenceRefs": ["TE-008"],
+      "evidenceRefs": [
+        "TE-008"
+      ],
       "estimatedImpact": "high",
       "savedBy": "Runner registration token from WESLEY_WORK gh before SSH install",
       "roiRank": 4
@@ -54,7 +63,10 @@
       "wasteId": "TW-005",
       "type": "rework",
       "description": "Parallel harvest v2 and expansion wave 1 packets without immediate supersession link",
-      "evidenceRefs": ["TE-010", "harvest-current-cross-thread-state-v2"],
+      "evidenceRefs": [
+        "TE-010",
+        "harvest-current-cross-thread-state-v2"
+      ],
       "estimatedImpact": "low",
       "savedBy": "Link expansion milestone to harvest manifest supersededClaims at commit time",
       "roiRank": 5
@@ -63,7 +75,10 @@
       "wasteId": "TW-006",
       "type": "host",
       "description": "Two ~129min SSH sessions from WESLEY_WORK to install WESLEYDESK runner; both Broken pipe exit 255",
-      "evidenceRefs": ["TE-015", "TE-016"],
+      "evidenceRefs": [
+        "TE-015",
+        "TE-016"
+      ],
       "estimatedImpact": "high",
       "savedBy": "Run RUN_ON_WESLEYDESK.sh locally on WESLEYDESK via Direct Connect kit — not long SSH from WESLEY_WORK",
       "roiRank": 1
@@ -75,24 +90,37 @@
       "trigger": "User corrected authoritative publication run IDs",
       "operatorCost": "medium",
       "systemFix": "Pin authoritative run at dispatch in closeout receipt",
-      "evidenceRefs": ["TE-008"],
-      "linkedWasteIds": ["TW-001"]
+      "evidenceRefs": [
+        "TE-008"
+      ],
+      "linkedWasteIds": [
+        "TW-001"
+      ]
     },
     {
       "frictionId": "OF-002",
       "trigger": "Repeated status checks while runner queued offline",
       "operatorCost": "medium",
       "systemFix": "Pre-dispatch runner gate in Slice 6 runbook",
-      "evidenceRefs": ["TE-004"],
-      "linkedWasteIds": ["TW-001"]
+      "evidenceRefs": [
+        "TE-004"
+      ],
+      "linkedWasteIds": [
+        "TW-001"
+      ]
     },
     {
       "frictionId": "OF-003",
       "trigger": "Background SSH runner install hung then Broken pipe after ~129 minutes",
       "operatorCost": "high",
       "systemFix": "Document WESLEYDESK-local-only runner install in IH-SLICE6-RUNNER-GATE-001; block remote SSH install lane",
-      "evidenceRefs": ["TE-015", "TE-016"],
-      "linkedWasteIds": ["TW-006"]
+      "evidenceRefs": [
+        "TE-015",
+        "TE-016"
+      ],
+      "linkedWasteIds": [
+        "TW-006"
+      ]
     }
   ],
   "executionDeltas": [
@@ -107,7 +135,9 @@
           "local publisher @ acd94ba"
         ],
         "outcome": "PARTIAL",
-        "evidenceRefs": ["slice6-closeout-receipt-v1.json"]
+        "evidenceRefs": [
+          "slice6-closeout-receipt-v1.json"
+        ]
       },
       "optimalExecution": {
         "steps": [
@@ -117,7 +147,9 @@
           "PUBLISH_PASS + NOOP + blind retrieval"
         ],
         "outcome": "Single authority path",
-        "requiredPreflight": ["WesleyDesk Direct Connect/AGENT_START_HERE.md"]
+        "requiredPreflight": [
+          "WesleyDesk Direct Connect/AGENT_START_HERE.md"
+        ]
       },
       "deltaCost": {
         "time": "high",
@@ -134,14 +166,18 @@
           "Four gates PASS in receipt"
         ],
         "outcome": "PASS",
-        "evidenceRefs": ["slice6-closeout-receipt-v1.json"]
+        "evidenceRefs": [
+          "slice6-closeout-receipt-v1.json"
+        ]
       },
       "optimalExecution": {
         "steps": [
           "GHA index-publication.yml PUBLISH_PASS on authoritative SHA"
         ],
         "outcome": "No break-glass local publisher",
-        "requiredPreflight": ["Runner online >= 2.336.0"]
+        "requiredPreflight": [
+          "Runner online >= 2.336.0"
+        ]
       },
       "deltaCost": {
         "time": "medium",
@@ -174,7 +210,10 @@
           "T2 harvest in same session as milestone commits"
         ],
         "outcome": "No manual cp; harvest closes before operator handoff",
-        "requiredPreflight": ["gh api runners", "npm run index:freshness-gate"]
+        "requiredPreflight": [
+          "gh api runners",
+          "npm run index:freshness-gate"
+        ]
       },
       "deltaCost": {
         "time": "medium",
@@ -193,7 +232,10 @@
           "Runner remains offline"
         ],
         "outcome": "FAIL",
-        "evidenceRefs": ["TE-015", "TE-016"]
+        "evidenceRefs": [
+          "TE-015",
+          "TE-016"
+        ]
       },
       "optimalExecution": {
         "steps": [
@@ -202,7 +244,9 @@
           "gh api runners — verify online before any GHA dispatch"
         ],
         "outcome": "Runner online without cross-host SSH timeout",
-        "requiredPreflight": ["WesleyDesk Direct Connect/AGENT_START_HERE.md"]
+        "requiredPreflight": [
+          "WesleyDesk Direct Connect/AGENT_START_HERE.md"
+        ]
       },
       "deltaCost": {
         "time": "high",
@@ -255,6 +299,24 @@
       "whyRepeated": "Wave 1 and v2 harvest committed in same milestone push without cross-link",
       "avoidableBy": "Record intelligence-hub-capability-expansion-v1 packet in T2 manifest at commit time",
       "recommendedAction": "index"
+    },
+    {
+      "duplicateId": "DW-003",
+      "subject": "THREE_WAY operational receipt seed vs prior hub catalog",
+      "firstKnownInstance": "IH-HARVEST-AUTHORITY-RECONCILE-001 on L:",
+      "priorIndexSlice": "02-catalog/knowledge-objects/cross-agent-harvest/",
+      "whyRepeated": "IH-SLICE6-OPERATIONAL-RECEIPT-003 retrieval overlaps published seed",
+      "avoidableBy": "harvest:duplication-preflight before seed compile",
+      "recommendedAction": "canonicalize"
+    },
+    {
+      "duplicateId": "DW-004",
+      "subject": "Runner gate seed vs IH-THREAD-WESLEYDESK-RUNNER-001",
+      "firstKnownInstance": "IH-THREAD-WESLEYDESK-RUNNER-001 on L:",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "whyRepeated": "Slice6 thread re-recorded runner-queue lesson already cataloged",
+      "avoidableBy": "Load existing L: seed before adding IH-SLICE6-RUNNER-GATE-001",
+      "recommendedAction": "dedupe"
     }
   ],
   "roiBacklog": [
@@ -264,7 +326,9 @@
       "whyItPays": "Eliminates ~4hr wasted SSH sessions that end Broken pipe with runner still offline",
       "effort": "low",
       "seedAs": "runbook",
-      "savedWasteIds": ["TW-006"],
+      "savedWasteIds": [
+        "TW-006"
+      ],
       "ownerRepo": "CapitalGlass-Cross-Agent"
     },
     {
@@ -273,7 +337,9 @@
       "whyItPays": "Eliminates multi-hour GHA queue when wesleydesk runner offline",
       "effort": "low",
       "seedAs": "runbook",
-      "savedWasteIds": ["TW-001"],
+      "savedWasteIds": [
+        "TW-001"
+      ],
       "ownerRepo": "CapitalGlass-Cross-Agent"
     },
     {
@@ -282,7 +348,10 @@
       "whyItPays": "Prevents wrong-kit SSH/bootstrap loops on host authority mistakes",
       "effort": "low",
       "seedAs": "index-slice",
-      "savedWasteIds": ["TW-002", "TW-004"],
+      "savedWasteIds": [
+        "TW-002",
+        "TW-004"
+      ],
       "ownerRepo": "CapitalGlass-Cross-Agent"
     },
     {
@@ -291,7 +360,9 @@
       "whyItPays": "Avoids node24 checkout failure on self-hosted runner 30861642734",
       "effort": "medium",
       "seedAs": "hook",
-      "savedWasteIds": ["TW-003"],
+      "savedWasteIds": [
+        "TW-003"
+      ],
       "ownerRepo": "CapitalGlass-Cross-Agent"
     },
     {
@@ -300,7 +371,9 @@
       "whyItPays": "Removes manual BY-KIND cp after expansion wave 1",
       "effort": "medium",
       "seedAs": "command",
-      "savedWasteIds": ["TW-005"],
+      "savedWasteIds": [
+        "TW-005"
+      ],
       "ownerRepo": "CapitalGlass-Cross-Agent"
     }
   ],

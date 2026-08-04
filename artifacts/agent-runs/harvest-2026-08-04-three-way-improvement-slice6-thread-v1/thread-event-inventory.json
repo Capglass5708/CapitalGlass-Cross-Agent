@@ -1,8 +1,8 @@
 {
   "schemaVersion": "thread-event-inventory-v1@1.0.0",
   "harvestId": "harvest-2026-08-04-three-way-improvement-slice6-thread-v1",
-  "threadScope": "Slice 6 closeout + hub expansion + chat-thread-closeout-autopsy T2 (this thread)",
-  "generatedAt": "2026-08-04T02:30:00.000Z",
+  "threadScope": "Slice 6 closeout + hub expansion + T2 autopsy + operational publish friction (this thread)",
+  "generatedAt": "2026-08-04T06:30:00.000Z",
   "events": [
     {
       "eventId": "TE-001",
@@ -10,7 +10,8 @@
       "summary": "Ranked ROI; merge order for six program PRs",
       "evidenceRefs": [
         "IMP-0001..0004 UNPROVEN"
-      ]
+      ],
+      "id": "TE-001"
     },
     {
       "eventId": "TE-002",
@@ -18,7 +19,8 @@
       "summary": "Merged PR stack Governance→Cross-Agent→FI→AppBuilder",
       "evidenceRefs": [
         "merge-completion-receipt-v1.json"
-      ]
+      ],
+      "id": "TE-002"
     },
     {
       "eventId": "TE-003",
@@ -26,7 +28,8 @@
       "summary": "Dispatched 30861642734; cancelled superseded 30861202361",
       "evidenceRefs": [
         "GitHub runs"
-      ]
+      ],
+      "id": "TE-003"
     },
     {
       "eventId": "TE-004",
@@ -34,7 +37,8 @@
       "summary": "Cross-Agent had zero self-hosted runners ~75min queue",
       "evidenceRefs": [
         "gh api runners total_count=0"
-      ]
+      ],
+      "id": "TE-004"
     },
     {
       "eventId": "TE-005",
@@ -43,7 +47,8 @@
       "evidenceRefs": [
         "30861642734 failure",
         "30866381810 success"
-      ]
+      ],
+      "id": "TE-005"
     },
     {
       "eventId": "TE-006",
@@ -51,7 +56,8 @@
       "summary": "OPERATIONAL via local publisher @ acd94ba NOOP idempotency",
       "evidenceRefs": [
         "slice6-closeout-receipt-v1.json"
-      ]
+      ],
+      "id": "TE-006"
     },
     {
       "eventId": "TE-007",
@@ -60,67 +66,124 @@
       "evidenceRefs": [
         "30867016509",
         "30867255487"
-      ]
+      ],
+      "id": "TE-007"
     },
     {
       "eventId": "TE-008",
       "phase": "operator",
       "summary": "User corrected run cancellation and Direct Connect path",
-      "evidenceRefs": ["user messages"]
+      "evidenceRefs": [
+        "user messages"
+      ],
+      "id": "TE-008"
     },
     {
       "eventId": "TE-009",
       "phase": "planning",
       "summary": "Milestone task list for harvest v2 + expansion + Slice 6 publication",
-      "evidenceRefs": ["chat thread milestone plan"]
+      "evidenceRefs": [
+        "chat thread milestone plan"
+      ],
+      "id": "TE-009"
     },
     {
       "eventId": "TE-010",
       "phase": "execution",
       "summary": "Committed 164bda7/fb4867f; index:publish PUBLISH_PASS; workflow checkout node20 fix",
-      "evidenceRefs": ["runtime/index-publication/latest.json", "164bda7", "fb4867f"]
+      "evidenceRefs": [
+        "runtime/index-publication/latest.json",
+        "164bda7",
+        "fb4867f"
+      ],
+      "id": "TE-010"
     },
     {
       "eventId": "TE-011",
       "phase": "operator",
       "summary": "User stop then requested Z: chat-thread-closeout-autopsy-harvest-v1 T2",
-      "evidenceRefs": ["Z:/Capital-Glass-Dev/Harvest/protocol/chat-thread-closeout-autopsy-harvest-v1.md"]
+      "evidenceRefs": [
+        "Z:/Capital-Glass-Dev/Harvest/protocol/chat-thread-closeout-autopsy-harvest-v1.md"
+      ],
+      "id": "TE-011"
     },
     {
       "eventId": "TE-012",
       "phase": "harvest",
       "summary": "Initial T2 harvest a833852; hub publication verify autopsy d84ad38",
-      "evidenceRefs": ["harvest-2026-08-04-hub-publication-verify-autopsy-v1", "a833852"]
+      "evidenceRefs": [
+        "harvest-2026-08-04-hub-publication-verify-autopsy-v1",
+        "a833852"
+      ],
+      "id": "TE-012"
     },
     {
       "eventId": "TE-013",
       "phase": "harvest",
       "summary": "Protocol re-run fee63bb: validate PASS, compile-seed-packets, BLIND_RETRIEVAL_PASS (9/9)",
-      "evidenceRefs": ["blind-retrieval-report.json", "validation-result.json", "fee63bb"]
+      "evidenceRefs": [
+        "blind-retrieval-report.json",
+        "validation-result.json",
+        "fee63bb"
+      ],
+      "id": "TE-013"
     },
     {
       "eventId": "TE-014",
       "phase": "operator",
       "summary": "User commit and push to intelligence hub; commit 57f443b publication receipts",
-      "evidenceRefs": ["57f443b", "ae1c427"]
+      "evidenceRefs": [
+        "57f443b",
+        "ae1c427"
+      ],
+      "id": "TE-014"
     },
     {
       "eventId": "TE-015",
       "phase": "infrastructure",
       "summary": "SSH RUN_ON_WESLEYDESK.sh full from WESLEY_WORK failed exit 255 Broken pipe ~129min",
-      "evidenceRefs": ["wesleydesk-wsl2-cross-agent offline after attempt"]
+      "evidenceRefs": [
+        "wesleydesk-wsl2-cross-agent offline after attempt"
+      ],
+      "id": "TE-015"
     },
     {
       "eventId": "TE-016",
       "phase": "infrastructure",
       "summary": "Second SSH runner bootstrap attempt failed exit 255 Broken pipe; runner still offline",
-      "evidenceRefs": ["gh api runners status offline"]
+      "evidenceRefs": [
+        "gh api runners status offline"
+      ],
+      "id": "TE-016"
     },
     {
       "eventId": "TE-017",
       "phase": "operator",
       "summary": "User re-requested chat-thread-closeout-autopsy-harvest-v1 run @ 57f443b",
-      "evidenceRefs": ["Z:/Capital-Glass-Dev/Harvest/protocol/chat-thread-closeout-autopsy-harvest-v1.md"]
+      "evidenceRefs": [
+        "Z:/Capital-Glass-Dev/Harvest/protocol/chat-thread-closeout-autopsy-harvest-v1.md"
+      ],
+      "id": "TE-017"
+    },
+    {
+      "eventId": "TE-018",
+      "phase": "operator",
+      "summary": "make operational failed at cross-agent-ledger:ingest; user stop/diagnose; separate harvest operational-publish-friction-v1",
+      "evidenceRefs": [
+        "harvest-2026-08-04-operational-publish-friction-v1/operational-publication-receipt.json",
+        "CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-structured-ledger-projection-v1/ingest-apply-receipt.json"
+      ],
+      "id": "TE-018"
+    },
+    {
+      "eventId": "TE-019",
+      "phase": "harvest",
+      "summary": "Protocol Phase A re-run @ 8496611 per updated lifecycle (manifest + L: staging)",
+      "evidenceRefs": [
+        "8496611",
+        "harvest-lifecycle-phases-v1.md"
+      ],
+      "id": "TE-019"
     }
   ]
 }

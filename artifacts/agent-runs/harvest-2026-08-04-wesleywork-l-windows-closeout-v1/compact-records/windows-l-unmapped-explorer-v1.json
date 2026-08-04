@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-wesleywork-l-windows-closeout-v1",
+  "packetId": "windows-l-unmapped-explorer-v1",
+  "state": "RESOLVED_SESSION",
+  "packetVerdict": "L_REMAPPED_VIA_TAILSCALE_HOSTNAME",
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Elevated Install-CgWesleyWorkDriveMountPersistence.ps1; verify logon task remaps L when LAN 109 down but Tailscale up",
+  "evidenceRefs": [
+    "net use L: before repair — connection not found",
+    "net use L: after — \\\\wesleydesk\\CapitalGlass-L OK",
+    "WIN_L_INDEX_OK after Map-CgWesleyWorkLInUserSession.ps1",
+    "thread-autopsy-bundle.json#ED-001"
+  ],
+  "doNotAdvance": [
+    "Report L online from WSL /mnt/l alone",
+    "Claim INDEX_HIT on L hub while Windows L:\\ unavailable"
+  ],
+  "advancementGate": "cmd.exe net use L: shows OK and Test-Path L:\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json",
+  "contentHash": "bf877b386861e1016fb16eff854683fb15e217b706d98e94ac69997c3ea6442c"
+}

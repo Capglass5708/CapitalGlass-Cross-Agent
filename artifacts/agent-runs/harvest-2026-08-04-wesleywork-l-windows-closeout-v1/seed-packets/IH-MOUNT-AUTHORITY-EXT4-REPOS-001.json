@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-MOUNT-AUTHORITY-EXT4-REPOS-001",
+  "kind": "failure-pattern",
+  "title": "Mount authority must not trust injected CG_REPOS_ROOT on WSL",
+  "summary": "evaluateMountAuthorityGate must call resolveWslReposRoot() — Cursor injects /mnt/c/Developer/repos and breaks scout contracts.",
+  "retrievalQuestions": [
+    "Why does scout fail hook runtime contract missing on NTFS path?",
+    "cursor-wsl.env CG_REPOS_ROOT wrong after mount-authority-drives?"
+  ],
+  "evidenceRefs": [
+    "wsl-mount-authority-lib.mjs",
+    "~/.config/capital-glass/cursor-wsl.env"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Scout INDEX_MISS or CG_REPOS_ROOT points to /mnt/c/Developer/repos on WESLEY_WORK",
+    "startAt": [
+      "wesley_work.machine.json reposRoot",
+      "/home/wesle/repos/CG-AppBuilder-MCP"
+    ],
+    "runPreflight": [
+      "npm run wsl:mount-authority-drives -- --json"
+    ],
+    "doNot": [
+      "Pass process.env.CG_REPOS_ROOT raw to env repair"
+    ],
+    "proveBeforeClaiming": [
+      "CG_APPBUILDER_MCP_ROOT=/home/wesle/repos/CG-AppBuilder-MCP",
+      "agent:index:scout PASS"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}
