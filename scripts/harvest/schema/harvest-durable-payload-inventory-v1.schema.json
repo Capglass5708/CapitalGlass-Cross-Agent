@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://capitalglass.dev/schemas/harvest-durable-payload-inventory-v1.json",
+  "title": "Harvest Durable Payload Inventory v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "harvestId", "artifacts", "payloadHash"],
+  "properties": {
+    "schemaVersion": { "const": "harvest-durable-payload-inventory-v1@1.0.0" },
+    "harvestId": { "type": "string", "minLength": 1 },
+    "payloadHash": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["logicalPath", "contentHash", "retentionClass", "required"],
+        "properties": {
+          "logicalPath": { "type": "string", "minLength": 1 },
+          "contentHash": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+          "retentionClass": { "enum": ["L_DURABLE", "GIT_POINTER_ONLY", "EPHEMERAL"] },
+          "required": { "type": "boolean" }
+        }
+      }
+    }
+  }
+}
