@@ -37,7 +37,7 @@ export function publishIntelligencePhaseB({
     skipSupabase,
     lDurablePublisher: createDefaultLDurablePublisher(),
     zPublisher: createDefaultZPublisher(zOptions),
-    supabaseProjector: createDefaultSupabaseProjector(supabaseOptions),
+    supabaseProjector: createDefaultSupabaseProjector({ hubRoot, ...supabaseOptions }),
     layerVerifier: createDefaultLayerVerifier(),
     operationWriter: createDefaultOperationWriter(),
   });

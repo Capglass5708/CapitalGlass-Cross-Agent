@@ -78,7 +78,7 @@ function runPhaseB(hubRoot, payloadHash, overrides = {}, zCacheRoot) {
     payloadHash,
     lDurablePublisher: createDefaultLDurablePublisher(),
     zPublisher: createDefaultZPublisher({ zCacheRoot }),
-    supabaseProjector: createDefaultSupabaseProjector(),
+    supabaseProjector: createDefaultSupabaseProjector({ hubRoot, useMemoryStore: true }),
     layerVerifier: createDefaultLayerVerifier(),
     operationWriter: createDefaultOperationWriter(),
     ...overrides,
@@ -181,7 +181,7 @@ test("interrupted Phase B resumes without republishing L payload", () => {
   withTempHub((hubRoot, zCacheRoot) => {
     const { payloadHash } = stageAndPrepare(hubRoot);
     let supabaseAttempts = 0;
-    const flakySupabase = (context) => {
+    const flakySupabase = (context, runtimeOptions) => {
       supabaseAttempts += 1;
       if (supabaseAttempts === 1) {
         return {
@@ -190,7 +190,7 @@ test("interrupted Phase B resumes without republishing L payload", () => {
           verdict: "SUPABASE_PROJECTION_FAIL",
         };
       }
-      return createDefaultSupabaseProjector()(context);
+      return createDefaultSupabaseProjector({ useMemoryStore: true })(context, runtimeOptions);
     };
 
     const first = runPhaseB(hubRoot, payloadHash, { supabaseProjector: flakySupabase }, zCacheRoot);

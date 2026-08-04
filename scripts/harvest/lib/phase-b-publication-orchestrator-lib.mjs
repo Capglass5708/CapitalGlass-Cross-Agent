@@ -96,7 +96,12 @@ export function createDefaultZPublisher(options = {}) {
 }
 
 export function createDefaultSupabaseProjector(options = {}) {
-  return (context) => applySupabaseProjection(context, options);
+  return (context, runtimeOptions = {}) =>
+    applySupabaseProjection(context, {
+      ...options,
+      ...runtimeOptions,
+      hubRoot: runtimeOptions.hubRoot ?? options.hubRoot,
+    });
 }
 
 export function createDefaultLayerVerifier() {
@@ -135,7 +140,7 @@ export function runPhaseBPublication({
   skipSupabase = false,
   lDurablePublisher = createDefaultLDurablePublisher(),
   zPublisher = createDefaultZPublisher({ zCacheRoot: undefined }),
-  supabaseProjector = createDefaultSupabaseProjector({ skipApply: skipSupabase }),
+  supabaseProjector = createDefaultSupabaseProjector({ hubRoot, skipApply: skipSupabase }),
   hotRoutingPublisher = null,
   layerVerifier = createDefaultLayerVerifier(),
   operationWriter = createDefaultOperationWriter(),
@@ -220,7 +225,12 @@ export function runPhaseBPublication({
   const supabaseResult = mapSupabaseResult(
     supabaseProjector(
       { ...context, phaseBStatus: "PHASE_B_IN_PROGRESS" },
-      { ...supabaseOptions, skipApply: skipSupabase },
+      {
+        ...supabaseOptions,
+        skipApply: skipSupabase,
+        hubRoot,
+        phaseBVerdict: "PHASE_B_IN_PROGRESS",
+      },
     ),
   );
   stages.push({
