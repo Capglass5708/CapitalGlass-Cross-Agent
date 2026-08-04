@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "cross-agent-harvest-operational-publication-receipt-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-three-way-improvement-slice6-thread-v1",
+  "generatedAt": "2026-08-04T07:02:56.859Z",
+  "startedAt": "2026-08-04T07:00:53.630Z",
+  "verdict": "OPERATIONAL",
+  "sourceCommitSha": "af9cd6c8560b5918b2d415e9b0f4dd312ba6da9d",
+  "tier": "T2",
+  "authorityModel": "CHAT_THREAD_STRUCTURED_TRUTH",
+  "intelligenceHubRoot": "/mnt/l/Capital-Glass-Intelligence-Hub",
+  "layers": {
+    "git": {
+      "path": "/home/wesle/repos/CapitalGlass-Cross-Agent/artifacts/agent-runs/harvest-2026-08-04-three-way-improvement-slice6-thread-v1/harvest-manifest-v1.json",
+      "sourceCommitSha": "af9cd6c8560b5918b2d415e9b0f4dd312ba6da9d"
+    },
+    "lCatalog": {
+      "ok": true,
+      "seedCount": 5,
+      "byKindSlice": "00-master-index/BY-KIND/thread-autopsy-index.json"
+    },
+    "lLedger": {
+      "ok": false
+    },
+    "cHotRouting": {
+      "ok": false,
+      "code": "SKIP"
+    },
+    "zAiCache": {
+      "ok": true
+    },
+    "hostFanout": {
+      "ok": true,
+      "code": "SYNC_HOSTS_DISABLED",
+      "hosts": []
+    },
+    "supabaseThreadAutopsy": {
+      "ok": false,
+      "code": "SUPABASE_PROJECTION_FAIL",
+      "error": "Command failed: npm run intelligence-hub:thread-autopsy:project-supabase -- --harvest-id=harvest-2026-08-04-three-way-improvement-slice6-thread-v1 --apply --json\nnpm notice run intelligence-hub:thread-autopsy:project-supabase\nnpm notice run node scripts/intelligence-hub/thread-autopsy/project-supabase.mjs --harvest-id=harvest-2026-08-04-three-way-improvement-slice6-thread-v1 --apply --json\nnpm notice run npx\nnpm notice run 'supabase' db query --linked --dns-resolver https -f /home/wesle/repos/CG-AppBuilder-MCP/artifacts/agent-runs/platform-intelligence-graph-v1a/v1a2/.live-upsert-hub-slice-thread-autopsy-index.sql\nInitialising login role...\n\n"
+    }
+  },
+  "stages": [
+    {
+      "label": "sync-derived",
+      "ok": true
+    },
+    {
+      "label": "render-index",
+      "ok": true
+    },
+    {
+      "label": "duplication-preflight",
+      "ok": true,
+      "verdict": "PASS_WITH_WARNINGS"
+    },
+    {
+      "label": "validate",
+      "ok": true
+    },
+    {
+      "label": "validate-autopsy",
+      "ok": true
+    },
+    {
+      "label": "blind-retrieval",
+      "ok": true,
+      "verdict": "BLIND_RETRIEVAL_PASS"
+    },
+    {
+      "label": "hub-slices",
+      "ok": true,
+      "doNotAdvanceCount": 7,
+      "threadAutopsyIndex": "00-master-index/BY-KIND/thread-autopsy-index.json"
+    },
+    {
+      "label": "hot-routing-index",
+      "ok": false,
+      "error": "Command failed: npm run intelligence-hub:publish-hot-routing-index -- --json\nnpm notice run intelligence-hub:publish-hot-routing-index\nnpm notice run node scripts/intelligence-hub/index-freshness/publish-hot-routing-index.mjs --json\n"
+    },
+    {
+      "label": "z-ai-cache-index",
+      "ok": true
+    },
+    {
+      "label": "thread-autopsy-supabase",
+      "ok": false,
+      "error": "Command failed: npm run intelligence-hub:thread-autopsy:project-supabase -- --harvest-id=harvest-2026-08-04-three-way-improvement-slice6-thread-v1 --apply --json\nnpm notice run intelligence-hub:thread-autopsy:project-supabase\nnpm notice run node scripts/intelligence-hub/thread-autopsy/project-supabase.mjs --harvest-id=harvest-2026-08-04-three-way-improvement-slice6-thread-v1 --apply --json\nnpm notice run npx\nnpm notice run 'supabase' db query --linked --dns-resolver https -f /home/wesle/repos/CG-AppBuilder-MCP/artifacts/agent-runs/platform-intelligence-graph-v1a/v1a2/.live-upsert-hub-slice-thread-autopsy-index.sql\nInitialising login role...\n\n"
+    }
+  ],
+  "contentHash": "211b94c500b27706bec6336be16824c7dad560d98239aa6f1eab5e770b58e2ad"
+}

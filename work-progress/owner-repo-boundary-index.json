@@ -1,8 +1,18 @@
 {
   "schemaVersion": "cross-agent-owner-repo-boundary-index-v1@1.0.0",
-  "updatedAt": "2026-08-04T02:23:40.394Z",
-  "latestHarvestId": "harvest-2026-08-04-operational-publish-friction-v1",
+  "updatedAt": "2026-08-04T07:02:14.424Z",
+  "latestHarvestId": "harvest-2026-08-04-chatgpt-full-autopsy-v1",
   "packets": [
+    {
+      "packetId": "2026-08-04-chatgpt-full-autopsy-v1",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerMcp": null,
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "docs/protocols/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md",
+      "crossAgentRole": "ChatGPT thread autopsy ingest coordination",
+      "ownerRepoRole": "harvest protocol and ingest tooling",
+      "currentGap": null
+    },
     {
       "packetId": "active-ledger-ci-path-and-hash-stability-v1",
       "ownerRepo": "CG-AppBuilder-MCP",
@@ -234,6 +244,16 @@
       "currentGap": null
     },
     {
+      "packetId": "mount-authority-ext4-repos-root-v1",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerMcp": "user-office-admin-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "scripts/wsl/lib/wsl-mount-authority-lib.mjs",
+      "crossAgentRole": "thread autopsy harvest pointer",
+      "ownerRepoRole": "Mount gate must use resolveWslReposRoot — not injected CG_REPOS_ROOT",
+      "currentGap": null
+    },
+    {
       "packetId": "office-admin-ryzen9desk-managed-executor-bootstrap-v1",
       "ownerRepo": "CapitalGlass-Office-Admin",
       "ownerMcp": "user-office-admin-mcp",
@@ -364,6 +384,26 @@
       "currentGap": null
     },
     {
+      "packetId": "wesleywork-l-tailscale-remap-command-v1",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerMcp": "user-office-admin-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "scripts/devices/CG-WESLEYWORK-01/Map-CgWesleyWorkLInUserSession.ps1",
+      "crossAgentRole": "thread autopsy harvest pointer",
+      "ownerRepoRole": "Map L on WESLEY_WORK off-LAN via Map-CgWesleyWorkLInUserSession.ps1",
+      "currentGap": null
+    },
+    {
+      "packetId": "windows-l-unmapped-explorer-v1",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerMcp": "user-office-admin-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": "scripts/devices/CG-WESLEYWORK-01/Map-CgWesleyWorkLInUserSession.ps1",
+      "crossAgentRole": "thread autopsy harvest pointer",
+      "ownerRepoRole": "Windows L: unmapped — Explorer unavailable while WSL /mnt/l may look OK",
+      "currentGap": "Windows L remap persistence"
+    },
+    {
       "packetId": "wsl-drvfs-ghost-mount-v1",
       "ownerRepo": "CG-AppBuilder-MCP",
       "ownerMcp": "user-office-admin-mcp",
@@ -402,36 +442,6 @@
       "crossAgentRole": "thread autopsy harvest pointer",
       "ownerRepoRole": "WESLEY_WORK off-LAN Z partial / L down (desk SMB unreachable)",
       "currentGap": "L: requires WESLEYDESK SMB when off-LAN"
-    },
-    {
-      "packetId": "windows-l-unmapped-explorer-v1",
-      "ownerRepo": "CapitalGlass-Office-Admin",
-      "ownerMcp": "user-office-admin-mcp",
-      "ownerIndexingStatus": "indexed",
-      "requiredOwnerArtifact": "scripts/devices/CG-WESLEYWORK-01/Map-CgWesleyWorkLInUserSession.ps1",
-      "crossAgentRole": "thread autopsy harvest pointer",
-      "ownerRepoRole": "Windows L: unmapped — Explorer unavailable while WSL /mnt/l may look OK",
-      "currentGap": "Windows L remap persistence"
-    },
-    {
-      "packetId": "mount-authority-ext4-repos-root-v1",
-      "ownerRepo": "CG-AppBuilder-MCP",
-      "ownerMcp": "user-office-admin-mcp",
-      "ownerIndexingStatus": "indexed",
-      "requiredOwnerArtifact": "scripts/wsl/lib/wsl-mount-authority-lib.mjs",
-      "crossAgentRole": "thread autopsy harvest pointer",
-      "ownerRepoRole": "Mount gate must use resolveWslReposRoot — not injected CG_REPOS_ROOT",
-      "currentGap": null
-    },
-    {
-      "packetId": "wesleywork-l-tailscale-remap-command-v1",
-      "ownerRepo": "CapitalGlass-Office-Admin",
-      "ownerMcp": "user-office-admin-mcp",
-      "ownerIndexingStatus": "indexed",
-      "requiredOwnerArtifact": "scripts/devices/CG-WESLEYWORK-01/Map-CgWesleyWorkLInUserSession.ps1",
-      "crossAgentRole": "thread autopsy harvest pointer",
-      "ownerRepoRole": "Map L on WESLEY_WORK off-LAN via Map-CgWesleyWorkLInUserSession.ps1",
-      "currentGap": null
     }
   ]
 }

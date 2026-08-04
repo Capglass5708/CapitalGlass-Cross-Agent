@@ -8,35 +8,35 @@
     "authoritySource": {
       "system": "github",
       "repository": "CapitalGlass-Cross-Agent",
-      "commit": "6049bf12e459ce4040c2befe23239a1593e21f4a",
+      "commit": "af9cd6c8560b5918b2d415e9b0f4dd312ba6da9d",
       "branch": "main",
       "harvestId": "harvest-2026-08-04-three-way-improvement-slice6-thread-v1",
       "seedId": "IH-SLICE6-RUNNER-GATE-001"
     },
     "cacheEligibility": "retrieval_eligible",
-    "createdAt": "2026-08-04T02:09:18.479Z",
+    "createdAt": "2026-08-04T07:01:21.975Z",
     "verificationState": "PARTIALLY_VERIFIED",
     "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
     "defaultRetrievalEligible": true,
     "supersessionState": "current",
     "supersededByObjectId": null,
     "retrievalTier": "standard",
-    "contentHash": "19b32acfd4b24fb3dcb043b2dce1c8deca70d0fa6285ff057b7e1cc914508f9b"
+    "contentHash": "8aceecad8b6a2102d4d4a68cf618c9e0c94df619cf6cdf766e2e375fbd823419"
   },
   "body": {
     "seedId": "IH-SLICE6-RUNNER-GATE-001",
     "kind": "failure-pattern",
     "title": "Cross-Agent publication requires WESLEYDESK runner before dispatch",
     "summary": "index-publication.yml on CapitalGlass-Cross-Agent needs self-hosted wesleydesk runner; zero runners causes multi-hour queue.",
-    "canonicalQuestion": "Why is Cross-Agent index publication stuck queued?",
+    "canonicalQuestion": "What gh api runners total_count gate blocks CapitalGlass-Cross-Agent index-publication dispatch?",
     "alternateQuestions": [
-      "How many self-hosted runners does Cross-Agent have?"
+      "Which self-hosted labels must wesleydesk-wsl2-cross-agent expose before Slice6 publish?"
     ],
     "shortAnswer": "index-publication.yml on CapitalGlass-Cross-Agent needs self-hosted wesleydesk runner; zero runners causes multi-hour queue.",
     "detailedAnswer": "Cross-Agent publication requires WESLEYDESK runner before dispatch",
     "retrievalQuestions": [
-      "Why is Cross-Agent index publication stuck queued?",
-      "How many self-hosted runners does Cross-Agent have?"
+      "What gh api runners total_count gate blocks CapitalGlass-Cross-Agent index-publication dispatch?",
+      "Which self-hosted labels must wesleydesk-wsl2-cross-agent expose before Slice6 publish?"
     ],
     "futureAgentInstructions": {
       "whenThisAppears": "Slice 6 or index-publication workflow_dispatch",
