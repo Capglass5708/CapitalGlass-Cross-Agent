@@ -1,14 +1,45 @@
 {
-  "workPackageId": "cg-master-graph-hub-publication-v1",
+  "task": "cg-master-graph-hub-publication-v1 — publish foundation graph release to L Intelligence Hub and Z AI cache",
   "missionClass": "closeout",
   "outcome": "PASS",
-  "summary": "CG Master Graph foundation release published to L Intelligence Hub and Z AI cache; Cross-Agent coordinator verified.",
-  "repos": ["CG-MASTER-GRAPH", "CapitalGlass-Cross-Agent", "Data-Extraction"],
-  "commits": {
+  "hostMode": "wsl-remote",
+  "topology": "multi-repo",
+  "confidence": "HIGH",
+  "cheapSingleAgentOk": true,
+  "cheapestRedo": "cd $HOME/repos/CapitalGlass-Cross-Agent && npm run master-graph:publish-hub",
+  "deterministicFirst": true,
+  "mixedMissions": false,
+  "material": false,
+  "workPackageId": "cg-master-graph-hub-publication-v1",
+  "parentWorkPackage": "capital-glass-master-graph-foundation-v1",
+  "repos": {
     "CG-MASTER-GRAPH": "e796c13a4f259c5a513c43076bad70a9420d5f66",
-    "CapitalGlass-Cross-Agent": "65166d2",
+    "CapitalGlass-Cross-Agent": "7fadb0e",
     "Data-Extraction": "a03b1ea"
   },
-  "contentHash": "sha256:832a0de7c436f35a439aa6afc1c83762d82c853278f771e60573ff5846c3fb95",
-  "cheapestRedo": "cd $HOME/repos/CapitalGlass-Cross-Agent && npm run master-graph:publish-hub"
+  "release": {
+    "releaseId": "release:foundation-v1",
+    "contentHash": "sha256:832a0de7c436f35a439aa6afc1c83762d82c853278f771e60573ff5846c3fb95",
+    "foundationState": "CG_MASTER_GRAPH_FOUNDATION_VALIDATED"
+  },
+  "verificationArtifact": "artifacts/agent-runs/cg-master-graph-hub-publication-v1/closeout-manifest.json",
+  "enhancementRecommendations": [
+    {
+      "classification": "next-work-package",
+      "summary": "data-extraction-master-graph-contributor-v1 — emit validated graph extractions from Data-Extraction"
+    },
+    {
+      "classification": "next-work-package",
+      "summary": "capital-glass-lz-continuous-graph-observation-v1 — continuous graph observation lane"
+    }
+  ],
+  "missionAlignment": {
+    "lane": "control-plane",
+    "capabilityImproved": "Graph foundation release discoverable via Intelligence Hub BY-KIND slice and Z graph-authority pointer",
+    "closeoutQuestion": "Can agents read master-graph-release.json from L: and graph-authority CURRENT pointer without repo grep?"
+  },
+  "retrieval": {
+    "primary": "INDEX_HIT_AI_CACHE",
+    "cache": "CACHE_MISS"
+  }
 }
