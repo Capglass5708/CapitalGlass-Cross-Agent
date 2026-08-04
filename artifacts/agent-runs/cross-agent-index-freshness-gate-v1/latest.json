@@ -1,23 +1,27 @@
 {
   "schemaVersion": "cross-agent-index-freshness-gate-v1@1.0.0",
-  "generatedAt": "2026-08-04T02:16:23.050Z",
-  "verdict": "PASS",
-  "gitHead": "fe5c101282ef5272a20c060df0ae0b60680f952f",
+  "generatedAt": "2026-08-04T02:18:13.354Z",
+  "verdict": "FAIL",
+  "gitHead": "bd27d024e7e8794bf7c5e40ca01655cf05adbcb2",
   "layers": {
     "git": {
-      "sourceCommitSha": "fe5c101282ef5272a20c060df0ae0b60680f952f"
+      "sourceCommitSha": "bd27d024e7e8794bf7c5e40ca01655cf05adbcb2"
     },
     "supabase": {
       "sourceCommitSha": "fe5c101282ef5272a20c060df0ae0b60680f952f",
-      "verdict": "IN_SYNC",
-      "inSync": true
+      "verdict": "DRIFT_DETECTED",
+      "inSync": false
     },
     "intelligenceHub": {
       "sourceCommitSha": "fe5c101282ef5272a20c060df0ae0b60680f952f",
       "available": true,
-      "inSync": true,
+      "inSync": false,
       "path": "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/active-work-ledger/LATEST.json"
     }
   },
-  "issues": []
+  "issues": [
+    "L: sourceCommitSha fe5c101282ef5272a20c060df0ae0b60680f952f !== git bd27d024e7e8794bf7c5e40ca01655cf05adbcb2",
+    "Supabase drift verdict: DRIFT_DETECTED",
+    "Supabase sourceCommitSha fe5c101282ef5272a20c060df0ae0b60680f952f !== git bd27d024e7e8794bf7c5e40ca01655cf05adbcb2"
+  ]
 }

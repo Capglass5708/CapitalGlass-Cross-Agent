@@ -38,7 +38,17 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 
 | Packet ID | State | Verdict | Owner repo | Project file | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `cursor-harvest-protocol-session-v1` | COMPLETE | PASS | CapitalGlass-Cross-Agent | docs/runbooks/chat-thread-closeout-autopsy-harvest-v1.md | Operator: harvest:publish-intelligence-full when ready |
+| `direct-connect-persistent-controller-v1` | INSTALLED_PERSISTENCE_UNPROVEN | HOLD | CapitalGlass-Office-Admin | [2026-08-03_direct-connect-persistent-controller-v1.md](./2026-08-03_direct-connect-persistent-controller-v1.md) | Cold reboot persistence proof on RYZEN9DESK; separate from WESLEYDESK Cross-Agent runner (WesleyDesk Direct Connect kit) |
+| `ryzen9desk-managed-executor-v1` | FULL_ACCEPTANCE_READONLY_PASS | PASS | CG-AppBuilder-MCP | [2026-08-03_ryzen9desk-managed-executor-v1.md](./2026-08-03_ryzen9desk-managed-executor-v1.md) | Prove persistent availability via direct-connect-persistent-controller-v1 |
+| `complete-project-folder-synology-intelligence-publication-v1` | PUBLICATION_COMPLETE | PASS | CapitalGlass-Cross-Agent | [2026-08-03_complete-project-folder-synology-intelligence-publication-v1.md](./2026-08-03_complete-project-folder-synology-intelligence-publication-v1.md) | Recurring index:freshness-gate after ledger edits |
+| `intelligence-hub-index-ai-cache-freshness-v1` | FOUNDATION_PASS | PASS | CG-AppBuilder-MCP | [2026-08-03_intelligence-hub-index-ai-cache-freshness-v1.md](./2026-08-03_intelligence-hub-index-ai-cache-freshness-v1.md) | cross-agent-index-auto-publisher-activation-v1 when operator enables |
+| `cross-agent-index-auto-publisher-activation-v1` | RUNNER_OFFLINE_HOLD | HOLD | CapitalGlass-Cross-Agent | [2026-08-03_cross-agent-index-auto-publisher-activation-v1.md](./2026-08-03_cross-agent-index-auto-publisher-activation-v1.md) | Enable scheduled publisher on WESLEYDESK after operator approval |
+| `three-way-agent-improvement-intelligence-v1` | OPERATIONAL_CLOSEOUT_COMPLETE | THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL | CG-AppBuilder-MCP | [2026-08-03_three-way-agent-improvement-intelligence-v1.md](./2026-08-03_three-way-agent-improvement-intelligence-v1.md) | Operator hub publish when ready; keep wesleydesk-wsl2-cross-agent online; do not re-dispatch run 30861202361 |
+| `governance-wsl-path-normalization-v1` | MERGED_COMPLETE | PASS | CG-Platform-Governance-MCP | [2026-08-03_governance-wsl-path-normalization-v1.md](./2026-08-03_governance-wsl-path-normalization-v1.md) | None — prerequisite merged |
+| `cross-agent-harvest-owner-boundary-v1` | MERGED_COMPLETE | PASS | CapitalGlass-Cross-Agent | [2026-08-03_cross-agent-harvest-owner-boundary-v1.md](./2026-08-03_cross-agent-harvest-owner-boundary-v1.md) | None — prerequisite merged |
+| `intelligence-hub-thread-autopsy-publication-v1` | PUBLICATION_COMPLETE | PASS | CapitalGlass-Cross-Agent | [2026-08-04_intelligence-hub-thread-autopsy-publication-v1.md](./2026-08-04_intelligence-hub-thread-autopsy-publication-v1.md) | None — catalog and ledger aligned @ d84ad38 |
+| `intelligence-hub-capability-expansion-v1` | WAVE1_SHIPPED | PASS | CapitalGlass-Cross-Agent | [2026-08-03_intelligence-hub-capability-expansion-v1.md](./2026-08-03_intelligence-hub-capability-expansion-v1.md) | Operator harvest:publish-hub-seed after validate; integrate slice copy into index publisher |
+| `platform-health-read-model-slice-7-v1` | DEFERRED | HOLD | CapitalGlass-Cross-Agent | [2026-08-03_platform-health-read-model-slice-7-v1.md](./2026-08-03_platform-health-read-model-slice-7-v1.md) | Separate cleanup work package if needed |
 
 <!-- HARVEST-PACKET-INDEX:END -->
 
