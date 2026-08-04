@@ -13,13 +13,25 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-08-04 |
-| Current focus | T2 harvest recorded — `harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1`; next: auto-publisher v1.1 + hub seed publish |
+| Current focus | Blocker gate sweep shipped — 3 cleared, 5 domain-gated; next: DC production smoke rerun + auto-publisher v1.1 |
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Project index | `work-progress/projects/INDEX.md` |
 
 ## Current saved work
+
+### 2026-08-04 CT — active-ledger-blocker-gate-sweep-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `active-ledger-blocker-gate-sweep-v1` |
+| Verdict | **BLOCKER_GATE_SWEEP_PASS** — 3 cleared, 5 domain-gated, 3 operator checklist |
+| Cleared | Auto v3.2 env contamination; Document Center SHA (`f16b4ff` in Doppler + GitHub); `/mnt/c` regression (WSL default PASS) |
+| Indexed blockers | 5 domain WPs remain in `INDEX.md` § Cross-cutting blockers |
+| Gates | `check:auto-v32-session-env-policy` PASS; `active-ledger:sync` + L: publish; `cross-agent-ledger:ingest` |
+| Receipt | `artifacts/agent-runs/active-ledger-blocker-gate-sweep-v1/blocker-gate-receipt.json` |
+| Next | Rerun DC production smokes; operator MCP restart before compounding pilot |
 
 ### 2026-08-03 CT — Chat-thread harvest protocol hot-cache + ROI additions
 
@@ -158,7 +170,7 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 | --- | --- | --- | --- |
 | 1 | **Synology-primary dev lane** — child WP `project-folder-synology-primary-v1-dev-hosted-environment` (**HOLD**: Vercel BLOCKED + Supabase I2) | CapitalGlass-Documents / WESLEYDESK | **HOLD** — contract `d8826e8` PASS; hosted dev blocked |
 | 2 | Elevated deploy: `Install-CgWesleyWorkDriveMountPersistence.ps1` + verifier on WESLEY_WORK (`wesleywork-drive-mount-task-dedupe-v1`) | CapitalGlass-Office-Admin | Ready — code implemented; live probe pending |
-| 3 | Update Document Center `EXPECTED_DOCUMENT_CENTER_GIT_SHA` after intentional prod deploy (not Synology experiment) | CapitalGlass-Documents / Doppler | Pending — do not deploy Synology to prod until dev gates pass |
+| 3 | Rerun Document Center production smokes after SHA pin (`suite-ci-healing-v1`) | CapitalGlass-Documents | **Ready** — Doppler + GitHub `EXPECTED_DOCUMENT_CENTER_GIT_SHA` synced 2026-08-04 |
 | 2 | Use Windows Desktop `Capital Glass Cursor (WSL Suite).lnk`; close any Cursor windows opened from `/mnt/c` / `C:\Developer\repos` | Cursor / operator | Ongoing operating rule — WSL default verify PASS |
 | 2 | L: hub readable at `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index` | WESLEYDESK / WSL | Complete for seed report |
 | 3 | WSL seed structured-ledger ingest and drift probe | CG-AppBuilder-MCP | Complete — `IN_SYNC` via Doppler-backed Supabase token |

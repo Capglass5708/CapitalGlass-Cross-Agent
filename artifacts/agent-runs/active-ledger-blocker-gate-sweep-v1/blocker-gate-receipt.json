@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "active-ledger-blocker-gate-sweep-v1@1.0.0",
+  "workPackageId": "active-ledger-blocker-gate-sweep-v1",
+  "verdict": "BLOCKER_GATE_SWEEP_PASS",
+  "recordedAt": "2026-08-04T07:55:00.000Z",
+  "gitHeadAtSweep": "c880bfdc026a3169275da1b3a36b3c65b0fef7ef",
+  "summary": {
+    "indexedBlockersBefore": 11,
+    "indexedBlockersAfter": 5,
+    "cleared": 3,
+    "operatorChecklist": 3,
+    "domainGated": 5
+  },
+  "cleared": [
+    {
+      "id": "auto-v3-2-env-var-contamination",
+      "gate": "check:auto-v32-session-env-policy",
+      "verdict": "PASS",
+      "evidence": "CG-AppBuilder-MCP npm run check:auto-v32-session-env-policy --json"
+    },
+    {
+      "id": "document-center-deployed-sha-secret-mismatch",
+      "gate": "doppler-github-sync",
+      "verdict": "CLEARED",
+      "evidence": "Doppler cg-documents/prd EXPECTED_DOCUMENT_CENTER_GIT_SHA=f16b4ff334affe8c900cded6a6feac6480c0d848; sync:production-smoke-github-secrets:apply"
+    },
+    {
+      "id": "cursor-opened-from-mnt-c-instead-of-ext4-wsl-root",
+      "gate": "cursor:wsl-default:verify",
+      "verdict": "CLEARED_REGRESSION_WATCH",
+      "evidence": "WSL default verify PASS; operating rule — Capital Glass Cursor (WSL Suite).lnk"
+    }
+  ],
+  "operatorChecklist": [
+    {
+      "id": "mcp-restart-needed-for-new-governance-tools",
+      "status": "OPERATOR_PENDING",
+      "action": "Restart MCP in Cursor before north-star compounding tools"
+    },
+    {
+      "id": "vercel-mcp-needs-auth",
+      "status": "OPERATOR_ON_DEMAND",
+      "action": "mcp_auth when Vercel connector needed"
+    },
+    {
+      "id": "cloudflare-stdio-oauth-loopback-conflict",
+      "status": "OPERATOR_ON_DEMAND",
+      "action": "Keep stdio Cloudflare disabled or clear 127.0.0.1:15170"
+    }
+  ],
+  "domainGated": [
+    {
+      "id": "missing-shared-github-articles-builder",
+      "workPackage": "docling-github-ingest-v1",
+      "owner": "Scraper"
+    },
+    {
+      "id": "rank-9-arch-fp-yolo-benchmark-repo-url-unknown",
+      "workPackage": "revu-opening-detection-top10-v1",
+      "owner": "Research"
+    },
+    {
+      "id": "de-opening-detection-kb-is-shallow",
+      "workPackage": "revu-opening-detection-top10-v1",
+      "owner": "Data-Extraction"
+    },
+    {
+      "id": "bid-composer-weak-on-window-schedule-row",
+      "workPackage": "bid-composer-upgrade-roadmap-v1",
+      "owner": "Bid Composer"
+    },
+    {
+      "id": "revu-mcp-production-workflow-locked",
+      "workPackage": "revu-production-takeoff-pilot-v1",
+      "owner": "CapitalGlassRevu",
+      "policyLock": true
+    }
+  ],
+  "nextActions": [
+    "Rerun Document Center production smokes",
+    "cross-agent-ledger:ingest --apply after ledger commit",
+    "Publish L: hub slices (active-ledger:sync --publish)"
+  ]
+}

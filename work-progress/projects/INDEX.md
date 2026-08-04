@@ -2,7 +2,7 @@
 
 Master index of all project files in `work-progress/projects/`.
 
-**Last updated:** 2026-08-03 (harvest `harvest-2026-08-03-cross-thread-platform-state-v1`)
+**Last updated:** 2026-08-04 (blocker gate sweep `active-ledger-blocker-gate-sweep-v1`)
 
 Read `AGENT_START_HERE.md` and `work-progress/ACTIVE_WORK.md` before working on any project listed here.
 
@@ -61,7 +61,7 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 | `project-folder-synology-primary-v1-dev-hosted-environment` | [project-folder-synology-primary-v1-dev-hosted-environment.md](./project-folder-synology-primary-v1-dev-hosted-environment.md) | **HOLD** — step #3 hosted dev | CapitalGlass-Documents, WESLEYDESK | Contract `d8826e8`; partial Doppler dev | Fix Vercel BLOCKED deploy; separate Supabase dev; alias `documents-dev`; gates G1–G10 |
 | `project-folder-synology-primary-v1-dev-environment` | [project-folder-synology-primary-v1-dev-environment.md](./project-folder-synology-primary-v1-dev-environment.md) | **ACTIVE** — dev lane before production | CapitalGlass-Documents, Dashboard, Office Admin | Slice 0–3 on `main`; prod flag **off** | Child WP step #3; then Dashboard dev + worker |
 | `project-folder-synology-primary-v1` | [project-folder-synology-primary-v1.md](./project-folder-synology-primary-v1.md) | **HALTED** — integration PASS; productionization halted | CapitalGlass-Documents | `440ce33` | No production work until dev-environment gates pass |
-| `suite-ci-healing-v1` | [2026-08-03_suite-ci-healing-v1.md](./2026-08-03_suite-ci-healing-v1.md) | **PARTIAL PASS — Document Center secret update needed** | Product Catalog, Proposal Generator, Office Admin, Document Center | Office Admin PR #51 merged; Document Center `482561e` | Update `EXPECTED_DOCUMENT_CENTER_GIT_SHA` or redeploy Document Center from main, then rerun production smokes |
+| `suite-ci-healing-v1` | [2026-08-03_suite-ci-healing-v1.md](./2026-08-03_suite-ci-healing-v1.md) | **PASS pending smoke rerun** — Doppler SHA aligned `f16b4ff` | Product Catalog, Proposal Generator, Office Admin, Document Center | Office Admin PR #51 merged; Doppler `cg-documents/prd` updated 2026-08-04 | Rerun Document Center production smokes; sync GitHub secret if apply script not run |
 | `cross-agent-registry-onboard-v1` | [2026-08-02_cross-agent-registry-onboard-v1.md](./2026-08-02_cross-agent-registry-onboard-v1.md) | Complete — closeout PASS | `CG-AppBuilder-MCP` | `38a162da` / `48a1bff1` | Recurring registry maintenance only |
 | `cross-agent-structured-ledger-projection-v1` | [2026-08-02_cross-agent-structured-ledger-projection-v1.md](./2026-08-02_cross-agent-structured-ledger-projection-v1.md) | **MILESTONE PASS** — Phases 0–3 operational | `CG-Platform-Governance-MCP`, `CG-AppBuilder-MCP` | AppBuilder `63dbeb8c`; Governance `a5ce4c3` | Recurring ingest + drift probe after ledger updates |
 | `wsl-mcp-cursor-doppler-promptops-hardening-v1` | [2026-08-02_wsl-mcp-cursor-doppler-promptops-hardening-v1.md](./2026-08-02_wsl-mcp-cursor-doppler-promptops-hardening-v1.md) | **PASS — Cursor WSL default active; `mcp:repair:cursor` PASS** | `CG-AppBuilder-MCP`, `Cursor-MCP-Kit`, Cursor MCP, Doppler | WSL default verify PASS; `mcp:repair:cursor` PASS | Use WSL Suite shortcut; optionally commit/push ext4 changes; handle Vercel / Cloudflare / `mcp:attest` separately |
@@ -159,20 +159,37 @@ Recommended follow-on work packages (not yet project files):
 
 ## Cross-cutting blockers
 
+Indexed for agent preflight (`active-work-blockers.json`). Domain blockers are gated under owner work packages; operator items are not indexed here.
+
 | Blocker | Affects | Owner | Required action |
 | --- | --- | --- | --- |
-| MCP restart needed for new Governance tools | `north-star-compounding-proof-v1` | Cursor / operator | Restart MCP in Cursor |
-| Auto v3.2 env var contamination | `north-star-compounding-proof-v1`, full `closeout:gate` | `CG-AppBuilder-MCP` / shell | Clear `CG_AUTO_V32_WORK_PACKAGE` and `CG_AUTO_V32_MATERIAL`, rerun gate |
-| Missing shared GitHub → articles builder | `docling-github-ingest-v1`, `ephemeral-unstructured-github-scrape-v1` | `Scraper` | Implement `build-github-markdown-articles.mjs` |
-| Rank-9 Arch FP YOLO benchmark repo URL unknown | `revu-opening-detection-top10-v1` | Research | Pin URL before capture |
-| DE opening-detection KB is shallow | `revu-opening-detection-top10-v1`, `cg-opening-locator-v1` | `Data-Extraction` | Finish vendor interpretation for pymkup, PyMuPDF, PaddleDetection; fix `unsupported_vendor` |
-| Bid Composer weak on `window_schedule_row` | CE parser ROI / Bid Composer review lane | `Bid Composer` | Add window schedule import and review lane before production parser ROI is complete |
-| Revu MCP production workflow locked | `revu-production-takeoff-pilot-v1` | `CapitalGlassRevu`, `Bid Composer` | Keep Cursor fixture-only use until canonical plan → approval → export → BC review pilot passes |
-| Cursor opened from `/mnt/c` instead of ext4 WSL root | `wsl-mcp-cursor-doppler-promptops-hardening-v1` | Cursor / operator | Regression only: WSL default verify now PASS; use `Capital Glass Cursor (WSL Suite).lnk` |
-| Vercel MCP needs auth | `wsl-mcp-cursor-doppler-promptops-hardening-v1` | Cursor / Vercel | Run `mcp_auth` when Vercel MCP is needed |
-| Cloudflare stdio OAuth loopback conflict | `wsl-mcp-cursor-doppler-promptops-hardening-v1` | Cursor / Cloudflare | Keep stdio Cloudflare disabled or clear `127.0.0.1:15170` conflict |
+| Missing shared GitHub → articles builder | `docling-github-ingest-v1`, `ephemeral-unstructured-github-scrape-v1` | `Scraper` | Implement `build-github-markdown-articles.mjs` — gated under owner WPs |
+| Rank-9 Arch FP YOLO benchmark repo URL unknown | `revu-opening-detection-top10-v1` | Research | Pin URL before capture — gated under `revu-opening-detection-top10-v1` |
+| DE opening-detection KB is shallow | `revu-opening-detection-top10-v1`, `cg-opening-locator-v1` | `Data-Extraction` | Finish vendor interpretation; fix `unsupported_vendor` — gated under opening-detection WPs |
+| Bid Composer weak on `window_schedule_row` | CE parser ROI / Bid Composer review lane | `Bid Composer` | Add window schedule import and review lane — gated under Bid Composer roadmap |
+| Revu MCP production workflow locked | `revu-production-takeoff-pilot-v1` | `CapitalGlassRevu`, `Bid Composer` | Policy lock until plan → approval → export → BC review pilot passes |
 
-| Document Center deployed SHA secret mismatch | `suite-ci-healing-v1`, `CapitalGlass-Documents` production smokes | `CapitalGlass-Documents` / Doppler | Update `EXPECTED_DOCUMENT_CENTER_GIT_SHA` to `f16b4ff334affe8c900cded6a6feac6480c0d848`, or redeploy from main and update the secret to that deploy SHA |
+---
+
+## Cleared blockers (2026-08-04 — `active-ledger-blocker-gate-sweep-v1`)
+
+| Blocker | Gate / evidence | Status |
+| --- | --- | --- |
+| Auto v3.2 env var contamination | `npm run check:auto-v32-session-env-policy` PASS; shell + Doppler clean | **CLEARED** |
+| Document Center deployed SHA secret mismatch | Doppler `cg-documents/prd` `EXPECTED_DOCUMENT_CENTER_GIT_SHA` → `f16b4ff…` | **CLEARED** — rerun production smokes |
+| Cursor opened from `/mnt/c` instead of ext4 WSL root | `npm run cursor:wsl-default:verify` PASS; operating rule only | **CLEARED** (regression watch) |
+
+Receipt: `artifacts/agent-runs/active-ledger-blocker-gate-sweep-v1/blocker-gate-receipt.json`
+
+---
+
+## Operator checklist (not indexed as blockers)
+
+| Item | When | Owner |
+| --- | --- | --- |
+| Restart MCP after Governance tool updates | Before `north-star-compounding-proof-v1` compounding tools | Cursor / operator |
+| Vercel MCP auth | Only when Vercel connector needed | Cursor / Vercel — `mcp_auth` |
+| Cloudflare stdio OAuth loopback | Only when Cloudflare MCP needed | Keep stdio disabled or clear `127.0.0.1:15170` |
 
 ---
 
@@ -182,8 +199,8 @@ Priority order from `work-progress/ACTIVE_WORK.md`:
 
 | Priority | Action | Owner repo |
 | --- | --- | --- |
-| 1 | Restart MCP so `governance_get_compounding_capture_contract` and `governance_validate_compounding_proof` load | Cursor / local MCP |
-| 2 | Clear Auto v3.2 env vars and rerun `npm run closeout:gate` | `CG-AppBuilder-MCP` |
+| 1 | Rerun Document Center production smokes after SHA pin | `CapitalGlass-Documents` |
+| 2 | Restart MCP so Governance compounding tools load (operator checklist) | Cursor / local MCP |
 | 3 | Run `north-star-compounding-vertical-pilot-v1` | Governance + AppBuilder |
 | 4 | Run `platform-governance-phase4-registries-v1` | `CG-Platform-Governance-MCP` |
 | 5 | Scope `cg-opening-locator-v1` parser package from Revu/Docling evidence | `Computer Estimator`, `Data-Extraction` |
