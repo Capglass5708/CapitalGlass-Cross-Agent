@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "cross-agent-harvest-protocol-additions-v1@1.0.0",
+  "workPackageId": "chat-thread-harvest-protocol-hot-cache-roi-v1",
+  "additions": {
+    "scoutHotCacheProof": {
+      "requiredIntent": true,
+      "fields": [
+        "retrievalCode",
+        "indexTier",
+        "publicationStatus",
+        "freshnessVerdict",
+        "rawScanRequired",
+        "sourceCommitSha"
+      ]
+    },
+    "recommendedRoi": {
+      "requiredIntent": true,
+      "fields": [
+        "rank",
+        "item",
+        "why",
+        "effort",
+        "ownerRepo",
+        "acceptanceGate",
+        "doNotAdvance"
+      ]
+    },
+    "commands": {
+      "requiredIntent": true,
+      "fields": [
+        "command",
+        "repo",
+        "host",
+        "purpose",
+        "expectedResult",
+        "dangerLevel",
+        "requiresApproval"
+      ]
+    },
+    "authorityLineage": {
+      "requiredIntent": true,
+      "fields": [
+        "gitSha",
+        "lHubSha",
+        "zHotCacheSha",
+        "supabaseProjectionSha",
+        "manifestHash"
+      ]
+    },
+    "staleAuthorityComparison": {
+      "requiredIntent": true,
+      "fields": [
+        "surface",
+        "observedSha",
+        "expectedSha",
+        "verdict",
+        "action"
+      ]
+    }
+  },
+  "ownerBoundaries": {
+    "coordination": "CapitalGlass-Cross-Agent",
+    "execution": "CG-AppBuilder-MCP",
+    "protocolAuthority": "CG-Platform-Governance-MCP"
+  }
+}
