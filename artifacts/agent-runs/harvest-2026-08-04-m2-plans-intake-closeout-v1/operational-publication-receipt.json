@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "cross-agent-harvest-operational-publication-receipt-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-m2-plans-intake-closeout-v1",
+  "generatedAt": "2026-08-04T18:34:20.548Z",
+  "startedAt": "2026-08-04T18:34:03.109Z",
+  "verdict": "OPERATIONAL",
+  "sourceCommitSha": "adb026b5b1e3920b571296943300e0e5d1090545",
+  "tier": "T2",
+  "authorityModel": "CHAT_THREAD_STRUCTURED_TRUTH",
+  "intelligenceHubRoot": "/mnt/l/Capital-Glass-Intelligence-Hub",
+  "layers": {
+    "git": {
+      "path": "/home/wesley/repos/CapitalGlass-Cross-Agent/artifacts/agent-runs/harvest-2026-08-04-m2-plans-intake-closeout-v1/harvest-manifest-v1.json",
+      "sourceCommitSha": "adb026b5b1e3920b571296943300e0e5d1090545"
+    },
+    "lCatalog": {
+      "ok": true,
+      "seedCount": 4,
+      "byKindSlice": "00-master-index/BY-KIND/thread-autopsy-index.json"
+    },
+    "lLedger": {
+      "ok": false
+    },
+    "cHotRouting": {
+      "ok": false,
+      "code": "SKIP"
+    },
+    "zAiCache": {
+      "ok": false,
+      "code": "SKIP"
+    },
+    "hostFanout": {
+      "ok": true,
+      "code": "SYNC_HOSTS_DISABLED",
+      "hosts": []
+    },
+    "supabaseThreadAutopsy": {
+      "ok": false,
+      "code": "SUPABASE_PROJECTION_FAIL",
+      "error": "Unexpected token '>', \"\n> intellig\"... is not valid JSON"
+    }
+  },
+  "stages": [
+    {
+      "label": "sync-derived",
+      "ok": true
+    },
+    {
+      "label": "render-index",
+      "ok": true
+    },
+    {
+      "label": "duplication-preflight",
+      "ok": true,
+      "verdict": "PASS"
+    },
+    {
+      "label": "validate",
+      "ok": true
+    },
+    {
+      "label": "validate-autopsy",
+      "ok": true
+    },
+    {
+      "label": "blind-retrieval",
+      "ok": true,
+      "verdict": "BLIND_RETRIEVAL_PASS"
+    },
+    {
+      "label": "hub-slices",
+      "ok": true,
+      "doNotAdvanceCount": 7,
+      "threadAutopsyIndex": "00-master-index/BY-KIND/thread-autopsy-index.json"
+    },
+    {
+      "label": "hot-routing-index",
+      "ok": false,
+      "error": "Unexpected token '>', \"\n> intellig\"... is not valid JSON"
+    },
+    {
+      "label": "z-ai-cache-index",
+      "ok": false,
+      "error": "Command failed: npm run intelligence-hub:index-freshness:publish -- --json\nfile:///home/wesley/repos/CG-AppBuilder-MCP/scripts/intelligence-hub/index-freshness/lib/paths.mjs:2\nimport { resolveIntelligenceHubRoot } from \"../../../active-ledger/lib/hub-paths.mjs\";\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: The requested module '../../../active-ledger/lib/hub-paths.mjs' does not provide an export named 'resolveIntelligenceHubRoot'\n    at #asyncInstantiate (node:internal/modules/esm/module_job:327:21)\n    at async ModuleJob.run (node:internal/modules/esm/module_job:431:5)\n    at async node:internal/modules/esm/loader:643:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.18.0\n"
+    },
+    {
+      "label": "thread-autopsy-supabase",
+      "ok": false,
+      "error": "Unexpected token '>', \"\n> intellig\"... is not valid JSON"
+    }
+  ],
+  "contentHash": "a52e7239f1751be84b7cf576793ae51c352c99479ebcf94180871f3f95d4bdf5"
+}
