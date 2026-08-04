@@ -13,7 +13,7 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-08-04 |
-| Current focus | Hub published @ `164bda7`; expansion wave 1 SHIPPED; Slice 6 blind retrieval gate remains |
+| Current focus | Slice 6 **CLOSED** @ `acd94ba` — `THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL`; next: auto-publisher v1.1 |
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
@@ -42,7 +42,7 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Artifacts | `artifacts/agent-runs/intelligence-hub-capability-expansion-v1/` (`milestone-receipt-v1.json`) |
 | Publication | Git/Supabase/L: aligned; control slices on L: BY-KIND |
 | Tests | `test:index-control-slices` 7/7 PASS; idempotency `NOOP_CURRENT` |
-| Next | Slice 6 post-publication blind retrieval; wave 2 auto-publisher |
+| Next | Wave 2 auto-publisher activation on WESLEYDESK |
 
 ### 2026-08-03 CT — harvest-current-cross-thread-state-v2 HARVEST_COMPLETE
 

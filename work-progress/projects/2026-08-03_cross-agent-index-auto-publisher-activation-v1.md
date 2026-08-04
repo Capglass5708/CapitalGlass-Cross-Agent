@@ -10,19 +10,19 @@ Next mission after index freshness foundation — activate Cross-Agent index aut
 | --- | --- |
 | Work package | `cross-agent-index-auto-publisher-activation-v1` |
 | Owner repo | CapitalGlass-Cross-Agent |
-| Status | **CODE_READY_FOR_RUNNER_BOOTSTRAP** — workflow + publisher staged; WESLEYDESK runner install pending |
+| Status | **RUNNER_ONLINE_PUBLICATION_PROVEN** — WESLEYDESK runner + manual publisher PASS @ `acd94ba` |
 
 ## Current state
 
-- Publisher workflow staged (`index-publication.yml`)
-- WESLEYDESK runner bootstrap scripts + `runner-smoke.yml` added
-- Post-commit publication **not** proven until runner online + smoke PASS
-- `AUTO_PUBLISHER_V1_1_STAGED_NOT_ACTIVE` preserved until smoke + publication receipt
+- WESLEYDESK self-hosted runner installed (systemd + `wsl.conf` `[boot] systemd=true`)
+- `index-publication.yml` workflow_dispatch proven (prior runs) + local publisher on desk
+- Post-commit scheduled auto-publisher **not** active (`AUTO_PUBLISHER_V1_1_STAGED_NOT_ACTIVE`)
+- Slice 6 publication gates closed — see `three-way-agent-improvement-intelligence-v1` closeout
 
 ## Do not advance
 
-- Mark active without publisher trigger enabled and post-commit proof
-- Conflate dashboard drift (Platform Health / ASG observe lane) with publisher activation
+- `AUTO_PUBLISHER_V1_1_ACTIVE` until scheduled/cron trigger proven
+- Conflate dashboard drift with publisher activation
 
 ## Prerequisite
 
@@ -30,6 +30,6 @@ Next mission after index freshness foundation — activate Cross-Agent index aut
 
 ## Next action
 
-1. On **CG-WESLEYDESK-01** WSL: `npm run runner:install` (see `docs/runbooks/wesleydesk-index-publication-runner.md`)
-2. `gh workflow run runner-smoke.yml`
-3. Re-dispatch `index-publication.yml` to clear queued run **30861642734**
+1. Enable push-triggered `index-publication.yml` v1.1 on WESLEYDESK
+2. Prove `NOOP_CURRENT` via workflow (not only local publisher)
+3. Keep runner online after Windows reboot (`wsl.exe -d Ubuntu-24.04` or systemd service)

@@ -11,15 +11,14 @@ Three-way agent improvement intelligence program — all scoped PRs merged; awai
 | Work package | `three-way-agent-improvement-intelligence-v1` |
 | Owner repo | CG-AppBuilder-MCP |
 | Coordination pointer | `work-progress/pointers/three-way-agent-improvement-intelligence-v1.json` |
-| Status | **MERGED_PENDING_SLICE6_PUBLICATION** |
+| Status | **THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL** |
 
 ## Verdict lineage
 
 | Verdict | When |
 | --- | --- |
-| Previous | `PRECOMMIT_VERIFICATION_PASS_WITH_PREREQUISITE_GATE_REPAIRS` |
-| Current | `MERGED_PENDING_SLICE6_PUBLICATION` (`ALL_SCOPED_PRS_MERGED`) |
-| Blocked final | `THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL` |
+| Previous | `MERGED_PENDING_SLICE6_PUBLICATION` |
+| Current | `THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL` (`ALL_SLICE6_PUBLICATION_GATES_PASS`) |
 
 ## Merge stack (complete)
 
@@ -34,27 +33,28 @@ Three-way agent improvement intelligence program — all scoped PRs merged; awai
 
 Receipt: `artifacts/agent-runs/three-way-agent-improvement-intelligence-v1/merge-completion-receipt-v1.json`
 
-## Publication (pending)
+## Publication (complete @ WESLEYDESK)
 
 | Field | Value |
 | --- | --- |
-| Workflow run | **30861642734** (authoritative; run `30861202361` cancelled) |
-| Pinned SHA | `3e51aa754576f7d148901e440365f714f56be455` |
-| Host | WESLEYDESK self-hosted runner |
+| Published SHA | `acd94ba6d5855bda1298d248188f6ae4faa32edf` |
+| Host | WESLEYDESK WSL2 local publisher |
+| First publish | `PUBLISH_PASS` |
+| Second publish | `NOOP_CURRENT` |
+| Blind retrieval | `POST_PUBLICATION_BLIND_RETRIEVAL_PASS` |
 
-## Pending gates (all required before operational award)
+## Gates (all pass)
 
-1. Publication workflow → `PUBLISH_PASS`
-2. Layer parity → `npm run index:freshness-gate`
-3. Post-publication blind retrieval → `npm run harvest:blind-retrieval`
-4. Live idempotency → `NOOP_CURRENT` on second publish
+1. Publication workflow → `PUBLISH_PASS` ✓
+2. Layer parity → freshness `PASS` ✓
+3. Post-publication blind retrieval → `POST_PUBLICATION_BLIND_RETRIEVAL_PASS` ✓
+4. Live idempotency → `NOOP_CURRENT` ✓
 
 Closeout receipt: `artifacts/agent-runs/three-way-agent-improvement-intelligence-v1/slice6-closeout-receipt-v1.json`
 
 ## Not claimed
 
-- `THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL`
-- Post-publication blind retrieval (fixture-only pass does not count)
+- `AUTO_PUBLISHER_V1_1_ACTIVE` (scheduled publisher — separate work package)
 
 ## Recorded fixes
 

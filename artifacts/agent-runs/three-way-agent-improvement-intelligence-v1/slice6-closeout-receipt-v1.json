@@ -1,27 +1,28 @@
 {
   "schemaVersion": "three-way-improvement-slice6-closeout-receipt-v1",
   "programId": "three-way-agent-improvement-intelligence-v1",
-  "verdict": "PUBLICATION_GATES_PARTIAL_PASS",
-  "blockedFinalVerdict": "THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL",
-  "generatedAt": "2026-08-04T00:58:00.000Z",
-  "updatedAt": "2026-08-04T00:58:00.000Z",
+  "verdict": "THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL",
+  "blockedFinalVerdict": null,
+  "generatedAt": "2026-08-03T23:20:00Z",
+  "updatedAt": "2026-08-04T01:08:00.000Z",
+  "hostAuthority": "WESLEYDESK",
   "authoritativePublication": {
-    "workflowRunId": "30861642734",
-    "workflowUrl": "https://github.com/Capglass5708/CapitalGlass-Cross-Agent/actions/runs/30861642734",
-    "pinnedSha": "3e51aa754576f7d148901e440365f714f56be455",
-    "closeoutReceiptSha": "6260df2",
-    "supersededRunId": "30861202361",
-    "supersededDisposition": "cancelled",
-    "livePublicationSha": "164bda7adf352772c49999606cd1b956668d0f43",
-    "livePublicationMethod": "local-index-publisher-wesley-work",
-    "livePublicationReceipt": "runtime/index-publication/latest.json"
+    "livePublicationSha": "acd94ba6d5855bda1298d248188f6ae4faa32edf",
+    "livePublicationMethod": "local-index-publisher-wesleydesk",
+    "livePublicationHost": "CG-WESLEYDESK-01 WSL2",
+    "livePublicationReceipt": "runtime/index-publication/latest.json",
+    "firstPublishVerdict": "PUBLISH_PASS",
+    "secondPublishVerdict": "NOOP_CURRENT",
+    "mergeCommitSha": "22c870432b88df3e78ed519789992bf2c212d70d",
+    "supersededWorkflowRunId": "30861642734",
+    "supersededDisposition": "superseded-by-wesleydesk-local-publisher-closeout"
   },
   "gates": {
     "publicationWorkflow": {
       "status": "pass",
       "requiredVerdict": "PUBLISH_PASS",
       "actualVerdict": "PUBLISH_PASS",
-      "receiptPath": "runtime/index-publication/latest.json"
+      "receiptPath": "artifacts/agent-runs/cross-agent-index-publication-v1/latest.json"
     },
     "layerParity": {
       "status": "pass",
@@ -30,16 +31,17 @@
       "freshnessVerdict": "PASS"
     },
     "postPublicationBlindRetrieval": {
-      "status": "pending",
+      "status": "pass",
       "mode": "query_only_without_expected_improvement_ids",
       "forbidden": ["IMP-0001", "IMP-0002", "IMP-0003", "IMP-0004"],
-      "note": "harvest:blind-retrieval remains synology fixture only; post-publication IMP blind retrieval not yet implemented"
+      "receiptPath": "artifacts/agent-runs/three-way-agent-improvement-intelligence-v1/post-publication-blind-retrieval-v1.json",
+      "actualVerdict": "POST_PUBLICATION_BLIND_RETRIEVAL_PASS"
     },
     "liveSecondPublicationIdempotency": {
       "status": "pass",
       "requiredVerdict": "NOOP_CURRENT",
       "actualVerdict": "NOOP_CURRENT",
-      "method": "second npm run index:publish on unchanged SHA 164bda7"
+      "method": "second local index publisher run on unchanged SHA acd94ba at WESLEYDESK"
     }
   },
   "awardConditions": [
@@ -48,6 +50,6 @@
     "postPublicationBlindRetrieval PASS",
     "liveSecondPublicationIdempotency NOOP_CURRENT"
   ],
-  "gatesPassedCount": 3,
+  "gatesPassedCount": 4,
   "gatesRequiredCount": 4
 }

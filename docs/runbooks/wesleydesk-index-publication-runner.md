@@ -64,6 +64,15 @@ wsl.exe -d Ubuntu-24.04 -u root bash -lc 'cd /home/wesley/actions-runner-cross-a
 
 Verify: `systemctl is-enabled actions.runner.Capglass5708-CapitalGlass-Cross-Agent.wesleydesk-wsl2-cross-agent.service`
 
+### Post-Windows-reboot recovery
+
+WSL stops on Windows reboot. `/etc/wsl.conf` must include `[boot] systemd=true` (set by `runner:configure-wsl-network`). After reboot:
+
+```bash
+wsl.exe -d Ubuntu-24.04 -u root bash ~/repos/CapitalGlass-Cross-Agent/scripts/runner/configure-wesleydesk-wsl-network.sh
+wsl.exe -d Ubuntu-24.04 -u root bash -lc 'cd /home/wesley/actions-runner-cross-agent && ./svc.sh start'
+```
+
 ### Runner version
 
 Default tarball version is **2.336.0** (required for `actions/checkout` node24 runtime). Override with `RUNNER_VERSION` only when upgrading deliberately.

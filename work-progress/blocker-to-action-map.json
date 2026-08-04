@@ -1,23 +1,24 @@
 {
   "schemaVersion": "blocker-to-action-map-v1@1.0.0",
-  "updatedAt": "2026-08-04T00:20:00.000Z",
+  "updatedAt": "2026-08-04T01:08:00.000Z",
   "ownerRepo": "CapitalGlass-Cross-Agent",
   "blockers": [
     {
       "blockerId": "slice6-post-merge-publication",
       "severity": "critical",
       "title": "Slice 6 post-merge hub publication",
-      "state": "PARTIAL",
+      "state": "CLOSED",
       "ownerRepo": "CapitalGlass-Cross-Agent",
       "hostAuthority": "WESLEYDESK",
-      "nextAction": "Implement post-publication blind retrieval (IMP-0001..0004 forbidden in query); then evaluate THREE_WAY operational award",
+      "nextAction": "None — closed at acd94ba with WESLEYDESK local publisher + blind retrieval PASS",
       "commandIds": ["index-freshness-gate", "index-publish", "index-blind-retrieval"],
       "receiptRefs": [
         "artifacts/agent-runs/three-way-agent-improvement-intelligence-v1/merge-completion-receipt-v1.json",
         "artifacts/agent-runs/three-way-agent-improvement-intelligence-v1/slice6-closeout-receipt-v1.json",
+        "artifacts/agent-runs/three-way-agent-improvement-intelligence-v1/post-publication-blind-retrieval-v1.json",
         "work-progress/pointers/three-way-agent-improvement-intelligence-v1.json"
       ],
-      "doNotAdvance": ["THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL"]
+      "doNotAdvance": []
     },
     {
       "blockerId": "direct-connect-cold-reboot-persistence",
