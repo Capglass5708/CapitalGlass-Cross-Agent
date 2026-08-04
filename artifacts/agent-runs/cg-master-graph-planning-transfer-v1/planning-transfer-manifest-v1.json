@@ -66,8 +66,8 @@
       "classification": "REMAIN_CROSS_AGENT",
       "canonicalRepo": "CapitalGlass-Cross-Agent",
       "action": "Keep orchestration roadmap; add pointer from graph repo",
-      "status": "PIN_POINTER_IN_GRAPH",
-      "graphCommit": "ea7758d"
+      "status": "DONE",
+      "crossAgentCommit": "pending"
     },
     {
       "path": "docs/master-graph/CG-MASTER-GRAPH-ENTERPRISE-KNOWLEDGE-INTAKE-PLAN-v1.md",
@@ -78,8 +78,9 @@
         "dataExtractionIntake": "Data-Extraction",
         "harvestOrchestration": "CapitalGlass-Cross-Agent"
       },
-      "action": "Remain as program authority in Cross-Agent until split packages land",
-      "status": "REMAIN"
+      "action": "Cherry-picked from started-a-graph; program authority in Cross-Agent",
+      "status": "DONE",
+      "crossAgentCommit": "pending"
     },
     {
       "path": "docs/platform-standards/CG-REPOSITORY-CREATION-PROTOCOL-v1.md",
@@ -97,7 +98,7 @@
       "classification": "COPY_PINNED",
       "canonicalRepo": "CapitalGlass-Cross-Agent",
       "action": "Index with links to graph canonical docs",
-      "status": "NEXT"
+      "status": "DONE"
     },
     {
       "path": "docs/master-graph/CG-MASTER-GRAPH-DECISIONS-v1.md",
@@ -139,22 +140,28 @@
       "path": "docs/master-graph/CG-MASTER-GRAPH-SOURCE-PRIORITY-v1.md",
       "classification": "MOVE_CANONICAL",
       "canonicalRepo": "CG-MASTER-GRAPH",
-      "status": "PLANNED_NOT_ON_BRANCH"
+      "canonicalPath": "docs/CG-MASTER-GRAPH-SOURCE-PRIORITY-v1.md",
+      "status": "DONE",
+      "graphCommit": "bd8fc7a"
     },
     {
       "path": "docs/master-graph/CG-MASTER-GRAPH-RISKS-AND-NON-GOALS-v1.md",
       "classification": "MOVE_CANONICAL",
       "canonicalRepo": "CG-MASTER-GRAPH",
-      "status": "PLANNED_NOT_ON_BRANCH"
+      "canonicalPath": "docs/CG-MASTER-GRAPH-RISKS-AND-NON-GOALS-v1.md",
+      "status": "DONE",
+      "graphCommit": "bd8fc7a"
     },
     {
       "path": "docs/master-graph/CG-HARVEST-TO-GRAPH-CONTRACT-v1.md",
       "classification": "SPLIT",
       "splitTargets": {
-        "extractionSchemas": "CG-MASTER-GRAPH/schemas",
-        "harvestOrchestration": "CapitalGlass-Cross-Agent"
+        "extractionSchemas": "CG-MASTER-GRAPH/docs/CG-HARVEST-TO-GRAPH-CONTRACT-v1.md",
+        "harvestOrchestration": "CapitalGlass-Cross-Agent/docs/master-graph/CG-HARVEST-TO-GRAPH-HARVEST-LANE-v1.md"
       },
-      "status": "PLANNED_NOT_ON_BRANCH"
+      "status": "DONE",
+      "graphCommit": "bd8fc7a",
+      "crossAgentCommit": "pending"
     },
     {
       "path": "docs/master-graph/CG-MASTER-GRAPH-FOUNDATION-CURSOR-OPENER-v1.md",
@@ -178,12 +185,8 @@
   ],
   "nextPackages": [
     {
-      "id": "cross-agent-harvest-graph-contract-split-v1",
-      "action": "SPLIT harvest-to-graph contract across graph schemas and Cross-Agent harvest"
-    },
-    {
-      "id": "cg-master-graph-source-priority-risks-v1",
-      "action": "MOVE_CANONICAL source priority and risks/non-goals docs"
+      "id": "cross-agent-master-graph-harvest-contributor-v1",
+      "action": "Emit graph-extraction.json from harvest packets; wire validate-extraction CLI"
     }
   ]
 }

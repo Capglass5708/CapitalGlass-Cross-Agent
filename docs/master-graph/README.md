@@ -28,8 +28,10 @@ artifacts/agent-runs/cg-master-graph-planning-transfer-v1/
 | `CG-MASTER-GRAPH-STARTER.md` | DONE on graph `main` (`ea7758d`) |
 | `CG-MASTER-GRAPH-GLOSSARY-v1.md` | DONE on graph `main` (`6a4e96e`) |
 | `CG-MASTER-GRAPH-STATE-MODEL-v1.md` | DONE on graph `main` (`6a4e96e`) |
-| `CG-MASTER-GRAPH-ROADMAP-v1.md` | REMAIN_CROSS_AGENT |
-| `CG-MASTER-GRAPH-ENTERPRISE-KNOWLEDGE-INTAKE-PLAN-v1.md` | SPLIT |
+| `CG-MASTER-GRAPH-ROADMAP-v1.md` | REMAIN_CROSS_AGENT — on Cross-Agent `main` |
+| `CG-MASTER-GRAPH-ENTERPRISE-KNOWLEDGE-INTAKE-PLAN-v1.md` | SPLIT — program doc on Cross-Agent `main` |
+| `CG-HARVEST-TO-GRAPH-HARVEST-LANE-v1.md` | Cross-Agent harvest lane (split) |
+| Graph harvest contract | `CG-MASTER-GRAPH/docs/CG-HARVEST-TO-GRAPH-CONTRACT-v1.md` |
 | `CG-MASTER-GRAPH-CONSTITUTION-v1.md` | DONE in graph repo |
 | `CG-REPOSITORY-CREATION-PROTOCOL-v1.md` | REMAIN_CROSS_AGENT |
 | `CG-REPOSITORY-LIFECYCLE-STANDARD-v1.md` | REMAIN_CROSS_AGENT |
