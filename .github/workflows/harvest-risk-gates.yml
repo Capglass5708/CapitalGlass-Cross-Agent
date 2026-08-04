@@ -13,6 +13,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Checkout CG-AppBuilder-MCP companion
+        uses: actions/checkout@v4
+        with:
+          repository: Capglass5708/CG-AppBuilder-MCP
+          path: CG-AppBuilder-MCP
+          fetch-depth: 1
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
