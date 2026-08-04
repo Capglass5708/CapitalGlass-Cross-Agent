@@ -20,7 +20,8 @@ const installScript = path.join(
 assert(fs.existsSync(installScript), 'install script exists');
 const installBody = fs.readFileSync(installScript, 'utf8');
 assert(installBody.includes('WESLEYDESK'), 'install script gates WESLEYDESK host');
-assert(installBody.includes('self-hosted,wesleydesk,wsl2'), 'install script sets publication labels');
+assert(installBody.includes('2.336.0'), 'install script default runner version is 2.336.0');
+assert(fs.existsSync(path.join(REPO_ROOT, 'scripts/runner/configure-wesleydesk-wsl-network.sh')), 'WSL network configure script exists');
 
 const profilePath = path.join(REPO_ROOT, 'scripts/runner/wesleydesk.machine.json');
 assert(fs.existsSync(profilePath), 'wesleydesk machine profile exists');

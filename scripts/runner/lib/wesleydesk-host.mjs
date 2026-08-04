@@ -22,8 +22,17 @@ export function loadWesleydeskProfile() {
 }
 
 export function resolveWindowsComputerName() {
+  const fromEnv = process.env.CG_WINDOWS_COMPUTER_NAME?.trim();
+  if (fromEnv) return fromEnv;
   const r = spawnSync('cmd.exe', ['/c', 'echo %COMPUTERNAME%'], { encoding: 'utf8' });
-  return (r.stdout ?? '').replace(/\r/g, '').trim();
+  const fromCmd = (r.stdout ?? '').replace(/\r/g, '').trim();
+  if (fromCmd) return fromCmd;
+  // GitHub Actions runner service may not resolve cmd.exe — WSL hostname on WESLEYDESK is Wesleydesk
+  const wslHost = (process.env.HOSTNAME ?? os.hostname()).trim();
+  if (/^wesleydesk$/i.test(wslHost) || /^cg-wesleydesk/i.test(wslHost)) {
+    return wslHost;
+  }
+  return '';
 }
 
 export function profileMatchesWesleydesk(profile, env = process.env) {

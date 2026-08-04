@@ -2,7 +2,7 @@
 # Install GitHub Actions self-hosted runner for Cross-Agent index publication (WESLEYDESK WSL2 only).
 set -euo pipefail
 
-RUNNER_VERSION="${RUNNER_VERSION:-2.323.0}"
+RUNNER_VERSION="${RUNNER_VERSION:-2.336.0}"
 RUNNER_USER="${RUNNER_USER:-$USER}"
 RUNNER_HOME="${RUNNER_HOME:-$HOME/actions-runner-cross-agent}"
 REPO_URL="${REPO_URL:-https://github.com/Capglass5708/CapitalGlass-Cross-Agent}"
@@ -118,6 +118,10 @@ unset REGISTRATION_TOKEN
 sudo ./svc.sh install "$RUNNER_USER"
 sudo ./svc.sh start
 sudo ./svc.sh status || true
+
+log "If sudo prompts for a password, install the service as root instead:"
+log "  wsl.exe -d Ubuntu-24.04 -u root bash -lc 'cd $RUNNER_HOME && ./svc.sh install $RUNNER_USER && ./svc.sh start'"
+log "Persist WSL DNS (once per machine, as root): bash $SCRIPT_DIR/configure-wesleydesk-wsl-network.sh"
 
 log "install complete — runner labels: $LABELS"
 log "verify: gh workflow run runner-smoke.yml --repo Capglass5708/CapitalGlass-Cross-Agent"

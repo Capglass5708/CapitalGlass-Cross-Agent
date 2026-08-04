@@ -40,6 +40,34 @@ The install script registers a **repo-scoped** runner (personal account — no o
 
 Default install path: `~/actions-runner-cross-agent` (systemd service).
 
+## Hardening (post-install)
+
+### Persistent WSL DNS
+
+WSL may assign a broken resolver (`172.x.x.1`). Persist LAN DNS on WESLEYDESK:
+
+```bash
+# as root (passwordless via wsl.exe -u root from Windows admin session)
+wsl.exe -d Ubuntu-24.04 -u root bash ~/repos/CapitalGlass-Cross-Agent/scripts/runner/configure-wesleydesk-wsl-network.sh
+# or: npm run runner:configure-wsl-network  # requires sudo on WSL
+```
+
+Sets `/etc/wsl.conf` → `generateResolvConf = false` and `nameserver 192.168.1.254` in `/etc/resolv.conf`. Reboot WSL once to confirm persistence: `wsl.exe --shutdown` then reopen Ubuntu.
+
+### Systemd service (survives reboot)
+
+If `npm run runner:install` cannot `sudo` without a password, install the service as root:
+
+```bash
+wsl.exe -d Ubuntu-24.04 -u root bash -lc 'cd /home/wesley/actions-runner-cross-agent && ./svc.sh install wesley && ./svc.sh start && ./svc.sh status'
+```
+
+Verify: `systemctl is-enabled actions.runner.Capglass5708-CapitalGlass-Cross-Agent.wesleydesk-wsl2-cross-agent.service`
+
+### Runner version
+
+Default tarball version is **2.336.0** (required for `actions/checkout` node24 runtime). Override with `RUNNER_VERSION` only when upgrading deliberately.
+
 ## Verify runner online
 
 ```bash

@@ -15,14 +15,17 @@
     "index:sync-publication": "node scripts/index/sync-publication.mjs",
     "index:preflight": "node scripts/index/preflight.mjs",
     "index:publish": "node scripts/index/run-index-publisher.mjs",
+    "index:compile-control-slices": "node scripts/index/compile-control-slices.mjs",
     "harvest:publish-hub-seed": "node scripts/harvest/publish-intelligence-hub-seed.mjs",
     "harvest:run-hub-retrieval": "node scripts/harvest/run-hub-retrieval-benchmark.mjs",
     "harvest:generate-publication-report": "node scripts/harvest/generate-publication-report.mjs",
     "test:index-publisher": "node scripts/tests/test-index-publisher.mjs",
+    "test:index-control-slices": "node scripts/tests/test-index-control-slices.mjs",
     "test:wesleydesk-runner": "node scripts/tests/test-wesleydesk-runner.mjs",
     "runner:preflight": "node scripts/runner/wesleydesk-index-publication-preflight.mjs",
     "runner:install:dry-run": "bash scripts/runner/install-wesleydesk-github-runner-wsl-service.sh --dry-run",
     "runner:install": "bash scripts/runner/install-wesleydesk-github-runner-wsl-service.sh",
+    "runner:configure-wsl-network": "bash scripts/runner/configure-wesleydesk-wsl-network.sh",
     "harvest:blind-retrieval": "node scripts/harvest/run-blind-retrieval-benchmark.mjs"
   },
   "devDependencies": {
