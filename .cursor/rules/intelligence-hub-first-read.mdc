@@ -4,8 +4,8 @@ alwaysApply: true
 canonicalOwner: CG-AppBuilder-MCP
 canonicalPath: agent-packs/three-way-agent/rules/intelligence-hub-first-read.mdc
 generatedCopy: true
-ruleVersion: 1.1.0
-canonicalContentHash: a9be1be8c68f6fd1b39bde108472dc627ae3ff5e26fb9c863cb340255af8d217
+ruleVersion: 1.2.0
+canonicalContentHash: 1547b2990957be45044a954c067b4c94e6a1a191c226d4e0d89bd9be9d5b9815
 ---
 
 # Intelligence Hub first-read (mandatory)
@@ -118,6 +118,7 @@ Report exactly one primary retrieval outcome:
 
 | Code | Meaning |
 | --- | --- |
+| `INDEX_HIT_AI_CACHE` | Z AI-cache index bundle served compact slices (scout preflight tier 1) |
 | `INDEX_HIT` | Compact slices contained enough facts to answer |
 | `INDEX_MISS` | Slices read but topic not indexed; name missing pointer before repo fallback |
 | `L_DRIVE_NOT_MOUNTED_IN_WSL` | Mount check failed; **Revu/estimating stops**; suite status may continue failover lane |
@@ -145,6 +146,10 @@ Log: `INDEX_HIT` (and `CACHE_HIT` or `CACHE_MISS` if compile lane was checked).
 ## AI cache lane (material sessions)
 
 When Auto v3.2 material preflight applies, prefer compiled authority when `cacheKeyHash` matches. Index slices remain the **first** read even when cache exists. Do not skip index retrieval because a cache pack is present.
+
+## Scout lane (estate-wide hooks)
+
+The 3-way **scout** tier runs before builder on every Cursor turn via estate-synced hooks (`npm run sync:intelligence-hub-scout-hooks`). Scout injects `agent:index:scout` brief and mandates retrieval code logging in every response. See `intelligence-hub-scout-lane.mdc`.
 
 ## Related authority
 
