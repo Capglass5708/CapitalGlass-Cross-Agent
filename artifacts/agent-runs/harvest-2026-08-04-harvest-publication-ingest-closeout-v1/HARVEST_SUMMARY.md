@@ -1,6 +1,6 @@
 # Harvest summary — derived view
 
-**Authority:** `harvest-manifest-v1.json` (`0d5fd1fdbf3d…`)
+**Authority:** `harvest-manifest-v1.json` (`e582b3ccfcf0…`)
 **Work package:** `harvest-2026-08-04-harvest-publication-ingest-closeout-v1`
 **Mission class:** `chat-thread-closeout-autopsy-harvest-v1`
 **Verdict:** `HARVEST_COMPLETE`
