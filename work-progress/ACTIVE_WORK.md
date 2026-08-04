@@ -21,6 +21,19 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 ## Current saved work
 
+### 2026-08-03 CT — Chat-thread harvest protocol hot-cache + ROI additions
+
+| Field | Value |
+| --- | --- |
+| Work package | `chat-thread-harvest-protocol-hot-cache-roi-v1` |
+| Verdict | **DOCS_ADDED** — protocol additions recorded in Cross-Agent |
+| Runbook | `runbooks/CHAT_THREAD_HARVEST_PROTOCOL.md` |
+| Artifacts | `artifacts/agent-runs/chat-thread-harvest-protocol-hot-cache-roi-v1/` |
+| Added fields | `scoutHotCacheProof`, `recommendedRoi`, `commands`, `authorityLineage`, `staleAuthorityComparison` |
+| Owner boundary | Cross-Agent records; AppBuilder implements tooling; Governance owns required protocol authority |
+| Next | Implement schema/generator validation in AppBuilder if these become enforced fields |
+
+
 ### 2026-08-03 CT — Cross-Agent index current + AI Cache Layer 0
 
 | Field | Value |
