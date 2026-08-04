@@ -1,0 +1,259 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-wesleywork-z-l-mobility-closure-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "7827e75a9ec85cd3ff972997c59aec68da7aed7e",
+  "sourceBranch": "feat/cross-agent-risk-remediation-v1",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-04T18:30:00.000Z",
+  "updatedAt": "2026-08-04T18:30:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_HIT",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "Claim full ALL SYSTEMS GO before L hub catalog contains IH-Z-L-OFFLAN-PARTIAL-001-WESLEYWORK-ERROR86-PSDRIVE-FIX",
+    "Reopen drive-kit repair without fresh canonical-kit live regression",
+    "Merge mobility PRs against failing required CI without documented waiver",
+    "Run harvest:publish-intelligence-full from Cursor without operator make operational"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-04-wesleywork-z-l-mobility-closure-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-04-wesleywork-z-l-mobility-closure-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 4,
+      "seeds": 3,
+      "roiItems": 3,
+      "operatorFriction": 1,
+      "executionDeltas": 3
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Phase B operator publish pending — MERGE_BLOCKED on PRs",
+    "note": "Phase A identity freeze; publication after merge closeout mission",
+    "graphEligible": true,
+    "graphStage": "GRAPH_VALIDATION_HOLD",
+    "graphExtractionHash": "sha256:c15c7300c54dbcb24ef982d04a109ce3d4b1e33f27bc97e94bf1e34aef6dce9a",
+    "graphLExtractionPath": "_staging/graph-extractions/harvest-2026-08-04-wesleywork-z-l-mobility-closure-v1/7ac9fa8cc4195bd60cf2c5a5dc06c4ba17098def19b469b5dd0e201a32858817/graph-extraction.json",
+    "graphPromotionVerdict": "PENDING",
+    "graphValidationError": "Command failed: node scripts/harvest/validate-graph-extraction.mjs harvest-2026-08-04-wesleywork-z-l-mobility-closure-v1"
+  },
+  "ledgerLineage": {
+    "ledgerPath": "work-progress/ACTIVE_WORK.md",
+    "ledgerContentHashBefore": "48637a82e74530a2895e52e240b9e0a0f4d89154aec924e574806b2412b0d90e",
+    "ledgerContentHashAfter": "48637a82e74530a2895e52e240b9e0a0f4d89154aec924e574806b2412b0d90e"
+  },
+  "supersededClaims": [],
+  "packets": [
+    {
+      "packetKind": "decision",
+      "packetId": "wesleywork-zl-core-systems-go-verdict-v1",
+      "packetTitle": "Lock CORE SYSTEMS GO for drive repair; withhold full ALL SYSTEMS GO",
+      "state": "LOCKED",
+      "packetVerdict": "CORE_SYSTEMS_GO_NOT_FULL_ALL_SYSTEMS_GO",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "evidenceRefs": [
+        "TE-007",
+        "TE-009",
+        "IH-THREAD-WESLEYWORK-ZL-CORE-SYSTEMS-GO-001"
+      ],
+      "nextAction": "Run wesleywork-z-l-pr-merge-publication-closeout-v1 before ALL SYSTEMS GO phrase",
+      "advancementGate": "four-query-scout-verify-table-v1",
+      "doNotAdvance": [
+        "ALL_SYSTEMS_GO until L catalog + merge + publication"
+      ],
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "decision": "Drive repair closed CORE SYSTEMS GO; retrieval/publication closure is separate mission",
+      "alternativesRejected": [
+        "Single ALL SYSTEMS GO label for hot cache only"
+      ],
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetKind": "blocker",
+      "packetId": "wesleywork-zl-merge-publication-blocked-v1",
+      "packetTitle": "MERGE_BLOCKED + PUBLICATION_BLOCKED for full ALL SYSTEMS GO",
+      "state": "OPEN",
+      "packetVerdict": "MERGE_BLOCKED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "blockerId": "wesleywork-zl-pr-merge-publication",
+      "status": "OPEN",
+      "proofCommandId": "gh-pr-view-53-280-7",
+      "evidenceRefs": [
+        "PR #53 validate-code FAIL",
+        "PR #280 closeout FAIL",
+        "PR #7 harvest gates FAIL",
+        "lCatalogHits 0"
+      ],
+      "nextAction": "wesleywork-z-l-pr-merge-publication-closeout-v1",
+      "advancementGate": "index-publication.yml success",
+      "doNotAdvance": [],
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetKind": "mistake",
+      "packetId": "error-86-smb-credential-v1",
+      "packetTitle": "ERROR_86 from unsafe SMB credential delivery via cmd net use",
+      "state": "FIXED_IN_PR",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerIndexingStatus": "indexed",
+      "evidenceRefs": [
+        "WM-001",
+        "ED-001",
+        "213cbc8"
+      ],
+      "nextAction": "Merge PR #53 after CI fix",
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "cmd /c net use $Pass"
+      ],
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-office-admin-mcp",
+      "wrongMoveId": "WM-001",
+      "actualExecution": "cmd net use with interpolated vault credential string",
+      "optimalExecution": "New-PSDrive -Persist PSCredential",
+      "preventiveControl": "Test-OfficeDriveAuthorityV2Gate",
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetKind": "faster_path",
+      "packetId": "scout-signature-expansion-v1",
+      "packetTitle": "Expand mobility signatures before claiming first-read coverage",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "evidenceRefs": [
+        "dc83be1f",
+        "24 mobility tests"
+      ],
+      "nextAction": "Merge PR #280",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "situation": "Generic Z L disconnected query missed firstRead",
+      "whatHappened": "Signature list lacked Z L compound and ALL SYSTEMS GO strings",
+      "rightFirstMove": "Expand wesley-work-drive-mobility.mjs matchers",
+      "requiredGuard": "run-wesley-work-drive-mobility.test.mjs all four required queries",
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetKind": "command",
+      "packetId": "wesleywork-force-remap-from-c-v1",
+      "packetTitle": "Canonical ForceRemap from cd C:\\",
+      "state": "RECORDED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerIndexingStatus": "indexed",
+      "command": "cd C:\\; & C:\\ProgramData\\CapitalGlass\\OfficeAdmin\\PRIVATE\\Ensure-CgWesleyWorkDriveMounts.ps1 -Mode ForceRemap",
+      "host": "WESLEY_WORK Windows",
+      "provesGate": "CORE_SYSTEMS_GO",
+      "expectedPassSignal": "classification=PARTIAL_DRIVE_AVAILABILITY_OFFLAN_TAILSCALE_L zOk=True lOk=True",
+      "evidenceRefs": [
+        "terminals/405765",
+        "live-verification-receipt.json"
+      ],
+      "nextAction": "not-required",
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "WSL UNC cwd for remap"
+      ],
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-office-admin-mcp",
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetKind": "evidence",
+      "packetId": "wesleywork-zl-live-verification-v1",
+      "packetTitle": "Live WESLEY_WORK Z/L mobility verification receipts",
+      "state": "RECORDED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerIndexingStatus": "indexed",
+      "type": "receipt",
+      "pathOrSha": "artifacts/agent-runs/wesleywork-z-l-mobility-error86-v1/live-verification-receipt.json",
+      "provesWhat": "CORE SYSTEMS GO canonical kit remap with Tailscale L",
+      "evidenceRefs": [
+        "213cbc8",
+        "7827e75a hot index SHA"
+      ],
+      "nextAction": "not-required",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-office-admin-mcp",
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetKind": "protocol_upgrade",
+      "packetId": "wesleywork-zl-publication-closeout-mission-v1",
+      "packetTitle": "Next mission: wesleywork-z-l-pr-merge-publication-closeout-v1",
+      "state": "PLANNED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "seedAs": "IH-THREAD-WESLEYWORK-ZL-PUBLICATION-CLOSEOUT-001",
+      "ownerRepoTarget": "CapitalGlass-Cross-Agent",
+      "promotionClass": "POLICY_GATED",
+      "evidenceRefs": [
+        "TE-009",
+        "ROI rank 1"
+      ],
+      "nextAction": "Fix CI, merge PRs, WESLEYDESK index-publication.yml",
+      "advancementGate": "operational-publication-receipt.json",
+      "doNotAdvance": [
+        "Drive repair reopen"
+      ],
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetKind": "repeated_work",
+      "packetId": "z-l-mobility-harvest-lineage-v1",
+      "packetTitle": "Continues harvest-2026-08-04-z-l-drive-offlan-session-v1 lineage",
+      "state": "DOCUMENTED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "duplicateId": "DW-001",
+      "firstKnownInstance": "harvest-2026-08-04-z-l-drive-offlan-session-v1",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "whyMissed": "Continuation session adds ERROR_86 fix and closeout verdict",
+      "evidenceRefs": [
+        "DW-001"
+      ],
+      "nextAction": "Superset seeds in this harvest",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "commitRefs": [],
+      "blockers": []
+    }
+  ]
+}

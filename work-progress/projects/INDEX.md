@@ -38,7 +38,14 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 
 | Packet ID | State | Verdict | Owner repo | Project file | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `2026-08-04-chatgpt-ingest-test-fixture-v1` | VALIDATION_PENDING | HOLD | CapitalGlass-Cross-Agent | docs/protocols/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md | harvest:duplication-preflight → validate → operator publish |
+| `wesleywork-zl-core-systems-go-verdict-v1` | LOCKED | CORE_SYSTEMS_GO_NOT_FULL_ALL_SYSTEMS_GO | CapitalGlass-Cross-Agent | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | Run wesleywork-z-l-pr-merge-publication-closeout-v1 before ALL SYSTEMS GO phrase |
+| `wesleywork-zl-merge-publication-blocked-v1` | OPEN | MERGE_BLOCKED | CapitalGlass-Cross-Agent | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | wesleywork-z-l-pr-merge-publication-closeout-v1 |
+| `error-86-smb-credential-v1` | FIXED_IN_PR | PASS | CapitalGlass-Office-Admin | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | Merge PR #53 after CI fix |
+| `scout-signature-expansion-v1` | COMPLETE | PASS | CG-AppBuilder-MCP | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | Merge PR #280 |
+| `wesleywork-force-remap-from-c-v1` | RECORDED | PASS | CapitalGlass-Office-Admin | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | not-required |
+| `wesleywork-zl-live-verification-v1` | RECORDED | PASS | CapitalGlass-Office-Admin | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | not-required |
+| `wesleywork-zl-publication-closeout-mission-v1` | PLANNED | PASS | CapitalGlass-Cross-Agent | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | Fix CI, merge PRs, WESLEYDESK index-publication.yml |
+| `z-l-mobility-harvest-lineage-v1` | DOCUMENTED | PASS | CapitalGlass-Cross-Agent | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | Superset seeds in this harvest |
 
 <!-- HARVEST-PACKET-INDEX:END -->
 
