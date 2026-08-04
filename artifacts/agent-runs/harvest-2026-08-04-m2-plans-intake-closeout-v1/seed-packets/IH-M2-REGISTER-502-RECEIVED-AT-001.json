@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-M2-REGISTER-502-RECEIVED-AT-001",
+  "kind": "failure-pattern",
+  "title": "NAS register 502 \u2014 missing received_at on staging insert",
+  "summary": "Prod document_intake_staging.received_at NOT NULL; register handler omitted field \u2192 Postgres 23502 \u2192 API 502. Fixed PR #92.",
+  "retrievalQuestions": [
+    "Why does intake-nas register return 502?",
+    "What Postgres error causes NAS register failure for Plans intake?"
+  ],
+  "evidenceRefs": [
+    "60c79a2",
+    "document-nas-intake-register.ts",
+    "TE-302"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "register:register_failed:502 on Plans or General intake",
+    "startAt": [
+      "Z:\\Document Intake\\Receipts\\intake-worker.health.json",
+      "document-nas-intake-register.ts"
+    ],
+    "runPreflight": [
+      "POST register with NAS_INTAKE_WORKER_TOKEN via Doppler"
+    ],
+    "doNot": [
+      "Assume Cloudflare-only 502 without JSON body"
+    ],
+    "proveBeforeClaiming": [
+      "register returns 200",
+      "received_at populated on staging row"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Documents",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}
