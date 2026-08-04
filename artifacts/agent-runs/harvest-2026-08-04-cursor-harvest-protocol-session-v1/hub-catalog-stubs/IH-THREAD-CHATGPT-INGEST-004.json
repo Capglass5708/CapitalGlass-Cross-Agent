@@ -1,0 +1,74 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-thread-chatgpt-ingest-004",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "befee0ed172c9ccdd04aaa95de2bb136c1fabafb",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-cursor-harvest-protocol-session-v1",
+      "seedId": "IH-THREAD-CHATGPT-INGEST-004"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T02:12:42.856Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "d433995775c62b8d898e601a895d0a7734990bd5428f8faf2daa1254b34d576e"
+  },
+  "body": {
+    "seedId": "IH-THREAD-CHATGPT-INGEST-004",
+    "kind": "runbook",
+    "title": "ChatGPT findings handoff via harvest:ingest-chatgpt-findings",
+    "summary": "ChatGPT uses chat-thread-closeout-autopsy-harvest-chatgpt-v1.md; Cursor ingests findings MD into canonical harvest JSON.",
+    "canonicalQuestion": "How do I convert ChatGPT thread autopsy findings into Cross-Agent harvest artifacts?",
+    "alternateQuestions": [
+      "Which protocol file do I use in ChatGPT vs Cursor?"
+    ],
+    "shortAnswer": "ChatGPT uses chat-thread-closeout-autopsy-harvest-chatgpt-v1.md; Cursor ingests findings MD into canonical harvest JSON.",
+    "detailedAnswer": "ChatGPT findings handoff via harvest:ingest-chatgpt-findings",
+    "retrievalQuestions": [
+      "How do I convert ChatGPT thread autopsy findings into Cross-Agent harvest artifacts?",
+      "Which protocol file do I use in ChatGPT vs Cursor?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "User has ChatGPT findings markdown to seed the hub",
+      "startAt": [
+        "docs/protocols/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md"
+      ],
+      "runPreflight": [
+        "npm run harvest:ingest-chatgpt-findings -- --input=<findings.md>"
+      ],
+      "doNot": [
+        "claim INDEX_HIT from ChatGPT context",
+        "skip duplication-preflight after ingest"
+      ],
+      "proveBeforeClaiming": [
+        "chatgpt-ingest-receipt.json INGEST_PASS"
+      ]
+    },
+    "evidenceRefs": [
+      "docs/protocols/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md",
+      "scripts/harvest/ingest-chatgpt-findings.mjs"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Cross-Agent",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-cursor-harvest-protocol-session-v1/seed-packets/IH-THREAD-CHATGPT-INGEST-004.json"
+    ],
+    "harvestId": "harvest-2026-08-04-cursor-harvest-protocol-session-v1"
+  }
+}

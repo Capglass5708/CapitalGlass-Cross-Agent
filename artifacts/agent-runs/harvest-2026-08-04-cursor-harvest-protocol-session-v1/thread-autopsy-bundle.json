@@ -1,0 +1,213 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-cursor-harvest-protocol-session-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "operator_attention",
+      "description": "User asked multiple times whether one file vs folder, Git-only vs hub publish, and how to run at end of chat",
+      "evidenceRefs": [
+        "EVT-003",
+        "EVT-004",
+        "EVT-007"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "End-of-chat opener in protocol and Z: README",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "context",
+      "description": "Protocol initially documented record-only; user had to ask for operational one-shot publish",
+      "evidenceRefs": [
+        "EVT-004"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "publish-intelligence-full section in protocol",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "verification",
+      "description": "Duplication prevention was honor-system until user requested hard blocks",
+      "evidenceRefs": [
+        "EVT-005"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "harvest:duplication-preflight + publish gates",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "rework",
+      "description": "scout-brief.mjs was empty; restored from git during wave 4",
+      "evidenceRefs": [
+        "conversation wave 4"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "CG-AppBuilder-MCP integrity check before hub publish",
+      "roiRank": 4
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Unclear whether MD file runs publish or only records to Git",
+      "operatorCost": "medium",
+      "systemFix": "Phase A record vs Phase B publish-intelligence-full",
+      "evidenceRefs": [
+        "EVT-004"
+      ],
+      "linkedWasteIds": [
+        "TW-002"
+      ]
+    },
+    {
+      "frictionId": "OF-002",
+      "trigger": "Which file to @ at end of Cursor chat",
+      "operatorCost": "low",
+      "systemFix": "Single-file rule for chat-thread-closeout-autopsy-harvest-v1.md",
+      "evidenceRefs": [
+        "EVT-003",
+        "EVT-007"
+      ],
+      "linkedWasteIds": [
+        "TW-001"
+      ]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "User wanted full L/Z/C operational publish",
+      "actualExecution": {
+        "steps": [
+          "Separate operator steps 8-10"
+        ],
+        "outcome": "PARTIAL"
+      },
+      "optimalExecution": {
+        "steps": [
+          "harvest:publish-intelligence-full one-shot"
+        ],
+        "outcome": "OPERATIONAL path clear"
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "medium"
+      },
+      "preventiveControl": "publish-intelligence-full-lib.mjs"
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Duplication prevention gaps",
+      "actualExecution": {
+        "steps": [
+          "Boolean duplicationCheck flags only"
+        ],
+        "outcome": "Honor system"
+      },
+      "optimalExecution": {
+        "steps": [
+          "Automated duplication-preflight"
+        ],
+        "outcome": "Fail-closed"
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      },
+      "preventiveControl": "duplication-preflight-lib.mjs"
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Record-only protocol without operational publish path",
+      "whyItWasWrong": "User needed L/Z/C intelligence layer populated",
+      "correctFirstMove": "Document publish-intelligence-full with operator approval gate",
+      "preventiveControl": "Phase B in protocol",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "Hub waves 1-5",
+      "whyRepeated": "Continued across session summarization boundary",
+      "firstKnownInstance": "prior conversation summary",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "whyMissed": "Not yet published to hub index",
+      "avoidableBy": "Publish harvest after wave completion",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "End-of-chat @ protocol habit",
+      "whyItPays": "Stops folder vs file confusion",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-001"
+      ],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 2,
+      "title": "publish-intelligence-full default",
+      "whyItPays": "One command to L/Z/C",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-002"
+      ],
+      "seedAs": "command"
+    },
+    {
+      "rank": 3,
+      "title": "duplication-preflight gate",
+      "whyItPays": "Blocks duplicate seeds",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-003"
+      ],
+      "seedAs": "command"
+    },
+    {
+      "rank": 4,
+      "title": "ChatGPT ingest lane",
+      "whyItPays": "Safe draft handoff",
+      "effort": "low",
+      "savedWasteIds": [],
+      "seedAs": "runbook"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "FULLY_SEEDED",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "operational-publication-receipt.json"
+      ],
+      "lastKnownEvidence": [
+        "hubPublishStatus not-run"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "do-not-advance.json",
+      "active-work-open-actions.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-04T02:04:50.603Z",
+    "preflightReceiptHash": "6e2b4b5953189eb477cb50b51c685722258d056b9bef0bd21c79bd85cce11ecf"
+  }
+}

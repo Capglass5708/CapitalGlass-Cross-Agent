@@ -1,0 +1,73 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-thread-cursor-end-chat-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "befee0ed172c9ccdd04aaa95de2bb136c1fabafb",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-cursor-harvest-protocol-session-v1",
+      "seedId": "IH-THREAD-CURSOR-END-CHAT-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T02:12:42.856Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "1f5df397309653aeb8640085699f34692608d023284561c9efdb04bca7838f02"
+  },
+  "body": {
+    "seedId": "IH-THREAD-CURSOR-END-CHAT-001",
+    "kind": "runbook",
+    "title": "Cursor end-of-chat harvest: @ one protocol file only",
+    "summary": "At thread close in Cursor, @ Z:\\Capital-Glass-Dev\\Harvest\\protocol\\chat-thread-closeout-autopsy-harvest-v1.md and paste the opener — not the whole Harvest folder.",
+    "canonicalQuestion": "What file do I @ at the end of a Cursor chat to harvest the thread?",
+    "alternateQuestions": [
+      "Do I attach the whole Harvest folder or one protocol file?"
+    ],
+    "shortAnswer": "At thread close in Cursor, @ Z:\\Capital-Glass-Dev\\Harvest\\protocol\\chat-thread-closeout-autopsy-harvest-v1.md and paste the opener — not the whole Harvest folder.",
+    "detailedAnswer": "Cursor end-of-chat harvest: @ one protocol file only",
+    "retrievalQuestions": [
+      "What file do I @ at the end of a Cursor chat to harvest the thread?",
+      "Do I attach the whole Harvest folder or one protocol file?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "User asks how to run thread harvest at end of Cursor chat",
+      "startAt": [
+        "Z:/Capital-Glass-Dev/Harvest/protocol/chat-thread-closeout-autopsy-harvest-v1.md"
+      ],
+      "runPreflight": [
+        "npm run agent:index:scout -- --json"
+      ],
+      "doNot": [
+        "@ entire Harvest folder",
+        "claim OPERATIONAL without publish-intelligence-full"
+      ],
+      "proveBeforeClaiming": [
+        "harvest-manifest-v1.json in artifacts/agent-runs/<harvest-id>/"
+      ]
+    },
+    "evidenceRefs": [
+      "artifacts/agent-runs/harvest-2026-08-04-cursor-harvest-protocol-session-v1/thread-event-inventory.json EVT-007"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Cross-Agent",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-cursor-harvest-protocol-session-v1/seed-packets/IH-THREAD-CURSOR-END-CHAT-001.json"
+    ],
+    "harvestId": "harvest-2026-08-04-cursor-harvest-protocol-session-v1"
+  }
+}

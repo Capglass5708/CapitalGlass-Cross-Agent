@@ -1,0 +1,287 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-cursor-harvest-protocol-session-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-THREAD-CHATGPT-INGEST-004",
+      "questionId": "IHTHREADCHAT",
+      "canonicalQuestion": "How do I convert ChatGPT thread autopsy findings into Cross-Agent harvest artifacts?",
+      "alternateQuestions": [
+        "Which protocol file do I use in ChatGPT vs Cursor?"
+      ],
+      "shortAnswer": "ChatGPT uses chat-thread-closeout-autopsy-harvest-chatgpt-v1.md; Cursor ingests findings MD into canonical harvest JSON.",
+      "detailedAnswer": "ChatGPT findings handoff via harvest:ingest-chatgpt-findings",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T02:12:42.855Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-cursor-harvest-protocol-session-v1/seed-packets/IH-THREAD-CHATGPT-INGEST-004.json"
+      ],
+      "authorityCommit": [
+        "befee0e"
+      ],
+      "evidenceUrls": [
+        "docs/protocols/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md",
+        "scripts/harvest/ingest-chatgpt-findings.mjs"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-04-cursor-harvest-protocol-session-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "User has ChatGPT findings markdown to seed the hub",
+        "startAt": [
+          "docs/protocols/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md"
+        ],
+        "runPreflight": [
+          "npm run harvest:ingest-chatgpt-findings -- --input=<findings.md>"
+        ],
+        "doNot": [
+          "claim INDEX_HIT from ChatGPT context",
+          "skip duplication-preflight after ingest"
+        ],
+        "proveBeforeClaiming": [
+          "chatgpt-ingest-receipt.json INGEST_PASS"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "runbook"
+    },
+    {
+      "ihPfspId": "IH-THREAD-CURSOR-END-CHAT-001",
+      "questionId": "IHTHREADCURS",
+      "canonicalQuestion": "What file do I @ at the end of a Cursor chat to harvest the thread?",
+      "alternateQuestions": [
+        "Do I attach the whole Harvest folder or one protocol file?"
+      ],
+      "shortAnswer": "At thread close in Cursor, @ Z:\\Capital-Glass-Dev\\Harvest\\protocol\\chat-thread-closeout-autopsy-harvest-v1.md and paste the opener — not the whole Harvest folder.",
+      "detailedAnswer": "Cursor end-of-chat harvest: @ one protocol file only",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T02:12:42.856Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-cursor-harvest-protocol-session-v1/seed-packets/IH-THREAD-CURSOR-END-CHAT-001.json"
+      ],
+      "authorityCommit": [
+        "befee0e"
+      ],
+      "evidenceUrls": [
+        "artifacts/agent-runs/harvest-2026-08-04-cursor-harvest-protocol-session-v1/thread-event-inventory.json EVT-007"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-04-cursor-harvest-protocol-session-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "User asks how to run thread harvest at end of Cursor chat",
+        "startAt": [
+          "Z:/Capital-Glass-Dev/Harvest/protocol/chat-thread-closeout-autopsy-harvest-v1.md"
+        ],
+        "runPreflight": [
+          "npm run agent:index:scout -- --json"
+        ],
+        "doNot": [
+          "@ entire Harvest folder",
+          "claim OPERATIONAL without publish-intelligence-full"
+        ],
+        "proveBeforeClaiming": [
+          "harvest-manifest-v1.json in artifacts/agent-runs/<harvest-id>/"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "runbook"
+    },
+    {
+      "ihPfspId": "IH-THREAD-DUP-PREFLIGHT-003",
+      "questionId": "IHTHREADDUPP",
+      "canonicalQuestion": "How does thread autopsy prevent duplicate seed packets on the Intelligence Hub?",
+      "alternateQuestions": [
+        "What command stamps preflightReceiptHash on the autopsy bundle?"
+      ],
+      "shortAnswer": "harvest:duplication-preflight auto-consults registry, hub slices, and L catalog; blocks duplicate seedIds and semantic retrieval collisions.",
+      "detailedAnswer": "Run duplication-preflight before validate and publish",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T02:12:42.856Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-cursor-harvest-protocol-session-v1/seed-packets/IH-THREAD-DUP-PREFLIGHT-003.json"
+      ],
+      "authorityCommit": [
+        "befee0e"
+      ],
+      "evidenceUrls": [
+        "scripts/harvest/lib/duplication-preflight-lib.mjs",
+        "scripts/tests/run-duplication-preflight.test.mjs"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-04-cursor-harvest-protocol-session-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Recording T1+ thread autopsy with seed packets",
+        "startAt": [
+          "work-progress/harvest-packet-registry.json",
+          "BY-KIND/thread-autopsy-index.json"
+        ],
+        "runPreflight": [
+          "npm run harvest:duplication-preflight -- --harvest-id=<id>"
+        ],
+        "doNot": [
+          "hand-edit preflightReceiptHash",
+          "skip duplicateWork when preflight finds overlap"
+        ],
+        "proveBeforeClaiming": [
+          "duplication-preflight-receipt.json verdict PASS"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "lesson"
+    },
+    {
+      "ihPfspId": "IH-THREAD-MAKE-OPERATIONAL-005",
+      "questionId": "IHTHREADMAKE",
+      "canonicalQuestion": "When should Cursor run harvest:publish-intelligence-full?",
+      "alternateQuestions": [
+        "What phrase triggers operational Intelligence Hub publish?"
+      ],
+      "shortAnswer": "Cursor records harvest in Phase A; operator says make operational or runs publish-intelligence-full for Phase B L/Z/C publish.",
+      "detailedAnswer": "Say make operational to run publish-intelligence-full",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T02:12:42.856Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-cursor-harvest-protocol-session-v1/seed-packets/IH-THREAD-MAKE-OPERATIONAL-005.json"
+      ],
+      "authorityCommit": [
+        "befee0e"
+      ],
+      "evidenceUrls": [
+        "docs/runbooks/chat-thread-closeout-autopsy-harvest-v1.md Cursor opener",
+        "EVT-004"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-04-cursor-harvest-protocol-session-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Harvest validate PASS but hubPublishStatus is not-run",
+        "startAt": [
+          "artifacts/agent-runs/<harvest-id>/harvest-manifest-v1.json"
+        ],
+        "runPreflight": [
+          "confirm L: mounted",
+          "confirm operator said make operational"
+        ],
+        "doNot": [
+          "publish without explicit operator approval in session"
+        ],
+        "proveBeforeClaiming": [
+          "operational-publication-receipt.json verdict OPERATIONAL"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "lesson"
+    },
+    {
+      "ihPfspId": "IH-THREAD-PUBLISH-FULL-002",
+      "questionId": "IHTHREADPUBL",
+      "canonicalQuestion": "How do I make a thread harvest operational on L drive and Z AI cache?",
+      "alternateQuestions": [
+        "What is the difference between HARVEST_COMPLETE and OPERATIONAL?"
+      ],
+      "shortAnswer": "harvest:validate PASS in Git does not seed the Intelligence Hub. Run harvest:publish-intelligence-full after operator approval.",
+      "detailedAnswer": "Recording harvest in Git is not operational on L/Z/C",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T02:12:42.856Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-cursor-harvest-protocol-session-v1/seed-packets/IH-THREAD-PUBLISH-FULL-002.json"
+      ],
+      "authorityCommit": [
+        "befee0e"
+      ],
+      "evidenceUrls": [
+        "docs/runbooks/chat-thread-closeout-autopsy-harvest-v1.md Make it operational section",
+        "scripts/harvest/publish-intelligence-full.mjs"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-04-cursor-harvest-protocol-session-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "User asks if harvest protocol publishes to Intelligence Hub automatically",
+        "startAt": [
+          "artifacts/agent-runs/<harvest-id>/harvest-manifest-v1.json"
+        ],
+        "runPreflight": [
+          "check projection.hubPublishStatus"
+        ],
+        "doNot": [
+          "claim FULLY_SEEDED from Git record alone",
+          "run publish without operator make operational"
+        ],
+        "proveBeforeClaiming": [
+          "operational-publication-receipt.json"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    }
+  ]
+}

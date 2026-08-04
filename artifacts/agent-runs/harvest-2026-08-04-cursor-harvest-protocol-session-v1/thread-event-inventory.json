@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "cross-agent-thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-cursor-harvest-protocol-session-v1",
+  "events": [
+    {
+      "eventId": "EVT-001",
+      "description": "User asked to proceed with hub integration waves 1-5 for thread autopsy harvest",
+      "actor": "user",
+      "evidenceRefs": ["chat turn: proceed with 1-5"],
+      "stateChange": "Scope: complete L/Z/C hub pipeline"
+    },
+    {
+      "eventId": "EVT-002",
+      "description": "Implemented compile-seed-packets, publish-hub-seed, scout thread-autopsy-index, publish-intelligence-full orchestrator",
+      "actor": "cursor",
+      "evidenceRefs": [
+        "scripts/harvest/lib/compile-seed-packets-lib.mjs",
+        "scripts/harvest/lib/publish-intelligence-full-lib.mjs",
+        "CG-AppBuilder-MCP/scripts/intelligence-hub/index-freshness/lib/thread-autopsy-index.mjs"
+      ],
+      "stateChange": "Waves 1-5 code landed; 27+ tests pass"
+    },
+    {
+      "eventId": "EVT-003",
+      "description": "User asked whether one protocol file or whole Harvest folder to use in chat",
+      "actor": "user",
+      "evidenceRefs": ["chat: one file vs whole folder"],
+      "stateChange": "Clarified: @ single MD at end of chat"
+    },
+    {
+      "eventId": "EVT-004",
+      "description": "User wanted protocol to execute full operational publish to L/Z/C not just Git commit",
+      "actor": "user",
+      "evidenceRefs": ["chat: populate z and l intelligence layer"],
+      "stateChange": "Added publish-intelligence-full + operational authority model to protocol"
+    },
+    {
+      "eventId": "EVT-005",
+      "description": "User requested duplication gap fixes and protocol update",
+      "actor": "user",
+      "evidenceRefs": ["chat: fix all gaps and update file"],
+      "stateChange": "duplication-preflight-lib + hard blocks on publish"
+    },
+    {
+      "eventId": "EVT-006",
+      "description": "User provided ChatGPT findings MD; requested ChatGPT-specific protocol in protocols/",
+      "actor": "user",
+      "evidenceRefs": [
+        "Downloads/chat-thread-autopsy-findings-from-current-chat-v1.md",
+        "docs/protocols/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md"
+      ],
+      "stateChange": "ChatGPT lane + ingest-chatgpt-findings; harvest-2026-08-04-chatgpt-autopsy-findings-v1 ingested"
+    },
+    {
+      "eventId": "EVT-007",
+      "description": "User confirmed Cursor end-of-chat habit: @ protocol file at thread close",
+      "actor": "user",
+      "evidenceRefs": ["chat: in cursor i run that file at the end of a chat"],
+      "stateChange": "Workflow documented; this harvest closes the session"
+    },
+    {
+      "eventId": "EVT-008",
+      "description": "User triggered protocol run on current thread with @ protocol run",
+      "actor": "user",
+      "evidenceRefs": ["chat: @ protocol run"],
+      "stateChange": "Executing closeout autopsy harvest now"
+    }
+  ]
+}
