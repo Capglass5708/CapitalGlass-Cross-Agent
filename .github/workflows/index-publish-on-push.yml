@@ -1,0 +1,65 @@
+name: Cross-Agent index publish on push
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "work-progress/**"
+      - "handoffs/**"
+      - "projects/**"
+      - "scripts/index/**"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cross-agent-index-publish
+  cancel-in-progress: false
+
+jobs:
+  index-publish:
+    runs-on: [self-hosted, ryzen9desk, wsl2]
+    timeout-minutes: 30
+    env:
+      CG_INDEX_AUTO_PUBLISH_ENABLED: "1"
+      CG_WSL_MACHINE_ROLE: ryzen9desk
+    steps:
+      - name: Checkout Cross-Agent
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: cross-agent
+          fetch-depth: 1
+
+      - name: Checkout CG-AppBuilder-MCP
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: Capglass5708/CG-AppBuilder-MCP
+          path: cg-appbuilder-mcp
+          fetch-depth: 1
+
+      - uses: actions/setup-node@b789df37d6b7526a863bf51b65df64f3f56ffe4f
+        with:
+          node-version: 22
+
+      - name: Run index auto-publisher (workflow trigger)
+        working-directory: cg-appbuilder-mcp
+        run: |
+          npm run intelligence-hub:index-auto-publisher:run -- \
+            --trigger=workflow \
+            --cross-agent-root="${{ github.workspace }}/cross-agent" \
+            --json
+
+      - name: Freshness gate
+        working-directory: cross-agent
+        env:
+          CG_APPBUILDER_MCP_ROOT: ${{ github.workspace }}/cg-appbuilder-mcp
+        run: npm run index:freshness-gate
+
+      - name: Upload activation receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cross-agent-index-auto-publisher-${{ github.run_id }}
+          path: |
+            cg-appbuilder-mcp/artifacts/agent-runs/cross-agent-index-auto-publisher-activation-v1/
+            cross-agent/artifacts/agent-runs/cross-agent-index-freshness-gate-v1/
