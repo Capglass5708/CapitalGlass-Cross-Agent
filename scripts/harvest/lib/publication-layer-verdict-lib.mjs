@@ -60,6 +60,7 @@ export function applyLayerResult(layers, layerKey, result) {
   if (result.skipReason) layer.skipReason = result.skipReason;
   if (result.error) layer.error = result.error;
   if (result.sourcePayloadHash) layer.sourcePayloadHash = result.sourcePayloadHash;
+  if (result.verdict) layer.verdict = result.verdict;
 }
 
 export function layerPasses(layer) {

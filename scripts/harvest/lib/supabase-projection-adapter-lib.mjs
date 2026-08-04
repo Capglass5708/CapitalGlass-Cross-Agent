@@ -165,7 +165,7 @@ export function invokeAppBuilderProjector({
     env: {
       ...process.env,
       CROSS_AGENT_HARVEST_PROJECTION_APPROVED: apply ? "1" : "0",
-      CROSS_AGENT_HARVEST_PROJECTION_USE_MEMORY: useMemoryStore ? "1" : "0",
+      ...(useMemoryStore ? { CROSS_AGENT_HARVEST_PROJECTION_USE_MEMORY: "1" } : {}),
     },
   });
 
