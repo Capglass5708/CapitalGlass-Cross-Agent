@@ -152,9 +152,11 @@ test("non-graph harvest does not require graph repo", () => {
 
 test("graph repo resolution uses sibling not hardcoded home in receipt", () => {
   const resolved = resolveGraphRepoRoot(REPO_ROOT);
-  if (resolved.ok) {
-    assert.ok(!resolved.graphRepoRoot.includes("/home/wesle/repos/CG-MASTER-GRAPH") || process.env.CG_REPOS_ROOT);
-  }
+  assert.ok(resolved.ok, `expected graph repo resolution, got ${resolved.verdict ?? "unavailable"}`);
+  assert.ok(
+    ["sibling", "CG_REPOS_ROOT", "CG_MASTER_GRAPH_ROOT", "explicit"].includes(resolved.resolution),
+    `non-portable resolution method: ${resolved.resolution}`,
+  );
   gates.PORTABLE_REPO_RESOLUTION_PASS = true;
 });
 
