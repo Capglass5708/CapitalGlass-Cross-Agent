@@ -1,11 +1,14 @@
 {
-  "schemaVersion": "hot-cache-dataset-registry-v1@1.0.0",
-  "workPackageId": "cross-agent-hot-cache-dataset-registry-publication-v1",
+  "schemaVersion": "hot-cache-dataset-registry-v1@1.1.0",
+  "workPackageId": "hot-cache-expansion-capital-glass-v1",
   "ownerRepo": "CapitalGlass-Cross-Agent",
   "platformDefaults": {
     "budgets": {
       "compactMaxBytes": 65536,
-      "compactMaxRecords": 25
+      "compactMaxRecords": 25,
+      "routingBundleMaxBytes": 32768,
+      "envelopeMaxBytes": 8192,
+      "lazyCatalogMaxBytes": 4096
     }
   },
   "freshnessClasses": {
@@ -22,7 +25,8 @@
       "freshnessClass": "authority-registry",
       "defaultTtlSeconds": 86400,
       "dependsOnDatasets": [],
-      "missOk": true
+      "missOk": true,
+      "manifestPath": "registry/active-ledger/active-ledger-manifest.v1.json"
     },
     {
       "datasetId": "all-systems-go",
@@ -51,7 +55,8 @@
       "freshnessClass": "authority-registry",
       "defaultTtlSeconds": 86400,
       "dependsOnDatasets": [],
-      "missOk": true
+      "missOk": true,
+      "manifestPath": "registry/command-estate/command-estate-manifest.v1.json"
     },
     {
       "datasetId": "database-estate",
@@ -112,13 +117,6 @@
       "missOk": true
     },
     {
-      "datasetId": "receipt-registry",
-      "freshnessClass": "authority-registry",
-      "defaultTtlSeconds": 86400,
-      "dependsOnDatasets": [],
-      "missOk": true
-    },
-    {
       "datasetId": "schema-contract-estate",
       "freshnessClass": "authority-registry",
       "defaultTtlSeconds": 86400,
@@ -137,6 +135,24 @@
       "freshnessClass": "authority-registry",
       "defaultTtlSeconds": 86400,
       "dependsOnDatasets": [],
+      "missOk": true
+    },
+    {
+      "datasetId": "receipt-registry",
+      "manifestPath": "registry/receipt-registry/receipt-registry-manifest.v1.json",
+      "freshnessClass": "authority-registry",
+      "defaultTtlSeconds": 86400,
+      "dependsOnDatasets": [],
+      "missOk": true
+    },
+    {
+      "datasetId": "intelligence-hub-domains",
+      "manifestPath": "registry/intelligence-hub-domains/intelligence-hub-domains-manifest.v1.json",
+      "freshnessClass": "authority-registry",
+      "defaultTtlSeconds": 86400,
+      "dependsOnDatasets": [
+        "authority-estate"
+      ],
       "missOk": true
     }
   ]

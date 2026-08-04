@@ -4,23 +4,52 @@
   "title": "QueryRoutingManifestV1",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "routes"],
+  "required": [
+    "schemaVersion",
+    "routes"
+  ],
   "properties": {
     "schemaVersion": {
-      "const": "query-routing-manifest-v1@1.0.0"
+      "const": "query-routing-manifest-v1@1.1.0"
     },
-    "workPackageId": { "type": "string", "minLength": 1 },
-    "maintainer": { "type": "string", "minLength": 1 },
-    "ownerRepo": { "type": "string", "minLength": 1 },
+    "workPackageId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "maintainer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ownerRepo": {
+      "type": "string",
+      "minLength": 1
+    },
     "routes": {
       "type": "array",
       "minItems": 1,
-      "items": { "$ref": "#/$defs/route" }
+      "items": {
+        "$ref": "#/$defs/route"
+      }
     },
-    "fallback": { "$ref": "#/$defs/fallbackRoute" },
-    "defaultRoute": { "$ref": "#/$defs/fallbackRoute" }
+    "fallback": {
+      "$ref": "#/$defs/fallbackRoute"
+    },
+    "defaultRoute": {
+      "$ref": "#/$defs/fallbackRoute"
+    }
   },
-  "anyOf": [{ "required": ["fallback"] }, { "required": ["defaultRoute"] }],
+  "anyOf": [
+    {
+      "required": [
+        "fallback"
+      ]
+    },
+    {
+      "required": [
+        "defaultRoute"
+      ]
+    }
+  ],
   "$defs": {
     "datasetId": {
       "type": "string",
@@ -29,43 +58,83 @@
     "patternList": {
       "type": "array",
       "minItems": 1,
-      "items": { "type": "string", "minLength": 1 }
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
     },
     "keywordsRoute": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["queryClass", "keywords", "primaryDataset", "compactOnly"],
+      "required": [
+        "queryClass",
+        "keywords",
+        "primaryDataset",
+        "compactOnly"
+      ],
       "properties": {
-        "queryClass": { "type": "string", "minLength": 1 },
-        "keywords": { "$ref": "#/$defs/patternList" },
-        "primaryDataset": { "$ref": "#/$defs/datasetId" },
+        "queryClass": {
+          "type": "string",
+          "minLength": 1
+        },
+        "keywords": {
+          "$ref": "#/$defs/patternList"
+        },
+        "primaryDataset": {
+          "$ref": "#/$defs/datasetId"
+        },
         "supportingDatasets": {
           "type": "array",
-          "items": { "$ref": "#/$defs/datasetId" }
+          "items": {
+            "$ref": "#/$defs/datasetId"
+          }
         },
-        "compactOnly": { "type": "boolean" }
+        "compactOnly": {
+          "type": "boolean"
+        }
       }
     },
     "matchPatternsRoute": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["queryClass", "matchPatterns", "primaryDatasetId", "datasetIds", "compactOnly"],
+      "required": [
+        "queryClass",
+        "matchPatterns",
+        "primaryDatasetId",
+        "datasetIds",
+        "compactOnly"
+      ],
       "properties": {
-        "queryClass": { "type": "string", "minLength": 1 },
-        "matchPatterns": { "$ref": "#/$defs/patternList" },
-        "primaryDatasetId": { "$ref": "#/$defs/datasetId" },
+        "queryClass": {
+          "type": "string",
+          "minLength": 1
+        },
+        "matchPatterns": {
+          "$ref": "#/$defs/patternList"
+        },
+        "primaryDatasetId": {
+          "$ref": "#/$defs/datasetId"
+        },
         "datasetIds": {
           "type": "array",
           "minItems": 1,
-          "items": { "$ref": "#/$defs/datasetId" }
+          "items": {
+            "$ref": "#/$defs/datasetId"
+          }
         },
-        "compactOnly": { "type": "boolean" }
+        "compactOnly": {
+          "type": "boolean"
+        }
       }
     },
     "route": {
       "oneOf": [
-        { "$ref": "#/$defs/keywordsRoute" },
-        { "$ref": "#/$defs/matchPatternsRoute" }
+        {
+          "$ref": "#/$defs/keywordsRoute"
+        },
+        {
+          "$ref": "#/$defs/matchPatternsRoute"
+        }
       ]
     },
     "fallbackRoute": {
@@ -73,30 +142,53 @@
         {
           "type": "object",
           "additionalProperties": false,
-          "required": ["primaryDataset", "compactOnly"],
+          "required": [
+            "primaryDataset",
+            "compactOnly"
+          ],
           "properties": {
-            "queryClass": { "type": "string" },
-            "primaryDataset": { "$ref": "#/$defs/datasetId" },
+            "queryClass": {
+              "type": "string"
+            },
+            "primaryDataset": {
+              "$ref": "#/$defs/datasetId"
+            },
             "supportingDatasets": {
               "type": "array",
-              "items": { "$ref": "#/$defs/datasetId" }
+              "items": {
+                "$ref": "#/$defs/datasetId"
+              }
             },
-            "compactOnly": { "type": "boolean" }
+            "compactOnly": {
+              "type": "boolean"
+            }
           }
         },
         {
           "type": "object",
           "additionalProperties": false,
-          "required": ["primaryDatasetId", "datasetIds", "compactOnly"],
+          "required": [
+            "primaryDatasetId",
+            "datasetIds",
+            "compactOnly"
+          ],
           "properties": {
-            "queryClass": { "type": "string" },
-            "primaryDatasetId": { "$ref": "#/$defs/datasetId" },
+            "queryClass": {
+              "type": "string"
+            },
+            "primaryDatasetId": {
+              "$ref": "#/$defs/datasetId"
+            },
             "datasetIds": {
               "type": "array",
               "minItems": 1,
-              "items": { "$ref": "#/$defs/datasetId" }
+              "items": {
+                "$ref": "#/$defs/datasetId"
+              }
             },
-            "compactOnly": { "type": "boolean" }
+            "compactOnly": {
+              "type": "boolean"
+            }
           }
         }
       ]
