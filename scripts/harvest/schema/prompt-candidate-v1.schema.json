@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://capitalglass.dev/schemas/harvest-prompt-candidate-v1.json",
+  "title": "Harvest Prompt Candidate v1",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "promptCandidateId",
+    "sourceType",
+    "sourceHarvestId",
+    "title",
+    "summary",
+    "promptType",
+    "normalizedContentHash",
+    "sourceContentHash",
+    "promotionStatus",
+    "containsSecrets",
+    "createdAt"
+  ],
+  "properties": {
+    "promptCandidateId": { "type": "string", "minLength": 1 },
+    "sourceType": {
+      "enum": ["cursor_agent", "user_instruction", "system_governance"]
+    },
+    "sourceThreadId": { "type": ["string", "null"] },
+    "sourceHarvestId": { "type": "string", "minLength": 1 },
+    "sourceMessageRef": { "type": ["string", "null"] },
+    "title": { "type": "string", "minLength": 1 },
+    "summary": { "type": "string" },
+    "promptType": {
+      "enum": [
+        "execution",
+        "investigation",
+        "verification",
+        "repair",
+        "closeout",
+        "planning",
+        "guardrail"
+      ]
+    },
+    "queryClasses": { "type": "array", "items": { "type": "string" } },
+    "ownerRepo": { "type": ["string", "null"] },
+    "ownerMcp": { "type": ["string", "null"] },
+    "commandIds": { "type": "array", "items": { "type": "string" } },
+    "gateIds": { "type": "array", "items": { "type": "string" } },
+    "guardrailIds": { "type": "array", "items": { "type": "string" } },
+    "requiredInputs": { "type": "array", "items": { "type": "string" } },
+    "expectedOutputs": { "type": "array", "items": { "type": "string" } },
+    "normalizedContent": { "type": "string" },
+    "normalizedContentHash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "sourceContentHash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "promotionStatus": {
+      "enum": ["candidate_only", "approved", "rejected", "duplicate"]
+    },
+    "duplicateOf": { "type": ["string", "null"] },
+    "provenOutcome": {
+      "enum": ["pass", "fail", "partial", "unknown"]
+    },
+    "containsSecrets": { "type": "boolean" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "sourceSha": { "type": ["string", "null"] },
+    "authorityLevel": {
+      "enum": ["recipe", "candidate", "approved", "governance"]
+    },
+    "grantsMutationAuthority": { "const": false }
+  }
+}

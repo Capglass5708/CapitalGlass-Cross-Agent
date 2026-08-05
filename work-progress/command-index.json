@@ -212,6 +212,113 @@
       "executable": false,
       "docOnly": true,
       "phase": "operator"
+    },
+    {
+      "id": "git-estate-compile-index",
+      "command": "npm run git-estate:compile-index",
+      "repo": "CG-AppBuilder-MCP",
+      "executable": true,
+      "phase": "hot-cache-platform",
+      "mutationClass": "read-only",
+      "provesGate": "GIT_ESTATE_COMPILE_PASS",
+      "gateId": "git-estate-compile",
+      "dryRunEquivalent": null,
+      "env": ["CROSS_AGENT_ROOT"]
+    },
+    {
+      "id": "git-estate-publish-hot-cache",
+      "command": "npm run git-estate:publish-hot-cache",
+      "repo": "CG-AppBuilder-MCP",
+      "executable": true,
+      "phase": "hot-cache-platform",
+      "mutationClass": "mutation-approval-gated",
+      "note": "Publishes Git Estate compact/full to host-local hot AI cache",
+      "provesGate": "GIT_ESTATE_HOT_CACHE_PUBLISH_PASS",
+      "gateId": "git-estate-hot-cache-publish",
+      "dryRunEquivalent": null,
+      "env": ["CG_AUTHORITY_CACHE_ROOT", "CROSS_AGENT_ROOT"]
+    },
+    {
+      "id": "git-estate-bulk-pull-dry-run",
+      "command": "npm run git-estate:bulk-pull:dry-run",
+      "repo": "CG-AppBuilder-MCP",
+      "executable": true,
+      "phase": "hot-cache-platform",
+      "mutationClass": "read-only",
+      "note": "Safe dry-run bulk pull — mutation disabled by policy",
+      "provesGate": "BULK_PULL_DRY_RUN_PASS",
+      "gateId": "bulk-pull-dry-run",
+      "dryRunEquivalent": "npm run git-estate:bulk-pull:dry-run"
+    },
+    {
+      "id": "hot-cache-verify-l-hash-alignment",
+      "command": "npm run hot-cache:verify-l-hash-alignment",
+      "repo": "CG-AppBuilder-MCP",
+      "executable": true,
+      "phase": "hot-cache-platform",
+      "mutationClass": "read-only",
+      "provesGate": "LOCAL_L_HASH_ALIGNMENT_PASS",
+      "gateId": "l-hash-alignment",
+      "env": ["CG_AUTHORITY_CACHE_ROOT", "CG_INTELLIGENCE_HUB_ROOT"]
+    },
+    {
+      "id": "hot-cache-publish-l-by-kind-dry-run",
+      "command": "npm run hot-cache:publish-l-by-kind:dry-run",
+      "repo": "CG-AppBuilder-MCP",
+      "executable": true,
+      "phase": "hot-cache-platform",
+      "mutationClass": "read-only",
+      "dryRunEquivalent": "npm run hot-cache:publish-l-by-kind:dry-run",
+      "provesGate": "L_BY_KIND_PUBLICATION_DRY_RUN_PASS"
+    },
+    {
+      "id": "active-ledger-compile-index",
+      "command": "npm run active-ledger:compile-index",
+      "repo": "CG-AppBuilder-MCP",
+      "executable": true,
+      "phase": "hot-cache-platform",
+      "mutationClass": "read-only",
+      "provesGate": "ACTIVE_LEDGER_COMPILE_PASS"
+    },
+    {
+      "id": "active-ledger-publish-hot-cache",
+      "command": "npm run active-ledger:publish-hot-cache",
+      "repo": "CG-AppBuilder-MCP",
+      "executable": true,
+      "phase": "hot-cache-platform",
+      "mutationClass": "mutation-approval-gated",
+      "provesGate": "ACTIVE_LEDGER_HOT_CACHE_PUBLISH_PASS",
+      "env": ["CG_AUTHORITY_CACHE_ROOT"]
+    },
+    {
+      "id": "closeout-index-compile-index",
+      "command": "npm run closeout-index:compile-index",
+      "repo": "CG-AppBuilder-MCP",
+      "executable": true,
+      "phase": "hot-cache-platform",
+      "mutationClass": "read-only",
+      "provesGate": "CLOSEOUT_INDEX_COMPILE_PASS"
+    },
+    {
+      "id": "closeout-index-publish-hot-cache",
+      "command": "npm run closeout-index:publish-hot-cache",
+      "repo": "CG-AppBuilder-MCP",
+      "executable": true,
+      "phase": "hot-cache-platform",
+      "mutationClass": "mutation-approval-gated",
+      "provesGate": "CLOSEOUT_INDEX_HOT_CACHE_PUBLISH_PASS",
+      "env": ["CG_AUTHORITY_CACHE_ROOT"]
+    },
+    {
+      "id": "intelligence-hub-publish-hot-routing-index",
+      "command": "npm run intelligence-hub:publish-hot-routing-index",
+      "repo": "CG-AppBuilder-MCP",
+      "executable": true,
+      "phase": "hot-cache-platform",
+      "mutationClass": "mutation-approval-gated",
+      "note": "Publishes hot routing index consumed by stripped scout hooks",
+      "provesGate": "HOT_ROUTING_INDEX_PUBLISH_PASS",
+      "env": ["CG_AUTHORITY_CACHE_ROOT", "CROSS_AGENT_ROOT"]
     }
   ]
 }

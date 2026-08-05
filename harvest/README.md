@@ -1,0 +1,36 @@
+# Capital Glass Harvest — Z: mirror authority
+
+Git authority: `CapitalGlass-Cross-Agent/harvest/`  
+Windows operator path: `Z:\\Capital-Glass-Dev\\Harvest`
+
+## Cursor end-of-chat
+
+At thread close, @ **one** protocol file (not the whole folder):
+
+```
+Z:\\Capital-Glass-Dev\\Harvest\\protocol\\CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md
+```
+
+## Protocol index
+
+| File | Purpose |
+| --- | --- |
+| `protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md` | Thread closeout autopsy (Cursor) |
+| `protocol/HARVEST-INGESTION-RUNBOOK-v1.md` | Record → validate → sync → publication |
+| `protocol/PROMPT-EXTRACTION-AND-PROMOTION-v1.md` | Prompt candidate extraction + Supabase seed |
+| `protocol/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md` | ChatGPT draft lane |
+
+## Sync
+
+From WSL (CapitalGlass-Cross-Agent):
+
+```bash
+npm run harvest:sync-z-mirror
+```
+
+Updates this tree and `Z:\\Capital-Glass-Dev\\Harvest` when the Z: drive is mounted.
+
+**Do not hand-edit mirrored protocol files** — edit git sources under `docs/runbooks/` or `docs/harvest-z-mirror/`, then re-sync.
+
+Generated: 2026-08-05T01:58:57.834Z
+Source commit: test-head

@@ -3,6 +3,7 @@ import path from "node:path";
 
 import { hashCanonicalJson } from "./hash.mjs";
 import { compileSeedPackets } from "./compile-seed-packets-lib.mjs";
+import { upsertPromptHarvestHubIndex } from "./register-hub-index.mjs";
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
@@ -207,6 +208,13 @@ export function publishHubSeed({ repoRoot, harvestId, gitHead, hubRoot = null })
     publishedSeedIds: publishedIds,
   });
 
+  const promptHarvestIndex = upsertPromptHarvestHubIndex({
+    repoRoot,
+    hubRoot: HUB_ROOT,
+    harvestId,
+    gitHead,
+  });
+
   const opsDir = path.join(HUB_ROOT, "00-master-index/_operations/cross-agent-harvest-publication");
   fs.mkdirSync(opsDir, { recursive: true });
 
@@ -223,6 +231,8 @@ export function publishHubSeed({ repoRoot, harvestId, gitHead, hubRoot = null })
     knowledgeObjectType: fs.existsSync(stubsDir) ? "harvest-thread-autopsy-seed" : "harvest-qa-record",
     byKindSlicePath: "00-master-index/BY-KIND/thread-autopsy-index.json",
     perHarvestPointerPath: perHarvestPointer,
+    promptHarvestIndexPath: promptHarvestIndex.slicePath ?? null,
+    promptHarvestRecordCount: promptHarvestIndex.recordCount ?? 0,
     catalogPaths: publishedIds.map((id) => `02-catalog/knowledge-objects/cross-agent-harvest/${id}.json`),
   };
 

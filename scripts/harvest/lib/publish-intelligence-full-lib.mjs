@@ -10,10 +10,13 @@ import { runDuplicationPreflight } from "./duplication-preflight-lib.mjs";
 import { hashCanonicalJson } from "./hash.mjs";
 import { publishHubSeed, resolveHubRoot } from "./publish-hub-seed-lib.mjs";
 import {
+  registerPromptHarvestHubIndex,
   registerThreadAutopsyHubIndex,
   syncDoNotAdvanceToHub,
+  upsertPromptHarvestHubIndex,
 } from "./register-hub-index.mjs";
 import { fanoutHostAiCache } from "./host-ai-cache-fanout-lib.mjs";
+import { syncZHarvestMirror } from "./z-harvest-mirror-lib.mjs";
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
@@ -201,6 +204,7 @@ export function publishIntelligenceFull({
       hubRoot,
       plannedStages: [
         "sync-derived",
+        "sync-z-harvest-mirror",
         "duplication-preflight",
         "validate",
         "validate-autopsy",
@@ -215,6 +219,7 @@ export function publishIntelligenceFull({
         "intelligence-hub:index-freshness:publish",
         syncHosts ? `host-ai-cache-fanout:${Array.isArray(syncHosts) ? syncHosts.join(",") : syncHosts}` : "skip-host-fanout",
         skipSupabaseProjection ? "skip-thread-autopsy-supabase" : "thread-autopsy-supabase-projection",
+        skipSupabaseProjection ? "skip-harvest-prompt-supabase" : "harvest-prompt-supabase-projection",
       ],
     };
   }
@@ -227,6 +232,14 @@ export function publishIntelligenceFull({
         repoRoot,
       ),
     );
+
+    const zMirror = syncZHarvestMirror({ repoRoot, sourceCommitSha: gitHead });
+    stages.push({
+      label: "sync-z-harvest-mirror",
+      ok: zMirror.ok,
+      verdict: zMirror.receipt.verdict,
+      zMounted: zMirror.zMounted,
+    });
     stages.push(
       runStep(
         "render-index",
@@ -305,11 +318,16 @@ export function publishIntelligenceFull({
 
     const dna = syncDoNotAdvanceToHub({ repoRoot, hubRoot });
     const reg = registerThreadAutopsyHubIndex({ hubRoot, gitHead });
+    const promptIndex = upsertPromptHarvestHubIndex({ repoRoot, hubRoot, harvestId, gitHead });
+    const promptReg = registerPromptHarvestHubIndex({ hubRoot, gitHead });
     stages.push({
       label: "hub-slices",
-      ok: dna.ok && reg.ok,
+      ok: dna.ok && reg.ok && promptReg.ok,
       doNotAdvanceCount: dna.entryCount,
       threadAutopsyIndex: reg.slicePath,
+      promptHarvestIndex: promptIndex.slicePath ?? null,
+      promptHarvestRecordCount: promptIndex.recordCount ?? 0,
+      promptHarvestSkipped: promptIndex.skipped === true,
     });
 
     if (!skipLedgerSync) {
@@ -431,6 +449,42 @@ export function publishIntelligenceFull({
     }
 
     receipt.layers.supabaseThreadAutopsy = supabaseProjection;
+
+    let promptSupabaseProjection = { ok: false, code: "SKIP" };
+    if (!skipSupabaseProjection) {
+      try {
+        promptSupabaseProjection = runAppBuilderJsonScript(
+          appBuilderRoot,
+          "scripts/harvest-prompt-projection/project-harvest-prompts.mjs",
+          ["--json"],
+          { CROSS_AGENT_ROOT: repoRoot },
+        );
+        stages.push({
+          label: "harvest-prompt-supabase",
+          ok: promptSupabaseProjection.ok !== false,
+          verdict: promptSupabaseProjection.verdict,
+          recordCount: promptSupabaseProjection.recordCount ?? 0,
+        });
+      } catch (err) {
+        promptSupabaseProjection = {
+          ok: false,
+          code: "SUPABASE_PROMPT_PROJECTION_FAIL",
+          error: String(err.message ?? err),
+        };
+        stages.push({
+          label: "harvest-prompt-supabase",
+          ok: false,
+          error: promptSupabaseProjection.error,
+        });
+      }
+    }
+    receipt.layers.supabaseHarvestPrompts = promptSupabaseProjection;
+
+    const receiptJson = readJson(path.join(runDir, "receipt.json"));
+    if (receiptJson?.promptHarvest) {
+      receipt.layers.promptHarvest = receiptJson.promptHarvest;
+    }
+
     receipt.contentHash = hashCanonicalJson({ harvestId, gitHead, stages });
     writeJson(receiptPath, receipt);
 
