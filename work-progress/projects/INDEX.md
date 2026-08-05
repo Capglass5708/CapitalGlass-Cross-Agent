@@ -38,14 +38,12 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 
 | Packet ID | State | Verdict | Owner repo | Project file | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `hot-cache-wave-a-estate-shipped-v1` | HARVEST_COMPLETE | PASS | CG-AppBuilder-MCP | artifacts/agent-runs/harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1/thread-event-inventory.json | None — mission closed; deferred items non-blocking |
-| `cross-agent-pr10-conflict-resolution-v1` | DOCUMENTED | PASS | CapitalGlass-Cross-Agent | artifacts/agent-runs/harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1/thread-event-inventory.json | Merge Cross-Agent registry changes before AppBuilder consumer PR |
-| `hot-cache-content-hash-host-serialization-v1` | DOCUMENTED | PASS | CG-AppBuilder-MCP | artifacts/agent-runs/harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1/seed-packets/IH-HOT-CACHE-CONTENT-HASH-HOST-001.json | Use merged git SHAs + scout gates for pass; record per-host hash |
-| `appbuilder-pr284-ci-merge-gate-v1` | HARVEST_COMPLETE | PASS | CG-AppBuilder-MCP | artifacts/agent-runs/harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1/thread-event-inventory.json | Poll gh pr checks until audit+closeout+validate-main pass |
-| `second-host-ssh-wesleydesk-gate-v1` | HARVEST_COMPLETE | PASS | CapitalGlass-Office-Admin | artifacts/agent-runs/harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1/seed-packets/IH-HOT-CACHE-SECOND-HOST-SSH-001.json | Reuse SSH gate script for future estate ships |
-| `hot-cache-deferred-wave-cd-v1` | DOCUMENTED | PASS | CG-AppBuilder-MCP | artifacts/agent-runs/harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1/thread-event-inventory.json | Track auto-publisher activation as separate work-package |
-| `hot-cache-protocol-upgrade-v1` | HARVEST_COMPLETE | PASS | CapitalGlass-Cross-Agent | docs/runbooks/chat-thread-closeout-autopsy-harvest-v1.md | Operator may publish hub seeds when L: mounted |
-| `hot-cache-evidence-chain-v1` | HARVEST_COMPLETE | PASS | CG-AppBuilder-MCP | artifacts/agent-runs/harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1/code-touch-summary.json | None |
+| `ryzen9desk-managed-executor-v1` | RUNNER_BOOTSTRAP_CHECKPOINT_STARTED | CODE_READY_FOR_RUNNER_BOOTSTRAP | CG-AppBuilder-MCP | [2026-08-03_ryzen9desk-managed-executor-v1.md](./2026-08-03_ryzen9desk-managed-executor-v1.md) | CG-AppBuilder-MCP mission: RYZEN9DESK WSL install from main + dispatch executor-smoke receipt |
+| `active-ledger-ci-path-and-hash-stability-v1` | COMPLETE | PASS | CG-AppBuilder-MCP | [2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md](./2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md) | None unless test:active-ledger-sync regresses on main |
+| `project-folder-synology-primary-v1-dev-environment` | HOLD | CONTRACT_PASS_HOSTED_DEV_HOLD | CapitalGlass-Documents | [project-folder-synology-primary-v1-dev-hosted-environment.md](./project-folder-synology-primary-v1-dev-hosted-environment.md) | Resolve Vercel BLOCKED deploy and Supabase dev isolation (owner: CapitalGlass-Documents) |
+| `cross-agent-retrieval-failover-v1.1` | ADOPTED | PASS | CapitalGlass-Cross-Agent | handoffs/CURRENT_HANDOFF.md | Recurring: use layered failover for suite status when L: unavailable |
+| `wsl2-native-repo-library-migration-v1` | PARTIAL | FILESYSTEM_PASS_OPERATIONAL_CLEANUP_RECORDED | CG-AppBuilder-MCP | [2026-08-03_wsl2-native-repo-library-migration-v1.md](./2026-08-03_wsl2-native-repo-library-migration-v1.md) | Per-repo ext4 verification; RYZEN9DESK alignment via separate executor mission |
+| `office-admin-ryzen9desk-managed-executor-bootstrap-v1` | INDEXED | CODE_READY_FOR_RUNNER_BOOTSTRAP | CapitalGlass-Office-Admin | [2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md](./2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md) | Runner bootstrap remains CG-AppBuilder-MCP mission; do not claim MANAGED_EXECUTOR_ONLINE |
 
 <!-- HARVEST-PACKET-INDEX:END -->
 
