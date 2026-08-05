@@ -1,8 +1,18 @@
 # harvest-empirical-samples-v1
 
-**Status:** IN_PROGRESS (thin sample PASS; downstream handoff HOLD)  
+**Status:** IN_PROGRESS (thin COMPLETE; medium fixture next; downstream handoff HOLD)  
 **Owner repo:** CapitalGlass-Cross-Agent  
-**Protocol state:** FROZEN at `b8ceb83` (no protocol edits until sample set complete)
+**Protocol state:** FROZEN — authority at `1e87d6a` (`harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md`); publication evidence at `b8ceb83` (not protocol text)
+
+## Program lineage (explicit commits)
+
+| Role | Commit |
+| --- | --- |
+| Protocol authority (frozen text) | `1e87d6a` |
+| Program scaffold | `2b565d3` |
+| Thin live run | `0034073` |
+| Downstream routing metadata | `a2cfa25` |
+| Publication evidence | `b8ceb83` |
 
 ## Purpose
 
@@ -54,7 +64,7 @@ Node kinds must remain distinct: `sampleFinding`, `recurringWeakness`, `protocol
 
 | # | Class | Sample id | Status | Harvest verdict | Graph eligibility |
 | --- | --- | --- | --- | --- | --- |
-| 1 | thin | `thin-thread-v1` | PASS | `NO_HARVEST_NEEDED` | hold |
+| 1 | thin | `thin-thread-v1` | COMPLETE | `NO_HARVEST_NEEDED` | hold |
 | 2 | medium | `medium-thread-v1` | PENDING | — | — |
 | 3 | architectural | `architectural-thread-v1` | PENDING | — | — |
 | 4 | debugging | `debugging-thread-v1` | PENDING | — | — |
@@ -67,13 +77,14 @@ Node kinds must remain distinct: `sampleFinding`, `recurringWeakness`, `protocol
 | Program manifest | `artifacts/agent-runs/harvest-empirical-samples-v1/empirical-sample-program-v1.json` |
 | Rubric | `artifacts/agent-runs/harvest-empirical-samples-v1/empirical-review-rubric-v1.json` |
 | Downstream handoff | `artifacts/agent-runs/harvest-empirical-samples-v1/empirical-downstream-handoff-v1.json` |
+| Program defects log | `artifacts/agent-runs/harvest-empirical-samples-v1/empirical-program-defects-v1.json` |
 | Thin routing metadata | `artifacts/agent-runs/harvest-empirical-samples-v1/samples/thin-thread-v1/sample-routing-metadata-v1.json` |
 
 ## Thin sample #1
 
 **Fixture:** branch-name factual Q&A (3 turns).  
-**Golden reference:** `NO_HARVEST_NEEDED`, tier T0.  
-**Live output:** `chatgpt-live-output.md` (cursor protocol execution; ChatGPT UI replacement optional).  
+**Golden reference:** `NO_HARVEST_NEEDED`, expected tier T0; observed T0 earned at live run.  
+**Live output:** `chatgpt-live-output.md` (unchanged; cursor protocol execution; ChatGPT UI replacement optional).  
 **Rubric:** PASS on all 7 criteria.  
 **Graph:** `hold` — no `sampleFinding` nodes; only Sample / ProtocolVersion / ReviewScore candidates.
 
@@ -95,4 +106,4 @@ Node kinds must remain distinct: `sampleFinding`, `recurringWeakness`, `protocol
 - Do not edit `harvest/protocol/*` until all five samples reviewed and graph documents recurring weakness.
 - Supabase 401 remains separate work package.
 - August 3 harvest drift remains out of scope.
-- Medium fixture: not authored until thin gate confirmed.
+- Medium fixture: authorized after thin COMPLETE.

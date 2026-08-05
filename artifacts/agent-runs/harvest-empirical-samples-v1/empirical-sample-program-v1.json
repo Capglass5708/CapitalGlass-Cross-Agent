@@ -1,10 +1,18 @@
 {
   "schemaVersion": "cross-agent-empirical-sample-program-v1@1.1.0",
   "programId": "harvest-empirical-samples-v1",
-  "generatedAt": "2026-08-05T20:00:00.000Z",
+  "generatedAt": "2026-08-05T21:00:00.000Z",
+  "programLineage": {
+    "protocolAuthorityCommit": "1e87d6ab96ed35d3d117def99e1e0d670c028575",
+    "programScaffoldCommit": "2b565d34fa792c4c04851b2b1506797805630e23",
+    "thinLiveRunCommit": "003407345ea2044fe238d754ddecacd613fefa22",
+    "downstreamRoutingCommit": "a2cfa25c0fcb4a03885df0cbf3c1782bfcb8a2bc",
+    "publicationEvidenceCommit": "b8ceb833d699a73d34cf57c8908f6b45856fb1d7",
+    "lineageNote": "protocolAuthorityCommit is the frozen protocol text authority. publicationEvidenceCommit is operational/hub publication baseline — not interchangeable."
+  },
   "protocolFreeze": {
-    "frozenAtCommit": "b8ceb83a54779544aa1e14be428fe1e1aaea0095",
     "frozenProtocol": "CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1",
+    "protocolAuthorityCommit": "1e87d6ab96ed35d3d117def99e1e0d670c028575",
     "protocolExpansion": "FROZEN",
     "changeGate": "Repeated weaknesses across all five sample classes before any protocol edit"
   },
@@ -47,10 +55,13 @@
     {
       "sampleId": "thin-thread-v1",
       "sampleClass": "thin",
-      "status": "PASS",
+      "status": "COMPLETE",
+      "empiricalResult": "PASS",
       "harvestId": "harvest-2026-08-05-empirical-sample-thin-v1",
-      "expectedVerdicts": ["NO_HARVEST_NEEDED", "DRAFT_READY_FOR_CURSOR_VALIDATION"],
+      "expectedVerdict": "NO_HARVEST_NEEDED",
+      "observedVerdict": "NO_HARVEST_NEEDED",
       "expectedTier": "T0",
+      "observedTier": "T0",
       "fixturePath": "samples/thin-thread-v1/sample-thread-source.md",
       "goldenReferencePath": "samples/thin-thread-v1/golden-findings-NO_HARVEST_NEEDED.md",
       "liveOutputPath": "samples/thin-thread-v1/chatgpt-live-output.md",

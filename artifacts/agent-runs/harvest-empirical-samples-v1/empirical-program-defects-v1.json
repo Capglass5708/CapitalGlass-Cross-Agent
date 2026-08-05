@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "cross-agent-empirical-program-defects-v1@1.0.0",
+  "programId": "harvest-empirical-samples-v1",
+  "generatedAt": "2026-08-05T21:00:00.000Z",
+  "note": "Program-metadata defects only — not protocol defects. Resolved in thin COMPLETE alignment commit.",
+  "resolvedDefects": [
+    {
+      "defectId": "PD-001",
+      "summary": "b8ceb83 labeled as protocolFreezeCommit / frozenAtCommit",
+      "resolution": "b8ceb83 is publicationEvidenceCommit (hub/operational publication receipts). protocolAuthorityCommit is 1e87d6a (last commit touching harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md).",
+      "resolvedInCommit": "harvest(empirical): confirm thin-thread-v1 complete"
+    },
+    {
+      "defectId": "PD-002",
+      "summary": "2b565d3 conflated with protocol authority",
+      "resolution": "2b565d3 is programScaffoldCommit (empirical program manifest + thin fixture scaffold only).",
+      "resolvedInCommit": "harvest(empirical): confirm thin-thread-v1 complete"
+    },
+    {
+      "defectId": "PD-003",
+      "summary": "thin manifest status PASS vs operator COMPLETE convention",
+      "resolution": "thin-thread-v1.status set to COMPLETE; empiricalResult remains PASS.",
+      "resolvedInCommit": "harvest(empirical): confirm thin-thread-v1 complete"
+    },
+    {
+      "defectId": "PD-004",
+      "summary": "nextSampleAuthoring blocked after rubric PASS",
+      "resolution": "Set to UNBLOCKED after thin COMPLETE confirmation.",
+      "resolvedInCommit": "harvest(empirical): confirm thin-thread-v1 complete"
+    }
+  ],
+  "openDefects": []
+}
