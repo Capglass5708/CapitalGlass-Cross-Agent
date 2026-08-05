@@ -1,0 +1,678 @@
+{
+  "schemaVersion": "cross-agent-harvest-operational-publication-receipt-v1@1.0.0",
+  "harvestId": "harvest-2026-08-05-chatgpt-protocol-refinement-v1",
+  "generatedAt": "2026-08-05T18:21:47.280Z",
+  "startedAt": "2026-08-05T18:10:19.860Z",
+  "verdict": "OPERATIONAL",
+  "sourceCommitSha": "428a7a4a54779544aa1e14be428fe1e1aaea0095",
+  "tier": "T2",
+  "authorityModel": "CHAT_THREAD_STRUCTURED_TRUTH",
+  "intelligenceHubRoot": "/mnt/l/Capital-Glass-Intelligence-Hub",
+  "layers": {
+    "git": {
+      "path": "/home/wesle/repos/CapitalGlass-Cross-Agent/artifacts/agent-runs/harvest-2026-08-05-chatgpt-protocol-refinement-v1/harvest-manifest-v1.json",
+      "sourceCommitSha": "428a7a4a54779544aa1e14be428fe1e1aaea0095"
+    },
+    "lCatalog": {
+      "ok": true,
+      "seedCount": 2,
+      "byKindSlice": "00-master-index/BY-KIND/thread-autopsy-index.json"
+    },
+    "lLedger": {
+      "ok": true
+    },
+    "cHotRouting": {
+      "ok": true,
+      "hotCacheRoot": "/mnt/d/AI Cursur Cache",
+      "indexPath": "/mnt/d/AI Cursur Cache/objects/intelligence-hub-index/current-hot-routing-index.v1.json",
+      "pointerPath": "/mnt/d/AI Cursur Cache/objects/intelligence-hub-index/current-hot-routing-pointer.v1.json",
+      "routing": {
+        "schemaVersion": "intelligence-hub-hot-routing-index-v1@1.1.0",
+        "workPackageId": "intelligence-hub-hot-cache-scout-optimization-v1",
+        "generatedAt": "2026-08-05T18:20:38.116Z",
+        "releaseId": "AI-CACHE-RELEASE-20260731-a7456ad58195",
+        "ttlSeconds": 86400,
+        "freshnessPolicy": "l-master-index-authority",
+        "derivativeAuthority": true,
+        "shipAuthorization": false,
+        "sourceRepository": "CapitalGlass-Cross-Agent",
+        "sourceCommitSha": "bda3c6163adc293b58e9a690266babef26d6c5bd",
+        "bundleBudget": {
+          "maxTotalBytes": 32768,
+          "envelopeMaxBytes": 8192,
+          "lazyCatalogMaxBytes": 4096,
+          "publishedBytes": 15138,
+          "trimmed": false
+        },
+        "authorityPointers": {
+          "lHubRoot": "/mnt/l/Capital-Glass-Intelligence-Hub",
+          "lMasterIndex": "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index",
+          "lOpenActions": "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/active-work-open-actions.json",
+          "lBlockers": "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/active-work-blockers.json",
+          "lThreadAutopsyIndex": "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/thread-autopsy-index.json",
+          "zBundlePath": "/mnt/z/Capital-Glass-Intelligence-Hub/AI-Cache-Authority/objects/intelligence-hub-index/current-index-bundle.v1.json",
+          "zIndexPointerPath": "/mnt/z/Capital-Glass-Intelligence-Hub/AI-Cache-Authority/index-freshness/CURRENT/current-index-pointer.json",
+          "crossAgentSlicesRoot": "/home/wesle/repos/CapitalGlass-Cross-Agent/work-progress/intelligence-hub-slices"
+        },
+        "envelope": {
+          "openActions": [
+            {
+              "priority": 1,
+              "action": "**Synology-primary dev lane** — child WP `project-folder-synology-primary-v1-dev-hosted-environment` (**HOLD**: Vercel BLOCKED + Supabase I2)",
+              "ownerRepo": "CapitalGlass-Documents / WESLEYDESK",
+              "status": "**HOLD** — contract `d8826e8` PASS; hosted dev blocked"
+            },
+            {
+              "priority": 2,
+              "action": "Elevated deploy: `Install-CgWesleyWorkDriveMountPersistence.ps1` + verifier on WESLEY_WORK (`wesleywork-drive-mount-task-dedupe-v1`)",
+              "ownerRepo": "CapitalGlass-Office-Admin",
+              "status": "Ready — code implemented; live probe pending"
+            },
+            {
+              "priority": 3,
+              "action": "Rerun Document Center production smokes after SHA pin (`suite-ci-healing-v1`)",
+              "ownerRepo": "CapitalGlass-Documents",
+              "status": "**Ready** — Doppler + GitHub `EXPECTED_DOCUMENT_CENTER_GIT_SHA` synced 2026-08-04"
+            },
+            {
+              "priority": 2,
+              "action": "Use Windows Desktop `Capital Glass Cursor (WSL Suite).lnk`; close any Cursor windows opened from `/mnt/c` / `C:\\Developer\\repos`",
+              "ownerRepo": "Cursor / operator",
+              "status": "Ongoing operating rule — WSL default verify PASS"
+            },
+            {
+              "priority": 2,
+              "action": "L: hub readable at `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index`",
+              "ownerRepo": "WESLEYDESK / WSL",
+              "status": "Complete for seed report"
+            }
+          ],
+          "blockers": [
+            {
+              "id": "missing-shared-github-articles-builder",
+              "priority": 1,
+              "blocker": "Missing shared GitHub → articles builder",
+              "affects": "`docling-github-ingest-v1`, `ephemeral-unstructured-github-scrape-v1`",
+              "owner": "`Scraper`",
+              "requiredAction": "Implement `build-github-markdown-articles.mjs` — gated under owner WPs"
+            },
+            {
+              "id": "rank-9-arch-fp-yolo-benchmark-repo-url-unknown",
+              "priority": 2,
+              "blocker": "Rank-9 Arch FP YOLO benchmark repo URL unknown",
+              "affects": "`revu-opening-detection-top10-v1`",
+              "owner": "Research",
+              "requiredAction": "Pin URL before capture — gated under `revu-opening-detection-top10-v1`"
+            },
+            {
+              "id": "de-opening-detection-kb-is-shallow",
+              "priority": 3,
+              "blocker": "DE opening-detection KB is shallow",
+              "affects": "`revu-opening-detection-top10-v1`, `cg-opening-locator-v1`",
+              "owner": "`Data-Extraction`",
+              "requiredAction": "Finish vendor interpretation; fix `unsupported_vendor` — gated under opening-detection WPs"
+            },
+            {
+              "id": "bid-composer-weak-on-window-schedule-row",
+              "priority": 4,
+              "blocker": "Bid Composer weak on `window_schedule_row`",
+              "affects": "CE parser ROI / Bid Composer review lane",
+              "owner": "`Bid Composer`",
+              "requiredAction": "Add window schedule import and review lane — gated under Bid Composer roadmap"
+            },
+            {
+              "id": "revu-mcp-production-workflow-locked",
+              "priority": 5,
+              "blocker": "Revu MCP production workflow locked",
+              "affects": "`revu-production-takeoff-pilot-v1`",
+              "owner": "`CapitalGlassRevu`, `Bid Composer`",
+              "requiredAction": "Policy lock until plan → approval → export → BC review pilot passes"
+            }
+          ]
+        },
+        "slices": {
+          "openActions": [
+            {
+              "priority": 1,
+              "action": "**Synology-primary dev lane** — child WP `project-folder-synology-primary-v1-dev-hosted-environment` (**HOLD**: Vercel BLOCKED + Supabase I2)",
+              "ownerRepo": "CapitalGlass-Documents / WESLEYDESK",
+              "status": "**HOLD** — contract `d8826e8` PASS; hosted dev blocked"
+            },
+            {
+              "priority": 2,
+              "action": "Elevated deploy: `Install-CgWesleyWorkDriveMountPersistence.ps1` + verifier on WESLEY_WORK (`wesleywork-drive-mount-task-dedupe-v1`)",
+              "ownerRepo": "CapitalGlass-Office-Admin",
+              "status": "Ready — code implemented; live probe pending"
+            },
+            {
+              "priority": 3,
+              "action": "Rerun Document Center production smokes after SHA pin (`suite-ci-healing-v1`)",
+              "ownerRepo": "CapitalGlass-Documents",
+              "status": "**Ready** — Doppler + GitHub `EXPECTED_DOCUMENT_CENTER_GIT_SHA` synced 2026-08-04"
+            },
+            {
+              "priority": 2,
+              "action": "Use Windows Desktop `Capital Glass Cursor (WSL Suite).lnk`; close any Cursor windows opened from `/mnt/c` / `C:\\Developer\\repos`",
+              "ownerRepo": "Cursor / operator",
+              "status": "Ongoing operating rule — WSL default verify PASS"
+            },
+            {
+              "priority": 2,
+              "action": "L: hub readable at `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index`",
+              "ownerRepo": "WESLEYDESK / WSL",
+              "status": "Complete for seed report"
+            }
+          ],
+          "blockers": [
+            {
+              "id": "missing-shared-github-articles-builder",
+              "priority": 1,
+              "blocker": "Missing shared GitHub → articles builder",
+              "affects": "`docling-github-ingest-v1`, `ephemeral-unstructured-github-scrape-v1`",
+              "owner": "`Scraper`",
+              "requiredAction": "Implement `build-github-markdown-articles.mjs` — gated under owner WPs"
+            },
+            {
+              "id": "rank-9-arch-fp-yolo-benchmark-repo-url-unknown",
+              "priority": 2,
+              "blocker": "Rank-9 Arch FP YOLO benchmark repo URL unknown",
+              "affects": "`revu-opening-detection-top10-v1`",
+              "owner": "Research",
+              "requiredAction": "Pin URL before capture — gated under `revu-opening-detection-top10-v1`"
+            },
+            {
+              "id": "de-opening-detection-kb-is-shallow",
+              "priority": 3,
+              "blocker": "DE opening-detection KB is shallow",
+              "affects": "`revu-opening-detection-top10-v1`, `cg-opening-locator-v1`",
+              "owner": "`Data-Extraction`",
+              "requiredAction": "Finish vendor interpretation; fix `unsupported_vendor` — gated under opening-detection WPs"
+            },
+            {
+              "id": "bid-composer-weak-on-window-schedule-row",
+              "priority": 4,
+              "blocker": "Bid Composer weak on `window_schedule_row`",
+              "affects": "CE parser ROI / Bid Composer review lane",
+              "owner": "`Bid Composer`",
+              "requiredAction": "Add window schedule import and review lane — gated under Bid Composer roadmap"
+            },
+            {
+              "id": "revu-mcp-production-workflow-locked",
+              "priority": 5,
+              "blocker": "Revu MCP production workflow locked",
+              "affects": "`revu-production-takeoff-pilot-v1`",
+              "owner": "`CapitalGlassRevu`, `Bid Composer`",
+              "requiredAction": "Policy lock until plan → approval → export → BC review pilot passes"
+            }
+          ],
+          "control": {
+            "doNotAdvance": {
+              "sourcePath": "/home/wesle/repos/CapitalGlass-Cross-Agent/work-progress/intelligence-hub-slices/do-not-advance.json",
+              "contentHash": "e1ce9c3c026ec3cf986a2afd444bbe5761db7b6aac24e36ab747480a62292789",
+              "compact": {
+                "schemaVersion": "intelligence-hub-do-not-advance-slice-v1@1.0.0",
+                "updatedAt": "2026-08-04T01:30:00.000Z",
+                "entryCount": 7,
+                "entries": [
+                  {
+                    "claimId": "PERSISTENT_AVAILABILITY_PASS",
+                    "forbiddenUntil": "direct-connect-cold-reboot-persistence proof on RYZEN9DESK",
+                    "ownerRepo": "CapitalGlass-Office-Admin",
+                    "proofCommandIds": [
+                      "direct-connect-persistence-proof"
+                    ]
+                  },
+                  {
+                    "claimId": "MANAGED_EXECUTOR_ONLINE",
+                    "forbiddenUntil": "persistence proof + executor health probe PASS",
+                    "ownerRepo": "CapitalGlass-Office-Admin",
+                    "proofCommandIds": [
+                      "managed-executor-health-probe"
+                    ]
+                  },
+                  {
+                    "claimId": "THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL",
+                    "forbiddenUntil": null,
+                    "ownerRepo": "CapitalGlass-Cross-Agent",
+                    "proofCommandIds": [
+                      "index-freshness-gate",
+                      "index-blind-retrieval",
+                      "harvest:slice6-blind-retrieval"
+                    ]
+                  },
+                  {
+                    "claimId": "AUTO_PUBLISHER_V1_1_ACTIVE",
+                    "forbiddenUntil": "scheduled publisher active on WESLEYDESK with activation receipt",
+                    "ownerRepo": "CG-AppBuilder-MCP",
+                    "proofCommandIds": [
+                      "auto-publisher-run-once"
+                    ]
+                  },
+                  {
+                    "claimId": "UNATTENDED_PRODUCTION_MARKUP",
+                    "forbiddenUntil": "revu-production-takeoff-pilot-v1 complete with human approval",
+                    "ownerRepo": "CapitalGlassRevu",
+                    "proofCommandIds": []
+                  },
+                  {
+                    "claimId": "WESLEYDESK_RUNNER_PERSISTENT",
+                    "forbiddenUntil": "runner-smoke SUCCESS after Windows cold reboot without manual SSH",
+                    "ownerRepo": "CapitalGlass-Cross-Agent",
+                    "proofCommandIds": [
+                      "runner-smoke-gha",
+                      "wesleydesk-runner-ensure"
+                    ]
+                  },
+                  {
+                    "claimId": "HARVEST_V2_HUB_CURRENT",
+                    "forbiddenUntil": "harvest v2 committed and index:publish PASS on WESLEYDESK",
+                    "ownerRepo": "CapitalGlass-Cross-Agent",
+                    "proofCommandIds": [
+                      "harvest-validate",
+                      "index-publish"
+                    ]
+                  }
+                ]
+              }
+            },
+            "hostAuthority": {
+              "sourcePath": "/home/wesle/repos/CapitalGlass-Cross-Agent/work-progress/intelligence-hub-slices/host-authority.json",
+              "contentHash": "ae054253b9588b05fe66b7e7724074a1738e4406b324307e36387d5d0985c3c3",
+              "compact": {
+                "schemaVersion": "intelligence-hub-host-authority-slice-v1@1.0.0",
+                "updatedAt": "2026-08-04T23:22:50.270Z",
+                "hosts": [
+                  {
+                    "hostId": "WESLEYDESK",
+                    "role": "index publication, GitHub Actions runner, primary dev",
+                    "paths": {
+                      "intelligenceHub": "L:/Capital-Glass-Intelligence-Hub",
+                      "aiCache": "S:/AI Cursur Cache"
+                    }
+                  },
+                  {
+                    "hostId": "WESLEY_WORK",
+                    "role": "WSL dev, cross-agent ledger ingest",
+                    "paths": {
+                      "intelligenceHub": "/mnt/l/Capital-Glass-Intelligence-Hub",
+                      "aiCache": "/mnt/d/AI Cursur Cache"
+                    }
+                  },
+                  {
+                    "hostId": "RYZEN9DESK",
+                    "role": "managed executor, Direct Connect endpoint",
+                    "paths": {
+                      "aiCache": "C:/AI Cursur Cache"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "lazyCatalog": {
+          "git-estate": {
+            "hotCacheObjectPath": "objects/git-estate/current.json",
+            "payloadHash": "sha256:c6bcda3f2e1be0ef24262962e89b89b021a810ed12e7a461a353617a1fb2727b",
+            "publicationGeneration": "20260805T174939Z-48bbf428",
+            "queryClasses": [
+              "bulk-git-pull",
+              "repository-health"
+            ]
+          },
+          "authority-estate": {
+            "hotCacheObjectPath": "objects/authority-estate/current.json",
+            "payloadHash": "sha256:ae3c7cb56f6cbe9a761bf158044e0004240cf97d7de0d47daa188aace40bf82c",
+            "publicationGeneration": "20260805T170550Z-fae658b1",
+            "queryClasses": [
+              "authority-placement",
+              "document-layer",
+              "suite-wiring"
+            ]
+          },
+          "intelligence-hub-domains": {
+            "hotCacheObjectPath": "objects/intelligence-hub-domains/current.json",
+            "payloadHash": "sha256:4a9d1cf9d7b5306da91d4de52ad7f73a9aa041ef7932259cf0fb5215bc94226e",
+            "publicationGeneration": "20260804T232649Z-1467fa38",
+            "queryClasses": [
+              "document-layer"
+            ]
+          },
+          "command-estate": {
+            "hotCacheObjectPath": "objects/command-estate/current.json",
+            "payloadHash": "sha256:260b2c5524fef69460437542247599c9a109fc560281475236a54f04643fd219",
+            "publicationGeneration": "20260805T170550Z-4b80e974",
+            "queryClasses": [
+              "mcp-preflight",
+              "closeout-ship",
+              "deploy-gate"
+            ]
+          },
+          "active-ledger": {
+            "hotCacheObjectPath": "objects/active-ledger/current.json",
+            "payloadHash": "sha256:e89eb99740b2b10115652b985caf843252b6dfa11bdd39ebda788e2e790301c1",
+            "publicationGeneration": "20260805T170551Z-4f976a8d",
+            "queryClasses": [
+              "harvest-record",
+              "publication"
+            ]
+          },
+          "receipt-registry": {
+            "hotCacheObjectPath": "objects/receipt-registry/current.json",
+            "payloadHash": "sha256:c3cf9579241a7ac8f816450d116fb363555b400a9a49b862d19bbaff616674c3",
+            "publicationGeneration": "20260805T170551Z-150bc7c9",
+            "queryClasses": [
+              "harvest-record"
+            ]
+          },
+          "prompt-catalog": {
+            "hotCacheObjectPath": "objects/prompt-catalog/current.json",
+            "payloadHash": "sha256:187605766f6e8fe17874f86664c032fe57f432d3b35e9ef51130551d7472081c",
+            "publicationGeneration": "20260805T182033Z-afbf9a54",
+            "queryClasses": [
+              "harvest-record",
+              "publication",
+              "workflow-estate"
+            ]
+          },
+          "execution-packets": {
+            "hotCacheObjectPath": "objects/execution-packets/current.json",
+            "payloadHash": "sha256:03d8b9fe072a2c7dcbc82247fd12316630f0040b0eef334984f3ef7fb433ba13",
+            "publicationGeneration": "20260805T170551Z-41f22b90",
+            "queryClasses": [
+              "publication"
+            ]
+          },
+          "workflow-estate": {
+            "hotCacheObjectPath": "objects/workflow-estate/current.json",
+            "payloadHash": "sha256:74b91590ec3b19b6cfb745f2618cc781bb9600ab8290b94c93142c7f3a540fba",
+            "publicationGeneration": "20260805T030020Z-41077725",
+            "queryClasses": [
+              "workflow-estate"
+            ]
+          }
+        },
+        "counts": {
+          "openActions": 15,
+          "blockers": 5,
+          "threadAutopsyHarvests": 18,
+          "lazyDatasetCount": 9
+        },
+        "threadAutopsy": {
+          "indexHit": true,
+          "criticalSeedIds": [
+            "IH-OPERATIONAL-LEDGER-SYNC-ORDER-001",
+            "IH-ASG-WSL-SUPABASE-CLI-001",
+            "IH-THREAD-ASG-RECEIPT-AUTHORITY-V1",
+            "IH-ASG-RECEIPT-LINEAGE-005",
+            "IH-GOV-OWNERSHIP-PREFIX-011",
+            "IH-WORKFLOW-ESTATE-SCOUT-ROUTING-001",
+            "IH-SCOUT-HOOK-ORIGIN-VERIFY-001",
+            "IH-HOT-CACHE-CROSS-AGENT-MERGE-FIRST-001",
+            "IH-PROMPT-CATALOG-SCOUT-TRIM-001"
+          ],
+          "harvestCount": 18
+        },
+        "contentHashes": {
+          "openActions": "c343062395db2c365bce95434980af276b90b783d5120adcef02983beda70a2d",
+          "blockers": "2966cddefd9fc6a48af1ae1ddef920f7cb5828a9f957b52329553f40afa8c7bc"
+        },
+        "solutionPackets": [
+          {
+            "solutionPacketId": "IH-Z-L-OFFLAN-PARTIAL-001-WESLEYWORK-ERROR86-PSDRIVE-FIX",
+            "title": "WESLEY_WORK Z/L off-LAN partial availability and ERROR_86 L-drive fix",
+            "ownerRepo": "CapitalGlass-Office-Admin",
+            "symptomSignatures": [
+              "wesley_work z l drive disconnected",
+              "wesley_work z drive disconnected",
+              "wesley_work l drive disconnected",
+              "wesley_work drives keep disconnecting",
+              "wesley_work mapped drives disconnected",
+              "wesley_work z drive l drive disconnected",
+              "wesley_work laptop off lan l drive",
+              "wesley_work tailscale l drive",
+              "wesley_work error 86 net use",
+              "wesley_work error_86 l drive",
+              "all systems go wesley_work z l mobility",
+              "all systems go wesley_work",
+              "wesley_work z l mobility",
+              "error_86",
+              "net use password syntax incorrect",
+              "new-psdrive fixed l drive",
+              "new-psdrive",
+              "off lan tailscale wesleydesk",
+              "ih-z-l-offlan-partial-001-wesleywork-error86-psdrive-fix",
+              "ih-z-l-offlan-partial-001",
+              "partial_drive_availability_offlan_tailscale_l",
+              "l authority unreachable",
+              "cmd /c net use",
+              "wesleywork drive mobility"
+            ],
+            "diagnosisSummary": "Laptop mobility: Z on LAN NAS; L on desk LAN or Tailscale wesleydesk. ERROR_86 from unsafe net use password interpolation — fix is New-PSDrive + PSCredential in OfficeLanDriveMapping.ps1.",
+            "notDefects": [
+              "AI Cache",
+              "Intelligence Hub",
+              "ryzen9desk fixed-desktop"
+            ],
+            "operatorPlaybook": [
+              "cd C:\\",
+              "Ensure-CgWesleyWorkDriveMounts.ps1 -Mode ForceRemap",
+              "sudo mount -t drvfs L: /mnt/l after Windows L healthy"
+            ],
+            "escalation": [
+              "wesleydesk:445 down → repair Tailscale or WESLEYDESK SMB",
+              "192.168.1.208:445 down → check NAS",
+              "indexes stale → run publication refresh (not consumer repo patches)"
+            ],
+            "firstReadPriority": "wesley_work_z_l_mobility_only",
+            "retrievalCodesWhenIndexHit": [
+              "INDEX_HIT_AI_CACHE",
+              "PUBLICATION_PASS"
+            ]
+          }
+        ],
+        "firstReadRouting": {
+          "wesleyWorkDriveMobility": {
+            "solutionPacketId": "IH-Z-L-OFFLAN-PARTIAL-001-WESLEYWORK-ERROR86-PSDRIVE-FIX",
+            "matchScope": "wesley_work_z_l_offlan_error86_only"
+          }
+        },
+        "contentHash": "baef7596b0d3d72a217047b0fc10fbc0366536c927bda6a36ea1866288412535",
+        "authorityLineage": {
+          "gitSha": "bda3c6163adc293b58e9a690266babef26d6c5bd",
+          "publishedAt": "2026-08-05T18:20:38.116Z",
+          "contentHash": "baef7596b0d3d72a217047b0fc10fbc0366536c927bda6a36ea1866288412535",
+          "freshnessVerdict": "CURRENT",
+          "layerAlignment": {
+            "verdict": "ALIGNED",
+            "lHubSha": "bda3c6163adc293b58e9a690266babef26d6c5bd",
+            "zHotCacheSha": "622d29896b549fdc051236db822ad92b7fe4ad01261e63366c8f8d1ef4c6fe6a",
+            "hotRoutingContentHash": "baef7596b0d3d72a217047b0fc10fbc0366536c927bda6a36ea1866288412535"
+          },
+          "derivativeAuthority": true,
+          "shipAuthorization": false
+        }
+      },
+      "sourceCommitSha": "bda3c6163adc293b58e9a690266babef26d6c5bd",
+      "contentHash": "baef7596b0d3d72a217047b0fc10fbc0366536c927bda6a36ea1866288412535",
+      "releaseId": "AI-CACHE-RELEASE-20260731-a7456ad58195",
+      "authorityLineage": {
+        "gitSha": "bda3c6163adc293b58e9a690266babef26d6c5bd",
+        "publishedAt": "2026-08-05T18:20:38.116Z",
+        "contentHash": "baef7596b0d3d72a217047b0fc10fbc0366536c927bda6a36ea1866288412535",
+        "freshnessVerdict": "CURRENT",
+        "layerAlignment": {
+          "verdict": "ALIGNED",
+          "lHubSha": "bda3c6163adc293b58e9a690266babef26d6c5bd",
+          "zHotCacheSha": "622d29896b549fdc051236db822ad92b7fe4ad01261e63366c8f8d1ef4c6fe6a",
+          "hotRoutingContentHash": "baef7596b0d3d72a217047b0fc10fbc0366536c927bda6a36ea1866288412535"
+        },
+        "derivativeAuthority": true,
+        "shipAuthorization": false
+      },
+      "bundleBytes": 15138
+    },
+    "promptCatalogHotCache": {
+      "ok": true,
+      "datasetId": "prompt-catalog",
+      "publicationGeneration": "20260805T182033Z-afbf9a54",
+      "generationDir": "/mnt/d/AI Cursur Cache/objects/prompt-catalog/generations/20260805T182033Z-afbf9a54",
+      "currentPointerPath": "/mnt/d/AI Cursur Cache/objects/prompt-catalog/current.json",
+      "checksumsPath": "/mnt/d/AI Cursur Cache/objects/prompt-catalog/generations/20260805T182033Z-afbf9a54/checksums.json",
+      "checksums": {
+        "full.json": "sha256:593987ff8e104dbcfb9ff74ee835b33a1cfa5aadae201498e4c073dbce1fd395",
+        "compact.json": "sha256:e64c7cb7ceb25a27a0a73ece678130ea6b179672994c72f5332779442de31728",
+        "by-machine.wesley_work.json": "sha256:15b7c3d212f904245f3018c4fcac3c590d075362ebd28f1d7fe58b6b36cab0c4",
+        "meta.json": "sha256:b0e763e5e3a8c4175d51e86f22edfc1619152e2733605f540f1b08a69b1932a8",
+        "checksums.json": "sha256:7c2d526dca20c5aad8c72c9d1e68dac0c6cd7b17319020c13fee4f8b87b2be62"
+      },
+      "pointer": {
+        "schemaVersion": "publication-generation-pointer-v1@1.0.0",
+        "datasetId": "prompt-catalog",
+        "publicationGeneration": "20260805T182033Z-afbf9a54",
+        "generationPath": "/mnt/d/AI Cursur Cache/objects/prompt-catalog/generations/20260805T182033Z-afbf9a54",
+        "publishedAt": "2026-08-05T18:20:33.273Z",
+        "machineRole": "wesley_work",
+        "checksumsPath": "/mnt/d/AI Cursur Cache/objects/prompt-catalog/generations/20260805T182033Z-afbf9a54/checksums.json",
+        "artifacts": {
+          "full.json": "generations/20260805T182033Z-afbf9a54/full.json",
+          "compact.json": "generations/20260805T182033Z-afbf9a54/compact.json",
+          "by-machine.wesley_work.json": "generations/20260805T182033Z-afbf9a54/by-machine.wesley_work.json"
+        }
+      },
+      "cas": {
+        "previousGeneration": "20260805T170552Z-02bfb1e0",
+        "newGeneration": "20260805T182033Z-afbf9a54"
+      }
+    },
+    "zAiCache": {
+      "ok": true
+    },
+    "hostFanout": {
+      "ok": true,
+      "code": "SYNC_HOSTS_DISABLED",
+      "hosts": []
+    },
+    "supabaseThreadAutopsy": {
+      "ok": false,
+      "code": "SUPABASE_PROJECTION_FAIL",
+      "error": "Command failed: node \"/home/wesle/repos/CG-AppBuilder-MCP/scripts/intelligence-hub/thread-autopsy/project-supabase.mjs\" --harvest-id=harvest-2026-08-05-chatgpt-protocol-refinement-v1 --apply --json\nSQL failed (label=thread-autopsy-harvest-2026-08-05-chatgpt-protocol-refinement-v1, code=1)\nstderr: npm notice run npx\nnpm notice run 'supabase' db query --linked --dns-resolver https --output-format json -f /home/wesle/repos/CG-AppBuilder-MCP/artifacts/agent-runs/platform-intelligence-graph-v1a/v1a2/.live-thread-autopsy-harvest-2026-08-05-chatgpt-protocol-refinement-v1.sql\nInitialising login role...\n\nstdout: {\"_tag\":\"Error\",\"error\":{\"code\":\"LegacyDbConfigLoginRoleStatusError\",\"message\":\"unexpected login role status 401: {\\\"message\\\":\\\"Unauthorized\\\"}\"}}\n\n"
+    },
+    "supabaseHarvestPrompts": {
+      "recordCount": 1,
+      "ok": true,
+      "verdict": "SUPABASE_PROMPT_SEED_PASS",
+      "stats": {
+        "upserted": 0,
+        "noop": 1,
+        "skipped": 0,
+        "rejected": 0,
+        "errors": []
+      },
+      "receiptIds": [
+        "d0970da906006800"
+      ],
+      "credentialSource": "cg-mcp/dev"
+    },
+    "promptHarvest": {
+      "reviewed": true,
+      "operatorApprovals": [],
+      "candidatesFound": 6,
+      "deduplicated": 0,
+      "approved": 0,
+      "rejected": 0,
+      "candidateOnly": 6,
+      "promptCatalogUpdated": false,
+      "executionPacketsUpdated": false,
+      "indexUpdated": false,
+      "supabaseSeeded": false,
+      "candidateIds": [
+        "prompt-candidate-3d2279c633df",
+        "prompt-candidate-a3e01a4ea582",
+        "prompt-candidate-15b8bb794f6e",
+        "prompt-candidate-378356e50e99",
+        "prompt-candidate-25876c23480a",
+        "prompt-candidate-90aa2bacfd8b"
+      ],
+      "approvedPromptIds": [],
+      "projectionReceiptIds": [],
+      "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+    }
+  },
+  "stages": [
+    {
+      "label": "sync-derived",
+      "ok": true
+    },
+    {
+      "label": "sync-z-harvest-mirror",
+      "ok": true,
+      "verdict": "Z_HARVEST_MIRROR_SYNC_PASS",
+      "zMounted": true
+    },
+    {
+      "label": "render-index",
+      "ok": true
+    },
+    {
+      "label": "duplication-preflight",
+      "ok": true,
+      "verdict": "PASS"
+    },
+    {
+      "label": "validate",
+      "ok": true
+    },
+    {
+      "label": "validate-autopsy",
+      "ok": true
+    },
+    {
+      "label": "test:harvest",
+      "ok": true
+    },
+    {
+      "label": "blind-retrieval",
+      "ok": true,
+      "verdict": "BLIND_RETRIEVAL_PASS"
+    },
+    {
+      "label": "hub-slices",
+      "ok": true,
+      "doNotAdvanceCount": 7,
+      "threadAutopsyIndex": "00-master-index/BY-KIND/thread-autopsy-index.json",
+      "promptHarvestIndex": "00-master-index/BY-KIND/prompt-harvest-index.json",
+      "promptHarvestRecordCount": 79,
+      "promptHarvestSkipped": false
+    },
+    {
+      "label": "ledger-sync",
+      "ok": true
+    },
+    {
+      "label": "prompt-catalog-hot-cache",
+      "ok": true,
+      "generation": "20260805T182033Z-afbf9a54"
+    },
+    {
+      "label": "hot-routing-index",
+      "ok": true
+    },
+    {
+      "label": "z-ai-cache-index",
+      "ok": true
+    },
+    {
+      "label": "thread-autopsy-supabase",
+      "ok": false,
+      "error": "Command failed: node \"/home/wesle/repos/CG-AppBuilder-MCP/scripts/intelligence-hub/thread-autopsy/project-supabase.mjs\" --harvest-id=harvest-2026-08-05-chatgpt-protocol-refinement-v1 --apply --json\nSQL failed (label=thread-autopsy-harvest-2026-08-05-chatgpt-protocol-refinement-v1, code=1)\nstderr: npm notice run npx\nnpm notice run 'supabase' db query --linked --dns-resolver https --output-format json -f /home/wesle/repos/CG-AppBuilder-MCP/artifacts/agent-runs/platform-intelligence-graph-v1a/v1a2/.live-thread-autopsy-harvest-2026-08-05-chatgpt-protocol-refinement-v1.sql\nInitialising login role...\n\nstdout: {\"_tag\":\"Error\",\"error\":{\"code\":\"LegacyDbConfigLoginRoleStatusError\",\"message\":\"unexpected login role status 401: {\\\"message\\\":\\\"Unauthorized\\\"}\"}}\n\n"
+    },
+    {
+      "label": "harvest-prompt-supabase",
+      "ok": true,
+      "verdict": "SUPABASE_PROMPT_SEED_PASS",
+      "recordCount": 1
+    }
+  ],
+  "contentHash": "dfcf027b2fa92214e030776720f77118f60330f666bb840cd41377ce92efd6c8"
+}
