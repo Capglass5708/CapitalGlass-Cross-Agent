@@ -323,7 +323,12 @@ writeJson("duplication-preflight-receipt.json", {
   checkedAt: AS_OF,
   registryConsulted: true,
   commandIndexConsulted: true,
-  hubSlicesConsulted: [PRIOR_HARVEST],
+    hubSlicesConsulted: [
+      "BY-KIND/active-work-blockers.json",
+      "BY-KIND/thread-autopsy-index.json",
+      "work-progress/harvest-packet-registry.json",
+      PRIOR_HARVEST,
+    ],
   retrievalResult: "INDEX_HIT_AI_CACHE",
   overlaps: [{ priorHarvestId: PRIOR_HARVEST, overlapKind: "extends", subject: "Z/L session recurrence" }],
 });
