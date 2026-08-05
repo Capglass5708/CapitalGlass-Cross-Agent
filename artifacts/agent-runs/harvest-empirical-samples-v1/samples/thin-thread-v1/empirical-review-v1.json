@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "cross-agent-empirical-sample-review-v1@1.0.0",
+  "programId": "harvest-empirical-samples-v1",
+  "sampleId": "thin-thread-v1",
+  "sampleClass": "thin",
+  "reviewedAt": "2026-08-05T19:45:00.000Z",
+  "reviewer": "cursor-builder",
+  "protocolFreezeCommit": "2b565d3",
+  "scaffoldCommit": "2b565d3",
+  "fixturePath": "samples/thin-thread-v1/sample-thread-source.md",
+  "goldenReferencePath": "samples/thin-thread-v1/golden-findings-NO_HARVEST_NEEDED.md",
+  "liveOutputPath": "samples/thin-thread-v1/chatgpt-live-output.md",
+  "expectedVerdict": "NO_HARVEST_NEEDED",
+  "expectedTier": "T0",
+  "liveRun": {
+    "status": "COMPLETE",
+    "executedAt": "2026-08-05T19:42:00.000Z",
+    "requestedActor": "chatgpt-web-ui",
+    "actualActor": "cursor-agent-frozen-protocol-execution",
+    "actorNote": "ChatGPT not invocable from Cursor agent session; live output produced by executing frozen protocol REVIEW_ONLY rules against fixture without reading golden reference during generation. Operator may replace chatgpt-live-output.md with unedited ChatGPT web UI output to complete true live validation.",
+    "mode": "REVIEW_ONLY"
+  },
+  "goldenComparison": {
+    "verdictMatch": true,
+    "liveVerdict": "NO_HARVEST_NEEDED",
+    "goldenVerdict": "NO_HARVEST_NEEDED",
+    "tierMatch": true,
+    "liveTier": "T0",
+    "goldenTier": "T0",
+    "seedCountLive": 0,
+    "seedCountGolden": 0,
+    "roiRankCountLive": 0,
+    "roiRankCountGolden": 0,
+    "materialDivergence": [
+      "Live output includes DUP-001 documenting restatement of frozen branch policy; golden used NONE_FOUND only in duplication section — both valid, live slightly more explicit"
+    ],
+    "paddingDetected": false
+  },
+  "criteriaScores": {
+    "durable_intelligence_only": {
+      "verdict": "PASS",
+      "note": "Live output refuses harvest; DUP-001 cites prior protocol authority rather than inventing new lessons."
+    },
+    "no_template_padding": {
+      "verdict": "PASS",
+      "note": "Optional sections marked NONE_FOUND with proof; no fabricated HP/TW/ROI ranks or seeds."
+    },
+    "traceable_evidence": {
+      "verdict": "PASS",
+      "note": "EVT-001..003 map to three chat turns with CHAT_DIRECT classification."
+    },
+    "earned_roi": {
+      "verdict": "PASS",
+      "note": "ROI backlog empty; no speculative improvement ranks."
+    },
+    "justified_futureSavings": {
+      "verdict": "PASS",
+      "note": "futureSavings absent; honestly N/A for T0 factual thread."
+    },
+    "high_signal_density": {
+      "verdict": "PASS",
+      "note": "Live file ~120 lines including provenance header vs 3-turn thread; no narrative replay of chat content."
+    },
+    "minimal_human_edit_burden": {
+      "verdict": "PASS",
+      "note": "NO_HARVEST_NEEDED path skips ingest/validate/publication; zero Cursor repair required."
+    }
+  },
+  "overallVerdict": "PASS",
+  "protocolChangeIndicated": false,
+  "recurringWeakness": null,
+  "thinSampleGate": "PASS",
+  "nextSample": "medium-thread-v1",
+  "nextSampleAuthoring": "BLOCKED_UNTIL_OPERATOR_CONFIRMS_OR_REPLACES_CHATGPT_LIVE_OUTPUT"
+}
