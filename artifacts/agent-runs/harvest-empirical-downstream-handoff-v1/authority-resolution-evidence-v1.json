@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "cross-agent-harvest-downstream-authority-resolution-v1@1.0.0",
+  "packageId": "harvest-empirical-downstream-handoff-v1",
+  "milestone": "AUTHORITY_RESOLVED_AND_HANDOFF_READY",
+  "resolvedAt": "2026-08-05T23:15:00.000Z",
+  "resolver": "cursor-builder",
+  "verificationMethod": "git-remote-confirm + contract-path-exists + source-inventory-sha256",
+  "repositoryAuthorities": {
+    "dataExtractionRepo": {
+      "github": "Capglass5708/Data-Extraction",
+      "defaultBranch": "main",
+      "resolvedAtCommit": "d69cb840c088c2b59ba303a02b0c02b2e1267b02",
+      "remoteUrl": "https://github.com/Capglass5708/Data-Extraction.git"
+    },
+    "masterGraphRepo": {
+      "github": "Capglass5708/CG-MASTER-GRAPH",
+      "defaultBranch": "main",
+      "resolvedAtCommit": "7efdff44b1f2401311c1046b42b144b7ca053c1f",
+      "remoteUrl": "https://github.com/Capglass5708/CG-MASTER-GRAPH.git"
+    },
+    "evidenceRepo": {
+      "github": "Capglass5708/CapitalGlass-Cross-Agent",
+      "branch": "chat-gpt-harvest",
+      "empiricalProgramPath": "artifacts/agent-runs/harvest-empirical-samples-v1"
+    }
+  },
+  "contracts": {
+    "extractionContract": {
+      "repo": "Capglass5708/Data-Extraction",
+      "path": "docs/platform/SUITE_ADVANCEMENT_GRAPH_LANE.md",
+      "entrypoint": "scripts/suite-advancement/ingest-advancement.mjs",
+      "envelopePointer": "contracts/master-graph/contribution-contract-pointer.json",
+      "orchestrationPointer": "CapitalGlass-Cross-Agent/docs/master-graph/CG-HARVEST-TO-GRAPH-HARVEST-LANE-v1.md"
+    },
+    "graphProjectionContract": {
+      "repo": "Capglass5708/CG-MASTER-GRAPH",
+      "path": "docs/CG-HARVEST-TO-GRAPH-CONTRACT-v1.md",
+      "schema": "schemas/graph-extraction.v1.schema.json",
+      "validateCommand": "npm run graph:validate-extraction -- <graph-extraction.json>"
+    }
+  },
+  "implementationDeferred": {
+    "dataExtraction": "NOT_STARTED",
+    "graphProjection": "NOT_STARTED",
+    "protocolEdit": "FROZEN",
+    "note": "Next package owns parser build, ingest runs, and graph projection only after this authority closure."
+  },
+  "sourceInventoryVerification": {
+    "artifactPath": "source-inventory-verification-v1.json",
+    "verdict": "PASS",
+    "artifactCount": 29,
+    "sampleCount": 5
+  },
+  "finalState": {
+    "empiricalProgram": "CLOSED",
+    "empiricalEvidence": "IMMUTABLE",
+    "protocol": "FROZEN",
+    "repositoryAuthorities": "RESOLVED",
+    "contracts": "PINNED",
+    "sourceInventory": "VERIFIED",
+    "dataExtraction": "NOT_STARTED",
+    "graphProjection": "NOT_STARTED",
+    "handoffPackage": "CLOSED_READY_FOR_IMPLEMENTATION"
+  }
+}

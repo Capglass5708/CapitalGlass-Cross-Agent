@@ -2,10 +2,12 @@
   "schemaVersion": "cross-agent-harvest-downstream-handoff-package-v1@1.0.0",
   "packageId": "harvest-empirical-downstream-handoff-v1",
   "openedAt": "2026-08-05T23:30:00.000Z",
-  "status": "OPEN",
+  "closedAt": "2026-08-05T23:50:00.000Z",
+  "status": "CLOSED_READY_FOR_IMPLEMENTATION",
+  "milestone": "AUTHORITY_RESOLVED_AND_HANDOFF_READY",
   "predecessorProgram": {
     "programId": "harvest-empirical-samples-v1",
-    "programStatus": "COMPLETE",
+    "programStatus": "CLOSED",
     "closureCommit": "3b36b32",
     "recurrenceArtifact": "artifacts/agent-runs/harvest-empirical-samples-v1/empirical-five-sample-recurrence-v1.json",
     "protocolAuthorityCommit": "1e87d6ab96ed35d3d117def99e1e0d670c028575",
@@ -14,57 +16,65 @@
   "closedEvidencePolicy": {
     "immutable": true,
     "rewriteForbidden": [
-      "samples/*/sample-thread-source.md",
-      "samples/*/golden-findings-*.md",
-      "samples/*/chatgpt-live-output.md",
-      "samples/*/empirical-review-v1.json",
-      "empirical-review-rubric-v1.json",
-      "empirical-five-sample-recurrence-v1.json",
+      "artifacts/agent-runs/harvest-empirical-samples-v1/samples/*/sample-thread-source.md",
+      "artifacts/agent-runs/harvest-empirical-samples-v1/samples/*/golden-findings-*.md",
+      "artifacts/agent-runs/harvest-empirical-samples-v1/samples/*/chatgpt-live-output.md",
+      "artifacts/agent-runs/harvest-empirical-samples-v1/samples/*/empirical-review-v1.json",
+      "artifacts/agent-runs/harvest-empirical-samples-v1/empirical-review-rubric-v1.json",
+      "artifacts/agent-runs/harvest-empirical-samples-v1/empirical-five-sample-recurrence-v1.json",
       "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md"
     ],
-    "note": "Empirical fixtures, live outputs, rubrics, reviews, routing metadata, and recurrence result are closed evidence. Downstream work reads them; it does not rewrite them."
+    "note": "Empirical fixtures, live outputs, rubrics, reviews, routing metadata, and recurrence result are closed evidence."
   },
   "downstreamAuthority": {
-    "handoffStatus": "HOLD_REPO_AUTHORITY_RESOLUTION",
+    "handoffStatus": "AUTHORITY_RESOLVED_AND_HANDOFF_READY",
     "implementationStatus": "NOT_STARTED",
-    "placeholdersToResolve": {
-      "dataExtractionRepo": "TO_BE_RESOLVED",
-      "masterGraphRepo": "TO_BE_RESOLVED",
-      "extractionContract": "TO_BE_RESOLVED",
-      "graphProjectionContract": "TO_BE_RESOLVED"
+    "dataExtractionStatus": "NOT_STARTED",
+    "graphProjectionStatus": "NOT_STARTED",
+    "repositoryAuthorities": {
+      "dataExtractionRepo": "Capglass5708/Data-Extraction",
+      "masterGraphRepo": "Capglass5708/CG-MASTER-GRAPH",
+      "dataExtractionResolvedAtCommit": "d69cb840c088c2b59ba303a02b0c02b2e1267b02",
+      "masterGraphResolvedAtCommit": "7efdff44b1f2401311c1046b42b144b7ca053c1f"
+    },
+    "contracts": {
+      "extractionContract": "docs/platform/SUITE_ADVANCEMENT_GRAPH_LANE.md",
+      "extractionContractRepo": "Capglass5708/Data-Extraction",
+      "graphProjectionContract": "docs/CG-HARVEST-TO-GRAPH-CONTRACT-v1.md",
+      "graphProjectionContractRepo": "Capglass5708/CG-MASTER-GRAPH"
     }
   },
-  "orderedWork": [
-    "Operator resolves GitHub repo identities and contract paths for Data Extraction and CG Master Graph",
-    "Replace TO_BE_RESOLVED placeholders in downstream handoff manifests",
-    "Data Extraction ingests immutable chatgpt-live-output.md artifacts from Cross-Agent (read-only)",
-    "Data Extraction parses, classifies, dedupes, and validates normalized records",
-    "Only review-approved eligible records are projected to CG Master Graph",
-    "No direct raw-markdown graph:collect; no parallel contribution envelope without approved ADR"
-  ],
-  "forbiddenUntilAuthorityResolved": [
-    "Rewriting closed empirical evidence",
-    "Protocol text edit (no recurrence justification from empirical program)",
-    "Master Graph projection from raw markdown",
-    "Claiming OPERATIONAL or downstream-unblocked without operator resolution"
+  "authorityResolutionEvidence": "authority-resolution-evidence-v1.json",
+  "sourceInventoryVerification": {
+    "artifactPath": "source-inventory-verification-v1.json",
+    "verdict": "PASS",
+    "artifactCount": 29,
+    "sampleCount": 5
+  },
+  "implementationPackageDeferred": [
+    "Data Extraction parser build and ingest execution",
+    "Master Graph projection wiring",
+    "Protocol text edits",
+    "New schemas or parallel envelopes",
+    "Unrelated infrastructure drift resolution"
   ],
   "inputArtifacts": {
     "programManifest": "artifacts/agent-runs/harvest-empirical-samples-v1/empirical-sample-program-v1.json",
     "downstreamHandoff": "artifacts/agent-runs/harvest-empirical-samples-v1/empirical-downstream-handoff-v1.json",
     "recurrenceReview": "artifacts/agent-runs/harvest-empirical-samples-v1/empirical-five-sample-recurrence-v1.json",
     "sampleRoutingMetadata": [
-      "samples/thin-thread-v1/sample-routing-metadata-v1.json",
-      "samples/medium-thread-v1/sample-routing-metadata-v1.json",
-      "samples/architectural-thread-v1/sample-routing-metadata-v1.json",
-      "samples/debugging-thread-v1/sample-routing-metadata-v1.json",
-      "samples/planning-thread-v1/sample-routing-metadata-v1.json"
+      "artifacts/agent-runs/harvest-empirical-samples-v1/samples/thin-thread-v1/sample-routing-metadata-v1.json",
+      "artifacts/agent-runs/harvest-empirical-samples-v1/samples/medium-thread-v1/sample-routing-metadata-v1.json",
+      "artifacts/agent-runs/harvest-empirical-samples-v1/samples/architectural-thread-v1/sample-routing-metadata-v1.json",
+      "artifacts/agent-runs/harvest-empirical-samples-v1/samples/debugging-thread-v1/sample-routing-metadata-v1.json",
+      "artifacts/agent-runs/harvest-empirical-samples-v1/samples/planning-thread-v1/sample-routing-metadata-v1.json"
     ],
     "immutableLiveOutputs": [
-      "samples/thin-thread-v1/chatgpt-live-output.md",
-      "samples/medium-thread-v1/chatgpt-live-output.md",
-      "samples/architectural-thread-v1/chatgpt-live-output.md",
-      "samples/debugging-thread-v1/chatgpt-live-output.md",
-      "samples/planning-thread-v1/chatgpt-live-output.md"
+      "artifacts/agent-runs/harvest-empirical-samples-v1/samples/thin-thread-v1/chatgpt-live-output.md",
+      "artifacts/agent-runs/harvest-empirical-samples-v1/samples/medium-thread-v1/chatgpt-live-output.md",
+      "artifacts/agent-runs/harvest-empirical-samples-v1/samples/architectural-thread-v1/chatgpt-live-output.md",
+      "artifacts/agent-runs/harvest-empirical-samples-v1/samples/debugging-thread-v1/chatgpt-live-output.md",
+      "artifacts/agent-runs/harvest-empirical-samples-v1/samples/planning-thread-v1/chatgpt-live-output.md"
     ]
   },
   "graphProjectionGate": {
@@ -72,5 +82,16 @@
     "eligibleSampleFindingCandidates": 5,
     "eligibleSamples": ["medium-thread-v1", "architectural-thread-v1", "debugging-thread-v1", "planning-thread-v1"],
     "holdSamples": ["thin-thread-v1"]
+  },
+  "finalState": {
+    "empiricalProgram": "CLOSED",
+    "empiricalEvidence": "IMMUTABLE",
+    "protocol": "FROZEN",
+    "repositoryAuthorities": "RESOLVED",
+    "contracts": "PINNED",
+    "sourceInventory": "VERIFIED",
+    "dataExtraction": "NOT_STARTED",
+    "graphProjection": "NOT_STARTED",
+    "handoffPackage": "CLOSED_READY_FOR_IMPLEMENTATION"
   }
 }

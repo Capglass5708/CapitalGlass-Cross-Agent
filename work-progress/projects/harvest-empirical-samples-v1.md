@@ -29,7 +29,7 @@ ChatGPT empirical sample
   → retrieval / reuse / protocol-learning signals
 ```
 
-**Handoff status:** `HOLD_REPO_AUTHORITY_RESOLUTION` — repo IDs and contract paths in manifest are `TO_BE_RESOLVED` until operator confirms GitHub authorities.
+**Handoff status:** `AUTHORITY_RESOLVED_AND_HANDOFF_READY` — successor `harvest-empirical-downstream-handoff-v1` closed at milestone `AUTHORITY_RESOLVED_AND_HANDOFF_READY`. Implementation deferred to next package.
 
 ## Five-sample recurrence verdict
 
