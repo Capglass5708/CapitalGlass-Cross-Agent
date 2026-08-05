@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "cross-agent-thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-05-hot-cache-wave-a-harvest-git-closeout-v1",
+  "parentHarvestId": "harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1",
+  "recordedAt": "2026-08-05T02:45:05.546Z",
+  "events": [
+    {
+      "eventId": "EVT-501",
+      "phase": "harvest-validate",
+      "summary": "Primary harvest validate/sync/blind-retrieval PASS after registry fixes",
+      "evidenceRefs": [
+        "artifacts/agent-runs/harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1/validation-result.json",
+        "artifacts/agent-runs/harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1/blind-retrieval-report.json"
+      ],
+      "outcome": "PASS"
+    },
+    {
+      "eventId": "EVT-502",
+      "phase": "git-commit",
+      "summary": "Committed harvest bundle c38a7b9 (scoped staging, unrelated drift left unstaged)",
+      "evidenceRefs": [
+        "c38a7b9745014b49c1ceb4c3ca999f0e49f79b64"
+      ],
+      "outcome": "PASS"
+    },
+    {
+      "eventId": "EVT-503",
+      "phase": "git-push",
+      "summary": "Pushed c38a7b9 to origin/main; HEAD now ahead to 402352f",
+      "evidenceRefs": [
+        "c38a7b9745014b49c1ceb4c3ca999f0e49f79b64",
+        "402352f4bb056e3f30115f7eb7d40e13000cafef"
+      ],
+      "outcome": "PASS"
+    },
+    {
+      "eventId": "EVT-504",
+      "phase": "operator-decision",
+      "summary": "Hub seeding explicitly deferred as separate non-blocking publication wave",
+      "evidenceRefs": [
+        "artifacts/agent-runs/harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1/harvest-manifest-v1.json#projection"
+      ],
+      "outcome": "DOCUMENTED"
+    },
+    {
+      "eventId": "EVT-505",
+      "phase": "thread-closeout",
+      "summary": "Thread closed after GIT_PUSH; HARVEST_BUNDLE COMMITTED",
+      "evidenceRefs": [
+        "EVT-502",
+        "EVT-503"
+      ],
+      "outcome": "CLOSED"
+    }
+  ]
+}

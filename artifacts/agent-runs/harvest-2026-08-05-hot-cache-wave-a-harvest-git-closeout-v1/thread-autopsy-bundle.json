@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-05-hot-cache-wave-a-harvest-git-closeout-v1",
+  "tier": "T1",
+  "wasteLedgerStatus": "NONE_FOUND",
+  "noneFoundEvidence": "Supplemental git-closeout only; waste captured in parent harvest harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1",
+  "waste": [],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-501",
+      "trigger": "User re-invoked full protocol after primary harvest already complete",
+      "operatorCost": "low",
+      "systemFix": "Return supplemental T1 or status receipt pointing at existing harvest",
+      "evidenceRefs": ["EVT-505"],
+      "linkedWasteIds": []
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-501",
+      "situation": "Git closeout after primary harvest",
+      "actualExecution": {
+        "steps": [
+          "Validate primary harvest",
+          "Scoped git add",
+          "Commit c38a7b9",
+          "Push origin/main"
+        ],
+        "outcome": "PASS",
+        "evidenceRefs": ["c38a7b9"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Same — git and hub publication as separate waves"
+        ],
+        "outcome": "PASS",
+        "requiredPreflight": ["harvest-packet-registry duplication check"]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-501",
+      "subject": "Full Wave A thread harvest",
+      "whyRepeated": "Second protocol run after HARVEST_COMPLETE primary",
+      "firstKnownInstance": "harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1",
+      "priorIndexSlice": "work-progress/harvest-packet-registry.json",
+      "whyMissed": "Operator re-ran protocol for git-push confirmation",
+      "avoidableBy": "Supplemental harvest or status receipt only",
+      "recommendedAction": "index"
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "commandIndexConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers",
+      "mcp-servers",
+      "host-authority"
+    ],
+    "checkedAt": "2026-08-05T02:45:00.000Z"
+  },
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Harvest status receipt when primary already exists",
+      "whyItPays": "Avoids full re-harvest on git-push-only closeout",
+      "effort": "low",
+      "savedWasteIds": [],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 2,
+      "title": "git-before-hub closeout state machine in protocol",
+      "whyItPays": "Clear HARVEST_BUNDLE / GIT_PUSH / HUB_SEEDING lanes",
+      "effort": "low",
+      "savedWasteIds": [],
+      "seedAs": "rule"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "FULLY_SEEDED_HUB",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "harvest:publish-hub-seed + index:freshness-gate PASS"
+      ],
+      "lastKnownEvidence": [
+        "harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1 projection.hubPublishStatus not-run",
+        "c38a7b9 git push only"
+      ]
+    }
+  ]
+}
