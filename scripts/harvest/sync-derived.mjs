@@ -7,6 +7,9 @@ import path from "node:path";
 import { execSync } from "node:child_process";
 import { hashCanonicalJson, hashFileContent } from "./lib/hash.mjs";
 import { REPO_ROOT, harvestRunDir, manifestPath, HARVEST_ID } from "./lib/paths.mjs";
+import { runPromptHarvestPipeline } from "./lib/prompt-extraction-lib.mjs";
+import { syncZHarvestMirror } from "./lib/z-harvest-mirror-lib.mjs";
+import { resolveAppBuilderRoot } from "../index/lib/resolve-repo-roots.mjs";
 
 const harvestId = process.argv[2] || HARVEST_ID;
 const runDir = harvestRunDir(harvestId);
@@ -70,9 +73,9 @@ function buildPacketIndex(manifest) {
   };
 }
 
-function buildReceipt(manifest, harvestManifestHash, ledgerBefore, ledgerAfter) {
+function buildReceipt(manifest, harvestManifestHash, ledgerBefore, ledgerAfter, promptHarvest = null) {
   return {
-    schemaVersion: "cross-agent-harvest-receipt-v1@1.1.0",
+    schemaVersion: "cross-agent-harvest-receipt-v1@1.2.0",
     workPackageId: manifest.harvestId,
     missionClass: manifest.missionClass,
     generatedAt: manifest.updatedAt,
@@ -107,6 +110,22 @@ function buildReceipt(manifest, harvestManifestHash, ledgerBefore, ledgerAfter) 
     coveragePath: `artifacts/agent-runs/${manifest.harvestId}/coverage.json`,
     bootstrapNote:
       "RYZEN9DESK runner bootstrap is a separate CG-AppBuilder-MCP mission; harvest records coordination state only.",
+    promptHarvest: promptHarvest ?? {
+      reviewed: false,
+      candidatesFound: 0,
+      deduplicated: 0,
+      approved: 0,
+      rejected: 0,
+      candidateOnly: 0,
+      promptCatalogUpdated: false,
+      executionPacketsUpdated: false,
+      indexUpdated: false,
+      supabaseSeeded: false,
+      candidateIds: [],
+      approvedPromptIds: [],
+      projectionReceiptIds: [],
+      verdict: "PROMPT_HARVEST_NO_CANDIDATES",
+    },
   };
 }
 
@@ -238,13 +257,43 @@ function main() {
 
   const harvestManifestHash = hashCanonicalJson(manifest);
 
+  let promptHarvestResult = null;
+  try {
+    const appBuilderRoot = resolveAppBuilderRoot(REPO_ROOT);
+    promptHarvestResult = runPromptHarvestPipeline({
+      repoRoot: REPO_ROOT,
+      harvestId: manifest.harvestId,
+      appBuilderRoot,
+      skipSupabase: true,
+    });
+    manifest.promptHarvest = promptHarvestResult.promptHarvest;
+  } catch (err) {
+    manifest.promptHarvest = {
+      reviewed: true,
+      candidatesFound: 0,
+      deduplicated: 0,
+      approved: 0,
+      rejected: 0,
+      candidateOnly: 0,
+      promptCatalogUpdated: false,
+      executionPacketsUpdated: false,
+      indexUpdated: false,
+      supabaseSeeded: false,
+      candidateIds: [],
+      approvedPromptIds: [],
+      projectionReceiptIds: [],
+      verdict: "PROMPT_HARVEST_FAILED",
+      error: err instanceof Error ? err.message : String(err),
+    };
+  }
+
   for (const packet of manifest.packets) {
     delete packet.contentHash;
   }
 
   writeJson(manifestFile, manifest);
   writeJson(path.join(runDir, "packet-index.json"), buildPacketIndex(manifest));
-  writeJson(path.join(runDir, "receipt.json"), buildReceipt(manifest, harvestManifestHash, ledgerBeforeHash, ledgerAfter));
+  writeJson(path.join(runDir, "receipt.json"), buildReceipt(manifest, harvestManifestHash, ledgerBeforeHash, ledgerAfter, manifest.promptHarvest));
   fs.writeFileSync(path.join(runDir, "HARVEST_SUMMARY.md"), buildSummary(manifest, harvestManifestHash), "utf8");
   writeJson(path.join(runDir, "coverage.json"), computeCoverage(manifest, compactDir));
 
@@ -262,6 +311,16 @@ function main() {
   } catch (err) {
     console.error("sync-derived: graph extraction build/validate failed");
     throw err;
+  }
+
+  try {
+    const gitHead = execSync("git rev-parse HEAD", { cwd: REPO_ROOT, encoding: "utf8" }).trim();
+    const zMirror = syncZHarvestMirror({ repoRoot: REPO_ROOT, sourceCommitSha: gitHead });
+    console.log(
+      `sync-derived: z-mirror ${zMirror.receipt.verdict} zMounted=${zMirror.zMounted} updated=${zMirror.receipt.updatedCount}`,
+    );
+  } catch (err) {
+    console.warn(`sync-derived: z-mirror skipped (${err instanceof Error ? err.message : String(err)})`);
   }
 
   console.log(`sync-derived: OK harvestManifestHash=${harvestManifestHash}`);
