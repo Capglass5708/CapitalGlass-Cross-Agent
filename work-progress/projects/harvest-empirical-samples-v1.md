@@ -67,7 +67,7 @@ Node kinds must remain distinct: `sampleFinding`, `recurringWeakness`, `protocol
 | 1 | thin | `thin-thread-v1` | COMPLETE | `NO_HARVEST_NEEDED` | hold |
 | 2 | medium | `medium-thread-v1` | COMPLETE | `DRAFT_READY_FOR_CURSOR_VALIDATION` | eligible |
 | 3 | architectural | `architectural-thread-v1` | COMPLETE | `DRAFT_READY_FOR_CURSOR_VALIDATION` | eligible |
-| 4 | debugging | `debugging-thread-v1` | PENDING | — | — |
+| 4 | debugging | `debugging-thread-v1` | FIXTURE_READY | — | — |
 | 5 | planning | `planning-thread-v1` | PENDING | — | — |
 
 ## Artifacts
@@ -108,7 +108,13 @@ Node kinds must remain distinct: `sampleFinding`, `recurringWeakness`, `protocol
 - Do not edit `harvest/protocol/*` until all five samples reviewed and graph documents recurring weakness.
 - Supabase 401 remains separate work package.
 - August 3 harvest drift remains out of scope.
-- Medium sample complete; architectural fixture authorized.
+- Architectural sample complete; debugging fixture authorized.
+
+## Debugging sample #4 (fixture only)
+
+**Fixture:** localized `harvest:validate` EVT classification failure — reject terminal log-dump as harvest; extract one debugging heuristic (7 turns).  
+**Golden reference:** bounds-based `golden-findings-DRAFT_READY.md`; expected tier T2 is hypothesis only.  
+**Live output / review / routing:** absent until live run commits.
 
 ## Architectural sample #3 (fixture only)
 
