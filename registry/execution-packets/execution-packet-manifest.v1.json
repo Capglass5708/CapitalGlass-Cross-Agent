@@ -1,0 +1,104 @@
+{
+  "schemaVersion": "execution-packet-manifest-v1@1.0.0",
+  "workPackageId": "supabase-hot-cache-execution-packets-v1",
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "contentHash": null,
+  "basePackets": [
+    {
+      "packetId": "mcp-preflight-base-v1",
+      "version": "1.0.0",
+      "queryClass": "mcp-preflight",
+      "promptIds": ["role:builder"],
+      "commandIds": [
+        "agent:preflight:app-builder-mcp",
+        "get_platform_contract",
+        "knowledge_summary"
+      ],
+      "guardrailIds": [
+        "cache-is-advisory",
+        "fail-closed",
+        "mcp-preflight-mandatory"
+      ],
+      "stopConditions": ["preflight verdict recorded"],
+      "expectedOutputs": ["preflightResult", "preflightArtifact", "verdict"],
+      "dependsOnDatasets": ["command-estate", "authority-estate"],
+      "repairPlaybookRefs": [],
+      "routerMinScore": 0.65,
+      "injectionBudgetBytes": 10240,
+      "prefetchOnMaterialSession": true,
+      "tierViews": {
+        "scout": {
+          "include": ["blockers", "openActions", "generationSha", "guardrailIds"],
+          "maxBytes": 2048
+        },
+        "builder": {
+          "include": ["commandIds", "promptIds", "guardrailIds", "expectedOutputs", "stopConditions"],
+          "maxBytes": 8192
+        }
+      }
+    }
+  ],
+  "packets": [
+    {
+      "packetId": "mcp-preflight-v1",
+      "extends": "mcp-preflight-base-v1",
+      "version": "1.0.0",
+      "queryClass": "mcp-preflight"
+    },
+    {
+      "packetId": "closeout-ship-v1",
+      "extends": "mcp-preflight-base-v1",
+      "version": "1.0.0",
+      "queryClass": "closeout-ship",
+      "promptIds": ["recipe:closeout-gate-v1"],
+      "commandIds": [
+        "closeout:gate",
+        "closeout:explain",
+        "closeout:sync-evidence"
+      ],
+      "guardrailIds": ["preserve-unrelated-drift", "closeout-efficiency-layer"],
+      "stopConditions": ["verdict emitted", "blocker classified"],
+      "expectedOutputs": ["verdict", "receiptPath", "gatesRun"],
+      "dependsOnDatasets": ["command-estate", "active-ledger", "receipt-registry"],
+      "repairPlaybookRefs": ["fi:closeout-gate-failure"]
+    },
+    {
+      "packetId": "deploy-gate-v1",
+      "extends": "mcp-preflight-base-v1",
+      "version": "1.0.0",
+      "queryClass": "deploy-gate",
+      "promptIds": ["recipe:deploy-readiness-v1"],
+      "commandIds": [
+        "deploy:gate",
+        "contract:document-layer",
+        "mcp:document-contract-check"
+      ],
+      "expectedOutputs": ["deployVerdict", "contractCheckResults"],
+      "dependsOnDatasets": ["command-estate", "authority-estate", "receipt-registry"]
+    },
+    {
+      "packetId": "harvest-record-v1",
+      "extends": "mcp-preflight-base-v1",
+      "version": "1.0.0",
+      "queryClass": "harvest-record",
+      "commandIds": [
+        "auto:v3:session-closeout",
+        "harvest:closeout"
+      ],
+      "expectedOutputs": ["session-closeout-v3.2.json", "harvest-manifest-v1.json"],
+      "dependsOnDatasets": ["active-ledger", "receipt-registry"]
+    },
+    {
+      "packetId": "index-publication-v1",
+      "extends": "mcp-preflight-base-v1",
+      "version": "1.0.0",
+      "queryClass": "publication",
+      "commandIds": [
+        "intelligence-hub:publish-hot-routing-index",
+        "hot-cache:publish-l-by-kind"
+      ],
+      "expectedOutputs": ["publicationGeneration", "contentHash"],
+      "dependsOnDatasets": ["active-ledger", "intelligence-hub-index"]
+    }
+  ]
+}

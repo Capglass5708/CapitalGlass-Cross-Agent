@@ -162,6 +162,24 @@
         "authority-estate"
       ],
       "missOk": true
+    },
+    {
+      "datasetId": "execution-packets",
+      "manifestPath": "registry/execution-packets/execution-packet-manifest.v1.json",
+      "freshnessClass": "authority-registry",
+      "defaultTtlSeconds": 86400,
+      "dependsOnDatasets": ["command-estate"],
+      "missOk": true,
+      "lazyCompileOnMiss": true
+    },
+    {
+      "datasetId": "prompt-catalog",
+      "manifestPath": "registry/prompt-catalog/prompt-catalog-manifest.v1.json",
+      "freshnessClass": "authority-registry",
+      "defaultTtlSeconds": 86400,
+      "dependsOnDatasets": [],
+      "missOk": true,
+      "lazyCompileOnMiss": true
     }
   ]
 }
