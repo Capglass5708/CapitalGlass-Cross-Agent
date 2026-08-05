@@ -7,12 +7,12 @@
     "registryConsulted": true,
     "commandIndexConsulted": true,
     "hubSlicesConsulted": [
-      "BY-KIND/thread-autopsy-index.json",
-      "work-progress/harvest-packet-registry.json",
-      "work-progress/command-index.json"
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "work-progress/harvest-packet-registry.json"
     ],
-    "checkedAt": "2026-08-04T18:30:00.000Z",
-    "preflightReceiptHash": "eef66c043233af47181c367b360f6ab81641d66cda1b741155c809d26778af17"
+    "checkedAt": "2026-08-04T18:33:10.015Z",
+    "preflightReceiptHash": "87cd14465f857c795d4e45070f3256b792d1a2ace0286fb76eea0ff6ef3a43a9"
   },
   "waste": [
     {
@@ -166,20 +166,7 @@
       "whyItWasWrong": "Removed formalM2Pass, PR #92, prod SHA, buildId from canonical receipt",
       "correctFirstMove": "Merge proof output into latestProofRun; preserve governance from 4e741bb",
       "preventiveControl": "IH-M2-RECEIPT-GOVERNANCE-SPLIT-001",
-      "executionDeltaId": "ED-301",
-      "actualExecution": {
-        "steps": [
-          "9b5a5dc replaced entire receipt"
-        ],
-        "outcome": "Governance drift"
-      },
-      "optimalExecution": {
-        "steps": [
-          "Read 4e741bb receipt",
-          "Append latestProofRun"
-        ],
-        "outcome": "No reconciliation needed"
-      }
+      "executionDeltaId": "ED-301"
     }
   ],
   "duplicateWork": [
@@ -191,7 +178,7 @@
       "whyRepeated": "User re-requested reconciliation in follow-up turn",
       "whyMissed": "Agent did not verify HEAD state before starting",
       "avoidableBy": "git show HEAD:artifacts/.../closeout-receipt.json | jq .formalM2Pass",
-      "recommendedAction": "Confirm reconciledAt present; skip if already done"
+      "recommendedAction": "index"
     }
   ],
   "roiBacklog": [
@@ -200,7 +187,7 @@
       "title": "Receipt governance split (formalProofRun + latestProofRun)",
       "whyItPays": "Prevents formalM2Pass loss on proof re-runs",
       "effort": "low",
-      "seedAs": "protocol_upgrade",
+      "seedAs": "runbook",
       "savedWasteIds": [
         "TW-301"
       ],
@@ -222,7 +209,7 @@
       "title": "Document Intake drop-target operator card",
       "whyItPays": "Stops .ico vs Incoming folder confusion",
       "effort": "low",
-      "seedAs": "seed",
+      "seedAs": "owner-artifact",
       "savedWasteIds": [
         "TW-304"
       ],
@@ -243,101 +230,23 @@
   "doNotAdvanceMap": [
     {
       "awardOrVerdict": "M2 L_DROP_TO_REVIEW_QUEUE_PROOF",
-      "currentStatus": "PASS",
-      "doNotClaimUntil": [],
+      "currentStatus": "CLOSED",
+      "doNotClaimUntil": [
+        "Milestone formally closed — do not reopen without operator review"
+      ],
       "lastKnownEvidence": [
-        "formalM2Pass: true @ bf98b4a",
-        "latestProofRun stagingId d844b776 35 checks"
+        "formalM2Pass: true @ bf98b4a"
       ]
     },
     {
       "awardOrVerdict": "M3 L_DROP_TO_FILED_DOCUMENT_PROOF",
-      "currentStatus": "NOT_STARTED",
+      "currentStatus": "OPEN",
       "doNotClaimUntil": [
-        "Explicit operator authorization"
+        "Explicit operator authorization required"
       ],
       "lastKnownEvidence": [
-        "governance.m3Status in closeout-receipt.json"
+        "closeout-receipt.json governance.m3Status"
       ]
     }
-  ],
-  "packetKinds": {
-    "decision": [
-      {
-        "id": "DEC-301",
-        "decision": "M2 PASS formal attestation stands; latest proof is supporting evidence only",
-        "alternativesRejected": [
-          "Replace formal closeout with latest proof run only"
-        ],
-        "evidenceRefs": [
-          "bf98b4a",
-          "4e741bb"
-        ]
-      }
-    ],
-    "blocker": [
-      {
-        "id": "BLK-301",
-        "blockerId": "M3_NOT_AUTHORIZED",
-        "status": "OPEN",
-        "proofCommandId": "read-closeout-receipt-m3Status",
-        "evidenceRefs": [
-          "closeout-receipt.json#governance.m3Status"
-        ]
-      }
-    ],
-    "mistake": [
-      {
-        "id": "MST-301",
-        "wrongMoveId": "WM-301",
-        "actualExecution": "9b5a5dc overwrote receipt",
-        "optimalExecution": "Append latestProofRun",
-        "preventiveControl": "IH-M2-RECEIPT-GOVERNANCE-SPLIT-001"
-      }
-    ],
-    "repeated_work": [
-      {
-        "id": "RPW-301",
-        "duplicateId": "DW-301",
-        "firstKnownInstance": "bf98b4a reconciliation",
-        "priorIndexSlice": "Documents closeout-receipt.json",
-        "whyMissed": "HEAD not checked before re-run"
-      }
-    ],
-    "faster_path": [
-      {
-        "id": "FP-301",
-        "situation": "Register 502 on Plans drop",
-        "whatHappened": "Multi-wave diagnosis",
-        "rightFirstMove": "Worker health + register probe with Doppler token",
-        "requiredGuard": "Check received_at NOT NULL schema"
-      }
-    ],
-    "command": [
-      {
-        "id": "CMD-301",
-        "command": "npm run proof:m2-l-drop-review-queue:prd",
-        "host": "WSL2/CG-WESLEYDESK-01",
-        "provesGate": "M2 repeat proof",
-        "expectedPassSignal": "verdict PASS + latestProofRun 35 checks"
-      }
-    ],
-    "evidence": [
-      {
-        "id": "EV-301",
-        "type": "receipt",
-        "pathOrSha": "CapitalGlass-Documents/artifacts/agent-runs/l-drop-to-review-queue-proof-v1/closeout-receipt.json",
-        "provesWhat": "M2 PASS formal + latest proof"
-      }
-    ],
-    "protocol_upgrade": [
-      {
-        "id": "PU-301",
-        "seedAs": "IH-M2-RECEIPT-GOVERNANCE-SPLIT-001",
-        "ownerRepo": "CapitalGlass-Documents",
-        "promotionClass": "POLICY_GATED",
-        "futureAgentInstructions": "Never overwrite formalM2Pass block; append latestProofRun"
-      }
-    ]
-  }
+  ]
 }

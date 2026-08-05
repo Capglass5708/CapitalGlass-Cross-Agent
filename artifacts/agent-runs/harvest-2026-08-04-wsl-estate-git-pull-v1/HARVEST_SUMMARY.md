@@ -1,6 +1,6 @@
 # Harvest summary — derived view
 
-**Authority:** `harvest-manifest-v1.json` (`0cd6dbbb954e…`)
+**Authority:** `harvest-manifest-v1.json` (`985b710e674a…`)
 **Work package:** `harvest-2026-08-04-wsl-estate-git-pull-v1`
 **Mission class:** `chat-thread-closeout-autopsy-harvest-v1`
 **Verdict:** `HARVEST_COMPLETE`
@@ -27,5 +27,5 @@
 
 ## Projection sync
 
-Status: `not-run` (hub: `not-run`)
+Status: `synced` (hub: `published`)
 
