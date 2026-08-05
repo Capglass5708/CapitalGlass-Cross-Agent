@@ -10,11 +10,12 @@
 **Cycle taxonomy:** [advancement-cycle-taxonomy-v1.md](./advancement-cycle-taxonomy-v1.md)  
 **Findings template:** [chatgpt-system-advancement-findings-template.md](./chatgpt-system-advancement-findings-template.md)  
 **Authority repo:** CapitalGlass-Cross-Agent  
-**Lane:** `CHAT_CONTEXT_ONLY` — visible conversation + attachments only
+**Lane:** `CHAT_CONTEXT_ONLY` — visible conversation + attachments only  
+**Lane alias:** `ADVANCEMENT_SYNTHESIS` (same lane; use either label in ChatGPT opener)
 
 ---
 
-## Operator quick start (Pilot A — advancement harvest)
+## Operator quick start (advancement harvest)
 
 | Field | Value |
 | --- | --- |
@@ -31,6 +32,7 @@
 3. Declare `DRAFT_FILE` in your first sentence.
 4. Produce `system-advancement-findings-source.md` with **SYNTHESIZED** and **INVENTED** `IMP-###` / `ADV-###` (not summary-only).
 5. Push to `chat-gpt-harvest` per § ChatGPT push instructions below.
+6. **Do not** run Cursor ingest, L: move verification, or Data-Extraction — Git push + SHA report only.
 
 **One-line trigger**
 
@@ -69,16 +71,61 @@ New work supplies the next generation of evidence.
 
 Hub records must tag `intelligenceKind`. `ADV-###` provenance prevents invented ideas being mistaken for observed facts or shipped features.
 
+### Required separation from OBSERVED lane
+
+| Lane | Protocol | Output | Content |
+| --- | --- | --- | --- |
+| **OBSERVED** | [chat-thread-closeout-autopsy-harvest-chatgpt-v1.md](./chat-thread-closeout-autopsy-harvest-chatgpt-v1.md) | `chatgpt-findings-source.md` | What happened, failed, passed, was learned |
+| **ADVANCEMENT** | This file | `system-advancement-findings-source.md` | New capabilities, processes, automation, architecture, products |
+
+**Governing rule:** Observed facts may support an advancement, but an advancement must **never** be represented as already implemented or operational.
+
+Every advancement candidate must include an **advancement category** (orthogonal to SYNTHESIZED/INVENTED):
+
+`CONCEPT` | `ARCHITECTURE_CANDIDATE` | `AUTOMATION_CANDIDATE` | `PRODUCT_CANDIDATE` | `PROTOCOL_UPGRADE` | `PLATFORM_CAPABILITY` | `EXPERIMENT_CANDIDATE`
+
+ChatGPT may only set `status: CANDIDATE`. Cursor and the operator control all later lifecycle states.
+
+---
+
+## Tiered closeout (when to run this protocol)
+
+See OBSERVED protocol § Tiered closeout classifier. Run **this file** only for **T3** threads (or advancement-only when no OBSERVED autopsy is needed and operator approves).
+
+| Tier | ADVANCEMENT? |
+| --- | --- |
+| T0–T1 | No |
+| T2 | OBSERVED only — use sibling autopsy protocol |
+| T3 | Yes — `system-advancement-findings-source.md` alongside `chatgpt-findings-source.md` in the same `harvest-YYYY-MM-DD-<slug>-v1/` directory |
+
+---
+
+## ChatGPT → Git → L: pipeline (automatic after push)
+
+Same estate pipeline as OBSERVED autopsy. ChatGPT **only** pushes to `chat-gpt-harvest`.
+
+```text
+ChatGPT DRAFT_FILE
+  → push system-advancement-findings-source.md to chat-gpt-harvest
+  → GitHub Actions: chatgpt-harvest-move-to-l.yml
+  → L: 02-catalog/chatgpt-draft-staging/chat-gpt-harvest/<harvest-id>/
+  → (later) Data-Extraction advancement:ingest — Phase 2; not ChatGPT
+  → Cursor harvest:ingest-chatgpt-advancement (when shipped) + novelty/duplication checks
+```
+
+**Workflow:** `.github/workflows/chatgpt-harvest-move-to-l.yml` — triggers on `**/system-advancement-findings-source.md` pushes.  
+**Future graph lane:** `Data-Extraction/docs/platform/SUITE_ADVANCEMENT_GRAPH_LANE.md` (`advancement:ingest`, scoring, MG envelope).
+
 ---
 
 ## Operating verdict
 
 ```text
 Mission: chat-thread-system-advancement-harvest-chatgpt-v1
-Lane: CHAT_CONTEXT_ONLY
-Start verdict: UNHARVESTED_THREAD
-Target tier: T2
-Output verdict: SYSTEM_ADVANCEMENT_DRAFT_READY
+Lane: ADVANCEMENT_SYNTHESIS (alias: CHAT_CONTEXT_ONLY)
+Start verdict: UNSYNTHESIZED_THREAD (alias: UNHARVESTED_THREAD)
+Target tier: T3 when paired with OBSERVED; T2 advancement-only when operator directs
+Output verdict: DRAFT_ADVANCEMENTS_FOR_CURSOR_VALIDATION (alias: SYSTEM_ADVANCEMENT_DRAFT_READY)
 ```
 
 | Verdict | Meaning |
@@ -163,6 +210,63 @@ Schema: `scripts/harvest/schema/advancement-intelligence-v1.schema.json`
 
 Each `IMP-###` links to `ADV-###` with `smallestUsefulVersion`, `fullVision`, `acceptanceProof`.
 
+### Candidate JSON shape (preferred per `ADV-###`)
+
+```json
+{
+  "advancementId": "ADV-001",
+  "title": "Concise concept name",
+  "advancementCategory": "AUTOMATION_CANDIDATE",
+  "classification": ["SYNTHESIZED", "CROSS_CHECK_REQUIRED"],
+  "problem": "The current limitation or opportunity.",
+  "newCapability": "What should exist.",
+  "whyNow": "What this thread proved or enabled.",
+  "sourceObservations": [{ "ref": "EVT-001", "evidenceClass": "CHAT_DIRECT" }],
+  "authorityModel": {
+    "owner": "proposed owner repo",
+    "sourceOfTruth": "proposed authority",
+    "humanApproval": "required | not required"
+  },
+  "expectedValue": {
+    "timeSavings": "low | medium | high",
+    "tokenSavings": "low | medium | high",
+    "riskReduction": "low | medium | high",
+    "reusePotential": "low | medium | high"
+  },
+  "implementationSize": "XS | S | M | L | XL",
+  "confidence": "low | medium | high",
+  "noveltyStatus": "NEEDS_REGISTRY_LOOKUP",
+  "nextProof": "Cheapest experiment or verification step.",
+  "status": "CANDIDATE"
+}
+```
+
+### Opportunity map (before candidate inventory)
+
+Classify each observation into one or more:
+
+`REMOVE` | `SIMPLIFY` | `AUTOMATE` | `COMBINE` | `CENTRALIZE` | `DELEGATE` | `PRODUCTIZE` | `GENERALIZE` | `PREDICT` | `SELF_HEAL` | `MONETIZE`
+
+### ROI scoring (Cursor validates; ChatGPT drafts)
+
+Score each candidate 1–5 on: Novelty, Impact, Feasibility, Reuse, Urgency, Evidence, Time to value, Strategic fit.
+
+Weighted bands (Cursor-side): 85–100 `ADVANCE_TO_EXPERIMENT`; 70–84 `ADVANCE_TO_DESIGN`; 55–69 `HOLD_FOR_RESEARCH`; 40–54 `PARK`; 0–39 `REJECT`.
+
+Do not invent precise dollar values — use ranges and label assumptions.
+
+### Novelty status (per candidate)
+
+`NOVEL` | `PARTIAL_OVERLAP` | `EXISTING_IMPLEMENTATION` | `EXISTING_CONCEPT` | `DUPLICATE` | `COMBINE_WITH_EXISTING` | `NEEDS_REGISTRY_LOOKUP`
+
+---
+
+## Advancement lifecycle states (ChatGPT vs Cursor)
+
+ChatGPT may only create `CANDIDATE`. Cursor/operator own:
+
+`NOVELTY_VERIFIED` → `DESIGN_APPROVED` → `EXPERIMENT_APPROVED` → `EXPERIMENT_RUNNING` → `EXPERIMENT_VERIFIED` → `IMPLEMENTATION_APPROVED` → `IMPLEMENTED` → `PILOT_VERIFIED` → `PRODUCTION_APPROVED` | `REJECTED` | `PARKED`
+
 ---
 
 ## Advancement cycle assessment
@@ -236,7 +340,9 @@ Distinct from autopsy `chatgpt-findings-source.md` on the same harvest id.
 
 ## Handoff to Cursor
 
-Phase 1: copy findings to run dir (Phase 2 adds structured ingest).
+**Push first.** GitHub Action moves draft to L: staging; Cursor pulls from `chat-gpt-harvest`.
+
+Phase 1: manual validation from Markdown. Phase 2: structured ingest (not shipped).
 
 ```text
 Pull branch chat-gpt-harvest on CapitalGlass-Cross-Agent.
@@ -246,7 +352,16 @@ npm run harvest:ingest-chatgpt-advancement -- \
   --input=artifacts/agent-runs/harvest-YYYY-MM-DD-<slug>-v1/system-advancement-findings-source.md \
   --harvest-id=harvest-YYYY-MM-DD-<slug>-v1
 
-Cursor verifies CROSS_CHECK_REQUIRED, runs duplication-preflight, validate, (operator) publish-intelligence-full.
+# Planned Cursor chain (Phase 2):
+npm run advancement:duplication-preflight -- --harvest-id=<id>
+npm run advancement:novelty-check -- --harvest-id=<id>
+npm run advancement:score -- --harvest-id=<id>
+npm run advancement:validate -- --harvest-id=<id>
+
+# Future Data-Extraction (from L: staging):
+# cd Data-Extraction && npm run advancement:ingest -- --source=<findings.md> --advancement-id=<ADV-id>
+
+Cursor verifies CROSS_CHECK_REQUIRED; operator approves candidates before publish-intelligence-full.
 ```
 
 ---
@@ -313,12 +428,32 @@ Honor CONCEPT_ONLY_NO_WRITE / STOP_NOW if applicable.
 4. Commit: `harvest(chatgpt): system advancement draft harvest-YYYY-MM-DD-<slug>-v1`
 5. Push to `origin chat-gpt-harvest` — not `main`.
 6. Report commit SHA and path.
+7. State `L: move: NOT_RUN_BY_CHATGPT` (GitHub Action on WESLEYDESK).
+8. State `Advancement status: CANDIDATE`; `Publication: NOT_RUN_BY_CURSOR`; `Implementation: NOT_AUTHORIZED`.
 
 | Claim after push | Allowed? |
 | --- | --- |
 | Findings on `chat-gpt-harvest` | Yes |
-| `SYSTEM_ADVANCEMENT_DRAFT_READY` | Yes |
+| `SYSTEM_ADVANCEMENT_DRAFT_READY` / `DRAFT_ADVANCEMENTS_FOR_CURSOR_VALIDATION` | Yes |
+| L: staging move complete | **No** — Action only |
 | Gate passes / `WAVE_CLOSED` / `PUBLICATION_PASS` | **No** |
+| Data-Extraction ingest complete | **No** — deferred |
+
+### Publication truth (mandatory footer)
+
+| Layer | State |
+| --- | --- |
+| Git draft | `not-run` or commit SHA |
+| L: draft staging (GitHub Action) | `not-run` |
+| Cursor ingest | `not-run` |
+| Novelty verification | `not-run` |
+| Architecture verification | `not-run` |
+| L: Hub publication | `not-run` |
+| Z: cache projection | `not-run` |
+| Supabase projection | `not-run` |
+| Data-Extraction advancement ingest | `not-run` |
+| Backlog creation | `not-run` |
+| Implementation authorization | `not-run` |
 
 ---
 
@@ -327,6 +462,9 @@ Honor CONCEPT_ONLY_NO_WRITE / STOP_NOW if applicable.
 | File | Role |
 | --- | --- |
 | [chat-thread-closeout-autopsy-harvest-chatgpt-v1.md](./chat-thread-closeout-autopsy-harvest-chatgpt-v1.md) | OBSERVED intelligence lane |
+| [chatgpt-system-advancement-findings-template.md](./chatgpt-system-advancement-findings-template.md) | Findings template |
+| `.github/workflows/chatgpt-harvest-move-to-l.yml` | Push → L: staging |
+| `Data-Extraction/docs/platform/SUITE_ADVANCEMENT_GRAPH_LANE.md` | Future scoring/graph ingest |
 | `scripts/harvest/schema/advancement-intelligence-v1.schema.json` | `ADV-###` provenance |
 | `scripts/harvest/schema/gated-wave-state-v1.schema.json` | Wave state stub (Phase 6) |
 | `scripts/harvest/schema/system-advancement-seed-packet-v1.schema.json` | Advancement seeds |
