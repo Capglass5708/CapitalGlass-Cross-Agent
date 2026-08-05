@@ -1,0 +1,256 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-THREAD-HARVEST-REPUBLISH-SUPERSEDE-003",
+      "questionId": "IHTHREADHARV",
+      "canonicalQuestion": "Why did publish return DUPLICATE_BLOCKED with allow-republish?",
+      "alternateQuestions": [
+        "How should allow-supersede-seed arguments be generated before tests?"
+      ],
+      "shortAnswer": "allow-republish does not bypass seed-ID collision checks.",
+      "detailedAnswer": "Harvest republish requires explicit seed supersession",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T04:05:17.285Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/seed-packets/IH-THREAD-HARVEST-REPUBLISH-SUPERSEDE-003.json"
+      ],
+      "authorityCommit": [
+        "c7ef355"
+      ],
+      "evidenceUrls": [
+        "harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+        "EVT-007",
+        "HP-004",
+        "TW-004"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-04-prompt-cache-connectivity-thread-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "previously published harvest is republished",
+        "startAt": [
+          "duplication preflight",
+          "enumerate seed IDs"
+        ],
+        "runPreflight": [
+          "check previous receipt",
+          "check same-SHA test receipt"
+        ],
+        "doNot": [
+          "assume allow-republish bypasses seeds",
+          "delete existing seeds"
+        ],
+        "proveBeforeClaiming": [
+          "OPERATIONAL receipt",
+          "expected BY-KIND record exists"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-THREAD-HOST-CONNECTIVITY-CACHE-002",
+      "questionId": "IHTHREADHOST",
+      "canonicalQuestion": "How do I connect to WESLEYDESK or RYZEN9DESK through the approved route?",
+      "alternateQuestions": [
+        "Which failure signatures should be checked before a full diagnostic?"
+      ],
+      "shortAnswer": "Non-secret host profiles: routes, mounts, runners, failure signatures, validation commands.",
+      "detailedAnswer": "Cache compact connectivity intelligence for desk hosts",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T04:05:17.285Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/seed-packets/IH-THREAD-HOST-CONNECTIVITY-CACHE-002.json"
+      ],
+      "authorityCommit": [
+        "c7ef355"
+      ],
+      "evidenceUrls": [
+        "harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+        "EVT-006",
+        "EVT-010",
+        "HP-006"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "architecture",
+        "harvest-2026-08-04-prompt-cache-connectivity-thread-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "agent must connect, diagnose, or sync cache to a desk host",
+        "startAt": [
+          "resolve host-connectivity profile packet"
+        ],
+        "runPreflight": [
+          "verify live host identity/route",
+          "verify profile freshness"
+        ],
+        "doNot": [
+          "cache credentials",
+          "assume observed IP is current",
+          "mutate without live verification"
+        ],
+        "proveBeforeClaiming": [
+          "approved route works",
+          "required services/storage pass"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "architecture"
+    },
+    {
+      "ihPfspId": "IH-THREAD-PROMPT-CATALOG-COMPACT-TRIM-001",
+      "questionId": "IHTHREADPROM",
+      "canonicalQuestion": "Why does Scout report DATASET_HIT while prompt-catalog is absent from compact slice?",
+      "alternateQuestions": [
+        "How should records be selected when source exceeds maxRecords?"
+      ],
+      "shortAnswer": "Select top N by usageRank with stable tie-break; never omit entire dataset.",
+      "detailedAnswer": "Trim over-budget prompt catalog instead of dropping compact slice",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T04:05:17.285Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/seed-packets/IH-THREAD-PROMPT-CATALOG-COMPACT-TRIM-001.json"
+      ],
+      "authorityCommit": [
+        "c7ef355"
+      ],
+      "evidenceUrls": [
+        "harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+        "EVT-012",
+        "EVT-013",
+        "HP-007",
+        "HP-008"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-04-prompt-cache-connectivity-thread-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "prompt-catalog routes but compact payload absent or over budget",
+        "startAt": [
+          "inspect compact builder and eligibility filters"
+        ],
+        "runPreflight": [
+          "measure source/eligible counts",
+          "run over-limit fixture"
+        ],
+        "doNot": [
+          "drop full dataset",
+          "promote ineligible prompts",
+          "depend on source order"
+        ],
+        "proveBeforeClaiming": [
+          "25 of 40 selected",
+          "stable hash",
+          "compact slice present"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "lesson"
+    },
+    {
+      "ihPfspId": "IH-THREAD-PROMPT-HARVEST-GATE-SEPARATION-004",
+      "questionId": "IHTHREADPROM",
+      "canonicalQuestion": "Which prompt-harvest gate is actually failing?",
+      "alternateQuestions": [
+        "When should target-host cache fanout be separate?"
+      ],
+      "shortAnswer": "Each gate has independent evidence; do not reopen completed gates.",
+      "detailedAnswer": "Separate extraction, approval, projection, publication, and host distribution gates",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T04:05:17.285Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/seed-packets/IH-THREAD-PROMPT-HARVEST-GATE-SEPARATION-004.json"
+      ],
+      "authorityCommit": [
+        "c7ef355"
+      ],
+      "evidenceUrls": [
+        "harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+        "EVT-005",
+        "EVT-008",
+        "EVT-009",
+        "HP-003",
+        "HP-005"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-04-prompt-cache-connectivity-thread-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "prompt-harvest closeout is partially blocked",
+        "startAt": [
+          "read gate matrix and receipts"
+        ],
+        "runPreflight": [
+          "extraction",
+          "approval/projection",
+          "L receipt",
+          "host cache"
+        ],
+        "doNot": [
+          "reopen completed gates",
+          "bind L to one host"
+        ],
+        "proveBeforeClaiming": [
+          "each gate has evidence",
+          "unresolved gates only in next actions"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "lesson"
+    }
+  ]
+}

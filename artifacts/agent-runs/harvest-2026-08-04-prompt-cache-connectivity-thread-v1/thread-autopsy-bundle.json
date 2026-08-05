@@ -1,0 +1,349 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "commandIndexConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "work-progress/harvest-packet-registry.json"
+    ],
+    "checkedAt": "2026-08-05T04:04:57.539Z",
+    "note": "ChatGPT flagged NEEDS_REGISTRY_LOOKUP_FIRST on DUP-001..003",
+    "preflightReceiptHash": "bcd0ca0b88a34d67b812091caab8cbbcffe55930cf105d321a4a867c06bded3a"
+  },
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "agent",
+      "description": "Repeated restatement of completed prompt gates",
+      "evidenceRefs": [
+        "CHAT_DIRECT"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Gate matrix with unresolved-only deltas",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "operator_attention",
+      "description": "WESLEYDESK treated as L publication requirement",
+      "evidenceRefs": [
+        "CHAT_DIRECT"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Host-independent L authority rule",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "host",
+      "description": "Full connectivity diagnostic for known mount signatures",
+      "evidenceRefs": [
+        "CHAT_DIRECT"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Quick classifier before escalation",
+      "roiRank": 4
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "verification",
+      "description": "Long tests interrupted before publication",
+      "evidenceRefs": [
+        "CHAT_DIRECT"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Receipt-backed skip-tests for same SHA",
+      "roiRank": 5
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Manual Z and L drvfs mounts",
+      "operatorCost": "medium",
+      "systemFix": "Mount persistence + verifier",
+      "evidenceRefs": [
+        "CHAT_DIRECT"
+      ]
+    },
+    {
+      "frictionId": "OF-002",
+      "trigger": "Long publish without stage visibility",
+      "operatorCost": "medium",
+      "systemFix": "Stage receipts during publish",
+      "evidenceRefs": [
+        "CHAT_DIRECT"
+      ]
+    },
+    {
+      "frictionId": "OF-003",
+      "trigger": "Five duplicate seed IDs — manual supersede args",
+      "operatorCost": "high",
+      "systemFix": "Preflight generates supersede command",
+      "evidenceRefs": [
+        "EVT-007"
+      ]
+    },
+    {
+      "frictionId": "OF-004",
+      "trigger": "RYZEN9DESK cache root unreachable remotely",
+      "operatorCost": "medium",
+      "systemFix": "Separate fanout lane from L authority",
+      "evidenceRefs": [
+        "EVT-009"
+      ]
+    },
+    {
+      "frictionId": "OF-005",
+      "trigger": "DATASET_HIT without compact slice",
+      "operatorCost": "high",
+      "systemFix": "Deterministic trim vs drop",
+      "evidenceRefs": [
+        "EVT-012",
+        "HP-007"
+      ]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Publication prerequisites discovered late",
+      "actualExecution": {
+        "steps": [
+          "long publish then collision"
+        ],
+        "outcome": "interrupted",
+        "evidenceRefs": [
+          "EVT-007"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "duplication preflight + supersede args first"
+        ],
+        "outcome": "clean publish",
+        "requiredPreflight": [
+          "seed enumeration"
+        ]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "medium",
+        "operatorFrustration": "high"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "L authority vs host cache conflated",
+      "actualExecution": {
+        "steps": [
+          "bind publish to WESLEYDESK"
+        ],
+        "outcome": "blocked",
+        "evidenceRefs": [
+          "TW-002"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "L shared + host fanout separate"
+        ],
+        "outcome": "parallel closeout",
+        "requiredPreflight": [
+          "gate matrix"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "low",
+        "operatorFrustration": "medium"
+      }
+    },
+    {
+      "executionDeltaId": "ED-003",
+      "situation": "Routing passed before compact budget tests",
+      "actualExecution": {
+        "steps": [
+          "route without over-limit fixtures"
+        ],
+        "outcome": "silent omission",
+        "evidenceRefs": [
+          "EVT-012"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "below/at/over budget tests"
+        ],
+        "outcome": "slice always present",
+        "requiredPreflight": [
+          "fixture counts"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "low",
+        "operatorFrustration": "medium"
+      }
+    },
+    {
+      "executionDeltaId": "ED-004",
+      "situation": "Host connectivity rediscovered each session",
+      "actualExecution": {
+        "steps": [
+          "broad SSH/SMB/WSL diagnosis"
+        ],
+        "outcome": "expensive",
+        "evidenceRefs": [
+          "EVT-006"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "host profile packet first"
+        ],
+        "outcome": "targeted recovery",
+        "requiredPreflight": [
+          "connectivity cache"
+        ]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "medium",
+        "operatorFrustration": "high"
+      }
+    }
+  ],
+  "wrongMoves": [],
+  "duplicateWork": [
+    {
+      "duplicateId": "DUP-001",
+      "subject": "prompt-harvest verification mission",
+      "firstKnownInstance": "registry lookup required",
+      "priorIndexSlice": "NEEDS_REGISTRY_LOOKUP_FIRST",
+      "whyRepeated": "Existing receipt may exist",
+      "avoidableBy": "duplication preflight",
+      "recommendedAction": "index"
+    },
+    {
+      "duplicateId": "DUP-002",
+      "subject": "RYZEN9DESK cache fanout",
+      "firstKnownInstance": "EVT-009",
+      "priorIndexSlice": "NEEDS_REGISTRY_LOOKUP_FIRST",
+      "whyRepeated": "Separate from prompt-harvest implementation",
+      "avoidableBy": "gate separation",
+      "recommendedAction": "index"
+    },
+    {
+      "duplicateId": "DUP-003",
+      "subject": "broad host connectivity diagnosis",
+      "firstKnownInstance": "EVT-006",
+      "priorIndexSlice": "NEEDS_REGISTRY_LOOKUP_FIRST",
+      "whyRepeated": "Missing cached host profile",
+      "avoidableBy": "host-connectivity packet",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Deterministic prompt-catalog compact trim",
+      "whyItPays": "Prevents full compact-slice omission",
+      "effort": "medium",
+      "savedWasteIds": [
+        "OF-005"
+      ],
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "seedAs": "command",
+      "suggestedWorkPackageId": "prompt-catalog-compact-trim-v1"
+    },
+    {
+      "rank": 2,
+      "title": "Host-connectivity dataset and execution packets",
+      "whyItPays": "Reduces repeated desk diagnosis",
+      "effort": "medium",
+      "savedWasteIds": [
+        "ED-004"
+      ],
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "seedAs": "index-slice",
+      "suggestedWorkPackageId": "host-connectivity-cache-v1"
+    },
+    {
+      "rank": 3,
+      "title": "Publication preflight with generated supersede command",
+      "whyItPays": "Avoids long-run collisions",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-004"
+      ],
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "seedAs": "runbook",
+      "suggestedWorkPackageId": "harvest-republish-preflight-v1"
+    },
+    {
+      "rank": 4,
+      "title": "Receipt-backed skip-tests policy",
+      "whyItPays": "Same-SHA republish efficiency",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-004"
+      ],
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "seedAs": "rule",
+      "suggestedWorkPackageId": "harvest-skip-tests-receipt-v1"
+    },
+    {
+      "rank": 5,
+      "title": "Prompt-catalog resolver",
+      "whyItPays": "Lower priority than compact presence",
+      "effort": "medium",
+      "savedWasteIds": [],
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "seedAs": "rule",
+      "suggestedWorkPackageId": "prompt-catalog-resolver-v1"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "HARVEST_COMPLETE",
+      "currentStatus": "BLOCKED",
+      "doNotClaimUntil": [
+        "harvest:validate PASS",
+        "operator publish"
+      ],
+      "lastKnownEvidence": [
+        "harvest-2026-08-04-prompt-cache-connectivity-thread-v1"
+      ],
+      "proofCommandId": "harvest:validate"
+    },
+    {
+      "awardOrVerdict": "FULLY_SEEDED_HUB",
+      "currentStatus": "BLOCKED",
+      "doNotClaimUntil": [
+        "harvest:publish-intelligence-full",
+        "index:freshness-gate"
+      ],
+      "lastKnownEvidence": [
+        "chatgpt-findings-source.md"
+      ],
+      "proofCommandId": "harvest:publish-intelligence-full"
+    },
+    {
+      "awardOrVerdict": "PROMPT_HARVEST_OPERATIONAL",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "Cursor receipt cross-check"
+      ],
+      "lastKnownEvidence": [
+        "EVT-008"
+      ],
+      "proofCommandId": "harvest-prompt-post-merge-acceptance-v1"
+    }
+  ]
+}

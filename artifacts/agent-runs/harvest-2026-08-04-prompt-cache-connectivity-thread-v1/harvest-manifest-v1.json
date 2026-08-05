@@ -1,0 +1,286 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-chatgpt-v1",
+  "sourceCommitSha": "c7ef3556b7b4d30fd7f03e99ed77c73e659088fe",
+  "sourceBranch": "chat-gpt-harvest",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-05T04:01:31.841Z",
+  "updatedAt": "2026-08-05T04:01:31.841Z",
+  "retrievalResult": "INDEX_NOT_AVAILABLE_IN_CHAT_CONTEXT",
+  "cacheResult": "NOT_APPLICABLE",
+  "intelligenceKind": "observed",
+  "laneScope": "prompt-cache-connectivity-thread-observed",
+  "overallHarvestVerdict": "DRAFT_READY_FOR_CURSOR_VALIDATION",
+  "subject": "ChatGPT OBSERVED autopsy — prompt harvest lifecycle, publication gate separation, host connectivity cache, prompt-catalog compact trim",
+  "doNotAdvance": [
+    "Claim INDEX_HIT or live hub codes from ChatGPT draft",
+    "Claim HARVEST_COMPLETE or OPERATIONAL before harvest:validate PASS",
+    "Reopen supabase-hot-cache-execution-packets-v1 without regression evidence",
+    "Auto-promote harvested prompts or bypass PromptOps",
+    "Bind shared L publication to WESLEYDESK",
+    "Merge chat-gpt-harvest to main without operator review"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 4,
+      "seeds": 4,
+      "roiItems": 5,
+      "operatorFriction": 5,
+      "executionDeltas": 4
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "ChatGPT draft ingested — pending Cursor validation and operator publish"
+  },
+  "ledgerLineage": {
+    "ledgerPath": "work-progress/ACTIVE_WORK.md",
+    "relatedProjectFile": "work-progress/projects/harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md",
+    "ledgerContentHashBefore": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096",
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  },
+  "supersededClaims": [],
+  "chatgptSource": {
+    "commitSha": "39de20042ceb2b1bdb6961b02ca5c84b5c33f6c2",
+    "findingsPath": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/chatgpt-findings-source.md",
+    "outputVerdict": "DRAFT_READY_FOR_CURSOR_VALIDATION"
+  },
+  "packets": [
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md",
+      "packetKind": "architecture",
+      "packetId": "promptops-authority-boundary-v1",
+      "packetTitle": "PromptOps remains authority — hot cache and Supabase are derivative",
+      "state": "RECORDED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "evidenceRefs": [
+        "HP-001",
+        "EVT-002",
+        "chatgpt-findings-source.md"
+      ],
+      "nextAction": "Preserve approval boundary in prompt-harvest pipeline",
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "AUTO_PROMOTE_EXTRACTED_PROMPTS"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md",
+      "packetKind": "protocol_upgrade",
+      "packetId": "prompt-extraction-closeout-protocol-v1",
+      "packetTitle": "Prompt extraction belongs in closeout harvest",
+      "state": "RECORDED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "evidenceRefs": [
+        "HP-002",
+        "EVT-002"
+      ],
+      "nextAction": "Keep extraction in harvest:sync-derived lane",
+      "advancementGate": "operator-explicit-prompt-approval",
+      "doNotAdvance": [
+        "AUTO_PROMOTE_EXTRACTED_PROMPTS"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md",
+      "packetKind": "failure-pattern",
+      "packetId": "publication-failure-gate-misclassification-v1",
+      "packetTitle": "Publication failure must not be classified as extraction failure",
+      "state": "RECORDED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "evidenceRefs": [
+        "HP-003",
+        "EVT-005",
+        "EVT-007"
+      ],
+      "nextAction": "Keep gate matrix separate in closeout receipts",
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md",
+      "packetKind": "failure-pattern",
+      "packetId": "harvest-republish-supersede-seeds-v1",
+      "packetTitle": "Republish requires explicit seed supersession — allow-republish is insufficient",
+      "state": "RECORDED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "evidenceRefs": [
+        "HP-004",
+        "EVT-007",
+        "EVT-008",
+        "OF-003"
+      ],
+      "nextAction": "Generate supersede args in duplication preflight",
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md",
+      "packetKind": "lesson",
+      "packetId": "shared-nas-publication-host-independent-v1",
+      "packetTitle": "Shared L publication is host-independent",
+      "state": "RECORDED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "evidenceRefs": [
+        "HP-005",
+        "EVT-006",
+        "TW-002"
+      ],
+      "nextAction": "Do not bind L publish to WESLEYDESK identity",
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-office-admin-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md",
+      "packetKind": "protocol_upgrade",
+      "packetId": "host-connectivity-intelligence-cache-v1",
+      "packetTitle": "Cache compact connectivity intelligence for desk hosts",
+      "state": "DOCUMENTED",
+      "packetVerdict": "CROSS_CHECK_REQUIRED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "evidenceRefs": [
+        "HP-006",
+        "EVT-006",
+        "EVT-009",
+        "EVT-010"
+      ],
+      "nextAction": "Cursor cross-check host profile packets vs office-admin MCP",
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Do not cache credentials or grant mutation authority"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md",
+      "packetKind": "failure-pattern",
+      "packetId": "prompt-catalog-over-budget-compact-drop-v1",
+      "packetTitle": "Over-budget prompt catalog drops entire compact slice",
+      "state": "RECORDED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "evidenceRefs": [
+        "HP-007",
+        "EVT-012",
+        "OF-005"
+      ],
+      "nextAction": "Implement deterministic trim milestone",
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md",
+      "packetKind": "architecture",
+      "packetId": "prompt-catalog-deterministic-compact-trim-v1",
+      "packetTitle": "Deterministic compact selection for prompt catalog",
+      "state": "DOCUMENTED",
+      "packetVerdict": "CROSS_CHECK_REQUIRED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "evidenceRefs": [
+        "HP-008",
+        "EVT-013"
+      ],
+      "nextAction": "Verify trim implementation + over-budget tests in AppBuilder",
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Claim compact slice fixed without CI proof"
+      ]
+    }
+  ],
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 13,
+    "deduplicated": 2,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 11,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-0765ccd62465",
+      "prompt-candidate-aea89e032584",
+      "prompt-candidate-b18ff4daf44c",
+      "prompt-candidate-b36c6cc197ae",
+      "prompt-candidate-5a3772a02f4b",
+      "prompt-candidate-e7808941231e",
+      "prompt-candidate-4bbbe7206d0c",
+      "prompt-candidate-b80a8453ff7c",
+      "prompt-candidate-169111656ce0",
+      "prompt-candidate-9c15d862a436",
+      "prompt-candidate-25876c23480a",
+      "prompt-candidate-a2ee074052f9",
+      "prompt-candidate-affeb71cd0c0"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

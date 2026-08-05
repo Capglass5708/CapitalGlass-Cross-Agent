@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-HARVEST-REPUBLISH-SUPERSEDE-003",
+  "kind": "failure-pattern",
+  "title": "Harvest republish requires explicit seed supersession",
+  "summary": "allow-republish does not bypass seed-ID collision checks.",
+  "retrievalQuestions": [
+    "Why did publish return DUPLICATE_BLOCKED with allow-republish?",
+    "How should allow-supersede-seed arguments be generated before tests?"
+  ],
+  "evidenceRefs": [
+    "harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+    "EVT-007",
+    "HP-004",
+    "TW-004"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "previously published harvest is republished",
+    "startAt": [
+      "duplication preflight",
+      "enumerate seed IDs"
+    ],
+    "runPreflight": [
+      "check previous receipt",
+      "check same-SHA test receipt"
+    ],
+    "doNot": [
+      "assume allow-republish bypasses seeds",
+      "delete existing seeds"
+    ],
+    "proveBeforeClaiming": [
+      "OPERATIONAL receipt",
+      "expected BY-KIND record exists"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}

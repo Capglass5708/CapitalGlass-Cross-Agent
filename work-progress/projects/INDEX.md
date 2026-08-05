@@ -38,11 +38,14 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 
 | Packet ID | State | Verdict | Owner repo | Project file | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `chat-gpt-harvest-branch-lane-split-v1` | RECORDED | PASS | CapitalGlass-Cross-Agent | [2026-08-04_chat-gpt-harvest-protocol-v1.md](./2026-08-04_chat-gpt-harvest-protocol-v1.md) | Pilot A uses harvest-2026-08-04-wesleydesk-session-repair-v1 only |
-| `system-advancement-harvest-protocol-v1` | SHIPPED_ON_BRANCH | DRAFT_READY_FOR_CURSOR_VALIDATION | CapitalGlass-Cross-Agent | [2026-08-04_chat-gpt-harvest-protocol-v1.md](./2026-08-04_chat-gpt-harvest-protocol-v1.md) | Pilot A advancement harvest; then Phase 2 ingest parser |
-| `autopsy-evidence-classification-v1` | SHIPPED_ON_BRANCH | PASS | CapitalGlass-Cross-Agent | [2026-08-04_chat-gpt-harvest-protocol-v1.md](./2026-08-04_chat-gpt-harvest-protocol-v1.md) | ChatGPT runs OBSERVED lane from Z uppercase path |
-| `z-harvest-uppercase-protocol-sync-v1` | RECORDED | PASS | CapitalGlass-Cross-Agent | [2026-08-04_chat-gpt-harvest-protocol-v1.md](./2026-08-04_chat-gpt-harvest-protocol-v1.md) | npm run harvest:sync-z-mirror after protocol edits |
-| `advancement-ingest-parser-not-shipped-v1` | OPEN | PHASE_2_PENDING | CapitalGlass-Cross-Agent | [2026-08-04_chat-gpt-harvest-protocol-v1.md](./2026-08-04_chat-gpt-harvest-protocol-v1.md) | Scope Phase 2 from Pilot A system-advancement-findings-source.md |
+| `promptops-authority-boundary-v1` | RECORDED | PASS | CG-AppBuilder-MCP | [harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md](./harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md) | Preserve approval boundary in prompt-harvest pipeline |
+| `prompt-extraction-closeout-protocol-v1` | RECORDED | PASS | CapitalGlass-Cross-Agent | [harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md](./harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md) | Keep extraction in harvest:sync-derived lane |
+| `publication-failure-gate-misclassification-v1` | RECORDED | PASS | CapitalGlass-Cross-Agent | [harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md](./harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md) | Keep gate matrix separate in closeout receipts |
+| `harvest-republish-supersede-seeds-v1` | RECORDED | PASS | CapitalGlass-Cross-Agent | [harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md](./harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md) | Generate supersede args in duplication preflight |
+| `shared-nas-publication-host-independent-v1` | RECORDED | PASS | CG-AppBuilder-MCP | [harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md](./harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md) | Do not bind L publish to WESLEYDESK identity |
+| `host-connectivity-intelligence-cache-v1` | DOCUMENTED | CROSS_CHECK_REQUIRED | CG-AppBuilder-MCP | [harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md](./harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md) | Cursor cross-check host profile packets vs office-admin MCP |
+| `prompt-catalog-over-budget-compact-drop-v1` | RECORDED | PASS | CG-AppBuilder-MCP | [harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md](./harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md) | Implement deterministic trim milestone |
+| `prompt-catalog-deterministic-compact-trim-v1` | DOCUMENTED | CROSS_CHECK_REQUIRED | CG-AppBuilder-MCP | [harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md](./harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md) | Verify trim implementation + over-budget tests in AppBuilder |
 
 <!-- HARVEST-PACKET-INDEX:END -->
 

@@ -1,0 +1,81 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-thread-prompt-catalog-compact-trim-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "c7ef3556b7b4d30fd7f03e99ed77c73e659088fe",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+      "seedId": "IH-THREAD-PROMPT-CATALOG-COMPACT-TRIM-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T04:05:17.286Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "39860fdbaa949b3babb1c6bf737bad1926f111409b4cfaf33f497064df6478c1"
+  },
+  "body": {
+    "seedId": "IH-THREAD-PROMPT-CATALOG-COMPACT-TRIM-001",
+    "kind": "lesson",
+    "title": "Trim over-budget prompt catalog instead of dropping compact slice",
+    "summary": "Select top N by usageRank with stable tie-break; never omit entire dataset.",
+    "canonicalQuestion": "Why does Scout report DATASET_HIT while prompt-catalog is absent from compact slice?",
+    "alternateQuestions": [
+      "How should records be selected when source exceeds maxRecords?"
+    ],
+    "shortAnswer": "Select top N by usageRank with stable tie-break; never omit entire dataset.",
+    "detailedAnswer": "Trim over-budget prompt catalog instead of dropping compact slice",
+    "retrievalQuestions": [
+      "Why does Scout report DATASET_HIT while prompt-catalog is absent from compact slice?",
+      "How should records be selected when source exceeds maxRecords?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "prompt-catalog routes but compact payload absent or over budget",
+      "startAt": [
+        "inspect compact builder and eligibility filters"
+      ],
+      "runPreflight": [
+        "measure source/eligible counts",
+        "run over-limit fixture"
+      ],
+      "doNot": [
+        "drop full dataset",
+        "promote ineligible prompts",
+        "depend on source order"
+      ],
+      "proveBeforeClaiming": [
+        "25 of 40 selected",
+        "stable hash",
+        "compact slice present"
+      ]
+    },
+    "evidenceRefs": [
+      "harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+      "EVT-012",
+      "EVT-013",
+      "HP-007",
+      "HP-008"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/seed-packets/IH-THREAD-PROMPT-CATALOG-COMPACT-TRIM-001.json"
+    ],
+    "harvestId": "harvest-2026-08-04-prompt-cache-connectivity-thread-v1"
+  }
+}
