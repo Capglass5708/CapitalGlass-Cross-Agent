@@ -66,7 +66,7 @@ Node kinds must remain distinct: `sampleFinding`, `recurringWeakness`, `protocol
 | --- | --- | --- | --- | --- | --- |
 | 1 | thin | `thin-thread-v1` | COMPLETE | `NO_HARVEST_NEEDED` | hold |
 | 2 | medium | `medium-thread-v1` | COMPLETE | `DRAFT_READY_FOR_CURSOR_VALIDATION` | eligible |
-| 3 | architectural | `architectural-thread-v1` | FIXTURE_READY | — | — |
+| 3 | architectural | `architectural-thread-v1` | PASS (live review) | `DRAFT_READY_FOR_CURSOR_VALIDATION` | pending routing |
 | 4 | debugging | `debugging-thread-v1` | PENDING | — | — |
 | 5 | planning | `planning-thread-v1` | PENDING | — | — |
 
@@ -112,8 +112,10 @@ Node kinds must remain distinct: `sampleFinding`, `recurringWeakness`, `protocol
 ## Architectural sample #3 (fixture only)
 
 **Fixture:** cross-repo ownership boundary — reject direct raw-markdown `graph:collect`; affirm Cross-Agent → Data Extraction → Master Graph handoff; forbid parallel envelope scaffold (7 turns).  
-**Golden reference:** bounds-based `golden-findings-DRAFT_READY.md`; expected tier T2 is hypothesis only.  
-**Live output / review / routing:** absent until live run commits.
+**Golden reference:** bounds-based `golden-findings-DRAFT_READY.md`.  
+**Live output:** `chatgpt-live-output.md` — observed T2, COR-001 rejects direct ingestion, HP-001..003 three-layer + no-parallel-envelope boundaries.  
+**Rubric:** PASS on all 7 criteria; protocol change not indicated.  
+**Routing metadata:** pending separate commit.
 
 ## Medium sample #2
 

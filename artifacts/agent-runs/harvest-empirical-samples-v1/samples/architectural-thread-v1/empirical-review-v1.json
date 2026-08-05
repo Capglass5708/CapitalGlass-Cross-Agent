@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "cross-agent-empirical-sample-review-v1@1.0.0",
+  "programId": "harvest-empirical-samples-v1",
+  "sampleId": "architectural-thread-v1",
+  "sampleClass": "architectural",
+  "reviewedAt": "2026-08-05T22:05:00.000Z",
+  "reviewer": "cursor-builder",
+  "programLineage": {
+    "protocolAuthorityCommit": "1e87d6ab96ed35d3d117def99e1e0d670c028575",
+    "programScaffoldCommit": "2b565d34fa792c4c04851b2b1506797805630e23",
+    "thinLiveRunCommit": "003407345ea2044fe238d754ddecacd613fefa22",
+    "downstreamRoutingCommit": "a2cfa25c0fcb4a03885df0cbf3c1782bfcb8a2bc",
+    "publicationEvidenceCommit": "b8ceb833d699a73d34cf57c8908f6b45856fb1d7",
+    "architecturalFixtureCommit": "c1f78dceaffe397a0fae46a938222f0b89a33ae3"
+  },
+  "fixturePath": "samples/architectural-thread-v1/sample-thread-source.md",
+  "goldenReferencePath": "samples/architectural-thread-v1/golden-findings-DRAFT_READY.md",
+  "liveOutputPath": "samples/architectural-thread-v1/chatgpt-live-output.md",
+  "expectedVerdict": "DRAFT_READY_FOR_CURSOR_VALIDATION",
+  "observedVerdict": "DRAFT_READY_FOR_CURSOR_VALIDATION",
+  "expectedTier": "T2",
+  "observedTier": "T2",
+  "sampleComplete": false,
+  "liveRun": {
+    "status": "COMPLETE",
+    "executedAt": "2026-08-05T22:00:00.000Z",
+    "requestedActor": "chatgpt-web-ui",
+    "actualActor": "cursor-agent-frozen-protocol-execution",
+    "actorNote": "ChatGPT not invocable from Cursor agent session; live output produced by executing frozen protocol REVIEW_ONLY rules against fixture without reading golden reference during generation. Operator may replace chatgpt-live-output.md with unedited ChatGPT web UI output. Valid as Cursor stand-in empirical run when provenance remains explicit.",
+    "mode": "REVIEW_ONLY"
+  },
+  "goldenComparison": {
+    "verdictMatch": true,
+    "liveVerdict": "DRAFT_READY_FOR_CURSOR_VALIDATION",
+    "goldenVerdictBounds": "DRAFT_READY_FOR_CURSOR_VALIDATION",
+    "tierWithinBounds": true,
+    "liveTier": "T2",
+    "goldenTierHypothesis": "T2",
+    "architectureBoundaryCountLive": 2,
+    "architectureBoundaryCountBoundsMin": 1,
+    "architectureBoundaryCountBoundsMax": 2,
+    "correctionCountLive": 1,
+    "seedCountLive": 0,
+    "seedCountBoundsMax": 1,
+    "roiRankCountLive": 1,
+    "roiRankCountBoundsMax": 2,
+    "directMarkdownToGraphRejected": true,
+    "parallelEnvelopeRejected": true,
+    "implementationDetailsInvented": false,
+    "materialDivergence": [
+      "Live output splits ownership into HP-001/HP-002 plus governance HP-003 for no-parallel-envelope; golden allowed 1–2 architecture boundaries — within bounds"
+    ],
+    "paddingDetected": false
+  },
+  "criteriaScores": {
+    "durable_intelligence_only": {
+      "verdict": "PASS",
+      "note": "COR-001 and HP-001..003 capture ownership boundaries; rejected turn-2 shortcut not retained as intelligence."
+    },
+    "no_template_padding": {
+      "verdict": "PASS",
+      "note": "Seeds NONE_FOUND; operator friction empty; sections match thread signal without faux-T3 depth."
+    },
+    "traceable_evidence": {
+      "verdict": "PASS",
+      "note": "EVT-001..007 map to seven fixture turns with CHAT_DIRECT classification."
+    },
+    "earned_roi": {
+      "verdict": "PASS",
+      "note": "ROI-001 tied to TW-001 wrong-target architecture risk from direct graph:collect proposal."
+    },
+    "justified_futureSavings": {
+      "verdict": "PASS",
+      "note": "Medium time / low token estimates proportional to avoiding premature downstream wiring."
+    },
+    "high_signal_density": {
+      "verdict": "PASS",
+      "note": "Compressed autopsy; three-layer handoff stated without implementation or roadmap prose."
+    },
+    "minimal_human_edit_burden": {
+      "verdict": "PASS",
+      "note": "Schema-complete; DOWNSTREAM_IMPLEMENTED explicitly blocked; no ingest/publication claims."
+    }
+  },
+  "overallVerdict": "PASS",
+  "protocolChangeIndicated": false,
+  "observationOnly": null,
+  "recurringWeakness": null,
+  "architecturalSampleGate": "PASS",
+  "nextSample": "debugging-thread-v1",
+  "nextSampleAuthoring": "BLOCKED_UNTIL_ARCHITECTURAL_ROUTING_METADATA_COMMITTED",
+  "routingMetadata": {
+    "programId": "harvest-empirical-samples-v1",
+    "sampleId": "architectural-thread-v1",
+    "pendingArtifact": "samples/architectural-thread-v1/sample-routing-metadata-v1.json"
+  }
+}
