@@ -1,0 +1,278 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-document-center-adaptive-details-w17-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "6714137247a57325b638279947690e4a31c4be26",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-05T00:00:00.000Z",
+  "updatedAt": "2026-08-05T00:15:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "rawScanRequired": false,
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "subject": "Document Center adaptive details panel W17 operator gate and locked branch recovery",
+  "ownerRepos": [
+    "CapitalGlass-Documents",
+    "CapitalGlass-Cross-Agent"
+  ],
+  "doNotAdvance": [
+    "MILESTONE_ADAPTIVE_DOCUMENT_DETAILS_IMPLEMENTATION_READY",
+    "W17_OPERATOR_APPROVED",
+    "USE_CLEAN_BRANCH_FOR_MISSION"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-04-document-center-adaptive-details-w17-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-04-document-center-adaptive-details-w17-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 5,
+      "seeds": 4,
+      "roiItems": 4,
+      "operatorFriction": 3
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "synced",
+    "hubPublishStatus": "published",
+    "operationalReceiptPath": "artifacts/agent-runs/harvest-2026-08-04-document-center-adaptive-details-w17-v1/operational-publication-receipt.json",
+    "operationalAt": "2026-08-05T20:38:35.581Z"
+  },
+  "packets": [
+    {
+      "packetId": "pkt-decision-001",
+      "packetKind": "decision",
+      "packetTitle": "Mission locked at 47d0f69 on work/document-center-adaptive-details-panel-v1-locked",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "decision": "Use locked branch only; W17 remains human operator gate",
+      "alternativesRejected": [
+        "work/document-center-adaptive-details-panel-v1-clean",
+        "amend without operator PASS"
+      ],
+      "ownerRepo": "CapitalGlass-Documents",
+      "ownerIndexingStatus": "pointer-only",
+      "projectFile": "work-progress/projects/harvest-2026-08-04-document-center-adaptive-details-w17-v1.md",
+      "nextAction": "Operator completes W17; then amend checkpoint with wave-17 evidence",
+      "advancementGate": "W17_OPERATOR_APPROVED",
+      "doNotAdvance": [
+        "USE_CLEAN_BRANCH_FOR_MISSION",
+        "amend checkpoint without operator PASS"
+      ],
+      "evidenceRefs": [
+        "47d0f699add1426a42a22bb33e869f104cfd8dfc",
+        "EVT-003"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Documents",
+          "sha": "47d0f699",
+          "role": "adaptive-details-locked-checkpoint"
+        }
+      ],
+      "blockers": []
+    },
+    {
+      "packetId": "pkt-blocker-001",
+      "packetKind": "blocker",
+      "packetTitle": "W17_BLOCKED_AUTHORIZED_OPERATOR_SESSION",
+      "state": "BLOCKED",
+      "packetVerdict": "BLOCKED",
+      "blockerId": "W17_BLOCKED_AUTHORIZED_OPERATOR_SESSION",
+      "status": "OPEN",
+      "proofCommandId": "cmd-w17-capture",
+      "ownerRepo": "CapitalGlass-Documents",
+      "ownerIndexingStatus": "pointer-only",
+      "projectFile": "work-progress/projects/harvest-2026-08-04-document-center-adaptive-details-w17-v1.md",
+      "nextAction": "Hub SSO login, 70-item checklist, Chrome-close capture script",
+      "advancementGate": "W17_OPERATOR_APPROVED",
+      "doNotAdvance": [
+        "W17_OPERATOR_APPROVED",
+        "MILESTONE_ADAPTIVE_DOCUMENT_DETAILS_IMPLEMENTATION_READY"
+      ],
+      "evidenceRefs": [
+        "CapitalGlass-Documents/artifacts/document-center-adaptive-details-panel-v1/wave-17/gate-results.json",
+        "EVT-004",
+        "EVT-005"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Documents",
+          "sha": "47d0f699",
+          "role": "checkpoint-pending-w17"
+        }
+      ],
+      "blockers": [
+        "Hub SSO + Chrome-close capture"
+      ]
+    },
+    {
+      "packetId": "pkt-mistake-001",
+      "packetKind": "mistake",
+      "packetTitle": "Used -clean branch and R1A-contaminated preservation",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "wrongMoveId": "WM-001",
+      "actualExecution": "Continued on drifting -clean branch; restored DocumentDetailPage from 9a98c5c",
+      "optimalExecution": "locked branch @ 47d0f69; src from 25675d9 only",
+      "preventiveControl": "IH-DOC-ADAPTIVE-LOCKED-BRANCH-001",
+      "ownerRepo": "CapitalGlass-Documents",
+      "ownerIndexingStatus": "pointer-only",
+      "projectFile": "work-progress/projects/harvest-2026-08-04-document-center-adaptive-details-w17-v1.md",
+      "nextAction": "Publish seed IH-DOC-ADAPTIVE-LOCKED-BRANCH-001 on Phase B",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "WM-001",
+        "WM-003",
+        "EVT-002",
+        "EVT-006"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Documents",
+          "sha": "47d0f699",
+          "role": "recovery-target"
+        }
+      ],
+      "blockers": []
+    },
+    {
+      "packetId": "pkt-repeated-001",
+      "packetKind": "repeated_work",
+      "packetTitle": "Branch drift recovery repeated without pausing parallel agents",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "duplicateId": "DW-001",
+      "firstKnownInstance": "EVT-002",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "whyMissed": "No single-writer enforcement on CapitalGlass-Documents",
+      "ownerRepo": "CapitalGlass-Documents",
+      "ownerIndexingStatus": "pointer-only",
+      "projectFile": "work-progress/projects/harvest-2026-08-04-document-center-adaptive-details-w17-v1.md",
+      "nextAction": "Enforce single writer on locked branch during W17",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "DW-001",
+        "TW-001",
+        "TW-005"
+      ],
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetId": "pkt-faster-001",
+      "packetKind": "faster_path",
+      "packetTitle": "Hub login before localhost document URL for W17",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "situation": "Operator review on localhost adaptive dev",
+      "whatHappened": "Opened document URL without Hub session; toggled Admin Tools",
+      "rightFirstMove": "capitalglasstxapps.com/login then reference PO URL",
+      "requiredGuard": "Verify /api/auth/session authenticated:true",
+      "ownerRepo": "CapitalGlass-Documents",
+      "ownerIndexingStatus": "pointer-only",
+      "projectFile": "work-progress/projects/harvest-2026-08-04-document-center-adaptive-details-w17-v1.md",
+      "nextAction": "Operator follows wave-17 sign-in section before capture",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "ED-002",
+        "IH-DOC-W17-HUB-SSO-LOCALHOST-002"
+      ],
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetId": "cmd-w17-capture",
+      "packetKind": "command",
+      "packetTitle": "Wave 17 operator screenshot capture",
+      "state": "PENDING",
+      "packetVerdict": "HOLD",
+      "command": "node artifacts/document-center-adaptive-details-panel-v1/wave-17/capture-operator-adaptive-review.mjs",
+      "host": "WSL2 — CapitalGlass-Documents",
+      "provesGate": "W17_OPERATOR_APPROVED",
+      "expectedPassSignal": "exit 0; 10 PNG in wave-17/operator-screenshots/",
+      "ownerRepo": "CapitalGlass-Documents",
+      "ownerIndexingStatus": "pointer-only",
+      "projectFile": "work-progress/projects/harvest-2026-08-04-document-center-adaptive-details-w17-v1.md",
+      "nextAction": "Operator runs after Hub SSO and Chrome close",
+      "advancementGate": "W17_OPERATOR_APPROVED",
+      "doNotAdvance": [
+        "W17_OPERATOR_APPROVED until exit 0 and 10 PNGs"
+      ],
+      "evidenceRefs": [
+        "EVT-005"
+      ],
+      "commitRefs": [],
+      "blockers": [
+        "Chrome must be closed"
+      ]
+    },
+    {
+      "packetId": "pkt-evidence-001",
+      "packetKind": "evidence",
+      "packetTitle": "Locked mission checkpoint and implementation gates",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "type": "git-commit",
+      "pathOrSha": "47d0f699add1426a42a22bb33e869f104cfd8dfc",
+      "provesWhat": "Mission-only adaptive implementation checkpoint on d90e599 baseline",
+      "ownerRepo": "CapitalGlass-Documents",
+      "ownerIndexingStatus": "pointer-only",
+      "projectFile": "work-progress/projects/harvest-2026-08-04-document-center-adaptive-details-w17-v1.md",
+      "nextAction": "None until W17 PASS",
+      "advancementGate": "W17_OPERATOR_APPROVED",
+      "doNotAdvance": [
+        "MILESTONE_ADAPTIVE_DOCUMENT_DETAILS_IMPLEMENTATION_READY"
+      ],
+      "evidenceRefs": [
+        "W19_ALL_IMPLEMENTATION_GATES_PASS",
+        "npm run typecheck PASS",
+        "1520/1524 unit tests"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Documents",
+          "sha": "47d0f699",
+          "role": "implementation-checkpoint"
+        }
+      ],
+      "blockers": []
+    },
+    {
+      "packetId": "pkt-proto-001",
+      "packetKind": "protocol_upgrade",
+      "packetTitle": "Seed packets for future adaptive mission recovery and W17",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "seedAs": "IH-DOC-ADAPTIVE-LOCKED-BRANCH-001",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "not-required",
+      "projectFile": "work-progress/projects/harvest-2026-08-04-document-center-adaptive-details-w17-v1.md",
+      "nextAction": "Phase B publish via harvest:publish-intelligence-full",
+      "advancementGate": "harvest:publish-intelligence-full PASS",
+      "doNotAdvance": [
+        "Claim OPERATIONAL before Phase B publish"
+      ],
+      "promotionClass": "POLICY_GATED",
+      "futureAgentInstructions": "When adaptive details mission blocked: locked branch, Hub SSO, preservation SHA discipline, Chrome-close capture",
+      "evidenceRefs": [
+        "seed-packet-index.json"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "67141372",
+          "role": "harvest-manifest"
+        }
+      ],
+      "blockers": []
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096",
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  }
+}
