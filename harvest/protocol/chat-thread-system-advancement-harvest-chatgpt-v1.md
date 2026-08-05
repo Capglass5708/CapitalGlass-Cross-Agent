@@ -1,5 +1,8 @@
 # Chat Thread System Advancement Harvest — ChatGPT Protocol v1
 
+**Z operator path:** `Z:\Capital-Glass-Dev\Harvest\protocol\CHAT-THREAD-SYSTEM-ADVANCEMENT-HARVEST-CHATGPT-V1.md`  
+**Intelligence kind:** **ADVANCEMENT** — synthesized/invented designs (not observed replay).
+
 **Work package pattern:** `chat-thread-system-advancement-harvest-chatgpt-v1`  
 **Sibling (OBSERVED intelligence):** [chat-thread-closeout-autopsy-harvest-chatgpt-v1.md](./chat-thread-closeout-autopsy-harvest-chatgpt-v1.md)  
 **Gated waves:** [gated-wave-lifecycle-v1.md](./gated-wave-lifecycle-v1.md)  
@@ -8,6 +11,34 @@
 **Findings template:** [chatgpt-system-advancement-findings-template.md](./chatgpt-system-advancement-findings-template.md)  
 **Authority repo:** CapitalGlass-Cross-Agent  
 **Lane:** `CHAT_CONTEXT_ONLY` — visible conversation + attachments only
+
+---
+
+## Operator quick start (Pilot A — advancement harvest)
+
+| Field | Value |
+| --- | --- |
+| **Lane** | ADVANCEMENT synthesis (not OBSERVED autopsy) |
+| **Output file** | `artifacts/agent-runs/harvest-YYYY-MM-DD-<slug>-v1/system-advancement-findings-source.md` |
+| **Example harvest id** | `harvest-2026-08-04-wesleydesk-session-repair-v1` |
+| **Branch** | `chat-gpt-harvest` (never `main`) |
+| **Template** | [chatgpt-system-advancement-findings-template.md](./chatgpt-system-advancement-findings-template.md) |
+
+**Steps**
+
+1. Paste the **full WESLEYDESK / session-bound repair Cursor thread** into ChatGPT.
+2. @ `CHAT-THREAD-SYSTEM-ADVANCEMENT-HARVEST-CHATGPT-V1.md` on Z (this file).
+3. Declare `DRAFT_FILE` in your first sentence.
+4. Produce `system-advancement-findings-source.md` with **SYNTHESIZED** and **INVENTED** `IMP-###` / `ADV-###` (not summary-only).
+5. Push to `chat-gpt-harvest` per § ChatGPT push instructions below.
+
+**One-line trigger**
+
+```text
+Run chat-thread-system-advancement-harvest-chatgpt-v1 per Z:\Capital-Glass-Dev\Harvest\protocol\CHAT-THREAD-SYSTEM-ADVANCEMENT-HARVEST-CHATGPT-V1.md — DRAFT_FILE, harvest-2026-08-04-wesleydesk-session-repair-v1, push to chat-gpt-harvest.
+```
+
+**OBSERVED autopsy** (what happened only): use `CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md` instead.
 
 ---
 

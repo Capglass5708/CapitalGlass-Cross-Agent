@@ -1,10 +1,37 @@
 # Chat Thread Closeout Autopsy — ChatGPT Protocol v1
 
+**Z operator path:** `Z:\Capital-Glass-Dev\Harvest\protocol\CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md`  
+**Intelligence kind:** **OBSERVED** — what happened, failed, passed, was learned (not synthesis).
+
 **Work package pattern:** `chat-thread-closeout-autopsy-harvest-chatgpt-v1`  
 **Parent protocol (Cursor / operator):** [chat-thread-closeout-autopsy-harvest-v1.md](./chat-thread-closeout-autopsy-harvest-v1.md)  
 **Preferred input (Cursor → ChatGPT):** [chat-improvement-extract-chatgpt-v1.md](./chat-improvement-extract-chatgpt-v1.md) — improvements + cross-check only  
 **Authority repo:** CapitalGlass-Cross-Agent  
 **Lane:** `CHAT_CONTEXT_ONLY` — visible conversation + attachments only
+
+---
+
+## Operator quick start (run this in ChatGPT)
+
+| Question | Answer |
+| --- | --- |
+| **OBSERVED autopsy (this file)?** | Yes — thread facts, packets, waste, seeds. Output: `chatgpt-findings-source.md` |
+| **ADVANCEMENT synthesis?** | **No** — use `CHAT-THREAD-SYSTEM-ADVANCEMENT-HARVEST-CHATGPT-V1.md` → `system-advancement-findings-source.md` |
+| **Branch** | `chat-gpt-harvest` on `Capglass5708/CapitalGlass-Cross-Agent` (never `main`) |
+
+**Steps**
+
+1. Paste or attach the **full completed Cursor chat** (or export) into ChatGPT.
+2. @ this protocol file on Z, or paste the **ChatGPT opener** (§ below).
+3. First sentence must declare `REVIEW_ONLY` or `DRAFT_FILE`.
+4. For `DRAFT_FILE`: produce complete findings Markdown, then **push** per § ChatGPT push instructions.
+5. End with Cursor handoff: `npm run harvest:ingest-chatgpt-findings`.
+
+**One-line trigger (paste after the thread)**
+
+```text
+Run chat-thread-closeout-autopsy-harvest-chatgpt-v1 per Z:\Capital-Glass-Dev\Harvest\protocol\CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md — DRAFT_FILE, OBSERVED lane only, push to chat-gpt-harvest.
+```
 
 ---
 

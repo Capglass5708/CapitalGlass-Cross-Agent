@@ -20,7 +20,33 @@ export const Z_HARVEST_PROTOCOL_SOURCES = [
   },
   {
     source: "docs/protocols/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md",
-    destinations: ["protocol/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md"],
+    destinations: [
+      "protocol/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md",
+      "protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md",
+    ],
+  },
+  {
+    source: "docs/protocols/chat-thread-system-advancement-harvest-chatgpt-v1.md",
+    destinations: [
+      "protocol/chat-thread-system-advancement-harvest-chatgpt-v1.md",
+      "protocol/CHAT-THREAD-SYSTEM-ADVANCEMENT-HARVEST-CHATGPT-V1.md",
+    ],
+  },
+  {
+    source: "docs/protocols/chatgpt-system-advancement-findings-template.md",
+    destinations: ["protocol/chatgpt-system-advancement-findings-template.md"],
+  },
+  {
+    source: "docs/protocols/gated-wave-lifecycle-v1.md",
+    destinations: ["protocol/gated-wave-lifecycle-v1.md"],
+  },
+  {
+    source: "docs/protocols/system-advancement-quality-gate.md",
+    destinations: ["protocol/system-advancement-quality-gate.md"],
+  },
+  {
+    source: "docs/protocols/advancement-cycle-taxonomy-v1.md",
+    destinations: ["protocol/advancement-cycle-taxonomy-v1.md"],
   },
   {
     source: "docs/harvest-z-mirror/PROMPT-EXTRACTION-AND-PROMOTION-v1.md",
@@ -48,7 +74,9 @@ Z:\\\\Capital-Glass-Dev\\\\Harvest\\\\protocol\\\\CHAT-THREAD-CLOSEOUT-AUTOPSY-H
 | \`protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md\` | Thread closeout autopsy (Cursor) |
 | \`protocol/HARVEST-INGESTION-RUNBOOK-v1.md\` | Record → validate → sync → publication |
 | \`protocol/PROMPT-EXTRACTION-AND-PROMOTION-v1.md\` | Prompt candidate extraction + Supabase seed |
-| \`protocol/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md\` | ChatGPT draft lane |
+| \`protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md\` | ChatGPT OBSERVED autopsy |
+| \`protocol/CHAT-THREAD-SYSTEM-ADVANCEMENT-HARVEST-CHATGPT-V1.md\` | ChatGPT ADVANCEMENT synthesis |
+| \`protocol/chatgpt-system-advancement-findings-template.md\` | Advancement findings template |
 
 ## Sync
 
