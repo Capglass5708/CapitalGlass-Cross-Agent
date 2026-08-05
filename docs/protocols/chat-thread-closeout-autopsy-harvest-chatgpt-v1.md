@@ -1,5 +1,8 @@
 # Chat Thread Closeout Autopsy — ChatGPT Protocol v1
 
+**Z operator path:** `Z:\Capital-Glass-Dev\Harvest\protocol\CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md`  
+**Intelligence kind:** **OBSERVED** — what happened, failed, passed, was learned (not synthesis).
+
 **Work package pattern:** `chat-thread-closeout-autopsy-harvest-chatgpt-v1`  
 **Parent protocol (Cursor / operator):** [chat-thread-closeout-autopsy-harvest-v1.md](./chat-thread-closeout-autopsy-harvest-v1.md)  
 **Preferred input (Cursor → ChatGPT):** [chat-improvement-extract-chatgpt-v1.md](./chat-improvement-extract-chatgpt-v1.md) — improvements + cross-check only  
