@@ -18,7 +18,9 @@ Z:\\Capital-Glass-Dev\\Harvest\\protocol\\CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V
 | `protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md` | Thread closeout autopsy (Cursor) |
 | `protocol/HARVEST-INGESTION-RUNBOOK-v1.md` | Record → validate → sync → publication |
 | `protocol/PROMPT-EXTRACTION-AND-PROMOTION-v1.md` | Prompt candidate extraction + Supabase seed |
-| `protocol/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md` | ChatGPT draft lane |
+| `protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md` | ChatGPT OBSERVED autopsy |
+| `protocol/CHAT-THREAD-SYSTEM-ADVANCEMENT-HARVEST-CHATGPT-V1.md` | ChatGPT ADVANCEMENT synthesis |
+| `protocol/chatgpt-system-advancement-findings-template.md` | Advancement findings template |
 
 ## Sync
 
@@ -32,5 +34,5 @@ Updates this tree and `Z:\\Capital-Glass-Dev\\Harvest` when the Z: drive is moun
 
 **Do not hand-edit mirrored protocol files** — edit git sources under `docs/runbooks/` or `docs/harvest-z-mirror/`, then re-sync.
 
-Generated: 2026-08-05T01:58:57.834Z
-Source commit: test-head
+Generated: 2026-08-05T03:29:11.981Z
+Source commit: 402352f4bb056e3f30115f7eb7d40e13000cafef
