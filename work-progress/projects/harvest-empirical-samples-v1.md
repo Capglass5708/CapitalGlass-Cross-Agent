@@ -1,6 +1,6 @@
 # harvest-empirical-samples-v1
 
-**Status:** COMPLETE (all five samples PASS; recurrence reviewed; downstream HOLD)  
+**Status:** CLOSED — see successor `harvest-empirical-downstream-handoff-v1`  
 **Owner repo:** CapitalGlass-Cross-Agent  
 **Protocol state:** FROZEN — authority at `1e87d6a` (`harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md`); publication evidence at `b8ceb83` (not protocol text)
 
