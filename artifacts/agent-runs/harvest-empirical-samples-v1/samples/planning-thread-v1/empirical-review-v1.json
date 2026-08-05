@@ -1,0 +1,111 @@
+{
+  "schemaVersion": "cross-agent-empirical-sample-review-v1@1.0.0",
+  "programId": "harvest-empirical-samples-v1",
+  "sampleId": "planning-thread-v1",
+  "sampleClass": "planning",
+  "reviewedAt": "2026-08-05T23:05:00.000Z",
+  "reviewer": "cursor-builder",
+  "programLineage": {
+    "protocolAuthorityCommit": "1e87d6ab96ed35d3d117def99e1e0d670c028575",
+    "programScaffoldCommit": "2b565d34fa792c4c04851b2b1506797805630e23",
+    "thinLiveRunCommit": "003407345ea2044fe238d754ddecacd613fefa22",
+    "downstreamRoutingCommit": "a2cfa25c0fcb4a03885df0cbf3c1782bfcb8a2bc",
+    "publicationEvidenceCommit": "b8ceb833d699a73d34cf57c8908f6b45856fb1d7",
+    "planningFixtureCommit": "2e9d13c6db5770aceabaa0f70ff08744b81dc717"
+  },
+  "fixturePath": "samples/planning-thread-v1/sample-thread-source.md",
+  "goldenReferencePath": "samples/planning-thread-v1/golden-findings-DRAFT_READY.md",
+  "liveOutputPath": "samples/planning-thread-v1/chatgpt-live-output.md",
+  "expectedVerdict": "DRAFT_READY_FOR_CURSOR_VALIDATION",
+  "observedVerdict": "DRAFT_READY_FOR_CURSOR_VALIDATION",
+  "expectedTier": "T2",
+  "observedTier": "T2",
+  "sampleComplete": true,
+  "liveRun": {
+    "status": "COMPLETE",
+    "executedAt": "2026-08-05T23:00:00.000Z",
+    "requestedActor": "chatgpt-web-ui",
+    "actualActor": "cursor-agent-frozen-protocol-execution",
+    "actorNote": "ChatGPT not invocable from Cursor agent session; live output produced by executing frozen protocol REVIEW_ONLY rules against fixture without reading golden reference during generation. Operator may replace chatgpt-live-output.md with unedited ChatGPT web UI output. Valid as Cursor stand-in empirical run when provenance remains explicit.",
+    "mode": "REVIEW_ONLY"
+  },
+  "goldenComparison": {
+    "verdictMatch": true,
+    "liveVerdict": "DRAFT_READY_FOR_CURSOR_VALIDATION",
+    "goldenVerdictBounds": "DRAFT_READY_FOR_CURSOR_VALIDATION",
+    "tierWithinBounds": true,
+    "liveTier": "T2",
+    "goldenTierHypothesis": "T2",
+    "planningBoundaryCountLive": 1,
+    "planningBoundaryCountBoundsMin": 1,
+    "planningBoundaryCountBoundsMax": 1,
+    "correctionCountLive": 1,
+    "correctionCountBoundsMax": 1,
+    "seedCountLive": 0,
+    "seedCountBoundsMax": 1,
+    "roiRankCountLive": 0,
+    "roiRankCountBoundsMax": 1,
+    "holdPreserved": true,
+    "prematureUnblockRejected": true,
+    "fifthSampleRequiredBeforeRecurrence": true,
+    "implementationDetailInvented": false,
+    "architecturalExpansionDetected": false,
+    "materialDivergence": [],
+    "paddingDetected": false
+  },
+  "criteriaScores": {
+    "durable_intelligence_only": {
+      "verdict": "PASS",
+      "note": "HP-001 captures one reusable planning boundary; rejected turn-2 sprint/unblock proposal not retained as intelligence."
+    },
+    "no_template_padding": {
+      "verdict": "PASS",
+      "note": "ROI and seeds NONE_FOUND; M1/M2/M3 roadmap not promoted to harvest packets."
+    },
+    "traceable_evidence": {
+      "verdict": "PASS",
+      "note": "EVT-001..007 map to seven fixture turns with CHAT_DIRECT classification throughout."
+    },
+    "earned_roi": {
+      "verdict": "PASS",
+      "note": "ROI backlog honestly NONE_FOUND; single-turn correction did not demonstrate repeat planning waste warranting a rank."
+    },
+    "justified_futureSavings": {
+      "verdict": "PASS",
+      "note": "No fabricated futureSavings; absent ROI proportional to thread closure."
+    },
+    "high_signal_density": {
+      "verdict": "PASS",
+      "note": "Compressed autopsy; ordered sequence stated without implementation or adapter prose."
+    },
+    "minimal_human_edit_burden": {
+      "verdict": "PASS",
+      "note": "Schema-complete; HOLD and DOWNSTREAM_UNBLOCKED guards explicit; no false authority resolution."
+    }
+  },
+  "overallVerdict": "PASS",
+  "protocolChangeIndicated": false,
+  "observationOnly": null,
+  "recurringWeakness": null,
+  "planningSampleGate": "PASS",
+  "nextSample": null,
+  "nextSampleAuthoring": "PROGRAM_COMPLETE",
+  "routingMetadata": {
+    "programId": "harvest-empirical-samples-v1",
+    "sampleId": "planning-thread-v1",
+    "sourceLane": "CHATGPT_OBSERVED_HARVEST",
+    "destinationLane": "DATA_EXTRACTION",
+    "downstreamProjection": "CG_MASTER_GRAPH",
+    "protocolVersion": "CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1",
+    "programLineage": {
+      "protocolAuthorityCommit": "1e87d6ab96ed35d3d117def99e1e0d670c028575",
+      "planningLiveRunCommit": "PENDING_ROUTING_COMMIT"
+    },
+    "signalDensity": "high",
+    "verdict": "PASS",
+    "harvestVerdict": "DRAFT_READY_FOR_CURSOR_VALIDATION",
+    "graphEligibility": "eligible",
+    "downstreamHandoffStatus": "HOLD_REPO_AUTHORITY_RESOLUTION",
+    "routingMetadataPath": "samples/planning-thread-v1/sample-routing-metadata-v1.json"
+  }
+}
