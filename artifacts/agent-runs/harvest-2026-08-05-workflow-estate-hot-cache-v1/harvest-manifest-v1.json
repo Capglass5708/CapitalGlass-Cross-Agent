@@ -1,0 +1,162 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-05-workflow-estate-hot-cache-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "8721dbdfee740fa23df9b379dd3a2a1b816e1d01",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-05T03:30:00.000Z",
+  "updatedAt": "2026-08-05T03:30:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "rawScanRequired": false,
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "AUTO_PROMOTE_EXTRACTED_PROMPTS",
+    "FULLY_SEEDED_WITHOUT_HUB_PUBLISH"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/seed-packets/seed-packet-index.json",
+    "counts": {
+      "waste": 2,
+      "seeds": 3,
+      "roiItems": 3,
+      "operatorFriction": 1
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "synced",
+    "hubPublishStatus": "published",
+    "hubPublishBlocker": null,
+    "note": "Hub seeds published to L:; git authority recorded in this commit"
+  },
+  "ledgerLineage": {
+    "ledgerPath": "work-progress/ACTIVE_WORK.md",
+    "note": "No ACTIVE_WORK mutation in this harvest recording pass",
+    "ledgerContentHashBefore": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096",
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  },
+  "packets": [
+    {
+      "packetId": "workflow-estate-hot-cache-shipped-v1",
+      "packetTitle": "Workflow Estate hot-cache v1 shipped with Command Estate linkage",
+      "state": "HARVEST_COMPLETE",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "DECISION",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/workflow-estate-hot-cache-v1.md",
+      "evidenceRefs": [
+        "CapitalGlass-Cross-Agent#13",
+        "CG-AppBuilder-MCP#287",
+        "CapitalGlass-Cross-Agent#14",
+        "8721dbd",
+        "060e11b",
+        "artifacts/agent-runs/harvest-prompt-extraction-post-merge-v1/post-merge-acceptance-receipt.json"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "a3b78ca"
+        },
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "8721dbd"
+        },
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "060e11b"
+        }
+      ],
+      "nextAction": "None — workflow-estate on main; republish hot cache when operator confirms",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "blockers": []
+    },
+    {
+      "packetId": "harvest-prompt-post-merge-acceptance-v1",
+      "packetTitle": "Harvest prompt extraction post-merge acceptance recorded",
+      "state": "DOCUMENTED",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "COMMAND",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/workflow-estate-hot-cache-v1.md",
+      "evidenceRefs": [
+        "artifacts/agent-runs/harvest-prompt-extraction-post-merge-v1/post-merge-acceptance-receipt.json",
+        "66542dd",
+        "2aa44f6f"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "66542dd"
+        },
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "2aa44f6f"
+        }
+      ],
+      "nextAction": "Operator approval required before prompt catalog projection",
+      "advancementGate": "operator-explicit-prompt-approval",
+      "doNotAdvance": [
+        "AUTO_PROMOTE_EXTRACTED_PROMPTS"
+      ],
+      "blockers": []
+    },
+    {
+      "packetId": "workflow-estate-scout-routing-keywords-v1",
+      "packetTitle": "Workflow-estate scout routing keywords hotfix",
+      "state": "DOCUMENTED",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "MISTAKE",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/workflow-estate-hot-cache-v1.md",
+      "evidenceRefs": [
+        "CapitalGlass-Cross-Agent#14",
+        "registry/query-routing/query-routing-manifest.v1.json"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "8721dbd"
+        }
+      ],
+      "nextAction": "None — merged on main",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "blockers": []
+    }
+  ],
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 10,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 10,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-cf8854a47ea7",
+      "prompt-candidate-1928eb201e2b",
+      "prompt-candidate-4423b7516079",
+      "prompt-candidate-6a3ac764d4b9",
+      "prompt-candidate-22c8a88aae62",
+      "prompt-candidate-ebed8007bbe0",
+      "prompt-candidate-90aa2bacfd8b",
+      "prompt-candidate-9c15d862a436",
+      "prompt-candidate-9978981f52cd",
+      "prompt-candidate-8e9ea4bf8fbf"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

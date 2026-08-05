@@ -1,0 +1,76 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-prompt-approval-boundary-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "02882a05cf8cff0d92d7ae837ee2d6b934698ac2",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-05-workflow-estate-hot-cache-v1",
+      "seedId": "IH-PROMPT-APPROVAL-BOUNDARY-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T03:30:47.597Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "92166b13ad6eb5505cf3611416bec916f01736e60372000b41deb94b96b4e6c9"
+  },
+  "body": {
+    "seedId": "IH-PROMPT-APPROVAL-BOUNDARY-001",
+    "kind": "lesson",
+    "title": "Prompt extraction creates candidates only — operator approval before projection",
+    "summary": "harvest:sync-derived extracts prompt candidates; wf-prompt-candidate-promotion-v1 requires operator-explicit-prompt-approval before catalog delta and Supabase projection.",
+    "canonicalQuestion": "Can extracted prompts auto-promote to the catalog?",
+    "alternateQuestions": [
+      "What approval is required to promote prompt candidates?"
+    ],
+    "shortAnswer": "harvest:sync-derived extracts prompt candidates; wf-prompt-candidate-promotion-v1 requires operator-explicit-prompt-approval before catalog delta and Supabase projection.",
+    "detailedAnswer": "Prompt extraction creates candidates only — operator approval before projection",
+    "retrievalQuestions": [
+      "Can extracted prompts auto-promote to the catalog?",
+      "What approval is required to promote prompt candidates?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Harvest prompt extraction or prompt catalog projection work",
+      "startAt": [
+        "Z:/Capital-Glass-Dev/Harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"
+      ],
+      "runPreflight": [
+        "npm run test:harvest:prompt-post-merge-acceptance"
+      ],
+      "doNot": [
+        "Auto-promote extracted prompts",
+        "Project candidate_only records to Supabase"
+      ],
+      "proveBeforeClaiming": [
+        "PROMPT_APPROVAL_BOUNDARY_PASS",
+        "manifest.promptHarvest.operatorApprovals populated for approved IDs only"
+      ]
+    },
+    "evidenceRefs": [
+      "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md",
+      "artifacts/agent-runs/harvest-prompt-extraction-post-merge-v1/post-merge-acceptance-receipt.json",
+      "wf-prompt-candidate-promotion-v1"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": 2,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Cross-Agent",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/seed-packets/IH-PROMPT-APPROVAL-BOUNDARY-001.json"
+    ],
+    "harvestId": "harvest-2026-08-05-workflow-estate-hot-cache-v1"
+  }
+}
