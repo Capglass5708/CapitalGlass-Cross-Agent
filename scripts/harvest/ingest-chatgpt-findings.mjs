@@ -47,6 +47,7 @@ function main() {
   console.log(`  source=${dest}`);
   console.log("  next: Cursor validates receipts, writes harvest-manifest-v1.json + bundle + seeds, then:");
   console.log(`    npm run harvest:record -- ${harvestId}`);
+  console.log("  batch path (default): npm run harvest:collect-chatgpt-drafts — see chatgpt-draft-batch-assessment-t2-v1.md");
   console.log("  prompt extraction runs automatically on harvest:sync-derived (see protocol/PROMPT-EXTRACTION-AND-PROMOTION-v1.md)");
   console.log("  Z: protocol mirror: npm run harvest:sync-z-mirror");
 }

@@ -19,7 +19,16 @@
 | --- | --- | --- |
 | harvest-2026-08-04-wesleydesk-connectivity-session-boundary-v1 | OBSERVED ChatGPT | chatgpt-findings-source.md |
 | harvest-2026-08-04-prompt-cache-connectivity-thread-v1 | OBSERVED ChatGPT | chatgpt-findings-source.md |
+| harvest-2026-08-04-hot-cache-platform-thread-autopsy-v1 | OBSERVED ChatGPT | chatgpt-findings-source.md |
 | harvest-2026-08-05-wesleydesk-connectivity-repair-v1 | OBSERVED Cursor T2 | published seeds |
+
+## Batch assessor (T2 — preferred over per-draft publish)
+
+| Work package | Protocol | Queue index |
+| --- | --- | --- |
+| `chatgpt-draft-batch-assessment-t2-v1` | `docs/protocols/chatgpt-draft-batch-assessment-t2-v1.md` | `work-progress/chatgpt-draft-index.json` |
+
+Refresh queue: `npm run harvest:collect-chatgpt-drafts -- --refresh-index`
 
 ## Pilot A (next — not this harvest)
 

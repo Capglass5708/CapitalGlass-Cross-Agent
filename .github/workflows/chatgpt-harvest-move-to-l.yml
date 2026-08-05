@@ -1,0 +1,51 @@
+name: ChatGPT harvest move to L
+
+# Push ChatGPT draft findings on chat-gpt-harvest → deterministic move to L: catalog.
+# No assessment, publication, or content mutation — move only.
+
+on:
+  push:
+    branches:
+      - chat-gpt-harvest
+    paths:
+      - 'artifacts/agent-runs/**/chatgpt-findings-source.md'
+      - 'artifacts/agent-runs/**/system-advancement-findings-source.md'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: chatgpt-harvest-move-to-l
+  cancel-in-progress: false
+
+jobs:
+  move-to-l:
+    runs-on: [self-hosted, wesleydesk, wsl2]
+    timeout-minutes: 15
+    env:
+      CG_L_DRIVE_ROOT: /mnt/l
+      CAPITALGLASS_CROSS_AGENT_ROOT: ${{ github.workspace }}
+    steps:
+      - name: Checkout chat-gpt-harvest
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: chat-gpt-harvest
+          fetch-depth: 1
+
+      - name: L drive mount probe
+        run: test -d /mnt/l
+
+      - uses: actions/setup-node@b789df37d6b7526a863bf51b65df64f3f56ffe4f
+        with:
+          node-version: '22'
+
+      - name: Deterministic move to L catalog
+        run: npm run harvest:move-chatgpt-harvest-to-l -- --json
+
+      - name: Upload move receipt
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: chatgpt-harvest-l-move-receipt
+          path: |
+            artifacts/agent-runs/chatgpt-harvest-l-move/latest.json

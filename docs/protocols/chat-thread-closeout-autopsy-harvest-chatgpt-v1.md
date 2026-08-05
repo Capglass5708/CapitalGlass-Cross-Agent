@@ -25,7 +25,8 @@
 2. @ this protocol file on Z, or paste the **ChatGPT opener** (§ below).
 3. First sentence must declare `REVIEW_ONLY` or `DRAFT_FILE`.
 4. For `DRAFT_FILE`: produce complete findings Markdown, then **push** per § ChatGPT push instructions.
-5. End with Cursor handoff: `npm run harvest:ingest-chatgpt-findings`.
+5. **Default operator path:** drafts queue on `chat-gpt-harvest`; batch assessor runs T2 consolidation later — see [chatgpt-draft-batch-assessment-t2-v1.md](./chatgpt-draft-batch-assessment-t2-v1.md). **Not** required: per-run `harvest:validate` or hub publish.
+6. End with Cursor handoff only if operator chose per-run ingest; otherwise report SHA and stop.
 
 **One-line trigger (paste after the thread)**
 
@@ -53,7 +54,8 @@ Run chat-thread-closeout-autopsy-harvest-chatgpt-v1 per Z:\Capital-Glass-Dev\Har
 1. Produce complete findings Markdown (`chatgpt-findings-source.md` content).
 2. **Commit and push** to branch `chat-gpt-harvest` (steps in § ChatGPT push instructions).
 3. Report commit SHA + file path in chat.
-4. Hand off Cursor: `npm run harvest:ingest-chatgpt-findings` (Cursor runs validation — not ChatGPT).
+4. **Batch path (default):** stop — drafts are queued for `chatgpt-draft-batch-assessment-t2-v1`. Optional: `npm run harvest:collect-chatgpt-drafts`.
+5. **Per-run ingest (optional):** hand off Cursor `npm run harvest:ingest-chatgpt-findings` only when operator wants immediate single-thread Cursor artifacts.
 
 If GitHub is **not** connected in ChatGPT: produce the file, print the full repo path and branch, and tell the operator to push manually **before** Cursor ingest. Do **not** skip naming the branch and path.
 

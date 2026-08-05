@@ -25,13 +25,39 @@
 2. @ this protocol file on Z, or paste the **ChatGPT opener** (§ below).
 3. First sentence must declare `REVIEW_ONLY` or `DRAFT_FILE`.
 4. For `DRAFT_FILE`: produce complete findings Markdown, then **push** per § ChatGPT push instructions.
-5. End with Cursor handoff: `npm run harvest:ingest-chatgpt-findings`.
+5. **Default operator path:** drafts queue on `chat-gpt-harvest`; batch assessor runs T2 consolidation later — see [chatgpt-draft-batch-assessment-t2-v1.md](./chatgpt-draft-batch-assessment-t2-v1.md). **Not** required: per-run `harvest:validate` or hub publish.
+6. End with Cursor handoff only if operator chose per-run ingest; otherwise report SHA and stop.
 
 **One-line trigger (paste after the thread)**
 
 ```text
 Run chat-thread-closeout-autopsy-harvest-chatgpt-v1 per Z:\Capital-Glass-Dev\Harvest\protocol\CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md — DRAFT_FILE, OBSERVED lane only, push to chat-gpt-harvest.
 ```
+
+---
+
+## Mandatory Git push (DRAFT_FILE closeout — not optional)
+
+`DRAFT_FILE` **includes** committing and pushing findings to GitHub. Chat-only output without a repo push is **incomplete** unless the operator explicitly chose `REVIEW_ONLY` or GitHub access is unavailable.
+
+| Field | Value |
+| --- | --- |
+| **GitHub repo** | `Capglass5708/CapitalGlass-Cross-Agent` |
+| **Branch** | `chat-gpt-harvest` (hyphenated — not `main`, not `chat gpt harvest`) |
+| **Local clone path (operator)** | `CapitalGlass-Cross-Agent` on WSL ext4 or Windows dev tree |
+| **Findings file** | `artifacts/agent-runs/harvest-YYYY-MM-DD-<slug>-v1/chatgpt-findings-source.md` |
+| **Commit message** | `harvest(chatgpt): draft findings harvest-YYYY-MM-DD-<slug>-v1` |
+| **Push target** | `git push origin chat-gpt-harvest` |
+
+**Closeout order (mandatory)**
+
+1. Produce complete findings Markdown (`chatgpt-findings-source.md` content).
+2. **Commit and push** to branch `chat-gpt-harvest` (steps in § ChatGPT push instructions).
+3. Report commit SHA + file path in chat.
+4. **Batch path (default):** stop — drafts are queued for `chatgpt-draft-batch-assessment-t2-v1`. Optional: `npm run harvest:collect-chatgpt-drafts`.
+5. **Per-run ingest (optional):** hand off Cursor `npm run harvest:ingest-chatgpt-findings` only when operator wants immediate single-thread Cursor artifacts.
+
+If GitHub is **not** connected in ChatGPT: produce the file, print the full repo path and branch, and tell the operator to push manually **before** Cursor ingest. Do **not** skip naming the branch and path.
 
 ---
 
@@ -129,8 +155,8 @@ Before any artifact or long output, state the mode:
 
 | Mode | Allowed | Forbidden |
 | --- | --- | --- |
-| `REVIEW_ONLY` | Read, analyze, answer questions | Files, tools, implementation |
-| `DRAFT_FILE` | Produce Markdown/JSON **in chat** or as downloadable draft | Repo edits, validation claims |
+| `REVIEW_ONLY` | Read, analyze, answer questions | Files, Git push, implementation |
+| `DRAFT_FILE` | Produce findings Markdown; **commit + push** to `chat-gpt-harvest` only; downloadable draft if push unavailable | Push to `main`; merge; `harvest:validate` / `HARVEST_COMPLETE` claims; arbitrary repo edits |
 | `EDIT_EXISTING` | User explicitly asked to change a named file | Unnamed scope creep |
 | `IMPLEMENT_REPO` | **Not available in ChatGPT** | — use Cursor |
 | `PUBLISH_OPERATOR` | **Not available in ChatGPT** | — operator + Cursor |
@@ -164,6 +190,8 @@ Before any artifact or long output, state the mode:
 | Harvest packets (8 kinds) | Yes (draft) | Yes (canonical JSON) |
 | `thread-autopsy-bundle.json` | Draft equivalent in Markdown | Canonical file |
 | `seed-packets/*.json` | Draft JSON blocks in findings file | Canonical + schema validate |
+| **Commit + push findings to `chat-gpt-harvest`** | **Yes — mandatory for `DRAFT_FILE` closeout** | Pull + ingest |
+| `harvest:ingest-chatgpt-findings` | No | Yes |
 | `harvest:duplication-preflight` | No | Yes |
 | `harvest:validate` | No | Yes |
 | `harvest:publish-intelligence-full` | No | Operator |
@@ -231,24 +259,32 @@ artifacts/agent-runs/harvest-YYYY-MM-DD-<slug>-v1/chatgpt-findings-source.md
 
 Replace `<slug>` with a short thread identifier (e.g. `cursor-session`, `po-debug-thread`).
 
-If the ChatGPT host cannot push to GitHub, produce the findings file in chat and tell the operator to place it on `chat-gpt-harvest` manually before Cursor ingest.
+If the ChatGPT host cannot push to GitHub, produce the findings file in chat and give the operator **exact** repo, branch, path, and commit message so they can push to `chat-gpt-harvest` manually **before** Cursor ingest.
 
 ---
 
-## Handoff to Cursor
+## Handoff to Cursor (after Git push)
 
-When findings are ready, give Cursor:
+**Push first.** Cursor ingest assumes findings already exist on branch `chat-gpt-harvest`.
 
-1. The findings Markdown file on branch `chat-gpt-harvest` (repo path above, or paste)
-2. Instruction:
+1. **Git push complete** — findings at:
+   `artifacts/agent-runs/harvest-YYYY-MM-DD-<slug>-v1/chatgpt-findings-source.md`
+2. Report commit SHA in chat.
+3. Give Cursor:
 
 ```text
+Pull branch chat-gpt-harvest on Capglass5708/CapitalGlass-Cross-Agent.
+
 Ingest ChatGPT thread autopsy findings per chat-thread-closeout-autopsy-harvest-chatgpt-v1.
 
-npm run harvest:ingest-chatgpt-findings -- --input=<findings.md> --harvest-id=harvest-YYYY-MM-DD-<slug>-v1
+npm run harvest:ingest-chatgpt-findings -- \
+  --input=artifacts/agent-runs/harvest-YYYY-MM-DD-<slug>-v1/chatgpt-findings-source.md \
+  --harvest-id=harvest-YYYY-MM-DD-<slug>-v1
 
 Then run duplication-preflight, validate, and (operator) publish-intelligence-full.
 ```
+
+Paste-only handoff (no Git push) is a **fallback** when GitHub is unavailable — not the default `DRAFT_FILE` path.
 
 Cursor command chain after ingest:
 
@@ -341,18 +377,22 @@ Produce one Markdown findings file with:
 
 Output verdict: DRAFT_READY_FOR_CURSOR_VALIDATION.
 
-If I said concept-only or stop earlier in the thread, honor CONCEPT_ONLY_NO_WRITE / STOP_NOW.
+Mandatory closeout: commit + push findings to branch chat-gpt-harvest on Capglass5708/CapitalGlass-Cross-Agent (see ChatGPT push instructions). Report commit SHA.
 
-Run pre-push self-check. Push per "ChatGPT push instructions" below.
+If I said concept-only or stop earlier in the thread, honor CONCEPT_ONLY_NO_WRITE / STOP_NOW (no Git push in those modes).
 
-End with: hand off command for Cursor ingest (harvest:ingest-chatgpt-findings).
+Run pre-push self-check. Push per "ChatGPT push instructions" below — do not skip push and only paste to Cursor.
+
+End with: Cursor ingest command (harvest:ingest-chatgpt-findings) after push is complete.
 ```
 
 ---
 
 ## ChatGPT push instructions (mandatory closeout)
 
-When the findings Markdown file is complete, **end every harvest session** by telling the operator (or executing, if GitHub is connected) these steps:
+**This section is required for every `DRAFT_FILE` harvest.** Do not end the session with “hand findings to Cursor” without first pushing (or giving operator exact push steps).
+
+When the findings Markdown file is complete, **commit and push** (or instruct the operator with these exact steps if GitHub is not connected in ChatGPT):
 
 ```text
 Repo: Capglass5708/CapitalGlass-Cross-Agent

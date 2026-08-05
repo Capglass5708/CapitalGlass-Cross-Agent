@@ -49,6 +49,13 @@ export const Z_HARVEST_PROTOCOL_SOURCES = [
     destinations: ["protocol/advancement-cycle-taxonomy-v1.md"],
   },
   {
+    source: "docs/protocols/chatgpt-draft-batch-assessment-t2-v1.md",
+    destinations: [
+      "protocol/chatgpt-draft-batch-assessment-t2-v1.md",
+      "protocol/CHATGPT-DRAFT-BATCH-ASSESSMENT-T2-V1.md",
+    ],
+  },
+  {
     source: "docs/harvest-z-mirror/PROMPT-EXTRACTION-AND-PROMOTION-v1.md",
     destinations: ["protocol/PROMPT-EXTRACTION-AND-PROMOTION-v1.md"],
   },
@@ -76,6 +83,7 @@ Z:\\\\Capital-Glass-Dev\\\\Harvest\\\\protocol\\\\CHAT-THREAD-CLOSEOUT-AUTOPSY-H
 | \`protocol/PROMPT-EXTRACTION-AND-PROMOTION-v1.md\` | Prompt candidate extraction + Supabase seed |
 | \`protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md\` | ChatGPT OBSERVED autopsy |
 | \`protocol/CHAT-THREAD-SYSTEM-ADVANCEMENT-HARVEST-CHATGPT-V1.md\` | ChatGPT ADVANCEMENT synthesis |
+| \`protocol/CHATGPT-DRAFT-BATCH-ASSESSMENT-T2-V1.md\` | T2 batch assessor (draft queue → validated harvest) |
 | \`protocol/chatgpt-system-advancement-findings-template.md\` | Advancement findings template |
 
 ## Sync
