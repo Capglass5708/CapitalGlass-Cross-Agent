@@ -1,0 +1,89 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-hot-cache-wave-a-estate-ship-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "c0b453ee76bc8a27025a91a0663e2b3db6de299c",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1",
+      "seedId": "IH-HOT-CACHE-WAVE-A-ESTATE-SHIP-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T00:40:58.635Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "critical",
+    "contentHash": "788bcadcc7fecacd397a02b0397426e9f758c3bdd5812c7a47c4a9e8d81028de"
+  },
+  "body": {
+    "seedId": "IH-HOT-CACHE-WAVE-A-ESTATE-SHIP-001",
+    "kind": "runbook",
+    "title": "Hot Cache Wave A estate ship three-gate closeout",
+    "summary": "Ship Wave A only after Cross-Agent+AppBuilder merge, republication, second-host scout PASS, and receipt commit.",
+    "canonicalQuestion": "What gates are required before WAVE_A_ESTATE_SHIPPED?",
+    "alternateQuestions": [
+      "Which SHAs must match for hot-cache Wave A estate rollout?"
+    ],
+    "shortAnswer": "Ship Wave A only after Cross-Agent+AppBuilder merge, republication, second-host scout PASS, and receipt commit.",
+    "detailedAnswer": "Hot Cache Wave A estate ship three-gate closeout",
+    "retrievalQuestions": [
+      "What gates are required before WAVE_A_ESTATE_SHIPPED?",
+      "Which SHAs must match for hot-cache Wave A estate rollout?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Hot Cache Wave A or estate-wide hot-routing rollout closeout",
+      "startAt": [
+        "CG-AppBuilder-MCP/artifacts/agent-runs/hot-cache-expansion-capital-glass-v1/wave-a-closeout-receipt.json",
+        "BY-KIND/mcp-servers.json"
+      ],
+      "runPreflight": [
+        "git pull both CapitalGlass-Cross-Agent and CG-AppBuilder-MCP",
+        "npm run hot-cache:refresh-all:json",
+        "npm run agent:index:scout -- --json"
+      ],
+      "doNot": [
+        "Claim WAVE_A_ESTATE_SHIPPED without second-host scout proof",
+        "Merge AppBuilder before Cross-Agent registry PR",
+        "Treat shipAuthorization false as failure"
+      ],
+      "proveBeforeClaiming": [
+        "crossAgentSha 6714137 and appBuilderSha 51732d5+",
+        "INDEX_HIT_AI_CACHE and rawScanRequired false on two hosts",
+        "Receipt committed on main"
+      ]
+    },
+    "evidenceRefs": [
+      "CG-AppBuilder-MCP/artifacts/agent-runs/hot-cache-expansion-capital-glass-v1/wave-a-closeout-receipt.json",
+      "8549cd98",
+      "6714137",
+      "51732d5"
+    ],
+    "executionDeltaRefs": [
+      "ED-401",
+      "ED-402",
+      "ED-403"
+    ],
+    "wasteIds": [
+      "TW-401",
+      "TW-402"
+    ],
+    "operatorFrictionIds": [],
+    "roiRank": 1,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1/seed-packets/IH-HOT-CACHE-WAVE-A-ESTATE-SHIP-001.json"
+    ],
+    "harvestId": "harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1"
+  }
+}

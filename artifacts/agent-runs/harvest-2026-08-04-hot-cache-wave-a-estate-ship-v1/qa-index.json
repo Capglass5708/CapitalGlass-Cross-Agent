@@ -1,0 +1,252 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-HOT-CACHE-CONTENT-HASH-HOST-001",
+      "questionId": "IHHOTCACHECO",
+      "canonicalQuestion": "Why does hot-cache contentHash differ between WESLEY_WORK and WESLEYDESK?",
+      "alternateQuestions": [
+        "Is a different routing contentHash a rollout failure?"
+      ],
+      "shortAnswer": "WESLEY_WORK L_UNAVAILABLE and WESLEYDESK L ALIGNED produce different contentHash with same merged git SHAs — not a new project.",
+      "detailedAnswer": "Hot routing contentHash differs by host when L alignment differs",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T00:40:58.634Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1/seed-packets/IH-HOT-CACHE-CONTENT-HASH-HOST-001.json"
+      ],
+      "authorityCommit": [
+        "c0b453e"
+      ],
+      "evidenceUrls": [
+        "wave-a-closeout-receipt.json#contentHashByHost",
+        "0d218e78013e429743dc4c3b112d15066716745c4e545591a63fcbc3f6ad752b",
+        "67c8fc552992e65b4a76546d0872442bc4b07b806703366cd1a00e90578d9dba"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Scout or refresh contentHash mismatch across hosts after Wave A ship",
+        "startAt": [
+          "wave-a-closeout-receipt.json#contentHashByHost",
+          "authorityLineage.layerAlignment"
+        ],
+        "runPreflight": [
+          "npm run agent:index:scout -- --json"
+        ],
+        "doNot": [
+          "Reopen Wave A as failed solely on contentHash mismatch",
+          "Require identical bundleBytes across L_UNAVAILABLE vs ALIGNED hosts"
+        ],
+        "proveBeforeClaiming": [
+          "Merged Cross-Agent and AppBuilder git SHAs match",
+          "INDEX_HIT_AI_CACHE and freshnessVerdict CURRENT on each host",
+          "derivativeAuthority true and shipAuthorization false"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "lesson"
+    },
+    {
+      "ihPfspId": "IH-HOT-CACHE-CROSS-AGENT-MERGE-FIRST-001",
+      "questionId": "IHHOTCACHECR",
+      "canonicalQuestion": "Why did hot-cache refresh-all publish sourceCommitSha 66b974e?",
+      "alternateQuestions": [
+        "What order should Cross-Agent and AppBuilder Wave A PRs merge?"
+      ],
+      "shortAnswer": "AppBuilder Wave A depends on Cross-Agent dataset registry and query-routing v1.1.0; partial main commits cause stale refresh-all SHAs.",
+      "detailedAnswer": "Merge Cross-Agent hot-cache registry before AppBuilder consumer PR",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T00:40:58.635Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1/seed-packets/IH-HOT-CACHE-CROSS-AGENT-MERGE-FIRST-001.json"
+      ],
+      "authorityCommit": [
+        "c0b453e"
+      ],
+      "evidenceUrls": [
+        "EVT-402",
+        "EVT-403",
+        "EVT-407",
+        "6714137",
+        "66b974e"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Hot-cache Wave rollout spans Cross-Agent registry and AppBuilder compilers",
+        "startAt": [
+          "CapitalGlass-Cross-Agent/registry/datasets/hot-cache-dataset-registry.v1.json",
+          "CapitalGlass-Cross-Agent/registry/query-routing/query-routing-manifest.v1.json"
+        ],
+        "runPreflight": [
+          "git -C CapitalGlass-Cross-Agent rev-parse origin/main",
+          "gh pr view Cross-Agent PR --json mergeable,state"
+        ],
+        "doNot": [
+          "Merge AppBuilder PR before Cross-Agent registry is on main",
+          "Run refresh-all without pulling Cross-Agent main"
+        ],
+        "proveBeforeClaiming": [
+          "origin/main Cross-Agent SHA matches verifiedAgainstCrossAgentSha in receipt",
+          "refresh-all routing.sourceCommitSha equals Cross-Agent main"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-HOT-CACHE-SECOND-HOST-SSH-001",
+      "questionId": "IHHOTCACHESE",
+      "canonicalQuestion": "How to prove hot-cache consumption on WESLEYDESK from WESLEY_WORK?",
+      "alternateQuestions": [
+        "Which SSH user works for wesleydesk second-host gates?"
+      ],
+      "shortAnswer": "When WESLEY_WORK lacks S: cache mount, run refresh-all and scout on WESLEYDESK via cgremoteadmin@wesleydesk SSH.",
+      "detailedAnswer": "Second-host hot-cache gate via SSH to WESLEYDESK",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T00:40:58.635Z",
+      "authorityRepo": "CapitalGlass-Office-Admin",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1/seed-packets/IH-HOT-CACHE-SECOND-HOST-SSH-001.json"
+      ],
+      "authorityCommit": [
+        "c0b453e"
+      ],
+      "evidenceUrls": [
+        "EVT-410",
+        "cgremoteadmin@wesleydesk",
+        "/mnt/s/AI Cursur Cache"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "command",
+        "harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Office-Admin"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Estate ship requires second-host proof but primary WSL has HOT_CACHE_ROOT_MISSING",
+        "startAt": [
+          "work-progress/command-index.json",
+          "~/.ssh/wesleydesk_cgremoteadmin"
+        ],
+        "runPreflight": [
+          "test -d /mnt/s/AI Cursur Cache || ssh -i ~/.ssh/wesleydesk_cgremoteadmin cgremoteadmin@wesleydesk hostname"
+        ],
+        "doNot": [
+          "Fake second-host proof by setting CG_WSL_MACHINE_ROLE without correct cache root",
+          "Claim WAVE_A_ESTATE_SHIPPED from WESLEY_WORK alone"
+        ],
+        "proveBeforeClaiming": [
+          "ssh gate: export CG_WSL_MACHINE_ROLE=wesleydesk; npm run hot-cache:refresh-all:json",
+          "npm run agent:index:scout -- --json with INDEX_HIT_AI_CACHE"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "command"
+    },
+    {
+      "ihPfspId": "IH-HOT-CACHE-WAVE-A-ESTATE-SHIP-001",
+      "questionId": "IHHOTCACHEWA",
+      "canonicalQuestion": "What gates are required before WAVE_A_ESTATE_SHIPPED?",
+      "alternateQuestions": [
+        "Which SHAs must match for hot-cache Wave A estate rollout?"
+      ],
+      "shortAnswer": "Ship Wave A only after Cross-Agent+AppBuilder merge, republication, second-host scout PASS, and receipt commit.",
+      "detailedAnswer": "Hot Cache Wave A estate ship three-gate closeout",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T00:40:58.635Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1/seed-packets/IH-HOT-CACHE-WAVE-A-ESTATE-SHIP-001.json"
+      ],
+      "authorityCommit": [
+        "c0b453e"
+      ],
+      "evidenceUrls": [
+        "CG-AppBuilder-MCP/artifacts/agent-runs/hot-cache-expansion-capital-glass-v1/wave-a-closeout-receipt.json",
+        "8549cd98",
+        "6714137",
+        "51732d5"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Hot Cache Wave A or estate-wide hot-routing rollout closeout",
+        "startAt": [
+          "CG-AppBuilder-MCP/artifacts/agent-runs/hot-cache-expansion-capital-glass-v1/wave-a-closeout-receipt.json",
+          "BY-KIND/mcp-servers.json"
+        ],
+        "runPreflight": [
+          "git pull both CapitalGlass-Cross-Agent and CG-AppBuilder-MCP",
+          "npm run hot-cache:refresh-all:json",
+          "npm run agent:index:scout -- --json"
+        ],
+        "doNot": [
+          "Claim WAVE_A_ESTATE_SHIPPED without second-host scout proof",
+          "Merge AppBuilder before Cross-Agent registry PR",
+          "Treat shipAuthorization false as failure"
+        ],
+        "proveBeforeClaiming": [
+          "crossAgentSha 6714137 and appBuilderSha 51732d5+",
+          "INDEX_HIT_AI_CACHE and rawScanRequired false on two hosts",
+          "Receipt committed on main"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "runbook"
+    }
+  ]
+}

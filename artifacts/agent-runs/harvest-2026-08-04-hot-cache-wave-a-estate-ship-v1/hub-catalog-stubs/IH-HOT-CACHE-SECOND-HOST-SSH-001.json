@@ -1,0 +1,81 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-hot-cache-second-host-ssh-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "c0b453ee76bc8a27025a91a0663e2b3db6de299c",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1",
+      "seedId": "IH-HOT-CACHE-SECOND-HOST-SSH-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T00:40:58.635Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "90936be6c494743e8f2a93a31e29f18714b94217932777cbd7b4de5584b7deec"
+  },
+  "body": {
+    "seedId": "IH-HOT-CACHE-SECOND-HOST-SSH-001",
+    "kind": "command",
+    "title": "Second-host hot-cache gate via SSH to WESLEYDESK",
+    "summary": "When WESLEY_WORK lacks S: cache mount, run refresh-all and scout on WESLEYDESK via cgremoteadmin@wesleydesk SSH.",
+    "canonicalQuestion": "How to prove hot-cache consumption on WESLEYDESK from WESLEY_WORK?",
+    "alternateQuestions": [
+      "Which SSH user works for wesleydesk second-host gates?"
+    ],
+    "shortAnswer": "When WESLEY_WORK lacks S: cache mount, run refresh-all and scout on WESLEYDESK via cgremoteadmin@wesleydesk SSH.",
+    "detailedAnswer": "Second-host hot-cache gate via SSH to WESLEYDESK",
+    "retrievalQuestions": [
+      "How to prove hot-cache consumption on WESLEYDESK from WESLEY_WORK?",
+      "Which SSH user works for wesleydesk second-host gates?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Estate ship requires second-host proof but primary WSL has HOT_CACHE_ROOT_MISSING",
+      "startAt": [
+        "work-progress/command-index.json",
+        "~/.ssh/wesleydesk_cgremoteadmin"
+      ],
+      "runPreflight": [
+        "test -d /mnt/s/AI Cursur Cache || ssh -i ~/.ssh/wesleydesk_cgremoteadmin cgremoteadmin@wesleydesk hostname"
+      ],
+      "doNot": [
+        "Fake second-host proof by setting CG_WSL_MACHINE_ROLE without correct cache root",
+        "Claim WAVE_A_ESTATE_SHIPPED from WESLEY_WORK alone"
+      ],
+      "proveBeforeClaiming": [
+        "ssh gate: export CG_WSL_MACHINE_ROLE=wesleydesk; npm run hot-cache:refresh-all:json",
+        "npm run agent:index:scout -- --json with INDEX_HIT_AI_CACHE"
+      ]
+    },
+    "evidenceRefs": [
+      "EVT-410",
+      "cgremoteadmin@wesleydesk",
+      "/mnt/s/AI Cursur Cache"
+    ],
+    "executionDeltaRefs": [
+      "ED-403"
+    ],
+    "wasteIds": [
+      "TW-403"
+    ],
+    "operatorFrictionIds": [],
+    "roiRank": 3,
+    "doNotAdvance": [],
+    "promotionClass": "AUTOMATIC",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Office-Admin",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1/seed-packets/IH-HOT-CACHE-SECOND-HOST-SSH-001.json"
+    ],
+    "harvestId": "harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1"
+  }
+}

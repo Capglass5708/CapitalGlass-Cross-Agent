@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1",
+  "generatedAt": "2026-08-05T00:38:00.000Z",
+  "sourceCommitSha": "82bf430c2788795a0e288d1fe6d2486aea4d7113",
+  "events": [
+    {
+      "id": "EVT-401",
+      "turn": "~1",
+      "actor": "user",
+      "summary": "Ship Hot Cache Wave A via Git-authoritative Cross-Agent PR #10 then AppBuilder PR #284",
+      "evidenceRefs": ["hot-cache-expansion-capital-glass-v1", "CapitalGlass-Cross-Agent/docs/runbooks/chat-thread-closeout-autopsy-harvest-v1.md"]
+    },
+    {
+      "id": "EVT-402",
+      "turn": "~5",
+      "actor": "agent",
+      "summary": "Cross-Agent main had partial commit 66b974e; authoritative branch tip db2dc89; PR #10 DIRTY",
+      "evidenceRefs": ["CapitalGlass-Cross-Agent PR #10 mergeStateStatus"]
+    },
+    {
+      "id": "EVT-403",
+      "turn": "~8",
+      "actor": "agent",
+      "summary": "Resolved PR #10 conflict: reset feat branch to origin/main, checkout Wave A files from db2dc89, fix fixture schema 1.1.0, commit ccafd78, merge to 6714137",
+      "evidenceRefs": ["6714137247a57325b638279947690e4a31c4be26", "ccafd78e2271d7ba3d56a0a251779c513a927f77"]
+    },
+    {
+      "id": "EVT-404",
+      "turn": "~12",
+      "actor": "agent",
+      "summary": "AppBuilder PR #284 opened; local gates PASS (hot-cache-platform, scout, consumption-gates, refresh-all)",
+      "evidenceRefs": ["CG-AppBuilder-MCP PR #284", "83f76bb164d8d9e903f5783351009321960bfd61"]
+    },
+    {
+      "id": "EVT-405",
+      "turn": "~15",
+      "actor": "user",
+      "summary": "Do not merge #284 yet — wait for audit, closeout, validate-main, Document Center Tight Preview Gate",
+      "evidenceRefs": ["user merge authorization block"]
+    },
+    {
+      "id": "EVT-406",
+      "turn": "~18",
+      "actor": "agent",
+      "summary": "All 10 CI workflows green; merged #284 at 51732d5 (head 83f76bb1)",
+      "evidenceRefs": ["51732d5defd8e752bc11110cf7ae442d91a30411"]
+    },
+    {
+      "id": "EVT-407",
+      "turn": "~19",
+      "actor": "agent",
+      "summary": "Post-merge refresh on WESLEY_WORK initially pinned stale Cross-Agent SHA 66b974e until local main pulled to 6714137",
+      "evidenceRefs": ["contentHash 9946495d vs 0d218e78 after pull"]
+    },
+    {
+      "id": "EVT-408",
+      "turn": "~20",
+      "actor": "agent",
+      "summary": "WESLEY_WORK scout PASS: INDEX_HIT_AI_CACHE, CURRENT, rawScanRequired false @ contentHash 0d218e78",
+      "evidenceRefs": ["CG-AppBuilder-MCP/artifacts/agent-runs/hot-cache-expansion-capital-glass-v1/wave-a-closeout-receipt.json"]
+    },
+    {
+      "id": "EVT-409",
+      "turn": "~22",
+      "actor": "user",
+      "summary": "Gate 1 second-host consumption on WESLEYDESK or RYZEN9DESK; Gate 2 receipt; Gate 3 WAVE_A_ESTATE_SHIPPED",
+      "evidenceRefs": ["user gate sequence"]
+    },
+    {
+      "id": "EVT-410",
+      "turn": "~23",
+      "actor": "agent",
+      "summary": "Second-host proof via SSH cgremoteadmin@wesleydesk: merged SHAs, INDEX_HIT_AI_CACHE, host contentHash 67c8fc55 (L ALIGNED)",
+      "evidenceRefs": ["/tmp/gate1-second-host-output.txt", "EVT-408"]
+    },
+    {
+      "id": "EVT-411",
+      "turn": "~24",
+      "actor": "agent",
+      "summary": "Committed closeout receipt chore(hot-cache): close Wave A estate rollout @ 8549cd98 on main",
+      "evidenceRefs": ["8549cd98"]
+    },
+    {
+      "id": "EVT-412",
+      "turn": "~25",
+      "actor": "user",
+      "summary": "Confirmed FINAL VERDICT WAVE_A_ESTATE_SHIPPED MISSION CLOSED; run CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1",
+      "evidenceRefs": ["Z:/Capital-Glass-Dev/Harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md", "CapitalGlass-Cross-Agent/docs/runbooks/chat-thread-closeout-autopsy-harvest-v1.md"]
+    }
+  ]
+}

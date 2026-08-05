@@ -1,0 +1,80 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-hot-cache-content-hash-host-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "c0b453ee76bc8a27025a91a0663e2b3db6de299c",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1",
+      "seedId": "IH-HOT-CACHE-CONTENT-HASH-HOST-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T00:40:58.635Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "6bea086ff52ac5127227c3137004095e4bd919b9c460e89c2112159a7b0adc4f"
+  },
+  "body": {
+    "seedId": "IH-HOT-CACHE-CONTENT-HASH-HOST-001",
+    "kind": "lesson",
+    "title": "Hot routing contentHash differs by host when L alignment differs",
+    "summary": "WESLEY_WORK L_UNAVAILABLE and WESLEYDESK L ALIGNED produce different contentHash with same merged git SHAs — not a new project.",
+    "canonicalQuestion": "Why does hot-cache contentHash differ between WESLEY_WORK and WESLEYDESK?",
+    "alternateQuestions": [
+      "Is a different routing contentHash a rollout failure?"
+    ],
+    "shortAnswer": "WESLEY_WORK L_UNAVAILABLE and WESLEYDESK L ALIGNED produce different contentHash with same merged git SHAs — not a new project.",
+    "detailedAnswer": "Hot routing contentHash differs by host when L alignment differs",
+    "retrievalQuestions": [
+      "Why does hot-cache contentHash differ between WESLEY_WORK and WESLEYDESK?",
+      "Is a different routing contentHash a rollout failure?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Scout or refresh contentHash mismatch across hosts after Wave A ship",
+      "startAt": [
+        "wave-a-closeout-receipt.json#contentHashByHost",
+        "authorityLineage.layerAlignment"
+      ],
+      "runPreflight": [
+        "npm run agent:index:scout -- --json"
+      ],
+      "doNot": [
+        "Reopen Wave A as failed solely on contentHash mismatch",
+        "Require identical bundleBytes across L_UNAVAILABLE vs ALIGNED hosts"
+      ],
+      "proveBeforeClaiming": [
+        "Merged Cross-Agent and AppBuilder git SHAs match",
+        "INDEX_HIT_AI_CACHE and freshnessVerdict CURRENT on each host",
+        "derivativeAuthority true and shipAuthorization false"
+      ]
+    },
+    "evidenceRefs": [
+      "wave-a-closeout-receipt.json#contentHashByHost",
+      "0d218e78013e429743dc4c3b112d15066716745c4e545591a63fcbc3f6ad752b",
+      "67c8fc552992e65b4a76546d0872442bc4b07b806703366cd1a00e90578d9dba"
+    ],
+    "executionDeltaRefs": [
+      "ED-403"
+    ],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": 4,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1/seed-packets/IH-HOT-CACHE-CONTENT-HASH-HOST-001.json"
+    ],
+    "harvestId": "harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1"
+  }
+}

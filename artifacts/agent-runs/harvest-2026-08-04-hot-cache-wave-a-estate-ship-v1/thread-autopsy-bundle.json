@@ -1,0 +1,251 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-401",
+      "type": "rework",
+      "description": "Cross-Agent PR #10 conflict resolution and partial main commit 66b974e recovery",
+      "evidenceRefs": ["EVT-402", "EVT-403"],
+      "estimatedImpact": "high",
+      "savedBy": "Merge Cross-Agent before AppBuilder; verify origin/main SHA before refresh-all",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-402",
+      "type": "verification",
+      "description": "Post-merge hot-cache:refresh-all published routing against stale local Cross-Agent 66b974e before git pull",
+      "evidenceRefs": ["EVT-407"],
+      "estimatedImpact": "medium",
+      "savedBy": "git pull CapitalGlass-Cross-Agent before npm run hot-cache:refresh-all:json",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-403",
+      "type": "host",
+      "description": "Second-host proof blocked on WESLEY_WORK (S:/C: cache unmounted); required SSH to wesleydesk",
+      "evidenceRefs": ["EVT-410"],
+      "estimatedImpact": "medium",
+      "savedBy": "Document cgremoteadmin@wesleydesk SSH path in Wave A closeout runbook",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-404",
+      "type": "context",
+      "description": "Branch switches lost Wave A files mid-session; recovered from feat/hot-cache-platform-operational-v1",
+      "evidenceRefs": ["conversation summary"],
+      "estimatedImpact": "medium",
+      "savedBy": "Single worktree per work-package; pin authoritative branch tip in handoff",
+      "roiRank": 4
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-401",
+      "trigger": "User had to explicitly block #284 merge until CI complete",
+      "operatorCost": "low",
+      "systemFix": "Agent polls gh pr checks and waits without merge until all workflows pass",
+      "evidenceRefs": ["EVT-405", "EVT-406"],
+      "linkedWasteIds": []
+    },
+    {
+      "frictionId": "OF-402",
+      "trigger": "User issued explicit three-gate estate ship sequence after merge",
+      "operatorCost": "low",
+      "systemFix": "Encode WAVE_A estate gates in wave-a-closeout-receipt schema up front",
+      "evidenceRefs": ["EVT-409"],
+      "linkedWasteIds": ["TW-403"]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-401",
+      "situation": "Cross-Agent PR #10 CONFLICTING after partial Wave A land on main",
+      "actualExecution": {
+        "steps": [
+          "Attempt rebase with conflicts",
+          "Recover files from db2dc89 branch tip",
+          "Reset to origin/main and checkout authoritative files"
+        ],
+        "outcome": "PASS after ccafd78 force-push; merged 6714137",
+        "evidenceRefs": ["EVT-402", "EVT-403"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Verify origin/main has no partial Wave A before opening PR",
+          "Single clean branch from main + one commit",
+          "Merge Cross-Agent before AppBuilder PR"
+        ],
+        "outcome": "Avoid DIRTY merge state",
+        "requiredPreflight": ["git log origin/main -1", "gh pr view --json mergeable"]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "high",
+        "operatorFrustration": "medium"
+      }
+    },
+    {
+      "executionDeltaId": "ED-402",
+      "situation": "Estate ship republication after AppBuilder merge",
+      "actualExecution": {
+        "steps": [
+          "Run refresh-all on WESLEY_WORK without pulling Cross-Agent",
+          "Republish with sourceCommitSha 66b974e",
+          "Pull Cross-Agent and re-run refresh"
+        ],
+        "outcome": "Correct after second run",
+        "evidenceRefs": ["EVT-407", "EVT-408"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "git pull both repos to merged SHAs first",
+          "npm run hot-cache:refresh-all:json",
+          "Verify sourceCommitSha matches 6714137"
+        ],
+        "outcome": "Single refresh with correct lineage",
+        "requiredPreflight": ["git rev-parse HEAD in Cross-Agent"]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    },
+    {
+      "executionDeltaId": "ED-403",
+      "situation": "Second-host consumption proof required for WAVE_A_ESTATE_SHIPPED",
+      "actualExecution": {
+        "steps": [
+          "Attempt local wesleydesk role on WESLEY_WORK (S: missing)",
+          "SSH cgremoteadmin@wesleydesk with piped gate script"
+        ],
+        "outcome": "PASS on WESLEYDESK",
+        "evidenceRefs": ["EVT-410"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Check /mnt/s or SSH availability in gate plan",
+          "Run gate script on second host immediately after merge"
+        ],
+        "outcome": "No false blocker on primary host",
+        "requiredPreflight": ["test -d /mnt/s/AI Cursur Cache || ssh cgremoteadmin@wesleydesk hostname"]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-401",
+      "summary": "Ran hot-cache:refresh-all before pulling Cross-Agent main to 6714137",
+      "whyItWasWrong": "Published routing index cited stale git SHA 66b974e",
+      "correctFirstMove": "git pull origin main in both repos; verify SHAs before refresh",
+      "preventiveControl": "refresh-all preflight checks Cross-Agent HEAD vs routing lineage",
+      "executionDeltaId": "ED-402"
+    },
+    {
+      "wrongMoveId": "WM-402",
+      "summary": "Treated different host contentHash as failure instead of host-specific serialization",
+      "whyItWasWrong": "WESLEYDESK L: ALIGNED produces different bundle than WESLEY_WORK L_UNAVAILABLE",
+      "correctFirstMove": "Require merged git SHAs + scout gates; record per-host contentHash",
+      "preventiveControl": "wave-a-closeout-receipt contentHashByHost block",
+      "executionDeltaId": "ED-403"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-401",
+      "subject": "Intelligence Hub hot-cache scout optimization",
+      "whyRepeated": "Wave A extends prior intelligence-hub-index-ai-cache-freshness work",
+      "firstKnownInstance": "harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1 / intelligence-hub-index-ai-cache-freshness-v1",
+      "priorIndexSlice": "BY-KIND/mcp-servers.json",
+      "whyMissed": "New Wave A scope; prior harvest covered Slice 6 runner not estate ship gates",
+      "avoidableBy": "Link parent work-package in manifest",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Cross-Agent-before-AppBuilder merge gate in hot-cache Wave runbook",
+      "whyItPays": "Prevents AppBuilder PR built on stale registry SHA",
+      "effort": "low",
+      "savedWasteIds": ["TW-401", "TW-402"],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 2,
+      "title": "refresh-all Cross-Agent HEAD preflight",
+      "whyItPays": "Blocks republication with stale sourceCommitSha",
+      "effort": "low",
+      "savedWasteIds": ["TW-402"],
+      "seedAs": "command"
+    },
+    {
+      "rank": 3,
+      "title": "Second-host SSH gate script in repo",
+      "whyItPays": "Avoids rediscovering cgremoteadmin@wesleydesk path each estate ship",
+      "effort": "low",
+      "savedWasteIds": ["TW-403"],
+      "seedAs": "command"
+    },
+    {
+      "rank": 4,
+      "title": "contentHashByHost in all multi-host hot-cache closeouts",
+      "whyItPays": "Prevents false FAIL on hash mismatch when L alignment differs",
+      "effort": "low",
+      "savedWasteIds": [],
+      "seedAs": "rule"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "WAVE_A_ESTATE_SHIPPED",
+      "currentStatus": "CLOSED",
+      "doNotClaimUntil": [
+        "Receipt 8549cd98 on CG-AppBuilder-MCP main with second-host WESLEYDESK proof"
+      ],
+      "lastKnownEvidence": [
+        "CG-AppBuilder-MCP/artifacts/agent-runs/hot-cache-expansion-capital-glass-v1/wave-a-closeout-receipt.json @ 8549cd98",
+        "WESLEYDESK second-host scout PASS 2026-08-04T23:32:46Z"
+      ]
+    },
+    {
+      "awardOrVerdict": "shipAuthorization",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "Explicit governance approval for shipAuthorization true"
+      ],
+      "lastKnownEvidence": [
+        "derivativeAuthority true; shipAuthorization false in all routing lineage"
+      ]
+    },
+    {
+      "awardOrVerdict": "FULLY_SEEDED_HUB",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "Operator harvest:publish-hub-seed + index:freshness-gate PASS"
+      ],
+      "lastKnownEvidence": [
+        "Git harvest only; hubPublishStatus not-run"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "commandIndexConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "mcp-servers.json"
+    ],
+    "checkedAt": "2026-08-05T00:38:00.000Z",
+    "preflightReceiptHash": "harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1-preflight"
+  }
+}
