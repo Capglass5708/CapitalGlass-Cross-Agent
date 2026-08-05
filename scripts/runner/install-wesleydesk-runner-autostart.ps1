@@ -35,7 +35,7 @@ $startupTrigger.Delay = 'PT3M'
 Register-ScheduledTask -TaskName "$TaskPrefix-Autostart" -Action $action -Trigger (New-ScheduledTaskTrigger -AtLogOn) -Principal $principal -Settings $settings -Force | Out-Null
 Register-ScheduledTask -TaskName "$TaskPrefix-Startup" -Action $action -Trigger $startupTrigger -Principal $principal -Settings $settings -Force | Out-Null
 
-$watchdogTrigger = New-ScheduledTaskTrigger -Once -At (Get-Date).Date -RepetitionInterval (New-TimeSpan -Minutes 5) -RepetitionDuration ([TimeSpan]::MaxValue)
+$watchdogTrigger = New-ScheduledTaskTrigger -Once -At (Get-Date).Date -RepetitionInterval (New-TimeSpan -Minutes 5) -RepetitionDuration (New-TimeSpan -Days 3650)
 Register-ScheduledTask -TaskName "$TaskPrefix-Watchdog" -Action $action -Trigger $watchdogTrigger -Principal $principal -Settings $settings -Force | Out-Null
 
 Write-Host "Installed: ${TaskPrefix}-Autostart, -Startup (PT3M delay), -Watchdog (5m)"
