@@ -138,28 +138,33 @@
     {
       "sampleId": "planning-thread-v1",
       "sampleClass": "planning",
-      "status": "FIXTURE_READY",
-      "empiricalResult": null,
+      "status": "COMPLETE",
+      "empiricalResult": "PASS",
       "harvestId": "harvest-2026-08-05-empirical-sample-planning-v1",
       "expectedVerdict": "DRAFT_READY_FOR_CURSOR_VALIDATION",
-      "observedVerdict": null,
+      "observedVerdict": "DRAFT_READY_FOR_CURSOR_VALIDATION",
       "expectedTier": "T2",
-      "observedTier": null,
+      "observedTier": "T2",
       "fixturePath": "samples/planning-thread-v1/sample-thread-source.md",
       "goldenReferencePath": "samples/planning-thread-v1/golden-findings-DRAFT_READY.md",
-      "liveOutputPath": null,
-      "reviewArtifactPath": null,
-      "routingMetadataPath": null,
-      "harvestVerdict": null,
-      "reviewVerdict": null,
-      "signalDensity": null,
-      "graphEligibility": null,
-      "fixtureNote": "expectedTier is a hypothesis; live run must earn observedTier. Planning class tests sequencing and scope fences — not implementation wiring or architecture redesign."
+      "liveOutputPath": "samples/planning-thread-v1/chatgpt-live-output.md",
+      "reviewArtifactPath": "samples/planning-thread-v1/empirical-review-v1.json",
+      "routingMetadataPath": "samples/planning-thread-v1/sample-routing-metadata-v1.json",
+      "harvestVerdict": "DRAFT_READY_FOR_CURSOR_VALIDATION",
+      "reviewVerdict": "PASS",
+      "signalDensity": "high",
+      "graphEligibility": "eligible",
+      "fixtureNote": "observedTier T2 earned at live run; one planning boundary with HOLD preserved; no downstream unblock."
     }
   ],
   "completionGate": {
     "requiredSampleClasses": ["thin", "medium", "architectural", "debugging", "planning"],
     "minimumPassingSamples": 5,
-    "protocolChangeRequires": "recurring_weakness_pattern_documented_in_master_graph"
+    "programStatus": "COMPLETE",
+    "samplesPassing": 5,
+    "recurrenceReviewPath": "empirical-five-sample-recurrence-v1.json",
+    "protocolChangeRequires": "recurring_weakness_pattern_documented_in_master_graph",
+    "protocolChangeRecommended": false,
+    "completedAt": "2026-08-05T23:10:00.000Z"
   }
 }

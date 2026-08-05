@@ -1,0 +1,146 @@
+{
+  "schemaVersion": "cross-agent-empirical-five-sample-recurrence-v1@1.0.0",
+  "programId": "harvest-empirical-samples-v1",
+  "reviewedAt": "2026-08-05T23:10:00.000Z",
+  "reviewer": "cursor-builder",
+  "programLineage": {
+    "protocolAuthorityCommit": "1e87d6ab96ed35d3d117def99e1e0d670c028575",
+    "planningLiveRunCommit": "60ac4cb39a7ba678d1ea84b435ae3e1b44741a0c"
+  },
+  "programStatus": "COMPLETE",
+  "samplesReviewed": 5,
+  "samplesPassing": 5,
+  "protocolAuthorityCommit": "1e87d6ab96ed35d3d117def99e1e0d670c028575",
+  "protocolExpansion": "FROZEN",
+  "protocolChangeRecommended": false,
+  "protocolChangeRationale": "All five samples PASS on shared rubric. No recurring protocol failure demonstrated across classes. Turn-2 overreach in four correction-arc fixtures is intentional fixture design; frozen protocol consistently captured COR-001 and rejected overreach without retaining it as durable intelligence.",
+  "downstreamHandoffStatus": "HOLD_REPO_AUTHORITY_RESOLUTION",
+  "downstreamWiringAuthorized": false,
+  "sampleSummary": [
+    {
+      "sampleId": "thin-thread-v1",
+      "sampleClass": "thin",
+      "reviewVerdict": "PASS",
+      "observedVerdict": "NO_HARVEST_NEEDED",
+      "observedTier": "T0",
+      "graphEligibility": "hold",
+      "protocolChangeIndicated": false
+    },
+    {
+      "sampleId": "medium-thread-v1",
+      "sampleClass": "medium",
+      "reviewVerdict": "PASS",
+      "observedVerdict": "DRAFT_READY_FOR_CURSOR_VALIDATION",
+      "observedTier": "T2",
+      "graphEligibility": "eligible",
+      "protocolChangeIndicated": false,
+      "primaryFinding": "COR-001 T0 factual closure vs DRAFT_READY boundary"
+    },
+    {
+      "sampleId": "architectural-thread-v1",
+      "sampleClass": "architectural",
+      "reviewVerdict": "PASS",
+      "observedVerdict": "DRAFT_READY_FOR_CURSOR_VALIDATION",
+      "observedTier": "T2",
+      "graphEligibility": "eligible",
+      "protocolChangeIndicated": false,
+      "primaryFinding": "Three-layer handoff; reject direct raw-markdown graph:collect"
+    },
+    {
+      "sampleId": "debugging-thread-v1",
+      "sampleClass": "debugging",
+      "reviewVerdict": "PASS",
+      "observedVerdict": "DRAFT_READY_FOR_CURSOR_VALIDATION",
+      "observedTier": "T2",
+      "graphEligibility": "eligible",
+      "protocolChangeIndicated": false,
+      "primaryFinding": "HP-001 EVT classification heuristic; reject log-dump harvesting"
+    },
+    {
+      "sampleId": "planning-thread-v1",
+      "sampleClass": "planning",
+      "reviewVerdict": "PASS",
+      "observedVerdict": "DRAFT_READY_FOR_CURSOR_VALIDATION",
+      "observedTier": "T2",
+      "graphEligibility": "eligible",
+      "protocolChangeIndicated": false,
+      "primaryFinding": "HP-001 closeout sequencing; HOLD until fifth sample and recurrence review"
+    }
+  ],
+  "rubricAggregate": {
+    "criteria": [
+      "durable_intelligence_only",
+      "no_template_padding",
+      "traceable_evidence",
+      "earned_roi",
+      "justified_futureSavings",
+      "high_signal_density",
+      "minimal_human_edit_burden"
+    ],
+    "passCountPerCriterion": {
+      "durable_intelligence_only": 5,
+      "no_template_padding": 5,
+      "traceable_evidence": 5,
+      "earned_roi": 5,
+      "justified_futureSavings": 5,
+      "high_signal_density": 5,
+      "minimal_human_edit_burden": 5
+    },
+    "failCountPerCriterion": {},
+    "paddingDetectedInAnySample": false
+  },
+  "falseClaimsScreen": {
+    "harvestCompleteClaimed": false,
+    "operationalClaimed": false,
+    "downstreamUnblockedClaimed": false,
+    "protocolEditRecommendedFromSingleSample": false
+  },
+  "observationOnlyPatterns": [
+    {
+      "id": "OBS-001",
+      "summary": "Turn-2 assistant overreach in correction-arc fixtures (medium, architectural, debugging, planning)",
+      "sampleClasses": ["medium", "architectural", "debugging", "planning"],
+      "classification": "fixture_intentional_correction_arc",
+      "protocolOutcome": "COR-001 captured and overreach rejected in all four live outputs",
+      "recurringWeaknessCandidate": false,
+      "protocolChangeCandidate": false,
+      "note": "Not a protocol defect — fixtures test correction recovery; protocol behaved as designed."
+    },
+    {
+      "id": "OBS-002",
+      "summary": "cursor-agent-frozen-protocol-execution stand-in for ChatGPT web UI across all live runs",
+      "sampleClasses": ["thin", "medium", "architectural", "debugging", "planning"],
+      "classification": "actor_provenance_operational",
+      "recurringWeaknessCandidate": false,
+      "protocolChangeCandidate": false,
+      "note": "Provenance explicit in live output frontmatter; operator may replace with ChatGPT UI output."
+    }
+  ],
+  "recurringWeaknessCandidates": [],
+  "protocolChangeCandidates": [],
+  "graphProjectionSummary": {
+    "eligibleSamples": 4,
+    "holdSamples": 1,
+    "sampleFindingCandidatesTotal": 5,
+    "sampleFindingCandidatesBySample": {
+      "medium-thread-v1": 1,
+      "architectural-thread-v1": 2,
+      "debugging-thread-v1": 1,
+      "planning-thread-v1": 1
+    },
+    "withheldUntilDataExtraction": true,
+    "directMarkdownToGraph": false
+  },
+  "nextAuthorizedActions": [
+    "Operator resolves HOLD_REPO_AUTHORITY_RESOLUTION (repo IDs and contracts)",
+    "Data Extraction empirical parser ingest (when authority resolved)",
+    "CG Master Graph projection from normalized records only",
+    "Protocol edit only if future recurrence evidence meets full-program gate"
+  ],
+  "forbiddenUntilAuthorityResolved": [
+    "Data Extraction ingest implementation",
+    "CG Master Graph wiring from raw markdown",
+    "Parallel contribution envelope scaffold",
+    "Protocol text edit from single-sample or observation-only patterns"
+  ]
+}
