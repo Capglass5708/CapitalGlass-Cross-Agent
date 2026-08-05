@@ -1,0 +1,465 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-hot-cache-platform-thread-autopsy-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "commandIndexConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "work-progress/harvest-packet-registry.json"
+    ],
+    "checkedAt": "2026-08-05T04:01:43.379Z",
+    "note": "ChatGPT flagged NEEDS_REGISTRY_LOOKUP_FIRST on DUP-001..003",
+    "preflightReceiptHash": "705e06c2bf099c883b3b7ea396aac5690934b2bc281177eae3ae226f13338caf"
+  },
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "agent",
+      "description": "Repeated status restatement",
+      "evidenceRefs": [
+        "CHAT_DIRECT"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Canonical status matrix + deltas only",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "rework",
+      "description": "Architecture recapitulation after implementation reports",
+      "evidenceRefs": [
+        "CHAT_DIRECT"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "confirmed/changed/blocked/next proof template",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "context",
+      "description": "Large duplicated conversation payloads",
+      "evidenceRefs": [
+        "CHAT_DIRECT"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Parse latest status section only",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "verification",
+      "description": "Token savings estimated before instrumentation",
+      "evidenceRefs": [
+        "CHAT_DIRECT"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Persist routing/miss/raw-scan metrics",
+      "roiRank": 4
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Self-hosted runner queue",
+      "operatorCost": "medium",
+      "systemFix": "Runner capacity planning",
+      "evidenceRefs": [
+        "USER_REPORTED_OPERATIONAL"
+      ]
+    },
+    {
+      "frictionId": "OF-002",
+      "trigger": "D/S/L mount variation by host",
+      "operatorCost": "high",
+      "systemFix": "Machine profile mount matrix",
+      "evidenceRefs": [
+        "USER_REPORTED_OPERATIONAL"
+      ]
+    },
+    {
+      "frictionId": "OF-003",
+      "trigger": "Stripped hook env loses cache root",
+      "operatorCost": "high",
+      "systemFix": "Cache-root resolution telemetry",
+      "evidenceRefs": [
+        "EVT-008",
+        "OF-003"
+      ]
+    },
+    {
+      "frictionId": "OF-004",
+      "trigger": "Dirty repo estate blocks mutation",
+      "operatorCost": "high",
+      "systemFix": "Fixture isolation before bulk pull",
+      "evidenceRefs": [
+        "ED-004"
+      ]
+    },
+    {
+      "frictionId": "OF-005",
+      "trigger": "Cross-repo merge ordering",
+      "operatorCost": "medium",
+      "systemFix": "Workflow Estate command linkage",
+      "evidenceRefs": [
+        "CHAT_DIRECT"
+      ]
+    },
+    {
+      "frictionId": "OF-006",
+      "trigger": "GitHub mutation approval/login",
+      "operatorCost": "medium",
+      "systemFix": "Document operator push lane",
+      "evidenceRefs": [
+        "CHAT_DIRECT"
+      ]
+    },
+    {
+      "frictionId": "OF-007",
+      "trigger": "Protocol version drift",
+      "operatorCost": "medium",
+      "systemFix": "Z mirror sync on protocol commits",
+      "evidenceRefs": [
+        "COR-001",
+        "EVT-012"
+      ]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Git Estate as only mechanism",
+      "actualExecution": {
+        "steps": [
+          "Git Estate-specific design"
+        ],
+        "outcome": "narrow",
+        "evidenceRefs": [
+          "CHAT_DIRECT"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Shared platform + Git Estate plugin"
+        ],
+        "outcome": "extensible datasets",
+        "requiredPreflight": [
+          "dataset registry"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "TTL-only freshness",
+      "actualExecution": {
+        "steps": [
+          "TTL fallback only"
+        ],
+        "outcome": "stale risk",
+        "evidenceRefs": [
+          "CHAT_DIRECT"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "TTL + event invalidation"
+        ],
+        "outcome": "fresher reads",
+        "requiredPreflight": [
+          "invalidation contract"
+        ]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    },
+    {
+      "executionDeltaId": "ED-003",
+      "situation": "Individual atomic writes",
+      "actualExecution": {
+        "steps": [
+          "per-file writes"
+        ],
+        "outcome": "partial visibility",
+        "evidenceRefs": [
+          "CHAT_DIRECT"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "generation atomicity + pointer last"
+        ],
+        "outcome": "safe activation",
+        "requiredPreflight": [
+          "checksum verify"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "low",
+        "operatorFrustration": "medium"
+      }
+    },
+    {
+      "executionDeltaId": "ED-004",
+      "situation": "Estate-wide pull desire",
+      "actualExecution": {
+        "steps": [
+          "bulk pull while dirty"
+        ],
+        "outcome": "blocked",
+        "evidenceRefs": [
+          "USER_REPORTED_OPERATIONAL"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "clean fixture proof first"
+        ],
+        "outcome": "safe mutation",
+        "requiredPreflight": [
+          "git status clean"
+        ]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "medium",
+        "operatorFrustration": "high"
+      }
+    },
+    {
+      "executionDeltaId": "ED-005",
+      "situation": "Temp cache vs mounted L comparison",
+      "actualExecution": {
+        "steps": [
+          "compare unlike roots"
+        ],
+        "outcome": "confusing",
+        "evidenceRefs": [
+          "USER_REPORTED_OPERATIONAL"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "isolated IH root"
+        ],
+        "outcome": "fair test",
+        "requiredPreflight": [
+          "mount check"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "low",
+        "operatorFrustration": "medium"
+      }
+    },
+    {
+      "executionDeltaId": "ED-006",
+      "situation": "Chat-only findings output",
+      "actualExecution": {
+        "steps": [
+          "draft in chat only"
+        ],
+        "outcome": "manual handoff",
+        "evidenceRefs": [
+          "COR-001"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "push chat-gpt-harvest",
+          "report SHA"
+        ],
+        "outcome": "automated ingest",
+        "requiredPreflight": [
+          "protocol push section"
+        ]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "medium"
+      }
+    },
+    {
+      "executionDeltaId": "ED-007",
+      "situation": "Status report misread as task",
+      "actualExecution": {
+        "steps": [
+          "treat report as imperative"
+        ],
+        "outcome": "wrong work",
+        "evidenceRefs": [
+          "EVT-011"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "classify report vs request"
+        ],
+        "outcome": "correct sequencing",
+        "requiredPreflight": []
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "medium"
+      }
+    }
+  ],
+  "wrongMoves": [],
+  "duplicateWork": [
+    {
+      "duplicateId": "DUP-001",
+      "subject": "HOT_CACHE_PLATFORM_OPERATIONAL",
+      "firstKnownInstance": "registry lookup required",
+      "priorIndexSlice": "NEEDS_REGISTRY_LOOKUP_FIRST",
+      "whyRepeated": "Possible existing harvest",
+      "avoidableBy": "duplication preflight",
+      "recommendedAction": "index"
+    },
+    {
+      "duplicateId": "DUP-002",
+      "subject": "ACTIVE_LEDGER_HOT_CACHE_OPERATIONAL",
+      "firstKnownInstance": "registry lookup required",
+      "priorIndexSlice": "NEEDS_REGISTRY_LOOKUP_FIRST",
+      "whyRepeated": "Possible existing harvest",
+      "avoidableBy": "duplication preflight",
+      "recommendedAction": "index"
+    },
+    {
+      "duplicateId": "DUP-003",
+      "subject": "PROMPT_APPROVAL_BOUNDARY_PASS",
+      "firstKnownInstance": "registry lookup required",
+      "priorIndexSlice": "NEEDS_REGISTRY_LOOKUP_FIRST",
+      "whyRepeated": "Possible existing implementation",
+      "avoidableBy": "registry lookup",
+      "recommendedAction": "index"
+    },
+    {
+      "duplicateId": "DUP-004",
+      "subject": "WESLEY_WORK vs WESLEYDESK cache root",
+      "firstKnownInstance": "EVT-008",
+      "priorIndexSlice": "host-authority",
+      "whyRepeated": "Host-specific incidents conflated",
+      "avoidableBy": "Host tag in seeds",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Measurement/observability for hot-cache routing",
+      "whyItPays": "Proves token savings",
+      "effort": "medium",
+      "savedWasteIds": [
+        "TW-004"
+      ],
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "seedAs": "command",
+      "suggestedWorkPackageId": "hot-cache-observability-v1"
+    },
+    {
+      "rank": 2,
+      "title": "Cache-root telemetry in scout hooks",
+      "whyItPays": "Fixes silent ext4 fallback",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-001"
+      ],
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "seedAs": "rule",
+      "suggestedWorkPackageId": "hot-cache-root-telemetry-v1"
+    },
+    {
+      "rank": 3,
+      "title": "ChatGPT branch-lane enforcement",
+      "whyItPays": "Clean ingest path",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-002"
+      ],
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "seedAs": "rule",
+      "suggestedWorkPackageId": "chatgpt-harvest-branch-lane-v1"
+    },
+    {
+      "rank": 4,
+      "title": "Workflow Estate verification",
+      "whyItPays": "Closes command-ID integrity",
+      "effort": "medium",
+      "savedWasteIds": [],
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "seedAs": "runbook",
+      "suggestedWorkPackageId": "workflow-estate-verify-v1"
+    },
+    {
+      "rank": 5,
+      "title": "Failure Intelligence cache lane",
+      "whyItPays": "Reusable fix patterns",
+      "effort": "medium",
+      "savedWasteIds": [],
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "seedAs": "index-slice",
+      "suggestedWorkPackageId": "failure-intelligence-cache-v1"
+    },
+    {
+      "rank": 6,
+      "title": "Infrastructure Estate dataset",
+      "whyItPays": "Mounts/runners/roots truth",
+      "effort": "medium",
+      "savedWasteIds": [],
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "seedAs": "index-slice",
+      "suggestedWorkPackageId": "infrastructure-estate-v1"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "HOT_CACHE_PLATFORM_OPERATIONAL",
+      "currentStatus": "BLOCKED",
+      "doNotClaimUntil": [
+        "Cursor cross-check receipts",
+        "harvest:validate PASS"
+      ],
+      "lastKnownEvidence": [
+        "EVT-005",
+        "EVT-006"
+      ],
+      "proofCommandId": "hot-cache-immutable-generation-v1"
+    },
+    {
+      "awardOrVerdict": "INDEX_HIT",
+      "currentStatus": "BLOCKED",
+      "doNotClaimUntil": [
+        "scout preflight in Cursor"
+      ],
+      "lastKnownEvidence": [
+        "chatgpt-findings-source.md"
+      ],
+      "proofCommandId": "hot-cache-routed-compact-retrieval-v1"
+    },
+    {
+      "awardOrVerdict": "HARVEST_COMPLETE",
+      "currentStatus": "BLOCKED",
+      "doNotClaimUntil": [
+        "harvest:validate PASS",
+        "operator publish"
+      ],
+      "lastKnownEvidence": [
+        "harvest-2026-08-04-hot-cache-platform-thread-autopsy-v1"
+      ]
+    }
+  ]
+}

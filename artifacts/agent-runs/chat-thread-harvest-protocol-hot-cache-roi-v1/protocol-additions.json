@@ -22,7 +22,45 @@
         "effort",
         "ownerRepo",
         "acceptanceGate",
-        "doNotAdvance"
+        "doNotAdvance",
+        "improvementType",
+        "futureSavings",
+        "optimalFutureWorkflow"
+      ]
+    },
+    "futureSavings": {
+      "requiredIntent": true,
+      "fields": [
+        "tokenSavingsEstimate",
+        "timeSavingsEstimate",
+        "toolCallsAvoided",
+        "repeatedInvestigationAvoided",
+        "implementationReworkAvoided",
+        "appliesTo",
+        "futureEfficiencyImpact"
+      ],
+      "appliesToLanes": [
+        "cursor_planning",
+        "repository_retrieval",
+        "coding",
+        "testing",
+        "debugging",
+        "deployment"
+      ]
+    },
+    "improvementType": {
+      "requiredIntent": true,
+      "enum": [
+        "retrieval_technique",
+        "planning_technique",
+        "coding_pattern",
+        "debugging_heuristic",
+        "validation_rule",
+        "operator_preference",
+        "tool_order_optimization",
+        "stop_condition",
+        "prompt_compression",
+        "automation_concept"
       ]
     },
     "commands": {

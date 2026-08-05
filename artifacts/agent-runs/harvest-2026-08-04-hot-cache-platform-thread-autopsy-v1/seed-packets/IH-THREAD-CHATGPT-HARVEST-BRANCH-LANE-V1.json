@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-CHATGPT-HARVEST-BRANCH-LANE-V1",
+  "kind": "lesson",
+  "title": "ChatGPT OBSERVED findings on chat-gpt-harvest",
+  "summary": "Push findings before Cursor ingest; never merge draft to main.",
+  "retrievalQuestions": [
+    "Which branch receives ChatGPT OBSERVED findings?",
+    "What must happen before Cursor ingest?"
+  ],
+  "evidenceRefs": [
+    "harvest-2026-08-04-hot-cache-platform-thread-autopsy-v1",
+    "EVT-012",
+    "713bea841a25edfdffdc746cdb2898fe91486f78"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "DRAFT_FILE ChatGPT harvest closeout",
+    "startAt": [
+      "chat-gpt-harvest branch",
+      "chatgpt-findings-source.md path"
+    ],
+    "runPreflight": [
+      "pre-push self-check"
+    ],
+    "doNot": [
+      "Push to main",
+      "Claim validation"
+    ],
+    "proveBeforeClaiming": [
+      "commit SHA on branch",
+      "publication not-run footer"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}

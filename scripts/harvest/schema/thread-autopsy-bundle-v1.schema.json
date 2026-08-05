@@ -162,10 +162,64 @@
         "effort": { "enum": ["low", "medium", "high"] },
         "ownerRepo": { "type": "string" },
         "savedWasteIds": { "type": "array", "items": { "type": "string" } },
+        "improvementType": {
+          "enum": [
+            "retrieval_technique",
+            "planning_technique",
+            "coding_pattern",
+            "debugging_heuristic",
+            "validation_rule",
+            "operator_preference",
+            "tool_order_optimization",
+            "stop_condition",
+            "prompt_compression",
+            "automation_concept"
+          ]
+        },
+        "futureSavings": { "$ref": "#/$defs/futureSavings" },
+        "optimalFutureWorkflow": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1
+        },
         "seedAs": {
           "enum": ["rule", "runbook", "command", "test", "index-slice", "hook", "owner-artifact"]
         },
         "suggestedWorkPackageId": { "type": "string" }
+      }
+    },
+    "futureSavings": {
+      "type": "object",
+      "required": [
+        "tokenSavingsEstimate",
+        "timeSavingsEstimate",
+        "toolCallsAvoided",
+        "repeatedInvestigationAvoided",
+        "implementationReworkAvoided",
+        "appliesTo",
+        "futureEfficiencyImpact"
+      ],
+      "properties": {
+        "tokenSavingsEstimate": { "enum": ["low", "medium", "high"] },
+        "timeSavingsEstimate": { "enum": ["low", "medium", "high"] },
+        "toolCallsAvoided": { "type": "integer", "minimum": 0 },
+        "repeatedInvestigationAvoided": { "type": "boolean" },
+        "implementationReworkAvoided": { "type": "boolean" },
+        "appliesTo": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "cursor_planning",
+              "repository_retrieval",
+              "coding",
+              "testing",
+              "debugging",
+              "deployment"
+            ]
+          },
+          "minItems": 1
+        },
+        "futureEfficiencyImpact": { "type": "string", "minLength": 1 }
       }
     },
     "doNotAdvanceEntry": {

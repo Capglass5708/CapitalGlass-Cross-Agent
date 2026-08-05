@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-HOT-CACHE-FEDERATED-DATASETS-V1",
+  "kind": "architecture",
+  "title": "Federated governed datasets for hot-cache",
+  "summary": "One authority source, deterministic compiler, atomic publication per dataset.",
+  "retrievalQuestions": [
+    "How should a new AI hot-cache domain be governed?",
+    "Why avoid one monolithic everything index?"
+  ],
+  "evidenceRefs": [
+    "harvest-2026-08-04-hot-cache-platform-thread-autopsy-v1",
+    "EVT-002",
+    "EVT-003"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "New domain proposed for caching",
+    "startAt": [
+      "Dataset registry",
+      "Authority Estate"
+    ],
+    "runPreflight": [
+      "duplication preflight",
+      "dataset registry lookup"
+    ],
+    "doNot": [
+      "Create bespoke cache",
+      "Make hot cache authoritative"
+    ],
+    "proveBeforeClaiming": [
+      "schema pass",
+      "atomic publish",
+      "ACL-aware read"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}
