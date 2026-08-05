@@ -102,3 +102,7 @@ Do **not** project `NONE_FOUND` headings or template scaffolding as knowledge. R
 2. Data Extraction empirical parser ingest (normalized projection only)  
 3. CG Master Graph projection from validated records — never raw markdown  
 4. Protocol edit only if future recurrence evidence meets full-program gate  
+
+## Successor work package
+
+Downstream authority and handoff: [`harvest-empirical-downstream-handoff-v1.md`](./harvest-empirical-downstream-handoff-v1.md) — empirical evidence remains closed and read-only.
