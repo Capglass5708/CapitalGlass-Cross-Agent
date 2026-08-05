@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "cross-agent-empirical-sample-routing-metadata-v1@1.0.0",
+  "programId": "harvest-empirical-samples-v1",
+  "sampleId": "debugging-thread-v1",
+  "sampleClass": "debugging",
+  "sampleStatus": "COMPLETE",
+  "sourceLane": "CHATGPT_OBSERVED_HARVEST",
+  "destinationLane": "DATA_EXTRACTION",
+  "downstreamProjection": "CG_MASTER_GRAPH",
+  "protocolVersion": "CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1",
+  "programLineage": {
+    "protocolAuthorityCommit": "1e87d6ab96ed35d3d117def99e1e0d670c028575",
+    "programScaffoldCommit": "2b565d34fa792c4c04851b2b1506797805630e23",
+    "thinLiveRunCommit": "003407345ea2044fe238d754ddecacd613fefa22",
+    "downstreamRoutingCommit": "a2cfa25c0fcb4a03885df0cbf3c1782bfcb8a2bc",
+    "publicationEvidenceCommit": "b8ceb833d699a73d34cf57c8908f6b45856fb1d7",
+    "debuggingFixtureCommit": "137baeb71a36de561f185b7ccba0c3db5830ee09",
+    "debuggingLiveRunCommit": "c678268743419051a7addc6f56d8475fb437dcef"
+  },
+  "sourceArtifact": "sample-thread-source.md",
+  "goldenArtifact": "golden-findings-DRAFT_READY.md",
+  "generatedArtifact": "chatgpt-live-output.md",
+  "reviewArtifact": "empirical-review-v1.json",
+  "harvestVerdict": "DRAFT_READY_FOR_CURSOR_VALIDATION",
+  "reviewVerdict": "PASS",
+  "signalDensity": "high",
+  "graphEligibility": "eligible",
+  "graphEligibilityRationale": "Review PASS with one durable debugging heuristic (HP-001). COR-001 rejects terminal log-dump as OBSERVED intelligence. Localized EVT classification defect only — no architecture or planning inflation. Normalized extraction may project one sampleFinding from HP-001 after Data Extraction ingest.",
+  "projectableNodeKinds": [
+    "Thread",
+    "Sample",
+    "ProtocolVersion",
+    "ReviewScore",
+    "sampleFinding"
+  ],
+  "withheldNodeKinds": [
+    "recurringWeakness",
+    "protocolChangeCandidate",
+    "approvedProtocolChange"
+  ],
+  "sampleFindingCandidates": [
+    {
+      "id": "HP-001",
+      "summary": "On harvest:validate classification failure, inspect EVT inventory for missing CHAT_DIRECT/ATTACHMENT_SOURCE before harvesting terminal scrollback; noisy logs are execution context not OBSERVED intelligence",
+      "evidenceRefs": ["EVT-003", "EVT-004", "EVT-006"],
+      "reviewApproved": true
+    }
+  ],
+  "rejectedDebuggingAntiPatterns": [
+    {
+      "id": "COR-001",
+      "summary": "Harvest full terminal scrollback and add HP per stderr line",
+      "reviewApproved": true
+    }
+  ],
+  "downstreamHandoffStatus": "HOLD_REPO_AUTHORITY_RESOLUTION",
+  "authorityResolution": {
+    "dataExtractionRepo": "TO_BE_RESOLVED",
+    "masterGraphRepo": "TO_BE_RESOLVED",
+    "extractionContract": "TO_BE_RESOLVED",
+    "graphProjectionContract": "TO_BE_RESOLVED"
+  },
+  "immutableEvidencePolicy": {
+    "rawMarkdown": "chatgpt-live-output.md",
+    "mutableProjection": "Data Extraction normalized records only",
+    "directMarkdownToGraph": false
+  }
+}

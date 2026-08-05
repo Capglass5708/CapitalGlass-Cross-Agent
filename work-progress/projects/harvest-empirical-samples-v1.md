@@ -1,6 +1,6 @@
 # harvest-empirical-samples-v1
 
-**Status:** IN_PROGRESS (thin + medium + architectural COMPLETE; debugging/planning PENDING; downstream HOLD)  
+**Status:** IN_PROGRESS (thin + medium + architectural + debugging COMPLETE; planning PENDING; downstream HOLD)  
 **Owner repo:** CapitalGlass-Cross-Agent  
 **Protocol state:** FROZEN — authority at `1e87d6a` (`harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md`); publication evidence at `b8ceb83` (not protocol text)
 
@@ -67,7 +67,7 @@ Node kinds must remain distinct: `sampleFinding`, `recurringWeakness`, `protocol
 | 1 | thin | `thin-thread-v1` | COMPLETE | `NO_HARVEST_NEEDED` | hold |
 | 2 | medium | `medium-thread-v1` | COMPLETE | `DRAFT_READY_FOR_CURSOR_VALIDATION` | eligible |
 | 3 | architectural | `architectural-thread-v1` | COMPLETE | `DRAFT_READY_FOR_CURSOR_VALIDATION` | eligible |
-| 4 | debugging | `debugging-thread-v1` | FIXTURE_READY | — | — |
+| 4 | debugging | `debugging-thread-v1` | COMPLETE | `DRAFT_READY_FOR_CURSOR_VALIDATION` | eligible |
 | 5 | planning | `planning-thread-v1` | PENDING | — | — |
 
 ## Artifacts
@@ -81,6 +81,7 @@ Node kinds must remain distinct: `sampleFinding`, `recurringWeakness`, `protocol
 | Thin routing metadata | `artifacts/agent-runs/harvest-empirical-samples-v1/samples/thin-thread-v1/sample-routing-metadata-v1.json` |
 | Medium routing metadata | `artifacts/agent-runs/harvest-empirical-samples-v1/samples/medium-thread-v1/sample-routing-metadata-v1.json` |
 | Architectural routing metadata | `artifacts/agent-runs/harvest-empirical-samples-v1/samples/architectural-thread-v1/sample-routing-metadata-v1.json` |
+| Debugging routing metadata | `artifacts/agent-runs/harvest-empirical-samples-v1/samples/debugging-thread-v1/sample-routing-metadata-v1.json` |
 
 ## Thin sample #1
 
@@ -108,13 +109,18 @@ Node kinds must remain distinct: `sampleFinding`, `recurringWeakness`, `protocol
 - Do not edit `harvest/protocol/*` until all five samples reviewed and graph documents recurring weakness.
 - Supabase 401 remains separate work package.
 - August 3 harvest drift remains out of scope.
-- Architectural sample complete; debugging fixture authorized.
+- Debugging sample complete; planning fixture authorized.
 
-## Debugging sample #4 (fixture only)
+## Debugging sample #4
 
 **Fixture:** localized `harvest:validate` EVT classification failure — reject terminal log-dump as harvest; extract one debugging heuristic (7 turns).  
-**Golden reference:** bounds-based `golden-findings-DRAFT_READY.md`; expected tier T2 is hypothesis only.  
-**Live output / review / routing:** absent until live run commits.
+**Live output:** `chatgpt-live-output.md` — `DRAFT_READY_FOR_CURSOR_VALIDATION`, T2 earned.  
+**Rubric:** PASS (7/7); COR-001 rejects log-dump; HP-001 debugging heuristic; ROI/seeds NONE_FOUND.  
+**Graph:** `eligible` — one `sampleFinding` candidate (HP-001).
+
+## Planning sample #5 (fixture only)
+
+_Authorized next — fixture scaffold pending._
 
 ## Architectural sample #3 (fixture only)
 
