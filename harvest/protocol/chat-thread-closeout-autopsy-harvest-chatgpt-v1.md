@@ -59,6 +59,56 @@ If GitHub is **not** connected in ChatGPT: produce the file, print the full repo
 
 ---
 
+## ChatGPT → Git → L: pipeline (automatic after push)
+
+ChatGPT **only** commits and pushes to `chat-gpt-harvest`. Everything after push is **estate automation** — ChatGPT must not claim these steps ran.
+
+```text
+ChatGPT DRAFT_FILE
+  → commit + push chat-gpt-harvest (CapitalGlass-Cross-Agent)
+  → GitHub Actions: chatgpt-harvest-move-to-l.yml (WESLEYDESK self-hosted)
+  → L: deterministic catalog move (staging — not Hub publication)
+  → (later) Data-Extraction suite advancement ingest — not operational for OBSERVED yet
+  → Cursor pull + harvest:ingest-chatgpt-findings + validate + (operator) publish
+```
+
+| Stage | Actor | What happens |
+| --- | --- | --- |
+| **1. Git draft** | ChatGPT | Writes `chatgpt-findings-source.md`; push to `chat-gpt-harvest`; report commit SHA |
+| **2. L: move** | GitHub Action | On push to paths `**/chatgpt-findings-source.md` or `**/system-advancement-findings-source.md`, runs `npm run harvest:move-chatgpt-harvest-to-l` |
+| **3. L: destination** | Action (move-only) | `L:\02-catalog\chatgpt-draft-staging\chat-gpt-harvest\<harvest-id>\` — deterministic copy from branch; **no** assessment, mutation, or Intelligence Hub publish |
+| **4. Cursor ingest** | Operator / Cursor on WSL | Pull branch; `harvest:ingest-chatgpt-findings`; duplication-preflight; validate; optional `publish-intelligence-full` |
+| **5. Data-Extraction** | **Deferred** | Future: `advancement:ingest` / scoring / graph envelope from L: staging — see `Data-Extraction/docs/platform/SUITE_ADVANCEMENT_GRAPH_LANE.md` |
+
+**Workflow file:** `.github/workflows/chatgpt-harvest-move-to-l.yml`  
+**Move receipt:** `artifacts/agent-runs/chatgpt-harvest-l-move/latest.json` (artifact on Action run)
+
+ChatGPT closeout checklist after push:
+
+1. Report Git commit SHA and findings path.
+2. State: `L: move: NOT_RUN_BY_CHATGPT` (GitHub Action runs on WESLEYDESK when runner healthy).
+3. State: `Cursor ingest: NOT_RUN` — hand off ingest command only.
+4. Do **not** claim `L: Hub catalog`, `PUBLICATION_PASS`, or Data-Extraction ingest.
+
+If the Action fails (L: unmounted, runner offline), findings remain valid on `chat-gpt-harvest`; operator reruns workflow via `workflow_dispatch` after recovery.
+
+---
+
+## Tiered closeout classifier
+
+Choose harvest depth **before** writing. This protocol is the **OBSERVED** lane only.
+
+| Tier | When | Protocol | Output file |
+| --- | --- | --- | --- |
+| **T0** | Trivial chat; no durable lessons | None | — |
+| **T1** | Few compact lessons | [chat-improvement-extract-chatgpt-v1.md](./chat-improvement-extract-chatgpt-v1.md) (optional) | Short improvement extract |
+| **T2** | Default — corrections, multi-topic, operational friction | **This file** (OBSERVED) | `chatgpt-findings-source.md` |
+| **T3** | High-value thread + new capabilities / architecture / products implied | **T2 +** [CHAT-THREAD-SYSTEM-ADVANCEMENT-HARVEST-CHATGPT-V1.md](./chat-thread-system-advancement-harvest-chatgpt-v1.md) | Same `harvest-YYYY-MM-DD-<slug>-v1/` dir: `chatgpt-findings-source.md` **and** `system-advancement-findings-source.md` |
+
+**Governing rule:** OBSERVED facts may support an advancement draft, but **never** mix synthesis into `chatgpt-findings-source.md`. T3 runs two protocols; both push to the same harvest id on `chat-gpt-harvest`.
+
+---
+
 ## Purpose
 
 Use **ChatGPT** to **compress a completed conversation into reusable intelligence** — draft `chatgpt-findings-source.md` when Cursor, L:, Git, and index commands are **not available**.
@@ -321,6 +371,7 @@ Before any artifact or long output, state the mode:
 | `thread-autopsy-bundle.json` | Draft equivalent in Markdown | Canonical file |
 | `seed-packets/*.json` | Draft JSON blocks in findings file | Canonical + schema validate |
 | **Commit + push findings to `chat-gpt-harvest`** | **Yes — mandatory for `DRAFT_FILE` closeout** | Pull + ingest |
+| **Trigger L: move (GitHub Action)** | **No** — automatic on push | Monitor / `workflow_dispatch` rerun |
 | `harvest:ingest-chatgpt-findings` | No | Yes |
 | `harvest:duplication-preflight` | No | Yes |
 | `harvest:validate` | No | Yes |
@@ -421,6 +472,8 @@ Then run duplication-preflight, validate, and (operator) publish-intelligence-fu
 
 Paste-only handoff (no Git push) is a **fallback** when GitHub is unavailable — not the default `DRAFT_FILE` path.
 
+**After Git push (before Cursor):** GitHub Action `chatgpt-harvest-move-to-l` copies the draft to `L:\02-catalog\chatgpt-draft-staging\chat-gpt-harvest\<harvest-id>\`. ChatGPT does not wait for or verify this step.
+
 Cursor command chain after ingest:
 
 ```bash
@@ -490,15 +543,21 @@ Every ChatGPT findings file must end with:
 
 | Layer | State |
 | --- | --- |
-| Git authority | `not-run` |
-| L: Hub catalog | `not-run` |
+| Git draft (`chat-gpt-harvest`) | `not-run` or commit SHA after ChatGPT push |
+| L: draft staging (GitHub Action move) | `not-run` |
+| Cursor ingest | `not-run` |
+| Duplication preflight | `not-run` |
+| `harvest:validate` | `not-run` |
+| L: Hub catalog (operator publish) | `not-run` |
 | Z: AI cache | `not-run` |
 | Supabase projection | `not-run` |
+| Data-Extraction advancement ingest | `not-run` (deferred) |
 | Freshness gate | `not-run` |
 
 ```text
 Publication: NOT_RUN_BY_CURSOR
 projection.hubPublishStatus: not-run
+Implementation: NOT_AUTHORIZED
 ```
 
 ---
@@ -536,6 +595,10 @@ Produce one Markdown findings file (section menu — counts vary):
 Output verdict: DRAFT_READY_FOR_CURSOR_VALIDATION or NO_HARVEST_NEEDED when appropriate.
 
 Mandatory closeout: commit + push findings to branch chat-gpt-harvest on Capglass5708/CapitalGlass-Cross-Agent (see ChatGPT push instructions). Report commit SHA.
+
+After push: L: move runs via GitHub Action (not ChatGPT). Do not claim L: or Cursor ingest complete.
+
+Tier: default T2 OBSERVED. Use T3 only if operator also requests CHAT-THREAD-SYSTEM-ADVANCEMENT-HARVEST-CHATGPT-V1.md for synthesis.
 
 If I said concept-only or stop earlier in the thread, honor CONCEPT_ONLY_NO_WRITE / STOP_NOW (no Git push in those modes).
 
@@ -605,6 +668,9 @@ Publication truth table in the findings file remains `not-run` until Cursor comp
 | [system-advancement-quality-gate.md](./system-advancement-quality-gate.md) | Novelty gate (advancement) |
 | [thread-autopsy-hub-accommodation-v1.md](./thread-autopsy-hub-accommodation-v1.md) | L: hub paths |
 | `scripts/harvest/ingest-chatgpt-findings.mjs` | Convert findings MD → Cross-Agent harvest artifacts |
+| `.github/workflows/chatgpt-harvest-move-to-l.yml` | Push → L: `02-catalog/chatgpt-draft-staging` (move only) |
+| `scripts/harvest/move-chatgpt-harvest-to-l.mjs` | Deterministic L: move (Action + manual) |
+| `Data-Extraction/docs/platform/SUITE_ADVANCEMENT_GRAPH_LANE.md` | Future scoring/graph ingest from L: staging |
 | `artifacts/agent-runs/harvest-2026-08-04-chatgpt-autopsy-findings-v1/` | Example ingested harvest from pilot findings |
 
 ---
