@@ -8,6 +8,30 @@
 
 ---
 
+## Operator quick start (run this in ChatGPT)
+
+| Question | Answer |
+| --- | --- |
+| **OBSERVED autopsy (this file)?** | Yes — replay thread facts, packets, waste, seeds. Output: `chatgpt-findings-source.md` |
+| **ADVANCEMENT synthesis?** | **No** — use `CHAT-THREAD-SYSTEM-ADVANCEMENT-HARVEST-CHATGPT-V1.md` → `system-advancement-findings-source.md` |
+| **Branch** | `chat-gpt-harvest` on `Capglass5708/CapitalGlass-Cross-Agent` (never `main`) |
+
+**Steps**
+
+1. Paste or attach the **full completed Cursor chat** (or export) into ChatGPT.
+2. @ this protocol file on Z, or paste the **ChatGPT opener** (§ below).
+3. First sentence must declare `REVIEW_ONLY` or `DRAFT_FILE`.
+4. For `DRAFT_FILE`: produce complete findings Markdown, then **push** per § ChatGPT push instructions.
+5. End with Cursor handoff: `npm run harvest:ingest-chatgpt-findings`.
+
+**One-line trigger (paste after the thread)**
+
+```text
+Run chat-thread-closeout-autopsy-harvest-chatgpt-v1 per Z:\Capital-Glass-Dev\Harvest\protocol\CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md — DRAFT_FILE, OBSERVED lane only, push to chat-gpt-harvest.
+```
+
+---
+
 ## Purpose
 
 Use **ChatGPT** to draft findings from a completed conversation when Cursor, L:, Git, and index commands are **not available**.
