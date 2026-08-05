@@ -1,6 +1,6 @@
 # Harvest summary — derived view
 
-**Authority:** `harvest-manifest-v1.json` (`fcd281970b6d…`)
+**Authority:** `harvest-manifest-v1.json` (`5268b1a9f590…`)
 **Work package:** `harvest-2026-08-04-m2-plans-intake-closeout-v1`
 **Mission class:** `chat-thread-closeout-autopsy-harvest-v1`
 **Verdict:** `HARVEST_COMPLETE`
@@ -20,12 +20,12 @@
 
 ## Global doNotAdvance
 
-- M3 L_DROP_TO_FILED_DOCUMENT_PROOF without operator authorization
+- M3 L_DROP_TO_FILED_DOCUMENT_PROOF without explicit operator go-ahead
 - Claim M2 PASS from latestProofRun alone without formalM2Pass governance block
 - Overwrite closeout-receipt.json without preserving formal governance attestation
 - Treat Z:\Document Intake\capital-glass-intake.ico as a drop folder
 
 ## Projection sync
 
-Status: `not-run` (hub: `not-run`)
+Status: `synced` (hub: `published`)
 

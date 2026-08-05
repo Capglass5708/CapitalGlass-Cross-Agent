@@ -259,6 +259,14 @@ export function publishIntelligenceFull({
       return { ok: false, verdict: "DUPLICATE_BLOCKED", duplication, stages };
     }
 
+    stages.push(
+      runStep(
+        "render-index-post-duplication",
+        `node scripts/harvest/render-harvest-index.mjs ${harvestId}`,
+        repoRoot,
+      ),
+    );
+
     stages.push(runStep("validate", `node scripts/harvest/validate-harvest.mjs ${harvestId}${allowRepublish ? " --allow-republish" : ""}`, repoRoot));
     if (manifest.threadAutopsy) {
       stages.push(

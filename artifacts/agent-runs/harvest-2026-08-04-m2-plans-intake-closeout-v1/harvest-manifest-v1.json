@@ -13,7 +13,7 @@
   "overallHarvestVerdict": "HARVEST_COMPLETE",
   "subject": "M2 Plans intake PASS, register 502 fix, closeout receipt governance reconciliation",
   "doNotAdvance": [
-    "M3 L_DROP_TO_FILED_DOCUMENT_PROOF without operator authorization",
+    "M3 L_DROP_TO_FILED_DOCUMENT_PROOF without explicit operator go-ahead",
     "Claim M2 PASS from latestProofRun alone without formalM2Pass governance block",
     "Overwrite closeout-receipt.json without preserving formal governance attestation",
     "Treat Z:\\Document Intake\\capital-glass-intake.ico as a drop folder"
@@ -30,29 +30,31 @@
     }
   },
   "projection": {
-    "projectionSyncStatus": "not-run",
-    "hubPublishStatus": "not-run",
+    "projectionSyncStatus": "synced",
+    "hubPublishStatus": "published",
     "hubPublishBlocker": null,
-    "note": "Phase A complete \u2014 operator runs harvest:publish-intelligence-full for T3/OPERATIONAL"
+    "note": "Phase A complete — operator runs harvest:publish-intelligence-full for T3/OPERATIONAL",
+    "operationalReceiptPath": "artifacts/agent-runs/harvest-2026-08-04-m2-plans-intake-closeout-v1/operational-publication-receipt.json",
+    "operationalAt": "2026-08-04T18:34:20.639Z"
   },
   "ledgerLineage": {
     "ledgerPath": "work-progress/ACTIVE_WORK.md",
     "ledgerContentHashBefore": "c79fe9fb1a9e1c8167c5119be6fb9678456f8f956ce3f9703a734c389ca49d08",
-    "ledgerContentHashAfter": "c79fe9fb1a9e1c8167c5119be6fb9678456f8f956ce3f9703a734c389ca49d08"
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
   },
   "supersededClaims": [],
   "packets": [
     {
       "packetId": "l-drop-to-review-queue-proof-v1",
-      "packetTitle": "M2 L_DROP_TO_REVIEW_QUEUE_PROOF \u2014 Plans lane PASS",
+      "packetTitle": "M2 L_DROP_TO_REVIEW_QUEUE_PROOF — Plans lane PASS",
       "state": "MILESTONE_PASS",
       "packetVerdict": "PASS",
       "harvestVerdictContribution": "CURRENT_AUTHORITY",
       "ownerRepo": "CapitalGlass-Documents",
       "ownerIndexingStatus": "indexed",
       "projectFile": "work-progress/projects/l-drop-to-review-queue-proof-v1.md",
-      "nextAction": "Await operator authorization before M3; repeat proof via npm run proof:m2-l-drop-review-queue:prd",
-      "advancementGate": "M3 operator authorization required",
+      "nextAction": "Await explicit operator go-ahead before M3; repeat proof via npm run proof:m2-l-drop-review-queue:prd",
+      "advancementGate": "M3 explicit operator go-ahead required",
       "doNotAdvance": [
         "M3 L_DROP_TO_FILED_DOCUMENT_PROOF",
         "auto-file",
@@ -88,14 +90,14 @@
     },
     {
       "packetId": "m2-nas-register-received-at-fix",
-      "packetTitle": "NAS register 502 \u2014 received_at NOT NULL + ledger transferId",
+      "packetTitle": "NAS register 502 — received_at NOT NULL + ledger transferId",
       "state": "MERGED_PRODUCTION",
       "packetVerdict": "PASS",
       "harvestVerdictContribution": "RECORDED",
       "ownerRepo": "CapitalGlass-Documents",
       "ownerIndexingStatus": "indexed",
       "projectFile": "work-progress/projects/l-drop-to-review-queue-proof-v1.md",
-      "nextAction": "None \u2014 live at prod gitSha 60c79a2 buildId dpl_EtpLSosHMgVkkoqCQ5gc3s9qvzRV",
+      "nextAction": "None — live at prod gitSha 60c79a2 buildId dpl_EtpLSosHMgVkkoqCQ5gc3s9qvzRV",
       "advancementGate": "not-required",
       "doNotAdvance": [],
       "evidenceRefs": [
@@ -114,7 +116,7 @@
     },
     {
       "packetId": "m2-closeout-receipt-governance-reconciliation",
-      "packetTitle": "Closeout receipt governance drift \u2014 formalM2Pass restored",
+      "packetTitle": "Closeout receipt governance drift — formalM2Pass restored",
       "state": "RECONCILED",
       "packetVerdict": "PASS",
       "harvestVerdictContribution": "RECORDED",
@@ -151,7 +153,7 @@
     },
     {
       "packetId": "document-intake-z-drive-layout",
-      "packetTitle": "Z: Document Intake folder layout \u2014 operator drop targets",
+      "packetTitle": "Z: Document Intake folder layout — operator drop targets",
       "state": "DOCUMENTED",
       "packetVerdict": "PASS",
       "harvestVerdictContribution": "RECORDED",
@@ -173,7 +175,7 @@
     },
     {
       "packetId": "harvest-2026-08-04-m2-plans-intake-closeout-v1",
-      "packetTitle": "This harvest \u2014 M2 closeout thread autopsy",
+      "packetTitle": "This harvest — M2 closeout thread autopsy",
       "state": "HARVEST_COMPLETE",
       "packetVerdict": "HARVEST_COMPLETE",
       "harvestVerdictContribution": "INDEX_AUTHORITY",

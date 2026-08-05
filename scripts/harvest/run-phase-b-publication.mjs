@@ -56,7 +56,7 @@ function main() {
       skipSupabase: args.skipSupabase,
       lDurablePublisher: createDefaultLDurablePublisher(),
       zPublisher: createDefaultZPublisher(zOptions),
-      supabaseProjector: createDefaultSupabaseProjector({ hubRoot, ...supabaseOptions }),
+      supabaseProjector: createDefaultSupabaseProjector({ hubRoot: args.hubRoot, ...supabaseOptions }),
       layerVerifier: createDefaultLayerVerifier(),
       operationWriter: createDefaultOperationWriter(),
     });

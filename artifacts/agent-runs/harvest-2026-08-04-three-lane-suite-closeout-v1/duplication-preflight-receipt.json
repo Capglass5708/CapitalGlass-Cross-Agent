@@ -1,7 +1,7 @@
 {
   "schemaVersion": "cross-agent-harvest-duplication-preflight-receipt-v1@1.0.0",
   "harvestId": "harvest-2026-08-04-three-lane-suite-closeout-v1",
-  "generatedAt": "2026-08-04T22:45:13.077Z",
+  "generatedAt": "2026-08-05T00:04:44.574Z",
   "mode": "preflight",
   "hubRoot": "/mnt/l/Capital-Glass-Intelligence-Hub",
   "sourcesConsulted": {
@@ -16,21 +16,52 @@
       "active-work-open-actions.json"
     ],
     "hubSliceHashes": {
-      "active-work-blockers.json": "dbfec96f8ce1a20bce25a32f8fc6af3ab1ee99f11e9537228cc073d7594095ca",
-      "thread-autopsy-index.json": "5cf4d5deef8a98649f01870111ac8d7d53ee9797471168d2489aa71cd5779665",
-      "do-not-advance.json": "803b8df113a6255b9d9819cc8376a1de14481ef7ceb543294caf77963655c87b",
-      "active-work-open-actions.json": "7598057804092aa4f9108aac6057a14872fe6ba4516c371115682b153bea1482"
+      "active-work-blockers.json": "c811721324e9abaf6e0da4c19bf0b3e4815f3754ff5d1a9d20ec0a1bd0588278",
+      "thread-autopsy-index.json": "1d2a161d954f6bd8c6de5f7847b4f35d1874b45992e051889baee40f07654a4f",
+      "do-not-advance.json": "eaf338e7b8e77d69be891a1a45d3a65ce6770885fcd9be843dbe35a284a2fa4a",
+      "active-work-open-actions.json": "f84a97420ad1f08d0ed1f5dc35de76e17e506549450e4599d8be86d073ed76a3"
     }
   },
   "findings": {
     "harvestCollisions": [],
-    "republishBlock": null,
-    "seedIdCollisions": [],
+    "republishBlock": {
+      "type": "harvest-id-republish",
+      "harvestId": "harvest-2026-08-04-three-lane-suite-closeout-v1",
+      "existingSourceCommitSha": "74e1e3cab201e7ade9da3b7a426c054b513324a0",
+      "nextSourceCommitSha": null,
+      "message": "harvest already published on L: with different sourceCommitSha — set manifest.supersession or use --allow-republish"
+    },
+    "seedIdCollisions": [
+      {
+        "type": "seed-id",
+        "seedId": "IH-ASG-CLOSED-IMMUTABLE-013",
+        "existingFile": "IH-ASG-CLOSED-IMMUTABLE-013.json",
+        "existingHarvestId": "harvest-2026-08-04-three-lane-suite-closeout-v1"
+      },
+      {
+        "type": "seed-id",
+        "seedId": "IH-GOV-OWNERSHIP-PREFIX-011",
+        "existingFile": "IH-GOV-OWNERSHIP-PREFIX-011.json",
+        "existingHarvestId": "harvest-2026-08-04-three-lane-suite-closeout-v1"
+      },
+      {
+        "type": "seed-id",
+        "seedId": "IH-GOV-PREFLIGHT-LINKAGE-010",
+        "existingFile": "IH-GOV-PREFLIGHT-LINKAGE-010.json",
+        "existingHarvestId": "harvest-2026-08-04-three-lane-suite-closeout-v1"
+      },
+      {
+        "type": "seed-id",
+        "seedId": "IH-NORTH-STAR-OBSERVE-CLI-012",
+        "existingFile": "IH-NORTH-STAR-OBSERVE-CLI-012.json",
+        "existingHarvestId": "harvest-2026-08-04-three-lane-suite-closeout-v1"
+      }
+    ],
     "semanticDuplicates": [],
     "packetOverlaps": []
   },
-  "verdict": "PASS",
-  "errorCount": 0,
-  "warningCount": 0,
-  "contentHash": "270e71c8c84f2949b6a9950673e3c66ee238cd44dedd96461281cb610726f396"
+  "verdict": "DUPLICATE_BLOCKED",
+  "errorCount": 1,
+  "warningCount": 4,
+  "contentHash": "c422ead550df37380166aa1a6ccccfc3ac7085caed2697eddd6868f508de77dd"
 }
