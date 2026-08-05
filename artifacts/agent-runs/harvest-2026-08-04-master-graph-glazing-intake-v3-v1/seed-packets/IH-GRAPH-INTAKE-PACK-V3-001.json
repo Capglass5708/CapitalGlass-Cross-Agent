@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-GRAPH-INTAKE-PACK-V3-001",
+  "kind": "runbook",
+  "title": "Graph Intake Pack v3 — which file to drop in chat",
+  "summary": "Default drop GRAPH-INTAKE-OPERATOR-PROMPTS-v1.md; add AGENT-CONTRACT for rules, ROSEWOOD-FIXTURE for pilot IDs, FULL-QUESTIONNAIRE for Mode C design.",
+  "retrievalQuestions": [
+    "Which Graph Intake file should I attach to a chat?",
+    "What is Mode A Compact vs Mode B Rosewood vs Mode C full questionnaire?"
+  ],
+  "evidenceRefs": [
+    "CG-MASTER-GRAPH/docs/staging/GRAPH-INTAKE-INDEX-v3.md",
+    "CG-MASTER-GRAPH/docs/staging/GRAPH-INTAKE-OPERATOR-PROMPTS-v1.md",
+    "Z:/Office/Wes/Graphing collection protocol/WHICH-FILE-TO-DROP-IN-CHAT.txt",
+    "TE-404",
+    "TE-405"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Operator wants Master Graph growth advice from a paste",
+    "startAt": [
+      "Z:/Office/Wes/Graphing collection protocol/WHICH-FILE-TO-DROP-IN-CHAT.txt",
+      "CG-MASTER-GRAPH/docs/staging/GRAPH-INTAKE-INDEX-v3.md"
+    ],
+    "runPreflight": [
+      "Attach OPERATOR-PROMPTS only unless Mode C / Rosewood IDs needed"
+    ],
+    "doNot": [
+      "Force every chat through the full questionnaire",
+      "Jump to openings/qty/pricing before Phase 1 IDs"
+    ],
+    "proveBeforeClaiming": [
+      "Response uses buckets Ready/Needs IDs/Needs schema/Needs human/Outside",
+      "Growth phase labeled 1-5 with evidence rules"
+    ]
+  },
+  "ownerRepo": "CG-MASTER-GRAPH",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-wsl-estate-git-pull-v1",
+  "generatedAt": "2026-08-05T20:26:00.000Z",
+  "sourceCommitSha": "6714137247a57325b638279947690e4a31c4be26",
+  "events": [
+    {
+      "id": "TE-401",
+      "turn": "1",
+      "actor": "user",
+      "summary": "Requested git pull across all estate repos",
+      "evidenceRefs": ["chat-thread"]
+    },
+    {
+      "id": "TE-402",
+      "turn": "2",
+      "actor": "agent",
+      "summary": "Enumerated 33 git repos under /home/wesley/repos; confirmed estate convention git pull --ff-only",
+      "evidenceRefs": ["CapitalGlass-Office-Admin/scripts/suite-validation/lib/RepairEngine.ps1"]
+    },
+    {
+      "id": "TE-403",
+      "turn": "2",
+      "actor": "agent",
+      "summary": "Ran ff-only pull loop: OK=31 FAIL=2 DIRTY=22 SKIP=0",
+      "evidenceRefs": ["shell-session-2026-08-04-estate-pull"]
+    },
+    {
+      "id": "TE-404",
+      "turn": "2",
+      "actor": "agent",
+      "summary": "Pulled updates: CG-AppBuilder-MCP-bootstrap, CG-AppBuilder-MCP, CapitalGlass-Cross-Agent, Data-Extraction",
+      "evidenceRefs": ["TE-403"]
+    },
+    {
+      "id": "TE-405",
+      "turn": "2",
+      "actor": "agent",
+      "summary": "FAIL CapitalGlass-Documents — branch work/document-center-adaptive-details-panel-v1-clean has no upstream tracking",
+      "evidenceRefs": ["TE-403"]
+    },
+    {
+      "id": "TE-406",
+      "turn": "2",
+      "actor": "agent",
+      "summary": "FAIL Visual-Asset-Engine — local main diverged from origin/main; ff-only blocked",
+      "evidenceRefs": ["TE-403"]
+    },
+    {
+      "id": "TE-407",
+      "turn": "3",
+      "actor": "user",
+      "summary": "Requested CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1 protocol run",
+      "evidenceRefs": ["Z:/Capital-Glass-Dev/Harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"]
+    },
+    {
+      "id": "TE-408",
+      "turn": "4",
+      "actor": "agent",
+      "summary": "Phase A harvest recorded: validate PASS, knowledge quality PASS, L staging PASS; hub publish not-run",
+      "evidenceRefs": [
+        "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/validation-result.json",
+        "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/harvest-knowledge-quality-receipt-v1.json"
+      ]
+    },
+    {
+      "id": "TE-409",
+      "turn": "5",
+      "actor": "user",
+      "summary": "Re-requested CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1 — Phase A artifacts uncommitted; INDEX overwritten by later harvest",
+      "evidenceRefs": ["Z:/Capital-Glass-Dev/Harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md", "TE-409"]
+    }
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "task": "harvest-2026-08-04-three-lane-suite-closeout-v1 — Phase A harvest + Phase B intelligence hub publication (three closed lanes)",
+  "missionClass": "closeout",
+  "outcome": "PASS",
+  "hostMode": "wsl-remote",
+  "topology": "multi-repo",
+  "confidence": "HIGH",
+  "cheapSingleAgentOk": true,
+  "cheapestRedo": "cd $HOME/repos/CapitalGlass-Cross-Agent && npm run harvest:publish-intelligence-full -- --harvest-id=harvest-2026-08-04-three-lane-suite-closeout-v1 --allow-republish --skip-ledger-sync --allow-supersede-seed=IH-GOV-PREFLIGHT-LINKAGE-010 --allow-supersede-seed=IH-GOV-OWNERSHIP-PREFIX-011 --allow-supersede-seed=IH-NORTH-STAR-OBSERVE-CLI-012 --allow-supersede-seed=IH-ASG-CLOSED-IMMUTABLE-013",
+  "deterministicFirst": true,
+  "mixedMissions": false,
+  "material": false,
+  "workPackageId": "harvest-2026-08-04-three-lane-suite-closeout-v1",
+  "repos": {
+    "CapitalGlass-Cross-Agent": "74e1e3c",
+    "CG-AppBuilder-MCP": "3ed4746a"
+  },
+  "harvest": {
+    "harvestId": "harvest-2026-08-04-three-lane-suite-closeout-v1",
+    "phaseA": "HARVEST_COMPLETE",
+    "phaseB": "OPERATIONAL",
+    "phaseC": "DEFERRED",
+    "overall": "OPERATIONAL_WITH_OPTIONAL_DERIVED_LAYER_FOLLOWUP",
+    "operationalReceipt": "artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/operational-publication-receipt.json",
+    "operationalAt": "2026-08-04T23:17:30.135Z",
+    "seedsOnL": 4,
+    "optionalFollowup": [
+      "cross-agent-ledger:ingest (Doppler) if lLedger receipt gap matters",
+      "intelligence-hub:thread-autopsy:project-supabase (Doppler) if Supabase projection gap matters"
+    ]
+  },
+  "retrieval": {
+    "primary": "INDEX_HIT",
+    "cache": "CACHE_MISS"
+  },
+  "missionAlignment": {
+    "lane": "intelligence-hub-harvest",
+    "capabilityImproved": "Four T2 thread-autopsy seeds published to L catalog; ASG, governance linkage, and observe CLI lanes immutable on hub",
+    "closeoutQuestion": "Can agents retrieve three-lane suite closeout authority from L BY-KIND without repo grep?"
+  },
+  "recordedAt": "2026-08-04T23:45:33.677Z",
+  "protocolVersion": "auto-v3.2",
+  "protocolBaseline": "auto-v3",
+  "schemaVersion": "cheap-agent-telemetry-v1.3",
+  "quality": "ESTIMATE_ONLY",
+  "aiCacheBindingRun": false,
+  "aiCacheUtilization": "AGENT_CONTEXT_DISABLED",
+  "aiCacheRoot": "none",
+  "aiCacheHit": null,
+  "aiCacheEvidence": {
+    "schemaVersion": "auto-v32-closeout-cache-evidence-v1@1.0.0",
+    "status": "UNKNOWN",
+    "source": "unknown",
+    "evidencePath": null,
+    "authorityBytesAvoided": null,
+    "cacheKeyHash": null,
+    "bibleDbInputsCount": null,
+    "fallbackCount": null,
+    "pairingQuality": null,
+    "billingComparable": null,
+    "receipts": {
+      "compileEvidence": "/home/wesley/repos/CapitalGlass-Cross-Agent/artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/compile-efficiency-evidence.json",
+      "contextCache": "/home/wesley/repos/CapitalGlass-Cross-Agent/artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/context-cache.json",
+      "contextManifest": "/home/wesley/repos/CapitalGlass-Cross-Agent/artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/context-manifest.json",
+      "readthroughEnforcement": "/home/wesley/repos/CapitalGlass-Cross-Agent/artifacts/runs/harvest-2026-08-04-three-lane-suite-closeout-v1/cache-readthrough-enforcement-v3.2.json",
+      "disciplineCohort": null,
+      "providerPairing": "/home/wesley/repos/CapitalGlass-Cross-Agent/artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/provider-token-pairing-v3.2.json"
+    }
+  },
+  "tokenUsageReport": {
+    "status": "MISSING",
+    "path": "",
+    "schemaVersion": "",
+    "billingVerified": false,
+    "aiCacheFieldsPresent": false
+  },
+  "bibleCache": {
+    "schemaVersion": "auto-v32-bible-cache-freshness-v1@1.0.0",
+    "cacheKey": "none+1e91e5a5e4a12a72589d1dcbee140d9da9962ffbd5c9ab518b914c994fc5e140+auto-v3.2+2.0.0+1.0.0",
+    "missionProfileId": null,
+    "bibleHashBefore": null,
+    "bibleHashAfter": "1e91e5a5e4a12a72589d1dcbee140d9da9962ffbd5c9ab518b914c994fc5e140",
+    "cacheBibleHash": null,
+    "currentBibleHash": "1e91e5a5e4a12a72589d1dcbee140d9da9962ffbd5c9ab518b914c994fc5e140",
+    "protocolVersion": "auto-v3.2",
+    "sourceSelectionPolicyVersion": "2.0.0",
+    "operatorModeVersion": "1.0.0",
+    "cacheKeyHash": null,
+    "authorityCacheKeyHash": null,
+    "cacheReuseAllowed": true,
+    "authorityChanged": false,
+    "mirrorDriftDetected": null,
+    "syncRequired": false,
+    "contentUpdateRequired": false,
+    "freshnessChecked": true,
+    "reuseDecision": "REUSE_CACHED_BIBLE_AUTHORITY_VALID",
+    "priorCloseoutReuseAllowed": null,
+    "commandsRecommended": [
+      "check:application-bibles-sync -- --all"
+    ],
+    "workPackageId": "harvest-2026-08-04-three-lane-suite-closeout-v1",
+    "verifiedAt": "2026-08-04T23:45:33.765Z"
+  },
+  "bibleStatus": {
+    "freshnessChecked": true,
+    "authorityChanged": false,
+    "mirrorDriftDetected": null,
+    "syncRequired": false,
+    "contentUpdateRequired": false,
+    "bibleHashBefore": null,
+    "bibleHashAfter": "1e91e5a5e4a12a72589d1dcbee140d9da9962ffbd5c9ab518b914c994fc5e140",
+    "reuseAllowed": true,
+    "commandsRecommended": [
+      "check:application-bibles-sync -- --all"
+    ],
+    "bibleCacheKey": "none+1e91e5a5e4a12a72589d1dcbee140d9da9962ffbd5c9ab518b914c994fc5e140+auto-v3.2+2.0.0+1.0.0"
+  },
+  "bibleDbFreshness": {
+    "mode": "warn-only",
+    "status": "SKIP",
+    "indexRunId": null,
+    "latestIndexedAt": null,
+    "staleApps": [],
+    "missingCacheLinks": [],
+    "oldBibleHashCacheLinks": [],
+    "staleCacheLinks": [],
+    "linkEvaluationSummary": null,
+    "dbAvailable": false,
+    "blocking": false,
+    "issueCount": 1,
+    "issueCodeCounts": {}
+  },
+  "closeoutLabels": [
+    "AUTO_V32_BIBLE_CACHE_FRESHNESS_VERIFIED"
+  ],
+  "providerTokenPairing": {
+    "status": "ESTIMATE_ONLY",
+    "quality": "ESTIMATE_ONLY",
+    "receiptSha256": "67b73e64661d5d3c89c40bbdcea8c5d73b25b0366d4c51f17f2cb68dadd93bd2"
+  },
+  "corpusSync": {
+    "required": false,
+    "attempted": false,
+    "reasonCode": "NON_MATERIAL_SESSION",
+    "status": "SKIPPED_NOT_REQUIRED",
+    "semanticStatus": "NOT_APPLICABLE",
+    "semanticCategory": "CORPUS_SYNC_SKIPPED",
+    "completedAt": "2026-08-04T23:45:33.766Z"
+  },
+  "synologyCompoundingRoi": {
+    "roiGenerationStatus": "NOT_APPLICABLE",
+    "receiptPath": "/home/wesley/repos/CapitalGlass-Cross-Agent/artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/synology-compounding-roi-v1.json",
+    "failurePath": null,
+    "measurementStatus": "UNMEASURED",
+    "providerSavingsStatus": "NOT_VERIFIED"
+  }
+}

@@ -1,0 +1,306 @@
+{
+  "schemaVersion": "harvest-knowledge-quality-evidence-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-master-graph-glazing-intake-v3-v1",
+  "materialEvents": [
+    {
+      "eventId": "TE-401",
+      "summary": "Operator scoped Master Graph narrowly; Documents owns cover/sheet index; side chat after stable IDs",
+      "material": true,
+      "representations": [
+        "decision",
+        "protocol_improvement",
+        "do_not_advance"
+      ]
+    },
+    {
+      "eventId": "TE-402",
+      "summary": "Hybrid Supabase plan-set schema and sheet-page-map drafted in Documents",
+      "material": true,
+      "representations": [
+        "result",
+        "evidence",
+        "mistake"
+      ]
+    },
+    {
+      "eventId": "TE-403",
+      "summary": "This chat designated Master Graph staging/design side chat",
+      "material": true,
+      "representations": [
+        "decision",
+        "future_action"
+      ]
+    },
+    {
+      "eventId": "TE-404",
+      "summary": "Graph Intake Pack created (v2 then v3 split)",
+      "material": true,
+      "representations": [
+        "protocol_improvement",
+        "result",
+        "faster_path"
+      ]
+    },
+    {
+      "eventId": "TE-406",
+      "summary": "Applied critical intake upgrades: provenance every phase, assertion layer, no sheet-label IDs",
+      "material": true,
+      "representations": [
+        "decision",
+        "correction",
+        "protocol_improvement"
+      ]
+    },
+    {
+      "eventId": "TE-408",
+      "summary": "Mode C triage READY_FOR_WAVE_0_DISCOVERY; schema drift blocker",
+      "material": true,
+      "representations": [
+        "blocker",
+        "decision",
+        "evidence",
+        "do_not_advance"
+      ]
+    },
+    {
+      "eventId": "TE-409",
+      "summary": "Operator ran chat-thread-closeout-autopsy-harvest-v1 on this thread",
+      "material": true,
+      "representations": [
+        "command",
+        "protocol_improvement",
+        "evidence"
+      ]
+    },
+    {
+      "eventId": "TE-405",
+      "summary": "Published intake to Z Graphing collection protocol; which-file helper",
+      "material": true,
+      "representations": [
+        "result",
+        "protocol_improvement",
+        "evidence"
+      ]
+    },
+    {
+      "eventId": "TE-407",
+      "summary": "Mode C full questionnaire pasted for architectural-intake R1A WP",
+      "material": true,
+      "representations": [
+        "evidence",
+        "blocker",
+        "future_action"
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "DEC-401",
+      "eventRefs": [
+        "TE-401",
+        "TE-403"
+      ],
+      "decision": "Master Graph is a staging side chat; Supabase/Documents remain structured-data authority for cover and sheet index",
+      "reason": "Charter: graph connects records; does not own OCR, PDF bytes, or prices",
+      "alternativesRejected": [
+        "Store every OCR field and all 192 sheets as hand-maintained graph seeds",
+        "Start Master Graph schema before stable Documents IDs"
+      ],
+      "consequences": [
+        "Contribution envelopes only after live UUIDs",
+        "Intake Pack v3 phase-locked growth"
+      ],
+      "authority": "operator",
+      "evidenceRefs": [
+        "TE-401",
+        "TE-403",
+        "IH-THREAD-MASTER-GRAPH-PROJECTION-GUARD-V1"
+      ]
+    },
+    {
+      "id": "DEC-402",
+      "eventRefs": [
+        "TE-406"
+      ],
+      "decision": "Evidence/provenance is mandatory every phase; machine claims are assertions; sheet identity uses Documents UUIDs",
+      "reason": "Prevents unsupported graph truth, confidence overwrite, and label collisions",
+      "alternativesRejected": [
+        "Provenance only as Phase 5 after estimating",
+        "sheet:a.520.1 as canonical id"
+      ],
+      "consequences": [
+        "GRAPH-INTAKE-AGENT-CONTRACT-v1 rules",
+        "CLASSIFIED_AS stays assertion until reviewed"
+      ],
+      "authority": "operator",
+      "evidenceRefs": [
+        "TE-406",
+        "IH-GRAPH-ASSERTION-LAYER-V1",
+        "IH-GRAPH-SHEET-UUID-IDENTITY-V1"
+      ]
+    },
+    {
+      "id": "DEC-403",
+      "eventRefs": [
+        "TE-408"
+      ],
+      "decision": "document-center-architectural-intake-r1a-review-propagation-v1 is READY_FOR_WAVE_0_DISCOVERY only",
+      "reason": "Schema drift and missing live seed block contribution",
+      "alternativesRejected": [
+        "Immediate Master Graph ingest from Mode C questionnaire",
+        "Treat old extraction_runs naming as live authority"
+      ],
+      "consequences": [
+        "Wave 0 reconcile Documents hybrid schema first",
+        "Then document-center-r1a-master-graph-contribution-v1"
+      ],
+      "authority": "agent-triage",
+      "evidenceRefs": [
+        "TE-408",
+        "IH-DOC-PLAN-INTEL-SCHEMA-DRIFT-V1"
+      ]
+    }
+  ],
+  "corrections": [
+    {
+      "id": "COR-401",
+      "material": true,
+      "incorrectAgentClaim": "Broad document_extraction_runs / glazing-flag schema is the R1A persistence model",
+      "operatorCorrection": "Use hybrid document_plan_sets / document_sheets / document_sheet_index_runs / document_cover_fields only",
+      "correctedTruth": "Important identifiers are plan_set columns; variable cover facts are cover_fields rows",
+      "futureAgentRule": "Do not invent plan-intelligence tables beyond the operator hybrid charter for this phase",
+      "affectedRecords": [
+        "WM-401",
+        "IH-DOC-PLAN-INTEL-SCHEMA-DRIFT-V1"
+      ]
+    },
+    {
+      "id": "COR-402",
+      "material": true,
+      "incorrectAgentClaim": "Review and provenance can wait until after estimating intelligence (Phase 5)",
+      "operatorCorrection": "Evidence/provenance foundation applies from Phase 1 onward",
+      "correctedTruth": "Growth path v3 puts Evidence and provenance as Phase 2 foundation; human acceptance matures later",
+      "futureAgentRule": "Never promote machine sheet/cover claims without evidence metadata",
+      "affectedRecords": [
+        "IH-GRAPH-ASSERTION-LAYER-V1",
+        "GRAPH-INTAKE-AGENT-CONTRACT-v1"
+      ]
+    }
+  ],
+  "durableClaims": [
+    {
+      "id": "CLM-401",
+      "claim": "Default Graph Intake chat attach is GRAPH-INTAKE-OPERATOR-PROMPTS-v1.md",
+      "confidence": "VERIFIED",
+      "evidenceRefs": [
+        "TE-405",
+        "Z:/Office/Wes/Graphing collection protocol/WHICH-FILE-TO-DROP-IN-CHAT.txt"
+      ],
+      "eventRefs": [
+        "TE-404",
+        "TE-405"
+      ]
+    },
+    {
+      "id": "CLM-402",
+      "claim": "Rosewood sheet labels alone are unsafe graph IDs because duplicates exist in the page map",
+      "confidence": "VERIFIED",
+      "evidenceRefs": [
+        "TE-402",
+        "CapitalGlass-Documents/metadata/plan-sets/CG-2033-26/sheet-page-map-v1.json"
+      ],
+      "eventRefs": [
+        "TE-402",
+        "TE-406"
+      ]
+    },
+    {
+      "id": "CLM-403",
+      "claim": "Documents plan-intelligence naming drift blocks Master Graph contribution until one schema family is live",
+      "confidence": "VERIFIED",
+      "evidenceRefs": [
+        "TE-408",
+        "20260804180000_document_plan_intelligence_schema.sql",
+        "20260804180200_document_plan_latest_runs_by_type.sql"
+      ],
+      "eventRefs": [
+        "TE-408"
+      ]
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "CON-401",
+      "summary": "Mode C questionnaire cited old extraction_runs/fields while hybrid migrations use plan_sets/cover_fields",
+      "claims": [
+        "document_extraction_runs / document_plan_extracted_fields are the R1A authority tables",
+        "document_plan_sets / document_cover_fields / document_sheet_index_runs are the hybrid R1A tables"
+      ],
+      "reconciliation": "Hold graph ingest; Wave 0 reconciles to hybrid family; quarantine old naming in intakes and orphan migration 802",
+      "authority": "CapitalGlass-Documents rosewood-cover-sheet-plan-index-persistence-v1",
+      "resolved": true,
+      "evidenceRefs": [
+        "TE-407",
+        "TE-408",
+        "IH-DOC-PLAN-INTEL-SCHEMA-DRIFT-V1"
+      ]
+    }
+  ],
+  "mistakes": [
+    {
+      "id": "MIST-401",
+      "eventRefs": [
+        "TE-402"
+      ],
+      "attemptedAction": "Draft over-broad extraction_runs schema before hybrid charter locked",
+      "whyItSeemedReasonable": "Earlier plan-intelligence draft patterns existed in-thread",
+      "actualOutcome": "Schema rewrite + later Mode C drift",
+      "rootCause": "Implemented speculative schema before operator field list",
+      "optimalFirstMove": "Write only the four hybrid tables from the charter",
+      "preventiveControl": "IH-DOC-PLAN-INTEL-SCHEMA-DRIFT-V1"
+    },
+    {
+      "id": "MIST-402",
+      "eventRefs": [
+        "TE-406"
+      ],
+      "attemptedAction": "Early staging notes used sheet:a.520.1 style ids",
+      "whyItSeemedReasonable": "Readable sheet numbers",
+      "actualOutcome": "Unsafe under duplicate labels",
+      "rootCause": "Label mistaken for identity",
+      "optimalFirstMove": "sheet:<document_sheets.uuid> + sheetNumber property",
+      "preventiveControl": "IH-GRAPH-SHEET-UUID-IDENTITY-V1"
+    }
+  ],
+  "blindRetrieval": [
+    {
+      "question": "Which Graph Intake file should I drop into a chat by default?",
+      "expectedSeedId": "IH-GRAPH-INTAKE-PACK-V3-001",
+      "lessonFocus": "operator-prompts-default",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "Is sheet:a.520.1 a safe Master Graph identity?",
+      "expectedSeedId": "IH-GRAPH-SHEET-UUID-IDENTITY-V1",
+      "lessonFocus": "sheet-uuid-not-label",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "Why is Master Graph Rosewood contribution blocked after Mode C intake?",
+      "expectedSeedId": "IH-DOC-PLAN-INTEL-SCHEMA-DRIFT-V1",
+      "lessonFocus": "schema-drift-blocker",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "Should CLASSIFIED_AS window_schedule be a canonical edge or an assertion?",
+      "expectedSeedId": "IH-GRAPH-ASSERTION-LAYER-V1",
+      "lessonFocus": "assertion-vs-edge",
+      "genericKeywordOnly": false
+    }
+  ],
+  "humanReview": {
+    "required": false,
+    "status": "NOT_REQUIRED",
+    "notes": "Phase A autopsy encoding; operator reviews before Phase B publish"
+  }
+}

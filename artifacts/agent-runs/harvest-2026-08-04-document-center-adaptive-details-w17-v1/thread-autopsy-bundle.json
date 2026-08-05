@@ -1,0 +1,297 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-document-center-adaptive-details-w17-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "rework",
+      "description": "Repeated branch recovery after work/document-center-adaptive-details-panel-v1-clean drifted to R1A/plan-intelligence commits",
+      "evidenceRefs": [
+        "EVT-002",
+        "EVT-003"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Use only work/document-center-adaptive-details-panel-v1-locked @ 47d0f69; pause parallel CapitalGlass-Documents agents",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "operator_attention",
+      "description": "Operator signed in confusion: Admin Tools toggle ON treated as authenticated session",
+      "evidenceRefs": [
+        "EVT-004"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Hub login at capitalglasstxapps.com/login before localhost document URL; verify /api/auth/session",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "verification",
+      "description": "Restored mission files from preservation commit that included R1A-contaminated DocumentDetailPage",
+      "evidenceRefs": [
+        "EVT-006"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Restore src from wip/document-details-mixed-state-preservation @ 25675d9 only; never 9a98c5c for DocumentDetailPage",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "tool",
+      "description": "capture-operator-adaptive-review.mjs retried while Chrome.exe still running",
+      "evidenceRefs": [
+        "EVT-005"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Close all chrome.exe before capture; tasklist.exe verification",
+      "roiRank": 4
+    },
+    {
+      "wasteId": "TW-005",
+      "type": "agent",
+      "description": "Multiple parallel Cursor chats on CapitalGlass-Documents (git pull, plan-intelligence) mutating same repo",
+      "evidenceRefs": [
+        "EVT-002",
+        "user screenshot edt active chat list"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Single writer on locked branch during W17; pause other chats",
+      "roiRank": 5
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Document not found on localhost despite Admin Tools enabled",
+      "operatorCost": "high",
+      "systemFix": "Document Center requires Hub SSO session; admin toggle is UI mode only",
+      "evidenceRefs": [
+        "EVT-004"
+      ],
+      "linkedWasteIds": [
+        "TW-002"
+      ]
+    },
+    {
+      "frictionId": "OF-002",
+      "trigger": "Port 5190 already in use when restarting adaptive dev",
+      "operatorCost": "medium",
+      "systemFix": "fuser -k 5190/tcp before doppler run dev; one Vite instance only",
+      "evidenceRefs": [
+        "terminal exit Port 5190 is already in use"
+      ],
+      "linkedWasteIds": [
+        "TW-004"
+      ]
+    },
+    {
+      "frictionId": "OF-003",
+      "trigger": "Agent could not complete W17 or claim milestone without operator SSO",
+      "operatorCost": "medium",
+      "systemFix": "Explicit human gate; do not fabricate operator-review-results PASS",
+      "evidenceRefs": [
+        "EVT-005",
+        "wave-17/operator-review-results.json verdict:FAIL"
+      ],
+      "linkedWasteIds": [
+        "TW-004"
+      ]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Recover mission after branch drift to R1A",
+      "actualExecution": {
+        "steps": [
+          "Reuse work/document-center-adaptive-details-panel-v1-clean",
+          "Checkout from preservation 9a98c5c including DocumentDetailPage",
+          "HEAD drifted again to plan-intelligence commits"
+        ],
+        "outcome": "FAIL then rework",
+        "evidenceRefs": [
+          "EVT-002",
+          "EVT-006"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "git switch work/document-center-adaptive-details-panel-v1-locked",
+          "git reset --hard 47d0f69 or recreate from d90e599 + 25675d9 mission paths",
+          "Pause all other repo writers before any git op"
+        ],
+        "outcome": "Stable locked SHA",
+        "requiredPreflight": [
+          "git rev-parse HEAD",
+          "sleep 10 && git rev-parse HEAD"
+        ]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "high",
+        "operatorFrustration": "high"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Localhost operator review for adaptive document detail",
+      "actualExecution": {
+        "steps": [
+          "Open localhost document URL without Hub login",
+          "Toggle Admin Tools ON",
+          "Expect adaptive shell"
+        ],
+        "outcome": "Document not found / session expired",
+        "evidenceRefs": [
+          "EVT-004"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "doppler run prd adaptive dev on 5190",
+          "Sign in https://capitalglasstxapps.com/login as wesley@capitalglasstx.com",
+          "Open reference PO URL; verify /api/auth/session authenticated:true",
+          "Close Chrome; run capture-operator-adaptive-review.mjs"
+        ],
+        "outcome": "W17_OPERATOR_APPROVED",
+        "requiredPreflight": [
+          "fuser -v 5190/tcp",
+          "curl /api/auth/session"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "low",
+        "operatorFrustration": "high"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Continued using drifting -clean branch for mission work",
+      "whyItWasWrong": "Parallel R1A/plan-intelligence commits overwrote mission baseline",
+      "correctFirstMove": "work/document-center-adaptive-details-panel-v1-locked only",
+      "preventiveControl": "do-not-advance: never use -clean branch after lock",
+      "executionDeltaId": "ED-001",
+      "seedTarget": "IH-DOC-ADAPTIVE-LOCKED-BRANCH-001"
+    },
+    {
+      "wrongMoveId": "WM-002",
+      "summary": "Treated Admin Tools toggle as Microsoft SSO completion",
+      "whyItWasWrong": "BFF requires Hub session token via /api/auth/session",
+      "correctFirstMove": "Hub login then localhost document URL",
+      "preventiveControl": "Operator runbook wave-17 sign-in section",
+      "executionDeltaId": "ED-002",
+      "seedTarget": "IH-DOC-W17-HUB-SSO-LOCALHOST-002"
+    },
+    {
+      "wrongMoveId": "WM-003",
+      "summary": "Restored DocumentDetailPage from pre-operator preservation taken on R1A-contaminated HEAD",
+      "whyItWasWrong": "9a98c5c preservation captured R1aPlanMetadataReviewPanel imports",
+      "correctFirstMove": "25675d9 mixed-state preservation for all mission src paths",
+      "preventiveControl": "grep R1a DocumentDetailPage after every checkout",
+      "executionDeltaId": "ED-001",
+      "seedTarget": "IH-DOC-PRESERVATION-SOURCE-003"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "Branch drift recovery on CapitalGlass-Documents adaptive mission",
+      "whyRepeated": "Same git reset/recovery performed multiple times per session without stopping parallel writers",
+      "firstKnownInstance": "EVT-002",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "whyMissed": "No single-writer guard on locked branch",
+      "avoidableBy": "Pause parallel agents before recovery; verify HEAD stable 10s",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Locked mission branch + writer pause",
+      "whyItPays": "Eliminates repeated R1A drift recovery",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-001",
+        "TW-005"
+      ],
+      "seedAs": "rule",
+      "suggestedWorkPackageId": "IH-DOC-ADAPTIVE-LOCKED-BRANCH-001"
+    },
+    {
+      "rank": 2,
+      "title": "W17 Hub SSO localhost runbook",
+      "whyItPays": "Unblocks operator gate without agent fabricating PASS",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-002"
+      ],
+      "seedAs": "runbook",
+      "suggestedWorkPackageId": "IH-DOC-W17-HUB-SSO-LOCALHOST-002"
+    },
+    {
+      "rank": 3,
+      "title": "Preservation source SHA discipline",
+      "whyItPays": "Prevents R1A reintroduction during recovery",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-003"
+      ],
+      "seedAs": "rule",
+      "suggestedWorkPackageId": "IH-DOC-PRESERVATION-SOURCE-003"
+    },
+    {
+      "rank": 4,
+      "title": "Chrome-close gate before operator capture",
+      "whyItPays": "Unblocks Playwright profile launch",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-004"
+      ],
+      "seedAs": "command",
+      "suggestedWorkPackageId": "IH-DOC-W17-CHROME-CAPTURE-004"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "MILESTONE_ADAPTIVE_DOCUMENT_DETAILS_IMPLEMENTATION_READY",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "W17_OPERATOR_APPROVED",
+        "wave-17/operator-screenshots/ complete",
+        "operator-review-results.json verdict:PASS"
+      ],
+      "lastKnownEvidence": [
+        "CapitalGlass-Documents 47d0f69 checkpoint",
+        "W19_ALL_IMPLEMENTATION_GATES_PASS",
+        "W17_BLOCKED_AUTHORIZED_OPERATOR_SESSION"
+      ]
+    },
+    {
+      "awardOrVerdict": "work/document-center-adaptive-details-panel-v1-clean",
+      "currentStatus": "BLOCKED",
+      "doNotClaimUntil": [
+        "Operator explicitly abandons locked branch"
+      ],
+      "lastKnownEvidence": [
+        "HEAD drifted to 42c8d32 R1A commits"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "work-progress/harvest-packet-registry.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-05T00:06:33.847Z",
+    "preflightReceiptHash": "2216a220ef76e2002537d6b806feefeeeae1880d8ed10b387dca2085439dd768"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-DOC-W17-HUB-SSO-LOCALHOST-002",
+  "kind": "runbook",
+  "title": "Wave 17 localhost operator review: Hub SSO before adaptive document URL",
+  "summary": "Admin Tools toggle is not sign-in. Authenticate at capitalglasstxapps.com/login, then open localhost PO URL with doppler prd adaptive dev on 5190.",
+  "retrievalQuestions": [
+    "Why does localhost document center show session expired?",
+    "How do I sign in for W17 adaptive operator review on 127.0.0.1:5190?"
+  ],
+  "evidenceRefs": [
+    "CapitalGlass-Documents/artifacts/document-center-adaptive-details-panel-v1/wave-17/operator-review-notes.md",
+    "EVT-004",
+    "http://127.0.0.1:5190/api/auth/session"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "W17_BLOCKED_AUTHORIZED_OPERATOR_SESSION or Document not found on localhost",
+    "startAt": [
+      "https://capitalglasstxapps.com/login",
+      "CapitalGlass-Documents/wave-17/operator-review-notes.md"
+    ],
+    "runPreflight": [
+      "fuser -v 5190/tcp",
+      "doppler run -p cg-documents -c prd adaptive dev",
+      "curl http://127.0.0.1:5190/api/auth/session"
+    ],
+    "doNot": [
+      "Claim Admin Tools ON equals authenticated",
+      "Set W17_OPERATOR_APPROVED without operator screenshots"
+    ],
+    "proveBeforeClaiming": [
+      "authenticated:true on /api/auth/session",
+      ".document-detail-page--adaptive on reference PO",
+      "wave-17/operator-screenshots/*.png"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Documents",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

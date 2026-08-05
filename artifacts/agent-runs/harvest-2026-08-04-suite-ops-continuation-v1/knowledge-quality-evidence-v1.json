@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "harvest-knowledge-quality-evidence-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-suite-ops-continuation-v1",
+  "materialEvents": [
+    {
+      "eventId": "EVT-001",
+      "summary": "Operator confirmed three-lane harvest OPERATIONAL; Phase C deferred",
+      "material": true,
+      "representations": ["decision", "evidence", "do_not_advance"]
+    },
+    {
+      "eventId": "EVT-002",
+      "summary": "Operator asked correct Application Bible update procedure",
+      "material": true,
+      "representations": ["protocol_improvement", "command", "evidence"]
+    },
+    {
+      "eventId": "EVT-003",
+      "summary": "All Systems Go observe run returned WARN not formal GO",
+      "material": true,
+      "representations": ["command", "result", "mistake", "evidence"]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "DEC-001",
+      "eventRefs": ["EVT-002"],
+      "decision": "Bible updates flow Git canonical → generate → sync → Z-master → optional BibleDB",
+      "reason": "Estate z-master mode makes mirror sync alone insufficient for operational retrieval",
+      "alternativesRejected": [
+        "Hand-edit Z: Application Bibles only",
+        "sync:application-bibles without generate after registry edits"
+      ],
+      "consequences": [
+        "IH-APPLICATION-BIBLE-UPDATE-LADDER-014 seed",
+        "Operators use bible-z-master:sync-host after content changes"
+      ],
+      "authority": "agent",
+      "evidenceRefs": ["07-SUITE-BIBLE-TOOLING.md", "z-master-bible-operational-guide.md"]
+    }
+  ],
+  "corrections": [],
+  "durableClaims": [
+    {
+      "id": "CLM-001",
+      "claim": "all-systems-go observe skipLive is investigation only — formalGoEligible false",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["5ea4cfe1-87a8-4afb-838e-72db139c23b4", "EVT-003"],
+      "eventRefs": ["EVT-003"]
+    },
+    {
+      "id": "CLM-002",
+      "claim": "harvest-2026-08-04-three-lane-suite-closeout-v1 is OPERATIONAL on L with 4 seeds",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["operational-publication-receipt.json", "EVT-001"],
+      "eventRefs": ["EVT-001"]
+    }
+  ],
+  "contradictions": [],
+  "mistakes": [
+    {
+      "id": "MIST-001",
+      "eventRefs": ["EVT-003"],
+      "attemptedAction": "Interpret all-systems-go exit 0 as ship-ready",
+      "whyItSeemedReasonable": "systemsGoVerdict WARN still exits 0 in observe mode",
+      "actualOutcome": "formalGoEligible false blocks formal GO",
+      "rootCause": "Observe lane plans gates without executing closeout:gate",
+      "optimalFirstMove": "Read formalGoEligible and operationalModeAuthorized in receipt JSON",
+      "preventiveControl": "IH-ALL-SYSTEMS-GO-OBSERVE-015"
+    }
+  ],
+  "blindRetrieval": [
+    {
+      "question": "What is the correct way to update Application Bibles?",
+      "expectedSeedId": "IH-APPLICATION-BIBLE-UPDATE-LADDER-014",
+      "lessonFocus": "bible-update-ladder",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "Can I ship after all-systems-go PASS?",
+      "expectedSeedId": "IH-ALL-SYSTEMS-GO-OBSERVE-015",
+      "lessonFocus": "asg-observe-not-ship-auth",
+      "genericKeywordOnly": false
+    }
+  ],
+  "humanReview": {
+    "required": false,
+    "reasons": []
+  }
+}

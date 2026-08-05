@@ -1,0 +1,235 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-m2-plans-intake-closeout-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-DOC-INTAKE-FOLDER-LAYOUT-001",
+      "questionId": "IHDOCINTAKEF",
+      "canonicalQuestion": "Where do I drop documents on Z: Document Intake?",
+      "alternateQuestions": [
+        "Is capital-glass-intake.ico the intake folder?"
+      ],
+      "shortAnswer": "Z:\\Document Intake\\ is the root tree. Drop folders: General\\Incoming (general docs) and Plans\\Incoming (plans). capital-glass-intake.ico is a folder icon only.",
+      "detailedAnswer": "Z: Document Intake folder layout — not the .ico file",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T18:34:16.724Z",
+      "authorityRepo": "CapitalGlass-Office-Admin",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-m2-plans-intake-closeout-v1/seed-packets/IH-DOC-INTAKE-FOLDER-LAYOUT-001.json"
+      ],
+      "authorityCommit": [
+        "adb026b"
+      ],
+      "evidenceUrls": [
+        "Initialize-CgDocumentIntakeFolders.ps1",
+        "NAS-PRIMARY-INTAKE-OPERATIONS.md"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-04-m2-plans-intake-closeout-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Office-Admin"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Operator asks about Document Intake path or .ico file",
+        "startAt": [
+          "CapitalGlass-Office-Admin/docs/intake/NAS-PRIMARY-INTAKE-OPERATIONS.md",
+          "Initialize-CgDocumentIntakeFolders.ps1"
+        ],
+        "runPreflight": [],
+        "doNot": [
+          "Point operators to .ico file as drop target",
+          "Collapse General and Plans lanes into one folder"
+        ],
+        "proveBeforeClaiming": [
+          "General\\Incoming and Plans\\Incoming exist on Z:"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "lesson"
+    },
+    {
+      "ihPfspId": "IH-M2-PLANS-INCOMING-DROP-001",
+      "questionId": "IHM2PLANSINC",
+      "canonicalQuestion": "What is the M2 Plans intake drop folder on Z:?",
+      "alternateQuestions": [
+        "Where do plan PDFs go for Document Center Unfiled queue?"
+      ],
+      "shortAnswer": "Drop disposable PDF to Z:\\Document Intake\\Plans\\Incoming for M2 L_DROP_TO_REVIEW_QUEUE_PROOF.",
+      "detailedAnswer": "M2 Plans intake drop target on Z:",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T18:34:16.724Z",
+      "authorityRepo": "CapitalGlass-Documents",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-m2-plans-intake-closeout-v1/seed-packets/IH-M2-PLANS-INCOMING-DROP-001.json"
+      ],
+      "authorityCommit": [
+        "adb026b"
+      ],
+      "evidenceUrls": [
+        "d844b776-9763-4489-baa4-d731d14bdac6",
+        "l-drop-to-review-queue-proof-v1.md"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "command",
+        "harvest-2026-08-04-m2-plans-intake-closeout-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Documents"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "M2 Plans intake proof or operator drop question",
+        "startAt": [
+          "CapitalGlass-Documents/docs/work-packages/l-drop-to-review-queue-proof-v1.md"
+        ],
+        "runPreflight": [
+          "npm run proof:m2-l-drop-review-queue:prd"
+        ],
+        "doNot": [
+          "Use General\\Incoming for M2 plans proof",
+          "Auto-file to L: project folder"
+        ],
+        "proveBeforeClaiming": [
+          "intake_lane=plans",
+          "Unfiled Attachments API lists item"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "command"
+    },
+    {
+      "ihPfspId": "IH-M2-RECEIPT-GOVERNANCE-SPLIT-001",
+      "questionId": "IHM2RECEIPTG",
+      "canonicalQuestion": "Why did M2 closeout receipt lose formalM2Pass after proof re-run?",
+      "alternateQuestions": [
+        "How should closeout-receipt.json handle formal vs latest proof runs?"
+      ],
+      "shortAnswer": "Re-running M2 proof must append latestProofRun; never overwrite formalM2Pass, PR, prod SHA, or buildId.",
+      "detailedAnswer": "M2 closeout receipt: preserve formal governance on proof re-run",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T18:34:16.724Z",
+      "authorityRepo": "CapitalGlass-Documents",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-m2-plans-intake-closeout-v1/seed-packets/IH-M2-RECEIPT-GOVERNANCE-SPLIT-001.json"
+      ],
+      "authorityCommit": [
+        "adb026b"
+      ],
+      "evidenceUrls": [
+        "4e741bb",
+        "9b5a5dc",
+        "bf98b4a"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-04-m2-plans-intake-closeout-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Documents"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Proof script re-run after formal M2 PASS closeout",
+        "startAt": [
+          "CapitalGlass-Documents/artifacts/agent-runs/l-drop-to-review-queue-proof-v1/closeout-receipt.json"
+        ],
+        "runPreflight": [
+          "jq .formalM2Pass closeout-receipt.json"
+        ],
+        "doNot": [
+          "Overwrite receipt with proof-runner output only",
+          "Remove governance block on docs commit"
+        ],
+        "proveBeforeClaiming": [
+          "formalM2Pass: true",
+          "formalProofRun and latestProofRun both present"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-M2-REGISTER-502-RECEIVED-AT-001",
+      "questionId": "IHM2REGISTER",
+      "canonicalQuestion": "Why does intake-nas register return 502?",
+      "alternateQuestions": [
+        "What Postgres error causes NAS register failure for Plans intake?"
+      ],
+      "shortAnswer": "Prod document_intake_staging.received_at NOT NULL; register handler omitted field → Postgres 23502 → API 502. Fixed PR #92.",
+      "detailedAnswer": "NAS register 502 — missing received_at on staging insert",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T18:34:16.724Z",
+      "authorityRepo": "CapitalGlass-Documents",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-m2-plans-intake-closeout-v1/seed-packets/IH-M2-REGISTER-502-RECEIVED-AT-001.json"
+      ],
+      "authorityCommit": [
+        "adb026b"
+      ],
+      "evidenceUrls": [
+        "60c79a2",
+        "document-nas-intake-register.ts",
+        "TE-302"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-04-m2-plans-intake-closeout-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Documents"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "register:register_failed:502 on Plans or General intake",
+        "startAt": [
+          "Z:\\Document Intake\\Receipts\\intake-worker.health.json",
+          "document-nas-intake-register.ts"
+        ],
+        "runPreflight": [
+          "POST register with NAS_INTAKE_WORKER_TOKEN via Doppler"
+        ],
+        "doNot": [
+          "Assume Cloudflare-only 502 without JSON body"
+        ],
+        "proveBeforeClaiming": [
+          "register returns 200",
+          "received_at populated on staging row"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    }
+  ]
+}

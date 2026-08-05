@@ -1,0 +1,80 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-wsl-estate-git-pull-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "6e7be800e519715518bd411af07103beb30a859c",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-wsl-estate-git-pull-v1",
+      "seedId": "IH-WSL-ESTATE-GIT-PULL-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T20:44:47.379Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "5706c7f7d5c7b63d7d076f55f8e30b2d7450e75ce5bbaa297319b7b2650dc9da"
+  },
+  "body": {
+    "seedId": "IH-WSL-ESTATE-GIT-PULL-001",
+    "kind": "command",
+    "title": "WSL estate-wide git pull — ff-only loop on /home/wesley/repos",
+    "summary": "Pull all Capital Glass repos from canonical WSL ext4 root with git pull --ff-only; report OK/FAIL/DIRTY per repo; never force-pull diverged branches.",
+    "canonicalQuestion": "How do I git pull all Capital Glass repos on WESLEY_WORK WSL?",
+    "alternateQuestions": [
+      "What is the canonical repos root for estate git pull?",
+      "Why does estate git pull use --ff-only?"
+    ],
+    "shortAnswer": "Pull all Capital Glass repos from canonical WSL ext4 root with git pull --ff-only; report OK/FAIL/DIRTY per repo; never force-pull diverged branches.",
+    "detailedAnswer": "WSL estate-wide git pull — ff-only loop on /home/wesley/repos",
+    "retrievalQuestions": [
+      "How do I git pull all Capital Glass repos on WESLEY_WORK WSL?",
+      "What is the canonical repos root for estate git pull?",
+      "Why does estate git pull use --ff-only?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Operator asks to sync or pull all repos on WSL",
+      "startAt": [
+        "/home/wesley/repos",
+        "BY-KIND/host-authority.json"
+      ],
+      "runPreflight": [
+        "List repos: for d in /home/wesley/repos/*/; test -d \"$d/.git\" && basename \"$d\""
+      ],
+      "doNot": [
+        "Use C:\\Developer\\repos or NTFS paths for bulk pull on WESLEY_WORK",
+        "Force pull or reset diverged repos without operator approval",
+        "Skip reporting FAIL and DIRTY repos"
+      ],
+      "proveBeforeClaiming": [
+        "Per-repo exit code from git pull --ff-only",
+        "Summary counts OK/FAIL/DIRTY"
+      ]
+    },
+    "evidenceRefs": [
+      "TE-403",
+      "/home/wesley/repos",
+      "CapitalGlass-Office-Admin/scripts/suite-validation/lib/RepairEngine.ps1"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "AUTOMATIC",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Office-Admin",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/seed-packets/IH-WSL-ESTATE-GIT-PULL-001.json"
+    ],
+    "harvestId": "harvest-2026-08-04-wsl-estate-git-pull-v1"
+  }
+}

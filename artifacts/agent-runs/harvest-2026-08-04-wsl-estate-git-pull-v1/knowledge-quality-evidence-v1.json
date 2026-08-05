@@ -1,0 +1,163 @@
+{
+  "schemaVersion": "harvest-knowledge-quality-evidence-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-wsl-estate-git-pull-v1",
+  "materialEvents": [
+    {
+      "eventId": "TE-401",
+      "summary": "Operator requested estate-wide git pull on WSL",
+      "material": true,
+      "representations": ["decision", "command", "future_action"]
+    },
+    {
+      "eventId": "TE-402",
+      "summary": "Agent confirmed canonical repos root and ff-only estate convention",
+      "material": true,
+      "representations": ["decision", "protocol_improvement", "evidence"]
+    },
+    {
+      "eventId": "TE-403",
+      "summary": "Bulk pull executed with OK=31 FAIL=2 DIRTY=22",
+      "material": true,
+      "representations": ["result", "command", "evidence", "do_not_advance"]
+    },
+    {
+      "eventId": "TE-404",
+      "summary": "Four repos received remote updates",
+      "material": true,
+      "representations": ["result", "evidence"]
+    },
+    {
+      "eventId": "TE-405",
+      "summary": "CapitalGlass-Documents pull blocked — no upstream",
+      "material": true,
+      "representations": ["failure", "blocker", "mistake", "faster_path"]
+    },
+    {
+      "eventId": "TE-406",
+      "summary": "Visual-Asset-Engine pull blocked — diverged main",
+      "material": true,
+      "representations": ["failure", "blocker", "mistake", "faster_path"]
+    },
+    {
+      "eventId": "TE-407",
+      "summary": "Operator requested thread autopsy harvest protocol",
+      "material": true,
+      "representations": ["protocol_improvement", "future_action", "evidence"]
+    },
+    {
+      "eventId": "TE-408",
+      "summary": "Phase A harvest gates passed; L staging complete; publication deferred",
+      "material": true,
+      "representations": ["result", "evidence", "do_not_advance"]
+    },
+    {
+      "eventId": "TE-409",
+      "summary": "Operator re-ran harvest protocol; INDEX drift from concurrent harvest blocked validate",
+      "material": true,
+      "representations": ["repeated_work", "mistake", "protocol_improvement", "future_action"]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "DEC-401",
+      "eventRefs": ["TE-402", "TE-403"],
+      "decision": "Use git pull --ff-only across /home/wesley/repos for estate sync",
+      "reason": "Matches RepairEngine estate convention; prevents silent merge commits during bulk pull",
+      "alternativesRejected": [
+        "git pull without ff-only",
+        "Pull from C:\\Developer\\repos NTFS path"
+      ],
+      "consequences": [
+        "Diverged repos fail loudly",
+        "Dirty repos still attempt pull"
+      ],
+      "authority": "agent",
+      "evidenceRefs": ["TE-402", "TE-403", "RepairEngine.ps1"]
+    }
+  ],
+  "corrections": [],
+  "durableClaims": [
+    {
+      "id": "CLM-401",
+      "claim": "WESLEY_WORK canonical git estate root is /home/wesley/repos on WSL ext4",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["TE-402", "/home/wesley/repos"],
+      "eventRefs": ["TE-402"]
+    },
+    {
+      "id": "CLM-402",
+      "claim": "2026-08-04 estate pull: 31 OK, 2 FAIL, 22 dirty across 33 repos",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["TE-403", "shell-session-2026-08-04-estate-pull"],
+      "eventRefs": ["TE-403"]
+    },
+    {
+      "id": "CLM-403",
+      "claim": "CapitalGlass-Documents on work/document-center-adaptive-details-panel-v1-clean has no upstream",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["TE-405"],
+      "eventRefs": ["TE-405"]
+    },
+    {
+      "id": "CLM-404",
+      "claim": "Visual-Asset-Engine main diverged from origin/main and cannot ff-only pull",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["TE-406"],
+      "eventRefs": ["TE-406"]
+    },
+    {
+      "id": "CLM-405",
+      "claim": "harvest:render-index is single-slot — later harvest overwrites INDEX generated section for prior uncommitted harvest",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["TE-409", "work-progress/projects/INDEX.md"],
+      "eventRefs": ["TE-409"]
+    }
+  ],
+  "contradictions": [],
+  "mistakes": [
+    {
+      "id": "MIST-401",
+      "eventRefs": ["TE-405"],
+      "attemptedAction": "Bulk ff-only pull without per-repo upstream check",
+      "whyItSeemedReasonable": "Estate pull should be one-shot for operator convenience",
+      "actualOutcome": "CapitalGlass-Documents FAIL with no tracking information",
+      "rootCause": "Feature branch checked out without @{u} set",
+      "optimalFirstMove": "Report branch and upstream before pull; document fix command inline",
+      "preventiveControl": "IH-GIT-PULL-NO-UPSTREAM-001"
+    },
+    {
+      "id": "MIST-402",
+      "eventRefs": ["TE-406"],
+      "attemptedAction": "ff-only pull on diverged Visual-Asset-Engine main",
+      "whyItSeemedReasonable": "ff-only is estate standard for all repos",
+      "actualOutcome": "Pull aborted — diverging branches",
+      "rootCause": "Local commits on main not rebased/merged with origin",
+      "optimalFirstMove": "git fetch then report ahead/behind counts before pull",
+      "preventiveControl": "IH-GIT-PULL-DIVERGED-001"
+    }
+  ],
+  "blindRetrieval": [
+    {
+      "question": "How do I git pull all Capital Glass repos on WESLEY_WORK WSL?",
+      "expectedSeedId": "IH-WSL-ESTATE-GIT-PULL-001",
+      "lessonFocus": "wsl-estate-ff-only-loop",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "Why did CapitalGlass-Documents git pull fail with no tracking information?",
+      "expectedSeedId": "IH-GIT-PULL-NO-UPSTREAM-001",
+      "lessonFocus": "feature-branch-no-upstream",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "Why did Visual-Asset-Engine git pull fail with diverging branches?",
+      "expectedSeedId": "IH-GIT-PULL-DIVERGED-001",
+      "lessonFocus": "diverged-main-ff-only-block",
+      "genericKeywordOnly": false
+    }
+  ],
+  "humanReview": {
+    "required": false,
+    "reasons": []
+  }
+}

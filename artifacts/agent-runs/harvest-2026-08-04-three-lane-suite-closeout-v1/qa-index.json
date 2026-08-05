@@ -1,0 +1,241 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-three-lane-suite-closeout-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-ASG-CLOSED-IMMUTABLE-013",
+      "questionId": "IHASGCLOSEDI",
+      "canonicalQuestion": "Can I fix PREFLIGHT_LINKAGE_MISSING by reopening the ASG hardening mission?",
+      "alternateQuestions": [
+        "What is the authoritative ASG mission closure artifact?"
+      ],
+      "shortAnswer": "ultimate-sdlc-runner-hardening-and-ai-cache-v1 is CLOSED_WITH_DEFERRED_PHASE_C; governance linkage failures are explicitly out of scope.",
+      "detailedAnswer": "ASG hardening mission closed with deferred Phase C — do not reopen",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T23:51:43.120Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/seed-packets/IH-ASG-CLOSED-IMMUTABLE-013.json"
+      ],
+      "authorityCommit": [
+        "74e1e3c"
+      ],
+      "evidenceUrls": [
+        "mission-closeout-closed-with-deferred-phase-c.json",
+        "CG-AppBuilder-MCP dc22ab00 governanceLinkageExclusion",
+        "Cross-Agent 587025d"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "decision",
+        "harvest-2026-08-04-three-lane-suite-closeout-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Governance gate fails on ASG work package or operator asks to fix linkage on ASG",
+        "startAt": [
+          "CG-AppBuilder-MCP/artifacts/agent-runs/ultimate-sdlc-runner-hardening-and-ai-cache-v1/mission-closeout-closed-with-deferred-phase-c.json",
+          "harvest-2026-08-04-asg-hardening-authority-v1 seeds on L:"
+        ],
+        "runPreflight": [
+          "npm run agent:index:scout -- --json"
+        ],
+        "doNot": [
+          "Reopen ultimate-sdlc-runner-hardening-and-ai-cache-v1",
+          "Mutate ASG lifecycle index preflight null as part of linkage repair",
+          "Run Phase C without PHASE_C_POINTER_APPROVED=1"
+        ],
+        "proveBeforeClaiming": [
+          "closureClass CLOSED_WITH_DEFERRED_PHASE_C",
+          "governanceLinkageExclusion documents out-of-scope linkage"
+        ]
+      },
+      "promotionClass": "HUMAN_REVIEW",
+      "kind": "decision"
+    },
+    {
+      "ihPfspId": "IH-GOV-OWNERSHIP-PREFIX-011",
+      "questionId": "IHGOVOWNERSH",
+      "canonicalQuestion": "Why does governance-material-preflight REROUTE to AppBuilder mutation root?",
+      "alternateQuestions": [
+        "Where is inferWorkPackageOwner defined for governance harvest packages?"
+      ],
+      "shortAnswer": "WORK_PACKAGE_OWNER_PREFIXES must include governance-material in governance-ownership-lib.mjs—not only governance-material-preflight-lib.mjs—to avoid mutation-root REROUTE.",
+      "detailedAnswer": "governance-material work packages need owner prefix in ownership-lib",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T23:51:43.120Z",
+      "authorityRepo": "CG-Platform-Governance-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/seed-packets/IH-GOV-OWNERSHIP-PREFIX-011.json"
+      ],
+      "authorityCommit": [
+        "74e1e3c"
+      ],
+      "evidenceUrls": [
+        "CG-Platform-Governance-MCP d1789e2 governance-ownership-lib.mjs",
+        "mutationRootLinkage ownership inferredOwner mismatch"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-04-three-lane-suite-closeout-v1"
+      ],
+      "entities": [
+        "CG-Platform-Governance-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "futureAgentInstructions": {
+        "whenThisAppears": "governance:material-preflight PASS but mutationRootLinkage REROUTE",
+        "startAt": [
+          "CG-Platform-Governance-MCP/scripts/suite-governance/governance-ownership-lib.mjs",
+          "CG-Platform-Governance-MCP/scripts/suite-governance/governance-material-preflight-lib.mjs"
+        ],
+        "runPreflight": [
+          "npm run governance:material-preflight -- --json"
+        ],
+        "doNot": [
+          "Add owner prefix only to preflight-lib",
+          "Assume preflight PASS implies mutation-root linkage PASS"
+        ],
+        "proveBeforeClaiming": [
+          "mutationRootLinkage.reasonCodes empty",
+          "inferredRepoKey matches mutation repo registry key"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "lesson"
+    },
+    {
+      "ihPfspId": "IH-GOV-PREFLIGHT-LINKAGE-010",
+      "questionId": "IHGOVPREFLIG",
+      "canonicalQuestion": "Why does material closeout emit PREFLIGHT_LINKAGE_MISSING?",
+      "alternateQuestions": [
+        "How does session closeout seed governance material preflight linkage?"
+      ],
+      "shortAnswer": "auto:v3:session-closeout calls ensureGovernanceMaterialPreflightLinkage to avoid PREFLIGHT_LINKAGE_MISSING when no prior governance-material-preflight receipt exists.",
+      "detailedAnswer": "Material session closeout seeds governance preflight when absent",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T23:51:43.120Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/seed-packets/IH-GOV-PREFLIGHT-LINKAGE-010.json"
+      ],
+      "authorityCommit": [
+        "74e1e3c"
+      ],
+      "evidenceUrls": [
+        "CG-AppBuilder-MCP c709d378 session-closeout-lib.mjs",
+        "run-governance-closeout-gate.test.mjs Material closeout seeds linkage"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-04-three-lane-suite-closeout-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "GOVERNANCE_CLOSEOUT_BLOCKED or PREFLIGHT_LINKAGE_MISSING on material closeout",
+        "startAt": [
+          "CG-AppBuilder-MCP/scripts/auto-protocol-v3/session-closeout-lib.mjs",
+          "runtime/work-package-lifecycle-index/<work-package>.json"
+        ],
+        "runPreflight": [
+          "npm run governance:material-preflight -- --mission-class=closeout (before closeout decision)"
+        ],
+        "doNot": [
+          "Reopen closed missions like ultimate-sdlc-runner-hardening-and-ai-cache-v1 to fix linkage",
+          "Use mutation temp repo as controlPlaneRoot for preflight seeding"
+        ],
+        "proveBeforeClaiming": [
+          "governance-material-preflight-v1.json exists on mutation repo",
+          "closeout decision preflightDecisionRef non-null"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "runbook"
+    },
+    {
+      "ihPfspId": "IH-NORTH-STAR-OBSERVE-CLI-012",
+      "questionId": "IHNORTHSTARO",
+      "canonicalQuestion": "How do I run the North Star lifecycle observer from npm?",
+      "alternateQuestions": [
+        "Why does north-star:observe return exit 1 on a closed work package?"
+      ],
+      "shortAnswer": "Run npm run north-star:observe from CG-AppBuilder-MCP; thin CLI loads observe-north-star-lifecycle-lib.mjs from Governance MCP (read-only).",
+      "detailedAnswer": "north-star:observe — AppBuilder CLI delegates to Governance observer",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-04T23:51:43.120Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/seed-packets/IH-NORTH-STAR-OBSERVE-CLI-012.json"
+      ],
+      "authorityCommit": [
+        "74e1e3c"
+      ],
+      "evidenceUrls": [
+        "CG-AppBuilder-MCP 3ed4746a scripts/observe-north-star-lifecycle.mjs",
+        "test:north-star-observe-cli 4/4 PASS"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "command",
+        "harvest-2026-08-04-three-lane-suite-closeout-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Need lifecycle observer verdict without importing Governance lib directly",
+        "startAt": [
+          "CG-AppBuilder-MCP/package.json north-star:observe",
+          "runtime/work-package-lifecycle-index/<work-package>.json"
+        ],
+        "runPreflight": [
+          "cd CG-AppBuilder-MCP && npm run north-star:observe -- --work-package=<id> --mutation-repo=<path> --json"
+        ],
+        "doNot": [
+          "Import observe-north-star-lifecycle-lib.mjs unless debugging",
+          "Treat exit 1 as CLI broken when verdict is FAIL"
+        ],
+        "proveBeforeClaiming": [
+          "JSON schemaVersion north-star-lifecycle-observe-v1",
+          "test -f scripts/observe-north-star-lifecycle.mjs on AppBuilder main"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "command"
+    }
+  ]
+}

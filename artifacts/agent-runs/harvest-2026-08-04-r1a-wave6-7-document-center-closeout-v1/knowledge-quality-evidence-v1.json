@@ -1,0 +1,184 @@
+{
+  "schemaVersion": "harvest-knowledge-quality-evidence-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-r1a-wave6-7-document-center-closeout-v1",
+  "materialEvents": [
+    {
+      "eventId": "TE-601",
+      "summary": "Resume Wave 6 production deploy and Rosewood closeout only; stable SHAs 42c8d32 Documents / 2050421 Dashboard",
+      "material": true,
+      "representations": ["decision", "do_not_advance", "evidence"]
+    },
+    {
+      "eventId": "TE-602",
+      "summary": "Documents checkout reset to d90e599 mid-session; restored to 42c8d32 clean branch before deploy",
+      "material": true,
+      "representations": ["mistake", "correction", "repeated_work", "evidence"]
+    },
+    {
+      "eventId": "TE-603",
+      "summary": "First vercel deploy --prod failed with transient fetch failed; retry with --debug succeeded",
+      "material": true,
+      "representations": ["failure", "command", "result", "evidence"]
+    },
+    {
+      "eventId": "TE-604",
+      "summary": "Dashboard 401 on DC BFF until engine-client forwards Hub session cookie + Origin (7e55fbf)",
+      "material": true,
+      "representations": ["mistake", "correction", "result", "evidence"]
+    },
+    {
+      "eventId": "TE-605",
+      "summary": "Rosewood production verifier PASS 23/23; card REVIEWED, pageCount 66, version 4672252e unchanged",
+      "material": true,
+      "representations": ["result", "evidence", "command"]
+    },
+    {
+      "eventId": "TE-606",
+      "summary": "Accepted Wave 6 PASS_WITH_WARNINGS; authorized Wave 7 downstream propagation",
+      "material": true,
+      "representations": ["decision", "do_not_advance", "evidence"]
+    },
+    {
+      "eventId": "TE-607",
+      "summary": "Implemented plan_intelligence_projection_v1 BFF + Dashboard/BidComposer/Hub readback consumers",
+      "material": true,
+      "representations": ["result", "future_action", "evidence"]
+    },
+    {
+      "eventId": "TE-608",
+      "summary": "Documents production deploy dpl_GWkniWhNfLka8oSZKDnnBoP192wX Ready despite CLI fetch failed at end",
+      "material": true,
+      "representations": ["failure", "result", "evidence", "faster_path"]
+    },
+    {
+      "eventId": "TE-609",
+      "summary": "Documents branch drifted again to work/...-locked @ 47d0f69 after Wave 7 commits; restored to 83a2b1a clean",
+      "material": true,
+      "representations": ["mistake", "repeated_work", "correction", "evidence"]
+    },
+    {
+      "eventId": "TE-610",
+      "summary": "Operator requested chat-thread-closeout-autopsy-harvest-v1 run",
+      "material": true,
+      "representations": ["decision", "protocol_improvement", "future_action"]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "DEC-601",
+      "eventRefs": ["TE-606"],
+      "decision": "Close Wave 6 as PASS_WITH_WARNINGS and authorize Wave 7 downstream read-only propagation",
+      "reason": "Production verifier 23/23 PASS with accepted advisory warnings; Rosewood authority stable at pageCount 66 REVIEWED",
+      "alternativesRejected": [
+        "Reopen Wave 6 for page count 66 vs fixture 192",
+        "Block Wave 7 until all tier1 advisory warnings cleared"
+      ],
+      "consequences": [
+        "Wave 7 Documents BFF projection shipped",
+        "Consumer repos remain local until separate deploy lane"
+      ],
+      "authority": "operator",
+      "evidenceRefs": ["TE-605", "TE-606", "wave-6-gate-receipt.json"]
+    },
+    {
+      "id": "DEC-602",
+      "eventRefs": ["TE-602", "TE-609"],
+      "decision": "Always verify Documents HEAD on work/document-center-adaptive-details-panel-v1-clean before R1A work",
+      "reason": "Locked branch and main d90e599 lack Wave 5/6/7 handlers; repeated mid-session checkout drift",
+      "alternativesRejected": [
+        "Continue deploy from locked branch 47d0f69",
+        "Assume main branch contains R1A stack"
+      ],
+      "consequences": [
+        "IH-DOC-CLEAN-BRANCH-LINEAGE-001 seed",
+        "git reset --hard to c279624 or 83a2b1a before deploy"
+      ],
+      "authority": "agent",
+      "evidenceRefs": ["TE-602", "TE-609", "47d0f69", "83a2b1a"]
+    }
+  ],
+  "corrections": [],
+  "durableClaims": [
+    {
+      "id": "CLM-601",
+      "claim": "Rosewood production authority is pageCount 66 with cardState REVIEWED and version 4672252e-1940-4bb8-827e-ea89a3d1287e",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["TE-605", "wave-6-production-verify-output.json"],
+      "eventRefs": ["TE-605"]
+    },
+    {
+      "id": "CLM-602",
+      "claim": "Dashboard Document Center BFF proxy requires Hub session cookie and Origin not Bearer token alone",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["TE-604", "7e55fbf", "engine-client.ts"],
+      "eventRefs": ["TE-604"]
+    },
+    {
+      "id": "CLM-603",
+      "claim": "Vercel CLI fetch failed does not prove deploy failure when alias inspect shows Ready",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["TE-603", "TE-608", "dpl_GWkniWhNfLka8oSZKDnnBoP192wX"],
+      "eventRefs": ["TE-603", "TE-608"]
+    },
+    {
+      "id": "CLM-604",
+      "claim": "R1A Wave 5/6/7 implementation lives on work/document-center-adaptive-details-panel-v1-clean not locked branch",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["TE-602", "TE-609", "c279624", "83a2b1a"],
+      "eventRefs": ["TE-602", "TE-609"]
+    }
+  ],
+  "contradictions": [],
+  "mistakes": [
+    {
+      "id": "MIST-601",
+      "eventRefs": ["TE-602", "TE-609"],
+      "attemptedAction": "Continue Documents work without verifying branch after environment reset",
+      "whyItSeemedReasonable": "Prior session had clean branch checked out",
+      "actualOutcome": "Missing plan-set-summary-card-handlers and Wave 7 projection files",
+      "rootCause": "Workspace checkout drifts to locked branch or main d90e599",
+      "optimalFirstMove": "git rev-parse HEAD and ls api/lib/plan-set-summary-card-handlers.ts before any deploy",
+      "preventiveControl": "IH-DOC-CLEAN-BRANCH-LINEAGE-001"
+    },
+    {
+      "id": "MIST-602",
+      "eventRefs": ["TE-604"],
+      "attemptedAction": "Forward DOCUMENT_ENGINE_TOKEN Bearer only from Dashboard engine-client",
+      "whyItSeemedReasonable": "Bearer auth pattern works for other BFF routes",
+      "actualOutcome": "401 on Document Center plan-set-summary and plan-intelligence BFF in production",
+      "rootCause": "Document Center BFF validates Hub session cookie and Origin for cross-app proxy",
+      "optimalFirstMove": "Copy Wave 5 plan-summary-view cookie+Origin forwarding pattern",
+      "preventiveControl": "IH-DC-BFF-COOKIE-ORIGIN-001"
+    }
+  ],
+  "blindRetrieval": [
+    {
+      "question": "Which Documents branch has R1A Wave 6 implementation?",
+      "expectedSeedId": "IH-DOC-CLEAN-BRANCH-LINEAGE-001",
+      "lessonFocus": "clean-branch-lineage",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "Why does Dashboard plan-set-summary return 401 in production?",
+      "expectedSeedId": "IH-DC-BFF-COOKIE-ORIGIN-001",
+      "lessonFocus": "cookie-origin-bff",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "Vercel deploy ended with fetch failed — is production updated?",
+      "expectedSeedId": "IH-VERCEL-CLI-FETCH-FAILED-001",
+      "lessonFocus": "vercel-inspect-before-blocked",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "What is the authoritative Rosewood plan set page count in production?",
+      "expectedSeedId": "IH-R1A-ROSEWOOD-AUTHORITY-001",
+      "lessonFocus": "rosewood-page-count-66",
+      "genericKeywordOnly": false
+    }
+  ],
+  "humanReview": {
+    "required": false,
+    "reasons": []
+  }
+}

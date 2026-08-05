@@ -1,0 +1,267 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-r1a-wave6-7-document-center-closeout-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "commandIndexConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "work-progress/harvest-packet-registry.json"
+    ],
+    "checkedAt": "2026-08-05T00:07:48.491Z",
+    "preflightReceiptHash": "7e171312132fc09e58e3d8662eea6a02f70d930e99f3ae103c74466a8e54bf29"
+  },
+  "waste": [
+    {
+      "wasteId": "TW-601",
+      "type": "rework",
+      "description": "CapitalGlass-Documents checkout repeatedly reset to d90e599 or locked branch 47d0f69, wiping Wave 5/6/7 files mid-session",
+      "evidenceRefs": [
+        "TE-602",
+        "TE-609",
+        "d90e599",
+        "47d0f69"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "git rev-parse HEAD gate before any deploy; stay on work/document-center-adaptive-details-panel-v1-clean",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-602",
+      "type": "deploy",
+      "description": "Vercel CLI reported fetch failed at end of deploy while production actually reached Ready",
+      "evidenceRefs": [
+        "TE-603",
+        "TE-608",
+        "dpl_GWkniWhNfLka8oSZKDnnBoP192wX"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Always vercel inspect production alias before treating deploy as failed",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-603",
+      "type": "verification",
+      "description": "Dashboard DC BFF returned 401 until cookie+Origin forwarding implemented (Bearer-only insufficient)",
+      "evidenceRefs": [
+        "TE-604",
+        "7e55fbf"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Reuse Wave 5 Hub SSR session-verifier pattern in engine-client.ts",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-604",
+      "type": "context",
+      "description": "Wave 7 consumer repo changes remain local-uncommitted; production still on Wave 6 dashboard SHA only",
+      "evidenceRefs": [
+        "TE-607",
+        "code-touch-summary.json"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Commit and deploy consumer routes before Wave 8 E2E pilot",
+      "roiRank": 4
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-601",
+      "trigger": "Operator had to re-authorize Wave 6 closeout and Wave 7 start after session summarization",
+      "operatorCost": "medium",
+      "systemFix": "Preserve wave gate receipts in committed artifacts; resume from gate receipt not chat memory",
+      "evidenceRefs": [
+        "TE-601",
+        "TE-606"
+      ],
+      "linkedWasteIds": [
+        "TW-604"
+      ]
+    },
+    {
+      "frictionId": "OF-602",
+      "trigger": "Documents branch instability caused repeated restore cycles",
+      "operatorCost": "high",
+      "systemFix": "IH-DOC-CLEAN-BRANCH-LINEAGE-001",
+      "evidenceRefs": [
+        "TE-602",
+        "TE-609"
+      ],
+      "linkedWasteIds": [
+        "TW-601"
+      ]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-601",
+      "situation": "Wave 6 Rosewood production smoke via Dashboard BFF proxy",
+      "actualExecution": {
+        "steps": [
+          "Forward Bearer token only to Document Center",
+          "Received 401 on plan-set-summary-card",
+          "Added cookie + Origin to engine-client.ts",
+          "Re-deployed dashboard 7e55fbf",
+          "Verifier PASS 23/23"
+        ],
+        "outcome": "PASS after rework",
+        "evidenceRefs": [
+          "TE-604",
+          "TE-605"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Copy Wave 5 plan-summary-view auth forwarding pattern before first prod smoke",
+          "Run wave6-rosewood-production-verify.mts once auth path confirmed"
+        ],
+        "outcome": "First-run PASS",
+        "requiredPreflight": [
+          "wave-6-discovery-receipt.json auth notes"
+        ]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "medium",
+        "operatorFrustration": "medium"
+      }
+    },
+    {
+      "executionDeltaId": "ED-602",
+      "situation": "Document Center production deploy CLI exit",
+      "actualExecution": {
+        "steps": [
+          "vercel deploy --prod --yes",
+          "CLI exit fetch failed",
+          "Assumed failure",
+          "vercel inspect showed Ready on production alias"
+        ],
+        "outcome": "Deploy succeeded despite CLI error",
+        "evidenceRefs": [
+          "TE-603",
+          "TE-608"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "On CLI fetch failed, immediately vercel inspect <production alias>",
+          "Record deployment ID from inspect not CLI stderr"
+        ],
+        "outcome": "No false BLOCKED gate",
+        "requiredPreflight": [
+          "vercel inspect documents.capitalglasstxapps.com"
+        ]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-601",
+      "summary": "Working from Documents locked branch without verifying HEAD contains Wave 5/6 files",
+      "whyItWasWrong": "Locked branch at 47d0f69 lacks R1A handlers; deploy and tests would miss Wave 6 surface",
+      "correctFirstMove": "git rev-parse HEAD must equal c279624+ on clean branch before any wave work",
+      "preventiveControl": "IH-DOC-CLEAN-BRANCH-LINEAGE-001",
+      "executionDeltaId": "ED-601"
+    },
+    {
+      "wrongMoveId": "WM-602",
+      "summary": "Treating Vercel CLI fetch failed as deploy failure without alias inspect",
+      "whyItWasWrong": "Production reached Ready (dpl_GWkniWhNfLka8oSZKDnnBoP192wX) while agent reported failure",
+      "correctFirstMove": "vercel inspect production alias before BLOCKED verdict",
+      "preventiveControl": "IH-VERCEL-CLI-FETCH-FAILED-001",
+      "executionDeltaId": "ED-602"
+    }
+  ],
+  "duplicateWork": [],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Documents clean-branch HEAD gate before R1A wave work",
+      "whyItPays": "Eliminates d90e599/47d0f69 wipe cycles",
+      "effort": "low",
+      "seedAs": "runbook",
+      "savedWasteIds": [
+        "TW-601"
+      ],
+      "ownerRepo": "CapitalGlass-Documents"
+    },
+    {
+      "rank": 2,
+      "title": "Vercel deploy verify-on-alias after CLI transport errors",
+      "whyItPays": "Prevents false BLOCKED closeout when production is Ready",
+      "effort": "low",
+      "seedAs": "command",
+      "savedWasteIds": [
+        "TW-602"
+      ],
+      "ownerRepo": "CapitalGlass-Documents"
+    },
+    {
+      "rank": 3,
+      "title": "Dashboard engine-client cookie+Origin contract test",
+      "whyItPays": "Blocks 401 regressions on Document Center BFF proxies",
+      "effort": "medium",
+      "seedAs": "test",
+      "savedWasteIds": [
+        "TW-603"
+      ],
+      "ownerRepo": "capital-glass-project-dashboard"
+    },
+    {
+      "rank": 4,
+      "title": "Wave 8 consumer deploy checklist before E2E pilot",
+      "whyItPays": "Wave 7 readback routes exist locally but not on production dashboard/bid/hub",
+      "effort": "low",
+      "seedAs": "runbook",
+      "savedWasteIds": [
+        "TW-604"
+      ],
+      "ownerRepo": "CapitalGlass-Cross-Agent"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "Wave 6 Plan Set Summary Card",
+      "currentStatus": "CLOSED",
+      "doNotClaimUntil": [
+        "Do not reopen Wave 6 design unless deploy reveals defect"
+      ],
+      "lastKnownEvidence": [
+        "wave-6-gate-receipt.json",
+        "dpl_JAHyqtxPeWCfguZX8paF4LWcJPPK",
+        "dpl_EpgAUD6cT3sj5aEeJSvLYgMUJqAm"
+      ]
+    },
+    {
+      "awardOrVerdict": "Wave 7 Downstream Propagation",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "Consumer repos committed and deployed",
+        "Wave 8 Rosewood E2E production pilot complete"
+      ],
+      "lastKnownEvidence": [
+        "wave-7-gate-receipt.json",
+        "8320386",
+        "dpl_GWkniWhNfLka8oSZKDnnBoP192wX"
+      ]
+    },
+    {
+      "awardOrVerdict": "Wave 8 E2E Pilot",
+      "currentStatus": "OPEN",
+      "doNotClaimUntil": [
+        "Wave 7 consumer production deploy verified"
+      ],
+      "lastKnownEvidence": [
+        "wave-7-gate-receipt.json wave8Authorized: true"
+      ]
+    }
+  ]
+}

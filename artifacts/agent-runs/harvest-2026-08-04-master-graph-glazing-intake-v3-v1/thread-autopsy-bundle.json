@@ -1,0 +1,285 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-master-graph-glazing-intake-v3-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "commandIndexConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "work-progress/harvest-packet-registry.json"
+    ],
+    "checkedAt": "2026-08-05T00:15:52.031Z",
+    "preflightReceiptHash": "23d6b6f2d0c7f3c61ddb849c4c2f5fe01b3e72091591b9e0003fdbd1ae1558b9"
+  },
+  "waste": [
+    {
+      "wasteId": "TW-401",
+      "type": "rework",
+      "description": "Drafted broad document_extraction_runs / plan_extracted_fields schema then rewrote to hybrid document_plan_sets / cover_fields after operator charter",
+      "evidenceRefs": [
+        "TE-402",
+        "CapitalGlass-Documents/supabase/migrations/20260804180000_document_plan_intelligence_schema.sql"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Lock hybrid table charter before writing migrations; read operator field list first",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-402",
+      "type": "context",
+      "description": "Built monolithic GRAPH-INTAKE v2 (~700 lines) then split to v3 pack after review feedback",
+      "evidenceRefs": [
+        "TE-404",
+        "TE-406"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Start from operator-prompts + agent-contract split; full questionnaire last",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-403",
+      "type": "retrieval",
+      "description": "Mode C intake cited superseded table names while hybrid migrations already existed — triage had to re-discover drift",
+      "evidenceRefs": [
+        "TE-407",
+        "TE-408",
+        "TW-401"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "IH-DOC-PLAN-INTEL-SCHEMA-DRIFT-V1 + single schema authority pointer in Documents WP",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-404",
+      "type": "agent",
+      "description": "npm scout via Windows cmd.exe UNC path failed; required direct L: slice read",
+      "evidenceRefs": [
+        "TE-401"
+      ],
+      "estimatedImpact": "low",
+      "savedBy": "Run scout with WSL node from $HOME/repos/CG-AppBuilder-MCP; PATH includes nvm node",
+      "roiRank": 4
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-401",
+      "trigger": "Had to ask which intake file to drop after pack split",
+      "operatorCost": "low",
+      "systemFix": "WHICH-FILE-TO-DROP-IN-CHAT.txt on Z: Graphing collection protocol",
+      "evidenceRefs": [
+        "TE-405"
+      ],
+      "linkedWasteIds": [
+        "TW-402"
+      ]
+    },
+    {
+      "frictionId": "OF-402",
+      "trigger": "Mode C questionnaire mixed older plan-intelligence naming with new hybrid persistence",
+      "operatorCost": "medium",
+      "systemFix": "IH-DOC-PLAN-INTEL-SCHEMA-DRIFT-V1 + Wave 0 schema reconcile before graph WP",
+      "evidenceRefs": [
+        "TE-408"
+      ],
+      "linkedWasteIds": [
+        "TW-403"
+      ]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-401",
+      "situation": "Operator specified four hybrid tables for Rosewood cover/plan-index",
+      "actualExecution": {
+        "steps": [
+          "Earlier draft used extraction_runs + plan_extracted_fields + glazing flags",
+          "Operator pasted hybrid charter",
+          "Agent rewrote migrations and seed"
+        ],
+        "outcome": "PASS after rewrite",
+        "evidenceRefs": [
+          "TE-401",
+          "TE-402"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Read operator table list first",
+          "Write only document_plan_sets / sheets / index_runs / cover_fields",
+          "Defer glazing classifications to assertions later"
+        ],
+        "outcome": "Single schema pass",
+        "requiredPreflight": [
+          "Operator charter / GRAPH INTAKE fact block"
+        ]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "high",
+        "operatorFrustration": "medium"
+      }
+    },
+    {
+      "executionDeltaId": "ED-402",
+      "situation": "Master Graph intake usability review (provenance phase, assertions, sheet IDs)",
+      "actualExecution": {
+        "steps": [
+          "Shipped v2 monolith",
+          "User pasted improvement list",
+          "Applied top-3 + pack split as v3"
+        ],
+        "outcome": "PASS",
+        "evidenceRefs": [
+          "TE-404",
+          "TE-406"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Ship operator prompts + agent contract first",
+          "Put provenance in every phase from day one",
+          "Forbid sheet-label graph IDs in first draft"
+        ],
+        "outcome": "Fewer revision cycles",
+        "requiredPreflight": [
+          "GRAPH-INTAKE-INDEX-v3 growth path"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-401",
+      "summary": "Drafted over-broad plan-intelligence schema with glazing flags before hybrid charter locked",
+      "whyItWasWrong": "Created schema drift and later Mode C confusion",
+      "correctFirstMove": "Implement only operator-listed four tables; classify later as assertions",
+      "preventiveControl": "IH-DOC-PLAN-INTEL-SCHEMA-DRIFT-V1",
+      "executionDeltaId": "ED-401"
+    },
+    {
+      "wrongMoveId": "WM-402",
+      "summary": "Example graph id sheet:a.520.1 appeared in early staging notes",
+      "whyItWasWrong": "Rosewood has duplicate sheet labels; label-only IDs collide",
+      "correctFirstMove": "sheet:<document_sheets.uuid> + sheetNumber property",
+      "preventiveControl": "IH-GRAPH-SHEET-UUID-IDENTITY-V1",
+      "executionDeltaId": "ED-402"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-401",
+      "subject": "Master Graph must not own extracted drawing values",
+      "firstKnownInstance": "harvest-2026-08-04-rosewood-cover-plan-index-v1 / IH-THREAD-MASTER-GRAPH-PROJECTION-GUARD-V1",
+      "priorIndexSlice": "L:02-catalog/knowledge-objects/cross-agent-harvest/IH-THREAD-MASTER-GRAPH-PROJECTION-GUARD-V1.json",
+      "whyRepeated": "This thread refined the same boundary with Intake Pack v3 + Mode C triage",
+      "whyMissed": "Prior harvest folder not present in local Cross-Agent artifacts; L: seeds exist",
+      "avoidableBy": "Consult thread-autopsy-index + L: catalog before new projection-boundary seeds",
+      "recommendedAction": "index"
+    },
+    {
+      "duplicateId": "DW-402",
+      "subject": "Rosewood plan-set registration gates",
+      "firstKnownInstance": "IH-THREAD-ROSEWOOD-PLAN-SET-REGISTRATION-V1",
+      "priorIndexSlice": "L:02-catalog/knowledge-objects/cross-agent-harvest/IH-THREAD-ROSEWOOD-PLAN-SET-REGISTRATION-V1.json",
+      "whyRepeated": "Thread continued Rosewood pilot with sheet-page-map and persistence WP",
+      "whyMissed": "Same as DW-401",
+      "avoidableBy": "Load existing registration seed; add only new drift/identity rules",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Reconcile Documents plan-intelligence schema (one family)",
+      "whyItPays": "Unblocks live seed and Master Graph contribution WP",
+      "effort": "medium",
+      "seedAs": "runbook",
+      "savedWasteIds": [
+        "TW-401",
+        "TW-403"
+      ],
+      "ownerRepo": "CapitalGlass-Documents"
+    },
+    {
+      "rank": 2,
+      "title": "Registry expansion: Document/PlanSet/Sheet + assertion mapping",
+      "whyItPays": "Enables Phase 1 compile without inventing node types",
+      "effort": "medium",
+      "seedAs": "owner-artifact",
+      "savedWasteIds": [
+        "TW-402"
+      ],
+      "ownerRepo": "CG-MASTER-GRAPH"
+    },
+    {
+      "rank": 3,
+      "title": "Keep Graph Intake Pack v3 as operator default on Z:",
+      "whyItPays": "Stops full-questionnaire over-read and premature ontology",
+      "effort": "low",
+      "seedAs": "runbook",
+      "savedWasteIds": [
+        "TW-402"
+      ],
+      "ownerRepo": "CG-MASTER-GRAPH"
+    },
+    {
+      "rank": 4,
+      "title": "WSL node PATH for scout in Cursor shells",
+      "whyItPays": "Avoids UNC cmd.exe scout failures",
+      "effort": "low",
+      "seedAs": "hook",
+      "savedWasteIds": [
+        "TW-404"
+      ],
+      "ownerRepo": "CG-AppBuilder-MCP"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "Master Graph Rosewood Phase 1 compile / contribution",
+      "currentStatus": "OPEN",
+      "doNotClaimUntil": [
+        "Documents schema drift reconciled",
+        "Live plan_set_id + sheet UUIDs seeded",
+        "Registry types Document/PlanSet/Sheet exist or contribution maps to approved types",
+        "contribution-envelope validates"
+      ],
+      "lastKnownEvidence": [
+        "READY_FOR_WAVE_0_DISCOVERY triage TE-408",
+        "hybrid migrations uncommitted; 802 orphan view"
+      ]
+    },
+    {
+      "awardOrVerdict": "R1B window schedule / openings / quantities / pricing graph",
+      "currentStatus": "OPEN",
+      "doNotClaimUntil": [
+        "Phase 1 plan structure + evidence foundation complete",
+        "Explicit operator authorization for R1B"
+      ],
+      "lastKnownEvidence": [
+        "GRAPH-INTAKE Phase 1 non-goals",
+        "Mode C questionnaire non-goals"
+      ]
+    },
+    {
+      "awardOrVerdict": "OPERATIONAL harvest publication for this thread",
+      "currentStatus": "OPEN",
+      "doNotClaimUntil": [
+        "Operator runs harvest:publish-intelligence-full",
+        "operational-publication-receipt.json exists"
+      ],
+      "lastKnownEvidence": [
+        "Phase A only — hubPublishStatus not-run"
+      ]
+    }
+  ]
+}

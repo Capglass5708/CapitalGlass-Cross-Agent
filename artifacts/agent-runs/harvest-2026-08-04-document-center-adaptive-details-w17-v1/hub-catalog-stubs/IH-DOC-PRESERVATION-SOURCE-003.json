@@ -1,0 +1,75 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-doc-preservation-source-003",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "dc1c3b2bd075ba61d9b0ebfdcbd4fef6761c4892",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-document-center-adaptive-details-w17-v1",
+      "seedId": "IH-DOC-PRESERVATION-SOURCE-003"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T20:38:23.206Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "75943467bfdc2a8a2e27d519b310a83a589adc7b2ec6ef7a5ffc40eccca15606"
+  },
+  "body": {
+    "seedId": "IH-DOC-PRESERVATION-SOURCE-003",
+    "kind": "failure-pattern",
+    "title": "Adaptive mission recovery: preservation SHA source discipline",
+    "summary": "wip/document-details-pre-operator-preservation @ 9a98c5c may contain R1A DocumentDetailPage; restore mission src from 25675d9 mixed-state preservation only.",
+    "canonicalQuestion": "Which preservation commit is safe for DocumentDetailPage adaptive recovery?",
+    "alternateQuestions": [
+      "Why did typecheck fail after preservation checkout?"
+    ],
+    "shortAnswer": "wip/document-details-pre-operator-preservation @ 9a98c5c may contain R1A DocumentDetailPage; restore mission src from 25675d9 mixed-state preservation only.",
+    "detailedAnswer": "Adaptive mission recovery: preservation SHA source discipline",
+    "retrievalQuestions": [
+      "Which preservation commit is safe for DocumentDetailPage adaptive recovery?",
+      "Why did typecheck fail after preservation checkout?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Recovering document-center-adaptive-details-panel-v1 from preservation branches",
+      "startAt": [
+        "wip/document-details-mixed-state-preservation-20260804 @ 25675d9"
+      ],
+      "runPreflight": [
+        "git grep R1a src/pages/DocumentDetailPage.tsx"
+      ],
+      "doNot": [
+        "Checkout DocumentDetailPage from 9a98c5c pre-operator preservation"
+      ],
+      "proveBeforeClaiming": [
+        "npm run typecheck PASS",
+        "zero R1a matches in mission paths"
+      ]
+    },
+    "evidenceRefs": [
+      "EVT-006",
+      "25675d91626014fd16c520366c5e971fb663d8d6",
+      "9a98c5c970b533fd301dc1b3282b970cb17daae1"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Documents",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-document-center-adaptive-details-w17-v1/seed-packets/IH-DOC-PRESERVATION-SOURCE-003.json"
+    ],
+    "harvestId": "harvest-2026-08-04-document-center-adaptive-details-w17-v1"
+  }
+}

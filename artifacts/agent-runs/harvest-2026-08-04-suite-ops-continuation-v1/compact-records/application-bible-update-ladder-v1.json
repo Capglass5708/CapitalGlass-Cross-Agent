@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-suite-ops-continuation-v1",
+  "packetId": "application-bible-update-ladder-v1",
+  "state": "DOCUMENTED",
+  "packetVerdict": "PASS",
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Run generate → sync → bible-z-master:sync-host when content changes",
+  "evidenceRefs": [
+    "CG-AppBuilder-MCP docs/application-bible/07-SUITE-BIBLE-TOOLING.md",
+    "CG-AppBuilder-MCP docs/reports/z-master-bible-operational-guide.md",
+    "npm run generate:application-bibles",
+    "npm run sync:application-bibles -- --all"
+  ],
+  "doNotAdvance": [
+    "Edit Z: mirror only without Git canonical regen"
+  ],
+  "advancementGate": "not-required",
+  "contentHash": "5376fac565bc11487086738e744e6f825da038486cd7426bf4c767b56b4b1bc8"
+}

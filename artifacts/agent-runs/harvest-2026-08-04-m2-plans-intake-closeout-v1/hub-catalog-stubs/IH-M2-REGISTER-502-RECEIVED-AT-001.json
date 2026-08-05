@@ -1,0 +1,76 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-m2-register-502-received-at-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "adb026b5b1e3920b571296943300e0e5d1090545",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-m2-plans-intake-closeout-v1",
+      "seedId": "IH-M2-REGISTER-502-RECEIVED-AT-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T18:34:16.724Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "5c3aeb2a57193e582a9ba1a425fe7beaa482ca6ee8e9eac411ef7be84448e61d"
+  },
+  "body": {
+    "seedId": "IH-M2-REGISTER-502-RECEIVED-AT-001",
+    "kind": "failure-pattern",
+    "title": "NAS register 502 — missing received_at on staging insert",
+    "summary": "Prod document_intake_staging.received_at NOT NULL; register handler omitted field → Postgres 23502 → API 502. Fixed PR #92.",
+    "canonicalQuestion": "Why does intake-nas register return 502?",
+    "alternateQuestions": [
+      "What Postgres error causes NAS register failure for Plans intake?"
+    ],
+    "shortAnswer": "Prod document_intake_staging.received_at NOT NULL; register handler omitted field → Postgres 23502 → API 502. Fixed PR #92.",
+    "detailedAnswer": "NAS register 502 — missing received_at on staging insert",
+    "retrievalQuestions": [
+      "Why does intake-nas register return 502?",
+      "What Postgres error causes NAS register failure for Plans intake?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "register:register_failed:502 on Plans or General intake",
+      "startAt": [
+        "Z:\\Document Intake\\Receipts\\intake-worker.health.json",
+        "document-nas-intake-register.ts"
+      ],
+      "runPreflight": [
+        "POST register with NAS_INTAKE_WORKER_TOKEN via Doppler"
+      ],
+      "doNot": [
+        "Assume Cloudflare-only 502 without JSON body"
+      ],
+      "proveBeforeClaiming": [
+        "register returns 200",
+        "received_at populated on staging row"
+      ]
+    },
+    "evidenceRefs": [
+      "60c79a2",
+      "document-nas-intake-register.ts",
+      "TE-302"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Documents",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-m2-plans-intake-closeout-v1/seed-packets/IH-M2-REGISTER-502-RECEIVED-AT-001.json"
+    ],
+    "harvestId": "harvest-2026-08-04-m2-plans-intake-closeout-v1"
+  }
+}

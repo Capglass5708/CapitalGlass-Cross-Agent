@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-GRAPH-SHEET-UUID-IDENTITY-V1",
+  "kind": "failure-pattern",
+  "title": "Never use sheet labels alone as Master Graph identity",
+  "summary": "Rosewood has duplicate sheet labels; canonical sheet id is sheet:<document_sheets.uuid>; sheetNumber and pdfPageNumber are properties/aliases only.",
+  "retrievalQuestions": [
+    "Is sheet:a.520.1 a safe Master Graph ID?",
+    "How should duplicate sheet numbers in one plan set be identified?"
+  ],
+  "evidenceRefs": [
+    "CG-MASTER-GRAPH/docs/staging/GRAPH-INTAKE-ROSEWOOD-FIXTURE-v1.md",
+    "CapitalGlass-Documents/metadata/plan-sets/CG-2033-26/sheet-page-map-v1.json",
+    "TE-402",
+    "TE-406"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Graph seed or contribution uses sheet:A.520.1 or similar label id",
+    "startAt": [
+      "Document Center document_sheets.id",
+      "GRAPH-INTAKE-ROSEWOOD-FIXTURE-v1.md"
+    ],
+    "runPreflight": [
+      "Confirm document_sheets UUID exists for the page binding"
+    ],
+    "doNot": [
+      "Use sheet label as sole graph identity",
+      "Collapse duplicate labels without explicit equivalence"
+    ],
+    "proveBeforeClaiming": [
+      "0 sheet identities based solely on labels",
+      "pdfPageNumber present as property when needed"
+    ]
+  },
+  "ownerRepo": "CG-MASTER-GRAPH",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

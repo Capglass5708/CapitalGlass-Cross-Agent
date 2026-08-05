@@ -1,0 +1,78 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-graph-sheet-uuid-identity-v1",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "6714137247a57325b638279947690e4a31c4be26",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-master-graph-glazing-intake-v3-v1",
+      "seedId": "IH-GRAPH-SHEET-UUID-IDENTITY-V1"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T20:33:15.493Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "a73c99940cc9a67304aa6f24e0e63a29cd7d38ace858bc31b31e047a8ef3d223"
+  },
+  "body": {
+    "seedId": "IH-GRAPH-SHEET-UUID-IDENTITY-V1",
+    "kind": "failure-pattern",
+    "title": "Never use sheet labels alone as Master Graph identity",
+    "summary": "Rosewood has duplicate sheet labels; canonical sheet id is sheet:<document_sheets.uuid>; sheetNumber and pdfPageNumber are properties/aliases only.",
+    "canonicalQuestion": "Is sheet:a.520.1 a safe Master Graph ID?",
+    "alternateQuestions": [
+      "How should duplicate sheet numbers in one plan set be identified?"
+    ],
+    "shortAnswer": "Rosewood has duplicate sheet labels; canonical sheet id is sheet:<document_sheets.uuid>; sheetNumber and pdfPageNumber are properties/aliases only.",
+    "detailedAnswer": "Never use sheet labels alone as Master Graph identity",
+    "retrievalQuestions": [
+      "Is sheet:a.520.1 a safe Master Graph ID?",
+      "How should duplicate sheet numbers in one plan set be identified?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Graph seed or contribution uses sheet:A.520.1 or similar label id",
+      "startAt": [
+        "Document Center document_sheets.id",
+        "GRAPH-INTAKE-ROSEWOOD-FIXTURE-v1.md"
+      ],
+      "runPreflight": [
+        "Confirm document_sheets UUID exists for the page binding"
+      ],
+      "doNot": [
+        "Use sheet label as sole graph identity",
+        "Collapse duplicate labels without explicit equivalence"
+      ],
+      "proveBeforeClaiming": [
+        "0 sheet identities based solely on labels",
+        "pdfPageNumber present as property when needed"
+      ]
+    },
+    "evidenceRefs": [
+      "CG-MASTER-GRAPH/docs/staging/GRAPH-INTAKE-ROSEWOOD-FIXTURE-v1.md",
+      "CapitalGlass-Documents/metadata/plan-sets/CG-2033-26/sheet-page-map-v1.json",
+      "TE-402",
+      "TE-406"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-MASTER-GRAPH",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/seed-packets/IH-GRAPH-SHEET-UUID-IDENTITY-V1.json"
+    ],
+    "harvestId": "harvest-2026-08-04-master-graph-glazing-intake-v3-v1"
+  }
+}

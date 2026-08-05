@@ -1,0 +1,83 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-application-bible-update-ladder-014",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "dc1c3b2bd075ba61d9b0ebfdcbd4fef6761c4892",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-suite-ops-continuation-v1",
+      "seedId": "IH-APPLICATION-BIBLE-UPDATE-LADDER-014"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T20:36:52.478Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "critical",
+    "contentHash": "5ac36962748ae04240703359451dddcec25104c525468971319698e83ba0e37e"
+  },
+  "body": {
+    "seedId": "IH-APPLICATION-BIBLE-UPDATE-LADDER-014",
+    "kind": "runbook",
+    "title": "How to update Application Bibles across Git, Z mirror, Z-master, and BibleDB",
+    "summary": "Edit Git canonical in CG-AppBuilder-MCP generators or owner docs/application-bible; regen; sync to Z; promote Z-master; optional BibleDB index.",
+    "canonicalQuestion": "What is the correct way to update Application Bibles?",
+    "alternateQuestions": [
+      "How do I sync application bibles to Z drive?",
+      "When should I run bible-z-master vs sync:application-bibles?"
+    ],
+    "shortAnswer": "Edit Git canonical in CG-AppBuilder-MCP generators or owner docs/application-bible; regen; sync to Z; promote Z-master; optional BibleDB index.",
+    "detailedAnswer": "How to update Application Bibles across Git, Z mirror, Z-master, and BibleDB",
+    "retrievalQuestions": [
+      "What is the correct way to update Application Bibles?",
+      "How do I sync application bibles to Z drive?",
+      "When should I run bible-z-master vs sync:application-bibles?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Bible mirror drift or agents need updated application bible authority",
+      "startAt": [
+        "CG-AppBuilder-MCP/docs/SUITE_APPLICATION_BIBLE_REGISTRY.json",
+        "runtime/estate-policy/bible-authority-mode.json"
+      ],
+      "runPreflight": [
+        "npm run bible-z-master:status -- --json",
+        "npm run check:application-bibles-sync -- --all"
+      ],
+      "doNot": [
+        "Hand-edit Z: Application Bibles as sole source of truth",
+        "Use sync:application-bibles alone when z-master mode requires Z-master promotion"
+      ],
+      "proveBeforeClaiming": [
+        "PASS_Z_MASTER_BIBLE_CURRENT or explicit legacy mirror check",
+        "check:application-bibles-sync PASS after content change"
+      ]
+    },
+    "evidenceRefs": [
+      "CG-AppBuilder-MCP docs/application-bible/07-SUITE-BIBLE-TOOLING.md",
+      "npm run generate:application-bibles",
+      "npm run sync:application-bibles -- --all",
+      "npm run bible-z-master:sync-host -- --apply --verify --attest"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [
+      "TW-002"
+    ],
+    "operatorFrictionIds": [],
+    "roiRank": 1,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/seed-packets/IH-APPLICATION-BIBLE-UPDATE-LADDER-014.json"
+    ],
+    "harvestId": "harvest-2026-08-04-suite-ops-continuation-v1"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-gov-preflight-linkage-010",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "74e1e3cab201e7ade9da3b7a426c054b513324a0",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-three-lane-suite-closeout-v1",
+      "seedId": "IH-GOV-PREFLIGHT-LINKAGE-010"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T23:51:43.121Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "7481759ccdc6533e4a1a416d9b641fbc853fb5a6b6e2d2ccaf2b3a5ec82a417b"
+  },
+  "body": {
+    "seedId": "IH-GOV-PREFLIGHT-LINKAGE-010",
+    "kind": "runbook",
+    "title": "Material session closeout seeds governance preflight when absent",
+    "summary": "auto:v3:session-closeout calls ensureGovernanceMaterialPreflightLinkage to avoid PREFLIGHT_LINKAGE_MISSING when no prior governance-material-preflight receipt exists.",
+    "canonicalQuestion": "Why does material closeout emit PREFLIGHT_LINKAGE_MISSING?",
+    "alternateQuestions": [
+      "How does session closeout seed governance material preflight linkage?"
+    ],
+    "shortAnswer": "auto:v3:session-closeout calls ensureGovernanceMaterialPreflightLinkage to avoid PREFLIGHT_LINKAGE_MISSING when no prior governance-material-preflight receipt exists.",
+    "detailedAnswer": "Material session closeout seeds governance preflight when absent",
+    "retrievalQuestions": [
+      "Why does material closeout emit PREFLIGHT_LINKAGE_MISSING?",
+      "How does session closeout seed governance material preflight linkage?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "GOVERNANCE_CLOSEOUT_BLOCKED or PREFLIGHT_LINKAGE_MISSING on material closeout",
+      "startAt": [
+        "CG-AppBuilder-MCP/scripts/auto-protocol-v3/session-closeout-lib.mjs",
+        "runtime/work-package-lifecycle-index/<work-package>.json"
+      ],
+      "runPreflight": [
+        "npm run governance:material-preflight -- --mission-class=closeout (before closeout decision)"
+      ],
+      "doNot": [
+        "Reopen closed missions like ultimate-sdlc-runner-hardening-and-ai-cache-v1 to fix linkage",
+        "Use mutation temp repo as controlPlaneRoot for preflight seeding"
+      ],
+      "proveBeforeClaiming": [
+        "governance-material-preflight-v1.json exists on mutation repo",
+        "closeout decision preflightDecisionRef non-null"
+      ]
+    },
+    "evidenceRefs": [
+      "CG-AppBuilder-MCP c709d378 session-closeout-lib.mjs",
+      "run-governance-closeout-gate.test.mjs Material closeout seeds linkage"
+    ],
+    "executionDeltaRefs": [
+      "ED-001"
+    ],
+    "wasteIds": [
+      "TW-002"
+    ],
+    "operatorFrictionIds": [],
+    "roiRank": 3,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/seed-packets/IH-GOV-PREFLIGHT-LINKAGE-010.json"
+    ],
+    "harvestId": "harvest-2026-08-04-three-lane-suite-closeout-v1"
+  }
+}

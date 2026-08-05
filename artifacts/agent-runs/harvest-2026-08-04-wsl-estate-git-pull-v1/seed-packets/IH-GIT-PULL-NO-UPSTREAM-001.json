@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-GIT-PULL-NO-UPSTREAM-001",
+  "kind": "failure-pattern",
+  "title": "Estate pull FAIL — feature branch without upstream tracking",
+  "summary": "CapitalGlass-Documents on work/document-center-adaptive-details-panel-v1-clean failed pull because no @{u} is set; set upstream or pull explicit remote branch.",
+  "retrievalQuestions": [
+    "Why did CapitalGlass-Documents git pull fail with no tracking information?",
+    "How to fix git pull when branch has no upstream?"
+  ],
+  "evidenceRefs": [
+    "TE-405",
+    "CapitalGlass-Documents"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "git pull fails with 'no tracking information for the current branch'",
+    "startAt": [
+      "git -C <repo> branch -vv",
+      "git -C <repo> remote -v"
+    ],
+    "runPreflight": [
+      "git -C <repo> rev-parse --abbrev-ref HEAD",
+      "git -C <repo> rev-parse --abbrev-ref @{u} 2>/dev/null || echo NO_UPSTREAM"
+    ],
+    "doNot": [
+      "Assume main is checked out on every repo",
+      "Mark estate pull PASS while any repo FAIL remains"
+    ],
+    "proveBeforeClaiming": [
+      "git pull origin <branch> succeeds OR upstream set and ff-only pull passes"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Documents",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

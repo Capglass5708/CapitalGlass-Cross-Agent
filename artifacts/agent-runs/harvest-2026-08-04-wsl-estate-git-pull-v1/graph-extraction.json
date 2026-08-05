@@ -1,0 +1,505 @@
+{
+  "packetKind": "graph-extraction",
+  "schemaVersion": "cg-master-graph-extraction-v1",
+  "extractionId": "extraction:harvest-2026-08-04-wsl-estate-git-pull-v1",
+  "harvestId": "harvest-2026-08-04-wsl-estate-git-pull-v1",
+  "workPackageId": "harvest-2026-08-04-wsl-estate-git-pull-v1",
+  "producer": {
+    "repositoryId": "repo:capitalglass-cross-agent",
+    "capability": "harvest-graph-extraction",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "id": "harvest:harvest-2026-08-04-wsl-estate-git-pull-v1",
+      "nodeType": "Harvest",
+      "displayName": "harvest-2026-08-04-wsl-estate-git-pull-v1",
+      "lifecycleState": "lifecycle:canonical",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+        "sourceCommitSha": "6714137247a57325b638279947690e4a31c4be26",
+        "retrievalResult": "INDEX_HIT_AI_CACHE"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T20:26:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:wsl-estate-git-pull-run",
+      "nodeType": "WorkPackage",
+      "displayName": "Estate-wide WSL git pull execution",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "PARTIAL_PASS",
+      "metadata": {
+        "packetVerdict": "PASS_WITH_GAPS",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-04-wsl-estate-git-pull-v1.md",
+        "advancementGate": "Both FAIL repos reconciled"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T20:26:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/wsl-estate-git-pull-run.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/wsl-estate-git-pull-run.json"
+        }
+      }
+    },
+    {
+      "id": "entity:blocker-blocker-wsl-estate-git-pull-run",
+      "nodeType": "Entity",
+      "displayName": "CapitalGlass-Documents feature branch without @{u}",
+      "metadata": {
+        "entityKind": "harvest-blocker",
+        "blockerOwner": null
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T20:26:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/wsl-estate-git-pull-run.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/wsl-estate-git-pull-run.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:decision-ff-only-estate-pull",
+      "nodeType": "WorkPackage",
+      "displayName": "Decision: use git pull --ff-only for estate bulk pull",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "DECIDED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-04-wsl-estate-git-pull-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T20:26:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/decision-ff-only-estate-pull.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/decision-ff-only-estate-pull.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:mistake-none-ad-hoc-loop-acceptable",
+      "nodeType": "WorkPackage",
+      "displayName": "Mistake record — no formal estate pull script invoked",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RECORDED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-04-wsl-estate-git-pull-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T20:26:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/mistake-none-ad-hoc-loop-acceptable.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/mistake-none-ad-hoc-loop-acceptable.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:command-estate-pull-loop",
+      "nodeType": "WorkPackage",
+      "displayName": "Proof command — WSL estate ff-only pull loop",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "EXECUTED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-04-wsl-estate-git-pull-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T20:26:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/command-estate-pull-loop.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/command-estate-pull-loop.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:evidence-pull-summary",
+      "nodeType": "WorkPackage",
+      "displayName": "Evidence — estate pull session output",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "CAPTURED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-04-wsl-estate-git-pull-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T20:26:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/evidence-pull-summary.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/evidence-pull-summary.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:protocol-upgrade-estate-pull-seed",
+      "nodeType": "WorkPackage",
+      "displayName": "Protocol upgrade — estate pull seed packets",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "CANDIDATE",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-04-wsl-estate-git-pull-v1.md",
+        "advancementGate": "harvest:publish-intelligence-full PASS for OPERATIONAL"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T20:26:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/protocol-upgrade-estate-pull-seed.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/protocol-upgrade-estate-pull-seed.json"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:harvest-harvest-2026-08-04-wsl-estate-git-pull-v1-contains-workpackage-wsl-estate-git-pull-run",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-wsl-estate-git-pull-v1",
+      "targetId": "workpackage:wsl-estate-git-pull-run",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T20:26:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-wsl-estate-git-pull-run",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:wsl-estate-git-pull-run",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T20:26:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/wsl-estate-git-pull-run.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/wsl-estate-git-pull-run.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-wsl-estate-git-pull-run-blocked-by-entity-blocker-blocker-wsl-estate-git-pull-run",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:wsl-estate-git-pull-run",
+      "targetId": "entity:blocker-blocker-wsl-estate-git-pull-run",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T20:26:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/wsl-estate-git-pull-run.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/wsl-estate-git-pull-run.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-wsl-estate-git-pull-run-blocked-by-entity-blocker-blocker-wsl-estate-git-pull-run",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:wsl-estate-git-pull-run",
+      "targetId": "entity:blocker-blocker-wsl-estate-git-pull-run",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T20:26:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/wsl-estate-git-pull-run.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/wsl-estate-git-pull-run.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-wsl-estate-git-pull-v1-contains-workpackage-decision-ff-only-estate-pull",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-wsl-estate-git-pull-v1",
+      "targetId": "workpackage:decision-ff-only-estate-pull",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T20:26:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-decision-ff-only-estate-pull",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:decision-ff-only-estate-pull",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T20:26:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/decision-ff-only-estate-pull.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/decision-ff-only-estate-pull.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-wsl-estate-git-pull-v1-contains-workpackage-mistake-none-ad-hoc-loop-acceptable",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-wsl-estate-git-pull-v1",
+      "targetId": "workpackage:mistake-none-ad-hoc-loop-acceptable",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T20:26:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-mistake-none-ad-hoc-loop-acceptable",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:mistake-none-ad-hoc-loop-acceptable",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T20:26:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/mistake-none-ad-hoc-loop-acceptable.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/mistake-none-ad-hoc-loop-acceptable.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-wsl-estate-git-pull-v1-contains-workpackage-command-estate-pull-loop",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-wsl-estate-git-pull-v1",
+      "targetId": "workpackage:command-estate-pull-loop",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T20:26:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-command-estate-pull-loop",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:command-estate-pull-loop",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T20:26:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/command-estate-pull-loop.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/command-estate-pull-loop.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-wsl-estate-git-pull-v1-contains-workpackage-evidence-pull-summary",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-wsl-estate-git-pull-v1",
+      "targetId": "workpackage:evidence-pull-summary",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T20:26:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-evidence-pull-summary",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:evidence-pull-summary",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T20:26:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/evidence-pull-summary.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/evidence-pull-summary.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-wsl-estate-git-pull-v1-contains-workpackage-protocol-upgrade-estate-pull-seed",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-wsl-estate-git-pull-v1",
+      "targetId": "workpackage:protocol-upgrade-estate-pull-seed",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T20:26:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-protocol-upgrade-estate-pull-seed",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:protocol-upgrade-estate-pull-seed",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T20:26:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/protocol-upgrade-estate-pull-seed.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/compact-records/protocol-upgrade-estate-pull-seed.json"
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "provenance": {
+    "producerRepositoryId": "repo:capitalglass-cross-agent",
+    "producerCapability": "harvest-graph-extraction",
+    "sourceAuthority": "authority:cross-agent-harvest",
+    "classification": "observed",
+    "verificationState": "verified",
+    "recordedAt": "2026-08-05T20:26:00.000Z",
+    "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/harvest-manifest-v1.json",
+    "sourceAnchorDetail": {
+      "anchorType": "file-path",
+      "locator": "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/harvest-manifest-v1.json"
+    }
+  }
+}

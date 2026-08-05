@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "cross-agent-code-touch-summary-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-document-center-adaptive-details-w17-v1",
+  "repos": [
+    {
+      "repo": "CapitalGlass-Documents",
+      "branch": "work/document-center-adaptive-details-panel-v1-locked",
+      "commitSha": "47d0f699add1426a42a22bb33e869f104cfd8dfc",
+      "commitMessage": "feat(document-center): checkpoint adaptive document details implementation",
+      "parentBaseline": "d90e599d4ffb8ce7e56389a2f8a0750552ddc6c2",
+      "missionId": "document-center-adaptive-details-panel-v1",
+      "touchedAreas": [
+        "src/features/document-detail/**",
+        "src/pages/DocumentDetailPage.tsx",
+        "tests/document-detail-*.test.ts",
+        "artifacts/document-center-adaptive-details-panel-v1/**"
+      ],
+      "gates": {
+        "W19": "W19_ALL_IMPLEMENTATION_GATES_PASS",
+        "W17": "W17_BLOCKED_AUTHORIZED_OPERATOR_SESSION"
+      }
+    },
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "main",
+      "commitSha": "6714137247a57325b638279947690e4a31c4be26",
+      "touchedAreas": ["artifacts/agent-runs/harvest-2026-08-04-document-center-adaptive-details-w17-v1/**"],
+      "notes": "Harvest Phase A only; no publication pointer yet"
+    }
+  ]
+}

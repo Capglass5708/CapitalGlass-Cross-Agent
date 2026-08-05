@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-DOC-PRESERVATION-SOURCE-003",
+  "kind": "failure-pattern",
+  "title": "Adaptive mission recovery: preservation SHA source discipline",
+  "summary": "wip/document-details-pre-operator-preservation @ 9a98c5c may contain R1A DocumentDetailPage; restore mission src from 25675d9 mixed-state preservation only.",
+  "retrievalQuestions": [
+    "Which preservation commit is safe for DocumentDetailPage adaptive recovery?",
+    "Why did typecheck fail after preservation checkout?"
+  ],
+  "evidenceRefs": ["EVT-006", "25675d91626014fd16c520366c5e971fb663d8d6", "9a98c5c970b533fd301dc1b3282b970cb17daae1"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Recovering document-center-adaptive-details-panel-v1 from preservation branches",
+    "startAt": ["wip/document-details-mixed-state-preservation-20260804 @ 25675d9"],
+    "runPreflight": ["git grep R1a src/pages/DocumentDetailPage.tsx"],
+    "doNot": ["Checkout DocumentDetailPage from 9a98c5c pre-operator preservation"],
+    "proveBeforeClaiming": ["npm run typecheck PASS", "zero R1a matches in mission paths"]
+  },
+  "ownerRepo": "CapitalGlass-Documents",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

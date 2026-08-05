@@ -1,0 +1,240 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-r1a-wave6-7-document-center-closeout-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-DC-BFF-COOKIE-ORIGIN-001",
+      "questionId": "IHDCBFFCOOKI",
+      "canonicalQuestion": "Why does Dashboard plan-set-summary return 401 in production?",
+      "alternateQuestions": [
+        "What auth headers does Document Center BFF require from Dashboard proxy?"
+      ],
+      "shortAnswer": "Project Dashboard must forward Hub session cookie and Origin to Document Center BFF; Bearer alone returns 401 on plan-set-summary and plan-intelligence routes.",
+      "detailedAnswer": "Document Center BFF rejects Bearer-only Dashboard proxy calls",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T20:38:16.580Z",
+      "authorityRepo": "capital-glass-project-dashboard",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-r1a-wave6-7-document-center-closeout-v1/seed-packets/IH-DC-BFF-COOKIE-ORIGIN-001.json"
+      ],
+      "authorityCommit": [
+        "dc1c3b2"
+      ],
+      "evidenceUrls": [
+        "TE-604",
+        "7e55fbf",
+        "lib/documents/engine-client.ts"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-04-r1a-wave6-7-document-center-closeout-v1"
+      ],
+      "entities": [
+        "capital-glass-project-dashboard"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Dashboard BFF proxy to Document Center returns 401 for authorized user",
+        "startAt": [
+          "capital-glass-project-dashboard/lib/documents/engine-client.ts"
+        ],
+        "runPreflight": [
+          "Compare with Wave 5 plan-summary-view forwarding pattern"
+        ],
+        "doNot": [
+          "Use DOCUMENT_ENGINE_TOKEN bearer alone without cookie+Origin"
+        ],
+        "proveBeforeClaiming": [
+          "wave6-rosewood-production-verify.mts auth matrix PASS"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-DOC-CLEAN-BRANCH-LINEAGE-001",
+      "questionId": "IHDOCCLEANBR",
+      "canonicalQuestion": "Why did plan-set-summary-card handlers disappear mid-session?",
+      "alternateQuestions": [
+        "Which Documents branch has R1A Wave 6 implementation?"
+      ],
+      "shortAnswer": "Wave 5/6/7 R1A files live on work/document-center-adaptive-details-panel-v1-clean; locked branch and main d90e599 lack handlers.",
+      "detailedAnswer": "CapitalGlass-Documents R1A work must use clean branch not locked checkout",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T20:38:16.580Z",
+      "authorityRepo": "CapitalGlass-Documents",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-r1a-wave6-7-document-center-closeout-v1/seed-packets/IH-DOC-CLEAN-BRANCH-LINEAGE-001.json"
+      ],
+      "authorityCommit": [
+        "dc1c3b2"
+      ],
+      "evidenceUrls": [
+        "TE-602",
+        "TE-609",
+        "c279624",
+        "47d0f69",
+        "d90e599"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-04-r1a-wave6-7-document-center-closeout-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Documents"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Documents deploy or test missing Wave 5/6/7 files",
+        "startAt": [
+          "git rev-parse HEAD",
+          "git branch --show-current"
+        ],
+        "runPreflight": [
+          "git reset --hard c279624 or 83a2b1a on work/document-center-adaptive-details-panel-v1-clean"
+        ],
+        "doNot": [
+          "Deploy from work/document-center-adaptive-details-panel-v1-locked",
+          "Assume main has R1A stack"
+        ],
+        "proveBeforeClaiming": [
+          "ls api/lib/plan-set-summary-card-handlers.ts",
+          "ls src/lib/planIntelligenceProjectionContract.ts"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-R1A-ROSEWOOD-AUTHORITY-001",
+      "questionId": "IHR1AROSEWOO",
+      "canonicalQuestion": "What is the authoritative Rosewood plan set page count in production?",
+      "alternateQuestions": [
+        "Why is reviewStatus needs_review while cardState is REVIEWED?"
+      ],
+      "shortAnswer": "Live Rosewood card state REVIEWED with 66 authoritative sheet-map pages; fixture 192 and advisory tier1 warnings are non-blocking PASS_WITH_WARNINGS only.",
+      "detailedAnswer": "Rosewood Wave 6 production authority — page count 66 REVIEWED not fixture 192",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T20:38:16.580Z",
+      "authorityRepo": "CapitalGlass-Documents",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-r1a-wave6-7-document-center-closeout-v1/seed-packets/IH-R1A-ROSEWOOD-AUTHORITY-001.json"
+      ],
+      "authorityCommit": [
+        "dc1c3b2"
+      ],
+      "evidenceUrls": [
+        "TE-605",
+        "4672252e-1940-4bb8-827e-ea89a3d1287e",
+        "wave-6-gate-receipt.json acceptedWarnings"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-04-r1a-wave6-7-document-center-closeout-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Documents"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Rosewood smoke expects pageCount 192 or strict reviewStatus match",
+        "startAt": [
+          "CapitalGlass-Documents/artifacts/.../wave-6/wave-6-gate-receipt.json",
+          "wave-6-production-verify-output.json"
+        ],
+        "runPreflight": [
+          "scripts/staging/wave6-rosewood-production-verify.mts"
+        ],
+        "doNot": [
+          "Fail gate for page count 66 vs fixture 192",
+          "Reopen Wave 6 for advisory tier1 warnings"
+        ],
+        "proveBeforeClaiming": [
+          "cardState REVIEWED",
+          "currentVersionId 4672252e unchanged"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "lesson"
+    },
+    {
+      "ihPfspId": "IH-VERCEL-CLI-FETCH-FAILED-001",
+      "questionId": "IHVERCELCLIF",
+      "canonicalQuestion": "Vercel deploy ended with fetch failed — is production updated?",
+      "alternateQuestions": [
+        "How to verify Document Center production deployment ID after CLI error?"
+      ],
+      "shortAnswer": "vercel deploy --prod may exit fetch failed while production alias is already Ready; always inspect alias before BLOCKED gate.",
+      "detailedAnswer": "Vercel CLI fetch failed does not prove deploy failure",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T20:38:16.580Z",
+      "authorityRepo": "CapitalGlass-Documents",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-r1a-wave6-7-document-center-closeout-v1/seed-packets/IH-VERCEL-CLI-FETCH-FAILED-001.json"
+      ],
+      "authorityCommit": [
+        "dc1c3b2"
+      ],
+      "evidenceUrls": [
+        "TE-603",
+        "TE-608",
+        "dpl_GWkniWhNfLka8oSZKDnnBoP192wX"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-04-r1a-wave6-7-document-center-closeout-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Documents"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "vercel deploy --prod exits with fetch failed",
+        "startAt": [
+          "vercel inspect https://documents.capitalglasstxapps.com"
+        ],
+        "runPreflight": [
+          "vercel inspect https://documents.capitalglasstxapps.com --json"
+        ],
+        "doNot": [
+          "Mark wave gate BLOCKED from CLI stderr alone",
+          "Immediately retry deploy without inspect"
+        ],
+        "proveBeforeClaiming": [
+          "Production status Ready + deployment id recorded in closeout receipt"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "failure-pattern"
+    }
+  ]
+}

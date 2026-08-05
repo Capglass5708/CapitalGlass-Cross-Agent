@@ -1,0 +1,80 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-doc-w17-hub-sso-localhost-002",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "dc1c3b2bd075ba61d9b0ebfdcbd4fef6761c4892",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-document-center-adaptive-details-w17-v1",
+      "seedId": "IH-DOC-W17-HUB-SSO-LOCALHOST-002"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T20:38:23.206Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "22307a0dfaaca7571f4cfb447c09d33ecbf1afd2cc6c84f2cb97eda8f05c9554"
+  },
+  "body": {
+    "seedId": "IH-DOC-W17-HUB-SSO-LOCALHOST-002",
+    "kind": "runbook",
+    "title": "Wave 17 localhost operator review: Hub SSO before adaptive document URL",
+    "summary": "Admin Tools toggle is not sign-in. Authenticate at capitalglasstxapps.com/login, then open localhost PO URL with doppler prd adaptive dev on 5190.",
+    "canonicalQuestion": "Why does localhost document center show session expired?",
+    "alternateQuestions": [
+      "How do I sign in for W17 adaptive operator review on 127.0.0.1:5190?"
+    ],
+    "shortAnswer": "Admin Tools toggle is not sign-in. Authenticate at capitalglasstxapps.com/login, then open localhost PO URL with doppler prd adaptive dev on 5190.",
+    "detailedAnswer": "Wave 17 localhost operator review: Hub SSO before adaptive document URL",
+    "retrievalQuestions": [
+      "Why does localhost document center show session expired?",
+      "How do I sign in for W17 adaptive operator review on 127.0.0.1:5190?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "W17_BLOCKED_AUTHORIZED_OPERATOR_SESSION or Document not found on localhost",
+      "startAt": [
+        "https://capitalglasstxapps.com/login",
+        "CapitalGlass-Documents/wave-17/operator-review-notes.md"
+      ],
+      "runPreflight": [
+        "fuser -v 5190/tcp",
+        "doppler run -p cg-documents -c prd adaptive dev",
+        "curl http://127.0.0.1:5190/api/auth/session"
+      ],
+      "doNot": [
+        "Claim Admin Tools ON equals authenticated",
+        "Set W17_OPERATOR_APPROVED without operator screenshots"
+      ],
+      "proveBeforeClaiming": [
+        "authenticated:true on /api/auth/session",
+        ".document-detail-page--adaptive on reference PO",
+        "wave-17/operator-screenshots/*.png"
+      ]
+    },
+    "evidenceRefs": [
+      "CapitalGlass-Documents/artifacts/document-center-adaptive-details-panel-v1/wave-17/operator-review-notes.md",
+      "EVT-004",
+      "http://127.0.0.1:5190/api/auth/session"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Documents",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-document-center-adaptive-details-w17-v1/seed-packets/IH-DOC-W17-HUB-SSO-LOCALHOST-002.json"
+    ],
+    "harvestId": "harvest-2026-08-04-document-center-adaptive-details-w17-v1"
+  }
+}

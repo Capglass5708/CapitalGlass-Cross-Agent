@@ -1,0 +1,79 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-doc-plan-intel-schema-drift-v1",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "6714137247a57325b638279947690e4a31c4be26",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-master-graph-glazing-intake-v3-v1",
+      "seedId": "IH-DOC-PLAN-INTEL-SCHEMA-DRIFT-V1"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T20:33:15.493Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "13818528755041fcd8f86f5df21db0d349085e0c9c454e308f6842221f155c64"
+  },
+  "body": {
+    "seedId": "IH-DOC-PLAN-INTEL-SCHEMA-DRIFT-V1",
+    "kind": "blocker",
+    "title": "Documents plan-intelligence schema drift blocks graph contribution",
+    "summary": "Hybrid WP uses document_plan_sets/cover_fields/sheet_index_runs; some drafts and migration 802 still cite document_extraction_runs/plan_extracted_fields — reconcile before Master Graph ingest.",
+    "canonicalQuestion": "Why is document-center R1A graph contribution blocked after Mode C intake?",
+    "alternateQuestions": [
+      "Which Supabase tables are authoritative for Rosewood cover and sheet index?"
+    ],
+    "shortAnswer": "Hybrid WP uses document_plan_sets/cover_fields/sheet_index_runs; some drafts and migration 802 still cite document_extraction_runs/plan_extracted_fields — reconcile before Master Graph ingest.",
+    "detailedAnswer": "Documents plan-intelligence schema drift blocks graph contribution",
+    "retrievalQuestions": [
+      "Why is document-center R1A graph contribution blocked after Mode C intake?",
+      "Which Supabase tables are authoritative for Rosewood cover and sheet index?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Intake or WP cites document_extraction_runs or document_plan_extracted_fields for Rosewood R1A",
+      "startAt": [
+        "CapitalGlass-Documents/docs/work-packages/rosewood-cover-sheet-plan-index-persistence-v1.md",
+        "supabase/migrations/20260804180000_document_plan_intelligence_schema.sql"
+      ],
+      "runPreflight": [
+        "List plan-intelligence migrations and live Supabase table presence"
+      ],
+      "doNot": [
+        "Compile Master Graph contribution from mixed old/new table names",
+        "Treat seed extraction_run UUID from superseded draft as live"
+      ],
+      "proveBeforeClaiming": [
+        "One schema family selected and applied",
+        "Live plan_set_id + sheet UUIDs exist",
+        "Orphan 802 view reconciled or removed"
+      ]
+    },
+    "evidenceRefs": [
+      "CapitalGlass-Documents/supabase/migrations/20260804180000_document_plan_intelligence_schema.sql",
+      "CapitalGlass-Documents/supabase/migrations/20260804180200_document_plan_latest_runs_by_type.sql",
+      "CapitalGlass-Documents/docs/work-packages/rosewood-cover-sheet-plan-index-persistence-v1.md",
+      "TE-408"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Documents",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/seed-packets/IH-DOC-PLAN-INTEL-SCHEMA-DRIFT-V1.json"
+    ],
+    "harvestId": "harvest-2026-08-04-master-graph-glazing-intake-v3-v1"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-git-pull-no-upstream-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "6e7be800e519715518bd411af07103beb30a859c",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-wsl-estate-git-pull-v1",
+      "seedId": "IH-GIT-PULL-NO-UPSTREAM-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T20:44:47.379Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "76fd56d5b1aa45e28622a52ad818fe7d1bc534652bb0cdc9ff2e42534a17949b"
+  },
+  "body": {
+    "seedId": "IH-GIT-PULL-NO-UPSTREAM-001",
+    "kind": "failure-pattern",
+    "title": "Estate pull FAIL — feature branch without upstream tracking",
+    "summary": "CapitalGlass-Documents on work/document-center-adaptive-details-panel-v1-clean failed pull because no @{u} is set; set upstream or pull explicit remote branch.",
+    "canonicalQuestion": "Why did CapitalGlass-Documents git pull fail with no tracking information?",
+    "alternateQuestions": [
+      "How to fix git pull when branch has no upstream?"
+    ],
+    "shortAnswer": "CapitalGlass-Documents on work/document-center-adaptive-details-panel-v1-clean failed pull because no @{u} is set; set upstream or pull explicit remote branch.",
+    "detailedAnswer": "Estate pull FAIL — feature branch without upstream tracking",
+    "retrievalQuestions": [
+      "Why did CapitalGlass-Documents git pull fail with no tracking information?",
+      "How to fix git pull when branch has no upstream?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "git pull fails with 'no tracking information for the current branch'",
+      "startAt": [
+        "git -C <repo> branch -vv",
+        "git -C <repo> remote -v"
+      ],
+      "runPreflight": [
+        "git -C <repo> rev-parse --abbrev-ref HEAD",
+        "git -C <repo> rev-parse --abbrev-ref @{u} 2>/dev/null || echo NO_UPSTREAM"
+      ],
+      "doNot": [
+        "Assume main is checked out on every repo",
+        "Mark estate pull PASS while any repo FAIL remains"
+      ],
+      "proveBeforeClaiming": [
+        "git pull origin <branch> succeeds OR upstream set and ff-only pull passes"
+      ]
+    },
+    "evidenceRefs": [
+      "TE-405",
+      "CapitalGlass-Documents"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Documents",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/seed-packets/IH-GIT-PULL-NO-UPSTREAM-001.json"
+    ],
+    "harvestId": "harvest-2026-08-04-wsl-estate-git-pull-v1"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-suite-ops-continuation-v1",
+  "packetId": "all-systems-go-observe-warn-v1",
+  "state": "OBSERVE_RECEIPT",
+  "packetVerdict": "WARN",
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Remediate shared-db requires-investigation + clean AppBuilder worktree; then closeout:gate for ship",
+  "evidenceRefs": [
+    "dark-runner-receipt 5ea4cfe1-87a8-4afb-838e-72db139c23b4",
+    "systemsGoVerdict WARN formalGoEligible false",
+    "npm run all-systems-go -- --json"
+  ],
+  "doNotAdvance": [
+    "Claim formal GO from observe skipLive receipt"
+  ],
+  "advancementGate": "not-required",
+  "contentHash": "d4c06952c43f3a2e4d36476c3d92fdbd79abb86db5c8b7658fd8a2bedd7a9e86"
+}
