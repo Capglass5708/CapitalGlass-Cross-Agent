@@ -4,16 +4,21 @@ $ErrorActionPreference = 'Stop'
 
 $TaskPrefix = 'CapitalGlass-WESLEYDESK-WSL-Runner'
 $WslDistro = 'Ubuntu-24.04'
-$StackScript = Join-Path $PSScriptRoot 'ensure-wesleydesk-runner-stack.ps1'
+$SourceStack = Join-Path $PSScriptRoot 'ensure-wesleydesk-runner-stack.ps1'
+$DeployDir = 'C:\ProgramData\CapitalGlass\runner'
+$StackScript = Join-Path $DeployDir 'ensure-wesleydesk-runner-stack.ps1'
 
 $hostName = $env:COMPUTERNAME
 if ($hostName -notmatch '^(WESLEYDESK|CG-WESLEYDESK)') {
   throw "Host gate FAIL: expected WESLEYDESK, got $hostName"
 }
 
-if (-not (Test-Path $StackScript)) {
-  throw "Missing stack script: $StackScript"
+if (-not (Test-Path $SourceStack)) {
+  throw "Missing stack script: $SourceStack"
 }
+
+if (-not (Test-Path $DeployDir)) { New-Item -ItemType Directory -Path $DeployDir -Force | Out-Null }
+Copy-Item -Path $SourceStack -Destination $StackScript -Force
 
 $action = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument "-NoProfile -ExecutionPolicy Bypass -File `"$StackScript`""
 $principal = New-ScheduledTaskPrincipal -UserId 'SYSTEM' -LogonType ServiceAccount -RunLevel Highest
