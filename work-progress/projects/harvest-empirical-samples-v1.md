@@ -1,6 +1,6 @@
 # harvest-empirical-samples-v1
 
-**Status:** IN_PROGRESS (thin COMPLETE; medium FIXTURE_READY; downstream handoff HOLD)  
+**Status:** IN_PROGRESS (thin + medium COMPLETE; architectural FIXTURE_READY; downstream HOLD)  
 **Owner repo:** CapitalGlass-Cross-Agent  
 **Protocol state:** FROZEN — authority at `1e87d6a` (`harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md`); publication evidence at `b8ceb83` (not protocol text)
 
@@ -66,7 +66,7 @@ Node kinds must remain distinct: `sampleFinding`, `recurringWeakness`, `protocol
 | --- | --- | --- | --- | --- | --- |
 | 1 | thin | `thin-thread-v1` | COMPLETE | `NO_HARVEST_NEEDED` | hold |
 | 2 | medium | `medium-thread-v1` | COMPLETE | `DRAFT_READY_FOR_CURSOR_VALIDATION` | eligible |
-| 3 | architectural | `architectural-thread-v1` | PENDING | — | — |
+| 3 | architectural | `architectural-thread-v1` | FIXTURE_READY | — | — |
 | 4 | debugging | `debugging-thread-v1` | PENDING | — | — |
 | 5 | planning | `planning-thread-v1` | PENDING | — | — |
 
@@ -107,7 +107,13 @@ Node kinds must remain distinct: `sampleFinding`, `recurringWeakness`, `protocol
 - Do not edit `harvest/protocol/*` until all five samples reviewed and graph documents recurring weakness.
 - Supabase 401 remains separate work package.
 - August 3 harvest drift remains out of scope.
-- Medium fixture: `medium-thread-v1` FIXTURE_READY (fixture + golden committed; live run not started).
+- Medium sample complete; architectural fixture authorized.
+
+## Architectural sample #3 (fixture only)
+
+**Fixture:** cross-repo ownership boundary — reject direct raw-markdown `graph:collect`; affirm Cross-Agent → Data Extraction → Master Graph handoff; forbid parallel envelope scaffold (7 turns).  
+**Golden reference:** bounds-based `golden-findings-DRAFT_READY.md`; expected tier T2 is hypothesis only.  
+**Live output / review / routing:** absent until live run commits.
 
 ## Medium sample #2
 
