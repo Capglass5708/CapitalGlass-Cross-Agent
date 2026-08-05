@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-PROMPT-APPROVAL-BOUNDARY-001",
+  "kind": "lesson",
+  "title": "Prompt extraction creates candidates only — operator approval before projection",
+  "summary": "harvest:sync-derived extracts prompt candidates; wf-prompt-candidate-promotion-v1 requires operator-explicit-prompt-approval before catalog delta and Supabase projection.",
+  "retrievalQuestions": [
+    "Can extracted prompts auto-promote to the catalog?",
+    "What approval is required to promote prompt candidates?"
+  ],
+  "evidenceRefs": [
+    "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md",
+    "artifacts/agent-runs/harvest-prompt-extraction-post-merge-v1/post-merge-acceptance-receipt.json",
+    "wf-prompt-candidate-promotion-v1"
+  ],
+  "roiRank": 2,
+  "futureAgentInstructions": {
+    "whenThisAppears": "Harvest prompt extraction or prompt catalog projection work",
+    "startAt": ["Z:/Capital-Glass-Dev/Harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"],
+    "runPreflight": ["npm run test:harvest:prompt-post-merge-acceptance"],
+    "doNot": [
+      "Auto-promote extracted prompts",
+      "Project candidate_only records to Supabase"
+    ],
+    "proveBeforeClaiming": [
+      "PROMPT_APPROVAL_BOUNDARY_PASS",
+      "manifest.promptHarvest.operatorApprovals populated for approved IDs only"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/prompt-harvest-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

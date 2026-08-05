@@ -1,0 +1,243 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-05-wesleydesk-connectivity-repair-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "commandIndexConsulted": true,
+    "hubSlicesConsulted": [
+      "BY-KIND/active-work-blockers.json",
+      "work-progress/harvest-packet-registry.json",
+      "harvest-2026-08-04-z-l-drive-offlan-session-v1"
+    ],
+    "checkedAt": "2026-08-05T02:45:00.000Z"
+  },
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "verification",
+      "description": "Treated cgremoteadmin SSH ForceRemap success as operator-context Z: repair",
+      "evidenceRefs": ["repair-1-receipt.json", "TE-004"],
+      "estimatedImpact": "high",
+      "savedBy": "Require whoami + quser match intended Windows user before WSL /mnt/z validation",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "rework",
+      "description": "Repeated net use /delete and ForceRemap without DefineDosDevice when phantom Z: persisted (error 85)",
+      "evidenceRefs": ["thread Repair 1 attempts", "clear-z.ps1 DefineDosDevice removed=True"],
+      "estimatedImpact": "medium",
+      "savedBy": "Wire Clear-OfficeZDriveMapping + DefineDosDevice into ForceRemap pre-map path",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "host",
+      "description": "Vault Map-Z staged to desk without MACHINE-LOCK.json — decrypt failed until lock copied",
+      "evidenceRefs": ["Map-Z log Missing MACHINE-LOCK.json"],
+      "estimatedImpact": "low",
+      "savedBy": "Stage full vault root (MACHINE-LOCK + secrets) or use smb-z-cg-server.env sync pattern",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "operator_attention",
+      "description": "User had to specify D:\\Admin Keys elevated auth and later full Phase A/B/C gate after agent could not complete Wesley session",
+      "evidenceRefs": ["thread user OPERATE IN ELEVATED AUTH", "interactive gate blocked"],
+      "estimatedImpact": "high",
+      "savedBy": "Detect quser Wesley absent before claiming Repair 1 complete",
+      "roiRank": 4
+    },
+    {
+      "wasteId": "TW-005",
+      "type": "retrieval",
+      "description": "Cross-Agent npm run agent:index:scout missing — fell back to CG-AppBuilder-MCP scout",
+      "evidenceRefs": ["npm error Missing script agent:index:scout in Cross-Agent"],
+      "estimatedImpact": "low",
+      "savedBy": "Use App Builder scout from Cross-Agent harvest preflight or document failover",
+      "roiRank": 5
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "User pointed to D:\\Admin Keys after agent attempted SSH ForceRemap without vault path",
+      "operatorCost": "medium",
+      "systemFix": "Office Admin drive repair: IT Vault path first on WESLEY_WORK before remote desk SSH",
+      "evidenceRefs": ["thread D:\\Admin Keys"],
+      "linkedWasteIds": ["TW-003"]
+    },
+    {
+      "frictionId": "OF-002",
+      "trigger": "User authored explicit Phase A/B/C acceptance because agent could not run Wesley console gate",
+      "operatorCost": "high",
+      "systemFix": "Hard-block REPAIR_1_PASS when quser lacks Wesley interactive session",
+      "evidenceRefs": ["TE-005", "OPERATOR-GATE-RUNBOOK.md"],
+      "linkedWasteIds": ["TW-001", "TW-004"]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "WESLEYDESK Z: remap blocked by phantom drive letter",
+      "actualExecution": {
+        "steps": ["net use Z: /delete", "ForceRemap", "error 85 device already in use"],
+        "outcome": "FAIL until DefineDosDevice",
+        "evidenceRefs": ["forceremap2.log", "clear-z.ps1"]
+      },
+      "optimalExecution": {
+        "steps": ["DefineDosDevice remove Z:", "Clear-OfficeZDriveMapping registry/mountpoints", "then Map-CgWesleyDeskZDrive"],
+        "outcome": "Single remap pass",
+        "requiredPreflight": ["Map-CgWesleyDeskZDrive.ps1 Clear-OfficeZDriveMapping"]
+      },
+      "deltaCost": { "time": "medium", "tokens": "medium", "operatorFrustration": "medium" }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Repair 1 closeout claim",
+      "actualExecution": {
+        "steps": ["ForceRemap as cgremoteadmin", "zOk=true in DRIVE-MOUNT-STATE", "claimed partial pass late"],
+        "outcome": "REPAIR_1_PARTIAL_PASS",
+        "evidenceRefs": ["repair-1-receipt.json"]
+      },
+      "optimalExecution": {
+        "steps": ["Check quser for Wesley", "If absent: stage operator gate scripts only", "Never validate WSL /mnt/z from SSH session"],
+        "outcome": "Clear BLOCKED_OPERATOR_SESSION verdict immediately",
+        "requiredPreflight": ["quser", "BY-KIND/host-authority.json"]
+      },
+      "deltaCost": { "time": "high", "tokens": "medium", "operatorFrustration": "high" }
+    },
+    {
+      "executionDeltaId": "ED-003",
+      "situation": "WESLEY_WORK user asked reconnect Z:",
+      "actualExecution": {
+        "steps": ["Map-Z-From-Vault.ps1", "LAN 192.168.1.208 fail", "cg-server Tailscale OK"],
+        "outcome": "PASS Windows Z:",
+        "evidenceRefs": ["TE-006"]
+      },
+      "optimalExecution": {
+        "steps": ["Map-Z-From-Vault.ps1 from D:\\Admin Keys (same as recurrence runbook)"],
+        "outcome": "Immediate Z: on WORK",
+        "requiredPreflight": ["D:\\Admin Keys vault mounted"]
+      },
+      "deltaCost": { "time": "low", "tokens": "low", "operatorFrustration": "low" }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Validated WSL /mnt/z from cgremoteadmin SSH session after Windows Z: map",
+      "whereItHappened": "Repair 1 validation gate",
+      "whyItWasWrong": "WSL drvfs binds to console user's Windows session (Fred/wesley), not SSH admin mapping",
+      "correctFirstMove": "quser → require Wesley login → ForceRemap in that session → wsl --shutdown → ls /mnt/z",
+      "preventiveControl": "Run-Repair1-InteractiveGate-Wesley.ps1 identity check",
+      "seedTarget": "IH-THREAD-WESLEYDESK-Z-SESSION-001",
+      "executionDeltaId": "ED-002"
+    },
+    {
+      "wrongMoveId": "WM-002",
+      "summary": "Retried ForceRemap without clearing phantom Z: via DefineDosDevice",
+      "whereItHappened": "WESLEYDESK SSH Repair 1",
+      "whyItWasWrong": "net use shows empty while DriveInfo still has Z:\\ IsReady=False — error 85 on remap",
+      "correctFirstMove": "DefineDosDevice(3,'Z:',null) before any net use map",
+      "preventiveControl": "Integrate clear-z into Ensure-CgWesleyDeskDriveMounts ForceRemap preflight",
+      "seedTarget": "IH-THREAD-PHANTOM-Z-DRIVE-001",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "Z/L drive session and phantom mapping",
+      "firstKnownInstance": "harvest-2026-08-04-z-l-drive-offlan-session-v1 / wsl-drvfs-ghost-mount-v1",
+      "priorIndexSlice": "work-progress/harvest-packet-registry.json",
+      "whyRepeated": "Same recurrence class on WESLEYDESK with new phantom-Z + session-identity dimension",
+      "avoidableBy": "Index session-identity guard in z-drive-disconnect recurrence project",
+      "recommendedAction": "index"
+    },
+    {
+      "duplicateId": "DW-002",
+      "subject": "WESLEYDESK drive-mount scheduled task failures",
+      "firstKnownInstance": "wesleydesk-connectivity diagnostic July 2026 schtasks Last Result 2",
+      "priorIndexSlice": "BY-KIND/active-work-blockers.json",
+      "whyRepeated": "Repair 2 not yet deployed; logon task still Interactive-only for absent Wesley",
+      "avoidableBy": "Repair 2 deploy + cold reboot gate",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Wesley interactive gate script + hard block on SSH-only Z: PASS",
+      "whyItPays": "Eliminates false Repair 1 closeout and TW-001/TW-004 waste",
+      "effort": "low",
+      "savedWasteIds": ["TW-001", "TW-004"],
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "seedAs": "runbook",
+      "suggestedWorkPackageId": "wesleydesk-drive-interactive-gate-v1"
+    },
+    {
+      "rank": 2,
+      "title": "Phantom Z: clear in ForceRemap canonical path",
+      "whyItPays": "Prevents error 85 retry loops on WESLEYDESK",
+      "effort": "low",
+      "savedWasteIds": ["TW-002"],
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "seedAs": "rule",
+      "suggestedWorkPackageId": "phantom-z-drive-clear-v1"
+    },
+    {
+      "rank": 3,
+      "title": "Repair 2 drive-mount task redeploy with cold-reboot acceptance",
+      "whyItPays": "Closes DURABLE_PERSISTENCE without manual remap",
+      "effort": "medium",
+      "savedWasteIds": ["DW-002"],
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "seedAs": "runbook",
+      "suggestedWorkPackageId": "wesleydesk-drive-mount-persistence-v1"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "REPAIR_1_PASS",
+      "currentStatus": "BLOCKED",
+      "doNotClaimUntil": [
+        "Wesley interactive session on WESLEYDESK console",
+        "Run-Repair1-InteractiveGate-Wesley.ps1 emits REPAIR_1_INTERACTIVE_GATE_PASS"
+      ],
+      "lastKnownEvidence": [
+        "repair-1-receipt.json",
+        "TE-004"
+      ],
+      "proofCommandId": "wesley-interactive-gate-script-v1"
+    },
+    {
+      "awardOrVerdict": "WSL_MNT_Z_PASS",
+      "currentStatus": "BLOCKED",
+      "doNotClaimUntil": [
+        "ACTIVE_USER_Z_MAPPING proven in Wesley Windows session",
+        "wsl --shutdown then ls /mnt/z/Capital-Glass-Dev"
+      ],
+      "lastKnownEvidence": [
+        "WM-001",
+        "repair-1-receipt.json#wslMntZFail"
+      ]
+    },
+    {
+      "awardOrVerdict": "WESLEYDESK_CONNECTIVITY_ROOT_CAUSES_REPAIRED_AND_VERIFIED",
+      "currentStatus": "OPEN",
+      "doNotClaimUntil": [
+        "Repair 2 drive-mount tasks deployed as Wesley",
+        "Cold reboot without manual ForceRemap",
+        "Run-Repair2-RebootGate-Wesley.ps1 WESLEYDESK_DRIVE_PERSISTENCE_REBOOT_GATE_PASS"
+      ],
+      "lastKnownEvidence": [
+        "repair-2-acceptance.md",
+        "OPERATOR-GATE-RUNBOOK.md"
+      ],
+      "proofCommandId": "wesley-interactive-gate-script-v1"
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-05-workflow-estate-hot-cache-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-501",
+      "type": "verification",
+      "description": "Two of three workflow-estate scout queries routed to fallback/suite-status until query-routing keywords expanded",
+      "evidenceRefs": ["CapitalGlass-Cross-Agent#14", "registry/query-routing/query-routing-manifest.v1.json"],
+      "estimatedImpact": "medium",
+      "savedBy": "Add promotion/closeout keywords to workflow-estate route at ship time",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-502",
+      "type": "operator_attention",
+      "description": "GitHub blocked PR squash merge until operator login/approval for #13 and #287",
+      "evidenceRefs": ["CapitalGlass-Cross-Agent#13", "CG-AppBuilder-MCP#287"],
+      "estimatedImpact": "low",
+      "savedBy": "Agent polls mergeable + reports blocked state; operator merges via gh pr merge",
+      "roiRank": 2
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-501",
+      "trigger": "User had to request GitHub merge after agent opened PRs",
+      "operatorCost": "low",
+      "systemFix": "Offer gh pr merge when CI green and branch mergeable",
+      "evidenceRefs": ["TW-502"],
+      "linkedWasteIds": ["TW-502"]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-501",
+      "situation": "Post-merge scout verification for workflow-estate queries",
+      "actualExecution": {
+        "steps": [
+          "Merge #13 and #287",
+          "Run three scout queries",
+          "Discover 2/3 route to wrong primaryDataset",
+          "Ship #14 keyword hotfix"
+        ],
+        "outcome": "PASS after #14",
+        "evidenceRefs": ["402352f"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Include promotion/closeout/L BY-KIND keywords in initial workflow-estate routing PR",
+          "Run scout router gate test with all three queries before merge"
+        ],
+        "outcome": "Single PR without routing hotfix",
+        "requiredPreflight": ["test:workflow-estate-hot-cache-gates with scout query fixtures"]
+      },
+      "deltaCost": { "time": "low", "tokens": "low", "operatorFrustration": "low" }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-501",
+      "summary": "Shipped workflow-estate routing with narrow keywords",
+      "whyItWasWrong": "prompt-promotion and mission-closeout queries missed workflow-estate primaryDataset",
+      "correctFirstMove": "Add keywords from expected operator queries to workflow-estate route before merge",
+      "preventiveControl": "Scout routing acceptance test in workflow-estate gate suite",
+      "executionDeltaId": "ED-501"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-501",
+      "subject": "Cross-Agent before AppBuilder merge order",
+      "whyRepeated": "Same pattern as Wave A estate ship (#13 before #287)",
+      "firstKnownInstance": "harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1 / IH-HOT-CACHE-CROSS-AGENT-MERGE-FIRST-001",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "whyMissed": "Known pattern applied correctly this session",
+      "avoidableBy": "workflow-index on main before AppBuilder compiler PR",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Workflow-estate scout query fixtures in gate test",
+      "whyItPays": "Prevents post-merge routing hotfix PRs",
+      "effort": "low",
+      "savedWasteIds": ["TW-501"],
+      "seedAs": "command"
+    },
+    {
+      "rank": 2,
+      "title": "Prompt-catalog hot-cache publish after approval",
+      "whyItPays": "Clears prompt-catalog DATASET_MISS in scout when approved prompts exist",
+      "effort": "medium",
+      "savedWasteIds": [],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 3,
+      "title": "Operator merge playbook for blocked gh pr merge",
+      "whyItPays": "Reduces friction when GitHub requires login approval",
+      "effort": "low",
+      "savedWasteIds": ["TW-502"],
+      "seedAs": "runbook"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "PROMPT_CATALOG_PROJECTION",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": ["operator-explicit-prompt-approval on harvest manifest"],
+      "lastKnownEvidence": [
+        "post-merge-acceptance-receipt: PROMPT_APPROVAL_BOUNDARY_PASS",
+        "wf-prompt-candidate-promotion-v1 requires operator-explicit-prompt-approval"
+      ]
+    },
+    {
+      "awardOrVerdict": "FULLY_SEEDED_HUB",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": ["Operator harvest:publish-hub-seed + index:freshness-gate PASS"],
+      "lastKnownEvidence": ["hubPublishStatus not-run"]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "commandIndexConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "mcp-servers.json",
+      "command-estate"
+    ],
+    "checkedAt": "2026-08-05T02:45:00.000Z",
+    "preflightReceiptHash": "harvest-2026-08-05-workflow-estate-hot-cache-v1-preflight"
+  }
+}

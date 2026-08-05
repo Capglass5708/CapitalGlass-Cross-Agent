@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-MAP-Z-VAULT-WORK-001",
+  "kind": "command",
+  "title": "WESLEY_WORK off-LAN Z: via IT Vault Map-Z-From-Vault.ps1",
+  "summary": "Use D:\\Admin Keys vault script; prefer \\\\cg-server\\Capital Glass over LAN IP when off office network.",
+  "retrievalQuestions": [
+    "How to reconnect Z: on WESLEY_WORK from WSL?",
+    "Z drive fails with 192.168.1.208 off LAN?"
+  ],
+  "evidenceRefs": [
+    "D:\\Admin Keys\\Capital-Glass-IT-Vault\\tools\\Map-Z-From-Vault.ps1",
+    "harvest-2026-08-04-z-l-drive-offlan-session-v1",
+    "TE-006"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "User on WESLEY_WORK needs Z: remapped",
+    "startAt": [
+      "D:\\Admin Keys\\Capital-Glass-IT-Vault",
+      "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md"
+    ],
+    "runPreflight": ["test IT Vault mounted on D:"],
+    "doNot": [
+      "Hardcode SMB credentials",
+      "Use LAN IP only when Tailscale cg-server is available"
+    ],
+    "proveBeforeClaiming": [
+      "net use Z: OK",
+      "Test-Path Z:\\Capital-Glass-Dev readable in Windows session"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}

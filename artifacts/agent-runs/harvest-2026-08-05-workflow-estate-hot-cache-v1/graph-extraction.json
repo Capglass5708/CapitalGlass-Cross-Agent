@@ -1,0 +1,250 @@
+{
+  "packetKind": "graph-extraction",
+  "schemaVersion": "cg-master-graph-extraction-v1",
+  "extractionId": "extraction:harvest-2026-08-05-workflow-estate-hot-cache-v1",
+  "harvestId": "harvest-2026-08-05-workflow-estate-hot-cache-v1",
+  "workPackageId": "harvest-2026-08-05-workflow-estate-hot-cache-v1",
+  "producer": {
+    "repositoryId": "repo:capitalglass-cross-agent",
+    "capability": "harvest-graph-extraction",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "id": "harvest:harvest-2026-08-05-workflow-estate-hot-cache-v1",
+      "nodeType": "Harvest",
+      "displayName": "harvest-2026-08-05-workflow-estate-hot-cache-v1",
+      "lifecycleState": "lifecycle:canonical",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+        "sourceCommitSha": "402352f4bb056e3f30115f7eb7d40e13000cafef",
+        "retrievalResult": "INDEX_HIT_AI_CACHE"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:workflow-estate-hot-cache-shipped-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Workflow Estate hot-cache v1 shipped with Command Estate linkage",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/workflow-estate-hot-cache-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/compact-records/workflow-estate-hot-cache-shipped-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/compact-records/workflow-estate-hot-cache-shipped-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:harvest-prompt-post-merge-acceptance-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Harvest prompt extraction post-merge acceptance recorded",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "DOCUMENTED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/workflow-estate-hot-cache-v1.md",
+        "advancementGate": "operator-explicit-prompt-approval"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/compact-records/harvest-prompt-post-merge-acceptance-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/compact-records/harvest-prompt-post-merge-acceptance-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:workflow-estate-scout-routing-keywords-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Workflow-estate scout routing keywords hotfix",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "DOCUMENTED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/workflow-estate-hot-cache-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/compact-records/workflow-estate-scout-routing-keywords-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/compact-records/workflow-estate-scout-routing-keywords-v1.json"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:harvest-harvest-2026-08-05-workflow-estate-hot-cache-v1-contains-workpackage-workflow-estate-hot-cache-shipped-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-05-workflow-estate-hot-cache-v1",
+      "targetId": "workpackage:workflow-estate-hot-cache-shipped-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-workflow-estate-hot-cache-shipped-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:workflow-estate-hot-cache-shipped-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/compact-records/workflow-estate-hot-cache-shipped-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/compact-records/workflow-estate-hot-cache-shipped-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-05-workflow-estate-hot-cache-v1-contains-workpackage-harvest-prompt-post-merge-acceptance-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-05-workflow-estate-hot-cache-v1",
+      "targetId": "workpackage:harvest-prompt-post-merge-acceptance-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-harvest-prompt-post-merge-acceptance-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:harvest-prompt-post-merge-acceptance-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/compact-records/harvest-prompt-post-merge-acceptance-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/compact-records/harvest-prompt-post-merge-acceptance-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-05-workflow-estate-hot-cache-v1-contains-workpackage-workflow-estate-scout-routing-keywords-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-05-workflow-estate-hot-cache-v1",
+      "targetId": "workpackage:workflow-estate-scout-routing-keywords-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-workflow-estate-scout-routing-keywords-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:workflow-estate-scout-routing-keywords-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/compact-records/workflow-estate-scout-routing-keywords-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/compact-records/workflow-estate-scout-routing-keywords-v1.json"
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "provenance": {
+    "producerRepositoryId": "repo:capitalglass-cross-agent",
+    "producerCapability": "harvest-graph-extraction",
+    "sourceAuthority": "authority:cross-agent-harvest",
+    "classification": "observed",
+    "verificationState": "verified",
+    "recordedAt": "2026-08-05T02:45:00.000Z",
+    "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/harvest-manifest-v1.json",
+    "sourceAnchorDetail": {
+      "anchorType": "file-path",
+      "locator": "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/harvest-manifest-v1.json"
+    }
+  }
+}

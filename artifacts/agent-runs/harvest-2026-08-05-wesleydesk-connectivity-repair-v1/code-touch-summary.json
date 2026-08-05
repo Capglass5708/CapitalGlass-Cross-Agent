@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "code-touch-summary-v1@1.0.0",
+  "harvestId": "harvest-2026-08-05-wesleydesk-connectivity-repair-v1",
+  "generatedAt": "2026-08-05T02:45:00.000Z",
+  "repos": [
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "role": "diagnostic artifacts + operator gate scripts",
+      "paths": [
+        "artifacts/agent-runs/wesleydesk-connectivity-full-diagnostic-v1/receipt.json",
+        "artifacts/agent-runs/wesleydesk-connectivity-full-diagnostic-v1/repair-1-receipt.json",
+        "artifacts/agent-runs/wesleydesk-connectivity-full-diagnostic-v1/OPERATOR-GATE-RUNBOOK.md",
+        "artifacts/agent-runs/wesleydesk-connectivity-full-diagnostic-v1/repair-2-acceptance.md",
+        "artifacts/agent-runs/wesleydesk-connectivity-full-diagnostic-v1/Run-Repair1-InteractiveGate-Wesley.ps1",
+        "artifacts/agent-runs/wesleydesk-connectivity-full-diagnostic-v1/Run-Repair2-InspectTasks-Wesley.ps1",
+        "artifacts/agent-runs/wesleydesk-connectivity-full-diagnostic-v1/Run-Repair2-RebootGate-Wesley.ps1"
+      ],
+      "note": "Coordination artifacts only — drive scripts owned by Office Admin PRIVATE on desk"
+    },
+    {
+      "repo": "CapitalGlass-Office-Admin",
+      "role": "drive mount authority on WESLEYDESK",
+      "paths": [
+        "C:/ProgramData/CapitalGlass/OfficeAdmin/PRIVATE/Ensure-CgWesleyDeskDriveMounts.ps1",
+        "C:/ProgramData/CapitalGlass/OfficeAdmin/PRIVATE/Map-CgWesleyDeskZDrive.ps1",
+        "C:/ProgramData/CapitalGlass/OfficeAdmin/PRIVATE/smb-z-cg-server.env",
+        "C:/ProgramData/CapitalGlass/OfficeAdmin/PRIVATE/gates/"
+      ],
+      "note": "Runtime on WESLEYDESK — not committed in this harvest"
+    }
+  ],
+  "operatorCommands": [
+    "Ensure-CgWesleyDeskDriveMounts.ps1 -Mode ForceRemap",
+    "D:\\Admin Keys\\Capital-Glass-IT-Vault\\tools\\Map-Z-From-Vault.ps1",
+    "Run-Repair1-InteractiveGate-Wesley.ps1",
+    "Run-Repair2-InspectTasks-Wesley.ps1",
+    "Run-Repair2-RebootGate-Wesley.ps1",
+    "clear-z.ps1 (DefineDosDevice phantom clear)"
+  ]
+}

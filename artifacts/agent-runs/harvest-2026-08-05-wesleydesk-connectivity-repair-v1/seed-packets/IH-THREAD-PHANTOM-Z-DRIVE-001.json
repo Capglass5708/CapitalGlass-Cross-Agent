@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-PHANTOM-Z-DRIVE-001",
+  "kind": "failure-pattern",
+  "title": "Phantom Z: requires DefineDosDevice before net use remap",
+  "summary": "Empty net use with DriveInfo Z IsReady=False causes error 85; Clear-OfficeZDriveMapping + DefineDosDevice required.",
+  "retrievalQuestions": [
+    "WESLEYDESK Z remap fails with device already in use?",
+    "net use shows no Z but ForceRemap fails error 85?"
+  ],
+  "evidenceRefs": [
+    "C:\\Temp\\clear-z.ps1",
+    "thread-autopsy-bundle.json#ED-001",
+    "harvest-2026-08-04-z-l-drive-offlan-session-v1"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "ForceRemap or net use Z: returns error 85 on WESLEYDESK",
+    "startAt": [
+      "Get-PSDrive Z",
+      "C:\\ProgramData\\CapitalGlass\\OfficeAdmin\\PRIVATE\\Map-CgWesleyDeskZDrive.ps1"
+    ],
+    "runPreflight": [],
+    "doNot": [
+      "Retry ForceRemap without phantom clear",
+      "Assume net use /delete cleared the letter"
+    ],
+    "proveBeforeClaiming": [
+      "DefineDosDevice removed=True or Clear-OfficeZDriveMapping PASS before map"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

@@ -1,0 +1,85 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-workflow-estate-scout-routing-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "402352f4bb056e3f30115f7eb7d40e13000cafef",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-05-workflow-estate-hot-cache-v1",
+      "seedId": "IH-WORKFLOW-ESTATE-SCOUT-ROUTING-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T02:59:43.254Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "critical",
+    "contentHash": "389b9bd2b10f7135ee4d0707299de7389b9f87e6389c1556500d283fd5b9bb37"
+  },
+  "body": {
+    "seedId": "IH-WORKFLOW-ESTATE-SCOUT-ROUTING-001",
+    "kind": "lesson",
+    "title": "Workflow-estate scout routing must cover promotion and closeout queries",
+    "summary": "After workflow-estate ship, verify three scout queries route to workflow-estate with DATASET_HIT before claiming acceptance.",
+    "canonicalQuestion": "What workflow publishes the L BY-KIND index?",
+    "alternateQuestions": [
+      "What approval is required to promote prompt candidates?",
+      "What workflow closes a mission?"
+    ],
+    "shortAnswer": "After workflow-estate ship, verify three scout queries route to workflow-estate with DATASET_HIT before claiming acceptance.",
+    "detailedAnswer": "Workflow-estate scout routing must cover promotion and closeout queries",
+    "retrievalQuestions": [
+      "What workflow publishes the L BY-KIND index?",
+      "What approval is required to promote prompt candidates?",
+      "What workflow closes a mission?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Shipping workflow-estate or changing query-routing manifest",
+      "startAt": [
+        "registry/query-routing/query-routing-manifest.v1.json",
+        "work-progress/workflow-index.json"
+      ],
+      "runPreflight": [
+        "npm run test:workflow-estate-hot-cache-gates",
+        "resolveScoutDatasetRouter for three acceptance queries"
+      ],
+      "doNot": [
+        "Claim scout PASS on compile gates only without routing queries"
+      ],
+      "proveBeforeClaiming": [
+        "primaryDataset workflow-estate",
+        "DATASET_HIT",
+        "rawScanRequired false",
+        "liveCompileCount 0"
+      ]
+    },
+    "evidenceRefs": [
+      "CapitalGlass-Cross-Agent#14",
+      "402352f",
+      "registry/query-routing/query-routing-manifest.v1.json"
+    ],
+    "executionDeltaRefs": [
+      "ED-501"
+    ],
+    "wasteIds": [
+      "TW-501"
+    ],
+    "operatorFrictionIds": [],
+    "roiRank": 1,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Cross-Agent",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/seed-packets/IH-WORKFLOW-ESTATE-SCOUT-ROUTING-001.json"
+    ],
+    "harvestId": "harvest-2026-08-05-workflow-estate-hot-cache-v1"
+  }
+}

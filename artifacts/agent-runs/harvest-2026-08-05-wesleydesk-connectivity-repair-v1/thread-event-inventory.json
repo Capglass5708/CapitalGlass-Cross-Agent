@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-05-wesleydesk-connectivity-repair-v1",
+  "threadRef": "agent-transcripts/29f9db42-b38c-4987-a40c-3681731389b9.jsonl",
+  "recordedAt": "2026-08-05T02:45:00.000Z",
+  "hosts": ["WESLEY_WORK", "WESLEYDESK"],
+  "events": [
+    {
+      "eventId": "TE-001",
+      "phase": "diagnostic",
+      "summary": "Full WESLEYDESK connectivity diagnostic from WESLEY_WORK via Tailscale SSH (cgremoteadmin)",
+      "actor": "agent",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/artifacts/agent-runs/wesleydesk-connectivity-full-diagnostic-v1/receipt.json",
+        "root-cause-analysis.md"
+      ]
+    },
+    {
+      "eventId": "TE-002",
+      "phase": "root-cause",
+      "summary": "Z: phantom letter + failed Wesley logon scheduled tasks + session-bound SMB mapping identified",
+      "actor": "agent",
+      "evidenceRefs": [
+        "smb-drive-report.json",
+        "service-persistence-report.json",
+        "schtasks CapitalGlass-EnsureDeskDriveMounts-Logon Last Result 2"
+      ]
+    },
+    {
+      "eventId": "TE-003",
+      "phase": "repair-1",
+      "summary": "Repair 1 ForceRemap via IT Vault (D:\\Admin Keys) — phantom cleared with DefineDosDevice; smb-z-cg-server.env synced to desk PRIVATE",
+      "actor": "agent",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/artifacts/agent-runs/wesleydesk-connectivity-full-diagnostic-v1/repair-1-receipt.json",
+        "DRIVE-MOUNT-STATE.json exitCode 0 in cgremoteadmin session"
+      ]
+    },
+    {
+      "eventId": "TE-004",
+      "phase": "partial-pass",
+      "summary": "Official Ensure-CgWesleyDeskDriveMounts ForceRemap PASS in SSH session; WSL /mnt/z FAIL — Fred console, Wesley not logged in",
+      "actor": "agent",
+      "evidenceRefs": ["quser fred console Active", "wsl whoami wesley", "repair-1-receipt.json#operatorContextNotValidated"]
+    },
+    {
+      "eventId": "TE-005",
+      "phase": "operator-gate",
+      "summary": "User defined Phase A/B/C acceptance — Wesley interactive session required; Repair 2 pending reboot gate",
+      "actor": "user",
+      "evidenceRefs": [
+        "OPERATOR-GATE-RUNBOOK.md",
+        "PRIVATE/gates/Run-Repair1-InteractiveGate-Wesley.ps1"
+      ]
+    },
+    {
+      "eventId": "TE-006",
+      "phase": "work-local",
+      "summary": "WESLEY_WORK Z: reconnected via Map-Z-From-Vault.ps1 over cg-server Tailscale (off-LAN)",
+      "actor": "user",
+      "evidenceRefs": ["thread reconnect z drive request", "net use Z: \\\\cg-server\\Capital Glass OK"]
+    },
+    {
+      "eventId": "TE-007",
+      "phase": "harvest",
+      "summary": "chat-thread-closeout-autopsy-harvest-v1 requested on thread",
+      "actor": "user",
+      "evidenceRefs": ["Z:/Capital-Glass-Dev/Harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"]
+    }
+  ]
+}

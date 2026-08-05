@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-WESLEY-INTERACTIVE-GATE-001",
+  "kind": "runbook",
+  "title": "WESLEYDESK Repair 1–3 operator gate sequence",
+  "summary": "Phase A interactive gate → Repair 2 task deploy → cold reboot without manual ForceRemap.",
+  "retrievalQuestions": [
+    "What closes WESLEYDESK Repair 1 after partial SSH remap?",
+    "What proves durable Z: persistence on WESLEYDESK?"
+  ],
+  "evidenceRefs": [
+    "OPERATOR-GATE-RUNBOOK.md",
+    "repair-2-acceptance.md",
+    "C:\\ProgramData\\CapitalGlass\\OfficeAdmin\\PRIVATE\\gates\\"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "WESLEYDESK connectivity repair stuck at PARTIAL_PASS",
+    "startAt": [
+      "CG-AppBuilder-MCP/artifacts/agent-runs/wesleydesk-connectivity-full-diagnostic-v1/OPERATOR-GATE-RUNBOOK.md"
+    ],
+    "runPreflight": ["quser — Wesley must be interactive"],
+    "doNot": [
+      "Run CapitalGlass-EnsureDeskDriveMounts-Once (Fred)",
+      "Claim reboot PASS without Repair 2 tasks deployed"
+    ],
+    "proveBeforeClaiming": [
+      "REPAIR_1_INTERACTIVE_GATE_PASS",
+      "WESLEYDESK_DRIVE_PERSISTENCE_REBOOT_GATE_PASS"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "HUMAN_REVIEW",
+  "status": "CANDIDATE"
+}

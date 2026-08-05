@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "harvest-prompt-extraction-verification-receipt-v1@1.0.0",
+  "workPackageId": "harvest-prompt-extraction-desk-closeout-v1",
+  "generatedAt": "2026-08-05T01:58:00.000Z",
+  "host": "WESLEY_WORK",
+  "hostNote": "Gate 4 publication executed on WESLEY_WORK with Z:/L: drvfs mounted; L: hub is shared NAS authority.",
+  "harvestId": "harvest-2026-08-04-cursor-harvest-protocol-session-v1",
+  "approvedPromptId": "harvest:prompt-candidate-063359b2149d",
+  "finalVerdict": "HARVEST_PROMPT_EXTRACTION_VERIFIED",
+  "deskPublication": "PASS",
+  "gates": {
+    "gate1_zMirror": {
+      "verdict": "PASS",
+      "code": "Z_HARVEST_MIRROR_SYNC_PASS",
+      "evidence": "harvest/z-mirror-sync-receipt.json"
+    },
+    "gate2_realPromptHarvest": {
+      "verdict": "PASS",
+      "approvedCount": 1,
+      "candidateId": "prompt-candidate-063359b2149d",
+      "evidence": "work-progress/harvest-prompt-catalog-delta.json"
+    },
+    "gate3_supabase": {
+      "verdict": "PASS",
+      "code": "SUPABASE_PROMPT_SEED_PASS",
+      "retrieval": "PROMPT_HIT"
+    },
+    "gate4_lPublication": {
+      "verdict": "PASS",
+      "code": "OPERATIONAL",
+      "evidence": "artifacts/agent-runs/harvest-2026-08-04-cursor-harvest-protocol-session-v1/operational-publication-receipt.json",
+      "hubPromptHarvestIndex": "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/prompt-harvest-index.json",
+      "promptId": "harvest:prompt-candidate-063359b2149d",
+      "promotionStatus": "approved",
+      "promptHarvestApproved": 1,
+      "publishFlags": [
+        "--allow-republish",
+        "--allow-supersede-seed=IH-THREAD-CHATGPT-INGEST-004",
+        "--allow-supersede-seed=IH-THREAD-CURSOR-END-CHAT-001",
+        "--allow-supersede-seed=IH-THREAD-DUP-PREFLIGHT-003",
+        "--allow-supersede-seed=IH-THREAD-MAKE-OPERATIONAL-005",
+        "--allow-supersede-seed=IH-THREAD-PUBLISH-FULL-002",
+        "--skip-tests"
+      ]
+    }
+  },
+  "ryzen9deskCacheSync": {
+    "verdict": "PENDING_RYZEN9DESK_LOCAL_EXECUTION",
+    "reason": "WESLEY_WORK cannot reach RYZEN9DESK C: hot cache or SSH; proof must run on RYZEN9DESK WSL.",
+    "expectedVerdict": "RYZEN9DESK_AI_CACHE_PROMPT_HARVEST_SYNC_PASS",
+    "operatorCommand": "cd ~/repos/CG-AppBuilder-MCP && npm run ryzen9desk:prompt-harvest-cache-sync-proof:json",
+    "manualSteps": [
+      "sudo mount -t drvfs Z: /mnt/z",
+      "sudo mount -t drvfs L: /mnt/l",
+      "export INTELLIGENCE_HUB_ROOT=/mnt/l/Capital-Glass-Intelligence-Hub",
+      "npm run ai-cache-z-master:sync-host -- --host RYZEN9DESK --apply --verify --attest --json",
+      "npm run intelligence-hub:publish-hot-routing-index -- --json --host=RYZEN9DESK",
+      "npm run agent:index:scout -- --json"
+    ],
+    "receiptPath": "artifacts/agent-runs/harvest-prompt-extraction-desk-closeout-v1/ryzen9desk-ai-cache-prompt-harvest-sync-receipt.json",
+    "fanoutAttempt": "/tmp/ryzen9desk-fanout.json"
+  },
+  "nonBlockingWarnings": [
+    "thread-autopsy-supabase per-harvest projection returned 401 Unauthorized on second apply (harvest-prompt-supabase stage PASS)"
+  ]
+}

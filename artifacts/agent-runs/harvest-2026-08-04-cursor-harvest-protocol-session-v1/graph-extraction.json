@@ -1,0 +1,120 @@
+{
+  "packetKind": "graph-extraction",
+  "schemaVersion": "cg-master-graph-extraction-v1",
+  "extractionId": "extraction:harvest-2026-08-04-cursor-harvest-protocol-session-v1",
+  "harvestId": "harvest-2026-08-04-cursor-harvest-protocol-session-v1",
+  "workPackageId": "harvest-2026-08-04-cursor-harvest-protocol-session-v1",
+  "producer": {
+    "repositoryId": "repo:capitalglass-cross-agent",
+    "capability": "harvest-graph-extraction",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "id": "harvest:harvest-2026-08-04-cursor-harvest-protocol-session-v1",
+      "nodeType": "Harvest",
+      "displayName": "harvest-2026-08-04-cursor-harvest-protocol-session-v1",
+      "lifecycleState": "lifecycle:canonical",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "missionClass": "harvest",
+        "sourceCommitSha": "234ab40a24af1b57babd260f5d69cabb3a5bd2de",
+        "retrievalResult": "INDEX_HIT_AI_CACHE"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-04T02:23:54.192Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-cursor-harvest-protocol-session-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-cursor-harvest-protocol-session-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:cursor-harvest-protocol-session-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Cursor session: thread autopsy protocol build + operational publish + ChatGPT lane",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "docs/runbooks/chat-thread-closeout-autopsy-harvest-v1.md",
+        "advancementGate": "operational-publication-receipt.json"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-04T02:23:54.192Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-cursor-harvest-protocol-session-v1/compact-records/cursor-harvest-protocol-session-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-cursor-harvest-protocol-session-v1/compact-records/cursor-harvest-protocol-session-v1.json"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:harvest-harvest-2026-08-04-cursor-harvest-protocol-session-v1-contains-workpackage-cursor-harvest-protocol-session-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-cursor-harvest-protocol-session-v1",
+      "targetId": "workpackage:cursor-harvest-protocol-session-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-04T02:23:54.192Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-cursor-harvest-protocol-session-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-cursor-harvest-protocol-session-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-cursor-harvest-protocol-session-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:cursor-harvest-protocol-session-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-04T02:23:54.192Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-cursor-harvest-protocol-session-v1/compact-records/cursor-harvest-protocol-session-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-cursor-harvest-protocol-session-v1/compact-records/cursor-harvest-protocol-session-v1.json"
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "provenance": {
+    "producerRepositoryId": "repo:capitalglass-cross-agent",
+    "producerCapability": "harvest-graph-extraction",
+    "sourceAuthority": "authority:cross-agent-harvest",
+    "classification": "observed",
+    "verificationState": "verified",
+    "recordedAt": "2026-08-04T02:23:54.192Z",
+    "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-cursor-harvest-protocol-session-v1/harvest-manifest-v1.json",
+    "sourceAnchorDetail": {
+      "anchorType": "file-path",
+      "locator": "artifacts/agent-runs/harvest-2026-08-04-cursor-harvest-protocol-session-v1/harvest-manifest-v1.json"
+    }
+  }
+}

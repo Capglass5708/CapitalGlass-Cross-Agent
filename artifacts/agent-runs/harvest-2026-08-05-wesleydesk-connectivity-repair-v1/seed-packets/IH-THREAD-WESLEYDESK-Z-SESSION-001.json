@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-WESLEYDESK-Z-SESSION-001",
+  "kind": "failure-pattern",
+  "title": "WESLEYDESK Z: in SSH cgremoteadmin does not reach Wesley WSL /mnt/z",
+  "summary": "Windows network drives are per user session; ForceRemap in SSH does not propagate to Fred console or Wesley drvfs.",
+  "retrievalQuestions": [
+    "Why is /mnt/z empty after Z: remap on WESLEYDESK?",
+    "Can cgremoteadmin SSH prove Wesley drive repair?"
+  ],
+  "evidenceRefs": [
+    "harvest-2026-08-05-wesleydesk-connectivity-repair-v1",
+    "repair-1-receipt.json",
+    "WM-001"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "WESLEYDESK Z: repair attempted via Tailscale SSH",
+    "startAt": [
+      "quser",
+      "BY-KIND/host-authority.json",
+      "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md"
+    ],
+    "runPreflight": ["office.get_agent_preflight"],
+    "doNot": [
+      "Claim REPAIR_1_PASS from cgremoteadmin ForceRemap",
+      "Validate WSL /mnt/z from SSH session"
+    ],
+    "proveBeforeClaiming": [
+      "Wesley interactive session",
+      "Run-Repair1-InteractiveGate-Wesley.ps1 REPAIR_1_INTERACTIVE_GATE_PASS"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}
