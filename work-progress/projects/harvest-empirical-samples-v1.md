@@ -65,7 +65,7 @@ Node kinds must remain distinct: `sampleFinding`, `recurringWeakness`, `protocol
 | # | Class | Sample id | Status | Harvest verdict | Graph eligibility |
 | --- | --- | --- | --- | --- | --- |
 | 1 | thin | `thin-thread-v1` | COMPLETE | `NO_HARVEST_NEEDED` | hold |
-| 2 | medium | `medium-thread-v1` | FIXTURE_READY | — | — |
+| 2 | medium | `medium-thread-v1` | PASS (live review) | `DRAFT_READY_FOR_CURSOR_VALIDATION` | pending routing |
 | 3 | architectural | `architectural-thread-v1` | PENDING | — | — |
 | 4 | debugging | `debugging-thread-v1` | PENDING | — | — |
 | 5 | planning | `planning-thread-v1` | PENDING | — | — |
@@ -108,9 +108,10 @@ Node kinds must remain distinct: `sampleFinding`, `recurringWeakness`, `protocol
 - August 3 harvest drift remains out of scope.
 - Medium fixture: `medium-thread-v1` FIXTURE_READY (fixture + golden committed; live run not started).
 
-## Medium sample #2 (fixture only)
+## Medium sample #2
 
 **Fixture:** mild correction arc — over-broad draft-vs-no-harvest rule narrowed to T0 factual closure boundary (5 turns).  
-**Golden reference:** acceptable bounds for `DRAFT_READY_FOR_CURSOR_VALIDATION`; expected tier T2 is hypothesis only.  
-**Live output:** not authored.  
-**Review / routing:** absent until live run commit.
+**Golden reference:** bounds-based `golden-findings-DRAFT_READY.md`.  
+**Live output:** `chatgpt-live-output.md` — observed T2, `DRAFT_READY_FOR_CURSOR_VALIDATION`, COR-001 boundary.  
+**Rubric:** PASS on all 7 criteria; protocol change not indicated.  
+**Routing metadata:** pending separate commit.
