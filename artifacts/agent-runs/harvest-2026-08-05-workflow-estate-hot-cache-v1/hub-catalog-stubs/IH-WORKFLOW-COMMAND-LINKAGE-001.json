@@ -1,0 +1,76 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-workflow-command-linkage-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "02882a05cf8cff0d92d7ae837ee2d6b934698ac2",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-05-workflow-estate-hot-cache-v1",
+      "seedId": "IH-WORKFLOW-COMMAND-LINKAGE-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T03:30:47.598Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "814e3b646cc64f74598191af8ed7c32f6c79065f52e4a2f70261d1b5ed5f70f3"
+  },
+  "body": {
+    "seedId": "IH-WORKFLOW-COMMAND-LINKAGE-001",
+    "kind": "command",
+    "title": "Workflow records link to Command Estate entryCommandIds — never duplicate command strings",
+    "summary": "workflow-index.json references command-index ids; AppBuilder workflow-estate compiler fails on unknown entryCommandIds.",
+    "canonicalQuestion": "How do workflows reference commands?",
+    "alternateQuestions": [
+      "What fails if entryCommandIds are missing from command-index?"
+    ],
+    "shortAnswer": "workflow-index.json references command-index ids; AppBuilder workflow-estate compiler fails on unknown entryCommandIds.",
+    "detailedAnswer": "Workflow records link to Command Estate entryCommandIds — never duplicate command strings",
+    "retrievalQuestions": [
+      "How do workflows reference commands?",
+      "What fails if entryCommandIds are missing from command-index?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Adding workflows or hot-cache operator lanes",
+      "startAt": [
+        "work-progress/workflow-index.json",
+        "work-progress/command-index.json"
+      ],
+      "runPreflight": [
+        "npm run workflow-estate:compile-index"
+      ],
+      "doNot": [
+        "Copy raw npm command strings into workflow records"
+      ],
+      "proveBeforeClaiming": [
+        "WORKFLOW_ESTATE_COMPILE_PASS",
+        "every entryCommandId exists in command-index"
+      ]
+    },
+    "evidenceRefs": [
+      "work-progress/workflow-index.json",
+      "work-progress/command-index.json",
+      "WORKFLOW_ESTATE_COMMAND_LINKAGE_PASS"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": 3,
+    "doNotAdvance": [],
+    "promotionClass": "AUTOMATIC",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Cross-Agent",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/seed-packets/IH-WORKFLOW-COMMAND-LINKAGE-001.json"
+    ],
+    "harvestId": "harvest-2026-08-05-workflow-estate-hot-cache-v1"
+  }
+}
