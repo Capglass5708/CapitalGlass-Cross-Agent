@@ -1,0 +1,231 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-05-chatgpt-protocol-refinement-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "commandIndexConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "work-progress/harvest-packet-registry.json"
+    ],
+    "checkedAt": "2026-08-05T17:59:34.584Z",
+    "preflightReceiptHash": "0c39be8d2cbedf5894b41761930f75d5a6b6bc64551150a9d323fc522be56bd9"
+  },
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "context",
+      "description": "Wrong-target Revu ROI analysis before user clarified harvest protocol was the evaluation object",
+      "evidenceRefs": [
+        "COR-001",
+        "CHAT_DIRECT"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "One-line target restatement before grading",
+      "roiRank": 1
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Terse run-file trigger without surfacing tier and output path in chat",
+      "operatorCost": "medium",
+      "systemFix": "Protocol surfaces lane, branch, and output filename in closeout block",
+      "evidenceRefs": [
+        "OF-001",
+        "chatgpt-findings-source.md"
+      ],
+      "linkedWasteIds": [
+        "TW-001"
+      ]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Evaluation target ambiguity",
+      "actualExecution": {
+        "steps": [
+          "Produced Revu ROI before user clarified harvest protocol target"
+        ],
+        "outcome": "Wrong-target analysis",
+        "evidenceRefs": [
+          "COR-001",
+          "ED-001"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Restate evaluated system in opening sentence",
+          "Grade only that system"
+        ],
+        "outcome": "ROI aligned to user intent",
+        "requiredPreflight": [
+          "Target noun from preceding user message"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "high",
+        "operatorFrustration": "low"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Protocol design before empirical evidence",
+      "actualExecution": {
+        "steps": [
+          "Structural refinements before frozen candidate work package"
+        ],
+        "outcome": "Speculative protocol growth",
+        "evidenceRefs": [
+          "EVT-006",
+          "ED-002"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Freeze at e48b793",
+          "Run diverse sample threads",
+          "Edit only on recurring weakness"
+        ],
+        "outcome": "Evidence-driven protocol changes",
+        "requiredPreflight": [
+          "EVT-006 stop condition"
+        ]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "medium",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [],
+  "duplicateWork": [
+    {
+      "duplicateId": "DUP-001",
+      "subject": "OBSERVED versus ADVANCEMENT boundary explained repeatedly",
+      "firstKnownInstance": "harvest-2026-08-04-chat-gpt-harvest-protocol-v1",
+      "priorIndexSlice": "artifacts/agent-runs/harvest-2026-08-04-chat-gpt-harvest-protocol-v1/",
+      "whyRepeated": "REPEATED_DISCUSSION in thread",
+      "avoidableBy": "Canonical boundary statement in both Z protocols",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Explicit target-object restatement before system grading",
+      "whyItPays": "Prevents wrong-target ROI when multiple systems active",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-001"
+      ],
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "seedAs": "rule",
+      "suggestedWorkPackageId": "harvest-target-object-restatement-v1",
+      "improvementType": "planning_technique",
+      "optimalFutureWorkflow": [
+        "Identify user noun phrase",
+        "Restate in opening",
+        "Grade only that system"
+      ],
+      "futureSavings": {
+        "tokenSavingsEstimate": "high",
+        "timeSavingsEstimate": "medium",
+        "toolCallsAvoided": 0,
+        "repeatedInvestigationAvoided": false,
+        "implementationReworkAvoided": true,
+        "appliesTo": [
+          "cursor_planning"
+        ],
+        "futureEfficiencyImpact": "Prevents long analyses of the wrong system when several products or protocols are active in one thread."
+      }
+    },
+    {
+      "rank": 2,
+      "title": "Lane separation through filename and evidence status",
+      "whyItPays": "OBSERVED truth separate from ADVANCEMENT synthesis",
+      "effort": "low",
+      "savedWasteIds": [],
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "seedAs": "rule",
+      "suggestedWorkPackageId": "harvest-lane-filename-contract-v1",
+      "improvementType": "validation_rule",
+      "optimalFutureWorkflow": [
+        "Classify lane",
+        "Write separate filenames",
+        "Validate independently"
+      ],
+      "futureSavings": {
+        "tokenSavingsEstimate": "medium",
+        "timeSavingsEstimate": "high",
+        "toolCallsAvoided": 2,
+        "repeatedInvestigationAvoided": true,
+        "implementationReworkAvoided": true,
+        "appliesTo": [
+          "cursor_planning",
+          "testing"
+        ],
+        "futureEfficiencyImpact": "Prevents teams from treating synthesized concepts as observed operational truth."
+      }
+    },
+    {
+      "rank": 3,
+      "title": "Empirical signal-density scoring before protocol edits",
+      "whyItPays": "Stop speculative protocol expansion",
+      "effort": "medium",
+      "savedWasteIds": [],
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "seedAs": "rule",
+      "suggestedWorkPackageId": "harvest-empirical-samples-v1",
+      "improvementType": "stop_condition",
+      "optimalFutureWorkflow": [
+        "Run frozen protocol on samples",
+        "Score density",
+        "Change only on pattern"
+      ],
+      "futureSavings": {
+        "tokenSavingsEstimate": "high",
+        "timeSavingsEstimate": "high",
+        "toolCallsAvoided": 3,
+        "repeatedInvestigationAvoided": true,
+        "implementationReworkAvoided": true,
+        "appliesTo": [
+          "cursor_planning",
+          "testing"
+        ],
+        "futureEfficiencyImpact": "Stops speculative protocol expansion and directs effort to observed output weaknesses."
+      }
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "HARVEST_COMPLETE",
+      "currentStatus": "BLOCKED",
+      "doNotClaimUntil": [
+        "harvest:validate PASS",
+        "harvest:validate-autopsy PASS"
+      ],
+      "lastKnownEvidence": [
+        "b7dd21798abe21f91f793f0bdabcc7f79aecfa64"
+      ],
+      "proofCommandId": "harvest-validate-chain-v1"
+    },
+    {
+      "awardOrVerdict": "PUBLISHED_TO_HUB",
+      "currentStatus": "BLOCKED",
+      "doNotClaimUntil": [
+        "operator harvest:publish-intelligence-full"
+      ],
+      "lastKnownEvidence": [
+        "publication: NOT_RUN_BY_CURSOR"
+      ],
+      "proofCommandId": "harvest-publish-intelligence-full-v1"
+    }
+  ]
+}

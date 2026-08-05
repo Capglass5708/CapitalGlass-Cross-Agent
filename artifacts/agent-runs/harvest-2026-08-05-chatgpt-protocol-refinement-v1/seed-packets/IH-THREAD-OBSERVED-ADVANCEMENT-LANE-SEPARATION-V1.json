@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-OBSERVED-ADVANCEMENT-LANE-SEPARATION-V1",
+  "kind": "architecture",
+  "title": "OBSERVED autopsy vs ADVANCEMENT synthesis \u2014 separate files same harvest id",
+  "summary": "COR-002: never mix IMP synthesis into chatgpt-findings-source.md; use system-advancement-findings-source.md.",
+  "retrievalQuestions": [
+    "Which output file is OBSERVED autopsy only?",
+    "Can IMP-### candidates live in chatgpt-findings-source.md?"
+  ],
+  "evidenceRefs": [
+    "COR-002",
+    "HP-002",
+    "chatgpt-findings-source.md"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "ChatGPT harvest on chat-gpt-harvest branch",
+    "startAt": [
+      "docs/protocols/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md"
+    ],
+    "runPreflight": [
+      "Confirm lane = OBSERVED or ADVANCEMENT before writing"
+    ],
+    "doNot": [
+      "Put ADVANCEMENT synthesis in chatgpt-findings-source.md"
+    ],
+    "proveBeforeClaiming": [
+      "Filename matches lane",
+      "intelligenceKind observed in manifest"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}
