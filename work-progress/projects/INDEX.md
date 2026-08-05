@@ -38,14 +38,10 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 
 | Packet ID | State | Verdict | Owner repo | Project file | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `estate-scout-hooks-33-33-v1` | HARVEST_COMPLETE | PASS | CG-AppBuilder-MCP | artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/thread-event-inventory.json | Operator: git pull hook paths on stale clones when convenient |
-| `estate-scout-hook-pr-merges-v1` | HARVEST_COMPLETE | PASS | CG-AppBuilder-MCP | artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/code-touch-summary.json | None — PRs merged |
-| `developer-memory-archived-scout-hook-v1` | DOCUMENTED | PASS | capital-glass-developer-memory | artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/thread-event-inventory.json | Unarchive repo or remove from estate manifest with documented exception |
-| `scout-hook-local-would-sync-mistake-v1` | DOCUMENTED | PASS | CG-AppBuilder-MCP | artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/thread-autopsy-bundle.json | Promote seed to runbook gate when operator approves |
-| `scout-hook-worktree-repeated-work-v1` | DOCUMENTED | PASS | CG-AppBuilder-MCP | artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/thread-autopsy-bundle.json | Use worktree pattern in IH-SCOUT-HOOK-WORKTREE-PR-001 |
-| `scout-hook-faster-path-v1` | HARVEST_COMPLETE | PASS | CG-AppBuilder-MCP | artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/seed-packets/IH-SCOUT-HOOK-ORIGIN-VERIFY-001.json | None |
-| `scout-hook-check-command-v1` | HARVEST_COMPLETE | PASS | CG-AppBuilder-MCP | [command-index.json](./command-index.json) | Add to estate closeout checklist |
-| `estate-scout-hook-protocol-upgrade-v1` | HARVEST_COMPLETE | PASS | CG-AppBuilder-MCP | harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md | Operator may publish hub seeds when L: mounted |
+| `prompt-catalog-compact-trim-shipped-v1` | HARVEST_COMPLETE | PASS | CG-AppBuilder-MCP | artifacts/agent-runs/harvest-2026-08-05-prompt-catalog-scout-trim-v1/thread-event-inventory.json | None for slice 1 |
+| `prompt-catalog-routing-hardening-v1` | HARVEST_COMPLETE | PASS | CapitalGlass-Cross-Agent | artifacts/agent-runs/harvest-2026-08-05-prompt-catalog-scout-trim-v1/thread-event-inventory.json | Republish hot routing after registry changes on each host |
+| `ryzen9desk-cache-sync-blocked-v1` | DOCUMENTED | PASS | CG-AppBuilder-MCP | artifacts/agent-runs/harvest-2026-08-05-prompt-catalog-scout-trim-v1/thread-event-inventory.json | Operator runs npm run ryzen9desk:prompt-harvest-cache-sync-proof:json on RYZEN9DESK WSL |
+| `scout-router-slice-drop-mistake-v1` | HARVEST_COMPLETE | PASS | CG-AppBuilder-MCP | artifacts/agent-runs/harvest-2026-08-05-prompt-catalog-scout-trim-v1/thread-event-inventory.json | Fixed via scout-compact-trim.mjs |
 
 <!-- HARVEST-PACKET-INDEX:END -->
 
