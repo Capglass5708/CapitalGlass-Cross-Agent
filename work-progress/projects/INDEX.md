@@ -38,8 +38,14 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 
 | Packet ID | State | Verdict | Owner repo | Project file | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `application-bible-update-ladder-v1` | DOCUMENTED | PASS | CG-AppBuilder-MCP | [application-bible-update-ladder-v1.md](./application-bible-update-ladder-v1.md) | Run generate → sync → bible-z-master:sync-host when content changes |
-| `all-systems-go-observe-warn-v1` | OBSERVE_RECEIPT | WARN | CG-AppBuilder-MCP | [all-systems-go-observe-warn-v1.md](./all-systems-go-observe-warn-v1.md) | Remediate shared-db requires-investigation + clean AppBuilder worktree; then closeout:gate for ship |
+| `pkt-decision-001` | COMPLETE | PASS | CapitalGlass-Documents | [harvest-2026-08-04-document-center-adaptive-details-w17-v1.md](./harvest-2026-08-04-document-center-adaptive-details-w17-v1.md) | Operator completes W17; then amend checkpoint with wave-17 evidence |
+| `pkt-blocker-001` | BLOCKED | BLOCKED | CapitalGlass-Documents | [harvest-2026-08-04-document-center-adaptive-details-w17-v1.md](./harvest-2026-08-04-document-center-adaptive-details-w17-v1.md) | Hub SSO login, 70-item checklist, Chrome-close capture script |
+| `pkt-mistake-001` | COMPLETE | PASS | CapitalGlass-Documents | [harvest-2026-08-04-document-center-adaptive-details-w17-v1.md](./harvest-2026-08-04-document-center-adaptive-details-w17-v1.md) | Publish seed IH-DOC-ADAPTIVE-LOCKED-BRANCH-001 on Phase B |
+| `pkt-repeated-001` | COMPLETE | PASS | CapitalGlass-Documents | [harvest-2026-08-04-document-center-adaptive-details-w17-v1.md](./harvest-2026-08-04-document-center-adaptive-details-w17-v1.md) | Enforce single writer on locked branch during W17 |
+| `pkt-faster-001` | COMPLETE | PASS | CapitalGlass-Documents | [harvest-2026-08-04-document-center-adaptive-details-w17-v1.md](./harvest-2026-08-04-document-center-adaptive-details-w17-v1.md) | Operator follows wave-17 sign-in section before capture |
+| `cmd-w17-capture` | PENDING | HOLD | CapitalGlass-Documents | [harvest-2026-08-04-document-center-adaptive-details-w17-v1.md](./harvest-2026-08-04-document-center-adaptive-details-w17-v1.md) | Operator runs after Hub SSO and Chrome close |
+| `pkt-evidence-001` | COMPLETE | PASS | CapitalGlass-Documents | [harvest-2026-08-04-document-center-adaptive-details-w17-v1.md](./harvest-2026-08-04-document-center-adaptive-details-w17-v1.md) | None until W17 PASS |
+| `pkt-proto-001` | COMPLETE | PASS | CapitalGlass-Cross-Agent | [harvest-2026-08-04-document-center-adaptive-details-w17-v1.md](./harvest-2026-08-04-document-center-adaptive-details-w17-v1.md) | Phase B publish via harvest:publish-intelligence-full |
 
 <!-- HARVEST-PACKET-INDEX:END -->
 

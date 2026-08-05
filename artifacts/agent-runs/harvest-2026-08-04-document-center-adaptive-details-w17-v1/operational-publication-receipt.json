@@ -1,0 +1,501 @@
+{
+  "schemaVersion": "cross-agent-harvest-operational-publication-receipt-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-document-center-adaptive-details-w17-v1",
+  "generatedAt": "2026-08-05T20:38:33.186Z",
+  "startedAt": "2026-08-05T20:37:56.619Z",
+  "verdict": "OPERATIONAL",
+  "sourceCommitSha": "dc1c3b2bd075ba61d9b0ebfdcbd4fef6761c4892",
+  "tier": "T2",
+  "authorityModel": "CHAT_THREAD_STRUCTURED_TRUTH",
+  "intelligenceHubRoot": "/mnt/l/Capital-Glass-Intelligence-Hub",
+  "layers": {
+    "git": {
+      "path": "/home/wesley/repos/CapitalGlass-Cross-Agent/artifacts/agent-runs/harvest-2026-08-04-document-center-adaptive-details-w17-v1/harvest-manifest-v1.json",
+      "sourceCommitSha": "dc1c3b2bd075ba61d9b0ebfdcbd4fef6761c4892"
+    },
+    "lCatalog": {
+      "ok": true,
+      "seedCount": 4,
+      "byKindSlice": "00-master-index/BY-KIND/thread-autopsy-index.json"
+    },
+    "lLedger": {
+      "ok": false
+    },
+    "cHotRouting": {
+      "ok": true,
+      "hotCacheRoot": "/mnt/c/AI Cursur Cache",
+      "indexPath": "/mnt/c/AI Cursur Cache/objects/intelligence-hub-index/current-hot-routing-index.v1.json",
+      "pointerPath": "/mnt/c/AI Cursur Cache/objects/intelligence-hub-index/current-hot-routing-pointer.v1.json",
+      "routing": {
+        "schemaVersion": "intelligence-hub-hot-routing-index-v1@1.1.0",
+        "workPackageId": "intelligence-hub-hot-cache-scout-optimization-v1",
+        "generatedAt": "2026-08-05T20:38:26.592Z",
+        "releaseId": "AI-CACHE-RELEASE-20260731-a7456ad58195",
+        "ttlSeconds": 86400,
+        "freshnessPolicy": "l-master-index-authority",
+        "derivativeAuthority": true,
+        "shipAuthorization": false,
+        "sourceRepository": "CapitalGlass-Cross-Agent",
+        "sourceCommitSha": "dc1c3b2bd075ba61d9b0ebfdcbd4fef6761c4892",
+        "bundleBudget": {
+          "maxTotalBytes": 32768,
+          "envelopeMaxBytes": 8192,
+          "lazyCatalogMaxBytes": 4096,
+          "publishedBytes": 12760,
+          "trimmed": false
+        },
+        "authorityPointers": {
+          "lHubRoot": "/mnt/l/Capital-Glass-Intelligence-Hub",
+          "lMasterIndex": "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index",
+          "lOpenActions": "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/active-work-open-actions.json",
+          "lBlockers": "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/active-work-blockers.json",
+          "lThreadAutopsyIndex": "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/thread-autopsy-index.json",
+          "zBundlePath": "/mnt/z/Capital-Glass-Intelligence-Hub/AI-Cache-Authority/objects/intelligence-hub-index/current-index-bundle.v1.json",
+          "zIndexPointerPath": "/mnt/z/Capital-Glass-Intelligence-Hub/AI-Cache-Authority/index-freshness/CURRENT/current-index-pointer.json",
+          "crossAgentSlicesRoot": "/home/wesley/repos/CapitalGlass-Cross-Agent/work-progress/intelligence-hub-slices"
+        },
+        "envelope": {
+          "openActions": [
+            {
+              "priority": 1,
+              "action": "**Synology-primary dev lane** — child WP `project-folder-synology-primary-v1-dev-hosted-environment` (**HOLD**: Vercel BLOCKED + Supabase I2)",
+              "ownerRepo": "CapitalGlass-Documents / WESLEYDESK",
+              "status": "**HOLD** — contract `d8826e8` PASS; hosted dev blocked"
+            },
+            {
+              "priority": 2,
+              "action": "Elevated deploy: `Install-CgWesleyWorkDriveMountPersistence.ps1` + verifier on WESLEY_WORK (`wesleywork-drive-mount-task-dedupe-v1`)",
+              "ownerRepo": "CapitalGlass-Office-Admin",
+              "status": "Ready — code implemented; live probe pending"
+            },
+            {
+              "priority": 3,
+              "action": "Rerun Document Center production smokes after SHA pin (`suite-ci-healing-v1`)",
+              "ownerRepo": "CapitalGlass-Documents",
+              "status": "**Ready** — Doppler + GitHub `EXPECTED_DOCUMENT_CENTER_GIT_SHA` synced 2026-08-04"
+            },
+            {
+              "priority": 2,
+              "action": "Use Windows Desktop `Capital Glass Cursor (WSL Suite).lnk`; close any Cursor windows opened from `/mnt/c` / `C:\\Developer\\repos`",
+              "ownerRepo": "Cursor / operator",
+              "status": "Ongoing operating rule — WSL default verify PASS"
+            },
+            {
+              "priority": 2,
+              "action": "L: hub readable at `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index`",
+              "ownerRepo": "WESLEYDESK / WSL",
+              "status": "Complete for seed report"
+            }
+          ],
+          "blockers": [
+            {
+              "id": "missing-shared-github-articles-builder",
+              "priority": 1,
+              "blocker": "Missing shared GitHub → articles builder",
+              "affects": "`docling-github-ingest-v1`, `ephemeral-unstructured-github-scrape-v1`",
+              "owner": "`Scraper`",
+              "requiredAction": "Implement `build-github-markdown-articles.mjs` — gated under owner WPs"
+            },
+            {
+              "id": "rank-9-arch-fp-yolo-benchmark-repo-url-unknown",
+              "priority": 2,
+              "blocker": "Rank-9 Arch FP YOLO benchmark repo URL unknown",
+              "affects": "`revu-opening-detection-top10-v1`",
+              "owner": "Research",
+              "requiredAction": "Pin URL before capture — gated under `revu-opening-detection-top10-v1`"
+            },
+            {
+              "id": "de-opening-detection-kb-is-shallow",
+              "priority": 3,
+              "blocker": "DE opening-detection KB is shallow",
+              "affects": "`revu-opening-detection-top10-v1`, `cg-opening-locator-v1`",
+              "owner": "`Data-Extraction`",
+              "requiredAction": "Finish vendor interpretation; fix `unsupported_vendor` — gated under opening-detection WPs"
+            },
+            {
+              "id": "bid-composer-weak-on-window-schedule-row",
+              "priority": 4,
+              "blocker": "Bid Composer weak on `window_schedule_row`",
+              "affects": "CE parser ROI / Bid Composer review lane",
+              "owner": "`Bid Composer`",
+              "requiredAction": "Add window schedule import and review lane — gated under Bid Composer roadmap"
+            },
+            {
+              "id": "revu-mcp-production-workflow-locked",
+              "priority": 5,
+              "blocker": "Revu MCP production workflow locked",
+              "affects": "`revu-production-takeoff-pilot-v1`",
+              "owner": "`CapitalGlassRevu`, `Bid Composer`",
+              "requiredAction": "Policy lock until plan → approval → export → BC review pilot passes"
+            }
+          ]
+        },
+        "slices": {
+          "openActions": [
+            {
+              "priority": 1,
+              "action": "**Synology-primary dev lane** — child WP `project-folder-synology-primary-v1-dev-hosted-environment` (**HOLD**: Vercel BLOCKED + Supabase I2)",
+              "ownerRepo": "CapitalGlass-Documents / WESLEYDESK",
+              "status": "**HOLD** — contract `d8826e8` PASS; hosted dev blocked"
+            },
+            {
+              "priority": 2,
+              "action": "Elevated deploy: `Install-CgWesleyWorkDriveMountPersistence.ps1` + verifier on WESLEY_WORK (`wesleywork-drive-mount-task-dedupe-v1`)",
+              "ownerRepo": "CapitalGlass-Office-Admin",
+              "status": "Ready — code implemented; live probe pending"
+            },
+            {
+              "priority": 3,
+              "action": "Rerun Document Center production smokes after SHA pin (`suite-ci-healing-v1`)",
+              "ownerRepo": "CapitalGlass-Documents",
+              "status": "**Ready** — Doppler + GitHub `EXPECTED_DOCUMENT_CENTER_GIT_SHA` synced 2026-08-04"
+            },
+            {
+              "priority": 2,
+              "action": "Use Windows Desktop `Capital Glass Cursor (WSL Suite).lnk`; close any Cursor windows opened from `/mnt/c` / `C:\\Developer\\repos`",
+              "ownerRepo": "Cursor / operator",
+              "status": "Ongoing operating rule — WSL default verify PASS"
+            },
+            {
+              "priority": 2,
+              "action": "L: hub readable at `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index`",
+              "ownerRepo": "WESLEYDESK / WSL",
+              "status": "Complete for seed report"
+            }
+          ],
+          "blockers": [
+            {
+              "id": "missing-shared-github-articles-builder",
+              "priority": 1,
+              "blocker": "Missing shared GitHub → articles builder",
+              "affects": "`docling-github-ingest-v1`, `ephemeral-unstructured-github-scrape-v1`",
+              "owner": "`Scraper`",
+              "requiredAction": "Implement `build-github-markdown-articles.mjs` — gated under owner WPs"
+            },
+            {
+              "id": "rank-9-arch-fp-yolo-benchmark-repo-url-unknown",
+              "priority": 2,
+              "blocker": "Rank-9 Arch FP YOLO benchmark repo URL unknown",
+              "affects": "`revu-opening-detection-top10-v1`",
+              "owner": "Research",
+              "requiredAction": "Pin URL before capture — gated under `revu-opening-detection-top10-v1`"
+            },
+            {
+              "id": "de-opening-detection-kb-is-shallow",
+              "priority": 3,
+              "blocker": "DE opening-detection KB is shallow",
+              "affects": "`revu-opening-detection-top10-v1`, `cg-opening-locator-v1`",
+              "owner": "`Data-Extraction`",
+              "requiredAction": "Finish vendor interpretation; fix `unsupported_vendor` — gated under opening-detection WPs"
+            },
+            {
+              "id": "bid-composer-weak-on-window-schedule-row",
+              "priority": 4,
+              "blocker": "Bid Composer weak on `window_schedule_row`",
+              "affects": "CE parser ROI / Bid Composer review lane",
+              "owner": "`Bid Composer`",
+              "requiredAction": "Add window schedule import and review lane — gated under Bid Composer roadmap"
+            },
+            {
+              "id": "revu-mcp-production-workflow-locked",
+              "priority": 5,
+              "blocker": "Revu MCP production workflow locked",
+              "affects": "`revu-production-takeoff-pilot-v1`",
+              "owner": "`CapitalGlassRevu`, `Bid Composer`",
+              "requiredAction": "Policy lock until plan → approval → export → BC review pilot passes"
+            }
+          ],
+          "control": {
+            "doNotAdvance": {
+              "sourcePath": "/home/wesley/repos/CapitalGlass-Cross-Agent/work-progress/intelligence-hub-slices/do-not-advance.json",
+              "contentHash": "e1ce9c3c026ec3cf986a2afd444bbe5761db7b6aac24e36ab747480a62292789",
+              "compact": {
+                "schemaVersion": "intelligence-hub-do-not-advance-slice-v1@1.0.0",
+                "updatedAt": "2026-08-04T01:30:00.000Z",
+                "entryCount": 7,
+                "entries": [
+                  {
+                    "claimId": "PERSISTENT_AVAILABILITY_PASS",
+                    "forbiddenUntil": "direct-connect-cold-reboot-persistence proof on RYZEN9DESK",
+                    "ownerRepo": "CapitalGlass-Office-Admin",
+                    "proofCommandIds": [
+                      "direct-connect-persistence-proof"
+                    ]
+                  },
+                  {
+                    "claimId": "MANAGED_EXECUTOR_ONLINE",
+                    "forbiddenUntil": "persistence proof + executor health probe PASS",
+                    "ownerRepo": "CapitalGlass-Office-Admin",
+                    "proofCommandIds": [
+                      "managed-executor-health-probe"
+                    ]
+                  },
+                  {
+                    "claimId": "THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL",
+                    "forbiddenUntil": null,
+                    "ownerRepo": "CapitalGlass-Cross-Agent",
+                    "proofCommandIds": [
+                      "index-freshness-gate",
+                      "index-blind-retrieval",
+                      "harvest:slice6-blind-retrieval"
+                    ]
+                  },
+                  {
+                    "claimId": "AUTO_PUBLISHER_V1_1_ACTIVE",
+                    "forbiddenUntil": "scheduled publisher active on WESLEYDESK with activation receipt",
+                    "ownerRepo": "CG-AppBuilder-MCP",
+                    "proofCommandIds": [
+                      "auto-publisher-run-once"
+                    ]
+                  },
+                  {
+                    "claimId": "UNATTENDED_PRODUCTION_MARKUP",
+                    "forbiddenUntil": "revu-production-takeoff-pilot-v1 complete with human approval",
+                    "ownerRepo": "CapitalGlassRevu",
+                    "proofCommandIds": []
+                  },
+                  {
+                    "claimId": "WESLEYDESK_RUNNER_PERSISTENT",
+                    "forbiddenUntil": "runner-smoke SUCCESS after Windows cold reboot without manual SSH",
+                    "ownerRepo": "CapitalGlass-Cross-Agent",
+                    "proofCommandIds": [
+                      "runner-smoke-gha",
+                      "wesleydesk-runner-ensure"
+                    ]
+                  },
+                  {
+                    "claimId": "HARVEST_V2_HUB_CURRENT",
+                    "forbiddenUntil": "harvest v2 committed and index:publish PASS on WESLEYDESK",
+                    "ownerRepo": "CapitalGlass-Cross-Agent",
+                    "proofCommandIds": [
+                      "harvest-validate",
+                      "index-publish"
+                    ]
+                  }
+                ]
+              }
+            },
+            "hostAuthority": {
+              "sourcePath": "/home/wesley/repos/CapitalGlass-Cross-Agent/work-progress/intelligence-hub-slices/host-authority.json",
+              "contentHash": "ae054253b9588b05fe66b7e7724074a1738e4406b324307e36387d5d0985c3c3",
+              "compact": {
+                "schemaVersion": "intelligence-hub-host-authority-slice-v1@1.0.0",
+                "updatedAt": "2026-08-04T23:22:50.270Z",
+                "hosts": [
+                  {
+                    "hostId": "WESLEYDESK",
+                    "role": "index publication, GitHub Actions runner, primary dev",
+                    "paths": {
+                      "intelligenceHub": "L:/Capital-Glass-Intelligence-Hub",
+                      "aiCache": "S:/AI Cursur Cache"
+                    }
+                  },
+                  {
+                    "hostId": "WESLEY_WORK",
+                    "role": "WSL dev, cross-agent ledger ingest",
+                    "paths": {
+                      "intelligenceHub": "/mnt/l/Capital-Glass-Intelligence-Hub",
+                      "aiCache": "/mnt/d/AI Cursur Cache"
+                    }
+                  },
+                  {
+                    "hostId": "RYZEN9DESK",
+                    "role": "managed executor, Direct Connect endpoint",
+                    "paths": {
+                      "aiCache": "C:/AI Cursur Cache"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "lazyCatalog": {},
+        "counts": {
+          "openActions": 15,
+          "blockers": 5,
+          "threadAutopsyHarvests": 22,
+          "lazyDatasetCount": 0
+        },
+        "threadAutopsy": {
+          "indexHit": true,
+          "criticalSeedIds": [
+            "IH-OPERATIONAL-LEDGER-SYNC-ORDER-001",
+            "IH-ASG-WSL-SUPABASE-CLI-001",
+            "IH-THREAD-ASG-RECEIPT-AUTHORITY-V1",
+            "IH-ASG-RECEIPT-LINEAGE-005",
+            "IH-GOV-OWNERSHIP-PREFIX-011",
+            "IH-WORKFLOW-ESTATE-SCOUT-ROUTING-001",
+            "IH-SCOUT-HOOK-ORIGIN-VERIFY-001",
+            "IH-HOT-CACHE-CROSS-AGENT-MERGE-FIRST-001",
+            "IH-PROMPT-CATALOG-SCOUT-TRIM-001",
+            "IH-APPLICATION-BIBLE-UPDATE-LADDER-014"
+          ],
+          "harvestCount": 22
+        },
+        "contentHashes": {
+          "openActions": "250e6d13a383071acb6d63d02209e17c9ed277b50db751f7ba370a3ad4d48516",
+          "blockers": "5d3a5d98eb4b8dca60df3401546d01dfb03a3706d58be9678d26d1e8d6564c51"
+        },
+        "solutionPackets": [
+          {
+            "solutionPacketId": "IH-Z-L-OFFLAN-PARTIAL-001-WESLEYWORK-ERROR86-PSDRIVE-FIX",
+            "title": "WESLEY_WORK Z/L off-LAN partial availability and ERROR_86 L-drive fix",
+            "ownerRepo": "CapitalGlass-Office-Admin",
+            "symptomSignatures": [
+              "wesley_work z l drive disconnected",
+              "wesley_work z drive disconnected",
+              "wesley_work l drive disconnected",
+              "wesley_work drives keep disconnecting",
+              "wesley_work mapped drives disconnected",
+              "wesley_work z drive l drive disconnected",
+              "wesley_work laptop off lan l drive",
+              "wesley_work tailscale l drive",
+              "wesley_work error 86 net use",
+              "wesley_work error_86 l drive",
+              "all systems go wesley_work z l mobility",
+              "all systems go wesley_work",
+              "wesley_work z l mobility",
+              "error_86",
+              "net use password syntax incorrect",
+              "new-psdrive fixed l drive",
+              "new-psdrive",
+              "off lan tailscale wesleydesk",
+              "ih-z-l-offlan-partial-001-wesleywork-error86-psdrive-fix",
+              "ih-z-l-offlan-partial-001",
+              "partial_drive_availability_offlan_tailscale_l",
+              "l authority unreachable",
+              "cmd /c net use",
+              "wesleywork drive mobility"
+            ],
+            "diagnosisSummary": "Laptop mobility: Z on LAN NAS; L on desk LAN or Tailscale wesleydesk. ERROR_86 from unsafe net use password interpolation — fix is New-PSDrive + PSCredential in OfficeLanDriveMapping.ps1.",
+            "notDefects": [
+              "AI Cache",
+              "Intelligence Hub",
+              "ryzen9desk fixed-desktop"
+            ],
+            "operatorPlaybook": [
+              "cd C:\\",
+              "Ensure-CgWesleyWorkDriveMounts.ps1 -Mode ForceRemap",
+              "sudo mount -t drvfs L: /mnt/l after Windows L healthy"
+            ],
+            "escalation": [
+              "wesleydesk:445 down → repair Tailscale or WESLEYDESK SMB",
+              "192.168.1.208:445 down → check NAS",
+              "indexes stale → run publication refresh (not consumer repo patches)"
+            ],
+            "firstReadPriority": "wesley_work_z_l_mobility_only",
+            "retrievalCodesWhenIndexHit": [
+              "INDEX_HIT_AI_CACHE",
+              "PUBLICATION_PASS"
+            ]
+          }
+        ],
+        "firstReadRouting": {
+          "wesleyWorkDriveMobility": {
+            "solutionPacketId": "IH-Z-L-OFFLAN-PARTIAL-001-WESLEYWORK-ERROR86-PSDRIVE-FIX",
+            "matchScope": "wesley_work_z_l_offlan_error86_only"
+          }
+        },
+        "contentHash": "702c5fb96c9376b1e9ff3baba358c3c1c955e2070db90b9a15c305559d7b8922",
+        "authorityLineage": {
+          "gitSha": "dc1c3b2bd075ba61d9b0ebfdcbd4fef6761c4892",
+          "publishedAt": "2026-08-05T20:38:26.592Z",
+          "contentHash": "702c5fb96c9376b1e9ff3baba358c3c1c955e2070db90b9a15c305559d7b8922",
+          "freshnessVerdict": "CURRENT",
+          "layerAlignment": {
+            "verdict": "ALIGNED",
+            "lHubSha": "dc1c3b2bd075ba61d9b0ebfdcbd4fef6761c4892",
+            "zHotCacheSha": "622d29896b549fdc051236db822ad92b7fe4ad01261e63366c8f8d1ef4c6fe6a",
+            "hotRoutingContentHash": "702c5fb96c9376b1e9ff3baba358c3c1c955e2070db90b9a15c305559d7b8922"
+          },
+          "derivativeAuthority": true,
+          "shipAuthorization": false
+        }
+      },
+      "sourceCommitSha": "dc1c3b2bd075ba61d9b0ebfdcbd4fef6761c4892",
+      "contentHash": "702c5fb96c9376b1e9ff3baba358c3c1c955e2070db90b9a15c305559d7b8922",
+      "releaseId": "AI-CACHE-RELEASE-20260731-a7456ad58195",
+      "authorityLineage": {
+        "gitSha": "dc1c3b2bd075ba61d9b0ebfdcbd4fef6761c4892",
+        "publishedAt": "2026-08-05T20:38:26.592Z",
+        "contentHash": "702c5fb96c9376b1e9ff3baba358c3c1c955e2070db90b9a15c305559d7b8922",
+        "freshnessVerdict": "CURRENT",
+        "layerAlignment": {
+          "verdict": "ALIGNED",
+          "lHubSha": "dc1c3b2bd075ba61d9b0ebfdcbd4fef6761c4892",
+          "zHotCacheSha": "622d29896b549fdc051236db822ad92b7fe4ad01261e63366c8f8d1ef4c6fe6a",
+          "hotRoutingContentHash": "702c5fb96c9376b1e9ff3baba358c3c1c955e2070db90b9a15c305559d7b8922"
+        },
+        "derivativeAuthority": true,
+        "shipAuthorization": false
+      },
+      "bundleBytes": 12760
+    },
+    "zAiCache": {
+      "ok": true
+    },
+    "hostFanout": {
+      "ok": true,
+      "code": "SYNC_HOSTS_DISABLED",
+      "hosts": []
+    },
+    "supabaseThreadAutopsy": {
+      "ok": false,
+      "code": "SUPABASE_PROJECTION_FAIL",
+      "error": "Command failed: node \"/home/wesley/repos/CG-AppBuilder-MCP/scripts/intelligence-hub/thread-autopsy/project-supabase.mjs\" --harvest-id=harvest-2026-08-04-document-center-adaptive-details-w17-v1 --apply --json\nSQL failed (label=thread-autopsy-harvest-2026-08-04-document-center-adaptive-details-w17-v1, code=1)\nstderr: \nstdout: {\"_tag\":\"Error\",\"error\":{\"code\":\"LegacyPlatformAuthRequiredError\",\"message\":\"Access token not provided. Supply an access token by running `supabase login` or setting the SUPABASE_ACCESS_TOKEN environment variable.\"}}\n\n"
+    }
+  },
+  "stages": [
+    {
+      "label": "sync-derived",
+      "ok": true
+    },
+    {
+      "label": "render-index",
+      "ok": true
+    },
+    {
+      "label": "duplication-preflight",
+      "ok": true,
+      "verdict": "PASS"
+    },
+    {
+      "label": "render-index-post-duplication",
+      "ok": true
+    },
+    {
+      "label": "validate",
+      "ok": true
+    },
+    {
+      "label": "validate-autopsy",
+      "ok": true
+    },
+    {
+      "label": "blind-retrieval",
+      "ok": true,
+      "verdict": "BLIND_RETRIEVAL_PASS"
+    },
+    {
+      "label": "hub-slices",
+      "ok": true,
+      "doNotAdvanceCount": 7,
+      "threadAutopsyIndex": "00-master-index/BY-KIND/thread-autopsy-index.json"
+    },
+    {
+      "label": "hot-routing-index",
+      "ok": true
+    },
+    {
+      "label": "z-ai-cache-index",
+      "ok": true
+    },
+    {
+      "label": "thread-autopsy-supabase",
+      "ok": false,
+      "error": "Command failed: node \"/home/wesley/repos/CG-AppBuilder-MCP/scripts/intelligence-hub/thread-autopsy/project-supabase.mjs\" --harvest-id=harvest-2026-08-04-document-center-adaptive-details-w17-v1 --apply --json\nSQL failed (label=thread-autopsy-harvest-2026-08-04-document-center-adaptive-details-w17-v1, code=1)\nstderr: \nstdout: {\"_tag\":\"Error\",\"error\":{\"code\":\"LegacyPlatformAuthRequiredError\",\"message\":\"Access token not provided. Supply an access token by running `supabase login` or setting the SUPABASE_ACCESS_TOKEN environment variable.\"}}\n\n"
+    }
+  ],
+  "contentHash": "9c3b66689f7c620b6a26e72b8431c9287376d6f8b5c7f543e81915b963b5a43d"
+}
