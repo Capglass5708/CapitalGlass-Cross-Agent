@@ -68,7 +68,7 @@ Node kinds must remain distinct: `sampleFinding`, `recurringWeakness`, `protocol
 | 2 | medium | `medium-thread-v1` | COMPLETE | `DRAFT_READY_FOR_CURSOR_VALIDATION` | eligible |
 | 3 | architectural | `architectural-thread-v1` | COMPLETE | `DRAFT_READY_FOR_CURSOR_VALIDATION` | eligible |
 | 4 | debugging | `debugging-thread-v1` | COMPLETE | `DRAFT_READY_FOR_CURSOR_VALIDATION` | eligible |
-| 5 | planning | `planning-thread-v1` | PENDING | — | — |
+| 5 | planning | `planning-thread-v1` | FIXTURE_READY | — | — |
 
 ## Artifacts
 
@@ -120,7 +120,9 @@ Node kinds must remain distinct: `sampleFinding`, `recurringWeakness`, `protocol
 
 ## Planning sample #5 (fixture only)
 
-_Authorized next — fixture scaffold pending._
+**Fixture:** empirical program closeout sequencing — reject premature downstream unblock; preserve HOLD; finish fifth sample before wiring (7 turns).  
+**Golden reference:** bounds-based `golden-findings-DRAFT_READY.md`; expected tier T2 is hypothesis only.  
+**Live output / review / routing:** absent until live run commits.
 
 ## Architectural sample #3 (fixture only)
 
