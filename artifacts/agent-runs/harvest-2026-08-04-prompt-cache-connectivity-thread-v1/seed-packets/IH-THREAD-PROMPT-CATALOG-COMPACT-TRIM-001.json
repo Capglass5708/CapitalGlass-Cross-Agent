@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-PROMPT-CATALOG-COMPACT-TRIM-001",
+  "kind": "lesson",
+  "title": "Trim over-budget prompt catalog instead of dropping compact slice",
+  "summary": "Select top N by usageRank with stable tie-break; never omit entire dataset.",
+  "retrievalQuestions": [
+    "Why does Scout report DATASET_HIT while prompt-catalog is absent from compact slice?",
+    "How should records be selected when source exceeds maxRecords?"
+  ],
+  "evidenceRefs": [
+    "harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+    "EVT-012",
+    "EVT-013",
+    "HP-007",
+    "HP-008"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "prompt-catalog routes but compact payload absent or over budget",
+    "startAt": [
+      "inspect compact builder and eligibility filters"
+    ],
+    "runPreflight": [
+      "measure source/eligible counts",
+      "run over-limit fixture"
+    ],
+    "doNot": [
+      "drop full dataset",
+      "promote ineligible prompts",
+      "depend on source order"
+    ],
+    "proveBeforeClaiming": [
+      "25 of 40 selected",
+      "stable hash",
+      "compact slice present"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

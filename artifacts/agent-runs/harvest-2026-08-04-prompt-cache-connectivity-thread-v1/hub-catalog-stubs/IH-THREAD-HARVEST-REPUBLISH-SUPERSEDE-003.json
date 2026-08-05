@@ -1,0 +1,79 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-thread-harvest-republish-supersede-003",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "c7ef3556b7b4d30fd7f03e99ed77c73e659088fe",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+      "seedId": "IH-THREAD-HARVEST-REPUBLISH-SUPERSEDE-003"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T04:05:17.286Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "a5fcc9878d728758bbb9ed98a2807c90ae34a1b790f81937a38da7b2747f2f94"
+  },
+  "body": {
+    "seedId": "IH-THREAD-HARVEST-REPUBLISH-SUPERSEDE-003",
+    "kind": "failure-pattern",
+    "title": "Harvest republish requires explicit seed supersession",
+    "summary": "allow-republish does not bypass seed-ID collision checks.",
+    "canonicalQuestion": "Why did publish return DUPLICATE_BLOCKED with allow-republish?",
+    "alternateQuestions": [
+      "How should allow-supersede-seed arguments be generated before tests?"
+    ],
+    "shortAnswer": "allow-republish does not bypass seed-ID collision checks.",
+    "detailedAnswer": "Harvest republish requires explicit seed supersession",
+    "retrievalQuestions": [
+      "Why did publish return DUPLICATE_BLOCKED with allow-republish?",
+      "How should allow-supersede-seed arguments be generated before tests?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "previously published harvest is republished",
+      "startAt": [
+        "duplication preflight",
+        "enumerate seed IDs"
+      ],
+      "runPreflight": [
+        "check previous receipt",
+        "check same-SHA test receipt"
+      ],
+      "doNot": [
+        "assume allow-republish bypasses seeds",
+        "delete existing seeds"
+      ],
+      "proveBeforeClaiming": [
+        "OPERATIONAL receipt",
+        "expected BY-KIND record exists"
+      ]
+    },
+    "evidenceRefs": [
+      "harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+      "EVT-007",
+      "HP-004",
+      "TW-004"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "AUTOMATIC",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Cross-Agent",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/seed-packets/IH-THREAD-HARVEST-REPUBLISH-SUPERSEDE-003.json"
+    ],
+    "harvestId": "harvest-2026-08-04-prompt-cache-connectivity-thread-v1"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-PROMPT-HARVEST-GATE-SEPARATION-004",
+  "kind": "lesson",
+  "title": "Separate extraction, approval, projection, publication, and host distribution gates",
+  "summary": "Each gate has independent evidence; do not reopen completed gates.",
+  "retrievalQuestions": [
+    "Which prompt-harvest gate is actually failing?",
+    "When should target-host cache fanout be separate?"
+  ],
+  "evidenceRefs": [
+    "harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+    "EVT-005",
+    "EVT-008",
+    "EVT-009",
+    "HP-003",
+    "HP-005"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "prompt-harvest closeout is partially blocked",
+    "startAt": [
+      "read gate matrix and receipts"
+    ],
+    "runPreflight": [
+      "extraction",
+      "approval/projection",
+      "L receipt",
+      "host cache"
+    ],
+    "doNot": [
+      "reopen completed gates",
+      "bind L to one host"
+    ],
+    "proveBeforeClaiming": [
+      "each gate has evidence",
+      "unresolved gates only in next actions"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}

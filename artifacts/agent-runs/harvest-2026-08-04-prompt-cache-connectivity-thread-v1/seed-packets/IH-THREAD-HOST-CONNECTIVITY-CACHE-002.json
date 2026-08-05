@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-HOST-CONNECTIVITY-CACHE-002",
+  "kind": "architecture",
+  "title": "Cache compact connectivity intelligence for desk hosts",
+  "summary": "Non-secret host profiles: routes, mounts, runners, failure signatures, validation commands.",
+  "retrievalQuestions": [
+    "How do I connect to WESLEYDESK or RYZEN9DESK through the approved route?",
+    "Which failure signatures should be checked before a full diagnostic?"
+  ],
+  "evidenceRefs": [
+    "harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+    "EVT-006",
+    "EVT-010",
+    "HP-006"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "agent must connect, diagnose, or sync cache to a desk host",
+    "startAt": [
+      "resolve host-connectivity profile packet"
+    ],
+    "runPreflight": [
+      "verify live host identity/route",
+      "verify profile freshness"
+    ],
+    "doNot": [
+      "cache credentials",
+      "assume observed IP is current",
+      "mutate without live verification"
+    ],
+    "proveBeforeClaiming": [
+      "approved route works",
+      "required services/storage pass"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

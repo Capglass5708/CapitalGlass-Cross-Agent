@@ -1,0 +1,575 @@
+{
+  "packetKind": "graph-extraction",
+  "schemaVersion": "cg-master-graph-extraction-v1",
+  "extractionId": "extraction:harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+  "harvestId": "harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+  "workPackageId": "harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+  "producer": {
+    "repositoryId": "repo:capitalglass-cross-agent",
+    "capability": "harvest-graph-extraction",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "id": "harvest:harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+      "nodeType": "Harvest",
+      "displayName": "harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+      "lifecycleState": "lifecycle:canonical",
+      "operationalState": "DRAFT_READY_FOR_CURSOR_VALIDATION",
+      "metadata": {
+        "missionClass": "chat-thread-closeout-autopsy-harvest-chatgpt-v1",
+        "sourceCommitSha": "c7ef3556b7b4d30fd7f03e99ed77c73e659088fe",
+        "retrievalResult": "INDEX_NOT_AVAILABLE_IN_CHAT_CONTEXT"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T04:01:31.841Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:promptops-authority-boundary-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "PromptOps remains authority — hot cache and Supabase are derivative",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RECORDED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T04:01:31.841Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/promptops-authority-boundary-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/promptops-authority-boundary-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:prompt-extraction-closeout-protocol-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Prompt extraction belongs in closeout harvest",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RECORDED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md",
+        "advancementGate": "operator-explicit-prompt-approval"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T04:01:31.841Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/prompt-extraction-closeout-protocol-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/prompt-extraction-closeout-protocol-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:publication-failure-gate-misclassification-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Publication failure must not be classified as extraction failure",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RECORDED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T04:01:31.841Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/publication-failure-gate-misclassification-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/publication-failure-gate-misclassification-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:harvest-republish-supersede-seeds-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Republish requires explicit seed supersession — allow-republish is insufficient",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RECORDED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T04:01:31.841Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/harvest-republish-supersede-seeds-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/harvest-republish-supersede-seeds-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:shared-nas-publication-host-independent-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Shared L publication is host-independent",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RECORDED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T04:01:31.841Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/shared-nas-publication-host-independent-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/shared-nas-publication-host-independent-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:host-connectivity-intelligence-cache-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Cache compact connectivity intelligence for desk hosts",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "DOCUMENTED",
+      "metadata": {
+        "packetVerdict": "CROSS_CHECK_REQUIRED",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T04:01:31.841Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/host-connectivity-intelligence-cache-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/host-connectivity-intelligence-cache-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:prompt-catalog-over-budget-compact-drop-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Over-budget prompt catalog drops entire compact slice",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RECORDED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T04:01:31.841Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/prompt-catalog-over-budget-compact-drop-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/prompt-catalog-over-budget-compact-drop-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:prompt-catalog-deterministic-compact-trim-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Deterministic compact selection for prompt catalog",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "DOCUMENTED",
+      "metadata": {
+        "packetVerdict": "CROSS_CHECK_REQUIRED",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-04-prompt-cache-connectivity-thread-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T04:01:31.841Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/prompt-catalog-deterministic-compact-trim-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/prompt-catalog-deterministic-compact-trim-v1.json"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:harvest-harvest-2026-08-04-prompt-cache-connectivity-thread-v1-contains-workpackage-promptops-authority-boundary-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+      "targetId": "workpackage:promptops-authority-boundary-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T04:01:31.841Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-promptops-authority-boundary-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:promptops-authority-boundary-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T04:01:31.841Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/promptops-authority-boundary-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/promptops-authority-boundary-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-prompt-cache-connectivity-thread-v1-contains-workpackage-prompt-extraction-closeout-protocol-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+      "targetId": "workpackage:prompt-extraction-closeout-protocol-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T04:01:31.841Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-prompt-extraction-closeout-protocol-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:prompt-extraction-closeout-protocol-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T04:01:31.841Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/prompt-extraction-closeout-protocol-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/prompt-extraction-closeout-protocol-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-prompt-cache-connectivity-thread-v1-contains-workpackage-publication-failure-gate-misclassification-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+      "targetId": "workpackage:publication-failure-gate-misclassification-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T04:01:31.841Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-publication-failure-gate-misclassification-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:publication-failure-gate-misclassification-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T04:01:31.841Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/publication-failure-gate-misclassification-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/publication-failure-gate-misclassification-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-prompt-cache-connectivity-thread-v1-contains-workpackage-harvest-republish-supersede-seeds-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+      "targetId": "workpackage:harvest-republish-supersede-seeds-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T04:01:31.841Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-harvest-republish-supersede-seeds-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:harvest-republish-supersede-seeds-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T04:01:31.841Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/harvest-republish-supersede-seeds-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/harvest-republish-supersede-seeds-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-prompt-cache-connectivity-thread-v1-contains-workpackage-shared-nas-publication-host-independent-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+      "targetId": "workpackage:shared-nas-publication-host-independent-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T04:01:31.841Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-shared-nas-publication-host-independent-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:shared-nas-publication-host-independent-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T04:01:31.841Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/shared-nas-publication-host-independent-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/shared-nas-publication-host-independent-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-prompt-cache-connectivity-thread-v1-contains-workpackage-host-connectivity-intelligence-cache-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+      "targetId": "workpackage:host-connectivity-intelligence-cache-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T04:01:31.841Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-host-connectivity-intelligence-cache-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:host-connectivity-intelligence-cache-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T04:01:31.841Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/host-connectivity-intelligence-cache-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/host-connectivity-intelligence-cache-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-prompt-cache-connectivity-thread-v1-contains-workpackage-prompt-catalog-over-budget-compact-drop-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+      "targetId": "workpackage:prompt-catalog-over-budget-compact-drop-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T04:01:31.841Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-prompt-catalog-over-budget-compact-drop-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:prompt-catalog-over-budget-compact-drop-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T04:01:31.841Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/prompt-catalog-over-budget-compact-drop-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/prompt-catalog-over-budget-compact-drop-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-prompt-cache-connectivity-thread-v1-contains-workpackage-prompt-catalog-deterministic-compact-trim-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+      "targetId": "workpackage:prompt-catalog-deterministic-compact-trim-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T04:01:31.841Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-prompt-catalog-deterministic-compact-trim-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:prompt-catalog-deterministic-compact-trim-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T04:01:31.841Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/prompt-catalog-deterministic-compact-trim-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/compact-records/prompt-catalog-deterministic-compact-trim-v1.json"
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "provenance": {
+    "producerRepositoryId": "repo:capitalglass-cross-agent",
+    "producerCapability": "harvest-graph-extraction",
+    "sourceAuthority": "authority:cross-agent-harvest",
+    "classification": "observed",
+    "verificationState": "verified",
+    "recordedAt": "2026-08-05T04:01:31.841Z",
+    "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/harvest-manifest-v1.json",
+    "sourceAnchorDetail": {
+      "anchorType": "file-path",
+      "locator": "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/harvest-manifest-v1.json"
+    }
+  }
+}
