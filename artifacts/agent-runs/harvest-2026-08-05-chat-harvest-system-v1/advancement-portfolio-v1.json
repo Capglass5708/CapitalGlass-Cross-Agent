@@ -1,0 +1,99 @@
+{
+  "schemaVersion": "advancement-portfolio-v1@1.0.0",
+  "harvestId": "harvest-2026-08-05-chat-harvest-system-v1",
+  "scoringModel": "weighted-v1-8dim",
+  "weights": {
+    "impact": 0.2,
+    "feasibility": 0.15,
+    "reuse": 0.15,
+    "evidence": 0.15,
+    "timeToValue": 0.1,
+    "novelty": 0.1,
+    "strategicFit": 0.1,
+    "urgency": 0.05
+  },
+  "bands": {
+    "ADVANCE_TO_EXPERIMENT": 85,
+    "ADVANCE_TO_DESIGN": 70,
+    "HOLD_FOR_RESEARCH": 55,
+    "PARK": 40
+  },
+  "ranked": [
+    {
+      "rank": 1,
+      "advancementId": "ADV-003",
+      "weightedScore": 82,
+      "band": "ADVANCE_TO_DESIGN",
+      "cheapestExperiment": "Retro-tier 5 harvest ids; compare section count vs operator value",
+      "ownerRepo": "CapitalGlass-Cross-Agent"
+    },
+    {
+      "rank": 2,
+      "advancementId": "ADV-008",
+      "weightedScore": 79,
+      "band": "ADVANCE_TO_DESIGN",
+      "cheapestExperiment": "novelty-check on ADV-003 against pilot-concepts registry",
+      "ownerRepo": "Data-Extraction"
+    },
+    {
+      "rank": 3,
+      "advancementId": "ADV-001",
+      "weightedScore": 76,
+      "band": "ADVANCE_TO_DESIGN",
+      "cheapestExperiment": "Dry-run orchestrator listing existing npm scripts + expected receipts",
+      "ownerRepo": "CapitalGlass-Cross-Agent"
+    },
+    {
+      "rank": 4,
+      "advancementId": "ADV-007",
+      "weightedScore": 72,
+      "band": "ADVANCE_TO_DESIGN",
+      "bandNote": "Architecture packaging",
+      "ownerRepo": "CapitalGlass-Cross-Agent"
+    },
+    {
+      "rank": 5,
+      "advancementId": "ADV-010",
+      "weightedScore": 68,
+      "band": "HOLD_FOR_RESEARCH",
+      "ownerRepo": "Data-Extraction"
+    },
+    {
+      "rank": 6,
+      "advancementId": "ADV-006",
+      "weightedScore": 67,
+      "band": "HOLD_FOR_RESEARCH",
+      "ownerRepo": "Data-Extraction"
+    },
+    {
+      "rank": 7,
+      "advancementId": "ADV-002",
+      "weightedScore": 58,
+      "band": "HOLD_FOR_RESEARCH",
+      "ownerRepo": "CapitalGlass-Cross-Agent"
+    },
+    {
+      "rank": 8,
+      "advancementId": "ADV-005",
+      "weightedScore": 45,
+      "band": "PARK",
+      "ownerRepo": "CG-AppBuilder-MCP"
+    },
+    {
+      "rank": 9,
+      "advancementId": "ADV-004",
+      "weightedScore": 42,
+      "band": "PARK",
+      "ownerRepo": "cg-apps-hub"
+    },
+    {
+      "rank": 10,
+      "advancementId": "ADV-009",
+      "weightedScore": 38,
+      "band": "REJECT",
+      "rejectReason": "Defer until structured ingest + top-3 experiments complete",
+      "ownerRepo": "cg-apps-hub"
+    }
+  ],
+  "topThreeForImplementationPlanning": ["ADV-003", "ADV-008", "ADV-001"]
+}
