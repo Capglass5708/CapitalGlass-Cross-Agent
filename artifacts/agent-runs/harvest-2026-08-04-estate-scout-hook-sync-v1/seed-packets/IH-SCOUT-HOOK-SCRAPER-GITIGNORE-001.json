@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-SCOUT-HOOK-SCRAPER-GITIGNORE-001",
+  "kind": "failure-pattern",
+  "title": "Blanket .cursor/ gitignore blocks tracked scout hook commits",
+  "summary": "Repos with .cursor/ in gitignore need negation rules for hooks.json and hooks/** before scout hook PR can land.",
+  "retrievalQuestions": [
+    "Why did git add reject .cursor/hooks.json on Scraper?",
+    "What gitignore pattern allows estate scout hooks only?"
+  ],
+  "evidenceRefs": ["EVT-506", "2638fda", "ED-502"],
+  "executionDeltaRefs": ["ED-502"],
+  "wasteIds": ["TW-503"],
+  "roiRank": 3,
+  "futureAgentInstructions": {
+    "whenThisAppears": "git add .cursor/hooks.json ignored by .gitignore",
+    "startAt": ["target repo .gitignore"],
+    "runPreflight": ["rg '^\\.cursor' .gitignore"],
+    "doNot": ["git add -f without gitignore fix — breaks repeatability"],
+    "proveBeforeClaiming": [
+      "git check-ignore -v .cursor/hooks.json returns no match after fix",
+      "PR includes gitignore + hooks in same change set"
+    ]
+  },
+  "ownerRepo": "Scraper",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

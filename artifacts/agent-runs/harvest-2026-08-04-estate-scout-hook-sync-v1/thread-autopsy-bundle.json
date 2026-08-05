@@ -1,0 +1,207 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-estate-scout-hook-sync-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-501",
+      "type": "rework",
+      "description": "Pass 1 attempted hook commits in dirty local checkouts instead of verifying origin/main first",
+      "evidenceRefs": ["EVT-504", "EVT-505"],
+      "estimatedImpact": "high",
+      "savedBy": "git ls-tree origin/main .cursor/hooks* before opening PRs; use isolated worktrees",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-502",
+      "type": "verification",
+      "description": "Interpreted local would-sync as missing remote installation when 8/12 repos already had hooks on origin/main",
+      "evidenceRefs": ["EVT-503", "EVT-505"],
+      "estimatedImpact": "medium",
+      "savedBy": "Compare evaluateRepoHookSync local vs fresh origin/main before multi-repo PR wave",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-503",
+      "type": "tool",
+      "description": "Scraper git add failed because .cursor/ was fully gitignored until exception added",
+      "evidenceRefs": ["EVT-506", "Scraper/.gitignore"],
+      "estimatedImpact": "medium",
+      "savedBy": "Estate preflight: check .gitignore for .cursor blanket ignore before sync PR",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-504",
+      "type": "operator_attention",
+      "description": "Multiple harvest/scout protocol invocations required because hot cache was intermittently missing on WSL_WORK",
+      "evidenceRefs": ["INDEX_HIT_AI_CACHE vs FAILOVER_GIT_LEDGER in same mission arc"],
+      "estimatedImpact": "low",
+      "savedBy": "Confirm HOT_CACHE_ROOT_RESOLUTION_PASS before estate-wide verification claims",
+      "roiRank": 4
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-501",
+      "trigger": "Estate check failed (21/33) while remote main already contained hooks for most targets",
+      "operatorCost": "medium",
+      "systemFix": "Document origin/main verification step in estate-scout-hook sync runbook",
+      "evidenceRefs": ["EVT-503", "EVT-505"],
+      "linkedWasteIds": ["TW-501", "TW-502"]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-501",
+      "situation": "12-repo scout hook rollout with dirty local clones",
+      "actualExecution": {
+        "steps": [
+          "Ran check → 12 would-sync",
+          "Attempted direct commits in local repos with WIP drift",
+          "Opened PRs and merged where needed",
+          "Ran npm run sync:intelligence-hub-scout-hooks for local disk alignment"
+        ],
+        "outcome": "PASS locally after rework",
+        "evidenceRefs": ["EVT-504", "EVT-507", "EVT-508"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "For each target: git fetch && git ls-tree origin/main hook paths",
+          "If origin synced: npm run sync locally only",
+          "If origin missing: isolated worktree PR (hooks + gitignore fix only)",
+          "Single check:intelligence-hub-scout-hooks at end"
+        ],
+        "outcome": "Same 33/33 with fewer PR attempts and no dirty-tree friction",
+        "requiredPreflight": ["npm run agent:index:scout -- --json"]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "medium",
+        "operatorFrustration": "low"
+      }
+    },
+    {
+      "executionDeltaId": "ED-502",
+      "situation": "Scraper hook PR commit",
+      "actualExecution": {
+        "steps": ["sync wrote hooks", "git add rejected — .cursor/ ignored"],
+        "outcome": "BLOCK until gitignore exception",
+        "evidenceRefs": ["EVT-506"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Pre-scan estate manifest repos for .gitignore .cursor/ blanket",
+          "Include gitignore negation in same PR as hooks when needed"
+        ],
+        "outcome": "First-push PR success",
+        "requiredPreflight": ["rg '^\\.cursor' .gitignore in worktree"]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-501",
+      "summary": "Treated local would-sync as remote missing hooks",
+      "whereItHappened": "CG-AppBuilder-MCP check:intelligence-hub-scout-hooks on stale local clones",
+      "whyItWasWrong": "Estate check evaluates local disk; origin/main already had canonical hooks for 8/12 targets",
+      "correctFirstMove": "Verify origin/main hook blobs before opening governed PRs",
+      "preventiveControl": "Estate scout sync runbook: origin-main verify gate",
+      "seedTarget": "IH-SCOUT-HOOK-ORIGIN-VERIFY-001",
+      "executionDeltaId": "ED-501"
+    },
+    {
+      "wrongMoveId": "WM-502",
+      "summary": "Attempted hook commits in dirty feature-branch checkouts",
+      "whereItHappened": "CapitalGlassRevu, Office-Admin, Cursor-MCP-Kit local trees",
+      "whyItWasWrong": "Mixed WIP with hook-only commits violates governed path and risks unrelated files",
+      "correctFirstMove": "Isolated git worktree from origin/main for hook-only PRs",
+      "preventiveControl": "Always use /tmp/<wp>/<repo> worktrees for estate hook PRs",
+      "seedTarget": "IH-SCOUT-HOOK-WORKTREE-PR-001",
+      "executionDeltaId": "ED-501"
+    }
+  ],
+  "duplicateWork": [],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Origin-main verify before estate scout PR wave",
+      "whyItPays": "Avoids unnecessary PRs when remote already synced; cuts multi-repo rework",
+      "effort": "low",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "savedWasteIds": ["TW-501", "TW-502"],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 2,
+      "title": "Estate gitignore preflight for .cursor blanket ignore",
+      "whyItPays": "Prevents Scraper-class git add failures on hook rollout",
+      "effort": "low",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "savedWasteIds": ["TW-503"],
+      "seedAs": "rule"
+    },
+    {
+      "rank": 3,
+      "title": "Archived-repo exception in scout-hooks manifest",
+      "whyItPays": "capital-glass-developer-memory cannot receive remote hooks; estate check should document exception",
+      "effort": "medium",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "savedWasteIds": [],
+      "seedAs": "index-slice"
+    },
+    {
+      "rank": 4,
+      "title": "Local-only sync command in operator closeout",
+      "whyItPays": "npm run sync:intelligence-hub-scout-hooks aligns local disk without git restore when origin already correct",
+      "effort": "low",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "savedWasteIds": ["TW-501"],
+      "seedAs": "command"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "SCOUT_HOOKS_REMOTE_COMPLETE",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "All non-archived estate targets have hooks on origin/main",
+        "capital-glass-developer-memory exception documented or repo unarchived"
+      ],
+      "lastKnownEvidence": [
+        "EVT-509",
+        "11/12 non-archived targets verified on origin/main 2026-08-05",
+        "npm run check:intelligence-hub-scout-hooks 33/33 local PASS"
+      ],
+      "proofCommandId": "git-ls-tree-origin-hooks"
+    },
+    {
+      "awardOrVerdict": "FULLY_SEEDED",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "harvest:publish-hub-seed + index:freshness-gate by operator on WESLEYDESK"
+      ],
+      "lastKnownEvidence": [
+        "harvest:validate PASS pending",
+        "hubPublishStatus not-run per protocol"
+      ],
+      "proofCommandId": "index-freshness-gate"
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "registryPath": "work-progress/harvest-packet-registry.json",
+    "hubSlicesConsulted": [
+      "work-progress/intelligence-hub-slices/BY-KIND/active-work-blockers.json"
+    ],
+    "commandIndexConsulted": true,
+    "commandIndexPath": "work-progress/command-index.json",
+    "duplicatesFound": 0,
+    "notes": "No prior harvest packet for estate-scout-hook-sync-v1"
+  }
+}

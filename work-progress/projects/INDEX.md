@@ -38,12 +38,14 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 
 | Packet ID | State | Verdict | Owner repo | Project file | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `ryzen9desk-managed-executor-v1` | RUNNER_BOOTSTRAP_CHECKPOINT_STARTED | CODE_READY_FOR_RUNNER_BOOTSTRAP | CG-AppBuilder-MCP | [2026-08-03_ryzen9desk-managed-executor-v1.md](./2026-08-03_ryzen9desk-managed-executor-v1.md) | CG-AppBuilder-MCP mission: RYZEN9DESK WSL install from main + dispatch executor-smoke receipt |
-| `active-ledger-ci-path-and-hash-stability-v1` | COMPLETE | PASS | CG-AppBuilder-MCP | [2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md](./2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md) | None unless test:active-ledger-sync regresses on main |
-| `project-folder-synology-primary-v1-dev-environment` | HOLD | CONTRACT_PASS_HOSTED_DEV_HOLD | CapitalGlass-Documents | [project-folder-synology-primary-v1-dev-hosted-environment.md](./project-folder-synology-primary-v1-dev-hosted-environment.md) | Resolve Vercel BLOCKED deploy and Supabase dev isolation (owner: CapitalGlass-Documents) |
-| `cross-agent-retrieval-failover-v1.1` | ADOPTED | PASS | CapitalGlass-Cross-Agent | handoffs/CURRENT_HANDOFF.md | Recurring: use layered failover for suite status when L: unavailable |
-| `wsl2-native-repo-library-migration-v1` | PARTIAL | FILESYSTEM_PASS_OPERATIONAL_CLEANUP_RECORDED | CG-AppBuilder-MCP | [2026-08-03_wsl2-native-repo-library-migration-v1.md](./2026-08-03_wsl2-native-repo-library-migration-v1.md) | Per-repo ext4 verification; RYZEN9DESK alignment via separate executor mission |
-| `office-admin-ryzen9desk-managed-executor-bootstrap-v1` | INDEXED | CODE_READY_FOR_RUNNER_BOOTSTRAP | CapitalGlass-Office-Admin | [2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md](./2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md) | Runner bootstrap remains CG-AppBuilder-MCP mission; do not claim MANAGED_EXECUTOR_ONLINE |
+| `estate-scout-hooks-33-33-v1` | HARVEST_COMPLETE | PASS | CG-AppBuilder-MCP | artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/thread-event-inventory.json | Operator: git pull hook paths on stale clones when convenient |
+| `estate-scout-hook-pr-merges-v1` | HARVEST_COMPLETE | PASS | CG-AppBuilder-MCP | artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/code-touch-summary.json | None — PRs merged |
+| `developer-memory-archived-scout-hook-v1` | DOCUMENTED | PASS | capital-glass-developer-memory | artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/thread-event-inventory.json | Unarchive repo or remove from estate manifest with documented exception |
+| `scout-hook-local-would-sync-mistake-v1` | DOCUMENTED | PASS | CG-AppBuilder-MCP | artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/thread-autopsy-bundle.json | Promote seed to runbook gate when operator approves |
+| `scout-hook-worktree-repeated-work-v1` | DOCUMENTED | PASS | CG-AppBuilder-MCP | artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/thread-autopsy-bundle.json | Use worktree pattern in IH-SCOUT-HOOK-WORKTREE-PR-001 |
+| `scout-hook-faster-path-v1` | HARVEST_COMPLETE | PASS | CG-AppBuilder-MCP | artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/seed-packets/IH-SCOUT-HOOK-ORIGIN-VERIFY-001.json | None |
+| `scout-hook-check-command-v1` | HARVEST_COMPLETE | PASS | CG-AppBuilder-MCP | [command-index.json](./command-index.json) | Add to estate closeout checklist |
+| `estate-scout-hook-protocol-upgrade-v1` | HARVEST_COMPLETE | PASS | CG-AppBuilder-MCP | harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md | Operator may publish hub seeds when L: mounted |
 
 <!-- HARVEST-PACKET-INDEX:END -->
 

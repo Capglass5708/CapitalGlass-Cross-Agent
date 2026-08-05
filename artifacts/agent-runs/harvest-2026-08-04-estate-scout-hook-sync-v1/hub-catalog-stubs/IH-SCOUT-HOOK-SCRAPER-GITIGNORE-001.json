@@ -1,0 +1,79 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-scout-hook-scraper-gitignore-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "402352f4bb056e3f30115f7eb7d40e13000cafef",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-estate-scout-hook-sync-v1",
+      "seedId": "IH-SCOUT-HOOK-SCRAPER-GITIGNORE-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T02:46:43.192Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "7623592c18d28f17a33266ab43532b9d019c983d8f2200b64f9bb215375d66cd"
+  },
+  "body": {
+    "seedId": "IH-SCOUT-HOOK-SCRAPER-GITIGNORE-001",
+    "kind": "failure-pattern",
+    "title": "Blanket .cursor/ gitignore blocks tracked scout hook commits",
+    "summary": "Repos with .cursor/ in gitignore need negation rules for hooks.json and hooks/** before scout hook PR can land.",
+    "canonicalQuestion": "Why did git add reject .cursor/hooks.json on Scraper?",
+    "alternateQuestions": [
+      "What gitignore pattern allows estate scout hooks only?"
+    ],
+    "shortAnswer": "Repos with .cursor/ in gitignore need negation rules for hooks.json and hooks/** before scout hook PR can land.",
+    "detailedAnswer": "Blanket .cursor/ gitignore blocks tracked scout hook commits",
+    "retrievalQuestions": [
+      "Why did git add reject .cursor/hooks.json on Scraper?",
+      "What gitignore pattern allows estate scout hooks only?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "git add .cursor/hooks.json ignored by .gitignore",
+      "startAt": [
+        "target repo .gitignore"
+      ],
+      "runPreflight": [
+        "rg '^\\.cursor' .gitignore"
+      ],
+      "doNot": [
+        "git add -f without gitignore fix — breaks repeatability"
+      ],
+      "proveBeforeClaiming": [
+        "git check-ignore -v .cursor/hooks.json returns no match after fix",
+        "PR includes gitignore + hooks in same change set"
+      ]
+    },
+    "evidenceRefs": [
+      "EVT-506",
+      "2638fda",
+      "ED-502"
+    ],
+    "executionDeltaRefs": [
+      "ED-502"
+    ],
+    "wasteIds": [
+      "TW-503"
+    ],
+    "operatorFrictionIds": [],
+    "roiRank": 3,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "Scraper",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/seed-packets/IH-SCOUT-HOOK-SCRAPER-GITIGNORE-001.json"
+    ],
+    "harvestId": "harvest-2026-08-04-estate-scout-hook-sync-v1"
+  }
+}

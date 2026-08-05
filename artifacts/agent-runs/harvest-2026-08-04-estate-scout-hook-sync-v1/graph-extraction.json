@@ -1,0 +1,599 @@
+{
+  "packetKind": "graph-extraction",
+  "schemaVersion": "cg-master-graph-extraction-v1",
+  "extractionId": "extraction:harvest-2026-08-04-estate-scout-hook-sync-v1",
+  "harvestId": "harvest-2026-08-04-estate-scout-hook-sync-v1",
+  "workPackageId": "harvest-2026-08-04-estate-scout-hook-sync-v1",
+  "producer": {
+    "repositoryId": "repo:capitalglass-cross-agent",
+    "capability": "harvest-graph-extraction",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "id": "harvest:harvest-2026-08-04-estate-scout-hook-sync-v1",
+      "nodeType": "Harvest",
+      "displayName": "harvest-2026-08-04-estate-scout-hook-sync-v1",
+      "lifecycleState": "lifecycle:canonical",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+        "sourceCommitSha": "402352f4bb056e3f30115f7eb7d40e13000cafef",
+        "retrievalResult": "INDEX_HIT_AI_CACHE"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:estate-scout-hooks-33-33-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Estate scout hooks 33/33 local sync complete",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/thread-event-inventory.json",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/estate-scout-hooks-33-33-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/estate-scout-hooks-33-33-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:estate-scout-hook-pr-merges-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Governed PR merges for missing remote hook installations",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/code-touch-summary.json",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/estate-scout-hook-pr-merges-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/estate-scout-hook-pr-merges-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:developer-memory-archived-scout-hook-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "capital-glass-developer-memory archived — remote hooks blocked",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "DOCUMENTED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "capital-glass-developer-memory",
+        "ownerIndexingStatus": "not-required",
+        "projectFile": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/thread-event-inventory.json",
+        "advancementGate": "operator-decision"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/developer-memory-archived-scout-hook-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/developer-memory-archived-scout-hook-v1.json"
+        }
+      }
+    },
+    {
+      "id": "entity:blocker-developer-memory-repo-archived",
+      "nodeType": "Entity",
+      "displayName": "developer-memory-repo-archived",
+      "metadata": {
+        "entityKind": "harvest-blocker",
+        "blockerOwner": "operator"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/developer-memory-archived-scout-hook-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/developer-memory-archived-scout-hook-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:scout-hook-local-would-sync-mistake-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Local would-sync misread as remote missing hooks",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "DOCUMENTED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/thread-autopsy-bundle.json",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/scout-hook-local-would-sync-mistake-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/scout-hook-local-would-sync-mistake-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:scout-hook-worktree-repeated-work-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Dirty local checkout caused rework on hook PR pass 1",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "DOCUMENTED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/thread-autopsy-bundle.json",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/scout-hook-worktree-repeated-work-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/scout-hook-worktree-repeated-work-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:scout-hook-faster-path-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Faster path: origin verify → worktree PR → local sync",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/seed-packets/IH-SCOUT-HOOK-ORIGIN-VERIFY-001.json",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/scout-hook-faster-path-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/scout-hook-faster-path-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:scout-hook-check-command-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Proof commands for estate scout hook acceptance",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/command-index.json",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/scout-hook-check-command-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/scout-hook-check-command-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:estate-scout-hook-protocol-upgrade-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Estate scout sync: hooks-only scope + no mcp.json commits",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md",
+        "advancementGate": "harvest:publish-hub-seed NOT_RUN_BY_CURSOR"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/estate-scout-hook-protocol-upgrade-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/estate-scout-hook-protocol-upgrade-v1.json"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:harvest-harvest-2026-08-04-estate-scout-hook-sync-v1-contains-workpackage-estate-scout-hooks-33-33-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-estate-scout-hook-sync-v1",
+      "targetId": "workpackage:estate-scout-hooks-33-33-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-estate-scout-hooks-33-33-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:estate-scout-hooks-33-33-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/estate-scout-hooks-33-33-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/estate-scout-hooks-33-33-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-estate-scout-hook-sync-v1-contains-workpackage-estate-scout-hook-pr-merges-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-estate-scout-hook-sync-v1",
+      "targetId": "workpackage:estate-scout-hook-pr-merges-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-estate-scout-hook-pr-merges-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:estate-scout-hook-pr-merges-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/estate-scout-hook-pr-merges-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/estate-scout-hook-pr-merges-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-estate-scout-hook-sync-v1-contains-workpackage-developer-memory-archived-scout-hook-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-estate-scout-hook-sync-v1",
+      "targetId": "workpackage:developer-memory-archived-scout-hook-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-developer-memory-archived-scout-hook-v1-blocked-by-entity-blocker-developer-memory-repo-archived",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:developer-memory-archived-scout-hook-v1",
+      "targetId": "entity:blocker-developer-memory-repo-archived",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/developer-memory-archived-scout-hook-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/developer-memory-archived-scout-hook-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-estate-scout-hook-sync-v1-contains-workpackage-scout-hook-local-would-sync-mistake-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-estate-scout-hook-sync-v1",
+      "targetId": "workpackage:scout-hook-local-would-sync-mistake-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-scout-hook-local-would-sync-mistake-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:scout-hook-local-would-sync-mistake-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/scout-hook-local-would-sync-mistake-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/scout-hook-local-would-sync-mistake-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-estate-scout-hook-sync-v1-contains-workpackage-scout-hook-worktree-repeated-work-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-estate-scout-hook-sync-v1",
+      "targetId": "workpackage:scout-hook-worktree-repeated-work-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-scout-hook-worktree-repeated-work-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:scout-hook-worktree-repeated-work-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/scout-hook-worktree-repeated-work-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/scout-hook-worktree-repeated-work-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-estate-scout-hook-sync-v1-contains-workpackage-scout-hook-faster-path-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-estate-scout-hook-sync-v1",
+      "targetId": "workpackage:scout-hook-faster-path-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-scout-hook-faster-path-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:scout-hook-faster-path-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/scout-hook-faster-path-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/scout-hook-faster-path-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-estate-scout-hook-sync-v1-contains-workpackage-scout-hook-check-command-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-estate-scout-hook-sync-v1",
+      "targetId": "workpackage:scout-hook-check-command-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-scout-hook-check-command-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:scout-hook-check-command-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/scout-hook-check-command-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/scout-hook-check-command-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-estate-scout-hook-sync-v1-contains-workpackage-estate-scout-hook-protocol-upgrade-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-estate-scout-hook-sync-v1",
+      "targetId": "workpackage:estate-scout-hook-protocol-upgrade-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-estate-scout-hook-protocol-upgrade-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:estate-scout-hook-protocol-upgrade-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T02:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/estate-scout-hook-protocol-upgrade-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/compact-records/estate-scout-hook-protocol-upgrade-v1.json"
+        }
+      }
+    }
+  ],
+  "warnings": [
+    "unmapped ownerRepo capital-glass-developer-memory for packet developer-memory-archived-scout-hook-v1"
+  ],
+  "provenance": {
+    "producerRepositoryId": "repo:capitalglass-cross-agent",
+    "producerCapability": "harvest-graph-extraction",
+    "sourceAuthority": "authority:cross-agent-harvest",
+    "classification": "observed",
+    "verificationState": "verified",
+    "recordedAt": "2026-08-05T02:45:00.000Z",
+    "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/harvest-manifest-v1.json",
+    "sourceAnchorDetail": {
+      "anchorType": "file-path",
+      "locator": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/harvest-manifest-v1.json"
+    }
+  }
+}

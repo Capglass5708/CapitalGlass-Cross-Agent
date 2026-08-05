@@ -1,0 +1,81 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-scout-hook-origin-verify-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "402352f4bb056e3f30115f7eb7d40e13000cafef",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-estate-scout-hook-sync-v1",
+      "seedId": "IH-SCOUT-HOOK-ORIGIN-VERIFY-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T02:46:43.192Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "critical",
+    "contentHash": "1ff7349458ecc8ca73a6cac83b8466909973347bd19caf123b64e64164eb0fcd"
+  },
+  "body": {
+    "seedId": "IH-SCOUT-HOOK-ORIGIN-VERIFY-001",
+    "kind": "failure-pattern",
+    "title": "Estate scout check would-sync may mean local stale, not remote missing",
+    "summary": "check:intelligence-hub-scout-hooks evaluates local disk; verify origin/main hook blobs before opening PRs across the estate.",
+    "canonicalQuestion": "Why does check:intelligence-hub-scout-hooks show would-sync when GitHub main already has hooks?",
+    "alternateQuestions": [
+      "How do I verify scout hooks on origin/main without git restore on dirty clones?"
+    ],
+    "shortAnswer": "check:intelligence-hub-scout-hooks evaluates local disk; verify origin/main hook blobs before opening PRs across the estate.",
+    "detailedAnswer": "Estate scout check would-sync may mean local stale, not remote missing",
+    "retrievalQuestions": [
+      "Why does check:intelligence-hub-scout-hooks show would-sync when GitHub main already has hooks?",
+      "How do I verify scout hooks on origin/main without git restore on dirty clones?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Estate scout hook sync reports N/33 would-sync for multiple repos",
+      "startAt": [
+        "CG-AppBuilder-MCP/scripts/three-way-agent/intelligence-hub-scout-hooks-lib.mjs",
+        "work-progress/command-index.json"
+      ],
+      "runPreflight": [
+        "npm run agent:index:scout -- --json"
+      ],
+      "doNot": [
+        "Open PRs in every would-sync repo before checking origin/main",
+        "Run git restore . on repos with preserved WIP"
+      ],
+      "proveBeforeClaiming": [
+        "git ls-tree origin/main .cursor/hooks.json .cursor/hooks/intelligence-hub-scout-inject.sh",
+        "shimHash matches 98d2af10c0b13bd9324ac5fc99ab02cd267fe774f17bf1ed489bbea585410bf2"
+      ]
+    },
+    "evidenceRefs": [
+      "EVT-503",
+      "EVT-505",
+      "WM-501"
+    ],
+    "executionDeltaRefs": [
+      "ED-501"
+    ],
+    "wasteIds": [
+      "TW-502"
+    ],
+    "operatorFrictionIds": [],
+    "roiRank": 1,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/seed-packets/IH-SCOUT-HOOK-ORIGIN-VERIFY-001.json"
+    ],
+    "harvestId": "harvest-2026-08-04-estate-scout-hook-sync-v1"
+  }
+}

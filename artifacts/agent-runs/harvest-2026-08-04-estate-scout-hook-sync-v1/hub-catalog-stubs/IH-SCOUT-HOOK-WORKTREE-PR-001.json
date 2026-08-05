@@ -1,0 +1,80 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-scout-hook-worktree-pr-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "402352f4bb056e3f30115f7eb7d40e13000cafef",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-estate-scout-hook-sync-v1",
+      "seedId": "IH-SCOUT-HOOK-WORKTREE-PR-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T02:46:43.193Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "90dd9d38dfac6135232ba7c24407f7189812db7ceac840829a7122d9bcfefe6f"
+  },
+  "body": {
+    "seedId": "IH-SCOUT-HOOK-WORKTREE-PR-001",
+    "kind": "runbook",
+    "title": "Use isolated worktrees for estate scout hook PRs",
+    "summary": "Hook-only PRs must come from clean origin/main worktrees when local clones have WIP on feature branches.",
+    "canonicalQuestion": "How do I install scout hooks without touching unrelated local changes?",
+    "alternateQuestions": [
+      "What is the governed path for estate-scout-hook-sync PRs?"
+    ],
+    "shortAnswer": "Hook-only PRs must come from clean origin/main worktrees when local clones have WIP on feature branches.",
+    "detailedAnswer": "Use isolated worktrees for estate scout hook PRs",
+    "retrievalQuestions": [
+      "How do I install scout hooks without touching unrelated local changes?",
+      "What is the governed path for estate-scout-hook-sync PRs?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Local repo has feature-branch WIP and estate hook sync is required",
+      "startAt": [
+        "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md estate-scout section"
+      ],
+      "runPreflight": [
+        "git status -sb in target repo"
+      ],
+      "doNot": [
+        "Commit hooks from dirty main or feature branches with unrelated modifications",
+        "Combine multiple repos into one commit"
+      ],
+      "proveBeforeClaiming": [
+        "PR diff contains only .cursor/hooks.json and .cursor/hooks/intelligence-hub-scout-inject.sh (plus gitignore if needed)",
+        "Per-repo CI green before merge"
+      ]
+    },
+    "evidenceRefs": [
+      "EVT-504",
+      "WM-502",
+      "ED-501"
+    ],
+    "executionDeltaRefs": [
+      "ED-501"
+    ],
+    "wasteIds": [
+      "TW-501"
+    ],
+    "operatorFrictionIds": [],
+    "roiRank": 2,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/seed-packets/IH-SCOUT-HOOK-WORKTREE-PR-001.json"
+    ],
+    "harvestId": "harvest-2026-08-04-estate-scout-hook-sync-v1"
+  }
+}

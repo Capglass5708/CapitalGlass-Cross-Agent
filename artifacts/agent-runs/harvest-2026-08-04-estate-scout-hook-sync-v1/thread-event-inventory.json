@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-estate-scout-hook-sync-v1",
+  "generatedAt": "2026-08-05T02:45:00.000Z",
+  "sourceCommitSha": "402352f4bb056e3f30115f7eb7d40e13000cafef",
+  "events": [
+    {
+      "id": "EVT-501",
+      "turn": "~1",
+      "actor": "user",
+      "summary": "Started estate-scout-hook-sync-v1 with App Builder preflight, 12-repo scope, governed PRs, 33/33 acceptance",
+      "evidenceRefs": [
+        "estate-scout-hook-sync-v1 user query",
+        "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"
+      ]
+    },
+    {
+      "id": "EVT-502",
+      "turn": "~2",
+      "actor": "cursor",
+      "summary": "Preflight classified App Builder tracked files; stashed hook-context-diagnostic runtime evidence; main clean at 2ceadc15",
+      "evidenceRefs": [
+        "git stash estate-scout-hook-sync-v1",
+        "CG-AppBuilder-MCP main 2ceadc15"
+      ]
+    },
+    {
+      "id": "EVT-503",
+      "turn": "~3",
+      "actor": "cursor",
+      "summary": "Initial check:intelligence-hub-scout-hooks reported 21/33 synced, 12 would-sync locally",
+      "evidenceRefs": [
+        "npm run check:intelligence-hub-scout-hooks exit 1"
+      ]
+    },
+    {
+      "id": "EVT-504",
+      "turn": "~4",
+      "actor": "cursor",
+      "summary": "Pass 1 direct-repo sync blocked by dirty local trees; opened Visual-Asset-Engine PR #42",
+      "evidenceRefs": [
+        "Capglass5708/Visual-Asset-Engine/pull/42"
+      ]
+    },
+    {
+      "id": "EVT-505",
+      "turn": "~5",
+      "actor": "cursor",
+      "summary": "Clean worktrees from origin/main showed 8/12 targets already had canonical hooks on remote main",
+      "evidenceRefs": [
+        "git ls-tree origin/main .cursor/hooks.json CapitalGlassRevu",
+        "git ls-tree origin/main .cursor/hooks.json CG-Computer-Estimator-MCP"
+      ]
+    },
+    {
+      "id": "EVT-506",
+      "turn": "~6",
+      "actor": "cursor",
+      "summary": "Scraper origin/main lacked hooks; .cursor/ gitignore blocked git add until exception added",
+      "evidenceRefs": [
+        "Scraper/.gitignore .cursor/* exception",
+        "Capglass5708/Scraper/pull/11"
+      ]
+    },
+    {
+      "id": "EVT-507",
+      "turn": "~7",
+      "actor": "cursor",
+      "summary": "Merged scout-hook PRs: VAE #42, Office-Admin #55, Scraper #11; ran estate sync → 33/33",
+      "evidenceRefs": [
+        "3e851628655afdcab64d909cd7325a5b672a1f03",
+        "8d2de72805fd9aa55e266e2cc9a36f402fc07255",
+        "2638fda84a7786891710493ba54f8670b540d588",
+        "npm run sync:intelligence-hub-scout-hooks"
+      ]
+    },
+    {
+      "id": "EVT-508",
+      "turn": "~8",
+      "actor": "cursor",
+      "summary": "check:intelligence-hub-scout-hooks PASS 33/33; scout shim invoke continue:true exit 0",
+      "evidenceRefs": [
+        "shimHash 98d2af10c0b13bd9324ac5fc99ab02cd267fe774f17bf1ed489bbea585410bf2",
+        "hooksHash 91b203b1a7d41b16899eb5b26362caf9aea478d1a276f22b7e3abb21067b12f5"
+      ]
+    },
+    {
+      "id": "EVT-509",
+      "turn": "~9",
+      "actor": "cursor",
+      "summary": "capital-glass-developer-memory GitHub repo archived; hooks on local disk only, not on origin/main",
+      "evidenceRefs": [
+        "gh repo view isArchived true",
+        "origin/main a93fe76 no .cursor/hooks.json"
+      ]
+    },
+    {
+      "id": "EVT-510",
+      "turn": "~10",
+      "actor": "user",
+      "summary": "Requested CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1 run for thread closeout",
+      "evidenceRefs": [
+        "Z:/Capital-Glass-Dev/Harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md",
+        "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"
+      ]
+    }
+  ]
+}
