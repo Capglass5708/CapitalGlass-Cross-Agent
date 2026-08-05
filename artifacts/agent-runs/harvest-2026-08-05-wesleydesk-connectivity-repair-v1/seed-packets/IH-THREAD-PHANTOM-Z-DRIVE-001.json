@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-PHANTOM-Z-DRIVE-001",
+  "kind": "failure-pattern",
+  "title": "Phantom Z requires DefineDosDevice before remap",
+  "summary": "Error 85 when net use shows empty but letter reserved.",
+  "retrievalQuestions": [
+    "Z remap device already in use?",
+    "net use empty but ForceRemap fails?"
+  ],
+  "evidenceRefs": [
+    "clear-z.ps1",
+    "harvest-2026-08-04-z-l-drive-offlan-session-v1"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "error 85 on WESLEYDESK Z remap",
+    "startAt": [
+      "Get-PSDrive Z"
+    ],
+    "runPreflight": [],
+    "doNot": [
+      "Retry ForceRemap without phantom clear"
+    ],
+    "proveBeforeClaiming": [
+      "DefineDosDevice removed=True"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}
