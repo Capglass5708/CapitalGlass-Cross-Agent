@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://capitalglass.dev/schemas/system-advancement-seed-packet-v1.json",
+  "title": "System Advancement Seed Packet v1",
+  "description": "Seed packets from advancement harvest — intelligenceKind advancement only.",
+  "type": "object",
+  "allOf": [{ "$ref": "harvest-seed-packet-v1.schema.json" }],
+  "properties": {
+    "schemaVersion": { "const": "system-advancement-seed-packet-v1@1.0.0" },
+    "intelligenceKind": { "const": "advancement" },
+    "improvementClassification": {
+      "type": "array",
+      "items": {
+        "enum": ["EXTRACTED", "SYNTHESIZED", "INVENTED", "CROSS_CHECK_REQUIRED"]
+      },
+      "minItems": 1
+    },
+    "novelContribution": { "type": "string", "minLength": 10 },
+    "linkedConceptId": { "type": "string", "pattern": "^ADV-" },
+    "wavePhaseImproved": { "type": "array", "items": { "type": "string" } },
+    "smallestUsefulVersion": { "type": "string" },
+    "acceptanceProof": { "type": "string", "minLength": 1 },
+    "evidenceClassification": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "CHAT_DIRECT",
+          "ATTACHMENT_SOURCE",
+          "USER_REPORTED_OPERATIONAL",
+          "CROSS_CHECK_CANDIDATE"
+        ]
+      }
+    }
+  },
+  "required": [
+    "intelligenceKind",
+    "improvementClassification",
+    "novelContribution",
+    "acceptanceProof"
+  ]
+}

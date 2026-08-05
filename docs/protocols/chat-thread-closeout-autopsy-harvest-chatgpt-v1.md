@@ -20,6 +20,8 @@ ChatGPT produces **draft seed material**. Cursor **verifies** code cross-checks 
 
 **ChatGPT is never source of truth** for code, deploy status, or index state.
 
+For **synthesized system improvements** (not observed replay), use sibling protocol [chat-thread-system-advancement-harvest-chatgpt-v1.md](./chat-thread-system-advancement-harvest-chatgpt-v1.md) — **ADVANCEMENT** intelligence lane.
+
 ---
 
 ## Operating verdict
@@ -53,6 +55,44 @@ sourceCommitSha: UNKNOWN
 ```
 
 Do **not** claim `INDEX_HIT`, `INDEX_HIT_AI_CACHE`, `FAILOVER_SUPABASE`, or any live hub code unless you executed the command in this session (you did not).
+
+---
+
+## Evidence classification (mandatory)
+
+Every `EVT`, `HP`, `ED`, `DUP`, and seed `evidenceRef` must include one classification:
+
+| Class | Meaning |
+| --- | --- |
+| `CHAT_DIRECT` | Directly visible user or assistant statement |
+| `ATTACHMENT_SOURCE` | Supported by an attached source file |
+| `USER_REPORTED_OPERATIONAL` | Pasted result not independently verified |
+| `CROSS_CHECK_CANDIDATE` | Code, test, deploy, receipt, branch, runtime, index, publication |
+
+Operational claims default to `USER_REPORTED_OPERATIONAL` or `CROSS_CHECK_CANDIDATE`.
+
+---
+
+## Scope ledger (before EVT inventory)
+
+- primary mission
+- closed lanes
+- open lanes
+- unrelated follow-ups
+- deferred work
+- do-not-merge boundaries
+
+---
+
+## Correction ledger (`COR-###`)
+
+- priorAssumption
+- correction
+- correctedModel
+- affectedFindings (EVT/HP/ROI ids)
+- futurePrevention (optional)
+
+Corrections override earlier assumptions in the final artifact.
 
 ---
 
@@ -112,8 +152,10 @@ Produce **one Markdown findings file** with these sections (minimum):
 1. Final summary (verdict template)
 2. Harvest verdict + tier rationale
 3. Retrieval preflight (`INDEX_NOT_AVAILABLE_IN_CHAT_CONTEXT`)
-4. Thread event inventory (`EVT-###`)
-5. Harvest packets (`HP-###`, all 8 kinds as applicable)
+4. Scope ledger
+5. Correction ledger (`COR-###`)
+6. Thread event inventory (`EVT-###`) — each with evidence classification
+7. Harvest packets (`HP-###`, all 8 kinds as applicable)
 6. Execution deltas (`ED-###`, actual vs optimal)
 7. Waste ledger (`TW-###` or `NONE_FOUND` with proof)
 8. Duplication detector (`DUP-###` from visible context / pasted reports)
@@ -138,7 +180,7 @@ Each seed in the findings file must include:
 - `seedId` — unique, prefix `IH-THREAD-` recommended
 - `kind` — `failure-pattern` | `protocol-upgrade` | `lesson` | etc.
 - ≥2 `retrievalQuestions`
-- ≥1 `evidenceRefs` (chat turns, attachments, pasted reports)
+- ≥1 `evidenceRefs` with classification (chat turns, attachments, pasted reports)
 - `futureAgentInstructions` — whenThisAppears, startAt, runPreflight, doNot, proveBeforeClaiming
 - `status: "CANDIDATE"` only — never `APPROVED`
 
@@ -204,7 +246,25 @@ ChatGPT cannot run automated preflight. Instead:
 3. **Do not invent new seed IDs** that duplicate themes already in pasted `thread-autopsy-index` excerpts
 4. **Label** `NEEDS_REGISTRY_LOOKUP_FIRST` on repeated_work packets
 
+Per `DUP-###`, classify duplication as one of:
+
+`REPEATED_DISCUSSION` | `POSSIBLE_EXISTING_IMPLEMENTATION` | `POSSIBLE_EXISTING_HARVEST` | `INTENTIONALLY_DEFERRED` | `FALSE_DUPLICATE_DIFFERENT_HOST_OR_CONTEXT`
+
 Cursor ingest + `harvest:duplication-preflight` enforces hard blocks before publish.
+
+---
+
+## Pre-push self-check (autopsy)
+
+Before commit to `chat-gpt-harvest`:
+
+- No live retrieval claim (`INDEX_HIT*`, etc.)
+- No `HARVEST_COMPLETE` / `OPERATIONAL` / `FULLY_SEEDED`
+- ROI top-3 each has seed candidate with ≥2 `retrievalQuestions`
+- Every operational claim labeled `USER_REPORTED_OPERATIONAL` or `CROSS_CHECK_CANDIDATE`
+- Closed and open lanes not conflated
+- Corrections override earlier assumptions
+- Publication table entirely `not-run`
 
 ---
 
@@ -232,25 +292,31 @@ projection.hubPublishStatus: not-run
 ```text
 Run chat-thread-closeout-autopsy-harvest-chatgpt-v1.
 
-Lane: CHAT_CONTEXT_ONLY. Treat this entire conversation as source truth.
+Lane: CHAT_CONTEXT_ONLY. Treat visible conversation and attachments as the only available evidence.
 
 Declare mode in your first sentence: REVIEW_ONLY or DRAFT_FILE.
 
-Do NOT claim INDEX_HIT, HARVEST_COMPLETE, OPERATIONAL, or FULLY_SEEDED.
+Start with retrieval block (INDEX_NOT_AVAILABLE_IN_CHAT_CONTEXT).
+
+Do NOT claim INDEX_HIT, INDEX_HIT_AI_CACHE, HARVEST_COMPLETE, OPERATIONAL, or FULLY_SEEDED.
+
+Classify all evidence: CHAT_DIRECT | ATTACHMENT_SOURCE | USER_REPORTED_OPERATIONAL | CROSS_CHECK_CANDIDATE.
+
+Before EVT inventory: Scope ledger + Correction ledger (COR-###).
 
 Produce one Markdown findings file with:
-- thread event inventory (EVT-###)
+- thread event inventory (EVT-###) with evidence classes
 - harvest packets (HP-###, 8 kinds as applicable)
-- execution deltas, waste ledger, duplication detector, operator friction
+- execution deltas, waste ledger, duplication detector (five-class DUP-###), operator friction
 - ROI top-3+, do-not-advance guards
-- seed packet JSON blocks (≥2 retrievalQuestions each)
+- seed packet JSON blocks (≥2 retrievalQuestions each, classified evidenceRefs)
 - publication truth table (all not-run)
 
 Output verdict: DRAFT_READY_FOR_CURSOR_VALIDATION.
 
 If I said concept-only or stop earlier in the thread, honor CONCEPT_ONLY_NO_WRITE / STOP_NOW.
 
-After the findings file is complete, push to GitHub per "ChatGPT push instructions" below.
+Run pre-push self-check. Push per "ChatGPT push instructions" below.
 
 End with: hand off command for Cursor ingest (harvest:ingest-chatgpt-findings).
 ```
@@ -308,8 +374,10 @@ Publication truth table in the findings file remains `not-run` until Cursor comp
 
 | File | Role |
 | --- | --- |
-| [chat-improvement-extract-chatgpt-v1.md](./chat-improvement-extract-chatgpt-v1.md) | **Default** — feed ChatGPT with Cursor chats; improvements + cross-check only |
-| [chat-thread-closeout-autopsy-harvest-v1.md](./chat-thread-closeout-autopsy-harvest-v1.md) | Cursor + operator canonical protocol (L:) |
+| [chat-thread-closeout-autopsy-harvest-chatgpt-v1.md](./chat-thread-closeout-autopsy-harvest-chatgpt-v1.md) | ChatGPT OBSERVED autopsy lane |
+| [chat-thread-system-advancement-harvest-chatgpt-v1.md](./chat-thread-system-advancement-harvest-chatgpt-v1.md) | ChatGPT ADVANCEMENT synthesis lane |
+| [gated-wave-lifecycle-v1.md](./gated-wave-lifecycle-v1.md) | Concept-to-completion waves 0–13 |
+| [system-advancement-quality-gate.md](./system-advancement-quality-gate.md) | Novelty gate (advancement) |
 | [thread-autopsy-hub-accommodation-v1.md](./thread-autopsy-hub-accommodation-v1.md) | L: hub paths |
 | `scripts/harvest/ingest-chatgpt-findings.mjs` | Convert findings MD → Cross-Agent harvest artifacts |
 | `artifacts/agent-runs/harvest-2026-08-04-chatgpt-autopsy-findings-v1/` | Example ingested harvest from pilot findings |
