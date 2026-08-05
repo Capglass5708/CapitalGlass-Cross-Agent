@@ -65,7 +65,7 @@ Node kinds must remain distinct: `sampleFinding`, `recurringWeakness`, `protocol
 | # | Class | Sample id | Status | Harvest verdict | Graph eligibility |
 | --- | --- | --- | --- | --- | --- |
 | 1 | thin | `thin-thread-v1` | COMPLETE | `NO_HARVEST_NEEDED` | hold |
-| 2 | medium | `medium-thread-v1` | PASS (live review) | `DRAFT_READY_FOR_CURSOR_VALIDATION` | pending routing |
+| 2 | medium | `medium-thread-v1` | COMPLETE | `DRAFT_READY_FOR_CURSOR_VALIDATION` | eligible |
 | 3 | architectural | `architectural-thread-v1` | PENDING | — | — |
 | 4 | debugging | `debugging-thread-v1` | PENDING | — | — |
 | 5 | planning | `planning-thread-v1` | PENDING | — | — |
@@ -79,6 +79,7 @@ Node kinds must remain distinct: `sampleFinding`, `recurringWeakness`, `protocol
 | Downstream handoff | `artifacts/agent-runs/harvest-empirical-samples-v1/empirical-downstream-handoff-v1.json` |
 | Program defects log | `artifacts/agent-runs/harvest-empirical-samples-v1/empirical-program-defects-v1.json` |
 | Thin routing metadata | `artifacts/agent-runs/harvest-empirical-samples-v1/samples/thin-thread-v1/sample-routing-metadata-v1.json` |
+| Medium routing metadata | `artifacts/agent-runs/harvest-empirical-samples-v1/samples/medium-thread-v1/sample-routing-metadata-v1.json` |
 
 ## Thin sample #1
 
@@ -114,4 +115,4 @@ Node kinds must remain distinct: `sampleFinding`, `recurringWeakness`, `protocol
 **Golden reference:** bounds-based `golden-findings-DRAFT_READY.md`.  
 **Live output:** `chatgpt-live-output.md` — observed T2, `DRAFT_READY_FOR_CURSOR_VALIDATION`, COR-001 boundary.  
 **Rubric:** PASS on all 7 criteria; protocol change not indicated.  
-**Routing metadata:** pending separate commit.
+**Graph:** `eligible` — one `sampleFinding` candidate (COR-001 boundary); downstream ingest still HOLD.

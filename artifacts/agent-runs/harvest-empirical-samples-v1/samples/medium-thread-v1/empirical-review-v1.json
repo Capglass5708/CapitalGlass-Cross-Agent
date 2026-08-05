@@ -20,7 +20,7 @@
   "observedVerdict": "DRAFT_READY_FOR_CURSOR_VALIDATION",
   "expectedTier": "T2",
   "observedTier": "T2",
-  "sampleComplete": false,
+  "sampleComplete": true,
   "liveRun": {
     "status": "COMPLETE",
     "executedAt": "2026-08-05T21:30:00.000Z",
@@ -83,7 +83,7 @@
   "recurringWeakness": null,
   "mediumSampleGate": "PASS",
   "nextSample": "architectural-thread-v1",
-  "nextSampleAuthoring": "BLOCKED_UNTIL_MEDIUM_ROUTING_METADATA_COMMITTED",
+  "nextSampleAuthoring": "UNBLOCKED",
   "routingMetadata": {
     "programId": "harvest-empirical-samples-v1",
     "sampleId": "medium-thread-v1",
@@ -91,6 +91,18 @@
     "destinationLane": "DATA_EXTRACTION",
     "downstreamProjection": "CG_MASTER_GRAPH",
     "protocolVersion": "CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1",
-    "pendingArtifact": "samples/medium-thread-v1/sample-routing-metadata-v1.json"
+    "programLineage": {
+      "protocolAuthorityCommit": "1e87d6ab96ed35d3d117def99e1e0d670c028575",
+      "mediumLiveRunCommit": "1b5f75e29e7e4b3ded523eab700c455ee9b70f4e"
+    },
+    "sourceArtifact": "sample-thread-source.md",
+    "generatedArtifact": "chatgpt-live-output.md",
+    "reviewArtifact": "empirical-review-v1.json",
+    "signalDensity": "high",
+    "verdict": "PASS",
+    "harvestVerdict": "DRAFT_READY_FOR_CURSOR_VALIDATION",
+    "graphEligibility": "eligible",
+    "downstreamHandoffStatus": "HOLD_REPO_AUTHORITY_RESOLUTION",
+    "routingMetadataPath": "samples/medium-thread-v1/sample-routing-metadata-v1.json"
   }
 }

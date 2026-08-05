@@ -1,7 +1,7 @@
 {
   "schemaVersion": "cross-agent-empirical-downstream-handoff-v1@1.0.0",
   "programId": "harvest-empirical-samples-v1",
-  "generatedAt": "2026-08-05T21:00:00.000Z",
+  "generatedAt": "2026-08-05T21:40:00.000Z",
   "programLineage": {
     "protocolAuthorityCommit": "1e87d6ab96ed35d3d117def99e1e0d670c028575",
     "programScaffoldCommit": "2b565d34fa792c4c04851b2b1506797805630e23",
@@ -64,6 +64,13 @@
       "routingMetadataPath": "samples/thin-thread-v1/sample-routing-metadata-v1.json",
       "handoffReady": false,
       "handoffBlocker": "HOLD_REPO_AUTHORITY_RESOLUTION"
+    },
+    {
+      "sampleId": "medium-thread-v1",
+      "sampleStatus": "COMPLETE",
+      "routingMetadataPath": "samples/medium-thread-v1/sample-routing-metadata-v1.json",
+      "handoffReady": false,
+      "handoffBlocker": "HOLD_REPO_AUTHORITY_RESOLUTION"
     }
   ],
   "completedSamples": [
@@ -75,6 +82,15 @@
       "harvestVerdict": "NO_HARVEST_NEEDED",
       "graphEligibility": "hold",
       "completedAt": "2026-08-05T21:00:00.000Z"
+    },
+    {
+      "sampleId": "medium-thread-v1",
+      "sampleClass": "medium",
+      "status": "COMPLETE",
+      "empiricalResult": "PASS",
+      "harvestVerdict": "DRAFT_READY_FOR_CURSOR_VALIDATION",
+      "graphEligibility": "eligible",
+      "completedAt": "2026-08-05T21:40:00.000Z"
     }
   ]
 }
