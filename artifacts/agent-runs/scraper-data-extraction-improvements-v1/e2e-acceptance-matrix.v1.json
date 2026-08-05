@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "scraper-de-e2e-acceptance-matrix-v1",
+  "workPackageId": "scraper-data-extraction-improvements-v1",
+  "finalGate": "SCRAPER_DATA_EXTRACTION_GRAPH_PIPELINE_VALIDATED_V1",
+  "cases": [
+    {
+      "caseId": "positive-handoff",
+      "description": "Valid package validate ingest acknowledge",
+      "expectedVerdict": "PASS"
+    },
+    {
+      "caseId": "hash-mismatch",
+      "description": "Tampered contentHash rejected",
+      "expectedVerdict": "PASS"
+    },
+    {
+      "caseId": "duplicate-replay",
+      "description": "Second ingest classified as replay",
+      "expectedVerdict": "PASS"
+    },
+    {
+      "caseId": "quarantine",
+      "description": "Quarantine command records ledger event",
+      "expectedVerdict": "PASS"
+    },
+    {
+      "caseId": "normalize-observations",
+      "description": "Accepted package produces observation bundle",
+      "expectedVerdict": "PASS"
+    },
+    {
+      "caseId": "graph-contribution",
+      "description": "Contribution envelope validates against MG schema",
+      "expectedVerdict": "PASS"
+    },
+    {
+      "caseId": "lineage-report",
+      "description": "Full lineage packageId to graph release hash",
+      "expectedVerdict": "PASS"
+    }
+  ]
+}

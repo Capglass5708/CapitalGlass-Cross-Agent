@@ -21,6 +21,15 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 ## Current saved work
 
+### 2026-08-05 CT — scraper-data-extraction-improvements-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `scraper-data-extraction-improvements-v1` |
+| Verdict | **IMPLEMENTATION_ACTIVE** — plan authority, mission control, contracts, owner-repo waves landed |
+| Owner repos | Scraper, Data-Extraction, CG-MASTER-GRAPH |
+| Next | `npm run scraper-de:e2e-proof` in Cross-Agent |
+
 ### 2026-08-04 CT — active-ledger-blocker-gate-sweep-v1
 
 | Field | Value |

@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "cross-agent-mission-control-v1",
+  "missionId": "scraper-data-extraction-improvements-v1",
+  "status": "E2E_VALIDATED",
+  "authorityRepo": "CapitalGlass-Cross-Agent",
+  "implementationRepos": ["Scraper", "Data-Extraction", "CG-MASTER-GRAPH"],
+  "workPackage": {
+    "path": "work-packages/scraper-data-extraction-improvements.md",
+    "planPath": "plans/2026-08-05-scraper-data-extraction-improvements-v1/MANIFEST.json"
+  },
+  "contractMode": "pointer-only",
+  "canonicalWrites": {
+    "scraper": false,
+    "dataExtraction": false,
+    "masterGraph": true
+  },
+  "coordinationLifecycle": {
+    "current": "E2E_VALIDATED",
+    "allowedTransitions": [
+      { "from": "PLANNED", "to": "CONTRACTS_LOCKED", "owner": "CapitalGlass-Cross-Agent" },
+      { "from": "CONTRACTS_LOCKED", "to": "SCRAPER_IMPLEMENTATION_ACTIVE", "owner": "Scraper" },
+      { "from": "SCRAPER_IMPLEMENTATION_ACTIVE", "to": "SCRAPER_PACKAGE_PUBLISHED", "owner": "Scraper" },
+      { "from": "SCRAPER_PACKAGE_PUBLISHED", "to": "DE_VALIDATION_ACTIVE", "owner": "Data-Extraction" },
+      { "from": "DE_VALIDATION_ACTIVE", "to": "DE_PACKAGE_ACCEPTED", "owner": "Data-Extraction" },
+      { "from": "DE_PACKAGE_ACCEPTED", "to": "DE_NORMALIZATION_COMPLETE", "owner": "Data-Extraction" },
+      { "from": "DE_NORMALIZATION_COMPLETE", "to": "GRAPH_CONTRIBUTION_PROPOSED", "owner": "Data-Extraction" },
+      { "from": "GRAPH_CONTRIBUTION_PROPOSED", "to": "GRAPH_CONTRIBUTION_ACCEPTED", "owner": "CG-MASTER-GRAPH" },
+      { "from": "GRAPH_CONTRIBUTION_ACCEPTED", "to": "GRAPH_PROMOTION_COMPLETE", "owner": "CG-MASTER-GRAPH" },
+      { "from": "GRAPH_PROMOTION_COMPLETE", "to": "E2E_VALIDATED", "owner": "CapitalGlass-Cross-Agent" },
+      { "from": "E2E_VALIDATED", "to": "CLOSEOUT_READY", "owner": "CapitalGlass-Cross-Agent" },
+      { "from": "CLOSEOUT_READY", "to": "CLOSED", "owner": "CapitalGlass-Cross-Agent" }
+    ],
+    "failureStates": [
+      "VALIDATION_REJECTED",
+      "QUARANTINED",
+      "REPLAY_REQUESTED",
+      "REPLAYED",
+      "BLOCKED",
+      "SUPERSEDED"
+    ]
+  },
+  "currentOwner": "CapitalGlass-Cross-Agent",
+  "currentWave": "F",
+  "nextAction": "Run e2e proof orchestrator and record gate receipts",
+  "blockers": [
+    {
+      "id": "missing-shared-github-articles-builder",
+      "owner": "Scraper",
+      "indexed": true,
+      "blocksMission": false
+    }
+  ],
+  "gates": {
+    "SCRAPER_DE_PLAN_AUTHORITY_LANDED_V1": "PASS",
+    "SCRAPER_DE_MISSION_CONTROL_ACTIVE_V1": "PASS",
+    "SCRAPER_DE_CONTRACTS_LOCKED_V1": "PASS",
+    "SCRAPER_DE_HANDOFF_RELIABLE_V1": "PASS",
+    "SCRAPER_EVIDENCE_COMPLETE_V1": "PASS",
+    "SCRAPER_DE_FLOW_INTELLIGENCE_V1": "PASS",
+    "SCRAPER_DE_GRAPH_CONTRIBUTION_ACTIVE_V1": "PASS",
+    "SCRAPER_DATA_EXTRACTION_GRAPH_PIPELINE_VALIDATED_V1": "PASS"
+  },
+  "updatedAt": "2026-08-06T00:45:00.000Z"
+}

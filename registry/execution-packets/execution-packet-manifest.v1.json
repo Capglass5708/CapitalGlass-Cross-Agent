@@ -99,6 +99,56 @@
       ],
       "expectedOutputs": ["publicationGeneration", "contentHash"],
       "dependsOnDatasets": ["active-ledger", "intelligence-hub-index"]
+    },
+    {
+      "packetId": "scraper-de-wp01-contract-authority-v1",
+      "extends": "mcp-preflight-base-v1",
+      "version": "1.0.0",
+      "queryClass": "scraper-de-mission",
+      "workPackageId": "scraper-data-extraction-improvements-v1",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "exitGate": "WP_01_CONTRACT_AUTHORITY_PASS",
+      "commandIds": ["validate:scraper-de-contract-registry"],
+      "expectedOutputs": ["contractRegistry", "rejectionTaxonomy"],
+      "dependsOnDatasets": ["contract-authority"]
+    },
+    {
+      "packetId": "scraper-de-wp02-scraper-package-v1",
+      "extends": "mcp-preflight-base-v1",
+      "version": "1.0.0",
+      "queryClass": "scraper-de-mission",
+      "workPackageId": "scraper-data-extraction-improvements-v1",
+      "ownerRepo": "Scraper",
+      "exitGate": "WP_02_SCRAPER_PACKAGE_PASS",
+      "commandIds": ["scraper:package-build", "scraper:package-verify"],
+      "expectedOutputs": ["immutablePackage", "integrityManifest"]
+    },
+    {
+      "packetId": "scraper-de-wp06-de-ingestion-v1",
+      "extends": "mcp-preflight-base-v1",
+      "version": "1.0.0",
+      "queryClass": "scraper-de-mission",
+      "workPackageId": "scraper-data-extraction-improvements-v1",
+      "ownerRepo": "Data-Extraction",
+      "exitGate": "WP_06_DE_INGESTION_RELIABLE",
+      "commandIds": [
+        "de:scraper-handoff-validate",
+        "de:scraper-handoff-replay-check",
+        "de:scraper-handoff-reject",
+        "de:scraper-handoff-quarantine"
+      ],
+      "expectedOutputs": ["ingestionLedger", "ackReceipt"]
+    },
+    {
+      "packetId": "scraper-de-wp10-e2e-proof-v1",
+      "extends": "mcp-preflight-base-v1",
+      "version": "1.0.0",
+      "queryClass": "scraper-de-mission",
+      "workPackageId": "scraper-data-extraction-improvements-v1",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "exitGate": "SCRAPER_DATA_EXTRACTION_GRAPH_PIPELINE_VALIDATED_V1",
+      "commandIds": ["scraper-de:e2e-proof"],
+      "expectedOutputs": ["e2eProofReport", "missionClosureReceipt", "lineageReport"]
     }
   ]
 }

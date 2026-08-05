@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "scraper-de-e2e-proof-report-v1",
+  "workPackageId": "scraper-data-extraction-improvements-v1",
+  "verdict": "PASS",
+  "gateId": "SCRAPER_DATA_EXTRACTION_GRAPH_PIPELINE_VALIDATED_V1",
+  "recordedAt": "2026-08-06T00:43:22.952Z",
+  "results": [
+    {
+      "step": "scraper-package-build",
+      "ok": true,
+      "detail": "{\n  \"verdict\": \"PACKAGE_BUILT\",\n  \"packageId\": \"PKG-E2E-PROOF-V1\",\n  \"finalDir\": \"/home/wesley/repos/Scraper/ui-capture/artifacts/handoff-e2e-proof/outbound/PKG-E2E-PROOF-V1\",\n  \"ready\": {\n    \"schemaVersion\": \"scraper-package-ready-v1\",\n    \"packageId\": \"PKG-E2E-PROOF-V1\",\n    \"contentHash\": \"sha256:d0f49e56db4175331fe83ca88bc1c3e8ad65d13f90016f9e9408dcb1ff0277b2\",\n    \"readyAt\": \"2026-08-06T00:43:22.615Z\"\n  }\n}\n"
+    },
+    {
+      "step": "scraper-package-verify",
+      "ok": true,
+      "detail": "{\n  \"verdict\": \"VERIFY_PASS\",\n  \"packageDir\": \"/home/wesley/repos/Scraper/ui-capture/artifacts/handoff-e2e-proof/outbound/PKG-E2E-PROOF-V1\",\n  \"ok\": true,\n  \"ready\": {\n    \"schemaVersion\": \"scraper-package-ready-v1\",\n    \"packageId\": \"PKG-E2E-PROOF-V1\",\n    \"contentHash\": \"sha256:d0f49e56db4175331fe83ca88bc1c3e8ad65d13f90016f9e9408dcb1ff0277b2\",\n    \"readyAt\": \"2026-08-06T00:43:22.615Z\"\n  },\n  \"manifest\": {\n    \"schemaVersion\": \"scraper-data-extraction-package-v1\",\n    \"packageId\": \"PKG-E2E-PROOF-V1\",\n    \"producer\": \"scraper\",\n    \"consumer\": \"data-extraction\",\n    \"sourceId\": \"SRC-SYNOLOGY-OFFICE-ADMIN-V1\",\n    \"captureId\": \"CAP-SYNOLOGY-OFFICE-ADMIN-V1\",\n    \"contentHash\": \"sha256:d0f49e56db4175331fe83ca88bc1c3e8ad65d13f90016f9e9408dcb1ff0277b2\",\n    \"corpusPointers\": [\n      {\n        \"pointerId\": \"ptr-raw-1\",\n        \"corpusPath\": \"fixtures/vendor-captures/synology-office-admin-v1/raw/index.html\",\n        \"contentType\": \"text/html\",\n        \"contentHash\": \"sha256:d0f49e56db4175331fe83ca88bc1c3e8ad65d13f90016f9e9408dcb1ff0277b2\",\n        \"byteSize\": 64,\n        \"role\": \"raw\"\n      }\n    ],\n    \"validationStatus\": \"PASS\",\n    \"deliveryStatus\": \"DELIVERED_PENDING_ACK\",\n    \"sourceUrl\": \"https://kb.synology.com/en-us/DSM/help/DSM/AdminCenter/file_share_permissions\",\n    \"createdAt\": \"2026-07-27T12:00:00.000Z\",\n    \"deliveredAt\": \"2026-07-27T12:05:00.000Z\"\n  }\n}\n"
+    },
+    {
+      "step": "de-handoff-tests",
+      "ok": true
+    },
+    {
+      "step": "observations-normalize",
+      "ok": true,
+      "detail": "{\n  \"verdict\": \"NORMALIZATION_PASS\",\n  \"outPath\": \"/home/wesley/repos/Data-Extraction/artifacts/observations/synology-office-admin-v1/normalized-observations.json\",\n  \"count\": 2\n}\n"
+    },
+    {
+      "step": "graph-contribution-build",
+      "ok": true,
+      "detail": "{\n  \"verdict\": \"NORMALIZATION_PASS\",\n  \"outPath\": \"/home/wesley/repos/Data-Extraction/artifacts/observations/synology-office-admin-v1/normalized-observations.json\",\n  \"count\": 2\n}\n{\n  \"verdict\": \"CONTRIBUTION_BUILT\",\n  \"contributionId\": \"contribution:pkg-synology-office-admin-v1\",\n  \"outPath\": \"/home/wesley/repos/Data-Extraction/artifacts/graph-contribution/synology-office-admin-v1/contribution-envelope.json\"\n}\n"
+    },
+    {
+      "step": "graph-validate-contribution",
+      "ok": true,
+      "detail": "{\n  \"verdict\": \"PASS\",\n  \"gateId\": \"WP_09_GRAPH_PROMOTION_BOUNDARY_PASS\",\n  \"contributionId\": \"contribution:pkg-synology-office-admin-v1\",\n  \"path\": \"/home/wesley/repos/Data-Extraction/artifacts/graph-contribution/synology-office-admin-v1/contribution-envelope.json\",\n  \"counts\": {\n    \"observations\": 2\n  }\n}\n"
+    }
+  ],
+  "lineage": {
+    "packageId": "PKG-E2E-PROOF-V1",
+    "contributionEnvelope": "/home/wesley/repos/Data-Extraction/artifacts/graph-contribution/synology-office-admin-v1/contribution-envelope.json"
+  }
+}

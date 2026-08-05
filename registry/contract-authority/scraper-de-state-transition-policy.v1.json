@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "scraper-de-state-transition-policy-v1@1.0.0",
+  "workPackageId": "scraper-data-extraction-improvements-v1",
+  "updatedAt": "2026-08-06T00:45:00.000Z",
+  "layers": {
+    "coordination": {
+      "authority": "CapitalGlass-Cross-Agent",
+      "recordPath": "work-progress/mission-control/scraper-data-extraction-improvements-v1.json",
+      "description": "Mission waves and closeout — not a substitute for runtime deliveryStatus"
+    },
+    "runtimeProducer": {
+      "authority": "Scraper",
+      "field": "deliveryStatus",
+      "transitions": [
+        "DISCOVERED",
+        "CAPTURED",
+        "VALIDATED",
+        "PACKAGED",
+        "READY_FOR_DELIVERY",
+        "DELIVERED_PENDING_ACK",
+        "ACKNOWLEDGED",
+        "CONSUMER_REJECTED",
+        "QUARANTINED"
+      ]
+    },
+    "runtimeConsumer": {
+      "authority": "Data-Extraction",
+      "ledgerPath": "artifacts/scraper-handoff/ledger/ingestion-ledger.jsonl",
+      "events": [
+        "INGEST_STARTED",
+        "INGEST_COMPLETED",
+        "ACK_ACCEPTED",
+        "ACK_REJECTED",
+        "QUARANTINED",
+        "REPLAY_DUPLICATE"
+      ]
+    }
+  },
+  "idempotency": {
+    "replayKey": "packageId + contentHash",
+    "duplicateBehavior": "ACK with REPLAY_DUPLICATE ledger event; no second canonical ingest"
+  }
+}

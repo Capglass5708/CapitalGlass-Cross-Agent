@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "1.0.0",
+  "documentType": "work-package-plan",
+  "title": "Scraper Data Extraction Master Graph Pipeline",
+  "workPackageId": "scraper-data-extraction-improvements-v1",
+  "createdAt": "2026-08-05T19:40:00-05:00",
+  "createdAtUtc": "2026-08-06T00:40:00Z",
+  "authoredBy": {
+    "agent": "Cursor Composer",
+    "sessionClass": "fix",
+    "operatorHost": "CG-RYZEN9DESK-01"
+  },
+  "repository": {
+    "meetingPlace": "https://github.com/Capglass5708/CapitalGlass-Cross-Agent",
+    "folder": "plans/2026-08-05-scraper-data-extraction-improvements-v1",
+    "primaryArtifact": "WORK_PACKAGE.md"
+  },
+  "reposInvolved": [
+    {
+      "name": "CapitalGlass-Cross-Agent",
+      "role": "Coordination — mission control, contract pointers, execution packets, e2e evidence",
+      "localPath": "/home/wesley/repos/CapitalGlass-Cross-Agent"
+    },
+    {
+      "name": "Scraper",
+      "role": "Capture producer — immutable packages, evidence, policy",
+      "localPath": "/home/wesley/repos/Scraper"
+    },
+    {
+      "name": "Data-Extraction",
+      "role": "Handoff consumer — validate, ingest, normalize, contribution envelopes",
+      "localPath": "/home/wesley/repos/Data-Extraction"
+    },
+    {
+      "name": "CG-MASTER-GRAPH",
+      "role": "Canonical graph promotion — contribution validation and compile",
+      "localPath": "/home/wesley/repos/CG-MASTER-GRAPH"
+    },
+    {
+      "name": "CG-AppBuilder-MCP",
+      "role": "Estate registry — SCRAPER_DE_HANDOFF_ESTATE bridge updates only",
+      "localPath": "/home/wesley/repos/CG-AppBuilder-MCP"
+    }
+  ],
+  "authoritativeReferences": [
+    "CapitalGlass-Cross-Agent/work-packages/scraper-data-extraction-improvements.md",
+    "CapitalGlass-Cross-Agent/work-progress/mission-control/scraper-data-extraction-improvements-v1.json",
+    "CapitalGlass-Cross-Agent/registry/contract-authority/scraper-de-contract-registry.v1.json",
+    "Data-Extraction/docs/application-bible/07-SCRAPER-HANDOFF.md",
+    "CG-AppBuilder-MCP/docs/platform-registry/SCRAPER_DE_HANDOFF_ESTATE.json"
+  ],
+  "scope": {
+    "inScope": [
+      "Pointer-only cross-repo contract registry",
+      "Mission coordination lifecycle and execution packets",
+      "Scraper immutable DE handoff packages",
+      "Data-Extraction ingestion ledger reject replay quarantine",
+      "Observation normalization and graph contribution envelopes",
+      "Master Graph contribution validation lane",
+      "End-to-end governed proof artifacts"
+    ],
+    "outOfScope": [
+      "Cross-Agent runtime scraper or ingestion code",
+      "Schema duplication in Cross-Agent",
+      "for-scraper scout routing (already merged PR #14)",
+      "Post-milestone acquisition scale optimization"
+    ]
+  },
+  "tags": [
+    "scraper",
+    "data-extraction",
+    "master-graph",
+    "handoff",
+    "contribution-envelope",
+    "cross-agent"
+  ]
+}

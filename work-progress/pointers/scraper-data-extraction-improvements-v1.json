@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "cross-agent-scraper-de-mission-pointer-v1",
+  "workPackageId": "scraper-data-extraction-improvements-v1",
+  "coordinationRepo": "CapitalGlass-Cross-Agent",
+  "contractRegistryPath": "CapitalGlass-Cross-Agent/registry/contract-authority/scraper-de-contract-registry.v1.json",
+  "missionControlPath": "CapitalGlass-Cross-Agent/work-progress/mission-control/scraper-data-extraction-improvements-v1.json",
+  "e2eEvidenceRoot": "CapitalGlass-Cross-Agent/artifacts/agent-runs/scraper-data-extraction-improvements-v1",
+  "ownerRepos": {
+    "scraper": {
+      "repository": "Scraper",
+      "handoffCommands": ["package:build", "package:verify", "handoff:queue", "handoff:status"]
+    },
+    "dataExtraction": {
+      "repository": "Data-Extraction",
+      "handoffCommands": [
+        "scraper-handoff:validate",
+        "scraper-handoff:ingest",
+        "scraper-handoff:acknowledge",
+        "scraper-handoff:reject",
+        "scraper-handoff:replay-check",
+        "scraper-handoff:quarantine",
+        "observations:normalize",
+        "graph-contribution:build"
+      ]
+    },
+    "masterGraph": {
+      "repository": "CG-MASTER-GRAPH",
+      "commands": ["graph:contribution:validate", "graph:collect", "graph:compile", "graph:publish"]
+    }
+  },
+  "estateRegistry": "CG-AppBuilder-MCP/docs/platform-registry/SCRAPER_DE_HANDOFF_ESTATE.json",
+  "publicationStatus": "IMPLEMENTATION_ACTIVE",
+  "updatedAt": "2026-08-06T00:45:00.000Z"
+}
