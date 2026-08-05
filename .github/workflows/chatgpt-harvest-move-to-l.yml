@@ -10,6 +10,12 @@ on:
     paths:
       - 'artifacts/agent-runs/**/chatgpt-findings-source.md'
       - 'artifacts/agent-runs/**/system-advancement-findings-source.md'
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: Operator reason for manual move (e.g. runner recovery rerun)
+        required: false
+        type: string
 
 permissions:
   contents: read

@@ -75,11 +75,26 @@ powershell -ExecutionPolicy Bypass -File scripts/runner/install-wesleydesk-runne
 
 **Manual recovery** (any time runner shows offline):
 
+```powershell
+# Elevated PowerShell on WESLEYDESK — drive mounts + WSL ensure + local probe
+powershell -ExecutionPolicy Bypass -File ~\repos\CapitalGlass-Cross-Agent\scripts\runner\ensure-wesleydesk-runner-stack.ps1
+```
+
+Or WSL-only:
+
 ```bash
 wsl.exe -d Ubuntu-24.04 -u root bash /home/wesley/repos/CapitalGlass-Cross-Agent/scripts/runner/ensure-wesleydesk-runner-wsl.sh
 ```
 
-The ensure script writes `wsl.conf` (`systemd=true`), enables `cg-wesleydesk-resolv.service`, and starts the GitHub Actions runner unit.
+**Permanent fix** (reinstall scheduled tasks with stack orchestrator):
+
+```powershell
+powershell -ExecutionPolicy Bypass -File ~\repos\CapitalGlass-Cross-Agent\scripts\runner\install-wesleydesk-runner-autostart.ps1
+```
+
+The stack script triggers `CapitalGlass-EnsureDeskDriveMounts-*` (non-fatal), then WSL ensure (retries DNS + runner), then writes `L:\02-catalog\runner-health\wesleydesk-cross-agent-latest.json`.
+
+The ensure script writes `wsl.conf` (`systemd=true`), enables `cg-wesleydesk-resolv.service`, and starts the GitHub Actions runner unit with retries (`/var/log/cg-wesleydesk-runner-ensure.log`).
 
 ### Runner version
 
@@ -96,6 +111,12 @@ gh run list --repo Capglass5708/CapitalGlass-Cross-Agent --workflow runner-smoke
 Smoke receipt: `artifacts/agent-runs/cross-agent-index-auto-publisher-activation-v1/wesleydesk-runner-preflight.json`
 
 ## Clear queued publication
+
+```bash
+gh workflow run "ChatGPT harvest move to L" --repo Capglass5708/CapitalGlass-Cross-Agent --ref chat-gpt-harvest -f reason="operator-rerun"
+```
+
+Workflow supports `workflow_dispatch` for manual reruns without `gh run rerun` on cancelled jobs.
 
 After the runner is **online**, re-dispatch or wait for the queued job to start:
 
