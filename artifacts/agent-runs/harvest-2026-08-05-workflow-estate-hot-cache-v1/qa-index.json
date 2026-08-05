@@ -1,0 +1,185 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-05-workflow-estate-hot-cache-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-PROMPT-APPROVAL-BOUNDARY-001",
+      "questionId": "IHPROMPTAPPR",
+      "canonicalQuestion": "Can extracted prompts auto-promote to the catalog?",
+      "alternateQuestions": [
+        "What approval is required to promote prompt candidates?"
+      ],
+      "shortAnswer": "harvest:sync-derived extracts prompt candidates; wf-prompt-candidate-promotion-v1 requires operator-explicit-prompt-approval before catalog delta and Supabase projection.",
+      "detailedAnswer": "Prompt extraction creates candidates only — operator approval before projection",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T03:30:47.597Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/seed-packets/IH-PROMPT-APPROVAL-BOUNDARY-001.json"
+      ],
+      "authorityCommit": [
+        "02882a0"
+      ],
+      "evidenceUrls": [
+        "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md",
+        "artifacts/agent-runs/harvest-prompt-extraction-post-merge-v1/post-merge-acceptance-receipt.json",
+        "wf-prompt-candidate-promotion-v1"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-05-workflow-estate-hot-cache-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Harvest prompt extraction or prompt catalog projection work",
+        "startAt": [
+          "Z:/Capital-Glass-Dev/Harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"
+        ],
+        "runPreflight": [
+          "npm run test:harvest:prompt-post-merge-acceptance"
+        ],
+        "doNot": [
+          "Auto-promote extracted prompts",
+          "Project candidate_only records to Supabase"
+        ],
+        "proveBeforeClaiming": [
+          "PROMPT_APPROVAL_BOUNDARY_PASS",
+          "manifest.promptHarvest.operatorApprovals populated for approved IDs only"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "lesson"
+    },
+    {
+      "ihPfspId": "IH-WORKFLOW-COMMAND-LINKAGE-001",
+      "questionId": "IHWORKFLOWCO",
+      "canonicalQuestion": "How do workflows reference commands?",
+      "alternateQuestions": [
+        "What fails if entryCommandIds are missing from command-index?"
+      ],
+      "shortAnswer": "workflow-index.json references command-index ids; AppBuilder workflow-estate compiler fails on unknown entryCommandIds.",
+      "detailedAnswer": "Workflow records link to Command Estate entryCommandIds — never duplicate command strings",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T03:30:47.597Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/seed-packets/IH-WORKFLOW-COMMAND-LINKAGE-001.json"
+      ],
+      "authorityCommit": [
+        "02882a0"
+      ],
+      "evidenceUrls": [
+        "work-progress/workflow-index.json",
+        "work-progress/command-index.json",
+        "WORKFLOW_ESTATE_COMMAND_LINKAGE_PASS"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "command",
+        "harvest-2026-08-05-workflow-estate-hot-cache-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Adding workflows or hot-cache operator lanes",
+        "startAt": [
+          "work-progress/workflow-index.json",
+          "work-progress/command-index.json"
+        ],
+        "runPreflight": [
+          "npm run workflow-estate:compile-index"
+        ],
+        "doNot": [
+          "Copy raw npm command strings into workflow records"
+        ],
+        "proveBeforeClaiming": [
+          "WORKFLOW_ESTATE_COMPILE_PASS",
+          "every entryCommandId exists in command-index"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "command"
+    },
+    {
+      "ihPfspId": "IH-WORKFLOW-ESTATE-SCOUT-ROUTING-001",
+      "questionId": "IHWORKFLOWES",
+      "canonicalQuestion": "What workflow publishes the L BY-KIND index?",
+      "alternateQuestions": [
+        "What approval is required to promote prompt candidates?",
+        "What workflow closes a mission?"
+      ],
+      "shortAnswer": "After workflow-estate ship, verify three scout queries route to workflow-estate with DATASET_HIT before claiming acceptance.",
+      "detailedAnswer": "Workflow-estate scout routing must cover promotion and closeout queries",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T03:30:47.597Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-05-workflow-estate-hot-cache-v1/seed-packets/IH-WORKFLOW-ESTATE-SCOUT-ROUTING-001.json"
+      ],
+      "authorityCommit": [
+        "02882a0"
+      ],
+      "evidenceUrls": [
+        "CapitalGlass-Cross-Agent#14",
+        "8721dbd",
+        "registry/query-routing/query-routing-manifest.v1.json"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-05-workflow-estate-hot-cache-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Shipping workflow-estate or changing query-routing manifest",
+        "startAt": [
+          "registry/query-routing/query-routing-manifest.v1.json",
+          "work-progress/workflow-index.json"
+        ],
+        "runPreflight": [
+          "npm run test:workflow-estate-hot-cache-gates",
+          "resolveScoutDatasetRouter for three acceptance queries"
+        ],
+        "doNot": [
+          "Claim scout PASS on compile gates only without routing queries"
+        ],
+        "proveBeforeClaiming": [
+          "primaryDataset workflow-estate",
+          "DATASET_HIT",
+          "rawScanRequired false",
+          "liveCompileCount 0"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "lesson"
+    }
+  ]
+}
