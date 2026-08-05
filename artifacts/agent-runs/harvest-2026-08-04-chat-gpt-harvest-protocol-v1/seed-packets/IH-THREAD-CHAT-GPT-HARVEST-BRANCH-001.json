@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-CHAT-GPT-HARVEST-BRANCH-001",
+  "kind": "lesson",
+  "title": "chat-gpt-harvest branch lane separation",
+  "summary": "Protocol harvest ids differ from WESLEYDESK connectivity harvest ids on the same branch.",
+  "retrievalQuestions": [
+    "Which harvest id is protocol vs WESLEYDESK on chat-gpt-harvest?",
+    "What is Pilot A harvest id?"
+  ],
+  "evidenceRefs": [
+    "harvest-2026-08-04-chat-gpt-harvest-protocol-v1",
+    "BRANCH_LANE_MAP.md"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "chat-gpt-harvest branch work or ChatGPT push",
+    "startAt": [
+      "BRANCH_LANE_MAP.md",
+      "work-progress/projects/2026-08-04_chat-gpt-harvest-protocol-v1.md"
+    ],
+    "runPreflight": [],
+    "doNot": [
+      "Mix harvest-2026-08-04-wesleydesk-connectivity-session-boundary-v1 into protocol Pilot A"
+    ],
+    "proveBeforeClaiming": [
+      "harvest-2026-08-04-chat-gpt-harvest-protocol-v1"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}

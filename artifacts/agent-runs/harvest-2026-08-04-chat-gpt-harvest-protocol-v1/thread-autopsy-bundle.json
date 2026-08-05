@@ -1,0 +1,186 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-chat-gpt-harvest-protocol-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "commandIndexConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json"
+    ],
+    "checkedAt": "2026-08-05T03:37:00.249Z"
+  },
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "context",
+      "description": "Mixed WESLEYDESK connectivity harvests on same branch as protocol work",
+      "evidenceRefs": [
+        "harvest-2026-08-04-wesleydesk-connectivity-session-boundary-v1",
+        "harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+        "harvest-2026-08-05-wesleydesk-connectivity-repair-v1"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "BRANCH_LANE_MAP + separate harvest ids",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "retrieval",
+      "description": "Z uppercase path stale until sync manifest included CHAT-THREAD-* destinations",
+      "evidenceRefs": [
+        "02882a0"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "z-harvest-mirror-lib uppercase destinations",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "operator_attention",
+      "description": "OBSERVED vs ADVANCEMENT lane confusion at ChatGPT run time",
+      "evidenceRefs": [
+        "Operator quick start tables"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Dual Z protocol files with lane tables",
+      "roiRank": 3
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Operator @ wrong Z file or mixed thread on branch",
+      "operatorCost": "high",
+      "systemFix": "Lane map + harvest protocol branch first",
+      "evidenceRefs": [
+        "TE-005"
+      ],
+      "linkedWasteIds": [
+        "TW-001",
+        "TW-003"
+      ]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Pilot A before branch protocol harvest",
+      "actualExecution": {
+        "steps": [
+          "Advancement on dirty branch with mixed harvest ids"
+        ],
+        "outcome": "Skew risk",
+        "evidenceRefs": [
+          "TE-004"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "harvest-2026-08-04-chat-gpt-harvest-protocol-v1",
+          "clean working tree",
+          "Pilot A on isolated id"
+        ],
+        "outcome": "Clean fixture path",
+        "requiredPreflight": [
+          "BRANCH_LANE_MAP"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "high",
+        "operatorFrustration": "medium"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "ChatGPT protocol run",
+      "actualExecution": {
+        "steps": [
+          "Lowercase Z path only synced"
+        ],
+        "outcome": "Operator used stale uppercase file",
+        "evidenceRefs": [
+          "TW-002"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Sync both uppercase + lowercase Z paths"
+        ],
+        "outcome": "Operator @ matches git authority",
+        "requiredPreflight": [
+          "harvest:sync-z-mirror"
+        ]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "WESLEYDESK session boundary autopsy on branch",
+      "firstKnownInstance": "harvest-2026-08-04-wesleydesk-connectivity-session-boundary-v1",
+      "priorIndexSlice": "artifacts/agent-runs/",
+      "whyRepeated": "Same branch hosts connectivity + protocol lanes",
+      "avoidableBy": "BRANCH_LANE_MAP — Pilot A uses different harvest id",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Branch lane map before any ChatGPT harvest on chat-gpt-harvest",
+      "whyItPays": "Prevents Pilot A skew",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-001"
+      ],
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "seedAs": "rule",
+      "suggestedWorkPackageId": "chat-gpt-harvest-branch-lane-map-v1"
+    },
+    {
+      "rank": 2,
+      "title": "Phase 2 ingest-chatgpt-advancement from Pilot A artifact",
+      "whyItPays": "Parser matches real protocol output",
+      "effort": "medium",
+      "savedWasteIds": [],
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "seedAs": "command",
+      "suggestedWorkPackageId": "harvest-ingest-chatgpt-advancement-v1"
+    },
+    {
+      "rank": 3,
+      "title": "Auto-sync Z uppercase on every protocol commit to chat-gpt-harvest",
+      "whyItPays": "Operator Z @ always current",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-002"
+      ],
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "seedAs": "rule",
+      "suggestedWorkPackageId": "z-harvest-protocol-sync-gate-v1"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "PILOT_A_ADVANCEMENT_FIXTURE",
+      "currentStatus": "BLOCKED",
+      "doNotClaimUntil": [
+        "harvest-2026-08-04-chat-gpt-harvest-protocol-v1 complete",
+        "working tree clean"
+      ],
+      "lastKnownEvidence": [
+        "harvest-2026-08-04-chat-gpt-harvest-protocol-v1"
+      ],
+      "proofCommandId": "chat-gpt-harvest-branch-lane-split-v1"
+    }
+  ]
+}

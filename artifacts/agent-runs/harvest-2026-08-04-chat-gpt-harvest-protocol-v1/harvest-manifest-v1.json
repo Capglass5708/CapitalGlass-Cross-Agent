@@ -1,0 +1,201 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-chat-gpt-harvest-protocol-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "02882a05cf8cff0d92d7ae837ee2d6b934698ac2",
+  "sourceBranch": "chat-gpt-harvest",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-05T03:37:00.249Z",
+  "updatedAt": "2026-08-05T03:37:00.249Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "intelligenceKind": "observed",
+  "laneScope": "chat-gpt-harvest-protocol-only",
+  "doNotAdvance": [
+    "Merge WESLEYDESK connectivity harvests into this protocol harvest",
+    "Use this harvest as Pilot A advancement fixture",
+    "Claim harvest:ingest-chatgpt-advancement operational"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-04-chat-gpt-harvest-protocol-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-04-chat-gpt-harvest-protocol-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 3,
+      "seeds": 3,
+      "roiItems": 3,
+      "operatorFriction": 1,
+      "executionDeltas": 2
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "protocol lane — publish after operator review"
+  },
+  "ledgerLineage": {
+    "ledgerPath": "work-progress/ACTIVE_WORK.md",
+    "relatedProjectFile": "work-progress/projects/2026-08-04_chat-gpt-harvest-protocol-v1.md",
+    "ledgerContentHashBefore": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096",
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  },
+  "supersededClaims": [],
+  "packets": [
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-04_chat-gpt-harvest-protocol-v1.md",
+      "packetKind": "decision",
+      "packetId": "chat-gpt-harvest-branch-lane-split-v1",
+      "packetTitle": "chat-gpt-harvest branch holds multiple harvest lanes — do not merge",
+      "state": "RECORDED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "evidenceRefs": [
+        "BRANCH_LANE_MAP.md",
+        "git log main..HEAD"
+      ],
+      "nextAction": "Pilot A uses harvest-2026-08-04-wesleydesk-session-repair-v1 only",
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Mix protocol harvest into WESLEYDESK advancement Pilot A"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [
+        "ef0b8eb",
+        "5ce2079",
+        "e5e108e",
+        "02882a0"
+      ],
+      "blockers": [],
+      "relatedPackets": [],
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-04_chat-gpt-harvest-protocol-v1.md",
+      "packetKind": "protocol_upgrade",
+      "packetId": "system-advancement-harvest-protocol-v1",
+      "packetTitle": "ADVANCEMENT synthesis protocol + schemas (Phase 1)",
+      "state": "SHIPPED_ON_BRANCH",
+      "packetVerdict": "DRAFT_READY_FOR_CURSOR_VALIDATION",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "evidenceRefs": [
+        "docs/protocols/chat-thread-system-advancement-harvest-chatgpt-v1.md",
+        "scripts/harvest/schema/advancement-intelligence-v1.schema.json"
+      ],
+      "nextAction": "Pilot A advancement harvest; then Phase 2 ingest parser",
+      "advancementGate": "SYSTEM_ADVANCEMENT_DRAFT_READY from real pilot artifact",
+      "doNotAdvance": [
+        "HARVEST_COMPLETE",
+        "IMPLEMENTED"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [
+        "5ce2079",
+        "02882a0"
+      ],
+      "blockers": [],
+      "relatedPackets": [],
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-04_chat-gpt-harvest-protocol-v1.md",
+      "packetKind": "protocol_upgrade",
+      "packetId": "autopsy-evidence-classification-v1",
+      "packetTitle": "OBSERVED autopsy hardening — evidence classes, COR/DUP ledgers",
+      "state": "SHIPPED_ON_BRANCH",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "evidenceRefs": [
+        "docs/protocols/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md"
+      ],
+      "nextAction": "ChatGPT runs OBSERVED lane from Z uppercase path",
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-04_chat-gpt-harvest-protocol-v1.md",
+      "packetKind": "faster_path",
+      "packetId": "z-harvest-uppercase-protocol-sync-v1",
+      "packetTitle": "Z mirror syncs CHAT-THREAD-* uppercase operator paths",
+      "state": "RECORDED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "evidenceRefs": [
+        "scripts/harvest/lib/z-harvest-mirror-lib.mjs",
+        "harvest/z-mirror-sync-receipt.json"
+      ],
+      "nextAction": "npm run harvest:sync-z-mirror after protocol edits",
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-04_chat-gpt-harvest-protocol-v1.md",
+      "packetKind": "blocker",
+      "packetId": "advancement-ingest-parser-not-shipped-v1",
+      "packetTitle": "harvest:ingest-chatgpt-advancement parser is Phase 2",
+      "state": "OPEN",
+      "packetVerdict": "PHASE_2_PENDING",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "evidenceRefs": [
+        "chat-thread-system-advancement-harvest-chatgpt-v1.md#handoff"
+      ],
+      "nextAction": "Scope Phase 2 from Pilot A system-advancement-findings-source.md",
+      "advancementGate": "ingest-chatgpt-advancement ships",
+      "doNotAdvance": [
+        "Claim advancement ingest operational"
+      ]
+    }
+  ],
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 9,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 9,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-c28c4d7b2d75",
+      "prompt-candidate-9696bb43ab42",
+      "prompt-candidate-5adea5a76f98",
+      "prompt-candidate-aba2c689aff8",
+      "prompt-candidate-2261e6bc9e61",
+      "prompt-candidate-65d4281e5e16",
+      "prompt-candidate-e7fe18e7f109",
+      "prompt-candidate-000f81d89741",
+      "prompt-candidate-93cc3d929f70"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

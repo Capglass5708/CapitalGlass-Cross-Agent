@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-PHASE2-ADVANCEMENT-INGEST-001",
+  "kind": "runbook",
+  "title": "Phase 2 advancement ingest blocked until pilot artifact exists",
+  "summary": "harvest:ingest-chatgpt-advancement scoped from real system-advancement-findings-source.md.",
+  "retrievalQuestions": [
+    "Can ChatGPT advancement ingest run?",
+    "What is Phase 2 fixture harvest id?"
+  ],
+  "evidenceRefs": [
+    "harvest-2026-08-04-wesleydesk-session-repair-v1"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "advancement ingest implementation",
+    "startAt": [
+      "system-advancement-findings-source.md from Pilot A"
+    ],
+    "runPreflight": [],
+    "doNot": [
+      "Build parser from idealized schema only"
+    ],
+    "proveBeforeClaiming": [
+      "Pilot A artifact on chat-gpt-harvest"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}
