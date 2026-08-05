@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "cross-agent-empirical-review-rubric-v1@1.0.0",
+  "programId": "harvest-empirical-samples-v1",
+  "criteria": [
+    {
+      "id": "durable_intelligence_only",
+      "question": "Does every retained finding change future agent or operator behavior?",
+      "failSignals": ["restates protocol already frozen", "narrates chat without lesson", "generic best practices not grounded in thread"]
+    },
+    {
+      "id": "no_template_padding",
+      "question": "Are empty packet types omitted or marked NONE_FOUND with proof?",
+      "failSignals": ["fabricated HP/TW/ROI/seed rows", "section count matches template not thread", "rank filler beyond thread support"]
+    },
+    {
+      "id": "traceable_evidence",
+      "question": "Is every EVT/HP/ROI tied to CHAT_DIRECT or ATTACHMENT_SOURCE?",
+      "failSignals": ["invented events", "missing evidence class", "CROSS_CHECK promoted without label"]
+    },
+    {
+      "id": "earned_roi",
+      "question": "Does ROI backlog rank only demonstrated or corrected waste?",
+      "failSignals": ["speculative improvements", "ranks without linked waste", "architecture ideas without thread closure"]
+    },
+    {
+      "id": "justified_futureSavings",
+      "question": "Is futureSavings proportional and thread-grounded (or honestly absent)?",
+      "failSignals": ["high token/time claims on thin thread", "missing futureSavings on ranked ROI", "fabricated appliesTo arrays"]
+    },
+    {
+      "id": "high_signal_density",
+      "question": "Is the output small relative to thread length with no replay padding?",
+      "failSignals": ["longer than thread", "repeated lane explanations", "duplicate OBSERVED/ADVANCEMENT prose"]
+    },
+    {
+      "id": "minimal_human_edit_burden",
+      "question": "Can Cursor validate with light edits or reject cleanly?",
+      "failSignals": ["schema repair required across many rows", "INDEX/registry churn for T0", "unscoped publication claims"]
+    }
+  ],
+  "verdictBands": {
+    "PASS": "All criteria PASS; no protocol change indicated",
+    "ADVISORY": "One criterion WARN; note for sample set, not protocol edit",
+    "FAIL": "Two or more criteria FAIL, or padding/fabrication — record as recurring weakness if repeated"
+  }
+}

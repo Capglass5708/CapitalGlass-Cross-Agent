@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "cross-agent-empirical-sample-program-v1@1.0.0",
+  "programId": "harvest-empirical-samples-v1",
+  "generatedAt": "2026-08-05T19:35:00.000Z",
+  "protocolFreeze": {
+    "frozenAtCommit": "b8ceb83a",
+    "frozenProtocol": "CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md",
+    "protocolExpansion": "FROZEN",
+    "changeGate": "Repeated weaknesses across all five sample classes before any protocol edit"
+  },
+  "reviewCriteria": [
+    "durable_intelligence_only",
+    "no_template_padding",
+    "traceable_evidence",
+    "earned_roi",
+    "justified_futureSavings",
+    "high_signal_density",
+    "minimal_human_edit_burden"
+  ],
+  "sampleQueue": [
+    {
+      "sampleId": "thin-thread-v1",
+      "sampleClass": "thin",
+      "status": "IN_REVIEW",
+      "harvestId": "harvest-2026-08-05-empirical-sample-thin-v1",
+      "expectedVerdicts": ["NO_HARVEST_NEEDED", "DRAFT_READY_FOR_CURSOR_VALIDATION"],
+      "expectedTier": "T0",
+      "fixturePath": "samples/thin-thread-v1/sample-thread-source.md",
+      "goldenReferencePath": "samples/thin-thread-v1/golden-findings-NO_HARVEST_NEEDED.md",
+      "reviewArtifactPath": "samples/thin-thread-v1/empirical-review-v1.json"
+    },
+    {
+      "sampleId": "medium-thread-v1",
+      "sampleClass": "medium",
+      "status": "PENDING",
+      "harvestId": null,
+      "expectedVerdicts": ["DRAFT_READY_FOR_CURSOR_VALIDATION"],
+      "expectedTier": "T2"
+    },
+    {
+      "sampleId": "architectural-thread-v1",
+      "sampleClass": "architectural",
+      "status": "PENDING",
+      "harvestId": null,
+      "expectedVerdicts": ["DRAFT_READY_FOR_CURSOR_VALIDATION"],
+      "expectedTier": "T2"
+    },
+    {
+      "sampleId": "debugging-thread-v1",
+      "sampleClass": "debugging",
+      "status": "PENDING",
+      "harvestId": null,
+      "expectedVerdicts": ["DRAFT_READY_FOR_CURSOR_VALIDATION"],
+      "expectedTier": "T2"
+    },
+    {
+      "sampleId": "planning-thread-v1",
+      "sampleClass": "planning",
+      "status": "PENDING",
+      "harvestId": null,
+      "expectedVerdicts": ["DRAFT_READY_FOR_CURSOR_VALIDATION"],
+      "expectedTier": "T2"
+    }
+  ],
+  "completionGate": {
+    "requiredSampleClasses": ["thin", "medium", "architectural", "debugging", "planning"],
+    "minimumPassingSamples": 5,
+    "protocolChangeRequires": "recurring_weakness_pattern_documented"
+  }
+}
