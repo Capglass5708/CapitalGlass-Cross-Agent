@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "cross-agent-empirical-downstream-handoff-v1@1.0.0",
+  "programId": "harvest-empirical-samples-v1",
+  "generatedAt": "2026-08-05T20:00:00.000Z",
+  "handoffStatus": "HOLD_REPO_AUTHORITY_RESOLUTION",
+  "authorityResolution": {
+    "dataExtractionRepo": "TO_BE_RESOLVED",
+    "masterGraphRepo": "TO_BE_RESOLVED",
+    "extractionContract": "TO_BE_RESOLVED",
+    "graphProjectionContract": "TO_BE_RESOLVED",
+    "resolutionNote": "Do not wire automated handoff until GitHub repo identifiers and contract paths are operator-confirmed. Local workspace paths are not authoritative for routing."
+  },
+  "intendedFlow": [
+    "Freeze sample source and golden reference",
+    "Run ChatGPT without protocol changes",
+    "Preserve raw output (immutable evidence)",
+    "Score with empirical rubric",
+    "Commit sample evidence in Cross-Agent",
+    "Send package to Data Extraction repository",
+    "Parse raw Markdown; extract EVT, COR, HP, ROI, seed, waste, boundary objects",
+    "Normalize graph-ready records; reject fabricated or low-confidence intelligence",
+    "Project eligible objects to CG Master Graph",
+    "Compare weakness patterns across all five samples",
+    "Author protocol changes only from recurring graph evidence"
+  ],
+  "dataExtractionResponsibilities": [
+    "Parse immutable raw ChatGPT output",
+    "Extract EVT, COR, HP, ROI, seed, waste, and boundary objects",
+    "Preserve evidence classifications",
+    "Preserve sample and protocol lineage",
+    "Compare live output against golden reference",
+    "Produce normalized graph-ready records",
+    "Reject fabricated or low-confidence intelligence",
+    "Avoid direct graph writes from raw Markdown"
+  ],
+  "masterGraphResponsibilities": [
+    "Receive only validated normalized objects",
+    "Support lineage queries: protocol version, sample class, recurrence, acceptance",
+    "Distinguish node kinds: sampleFinding, recurringWeakness, protocolChangeCandidate, approvedProtocolChange",
+    "Do not project NONE_FOUND headings or template scaffolding as knowledge"
+  ],
+  "graphEligibilityRule": {
+    "formula": "traceable AND durable AND nonduplicate AND classified AND review-approved",
+    "reject": ["template_noise", "NONE_FOUND_sections", "unreviewed_live_output", "fabricated_roi_or_seeds"],
+    "immutableEvidence": "chatgpt-live-output.md remains read-only; extractor creates normalized projection only"
+  },
+  "protocolFreezeDecisionRules": {
+    "oneWeakSample": "observation_only",
+    "sameWeaknessAcrossMultipleSampleClasses": "recurring_pattern_candidate",
+    "recurringPatternAcrossFullProgram": "protocol_change_eligible",
+    "forbiddenCollapse": "sampleFinding must not merge into protocolChangeCandidate without recurrence evidence"
+  },
+  "packages": [
+    {
+      "sampleId": "thin-thread-v1",
+      "routingMetadataPath": "samples/thin-thread-v1/sample-routing-metadata-v1.json",
+      "handoffReady": false,
+      "handoffBlocker": "HOLD_REPO_AUTHORITY_RESOLUTION"
+    }
+  ]
+}

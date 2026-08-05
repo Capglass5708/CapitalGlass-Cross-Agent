@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "cross-agent-empirical-sample-routing-metadata-v1@1.0.0",
+  "programId": "harvest-empirical-samples-v1",
+  "sampleId": "thin-thread-v1",
+  "sampleClass": "thin",
+  "sourceLane": "CHATGPT_OBSERVED_HARVEST",
+  "destinationLane": "DATA_EXTRACTION",
+  "downstreamProjection": "CG_MASTER_GRAPH",
+  "protocolVersion": "CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1",
+  "protocolCommit": "b8ceb83a54779544aa1e14be428fe1e1aaea0095",
+  "empiricalScaffoldCommit": "2b565d3a",
+  "empiricalReviewCommit": "0034073a",
+  "sourceArtifact": "sample-thread-source.md",
+  "goldenArtifact": "golden-findings-NO_HARVEST_NEEDED.md",
+  "generatedArtifact": "chatgpt-live-output.md",
+  "reviewArtifact": "empirical-review-v1.json",
+  "harvestVerdict": "NO_HARVEST_NEEDED",
+  "reviewVerdict": "PASS",
+  "signalDensity": "high",
+  "graphEligibility": "hold",
+  "graphEligibilityRationale": "NO_HARVEST_NEEDED T0 sample: no durable finding nodes to promote. Only sample metadata, protocol version, and review scores are graph-candidate. DUP-001 documents non-harvestable duplication — do not project as sampleFinding.",
+  "projectableNodeKinds": [
+    "Thread",
+    "Sample",
+    "ProtocolVersion",
+    "ReviewScore"
+  ],
+  "withheldNodeKinds": [
+    "sampleFinding",
+    "recurringWeakness",
+    "protocolChangeCandidate",
+    "SeedCandidate",
+    "ROIConcept"
+  ],
+  "downstreamHandoffStatus": "HOLD_REPO_AUTHORITY_RESOLUTION",
+  "authorityResolution": {
+    "dataExtractionRepo": "TO_BE_RESOLVED",
+    "masterGraphRepo": "TO_BE_RESOLVED",
+    "extractionContract": "TO_BE_RESOLVED",
+    "graphProjectionContract": "TO_BE_RESOLVED"
+  },
+  "immutableEvidencePolicy": {
+    "rawMarkdown": "chatgpt-live-output.md",
+    "mutableProjection": "Data Extraction normalized records only",
+    "directMarkdownToGraph": false
+  }
+}

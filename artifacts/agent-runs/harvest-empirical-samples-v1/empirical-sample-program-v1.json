@@ -1,12 +1,38 @@
 {
-  "schemaVersion": "cross-agent-empirical-sample-program-v1@1.0.0",
+  "schemaVersion": "cross-agent-empirical-sample-program-v1@1.1.0",
   "programId": "harvest-empirical-samples-v1",
-  "generatedAt": "2026-08-05T19:35:00.000Z",
+  "generatedAt": "2026-08-05T20:00:00.000Z",
   "protocolFreeze": {
-    "frozenAtCommit": "b8ceb83a",
-    "frozenProtocol": "CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md",
+    "frozenAtCommit": "b8ceb83a54779544aa1e14be428fe1e1aaea0095",
+    "frozenProtocol": "CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1",
     "protocolExpansion": "FROZEN",
     "changeGate": "Repeated weaknesses across all five sample classes before any protocol edit"
+  },
+  "downstreamRouting": {
+    "handoffStatus": "HOLD_REPO_AUTHORITY_RESOLUTION",
+    "dataExtractionRepo": "TO_BE_RESOLVED",
+    "masterGraphRepo": "TO_BE_RESOLVED",
+    "extractionContract": "TO_BE_RESOLVED",
+    "graphProjectionContract": "TO_BE_RESOLVED",
+    "handoffManifest": "empirical-downstream-handoff-v1.json",
+    "intendedPath": "ChatGPT empirical sample → Data Extraction → normalized artifacts → CG Master Graph → retrieval / reuse / protocol-learning signals"
+  },
+  "graphEligibilityRule": {
+    "formula": "traceable + durable + nonduplicate + classified + review-approved = graph eligible",
+    "doNotProject": ["NONE_FOUND headings", "template scaffolding", "unreviewed live output", "fabricated ROI or seeds"],
+    "immutableEvidence": "chatgpt-live-output.md is read-only; Data Extraction owns normalized projection"
+  },
+  "protocolFreezeDecisionRules": {
+    "oneWeakSample": "observation_only",
+    "sameWeaknessAcrossMultipleSampleClasses": "recurring_pattern_candidate",
+    "recurringPatternAcrossFullProgram": "protocol_change_eligible",
+    "graphNodeKinds": {
+      "sampleFinding": "Single-sample durable finding from normalized extraction",
+      "recurringWeakness": "Same weakness across multiple sample classes",
+      "protocolChangeCandidate": "Recurrence evidence meets full-program gate",
+      "approvedProtocolChange": "Operator-approved protocol edit with graph receipt"
+    },
+    "forbidden": "Do not collapse sampleFinding and protocolChangeCandidate into one node type"
   },
   "reviewCriteria": [
     "durable_intelligence_only",
@@ -21,13 +47,19 @@
     {
       "sampleId": "thin-thread-v1",
       "sampleClass": "thin",
-      "status": "IN_REVIEW",
+      "status": "PASS",
       "harvestId": "harvest-2026-08-05-empirical-sample-thin-v1",
       "expectedVerdicts": ["NO_HARVEST_NEEDED", "DRAFT_READY_FOR_CURSOR_VALIDATION"],
       "expectedTier": "T0",
       "fixturePath": "samples/thin-thread-v1/sample-thread-source.md",
       "goldenReferencePath": "samples/thin-thread-v1/golden-findings-NO_HARVEST_NEEDED.md",
-      "reviewArtifactPath": "samples/thin-thread-v1/empirical-review-v1.json"
+      "liveOutputPath": "samples/thin-thread-v1/chatgpt-live-output.md",
+      "reviewArtifactPath": "samples/thin-thread-v1/empirical-review-v1.json",
+      "routingMetadataPath": "samples/thin-thread-v1/sample-routing-metadata-v1.json",
+      "harvestVerdict": "NO_HARVEST_NEEDED",
+      "reviewVerdict": "PASS",
+      "signalDensity": "high",
+      "graphEligibility": "hold"
     },
     {
       "sampleId": "medium-thread-v1",
@@ -65,6 +97,6 @@
   "completionGate": {
     "requiredSampleClasses": ["thin", "medium", "architectural", "debugging", "planning"],
     "minimumPassingSamples": 5,
-    "protocolChangeRequires": "recurring_weakness_pattern_documented"
+    "protocolChangeRequires": "recurring_weakness_pattern_documented_in_master_graph"
   }
 }
