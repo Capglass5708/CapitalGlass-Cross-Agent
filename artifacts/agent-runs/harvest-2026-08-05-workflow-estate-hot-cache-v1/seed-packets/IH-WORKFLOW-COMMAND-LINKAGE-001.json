@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-WORKFLOW-COMMAND-LINKAGE-001",
+  "kind": "command",
+  "title": "Workflow records link to Command Estate entryCommandIds — never duplicate command strings",
+  "summary": "workflow-index.json references command-index ids; AppBuilder workflow-estate compiler fails on unknown entryCommandIds.",
+  "retrievalQuestions": [
+    "How do workflows reference commands?",
+    "What fails if entryCommandIds are missing from command-index?"
+  ],
+  "evidenceRefs": [
+    "work-progress/workflow-index.json",
+    "work-progress/command-index.json",
+    "WORKFLOW_ESTATE_COMMAND_LINKAGE_PASS"
+  ],
+  "roiRank": 3,
+  "futureAgentInstructions": {
+    "whenThisAppears": "Adding workflows or hot-cache operator lanes",
+    "startAt": [
+      "work-progress/workflow-index.json",
+      "work-progress/command-index.json"
+    ],
+    "runPreflight": [
+      "npm run workflow-estate:compile-index"
+    ],
+    "doNot": [
+      "Copy raw npm command strings into workflow records"
+    ],
+    "proveBeforeClaiming": [
+      "WORKFLOW_ESTATE_COMPILE_PASS",
+      "every entryCommandId exists in command-index"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/commands.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}

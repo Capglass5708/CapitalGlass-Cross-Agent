@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-WORKFLOW-ESTATE-SCOUT-ROUTING-001",
+  "kind": "lesson",
+  "title": "Workflow-estate scout routing must cover promotion and closeout queries",
+  "summary": "After workflow-estate ship, verify three scout queries route to workflow-estate with DATASET_HIT before claiming acceptance.",
+  "retrievalQuestions": [
+    "What workflow publishes the L BY-KIND index?",
+    "What approval is required to promote prompt candidates?",
+    "What workflow closes a mission?"
+  ],
+  "evidenceRefs": [
+    "CapitalGlass-Cross-Agent#14",
+    "402352f",
+    "registry/query-routing/query-routing-manifest.v1.json"
+  ],
+  "executionDeltaRefs": [
+    "ED-501"
+  ],
+  "wasteIds": [
+    "TW-501"
+  ],
+  "roiRank": 1,
+  "futureAgentInstructions": {
+    "whenThisAppears": "Shipping workflow-estate or changing query-routing manifest",
+    "startAt": [
+      "registry/query-routing/query-routing-manifest.v1.json",
+      "work-progress/workflow-index.json"
+    ],
+    "runPreflight": [
+      "npm run test:workflow-estate-hot-cache-gates",
+      "resolveScoutDatasetRouter for three acceptance queries"
+    ],
+    "doNot": [
+      "Claim scout PASS on compile gates only without routing queries"
+    ],
+    "proveBeforeClaiming": [
+      "primaryDataset workflow-estate",
+      "DATASET_HIT",
+      "rawScanRequired false",
+      "liveCompileCount 0"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}
