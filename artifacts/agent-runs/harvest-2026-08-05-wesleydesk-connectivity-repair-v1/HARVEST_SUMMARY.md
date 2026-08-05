@@ -1,6 +1,6 @@
 # Harvest summary — derived view
 
-**Authority:** `harvest-manifest-v1.json` (`d18615fe753e…`)
+**Authority:** `harvest-manifest-v1.json` (`87190e7adf41…`)
 **Work package:** `harvest-2026-08-05-wesleydesk-connectivity-repair-v1`
 **Mission class:** `chat-thread-closeout-autopsy-harvest-v1`
 **Verdict:** `HARVEST_COMPLETE`
@@ -32,5 +32,5 @@
 
 ## Projection sync
 
-Status: `not-run` (hub: `not-run`)
+Status: `synced` (hub: `published`)
 
