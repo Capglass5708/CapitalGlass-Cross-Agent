@@ -1,0 +1,303 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-estate-scout-hook-sync-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "workPackageId": "estate-scout-hook-sync-v1",
+  "sourceCommitSha": "402352f4bb056e3f30115f7eb7d40e13000cafef",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-05T02:45:00.000Z",
+  "updatedAt": "2026-08-05T02:45:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "rawScanRequired": false,
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "FULLY_SEEDED_WITHOUT_HUB_PUBLISH",
+    "SCOUT_HOOKS_REMOTE_COMPLETE_WITH_ARCHIVED_DEVELOPER_MEMORY",
+    "DEVELOPER_MEMORY_SCOUT_HOOKS_ON_ORIGIN_MAIN"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 4,
+      "seeds": 4,
+      "roiItems": 4,
+      "operatorFriction": 1
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "synced",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Cursor agent — operator runs harvest:publish-hub-seed + index:publish",
+    "note": "Git harvest recording; hub publication NOT_RUN_BY_CURSOR per protocol"
+  },
+  "ledgerLineage": {
+    "ledgerPath": "work-progress/ACTIVE_WORK.md",
+    "note": "No ACTIVE_WORK mutation in this harvest recording pass",
+    "ledgerContentHashBefore": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096",
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  },
+  "packets": [
+    {
+      "packetId": "estate-scout-hooks-33-33-v1",
+      "packetTitle": "Estate scout hooks 33/33 local sync complete",
+      "state": "HARVEST_COMPLETE",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "DECISION",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/thread-event-inventory.json",
+      "evidenceRefs": [
+        "EVT-507",
+        "EVT-508",
+        "91b203b1",
+        "98d2af10"
+      ],
+      "commitRefs": [],
+      "decision": "33/33 estate repos report scout hooks synchronized on local disk via canonical sync contract",
+      "alternativesRejected": [
+        "git restore . on all repos",
+        "Single monorepo commit across 12 repos"
+      ],
+      "nextAction": "Operator: git pull hook paths on stale clones when convenient",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "blockers": []
+    },
+    {
+      "packetId": "estate-scout-hook-pr-merges-v1",
+      "packetTitle": "Governed PR merges for missing remote hook installations",
+      "state": "HARVEST_COMPLETE",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "EVIDENCE",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/code-touch-summary.json",
+      "evidenceRefs": [
+        "3e851628655afdcab64d909cd7325a5b672a1f03",
+        "8d2de72805fd9aa55e266e2cc9a36f402fc07255",
+        "2638fda84a7786891710493ba54f8670b540d588",
+        "Capglass5708/Visual-Asset-Engine/pull/42",
+        "Capglass5708/CapitalGlass-Office-Admin/pull/55",
+        "Capglass5708/Scraper/pull/11"
+      ],
+      "commitRefs": [
+        {
+          "repo": "Visual-Asset-Engine",
+          "sha": "3e85162"
+        },
+        {
+          "repo": "CapitalGlass-Office-Admin",
+          "sha": "8d2de72"
+        },
+        {
+          "repo": "Scraper",
+          "sha": "2638fda"
+        }
+      ],
+      "nextAction": "None — PRs merged",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "blockers": []
+    },
+    {
+      "packetId": "developer-memory-archived-scout-hook-v1",
+      "packetTitle": "capital-glass-developer-memory archived — remote hooks blocked",
+      "state": "DOCUMENTED",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "BLOCKER",
+      "ownerRepo": "capital-glass-developer-memory",
+      "ownerIndexingStatus": "not-required",
+      "projectFile": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/thread-event-inventory.json",
+      "evidenceRefs": [
+        "EVT-509",
+        "a93fe76"
+      ],
+      "blockerId": "developer-memory-repo-archived",
+      "status": "OPEN",
+      "proofCommandId": "gh-repo-unarchive-or-estate-manifest-exception",
+      "nextAction": "Unarchive repo or remove from estate manifest with documented exception",
+      "advancementGate": "operator-decision",
+      "doNotAdvance": [
+        "DEVELOPER_MEMORY_SCOUT_HOOKS_ON_ORIGIN_MAIN"
+      ],
+      "blockers": [
+        {
+          "id": "developer-memory-repo-archived",
+          "status": "OPEN",
+          "owner": "operator"
+        }
+      ],
+      "commitRefs": []
+    },
+    {
+      "packetId": "scout-hook-local-would-sync-mistake-v1",
+      "packetTitle": "Local would-sync misread as remote missing hooks",
+      "state": "DOCUMENTED",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "MISTAKE",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/thread-autopsy-bundle.json",
+      "evidenceRefs": [
+        "WM-501",
+        "ED-501",
+        "EVT-503",
+        "EVT-505"
+      ],
+      "wrongMoveId": "WM-501",
+      "actualExecution": "Opened PR wave before origin/main verification",
+      "optimalExecution": "git ls-tree origin/main hook paths first; local sync only when remote synced",
+      "preventiveControl": "IH-SCOUT-HOOK-ORIGIN-VERIFY-001",
+      "nextAction": "Promote seed to runbook gate when operator approves",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "blockers": [],
+      "commitRefs": []
+    },
+    {
+      "packetId": "scout-hook-worktree-repeated-work-v1",
+      "packetTitle": "Dirty local checkout caused rework on hook PR pass 1",
+      "state": "DOCUMENTED",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "REPEATED_WORK",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/thread-autopsy-bundle.json",
+      "evidenceRefs": [
+        "TW-501",
+        "EVT-504"
+      ],
+      "duplicateId": "estate-hook-dirty-checkout-pass1",
+      "firstKnownInstance": "EVT-504",
+      "priorIndexSlice": "none",
+      "whyMissed": "Did not preflight git status on each of 12 targets",
+      "nextAction": "Use worktree pattern in IH-SCOUT-HOOK-WORKTREE-PR-001",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "blockers": [],
+      "commitRefs": []
+    },
+    {
+      "packetId": "scout-hook-faster-path-v1",
+      "packetTitle": "Faster path: origin verify → worktree PR → local sync",
+      "state": "HARVEST_COMPLETE",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "FASTER_PATH",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/seed-packets/IH-SCOUT-HOOK-ORIGIN-VERIFY-001.json",
+      "evidenceRefs": [
+        "ED-501"
+      ],
+      "situation": "12-repo estate scout hook rollout",
+      "whatHappened": "Multi-pass PR attempts on dirty clones",
+      "rightFirstMove": "Per-repo origin/main hook blob check then isolated worktree PRs only where missing",
+      "requiredGuard": "npm run check:intelligence-hub-scout-hooks after npm run sync:intelligence-hub-scout-hooks",
+      "nextAction": "None",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "blockers": [],
+      "commitRefs": []
+    },
+    {
+      "packetId": "scout-hook-check-command-v1",
+      "packetTitle": "Proof commands for estate scout hook acceptance",
+      "state": "HARVEST_COMPLETE",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "COMMAND",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/command-index.json",
+      "evidenceRefs": [
+        "EVT-508"
+      ],
+      "command": "npm run check:intelligence-hub-scout-hooks",
+      "host": "WSL ext4 CG-AppBuilder-MCP",
+      "provesGate": "estate-scout-hooks-synced",
+      "expectedPassSignal": "Estate: 33/33 synced · exit 0",
+      "nextAction": "Add to estate closeout checklist",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "blockers": [],
+      "commitRefs": []
+    },
+    {
+      "packetId": "estate-scout-hook-protocol-upgrade-v1",
+      "packetTitle": "Estate scout sync: hooks-only scope + no mcp.json commits",
+      "state": "HARVEST_COMPLETE",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "PROTOCOL_UPGRADE",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md",
+      "evidenceRefs": [
+        "intelligence-hub-scout-hooks-lib.mjs",
+        "IH-SCOUT-HOOK-WORKTREE-PR-001"
+      ],
+      "seedAs": "IH-SCOUT-HOOK-WORKTREE-PR-001",
+      "promotionClass": "POLICY_GATED",
+      "futureAgentInstructions": {
+        "whenThisAppears": "estate-scout-hook-sync-v1 or similar multi-repo hook rollout",
+        "startAt": [
+          "npm run check:intelligence-hub-scout-hooks"
+        ],
+        "runPreflight": [
+          "npm run agent:index:scout -- --json"
+        ],
+        "doNot": [
+          "Commit .cursor/mcp.json",
+          "Modify unrelated rules or generated receipts",
+          "git restore . before WIP preservation"
+        ],
+        "proveBeforeClaiming": [
+          "33/33 check pass",
+          "Canonical shimHash and hooksHash aligned"
+        ]
+      },
+      "nextAction": "Operator may publish hub seeds when L: mounted",
+      "advancementGate": "harvest:publish-hub-seed NOT_RUN_BY_CURSOR",
+      "doNotAdvance": [
+        "FULLY_SEEDED_WITHOUT_HUB_PUBLISH"
+      ],
+      "blockers": [],
+      "commitRefs": []
+    }
+  ],
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 15,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 15,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-ae5ec8f76609",
+      "prompt-candidate-f828352096f3",
+      "prompt-candidate-7a4eda0eb662",
+      "prompt-candidate-a485aca7f2a5",
+      "prompt-candidate-8a1cd735cf5c",
+      "prompt-candidate-503274a81e14",
+      "prompt-candidate-7048499b9008",
+      "prompt-candidate-58072f068918",
+      "prompt-candidate-90aa2bacfd8b",
+      "prompt-candidate-cc7ceaf26e2d",
+      "prompt-candidate-9c15d862a436",
+      "prompt-candidate-25876c23480a",
+      "prompt-candidate-761d2ba984e4",
+      "prompt-candidate-1edf023328d2",
+      "prompt-candidate-85953a80b21e"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

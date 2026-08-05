@@ -1,0 +1,239 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-estate-scout-hook-sync-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-SCOUT-HOOK-ESTATE-SYNC-LOCAL-001",
+      "questionId": "IHSCOUTHOOKE",
+      "canonicalQuestion": "How do I pass check:intelligence-hub-scout-hooks without git pull on dirty repos?",
+      "alternateQuestions": [
+        "What files does sync:intelligence-hub-scout-hooks modify?"
+      ],
+      "shortAnswer": "When origin/main already has canonical hooks, estate sync writes only hooks.json and shim locally to pass 33/33 check.",
+      "detailedAnswer": "npm run sync:intelligence-hub-scout-hooks aligns local disk without git restore",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T03:00:14.900Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/seed-packets/IH-SCOUT-HOOK-ESTATE-SYNC-LOCAL-001.json"
+      ],
+      "authorityCommit": [
+        "fc073b9"
+      ],
+      "evidenceUrls": [
+        "EVT-507",
+        "EVT-508",
+        "intelligence-hub-scout-hooks-manifest.json"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "command",
+        "harvest-2026-08-04-estate-scout-hook-sync-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "origin/main verified synced but local check still fails",
+        "startAt": [
+          "CG-AppBuilder-MCP package.json sync:intelligence-hub-scout-hooks"
+        ],
+        "runPreflight": [
+          "npm run check:intelligence-hub-scout-hooks --dry-run"
+        ],
+        "doNot": [
+          "git restore . to get hooks",
+          "Commit machine-local .cursor/mcp.json"
+        ],
+        "proveBeforeClaiming": [
+          "npm run check:intelligence-hub-scout-hooks exit 0",
+          "Only .cursor/hooks.json and .cursor/hooks/intelligence-hub-scout-inject.sh changed on disk"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "command"
+    },
+    {
+      "ihPfspId": "IH-SCOUT-HOOK-ORIGIN-VERIFY-001",
+      "questionId": "IHSCOUTHOOKO",
+      "canonicalQuestion": "Why does check:intelligence-hub-scout-hooks show would-sync when GitHub main already has hooks?",
+      "alternateQuestions": [
+        "How do I verify scout hooks on origin/main without git restore on dirty clones?"
+      ],
+      "shortAnswer": "check:intelligence-hub-scout-hooks evaluates local disk; verify origin/main hook blobs before opening PRs across the estate.",
+      "detailedAnswer": "Estate scout check would-sync may mean local stale, not remote missing",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T03:00:14.900Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/seed-packets/IH-SCOUT-HOOK-ORIGIN-VERIFY-001.json"
+      ],
+      "authorityCommit": [
+        "fc073b9"
+      ],
+      "evidenceUrls": [
+        "EVT-503",
+        "EVT-505",
+        "WM-501"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-04-estate-scout-hook-sync-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Estate scout hook sync reports N/33 would-sync for multiple repos",
+        "startAt": [
+          "CG-AppBuilder-MCP/scripts/three-way-agent/intelligence-hub-scout-hooks-lib.mjs",
+          "work-progress/command-index.json"
+        ],
+        "runPreflight": [
+          "npm run agent:index:scout -- --json"
+        ],
+        "doNot": [
+          "Open PRs in every would-sync repo before checking origin/main",
+          "Run git restore . on repos with preserved WIP"
+        ],
+        "proveBeforeClaiming": [
+          "git ls-tree origin/main .cursor/hooks.json .cursor/hooks/intelligence-hub-scout-inject.sh",
+          "shimHash matches 98d2af10c0b13bd9324ac5fc99ab02cd267fe774f17bf1ed489bbea585410bf2"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-SCOUT-HOOK-SCRAPER-GITIGNORE-001",
+      "questionId": "IHSCOUTHOOKS",
+      "canonicalQuestion": "Why did git add reject .cursor/hooks.json on Scraper?",
+      "alternateQuestions": [
+        "What gitignore pattern allows estate scout hooks only?"
+      ],
+      "shortAnswer": "Repos with .cursor/ in gitignore need negation rules for hooks.json and hooks/** before scout hook PR can land.",
+      "detailedAnswer": "Blanket .cursor/ gitignore blocks tracked scout hook commits",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T03:00:14.900Z",
+      "authorityRepo": "Scraper",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/seed-packets/IH-SCOUT-HOOK-SCRAPER-GITIGNORE-001.json"
+      ],
+      "authorityCommit": [
+        "fc073b9"
+      ],
+      "evidenceUrls": [
+        "EVT-506",
+        "2638fda",
+        "ED-502"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-04-estate-scout-hook-sync-v1"
+      ],
+      "entities": [
+        "Scraper"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "git add .cursor/hooks.json ignored by .gitignore",
+        "startAt": [
+          "target repo .gitignore"
+        ],
+        "runPreflight": [
+          "rg '^\\.cursor' .gitignore"
+        ],
+        "doNot": [
+          "git add -f without gitignore fix — breaks repeatability"
+        ],
+        "proveBeforeClaiming": [
+          "git check-ignore -v .cursor/hooks.json returns no match after fix",
+          "PR includes gitignore + hooks in same change set"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-SCOUT-HOOK-WORKTREE-PR-001",
+      "questionId": "IHSCOUTHOOKW",
+      "canonicalQuestion": "How do I install scout hooks without touching unrelated local changes?",
+      "alternateQuestions": [
+        "What is the governed path for estate-scout-hook-sync PRs?"
+      ],
+      "shortAnswer": "Hook-only PRs must come from clean origin/main worktrees when local clones have WIP on feature branches.",
+      "detailedAnswer": "Use isolated worktrees for estate scout hook PRs",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T03:00:14.900Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/seed-packets/IH-SCOUT-HOOK-WORKTREE-PR-001.json"
+      ],
+      "authorityCommit": [
+        "fc073b9"
+      ],
+      "evidenceUrls": [
+        "EVT-504",
+        "WM-502",
+        "ED-501"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-04-estate-scout-hook-sync-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Local repo has feature-branch WIP and estate hook sync is required",
+        "startAt": [
+          "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md estate-scout section"
+        ],
+        "runPreflight": [
+          "git status -sb in target repo"
+        ],
+        "doNot": [
+          "Commit hooks from dirty main or feature branches with unrelated modifications",
+          "Combine multiple repos into one commit"
+        ],
+        "proveBeforeClaiming": [
+          "PR diff contains only .cursor/hooks.json and .cursor/hooks/intelligence-hub-scout-inject.sh (plus gitignore if needed)",
+          "Per-repo CI green before merge"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "runbook"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-05-prompt-catalog-scout-trim-v1",
+  "generatedAt": "2026-08-05T02:45:00.000Z",
+  "sourceCommitSha": "402352f",
+  "events": [
+    {
+      "id": "EVT-501",
+      "turn": "~1",
+      "actor": "user",
+      "summary": "Return to prompt cache hardening after harvest-prompt-extraction-desk-closeout-v1",
+      "evidenceRefs": ["harvest-prompt-extraction-desk-closeout-v1", "HARVEST_PROMPT_EXTRACTION_VERIFIED"]
+    },
+    {
+      "id": "EVT-502",
+      "turn": "~3",
+      "actor": "agent",
+      "summary": "Identified scout router dropping entire prompt-catalog compact slice when 40 records exceeded combined maxRecords 25",
+      "evidenceRefs": ["scout-dataset-router.mjs enforceCombinedBudget", "WM-501"]
+    },
+    {
+      "id": "EVT-503",
+      "turn": "~6",
+      "actor": "agent",
+      "summary": "Implemented scout-compact-trim.mjs: deterministic 40→25 trim, scoutSelection metadata, test:prompt-catalog-gates PASS",
+      "evidenceRefs": ["scout-compact-trim.mjs", "PROMPT_CATALOG_GATES_PASS", "060e11ba"]
+    },
+    {
+      "id": "EVT-504",
+      "turn": "~10",
+      "actor": "agent",
+      "summary": "RYZEN9DESK proof on WESLEY_WORK: BLOCKED_WRONG_HOST; Tailscale ping OK, SSH publickey denied",
+      "evidenceRefs": ["ryzen9desk-prompt-harvest-cache-sync-proof.mjs", "BLOCKED_WRONG_HOST"]
+    },
+    {
+      "id": "EVT-505",
+      "turn": "~12",
+      "actor": "user",
+      "summary": "Run CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1 protocol on this thread",
+      "evidenceRefs": ["harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"]
+    }
+  ]
+}

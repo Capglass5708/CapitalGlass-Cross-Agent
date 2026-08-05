@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "code-touch-summary-v1@1.0.0",
+  "harvestId": "harvest-2026-08-05-wesleydesk-connectivity-repair-v1",
+  "generatedAt": "2026-08-05T03:02:40.658Z",
+  "repos": [
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "role": "diagnostic artifacts",
+      "paths": [
+        "artifacts/agent-runs/wesleydesk-connectivity-full-diagnostic-v1/"
+      ]
+    },
+    {
+      "repo": "CapitalGlass-Office-Admin",
+      "role": "drive mount PRIVATE on desk",
+      "paths": [
+        "Ensure-CgWesleyDeskDriveMounts.ps1",
+        "Map-CgWesleyDeskZDrive.ps1"
+      ]
+    }
+  ],
+  "operatorCommands": [
+    "Ensure-CgWesleyDeskDriveMounts.ps1 -Mode ForceRemap",
+    "Map-Z-From-Vault.ps1",
+    "Run-Repair1-InteractiveGate-Wesley.ps1"
+  ]
+}

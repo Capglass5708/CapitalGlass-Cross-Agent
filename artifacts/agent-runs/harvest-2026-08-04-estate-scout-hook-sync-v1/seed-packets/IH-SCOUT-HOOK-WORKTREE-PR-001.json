@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-SCOUT-HOOK-WORKTREE-PR-001",
+  "kind": "runbook",
+  "title": "Use isolated worktrees for estate scout hook PRs",
+  "summary": "Hook-only PRs must come from clean origin/main worktrees when local clones have WIP on feature branches.",
+  "retrievalQuestions": [
+    "How do I install scout hooks without touching unrelated local changes?",
+    "What is the governed path for estate-scout-hook-sync PRs?"
+  ],
+  "evidenceRefs": ["EVT-504", "WM-502", "ED-501"],
+  "executionDeltaRefs": ["ED-501"],
+  "wasteIds": ["TW-501"],
+  "roiRank": 2,
+  "futureAgentInstructions": {
+    "whenThisAppears": "Local repo has feature-branch WIP and estate hook sync is required",
+    "startAt": ["harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md estate-scout section"],
+    "runPreflight": ["git status -sb in target repo"],
+    "doNot": [
+      "Commit hooks from dirty main or feature branches with unrelated modifications",
+      "Combine multiple repos into one commit"
+    ],
+    "proveBeforeClaiming": [
+      "PR diff contains only .cursor/hooks.json and .cursor/hooks/intelligence-hub-scout-inject.sh (plus gitignore if needed)",
+      "Per-repo CI green before merge"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

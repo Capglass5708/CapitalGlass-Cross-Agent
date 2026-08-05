@@ -1,0 +1,82 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-prompt-catalog-scout-trim-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "73a05f78ac4f7968e40dd6f8a8096f19b7cb99c8",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-05-prompt-catalog-scout-trim-v1",
+      "seedId": "IH-PROMPT-CATALOG-SCOUT-TRIM-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T03:10:27.820Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "critical",
+    "contentHash": "727f51a9e8e93389fa89bc9f6b5cc73820fab9bd85252eb5999cc98dd591bce6"
+  },
+  "body": {
+    "seedId": "IH-PROMPT-CATALOG-SCOUT-TRIM-001",
+    "kind": "failure-pattern",
+    "title": "Never drop entire prompt-catalog scout slice at combined budget — trim deterministically",
+    "summary": "When prompt-catalog exceeds maxRecords, apply scout-compact-trim (usageRank, exclude draft/archived) and emit scoutSelection metadata.",
+    "canonicalQuestion": "Why did scout show DATASET_HIT but no prompt-catalog records?",
+    "alternateQuestions": [
+      "How does prompt-catalog compact trim work?"
+    ],
+    "shortAnswer": "When prompt-catalog exceeds maxRecords, apply scout-compact-trim (usageRank, exclude draft/archived) and emit scoutSelection metadata.",
+    "detailedAnswer": "Never drop entire prompt-catalog scout slice at combined budget — trim deterministically",
+    "retrievalQuestions": [
+      "Why did scout show DATASET_HIT but no prompt-catalog records?",
+      "How does prompt-catalog compact trim work?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Scout router combined budget or prompt-catalog dataset miss/hit mismatch",
+      "startAt": [
+        "CG-AppBuilder-MCP/scripts/hot-cache-platform/lib/scout-dataset-router.mjs",
+        "CG-AppBuilder-MCP/scripts/hot-cache-platform/datasets/prompt-catalog/scout-compact-trim.mjs"
+      ],
+      "runPreflight": [
+        "npm run test:prompt-catalog-gates"
+      ],
+      "doNot": [
+        "Omit entire prompt-catalog slice when over maxRecords",
+        "Claim DATASET_HIT without compact slice payload"
+      ],
+      "proveBeforeClaiming": [
+        "scoutSelection.selectedCount <= maxRecords",
+        "PROMPT_CATALOG_GATES_PASS"
+      ]
+    },
+    "evidenceRefs": [
+      "EVT-502",
+      "EVT-503",
+      "WM-501",
+      "scout-compact-trim.mjs"
+    ],
+    "executionDeltaRefs": [
+      "ED-501"
+    ],
+    "wasteIds": [
+      "TW-501"
+    ],
+    "operatorFrictionIds": [],
+    "roiRank": 1,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-05-prompt-catalog-scout-trim-v1/seed-packets/IH-PROMPT-CATALOG-SCOUT-TRIM-001.json"
+    ],
+    "harvestId": "harvest-2026-08-05-prompt-catalog-scout-trim-v1"
+  }
+}

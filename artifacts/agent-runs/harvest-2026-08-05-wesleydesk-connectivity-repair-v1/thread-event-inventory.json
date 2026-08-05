@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-05-wesleydesk-connectivity-repair-v1",
+  "threadRef": "agent-transcripts/29f9db42-b38c-4987-a40c-3681731389b9.jsonl",
+  "recordedAt": "2026-08-05T03:02:40.658Z",
+  "hosts": [
+    "WESLEY_WORK",
+    "WESLEYDESK"
+  ],
+  "events": [
+    {
+      "eventId": "TE-001",
+      "phase": "diagnostic",
+      "summary": "Full WESLEYDESK connectivity diagnostic via Tailscale SSH",
+      "actor": "agent",
+      "evidenceRefs": [
+        "wesleydesk-connectivity-full-diagnostic-v1/receipt.json"
+      ]
+    },
+    {
+      "eventId": "TE-002",
+      "phase": "root-cause",
+      "summary": "Phantom Z + session-bound SMB + failed Wesley logon tasks",
+      "actor": "agent",
+      "evidenceRefs": [
+        "smb-drive-report.json"
+      ]
+    },
+    {
+      "eventId": "TE-003",
+      "phase": "repair-1",
+      "summary": "IT Vault ForceRemap + smb-z-cg-server.env synced to desk PRIVATE",
+      "actor": "agent",
+      "evidenceRefs": [
+        "repair-1-receipt.json"
+      ]
+    },
+    {
+      "eventId": "TE-004",
+      "phase": "partial-pass",
+      "summary": "ForceRemap PASS in SSH; WSL /mnt/z FAIL — Fred console, Wesley absent",
+      "actor": "agent",
+      "evidenceRefs": [
+        "quser",
+        "repair-1-receipt.json"
+      ]
+    },
+    {
+      "eventId": "TE-005",
+      "phase": "operator-gate",
+      "summary": "User defined Phase A/B/C acceptance gates",
+      "actor": "user",
+      "evidenceRefs": [
+        "OPERATOR-GATE-RUNBOOK.md"
+      ]
+    },
+    {
+      "eventId": "TE-006",
+      "phase": "work-local",
+      "summary": "WESLEY_WORK Z: via Map-Z-From-Vault over cg-server Tailscale",
+      "actor": "user",
+      "evidenceRefs": [
+        "Map-Z-From-Vault.ps1"
+      ]
+    },
+    {
+      "eventId": "TE-007",
+      "phase": "harvest",
+      "summary": "chat-thread-closeout-autopsy-harvest-v1",
+      "actor": "user",
+      "evidenceRefs": [
+        "CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"
+      ]
+    }
+  ]
+}

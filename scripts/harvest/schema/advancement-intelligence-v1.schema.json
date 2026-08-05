@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://capitalglass.dev/schemas/advancement-intelligence-v1.json",
+  "title": "Advancement Intelligence Record v1",
+  "description": "Hub ADVANCEMENT intelligence — synthesized/invented concepts. Not observed facts or implementation status.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "conceptId",
+    "intelligenceKind",
+    "classification",
+    "title",
+    "novelContribution",
+    "derivedFrom",
+    "status",
+    "verificationRequired",
+    "implementationStatus"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "advancement-intelligence-v1@1.0.0" },
+    "conceptId": { "type": "string", "pattern": "^ADV-[A-Z0-9][A-Z0-9-]+$" },
+    "improvementId": { "type": "string", "pattern": "^IMP-[0-9]{3}$" },
+    "intelligenceKind": { "const": "advancement" },
+    "classification": {
+      "type": "array",
+      "items": {
+        "enum": ["EXTRACTED", "SYNTHESIZED", "INVENTED", "CROSS_CHECK_REQUIRED"]
+      },
+      "minItems": 1
+    },
+    "title": { "type": "string", "minLength": 1 },
+    "novelContribution": { "type": "string", "minLength": 20 },
+    "derivedFrom": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "wavePhaseImproved": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(Wave[0-9]{1,2}|CROSS_WAVE)$"
+      }
+    },
+    "smallestUsefulVersion": { "type": "string", "minLength": 1 },
+    "fullVision": { "type": "string" },
+    "acceptanceProof": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["CANDIDATE", "REFINEMENT", "VALIDATED_ADVANCEMENT", "REJECTED_DUPLICATE"] },
+    "verificationRequired": { "const": true },
+    "implementationStatus": {
+      "enum": ["NOT_STARTED", "WORK_PACKAGE_DRAFT", "IN_PROGRESS", "IMPLEMENTED"]
+    },
+    "advancementCycle": {
+      "enum": [
+        "NEW_EVIDENCE",
+        "NEW_SYNTHESIS",
+        "DUPLICATE_CONCEPT",
+        "REFINEMENT",
+        "VALIDATED_ADVANCEMENT",
+        "NO_NEW_ADVANCEMENT"
+      ]
+    },
+    "ownerRepo": { "type": "string" },
+    "crossCheckRequired": { "type": "boolean", "default": true }
+  }
+}

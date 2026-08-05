@@ -1,0 +1,203 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-05-prompt-catalog-scout-trim-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-501",
+      "type": "rework",
+      "description": "Scout router dropped entire prompt-catalog slice when combined budget exceeded; required compact-trim implementation",
+      "evidenceRefs": [
+        "EVT-502",
+        "WM-501"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Dataset-specific trim policy in enforceCombinedBudget before slice omission",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-502",
+      "type": "host",
+      "description": "RYZEN9DESK fanout proof attempted on WESLEY_WORK; BLOCKED_WRONG_HOST plus SSH publickey denied",
+      "evidenceRefs": [
+        "EVT-504"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Host-guard in proof script + document operator-only RYZEN9DESK runbook",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-503",
+      "type": "verification",
+      "description": "prompt-catalog DATASET_MISS on desk scout until compile+publish-hot-cache on host",
+      "evidenceRefs": [
+        "scout hooks harvest-record"
+      ],
+      "estimatedImpact": "low",
+      "savedBy": "Include prompt-catalog publish in hot-cache refresh-all and post-merge host checklist",
+      "roiRank": 3
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-501",
+      "trigger": "User had to request protocol run explicitly after slice closeout",
+      "operatorCost": "low",
+      "systemFix": "Auto-offer CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST when material slice closes with uncommitted harvest artifacts",
+      "evidenceRefs": [
+        "EVT-505"
+      ],
+      "linkedWasteIds": []
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-501",
+      "situation": "prompt-catalog exceeded scout combined maxRecords",
+      "actualExecution": {
+        "steps": [
+          "Report DATASET_HIT but omit entire compact slice",
+          "User steers to compact trim slice 1"
+        ],
+        "outcome": "Fixed after scout-compact-trim.mjs",
+        "evidenceRefs": [
+          "EVT-502",
+          "EVT-503"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Define per-dataset trim policy in dataset registry",
+          "Never drop entire slice when over budget — trim deterministically"
+        ],
+        "outcome": "DATASET_HIT with scoutSelection metadata on first ship",
+        "requiredPreflight": [
+          "test:prompt-catalog-gates with 40-record fixture"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "low"
+      }
+    },
+    {
+      "executionDeltaId": "ED-502",
+      "situation": "RYZEN9DESK consumption proof required after prompt harvest cache sync",
+      "actualExecution": {
+        "steps": [
+          "Run proof on WESLEY_WORK",
+          "Attempt Tailscale ping and SSH to cg-ryzen9desk-01"
+        ],
+        "outcome": "BLOCKED_WRONG_HOST; SSH Permission denied",
+        "evidenceRefs": [
+          "EVT-504"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Detect host role before proof",
+          "Emit operator runbook only; do not attempt remote SSH without keys"
+        ],
+        "outcome": "Clear desk-only gate with receipt path",
+        "requiredPreflight": [
+          "CG_WSL_MACHINE_ROLE",
+          "hostname"
+        ]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-501",
+      "summary": "enforceCombinedBudget omitted prompt-catalog slice entirely at budget cap",
+      "whyItWasWrong": "Scout reported DATASET_HIT but agents received no prompt-catalog compact records",
+      "correctFirstMove": "Apply dataset-specific trim (usageRank, exclude draft/archived) before byte budget",
+      "preventiveControl": "test:prompt-catalog-gates asserts compact slice present with scoutSelection",
+      "executionDeltaId": "ED-501"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-501",
+      "subject": "prompt-catalog hot-cache dataset wiring",
+      "whyRepeated": "Continues harvest-prompt-extraction-desk-closeout-v1 hardening",
+      "firstKnownInstance": "harvest-2026-08-04-cursor-harvest-protocol-session-v1",
+      "priorIndexSlice": "BY-KIND/prompt-harvest-index.json",
+      "whyMissed": "Prior harvest verified extraction; consumption trim was separate slice",
+      "avoidableBy": "Link parent harvestId in manifest",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Per-dataset scout trim policy in hot-cache-dataset-registry",
+      "whyItPays": "Prevents silent slice drops for any large compact dataset",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-501"
+      ],
+      "seedAs": "rule"
+    },
+    {
+      "rank": 2,
+      "title": "RYZEN9DESK operator proof runbook in harvest closeout",
+      "whyItPays": "Avoids wrong-host proof attempts and SSH guessing",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-502"
+      ],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 3,
+      "title": "prompt-catalog publish in refresh-all host checklist",
+      "whyItPays": "Fixes DATASET_MISS after registry/routing changes",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-503"
+      ],
+      "seedAs": "command"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "RYZEN9DESK_AI_CACHE_PROMPT_HARVEST_SYNC_PASS",
+      "currentStatus": "OPEN",
+      "doNotClaimUntil": [
+        "Receipt on RYZEN9DESK WSL with verdict RYZEN9DESK_AI_CACHE_PROMPT_HARVEST_SYNC_PASS"
+      ],
+      "lastKnownEvidence": [
+        "WESLEY_WORK receipt BLOCKED_WRONG_HOST"
+      ]
+    },
+    {
+      "awardOrVerdict": "FULLY_SEEDED_HUB",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "Operator harvest:publish-hub-seed + index:freshness-gate PASS"
+      ],
+      "lastKnownEvidence": [
+        "Git harvest only; hubPublishStatus not-run"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "commandIndexConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "work-progress/harvest-packet-registry.json"
+    ],
+    "checkedAt": "2026-08-05T02:49:00.540Z",
+    "preflightReceiptHash": "7822120f1ccb80ab28b417fbc0b43310eb49142c1bcd137e6f0eac3120ded296"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-thread-wesley-interactive-gate-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "5ce2079d898bf49bc35d04ab7582658eccc71bae",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-05-wesleydesk-connectivity-repair-v1",
+      "seedId": "IH-THREAD-WESLEY-INTERACTIVE-GATE-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T03:24:58.276Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "42f13ca138f0b31ea54dddb2030b8250d78450a2b398bd34f16096cdd9b7a902"
+  },
+  "body": {
+    "seedId": "IH-THREAD-WESLEY-INTERACTIVE-GATE-001",
+    "kind": "runbook",
+    "title": "WESLEYDESK Repair 1–3 operator gate sequence",
+    "summary": "Phase A gate → Repair 2 → cold reboot.",
+    "canonicalQuestion": "What closes Repair 1 after SSH partial pass?",
+    "alternateQuestions": [
+      "What proves durable Z persistence?"
+    ],
+    "shortAnswer": "Phase A gate → Repair 2 → cold reboot.",
+    "detailedAnswer": "WESLEYDESK Repair 1–3 operator gate sequence",
+    "retrievalQuestions": [
+      "What closes Repair 1 after SSH partial pass?",
+      "What proves durable Z persistence?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "PARTIAL_PASS stuck",
+      "startAt": [
+        "OPERATOR-GATE-RUNBOOK.md"
+      ],
+      "runPreflight": [
+        "quser Wesley interactive"
+      ],
+      "doNot": [
+        "EnsureDeskDriveMounts-Once Fred"
+      ],
+      "proveBeforeClaiming": [
+        "REPAIR_1_INTERACTIVE_GATE_PASS",
+        "WESLEYDESK_DRIVE_PERSISTENCE_REBOOT_GATE_PASS"
+      ]
+    },
+    "evidenceRefs": [
+      "OPERATOR-GATE-RUNBOOK.md"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "HUMAN_REVIEW",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Office-Admin",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-05-wesleydesk-connectivity-repair-v1/seed-packets/IH-THREAD-WESLEY-INTERACTIVE-GATE-001.json"
+    ],
+    "harvestId": "harvest-2026-08-05-wesleydesk-connectivity-repair-v1"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-05-prompt-catalog-scout-trim-v1",
+  "packetId": "prompt-catalog-routing-hardening-v1",
+  "state": "HARVEST_COMPLETE",
+  "packetVerdict": "PASS",
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Republish hot routing after registry changes on each host",
+  "evidenceRefs": [
+    "402352f",
+    "EVT-501",
+    "EVT-502"
+  ],
+  "doNotAdvance": [
+    "PROMPT_CATALOG_DATASET_HIT_WITHOUT_HOT_CACHE_PUBLISH"
+  ],
+  "advancementGate": "npm run intelligence-hub:publish-hot-routing-index",
+  "contentHash": "2f86e6597327b3f30fb491903b54f1bc3385f390519e691a02da3aeb8c169527"
+}

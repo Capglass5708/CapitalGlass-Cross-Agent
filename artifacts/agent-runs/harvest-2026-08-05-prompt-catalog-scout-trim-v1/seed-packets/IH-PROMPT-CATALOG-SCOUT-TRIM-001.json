@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-PROMPT-CATALOG-SCOUT-TRIM-001",
+  "kind": "failure-pattern",
+  "title": "Never drop entire prompt-catalog scout slice at combined budget — trim deterministically",
+  "summary": "When prompt-catalog exceeds maxRecords, apply scout-compact-trim (usageRank, exclude draft/archived) and emit scoutSelection metadata.",
+  "retrievalQuestions": [
+    "Why did scout show DATASET_HIT but no prompt-catalog records?",
+    "How does prompt-catalog compact trim work?"
+  ],
+  "evidenceRefs": ["EVT-502", "EVT-503", "WM-501", "scout-compact-trim.mjs"],
+  "executionDeltaRefs": ["ED-501"],
+  "wasteIds": ["TW-501"],
+  "roiRank": 1,
+  "futureAgentInstructions": {
+    "whenThisAppears": "Scout router combined budget or prompt-catalog dataset miss/hit mismatch",
+    "startAt": [
+      "CG-AppBuilder-MCP/scripts/hot-cache-platform/lib/scout-dataset-router.mjs",
+      "CG-AppBuilder-MCP/scripts/hot-cache-platform/datasets/prompt-catalog/scout-compact-trim.mjs"
+    ],
+    "runPreflight": ["npm run test:prompt-catalog-gates"],
+    "doNot": [
+      "Omit entire prompt-catalog slice when over maxRecords",
+      "Claim DATASET_HIT without compact slice payload"
+    ],
+    "proveBeforeClaiming": [
+      "scoutSelection.selectedCount <= maxRecords",
+      "PROMPT_CATALOG_GATES_PASS"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

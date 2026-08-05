@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-MAP-Z-VAULT-WORK-001",
+  "kind": "command",
+  "title": "WESLEY_WORK Z via Map-Z-From-Vault.ps1",
+  "summary": "Use cg-server Tailscale when off LAN.",
+  "retrievalQuestions": [
+    "Reconnect Z on WESLEY_WORK?",
+    "192.168.1.208 fails off LAN?"
+  ],
+  "evidenceRefs": [
+    "Map-Z-From-Vault.ps1",
+    "harvest-2026-08-04-z-l-drive-offlan-session-v1"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "WESLEY_WORK needs Z",
+    "startAt": [
+      "D:\\Admin Keys"
+    ],
+    "runPreflight": [
+      "IT Vault on D:"
+    ],
+    "doNot": [
+      "Hardcode SMB creds"
+    ],
+    "proveBeforeClaiming": [
+      "net use Z: OK"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}

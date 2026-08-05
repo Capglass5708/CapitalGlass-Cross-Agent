@@ -1,0 +1,80 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-ryzen9-prompt-harvest-proof-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "73a05f78ac4f7968e40dd6f8a8096f19b7cb99c8",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-05-prompt-catalog-scout-trim-v1",
+      "seedId": "IH-RYZEN9-PROMPT-HARVEST-PROOF-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T03:10:27.820Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "a5583ed9afe6e58e81eb350b54f51a4d85876ec6e3fcfb04ecad1c2c5064f37f"
+  },
+  "body": {
+    "seedId": "IH-RYZEN9-PROMPT-HARVEST-PROOF-001",
+    "kind": "runbook",
+    "title": "RYZEN9DESK prompt harvest cache sync proof — desk-only",
+    "summary": "npm run ryzen9desk:prompt-harvest-cache-sync-proof:json must run on RYZEN9DESK WSL with CG_WSL_MACHINE_ROLE=ryzen9desk; WESLEY_WORK returns BLOCKED_WRONG_HOST.",
+    "canonicalQuestion": "How do I close RYZEN9DESK_AI_CACHE_PROMPT_HARVEST_SYNC_PASS?",
+    "alternateQuestions": [
+      "Why did proof fail on WESLEY_WORK?"
+    ],
+    "shortAnswer": "npm run ryzen9desk:prompt-harvest-cache-sync-proof:json must run on RYZEN9DESK WSL with CG_WSL_MACHINE_ROLE=ryzen9desk; WESLEY_WORK returns BLOCKED_WRONG_HOST.",
+    "detailedAnswer": "RYZEN9DESK prompt harvest cache sync proof — desk-only",
+    "retrievalQuestions": [
+      "How do I close RYZEN9DESK_AI_CACHE_PROMPT_HARVEST_SYNC_PASS?",
+      "Why did proof fail on WESLEY_WORK?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "RYZEN9DESK fanout or prompt harvest cache sync gate",
+      "startAt": [
+        "CG-AppBuilder-MCP/scripts/intelligence-hub/ryzen9desk-prompt-harvest-cache-sync-proof.mjs"
+      ],
+      "runPreflight": [
+        "hostname",
+        "echo $CG_WSL_MACHINE_ROLE"
+      ],
+      "doNot": [
+        "Run proof on WESLEY_WORK",
+        "Attempt SSH without configured keys"
+      ],
+      "proveBeforeClaiming": [
+        "verdict: RYZEN9DESK_AI_CACHE_PROMPT_HARVEST_SYNC_PASS",
+        "checks.scout.indexResult: INDEX_HIT_AI_CACHE"
+      ]
+    },
+    "evidenceRefs": [
+      "EVT-504",
+      "BLOCKED_WRONG_HOST"
+    ],
+    "executionDeltaRefs": [
+      "ED-502"
+    ],
+    "wasteIds": [
+      "TW-502"
+    ],
+    "operatorFrictionIds": [],
+    "roiRank": 2,
+    "doNotAdvance": [],
+    "promotionClass": "HUMAN_REVIEW",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-05-prompt-catalog-scout-trim-v1/seed-packets/IH-RYZEN9-PROMPT-HARVEST-PROOF-001.json"
+    ],
+    "harvestId": "harvest-2026-08-05-prompt-catalog-scout-trim-v1"
+  }
+}

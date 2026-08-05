@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-WESLEY-INTERACTIVE-GATE-001",
+  "kind": "runbook",
+  "title": "WESLEYDESK Repair 1–3 operator gate sequence",
+  "summary": "Phase A gate → Repair 2 → cold reboot.",
+  "retrievalQuestions": [
+    "What closes Repair 1 after SSH partial pass?",
+    "What proves durable Z persistence?"
+  ],
+  "evidenceRefs": [
+    "OPERATOR-GATE-RUNBOOK.md"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "PARTIAL_PASS stuck",
+    "startAt": [
+      "OPERATOR-GATE-RUNBOOK.md"
+    ],
+    "runPreflight": [
+      "quser Wesley interactive"
+    ],
+    "doNot": [
+      "EnsureDeskDriveMounts-Once Fred"
+    ],
+    "proveBeforeClaiming": [
+      "REPAIR_1_INTERACTIVE_GATE_PASS",
+      "WESLEYDESK_DRIVE_PERSISTENCE_REBOOT_GATE_PASS"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "HUMAN_REVIEW",
+  "status": "CANDIDATE"
+}

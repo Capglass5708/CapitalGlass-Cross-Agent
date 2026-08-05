@@ -1,0 +1,74 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-thread-wesleydesk-z-session-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "5ce2079d898bf49bc35d04ab7582658eccc71bae",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-05-wesleydesk-connectivity-repair-v1",
+      "seedId": "IH-THREAD-WESLEYDESK-Z-SESSION-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T03:24:58.276Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "9a9d359676fbf17454df0b3783e63106b02bb0e4d5c51007d8b6d7d0a207ce73"
+  },
+  "body": {
+    "seedId": "IH-THREAD-WESLEYDESK-Z-SESSION-001",
+    "kind": "failure-pattern",
+    "title": "WESLEYDESK Z: in SSH does not reach Wesley WSL /mnt/z",
+    "summary": "Network drives are per Windows user session.",
+    "canonicalQuestion": "Why is /mnt/z empty after Z remap?",
+    "alternateQuestions": [
+      "Can cgremoteadmin SSH prove Wesley repair?"
+    ],
+    "shortAnswer": "Network drives are per Windows user session.",
+    "detailedAnswer": "WESLEYDESK Z: in SSH does not reach Wesley WSL /mnt/z",
+    "retrievalQuestions": [
+      "Why is /mnt/z empty after Z remap?",
+      "Can cgremoteadmin SSH prove Wesley repair?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "WESLEYDESK Z repair via SSH",
+      "startAt": [
+        "quser",
+        "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md"
+      ],
+      "runPreflight": [
+        "office.get_agent_preflight"
+      ],
+      "doNot": [
+        "Claim REPAIR_1_PASS from SSH"
+      ],
+      "proveBeforeClaiming": [
+        "REPAIR_1_INTERACTIVE_GATE_PASS"
+      ]
+    },
+    "evidenceRefs": [
+      "harvest-2026-08-05-wesleydesk-connectivity-repair-v1",
+      "WM-001"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Office-Admin",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-05-wesleydesk-connectivity-repair-v1/seed-packets/IH-THREAD-WESLEYDESK-Z-SESSION-001.json"
+    ],
+    "harvestId": "harvest-2026-08-05-wesleydesk-connectivity-repair-v1"
+  }
+}

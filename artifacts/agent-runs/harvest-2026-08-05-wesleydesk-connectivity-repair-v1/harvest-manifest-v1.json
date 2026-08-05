@@ -1,0 +1,313 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-05-wesleydesk-connectivity-repair-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "23acda091307db00d402aab31e21ba84e306e513",
+  "sourceBranch": "chat-gpt-harvest",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-05T03:02:40.658Z",
+  "updatedAt": "2026-08-05T03:02:40.658Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "Claim REPAIR_1_PASS from cgremoteadmin SSH ForceRemap alone",
+    "Validate WSL /mnt/z from SSH session without Wesley console login",
+    "Claim WESLEYDESK_CONNECTIVITY_ROOT_CAUSES_REPAIRED_AND_VERIFIED before cold-reboot gate",
+    "Run CapitalGlass-EnsureDeskDriveMounts-Once (Fred identity)"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-05-wesleydesk-connectivity-repair-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-05-wesleydesk-connectivity-repair-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 5,
+      "seeds": 4,
+      "roiItems": 3,
+      "operatorFriction": 2,
+      "executionDeltas": 3
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "pending publish-intelligence-full"
+  },
+  "ledgerLineage": {
+    "ledgerPath": "work-progress/ACTIVE_WORK.md",
+    "relatedProjectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+    "ledgerContentHashBefore": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096",
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  },
+  "supersededClaims": [],
+  "packets": [
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-office-admin-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "packetKind": "blocker",
+      "packetId": "wesleydesk-z-session-identity-blocker-v1",
+      "packetTitle": "WESLEYDESK Z: mapping is Windows session/identity-bound",
+      "state": "OPEN",
+      "packetVerdict": "ACTIVE_USER_Z_MAPPING_NOT_PROVEN",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/artifacts/agent-runs/wesleydesk-connectivity-full-diagnostic-v1/repair-1-receipt.json",
+        "thread-autopsy-bundle.json#WM-001"
+      ],
+      "nextAction": "Wesley console login → Run-Repair1-InteractiveGate-Wesley.ps1",
+      "advancementGate": "REPAIR_1_INTERACTIVE_GATE_PASS",
+      "doNotAdvance": [
+        "REPAIR_1_PASS from SSH cgremoteadmin session"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-office-admin-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "packetKind": "mistake",
+      "packetId": "phantom-z-net-use-insufficient-v1",
+      "packetTitle": "net use /delete alone cannot clear phantom Z: (error 85)",
+      "state": "DOCUMENTED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "evidenceRefs": [
+        "C:\\Temp\\clear-z.ps1 DefineDosDevice removed=True",
+        "thread-autopsy-bundle.json#WM-002"
+      ],
+      "nextAction": "Integrate DefineDosDevice clear into ForceRemap preflight",
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "packetKind": "mistake",
+      "packetId": "ssh-forceremap-as-wesley-gate-v1",
+      "packetTitle": "Treating cgremoteadmin SSH ForceRemap as Wesley operator repair",
+      "state": "DOCUMENTED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "evidenceRefs": [
+        "repair-1-receipt.json#operatorContextNotValidated",
+        "thread-autopsy-bundle.json#ED-002"
+      ],
+      "nextAction": "Hard-block WSL /mnt/z validation until quser shows Wesley interactive",
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-office-admin-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "packetKind": "faster_path",
+      "packetId": "define-dosdevice-before-z-remap-v1",
+      "packetTitle": "Clear phantom Z: with DefineDosDevice before any net use map",
+      "state": "RECORDED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "evidenceRefs": [
+        "clear-z.ps1 kernel32 DefineDosDevice flags=3",
+        "thread-autopsy-bundle.json#ED-001"
+      ],
+      "nextAction": "Add to Ensure-CgWesleyDeskDriveMounts ForceRemap path",
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-office-admin-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "packetKind": "command",
+      "packetId": "map-z-from-vault-wesleywork-v1",
+      "packetTitle": "WESLEY_WORK Z: remap via D:\\Admin Keys Map-Z-From-Vault.ps1",
+      "state": "PROVEN",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "evidenceRefs": [
+        "D:\\Admin Keys\\Capital-Glass-IT-Vault\\tools\\Map-Z-From-Vault.ps1",
+        "net use Z: \\\\cg-server\\Capital Glass OK off-LAN"
+      ],
+      "nextAction": "Use cg-server Tailscale when 192.168.1.208 unreachable",
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Improvise net use without vault script"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-office-admin-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "packetKind": "command",
+      "packetId": "wesley-interactive-gate-script-v1",
+      "packetTitle": "Run-Repair1-InteractiveGate-Wesley.ps1 closes Repair 1",
+      "state": "STAGED",
+      "packetVerdict": "PENDING_OPERATOR",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "evidenceRefs": [
+        "C:\\ProgramData\\CapitalGlass\\OfficeAdmin\\PRIVATE\\gates\\Run-Repair1-InteractiveGate-Wesley.ps1",
+        "CG-AppBuilder-MCP/artifacts/agent-runs/wesleydesk-connectivity-full-diagnostic-v1/OPERATOR-GATE-RUNBOOK.md"
+      ],
+      "nextAction": "Wesley Admin PowerShell on WESLEYDESK console",
+      "advancementGate": "REPAIR_1_INTERACTIVE_GATE_PASS",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "packetKind": "evidence",
+      "packetId": "repair-1-partial-pass-receipt-v1",
+      "packetTitle": "Repair 1 PARTIAL_PASS frozen verdict with open gates",
+      "state": "FROZEN",
+      "packetVerdict": "REPAIR_1_PARTIAL_PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/artifacts/agent-runs/wesleydesk-connectivity-full-diagnostic-v1/repair-1-receipt.json",
+        "repair-2-acceptance.md"
+      ],
+      "nextAction": "Upgrade verdict only after Phase A/B/C gates",
+      "advancementGate": "WESLEYDESK_DRIVE_PERSISTENCE_REBOOT_GATE_PASS",
+      "doNotAdvance": [
+        "WESLEYDESK_CONNECTIVITY_ROOT_CAUSES_REPAIRED_AND_VERIFIED"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-office-admin-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "packetKind": "protocol_upgrade",
+      "packetId": "windows-session-drive-mapping-guard-v1",
+      "packetTitle": "Require quser + whoami match before drive repair closeout",
+      "state": "CANDIDATE",
+      "packetVerdict": "POLICY_GATED",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "evidenceRefs": [
+        "thread-autopsy-bundle.json#roiBacklog rank 1",
+        "OPERATOR-GATE-RUNBOOK.md"
+      ],
+      "nextAction": "Promote to Office Admin preflight + cursor rule candidate",
+      "advancementGate": "human-review",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "packetKind": "decision",
+      "packetId": "repair1-partial-accept-operator-gate-v1",
+      "packetTitle": "Accept PARTIAL_PASS; operator owns Wesley session gates",
+      "state": "ACCEPTED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "evidenceRefs": [
+        "thread user Phase A/B/C acceptance",
+        "TE-005"
+      ],
+      "nextAction": "Repair 2 deploy then cold reboot gate",
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "packetKind": "repeated_work",
+      "packetId": "z-drive-session-recurrence-v1",
+      "packetTitle": "Z/L drive recurrence extends with session-identity dimension",
+      "state": "EXTENDS_PRIOR",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "evidenceRefs": [
+        "harvest-2026-08-04-z-l-drive-offlan-session-v1",
+        "work-progress/harvest-packet-registry.json",
+        "thread-autopsy-bundle.json#DW-001"
+      ],
+      "nextAction": "Extend 2026-08-02_z-drive-disconnect-recurrence-v1 project",
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    }
+  ],
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 13,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 13,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-ff65b19181d2",
+      "prompt-candidate-0b6bd1abd5a6",
+      "prompt-candidate-8601e7045f88",
+      "prompt-candidate-baf370c0a7e2",
+      "prompt-candidate-23384d23db1e",
+      "prompt-candidate-49cf86bfaaad",
+      "prompt-candidate-bab74907c214",
+      "prompt-candidate-fdcd50129449",
+      "prompt-candidate-b21dc76c8545",
+      "prompt-candidate-815800abc50d",
+      "prompt-candidate-d5976918cf03",
+      "prompt-candidate-1fae09b436db",
+      "prompt-candidate-eb9338713473"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

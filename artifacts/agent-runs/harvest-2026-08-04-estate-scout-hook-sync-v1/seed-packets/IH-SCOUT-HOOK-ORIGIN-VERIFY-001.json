@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-SCOUT-HOOK-ORIGIN-VERIFY-001",
+  "kind": "failure-pattern",
+  "title": "Estate scout check would-sync may mean local stale, not remote missing",
+  "summary": "check:intelligence-hub-scout-hooks evaluates local disk; verify origin/main hook blobs before opening PRs across the estate.",
+  "retrievalQuestions": [
+    "Why does check:intelligence-hub-scout-hooks show would-sync when GitHub main already has hooks?",
+    "How do I verify scout hooks on origin/main without git restore on dirty clones?"
+  ],
+  "evidenceRefs": ["EVT-503", "EVT-505", "WM-501"],
+  "executionDeltaRefs": ["ED-501"],
+  "wasteIds": ["TW-502"],
+  "roiRank": 1,
+  "futureAgentInstructions": {
+    "whenThisAppears": "Estate scout hook sync reports N/33 would-sync for multiple repos",
+    "startAt": [
+      "CG-AppBuilder-MCP/scripts/three-way-agent/intelligence-hub-scout-hooks-lib.mjs",
+      "work-progress/command-index.json"
+    ],
+    "runPreflight": ["npm run agent:index:scout -- --json"],
+    "doNot": [
+      "Open PRs in every would-sync repo before checking origin/main",
+      "Run git restore . on repos with preserved WIP"
+    ],
+    "proveBeforeClaiming": [
+      "git ls-tree origin/main .cursor/hooks.json .cursor/hooks/intelligence-hub-scout-inject.sh",
+      "shimHash matches 98d2af10c0b13bd9324ac5fc99ab02cd267fe774f17bf1ed489bbea585410bf2"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

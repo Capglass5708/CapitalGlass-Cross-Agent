@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-SCOUT-HOOK-ESTATE-SYNC-LOCAL-001",
+  "kind": "command",
+  "title": "npm run sync:intelligence-hub-scout-hooks aligns local disk without git restore",
+  "summary": "When origin/main already has canonical hooks, estate sync writes only hooks.json and shim locally to pass 33/33 check.",
+  "retrievalQuestions": [
+    "How do I pass check:intelligence-hub-scout-hooks without git pull on dirty repos?",
+    "What files does sync:intelligence-hub-scout-hooks modify?"
+  ],
+  "evidenceRefs": ["EVT-507", "EVT-508", "intelligence-hub-scout-hooks-manifest.json"],
+  "executionDeltaRefs": ["ED-501"],
+  "wasteIds": ["TW-501"],
+  "roiRank": 4,
+  "futureAgentInstructions": {
+    "whenThisAppears": "origin/main verified synced but local check still fails",
+    "startAt": ["CG-AppBuilder-MCP package.json sync:intelligence-hub-scout-hooks"],
+    "runPreflight": ["npm run check:intelligence-hub-scout-hooks --dry-run"],
+    "doNot": [
+      "git restore . to get hooks",
+      "Commit machine-local .cursor/mcp.json"
+    ],
+    "proveBeforeClaiming": [
+      "npm run check:intelligence-hub-scout-hooks exit 0",
+      "Only .cursor/hooks.json and .cursor/hooks/intelligence-hub-scout-inject.sh changed on disk"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}

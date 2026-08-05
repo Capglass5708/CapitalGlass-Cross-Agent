@@ -1,6 +1,6 @@
 # Harvest summary — derived view
 
-**Authority:** `harvest-manifest-v1.json` (`26624868f136…`)
+**Authority:** `harvest-manifest-v1.json` (`e9aa9ca03ded…`)
 **Work package:** `harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1`
 **Mission class:** `chat-thread-closeout-autopsy-harvest-v1`
 **Verdict:** `HARVEST_COMPLETE`

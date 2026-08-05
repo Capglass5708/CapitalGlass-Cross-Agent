@@ -1,0 +1,170 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-05-prompt-catalog-scout-trim-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "402352f4bb056e3f30115f7eb7d40e13000cafef",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-05T02:45:00.000Z",
+  "updatedAt": "2026-08-05T02:45:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "rawScanRequired": false,
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "RYZEN9DESK_AI_CACHE_PROMPT_HARVEST_SYNC_WITHOUT_DESK_RECEIPT",
+    "PROMPT_CATALOG_DATASET_HIT_WITHOUT_HOT_CACHE_PUBLISH",
+    "FULLY_SEEDED_WITHOUT_HUB_PUBLISH"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-05-prompt-catalog-scout-trim-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-05-prompt-catalog-scout-trim-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 3,
+      "seeds": 3,
+      "roiItems": 3,
+      "operatorFriction": 1
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Cursor agent — operator runs harvest:publish-hub-seed + index:publish",
+    "note": "Git harvest recording; hub publication NOT_RUN_BY_CURSOR per protocol"
+  },
+  "ledgerLineage": {
+    "ledgerPath": "work-progress/ACTIVE_WORK.md",
+    "note": "No ACTIVE_WORK mutation in this harvest recording pass",
+    "ledgerContentHashBefore": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096",
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  },
+  "packets": [
+    {
+      "packetId": "prompt-catalog-compact-trim-shipped-v1",
+      "packetTitle": "Slice 1: prompt-catalog scout compact trim (40→25 deterministic)",
+      "state": "HARVEST_COMPLETE",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "DECISION",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "artifacts/agent-runs/harvest-2026-08-05-prompt-catalog-scout-trim-v1/thread-event-inventory.json",
+      "evidenceRefs": [
+        "060e11ba",
+        "EVT-503",
+        "PROMPT_CATALOG_GATES_PASS"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "060e11ba"
+        }
+      ],
+      "nextAction": "None for slice 1",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "blockers": []
+    },
+    {
+      "packetId": "prompt-catalog-routing-hardening-v1",
+      "packetTitle": "prompt-catalog lazy routing + execution packet dependsOn + lazyCatalog meta fix",
+      "state": "HARVEST_COMPLETE",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "COMMAND",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "artifacts/agent-runs/harvest-2026-08-05-prompt-catalog-scout-trim-v1/thread-event-inventory.json",
+      "evidenceRefs": [
+        "402352f",
+        "EVT-501",
+        "EVT-502"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "402352f"
+        }
+      ],
+      "nextAction": "Republish hot routing after registry changes on each host",
+      "advancementGate": "npm run intelligence-hub:publish-hot-routing-index",
+      "doNotAdvance": [
+        "PROMPT_CATALOG_DATASET_HIT_WITHOUT_HOT_CACHE_PUBLISH"
+      ],
+      "blockers": []
+    },
+    {
+      "packetId": "ryzen9desk-cache-sync-blocked-v1",
+      "packetTitle": "RYZEN9DESK fanout proof blocked on WESLEY_WORK",
+      "state": "DOCUMENTED",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "BLOCKER",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "artifacts/agent-runs/harvest-2026-08-05-prompt-catalog-scout-trim-v1/thread-event-inventory.json",
+      "evidenceRefs": [
+        "EVT-504",
+        "BLOCKED_WRONG_HOST"
+      ],
+      "commitRefs": [],
+      "nextAction": "Operator runs npm run ryzen9desk:prompt-harvest-cache-sync-proof:json on RYZEN9DESK WSL",
+      "advancementGate": "RYZEN9DESK_AI_CACHE_PROMPT_HARVEST_SYNC_PASS",
+      "doNotAdvance": [
+        "RYZEN9DESK_AI_CACHE_PROMPT_HARVEST_SYNC_WITHOUT_DESK_RECEIPT"
+      ],
+      "blockers": [
+        "direct-connect-cold-reboot-persistence"
+      ]
+    },
+    {
+      "packetId": "scout-router-slice-drop-mistake-v1",
+      "packetTitle": "Mistake: enforceCombinedBudget dropped entire prompt-catalog slice at maxRecords",
+      "state": "HARVEST_COMPLETE",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "MISTAKE",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "artifacts/agent-runs/harvest-2026-08-05-prompt-catalog-scout-trim-v1/thread-event-inventory.json",
+      "evidenceRefs": [
+        "EVT-502",
+        "WM-501"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "060e11ba"
+        }
+      ],
+      "nextAction": "Fixed via scout-compact-trim.mjs",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "blockers": []
+    }
+  ],
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 9,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 9,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-6d06be343e93",
+      "prompt-candidate-6e2e6b362191",
+      "prompt-candidate-6115fd09df7c",
+      "prompt-candidate-1278a4ba811e",
+      "prompt-candidate-b36c94701188",
+      "prompt-candidate-028684223656",
+      "prompt-candidate-25876c23480a",
+      "prompt-candidate-90aa2bacfd8b",
+      "prompt-candidate-51d589802e16"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}
