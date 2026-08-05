@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "cross-agent-empirical-sample-routing-metadata-v1@1.0.0",
+  "programId": "harvest-empirical-samples-v1",
+  "sampleId": "architectural-thread-v1",
+  "sampleClass": "architectural",
+  "sampleStatus": "COMPLETE",
+  "sourceLane": "CHATGPT_OBSERVED_HARVEST",
+  "destinationLane": "DATA_EXTRACTION",
+  "downstreamProjection": "CG_MASTER_GRAPH",
+  "protocolVersion": "CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1",
+  "programLineage": {
+    "protocolAuthorityCommit": "1e87d6ab96ed35d3d117def99e1e0d670c028575",
+    "programScaffoldCommit": "2b565d34fa792c4c04851b2b1506797805630e23",
+    "thinLiveRunCommit": "003407345ea2044fe238d754ddecacd613fefa22",
+    "downstreamRoutingCommit": "a2cfa25c0fcb4a03885df0cbf3c1782bfcb8a2bc",
+    "publicationEvidenceCommit": "b8ceb833d699a73d34cf57c8908f6b45856fb1d7",
+    "architecturalFixtureCommit": "c1f78dceaffe397a0fae46a938222f0b89a33ae3",
+    "architecturalLiveRunCommit": "8fbf208eb553a048ba3e906054e8da24da63fa2e"
+  },
+  "sourceArtifact": "sample-thread-source.md",
+  "goldenArtifact": "golden-findings-DRAFT_READY.md",
+  "generatedArtifact": "chatgpt-live-output.md",
+  "reviewArtifact": "empirical-review-v1.json",
+  "harvestVerdict": "DRAFT_READY_FOR_CURSOR_VALIDATION",
+  "reviewVerdict": "PASS",
+  "signalDensity": "high",
+  "graphEligibility": "eligible",
+  "graphEligibilityRationale": "Review PASS with durable architecture ownership boundaries. COR-001 rejects direct raw-markdown graph:collect; HP-001/HP-002 restate three-layer handoff; HP-003 forbids parallel envelope scaffold. Normalized extraction may project up to two sampleFinding nodes after Data Extraction ingest. Implementation wiring remains withheld while HOLD_REPO_AUTHORITY_RESOLUTION stands.",
+  "projectableNodeKinds": [
+    "Thread",
+    "Sample",
+    "ProtocolVersion",
+    "ReviewScore",
+    "sampleFinding"
+  ],
+  "withheldNodeKinds": [
+    "recurringWeakness",
+    "protocolChangeCandidate",
+    "approvedProtocolChange"
+  ],
+  "sampleFindingCandidates": [
+    {
+      "id": "HP-001",
+      "summary": "Three-layer empirical handoff: immutable Cross-Agent raw evidence → Data Extraction normalization → Master Graph eligible projections only",
+      "evidenceRefs": ["EVT-003", "EVT-004"],
+      "reviewApproved": true
+    },
+    {
+      "id": "HP-003",
+      "summary": "Extend existing empirical-downstream-handoff and routing metadata only; no parallel contribution envelope while authority on HOLD",
+      "evidenceRefs": ["EVT-006", "EVT-007"],
+      "reviewApproved": true
+    }
+  ],
+  "rejectedArchitecturalShortcuts": [
+    {
+      "id": "COR-001",
+      "summary": "Direct graph:collect ingestion of raw chatgpt-live-output.md",
+      "reviewApproved": true
+    }
+  ],
+  "downstreamHandoffStatus": "HOLD_REPO_AUTHORITY_RESOLUTION",
+  "authorityResolution": {
+    "dataExtractionRepo": "TO_BE_RESOLVED",
+    "masterGraphRepo": "TO_BE_RESOLVED",
+    "extractionContract": "TO_BE_RESOLVED",
+    "graphProjectionContract": "TO_BE_RESOLVED"
+  },
+  "immutableEvidencePolicy": {
+    "rawMarkdown": "chatgpt-live-output.md",
+    "mutableProjection": "Data Extraction normalized records only",
+    "directMarkdownToGraph": false
+  }
+}

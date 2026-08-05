@@ -20,7 +20,7 @@
   "observedVerdict": "DRAFT_READY_FOR_CURSOR_VALIDATION",
   "expectedTier": "T2",
   "observedTier": "T2",
-  "sampleComplete": false,
+  "sampleComplete": true,
   "liveRun": {
     "status": "COMPLETE",
     "executedAt": "2026-08-05T22:00:00.000Z",
@@ -88,10 +88,23 @@
   "recurringWeakness": null,
   "architecturalSampleGate": "PASS",
   "nextSample": "debugging-thread-v1",
-  "nextSampleAuthoring": "BLOCKED_UNTIL_ARCHITECTURAL_ROUTING_METADATA_COMMITTED",
+  "nextSampleAuthoring": "UNBLOCKED",
   "routingMetadata": {
     "programId": "harvest-empirical-samples-v1",
     "sampleId": "architectural-thread-v1",
-    "pendingArtifact": "samples/architectural-thread-v1/sample-routing-metadata-v1.json"
+    "sourceLane": "CHATGPT_OBSERVED_HARVEST",
+    "destinationLane": "DATA_EXTRACTION",
+    "downstreamProjection": "CG_MASTER_GRAPH",
+    "protocolVersion": "CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1",
+    "programLineage": {
+      "protocolAuthorityCommit": "1e87d6ab96ed35d3d117def99e1e0d670c028575",
+      "architecturalLiveRunCommit": "8fbf208eb553a048ba3e906054e8da24da63fa2e"
+    },
+    "signalDensity": "high",
+    "verdict": "PASS",
+    "harvestVerdict": "DRAFT_READY_FOR_CURSOR_VALIDATION",
+    "graphEligibility": "eligible",
+    "downstreamHandoffStatus": "HOLD_REPO_AUTHORITY_RESOLUTION",
+    "routingMetadataPath": "samples/architectural-thread-v1/sample-routing-metadata-v1.json"
   }
 }

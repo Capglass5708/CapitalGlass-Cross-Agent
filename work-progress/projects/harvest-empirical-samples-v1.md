@@ -1,6 +1,6 @@
 # harvest-empirical-samples-v1
 
-**Status:** IN_PROGRESS (thin + medium COMPLETE; architectural FIXTURE_READY; downstream HOLD)  
+**Status:** IN_PROGRESS (thin + medium + architectural COMPLETE; debugging/planning PENDING; downstream HOLD)  
 **Owner repo:** CapitalGlass-Cross-Agent  
 **Protocol state:** FROZEN — authority at `1e87d6a` (`harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md`); publication evidence at `b8ceb83` (not protocol text)
 
@@ -66,7 +66,7 @@ Node kinds must remain distinct: `sampleFinding`, `recurringWeakness`, `protocol
 | --- | --- | --- | --- | --- | --- |
 | 1 | thin | `thin-thread-v1` | COMPLETE | `NO_HARVEST_NEEDED` | hold |
 | 2 | medium | `medium-thread-v1` | COMPLETE | `DRAFT_READY_FOR_CURSOR_VALIDATION` | eligible |
-| 3 | architectural | `architectural-thread-v1` | PASS (live review) | `DRAFT_READY_FOR_CURSOR_VALIDATION` | pending routing |
+| 3 | architectural | `architectural-thread-v1` | COMPLETE | `DRAFT_READY_FOR_CURSOR_VALIDATION` | eligible |
 | 4 | debugging | `debugging-thread-v1` | PENDING | — | — |
 | 5 | planning | `planning-thread-v1` | PENDING | — | — |
 
@@ -80,6 +80,7 @@ Node kinds must remain distinct: `sampleFinding`, `recurringWeakness`, `protocol
 | Program defects log | `artifacts/agent-runs/harvest-empirical-samples-v1/empirical-program-defects-v1.json` |
 | Thin routing metadata | `artifacts/agent-runs/harvest-empirical-samples-v1/samples/thin-thread-v1/sample-routing-metadata-v1.json` |
 | Medium routing metadata | `artifacts/agent-runs/harvest-empirical-samples-v1/samples/medium-thread-v1/sample-routing-metadata-v1.json` |
+| Architectural routing metadata | `artifacts/agent-runs/harvest-empirical-samples-v1/samples/architectural-thread-v1/sample-routing-metadata-v1.json` |
 
 ## Thin sample #1
 
@@ -115,7 +116,7 @@ Node kinds must remain distinct: `sampleFinding`, `recurringWeakness`, `protocol
 **Golden reference:** bounds-based `golden-findings-DRAFT_READY.md`.  
 **Live output:** `chatgpt-live-output.md` — observed T2, COR-001 rejects direct ingestion, HP-001..003 three-layer + no-parallel-envelope boundaries.  
 **Rubric:** PASS on all 7 criteria; protocol change not indicated.  
-**Routing metadata:** pending separate commit.
+**Graph:** `eligible` — two `sampleFinding` candidates (three-layer handoff, no parallel envelope); downstream ingest still HOLD.
 
 ## Medium sample #2
 
