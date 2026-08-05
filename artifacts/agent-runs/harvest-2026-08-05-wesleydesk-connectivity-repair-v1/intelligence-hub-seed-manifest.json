@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "cross-agent-harvest-seed-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-05-wesleydesk-connectivity-repair-v1",
+  "subject": "WESLEYDESK Z: mapping is Windows session/identity-bound",
+  "tier": "T2",
+  "seedRecordCount": 4,
+  "retrievalQuestions": [
+    {
+      "retrievalId": "RQ01",
+      "seedId": "IH-THREAD-MAP-Z-VAULT-WORK-001",
+      "query": "Reconnect Z on WESLEY_WORK?"
+    },
+    {
+      "retrievalId": "RQ02",
+      "seedId": "IH-THREAD-MAP-Z-VAULT-WORK-001",
+      "query": "192.168.1.208 fails off LAN?"
+    },
+    {
+      "retrievalId": "RQ11",
+      "seedId": "IH-THREAD-PHANTOM-Z-DRIVE-001",
+      "query": "Z remap device already in use?"
+    },
+    {
+      "retrievalId": "RQ12",
+      "seedId": "IH-THREAD-PHANTOM-Z-DRIVE-001",
+      "query": "net use empty but ForceRemap fails?"
+    },
+    {
+      "retrievalId": "RQ21",
+      "seedId": "IH-THREAD-WESLEY-INTERACTIVE-GATE-001",
+      "query": "What closes Repair 1 after SSH partial pass?"
+    },
+    {
+      "retrievalId": "RQ22",
+      "seedId": "IH-THREAD-WESLEY-INTERACTIVE-GATE-001",
+      "query": "What proves durable Z persistence?"
+    },
+    {
+      "retrievalId": "RQ31",
+      "seedId": "IH-THREAD-WESLEYDESK-Z-SESSION-001",
+      "query": "Why is /mnt/z empty after Z remap?"
+    },
+    {
+      "retrievalId": "RQ32",
+      "seedId": "IH-THREAD-WESLEYDESK-Z-SESSION-001",
+      "query": "Can cgremoteadmin SSH prove Wesley repair?"
+    }
+  ],
+  "roiTop3": [
+    {
+      "rank": 1,
+      "title": "Wesley interactive gate + SSH-only Z block",
+      "seedId": null
+    },
+    {
+      "rank": 2,
+      "title": "Phantom Z DefineDosDevice in ForceRemap",
+      "seedId": null
+    },
+    {
+      "rank": 3,
+      "title": "Repair 2 deploy + cold-reboot acceptance",
+      "seedId": null
+    }
+  ],
+  "byKindSlice": "00-master-index/BY-KIND/thread-autopsy-index.json",
+  "catalogRoot": "02-catalog/knowledge-objects/cross-agent-harvest"
+}

@@ -232,7 +232,11 @@ writeJson("thread-autopsy-bundle.json", {
   duplicationCheck: {
     registryConsulted: true,
     commandIndexConsulted: true,
-    hubSlicesConsulted: ["BY-KIND/active-work-blockers.json", PRIOR_HARVEST],
+    hubSlicesConsulted: [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "work-progress/harvest-packet-registry.json",
+    ],
     checkedAt: AS_OF,
   },
   waste: [

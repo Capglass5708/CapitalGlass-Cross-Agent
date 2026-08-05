@@ -1,0 +1,71 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-thread-phantom-z-drive-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "5ce2079d898bf49bc35d04ab7582658eccc71bae",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-05-wesleydesk-connectivity-repair-v1",
+      "seedId": "IH-THREAD-PHANTOM-Z-DRIVE-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T03:24:58.276Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "19fe7efa894d71a738abd36da089b444d7307ce938c4c7b4325163f834f0a663"
+  },
+  "body": {
+    "seedId": "IH-THREAD-PHANTOM-Z-DRIVE-001",
+    "kind": "failure-pattern",
+    "title": "Phantom Z requires DefineDosDevice before remap",
+    "summary": "Error 85 when net use shows empty but letter reserved.",
+    "canonicalQuestion": "Z remap device already in use?",
+    "alternateQuestions": [
+      "net use empty but ForceRemap fails?"
+    ],
+    "shortAnswer": "Error 85 when net use shows empty but letter reserved.",
+    "detailedAnswer": "Phantom Z requires DefineDosDevice before remap",
+    "retrievalQuestions": [
+      "Z remap device already in use?",
+      "net use empty but ForceRemap fails?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "error 85 on WESLEYDESK Z remap",
+      "startAt": [
+        "Get-PSDrive Z"
+      ],
+      "runPreflight": [],
+      "doNot": [
+        "Retry ForceRemap without phantom clear"
+      ],
+      "proveBeforeClaiming": [
+        "DefineDosDevice removed=True"
+      ]
+    },
+    "evidenceRefs": [
+      "clear-z.ps1",
+      "harvest-2026-08-04-z-l-drive-offlan-session-v1"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Office-Admin",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-05-wesleydesk-connectivity-repair-v1/seed-packets/IH-THREAD-PHANTOM-Z-DRIVE-001.json"
+    ],
+    "harvestId": "harvest-2026-08-05-wesleydesk-connectivity-repair-v1"
+  }
+}

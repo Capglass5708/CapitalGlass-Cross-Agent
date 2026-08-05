@@ -1,0 +1,226 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-05-wesleydesk-connectivity-repair-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-THREAD-MAP-Z-VAULT-WORK-001",
+      "questionId": "IHTHREADMAPZ",
+      "canonicalQuestion": "Reconnect Z on WESLEY_WORK?",
+      "alternateQuestions": [
+        "192.168.1.208 fails off LAN?"
+      ],
+      "shortAnswer": "Use cg-server Tailscale when off LAN.",
+      "detailedAnswer": "WESLEY_WORK Z via Map-Z-From-Vault.ps1",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T03:24:58.276Z",
+      "authorityRepo": "CapitalGlass-Office-Admin",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-05-wesleydesk-connectivity-repair-v1/seed-packets/IH-THREAD-MAP-Z-VAULT-WORK-001.json"
+      ],
+      "authorityCommit": [
+        "5ce2079"
+      ],
+      "evidenceUrls": [
+        "Map-Z-From-Vault.ps1",
+        "harvest-2026-08-04-z-l-drive-offlan-session-v1"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "command",
+        "harvest-2026-08-05-wesleydesk-connectivity-repair-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Office-Admin"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "WESLEY_WORK needs Z",
+        "startAt": [
+          "D:\\Admin Keys"
+        ],
+        "runPreflight": [
+          "IT Vault on D:"
+        ],
+        "doNot": [
+          "Hardcode SMB creds"
+        ],
+        "proveBeforeClaiming": [
+          "net use Z: OK"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "command"
+    },
+    {
+      "ihPfspId": "IH-THREAD-PHANTOM-Z-DRIVE-001",
+      "questionId": "IHTHREADPHAN",
+      "canonicalQuestion": "Z remap device already in use?",
+      "alternateQuestions": [
+        "net use empty but ForceRemap fails?"
+      ],
+      "shortAnswer": "Error 85 when net use shows empty but letter reserved.",
+      "detailedAnswer": "Phantom Z requires DefineDosDevice before remap",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T03:24:58.276Z",
+      "authorityRepo": "CapitalGlass-Office-Admin",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-05-wesleydesk-connectivity-repair-v1/seed-packets/IH-THREAD-PHANTOM-Z-DRIVE-001.json"
+      ],
+      "authorityCommit": [
+        "5ce2079"
+      ],
+      "evidenceUrls": [
+        "clear-z.ps1",
+        "harvest-2026-08-04-z-l-drive-offlan-session-v1"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-05-wesleydesk-connectivity-repair-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Office-Admin"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "error 85 on WESLEYDESK Z remap",
+        "startAt": [
+          "Get-PSDrive Z"
+        ],
+        "runPreflight": [],
+        "doNot": [
+          "Retry ForceRemap without phantom clear"
+        ],
+        "proveBeforeClaiming": [
+          "DefineDosDevice removed=True"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-THREAD-WESLEY-INTERACTIVE-GATE-001",
+      "questionId": "IHTHREADWESL",
+      "canonicalQuestion": "What closes Repair 1 after SSH partial pass?",
+      "alternateQuestions": [
+        "What proves durable Z persistence?"
+      ],
+      "shortAnswer": "Phase A gate → Repair 2 → cold reboot.",
+      "detailedAnswer": "WESLEYDESK Repair 1–3 operator gate sequence",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T03:24:58.276Z",
+      "authorityRepo": "CapitalGlass-Office-Admin",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-05-wesleydesk-connectivity-repair-v1/seed-packets/IH-THREAD-WESLEY-INTERACTIVE-GATE-001.json"
+      ],
+      "authorityCommit": [
+        "5ce2079"
+      ],
+      "evidenceUrls": [
+        "OPERATOR-GATE-RUNBOOK.md"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-05-wesleydesk-connectivity-repair-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Office-Admin"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "PARTIAL_PASS stuck",
+        "startAt": [
+          "OPERATOR-GATE-RUNBOOK.md"
+        ],
+        "runPreflight": [
+          "quser Wesley interactive"
+        ],
+        "doNot": [
+          "EnsureDeskDriveMounts-Once Fred"
+        ],
+        "proveBeforeClaiming": [
+          "REPAIR_1_INTERACTIVE_GATE_PASS",
+          "WESLEYDESK_DRIVE_PERSISTENCE_REBOOT_GATE_PASS"
+        ]
+      },
+      "promotionClass": "HUMAN_REVIEW",
+      "kind": "runbook"
+    },
+    {
+      "ihPfspId": "IH-THREAD-WESLEYDESK-Z-SESSION-001",
+      "questionId": "IHTHREADWESL",
+      "canonicalQuestion": "Why is /mnt/z empty after Z remap?",
+      "alternateQuestions": [
+        "Can cgremoteadmin SSH prove Wesley repair?"
+      ],
+      "shortAnswer": "Network drives are per Windows user session.",
+      "detailedAnswer": "WESLEYDESK Z: in SSH does not reach Wesley WSL /mnt/z",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T03:24:58.276Z",
+      "authorityRepo": "CapitalGlass-Office-Admin",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-05-wesleydesk-connectivity-repair-v1/seed-packets/IH-THREAD-WESLEYDESK-Z-SESSION-001.json"
+      ],
+      "authorityCommit": [
+        "5ce2079"
+      ],
+      "evidenceUrls": [
+        "harvest-2026-08-05-wesleydesk-connectivity-repair-v1",
+        "WM-001"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-05-wesleydesk-connectivity-repair-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Office-Admin"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "WESLEYDESK Z repair via SSH",
+        "startAt": [
+          "quser",
+          "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md"
+        ],
+        "runPreflight": [
+          "office.get_agent_preflight"
+        ],
+        "doNot": [
+          "Claim REPAIR_1_PASS from SSH"
+        ],
+        "proveBeforeClaiming": [
+          "REPAIR_1_INTERACTIVE_GATE_PASS"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    }
+  ]
+}
