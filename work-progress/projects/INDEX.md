@@ -38,14 +38,16 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 
 | Packet ID | State | Verdict | Owner repo | Project file | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `hot-cache-wave-a-estate-shipped-v1` | HARVEST_COMPLETE | PASS | CG-AppBuilder-MCP | artifacts/agent-runs/harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1/thread-event-inventory.json | None — mission closed; deferred items non-blocking |
-| `cross-agent-pr10-conflict-resolution-v1` | DOCUMENTED | PASS | CapitalGlass-Cross-Agent | artifacts/agent-runs/harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1/thread-event-inventory.json | Merge Cross-Agent registry changes before AppBuilder consumer PR |
-| `hot-cache-content-hash-host-serialization-v1` | DOCUMENTED | PASS | CG-AppBuilder-MCP | artifacts/agent-runs/harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1/seed-packets/IH-HOT-CACHE-CONTENT-HASH-HOST-001.json | Use merged git SHAs + scout gates for pass; record per-host hash |
-| `appbuilder-pr284-ci-merge-gate-v1` | HARVEST_COMPLETE | PASS | CG-AppBuilder-MCP | artifacts/agent-runs/harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1/thread-event-inventory.json | Poll gh pr checks until audit+closeout+validate-main pass |
-| `second-host-ssh-wesleydesk-gate-v1` | HARVEST_COMPLETE | PASS | CapitalGlass-Office-Admin | artifacts/agent-runs/harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1/seed-packets/IH-HOT-CACHE-SECOND-HOST-SSH-001.json | Reuse SSH gate script for future estate ships |
-| `hot-cache-deferred-wave-cd-v1` | DOCUMENTED | PASS | CG-AppBuilder-MCP | artifacts/agent-runs/harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1/thread-event-inventory.json | Track auto-publisher activation as separate work-package |
-| `hot-cache-protocol-upgrade-v1` | HARVEST_COMPLETE | PASS | CapitalGlass-Cross-Agent | docs/runbooks/chat-thread-closeout-autopsy-harvest-v1.md | Operator may publish hub seeds when L: mounted |
-| `hot-cache-evidence-chain-v1` | HARVEST_COMPLETE | PASS | CG-AppBuilder-MCP | artifacts/agent-runs/harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1/code-touch-summary.json | None |
+| `wesleydesk-z-session-identity-blocker-v1` | OPEN | ACTIVE_USER_Z_MAPPING_NOT_PROVEN | CapitalGlass-Office-Admin | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | Wesley console login → Run-Repair1-InteractiveGate-Wesley.ps1 |
+| `phantom-z-net-use-insufficient-v1` | DOCUMENTED | PASS | CapitalGlass-Office-Admin | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | Integrate DefineDosDevice clear into ForceRemap preflight |
+| `ssh-forceremap-as-wesley-gate-v1` | DOCUMENTED | PASS | CG-AppBuilder-MCP | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | Hard-block WSL /mnt/z validation until quser shows Wesley interactive |
+| `define-dosdevice-before-z-remap-v1` | RECORDED | PASS | CapitalGlass-Office-Admin | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | Add to Ensure-CgWesleyDeskDriveMounts ForceRemap path |
+| `map-z-from-vault-wesleywork-v1` | PROVEN | PASS | CapitalGlass-Office-Admin | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | Use cg-server Tailscale when 192.168.1.208 unreachable |
+| `wesley-interactive-gate-script-v1` | STAGED | PENDING_OPERATOR | CapitalGlass-Office-Admin | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | Wesley Admin PowerShell on WESLEYDESK console |
+| `repair-1-partial-pass-receipt-v1` | FROZEN | REPAIR_1_PARTIAL_PASS | CG-AppBuilder-MCP | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | Upgrade verdict only after Phase A/B/C gates |
+| `windows-session-drive-mapping-guard-v1` | CANDIDATE | POLICY_GATED | CapitalGlass-Office-Admin | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | Promote to Office Admin preflight + cursor rule candidate |
+| `repair1-partial-accept-operator-gate-v1` | ACCEPTED | PASS | CapitalGlass-Cross-Agent | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | Repair 2 deploy then cold reboot gate |
+| `z-drive-session-recurrence-v1` | EXTENDS_PRIOR | PASS | CapitalGlass-Cross-Agent | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | Extend 2026-08-02_z-drive-disconnect-recurrence-v1 project |
 
 <!-- HARVEST-PACKET-INDEX:END -->
 
