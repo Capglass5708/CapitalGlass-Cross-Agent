@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "harvest-prompt-post-merge-acceptance-receipt-v1@1.0.0",
+  "workPackageId": "harvest-prompt-extraction-post-merge-v1",
+  "generatedAt": "2026-08-05T02:05:51.021Z",
+  "crossAgentMainSha": "66542dd6c42fdaf2251b49381a738c55f37bd914",
+  "appBuilderMainSha": "2aa44f6ffc3f4315107282fa89396b81bd7e7778",
+  "harvestId": "harvest-prompt-post-merge-acceptance-v1",
+  "pipeline": [
+    "harvest source",
+    "prompt extraction",
+    "candidate registry",
+    "operator approval boundary",
+    "catalog delta",
+    "AppBuilder compile",
+    "Supabase projection (boundary verified offline)",
+    "hot-cache command discovery"
+  ],
+  "gates": {
+    "PROMPT_EXTRACTION_PASS": true,
+    "PROMPT_APPROVAL_BOUNDARY_PASS": true,
+    "PROMPT_CANDIDATE_DEDUP_PASS": true,
+    "PROMPT_PROJECTION_PASS": true,
+    "PROMPT_CATALOG_COMPILE_PASS": true,
+    "COMMAND_ESTATE_PROMPT_COMMANDS_PASS": true,
+    "NO_RUNTIME_ARTIFACTS_COMMITTED": true
+  },
+  "verdict": "HARVEST_PROMPT_POST_MERGE_ACCEPTANCE_PASS",
+  "sampleCandidateId": "prompt-candidate-fe3c5a6cc49e",
+  "sampleContentHash": "e4771aad0a9026ed8be1776ffcf1416cb5a10f2ca226e40d4dffb6325a1ffc63"
+}

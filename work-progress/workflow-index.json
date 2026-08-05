@@ -1,0 +1,187 @@
+{
+  "schemaVersion": "workflow-index-v1@1.0.0",
+  "updatedAt": "2026-08-05T03:00:00.000Z",
+  "authority": "registry/workflow-estate/workflow-estate-manifest.v1.json",
+  "workflows": [
+    {
+      "workflowId": "wf-hot-cache-dataset-compile-v1",
+      "displayName": "Hot-cache dataset compile",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "purpose": "Compile a registered hot-cache dataset index from Cross-Agent manifest inputs without publishing.",
+      "entryCommandIds": [
+        "hot-cache-compile-dataset",
+        "git-estate-compile-index",
+        "active-ledger-compile-index",
+        "command-estate-compile-index",
+        "workflow-estate-compile-index",
+        "prompt-catalog-compile-index"
+      ],
+      "preconditions": ["CROSS_AGENT_ROOT set", "dataset registered in hot-cache-dataset-registry"],
+      "requiredApprovals": [],
+      "mutationScope": "read-only compile outputs under runtime/<datasetId>/",
+      "allowedMachines": ["WESLEY_WORK", "WESLEYDESK"],
+      "inputAuthorities": ["registry/datasets/hot-cache-dataset-registry.v1.json", "registry/*/manifest"],
+      "outputArtifacts": ["runtime/<datasetId>/*.latest.json"],
+      "acceptanceGates": ["*_COMPILE_PASS"],
+      "failureClassifications": ["MANIFEST_MISSING", "COMPILER_PLUGIN_MISSING", "DEPENDENCY_BLOCKED"],
+      "rollbackWorkflowId": null,
+      "receiptContract": "hot-cache-compile-receipt-v1",
+      "relatedDatasetIds": ["git-estate", "active-ledger", "command-estate", "workflow-estate", "prompt-catalog"]
+    },
+    {
+      "workflowId": "wf-hot-cache-local-publication-v1",
+      "displayName": "Hot-cache local publication",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "purpose": "Publish compiled hot-cache dataset generations to host-local authority cache root.",
+      "entryCommandIds": [
+        "active-ledger-publish-hot-cache",
+        "closeout-index-publish-hot-cache",
+        "command-estate-publish-hot-cache",
+        "prompt-catalog-publish-hot-cache",
+        "intelligence-hub-publish-hot-routing-index"
+      ],
+      "preconditions": ["CG_AUTHORITY_CACHE_ROOT mounted", "compile receipt exists for target dataset"],
+      "requiredApprovals": ["operator-hot-cache-publish"],
+      "mutationScope": "host-local hot AI cache publication generations only",
+      "allowedMachines": ["WESLEY_WORK", "WESLEYDESK"],
+      "inputAuthorities": ["runtime/<datasetId>/*.latest.json"],
+      "outputArtifacts": ["<hotCacheRoot>/datasets/<datasetId>/generations/*"],
+      "acceptanceGates": ["*_HOT_CACHE_PUBLISH_PASS", "HOT_ROUTING_INDEX_PUBLISH_PASS"],
+      "failureClassifications": ["HOT_CACHE_ROOT_MISSING", "STALE_COMPILE_ARTIFACT"],
+      "rollbackWorkflowId": "wf-hot-cache-dataset-compile-v1",
+      "receiptContract": "hot-cache-publication-generation-v1",
+      "relatedDatasetIds": ["active-ledger", "closeout-index", "command-estate", "prompt-catalog", "receipt-registry"]
+    },
+    {
+      "workflowId": "wf-l-by-kind-publication-v1",
+      "displayName": "L BY-KIND publication",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "purpose": "Verify and publish Intelligence Hub BY-KIND slices to L: retrieval mirror with hash alignment.",
+      "entryCommandIds": [
+        "hot-cache-publish-l-by-kind-dry-run",
+        "hot-cache-verify-l-hash-alignment"
+      ],
+      "preconditions": ["CG_INTELLIGENCE_HUB_ROOT or /mnt/l mount", "hot-cache compile current"],
+      "requiredApprovals": ["operator-l-publication"],
+      "mutationScope": "L:/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND",
+      "allowedMachines": ["WESLEYDESK"],
+      "inputAuthorities": ["hot-cache compact slices", "index publication SHA"],
+      "outputArtifacts": ["L:/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/*.json"],
+      "acceptanceGates": ["L_BY_KIND_PUBLICATION_DRY_RUN_PASS", "LOCAL_L_HASH_ALIGNMENT_PASS"],
+      "failureClassifications": ["L_DRIVE_NOT_MOUNTED", "HASH_DRIFT"],
+      "rollbackWorkflowId": null,
+      "receiptContract": "l-by-kind-publication-receipt-v1",
+      "relatedDatasetIds": ["active-ledger", "intelligence-hub-domains"]
+    },
+    {
+      "workflowId": "wf-harvest-sync-derived-v1",
+      "displayName": "Harvest sync-derived",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "purpose": "Run harvest-derived sync: graph extraction, prompt candidates, registry updates, and validation receipts.",
+      "entryCommandIds": [
+        "harvest-sync-derived",
+        "harvest-validate",
+        "test-harvest-prompt-extraction"
+      ],
+      "preconditions": ["artifacts/agent-runs/<harvestId>/harvest-manifest-v1.json exists"],
+      "requiredApprovals": [],
+      "mutationScope": "artifacts/agent-runs/<harvestId> derived outputs and work-progress registries",
+      "allowedMachines": ["WESLEY_WORK", "WESLEYDESK"],
+      "inputAuthorities": ["harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"],
+      "outputArtifacts": [
+        "prompt-candidates.json",
+        "prompt-catalog-delta.json",
+        "receipt.json"
+      ],
+      "acceptanceGates": ["HARVEST_PROMPT_EXTRACTION_INDEX_SUPABASE_PASS", "PROMPT_EXTRACTION_PASS"],
+      "failureClassifications": ["PROMPT_HARVEST_FAILED", "VALIDATION_FAIL"],
+      "rollbackWorkflowId": null,
+      "receiptContract": "harvest-sync-derived-receipt-v1",
+      "relatedDatasetIds": ["receipt-registry", "prompt-catalog"]
+    },
+    {
+      "workflowId": "wf-harvest-z-mirror-sync-v1",
+      "displayName": "Harvest Z mirror sync",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "purpose": "Mirror harvest protocol authority artifacts to Z: for estate-wide operator recovery.",
+      "entryCommandIds": ["harvest-sync-z-mirror"],
+      "preconditions": ["Z: or CG_HARVEST_Z_MIRROR_ROOT mounted"],
+      "requiredApprovals": ["operator-harvest-z-mirror"],
+      "mutationScope": "Z:/Capital-Glass-Dev/Harvest mirror tree",
+      "allowedMachines": ["WESLEYDESK", "WESLEY_WORK"],
+      "inputAuthorities": ["harvest/protocol", "artifacts/agent-runs/<harvestId>"],
+      "outputArtifacts": ["harvest/z-mirror-sync-receipt.json"],
+      "acceptanceGates": ["HARVEST_Z_MIRROR_SYNC_PASS"],
+      "failureClassifications": ["Z_DRIVE_NOT_MOUNTED"],
+      "rollbackWorkflowId": null,
+      "receiptContract": "harvest-z-mirror-sync-receipt-v1",
+      "relatedDatasetIds": ["receipt-registry"]
+    },
+    {
+      "workflowId": "wf-prompt-candidate-promotion-v1",
+      "displayName": "Prompt candidate promotion",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "purpose": "Operator explicitly approves extracted prompt candidates; never auto-promotes from extraction alone.",
+      "entryCommandIds": ["harvest-sync-derived"],
+      "preconditions": [
+        "prompt-candidates.json exists",
+        "candidate promotionStatus is candidate_only"
+      ],
+      "requiredApprovals": ["operator-explicit-prompt-approval"],
+      "mutationScope": "manifest.promptHarvest.operatorApprovals and work-progress/harvest-prompt-registry.json",
+      "allowedMachines": ["WESLEY_WORK", "WESLEYDESK"],
+      "inputAuthorities": ["prompt-candidates.json", "prompt-promotion-decisions.json"],
+      "outputArtifacts": ["prompt-catalog-delta.json", "work-progress/harvest-prompt-catalog-delta.json"],
+      "acceptanceGates": ["PROMPT_APPROVAL_BOUNDARY_PASS"],
+      "failureClassifications": ["UNAPPROVED_CANDIDATE", "SECRET_CONTAMINATION"],
+      "rollbackWorkflowId": null,
+      "receiptContract": "prompt-promotion-decisions-v1",
+      "relatedDatasetIds": ["prompt-catalog"]
+    },
+    {
+      "workflowId": "wf-prompt-catalog-projection-v1",
+      "displayName": "Prompt catalog projection",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "purpose": "Compile prompt catalog from approved harvest deltas and project approved metadata to Supabase.",
+      "entryCommandIds": [
+        "prompt-catalog-compile-index",
+        "promptops-project-harvest-prompts",
+        "prompt-catalog-publish-hot-cache"
+      ],
+      "preconditions": [
+        "work-progress/harvest-prompt-catalog-delta.json contains approved records only"
+      ],
+      "requiredApprovals": ["operator-prompt-catalog-projection"],
+      "mutationScope": "Supabase harvest_prompt_projections + hot-cache prompt-catalog dataset",
+      "allowedMachines": ["WESLEY_WORK", "WESLEYDESK"],
+      "inputAuthorities": ["work-progress/harvest-prompt-catalog-delta.json", "promptops/generated/suite-prompt-index.json"],
+      "outputArtifacts": [
+        "runtime/prompt-catalog/*.latest.json",
+        "Supabase upsert_harvest_prompt_projection receipts"
+      ],
+      "acceptanceGates": ["PROMPT_CATALOG_COMPILE_PASS", "PROMPT_PROJECTION_PASS"],
+      "failureClassifications": ["SUPABASE_CREDENTIALS_MISSING", "NON_APPROVED_PROJECTION_ATTEMPT"],
+      "rollbackWorkflowId": "wf-prompt-candidate-promotion-v1",
+      "receiptContract": "harvest-prompt-projection-receipt-v1",
+      "relatedDatasetIds": ["prompt-catalog", "execution-packets"]
+    },
+    {
+      "workflowId": "wf-mission-closeout-v1",
+      "displayName": "Mission closeout",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "purpose": "Record Auto Protocol v3.2 session closeout with gate receipts and bible cache status.",
+      "entryCommandIds": ["auto-v3-session-closeout"],
+      "preconditions": ["CG_AUTO_V32_WORK_PACKAGE set", "material mission completed"],
+      "requiredApprovals": [],
+      "mutationScope": "artifacts/agent-runs/<work-package>/session-closeout-v3.2.json",
+      "allowedMachines": ["WESLEY_WORK", "WESLEYDESK"],
+      "inputAuthorities": ["docs/protocol-governance/Capital_Glass_Auto_Protocol_v3.2_AGENT.md"],
+      "outputArtifacts": ["session-closeout-v3.2.json"],
+      "acceptanceGates": ["AUTO_V32_SESSION_CLOSEOUT_PASS"],
+      "failureClassifications": ["MISSING_WORK_PACKAGE", "CACHE_AUTHORITY_DRIFT"],
+      "rollbackWorkflowId": null,
+      "receiptContract": "session-closeout-v3.2.json",
+      "relatedDatasetIds": ["closeout-index", "receipt-registry"]
+    }
+  ]
+}
