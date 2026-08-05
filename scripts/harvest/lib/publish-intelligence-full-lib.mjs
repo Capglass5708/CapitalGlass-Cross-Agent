@@ -340,6 +340,31 @@ export function publishIntelligenceFull({
       );
     }
 
+    let promptCatalogHotCache = { ok: false, code: "SKIP" };
+    try {
+      runStep("prompt-catalog-compile", "npm run prompt-catalog:compile-index", appBuilderRoot, {
+        INTELLIGENCE_HUB_ROOT: hubRoot,
+        CROSS_AGENT_ROOT: repoRoot,
+      });
+      promptCatalogHotCache = runAppBuilderJsonScript(
+        appBuilderRoot,
+        "scripts/hot-cache-platform/publish-dataset.mjs",
+        ["--dataset=prompt-catalog", "--json"],
+        { INTELLIGENCE_HUB_ROOT: hubRoot, CROSS_AGENT_ROOT: repoRoot },
+      );
+      stages.push({
+        label: "prompt-catalog-hot-cache",
+        ok: promptCatalogHotCache.ok !== false,
+        generation: promptCatalogHotCache.publicationGeneration ?? null,
+      });
+    } catch (err) {
+      stages.push({
+        label: "prompt-catalog-hot-cache",
+        ok: false,
+        error: String(err.message ?? err),
+      });
+    }
+
     let hotRouting = { ok: false, code: "SKIP" };
     try {
       hotRouting = runAppBuilderJsonScript(
@@ -414,6 +439,7 @@ export function publishIntelligenceFull({
         },
         lLedger: { ok: !skipLedgerSync },
         cHotRouting: hotRouting,
+        promptCatalogHotCache,
         zAiCache: aiCachePublish,
         hostFanout,
       },

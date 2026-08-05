@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "cross-agent-harvest-blind-retrieval-benchmark-v1@1.0.0",
+  "harvestId": "harvest-2026-08-05-prompt-catalog-scout-trim-v1",
+  "testedAt": "2026-08-05T02:48:30.422Z",
+  "blindQueryOnly": true,
+  "seedCount": 3,
+  "fixtureCount": 6,
+  "results": [
+    {
+      "query": "Why is prompt-catalog DATASET_MISS on scout?",
+      "returnedId": "IH-PROMPT-CATALOG-HOT-CACHE-PUBLISH-001",
+      "expectedSeedId": "IH-PROMPT-CATALOG-HOT-CACHE-PUBLISH-001",
+      "topK": [
+        {
+          "seedId": "IH-PROMPT-CATALOG-HOT-CACHE-PUBLISH-001",
+          "score": 5
+        },
+        {
+          "seedId": "IH-PROMPT-CATALOG-SCOUT-TRIM-001",
+          "score": 5
+        },
+        {
+          "seedId": "IH-RYZEN9-PROMPT-HARVEST-PROOF-001",
+          "score": 2
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "What commands fix prompt-catalog hot cache?",
+      "returnedId": "IH-PROMPT-CATALOG-HOT-CACHE-PUBLISH-001",
+      "expectedSeedId": "IH-PROMPT-CATALOG-HOT-CACHE-PUBLISH-001",
+      "topK": [
+        {
+          "seedId": "IH-PROMPT-CATALOG-HOT-CACHE-PUBLISH-001",
+          "score": 5
+        },
+        {
+          "seedId": "IH-PROMPT-CATALOG-SCOUT-TRIM-001",
+          "score": 3
+        },
+        {
+          "seedId": "IH-RYZEN9-PROMPT-HARVEST-PROOF-001",
+          "score": 2
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "Why did scout show DATASET_HIT but no prompt-catalog records?",
+      "returnedId": "IH-PROMPT-CATALOG-SCOUT-TRIM-001",
+      "expectedSeedId": "IH-PROMPT-CATALOG-SCOUT-TRIM-001",
+      "topK": [
+        {
+          "seedId": "IH-PROMPT-CATALOG-SCOUT-TRIM-001",
+          "score": 6
+        },
+        {
+          "seedId": "IH-PROMPT-CATALOG-HOT-CACHE-PUBLISH-001",
+          "score": 5
+        },
+        {
+          "seedId": "IH-RYZEN9-PROMPT-HARVEST-PROOF-001",
+          "score": 2
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "How does prompt-catalog compact trim work?",
+      "returnedId": "IH-PROMPT-CATALOG-SCOUT-TRIM-001",
+      "expectedSeedId": "IH-PROMPT-CATALOG-SCOUT-TRIM-001",
+      "topK": [
+        {
+          "seedId": "IH-PROMPT-CATALOG-SCOUT-TRIM-001",
+          "score": 6
+        },
+        {
+          "seedId": "IH-PROMPT-CATALOG-HOT-CACHE-PUBLISH-001",
+          "score": 2
+        },
+        {
+          "seedId": "IH-RYZEN9-PROMPT-HARVEST-PROOF-001",
+          "score": 2
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "How do I close RYZEN9DESK_AI_CACHE_PROMPT_HARVEST_SYNC_PASS?",
+      "returnedId": "IH-RYZEN9-PROMPT-HARVEST-PROOF-001",
+      "expectedSeedId": "IH-RYZEN9-PROMPT-HARVEST-PROOF-001",
+      "topK": [
+        {
+          "seedId": "IH-RYZEN9-PROMPT-HARVEST-PROOF-001",
+          "score": 7
+        },
+        {
+          "seedId": "IH-PROMPT-CATALOG-HOT-CACHE-PUBLISH-001",
+          "score": 3
+        },
+        {
+          "seedId": "IH-PROMPT-CATALOG-SCOUT-TRIM-001",
+          "score": 3
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "Why did proof fail on WESLEY_WORK?",
+      "returnedId": "IH-RYZEN9-PROMPT-HARVEST-PROOF-001",
+      "expectedSeedId": "IH-RYZEN9-PROMPT-HARVEST-PROOF-001",
+      "topK": [
+        {
+          "seedId": "IH-RYZEN9-PROMPT-HARVEST-PROOF-001",
+          "score": 4
+        },
+        {
+          "seedId": "IH-PROMPT-CATALOG-SCOUT-TRIM-001",
+          "score": 2
+        }
+      ],
+      "pass": true
+    }
+  ],
+  "verdict": "BLIND_RETRIEVAL_PASS"
+}

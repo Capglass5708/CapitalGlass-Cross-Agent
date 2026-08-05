@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-PROMPT-CATALOG-HOT-CACHE-PUBLISH-001",
+  "kind": "command",
+  "title": "Republish prompt-catalog to hot cache after routing/registry changes",
+  "summary": "After query-routing or execution-packet dependsOn changes, run prompt-catalog compile + publish-hot-cache + publish-hot-routing-index on each host or refresh-all.",
+  "retrievalQuestions": [
+    "Why is prompt-catalog DATASET_MISS on scout?",
+    "What commands fix prompt-catalog hot cache?"
+  ],
+  "evidenceRefs": ["TW-503"],
+  "executionDeltaRefs": [],
+  "wasteIds": ["TW-503"],
+  "roiRank": 3,
+  "futureAgentInstructions": {
+    "whenThisAppears": "scout shows prompt-catalog DATASET_MISS on harvest-record query",
+    "startAt": ["CG-AppBuilder-MCP/package.json scripts prompt-catalog:*"],
+    "runPreflight": ["npm run agent:index:scout -- --json"],
+    "doNot": ["Claim DATASET_HIT without host publish"],
+    "proveBeforeClaiming": [
+      "npm run prompt-catalog:compile-index",
+      "npm run prompt-catalog:publish-hot-cache -- --json",
+      "npm run intelligence-hub:publish-hot-routing-index"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/command-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}
