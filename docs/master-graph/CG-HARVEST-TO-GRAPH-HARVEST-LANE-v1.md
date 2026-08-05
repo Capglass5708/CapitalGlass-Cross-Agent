@@ -88,6 +88,29 @@ Long-term ingestion path is owned by the harvest contributor work package (`cros
 | Source file OCR/transcription → contribution envelope | Data-Extraction |
 | Canonical graph release | CG-MASTER-GRAPH compiler |
 
+## Suite advancement lane (separate from harvest graph-extraction)
+
+**Work package:** `cross-agent-advancement-lineage-export-v1`
+
+Cross-Agent exports stable harvest IDs and lineage refs only. **Data-Extraction** produces `suite-advancement-contribution` envelopes; **CG-MASTER-GRAPH** compiles canonical lineage.
+
+```bash
+npm run harvest:export-advancement-lineage-refs -- --harvest-id=harvest-2026-08-05-chatgpt-deterministic-l-move-v1
+```
+
+Registry: `registry/advancement-harvest-ids.v1.json`
+
+Stable ID format: `harvest:<kebab-slug>:v1`
+
+Advancement ingest (Data-Extraction):
+
+```bash
+cd "$HOME/repos/Data-Extraction"
+npm run advancement:ingest -- --source=<chatgpt-findings-source.md> --advancement-id=ADV-LAYER-QUALIFIED-CLOSURE-CONTRACT-001
+```
+
+Lineage direction: `AdvancementConcept --DERIVED_FROM--> Harvest` (never reversed).
+
 ## Related program doc
 
 Enterprise intake program (multi-repo): `docs/master-graph/CG-MASTER-GRAPH-ENTERPRISE-KNOWLEDGE-INTAKE-PLAN-v1.md`
