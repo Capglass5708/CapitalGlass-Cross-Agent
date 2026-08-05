@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-RYZEN9-PROMPT-HARVEST-PROOF-001",
+  "kind": "runbook",
+  "title": "RYZEN9DESK prompt harvest cache sync proof — desk-only",
+  "summary": "npm run ryzen9desk:prompt-harvest-cache-sync-proof:json must run on RYZEN9DESK WSL with CG_WSL_MACHINE_ROLE=ryzen9desk; WESLEY_WORK returns BLOCKED_WRONG_HOST.",
+  "retrievalQuestions": [
+    "How do I close RYZEN9DESK_AI_CACHE_PROMPT_HARVEST_SYNC_PASS?",
+    "Why did proof fail on WESLEY_WORK?"
+  ],
+  "evidenceRefs": ["EVT-504", "BLOCKED_WRONG_HOST"],
+  "executionDeltaRefs": ["ED-502"],
+  "wasteIds": ["TW-502"],
+  "roiRank": 2,
+  "futureAgentInstructions": {
+    "whenThisAppears": "RYZEN9DESK fanout or prompt harvest cache sync gate",
+    "startAt": [
+      "CG-AppBuilder-MCP/scripts/intelligence-hub/ryzen9desk-prompt-harvest-cache-sync-proof.mjs"
+    ],
+    "runPreflight": ["hostname", "echo $CG_WSL_MACHINE_ROLE"],
+    "doNot": [
+      "Run proof on WESLEY_WORK",
+      "Attempt SSH without configured keys"
+    ],
+    "proveBeforeClaiming": [
+      "verdict: RYZEN9DESK_AI_CACHE_PROMPT_HARVEST_SYNC_PASS",
+      "checks.scout.indexResult: INDEX_HIT_AI_CACHE"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "HUMAN_REVIEW",
+  "status": "CANDIDATE"
+}

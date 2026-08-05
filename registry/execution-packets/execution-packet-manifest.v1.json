@@ -86,7 +86,7 @@
         "harvest:closeout"
       ],
       "expectedOutputs": ["session-closeout-v3.2.json", "harvest-manifest-v1.json"],
-      "dependsOnDatasets": ["active-ledger", "receipt-registry"]
+      "dependsOnDatasets": ["active-ledger", "receipt-registry", "prompt-catalog"]
     },
     {
       "packetId": "index-publication-v1",
@@ -98,7 +98,12 @@
         "hot-cache:publish-l-by-kind"
       ],
       "expectedOutputs": ["publicationGeneration", "contentHash"],
-      "dependsOnDatasets": ["active-ledger", "intelligence-hub-index"]
+      "dependsOnDatasets": [
+        "active-ledger",
+        "intelligence-hub-index",
+        "execution-packets",
+        "prompt-catalog"
+      ]
     }
   ]
 }

@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-05-prompt-catalog-scout-trim-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-PROMPT-CATALOG-HOT-CACHE-PUBLISH-001",
+      "questionId": "IHPROMPTCATA",
+      "canonicalQuestion": "Why is prompt-catalog DATASET_MISS on scout?",
+      "alternateQuestions": [
+        "What commands fix prompt-catalog hot cache?"
+      ],
+      "shortAnswer": "After query-routing or execution-packet dependsOn changes, run prompt-catalog compile + publish-hot-cache + publish-hot-routing-index on each host or refresh-all.",
+      "detailedAnswer": "Republish prompt-catalog to hot cache after routing/registry changes",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T02:48:30.394Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-05-prompt-catalog-scout-trim-v1/seed-packets/IH-PROMPT-CATALOG-HOT-CACHE-PUBLISH-001.json"
+      ],
+      "authorityCommit": [
+        "402352f"
+      ],
+      "evidenceUrls": [
+        "TW-503"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "command",
+        "harvest-2026-08-05-prompt-catalog-scout-trim-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "scout shows prompt-catalog DATASET_MISS on harvest-record query",
+        "startAt": [
+          "CG-AppBuilder-MCP/package.json scripts prompt-catalog:*"
+        ],
+        "runPreflight": [
+          "npm run agent:index:scout -- --json"
+        ],
+        "doNot": [
+          "Claim DATASET_HIT without host publish"
+        ],
+        "proveBeforeClaiming": [
+          "npm run prompt-catalog:compile-index",
+          "npm run prompt-catalog:publish-hot-cache -- --json",
+          "npm run intelligence-hub:publish-hot-routing-index"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "command"
+    },
+    {
+      "ihPfspId": "IH-PROMPT-CATALOG-SCOUT-TRIM-001",
+      "questionId": "IHPROMPTCATA",
+      "canonicalQuestion": "Why did scout show DATASET_HIT but no prompt-catalog records?",
+      "alternateQuestions": [
+        "How does prompt-catalog compact trim work?"
+      ],
+      "shortAnswer": "When prompt-catalog exceeds maxRecords, apply scout-compact-trim (usageRank, exclude draft/archived) and emit scoutSelection metadata.",
+      "detailedAnswer": "Never drop entire prompt-catalog scout slice at combined budget — trim deterministically",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T02:48:30.394Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-05-prompt-catalog-scout-trim-v1/seed-packets/IH-PROMPT-CATALOG-SCOUT-TRIM-001.json"
+      ],
+      "authorityCommit": [
+        "402352f"
+      ],
+      "evidenceUrls": [
+        "EVT-502",
+        "EVT-503",
+        "WM-501",
+        "scout-compact-trim.mjs"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-05-prompt-catalog-scout-trim-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Scout router combined budget or prompt-catalog dataset miss/hit mismatch",
+        "startAt": [
+          "CG-AppBuilder-MCP/scripts/hot-cache-platform/lib/scout-dataset-router.mjs",
+          "CG-AppBuilder-MCP/scripts/hot-cache-platform/datasets/prompt-catalog/scout-compact-trim.mjs"
+        ],
+        "runPreflight": [
+          "npm run test:prompt-catalog-gates"
+        ],
+        "doNot": [
+          "Omit entire prompt-catalog slice when over maxRecords",
+          "Claim DATASET_HIT without compact slice payload"
+        ],
+        "proveBeforeClaiming": [
+          "scoutSelection.selectedCount <= maxRecords",
+          "PROMPT_CATALOG_GATES_PASS"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-RYZEN9-PROMPT-HARVEST-PROOF-001",
+      "questionId": "IHRYZEN9PROM",
+      "canonicalQuestion": "How do I close RYZEN9DESK_AI_CACHE_PROMPT_HARVEST_SYNC_PASS?",
+      "alternateQuestions": [
+        "Why did proof fail on WESLEY_WORK?"
+      ],
+      "shortAnswer": "npm run ryzen9desk:prompt-harvest-cache-sync-proof:json must run on RYZEN9DESK WSL with CG_WSL_MACHINE_ROLE=ryzen9desk; WESLEY_WORK returns BLOCKED_WRONG_HOST.",
+      "detailedAnswer": "RYZEN9DESK prompt harvest cache sync proof — desk-only",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T02:48:30.394Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-05-prompt-catalog-scout-trim-v1/seed-packets/IH-RYZEN9-PROMPT-HARVEST-PROOF-001.json"
+      ],
+      "authorityCommit": [
+        "402352f"
+      ],
+      "evidenceUrls": [
+        "EVT-504",
+        "BLOCKED_WRONG_HOST"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-05-prompt-catalog-scout-trim-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "RYZEN9DESK fanout or prompt harvest cache sync gate",
+        "startAt": [
+          "CG-AppBuilder-MCP/scripts/intelligence-hub/ryzen9desk-prompt-harvest-cache-sync-proof.mjs"
+        ],
+        "runPreflight": [
+          "hostname",
+          "echo $CG_WSL_MACHINE_ROLE"
+        ],
+        "doNot": [
+          "Run proof on WESLEY_WORK",
+          "Attempt SSH without configured keys"
+        ],
+        "proveBeforeClaiming": [
+          "verdict: RYZEN9DESK_AI_CACHE_PROMPT_HARVEST_SYNC_PASS",
+          "checks.scout.indexResult: INDEX_HIT_AI_CACHE"
+        ]
+      },
+      "promotionClass": "HUMAN_REVIEW",
+      "kind": "runbook"
+    }
+  ]
+}
