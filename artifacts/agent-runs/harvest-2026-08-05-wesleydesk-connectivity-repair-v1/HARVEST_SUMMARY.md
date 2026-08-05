@@ -1,6 +1,6 @@
 # Harvest summary — derived view
 
-**Authority:** `harvest-manifest-v1.json` (`87190e7adf41…`)
+**Authority:** `harvest-manifest-v1.json` (`091e36a13b3a…`)
 **Work package:** `harvest-2026-08-05-wesleydesk-connectivity-repair-v1`
 **Mission class:** `chat-thread-closeout-autopsy-harvest-v1`
 **Verdict:** `HARVEST_COMPLETE`
