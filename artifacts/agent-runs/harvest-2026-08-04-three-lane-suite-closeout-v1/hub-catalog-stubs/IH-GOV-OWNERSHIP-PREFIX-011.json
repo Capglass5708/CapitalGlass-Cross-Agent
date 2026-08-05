@@ -1,0 +1,80 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-gov-ownership-prefix-011",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "74e1e3cab201e7ade9da3b7a426c054b513324a0",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-three-lane-suite-closeout-v1",
+      "seedId": "IH-GOV-OWNERSHIP-PREFIX-011"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T23:51:43.121Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "critical",
+    "contentHash": "8ec0c91450f2bccad5ec6a7ff27b9670f0e1290f1c72c937c95310e55fc9b8e8"
+  },
+  "body": {
+    "seedId": "IH-GOV-OWNERSHIP-PREFIX-011",
+    "kind": "lesson",
+    "title": "governance-material work packages need owner prefix in ownership-lib",
+    "summary": "WORK_PACKAGE_OWNER_PREFIXES must include governance-material in governance-ownership-lib.mjs—not only governance-material-preflight-lib.mjs—to avoid mutation-root REROUTE.",
+    "canonicalQuestion": "Why does governance-material-preflight REROUTE to AppBuilder mutation root?",
+    "alternateQuestions": [
+      "Where is inferWorkPackageOwner defined for governance harvest packages?"
+    ],
+    "shortAnswer": "WORK_PACKAGE_OWNER_PREFIXES must include governance-material in governance-ownership-lib.mjs—not only governance-material-preflight-lib.mjs—to avoid mutation-root REROUTE.",
+    "detailedAnswer": "governance-material work packages need owner prefix in ownership-lib",
+    "retrievalQuestions": [
+      "Why does governance-material-preflight REROUTE to AppBuilder mutation root?",
+      "Where is inferWorkPackageOwner defined for governance harvest packages?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "governance:material-preflight PASS but mutationRootLinkage REROUTE",
+      "startAt": [
+        "CG-Platform-Governance-MCP/scripts/suite-governance/governance-ownership-lib.mjs",
+        "CG-Platform-Governance-MCP/scripts/suite-governance/governance-material-preflight-lib.mjs"
+      ],
+      "runPreflight": [
+        "npm run governance:material-preflight -- --json"
+      ],
+      "doNot": [
+        "Add owner prefix only to preflight-lib",
+        "Assume preflight PASS implies mutation-root linkage PASS"
+      ],
+      "proveBeforeClaiming": [
+        "mutationRootLinkage.reasonCodes empty",
+        "inferredRepoKey matches mutation repo registry key"
+      ]
+    },
+    "evidenceRefs": [
+      "CG-Platform-Governance-MCP d1789e2 governance-ownership-lib.mjs",
+      "mutationRootLinkage ownership inferredOwner mismatch"
+    ],
+    "executionDeltaRefs": [
+      "ED-001"
+    ],
+    "wasteIds": [
+      "TW-002"
+    ],
+    "operatorFrictionIds": [],
+    "roiRank": 1,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-Platform-Governance-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/seed-packets/IH-GOV-OWNERSHIP-PREFIX-011.json"
+    ],
+    "harvestId": "harvest-2026-08-04-three-lane-suite-closeout-v1"
+  }
+}

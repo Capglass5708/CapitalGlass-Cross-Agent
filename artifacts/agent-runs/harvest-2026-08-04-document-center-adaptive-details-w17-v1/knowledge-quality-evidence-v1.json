@@ -1,0 +1,176 @@
+{
+  "schemaVersion": "harvest-knowledge-quality-evidence-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-document-center-adaptive-details-w17-v1",
+  "materialEvents": [
+    {
+      "eventId": "EVT-001",
+      "summary": "Adaptive details W0–W19 implementation gates PASS; W17 operator session gate BLOCKED",
+      "material": true,
+      "representations": ["result", "blocker", "evidence", "do_not_advance"]
+    },
+    {
+      "eventId": "EVT-002",
+      "summary": "Parallel agents caused -clean branch drift to R1A and plan-intelligence commits",
+      "material": true,
+      "representations": ["mistake", "repeated_work", "evidence", "protocol_improvement"]
+    },
+    {
+      "eventId": "EVT-003",
+      "summary": "Mission checkpoint locked at 47d0f69 on work/document-center-adaptive-details-panel-v1-locked",
+      "material": true,
+      "representations": ["decision", "evidence", "result"]
+    },
+    {
+      "eventId": "EVT-004",
+      "summary": "Operator localhost review failed without Hub SSO; Admin Tools toggle is not authentication",
+      "material": true,
+      "representations": ["correction", "blocker", "faster_path", "evidence"]
+    },
+    {
+      "eventId": "EVT-005",
+      "summary": "Operator screenshot capture blocked by running Chrome profile lock",
+      "material": true,
+      "representations": ["failure", "command", "blocker", "evidence"]
+    },
+    {
+      "eventId": "EVT-006",
+      "summary": "Wrong preservation SHA reintroduced R1A into DocumentDetailPage; 25675d9 is safe src",
+      "material": true,
+      "representations": ["mistake", "correction", "evidence", "protocol_improvement"]
+    },
+    {
+      "eventId": "EVT-007",
+      "summary": "Thread encoded as T2 chat-thread-closeout-autopsy harvest",
+      "material": true,
+      "representations": ["decision", "protocol_improvement", "future_action"]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "DEC-001",
+      "eventRefs": ["EVT-003"],
+      "decision": "Use work/document-center-adaptive-details-panel-v1-locked @ 47d0f69 as sole mission branch",
+      "reason": "Clean branch repeatedly contaminated by parallel R1A work; locked SHA preserves adaptive-only tree on d90e599 baseline",
+      "alternativesRejected": [
+        "Continue on work/document-center-adaptive-details-panel-v1-clean",
+        "Amend checkpoint before W17 operator PASS"
+      ],
+      "consequences": [
+        "W17 remains human operator gate",
+        "IH-DOC-ADAPTIVE-LOCKED-BRANCH-001 seed"
+      ],
+      "authority": "agent",
+      "evidenceRefs": ["EVT-002", "EVT-003", "47d0f699"]
+    },
+    {
+      "id": "DEC-002",
+      "eventRefs": ["EVT-001", "EVT-004"],
+      "decision": "Do not claim MILESTONE_ADAPTIVE_DOCUMENT_DETAILS_IMPLEMENTATION_READY without W17_OPERATOR_APPROVED",
+      "reason": "Implementation gates PASS but operator review requires Hub SSO session and screenshot evidence",
+      "alternativesRejected": [
+        "Fabricate operator-review-results.json PASS",
+        "Treat Admin Tools toggle as signed-in session"
+      ],
+      "consequences": [
+        "pkt-blocker-001 remains BLOCKED",
+        "Hub login runbook IH-DOC-W17-HUB-SSO-LOCALHOST-002"
+      ],
+      "authority": "operator",
+      "evidenceRefs": ["EVT-001", "EVT-004", "wave-17/operator-review-results.json"]
+    }
+  ],
+  "corrections": [
+    {
+      "id": "COR-001",
+      "eventRefs": ["EVT-004"],
+      "incorrectAgentClaim": "Admin Tools dev toggle enables authenticated document fetch on localhost",
+      "operatorCorrection": "Sign in at capitalglasstxapps.com/login first; verify /api/auth/session authenticated true",
+      "correctedTruth": "BFF requires Hub session cookie; Admin Tools is UI mode only",
+      "futureAgentRule": "Never treat Admin Tools ON as W17 session proof",
+      "affectedRecords": ["IH-DOC-W17-HUB-SSO-LOCALHOST-002", "WM-002"]
+    }
+  ],
+  "durableClaims": [
+    {
+      "id": "CLM-001",
+      "claim": "Mission adaptive implementation checkpoint is 47d0f69 on work/document-center-adaptive-details-panel-v1-locked",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["EVT-003", "47d0f699"],
+      "eventRefs": ["EVT-003"]
+    },
+    {
+      "id": "CLM-002",
+      "claim": "W17 remains BLOCKED until operator Hub SSO and capture script produce 10 PNG screenshots",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["EVT-001", "EVT-005", "wave-17/gate-results.json"],
+      "eventRefs": ["EVT-001", "EVT-005"]
+    },
+    {
+      "id": "CLM-003",
+      "claim": "DocumentDetailPage mission src must come from preservation 25675d9 not 9a98c5c",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["EVT-006", "25675d9"],
+      "eventRefs": ["EVT-006"]
+    },
+    {
+      "id": "CLM-004",
+      "claim": "Playwright capture requires all chrome.exe processes closed on Windows host",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["EVT-005", "IH-DOC-W17-CHROME-CAPTURE-004"],
+      "eventRefs": ["EVT-005"]
+    }
+  ],
+  "contradictions": [],
+  "mistakes": [
+    {
+      "id": "MIST-001",
+      "eventRefs": ["EVT-002", "EVT-006"],
+      "attemptedAction": "Recover mission using -clean branch and 9a98c5c preservation for DocumentDetailPage",
+      "whyItSeemedReasonable": "Preservation branch name suggested pre-operator mission state",
+      "actualOutcome": "R1A imports reappeared; repeated git recovery cycles",
+      "rootCause": "Parallel writers on CapitalGlass-Documents and wrong preservation SHA",
+      "optimalFirstMove": "git switch locked branch; restore src from 25675d9 only; pause other chats",
+      "preventiveControl": "IH-DOC-ADAPTIVE-LOCKED-BRANCH-001 and IH-DOC-PRESERVATION-SOURCE-003"
+    },
+    {
+      "id": "MIST-002",
+      "eventRefs": ["EVT-004"],
+      "attemptedAction": "Open localhost document URL with Admin Tools enabled only",
+      "whyItSeemedReasonable": "Admin Tools gate often correlates with dev auth shortcuts",
+      "actualOutcome": "Document not found / session expired on localhost BFF",
+      "rootCause": "Hub SSO session required for /api/auth/session authenticated true",
+      "optimalFirstMove": "capitalglasstxapps.com/login then reference PO URL on 5190",
+      "preventiveControl": "IH-DOC-W17-HUB-SSO-LOCALHOST-002"
+    }
+  ],
+  "blindRetrieval": [
+    {
+      "question": "Which git branch holds the adaptive document details mission checkpoint 47d0f69?",
+      "expectedSeedId": "IH-DOC-ADAPTIVE-LOCKED-BRANCH-001",
+      "lessonFocus": "locked-branch-discipline",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "Why does localhost adaptive document detail show session expired at 5190?",
+      "expectedSeedId": "IH-DOC-W17-HUB-SSO-LOCALHOST-002",
+      "lessonFocus": "hub-sso-before-localhost",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "Which preservation SHA is safe for DocumentDetailPage without R1A contamination?",
+      "expectedSeedId": "IH-DOC-PRESERVATION-SOURCE-003",
+      "lessonFocus": "preservation-sha-25675d9",
+      "genericKeywordOnly": false
+    },
+    {
+      "question": "Playwright capture-operator-adaptive-review fails with remote debugging pipe error — what first?",
+      "expectedSeedId": "IH-DOC-W17-CHROME-CAPTURE-004",
+      "lessonFocus": "chrome-close-before-capture",
+      "genericKeywordOnly": false
+    }
+  ],
+  "humanReview": {
+    "required": false,
+    "reasons": []
+  }
+}

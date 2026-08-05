@@ -1,0 +1,111 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-suite-ops-continuation-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "6714137247a57325b638279947690e4a31c4be26",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-05T00:10:00.000Z",
+  "updatedAt": "2026-08-05T00:10:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "rawScanRequired": false,
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "subject": "Suite ops continuation — Application Bible update ladder, All Systems Go observe WARN, harvest lifecycle state",
+  "doNotAdvance": [
+    "Claim formal GO from all-systems-go observe-only run",
+    "Treat three-lane harvest republication as required when already OPERATIONAL",
+    "Hand-edit Z: Application Bibles mirror as sole source of truth"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 2,
+      "seeds": 2,
+      "roiItems": 3,
+      "operatorFriction": 0,
+      "executionDeltas": 1
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "synced",
+    "hubPublishStatus": "published",
+    "hubPublishBlocker": null,
+    "operationalReceiptPath": "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/operational-publication-receipt.json",
+    "operationalAt": "2026-08-05T20:37:44.297Z"
+  },
+  "packets": [
+    {
+      "packetId": "application-bible-update-ladder-v1",
+      "packetTitle": "Application Bible update ladder — Git, Z mirror, Z-master, BibleDB",
+      "packetKind": "protocol_upgrade",
+      "state": "DOCUMENTED",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RUNBOOK_ENCODED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/application-bible-update-ladder-v1.md",
+      "nextAction": "Run generate → sync → bible-z-master:sync-host when content changes",
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Edit Z: mirror only without Git canonical regen"
+      ],
+      "blockers": [],
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP docs/application-bible/07-SUITE-BIBLE-TOOLING.md",
+        "CG-AppBuilder-MCP docs/reports/z-master-bible-operational-guide.md",
+        "npm run generate:application-bibles",
+        "npm run sync:application-bibles -- --all"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "8549cd9",
+          "role": "bible-tooling-authority"
+        }
+      ]
+    },
+    {
+      "packetId": "all-systems-go-observe-warn-v1",
+      "packetTitle": "All Systems Go observe WARN — not formal GO",
+      "packetKind": "command",
+      "state": "OBSERVE_RECEIPT",
+      "packetVerdict": "WARN",
+      "harvestVerdictContribution": "INVESTIGATION_ONLY",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/all-systems-go-observe-warn-v1.md",
+      "nextAction": "Remediate shared-db requires-investigation + clean AppBuilder worktree; then closeout:gate for ship",
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Claim formal GO from observe skipLive receipt"
+      ],
+      "blockers": [
+        "shared-db requires-investigation entries (3)",
+        "git-parity DIRTY_WORKTREE on CG-AppBuilder-MCP"
+      ],
+      "evidenceRefs": [
+        "dark-runner-receipt 5ea4cfe1-87a8-4afb-838e-72db139c23b4",
+        "systemsGoVerdict WARN formalGoEligible false",
+        "npm run all-systems-go -- --json"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "8549cd9",
+          "role": "all-systems-go observe receipt"
+        }
+      ]
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096",
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  },
+  "supersedes": {
+    "relatedHarvestId": "harvest-2026-08-04-three-lane-suite-closeout-v1",
+    "relationship": "continuation-not-replacement"
+  }
+}

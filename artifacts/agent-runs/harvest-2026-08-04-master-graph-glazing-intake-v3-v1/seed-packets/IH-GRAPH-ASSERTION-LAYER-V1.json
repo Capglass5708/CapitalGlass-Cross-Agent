@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-GRAPH-ASSERTION-LAYER-V1",
+  "kind": "decision",
+  "title": "Machine claims are assertions — not silent canonical edges",
+  "summary": "CLASSIFIED_AS, cover field values, and contested extractions stay Observation→Assertion→Evidence→Decision; do not bake confidence onto identity edges.",
+  "retrievalQuestions": [
+    "Should CLASSIFIED_AS window_schedule be a canonical edge or an assertion?",
+    "How do conflicting OCR and human corrections coexist in Master Graph?"
+  ],
+  "evidenceRefs": [
+    "CG-MASTER-GRAPH/docs/staging/GRAPH-INTAKE-AGENT-CONTRACT-v1.md",
+    "CG-MASTER-GRAPH/schemas/entity-observation.v1.schema.json",
+    "CG-MASTER-GRAPH/schemas/contribution-envelope.v1.schema.json",
+    "TE-406",
+    "TE-408"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Parser or agent proposes a classification or cover field as graph truth",
+    "startAt": [
+      "CG-MASTER-GRAPH/docs/staging/GRAPH-INTAKE-AGENT-CONTRACT-v1.md#5-assertion-model"
+    ],
+    "runPreflight": [
+      "Check contribution-envelope / entity-observation schemas"
+    ],
+    "doNot": [
+      "Attach review_status only onto durable identity edges",
+      "Delete machine assertion when human corrects — append Decision"
+    ],
+    "proveBeforeClaiming": [
+      "assertion_id + evidence_ids present",
+      "subject uses source UUID not OCR string"
+    ]
+  },
+  "ownerRepo": "CG-MASTER-GRAPH",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

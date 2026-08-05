@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-DOC-ADAPTIVE-LOCKED-BRANCH-001",
+  "kind": "failure-pattern",
+  "title": "Document Center adaptive mission: use locked branch only",
+  "summary": "work/document-center-adaptive-details-panel-v1-locked @ 47d0f69 is the mission checkpoint; -clean branch drifts to R1A when parallel agents run.",
+  "retrievalQuestions": [
+    "Which branch should I use for document-center-adaptive-details-panel-v1?",
+    "Why does work/document-center-adaptive-details-panel-v1-clean have R1A commits?"
+  ],
+  "evidenceRefs": [
+    "CapitalGlass-Documents git rev-parse 47d0f699add1426a42a22bb33e869f104cfd8dfc",
+    "EVT-002"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Adaptive document details mission recovery or W17 operator review",
+    "startAt": ["work/document-center-adaptive-details-panel-v1-locked"],
+    "runPreflight": ["git rev-parse HEAD", "git branch --show-current", "pause parallel CapitalGlass-Documents agents"],
+    "doNot": [
+      "Use work/document-center-adaptive-details-panel-v1-clean",
+      "Merge R1A or plan-intelligence commits into locked branch"
+    ],
+    "proveBeforeClaiming": ["HEAD equals 47d0f69 or newer locked checkpoint only", "grep -c R1a src/pages/DocumentDetailPage.tsx equals 0"]
+  },
+  "ownerRepo": "CapitalGlass-Documents",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

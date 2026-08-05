@@ -1,0 +1,77 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-r1a-rosewood-authority-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "dc1c3b2bd075ba61d9b0ebfdcbd4fef6761c4892",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-r1a-wave6-7-document-center-closeout-v1",
+      "seedId": "IH-R1A-ROSEWOOD-AUTHORITY-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T20:38:16.581Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "7457a336cd49680684ec16e803c3eca10cfe7fdb19c15b8bcf3c68bb7d7ea442"
+  },
+  "body": {
+    "seedId": "IH-R1A-ROSEWOOD-AUTHORITY-001",
+    "kind": "lesson",
+    "title": "Rosewood Wave 6 production authority — page count 66 REVIEWED not fixture 192",
+    "summary": "Live Rosewood card state REVIEWED with 66 authoritative sheet-map pages; fixture 192 and advisory tier1 warnings are non-blocking PASS_WITH_WARNINGS only.",
+    "canonicalQuestion": "What is the authoritative Rosewood plan set page count in production?",
+    "alternateQuestions": [
+      "Why is reviewStatus needs_review while cardState is REVIEWED?"
+    ],
+    "shortAnswer": "Live Rosewood card state REVIEWED with 66 authoritative sheet-map pages; fixture 192 and advisory tier1 warnings are non-blocking PASS_WITH_WARNINGS only.",
+    "detailedAnswer": "Rosewood Wave 6 production authority — page count 66 REVIEWED not fixture 192",
+    "retrievalQuestions": [
+      "What is the authoritative Rosewood plan set page count in production?",
+      "Why is reviewStatus needs_review while cardState is REVIEWED?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Rosewood smoke expects pageCount 192 or strict reviewStatus match",
+      "startAt": [
+        "CapitalGlass-Documents/artifacts/.../wave-6/wave-6-gate-receipt.json",
+        "wave-6-production-verify-output.json"
+      ],
+      "runPreflight": [
+        "scripts/staging/wave6-rosewood-production-verify.mts"
+      ],
+      "doNot": [
+        "Fail gate for page count 66 vs fixture 192",
+        "Reopen Wave 6 for advisory tier1 warnings"
+      ],
+      "proveBeforeClaiming": [
+        "cardState REVIEWED",
+        "currentVersionId 4672252e unchanged"
+      ]
+    },
+    "evidenceRefs": [
+      "TE-605",
+      "4672252e-1940-4bb8-827e-ea89a3d1287e",
+      "wave-6-gate-receipt.json acceptedWarnings"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "AUTOMATIC",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Documents",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-r1a-wave6-7-document-center-closeout-v1/seed-packets/IH-R1A-ROSEWOOD-AUTHORITY-001.json"
+    ],
+    "harvestId": "harvest-2026-08-04-r1a-wave6-7-document-center-closeout-v1"
+  }
+}

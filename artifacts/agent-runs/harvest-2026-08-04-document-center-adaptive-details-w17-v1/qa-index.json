@@ -1,0 +1,243 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-document-center-adaptive-details-w17-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-DOC-ADAPTIVE-LOCKED-BRANCH-001",
+      "questionId": "IHDOCADAPTIV",
+      "canonicalQuestion": "Which branch should I use for document-center-adaptive-details-panel-v1?",
+      "alternateQuestions": [
+        "Why does work/document-center-adaptive-details-panel-v1-clean have R1A commits?"
+      ],
+      "shortAnswer": "work/document-center-adaptive-details-panel-v1-locked @ 47d0f69 is the mission checkpoint; -clean branch drifts to R1A when parallel agents run.",
+      "detailedAnswer": "Document Center adaptive mission: use locked branch only",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T20:38:23.205Z",
+      "authorityRepo": "CapitalGlass-Documents",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-document-center-adaptive-details-w17-v1/seed-packets/IH-DOC-ADAPTIVE-LOCKED-BRANCH-001.json"
+      ],
+      "authorityCommit": [
+        "dc1c3b2"
+      ],
+      "evidenceUrls": [
+        "CapitalGlass-Documents git rev-parse 47d0f699add1426a42a22bb33e869f104cfd8dfc",
+        "EVT-002"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-04-document-center-adaptive-details-w17-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Documents"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Adaptive document details mission recovery or W17 operator review",
+        "startAt": [
+          "work/document-center-adaptive-details-panel-v1-locked"
+        ],
+        "runPreflight": [
+          "git rev-parse HEAD",
+          "git branch --show-current",
+          "pause parallel CapitalGlass-Documents agents"
+        ],
+        "doNot": [
+          "Use work/document-center-adaptive-details-panel-v1-clean",
+          "Merge R1A or plan-intelligence commits into locked branch"
+        ],
+        "proveBeforeClaiming": [
+          "HEAD equals 47d0f69 or newer locked checkpoint only",
+          "grep -c R1a src/pages/DocumentDetailPage.tsx equals 0"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-DOC-PRESERVATION-SOURCE-003",
+      "questionId": "IHDOCPRESERV",
+      "canonicalQuestion": "Which preservation commit is safe for DocumentDetailPage adaptive recovery?",
+      "alternateQuestions": [
+        "Why did typecheck fail after preservation checkout?"
+      ],
+      "shortAnswer": "wip/document-details-pre-operator-preservation @ 9a98c5c may contain R1A DocumentDetailPage; restore mission src from 25675d9 mixed-state preservation only.",
+      "detailedAnswer": "Adaptive mission recovery: preservation SHA source discipline",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T20:38:23.205Z",
+      "authorityRepo": "CapitalGlass-Documents",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-document-center-adaptive-details-w17-v1/seed-packets/IH-DOC-PRESERVATION-SOURCE-003.json"
+      ],
+      "authorityCommit": [
+        "dc1c3b2"
+      ],
+      "evidenceUrls": [
+        "EVT-006",
+        "25675d91626014fd16c520366c5e971fb663d8d6",
+        "9a98c5c970b533fd301dc1b3282b970cb17daae1"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-04-document-center-adaptive-details-w17-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Documents"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Recovering document-center-adaptive-details-panel-v1 from preservation branches",
+        "startAt": [
+          "wip/document-details-mixed-state-preservation-20260804 @ 25675d9"
+        ],
+        "runPreflight": [
+          "git grep R1a src/pages/DocumentDetailPage.tsx"
+        ],
+        "doNot": [
+          "Checkout DocumentDetailPage from 9a98c5c pre-operator preservation"
+        ],
+        "proveBeforeClaiming": [
+          "npm run typecheck PASS",
+          "zero R1a matches in mission paths"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-DOC-W17-CHROME-CAPTURE-004",
+      "questionId": "IHDOCW17CHRO",
+      "canonicalQuestion": "Why does capture-operator-adaptive-review.mjs fail with remote debugging pipe?",
+      "alternateQuestions": [
+        "How do I capture W17 operator screenshots?"
+      ],
+      "shortAnswer": "capture-operator-adaptive-review.mjs uses Windows Chrome Default profile; fails with remote debugging pipe error if chrome.exe is running.",
+      "detailedAnswer": "Wave 17 operator screenshot capture requires Chrome fully closed",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T20:38:23.205Z",
+      "authorityRepo": "CapitalGlass-Documents",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-document-center-adaptive-details-w17-v1/seed-packets/IH-DOC-W17-CHROME-CAPTURE-004.json"
+      ],
+      "authorityCommit": [
+        "dc1c3b2"
+      ],
+      "evidenceUrls": [
+        "EVT-005",
+        "CapitalGlass-Documents/wave-17/capture-operator-adaptive-review.mjs"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "command",
+        "harvest-2026-08-04-document-center-adaptive-details-w17-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Documents"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "W17 screenshot capture blocked",
+        "startAt": [
+          "tasklist.exe chrome.exe"
+        ],
+        "runPreflight": [
+          "Close all Chrome",
+          "fuser -v 5190/tcp confirms dev server"
+        ],
+        "doNot": [
+          "Run capture while Chrome is open",
+          "Commit operator-screenshots without secret scan"
+        ],
+        "proveBeforeClaiming": [
+          "node artifacts/.../capture-operator-adaptive-review.mjs exit 0",
+          "10 PNG files in wave-17/operator-screenshots/"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "command"
+    },
+    {
+      "ihPfspId": "IH-DOC-W17-HUB-SSO-LOCALHOST-002",
+      "questionId": "IHDOCW17HUBS",
+      "canonicalQuestion": "Why does localhost document center show session expired?",
+      "alternateQuestions": [
+        "How do I sign in for W17 adaptive operator review on 127.0.0.1:5190?"
+      ],
+      "shortAnswer": "Admin Tools toggle is not sign-in. Authenticate at capitalglasstxapps.com/login, then open localhost PO URL with doppler prd adaptive dev on 5190.",
+      "detailedAnswer": "Wave 17 localhost operator review: Hub SSO before adaptive document URL",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T20:38:23.205Z",
+      "authorityRepo": "CapitalGlass-Documents",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-document-center-adaptive-details-w17-v1/seed-packets/IH-DOC-W17-HUB-SSO-LOCALHOST-002.json"
+      ],
+      "authorityCommit": [
+        "dc1c3b2"
+      ],
+      "evidenceUrls": [
+        "CapitalGlass-Documents/artifacts/document-center-adaptive-details-panel-v1/wave-17/operator-review-notes.md",
+        "EVT-004",
+        "http://127.0.0.1:5190/api/auth/session"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-04-document-center-adaptive-details-w17-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Documents"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "W17_BLOCKED_AUTHORIZED_OPERATOR_SESSION or Document not found on localhost",
+        "startAt": [
+          "https://capitalglasstxapps.com/login",
+          "CapitalGlass-Documents/wave-17/operator-review-notes.md"
+        ],
+        "runPreflight": [
+          "fuser -v 5190/tcp",
+          "doppler run -p cg-documents -c prd adaptive dev",
+          "curl http://127.0.0.1:5190/api/auth/session"
+        ],
+        "doNot": [
+          "Claim Admin Tools ON equals authenticated",
+          "Set W17_OPERATOR_APPROVED without operator screenshots"
+        ],
+        "proveBeforeClaiming": [
+          "authenticated:true on /api/auth/session",
+          ".document-detail-page--adaptive on reference PO",
+          "wave-17/operator-screenshots/*.png"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "runbook"
+    }
+  ]
+}

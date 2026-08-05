@@ -1,0 +1,129 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-suite-ops-continuation-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-ALL-SYSTEMS-GO-OBSERVE-015",
+      "questionId": "IHALLSYSTEMS",
+      "canonicalQuestion": "Can I ship after all-systems-go PASS?",
+      "alternateQuestions": [
+        "What does systemsGoVerdict WARN mean?",
+        "Is all-systems-go ship authorization?"
+      ],
+      "shortAnswer": "npm run all-systems-go with skipLive observe yields systemsGoVerdict WARN/GO investigate — formalGoEligible false until closeout:gate.",
+      "detailedAnswer": "All Systems Go observe mode is investigation only — not formal GO",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T20:36:52.478Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/seed-packets/IH-ALL-SYSTEMS-GO-OBSERVE-015.json"
+      ],
+      "authorityCommit": [
+        "dc1c3b2"
+      ],
+      "evidenceUrls": [
+        "dark-runner-receipt 5ea4cfe1-87a8-4afb-838e-72db139c23b4",
+        "formalGoEligible false",
+        "CG-AppBuilder-MCP scripts/ultimate-sdlc-runner/all-systems-go.mjs"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-04-suite-ops-continuation-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Operator or agent ran all-systems-go and asks if estate is GO for ship",
+        "startAt": [
+          "artifacts/agent-runs/ultimate-sdlc-runner-dark-package-v1/*/dark-runner-receipt.json",
+          "runtime/agent-preflight/app-builder-mcp/latest.json"
+        ],
+        "runPreflight": [
+          "npm run all-systems-go -- --json"
+        ],
+        "doNot": [
+          "Claim formal GO when formalGoEligible is false",
+          "Skip closeout:gate because observe receipt exited 0"
+        ],
+        "proveBeforeClaiming": [
+          "receipt.formalGoEligible === true OR closeout:gate PASS",
+          "shared-db requires-investigation cleared for GO"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-APPLICATION-BIBLE-UPDATE-LADDER-014",
+      "questionId": "IHAPPLICATIO",
+      "canonicalQuestion": "What is the correct way to update Application Bibles?",
+      "alternateQuestions": [
+        "How do I sync application bibles to Z drive?",
+        "When should I run bible-z-master vs sync:application-bibles?"
+      ],
+      "shortAnswer": "Edit Git canonical in CG-AppBuilder-MCP generators or owner docs/application-bible; regen; sync to Z; promote Z-master; optional BibleDB index.",
+      "detailedAnswer": "How to update Application Bibles across Git, Z mirror, Z-master, and BibleDB",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T20:36:52.478Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/seed-packets/IH-APPLICATION-BIBLE-UPDATE-LADDER-014.json"
+      ],
+      "authorityCommit": [
+        "dc1c3b2"
+      ],
+      "evidenceUrls": [
+        "CG-AppBuilder-MCP docs/application-bible/07-SUITE-BIBLE-TOOLING.md",
+        "npm run generate:application-bibles",
+        "npm run sync:application-bibles -- --all",
+        "npm run bible-z-master:sync-host -- --apply --verify --attest"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-04-suite-ops-continuation-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Bible mirror drift or agents need updated application bible authority",
+        "startAt": [
+          "CG-AppBuilder-MCP/docs/SUITE_APPLICATION_BIBLE_REGISTRY.json",
+          "runtime/estate-policy/bible-authority-mode.json"
+        ],
+        "runPreflight": [
+          "npm run bible-z-master:status -- --json",
+          "npm run check:application-bibles-sync -- --all"
+        ],
+        "doNot": [
+          "Hand-edit Z: Application Bibles as sole source of truth",
+          "Use sync:application-bibles alone when z-master mode requires Z-master promotion"
+        ],
+        "proveBeforeClaiming": [
+          "PASS_Z_MASTER_BIBLE_CURRENT or explicit legacy mirror check",
+          "check:application-bibles-sync PASS after content change"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "runbook"
+    }
+  ]
+}

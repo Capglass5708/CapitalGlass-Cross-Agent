@@ -1,0 +1,187 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-wsl-estate-git-pull-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-GIT-PULL-DIVERGED-001",
+      "questionId": "IHGITPULLDIV",
+      "canonicalQuestion": "Why did Visual-Asset-Engine git pull fail with diverging branches?",
+      "alternateQuestions": [
+        "How to reconcile a repo that cannot fast-forward during estate pull?"
+      ],
+      "shortAnswer": "Visual-Asset-Engine main has local commits diverged from origin/main; ff-only pull aborts; operator must merge or rebase after reviewing dirty state.",
+      "detailedAnswer": "Estate pull FAIL — diverged main cannot fast-forward",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T20:44:47.378Z",
+      "authorityRepo": "Visual-Asset-Engine",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/seed-packets/IH-GIT-PULL-DIVERGED-001.json"
+      ],
+      "authorityCommit": [
+        "6e7be80"
+      ],
+      "evidenceUrls": [
+        "TE-406",
+        "Visual-Asset-Engine"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-04-wsl-estate-git-pull-v1"
+      ],
+      "entities": [
+        "Visual-Asset-Engine"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "git pull --ff-only fails with 'diverging branches' or 'Not possible to fast-forward'",
+        "startAt": [
+          "git -C <repo> status",
+          "git -C <repo> log --oneline HEAD..origin/main",
+          "git -C <repo> log --oneline origin/main..HEAD"
+        ],
+        "runPreflight": [
+          "git -C <repo> fetch origin",
+          "git -C <repo> status --porcelain"
+        ],
+        "doNot": [
+          "git reset --hard without operator approval",
+          "Force push to fix divergence",
+          "Silently skip diverged repo in estate pull summary"
+        ],
+        "proveBeforeClaiming": [
+          "git merge origin/main OR git rebase origin/main completes",
+          "git status clean or dirty state explicitly reported"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-GIT-PULL-NO-UPSTREAM-001",
+      "questionId": "IHGITPULLNOU",
+      "canonicalQuestion": "Why did CapitalGlass-Documents git pull fail with no tracking information?",
+      "alternateQuestions": [
+        "How to fix git pull when branch has no upstream?"
+      ],
+      "shortAnswer": "CapitalGlass-Documents on work/document-center-adaptive-details-panel-v1-clean failed pull because no @{u} is set; set upstream or pull explicit remote branch.",
+      "detailedAnswer": "Estate pull FAIL — feature branch without upstream tracking",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T20:44:47.378Z",
+      "authorityRepo": "CapitalGlass-Documents",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/seed-packets/IH-GIT-PULL-NO-UPSTREAM-001.json"
+      ],
+      "authorityCommit": [
+        "6e7be80"
+      ],
+      "evidenceUrls": [
+        "TE-405",
+        "CapitalGlass-Documents"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-04-wsl-estate-git-pull-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Documents"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "git pull fails with 'no tracking information for the current branch'",
+        "startAt": [
+          "git -C <repo> branch -vv",
+          "git -C <repo> remote -v"
+        ],
+        "runPreflight": [
+          "git -C <repo> rev-parse --abbrev-ref HEAD",
+          "git -C <repo> rev-parse --abbrev-ref @{u} 2>/dev/null || echo NO_UPSTREAM"
+        ],
+        "doNot": [
+          "Assume main is checked out on every repo",
+          "Mark estate pull PASS while any repo FAIL remains"
+        ],
+        "proveBeforeClaiming": [
+          "git pull origin <branch> succeeds OR upstream set and ff-only pull passes"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-WSL-ESTATE-GIT-PULL-001",
+      "questionId": "IHWSLESTATEG",
+      "canonicalQuestion": "How do I git pull all Capital Glass repos on WESLEY_WORK WSL?",
+      "alternateQuestions": [
+        "What is the canonical repos root for estate git pull?",
+        "Why does estate git pull use --ff-only?"
+      ],
+      "shortAnswer": "Pull all Capital Glass repos from canonical WSL ext4 root with git pull --ff-only; report OK/FAIL/DIRTY per repo; never force-pull diverged branches.",
+      "detailedAnswer": "WSL estate-wide git pull — ff-only loop on /home/wesley/repos",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T20:44:47.378Z",
+      "authorityRepo": "CapitalGlass-Office-Admin",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/seed-packets/IH-WSL-ESTATE-GIT-PULL-001.json"
+      ],
+      "authorityCommit": [
+        "6e7be80"
+      ],
+      "evidenceUrls": [
+        "TE-403",
+        "/home/wesley/repos",
+        "CapitalGlass-Office-Admin/scripts/suite-validation/lib/RepairEngine.ps1"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "command",
+        "harvest-2026-08-04-wsl-estate-git-pull-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Office-Admin"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Operator asks to sync or pull all repos on WSL",
+        "startAt": [
+          "/home/wesley/repos",
+          "BY-KIND/host-authority.json"
+        ],
+        "runPreflight": [
+          "List repos: for d in /home/wesley/repos/*/; test -d \"$d/.git\" && basename \"$d\""
+        ],
+        "doNot": [
+          "Use C:\\Developer\\repos or NTFS paths for bulk pull on WESLEY_WORK",
+          "Force pull or reset diverged repos without operator approval",
+          "Skip reporting FAIL and DIRTY repos"
+        ],
+        "proveBeforeClaiming": [
+          "Per-repo exit code from git pull --ff-only",
+          "Summary counts OK/FAIL/DIRTY"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "command"
+    }
+  ]
+}

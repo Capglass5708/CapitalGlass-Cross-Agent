@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-document-center-adaptive-details-w17-v1",
+  "generatedAt": "2026-08-05T00:18:00.000Z",
+  "sourceCommitSha": "6714137247a57325b638279947690e4a31c4be26",
+  "events": [
+    {
+      "id": "EVT-001",
+      "turn": "~1",
+      "actor": "cursor",
+      "summary": "Adaptive details mission W0–W19 PASS on d90e599 baseline; W17 blocked on authorized operator session",
+      "evidenceRefs": [
+        "wave-19/gate-results.json",
+        "wave-17/gate-results.json"
+      ]
+    },
+    {
+      "id": "EVT-002",
+      "turn": "~5",
+      "actor": "cursor",
+      "summary": "work/document-center-adaptive-details-panel-v1-clean drifted to R1A commits from parallel agents",
+      "evidenceRefs": [
+        "git reflog CapitalGlass-Documents",
+        "transcript 9b9f756c-0fed-45bf-8080-d632470f6055"
+      ]
+    },
+    {
+      "id": "EVT-003",
+      "turn": "~8",
+      "actor": "cursor",
+      "summary": "Locked checkpoint 47d0f69 on work/document-center-adaptive-details-panel-v1-locked",
+      "evidenceRefs": [
+        "47d0f699add1426a42a22bb33e869f104cfd8dfc"
+      ]
+    },
+    {
+      "id": "EVT-004",
+      "turn": "~12",
+      "actor": "user",
+      "summary": "Document not found on localhost; Admin Tools ON mistaken for Hub SSO session",
+      "evidenceRefs": [
+        "/api/auth/session authenticated:false",
+        "operator screenshot session-expired"
+      ]
+    },
+    {
+      "id": "EVT-005",
+      "turn": "~14",
+      "actor": "cursor",
+      "summary": "capture-operator-adaptive-review.mjs failed because chrome.exe held profile lock",
+      "evidenceRefs": [
+        "remote debugging pipe file descriptors are not open"
+      ]
+    },
+    {
+      "id": "EVT-006",
+      "turn": "~10",
+      "actor": "cursor",
+      "summary": "Preservation 9a98c5c contaminated DocumentDetailPage with R1A; mission src from 25675d9 only",
+      "evidenceRefs": [
+        "wip/document-details-mixed-state-preservation-20260804 @ 25675d9"
+      ]
+    },
+    {
+      "id": "EVT-007",
+      "turn": "~16",
+      "actor": "user",
+      "summary": "Operator requested chat-thread-closeout-autopsy-harvest-v1 on adaptive W17 thread",
+      "evidenceRefs": [
+        "CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"
+      ]
+    }
+  ]
+}

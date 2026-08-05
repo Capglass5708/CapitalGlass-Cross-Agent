@@ -1,0 +1,75 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-vercel-cli-fetch-failed-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "dc1c3b2bd075ba61d9b0ebfdcbd4fef6761c4892",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-r1a-wave6-7-document-center-closeout-v1",
+      "seedId": "IH-VERCEL-CLI-FETCH-FAILED-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T20:38:16.581Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "bf179a0d0c102b9651fb643cd05682afef7684b03f25def633b26775d1962bf1"
+  },
+  "body": {
+    "seedId": "IH-VERCEL-CLI-FETCH-FAILED-001",
+    "kind": "failure-pattern",
+    "title": "Vercel CLI fetch failed does not prove deploy failure",
+    "summary": "vercel deploy --prod may exit fetch failed while production alias is already Ready; always inspect alias before BLOCKED gate.",
+    "canonicalQuestion": "Vercel deploy ended with fetch failed — is production updated?",
+    "alternateQuestions": [
+      "How to verify Document Center production deployment ID after CLI error?"
+    ],
+    "shortAnswer": "vercel deploy --prod may exit fetch failed while production alias is already Ready; always inspect alias before BLOCKED gate.",
+    "detailedAnswer": "Vercel CLI fetch failed does not prove deploy failure",
+    "retrievalQuestions": [
+      "Vercel deploy ended with fetch failed — is production updated?",
+      "How to verify Document Center production deployment ID after CLI error?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "vercel deploy --prod exits with fetch failed",
+      "startAt": [
+        "vercel inspect https://documents.capitalglasstxapps.com"
+      ],
+      "runPreflight": [
+        "vercel inspect https://documents.capitalglasstxapps.com --json"
+      ],
+      "doNot": [
+        "Mark wave gate BLOCKED from CLI stderr alone",
+        "Immediately retry deploy without inspect"
+      ],
+      "proveBeforeClaiming": [
+        "Production status Ready + deployment id recorded in closeout receipt"
+      ]
+    },
+    "evidenceRefs": [
+      "TE-603",
+      "TE-608",
+      "dpl_GWkniWhNfLka8oSZKDnnBoP192wX"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "AUTOMATIC",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Documents",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-r1a-wave6-7-document-center-closeout-v1/seed-packets/IH-VERCEL-CLI-FETCH-FAILED-001.json"
+    ],
+    "harvestId": "harvest-2026-08-04-r1a-wave6-7-document-center-closeout-v1"
+  }
+}

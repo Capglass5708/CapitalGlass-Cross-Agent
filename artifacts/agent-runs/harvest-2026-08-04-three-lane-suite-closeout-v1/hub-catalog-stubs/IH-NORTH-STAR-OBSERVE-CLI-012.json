@@ -1,0 +1,82 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-north-star-observe-cli-012",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "74e1e3cab201e7ade9da3b7a426c054b513324a0",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-three-lane-suite-closeout-v1",
+      "seedId": "IH-NORTH-STAR-OBSERVE-CLI-012"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T23:51:43.121Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "ed8d5280b94fd85c8d21ce6505f91b57087cfc91e127901bd0ad64dd2cd6dbca"
+  },
+  "body": {
+    "seedId": "IH-NORTH-STAR-OBSERVE-CLI-012",
+    "kind": "command",
+    "title": "north-star:observe — AppBuilder CLI delegates to Governance observer",
+    "summary": "Run npm run north-star:observe from CG-AppBuilder-MCP; thin CLI loads observe-north-star-lifecycle-lib.mjs from Governance MCP (read-only).",
+    "canonicalQuestion": "How do I run the North Star lifecycle observer from npm?",
+    "alternateQuestions": [
+      "Why does north-star:observe return exit 1 on a closed work package?"
+    ],
+    "shortAnswer": "Run npm run north-star:observe from CG-AppBuilder-MCP; thin CLI loads observe-north-star-lifecycle-lib.mjs from Governance MCP (read-only).",
+    "detailedAnswer": "north-star:observe — AppBuilder CLI delegates to Governance observer",
+    "retrievalQuestions": [
+      "How do I run the North Star lifecycle observer from npm?",
+      "Why does north-star:observe return exit 1 on a closed work package?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Need lifecycle observer verdict without importing Governance lib directly",
+      "startAt": [
+        "CG-AppBuilder-MCP/package.json north-star:observe",
+        "runtime/work-package-lifecycle-index/<work-package>.json"
+      ],
+      "runPreflight": [
+        "cd CG-AppBuilder-MCP && npm run north-star:observe -- --work-package=<id> --mutation-repo=<path> --json"
+      ],
+      "doNot": [
+        "Import observe-north-star-lifecycle-lib.mjs unless debugging",
+        "Treat exit 1 as CLI broken when verdict is FAIL"
+      ],
+      "proveBeforeClaiming": [
+        "JSON schemaVersion north-star-lifecycle-observe-v1",
+        "test -f scripts/observe-north-star-lifecycle.mjs on AppBuilder main"
+      ]
+    },
+    "evidenceRefs": [
+      "CG-AppBuilder-MCP 3ed4746a scripts/observe-north-star-lifecycle.mjs",
+      "test:north-star-observe-cli 4/4 PASS"
+    ],
+    "executionDeltaRefs": [
+      "ED-002"
+    ],
+    "wasteIds": [
+      "TW-001"
+    ],
+    "operatorFrictionIds": [
+      "OF-001"
+    ],
+    "roiRank": 2,
+    "doNotAdvance": [],
+    "promotionClass": "AUTOMATIC",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/seed-packets/IH-NORTH-STAR-OBSERVE-CLI-012.json"
+    ],
+    "harvestId": "harvest-2026-08-04-three-lane-suite-closeout-v1"
+  }
+}

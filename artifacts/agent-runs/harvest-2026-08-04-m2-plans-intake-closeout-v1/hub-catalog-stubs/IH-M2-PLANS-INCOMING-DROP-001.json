@@ -1,0 +1,75 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-m2-plans-incoming-drop-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "adb026b5b1e3920b571296943300e0e5d1090545",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-m2-plans-intake-closeout-v1",
+      "seedId": "IH-M2-PLANS-INCOMING-DROP-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T18:34:16.724Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "acf6d50a699b2c01f1d8d9736d11c08aac6b4a4fc16b0a228365b96e7f45b608"
+  },
+  "body": {
+    "seedId": "IH-M2-PLANS-INCOMING-DROP-001",
+    "kind": "command",
+    "title": "M2 Plans intake drop target on Z:",
+    "summary": "Drop disposable PDF to Z:\\Document Intake\\Plans\\Incoming for M2 L_DROP_TO_REVIEW_QUEUE_PROOF.",
+    "canonicalQuestion": "What is the M2 Plans intake drop folder on Z:?",
+    "alternateQuestions": [
+      "Where do plan PDFs go for Document Center Unfiled queue?"
+    ],
+    "shortAnswer": "Drop disposable PDF to Z:\\Document Intake\\Plans\\Incoming for M2 L_DROP_TO_REVIEW_QUEUE_PROOF.",
+    "detailedAnswer": "M2 Plans intake drop target on Z:",
+    "retrievalQuestions": [
+      "What is the M2 Plans intake drop folder on Z:?",
+      "Where do plan PDFs go for Document Center Unfiled queue?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "M2 Plans intake proof or operator drop question",
+      "startAt": [
+        "CapitalGlass-Documents/docs/work-packages/l-drop-to-review-queue-proof-v1.md"
+      ],
+      "runPreflight": [
+        "npm run proof:m2-l-drop-review-queue:prd"
+      ],
+      "doNot": [
+        "Use General\\Incoming for M2 plans proof",
+        "Auto-file to L: project folder"
+      ],
+      "proveBeforeClaiming": [
+        "intake_lane=plans",
+        "Unfiled Attachments API lists item"
+      ]
+    },
+    "evidenceRefs": [
+      "d844b776-9763-4489-baa4-d731d14bdac6",
+      "l-drop-to-review-queue-proof-v1.md"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "AUTOMATIC",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Documents",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-m2-plans-intake-closeout-v1/seed-packets/IH-M2-PLANS-INCOMING-DROP-001.json"
+    ],
+    "harvestId": "harvest-2026-08-04-m2-plans-intake-closeout-v1"
+  }
+}

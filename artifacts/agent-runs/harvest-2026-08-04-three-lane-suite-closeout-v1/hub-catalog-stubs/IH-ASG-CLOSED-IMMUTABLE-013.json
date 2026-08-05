@@ -1,0 +1,78 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-asg-closed-immutable-013",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "74e1e3cab201e7ade9da3b7a426c054b513324a0",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-three-lane-suite-closeout-v1",
+      "seedId": "IH-ASG-CLOSED-IMMUTABLE-013"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T23:51:43.121Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "49bfad1cd228a62064650b377ff2be6d2348a2e9fed529533cb5e92bcfff0074"
+  },
+  "body": {
+    "seedId": "IH-ASG-CLOSED-IMMUTABLE-013",
+    "kind": "decision",
+    "title": "ASG hardening mission closed with deferred Phase C — do not reopen",
+    "summary": "ultimate-sdlc-runner-hardening-and-ai-cache-v1 is CLOSED_WITH_DEFERRED_PHASE_C; governance linkage failures are explicitly out of scope.",
+    "canonicalQuestion": "Can I fix PREFLIGHT_LINKAGE_MISSING by reopening the ASG hardening mission?",
+    "alternateQuestions": [
+      "What is the authoritative ASG mission closure artifact?"
+    ],
+    "shortAnswer": "ultimate-sdlc-runner-hardening-and-ai-cache-v1 is CLOSED_WITH_DEFERRED_PHASE_C; governance linkage failures are explicitly out of scope.",
+    "detailedAnswer": "ASG hardening mission closed with deferred Phase C — do not reopen",
+    "retrievalQuestions": [
+      "Can I fix PREFLIGHT_LINKAGE_MISSING by reopening the ASG hardening mission?",
+      "What is the authoritative ASG mission closure artifact?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Governance gate fails on ASG work package or operator asks to fix linkage on ASG",
+      "startAt": [
+        "CG-AppBuilder-MCP/artifacts/agent-runs/ultimate-sdlc-runner-hardening-and-ai-cache-v1/mission-closeout-closed-with-deferred-phase-c.json",
+        "harvest-2026-08-04-asg-hardening-authority-v1 seeds on L:"
+      ],
+      "runPreflight": [
+        "npm run agent:index:scout -- --json"
+      ],
+      "doNot": [
+        "Reopen ultimate-sdlc-runner-hardening-and-ai-cache-v1",
+        "Mutate ASG lifecycle index preflight null as part of linkage repair",
+        "Run Phase C without PHASE_C_POINTER_APPROVED=1"
+      ],
+      "proveBeforeClaiming": [
+        "closureClass CLOSED_WITH_DEFERRED_PHASE_C",
+        "governanceLinkageExclusion documents out-of-scope linkage"
+      ]
+    },
+    "evidenceRefs": [
+      "mission-closeout-closed-with-deferred-phase-c.json",
+      "CG-AppBuilder-MCP dc22ab00 governanceLinkageExclusion",
+      "Cross-Agent 587025d"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": 4,
+    "doNotAdvance": [],
+    "promotionClass": "HUMAN_REVIEW",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/seed-packets/IH-ASG-CLOSED-IMMUTABLE-013.json"
+    ],
+    "harvestId": "harvest-2026-08-04-three-lane-suite-closeout-v1"
+  }
+}

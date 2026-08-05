@@ -1,0 +1,165 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-wsl-estate-git-pull-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "commandIndexConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "work-progress/harvest-packet-registry.json"
+    ],
+    "checkedAt": "2026-08-05T20:27:00.340Z",
+    "preflightReceiptHash": "b4112a16fa4de3e4bf5eba7ba45384ca8afa47e338cfd1cd994f4fd907c3c06c"
+  },
+  "waste": [
+    {
+      "wasteId": "TW-401",
+      "type": "retrieval",
+      "description": "Searched repo for pull scripts before confirming canonical WSL repos root",
+      "evidenceRefs": [
+        "TE-402"
+      ],
+      "estimatedImpact": "low",
+      "savedBy": "Start at /home/wesley/repos and BY-KIND/host-authority.json for estate sync",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-402",
+      "type": "tool",
+      "description": "npm run agent:index:scout failed first attempt — Windows CMD picked up UNC path without node in PATH",
+      "evidenceRefs": [
+        "scout-fail-cmd-exe"
+      ],
+      "estimatedImpact": "low",
+      "savedBy": "Run scout via explicit node path: ~/.nvm/versions/node/v24.18.0/bin/node",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-403",
+      "type": "verification",
+      "description": "22 repos had uncommitted changes at pull time — estate sync incomplete without operator awareness",
+      "evidenceRefs": [
+        "TE-403"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Report DIRTY count prominently; link to per-repo git status before claiming sync complete",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-404",
+      "type": "rework",
+      "description": "Phase A harvest uncommitted; master-graph harvest render-index overwrote INDEX — validate failed on re-run",
+      "evidenceRefs": [
+        "TE-409"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Commit Phase A manifest immediately after validate PASS; or per-harvest INDEX slice",
+      "roiRank": 4
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-401",
+      "trigger": "Operator re-requested harvest because Phase A never committed and INDEX drifted",
+      "operatorCost": "low",
+      "systemFix": "Commit harvest-manifest-v1.json after Phase A validate PASS",
+      "evidenceRefs": [
+        "TE-409"
+      ],
+      "linkedWasteIds": [
+        "TW-404"
+      ]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-401",
+      "situation": "Operator requested estate-wide git pull on WSL",
+      "actualExecution": {
+        "steps": [
+          "Grep for pull scripts across repos",
+          "List /home/wesley/repos",
+          "Run ad-hoc bash loop with git pull --ff-only",
+          "Report OK/FAIL/DIRTY summary"
+        ],
+        "outcome": "PARTIAL — 2 repos failed",
+        "evidenceRefs": [
+          "TE-403",
+          "TE-405",
+          "TE-406"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Confirm WSL canonical root /home/wesley/repos",
+          "Use estate RepairEngine git-pull pattern (skip or flag dirty)",
+          "Pre-flight fetch on diverged candidates",
+          "Surface FAIL repos with fix commands inline"
+        ],
+        "outcome": "Same result with less discovery time",
+        "requiredPreflight": [
+          "BY-KIND/host-authority.json"
+        ]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [],
+  "duplicateWork": [],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Estate git-pull script in Office-Admin or AppBuilder",
+      "whyItPays": "Eliminates ad-hoc bash loop and standardizes DIRTY/FAIL reporting",
+      "effort": "low",
+      "seedAs": "command",
+      "savedWasteIds": [
+        "TW-401"
+      ],
+      "ownerRepo": "CapitalGlass-Office-Admin"
+    },
+    {
+      "rank": 2,
+      "title": "Pre-pull dirty-repo summary gate",
+      "whyItPays": "22 dirty repos risks merge conflicts on next operator session",
+      "effort": "low",
+      "seedAs": "runbook",
+      "savedWasteIds": [
+        "TW-403"
+      ],
+      "ownerRepo": "CapitalGlass-Office-Admin"
+    },
+    {
+      "rank": 3,
+      "title": "WSL scout npm script PATH guard",
+      "whyItPays": "Prevents CMD.EXE UNC fallback when npm invoked without nvm in PATH",
+      "effort": "medium",
+      "seedAs": "hook",
+      "savedWasteIds": [
+        "TW-402"
+      ],
+      "ownerRepo": "CG-AppBuilder-MCP"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "ESTATE_GIT_PULL_COMPLETE",
+      "currentStatus": "BLOCKED",
+      "doNotClaimUntil": [
+        "CapitalGlass-Documents upstream set or explicit branch pull",
+        "Visual-Asset-Engine divergence reconciled"
+      ],
+      "lastKnownEvidence": [
+        "TE-405",
+        "TE-406"
+      ]
+    }
+  ]
+}

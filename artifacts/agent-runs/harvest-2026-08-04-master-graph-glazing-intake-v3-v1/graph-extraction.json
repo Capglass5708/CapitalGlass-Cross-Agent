@@ -1,0 +1,676 @@
+{
+  "packetKind": "graph-extraction",
+  "schemaVersion": "cg-master-graph-extraction-v1",
+  "extractionId": "extraction:harvest-2026-08-04-master-graph-glazing-intake-v3-v1",
+  "harvestId": "harvest-2026-08-04-master-graph-glazing-intake-v3-v1",
+  "workPackageId": "harvest-2026-08-04-master-graph-glazing-intake-v3-v1",
+  "producer": {
+    "repositoryId": "repo:capitalglass-cross-agent",
+    "capability": "harvest-graph-extraction",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "id": "harvest:harvest-2026-08-04-master-graph-glazing-intake-v3-v1",
+      "nodeType": "Harvest",
+      "displayName": "harvest-2026-08-04-master-graph-glazing-intake-v3-v1",
+      "lifecycleState": "lifecycle:canonical",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+        "sourceCommitSha": "6714137247a57325b638279947690e4a31c4be26",
+        "retrievalResult": "INDEX_HIT"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:pkt-mg-decision-side-chat",
+      "nodeType": "WorkPackage",
+      "displayName": "Master Graph is staging side chat; Documents owns cover/sheet structured truth",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "recorded",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-MASTER-GRAPH",
+        "ownerIndexingStatus": "pointer-only",
+        "projectFile": "work-progress/projects/2026-08-04_master-graph-glazing-intake-v3.md",
+        "advancementGate": "Live plan_set + sheet UUIDs + registry types"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-decision-side-chat.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-decision-side-chat.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:pkt-mg-blocker-schema-drift",
+      "nodeType": "WorkPackage",
+      "displayName": "Documents plan-intelligence schema drift blocks graph ingest",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "open",
+      "metadata": {
+        "packetVerdict": "BLOCKED",
+        "ownerRepo": "CapitalGlass-Documents",
+        "ownerIndexingStatus": "pointer-only",
+        "projectFile": "work-progress/projects/2026-08-04_master-graph-glazing-intake-v3.md",
+        "advancementGate": "Single schema family live in Supabase"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-blocker-schema-drift.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-blocker-schema-drift.json"
+        }
+      }
+    },
+    {
+      "id": "entity:blocker-blocker-pkt-mg-blocker-schema-drift",
+      "nodeType": "Entity",
+      "displayName": "blocker-pkt-mg-blocker-schema-drift",
+      "metadata": {
+        "entityKind": "harvest-blocker",
+        "blockerOwner": null
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-blocker-schema-drift.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-blocker-schema-drift.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:pkt-mg-mistake-broad-schema",
+      "nodeType": "WorkPackage",
+      "displayName": "Over-broad extraction_runs schema drafted before hybrid charter",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "recorded",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Documents",
+        "ownerIndexingStatus": "pointer-only",
+        "projectFile": "work-progress/projects/2026-08-04_master-graph-glazing-intake-v3.md",
+        "advancementGate": "none"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-mistake-broad-schema.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-mistake-broad-schema.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:pkt-mg-faster-intake-pack",
+      "nodeType": "WorkPackage",
+      "displayName": "Intake Pack v3 operator prompts default over full questionnaire",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "recorded",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-MASTER-GRAPH",
+        "ownerIndexingStatus": "pointer-only",
+        "projectFile": "work-progress/projects/2026-08-04_master-graph-glazing-intake-v3.md",
+        "advancementGate": "none"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-faster-intake-pack.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-faster-intake-pack.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:pkt-mg-command-harvest",
+      "nodeType": "WorkPackage",
+      "displayName": "Phase A harvest validate chain (no publish without operator)",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "recorded",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/2026-08-04_master-graph-glazing-intake-v3.md",
+        "advancementGate": "harvest:validate PASS"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-command-harvest.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-command-harvest.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:pkt-mg-evidence-rosewood-ids",
+      "nodeType": "WorkPackage",
+      "displayName": "Rosewood fixture IDs for Phase 1 (project/document/plan-set slug/pages)",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "recorded",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-MASTER-GRAPH",
+        "ownerIndexingStatus": "pointer-only",
+        "projectFile": "work-progress/projects/2026-08-04_master-graph-glazing-intake-v3.md",
+        "advancementGate": "Supabase seed Confirmed"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-evidence-rosewood-ids.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-evidence-rosewood-ids.json"
+        }
+      }
+    },
+    {
+      "id": "entity:blocker-blocker-pkt-mg-evidence-rosewood-ids",
+      "nodeType": "Entity",
+      "displayName": "blocker-pkt-mg-evidence-rosewood-ids",
+      "metadata": {
+        "entityKind": "harvest-blocker",
+        "blockerOwner": null
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-evidence-rosewood-ids.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-evidence-rosewood-ids.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:pkt-mg-protocol-assertion",
+      "nodeType": "WorkPackage",
+      "displayName": "Assertion layer + provenance every phase (Intake Pack v3)",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "recorded",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-MASTER-GRAPH",
+        "ownerIndexingStatus": "pointer-only",
+        "projectFile": "work-progress/projects/2026-08-04_master-graph-glazing-intake-v3.md",
+        "advancementGate": "Registry + envelope mapping documented"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-protocol-assertion.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-protocol-assertion.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:pkt-mg-repeated-projection-guard",
+      "nodeType": "WorkPackage",
+      "displayName": "Overlap with prior L: projection-guard seeds — do not recreate",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "recorded",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/2026-08-04_master-graph-glazing-intake-v3.md",
+        "advancementGate": "none"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-repeated-projection-guard.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-repeated-projection-guard.json"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:harvest-harvest-2026-08-04-master-graph-glazing-intake-v3-v1-contains-workpackage-pkt-mg-decision-side-chat",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-master-graph-glazing-intake-v3-v1",
+      "targetId": "workpackage:pkt-mg-decision-side-chat",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-master-graph-owns-workpackage-pkt-mg-decision-side-chat",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-master-graph",
+      "targetId": "workpackage:pkt-mg-decision-side-chat",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-decision-side-chat.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-decision-side-chat.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-master-graph-glazing-intake-v3-v1-contains-workpackage-pkt-mg-blocker-schema-drift",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-master-graph-glazing-intake-v3-v1",
+      "targetId": "workpackage:pkt-mg-blocker-schema-drift",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-documents-owns-workpackage-pkt-mg-blocker-schema-drift",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-documents",
+      "targetId": "workpackage:pkt-mg-blocker-schema-drift",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-blocker-schema-drift.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-blocker-schema-drift.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-pkt-mg-blocker-schema-drift-blocked-by-entity-blocker-blocker-pkt-mg-blocker-schema-drift",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:pkt-mg-blocker-schema-drift",
+      "targetId": "entity:blocker-blocker-pkt-mg-blocker-schema-drift",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-blocker-schema-drift.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-blocker-schema-drift.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-pkt-mg-blocker-schema-drift-blocked-by-entity-blocker-blocker-pkt-mg-blocker-schema-drift",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:pkt-mg-blocker-schema-drift",
+      "targetId": "entity:blocker-blocker-pkt-mg-blocker-schema-drift",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-blocker-schema-drift.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-blocker-schema-drift.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-master-graph-glazing-intake-v3-v1-contains-workpackage-pkt-mg-mistake-broad-schema",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-master-graph-glazing-intake-v3-v1",
+      "targetId": "workpackage:pkt-mg-mistake-broad-schema",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-documents-owns-workpackage-pkt-mg-mistake-broad-schema",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-documents",
+      "targetId": "workpackage:pkt-mg-mistake-broad-schema",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-mistake-broad-schema.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-mistake-broad-schema.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-master-graph-glazing-intake-v3-v1-contains-workpackage-pkt-mg-faster-intake-pack",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-master-graph-glazing-intake-v3-v1",
+      "targetId": "workpackage:pkt-mg-faster-intake-pack",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-master-graph-owns-workpackage-pkt-mg-faster-intake-pack",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-master-graph",
+      "targetId": "workpackage:pkt-mg-faster-intake-pack",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-faster-intake-pack.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-faster-intake-pack.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-master-graph-glazing-intake-v3-v1-contains-workpackage-pkt-mg-command-harvest",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-master-graph-glazing-intake-v3-v1",
+      "targetId": "workpackage:pkt-mg-command-harvest",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-pkt-mg-command-harvest",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:pkt-mg-command-harvest",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-command-harvest.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-command-harvest.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-master-graph-glazing-intake-v3-v1-contains-workpackage-pkt-mg-evidence-rosewood-ids",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-master-graph-glazing-intake-v3-v1",
+      "targetId": "workpackage:pkt-mg-evidence-rosewood-ids",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-master-graph-owns-workpackage-pkt-mg-evidence-rosewood-ids",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-master-graph",
+      "targetId": "workpackage:pkt-mg-evidence-rosewood-ids",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-evidence-rosewood-ids.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-evidence-rosewood-ids.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-pkt-mg-evidence-rosewood-ids-blocked-by-entity-blocker-blocker-pkt-mg-evidence-rosewood-ids",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:pkt-mg-evidence-rosewood-ids",
+      "targetId": "entity:blocker-blocker-pkt-mg-evidence-rosewood-ids",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-evidence-rosewood-ids.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-evidence-rosewood-ids.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-master-graph-glazing-intake-v3-v1-contains-workpackage-pkt-mg-protocol-assertion",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-master-graph-glazing-intake-v3-v1",
+      "targetId": "workpackage:pkt-mg-protocol-assertion",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-master-graph-owns-workpackage-pkt-mg-protocol-assertion",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-master-graph",
+      "targetId": "workpackage:pkt-mg-protocol-assertion",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-protocol-assertion.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-protocol-assertion.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-master-graph-glazing-intake-v3-v1-contains-workpackage-pkt-mg-repeated-projection-guard",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-master-graph-glazing-intake-v3-v1",
+      "targetId": "workpackage:pkt-mg-repeated-projection-guard",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-pkt-mg-repeated-projection-guard",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:pkt-mg-repeated-projection-guard",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:04:43.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-repeated-projection-guard.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/compact-records/pkt-mg-repeated-projection-guard.json"
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "provenance": {
+    "producerRepositoryId": "repo:capitalglass-cross-agent",
+    "producerCapability": "harvest-graph-extraction",
+    "sourceAuthority": "authority:cross-agent-harvest",
+    "classification": "observed",
+    "verificationState": "verified",
+    "recordedAt": "2026-08-05T00:04:43.000Z",
+    "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/harvest-manifest-v1.json",
+    "sourceAnchorDetail": {
+      "anchorType": "file-path",
+      "locator": "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/harvest-manifest-v1.json"
+    }
+  }
+}

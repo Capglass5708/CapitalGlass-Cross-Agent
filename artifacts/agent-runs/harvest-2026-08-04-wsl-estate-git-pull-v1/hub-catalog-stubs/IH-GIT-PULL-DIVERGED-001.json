@@ -1,0 +1,79 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-git-pull-diverged-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "6e7be800e519715518bd411af07103beb30a859c",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-wsl-estate-git-pull-v1",
+      "seedId": "IH-GIT-PULL-DIVERGED-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T20:44:47.379Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "c453711a3b0edf178888e869209a28102b7d839d847cc6213c6aa3ef7fd9ccfa"
+  },
+  "body": {
+    "seedId": "IH-GIT-PULL-DIVERGED-001",
+    "kind": "failure-pattern",
+    "title": "Estate pull FAIL — diverged main cannot fast-forward",
+    "summary": "Visual-Asset-Engine main has local commits diverged from origin/main; ff-only pull aborts; operator must merge or rebase after reviewing dirty state.",
+    "canonicalQuestion": "Why did Visual-Asset-Engine git pull fail with diverging branches?",
+    "alternateQuestions": [
+      "How to reconcile a repo that cannot fast-forward during estate pull?"
+    ],
+    "shortAnswer": "Visual-Asset-Engine main has local commits diverged from origin/main; ff-only pull aborts; operator must merge or rebase after reviewing dirty state.",
+    "detailedAnswer": "Estate pull FAIL — diverged main cannot fast-forward",
+    "retrievalQuestions": [
+      "Why did Visual-Asset-Engine git pull fail with diverging branches?",
+      "How to reconcile a repo that cannot fast-forward during estate pull?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "git pull --ff-only fails with 'diverging branches' or 'Not possible to fast-forward'",
+      "startAt": [
+        "git -C <repo> status",
+        "git -C <repo> log --oneline HEAD..origin/main",
+        "git -C <repo> log --oneline origin/main..HEAD"
+      ],
+      "runPreflight": [
+        "git -C <repo> fetch origin",
+        "git -C <repo> status --porcelain"
+      ],
+      "doNot": [
+        "git reset --hard without operator approval",
+        "Force push to fix divergence",
+        "Silently skip diverged repo in estate pull summary"
+      ],
+      "proveBeforeClaiming": [
+        "git merge origin/main OR git rebase origin/main completes",
+        "git status clean or dirty state explicitly reported"
+      ]
+    },
+    "evidenceRefs": [
+      "TE-406",
+      "Visual-Asset-Engine"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "Visual-Asset-Engine",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-wsl-estate-git-pull-v1/seed-packets/IH-GIT-PULL-DIVERGED-001.json"
+    ],
+    "harvestId": "harvest-2026-08-04-wsl-estate-git-pull-v1"
+  }
+}

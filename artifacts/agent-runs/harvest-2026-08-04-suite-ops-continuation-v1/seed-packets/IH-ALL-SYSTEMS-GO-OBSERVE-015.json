@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-ALL-SYSTEMS-GO-OBSERVE-015",
+  "kind": "failure-pattern",
+  "title": "All Systems Go observe mode is investigation only — not formal GO",
+  "summary": "npm run all-systems-go with skipLive observe yields systemsGoVerdict WARN/GO investigate — formalGoEligible false until closeout:gate.",
+  "retrievalQuestions": [
+    "Can I ship after all-systems-go PASS?",
+    "What does systemsGoVerdict WARN mean?",
+    "Is all-systems-go ship authorization?"
+  ],
+  "evidenceRefs": [
+    "dark-runner-receipt 5ea4cfe1-87a8-4afb-838e-72db139c23b4",
+    "formalGoEligible false",
+    "CG-AppBuilder-MCP scripts/ultimate-sdlc-runner/all-systems-go.mjs"
+  ],
+  "executionDeltaRefs": ["ED-001"],
+  "wasteIds": [],
+  "roiRank": 2,
+  "futureAgentInstructions": {
+    "whenThisAppears": "Operator or agent ran all-systems-go and asks if estate is GO for ship",
+    "startAt": [
+      "artifacts/agent-runs/ultimate-sdlc-runner-dark-package-v1/*/dark-runner-receipt.json",
+      "runtime/agent-preflight/app-builder-mcp/latest.json"
+    ],
+    "runPreflight": [
+      "npm run all-systems-go -- --json"
+    ],
+    "doNot": [
+      "Claim formal GO when formalGoEligible is false",
+      "Skip closeout:gate because observe receipt exited 0"
+    ],
+    "proveBeforeClaiming": [
+      "receipt.formalGoEligible === true OR closeout:gate PASS",
+      "shared-db requires-investigation cleared for GO"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

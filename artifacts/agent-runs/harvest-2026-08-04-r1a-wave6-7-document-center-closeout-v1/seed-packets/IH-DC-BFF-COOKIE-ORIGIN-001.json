@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-DC-BFF-COOKIE-ORIGIN-001",
+  "kind": "failure-pattern",
+  "title": "Document Center BFF rejects Bearer-only Dashboard proxy calls",
+  "summary": "Project Dashboard must forward Hub session cookie and Origin to Document Center BFF; Bearer alone returns 401 on plan-set-summary and plan-intelligence routes.",
+  "retrievalQuestions": [
+    "Why does Dashboard plan-set-summary return 401 in production?",
+    "What auth headers does Document Center BFF require from Dashboard proxy?"
+  ],
+  "evidenceRefs": ["TE-604", "7e55fbf", "lib/documents/engine-client.ts"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Dashboard BFF proxy to Document Center returns 401 for authorized user",
+    "startAt": ["capital-glass-project-dashboard/lib/documents/engine-client.ts"],
+    "runPreflight": ["Compare with Wave 5 plan-summary-view forwarding pattern"],
+    "doNot": ["Use DOCUMENT_ENGINE_TOKEN bearer alone without cookie+Origin"],
+    "proveBeforeClaiming": ["wave6-rosewood-production-verify.mts auth matrix PASS"]
+  },
+  "ownerRepo": "capital-glass-project-dashboard",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

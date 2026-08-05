@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-R1A-ROSEWOOD-AUTHORITY-001",
+  "kind": "lesson",
+  "title": "Rosewood Wave 6 production authority — page count 66 REVIEWED not fixture 192",
+  "summary": "Live Rosewood card state REVIEWED with 66 authoritative sheet-map pages; fixture 192 and advisory tier1 warnings are non-blocking PASS_WITH_WARNINGS only.",
+  "retrievalQuestions": [
+    "What is the authoritative Rosewood plan set page count in production?",
+    "Why is reviewStatus needs_review while cardState is REVIEWED?"
+  ],
+  "evidenceRefs": [
+    "TE-605",
+    "4672252e-1940-4bb8-827e-ea89a3d1287e",
+    "wave-6-gate-receipt.json acceptedWarnings"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Rosewood smoke expects pageCount 192 or strict reviewStatus match",
+    "startAt": [
+      "CapitalGlass-Documents/artifacts/.../wave-6/wave-6-gate-receipt.json",
+      "wave-6-production-verify-output.json"
+    ],
+    "runPreflight": ["scripts/staging/wave6-rosewood-production-verify.mts"],
+    "doNot": ["Fail gate for page count 66 vs fixture 192", "Reopen Wave 6 for advisory tier1 warnings"],
+    "proveBeforeClaiming": ["cardState REVIEWED", "currentVersionId 4672252e unchanged"]
+  },
+  "ownerRepo": "CapitalGlass-Documents",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}

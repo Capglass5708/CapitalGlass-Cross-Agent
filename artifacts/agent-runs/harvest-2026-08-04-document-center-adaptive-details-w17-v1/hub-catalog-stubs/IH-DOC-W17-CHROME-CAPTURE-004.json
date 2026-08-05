@@ -1,0 +1,76 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-doc-w17-chrome-capture-004",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "dc1c3b2bd075ba61d9b0ebfdcbd4fef6761c4892",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-document-center-adaptive-details-w17-v1",
+      "seedId": "IH-DOC-W17-CHROME-CAPTURE-004"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T20:38:23.206Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "29c19f4b4b63a8d4d27d2107f4522b39e0b3ed93c75e323fad0ba3fdc6e8aeb5"
+  },
+  "body": {
+    "seedId": "IH-DOC-W17-CHROME-CAPTURE-004",
+    "kind": "command",
+    "title": "Wave 17 operator screenshot capture requires Chrome fully closed",
+    "summary": "capture-operator-adaptive-review.mjs uses Windows Chrome Default profile; fails with remote debugging pipe error if chrome.exe is running.",
+    "canonicalQuestion": "Why does capture-operator-adaptive-review.mjs fail with remote debugging pipe?",
+    "alternateQuestions": [
+      "How do I capture W17 operator screenshots?"
+    ],
+    "shortAnswer": "capture-operator-adaptive-review.mjs uses Windows Chrome Default profile; fails with remote debugging pipe error if chrome.exe is running.",
+    "detailedAnswer": "Wave 17 operator screenshot capture requires Chrome fully closed",
+    "retrievalQuestions": [
+      "Why does capture-operator-adaptive-review.mjs fail with remote debugging pipe?",
+      "How do I capture W17 operator screenshots?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "W17 screenshot capture blocked",
+      "startAt": [
+        "tasklist.exe chrome.exe"
+      ],
+      "runPreflight": [
+        "Close all Chrome",
+        "fuser -v 5190/tcp confirms dev server"
+      ],
+      "doNot": [
+        "Run capture while Chrome is open",
+        "Commit operator-screenshots without secret scan"
+      ],
+      "proveBeforeClaiming": [
+        "node artifacts/.../capture-operator-adaptive-review.mjs exit 0",
+        "10 PNG files in wave-17/operator-screenshots/"
+      ]
+    },
+    "evidenceRefs": [
+      "EVT-005",
+      "CapitalGlass-Documents/wave-17/capture-operator-adaptive-review.mjs"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Documents",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-document-center-adaptive-details-w17-v1/seed-packets/IH-DOC-W17-CHROME-CAPTURE-004.json"
+    ],
+    "harvestId": "harvest-2026-08-04-document-center-adaptive-details-w17-v1"
+  }
+}

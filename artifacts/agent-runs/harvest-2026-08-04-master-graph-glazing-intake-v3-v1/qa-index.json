@@ -1,0 +1,249 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-master-graph-glazing-intake-v3-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-DOC-PLAN-INTEL-SCHEMA-DRIFT-V1",
+      "questionId": "IHDOCPLANINT",
+      "canonicalQuestion": "Why is document-center R1A graph contribution blocked after Mode C intake?",
+      "alternateQuestions": [
+        "Which Supabase tables are authoritative for Rosewood cover and sheet index?"
+      ],
+      "shortAnswer": "Hybrid WP uses document_plan_sets/cover_fields/sheet_index_runs; some drafts and migration 802 still cite document_extraction_runs/plan_extracted_fields — reconcile before Master Graph ingest.",
+      "detailedAnswer": "Documents plan-intelligence schema drift blocks graph contribution",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T20:33:15.493Z",
+      "authorityRepo": "CapitalGlass-Documents",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/seed-packets/IH-DOC-PLAN-INTEL-SCHEMA-DRIFT-V1.json"
+      ],
+      "authorityCommit": [
+        "6714137"
+      ],
+      "evidenceUrls": [
+        "CapitalGlass-Documents/supabase/migrations/20260804180000_document_plan_intelligence_schema.sql",
+        "CapitalGlass-Documents/supabase/migrations/20260804180200_document_plan_latest_runs_by_type.sql",
+        "CapitalGlass-Documents/docs/work-packages/rosewood-cover-sheet-plan-index-persistence-v1.md",
+        "TE-408"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "blocker",
+        "harvest-2026-08-04-master-graph-glazing-intake-v3-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Documents"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Intake or WP cites document_extraction_runs or document_plan_extracted_fields for Rosewood R1A",
+        "startAt": [
+          "CapitalGlass-Documents/docs/work-packages/rosewood-cover-sheet-plan-index-persistence-v1.md",
+          "supabase/migrations/20260804180000_document_plan_intelligence_schema.sql"
+        ],
+        "runPreflight": [
+          "List plan-intelligence migrations and live Supabase table presence"
+        ],
+        "doNot": [
+          "Compile Master Graph contribution from mixed old/new table names",
+          "Treat seed extraction_run UUID from superseded draft as live"
+        ],
+        "proveBeforeClaiming": [
+          "One schema family selected and applied",
+          "Live plan_set_id + sheet UUIDs exist",
+          "Orphan 802 view reconciled or removed"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "blocker"
+    },
+    {
+      "ihPfspId": "IH-GRAPH-ASSERTION-LAYER-V1",
+      "questionId": "IHGRAPHASSER",
+      "canonicalQuestion": "Should CLASSIFIED_AS window_schedule be a canonical edge or an assertion?",
+      "alternateQuestions": [
+        "How do conflicting OCR and human corrections coexist in Master Graph?"
+      ],
+      "shortAnswer": "CLASSIFIED_AS, cover field values, and contested extractions stay Observation→Assertion→Evidence→Decision; do not bake confidence onto identity edges.",
+      "detailedAnswer": "Machine claims are assertions — not silent canonical edges",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T20:33:15.493Z",
+      "authorityRepo": "CG-MASTER-GRAPH",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/seed-packets/IH-GRAPH-ASSERTION-LAYER-V1.json"
+      ],
+      "authorityCommit": [
+        "6714137"
+      ],
+      "evidenceUrls": [
+        "CG-MASTER-GRAPH/docs/staging/GRAPH-INTAKE-AGENT-CONTRACT-v1.md",
+        "CG-MASTER-GRAPH/schemas/entity-observation.v1.schema.json",
+        "CG-MASTER-GRAPH/schemas/contribution-envelope.v1.schema.json",
+        "TE-406",
+        "TE-408"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "decision",
+        "harvest-2026-08-04-master-graph-glazing-intake-v3-v1"
+      ],
+      "entities": [
+        "CG-MASTER-GRAPH"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Parser or agent proposes a classification or cover field as graph truth",
+        "startAt": [
+          "CG-MASTER-GRAPH/docs/staging/GRAPH-INTAKE-AGENT-CONTRACT-v1.md#5-assertion-model"
+        ],
+        "runPreflight": [
+          "Check contribution-envelope / entity-observation schemas"
+        ],
+        "doNot": [
+          "Attach review_status only onto durable identity edges",
+          "Delete machine assertion when human corrects — append Decision"
+        ],
+        "proveBeforeClaiming": [
+          "assertion_id + evidence_ids present",
+          "subject uses source UUID not OCR string"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "decision"
+    },
+    {
+      "ihPfspId": "IH-GRAPH-INTAKE-PACK-V3-001",
+      "questionId": "IHGRAPHINTAK",
+      "canonicalQuestion": "Which Graph Intake file should I attach to a chat?",
+      "alternateQuestions": [
+        "What is Mode A Compact vs Mode B Rosewood vs Mode C full questionnaire?"
+      ],
+      "shortAnswer": "Default drop GRAPH-INTAKE-OPERATOR-PROMPTS-v1.md; add AGENT-CONTRACT for rules, ROSEWOOD-FIXTURE for pilot IDs, FULL-QUESTIONNAIRE for Mode C design.",
+      "detailedAnswer": "Graph Intake Pack v3 — which file to drop in chat",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T20:33:15.493Z",
+      "authorityRepo": "CG-MASTER-GRAPH",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/seed-packets/IH-GRAPH-INTAKE-PACK-V3-001.json"
+      ],
+      "authorityCommit": [
+        "6714137"
+      ],
+      "evidenceUrls": [
+        "CG-MASTER-GRAPH/docs/staging/GRAPH-INTAKE-INDEX-v3.md",
+        "CG-MASTER-GRAPH/docs/staging/GRAPH-INTAKE-OPERATOR-PROMPTS-v1.md",
+        "Z:/Office/Wes/Graphing collection protocol/WHICH-FILE-TO-DROP-IN-CHAT.txt",
+        "TE-404",
+        "TE-405"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-04-master-graph-glazing-intake-v3-v1"
+      ],
+      "entities": [
+        "CG-MASTER-GRAPH"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Operator wants Master Graph growth advice from a paste",
+        "startAt": [
+          "Z:/Office/Wes/Graphing collection protocol/WHICH-FILE-TO-DROP-IN-CHAT.txt",
+          "CG-MASTER-GRAPH/docs/staging/GRAPH-INTAKE-INDEX-v3.md"
+        ],
+        "runPreflight": [
+          "Attach OPERATOR-PROMPTS only unless Mode C / Rosewood IDs needed"
+        ],
+        "doNot": [
+          "Force every chat through the full questionnaire",
+          "Jump to openings/qty/pricing before Phase 1 IDs"
+        ],
+        "proveBeforeClaiming": [
+          "Response uses buckets Ready/Needs IDs/Needs schema/Needs human/Outside",
+          "Growth phase labeled 1-5 with evidence rules"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "runbook"
+    },
+    {
+      "ihPfspId": "IH-GRAPH-SHEET-UUID-IDENTITY-V1",
+      "questionId": "IHGRAPHSHEET",
+      "canonicalQuestion": "Is sheet:a.520.1 a safe Master Graph ID?",
+      "alternateQuestions": [
+        "How should duplicate sheet numbers in one plan set be identified?"
+      ],
+      "shortAnswer": "Rosewood has duplicate sheet labels; canonical sheet id is sheet:<document_sheets.uuid>; sheetNumber and pdfPageNumber are properties/aliases only.",
+      "detailedAnswer": "Never use sheet labels alone as Master Graph identity",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T20:33:15.493Z",
+      "authorityRepo": "CG-MASTER-GRAPH",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/seed-packets/IH-GRAPH-SHEET-UUID-IDENTITY-V1.json"
+      ],
+      "authorityCommit": [
+        "6714137"
+      ],
+      "evidenceUrls": [
+        "CG-MASTER-GRAPH/docs/staging/GRAPH-INTAKE-ROSEWOOD-FIXTURE-v1.md",
+        "CapitalGlass-Documents/metadata/plan-sets/CG-2033-26/sheet-page-map-v1.json",
+        "TE-402",
+        "TE-406"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-04-master-graph-glazing-intake-v3-v1"
+      ],
+      "entities": [
+        "CG-MASTER-GRAPH"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Graph seed or contribution uses sheet:A.520.1 or similar label id",
+        "startAt": [
+          "Document Center document_sheets.id",
+          "GRAPH-INTAKE-ROSEWOOD-FIXTURE-v1.md"
+        ],
+        "runPreflight": [
+          "Confirm document_sheets UUID exists for the page binding"
+        ],
+        "doNot": [
+          "Use sheet label as sole graph identity",
+          "Collapse duplicate labels without explicit equivalence"
+        ],
+        "proveBeforeClaiming": [
+          "0 sheet identities based solely on labels",
+          "pdfPageNumber present as property when needed"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    }
+  ]
+}

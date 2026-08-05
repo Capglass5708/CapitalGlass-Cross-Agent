@@ -1,0 +1,300 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-r1a-wave6-7-document-center-closeout-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "6714137247a57325b638279947690e4a31c4be26",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-05T00:05:00.000Z",
+  "updatedAt": "2026-08-05T00:06:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_HIT",
+  "rawScanRequired": false,
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "subject": "R1A Wave 6 PASS_WITH_WARNINGS closeout + Wave 7 plan_intelligence_projection_v1 downstream propagation",
+  "doNotAdvance": [
+    "Wave 7 without Wave 6 PASS_WITH_WARNINGS gate receipt",
+    "Wave 8 E2E pilot before Wave 7 consumer repos committed and deployed",
+    "Deploy Documents from d90e599 or locked branch 47d0f69",
+    "Treat Rosewood page count 192 as production authority (live is 66)",
+    "Claim Vercel deploy failed from CLI fetch failed without alias inspect",
+    "Begin R1B, takeoff, pricing, or proposal-body insertion in Wave 7 scope"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-04-r1a-wave6-7-document-center-closeout-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-04-r1a-wave6-7-document-center-closeout-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 4,
+      "seeds": 4,
+      "roiItems": 4,
+      "operatorFriction": 2
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "synced",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": null,
+    "note": "Phase A — operator runs harvest:publish-intelligence-full for OPERATIONAL"
+  },
+  "packets": [
+    {
+      "packetId": "wave6-pass-with-warnings",
+      "packetKind": "decision",
+      "packetTitle": "Wave 6 PASS_WITH_WARNINGS — Rosewood card deployed and verified",
+      "state": "CLOSED",
+      "packetVerdict": "PASS_WITH_WARNINGS",
+      "harvestVerdictContribution": "CURRENT_AUTHORITY",
+      "ownerRepo": "CapitalGlass-Documents",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/document-center-architectural-intake-r1a-review-propagation-v1.md",
+      "nextAction": "Do not reopen Wave 6 design unless deploy reveals defect",
+      "advancementGate": "Wave 7 authorized",
+      "doNotAdvance": [
+        "Reopen Wave 6 for accepted warnings"
+      ],
+      "evidenceRefs": [
+        "wave-6-gate-receipt.json",
+        "dpl_JAHyqtxPeWCfguZX8paF4LWcJPPK",
+        "TE-605"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Documents",
+          "sha": "c279624"
+        },
+        {
+          "repo": "capital-glass-project-dashboard",
+          "sha": "7e55fbf"
+        }
+      ],
+      "blockers": []
+    },
+    {
+      "packetId": "wave7-downstream-propagation",
+      "packetKind": "decision",
+      "packetTitle": "Wave 7 PASS — plan_intelligence_projection_v1 read-only consumers",
+      "state": "LOCAL_COMPLETE",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "CURRENT_AUTHORITY",
+      "ownerRepo": "CapitalGlass-Documents",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/document-center-architectural-intake-r1a-review-propagation-v1.md",
+      "nextAction": "Commit/deploy Dashboard, BidComposer, Hub consumer routes before Wave 8",
+      "advancementGate": "Wave 8 E2E pilot",
+      "doNotAdvance": [
+        "Wave 8 before consumer production deploy"
+      ],
+      "evidenceRefs": [
+        "wave-7-gate-receipt.json",
+        "8320386",
+        "dpl_GWkniWhNfLka8oSZKDnnBoP192wX",
+        "TE-607"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Documents",
+          "sha": "8320386"
+        },
+        {
+          "repo": "CapitalGlass-Documents",
+          "sha": "83a2b1a"
+        }
+      ],
+      "blockers": []
+    },
+    {
+      "packetId": "documents-branch-drift-blocker",
+      "packetKind": "blocker",
+      "packetTitle": "Documents checkout drift to locked/d90e599 branch",
+      "state": "RECURRING",
+      "packetVerdict": "MITIGATED",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CapitalGlass-Documents",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/document-center-architectural-intake-r1a-review-propagation-v1.md",
+      "nextAction": "git rev-parse HEAD gate on clean branch every session",
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Deploy from locked branch"
+      ],
+      "evidenceRefs": [
+        "TE-602",
+        "TE-609",
+        "IH-DOC-CLEAN-BRANCH-LINEAGE-001"
+      ],
+      "blockers": [
+        "Must verify HEAD on clean branch before every wave session"
+      ],
+      "commitRefs": []
+    },
+    {
+      "packetId": "dashboard-cookie-origin-auth-mistake",
+      "packetKind": "mistake",
+      "packetTitle": "Hub JWT-only DC BFF proxy caused 401 until cookie and Origin fix",
+      "state": "FIXED",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "capital-glass-project-dashboard",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/document-center-architectural-intake-r1a-review-propagation-v1.md",
+      "nextAction": "None — fixed in 7e55fbf production",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-604",
+        "7e55fbf",
+        "WM-601"
+      ],
+      "commitRefs": [
+        {
+          "repo": "capital-glass-project-dashboard",
+          "sha": "7e55fbf"
+        }
+      ],
+      "blockers": []
+    },
+    {
+      "packetId": "documents-branch-restore-repeated",
+      "packetKind": "repeated_work",
+      "packetTitle": "Multiple git reset cycles restoring Wave 5/6/7 from branch drift",
+      "state": "RECORDED",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CapitalGlass-Documents",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/document-center-architectural-intake-r1a-review-propagation-v1.md",
+      "nextAction": "Apply IH-DOC-CLEAN-BRANCH-LINEAGE-001 on next session",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TW-601",
+        "ED-601"
+      ],
+      "blockers": [],
+      "commitRefs": []
+    },
+    {
+      "packetId": "vercel-inspect-before-blocked",
+      "packetKind": "faster_path",
+      "packetTitle": "Inspect production alias when Vercel CLI fetch failed",
+      "state": "RECORDED",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CapitalGlass-Documents",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/document-center-architectural-intake-r1a-review-propagation-v1.md",
+      "nextAction": "Use vercel inspect before BLOCKED deploy verdict",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "ED-602",
+        "IH-VERCEL-CLI-FETCH-FAILED-001"
+      ],
+      "blockers": [],
+      "commitRefs": []
+    },
+    {
+      "packetId": "wave6-rosewood-production-verify",
+      "packetKind": "command",
+      "packetTitle": "Rosewood Wave 6 production verifier",
+      "state": "OPERATIONAL",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CapitalGlass-Documents",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/document-center-architectural-intake-r1a-review-propagation-v1.md",
+      "nextAction": "Re-run before Wave 8 regression check",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "scripts/staging/wave6-rosewood-production-verify.mts",
+        "wave-6-production-verify-output.json"
+      ],
+      "command": "node --import tsx scripts/staging/wave6-rosewood-production-verify.mts",
+      "host": "WSL2",
+      "provesGate": "Wave 6 production smoke",
+      "expectedPassSignal": "PASS (23/23 checks)",
+      "blockers": [],
+      "commitRefs": []
+    },
+    {
+      "packetId": "wave6-wave7-production-evidence",
+      "packetKind": "evidence",
+      "packetTitle": "Production deployment and Rosewood authority anchors",
+      "state": "CURRENT",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CapitalGlass-Documents",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/document-center-architectural-intake-r1a-review-propagation-v1.md",
+      "nextAction": "Preserve Rosewood version 4672252e and pageCount 66 in Wave 8 proofs",
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Change Rosewood authority without explicit operator approval"
+      ],
+      "evidenceRefs": [
+        "4672252e-1940-4bb8-827e-ea89a3d1287e",
+        "pageCount:66",
+        "cardState:REVIEWED"
+      ],
+      "blockers": [],
+      "commitRefs": []
+    },
+    {
+      "packetId": "wave7-consumer-deploy-protocol-upgrade",
+      "packetKind": "protocol_upgrade",
+      "packetTitle": "Commit and deploy consumer repos before Wave 8 E2E",
+      "state": "OPEN",
+      "packetVerdict": "ADVISORY",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-04-r1a-wave6-7-document-center-closeout-v1.md",
+      "nextAction": "Commit Dashboard/BidComposer/Hub Wave 7 routes and deploy before Wave 8",
+      "advancementGate": "Wave 8 preflight",
+      "doNotAdvance": [
+        "Wave 8 while consumer routes local-only"
+      ],
+      "evidenceRefs": [
+        "TW-604",
+        "wave-7-gate-receipt.json"
+      ],
+      "promotionClass": "POLICY_GATED",
+      "blockers": [],
+      "commitRefs": []
+    },
+    {
+      "packetId": "harvest-2026-08-04-r1a-wave6-7-document-center-closeout-v1",
+      "packetKind": "protocol_upgrade",
+      "packetTitle": "This harvest — R1A Wave 6/7 thread autopsy",
+      "state": "HARVEST_COMPLETE",
+      "packetVerdict": "HARVEST_COMPLETE",
+      "harvestVerdictContribution": "INDEX_AUTHORITY",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-04-r1a-wave6-7-document-center-closeout-v1.md",
+      "nextAction": "Operator: npm run harvest:publish-intelligence-full -- --harvest-id=harvest-2026-08-04-r1a-wave6-7-document-center-closeout-v1",
+      "advancementGate": "harvest:publish-intelligence-full PASS for OPERATIONAL",
+      "doNotAdvance": [
+        "Claim OPERATIONAL before Phase B publish"
+      ],
+      "evidenceRefs": [
+        "harvest-manifest-v1.json",
+        "thread-autopsy-bundle.json"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "6714137247a57325b638279947690e4a31c4be26"
+        }
+      ],
+      "blockers": []
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096",
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  },
+  "supersededClaims": []
+}

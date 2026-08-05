@@ -1,0 +1,41 @@
+{
+  "task": "harvest-2026-08-04-three-lane-suite-closeout-v1 — Phase A harvest + Phase B intelligence hub publication (three closed lanes)",
+  "missionClass": "closeout",
+  "outcome": "PASS",
+  "hostMode": "wsl-remote",
+  "topology": "multi-repo",
+  "confidence": "HIGH",
+  "cheapSingleAgentOk": true,
+  "cheapestRedo": "cd $HOME/repos/CapitalGlass-Cross-Agent && npm run harvest:publish-intelligence-full -- --harvest-id=harvest-2026-08-04-three-lane-suite-closeout-v1 --allow-republish --skip-ledger-sync --allow-supersede-seed=IH-GOV-PREFLIGHT-LINKAGE-010 --allow-supersede-seed=IH-GOV-OWNERSHIP-PREFIX-011 --allow-supersede-seed=IH-NORTH-STAR-OBSERVE-CLI-012 --allow-supersede-seed=IH-ASG-CLOSED-IMMUTABLE-013",
+  "deterministicFirst": true,
+  "mixedMissions": false,
+  "material": false,
+  "workPackageId": "harvest-2026-08-04-three-lane-suite-closeout-v1",
+  "repos": {
+    "CapitalGlass-Cross-Agent": "74e1e3c",
+    "CG-AppBuilder-MCP": "3ed4746a"
+  },
+  "harvest": {
+    "harvestId": "harvest-2026-08-04-three-lane-suite-closeout-v1",
+    "phaseA": "HARVEST_COMPLETE",
+    "phaseB": "OPERATIONAL",
+    "phaseC": "DEFERRED",
+    "overall": "OPERATIONAL_WITH_OPTIONAL_DERIVED_LAYER_FOLLOWUP",
+    "operationalReceipt": "artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/operational-publication-receipt.json",
+    "operationalAt": "2026-08-04T23:17:30.135Z",
+    "seedsOnL": 4,
+    "optionalFollowup": [
+      "cross-agent-ledger:ingest (Doppler) if lLedger receipt gap matters",
+      "intelligence-hub:thread-autopsy:project-supabase (Doppler) if Supabase projection gap matters"
+    ]
+  },
+  "retrieval": {
+    "primary": "INDEX_HIT",
+    "cache": "CACHE_MISS"
+  },
+  "missionAlignment": {
+    "lane": "intelligence-hub-harvest",
+    "capabilityImproved": "Four T2 thread-autopsy seeds published to L catalog; ASG, governance linkage, and observe CLI lanes immutable on hub",
+    "closeoutQuestion": "Can agents retrieve three-lane suite closeout authority from L BY-KIND without repo grep?"
+  }
+}

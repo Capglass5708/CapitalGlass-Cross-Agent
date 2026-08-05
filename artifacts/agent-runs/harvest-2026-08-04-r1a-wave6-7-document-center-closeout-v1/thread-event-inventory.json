@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-r1a-wave6-7-document-center-closeout-v1",
+  "generatedAt": "2026-08-05T00:05:00.000Z",
+  "sourceCommitSha": "6714137247a57325b638279947690e4a31c4be26",
+  "events": [
+    {
+      "id": "TE-601",
+      "turn": "resume",
+      "actor": "user",
+      "summary": "Resume Wave 6 production deploy and Rosewood closeout only; stable SHAs 42c8d32 Documents / 2050421 Dashboard",
+      "evidenceRefs": ["chat-thread", "wave-6-gate-receipt.json"]
+    },
+    {
+      "id": "TE-602",
+      "turn": "wave6",
+      "actor": "agent",
+      "summary": "Documents checkout reset to d90e599 mid-session; restored to 42c8d32 clean branch before deploy",
+      "evidenceRefs": ["git rev-parse HEAD", "d90e599"]
+    },
+    {
+      "id": "TE-603",
+      "turn": "wave6",
+      "actor": "agent",
+      "summary": "First vercel deploy --prod failed with transient fetch failed; retry with --debug succeeded",
+      "evidenceRefs": ["dpl_JAHyqtxPeWCfguZX8paF4LWcJPPK"]
+    },
+    {
+      "id": "TE-604",
+      "turn": "wave6",
+      "actor": "agent",
+      "summary": "Dashboard 401 on DC BFF until engine-client forwards Hub session cookie + Origin (7e55fbf)",
+      "evidenceRefs": ["lib/documents/engine-client.ts", "wave6-rosewood-production-verify.mts"]
+    },
+    {
+      "id": "TE-605",
+      "turn": "wave6",
+      "actor": "agent",
+      "summary": "Rosewood production verifier PASS 23/23; card REVIEWED, pageCount 66, version 4672252e unchanged",
+      "evidenceRefs": [
+        "CapitalGlass-Documents/artifacts/.../wave-6/wave-6-production-verify-output.json",
+        "c279624"
+      ]
+    },
+    {
+      "id": "TE-606",
+      "turn": "wave6",
+      "actor": "user",
+      "summary": "Accepted Wave 6 PASS_WITH_WARNINGS; authorized Wave 7 downstream propagation",
+      "evidenceRefs": ["wave-6-gate-receipt.json"]
+    },
+    {
+      "id": "TE-607",
+      "turn": "wave7",
+      "actor": "agent",
+      "summary": "Implemented plan_intelligence_projection_v1 BFF + Dashboard/BidComposer/Hub readback consumers",
+      "evidenceRefs": ["8320386", "planIntelligenceProjectionContract.ts"]
+    },
+    {
+      "id": "TE-608",
+      "turn": "wave7",
+      "actor": "agent",
+      "summary": "Documents production deploy dpl_GWkniWhNfLka8oSZKDnnBoP192wX Ready despite CLI fetch failed at end",
+      "evidenceRefs": ["vercel inspect documents.capitalglasstxapps.com"]
+    },
+    {
+      "id": "TE-609",
+      "turn": "wave7",
+      "actor": "agent",
+      "summary": "Documents branch drifted again to work/...-locked @ 47d0f69 after Wave 7 commits; restored to 83a2b1a clean",
+      "evidenceRefs": ["git branch --show-current", "47d0f69", "83a2b1a"]
+    },
+    {
+      "id": "TE-610",
+      "turn": "closeout",
+      "actor": "user",
+      "summary": "Operator requested chat-thread-closeout-autopsy-harvest-v1 run",
+      "evidenceRefs": ["CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"]
+    }
+  ]
+}

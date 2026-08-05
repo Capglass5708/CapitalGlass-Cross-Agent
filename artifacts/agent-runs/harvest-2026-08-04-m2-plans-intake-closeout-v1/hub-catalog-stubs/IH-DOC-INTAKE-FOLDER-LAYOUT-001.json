@@ -1,0 +1,73 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-doc-intake-folder-layout-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "adb026b5b1e3920b571296943300e0e5d1090545",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-m2-plans-intake-closeout-v1",
+      "seedId": "IH-DOC-INTAKE-FOLDER-LAYOUT-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-04T18:34:16.724Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "cc78aef7dad17db209863743ad0206e2e8c36474f00fef6dc77cdacd40390a1d"
+  },
+  "body": {
+    "seedId": "IH-DOC-INTAKE-FOLDER-LAYOUT-001",
+    "kind": "lesson",
+    "title": "Z: Document Intake folder layout — not the .ico file",
+    "summary": "Z:\\Document Intake\\ is the root tree. Drop folders: General\\Incoming (general docs) and Plans\\Incoming (plans). capital-glass-intake.ico is a folder icon only.",
+    "canonicalQuestion": "Where do I drop documents on Z: Document Intake?",
+    "alternateQuestions": [
+      "Is capital-glass-intake.ico the intake folder?"
+    ],
+    "shortAnswer": "Z:\\Document Intake\\ is the root tree. Drop folders: General\\Incoming (general docs) and Plans\\Incoming (plans). capital-glass-intake.ico is a folder icon only.",
+    "detailedAnswer": "Z: Document Intake folder layout — not the .ico file",
+    "retrievalQuestions": [
+      "Where do I drop documents on Z: Document Intake?",
+      "Is capital-glass-intake.ico the intake folder?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Operator asks about Document Intake path or .ico file",
+      "startAt": [
+        "CapitalGlass-Office-Admin/docs/intake/NAS-PRIMARY-INTAKE-OPERATIONS.md",
+        "Initialize-CgDocumentIntakeFolders.ps1"
+      ],
+      "runPreflight": [],
+      "doNot": [
+        "Point operators to .ico file as drop target",
+        "Collapse General and Plans lanes into one folder"
+      ],
+      "proveBeforeClaiming": [
+        "General\\Incoming and Plans\\Incoming exist on Z:"
+      ]
+    },
+    "evidenceRefs": [
+      "Initialize-CgDocumentIntakeFolders.ps1",
+      "NAS-PRIMARY-INTAKE-OPERATIONS.md"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "AUTOMATIC",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Office-Admin",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-m2-plans-intake-closeout-v1/seed-packets/IH-DOC-INTAKE-FOLDER-LAYOUT-001.json"
+    ],
+    "harvestId": "harvest-2026-08-04-m2-plans-intake-closeout-v1"
+  }
+}

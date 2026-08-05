@@ -1,0 +1,163 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-suite-ops-continuation-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "retrieval",
+      "description": "render-harvest-index defaulted to wrong HARVEST_ID in paths.mjs — INDEX validate failed until harvest id passed explicitly",
+      "evidenceRefs": [
+        "harvest:validate INDEX missing packets",
+        "paths.mjs HARVEST_ID harvest-2026-08-03-cross-thread-platform-state-v1"
+      ],
+      "estimatedImpact": "low",
+      "savedBy": "npm run harvest:render-index -- <harvest-id>",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "context",
+      "description": "Operator asked how to update bibles without indexed runbook seed — answered from package.json grep",
+      "evidenceRefs": [
+        "chat turn bible update question",
+        "07-SUITE-BIBLE-TOOLING.md"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Publish IH-APPLICATION-BIBLE-UPDATE-LADDER-014 seed to L",
+      "roiRank": 1
+    }
+  ],
+  "operatorFriction": [],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Operator runs all-systems-go expecting formal GO",
+      "actualExecution": {
+        "steps": [
+          "npm run all-systems-go -- --json observe skipLive",
+          "systemsGoVerdict WARN interpreted as ship-ready"
+        ],
+        "outcome": "Investigation only — formalGoEligible false",
+        "evidenceRefs": [
+          "5ea4cfe1-87a8-4afb-838e-72db139c23b4 dark-runner-receipt.json"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Read systemsGoVerdict and formalGoEligible",
+          "Run closeout:gate for ship authorization",
+          "Remediate shared-db requires-investigation before GO"
+        ],
+        "outcome": "Clear ship vs investigate boundary",
+        "requiredPreflight": [
+          "npm run all-systems-go -- --json"
+        ]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Treat All Systems Go observe as ship authorization",
+      "whereItHappened": "all-systems-go.mjs skipLive observe mode",
+      "whyItWasWrong": "formalGoEligible false; gates planned not executed",
+      "correctFirstMove": "Use receipt for investigation; closeout:gate for ship",
+      "preventiveControl": "Check formalGoEligible and operationalModeAuthorized in receipt JSON",
+      "seedTarget": "IH-ALL-SYSTEMS-GO-OBSERVE-015",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "Three-lane suite closeout harvest",
+      "whyRepeated": "Continuation harvest references prior OPERATIONAL harvest — not re-encoding lane closure",
+      "firstKnownInstance": "harvest-2026-08-04-three-lane-suite-closeout-v1",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "whyMissed": "New chat content (bible ladder, ASG) is additive",
+      "avoidableBy": "Load existing three-lane seeds before reopening ASG/linkage lanes",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Application Bible update ladder seed on L",
+      "whyItPays": "Agents get generate/sync/z-master ladder without repo grep",
+      "effort": "low",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "savedWasteIds": [
+        "TW-002"
+      ],
+      "seedAs": "runbook",
+      "suggestedWorkPackageId": "IH-APPLICATION-BIBLE-UPDATE-LADDER-014"
+    },
+    {
+      "rank": 2,
+      "title": "All Systems Go observe vs formal GO seed",
+      "whyItPays": "Prevents ship claims from skipLive investigation receipt",
+      "effort": "low",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "savedWasteIds": [],
+      "seedAs": "runbook",
+      "suggestedWorkPackageId": "IH-ALL-SYSTEMS-GO-OBSERVE-015"
+    },
+    {
+      "rank": 3,
+      "title": "harvest:render-index requires explicit harvest-id",
+      "whyItPays": "Phase A validate INDEX section matches manifest packets",
+      "effort": "low",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "savedWasteIds": [
+        "TW-001"
+      ],
+      "seedAs": "command"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "formal GO from all-systems-go observe",
+      "currentStatus": "BLOCKED",
+      "doNotClaimUntil": [
+        "formalGoEligible is true in dark-runner receipt",
+        "closeout:gate PASS for ship authorization"
+      ],
+      "lastKnownEvidence": [
+        "formalGoEligible false",
+        "5ea4cfe1-87a8-4afb-838e-72db139c23b4 dark-runner-receipt.json"
+      ],
+      "proofCommandId": "npm run all-systems-go -- --json"
+    },
+    {
+      "awardOrVerdict": "harvest-2026-08-04-three-lane-suite-closeout-v1",
+      "currentStatus": "CLOSED",
+      "doNotClaimUntil": [
+        "Do not rerun harvest:publish-intelligence-full without operator need",
+        "Phase C pointer requires PHASE_C_POINTER_APPROVED=1"
+      ],
+      "lastKnownEvidence": [
+        "operational-publication-receipt.json verdict OPERATIONAL",
+        "hubPublishStatus published",
+        "4 seeds on L thread-autopsy-index"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "commandIndexConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "work-progress/harvest-packet-registry.json"
+    ],
+    "checkedAt": "2026-08-05T20:36:33.271Z",
+    "preflightReceiptHash": "03eec09b16fe1d57e2891ef848415845cbd3a3eaf05ca6b2ac6b2645f81775eb"
+  }
+}

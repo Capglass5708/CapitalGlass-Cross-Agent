@@ -1,0 +1,245 @@
+{
+  "packetKind": "graph-extraction",
+  "schemaVersion": "cg-master-graph-extraction-v1",
+  "extractionId": "extraction:harvest-2026-08-04-suite-ops-continuation-v1",
+  "harvestId": "harvest-2026-08-04-suite-ops-continuation-v1",
+  "workPackageId": "harvest-2026-08-04-suite-ops-continuation-v1",
+  "producer": {
+    "repositoryId": "repo:capitalglass-cross-agent",
+    "capability": "harvest-graph-extraction",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "id": "harvest:harvest-2026-08-04-suite-ops-continuation-v1",
+      "nodeType": "Harvest",
+      "displayName": "harvest-2026-08-04-suite-ops-continuation-v1",
+      "lifecycleState": "lifecycle:canonical",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+        "sourceCommitSha": "6714137247a57325b638279947690e4a31c4be26",
+        "retrievalResult": "INDEX_HIT_AI_CACHE"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:10:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:application-bible-update-ladder-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Application Bible update ladder — Git, Z mirror, Z-master, BibleDB",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "DOCUMENTED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/application-bible-update-ladder-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:10:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/compact-records/application-bible-update-ladder-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/compact-records/application-bible-update-ladder-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:all-systems-go-observe-warn-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "All Systems Go observe WARN — not formal GO",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "OBSERVE_RECEIPT",
+      "metadata": {
+        "packetVerdict": "WARN",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/all-systems-go-observe-warn-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:10:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/compact-records/all-systems-go-observe-warn-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/compact-records/all-systems-go-observe-warn-v1.json"
+        }
+      }
+    },
+    {
+      "id": "entity:blocker-blocker-all-systems-go-observe-warn-v1",
+      "nodeType": "Entity",
+      "displayName": "blocker-all-systems-go-observe-warn-v1",
+      "metadata": {
+        "entityKind": "harvest-blocker",
+        "blockerOwner": null
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:10:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/compact-records/all-systems-go-observe-warn-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/compact-records/all-systems-go-observe-warn-v1.json"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:harvest-harvest-2026-08-04-suite-ops-continuation-v1-contains-workpackage-application-bible-update-ladder-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-suite-ops-continuation-v1",
+      "targetId": "workpackage:application-bible-update-ladder-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:10:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-application-bible-update-ladder-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:application-bible-update-ladder-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:10:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/compact-records/application-bible-update-ladder-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/compact-records/application-bible-update-ladder-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-04-suite-ops-continuation-v1-contains-workpackage-all-systems-go-observe-warn-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-04-suite-ops-continuation-v1",
+      "targetId": "workpackage:all-systems-go-observe-warn-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:10:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-all-systems-go-observe-warn-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:all-systems-go-observe-warn-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:10:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/compact-records/all-systems-go-observe-warn-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/compact-records/all-systems-go-observe-warn-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-all-systems-go-observe-warn-v1-blocked-by-entity-blocker-blocker-all-systems-go-observe-warn-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:all-systems-go-observe-warn-v1",
+      "targetId": "entity:blocker-blocker-all-systems-go-observe-warn-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:10:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/compact-records/all-systems-go-observe-warn-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/compact-records/all-systems-go-observe-warn-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-all-systems-go-observe-warn-v1-blocked-by-entity-blocker-blocker-all-systems-go-observe-warn-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:all-systems-go-observe-warn-v1",
+      "targetId": "entity:blocker-blocker-all-systems-go-observe-warn-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-05T00:10:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/compact-records/all-systems-go-observe-warn-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/compact-records/all-systems-go-observe-warn-v1.json"
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "provenance": {
+    "producerRepositoryId": "repo:capitalglass-cross-agent",
+    "producerCapability": "harvest-graph-extraction",
+    "sourceAuthority": "authority:cross-agent-harvest",
+    "classification": "observed",
+    "verificationState": "verified",
+    "recordedAt": "2026-08-05T00:10:00.000Z",
+    "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/harvest-manifest-v1.json",
+    "sourceAnchorDetail": {
+      "anchorType": "file-path",
+      "locator": "artifacts/agent-runs/harvest-2026-08-04-suite-ops-continuation-v1/harvest-manifest-v1.json"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-DOC-W17-CHROME-CAPTURE-004",
+  "kind": "command",
+  "title": "Wave 17 operator screenshot capture requires Chrome fully closed",
+  "summary": "capture-operator-adaptive-review.mjs uses Windows Chrome Default profile; fails with remote debugging pipe error if chrome.exe is running.",
+  "retrievalQuestions": [
+    "Why does capture-operator-adaptive-review.mjs fail with remote debugging pipe?",
+    "How do I capture W17 operator screenshots?"
+  ],
+  "evidenceRefs": ["EVT-005", "CapitalGlass-Documents/wave-17/capture-operator-adaptive-review.mjs"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "W17 screenshot capture blocked",
+    "startAt": ["tasklist.exe chrome.exe"],
+    "runPreflight": ["Close all Chrome", "fuser -v 5190/tcp confirms dev server"],
+    "doNot": ["Run capture while Chrome is open", "Commit operator-screenshots without secret scan"],
+    "proveBeforeClaiming": [
+      "node artifacts/.../capture-operator-adaptive-review.mjs exit 0",
+      "10 PNG files in wave-17/operator-screenshots/"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Documents",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

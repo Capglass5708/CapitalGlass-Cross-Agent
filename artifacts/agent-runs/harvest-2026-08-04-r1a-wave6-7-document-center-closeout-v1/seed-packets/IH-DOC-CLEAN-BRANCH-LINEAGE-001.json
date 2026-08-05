@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-DOC-CLEAN-BRANCH-LINEAGE-001",
+  "kind": "failure-pattern",
+  "title": "CapitalGlass-Documents R1A work must use clean branch not locked checkout",
+  "summary": "Wave 5/6/7 R1A files live on work/document-center-adaptive-details-panel-v1-clean; locked branch and main d90e599 lack handlers.",
+  "retrievalQuestions": [
+    "Why did plan-set-summary-card handlers disappear mid-session?",
+    "Which Documents branch has R1A Wave 6 implementation?"
+  ],
+  "evidenceRefs": ["TE-602", "TE-609", "c279624", "47d0f69", "d90e599"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Documents deploy or test missing Wave 5/6/7 files",
+    "startAt": ["git rev-parse HEAD", "git branch --show-current"],
+    "runPreflight": ["git reset --hard c279624 or 83a2b1a on work/document-center-adaptive-details-panel-v1-clean"],
+    "doNot": ["Deploy from work/document-center-adaptive-details-panel-v1-locked", "Assume main has R1A stack"],
+    "proveBeforeClaiming": ["ls api/lib/plan-set-summary-card-handlers.ts", "ls src/lib/planIntelligenceProjectionContract.ts"]
+  },
+  "ownerRepo": "CapitalGlass-Documents",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

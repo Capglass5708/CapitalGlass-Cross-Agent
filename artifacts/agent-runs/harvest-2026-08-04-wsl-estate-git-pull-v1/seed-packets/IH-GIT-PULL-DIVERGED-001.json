@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-GIT-PULL-DIVERGED-001",
+  "kind": "failure-pattern",
+  "title": "Estate pull FAIL — diverged main cannot fast-forward",
+  "summary": "Visual-Asset-Engine main has local commits diverged from origin/main; ff-only pull aborts; operator must merge or rebase after reviewing dirty state.",
+  "retrievalQuestions": [
+    "Why did Visual-Asset-Engine git pull fail with diverging branches?",
+    "How to reconcile a repo that cannot fast-forward during estate pull?"
+  ],
+  "evidenceRefs": [
+    "TE-406",
+    "Visual-Asset-Engine"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "git pull --ff-only fails with 'diverging branches' or 'Not possible to fast-forward'",
+    "startAt": [
+      "git -C <repo> status",
+      "git -C <repo> log --oneline HEAD..origin/main",
+      "git -C <repo> log --oneline origin/main..HEAD"
+    ],
+    "runPreflight": [
+      "git -C <repo> fetch origin",
+      "git -C <repo> status --porcelain"
+    ],
+    "doNot": [
+      "git reset --hard without operator approval",
+      "Force push to fix divergence",
+      "Silently skip diverged repo in estate pull summary"
+    ],
+    "proveBeforeClaiming": [
+      "git merge origin/main OR git rebase origin/main completes",
+      "git status clean or dirty state explicitly reported"
+    ]
+  },
+  "ownerRepo": "Visual-Asset-Engine",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

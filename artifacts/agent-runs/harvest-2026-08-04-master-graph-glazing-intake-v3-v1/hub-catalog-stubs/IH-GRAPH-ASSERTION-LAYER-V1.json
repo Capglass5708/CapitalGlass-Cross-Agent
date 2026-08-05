@@ -1,0 +1,78 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-graph-assertion-layer-v1",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "6714137247a57325b638279947690e4a31c4be26",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-04-master-graph-glazing-intake-v3-v1",
+      "seedId": "IH-GRAPH-ASSERTION-LAYER-V1"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-05T20:33:15.493Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "489f84faf6c1d5f7765faaa36562854416d597d54295c19dbfe612eafed88858"
+  },
+  "body": {
+    "seedId": "IH-GRAPH-ASSERTION-LAYER-V1",
+    "kind": "decision",
+    "title": "Machine claims are assertions — not silent canonical edges",
+    "summary": "CLASSIFIED_AS, cover field values, and contested extractions stay Observation→Assertion→Evidence→Decision; do not bake confidence onto identity edges.",
+    "canonicalQuestion": "Should CLASSIFIED_AS window_schedule be a canonical edge or an assertion?",
+    "alternateQuestions": [
+      "How do conflicting OCR and human corrections coexist in Master Graph?"
+    ],
+    "shortAnswer": "CLASSIFIED_AS, cover field values, and contested extractions stay Observation→Assertion→Evidence→Decision; do not bake confidence onto identity edges.",
+    "detailedAnswer": "Machine claims are assertions — not silent canonical edges",
+    "retrievalQuestions": [
+      "Should CLASSIFIED_AS window_schedule be a canonical edge or an assertion?",
+      "How do conflicting OCR and human corrections coexist in Master Graph?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Parser or agent proposes a classification or cover field as graph truth",
+      "startAt": [
+        "CG-MASTER-GRAPH/docs/staging/GRAPH-INTAKE-AGENT-CONTRACT-v1.md#5-assertion-model"
+      ],
+      "runPreflight": [
+        "Check contribution-envelope / entity-observation schemas"
+      ],
+      "doNot": [
+        "Attach review_status only onto durable identity edges",
+        "Delete machine assertion when human corrects — append Decision"
+      ],
+      "proveBeforeClaiming": [
+        "assertion_id + evidence_ids present",
+        "subject uses source UUID not OCR string"
+      ]
+    },
+    "evidenceRefs": [
+      "CG-MASTER-GRAPH/docs/staging/GRAPH-INTAKE-AGENT-CONTRACT-v1.md",
+      "CG-MASTER-GRAPH/schemas/entity-observation.v1.schema.json",
+      "CG-MASTER-GRAPH/schemas/contribution-envelope.v1.schema.json",
+      "TE-406",
+      "TE-408"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-MASTER-GRAPH",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-04-master-graph-glazing-intake-v3-v1/seed-packets/IH-GRAPH-ASSERTION-LAYER-V1.json"
+    ],
+    "harvestId": "harvest-2026-08-04-master-graph-glazing-intake-v3-v1"
+  }
+}
