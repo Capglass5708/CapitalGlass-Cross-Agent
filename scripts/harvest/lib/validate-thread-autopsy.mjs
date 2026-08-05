@@ -145,6 +145,17 @@ function validateRoiBacklog(bundle, tier, errors, warnings) {
     if (!item.rank || !item.title || !item.whyItPays) {
       errors.push(`roiBacklog item incomplete at rank ${item.rank ?? "?"}`);
     }
+    if (item.rank <= 3) {
+      if (!item.futureSavings) {
+        warnings.push(`roiBacklog rank ${item.rank}: missing futureSavings (protocol requires measurable reuse)`);
+      }
+      if (!item.optimalFutureWorkflow?.length) {
+        warnings.push(`roiBacklog rank ${item.rank}: missing optimalFutureWorkflow`);
+      }
+      if (!item.improvementType) {
+        warnings.push(`roiBacklog rank ${item.rank}: missing improvementType`);
+      }
+    }
   }
 }
 

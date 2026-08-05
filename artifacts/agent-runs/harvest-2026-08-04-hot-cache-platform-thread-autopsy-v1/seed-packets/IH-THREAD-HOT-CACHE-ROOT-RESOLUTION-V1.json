@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-HOT-CACHE-ROOT-RESOLUTION-V1",
+  "kind": "failure-pattern",
+  "title": "Hot-cache root resolution order",
+  "summary": "Scout must report selected root when D/S missing and ext4 fallback used.",
+  "retrievalQuestions": [
+    "Why did scout report HOT_CACHE_ROOT_MISSING?",
+    "What is canonical cache-root resolution order?"
+  ],
+  "evidenceRefs": [
+    "harvest-2026-08-04-hot-cache-platform-thread-autopsy-v1",
+    "EVT-008",
+    "OF-003"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Hook cannot find D/S cache root",
+    "startAt": [
+      "Resolve hotCacheRoot",
+      "machine profile"
+    ],
+    "runPreflight": [
+      "CG_AUTHORITY_CACHE_ROOT",
+      "mount probe"
+    ],
+    "doNot": [
+      "Assume shell env inheritance",
+      "Hide fallback"
+    ],
+    "proveBeforeClaiming": [
+      "resolvedHotCacheRoot",
+      "hotCacheRootSource",
+      "fallbackUsed"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}
