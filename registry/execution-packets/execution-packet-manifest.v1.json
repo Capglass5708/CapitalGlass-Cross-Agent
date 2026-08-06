@@ -8,7 +8,9 @@
       "packetId": "mcp-preflight-base-v1",
       "version": "1.0.0",
       "queryClass": "mcp-preflight",
-      "promptIds": ["role:builder"],
+      "promptIds": [
+        "role:builder"
+      ],
       "commandIds": [
         "agent:preflight:app-builder-mcp",
         "get_platform_contract",
@@ -19,20 +21,40 @@
         "fail-closed",
         "mcp-preflight-mandatory"
       ],
-      "stopConditions": ["preflight verdict recorded"],
-      "expectedOutputs": ["preflightResult", "preflightArtifact", "verdict"],
-      "dependsOnDatasets": ["command-estate", "authority-estate"],
+      "stopConditions": [
+        "preflight verdict recorded"
+      ],
+      "expectedOutputs": [
+        "preflightResult",
+        "preflightArtifact",
+        "verdict"
+      ],
+      "dependsOnDatasets": [
+        "command-estate",
+        "authority-estate"
+      ],
       "repairPlaybookRefs": [],
       "routerMinScore": 0.65,
       "injectionBudgetBytes": 10240,
       "prefetchOnMaterialSession": true,
       "tierViews": {
         "scout": {
-          "include": ["blockers", "openActions", "generationSha", "guardrailIds"],
+          "include": [
+            "blockers",
+            "openActions",
+            "generationSha",
+            "guardrailIds"
+          ],
           "maxBytes": 2048
         },
         "builder": {
-          "include": ["commandIds", "promptIds", "guardrailIds", "expectedOutputs", "stopConditions"],
+          "include": [
+            "commandIds",
+            "promptIds",
+            "guardrailIds",
+            "expectedOutputs",
+            "stopConditions"
+          ],
           "maxBytes": 8192
         }
       }
@@ -50,31 +72,58 @@
       "extends": "mcp-preflight-base-v1",
       "version": "1.0.0",
       "queryClass": "closeout-ship",
-      "promptIds": ["recipe:closeout-gate-v1"],
+      "promptIds": [
+        "recipe:closeout-gate-v1"
+      ],
       "commandIds": [
         "closeout:gate",
         "closeout:explain",
         "closeout:sync-evidence"
       ],
-      "guardrailIds": ["preserve-unrelated-drift", "closeout-efficiency-layer"],
-      "stopConditions": ["verdict emitted", "blocker classified"],
-      "expectedOutputs": ["verdict", "receiptPath", "gatesRun"],
-      "dependsOnDatasets": ["command-estate", "active-ledger", "receipt-registry"],
-      "repairPlaybookRefs": ["fi:closeout-gate-failure"]
+      "guardrailIds": [
+        "preserve-unrelated-drift",
+        "closeout-efficiency-layer"
+      ],
+      "stopConditions": [
+        "verdict emitted",
+        "blocker classified"
+      ],
+      "expectedOutputs": [
+        "verdict",
+        "receiptPath",
+        "gatesRun"
+      ],
+      "dependsOnDatasets": [
+        "command-estate",
+        "active-ledger",
+        "receipt-registry"
+      ],
+      "repairPlaybookRefs": [
+        "fi:closeout-gate-failure"
+      ]
     },
     {
       "packetId": "deploy-gate-v1",
       "extends": "mcp-preflight-base-v1",
       "version": "1.0.0",
       "queryClass": "deploy-gate",
-      "promptIds": ["recipe:deploy-readiness-v1"],
+      "promptIds": [
+        "recipe:deploy-readiness-v1"
+      ],
       "commandIds": [
         "deploy:gate",
         "contract:document-layer",
         "mcp:document-contract-check"
       ],
-      "expectedOutputs": ["deployVerdict", "contractCheckResults"],
-      "dependsOnDatasets": ["command-estate", "authority-estate", "receipt-registry"]
+      "expectedOutputs": [
+        "deployVerdict",
+        "contractCheckResults"
+      ],
+      "dependsOnDatasets": [
+        "command-estate",
+        "authority-estate",
+        "receipt-registry"
+      ]
     },
     {
       "packetId": "harvest-record-v1",
@@ -85,8 +134,14 @@
         "auto:v3:session-closeout",
         "harvest:closeout"
       ],
-      "expectedOutputs": ["session-closeout-v3.2.json", "harvest-manifest-v1.json"],
-      "dependsOnDatasets": ["active-ledger", "receipt-registry"]
+      "expectedOutputs": [
+        "session-closeout-v3.2.json",
+        "harvest-manifest-v1.json"
+      ],
+      "dependsOnDatasets": [
+        "active-ledger",
+        "receipt-registry"
+      ]
     },
     {
       "packetId": "index-publication-v1",
@@ -97,8 +152,58 @@
         "intelligence-hub:publish-hot-routing-index",
         "hot-cache:publish-l-by-kind"
       ],
-      "expectedOutputs": ["publicationGeneration", "contentHash"],
-      "dependsOnDatasets": ["active-ledger", "intelligence-hub-index"]
+      "expectedOutputs": [
+        "publicationGeneration",
+        "contentHash"
+      ],
+      "dependsOnDatasets": [
+        "active-ledger",
+        "intelligence-hub-index"
+      ]
+    },
+    {
+      "packetId": "execution-packet:office-admin-direct-connect-persistence-v1",
+      "extends": "mcp-preflight-base-v1",
+      "version": "1.0.0",
+      "queryClass": "office-admin-direct-connect-persistence",
+      "promptIds": [
+        "recipe:office-admin-direct-connect-v1"
+      ],
+      "commandIds": [
+        "direct-connect:retrieve-published-process",
+        "get_direct_connect_process_profile",
+        "evaluate_state",
+        "probe_ryzen9desk_runner"
+      ],
+      "guardrailIds": [
+        "cache-is-advisory",
+        "live-probe-wins",
+        "persistence-gate-closed-awarded",
+        "no-cache-as-live-availability"
+      ],
+      "stopConditions": [
+        "cache verdict recorded",
+        "live probe required for availability"
+      ],
+      "expectedOutputs": [
+        "cacheVerdict",
+        "releaseId",
+        "compactHash"
+      ],
+      "dependsOnDatasets": [
+        "authority-estate",
+        "execution-packets"
+      ],
+      "repairPlaybookRefs": [
+        "fi:direct-connect-cache-stale"
+      ],
+      "routerMinScore": 0.7,
+      "injectionBudgetBytes": 6144,
+      "prefetchOnMaterialSession": true,
+      "overlayMetadata": {
+        "zReleaseObjectPath": "objects/dcpp/office-admin-direct-connect-persistence-compact-v1.json",
+        "workPackageId": "ryzen9desk-office-admin-mcp-integration-v1"
+      }
     }
   ]
 }
