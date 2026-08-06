@@ -1,0 +1,120 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-05-chatgpt-protocol-refinement-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-THREAD-OBSERVED-ADVANCEMENT-LANE-SEPARATION-V1",
+      "questionId": "IHTHREADOBSE",
+      "canonicalQuestion": "Which output file is OBSERVED autopsy only?",
+      "alternateQuestions": [
+        "Can IMP-### candidates live in chatgpt-findings-source.md?"
+      ],
+      "shortAnswer": "COR-002: never mix IMP synthesis into chatgpt-findings-source.md; use system-advancement-findings-source.md.",
+      "detailedAnswer": "OBSERVED autopsy vs ADVANCEMENT synthesis — separate files same harvest id",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T18:15:07.647Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-05-chatgpt-protocol-refinement-v1/seed-packets/IH-THREAD-OBSERVED-ADVANCEMENT-LANE-SEPARATION-V1.json"
+      ],
+      "authorityCommit": [
+        "428a7a4"
+      ],
+      "evidenceUrls": [
+        "COR-002",
+        "HP-002",
+        "chatgpt-findings-source.md"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "architecture",
+        "harvest-2026-08-05-chatgpt-protocol-refinement-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "ChatGPT harvest on chat-gpt-harvest branch",
+        "startAt": [
+          "docs/protocols/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md"
+        ],
+        "runPreflight": [
+          "Confirm lane = OBSERVED or ADVANCEMENT before writing"
+        ],
+        "doNot": [
+          "Put ADVANCEMENT synthesis in chatgpt-findings-source.md"
+        ],
+        "proveBeforeClaiming": [
+          "Filename matches lane",
+          "intelligenceKind observed in manifest"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "architecture"
+    },
+    {
+      "ihPfspId": "IH-THREAD-SIGNAL-DENSITY-BEFORE-PROTOCOL-EXPANSION-V1",
+      "questionId": "IHTHREADSIGN",
+      "canonicalQuestion": "When is protocol expansion allowed after harvest work?",
+      "alternateQuestions": [
+        "What samples prove signal density before protocol edits?"
+      ],
+      "shortAnswer": "EVT-006 / ROI-003: thin, medium, architectural samples required before more protocol surface.",
+      "detailedAnswer": "Freeze protocol expansion until empirical thread samples",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-05T18:15:07.647Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-05-chatgpt-protocol-refinement-v1/seed-packets/IH-THREAD-SIGNAL-DENSITY-BEFORE-PROTOCOL-EXPANSION-V1.json"
+      ],
+      "authorityCommit": [
+        "428a7a4"
+      ],
+      "evidenceUrls": [
+        "EVT-006",
+        "ROI-003",
+        "TW-001"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-05-chatgpt-protocol-refinement-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Protocol edit proposed after ChatGPT harvest",
+        "startAt": [
+          "harvest-2026-08-05-chatgpt-protocol-refinement-v1/chatgpt-findings-source.md"
+        ],
+        "runPreflight": [
+          "Check empirical samples exist"
+        ],
+        "doNot": [
+          "Expand protocol without T0/T1/T2 sample runs"
+        ],
+        "proveBeforeClaiming": [
+          "At least one thin and one medium thread harvested under current protocol"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "lesson"
+    }
+  ]
+}
