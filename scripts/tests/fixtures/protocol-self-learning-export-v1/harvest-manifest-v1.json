@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-protocol-self-learning-fixture-v1",
+  "missionClass": "harvest-protocol-self-learning-only-v1",
+  "sourceCommitSha": "0000000000000000000000000000000000000001",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "projection": { "projectionSyncStatus": "not-run", "hubPublishStatus": "not-run" },
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "1.0.0",
+    "sourceProtocolHash": "fixture-protocol-hash"
+  },
+  "protocolImprovementCandidates": [
+    {
+      "candidateId": "HPC-001-validator",
+      "category": "HARVEST_VALIDATOR",
+      "title": "Require protocol-self-learning export only after harvest:validate PASS",
+      "protocolProblem": "Protocol self-learning export could run before validation",
+      "currentProtocolBehavior": "Export may be attempted without validation receipt",
+      "desiredProtocolBehavior": "Export blocked unless validation-result.json verdict is PASS",
+      "proposedProtocolChange": "Enforce validation gate in export-protocol-self-learning",
+      "targetProtocolFiles": ["scripts/harvest/lib/protocol-self-learning-export-lib.mjs"],
+      "targetValidators": ["scripts/harvest/validate-harvest.mjs"],
+      "targetCommands": ["npm run harvest:validate", "npm run harvest:export:protocol-self-learning"],
+      "evidenceRefs": ["EVT-HARVEST-PROTOCOL-001"],
+      "authorityStatus": "PROPOSAL",
+      "reviewStatus": "PENDING",
+      "automaticImplementationEligible": false
+    }
+  ],
+  "packets": [],
+  "publicationPolicy": {
+    "syntheticFixture": true,
+    "publicationEligibility": "TEST_ONLY"
+  }
+}
