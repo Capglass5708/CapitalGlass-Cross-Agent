@@ -1,6 +1,6 @@
 # Harvest summary — derived view
 
-**Authority:** `harvest-manifest-v1.json` (`e9f56985671f…`)
+**Authority:** `harvest-manifest-v1.json` (`62c8eb398a0b…`)
 **Work package:** `harvest-2026-08-05-chatgpt-protocol-refinement-v1`
 **Mission class:** `chat-thread-closeout-autopsy-harvest-v1`
 **Verdict:** `HARVEST_COMPLETE`
@@ -26,5 +26,5 @@
 
 ## Projection sync
 
-Status: `not-run` (hub: `not-run`)
+Status: `synced` (hub: `published`)
 

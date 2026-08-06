@@ -46,12 +46,42 @@ const refs = {
 
 refs.contentHash = sha256Json({ harvests: refs.harvests });
 
-const outPath = path.resolve(
-  outArg?.split("=").slice(1).join("=") ??
-    path.join(REPO_ROOT, "artifacts/advancement-lineage-refs-latest.json"),
-);
-fs.mkdirSync(path.dirname(outPath), { recursive: true });
-fs.writeFileSync(outPath, `${JSON.stringify(refs, null, 2)}\n`);
+function writeRefsBundle(bundle, outPath) {
+  fs.mkdirSync(path.dirname(outPath), { recursive: true });
+  fs.writeFileSync(outPath, `${JSON.stringify(bundle, null, 2)}\n`);
+}
+
+const defaultOut = path.join(REPO_ROOT, "artifacts/advancement-lineage-refs-latest.json");
+const outPath = path.resolve(outArg?.split("=").slice(1).join("=") ?? defaultOut);
+writeRefsBundle(refs, outPath);
+
+const perHarvestPaths = [];
+if (!harvestArg) {
+  for (const harvest of refs.harvests) {
+    const perHarvest = {
+      ...refs,
+      harvests: [harvest],
+      contentHash: sha256Json({ harvests: [harvest] }),
+    };
+    const perPath = path.join(
+      REPO_ROOT,
+      "artifacts/agent-runs",
+      harvest.harvestSlug,
+      "advancement-lineage-refs.json",
+    );
+    writeRefsBundle(perHarvest, perPath);
+    perHarvestPaths.push(perPath);
+  }
+} else if (refs.harvests.length === 1) {
+  const perPath = path.join(
+    REPO_ROOT,
+    "artifacts/agent-runs",
+    refs.harvests[0].harvestSlug,
+    "advancement-lineage-refs.json",
+  );
+  writeRefsBundle(refs, perPath);
+  perHarvestPaths.push(perPath);
+}
 
 console.log(
   JSON.stringify(
@@ -59,6 +89,7 @@ console.log(
       verdict: "PASS",
       harvestCount: refs.harvests.length,
       outPath,
+      perHarvestPaths,
       contentHash: refs.contentHash,
     },
     null,
