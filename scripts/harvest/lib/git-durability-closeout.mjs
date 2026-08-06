@@ -26,6 +26,13 @@ function classifyPath(relPath) {
   if (relPath === "work-progress/owner-repo-boundary-index.json") return "DURABLE_REGISTRY";
   if (relPath === "work-progress/projects/INDEX.md") return "DURABLE_INDEX";
   if (relPath.startsWith("artifacts/agent-runs/harvest-publication-reliability")) return "PUBLICATION_RECEIPT";
+  if (
+    relPath.startsWith(
+      "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1/",
+    )
+  ) {
+    return "PUBLICATION_RECEIPT";
+  }
   if (EXCLUDED_PATTERNS.some((re) => re.test(relPath))) return "RUNTIME_ONLY";
   if (relPath.startsWith("artifacts/agent-runs/")) return "RUNTIME_ONLY";
   return "UNCLASSIFIED";

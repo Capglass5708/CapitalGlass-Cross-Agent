@@ -1,0 +1,83 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-harvest-lane-c-operator-chain-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "57652017edb5b4c6166cd1888488213e7414b06c",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1",
+      "seedId": "IH-HARVEST-LANE-C-OPERATOR-CHAIN-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-06T23:31:14.250Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "eb205dbf0744b7509251f1fe568eeb2292f6e748055590913493b60842034b13"
+  },
+  "body": {
+    "seedId": "IH-HARVEST-LANE-C-OPERATOR-CHAIN-001",
+    "kind": "runbook",
+    "title": "Lane C protocol self-learning operator chain",
+    "summary": "After harvest:validate PASS and protocolImprovementCandidates exist: export from Cross-Agent, ingest+publish-l+verify in Data-Extraction with HARVEST_PROTOCOL_CATALOG_ROOT=/mnt/l.",
+    "canonicalQuestion": "How do I publish harvest protocol improvements to L catalog?",
+    "alternateQuestions": [
+      "What commands run Lane C after a validated harvest?",
+      "Which repo owns Lane C L publication?"
+    ],
+    "shortAnswer": "After harvest:validate PASS and protocolImprovementCandidates exist: export from Cross-Agent, ingest+publish-l+verify in Data-Extraction with HARVEST_PROTOCOL_CATALOG_ROOT=/mnt/l.",
+    "detailedAnswer": "Lane C protocol self-learning operator chain",
+    "retrievalQuestions": [
+      "How do I publish harvest protocol improvements to L catalog?",
+      "What commands run Lane C after a validated harvest?",
+      "Which repo owns Lane C L publication?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Validated harvest with protocolImprovementCandidates or protocol-upgrade packets",
+      "startAt": [
+        "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md",
+        "BY-KIND/harvest-protocol-self-learning-index.json"
+      ],
+      "runPreflight": [
+        "npm run harvest:validate -- <harvest-id>",
+        "npm run harvest:export:protocol-self-learning -- --harvest-id=<id> --json"
+      ],
+      "doNot": [
+        "Auto-merge protocol changes to main",
+        "Publish app or CI findings to Lane C",
+        "Run index:publish from Cursor"
+      ],
+      "proveBeforeClaiming": [
+        "harvest-protocol:self-learning:verify reports RETRIEVAL_PASS",
+        "INGESTION_COMPLETE.json present in hash-addressed L package"
+      ]
+    },
+    "evidenceRefs": [
+      "TE-003",
+      "TE-005",
+      "TE-007"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [
+      "TW-001"
+    ],
+    "operatorFrictionIds": [],
+    "roiRank": 2,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "Data-Extraction",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1/seed-packets/IH-HARVEST-LANE-C-OPERATOR-CHAIN-001.json"
+    ],
+    "harvestId": "harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1"
+  }
+}

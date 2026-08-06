@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-HARVEST-LANE-C-OPERATOR-CHAIN-001",
+  "kind": "runbook",
+  "title": "Lane C protocol self-learning operator chain",
+  "summary": "After harvest:validate PASS and protocolImprovementCandidates exist: export from Cross-Agent, ingest+publish-l+verify in Data-Extraction with HARVEST_PROTOCOL_CATALOG_ROOT=/mnt/l.",
+  "retrievalQuestions": [
+    "How do I publish harvest protocol improvements to L catalog?",
+    "What commands run Lane C after a validated harvest?",
+    "Which repo owns Lane C L publication?"
+  ],
+  "evidenceRefs": [
+    "TE-003",
+    "TE-005",
+    "TE-007"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Validated harvest with protocolImprovementCandidates or protocol-upgrade packets",
+    "startAt": [
+      "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md",
+      "BY-KIND/harvest-protocol-self-learning-index.json"
+    ],
+    "runPreflight": [
+      "npm run harvest:validate -- <harvest-id>",
+      "npm run harvest:export:protocol-self-learning -- --harvest-id=<id> --json"
+    ],
+    "doNot": [
+      "Auto-merge protocol changes to main",
+      "Publish app or CI findings to Lane C",
+      "Run index:publish from Cursor"
+    ],
+    "proveBeforeClaiming": [
+      "harvest-protocol:self-learning:verify reports RETRIEVAL_PASS",
+      "INGESTION_COMPLETE.json present in hash-addressed L package"
+    ]
+  },
+  "ownerRepo": "Data-Extraction",
+  "targetSlice": "BY-KIND/harvest-protocol-self-learning-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "wasteIds": [
+    "TW-001"
+  ],
+  "roiRank": 2
+}
