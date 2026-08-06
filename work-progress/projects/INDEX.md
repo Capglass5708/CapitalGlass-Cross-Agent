@@ -44,6 +44,7 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 | `cross-agent-retrieval-failover-v1.1` | ADOPTED | PASS | CapitalGlass-Cross-Agent | handoffs/CURRENT_HANDOFF.md | Recurring: use layered failover for suite status when L: unavailable |
 | `wsl2-native-repo-library-migration-v1` | PARTIAL | FILESYSTEM_PASS_OPERATIONAL_CLEANUP_RECORDED | CG-AppBuilder-MCP | [2026-08-03_wsl2-native-repo-library-migration-v1.md](./2026-08-03_wsl2-native-repo-library-migration-v1.md) | Per-repo ext4 verification; RYZEN9DESK alignment via separate executor mission |
 | `office-admin-ryzen9desk-managed-executor-bootstrap-v1` | INDEXED | CODE_READY_FOR_RUNNER_BOOTSTRAP | CapitalGlass-Office-Admin | [2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md](./2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md) | Runner bootstrap remains CG-AppBuilder-MCP mission; do not claim MANAGED_EXECUTOR_ONLINE |
+| `ai-cached-sdlc-cursor-integration-go-v1` | WARN | PASS | CG-AppBuilder-MCP | [ai-cached-sdlc-cursor-integration-go-v1.md](./ai-cached-sdlc-cursor-integration-go-v1.md) | Merge feature branches; WaveRunner L catalog published — Governance review |
 
 <!-- HARVEST-PACKET-INDEX:END -->
 

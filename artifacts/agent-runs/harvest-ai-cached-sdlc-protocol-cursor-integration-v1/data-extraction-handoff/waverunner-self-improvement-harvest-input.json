@@ -1,0 +1,125 @@
+{
+  "schema": "waverunner-self-improvement-harvest-input-v1@1.0.0",
+  "harvestId": "harvest-ai-cached-sdlc-protocol-cursor-integration-v1",
+  "milestoneId": "ai-cached-sdlc-protocol-cursor-integration-v1",
+  "waveId": "ai-cached-sdlc-protocol-cursor-integration-v1",
+  "executionMode": "CONTROLLED_PATCH",
+  "observedAt": "2026-08-06T22:04:14.841Z",
+  "source": {
+    "repository": "CapitalGlass-Cross-Agent",
+    "branch": "feat/waverunner-self-improvement-harvest-routing-v1",
+    "startSha": "5ebfba17d3cb5723f74263ad991ac12ff295bb35",
+    "finalSha": "5c8cb186a26693b46eb81cd739d802c27251d7b5",
+    "receiptPath": "artifacts/agent-runs/harvest-ai-cached-sdlc-protocol-cursor-integration-v1/validation-result.json",
+    "closeoutPath": "artifacts/agent-runs/harvest-ai-cached-sdlc-protocol-cursor-integration-v1/sdlc-intelligence-harvest.json",
+    "machine": "unknown",
+    "environment": "unknown"
+  },
+  "authority": {
+    "sourceOwner": "CapitalGlass-Cross-Agent",
+    "processingOwner": "Data-Extraction",
+    "approvalOwner": "CG-Platform-Governance-MCP",
+    "catalogRole": "RETRIEVAL_ONLY"
+  },
+  "claims": {
+    "verifiedTruths": [
+      "CG-AppBuilder-MCP sdlc:cursor:prepare returns READY against live Z release AI-CACHE-RELEASE-20260806-1998645db656",
+      "test:sdlc-protocol-cursor 15/15 PASS on fixture authority",
+      "CG-Platform-Governance-MCP registry includes capital-glass-sdlc-milestone-wave-agent-rule",
+      "WaveRunner self-improvement export handoff contract exists in CapitalGlass-Cross-Agent and Data-Extraction"
+    ],
+    "derivedConclusions": [
+      "ADVISORY rollout gate is wired into Auto v3.2 preflight without blocking unrelated missions"
+    ],
+    "recommendations": [
+      "waverunner-self-improvement-harvest-auto-handoff-and-production-closeout-v1"
+    ],
+    "assumptions": [],
+    "unknowns": []
+  },
+  "improvementCandidates": [
+    {
+      "candidateId": "WC-SDLC-001-wave-sizing",
+      "category": "WAVE_SIZING",
+      "title": "Keep SDLC activation waves atomic per repository boundary",
+      "problem": "Multi-repo SDLC waves risk fragmenting closeout evidence across repos",
+      "rootCause": "NEEDS_VERIFICATION",
+      "proposedImprovement": "Use MILESTONE_WAVE classification with explicit scope list in prepare packet",
+      "targetRepository": "CG-AppBuilder-MCP",
+      "targetComponent": "WaveRunner",
+      "expectedBenefit": "Clearer gate boundaries and fewer partial closeouts",
+      "risk": "Over-constraining legitimate cross-repo work",
+      "confidence": "MEDIUM",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/docs/work-packages/ai-cached-sdlc-protocol-cursor-integration-v1.md"
+      ],
+      "crossCheckCommands": [],
+      "authorityStatus": "PROPOSAL",
+      "reviewStatus": "PENDING"
+    },
+    {
+      "candidateId": "WC-SDLC-002-routing",
+      "category": "ROUTING",
+      "title": "Automate Cross-Agent handoff after validated SDLC closeout",
+      "problem": "Operators must manually copy intelligence harvest into Cross-Agent run dir",
+      "rootCause": "Bridge was not wired at activation",
+      "proposedImprovement": "sdlc:cursor:closeout writes sdlc-intelligence-harvest.json via export-waverunner-handoff",
+      "targetRepository": "CG-AppBuilder-MCP",
+      "targetComponent": "WaveRunner",
+      "expectedBenefit": "Deterministic production path to Data-Extraction L catalog",
+      "risk": "Bypassing Cross-Agent validation if bridge skips harvest:validate",
+      "confidence": "HIGH",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/scripts/sdlc-protocol-cursor/lib/export-waverunner-handoff.mjs"
+      ],
+      "crossCheckCommands": [],
+      "authorityStatus": "PROPOSAL",
+      "reviewStatus": "PENDING"
+    },
+    {
+      "candidateId": "HP-001-ai-cached-sdlc-protocol-cursor-integration-v1-ac",
+      "category": "CLOSEOUT_QUALITY",
+      "title": "ai-cached-sdlc-protocol-cursor-integration-v1 ACTIVATED (WARN) production closeout",
+      "problem": "Merge feature branches; run Data-Extraction waverunner:harvest:publish-l after export",
+      "rootCause": "NEEDS_VERIFICATION",
+      "proposedImprovement": "Merge feature branches; run Data-Extraction waverunner:harvest:publish-l after export",
+      "targetRepository": "CG-AppBuilder-MCP",
+      "targetComponent": "WaveRunner",
+      "expectedBenefit": "UNKNOWN",
+      "risk": "UNKNOWN",
+      "confidence": "LOW",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/artifacts/agent-runs/ai-cached-sdlc-protocol-cursor-integration-v1/sdlc-cursor-prepare-receipt.json",
+        "CG-AppBuilder-MCP/artifacts/agent-runs/ai-cached-sdlc-protocol-cursor-integration-v1/z-protocol-publish-receipt.json",
+        "EVT-SDLC-PRODUCTION-001"
+      ],
+      "crossCheckCommands": [],
+      "authorityStatus": "PROPOSAL",
+      "reviewStatus": "PENDING"
+    }
+  ],
+  "gateResults": [
+    {
+      "gate": "harvest:validate",
+      "verdict": "PASS"
+    }
+  ],
+  "evidence": [
+    "CG-AppBuilder-MCP/artifacts/agent-runs/ai-cached-sdlc-protocol-cursor-integration-v1/sdlc-cursor-prepare-receipt.json",
+    "CG-AppBuilder-MCP/artifacts/agent-runs/ai-cached-sdlc-protocol-cursor-integration-v1/z-protocol-publish-receipt.json",
+    "EVT-SDLC-PRODUCTION-001"
+  ],
+  "crossCheckCommands": [
+    "git -C /home/wesley/repos/CG-AppBuilder-MCP rev-parse HEAD",
+    "npm run sdlc:cursor:verify -- --work-package=ai-cached-sdlc-protocol-cursor-integration-v1 --json",
+    "test -f artifacts/agent-runs/ai-cached-sdlc-protocol-cursor-integration-v1/sdlc-cursor-prepare-receipt.json"
+  ],
+  "duplicateHints": [],
+  "invalidationTriggers": [
+    "source_commit_changes",
+    "validation_receipt_missing",
+    "governance_rejection"
+  ],
+  "supersedes": [],
+  "contentHash": "sha256:cd4430e9f69d884861955703586b15f5b28407f1cc1be5f952d6a073886b9120"
+}
