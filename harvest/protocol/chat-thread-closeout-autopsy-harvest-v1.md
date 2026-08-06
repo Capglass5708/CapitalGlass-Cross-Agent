@@ -449,6 +449,29 @@ Consult harvest-packet-registry, command-index, and hub BY-KIND slices before re
 
 Respect Cross-Agent boundaries: coordination, receipts, ledger, manifests only. Implementation in owner repos.
 
+DATA-EXTRACTION INGEST CONTRACT
+
+The generated harvest-manifest-v1.json must identify itself as
+cross-agent-harvest-manifest-v1 and must contain:
+
+- harvestId
+- sourceRepo
+- sourceBranch
+- sourceCommitSha as an exact 40-character Git commit SHA
+- packets[] as an array
+- a deterministic packetId on every packets[] entry
+
+Do not invent any missing repository, branch, commit, packet, or finding value.
+
+If sourceRepo, sourceBranch, sourceCommitSha, or packet identity cannot be
+proven from the current repository and thread evidence, return
+HARVEST_PARTIAL or HARVEST_BLOCKED rather than producing a falsely complete
+manifest.
+
+After harvest:validate passes, confirm that Data-Extraction classifies the
+directory under protocol cursor-cross-agent-harvest-v1 and reports
+READY_FOR_INGEST.
+
 Validate: harvest:sync-derived, harvest:validate, test:harvest.
 Do NOT run index:publish or harvest:publish-hub-seed from Cursor.
 

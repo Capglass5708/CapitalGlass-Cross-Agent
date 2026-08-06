@@ -58,4 +58,11 @@ test("syncZHarvestMirror on real repo writes harvest/ protocol tree", () => {
       path.join(REPO_ROOT, "harvest/protocol/PROMPT-EXTRACTION-AND-PROMOTION-v1.md"),
     ),
   );
+  assert.ok(
+    fs.existsSync(
+      path.join(REPO_ROOT, "harvest/protocol/CURSOR_HARVEST_INGEST_CLOSEOUT_WAVE_SDLC_V1.md"),
+    ),
+    "Data-Extraction wave SDLC mirror missing",
+  );
+  assert.equal(result.ok, true, result.receipt.errors.join("; "));
 });

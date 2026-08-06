@@ -19,6 +19,7 @@ Z:\\Capital-Glass-Dev\\Harvest\\protocol\\CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V
 | `protocol/HARVEST-INGESTION-RUNBOOK-v1.md` | Record → validate → sync → publication |
 | `protocol/PROMPT-EXTRACTION-AND-PROMOTION-v1.md` | Prompt candidate extraction + Supabase seed |
 | `protocol/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md` | ChatGPT draft lane |
+| `protocol/CURSOR_HARVEST_INGEST_CLOSEOUT_WAVE_SDLC_V1.md` | Gated wave SDLC (canonical: Data-Extraction) |
 
 ## Sync
 
@@ -30,7 +31,7 @@ npm run harvest:sync-z-mirror
 
 Updates this tree and `Z:\\Capital-Glass-Dev\\Harvest` when the Z: drive is mounted.
 
-**Do not hand-edit mirrored protocol files** — edit git sources under `docs/runbooks/` or `docs/harvest-z-mirror/`, then re-sync.
+**Do not hand-edit mirrored protocol files** — edit git sources under `docs/runbooks/`, `docs/harvest-z-mirror/`, or `Data-Extraction/docs/platform/` (wave SDLC), then re-sync.
 
-Generated: 2026-08-05T01:58:57.834Z
+Generated: 2026-08-06T15:50:04.333Z
 Source commit: test-head
