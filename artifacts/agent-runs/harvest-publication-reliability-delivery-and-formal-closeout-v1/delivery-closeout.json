@@ -1,0 +1,42 @@
+{
+  "milestoneId": "harvest-publication-reliability-delivery-and-formal-closeout-v1",
+  "parentMilestone": "harvest-publication-reliability-and-roi-hardening-v1",
+  "harvestId": "harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1",
+  "classification": "GO_WITH_WARN",
+  "recordedAt": "2026-08-06T23:55:00.000Z",
+  "delivery": {
+    "dataExtraction": {
+      "pr": "https://github.com/Capglass5708/Data-Extraction/pull/32",
+      "merged": true,
+      "mainSha": "84c9b20",
+      "branch": "feat/harvest-wave-sdlc-source-repair-v1"
+    },
+    "crossAgent": {
+      "pr": "https://github.com/Capglass5708/CapitalGlass-Cross-Agent/pull/21",
+      "branch": "feat/harvest-publication-reliability-hardening-v1",
+      "headSha": "d12daba"
+    }
+  },
+  "gates": {
+    "testHarvestPublicationHardening": "PASS",
+    "testHarvest": "PASS",
+    "harvestSyncZMirror": "Z_HARVEST_REPO_MIRROR_PASS",
+    "transactionalDryRun": "DRY_RUN_PASS",
+    "laneCCount": 17,
+    "sdlcPrepare": "READY_WITH_ALLOW_DIRTY_UNTRACKED"
+  },
+  "optionalProjections": {
+    "supabase": "WARN_OPTIONAL_UNAVAILABLE",
+    "reason": "No SUPABASE_ACCESS_TOKEN / supabase login on delivery host"
+  },
+  "corePublication": "PASS",
+  "promptTriage": {
+    "candidates": 8,
+    "approved": 0,
+    "verdict": "PROMPT_TRIAGE_COMPLETE"
+  },
+  "baselineDirtyBlock": {
+    "prior": "BLOCK_BASELINE_DIRTY",
+    "supersededBy": "clean committed baselines on feature branch; untracked runtime artifacts excluded from delivery scope"
+  }
+}
