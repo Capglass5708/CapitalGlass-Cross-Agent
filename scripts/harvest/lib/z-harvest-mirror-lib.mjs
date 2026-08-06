@@ -4,6 +4,7 @@ import { spawnSync } from "node:child_process";
 
 import { resolveDataExtractionRoot } from "../../index/lib/resolve-repo-roots.mjs";
 import { hashFileContent } from "./hash.mjs";
+import { evaluateMirrorFileDecision } from "./z-mirror-authority-guard.mjs";
 
 export const Z_HARVEST_MIRROR_RECEIPT_SCHEMA = "harvest-z-mirror-sync-receipt-v1@1.0.0";
 
@@ -14,28 +15,28 @@ export const L_HUB_INDEX_ROOT = "/mnt/l/Capital-Glass-Intelligence-Hub/00-master
 
 export const Z_HARVEST_WAVE_SDLC_REL = "protocol/CURSOR_HARVEST_INGEST_CLOSEOUT_WAVE_SDLC_V1.md";
 
-/** Canonical repo sources → Z:\Capital-Glass-Dev\Harvest layout */
+/** Canonical repo sources → Z:\Capital-Glass-Dev\Harvest layout (Git harvest/protocol authority) */
 export const Z_HARVEST_PROTOCOL_SOURCES = [
   {
-    source: "docs/runbooks/chat-thread-closeout-autopsy-harvest-v1.md",
+    source: "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md",
     destinations: [
       "protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md",
       "protocol/chat-thread-closeout-autopsy-harvest-v1.md",
     ],
   },
   {
-    source: "docs/runbooks/harvest-record-validate-sync.md",
+    source: "harvest/protocol/HARVEST-INGESTION-RUNBOOK-v1.md",
     destinations: ["protocol/HARVEST-INGESTION-RUNBOOK-v1.md"],
   },
   {
-    source: "docs/protocols/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md",
+    source: "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md",
     destinations: [
       "protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md",
       "protocol/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md",
     ],
   },
   {
-    source: "docs/harvest-z-mirror/PROMPT-EXTRACTION-AND-PROMOTION-v1.md",
+    source: "harvest/protocol/PROMPT-EXTRACTION-AND-PROMOTION-v1.md",
     destinations: ["protocol/PROMPT-EXTRACTION-AND-PROMOTION-v1.md"],
   },
 ];
@@ -142,16 +143,35 @@ function writeFileEnsuringDir(filePath, content) {
   fs.writeFileSync(filePath, content, "utf8");
 }
 
-function copyIfChanged(src, dest) {
+function copyIfChanged(src, dest, { sourceLabel, authorityDecisions } = {}) {
+  const decision = evaluateMirrorFileDecision({
+    sourcePath: src,
+    destPath: dest,
+    sourceLabel,
+    direction: "source-to-dest",
+  });
+  if (authorityDecisions) authorityDecisions.push({ ...decision, target: dest });
+
+  if (decision.action === "block") {
+    const err = new Error(decision.errorCode ?? decision.reason);
+    err.decision = decision;
+    throw err;
+  }
+
+  if (decision.action === "noop") {
+    const prior = fs.readFileSync(dest, "utf8");
+    return { dest, action: "unchanged", hash: hashFileContent(prior), authority: decision };
+  }
+
   const next = fs.readFileSync(src, "utf8");
   if (fs.existsSync(dest)) {
     const prior = fs.readFileSync(dest, "utf8");
     if (prior === next) {
-      return { dest, action: "unchanged", hash: hashFileContent(next) };
+      return { dest, action: "unchanged", hash: hashFileContent(next), authority: decision };
     }
   }
   writeFileEnsuringDir(dest, next);
-  return { dest, action: "updated", hash: hashFileContent(next) };
+  return { dest, action: "updated", hash: hashFileContent(next), authority: decision };
 }
 
 export function resolveZHarvestRoot(env = process.env) {
@@ -183,6 +203,7 @@ export function syncZHarvestMirror({
   const files = [];
   const errors = [];
   const warnings = [];
+  const authorityDecisions = [];
 
   if (!mountAuthority.l.mounted) {
     warnings.push(`L_MOUNT_MISSING: ${mountAuthority.l.mountpoint} not mounted (optional for z-mirror)`);
@@ -228,14 +249,27 @@ export function syncZHarvestMirror({
     }
     for (const relDest of entry.destinations) {
       const repoDest = path.join(repoMirrorRoot, relDest);
-      files.push({ ...copyIfChanged(srcPath, repoDest), target: "repo-mirror", source: sourceLabel });
+      try {
+        files.push({
+          ...copyIfChanged(srcPath, repoDest, { sourceLabel, authorityDecisions }),
+          target: "repo-mirror",
+          source: sourceLabel,
+        });
+      } catch (err) {
+        errors.push(`authority-block:repo:${relDest}:${err.message ?? err}`);
+        continue;
+      }
 
       if (zRoot) {
         const zDest = path.join(zRoot, relDest);
         try {
-          files.push({ ...copyIfChanged(srcPath, zDest), target: "z-drive", source: sourceLabel });
+          files.push({
+            ...copyIfChanged(srcPath, zDest, { sourceLabel, authorityDecisions }),
+            target: "z-drive",
+            source: sourceLabel,
+          });
         } catch (err) {
-          errors.push(`z-copy-fail:${relDest}:${err.message ?? err}`);
+          errors.push(`authority-block:z:${relDest}:${err.message ?? err}`);
         }
       }
     }
@@ -293,6 +327,7 @@ export function syncZHarvestMirror({
     updatedCount: files.filter((f) => f.action === "updated").length,
     zDriveFileCount: zDriveFiles.length,
     files,
+    authorityDecisions,
     warnings,
     errors,
     verdict,

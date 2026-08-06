@@ -1,0 +1,82 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-harvest-l-protocol-sync-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "57652017edb5b4c6166cd1888488213e7414b06c",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1",
+      "seedId": "IH-HARVEST-L-PROTOCOL-SYNC-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-06T23:31:14.249Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "critical",
+    "contentHash": "dc3e40e7a4ca2323f1c1add97393bc3412860de44ccb9bd3b4d38722534c62cd"
+  },
+  "body": {
+    "seedId": "IH-HARVEST-L-PROTOCOL-SYNC-001",
+    "kind": "lesson",
+    "title": "L 02-catalog Harvest protocol sync authority",
+    "summary": "Git canonical is CapitalGlass-Cross-Agent/harvest/protocol/. L 02-catalog/Harvest/protocol/ is retrieval mirror — sync from Git; z-mirror uses docs/runbooks and can strip Lane C if runbooks lag.",
+    "canonicalQuestion": "Why is L CHAT-THREAD-CLOSEOUT protocol missing Lane C?",
+    "alternateQuestions": [
+      "What is the authority path for harvest protocol docs?",
+      "When does z-mirror overwrite Lane C sections?"
+    ],
+    "shortAnswer": "Git canonical is CapitalGlass-Cross-Agent/harvest/protocol/. L 02-catalog/Harvest/protocol/ is retrieval mirror — sync from Git; z-mirror uses docs/runbooks and can strip Lane C if runbooks lag.",
+    "detailedAnswer": "L 02-catalog Harvest protocol sync authority",
+    "retrievalQuestions": [
+      "Why is L CHAT-THREAD-CLOSEOUT protocol missing Lane C?",
+      "What is the authority path for harvest protocol docs?",
+      "When does z-mirror overwrite Lane C sections?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Operator @ L protocol for closeout or Lane C missing from L copy",
+      "startAt": [
+        "CapitalGlass-Cross-Agent/harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md",
+        "L:/02-catalog/Harvest/protocol/"
+      ],
+      "runPreflight": [
+        "wc -l Git vs L protocol file",
+        "grep -c 'Lane C' both paths"
+      ],
+      "doNot": [
+        "Run harvest:sync-z-mirror before docs/runbooks includes Lane C",
+        "Treat L hand-edits as Git authority"
+      ],
+      "proveBeforeClaiming": [
+        "L protocol line count matches Git harvest/protocol",
+        "Lane C section present in both"
+      ]
+    },
+    "evidenceRefs": [
+      "TE-010",
+      "TE-011",
+      "WM-002"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [
+      "TW-002"
+    ],
+    "operatorFrictionIds": [],
+    "roiRank": 1,
+    "doNotAdvance": [],
+    "promotionClass": "HUMAN_REVIEW",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Cross-Agent",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1/seed-packets/IH-HARVEST-L-PROTOCOL-SYNC-001.json"
+    ],
+    "harvestId": "harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1"
+  }
+}

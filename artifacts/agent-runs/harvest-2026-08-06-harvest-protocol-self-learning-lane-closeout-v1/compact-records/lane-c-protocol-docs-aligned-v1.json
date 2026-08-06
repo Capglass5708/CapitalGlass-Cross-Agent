@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1",
+  "packetId": "lane-c-protocol-docs-aligned-v1",
+  "state": "COMPLETE",
+  "packetVerdict": "DOCUMENTED",
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Sync docs/runbooks source to match harvest/protocol before z-mirror",
+  "evidenceRefs": [
+    "TE-006",
+    "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md Lane C sections"
+  ],
+  "doNotAdvance": [
+    "Run harvest:sync-z-mirror without syncing docs/runbooks first — overwrites Lane C"
+  ],
+  "advancementGate": "grep -c 'Lane C' docs/runbooks/chat-thread-closeout-autopsy-harvest-v1.md > 0",
+  "contentHash": "076efa2d4f67a9f0d302536b831e55761ef32338ec60ad341f226cbe5d2de1a5"
+}

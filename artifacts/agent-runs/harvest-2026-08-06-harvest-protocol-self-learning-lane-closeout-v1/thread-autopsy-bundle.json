@@ -1,0 +1,205 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "rework",
+      "description": "verify.mjs republished empty Lane C package requiring stale folder cleanup",
+      "evidenceRefs": [
+        "TE-009"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "read-only verify pattern",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "verification",
+      "description": "docs/runbooks and L 02-catalog protocol lagged harvest/protocol Lane C",
+      "evidenceRefs": [
+        "TE-010",
+        "TE-011"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Single canonical source + mirror guard",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "verification",
+      "description": "test:harvest z-mirror blocked on missing Data-Extraction wave SDLC doc",
+      "evidenceRefs": [
+        "TE-012"
+      ],
+      "estimatedImpact": "low",
+      "savedBy": "harvest-z-mirror-source-repair-v1",
+      "roiRank": 3
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "L protocol @ run file showed stale Lane C content",
+      "operatorCost": "low",
+      "systemFix": "Publish harvest/protocol to L 02-catalog on merge or document sync command",
+      "evidenceRefs": [
+        "TE-011"
+      ],
+      "linkedWasteIds": [
+        "TW-002"
+      ]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Lane C verify gate",
+      "actualExecution": {
+        "steps": [
+          "verify republished"
+        ],
+        "outcome": "empty duplicate package"
+      },
+      "optimalExecution": {
+        "steps": [
+          "verify reads receipt + index only"
+        ],
+        "outcome": "no duplicate publish"
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      },
+      "preventiveControl": "verify.mjs read-only"
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Protocol doc authority",
+      "actualExecution": {
+        "steps": [
+          "edit harvest/protocol",
+          "z-mirror from docs/runbooks"
+        ],
+        "outcome": "Lane C stripped on mirror"
+      },
+      "optimalExecution": {
+        "steps": [
+          "one canonical source synced to runbooks + L + Z"
+        ],
+        "outcome": "no drift"
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "low",
+        "operatorFrustration": "medium"
+      },
+      "preventiveControl": "harvest-z-mirror-source-repair-v1"
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "verify.mjs called publish",
+      "whyItWasWrong": "Created empty hash-addressed duplicate on L",
+      "correctFirstMove": "Mirror WaveRunner verify — receipt + retrieval only",
+      "preventiveControl": "verify.mjs",
+      "executionDeltaId": "ED-001",
+      "actualExecution": "publish on verify",
+      "optimalExecution": "read-only verify"
+    },
+    {
+      "wrongMoveId": "WM-002",
+      "summary": "z-mirror sourced stale docs/runbooks",
+      "whyItWasWrong": "Overwrote Lane C protocol sections in harvest/protocol during test:harvest",
+      "correctFirstMove": "Align docs/runbooks with harvest/protocol before mirror sync",
+      "preventiveControl": "z-harvest-mirror-lib source list",
+      "executionDeltaId": "ED-002",
+      "actualExecution": "mirror from docs/runbooks without Lane C",
+      "optimalExecution": "mirror from harvest/protocol or synced runbook"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "WaveRunner vs Lane C",
+      "whyRepeated": "Similar ingest/publish/verify shape",
+      "firstKnownInstance": "waverunner-self-improvement-harvest-routing-v1",
+      "priorIndexSlice": "BY-KIND/active-work-blockers.json",
+      "whyMissed": "Separate catalogs by design",
+      "avoidableBy": "Keep strict filter — protocol-only for Lane C",
+      "recommendedAction": "add_guard"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Unify protocol doc mirror sources",
+      "whyItPays": "Stops L/Z/runbook Lane C drift",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-002"
+      ],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 2,
+      "title": "Read-only verify for all harvest lanes",
+      "whyItPays": "Prevents empty republish",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-001"
+      ],
+      "seedAs": "command"
+    },
+    {
+      "rank": 3,
+      "title": "Restore z-mirror wave SDLC source",
+      "whyItPays": "Clears test:harvest WARN",
+      "effort": "medium",
+      "savedWasteIds": [
+        "TW-003"
+      ],
+      "seedAs": "command"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "LANE_C_PROTOCOL_PROMOTED",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "Governance approval",
+        "Git protocol merge after review"
+      ],
+      "lastKnownEvidence": [
+        "authorityStatus PROPOSAL",
+        "automaticProtocolMutation false"
+      ]
+    },
+    {
+      "awardOrVerdict": "FULLY_SEEDED",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "harvest:publish-hub-seed",
+        "index:freshness-gate"
+      ],
+      "lastKnownEvidence": [
+        "projection.hubPublishStatus not-run"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "harvest-protocol-self-learning-index.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-06T23:35:00.000Z",
+    "preflightReceiptHash": "harvest-protocol-self-learning-lane-closeout-v1"
+  }
+}

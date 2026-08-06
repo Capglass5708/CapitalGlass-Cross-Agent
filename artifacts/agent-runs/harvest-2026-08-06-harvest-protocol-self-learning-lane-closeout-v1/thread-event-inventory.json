@@ -1,0 +1,107 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1",
+  "threadScope": "Harvest Protocol Self-Learning Lane C — Cross-Agent export, Data-Extraction pipeline, protocol alignment, production acceptance, all-spokes verification",
+  "generatedAt": "2026-08-06T23:35:00.000Z",
+  "events": [
+    {
+      "eventId": "TE-001",
+      "phase": "operator",
+      "summary": "Milestone harvest-protocol-self-learning-only-v1 implement Lane C",
+      "evidenceRefs": [
+        "user mission prompt"
+      ]
+    },
+    {
+      "eventId": "TE-002",
+      "phase": "baseline",
+      "summary": "WaveRunner lane exists; Lane C separate at L Harvest Protocol Self Learning",
+      "evidenceRefs": [
+        "waverunner-self-improvement-harvest-routing-v1"
+      ]
+    },
+    {
+      "eventId": "TE-003",
+      "phase": "implementation",
+      "summary": "Cross-Agent export contract + harvest:export:protocol-self-learning",
+      "evidenceRefs": [
+        "PR #20",
+        "57652017edb5b4c6166cd1888488213e7414b06c"
+      ]
+    },
+    {
+      "eventId": "TE-004",
+      "phase": "implementation",
+      "summary": "sync-derived hash fix after prompt-harvest mutation",
+      "evidenceRefs": [
+        "sync-derived.mjs recompute"
+      ]
+    },
+    {
+      "eventId": "TE-005",
+      "phase": "implementation",
+      "summary": "Data-Extraction full pipeline ingest→publish-l→verify",
+      "evidenceRefs": [
+        "PR #31",
+        "a161534f113b0cbb885a287986ebca1217401dde"
+      ]
+    },
+    {
+      "eventId": "TE-006",
+      "phase": "implementation",
+      "summary": "Protocol alignment — Lane C in harvest/protocol only (existing files)",
+      "evidenceRefs": [
+        "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"
+      ]
+    },
+    {
+      "eventId": "TE-007",
+      "phase": "verification",
+      "summary": "Production publish harvest-2026-08-06-office-admin-pr29-github-health-v1 RETRIEVAL_PASS",
+      "evidenceRefs": [
+        "0111d822 hash",
+        "2 protocol candidates"
+      ]
+    },
+    {
+      "eventId": "TE-008",
+      "phase": "verification",
+      "summary": "all-spokes-verification GO_WITH_WARN",
+      "evidenceRefs": [
+        "verification-closeout.json"
+      ]
+    },
+    {
+      "eventId": "TE-009",
+      "phase": "mistake",
+      "summary": "verify.mjs re-published empty package — fixed read-only",
+      "evidenceRefs": [
+        "stale 6ac721898b folder deleted"
+      ]
+    },
+    {
+      "eventId": "TE-010",
+      "phase": "mistake",
+      "summary": "z-mirror docs/runbooks stale vs harvest/protocol Lane C",
+      "evidenceRefs": [
+        "docs/runbooks 0 Lane C matches"
+      ]
+    },
+    {
+      "eventId": "TE-011",
+      "phase": "operator",
+      "summary": "@ L protocol run file — synced 749 lines from Git canonical",
+      "evidenceRefs": [
+        "L:/02-catalog/Harvest/protocol"
+      ]
+    },
+    {
+      "eventId": "TE-012",
+      "phase": "verification",
+      "summary": "test:harvest WARN pre-existing z-mirror source gap",
+      "evidenceRefs": [
+        "verification-closeout.json tests"
+      ]
+    }
+  ]
+}
