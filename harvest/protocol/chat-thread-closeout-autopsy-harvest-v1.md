@@ -91,6 +91,60 @@ Spans hosts, blockers, awards, or multiple owner repos:
 - Autopsy: `thread-autopsy-bundle.json` + `seed-packets/`
 - Chain: `harvest:sync-derived` → `harvest:render-index` → `harvest:validate` → `test:harvest`
 
+### Lane C — Harvest Protocol Self-Learning
+
+Use this lane only when a validated harvest contains evidence-backed improvements to the **harvest protocol itself**.
+
+**Eligible examples:**
+
+- harvest schemas and validators
+- packet and evidence requirements
+- duplication prevention
+- retrieval preflight
+- waste-ledger and operator-friction capture
+- execution-delta handling
+- seed-packet quality
+- publication truth
+- closeout handoff
+- protocol routing
+- prompt extraction and PromptOps promotion boundaries
+- harvest indexes, freshness, commands, tests, rollback, versioning, supersession, and authority protections
+
+**Explicitly excluded:**
+
+- application bugs
+- product ideas
+- build or deployment findings
+- repository-specific engineering lessons
+- general SDLC improvements unrelated to harvest behavior
+- raw closeouts
+- full transcripts
+- general Intelligence Hub seeds
+
+**Ownership:**
+
+- **CapitalGlass-Cross-Agent** owns canonical harvest records, provenance, validation, and protocol-improvement export.
+- **Data-Extraction** owns protocol relevance filtering, deduplication, normalization, package preparation, publication, indexing, and retrieval verification.
+- **L** is retrieval and proposal storage only (`PROPOSAL` / `RETRIEVAL_ONLY`).
+- **Governance / Git** approves protocol changes.
+- **Z** publishes approved protocol releases only.
+
+**Target catalog:**
+
+`L:\02-catalog\Harvest\Harvest Protocol Self Learning`
+
+Lane C is **separate** from Lane B Intelligence Hub seed publication and from the WaveRunner self-improvement lane (`L:\02-catalog\SDLC Gated Wave Protocols\WaveRunner Self Improvements Harvesting`). Do not merge outputs.
+
+**Eligibility (all required):**
+
+1. Identifies a defect, weakness, inefficiency, or missing control in the harvest protocol.
+2. Names a harvest protocol file, schema, validator, command, index, publisher, or authority rule.
+3. Contains evidence references.
+4. Proposes a protocol-level improvement.
+5. Is not merely a build or application lesson.
+
+Unrelated packets remain in their existing lanes and must **not** appear in the Lane C package.
+
 ---
 
 ## Tiered depth
@@ -138,6 +192,21 @@ Packets: `harvest-manifest-v1.json` → `packets[]` + `compact-records/<packet-i
 | **6. ROI & seeds** | `roiBacklog`, `seed-packets/` | Ranked ROI; seeds with retrieval questions |
 | **7. Do-not-advance sync** | Global + `work-progress/do-not-advance-registry.json` | No PASS without `lastKnownEvidence` |
 | **8. Validate & handoff** | `validation-result.json` | `harvest:validate` PASS |
+| **9. Protocol self-learning (Lane C, optional)** | `data-extraction-handoff/harvest-protocol-self-learning-input.json` + L catalog package | Only when `protocolImprovementCandidates[]` exist; unrelated build/app packets excluded |
+
+**Lane C flow (separate classified projection — does not replace Hub publication):**
+
+```text
+validated harvest
+→ protocol-only candidate export (Cross-Agent)
+→ Data-Extraction relevance filter
+→ deduplication
+→ normalization
+→ deterministic L publication
+→ index update (BY-KIND/harvest-protocol-self-learning-index.json)
+→ retrieval verification
+→ Governance-ready proposal
+```
 
 ---
 
@@ -346,6 +415,42 @@ Manifest optional extension:
 
 Steps 8–10 are **not** Cursor-closeout actions.
 
+### Lane C — protocol self-learning command chain
+
+Run only after `harvest:validate` PASS and only when the harvest contains evidence-backed `protocolImprovementCandidates[]` (or `kind: protocol-upgrade` seed packets with protocol targets).
+
+```bash
+# Cross-Agent
+npm run harvest:validate -- <harvest-id>
+
+npm run harvest:export:protocol-self-learning -- \
+  --harvest-id=<harvest-id> \
+  --json
+
+# Data-Extraction
+npm run harvest-protocol:self-learning:ingest -- \
+  --input=<handoff-json> \
+  --json
+
+npm run harvest-protocol:self-learning:publish-l -- \
+  --harvest-id=<harvest-id> \
+  --json
+
+npm run harvest-protocol:self-learning:verify -- \
+  --harvest-id=<harvest-id> \
+  --json
+```
+
+Optional feature-branch planning only (no auto-merge, no Z publish):
+
+```bash
+npm run harvest-protocol:self-learning:implement -- \
+  --harvest-id=<harvest-id> \
+  --json
+```
+
+Cross-Agent export receipt (`protocol-self-learning-export-receipt.json`) records `catalogRole: RETRIEVAL_ONLY`, `lPublicationStatus: NOT_RUN_BY_CROSS_AGENT`, and `automaticProtocolMutation: false`. Data-Extraction owns L publication and index update.
+
 ---
 
 ## Intelligence Hub publication
@@ -357,6 +462,36 @@ After Git harvest validates:
 3. Operator runs ledger publish + `index:freshness-gate`
 
 See [thread-autopsy-hub-accommodation-v1.md](../intelligence-hub/thread-autopsy-hub-accommodation-v1.md) for hub paths and schemas.
+
+### Lane C publication truth (`protocolSelfLearning`)
+
+Track Lane C separately from `projection.hubPublishStatus`. Use manifest provenance plus run receipts — do not treat harvested recommendations as verified truths.
+
+```json
+"protocolSelfLearning": {
+  "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceProtocolVersion": "1.0.0",
+  "sourceProtocolHash": "<harvest-manifest-hash>",
+  "eligibleCandidates": 0,
+  "rejectedUnrelatedCandidates": 0,
+  "exportStatus": "not-run",
+  "dataExtractionStatus": "not-run",
+  "catalogPublishStatus": "not-run",
+  "retrievalStatus": "not-run",
+  "targetCatalog": "L:\\02-catalog\\Harvest\\Harvest Protocol Self Learning",
+  "authorityStatus": "PROPOSAL",
+  "automaticProtocolMutation": false
+}
+```
+
+| Field | Values |
+| --- | --- |
+| `exportStatus` | `not-run` \| `EXPORT_PASS` \| `EXPORT_EMPTY` \| `BLOCKED` |
+| `dataExtractionStatus` | `not-run` \| `ACCEPTED` \| `REJECTED` \| `BLOCKED` |
+| `catalogPublishStatus` | `not-run` \| `PUBLISHED` \| `NOOP_CURRENT` \| `BLOCKED` |
+| `retrievalStatus` | `not-run` \| `RETRIEVAL_PASS` \| `RETRIEVAL_BLOCKED` |
+
+Export receipt schema: `harvest-protocol-self-learning-export-receipt-v1@1.0.0`. L package completion marker: `INGESTION_COMPLETE.json`.
 
 **Promotion classes** (CG-AppBuilder-MCP harvest pipeline):
 
@@ -404,6 +539,13 @@ When <situation> → start at <index> → run <preflight> → do not <forbidden>
 
 Publication: Git <sha> | Hub <not-run|published> | Freshness <PASS|NOT_RUN_BY_CURSOR>
 
+Protocol self-learning (Lane C):
+Eligible: <n> | Rejected unrelated: <n> | Duplicates: <n>
+Catalog: <path or not-run>
+Retrieval: <PASS|FAIL|NOT_RUN>
+Authority: PROPOSAL / RETRIEVAL_ONLY
+Automatic protocol mutation: false
+
 Next operator action: <one sentence>
 ```
 
@@ -422,6 +564,14 @@ Next operator action: <one sentence>
 - [ ] Seed packets atomic with retrieval questions (T2+)
 - [ ] `harvest:validate` PASS or gaps labeled `HARVEST_PARTIAL`
 - [ ] Publication truthfully labeled; no false FULLY_SEEDED
+- [ ] **Lane C:** protocol-only candidates selected (when lane used)
+- [ ] **Lane C:** unrelated build/application/CI/product packets excluded from Lane C package
+- [ ] **Lane C:** source evidence exists for each protocol-improvement candidate
+- [ ] **Lane C:** Data-Extraction receipt exists when L publication is claimed
+- [ ] **Lane C:** deterministic package hash + `INGESTION_COMPLETE.json` when published
+- [ ] **Lane C:** `BY-KIND/harvest-protocol-self-learning-index.json` resolves package without raw scan
+- [ ] **Lane C:** L remains `PROPOSAL` / `RETRIEVAL_ONLY`; Governance approval required before Git/Z promotion
+- [ ] **Lane C:** no automatic main merge; no automatic Z publication
 
 ---
 

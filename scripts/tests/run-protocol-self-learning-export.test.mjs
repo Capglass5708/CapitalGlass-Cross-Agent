@@ -44,4 +44,35 @@ const second = exportProtocolSelfLearning({ harvestId: HARVEST_ID, options: { ru
 assert.equal(first.contentHash, second.contentHash);
 console.log("ok - export produces deterministic content hash");
 
-console.log("\n# tests 2 pass 2 fail 0");
+const protocolDoc = fs.readFileSync(
+  path.join(__dirname, "../../harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"),
+  "utf8",
+);
+const chatgptDoc = fs.readFileSync(
+  path.join(__dirname, "../../harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md"),
+  "utf8",
+);
+
+assert.match(protocolDoc, /### Lane A — owner-repo material work/);
+assert.match(protocolDoc, /### Lane B — cross-thread autopsy/);
+assert.match(protocolDoc, /### Lane C — Harvest Protocol Self-Learning/);
+assert.match(protocolDoc, /L:\\\\02-catalog\\\\Harvest\\\\Harvest Protocol Self Learning/);
+assert.match(protocolDoc, /\*\*Data-Extraction\*\* owns protocol relevance filtering/);
+assert.match(protocolDoc, /\*\*CapitalGlass-Cross-Agent\*\* owns canonical harvest records/);
+assert.match(protocolDoc, /application bugs/);
+assert.match(protocolDoc, /WaveRunner self-improvement lane/);
+assert.match(protocolDoc, /npm run harvest:export:protocol-self-learning/);
+assert.match(protocolDoc, /npm run harvest-protocol:self-learning:publish-l/);
+assert.match(protocolDoc, /automaticProtocolMutation": false/);
+assert.match(protocolDoc, /RETRIEVAL_ONLY/);
+assert.match(protocolDoc, /no automatic main merge/);
+
+assert.match(chatgptDoc, /Lane C — harvest protocol self-learning \(draft only\)/);
+assert.match(chatgptDoc, /harvest:export:protocol-self-learning/);
+assert.match(chatgptDoc, /does not\*\* run Data-Extraction/);
+assert.match(chatgptDoc, /protocolSelfLearning\.exportStatus: not-run/);
+assert.match(chatgptDoc, /WaveRunner self-improvement/);
+
+console.log("ok - canonical protocol docs document Lane C alignment");
+
+console.log("\n# tests 3 pass 3 fail 0");
