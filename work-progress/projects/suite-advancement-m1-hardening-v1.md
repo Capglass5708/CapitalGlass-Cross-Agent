@@ -1,7 +1,8 @@
 # Suite Advancement M1 Hardening — Cross-Agent
 
 **Work package:** `cross-agent-advancement-lineage-export-v1`  
-**Status:** COMPLETE (M1 wave A)
+**Status:** COMPLETE — **FROZEN** (`SUITE_ADVANCEMENT_M1_HARDENED_E2E_VALIDATED`)  
+**Merged:** PR #16 → `main` (2026-08-06)
 
 ## Deliverables
 
