@@ -1,0 +1,46 @@
+{
+  "schema": "harvest-publication-hardening-milestone-closeout-v1@1.0.0",
+  "milestoneId": "harvest-publication-reliability-and-roi-hardening-v1",
+  "waveId": "harvest-publication-top10-roi-hardening-wave-v1",
+  "completedAt": "2026-08-06T23:45:00.000Z",
+  "retrieval": { "code": "INDEX_HIT", "cache": "CACHE_MISS" },
+  "finalVerdict": "GO_WITH_WARN",
+  "milestoneAdvancement": "WAVE_IMPLEMENTED_WITH_WARN",
+  "repositories": {
+    "CapitalGlass-Cross-Agent": {
+      "branch": "feat/harvest-publication-reliability-hardening-v1",
+      "startSha": "57652017edb5b4c6166cd1888488213e7414b06c",
+      "finalSha": "4b0f16c",
+      "pushed": false
+    },
+    "Data-Extraction": {
+      "branch": "feat/harvest-wave-sdlc-source-repair-v1",
+      "startSha": "a161534f113b0cbb885a287986ebca1217401dde",
+      "finalSha": "097708a",
+      "pushed": false
+    }
+  },
+  "roiMatrix": [
+    { "rank": 1, "title": "Z-mirror authority guard", "status": "IMPLEMENTED", "evidence": "z-mirror-authority-guard.mjs + harvest/protocol sources" },
+    { "rank": 2, "title": "Transactional publication", "status": "IMPLEMENTED_WITH_WARN", "evidence": "publication-transaction.mjs + --transactional wrapper" },
+    { "rank": 3, "title": "Git durability closeout", "status": "IMPLEMENTED", "evidence": "harvest:closeout-git + git-durability-closeout.mjs" },
+    { "rank": 4, "title": "Pre-publication dry run", "status": "IMPLEMENTED", "evidence": "publication-dry-run.mjs + --dry-run-only" },
+    { "rank": 5, "title": "Required vs optional gates", "status": "IMPLEMENTED", "evidence": "publication-run-contract classifyFinalVerdict" },
+    { "rank": 6, "title": "Host capability preflight", "status": "IMPLEMENTED", "evidence": "publication-capability-preflight.mjs" },
+    { "rank": 7, "title": "Prompt-candidate triage", "status": "IMPLEMENTED", "evidence": "prompt-triage-report.json" },
+    { "rank": 8, "title": "Multi-index duplication", "status": "IMPLEMENTED", "evidence": "duplication-index-registry.mjs" },
+    { "rank": 9, "title": "Post-publication integrity", "status": "IMPLEMENTED", "evidence": "post-publication-integrity.mjs" },
+    { "rank": 10, "title": "Consolidated closeout receipt", "status": "IMPLEMENTED", "evidence": "consolidated-publication-closeout.json per runId" }
+  ],
+  "blockers": [],
+  "warnings": [
+    "WARN_OPTIONAL_SUPABASE_UNAVAILABLE",
+    "WARN_GIT_RECORDING_PENDING for harvest run artifacts and registry/index deltas",
+    "SDLC prepare BLOCK_BASELINE_DIRTY until working tree classified"
+  ],
+  "remainingActions": [
+    "Push PRs for Cross-Agent and Data-Extraction branches",
+    "Operator: supabase login or SUPABASE_ACCESS_TOKEN then re-run projection",
+    "Commit durable harvest run artifacts via harvest:closeout-git --apply when ready"
+  ]
+}
