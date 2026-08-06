@@ -18,9 +18,11 @@ function gitHead(repoRoot) {
 
 function main() {
   const json = process.argv.includes("--json");
+  const repoMirrorOnly = process.argv.includes("--repo-mirror-only");
   const result = syncZHarvestMirror({
     repoRoot: REPO_ROOT,
     sourceCommitSha: gitHead(REPO_ROOT),
+    requireZPublication: !repoMirrorOnly,
   });
 
   if (json) {

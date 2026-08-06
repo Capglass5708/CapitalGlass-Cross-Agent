@@ -315,10 +315,19 @@ function main() {
 
   try {
     const gitHead = execSync("git rev-parse HEAD", { cwd: REPO_ROOT, encoding: "utf8" }).trim();
-    const zMirror = syncZHarvestMirror({ repoRoot: REPO_ROOT, sourceCommitSha: gitHead });
+    const zMirror = syncZHarvestMirror({
+      repoRoot: REPO_ROOT,
+      sourceCommitSha: gitHead,
+      requireZPublication: false,
+    });
     console.log(
       `sync-derived: z-mirror ${zMirror.receipt.verdict} zMounted=${zMirror.zMounted} updated=${zMirror.receipt.updatedCount}`,
     );
+    if (zMirror.receipt.warnings?.length) {
+      for (const warning of zMirror.receipt.warnings) {
+        console.warn(`sync-derived: z-mirror warning: ${warning}`);
+      }
+    }
   } catch (err) {
     console.warn(`sync-derived: z-mirror skipped (${err instanceof Error ? err.message : String(err)})`);
   }

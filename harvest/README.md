@@ -21,6 +21,19 @@ Z:\\Capital-Glass-Dev\\Harvest\\protocol\\CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V
 | `protocol/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md` | ChatGPT draft lane |
 | `protocol/CURSOR_HARVEST_INGEST_CLOSEOUT_WAVE_SDLC_V1.md` | Gated wave SDLC (canonical: Data-Extraction) |
 
+## Publication modes
+
+| Command | Z required | L required | Verdict on success | Exit |
+| --- | --- | --- | --- | --- |
+| `npm run harvest:sync-z-mirror` | yes (`/mnt/z` mount + protocol dir) | no (warnings only) | `Z_HARVEST_MIRROR_SYNC_PASS` | 0 |
+| `npm run harvest:sync-z-mirror -- --repo-mirror-only` | no | no | `Z_HARVEST_REPO_MIRROR_PASS` | 0 |
+| Z unavailable (default mode) | — | — | `Z_HARVEST_MIRROR_SYNC_BLOCKED` | 1 |
+
+L: hub index findings are **warnings** for z-mirror; they do not block Z publication.
+`harvest:sync-derived` uses repository-only mode (`requireZPublication: false`).
+
+Receipt: `harvest/z-mirror-sync-receipt.json` — check `verdict`, `errors`, `warnings`, `mountAuthority`.
+
 ## Sync
 
 From WSL (CapitalGlass-Cross-Agent):
@@ -33,5 +46,5 @@ Updates this tree and `Z:\\Capital-Glass-Dev\\Harvest` when the Z: drive is moun
 
 **Do not hand-edit mirrored protocol files** — edit git sources under `docs/runbooks/`, `docs/harvest-z-mirror/`, or `Data-Extraction/docs/platform/` (wave SDLC), then re-sync.
 
-Generated: 2026-08-06T16:06:58.067Z
-Source commit: 02e7afc76b79933301dbf40eefe4d0034bc7c0db
+Generated: 2026-08-06T18:11:22.203Z
+Source commit: 56686e9f33f3ff6f42f26c1a3a5c101f361e0a08
