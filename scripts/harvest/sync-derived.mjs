@@ -292,9 +292,13 @@ function main() {
   }
 
   writeJson(manifestFile, manifest);
+  const harvestManifestHashFinal = hashCanonicalJson(manifest);
   writeJson(path.join(runDir, "packet-index.json"), buildPacketIndex(manifest));
-  writeJson(path.join(runDir, "receipt.json"), buildReceipt(manifest, harvestManifestHash, ledgerBeforeHash, ledgerAfter, manifest.promptHarvest));
-  fs.writeFileSync(path.join(runDir, "HARVEST_SUMMARY.md"), buildSummary(manifest, harvestManifestHash), "utf8");
+  writeJson(
+    path.join(runDir, "receipt.json"),
+    buildReceipt(manifest, harvestManifestHashFinal, ledgerBeforeHash, ledgerAfter, manifest.promptHarvest),
+  );
+  fs.writeFileSync(path.join(runDir, "HARVEST_SUMMARY.md"), buildSummary(manifest, harvestManifestHashFinal), "utf8");
   writeJson(path.join(runDir, "coverage.json"), computeCoverage(manifest, compactDir));
 
   refreshPacketRegistryFromGit();
@@ -332,7 +336,7 @@ function main() {
     console.warn(`sync-derived: z-mirror skipped (${err instanceof Error ? err.message : String(err)})`);
   }
 
-  console.log(`sync-derived: OK harvestManifestHash=${harvestManifestHash}`);
+  console.log(`sync-derived: OK harvestManifestHash=${harvestManifestHashFinal}`);
 }
 
 function refreshPacketRegistryFromGit() {

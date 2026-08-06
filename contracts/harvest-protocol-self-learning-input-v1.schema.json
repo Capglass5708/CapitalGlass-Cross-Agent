@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harvest-protocol-self-learning-input-v1@1.0.0",
+  "title": "Harvest Protocol Self Learning Input",
+  "type": "object",
+  "required": [
+    "schema",
+    "harvestId",
+    "sourceProtocolId",
+    "sourceProtocolVersion",
+    "sourceProtocolHash",
+    "sourceReceipt",
+    "observedAt",
+    "protocolImprovementCandidates",
+    "evidence",
+    "crossCheckCommands",
+    "invalidationTriggers"
+  ],
+  "properties": {
+    "schema": { "const": "harvest-protocol-self-learning-input-v1@1.0.0" },
+    "harvestId": { "type": "string", "minLength": 1 },
+    "sourceProtocolId": { "type": "string", "minLength": 1 },
+    "sourceProtocolVersion": { "type": "string", "minLength": 1 },
+    "sourceProtocolHash": { "type": "string", "minLength": 8 },
+    "sourceReceipt": { "type": "string", "minLength": 1 },
+    "observedAt": { "type": "string", "format": "date-time" },
+    "protocolImprovementCandidates": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/protocolImprovementCandidate" }
+    },
+    "evidence": { "type": "array", "items": { "type": "string" } },
+    "crossCheckCommands": { "type": "array", "items": { "type": "string" } },
+    "invalidationTriggers": { "type": "array", "items": { "type": "string" } },
+    "contentHash": { "type": "string" },
+    "authority": { "type": "object" }
+  },
+  "$defs": {
+    "protocolImprovementCandidate": {
+      "type": "object",
+      "required": [
+        "candidateId",
+        "category",
+        "title",
+        "protocolProblem",
+        "currentProtocolBehavior",
+        "desiredProtocolBehavior",
+        "proposedProtocolChange",
+        "evidenceRefs",
+        "authorityStatus",
+        "reviewStatus",
+        "automaticImplementationEligible"
+      ],
+      "properties": {
+        "candidateId": { "type": "string" },
+        "category": { "type": "string" },
+        "title": { "type": "string" },
+        "protocolProblem": { "type": "string" },
+        "currentProtocolBehavior": { "type": "string" },
+        "desiredProtocolBehavior": { "type": "string" },
+        "proposedProtocolChange": { "type": "string" },
+        "targetProtocolFiles": { "type": "array", "items": { "type": "string" } },
+        "targetSchemas": { "type": "array", "items": { "type": "string" } },
+        "targetValidators": { "type": "array", "items": { "type": "string" } },
+        "targetCommands": { "type": "array", "items": { "type": "string" } },
+        "evidenceRefs": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "crossCheckCommands": { "type": "array", "items": { "type": "string" } },
+        "risk": { "type": "string" },
+        "confidence": { "type": "string" },
+        "authorityStatus": { "enum": ["PROPOSAL", "CANDIDATE"] },
+        "reviewStatus": { "type": "string" },
+        "automaticImplementationEligible": { "type": "boolean" },
+        "requiredGates": { "type": "array", "items": { "type": "string" } },
+        "rollbackPlan": { "type": "string" }
+      }
+    }
+  }
+}
