@@ -1,0 +1,357 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-wesleywork-terminal-flash-closeout-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "56686e9f33f3ff6f42f26c1a3a5c101f361e0a08",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-06T18:10:00.000Z",
+  "updatedAt": "2026-08-06T18:10:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "Reopen Phase 2 converted tasks without machine regression proof",
+    "Run boundary polls after WESLEY_WORK_TERMINAL_FLASH_CLOSEOUT_VERIFIED_WITH_ADVISORIES",
+    "Disable reconcile, drive mounts, MCP, or PM2 to suppress flashes",
+    "Claim DailyMaintenance/Peer-Board/Sync-AiCache-Portable fully converted at closeout",
+    "Treat static launcher audit PASS as functional task PASS"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-terminal-flash-closeout-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-terminal-flash-closeout-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 4,
+      "seeds": 3,
+      "roiItems": 3,
+      "operatorFriction": 2,
+      "executionDeltas": 2
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Operator runs harvest:publish-hub-seed + index:publish — NOT_RUN_BY_CURSOR",
+    "note": "Git harvest record only; machine evidence frozen on WESLEY_WORK"
+  },
+  "ledgerLineage": {
+    "ledgerPath": "work-progress/ACTIVE_WORK.md",
+    "ledgerContentHashBefore": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096",
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096",
+    "note": "Coordination harvest — ledger update deferred to operator if promotion warranted"
+  },
+  "supersededClaims": [
+    {
+      "claimId": "wesleywork-terminal-flash-open-incident",
+      "supersededBy": "wesleywork-terminal-flash-closeout-verdict-v1",
+      "reason": "Recurring flash incident closed with VERIFIED_WITH_ADVISORIES"
+    }
+  ],
+  "packets": [
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "packetKind": "decision",
+      "packetId": "wesleywork-terminal-flash-closeout-verdict-v1",
+      "packetTitle": "WESLEY_WORK terminal flash closeout — VERIFIED_WITH_ADVISORIES",
+      "state": "CLOSED",
+      "packetVerdict": "WESLEY_WORK_TERMINAL_FLASH_CLOSEOUT_VERIFIED_WITH_ADVISORIES",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerMcp": "user-office-admin-mcp",
+      "evidenceRefs": [
+        "TE-005",
+        "TE-008",
+        "terminal-flash-poll-latest.json",
+        "terminal-flash-audit-apply-latest.json"
+      ],
+      "decision": "Recurring flash families converted and verified; configuration frozen; advisory tasks non-blocking",
+      "alternativesRejected": [
+        "Full Phase 3 conversion of all 19 tasks before closeout",
+        "Disabling advisory tasks to force audit green",
+        "Continuing boundary polls after operator freeze"
+      ],
+      "nextAction": "Reopen advisory tasks only if new flash machine-attributed",
+      "advancementGate": "Zero WT embedding on reconcile boundary + tools operational",
+      "doNotAdvance": [
+        "Expand scope after closeout verdict without new evidence"
+      ],
+      "projectFile": "work-progress/projects/2026-08-06_wesleywork-terminal-flash-closeout-v1.md",
+      "ownerIndexingStatus": "indexed",
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "packetKind": "blocker",
+      "packetId": "wesleywork-terminal-flash-recurring-v1",
+      "packetTitle": "Recurring Windows Terminal flash from unattended CapitalGlass scheduled tasks",
+      "state": "RESOLVED",
+      "packetVerdict": "CONVERTED_AND_VERIFIED",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerMcp": "user-office-admin-mcp",
+      "blockerId": "wesleywork-terminal-flash-recurring",
+      "status": "CLEARED",
+      "proofCommandId": "wesleywork-terminal-flash-poll-command-v1",
+      "evidenceRefs": [
+        "TE-004",
+        "TE-005",
+        "PHASE_2_VERIFIED poll WindowsTerminal.exe -Embedding spawns = 0"
+      ],
+      "nextAction": "None — monitor via frozen receipts; reopen on new attribution",
+      "advancementGate": "Invoke-CgWesleyWorkTerminalFlashPoll.ps1 shows zero attributable WT embedding",
+      "doNotAdvance": [
+        "Claim elimination if new flash observed without re-investigation"
+      ],
+      "projectFile": "work-progress/projects/2026-08-06_wesleywork-terminal-flash-closeout-v1.md",
+      "ownerIndexingStatus": "indexed",
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "packetKind": "mistake",
+      "packetId": "wesleywork-launcher-audit-without-functional-proof-v1",
+      "packetTitle": "Static launcher audit PASS mistaken for functional Wave gate PASS",
+      "state": "DOCUMENTED",
+      "packetVerdict": "WM-001",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "wrongMoveId": "WM-001",
+      "actualExecution": "DailyMaintenance wscript task registered; audit PASS; RunNow LastTaskResult=1; no maintenance log",
+      "optimalExecution": "Parser::ParseFile + LastTaskResult=0 + log artifact before Wave PASS",
+      "preventiveControl": "Functional gate separate from launcher audit",
+      "evidenceRefs": [
+        "TE-006",
+        "WM-001",
+        "IH-WESLEYWORK-WSCRIPT-LAUNCHER-FUNCTIONAL-GATE-001"
+      ],
+      "nextAction": "Only relevant if DailyMaintenance proven flash source in future",
+      "projectFile": "work-progress/projects/2026-08-06_wesleywork-terminal-flash-closeout-v1.md",
+      "ownerIndexingStatus": "indexed",
+      "commitRefs": [],
+      "blockers": [],
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "packetKind": "repeated_work",
+      "packetId": "wesleywork-phase3-after-closeout-v1",
+      "packetTitle": "Wave 2 remediation continued after operator closeout freeze",
+      "state": "DOCUMENTED",
+      "packetVerdict": "AVOIDABLE",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "duplicateId": "DW-001-adjacent",
+      "firstKnownInstance": "TE-008 operator closeout turn",
+      "priorIndexSlice": "harvest-2026-08-06-wesleywork-terminal-flash-closeout-v1",
+      "whyMissed": "Agent session continued parse-fix after terminal closeout verdict issued",
+      "evidenceRefs": [
+        "TE-008",
+        "WM-002",
+        "OF-001"
+      ],
+      "nextAction": "Honor closeout verdict as hard stop in future sessions",
+      "projectFile": "work-progress/projects/2026-08-06_wesleywork-terminal-flash-closeout-v1.md",
+      "ownerIndexingStatus": "indexed",
+      "commitRefs": [],
+      "blockers": [],
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "packetKind": "faster_path",
+      "packetId": "wesleywork-flash-attribution-machine-poll-v1",
+      "packetTitle": "Machine poll + task audit before operator screen watching",
+      "state": "PROVEN",
+      "packetVerdict": "OPTIMAL_PATH_USED_PHASE2",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "situation": "Identify recurring WT embedding from scheduled tasks",
+      "whatHappened": "Invoke-CgWesleyWorkTerminalFlashPoll.ps1 + strict audit attributed reconcile/drive families",
+      "rightFirstMove": "Wave 0 inventory + audit + no-change poll at real cadence",
+      "requiredGuard": "Do not use operator visual confirmation as sole proof",
+      "evidenceRefs": [
+        "TE-002",
+        "TE-005",
+        "ED-001"
+      ],
+      "nextAction": "Reuse poll script if flash recurs",
+      "projectFile": "work-progress/projects/2026-08-06_wesleywork-terminal-flash-closeout-v1.md",
+      "ownerIndexingStatus": "indexed",
+      "commitRefs": [],
+      "blockers": [],
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "packetKind": "command",
+      "packetId": "wesleywork-terminal-flash-poll-command-v1",
+      "packetTitle": "Invoke-CgWesleyWorkTerminalFlashPoll.ps1 — WT embedding capture",
+      "state": "RECORDED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "command": "Invoke-CgWesleyWorkTerminalFlashPoll.ps1 -DurationSeconds 720",
+      "host": "WESLEY_WORK Windows PowerShell",
+      "provesGate": "Zero attributable WindowsTerminal.exe -Embedding during soak",
+      "expectedPassSignal": "windowsTerminalEmbeddingSpawns: 0 in poll JSON receipt",
+      "evidenceRefs": [
+        "terminal-flash-poll-latest.json",
+        "TE-005"
+      ],
+      "nextAction": "Run only if new flash reported — not during frozen closeout",
+      "doNotAdvance": [
+        "Run repeated polls after closeout without operator request"
+      ],
+      "projectFile": "work-progress/projects/2026-08-06_wesleywork-terminal-flash-closeout-v1.md",
+      "ownerIndexingStatus": "indexed",
+      "commitRefs": [],
+      "blockers": [],
+      "advancementGate": "not-required"
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "packetKind": "command",
+      "packetId": "wesleywork-terminal-flash-audit-command-v1",
+      "packetTitle": "Test-CgWesleyWorkTerminalFlashScheduledTaskAudit.ps1 — strict catalog",
+      "state": "RECORDED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "command": "Test-CgWesleyWorkTerminalFlashScheduledTaskAudit.ps1 -Phase full",
+      "host": "WESLEY_WORK Windows PowerShell",
+      "provesGate": "Phase 2 converted tasks use wscript->VBS pattern",
+      "expectedPassSignal": "verdict: PASS in audit JSON; strict catalog tasks compliant",
+      "evidenceRefs": [
+        "terminal-flash-audit-apply-latest.json",
+        "TE-004"
+      ],
+      "nextAction": "Run after any scheduled-task installer change",
+      "advancementGate": "Strict catalog FAIL blocks apply",
+      "projectFile": "work-progress/projects/2026-08-06_wesleywork-terminal-flash-closeout-v1.md",
+      "ownerIndexingStatus": "indexed",
+      "commitRefs": [],
+      "blockers": [],
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "packetKind": "evidence",
+      "packetId": "wesleywork-terminal-flash-frozen-receipts-v1",
+      "packetTitle": "Frozen closeout machine evidence on WESLEY_WORK",
+      "state": "FROZEN",
+      "packetVerdict": "AUTHORITATIVE",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "type": "json-receipt",
+      "pathOrSha": "C:\\Users\\wesle\\AppData\\Local\\CapitalGlass\\WesleyWork\\logs\\terminal-flash-poll-latest.json",
+      "provesWhat": "Final no-change reconcile boundary — zero WT embedding; Phase 2 health",
+      "evidenceRefs": [
+        "C:\\Users\\wesle\\AppData\\Local\\CapitalGlass\\WesleyWork\\logs\\terminal-flash-audit-apply-latest.json",
+        "phase3-wave0-20260806-041200/"
+      ],
+      "nextAction": "Retain; do not overwrite sole copy",
+      "projectFile": "work-progress/projects/2026-08-06_wesleywork-terminal-flash-closeout-v1.md",
+      "ownerIndexingStatus": "indexed",
+      "commitRefs": [],
+      "blockers": [],
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "packetKind": "protocol_upgrade",
+      "packetId": "wesleywork-wscript-hidden-task-registrar-v1",
+      "packetTitle": "Register-OfficeWscriptHiddenScheduledTask — approved launcher registrar",
+      "state": "ACTIVE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "seedAs": "IH-WESLEYWORK-WSCRIPT-LAUNCHER-PATTERN-001",
+      "ownerRepoImplementation": "CapitalGlass-Office-Admin",
+      "promotionClass": "POLICY_GATED",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Registering or converting CapitalGlass-* scheduled tasks on Windows",
+        "startAt": [
+          "scripts/devices/common/Register-OfficeHiddenScheduledTask.ps1",
+          "Test-CgWesleyWorkTerminalFlashScheduledTaskAudit.ps1"
+        ],
+        "runPreflight": [
+          "Test-CgWesleyWorkTerminalFlashScheduledTaskAudit.ps1 -Phase full"
+        ],
+        "doNot": [
+          "Use direct powershell.exe/cmd.exe/node.exe as task Execute",
+          "Use schtasks without hidden wscript review"
+        ],
+        "proveBeforeClaiming": [
+          "wscript.exe //B //Nologo wrapper path exists",
+          "Poll at real cadence shows zero WT embedding"
+        ]
+      },
+      "evidenceRefs": [
+        "Register-OfficeHiddenScheduledTask.ps1",
+        "TE-004",
+        "CapitalGlass-Office-Admin@97a7a016e0c9090f97e1341f69ecce22c0897b45"
+      ],
+      "nextAction": "Use shared registrar for any future task conversions when flash attributed",
+      "projectFile": "work-progress/projects/2026-08-06_wesleywork-terminal-flash-closeout-v1.md",
+      "ownerIndexingStatus": "indexed",
+      "commitRefs": [],
+      "blockers": [],
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "packetKind": "blocker",
+      "packetId": "wesleywork-terminal-flash-advisory-tasks-v1",
+      "packetTitle": "Advisory tasks — DailyMaintenance, Peer-Board, Sync-AiCache-Portable, weekly maintenance",
+      "state": "ADVISORY",
+      "packetVerdict": "NON_BLOCKING_AT_CLOSEOUT",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "blockerId": "wesleywork-terminal-flash-advisories",
+      "status": "ACCEPTED",
+      "proofCommandId": "wesleywork-terminal-flash-audit-command-v1",
+      "evidenceRefs": [
+        "TE-003 phase3-wave1-classification-matrix",
+        "TE-008 operator closeout"
+      ],
+      "nextAction": "Reopen only on new machine-attributed flash",
+      "doNotAdvance": [
+        "Convert advisory tasks proactively without attribution",
+        "List advisories as closeout blockers"
+      ],
+      "projectFile": "work-progress/projects/2026-08-06_wesleywork-terminal-flash-closeout-v1.md",
+      "ownerIndexingStatus": "indexed",
+      "commitRefs": [],
+      "blockers": [],
+      "advancementGate": "not-required"
+    }
+  ],
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 12,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 12,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-e2a507fd9ec5",
+      "prompt-candidate-2b21aebf37e2",
+      "prompt-candidate-8956d3e7280b",
+      "prompt-candidate-7842eda08e8b",
+      "prompt-candidate-8a804c188574",
+      "prompt-candidate-3a0247332417",
+      "prompt-candidate-b0b003c9f900",
+      "prompt-candidate-0c5c64659bdc",
+      "prompt-candidate-90aa2bacfd8b",
+      "prompt-candidate-8e9ea4bf8fbf",
+      "prompt-candidate-bb1f094647ee",
+      "prompt-candidate-ab8c5e974f63"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

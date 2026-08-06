@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-WESLEYWORK-WSCRIPT-LAUNCHER-FUNCTIONAL-GATE-001",
+  "kind": "failure-pattern",
+  "title": "Launcher audit PASS is not functional task PASS",
+  "summary": "VBS wrapper can be compliant while child PowerShell fails parse — verify LastTaskResult and log artifacts before Wave gate PASS.",
+  "retrievalQuestions": [
+    "DailyMaintenance task returns LastTaskResult 1 after wscript conversion?",
+    "When does static terminal-flash audit pass but task still fails?"
+  ],
+  "evidenceRefs": [
+    "TE-006",
+    "WM-001",
+    "phase3-wave2-daily-maintenance-20260806-104932"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Wave gate claims PASS after scheduled task launcher conversion only",
+    "startAt": [
+      "Get-ScheduledTask LastTaskResult",
+      "C:\\Users\\wesle\\AppData\\Local\\CapitalGlass\\WesleyWork\\logs\\"
+    ],
+    "runPreflight": [
+      "[void][System.Management.Automation.Language.Parser]::ParseFile on target .ps1"
+    ],
+    "doNot": [
+      "Declare Wave 2 PASS from audit JSON alone",
+      "Ignore LastTaskResult=1 when no log file created"
+    ],
+    "proveBeforeClaiming": [
+      "LastTaskResult=0 or documented acceptable overlap code with evidence",
+      "Expected log artifact exists for the task family"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

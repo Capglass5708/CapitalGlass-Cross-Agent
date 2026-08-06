@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-wesleywork-terminal-flash-closeout-v1",
+  "threadScope": "WESLEY_WORK recurring Windows Terminal flash elimination — Phase 2 conversion, Phase 3 gated waves, operator closeout with advisories",
+  "generatedAt": "2026-08-06T18:10:00.000Z",
+  "events": [
+    {
+      "eventId": "TE-001",
+      "phase": "operator",
+      "summary": "User issued gated Phase 3 SDLC prompt for terminal-flash elimination on WESLEY_WORK",
+      "evidenceRefs": ["user turn 1 — WESLEY_WORK TERMINAL-FLASH ELIMINATION prompt"]
+    },
+    {
+      "eventId": "TE-002",
+      "phase": "discovery",
+      "summary": "Wave 0 baseline freeze — exported 19 CapitalGlass-* tasks, audit PASS, poll 0 WT embedding",
+      "evidenceRefs": [
+        "phase3-wave0-20260806-041200/baseline-task-inventory.json",
+        "phase3-wave0-20260806-041200/baseline-terminal-flash-poll.json"
+      ]
+    },
+    {
+      "eventId": "TE-003",
+      "phase": "discovery",
+      "summary": "Wave 1 classification — 5 Category A (Phase 2 verified), 6 direct PowerShell, 3 cmd, advisories ranked",
+      "evidenceRefs": [
+        "phase3-wave0-20260806-041200/phase3-wave1-classification-matrix.json",
+        "phase3-wave0-20260806-041200/wave1-gate-receipt.json"
+      ]
+    },
+    {
+      "eventId": "TE-004",
+      "phase": "implementation",
+      "summary": "Phase 2 recurring flash families converted to wscript.exe //B //Nologo -> VBS -> hidden PowerShell/Node",
+      "evidenceRefs": [
+        "terminal-flash-audit-apply-latest.json",
+        "PHASE_2_VERIFIED poll 2026-08-06T03:20:55-03:32:58"
+      ]
+    },
+    {
+      "eventId": "TE-005",
+      "phase": "verification",
+      "summary": "12-minute reconcile-boundary poll — Bible + AI-cache reconcile LastTaskResult=0, WindowsTerminal.exe -Embedding spawns=0",
+      "evidenceRefs": [
+        "terminal-flash-poll-latest.json",
+        "C:\\Users\\wesle\\AppData\\Local\\CapitalGlass\\WesleyWork\\logs\\terminal-flash-poll-20260806-021238.jsonl"
+      ]
+    },
+    {
+      "eventId": "TE-006",
+      "phase": "implementation",
+      "summary": "Wave 2 DailyMaintenance launcher converted; maintenance script parse errors blocked functional run (LastTaskResult=1)",
+      "evidenceRefs": [
+        "phase3-wave2-daily-maintenance-20260806-104932/wave2-gate-receipt.json",
+        "Invoke-CgWesleyWorkDailyMaintenance.ps1 parse fix attempts"
+      ]
+    },
+    {
+      "eventId": "TE-007",
+      "phase": "verification",
+      "summary": "L:, Z:, PreCursor gate, MCP, PM2, Cursor, WSL confirmed operational during Phase 2 verification",
+      "evidenceRefs": [
+        "phase3-wave0-20260806-041200/baseline-drive-health.json",
+        "user closeout statement"
+      ]
+    },
+    {
+      "eventId": "TE-008",
+      "phase": "operator",
+      "summary": "Operator declared WESLEY_WORK_TERMINAL_FLASH_CLOSEOUT_VERIFIED_WITH_ADVISORIES — freeze config, no more polls",
+      "evidenceRefs": [
+        "user closeout turn — verdict language",
+        "terminal-flash-audit-apply-latest.json",
+        "terminal-flash-poll-latest.json"
+      ]
+    }
+  ]
+}
