@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "document-plan-intelligence-schema-authority-map-v1@1.0.0",
+  "workPackageId": "rosewood-cover-sheet-plan-index-persistence-v1",
+  "milestoneId": "rosewood-cover-index-spine-closeout-v1",
+  "recordedAt": "2026-08-06T18:25:00.000Z",
+  "canonicalAuthority": "CapitalGlass-Documents Supabase + Git manifests",
+  "schemaFamilies": {
+    "intakeSummaryLane": {
+      "role": "R1A extraction runs, generated summaries, job queue",
+      "canonical": true,
+      "tables": [
+        "document_extraction_runs",
+        "document_plan_intelligence_summaries",
+        "document_plan_intelligence_summary_versions",
+        "document_processing_jobs"
+      ],
+      "migration": "20260804200000_r1a_intake_wave2_schema.sql (local); 20260804213048 applied on production"
+    },
+    "planSetPersistenceLane": {
+      "role": "Cover/index structured truth, sheet-page map, cover fields",
+      "canonical": true,
+      "tables": [
+        "document_plan_sets",
+        "document_sheets",
+        "document_sheet_index_runs",
+        "document_cover_fields"
+      ],
+      "migrations": [
+        "20260806190000_document_plan_intelligence_legacy_reconcile.sql",
+        "20260804180100_document_plan_intelligence_views.sql"
+      ]
+    },
+    "legacyIntakeProjection": {
+      "role": "Glazing-relevant sheet slice from R1A intake (superseded by full index seed)",
+      "canonical": false,
+      "tables": ["document_sheets (legacy columns: discipline, source_run_id, is_glazing_relevant)"],
+      "note": "17-row glazing slice replaced by 192-page persistence seed"
+    },
+    "legacyExtractedFields": {
+      "role": "Pre-persistence field storage",
+      "canonical": false,
+      "tables": ["document_plan_extracted_fields"],
+      "note": "Do not bind new Rosewood cover/index writes here"
+    }
+  },
+  "bridgeViews": {
+    "document_plan_latest_runs_by_type": {
+      "source": "document_extraction_runs",
+      "role": "Latest PASS run per extraction_type (R1A vs R1B separation)",
+      "migration": "20260804180200_document_plan_latest_runs_by_type.sql"
+    },
+    "document_sheet_page_map": {
+      "source": "document_sheets + document_plan_sets",
+      "role": "Sheet ↔ page map for verified plan sets"
+    },
+    "current_plan_set_cover": {
+      "source": "document_plan_sets + document_sheets",
+      "role": "Cover/index identity projection"
+    },
+    "document_plan_set_latest_index_runs": {
+      "source": "document_sheet_index_runs",
+      "role": "Latest completed index run per plan set"
+    }
+  },
+  "r1aBinding": {
+    "extractionRunId": "c4e8a1b2-3d4f-5e6a-7b8c-9d0e1f2a3b4c",
+    "extractionType": "cover_sheet_and_index",
+    "contract": "CapitalGlass-Documents/src/lib/r1aCoverIndexExtractionContract.ts"
+  },
+  "r1bQuarantine": {
+    "extractionRunId": "d5e6f7a8-9b0c-4d1e-8f2a-3b4c5d6e7f8a",
+    "extractionTypes": ["window_schedule", "r1b_window_schedule", "door_schedule"],
+    "mustNotBindToArchitecturalSummary": true
+  },
+  "masterGraph": {
+    "role": "projection_only",
+    "mustNotStoreCoverValues": true
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "programId": "rosewood-glazing-to-estimate-readiness-program-v1",
+  "milestoneId": "rosewood-glazing-intelligence-and-controlled-takeoff-pilot-v1",
+  "waveId": "continuous-glazing-pilot-through-estimate-readiness-v1",
+  "executedAt": "2026-08-06T20:08:00.000Z",
+  "host": "CG-RYZEN9DESK-01",
+  "gpu": {
+    "model": "NVIDIA GeForce RTX 5080",
+    "driverVersion": "591.86",
+    "gpuAvailable": true,
+    "cpuFallbackAllowed": false
+  },
+  "phases": {
+    "phase0_revu_wave5_publication": {
+      "gate": "REVU_WAVE5_FIXES_DURABLY_PUBLISHED",
+      "verdict": "PASS",
+      "commitSha": "7a4fe73",
+      "remote": "origin/main",
+      "evidence": [
+        "gate1:diagnose-mcp REVU_MCP_STDIO_OK",
+        "gate1:capture-provenance PASS",
+        "gate1:controlled-fixture VERIFIED_LIVE",
+        "r1a-cover-index-mcp-read-proof.mjs PASS"
+      ]
+    },
+    "phase1_glazing_region_registry": {
+      "gate": "GLAZING_REGION_REGISTRY_APPROVED",
+      "verdict": "PASS_WITH_PENDING_OPERATOR_APPROVAL",
+      "documentsCommitSha": "e7c353c",
+      "registryPath": "CapitalGlass-Documents/metadata/plan-sets/CG-2033-26/glazing-region-registry-v1.json",
+      "sheetClassifications": {
+        "glazing_primary": 2,
+        "glazing_supporting": 11,
+        "non_glazing": 146,
+        "unknown_review_required": 33
+      },
+      "regionCount": 13,
+      "operatorApprovalStatus": "pending",
+      "note": "Classifier boundary prepared; operator must approve selective processing list before Wave 2 extraction"
+    },
+    "phase2_r1_markup_readback": {
+      "gate": "R1_MARKUP_READBACK_PASS",
+      "verdict": "PASS",
+      "sheet": "A.520.1",
+      "pdfPage": 59,
+      "markupLabel": "R1-PROOF-TEST-LENGTH",
+      "markupId": "TNZTKKSYGGLERGET-58",
+      "rollbackVerified": true,
+      "receiptPath": "CapitalGlassRevu/artifacts/agent-runs/r1-single-sheet-revu-markup-readback-proof-v1/closeout-receipt.json"
+    },
+    "phase3_window_schedule_review": {
+      "gate": "R1B_WINDOW_SCHEDULE_OPERATOR_REVIEW_PASS",
+      "verdict": "BLOCKED_HUMAN_APPROVAL",
+      "baselineRunId": "d5e6f7a8-9b0c-4d1e-8f2a-3b4c5d6e7f8a",
+      "windowMarkCount": 34,
+      "approvedCount": 0,
+      "preparationComplete": true,
+      "operatorSurface": "CapitalGlassRevu/review/r1b-window-schedule/operator-review.md",
+      "note": "All rows pending human estimator decisions; cannot auto-approve"
+    },
+    "phase4_selective_extraction": {
+      "gate": "SELECTIVE_GLAZING_EXTRACTION_VERIFIED",
+      "verdict": "BLOCKED",
+      "blocker": "DATA_EXTRACTION_REPO_DIVERGENCE_AND_OPERATOR_REGISTRY_APPROVAL",
+      "dataExtractionParity": "ahead 1 / behind 8 — reconcile required before implementation"
+    },
+    "phase5_multi_region_revu": { "verdict": "BLOCKED", "blockedBy": "phase4" },
+    "phase6_candidate_detection": { "verdict": "BLOCKED", "blockedBy": "phase4" },
+    "phase7_human_estimator_review": { "verdict": "BLOCKED", "blockedBy": "phase3,phase6" },
+    "phase8_approved_scope_package": { "verdict": "BLOCKED" },
+    "phase9_bid_composer_bridge": { "verdict": "BLOCKED" },
+    "phase10_glazing_closeout": { "verdict": "IN_PROGRESS" }
+  },
+  "sdlcProtocol": {
+    "releaseId": "AI-CACHE-RELEASE-20260806-1998645db656",
+    "integrationBranch": "feat/ai-cached-sdlc-protocol-cursor-integration-v1",
+    "testSdlcProtocolCursor": "15/15 PASS"
+  },
+  "restrictions": {
+    "productionWorkflowUnlock": "NOT CLAIMED",
+    "bidComposerExport": "DISABLED",
+    "proposalIssue": "NOT CLAIMED",
+    "r1c": "NOT AUTHORIZED"
+  },
+  "recommendedNextActions": [
+    "Operator approve glazing region registry boundary (13 regions)",
+    "Operator complete R1B 34-row review via review/r1b-window-schedule/operator-review.md",
+    "Reconcile Data-Extraction main with origin before Wave 2 extraction",
+    "After phase3+1: run selective extraction on approved regions only (RTX 5080)"
+  ],
+  "estimateReadinessMilestone": {
+    "id": "rosewood-approved-estimate-and-bid-composer-readiness-v1",
+    "status": "NOT_STARTED",
+    "blockedBy": "glazing milestone closeout"
+  }
+}

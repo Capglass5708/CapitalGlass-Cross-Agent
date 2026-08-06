@@ -1,0 +1,52 @@
+{
+  "workPackageId": "rosewood-cover-index-spine-closeout-v1",
+  "milestoneName": "ROSEWOOD_COVER_INDEX_SPINE_CLOSEOUT",
+  "verdict": "IN_PROGRESS",
+  "recordedAt": "2026-08-06T18:30:00.000Z",
+  "sessionHost": "CG-RYZEN9DESK-01",
+  "gpuAuthority": {
+    "hostname": "CG-RYZEN9DESK-01",
+    "gpu": "NVIDIA GeForce RTX 5080",
+    "gpuAvailable": true,
+    "cpuFallbackAllowed": false,
+    "cpuFallbackOccurred": false
+  },
+  "pageCountScopes": {
+    "canonical_permit_set_persistence_authority": 192,
+    "production_ui_verification_slice": 66
+  },
+  "waveVerdicts": {
+    "wave0": "PREFLIGHT_PASS",
+    "wave1": "SEED_PASS",
+    "wave2": "PAGE_INDEX_WAIVED_WITH_RECEIPT",
+    "wave3": "PASS_WITH_WARNINGS",
+    "wave4": "BLOCKED",
+    "wave5": "FAIL_STOP",
+    "wave6": "BLOCKED",
+    "wave7": "BLOCKED",
+    "wave8": "IN_PROGRESS"
+  },
+  "milestoneClosureCriteria": {
+    "supabasePlanSetPersistence": "PASS",
+    "192PageIndex": "PASS — 183 matched + 9 approved waivers",
+    "r1aStagingCoreLane": "PASS_WITH_WARNINGS",
+    "productionUiDeploy": "BLOCKED",
+    "revuGate1AndR1aMcpRead": "FAIL_STOP",
+    "r1MarkupReadback": "BLOCKED",
+    "r1bOperatorReview": "BLOCKED",
+    "productionWorkflowUnlock": "NOT CLAIMED",
+    "bidComposerExport": "DISABLED",
+    "r1c": "NOT AUTHORIZED",
+    "computerEstimatorOpeningDetection": "OUT OF_SCOPE",
+    "masterGraph": "PROJECTION_ONLY",
+    "revuProductionWorkflowBlocker": "REMAINS_OPEN"
+  },
+  "capabilityAdvancement": "Production Supabase now holds reconciled plan-intelligence persistence (192 pages, operator_verified plan set). Intake and persistence schema families bridged. R1A summary generation passes on staging core lane. Revu and production UI waves require operator/deploy follow-up.",
+  "remainingGap": [
+    "Deploy Documents BFF + Dashboard PlanSetSummaryCard to production",
+    "Operator: Revu Max + MCP enable on CG-RYZEN9DESK-01 Windows session",
+    "Complete R1 markup readback and R1B human review"
+  ],
+  "nextWave": 4,
+  "retrievalCodes": ["INDEX_HIT", "CACHE_MISS"]
+}

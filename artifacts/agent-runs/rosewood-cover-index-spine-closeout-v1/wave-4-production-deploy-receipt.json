@@ -1,0 +1,79 @@
+{
+  "milestoneId": "rosewood-cover-index-spine-closeout-v1",
+  "waveId": "wave-4-closeout-and-wave-5-complete-host-proof-v1",
+  "wave": 4,
+  "waveName": "PRODUCTION_DEPLOY_AND_VERIFY",
+  "verdict": "PASS",
+  "executedAt": "2026-08-06T19:05:00.000Z",
+  "machine": "CG-RYZEN9DESK-01 (WSL2 orchestration)",
+  "documentsDeploySha": "53d553b62cf889203bbdc8c5489fb42112428ec4",
+  "dashboardDeploySha": "7e55fbf5963d49901e5434573b94c47c0de7ca03",
+  "vercelDeploymentIds": {
+    "documents": "dpl_FLBUU59MjqdXynsNEmqx2r6yEu1t",
+    "dashboard": "dpl_CZT6buUFFyvBcetvBC6bdLYP2GG8"
+  },
+  "productionAliases": {
+    "documents": "documents.capitalglasstxapps.com",
+    "dashboard": "projects.capitalglasstxapps.com"
+  },
+  "authenticationModel": {
+    "documentsBff": "hub_ssr_cookie",
+    "dashboardProxy": "hub_ssr_cookie",
+    "dashboardBearerOnly": "rejected_401_by_contract"
+  },
+  "verifierBefore": {
+    "classification": "FAIL",
+    "failures": 2,
+    "cause": "Dashboard checks used Bearer-only; stale deployment SHAs 42c8d32/49ecab1"
+  },
+  "verifierAfter": {
+    "classification": "PASS",
+    "failures": 0,
+    "warnings": 0,
+    "script": "scripts/staging/wave6-rosewood-production-verify.mts"
+  },
+  "runtimeChecks": {
+    "documentsBffPass": 20,
+    "cardState": "REVIEWED",
+    "coverSheet": "I.000.0",
+    "indexSheet": "I.001.0",
+    "canonicalPageCount": 192,
+    "r1bQuarantine": "PASS",
+    "dashboardCookieProxy": "200",
+    "dashboardBearerReject": "401",
+    "dashboardPageBundle": "PASS"
+  },
+  "pageCountScopes": {
+    "canonical_permit_set_persistence_authority": 192,
+    "production_ui_verification_slice": 66
+  },
+  "r1aBinding": "c4e8a1b2-3d4f-5e6a-7b8c-9d0e1f2a3b4c",
+  "r1bQuarantine": "d5e6f7a8-9b0c-4d1e-8f2a-3b4c5d6e7f8a",
+  "warnings": [],
+  "risks": [
+    "SharePoint canonical authority drift on Rosewood source document (409 on signed-url — pre-existing)"
+  ],
+  "proven": [
+    "Production serves merge SHAs 53d553b and 7e55fbf",
+    "Plan Set Summary BFF auth and card projection on production",
+    "Dashboard Hub SSR cookie proxy returns card and HTML view",
+    "192-page canonical persistence authority on card",
+    "R1B does not contaminate R1A card projection"
+  ],
+  "notProven": [
+    "Production workflow unlock",
+    "Bid Composer export",
+    "Revu MCP host proof",
+    "66-page UI slice automated count from verifier (label recorded; UI slice is operator-facing)"
+  ],
+  "restrictions": {
+    "productionWorkflowUnlock": "NOT CLAIMED",
+    "bidComposerExport": "DISABLED",
+    "r1c": "NOT AUTHORIZED",
+    "masterGraph": "PROJECTION ONLY",
+    "revuProductionBlocker": "REMAINS OPEN"
+  },
+  "evidencePaths": [
+    "CapitalGlass-Documents/artifacts/agent-runs/document-center-architectural-intake-r1a-review-propagation-v1/wave-6/wave-6-production-verify-output.json"
+  ]
+}

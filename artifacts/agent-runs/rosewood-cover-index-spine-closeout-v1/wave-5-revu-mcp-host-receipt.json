@@ -1,0 +1,97 @@
+{
+  "milestoneId": "rosewood-cover-index-spine-closeout-v1",
+  "waveId": "wave-4-closeout-and-wave-5-complete-host-proof-v1",
+  "wave": 5,
+  "waveName": "REVU_MCP_HOST_AND_R1A_READ_PROOF",
+  "verdict": "PASS",
+  "classification": "VERIFIED_LIVE_READ_ONLY",
+  "executedAt": "2026-08-06T19:38:00.000Z",
+  "operator": "wesley@capitalglasstx.com",
+  "hostname": "CG-RYZEN9DESK-01",
+  "environment": "Interactive Windows desktop with Bluebeam Revu UI + MCP enabled",
+  "revuProcessRunning": true,
+  "revuEntitlement": {
+    "plan": "Max",
+    "evidence": "Operator enabled MCP after Max entitlement; gate1 stdio open_file succeeds",
+    "verifiedLiveInWave": true
+  },
+  "mcpEnabled": {
+    "before": "disabled",
+    "after": "enabled",
+    "restartRequired": false,
+    "verifiedBy": "gate1:diagnose-mcp REVU_MCP_STDIO_OK"
+  },
+  "officialHostInvocationVerified": false,
+  "cursorStdioInvocationVerified": true,
+  "openFileResult": "PASS — controlled fixture + Rosewood L: path",
+  "controlledFixtureResult": "VERIFIED_LIVE",
+  "readbackResult": "PASS — quantity 8 indirect scale effect; revuMarkupId TWXDGBGACZZUFIFT-0",
+  "provenancePath": "C:/Developer/repos/CapitalGlassRevu/artifacts/runs/capital-glass-revu-control-plane-v1/live-evidence/gate1-mcp-provenance.json",
+  "controlledFixturePath": "C:/Developer/repos/CapitalGlassRevu/artifacts/runs/capital-glass-revu-control-plane-v1/live-evidence/gate1-controlled-fixture.json",
+  "cursorLauncherResult": "NOT_RUN — stdio via RevuMcpStdioClient sufficient for Wave 5",
+  "rosewoodDocumentId": "9ca73873-2697-49e6-b3a4-1f73aa7cc330",
+  "rosewoodSourceHash": "717583078b862b62c374f5b15556c1e7c8b744755c7597d43be1b68e3abe0480",
+  "rosewoodPageCount": 192,
+  "page1Result": "PASS — label I.000.0 - Cover Sheet / General Information",
+  "page2Result": "PASS — label I.001.0 - Index",
+  "coverIdentity": "VERIFIED_VIA_MCP",
+  "indexIdentity": "VERIFIED_VIA_MCP",
+  "readOnlyContract": "PROVEN — no mutation tools in R1A proof",
+  "r1aProofPath": "C:/Developer/repos/CapitalGlassRevu/artifacts/agent-runs/rosewood-cover-index-spine-closeout-v1/r1a-mcp-read-proof.json",
+  "commands": [
+    {
+      "command": "npm run gate1:diagnose-mcp",
+      "host": "C:\\Developer\\repos\\CapitalGlassRevu (Windows cmd)",
+      "exitCode": 0,
+      "verdict": "REVU_MCP_STDIO_OK",
+      "detail": "stdioProbe openFileError: null; revuUiProcessRunning: true"
+    },
+    {
+      "command": "npm run gate1:capture-provenance",
+      "host": "C:\\Developer\\repos\\CapitalGlassRevu",
+      "exitCode": 0,
+      "verdict": "PASS",
+      "detail": "host CG-RYZEN9DESK-01; revuVersion 21.10.0.19316; 5 tool calls"
+    },
+    {
+      "command": "npm run gate1:controlled-fixture",
+      "host": "C:\\Developer\\repos\\CapitalGlassRevu",
+      "exitCode": 0,
+      "verdict": "VERIFIED_LIVE",
+      "detail": "readbackAgreement true; quantity 8"
+    },
+    {
+      "command": "node scripts/r1a-cover-index-mcp-read-proof.mjs",
+      "host": "C:\\Developer\\repos\\CapitalGlassRevu",
+      "exitCode": 0,
+      "verdict": "PASS",
+      "detail": "pageCount 192; cover I.000.0; index I.001.0; read-only steps all ok"
+    }
+  ],
+  "fixAppliedInWave": {
+    "script": "scripts/r1a-cover-index-mcp-read-proof.mjs",
+    "cause": "MCP tools require transactionText and save_as_text uses pageRange; empty get_page_count args caused invoke failure after open_file",
+    "note": "Script updated on C:\\Developer\\repos\\CapitalGlassRevu and ~/repos/CapitalGlassRevu"
+  },
+  "proven": [
+    "MCP enabled and stdio tools operational on CG-RYZEN9DESK-01",
+    "Gate1 controlled fixture VERIFIED_LIVE with readback agreement",
+    "Rosewood 192-page permit set opens from L: via MCP",
+    "Cover page 1 and index page 2 sheet labels match I.000.0 and I.001.0",
+    "save_as_text extracts non-empty content for pages 1 and 2",
+    "list_markups_in_pdf read succeeds on cover page (read-only)"
+  ],
+  "notProven": [
+    "Official Bluebeam-supported host invocation (Claude/Copilot/AnythingLLM)",
+    "Cursor user-bluebeam-revu CallMcpTool layer (separate from stdio client)",
+    "Wave 6 single-sheet markup on A.520.1 page 59"
+  ],
+  "restrictions": {
+    "productionWorkflowUnlock": "NOT CLAIMED",
+    "bidComposerExport": "DISABLED",
+    "r1c": "NOT AUTHORIZED",
+    "masterGraph": "PROJECTION ONLY",
+    "revuProductionBlocker": "REMAINS OPEN"
+  },
+  "wave6Readiness": "READY — operator may authorize Wave 6 markup proof on A.520.1 PDF page 59"
+}

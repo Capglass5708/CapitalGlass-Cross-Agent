@@ -1,0 +1,31 @@
+{
+  "milestoneId": "rosewood-glazing-intelligence-and-controlled-takeoff-pilot-v1",
+  "gate": "R1B_WINDOW_SCHEDULE_OPERATOR_REVIEW_PASS",
+  "verdict": "BLOCKED_HUMAN_APPROVAL",
+  "classification": "OPERATOR_REVIEW_REQUIRED",
+  "recordedAt": "2026-08-06T21:22:00.000Z",
+  "baselineRunId": "d5e6f7a8-9b0c-4d1e-8f2a-3b4c5d6e7f8a",
+  "sheet": "A.520.1",
+  "pdfPage": 59,
+  "windowMarkCount": 34,
+  "approvedCount": 0,
+  "pendingCount": 34,
+  "mcpEnrichment": {
+    "verdict": "PASS_WITH_REVIEW_ITEMS",
+    "method": "revu_mcp_read_only+pdftotext",
+    "dryRunReceipt": "CapitalGlassRevu/artifacts/agent-runs/r1b-window-schedule-closeout-v1/enrichment-dry-run-receipt.json",
+    "note": "MCP read layer live on CG-RYZEN9DESK-01; baseline preserved"
+  },
+  "operatorSurfaces": {
+    "markdown": "CapitalGlassRevu/review/r1b-window-schedule/operator-review.md",
+    "csv": "CapitalGlassRevu/review/r1b-window-schedule/operator-review.csv",
+    "preview": "CapitalGlassRevu/review/r1b-window-schedule/previews/a520-1-page-59.png"
+  },
+  "operatorActions": [
+    "Open operator-review.md or operator-review.csv",
+    "Set disposition per row: approve | correct | reject | defer",
+    "Record corrections in operator_note column without inventing missing dimensions",
+    "Run: node scripts/apply-r1b-operator-review.mjs (after CSV updated)"
+  ],
+  "cannotAutoComplete": "Human estimator owns commercial scope approval per row"
+}
