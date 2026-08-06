@@ -143,6 +143,37 @@ Each seed in the findings file must include:
 
 ---
 
+## Handoff to Data-Extraction (WaveRunner self-improvement)
+
+When findings include WaveRunner / SDLC / milestone-wave improvements, add this block to the findings file (draft only):
+
+```json
+{
+  "selfImprovementRouting": {
+    "eligible": true,
+    "category": "WAVERUNNER_SELF_IMPROVEMENT",
+    "targetCatalogPath": "L:\\02-catalog\\SDLC Gated Wave Protocols\\WaveRunner Self Improvements Harvesting",
+    "authorityStatus": "PROPOSAL",
+    "stagingStatus": "NOT_RUN_BY_CHATGPT"
+  }
+}
+```
+
+**ChatGPT must never claim L publication occurred.** Cursor validates, Cross-Agent exports the canonical handoff, and **Data-Extraction** publishes to the target catalog after classification and deduplication.
+
+Operator chain after Cursor validation:
+
+```bash
+npm run harvest:export:waverunner-self-improvement -- --harvest-id=<id> --json
+# In Data-Extraction:
+npm run waverunner:harvest:ingest -- --input=<handoff-json> --json
+npm run waverunner:harvest:prepare -- --harvest-id=<id> --json
+npm run waverunner:harvest:publish-l -- --harvest-id=<id> --json
+npm run waverunner:harvest:verify -- --harvest-id=<id> --json
+```
+
+---
+
 ## Handoff to Cursor
 
 When findings are ready, give Cursor:
