@@ -102,10 +102,6 @@ Before any artifact or long output, state the mode:
 | `harvest:publish-intelligence-full` | No | Operator |
 | Claim `FULLY_SEEDED` | **Never** | Only with receipts |
 | Claim `INDEX_HIT` | **Never** | After scout preflight |
-| Identify Lane C protocol-improvement candidates (draft) | Yes — label `protocol-upgrade` or equivalent | Yes (canonical) |
-| Run `harvest:export:protocol-self-learning` | **No** | Yes (after validate PASS) |
-| Run Data-Extraction Lane C ingest/publish | **No** | Yes (Data-Extraction repo) |
-| Publish to `L:\02-catalog\Harvest\Harvest Protocol Self Learning` | **Never** | Data-Extraction only; L is retrieval-only |
 
 ---
 
@@ -144,20 +140,6 @@ Each seed in the findings file must include:
 - ≥1 `evidenceRefs` (chat turns, attachments, pasted reports)
 - `futureAgentInstructions` — whenThisAppears, startAt, runPreflight, doNot, proveBeforeClaiming
 - `status: "CANDIDATE"` only — never `APPROVED`
-
-### Lane C — harvest protocol self-learning (draft only)
-
-ChatGPT may **identify and label** harvest-protocol improvement candidates when the thread exposes protocol weaknesses (validators, publication truth, routing, PromptOps boundaries, etc.).
-
-- Use `kind: protocol-upgrade` (or label packets as protocol-improvement candidates) when the finding targets harvest protocol files, schemas, validators, commands, or authority rules.
-- **Separate** protocol improvements from general build findings, application bugs, and product ideas — those stay in normal packet kinds, not Lane C.
-- ChatGPT **does not** run `harvest:export:protocol-self-learning`.
-- ChatGPT **does not** run Data-Extraction `harvest-protocol:self-learning:*` commands.
-- ChatGPT **does not** publish to `L:\02-catalog\Harvest\Harvest Protocol Self Learning`.
-- Report all Lane C publication fields as `not-run` in the publication truth table (`exportStatus`, `dataExtractionStatus`, `catalogPublishStatus`, `retrievalStatus`).
-- Cursor verifies candidates, ingests into Cross-Agent manifest, and runs validation; Cross-Agent export + Data-Extraction make the lane operational.
-
-Lane C remains **separate** from WaveRunner self-improvement (`L:\02-catalog\SDLC Gated Wave Protocols\WaveRunner Self Improvements Harvesting`).
 
 ---
 
@@ -214,18 +196,10 @@ Every ChatGPT findings file must end with:
 | Z: AI cache | `not-run` |
 | Supabase projection | `not-run` |
 | Freshness gate | `not-run` |
-| Lane C export (`harvest:export:protocol-self-learning`) | `not-run` |
-| Lane C Data-Extraction ingest/publish | `not-run` |
-| Lane C catalog (`Harvest Protocol Self Learning`) | `not-run` |
-| Lane C retrieval | `not-run` |
-| Lane C authority | `PROPOSAL` / `RETRIEVAL_ONLY` (not approved) |
-| Automatic protocol mutation | `false` |
 
 ```text
 Publication: NOT_RUN_BY_CURSOR
 projection.hubPublishStatus: not-run
-protocolSelfLearning.exportStatus: not-run
-protocolSelfLearning.catalogPublishStatus: not-run
 ```
 
 ---
