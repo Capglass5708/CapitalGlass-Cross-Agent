@@ -1,0 +1,77 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-wesley-work-l-research-bootstrap-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "f0b433995cb80b36d6a2370642267e85c32440e3",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1",
+      "seedId": "IH-WESLEY-WORK-L-RESEARCH-BOOTSTRAP-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-06T08:10:21.791Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "ba7e687dd2fb4badf6ddd3b65b581ee98c39ddee5f1c9ad9a1381ddae198f638"
+  },
+  "body": {
+    "seedId": "IH-WESLEY-WORK-L-RESEARCH-BOOTSTRAP-001",
+    "kind": "failure-pattern",
+    "title": "DE handoff DEGRADED when WSL /mnt/l missing on WESLEY_WORK",
+    "summary": "Windows L: may host Capital-Glass-Research while WSL lacks /mnt/l; run npm run wsl:bootstrap-l-research before de:handoff-health.",
+    "canonicalQuestion": "Why is de:handoff-health DEGRADED with dualCorpusBridgeValid false?",
+    "alternateQuestions": [
+      "What mounts L: research intake for DE handoff on WESLEY_WORK?"
+    ],
+    "shortAnswer": "Windows L: may host Capital-Glass-Research while WSL lacks /mnt/l; run npm run wsl:bootstrap-l-research before de:handoff-health.",
+    "detailedAnswer": "DE handoff DEGRADED when WSL /mnt/l missing on WESLEY_WORK",
+    "retrievalQuestions": [
+      "Why is de:handoff-health DEGRADED with dualCorpusBridgeValid false?",
+      "What mounts L: research intake for DE handoff on WESLEY_WORK?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "agent:preflight fails de-handoff-health on WESLEY_WORK",
+      "startAt": [
+        "runtime/wesley-work-l-research-bootstrap/latest.json",
+        "data-extraction-workspace-standard.mjs"
+      ],
+      "runPreflight": [
+        "npm run wsl:bootstrap-l-research",
+        "npm run de:handoff-health"
+      ],
+      "doNot": [
+        "Remove de-handoff-health from preflight",
+        "Force HEALTHY when index unreadable"
+      ],
+      "proveBeforeClaiming": [
+        "researchIntakeIndexReadable true",
+        "findmnt /mnt/l source L:"
+      ]
+    },
+    "evidenceRefs": [
+      "d6ad9624",
+      "runtime/wesley-work-l-research-bootstrap/latest.json"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1/seed-packets/IH-WESLEY-WORK-L-RESEARCH-BOOTSTRAP-001.json"
+    ],
+    "harvestId": "harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1"
+  }
+}

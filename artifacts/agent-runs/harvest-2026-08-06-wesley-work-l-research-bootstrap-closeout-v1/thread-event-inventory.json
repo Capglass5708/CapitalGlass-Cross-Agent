@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1",
+  "threadScope": "DE handoff preflight blockers + durable /mnt/l bootstrap on WESLEY_WORK",
+  "generatedAt": "2026-08-06T08:00:00.000Z",
+  "events": [
+    {
+      "eventId": "TE-001",
+      "phase": "blocker",
+      "summary": "agent:preflight:app-builder-mcp FAIL — de-handoff-health exit 1 (appeared twice)",
+      "evidenceRefs": [
+        "preflight STEPS duplicate",
+        "0113aab9"
+      ]
+    },
+    {
+      "eventId": "TE-002",
+      "phase": "diagnosis",
+      "summary": "DE probe DEGRADED: dualCorpusBridgeValid false, researchIntakeIndexReadable false",
+      "evidenceRefs": [
+        "run-de-handoff-health.mjs probe JSON"
+      ]
+    },
+    {
+      "eventId": "TE-003",
+      "phase": "diagnosis",
+      "summary": "Windows L: had corpus; WSL /mnt/l not mounted",
+      "evidenceRefs": [
+        "powershell Test-Path L index",
+        "missing /mnt/l"
+      ]
+    },
+    {
+      "eventId": "TE-004",
+      "phase": "repair",
+      "summary": "Manual sudo mount -t drvfs L: /mnt/l → de:handoff-health HEALTHY",
+      "evidenceRefs": [
+        "session mount evidence"
+      ]
+    },
+    {
+      "eventId": "TE-005",
+      "phase": "repair",
+      "summary": "Removed duplicate preflight step; formatStepEvidence stdout preference",
+      "evidenceRefs": [
+        "0113aab9"
+      ]
+    },
+    {
+      "eventId": "TE-006",
+      "phase": "repair",
+      "summary": "Document Layer contract allowlist for synology-primary-register",
+      "evidenceRefs": [
+        "66a8bdb"
+      ]
+    },
+    {
+      "eventId": "TE-007",
+      "phase": "mission",
+      "summary": "User approved durable WESLEY_WORK /mnt/l bootstrap SDLC mission",
+      "evidenceRefs": [
+        "user mission prompt"
+      ]
+    },
+    {
+      "eventId": "TE-008",
+      "phase": "implementation",
+      "summary": "Shipped wesley-work-l-research-bootstrap + preflight/verify integration",
+      "evidenceRefs": [
+        "d6ad9624",
+        "14 unit tests pass"
+      ]
+    },
+    {
+      "eventId": "TE-009",
+      "phase": "fix",
+      "summary": "WSL2 drvfs surfaces as fstype 9p — validation updated",
+      "evidenceRefs": [
+        "findmnt /mnt/l",
+        "d6ad9624"
+      ]
+    },
+    {
+      "eventId": "TE-010",
+      "phase": "verification",
+      "summary": "preflight PASS; de:handoff-health HEALTHY; pushed d6ad9624 to origin/main",
+      "evidenceRefs": [
+        "runtime/agent-preflight/app-builder-mcp/latest.json"
+      ]
+    },
+    {
+      "eventId": "TE-011",
+      "phase": "harvest",
+      "summary": "Operator invoked CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1 protocol",
+      "evidenceRefs": [
+        "Z:/Capital-Glass-Dev/Harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"
+      ]
+    }
+  ]
+}

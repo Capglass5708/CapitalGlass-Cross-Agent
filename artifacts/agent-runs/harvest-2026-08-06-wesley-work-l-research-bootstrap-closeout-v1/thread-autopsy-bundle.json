@@ -1,0 +1,289 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "verification",
+      "description": "Piped de:handoff-health through tail masked exit 1 as success",
+      "evidenceRefs": [
+        "TE-002",
+        "ED-002"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Run standalone npm run de:handoff-health; check $? and probe JSON",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "rework",
+      "description": "Duplicate de-handoff-health preflight step doubled failure surface",
+      "evidenceRefs": [
+        "TE-001",
+        "0113aab9"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "STEPS dedupe review in agent-preflight-app-builder-mcp.mjs",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "host",
+      "description": "No automated /mnt/l bootstrap — manual sudo mount each WSL session",
+      "evidenceRefs": [
+        "TE-003",
+        "TE-004"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "npm run wsl:bootstrap-l-research in preflight chain",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "agent",
+      "description": "Initial bootstrap rejected valid WSL2 mount (fstype 9p not drvfs)",
+      "evidenceRefs": [
+        "TE-009"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "validateLMountSource accepts 9p+L: per WSL2 drvfs behavior",
+      "roiRank": 4
+    },
+    {
+      "wasteId": "TW-005",
+      "type": "rework",
+      "description": "Overlapping L: drive investigation with prior wesleywork-l-windows harvest",
+      "evidenceRefs": [
+        "harvest-2026-08-04-wesleywork-l-windows-closeout-v1",
+        "BY-KIND/thread-autopsy-index.json"
+      ],
+      "estimatedImpact": "low",
+      "savedBy": "Load IH-WINDOWS-L-VS-WSL-L-001 before new L: diagnosis",
+      "roiRank": 5
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Preflight blocked on DE handoff while Windows L: was mapped but WSL /mnt/l was not",
+      "operatorCost": "high",
+      "systemFix": "Bootstrap L: mount automatically before de:handoff-health on wesley_work",
+      "evidenceRefs": [
+        "TE-003",
+        "user mission approval TE-007"
+      ],
+      "linkedWasteIds": [
+        "TW-003"
+      ]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "DE handoff health blocking App Builder MCP preflight",
+      "actualExecution": {
+        "steps": [
+          "Investigated duplicate preflight failures",
+          "Eventually found /mnt/l missing",
+          "Manual sudo mount"
+        ],
+        "outcome": "HEALTHY after manual intervention",
+        "evidenceRefs": [
+          "TE-002",
+          "TE-003",
+          "TE-004"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "npm run wsl:bootstrap-l-research first",
+          "Read probe JSON for dualCorpusBridgeValid and researchIntakeIndexReadable",
+          "If BLOCKED check Windows L: via Ensure-CgWesleyWorkDriveMounts.ps1"
+        ],
+        "outcome": "Automated mount or actionable BLOCKED without manual sudo guesswork",
+        "requiredPreflight": [
+          "npm run wsl:bootstrap-l-research"
+        ]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "high",
+        "operatorFrustration": "medium"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Operator believed de:handoff-health passed when piped",
+      "actualExecution": {
+        "steps": [
+          "npm run de:handoff-health | tail"
+        ],
+        "outcome": "Misread exit code",
+        "evidenceRefs": [
+          "pipe exit code trap"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "npm run de:handoff-health; echo exit=$?"
+        ],
+        "outcome": "Correct exit 1 on DEGRADED",
+        "requiredPreflight": []
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "medium"
+      }
+    },
+    {
+      "executionDeltaId": "ED-003",
+      "situation": "mcp:contract-audit blocked on Document Layer regex",
+      "actualExecution": {
+        "steps": [
+          "Broad regex flagged document-synology-primary-register.ts"
+        ],
+        "outcome": "False positive BLOCKED",
+        "evidenceRefs": [
+          "66a8bdb"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Read file — claimCanonicalProjectDocument path",
+          "Allowlist known-safe register module"
+        ],
+        "outcome": "Faster unblock",
+        "requiredPreflight": [
+          "npm run mcp:document-contract-check in owner repo"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Treated duplicate preflight step as two independent DE failures",
+      "whereItHappened": "agent-preflight interpretation",
+      "whyItWasWrong": "Same npm run de-handoff-health listed twice in STEPS",
+      "correctFirstMove": "Inspect STEPS array for duplicate command entries",
+      "preventiveControl": "Dedupe STEPS; formatStepEvidence shows probe stdout",
+      "seedTarget": "IH-PREFLIGHT-STEPS-DEDUPE-001",
+      "executionDeltaId": "ED-001"
+    },
+    {
+      "wrongMoveId": "WM-002",
+      "summary": "Bootstrap validation required fstype drvfs only",
+      "whereItHappened": "validateLMountSource initial implementation",
+      "whyItWasWrong": "WSL2 reports drvfs mounts as 9p with source L:",
+      "correctFirstMove": "Accept 9p+L: per findmnt on WESLEY_WORK",
+      "preventiveControl": "Unit test validateLMountSource accepts WSL2 9p drvfs L:",
+      "seedTarget": "IH-WSL2-DRVF-9P-FSTYPE-001",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "WESLEY_WORK L: /mnt/l availability",
+      "firstKnownInstance": "harvest-2026-08-04-wesleywork-l-windows-closeout-v1",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "whyRepeated": "Prior harvest covered Windows remap; this thread adds DE research intake + bootstrap",
+      "avoidableBy": "harvest:duplication-preflight + load IH-WINDOWS-L-VS-WSL-L-001",
+      "recommendedAction": "add_guard"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "npm run wsl:install-l-fstab on WESLEY_WORK after bootstrap PASS",
+      "whyItPays": "Survives reboot without manual sudo mount",
+      "effort": "low",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "savedWasteIds": [
+        "TW-003"
+      ],
+      "seedAs": "runbook",
+      "suggestedWorkPackageId": "wesley-work-l-research-bootstrap-v1"
+    },
+    {
+      "rank": 2,
+      "title": "Office Admin Install-CgWesleyWorkDriveMountPersistence.ps1 elevated",
+      "whyItPays": "Windows L: survives logon when LAN down",
+      "effort": "medium",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "savedWasteIds": [
+        "TW-003",
+        "TW-005"
+      ],
+      "seedAs": "runbook",
+      "suggestedWorkPackageId": "wesleywork-drive-mount-task-dedupe-v1"
+    },
+    {
+      "rank": 3,
+      "title": "Preflight STEPS lint — forbid duplicate command names",
+      "whyItPays": "Prevents doubled failure noise",
+      "effort": "low",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "savedWasteIds": [
+        "TW-002"
+      ],
+      "seedAs": "hook",
+      "suggestedWorkPackageId": "preflight-steps-dedupe-gate-v1"
+    },
+    {
+      "rank": 4,
+      "title": "Document contract allowlist registry in MCP audit docs",
+      "whyItPays": "Reduces false-positive contract blocks",
+      "effort": "low",
+      "ownerRepo": "CapitalGlass-Documents",
+      "savedWasteIds": [],
+      "seedAs": "rule",
+      "suggestedWorkPackageId": "document-contract-allowlist-docs-v1"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "DE_HANDOFF_HEALTHY",
+      "currentStatus": "CLOSED",
+      "doNotClaimUntil": [
+        "researchIntakeIndexReadable true in probe JSON",
+        "npm run de:handoff-health exit 0 without pipe"
+      ],
+      "lastKnownEvidence": [
+        "TE-010",
+        "d6ad9624"
+      ],
+      "proofCommandId": "wesley-work-bootstrap-commands-v1"
+    },
+    {
+      "awardOrVerdict": "L_RESEARCH_MOUNT_DURABLE",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "npm run wsl:install-l-fstab applied",
+        "wsl --shutdown recovery verified"
+      ],
+      "lastKnownEvidence": [
+        "bootstrap actionTaken none on healthy mount only"
+      ],
+      "proofCommandId": "wesley-work-bootstrap-commands-v1"
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "BY-KIND/thread-autopsy-index.json",
+      "BY-KIND/active-work-blockers.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-06T08:00:00.000Z",
+    "note": "Consulted prior wesleywork-l-windows harvest; extended not duplicated"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1",
+  "packetId": "wesley-work-bootstrap-commands-v1",
+  "state": "RECORDED",
+  "packetVerdict": "PASS",
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Run before material sessions on WESLEY_WORK",
+  "evidenceRefs": [
+    "preflight latest.json wesley-work-l-research-bootstrap PASS",
+    "de-handoff-health probe state HEALTHY"
+  ],
+  "doNotAdvance": [
+    "Skip bootstrap on wesley_work when de handoff required"
+  ],
+  "advancementGate": "npm run wsl:bootstrap-l-research && npm run de:handoff-health",
+  "contentHash": "7c6934fc2ea1a4dd5a5d779f19f32180bb6adff0e201f043e9043b6465a01325"
+}

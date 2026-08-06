@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-WSL2-DRVF-9P-FSTYPE-001",
+  "kind": "failure-pattern",
+  "title": "WSL2 drvfs L: mount reports fstype 9p not drvfs",
+  "summary": "findmnt shows 9p with source L: for valid drvfs mounts — do not BLOCKED solely on fstype.",
+  "retrievalQuestions": [
+    "wesley-work-l-research-bootstrap BLOCKED unexpected-fstype 9p?",
+    "Is /mnt/l healthy when findmnt says 9p?"
+  ],
+  "evidenceRefs": [
+    "d6ad9624",
+    "mount | grep /mnt/l"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Bootstrap reports mountSourceValid false with fstype 9p",
+    "startAt": [
+      "findmnt /mnt/l",
+      "validateLMountSource in bootstrap lib"
+    ],
+    "runPreflight": [
+      "npm run wsl:bootstrap-l-research:verify"
+    ],
+    "doNot": [
+      "Require fstype drvfs only on WSL2",
+      "Unmount 9p+L: without operator review"
+    ],
+    "proveBeforeClaiming": [
+      "source L:",
+      "research intake index readable"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}

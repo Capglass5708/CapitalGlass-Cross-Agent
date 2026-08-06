@@ -1,0 +1,73 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-de-handoff-pipe-exit-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "f0b433995cb80b36d6a2370642267e85c32440e3",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1",
+      "seedId": "IH-DE-HANDOFF-PIPE-EXIT-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-06T08:10:21.791Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "3d09da3725f2b1ee367c9235abd09c9b443564d9ae371e2da05a486ac31aaf19"
+  },
+  "body": {
+    "seedId": "IH-DE-HANDOFF-PIPE-EXIT-001",
+    "kind": "failure-pattern",
+    "title": "Do not trust piped de:handoff-health exit codes",
+    "summary": "Piping through tail returns tail exit 0 while probe exited 1 on DEGRADED.",
+    "canonicalQuestion": "de:handoff-health looked healthy in pipe but preflight failed?",
+    "alternateQuestions": [
+      "How to check real exit code for npm health scripts?"
+    ],
+    "shortAnswer": "Piping through tail returns tail exit 0 while probe exited 1 on DEGRADED.",
+    "detailedAnswer": "Do not trust piped de:handoff-health exit codes",
+    "retrievalQuestions": [
+      "de:handoff-health looked healthy in pipe but preflight failed?",
+      "How to check real exit code for npm health scripts?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Operator pipes health check to tail/head/grep",
+      "startAt": [
+        "run-de-handoff-health.mjs exit code logic"
+      ],
+      "runPreflight": [],
+      "doNot": [
+        "Use | tail without checking $?",
+        "Infer state from npm notice stderr only"
+      ],
+      "proveBeforeClaiming": [
+        "Standalone command exit code",
+        "probe JSON state field"
+      ]
+    },
+    "evidenceRefs": [
+      "docs/CURSOR_WSL_REMOTE_SETUP.md",
+      "ED-002"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "AUTOMATIC",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1/seed-packets/IH-DE-HANDOFF-PIPE-EXIT-001.json"
+    ],
+    "harvestId": "harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1"
+  }
+}

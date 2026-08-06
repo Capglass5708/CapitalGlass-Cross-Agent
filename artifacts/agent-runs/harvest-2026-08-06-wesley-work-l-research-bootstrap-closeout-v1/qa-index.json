@@ -1,0 +1,237 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-DE-HANDOFF-PIPE-EXIT-001",
+      "questionId": "IHDEHANDOFFP",
+      "canonicalQuestion": "de:handoff-health looked healthy in pipe but preflight failed?",
+      "alternateQuestions": [
+        "How to check real exit code for npm health scripts?"
+      ],
+      "shortAnswer": "Piping through tail returns tail exit 0 while probe exited 1 on DEGRADED.",
+      "detailedAnswer": "Do not trust piped de:handoff-health exit codes",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-06T08:10:21.790Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1/seed-packets/IH-DE-HANDOFF-PIPE-EXIT-001.json"
+      ],
+      "authorityCommit": [
+        "f0b4339"
+      ],
+      "evidenceUrls": [
+        "docs/CURSOR_WSL_REMOTE_SETUP.md",
+        "ED-002"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Operator pipes health check to tail/head/grep",
+        "startAt": [
+          "run-de-handoff-health.mjs exit code logic"
+        ],
+        "runPreflight": [],
+        "doNot": [
+          "Use | tail without checking $?",
+          "Infer state from npm notice stderr only"
+        ],
+        "proveBeforeClaiming": [
+          "Standalone command exit code",
+          "probe JSON state field"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-MCP-BUILD-STAMP-WINDOWS-PM2-001",
+      "questionId": "IHMCPBUILDST",
+      "canonicalQuestion": "Why does guard:mcp-runtime-freshness fail after WSL mcp:build?",
+      "alternateQuestions": [
+        "Which host owns live mcp-api for WESLEY_WORK Cursor?"
+      ],
+      "shortAnswer": "MCP_API_URL points at Windows host; guard:mcp-runtime-freshness compares Windows stamp — WSL-only mcp:build causes false drift.",
+      "detailedAnswer": "WSL agent validates Windows PM2 MCP — not WSL-local build stamp",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-06T08:10:21.790Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1/seed-packets/IH-MCP-BUILD-STAMP-WINDOWS-PM2-001.json"
+      ],
+      "authorityCommit": [
+        "f0b4339"
+      ],
+      "evidenceUrls": [
+        "docs/CURSOR_WSL_REMOTE_SETUP.md",
+        "MCP_API_URL=http://172.17.80.1:3001"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "MCP build stamp drift on WSL Remote WESLEY_WORK",
+        "startAt": [
+          "docs/CURSOR_WSL_REMOTE_SETUP.md build-stamp section",
+          "~/.cursor/integrations.config.json"
+        ],
+        "runPreflight": [
+          "npm run guard:mcp-runtime-freshness"
+        ],
+        "doNot": [
+          "WSL-only mcp:build without Windows mcp:restart",
+          "Copy stamp without matching Windows rebuild"
+        ],
+        "proveBeforeClaiming": [
+          "Windows PM2 mcp-api restarted",
+          "stamp hash matches live API host"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-WESLEY-WORK-L-RESEARCH-BOOTSTRAP-001",
+      "questionId": "IHWESLEYWORK",
+      "canonicalQuestion": "Why is de:handoff-health DEGRADED with dualCorpusBridgeValid false?",
+      "alternateQuestions": [
+        "What mounts L: research intake for DE handoff on WESLEY_WORK?"
+      ],
+      "shortAnswer": "Windows L: may host Capital-Glass-Research while WSL lacks /mnt/l; run npm run wsl:bootstrap-l-research before de:handoff-health.",
+      "detailedAnswer": "DE handoff DEGRADED when WSL /mnt/l missing on WESLEY_WORK",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-06T08:10:21.790Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1/seed-packets/IH-WESLEY-WORK-L-RESEARCH-BOOTSTRAP-001.json"
+      ],
+      "authorityCommit": [
+        "f0b4339"
+      ],
+      "evidenceUrls": [
+        "d6ad9624",
+        "runtime/wesley-work-l-research-bootstrap/latest.json"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "agent:preflight fails de-handoff-health on WESLEY_WORK",
+        "startAt": [
+          "runtime/wesley-work-l-research-bootstrap/latest.json",
+          "data-extraction-workspace-standard.mjs"
+        ],
+        "runPreflight": [
+          "npm run wsl:bootstrap-l-research",
+          "npm run de:handoff-health"
+        ],
+        "doNot": [
+          "Remove de-handoff-health from preflight",
+          "Force HEALTHY when index unreadable"
+        ],
+        "proveBeforeClaiming": [
+          "researchIntakeIndexReadable true",
+          "findmnt /mnt/l source L:"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-WSL2-DRVF-9P-FSTYPE-001",
+      "questionId": "IHWSL2DRVF9P",
+      "canonicalQuestion": "wesley-work-l-research-bootstrap BLOCKED unexpected-fstype 9p?",
+      "alternateQuestions": [
+        "Is /mnt/l healthy when findmnt says 9p?"
+      ],
+      "shortAnswer": "findmnt shows 9p with source L: for valid drvfs mounts — do not BLOCKED solely on fstype.",
+      "detailedAnswer": "WSL2 drvfs L: mount reports fstype 9p not drvfs",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-06T08:10:21.790Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1/seed-packets/IH-WSL2-DRVF-9P-FSTYPE-001.json"
+      ],
+      "authorityCommit": [
+        "f0b4339"
+      ],
+      "evidenceUrls": [
+        "d6ad9624",
+        "mount | grep /mnt/l"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Bootstrap reports mountSourceValid false with fstype 9p",
+        "startAt": [
+          "findmnt /mnt/l",
+          "validateLMountSource in bootstrap lib"
+        ],
+        "runPreflight": [
+          "npm run wsl:bootstrap-l-research:verify"
+        ],
+        "doNot": [
+          "Require fstype drvfs only on WSL2",
+          "Unmount 9p+L: without operator review"
+        ],
+        "proveBeforeClaiming": [
+          "source L:",
+          "research intake index readable"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "failure-pattern"
+    }
+  ]
+}

@@ -59,3 +59,8 @@ If a path 404s in Cross-Agent, resolve from the **owner repo** at the commit cit
 
 - Windows L: remapped via Tailscale wesleydesk; ext4 repos root fix in mount gate.
 - Seeds: IH-WESLEYWORK-L-TAILSCALE-REMAP-001, IH-MOUNT-AUTHORITY-EXT4-REPOS-001, IH-WINDOWS-L-VS-WSL-L-001.
+
+### 2026-08-06 — Thread harvest harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1
+
+- DE handoff bootstrap shipped CG-AppBuilder-MCP d6ad9624; preflight PASS.
+- Seeds: IH-WESLEY-WORK-L-RESEARCH-BOOTSTRAP-001, IH-DE-HANDOFF-PIPE-EXIT-001, IH-MCP-BUILD-STAMP-WINDOWS-PM2-001, IH-WSL2-DRVF-9P-FSTYPE-001.

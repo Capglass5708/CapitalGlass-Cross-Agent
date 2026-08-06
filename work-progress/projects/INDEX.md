@@ -38,14 +38,14 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 
 | Packet ID | State | Verdict | Owner repo | Project file | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `pkt-decision-001` | COMPLETE | PASS | CapitalGlass-Documents | [harvest-2026-08-04-document-center-adaptive-details-w17-v1.md](./harvest-2026-08-04-document-center-adaptive-details-w17-v1.md) | Operator completes W17; then amend checkpoint with wave-17 evidence |
-| `pkt-blocker-001` | BLOCKED | BLOCKED | CapitalGlass-Documents | [harvest-2026-08-04-document-center-adaptive-details-w17-v1.md](./harvest-2026-08-04-document-center-adaptive-details-w17-v1.md) | Hub SSO login, 70-item checklist, Chrome-close capture script |
-| `pkt-mistake-001` | COMPLETE | PASS | CapitalGlass-Documents | [harvest-2026-08-04-document-center-adaptive-details-w17-v1.md](./harvest-2026-08-04-document-center-adaptive-details-w17-v1.md) | Publish seed IH-DOC-ADAPTIVE-LOCKED-BRANCH-001 on Phase B |
-| `pkt-repeated-001` | COMPLETE | PASS | CapitalGlass-Documents | [harvest-2026-08-04-document-center-adaptive-details-w17-v1.md](./harvest-2026-08-04-document-center-adaptive-details-w17-v1.md) | Enforce single writer on locked branch during W17 |
-| `pkt-faster-001` | COMPLETE | PASS | CapitalGlass-Documents | [harvest-2026-08-04-document-center-adaptive-details-w17-v1.md](./harvest-2026-08-04-document-center-adaptive-details-w17-v1.md) | Operator follows wave-17 sign-in section before capture |
-| `cmd-w17-capture` | PENDING | HOLD | CapitalGlass-Documents | [harvest-2026-08-04-document-center-adaptive-details-w17-v1.md](./harvest-2026-08-04-document-center-adaptive-details-w17-v1.md) | Operator runs after Hub SSO and Chrome close |
-| `pkt-evidence-001` | COMPLETE | PASS | CapitalGlass-Documents | [harvest-2026-08-04-document-center-adaptive-details-w17-v1.md](./harvest-2026-08-04-document-center-adaptive-details-w17-v1.md) | None until W17 PASS |
-| `pkt-proto-001` | COMPLETE | PASS | CapitalGlass-Cross-Agent | [harvest-2026-08-04-document-center-adaptive-details-w17-v1.md](./harvest-2026-08-04-document-center-adaptive-details-w17-v1.md) | Phase B publish via harvest:publish-intelligence-full |
+| `de-handoff-degraded-wsl-l-unmounted-v1` | RESOLVED | BOOTSTRAP_SHIPPED | CG-AppBuilder-MCP | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | Operator: npm run wsl:install-l-fstab after first successful mount for reboot durability |
+| `preflight-duplicate-de-handoff-step-v1` | FIXED | PASS | CG-AppBuilder-MCP | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | None — shipped |
+| `de-handoff-pipe-exit-code-trap-v1` | RECORDED | PASS | CG-AppBuilder-MCP | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | Always check $? after de:handoff-health; read probe JSON stdout |
+| `document-layer-synology-register-false-positive-v1` | FIXED | PASS | CapitalGlass-Documents | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | None — shipped |
+| `wesley-work-l-research-bootstrap-protocol-v1` | SHIPPED | PASS | CG-AppBuilder-MCP | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | Elevated: Install-CgWesleyWorkDriveMountPersistence.ps1 + npm run wsl:install-l-fstab |
+| `mcp-build-stamp-windows-pm2-topology-v1` | DOCUMENTED | PASS | CG-AppBuilder-MCP | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | After Windows mcp:build+mcp:restart copy runtime/mcp-build-stamp.json to WSL if needed |
+| `wesley-work-bootstrap-commands-v1` | RECORDED | PASS | CG-AppBuilder-MCP | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | Run before material sessions on WESLEY_WORK |
+| `wesley-work-bootstrap-evidence-v1` | RECORDED | PASS | CG-AppBuilder-MCP | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | See harvest manifest packet |
 
 <!-- HARVEST-PACKET-INDEX:END -->
 
