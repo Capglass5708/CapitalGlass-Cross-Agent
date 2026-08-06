@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-waverunner-routing-fixture-v1",
+  "missionClass": "waverunner-self-improvement-harvest-routing-v1",
+  "sourceCommitSha": "0000000000000000000000000000000000000001",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run"
+  },
+  "waverunnerHandoff": {
+    "milestoneId": "waverunner-self-improvement-harvest-routing-v1",
+    "waveId": "waverunner-self-improvement-harvest-routing-v1",
+    "executionMode": "MILESTONE_WAVE"
+  },
+  "improvementCandidates": [
+    {
+      "candidateId": "WC-001-wave-sizing",
+      "category": "WAVE_SIZING",
+      "title": "Reduce prompt fragmentation in milestone waves",
+      "problem": "Operators split one milestone into many single-file Cursor stops",
+      "rootCause": "NEEDS_VERIFICATION",
+      "proposedImprovement": "Use atomic sdlc:cursor:prepare pipeline per wave",
+      "targetRepository": "CG-AppBuilder-MCP",
+      "targetComponent": "WaveRunner",
+      "expectedBenefit": "Fewer context resets and lower token waste",
+      "risk": "Over-large waves without gates",
+      "confidence": "MEDIUM",
+      "evidenceRefs": ["EVT-001"],
+      "authorityStatus": "PROPOSAL",
+      "reviewStatus": "PENDING"
+    }
+  ],
+  "packets": [],
+  "publicationPolicy": {
+    "syntheticFixture": true,
+    "publicationEligibility": "TEST_ONLY"
+  }
+}

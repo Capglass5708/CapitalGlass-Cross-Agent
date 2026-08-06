@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://capitalglass.dev/schemas/waverunner-self-improvement-harvest-input-v1.json",
+  "title": "WaveRunner Self-Improvement Harvest Input v1",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema",
+    "harvestId",
+    "milestoneId",
+    "waveId",
+    "executionMode",
+    "observedAt",
+    "source",
+    "authority",
+    "claims",
+    "improvementCandidates",
+    "gateResults",
+    "evidence",
+    "crossCheckCommands",
+    "duplicateHints",
+    "invalidationTriggers",
+    "supersedes"
+  ],
+  "properties": {
+    "schema": { "const": "waverunner-self-improvement-harvest-input-v1@1.0.0" },
+    "harvestId": { "type": "string", "minLength": 1 },
+    "milestoneId": { "type": "string", "minLength": 1 },
+    "waveId": { "type": "string", "minLength": 1 },
+    "executionMode": { "type": "string", "minLength": 1 },
+    "observedAt": { "type": "string", "format": "date-time" },
+    "source": {
+      "type": "object",
+      "required": ["repository", "branch", "startSha", "finalSha", "receiptPath", "closeoutPath", "machine", "environment"],
+      "properties": {
+        "repository": { "type": "string" },
+        "branch": { "type": "string" },
+        "startSha": { "type": "string" },
+        "finalSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "receiptPath": { "type": "string" },
+        "closeoutPath": { "type": "string" },
+        "machine": { "type": "string" },
+        "environment": { "type": "string" }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "required": ["sourceOwner", "processingOwner", "approvalOwner", "catalogRole"],
+      "properties": {
+        "sourceOwner": { "const": "CapitalGlass-Cross-Agent" },
+        "processingOwner": { "const": "Data-Extraction" },
+        "approvalOwner": { "const": "CG-Platform-Governance-MCP" },
+        "catalogRole": { "const": "RETRIEVAL_ONLY" }
+      }
+    },
+    "claims": {
+      "type": "object",
+      "required": ["verifiedTruths", "derivedConclusions", "recommendations", "assumptions", "unknowns"],
+      "properties": {
+        "verifiedTruths": { "type": "array", "items": { "type": "string" } },
+        "derivedConclusions": { "type": "array", "items": { "type": "string" } },
+        "recommendations": { "type": "array", "items": { "type": "string" } },
+        "assumptions": { "type": "array", "items": { "type": "string" } },
+        "unknowns": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "improvementCandidates": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/improvementCandidate" }
+    },
+    "gateResults": { "type": "array" },
+    "evidence": { "type": "array" },
+    "crossCheckCommands": { "type": "array", "items": { "type": "string" } },
+    "duplicateHints": { "type": "array" },
+    "invalidationTriggers": { "type": "array", "items": { "type": "string" } },
+    "supersedes": { "type": "array" },
+    "contentHash": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" }
+  },
+  "$defs": {
+    "improvementCandidate": {
+      "type": "object",
+      "required": [
+        "candidateId",
+        "category",
+        "title",
+        "problem",
+        "rootCause",
+        "proposedImprovement",
+        "targetRepository",
+        "targetComponent",
+        "expectedBenefit",
+        "risk",
+        "confidence",
+        "evidenceRefs",
+        "crossCheckCommands",
+        "authorityStatus",
+        "reviewStatus"
+      ],
+      "properties": {
+        "candidateId": { "type": "string", "minLength": 1 },
+        "category": {
+          "type": "string",
+          "enum": [
+            "WAVE_SIZING",
+            "PROMPT_FRAGMENTATION",
+            "EXECUTION_MODE_CLASSIFICATION",
+            "MISSING_GATE",
+            "LATE_GATE",
+            "BASELINE_DRIFT",
+            "AUTHORITY_DRIFT",
+            "TOKEN_WASTE",
+            "REPEATED_DISCOVERY",
+            "CLOSEOUT_QUALITY",
+            "RECOVERY_AUTOMATION",
+            "PIPELINE_PERFORMANCE",
+            "PROMPT_COMPILER",
+            "STOP_CONDITION",
+            "HARVEST_QUALITY",
+            "ROUTING",
+            "OTHER_WAVERUNNER_IMPROVEMENT"
+          ]
+        },
+        "title": { "type": "string" },
+        "problem": { "type": "string" },
+        "rootCause": { "type": "string" },
+        "proposedImprovement": { "type": "string" },
+        "targetRepository": { "type": "string" },
+        "targetComponent": { "type": "string" },
+        "expectedBenefit": { "type": "string" },
+        "risk": { "type": "string" },
+        "confidence": { "type": "string" },
+        "evidenceRefs": { "type": "array", "items": { "type": "string" } },
+        "crossCheckCommands": { "type": "array", "items": { "type": "string" } },
+        "authorityStatus": { "enum": ["PROPOSAL", "CANDIDATE"] },
+        "reviewStatus": { "enum": ["PENDING", "NEEDS_VERIFICATION"] }
+      }
+    }
+  }
+}
