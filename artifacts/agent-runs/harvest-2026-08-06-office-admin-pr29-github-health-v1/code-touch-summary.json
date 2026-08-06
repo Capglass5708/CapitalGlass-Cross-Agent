@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "code-touch-summary-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-office-admin-pr29-github-health-v1",
+  "generatedAt": "2026-08-06T22:55:00.000Z",
+  "repos": [
+    {
+      "repo": "CapitalGlass-Office-Admin",
+      "branch": "feat/fred-user-profile-on-wesleydesk-v1",
+      "commitSha": "62e5f28d583cc2cec0c23f44c3c35f58aba0295a",
+      "role": "PR #29 reconciliation — main merge, indexes, MCP config, device scripts",
+      "paths": [
+        "mcp/office-admin-mcp.config.json",
+        "mcp/knowledge-index/manifest.json",
+        "mcp/knowledge-index/vault-operations.json",
+        "mcp/knowledge-index/network-script-library.json",
+        "package.json",
+        "services/office-admin-mcp/src/tools.ts",
+        "endpoints/cg-wesleydesk-01.json",
+        ".github/workflows/validate-code.yml"
+      ],
+      "note": "Merge parent 0c689db + governance workflow 1534a4e; probe commits 407a255/62e5f28 diagnostic only"
+    },
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "feat/harvest-protocol-self-learning-only-v1",
+      "commitSha": "1e490a8bec1791d2eb367d69d3e44d0f905063db",
+      "role": "harvest coordination only (this run)",
+      "paths": [
+        "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/"
+      ]
+    }
+  ],
+  "operatorCommands": [
+    "CG_IT_VAULT_ROOT='D:/Capital-Glass-IT-Vault' npm run ops:refresh-knowledge-index",
+    "CG_IT_VAULT_ROOT='D:/Capital-Glass-IT-Vault' npm run ops:refresh-external-knowledge",
+    "npm run ops:refresh-network-manifest",
+    "CI=true OFFICE_ADMIN_OPS_ALLOW_ANY_MACHINE=1 OFFICE_ADMIN_RUNNER_TEST_ACTOR_ADAPTER=1 OFFICE_ADMIN_TEST_ACTOR_JSON='...' npm run deploy:gate",
+    "gh auth refresh -h github.com -s workflow",
+    "gh workflow run validate-code.yml --ref feat/fred-user-profile-on-wesleydesk-v1",
+    "gh workflow run validate-docs.yml --ref feat/fred-user-profile-on-wesleydesk-v1"
+  ],
+  "machineEvidencePaths": [
+    "https://github.com/Capglass5708/CapitalGlass-Office-Admin/actions/runs/31127714801",
+    "https://github.com/Capglass5708/CapitalGlass-Office-Admin/actions/runs/31127385888",
+    "https://github.com/Capglass5708/CapitalGlass-Office-Admin/pull/29"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-office-admin-pr29-github-health-v1",
+  "packetId": "office-admin-github-ci-auto-trigger-v1",
+  "state": "OPEN",
+  "packetVerdict": "UNPROVEN_AUTO_TRIGGER",
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "ownerIndexingStatus": "pointer-only",
+  "nextAction": "After workflow scope granted, push path-filtered commit and verify event:push run created",
+  "evidenceRefs": [
+    "TE-010",
+    "head_sha cfeb626 total_count=0",
+    "last push event 97a7a01"
+  ],
+  "doNotAdvance": [
+    "Assume workflow_dispatch success proves auto-trigger"
+  ],
+  "advancementGate": "gh api actions/runs?head_sha=<sha> total_count >= 1 with event push",
+  "contentHash": "1c64375dd24f1ff6a1047f1e5ce611b51720793baa66132b6a1aa2f2fb83a4ce"
+}

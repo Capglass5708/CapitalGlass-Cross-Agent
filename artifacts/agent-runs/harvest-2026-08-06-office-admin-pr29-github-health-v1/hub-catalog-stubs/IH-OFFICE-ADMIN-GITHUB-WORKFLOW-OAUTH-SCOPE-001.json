@@ -1,0 +1,80 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-office-admin-github-workflow-oauth-scope-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "57652017edb5b4c6166cd1888488213e7414b06c",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-06-office-admin-pr29-github-health-v1",
+      "seedId": "IH-OFFICE-ADMIN-GITHUB-WORKFLOW-OAUTH-SCOPE-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-06T23:29:10.283Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "503011128cf1f97cb5f08e05673229380f68e44b03c2d890ba5db45c53501eb1"
+  },
+  "body": {
+    "seedId": "IH-OFFICE-ADMIN-GITHUB-WORKFLOW-OAUTH-SCOPE-001",
+    "kind": "failure-pattern",
+    "title": "Office Admin CI missions require gh workflow OAuth scope",
+    "summary": "Git push rejecting .github/workflows changes without workflow scope; use MCP push_files or refresh gh auth before workflow edits.",
+    "canonicalQuestion": "Why does git push reject validate-code.yml on CapitalGlass-Office-Admin?",
+    "alternateQuestions": [
+      "What gh auth scopes are required to push GitHub Actions workflow files?",
+      "How to publish workflow fixes when workflow scope is missing?"
+    ],
+    "shortAnswer": "Git push rejecting .github/workflows changes without workflow scope; use MCP push_files or refresh gh auth before workflow edits.",
+    "detailedAnswer": "Office Admin CI missions require gh workflow OAuth scope",
+    "retrievalQuestions": [
+      "Why does git push reject validate-code.yml on CapitalGlass-Office-Admin?",
+      "What gh auth scopes are required to push GitHub Actions workflow files?",
+      "How to publish workflow fixes when workflow scope is missing?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Any Office Admin mission touching .github/workflows or CI auto-trigger repair",
+      "startAt": [
+        "work-progress/command-index.json",
+        "BY-KIND/thread-autopsy-index.json"
+      ],
+      "runPreflight": [
+        "gh auth status -h github.com",
+        "gh auth refresh -h github.com -s workflow"
+      ],
+      "doNot": [
+        "Assume git push will register workflow triggers after MCP-only workflow commits",
+        "Retry identical git push without workflow scope"
+      ],
+      "proveBeforeClaiming": [
+        "gh auth status lists workflow scope",
+        "Push of workflow file succeeds or MCP push_files receipt SHA recorded"
+      ]
+    },
+    "evidenceRefs": [
+      "TE-006",
+      "TE-012",
+      "gh auth status scopes gist read:org repo"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Office-Admin",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/seed-packets/IH-OFFICE-ADMIN-GITHUB-WORKFLOW-OAUTH-SCOPE-001.json"
+    ],
+    "harvestId": "harvest-2026-08-06-office-admin-pr29-github-health-v1"
+  }
+}

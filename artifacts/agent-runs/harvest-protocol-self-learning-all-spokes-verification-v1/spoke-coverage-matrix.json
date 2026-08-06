@@ -1,0 +1,216 @@
+{
+  "schema": "harvest-protocol-self-learning-spoke-coverage-matrix-v1@1.0.0",
+  "milestoneId": "harvest-protocol-self-learning-all-spokes-verification-v1",
+  "generatedAt": "2026-08-06T23:30:00.000Z",
+  "retrievalCode": "INDEX_HIT",
+  "cacheCode": "CACHE_MISS",
+  "rows": [
+    {
+      "spoke": "Cross-Agent protocol docs",
+      "expectedResponsibility": "Lane C definition, scope, exclusions, commands, publication truth, acceptance",
+      "evidence": "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md@5765201; CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md",
+      "status": "COVERED",
+      "gap": null,
+      "requiredAction": "none",
+      "owner": "CapitalGlass-Cross-Agent"
+    },
+    {
+      "spoke": "Cross-Agent schema",
+      "expectedResponsibility": "harvest-protocol-self-learning-input-v1 contract",
+      "evidence": "contracts/harvest-protocol-self-learning-input-v1.schema.json",
+      "status": "COVERED",
+      "gap": null,
+      "requiredAction": "none",
+      "owner": "CapitalGlass-Cross-Agent"
+    },
+    {
+      "spoke": "Cross-Agent exporter",
+      "expectedResponsibility": "protocol-only export after harvest:validate PASS",
+      "evidence": "scripts/harvest/export-protocol-self-learning.mjs; protocol-self-learning-export-lib.mjs",
+      "status": "COVERED",
+      "gap": null,
+      "requiredAction": "none",
+      "owner": "CapitalGlass-Cross-Agent"
+    },
+    {
+      "spoke": "Cross-Agent validation",
+      "expectedResponsibility": "harvest:validate gate before export",
+      "evidence": "export lib VALIDATION_REQUIRED; test:protocol-self-learning-export",
+      "status": "COVERED",
+      "gap": null,
+      "requiredAction": "none",
+      "owner": "CapitalGlass-Cross-Agent"
+    },
+    {
+      "spoke": "Data-Extraction intake",
+      "expectedResponsibility": "ingest handoff JSON",
+      "evidence": "harvest-protocol:self-learning:ingest",
+      "status": "COVERED",
+      "gap": null,
+      "requiredAction": "none",
+      "owner": "Data-Extraction"
+    },
+    {
+      "spoke": "Data-Extraction strict classifier",
+      "expectedResponsibility": "reject app/product/build lessons",
+      "evidence": "classify-harvest-protocol-relevance.mjs; tests 10/10",
+      "status": "COVERED",
+      "gap": null,
+      "requiredAction": "none",
+      "owner": "Data-Extraction"
+    },
+    {
+      "spoke": "Data-Extraction dedupe",
+      "expectedResponsibility": "deduplicate prior packages",
+      "evidence": "deduplicate-improvements.mjs",
+      "status": "COVERED",
+      "gap": null,
+      "requiredAction": "none",
+      "owner": "Data-Extraction"
+    },
+    {
+      "spoke": "Data-Extraction normalization",
+      "expectedResponsibility": "priority scoring and normalized candidates",
+      "evidence": "normalize-improvements.mjs; enrich-improvements.mjs",
+      "status": "COVERED",
+      "gap": null,
+      "requiredAction": "none",
+      "owner": "Data-Extraction"
+    },
+    {
+      "spoke": "Data-Extraction publisher",
+      "expectedResponsibility": "deterministic L publication",
+      "evidence": "publish-l-catalog.mjs; production receipt harvest-2026-08-06-office-admin-pr29-github-health-v1",
+      "status": "COVERED",
+      "gap": null,
+      "requiredAction": "none",
+      "owner": "Data-Extraction"
+    },
+    {
+      "spoke": "L catalog",
+      "expectedResponsibility": "hash-addressed packages under Harvest Protocol Self Learning",
+      "evidence": "L:/02-catalog/Harvest/Harvest Protocol Self Learning/harvest-2026-08-06-office-admin-pr29-github-health-v1/0111d822...",
+      "status": "COVERED",
+      "gap": null,
+      "requiredAction": "none",
+      "owner": "Data-Extraction (publish); L retrieval-only"
+    },
+    {
+      "spoke": "BY-KIND index",
+      "expectedResponsibility": "harvest-protocol-self-learning-index.json pointer",
+      "evidence": "L:/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/harvest-protocol-self-learning-index.json",
+      "status": "COVERED",
+      "gap": null,
+      "requiredAction": "none",
+      "owner": "Data-Extraction"
+    },
+    {
+      "spoke": "retrieval verifier",
+      "expectedResponsibility": "RETRIEVAL_PASS without raw scan",
+      "evidence": "harvest-protocol:self-learning:verify RETRIEVAL_PASS; rawScanRequired false",
+      "status": "COVERED",
+      "gap": null,
+      "requiredAction": "none",
+      "owner": "Data-Extraction"
+    },
+    {
+      "spoke": "CG-AppBuilder closeout bridge",
+      "expectedResponsibility": "optional auto-emission of protocolImprovementCandidates",
+      "evidence": "sdlc-intelligence-harvest + waverunner bridge only; protocol candidates via Cross-Agent manifest.protocolImprovementCandidates",
+      "status": "COVERED_WITH_OPTIONAL_ENHANCEMENT",
+      "gap": "No dedicated AppBuilder export bridge analogous to waverunner handoff",
+      "requiredAction": "Future milestone: optional sdlc:cursor:export-protocol-self-learning-handoff reusing sdlc-intelligence-harvest.json",
+      "owner": "CG-AppBuilder-MCP"
+    },
+    {
+      "spoke": "Governance registry/policy",
+      "expectedResponsibility": "lane discoverability and approval boundary",
+      "evidence": "Canonical protocol docs + Cross-Agent contracts; no dedicated Governance lane registry entry",
+      "status": "COVERED_WITH_OPTIONAL_ENHANCEMENT",
+      "gap": "No harvest-protocol-self-learning entry in Governance protocol registry",
+      "requiredAction": "Optional pointer in future Governance registry PR (not blocking operational lane)",
+      "owner": "CG-Platform-Governance-MCP"
+    },
+    {
+      "spoke": "PromptOps boundary",
+      "expectedResponsibility": "Lane C does not approve prompts",
+      "evidence": "classifier + package excludes prompt bodies; PROMPTOPS_PROMOTION_BOUNDARY category is protocol-only",
+      "status": "COVERED",
+      "gap": null,
+      "requiredAction": "none",
+      "owner": "PromptOps / harvest prompt-extraction (separate)"
+    },
+    {
+      "spoke": "Z authority boundary",
+      "expectedResponsibility": "no auto Z promotion from L",
+      "evidence": "implement.mjs automaticZPublication false; publication-identity notProtocolAuthority true",
+      "status": "COVERED",
+      "gap": null,
+      "requiredAction": "none",
+      "owner": "Z AI-cache (approved releases only)"
+    },
+    {
+      "spoke": "Supabase projection",
+      "expectedResponsibility": "derived metadata only if needed",
+      "evidence": "No Lane C Supabase table or ingest command in repos",
+      "status": "NOT_APPLICABLE",
+      "gap": null,
+      "requiredAction": "none",
+      "owner": "n/a"
+    },
+    {
+      "spoke": "ChatGPT companion protocol",
+      "expectedResponsibility": "draft-only Lane C; publication not-run",
+      "evidence": "CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md Lane C section",
+      "status": "COVERED",
+      "gap": null,
+      "requiredAction": "none",
+      "owner": "CapitalGlass-Cross-Agent"
+    },
+    {
+      "spoke": "Cursor/operator protocol",
+      "expectedResponsibility": "Lane C command chain and acceptance",
+      "evidence": "CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md; test doc assertions",
+      "status": "COVERED",
+      "gap": null,
+      "requiredAction": "none",
+      "owner": "CapitalGlass-Cross-Agent"
+    },
+    {
+      "spoke": "application-repo boundary",
+      "expectedResponsibility": "apps produce normal closeouts only",
+      "evidence": "Lane C owned by Cross-Agent + Data-Extraction; no app-repo Lane C code",
+      "status": "NOT_APPLICABLE",
+      "gap": null,
+      "requiredAction": "none",
+      "owner": "application repos"
+    },
+    {
+      "spoke": "test coverage",
+      "expectedResponsibility": "export, classifier, publish, retrieval tests",
+      "evidence": "test:protocol-self-learning-export 3/3; test:harvest-protocol-self-learning 10/10; test:waverunner-harvest 6/6",
+      "status": "COVERED",
+      "gap": null,
+      "requiredAction": "none",
+      "owner": "Cross-Agent + Data-Extraction"
+    },
+    {
+      "spoke": "operational receipts",
+      "expectedResponsibility": "production L package + pipeline receipts",
+      "evidence": "harvest-2026-08-06-office-admin-pr29-github-health-v1 publication receipt; INGESTION_COMPLETE.json",
+      "status": "COVERED",
+      "gap": null,
+      "requiredAction": "none",
+      "owner": "Data-Extraction"
+    },
+    {
+      "spoke": "rollback/recovery",
+      "expectedResponsibility": "feature-branch only implement plan; no auto merge",
+      "evidence": "harvest-protocol:self-learning:implement IMPLEMENTATION_PLAN_ONLY",
+      "status": "COVERED",
+      "gap": null,
+      "requiredAction": "none",
+      "owner": "Governance + owner repos"
+    }
+  ]
+}

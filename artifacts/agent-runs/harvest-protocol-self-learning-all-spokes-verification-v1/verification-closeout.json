@@ -1,0 +1,96 @@
+{
+  "schema": "harvest-protocol-self-learning-all-spokes-verification-closeout-v1@1.0.0",
+  "milestoneId": "harvest-protocol-self-learning-all-spokes-verification-v1",
+  "completedAt": "2026-08-06T23:30:00.000Z",
+  "retrievalCode": "INDEX_HIT",
+  "cacheCode": "CACHE_MISS",
+  "finalVerdict": "GO_WITH_WARN",
+  "spokeVerdicts": {
+    "CROSS_AGENT": "COVERED",
+    "DATA_EXTRACTION": "COVERED",
+    "APPBUILDER": "OPTIONAL_ENHANCEMENT",
+    "GOVERNANCE": "OPTIONAL_ENHANCEMENT",
+    "INTELLIGENCE_HUB": "COVERED",
+    "Z_AUTHORITY": "COVERED",
+    "PROMPTOPS": "COVERED",
+    "SUPABASE": "NOT_APPLICABLE",
+    "CHATGPT_PROTOCOL": "COVERED",
+    "CURSOR_PROTOCOL": "COVERED",
+    "APPLICATION_REPOS": "NOT_APPLICABLE",
+    "TESTS_AND_RECEIPTS": "WARN"
+  },
+  "repositories": {
+    "CapitalGlass-Cross-Agent": {
+      "branch": "main",
+      "startSha": "57652017edb5b4c6166cd1888488213e7414b06c",
+      "finalSha": "57652017edb5b4c6166cd1888488213e7414b06c",
+      "originParity": "0/0",
+      "prMerge": "PR #20 merged"
+    },
+    "Data-Extraction": {
+      "branch": "main",
+      "startSha": "a5b0e6f37728213db0dbe9b11586039a12c60921",
+      "finalSha": "a161534",
+      "originParity": "0/0",
+      "prMerge": "PR #31 merged during verification"
+    },
+    "CG-AppBuilder-MCP": {
+      "branch": "main",
+      "sha": "248d7d4ad6ddfc995a4f30e4336727628f2dd0c7",
+      "originParity": "0/0",
+      "laneCBridge": "not present; waverunner bridge only"
+    },
+    "CG-Platform-Governance-MCP": {
+      "branch": "main",
+      "sha": "ee2feb7d6ee240a6e85f45301fde5f1dff8ad8ee",
+      "originParity": "0/0",
+      "laneRegistry": "not present"
+    }
+  },
+  "productionEvidence": {
+    "harvestId": "harvest-2026-08-06-office-admin-pr29-github-health-v1",
+    "contentHash": "sha256:0111d8227cddb9946ca12fc5097d346fbeb6e90e92cf70a187a59e63d43463d5",
+    "catalogPath": "L:\\02-catalog\\Harvest\\Harvest Protocol Self Learning\\harvest-2026-08-06-office-admin-pr29-github-health-v1\\0111d8227cddb9946ca12fc5097d346fbeb6e90e92cf70a187a59e63d43463d5",
+    "manifestPath": "manifest.json",
+    "completeMarker": "INGESTION_COMPLETE.json",
+    "indexPath": "L:\\Capital-Glass-Intelligence-Hub\\00-master-index\\BY-KIND\\harvest-protocol-self-learning-index.json",
+    "retrievalVerdict": "RETRIEVAL_PASS",
+    "rawScanRequired": false,
+    "candidateCount": 2,
+    "rejectedUnrelatedCount": 0,
+    "containsRawCloseout": false,
+    "containsFullTranscript": false,
+    "authorityStatus": "PROPOSAL",
+    "automaticProtocolMutation": false
+  },
+  "authorityProof": {
+    "lCatalogRole": "RETRIEVAL_ONLY",
+    "dataExtractionRole": "processing-only",
+    "governanceApprovalRequired": true,
+    "automaticMainMerge": false,
+    "automaticZPublication": false,
+    "automaticProtocolMutation": false
+  },
+  "tests": {
+    "CapitalGlass-Cross-Agent": {
+      "test:protocol-self-learning-export": "3/3 PASS",
+      "test:harvest": "WARN pre-existing run-harvest-z-mirror-sync missing Data-Extraction/docs/platform/CURSOR_HARVEST_INGEST_CLOSEOUT_WAVE_SDLC_V1.md"
+    },
+    "Data-Extraction": {
+      "test:harvest-protocol-self-learning": "10/10 PASS",
+      "test:waverunner-harvest": "6/6 PASS"
+    },
+    "CG-AppBuilder-MCP": {
+      "test:sdlc-protocol-cursor": "PASS",
+      "test:sdlc-waverunner-handoff-bridge": "PASS"
+    }
+  },
+  "repairsApplied": [
+    "Merged Data-Extraction PR #31 to main (processing spoke was branch-only before verification)"
+  ],
+  "remainingWork": [
+    "Optional: CG-AppBuilder protocol-self-learning handoff bridge (mirror waverunner pattern)",
+    "Optional: CG-Platform-Governance lane registry pointer",
+    "Separate maintenance: Z-mirror test missing CURSOR_HARVEST_INGEST_CLOSEOUT_WAVE_SDLC_V1.md source doc"
+  ]
+}

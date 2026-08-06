@@ -1,0 +1,131 @@
+{
+  "schema": "harvest-protocol-self-learning-input-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-office-admin-pr29-github-health-v1",
+  "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceProtocolVersion": "1.0.0",
+  "sourceProtocolHash": "7c7de722891ac79ae0dd0365a152283b4d693d919abd5505214a23db4971382b",
+  "sourceReceipt": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/validation-result.json",
+  "observedAt": "2026-08-06T23:07:42.122Z",
+  "protocolImprovementCandidates": [
+    {
+      "candidateId": "HPC-OA-PUBLICATION-TRUTH-001",
+      "category": "PUBLICATION_TRUTH",
+      "title": "Block HARVEST_COMPLETE when hub publish truth is not-run without explicit operator deferral receipt",
+      "protocolProblem": "This harvest records projection.hubPublishStatus not-run while overallHarvestVerdict is HARVEST_COMPLETE",
+      "currentProtocolBehavior": "validate-harvest allows PASS when hub publish was not executed and only a manifest note defers it",
+      "desiredProtocolBehavior": "Publication-truth validator requires either hubPublishStatus published or a publication-deferral receipt with operator attestation",
+      "proposedProtocolChange": "Add publication-truth gate to harvest:validate and require publication-deferral packet when hub publish is deferred",
+      "targetProtocolFiles": [
+        "scripts/harvest/validate-harvest.mjs",
+        "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"
+      ],
+      "targetSchemas": [],
+      "targetValidators": [
+        "scripts/harvest/validate-harvest.mjs"
+      ],
+      "targetCommands": [
+        "npm run harvest:validate",
+        "npm run harvest:publish-hub-seed"
+      ],
+      "evidenceRefs": [
+        "EVT-OA-PROJECTION-NOT-RUN",
+        "TE-013"
+      ],
+      "crossCheckCommands": [],
+      "risk": "MEDIUM",
+      "confidence": "HIGH",
+      "authorityStatus": "PROPOSAL",
+      "reviewStatus": "PENDING",
+      "automaticImplementationEligible": false,
+      "requiredGates": [
+        "harvest:validate",
+        "test:harvest"
+      ],
+      "rollbackPlan": "Revert feature branch; preserve L package hash"
+    },
+    {
+      "candidateId": "HPC-OA-PROMPTOPS-BOUNDARY-001",
+      "category": "PROMPTOPS_PROMOTION_BOUNDARY",
+      "title": "Require explicit promotion boundary when prompt harvest finds candidates but approves zero",
+      "protocolProblem": "promptHarvest reports 12 candidates with approved 0 and indexUpdated false without a promotion-boundary receipt",
+      "currentProtocolBehavior": "Prompt extraction can complete with PROMPT_HARVEST_PENDING_REVIEW only in manifest summary",
+      "desiredProtocolBehavior": "PromptOps promotion-boundary packet required before closeout when candidatesFound > 0 and approved === 0",
+      "proposedProtocolChange": "Extend prompt-extraction closeout to emit prompt-promotion-boundary receipt and block protocol-self-learning export until present",
+      "targetProtocolFiles": [
+        "scripts/harvest/lib/prompt-extraction-lib.mjs"
+      ],
+      "targetSchemas": [],
+      "targetValidators": [
+        "scripts/harvest/validate-thread-autopsy-cli.mjs"
+      ],
+      "targetCommands": [
+        "npm run harvest:extract-prompts",
+        "npm run harvest:validate-autopsy"
+      ],
+      "evidenceRefs": [
+        "EVT-OA-PROMPT-PENDING",
+        "prompt-candidate-cb144c9980b8"
+      ],
+      "crossCheckCommands": [],
+      "risk": "LOW",
+      "confidence": "HIGH",
+      "authorityStatus": "PROPOSAL",
+      "reviewStatus": "PENDING",
+      "automaticImplementationEligible": false,
+      "requiredGates": [
+        "harvest:validate",
+        "test:harvest"
+      ],
+      "rollbackPlan": "Revert feature branch; preserve L package hash"
+    }
+  ],
+  "evidence": [
+    "TE-009",
+    "TE-013",
+    "62e5f28",
+    "0c689db",
+    "TE-010",
+    "head_sha cfeb626 total_count=0",
+    "last push event 97a7a01",
+    "TE-011",
+    "actions run 31127385888",
+    "31128870278 queued",
+    "TE-006",
+    "WM-001",
+    "IH-OFFICE-ADMIN-GITHUB-WORKFLOW-OAUTH-SCOPE-001",
+    "TE-007",
+    "TE-008",
+    "TE-009",
+    "TE-003",
+    "TE-007",
+    "TE-008",
+    "WM-002",
+    "TE-004",
+    "TE-005",
+    "TW-005",
+    "TE-005",
+    "validate-code.yml deploy-gate step env block",
+    "TE-010",
+    "cfeb626 total_count=0",
+    "TE-009",
+    "gh pr view 29 mergeable MERGEABLE",
+    "harvest-2026-08-06-office-admin-pr29-github-health-v1",
+    "TE-013"
+  ],
+  "crossCheckCommands": [
+    "npm run harvest:validate -- harvest-2026-08-06-office-admin-pr29-github-health-v1",
+    "npm run harvest:export:protocol-self-learning -- --harvest-id=harvest-2026-08-06-office-admin-pr29-github-health-v1 --json"
+  ],
+  "invalidationTriggers": [
+    "harvest_manifest_hash_changes",
+    "validation_receipt_missing",
+    "governance_rejection"
+  ],
+  "authority": {
+    "sourceOwner": "CapitalGlass-Cross-Agent",
+    "processingOwner": "Data-Extraction",
+    "approvalOwner": "CG-Platform-Governance-MCP",
+    "catalogRole": "RETRIEVAL_ONLY"
+  },
+  "contentHash": "sha256:a63472fe204bcde9afc324c5cd7cbac5fe186300b80a0e598a73631316dda7f8"
+}

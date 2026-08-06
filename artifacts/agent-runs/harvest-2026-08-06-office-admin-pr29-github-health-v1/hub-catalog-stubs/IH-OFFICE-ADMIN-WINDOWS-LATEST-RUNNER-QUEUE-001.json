@@ -1,0 +1,79 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-office-admin-windows-latest-runner-queue-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "57652017edb5b4c6166cd1888488213e7414b06c",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-06-office-admin-pr29-github-health-v1",
+      "seedId": "IH-OFFICE-ADMIN-WINDOWS-LATEST-RUNNER-QUEUE-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-06T23:29:10.283Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "65eeb8ce0b7c9a65a99291f111d384a3887ea88832c83fdaa729837ea88a8392"
+  },
+  "body": {
+    "seedId": "IH-OFFICE-ADMIN-WINDOWS-LATEST-RUNNER-QUEUE-001",
+    "kind": "failure-pattern",
+    "title": "validate-code queued forever — windows-latest runner not acquired",
+    "summary": "GitHub Actions jobs on windows-latest can queue 15m+ then fail with hosted runner acquisition error; distinguish from code gate failure.",
+    "canonicalQuestion": "Why is validate-code stuck queued on CapitalGlass-Office-Admin?",
+    "alternateQuestions": [
+      "What does 'job was not acquired by Runner of type hosted' mean?",
+      "How to prove validate-code failure is infrastructure not deploy:gate?"
+    ],
+    "shortAnswer": "GitHub Actions jobs on windows-latest can queue 15m+ then fail with hosted runner acquisition error; distinguish from code gate failure.",
+    "detailedAnswer": "validate-code queued forever — windows-latest runner not acquired",
+    "retrievalQuestions": [
+      "Why is validate-code stuck queued on CapitalGlass-Office-Admin?",
+      "What does 'job was not acquired by Runner of type hosted' mean?",
+      "How to prove validate-code failure is infrastructure not deploy:gate?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "validate-code or validate-docs workflow_dispatch queued >5 minutes",
+      "startAt": [
+        "gh run view <run-id> --json status,jobs",
+        "gh api repos/.../actions/jobs/<job-id>"
+      ],
+      "runPreflight": [
+        "npm run deploy:gate locally with CI smoke env first"
+      ],
+      "doNot": [
+        "Claim GO from local deploy:gate alone when mission requires GitHub PASS",
+        "Cancel and re-dispatch endlessly without checking runner pool/billing"
+      ],
+      "proveBeforeClaiming": [
+        "gh run shows conclusion success on final HEAD SHA",
+        "Job runner_name populated (not empty while queued 15m+)"
+      ]
+    },
+    "evidenceRefs": [
+      "actions run 31127385888",
+      "TE-011",
+      "local deploy:gate PASS on 62e5f28 tree"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "HUMAN_REVIEW",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Office-Admin",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/seed-packets/IH-OFFICE-ADMIN-WINDOWS-LATEST-RUNNER-QUEUE-001.json"
+    ],
+    "harvestId": "harvest-2026-08-06-office-admin-pr29-github-health-v1"
+  }
+}

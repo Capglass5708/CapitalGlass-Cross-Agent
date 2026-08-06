@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "cross-agent-harvest-seed-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-office-admin-pr29-github-health-v1",
+  "subject": "PR #29 main reconciliation complete — CI health still BLOCKED",
+  "tier": "T2",
+  "seedRecordCount": 3,
+  "retrievalQuestions": [
+    {
+      "retrievalId": "RQ01",
+      "seedId": "IH-OFFICE-ADMIN-GITHUB-WORKFLOW-OAUTH-SCOPE-001",
+      "query": "Why does git push reject validate-code.yml on CapitalGlass-Office-Admin?"
+    },
+    {
+      "retrievalId": "RQ02",
+      "seedId": "IH-OFFICE-ADMIN-GITHUB-WORKFLOW-OAUTH-SCOPE-001",
+      "query": "What gh auth scopes are required to push GitHub Actions workflow files?"
+    },
+    {
+      "retrievalId": "RQ03",
+      "seedId": "IH-OFFICE-ADMIN-GITHUB-WORKFLOW-OAUTH-SCOPE-001",
+      "query": "How to publish workflow fixes when workflow scope is missing?"
+    },
+    {
+      "retrievalId": "RQ11",
+      "seedId": "IH-OFFICE-ADMIN-PR-MERGE-WITHOUT-WORKFLOW-SCOPE-001",
+      "query": "How to reconcile a conflicting PR when git push blocks workflow files?"
+    },
+    {
+      "retrievalId": "RQ12",
+      "seedId": "IH-OFFICE-ADMIN-PR-MERGE-WITHOUT-WORKFLOW-SCOPE-001",
+      "query": "Why does squash reconciliation leave PR CONFLICTING?"
+    },
+    {
+      "retrievalId": "RQ13",
+      "seedId": "IH-OFFICE-ADMIN-PR-MERGE-WITHOUT-WORKFLOW-SCOPE-001",
+      "query": "What is the dual-lane workflow publish pattern for Office Admin?"
+    },
+    {
+      "retrievalId": "RQ21",
+      "seedId": "IH-OFFICE-ADMIN-WINDOWS-LATEST-RUNNER-QUEUE-001",
+      "query": "Why is validate-code stuck queued on CapitalGlass-Office-Admin?"
+    },
+    {
+      "retrievalId": "RQ22",
+      "seedId": "IH-OFFICE-ADMIN-WINDOWS-LATEST-RUNNER-QUEUE-001",
+      "query": "What does 'job was not acquired by Runner of type hosted' mean?"
+    },
+    {
+      "retrievalId": "RQ23",
+      "seedId": "IH-OFFICE-ADMIN-WINDOWS-LATEST-RUNNER-QUEUE-001",
+      "query": "How to prove validate-code failure is infrastructure not deploy:gate?"
+    }
+  ],
+  "roiTop3": [
+    {
+      "rank": 1,
+      "title": "Workflow OAuth scope preflight for Office Admin CI missions",
+      "seedId": null
+    },
+    {
+      "rank": 2,
+      "title": "Dual-lane workflow publish (git body + MCP workflow file)",
+      "seedId": null
+    },
+    {
+      "rank": 3,
+      "title": "Hosted windows-latest runner health check before CI closeout",
+      "seedId": null
+    }
+  ],
+  "byKindSlice": "00-master-index/BY-KIND/thread-autopsy-index.json",
+  "catalogRoot": "02-catalog/knowledge-objects/cross-agent-harvest"
+}

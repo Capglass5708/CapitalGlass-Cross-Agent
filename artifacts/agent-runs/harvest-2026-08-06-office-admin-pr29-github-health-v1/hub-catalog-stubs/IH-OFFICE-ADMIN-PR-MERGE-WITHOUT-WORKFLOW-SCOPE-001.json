@@ -1,0 +1,84 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-office-admin-pr-merge-without-workflow-scope-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "57652017edb5b4c6166cd1888488213e7414b06c",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-06-office-admin-pr29-github-health-v1",
+      "seedId": "IH-OFFICE-ADMIN-PR-MERGE-WITHOUT-WORKFLOW-SCOPE-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-06T23:29:10.283Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "07499ae247d19d6b1e859a5d83071e4816283b677a2a2b90ca5106ff2e72e226"
+  },
+  "body": {
+    "seedId": "IH-OFFICE-ADMIN-PR-MERGE-WITHOUT-WORKFLOW-SCOPE-001",
+    "kind": "runbook",
+    "title": "Reconcile conflicted PR when workflow OAuth scope is missing",
+    "summary": "Merge main semantically, push body without workflow delta, then MCP-publish workflow file; record merge parent for GitHub mergeability.",
+    "canonicalQuestion": "How to reconcile a conflicting PR when git push blocks workflow files?",
+    "alternateQuestions": [
+      "Why does squash reconciliation leave PR CONFLICTING?",
+      "What is the dual-lane workflow publish pattern for Office Admin?"
+    ],
+    "shortAnswer": "Merge main semantically, push body without workflow delta, then MCP-publish workflow file; record merge parent for GitHub mergeability.",
+    "detailedAnswer": "Reconcile conflicted PR when workflow OAuth scope is missing",
+    "retrievalQuestions": [
+      "How to reconcile a conflicting PR when git push blocks workflow files?",
+      "Why does squash reconciliation leave PR CONFLICTING?",
+      "What is the dual-lane workflow publish pattern for Office Admin?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "PR mergeable CONFLICTING with workflow file changes needed and gh lacks workflow scope",
+      "startAt": [
+        "gh pr view <n> --json mergeable,mergeStateStatus",
+        "mcp/office-admin-mcp.config.json"
+      ],
+      "runPreflight": [
+        "npm run deploy:gate with CI smoke actor env",
+        "git merge origin/main"
+      ],
+      "doNot": [
+        "Force push",
+        "Merge PR when mission says keep unmerged",
+        "Skip merge parent commit — GitHub needs two-parent merge for CLEAN state"
+      ],
+      "proveBeforeClaiming": [
+        "gh pr view shows mergeable MERGEABLE",
+        "git rev-list --left-right --count origin/<branch>...HEAD is 0/0"
+      ]
+    },
+    "evidenceRefs": [
+      "cfeb626",
+      "0c689db",
+      "1534a4e",
+      "TE-007",
+      "TE-008",
+      "TE-009"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Office-Admin",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/seed-packets/IH-OFFICE-ADMIN-PR-MERGE-WITHOUT-WORKFLOW-SCOPE-001.json"
+    ],
+    "harvestId": "harvest-2026-08-06-office-admin-pr29-github-health-v1"
+  }
+}

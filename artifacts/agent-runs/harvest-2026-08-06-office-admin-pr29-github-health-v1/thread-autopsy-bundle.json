@@ -1,0 +1,239 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-office-admin-pr29-github-health-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "rework",
+      "description": "First merge commit included workflow file delta and was rejected; required soft-reset republish strategy",
+      "evidenceRefs": ["TE-006", "WM-001"],
+      "estimatedImpact": "medium",
+      "savedBy": "Check gh auth status for workflow scope before any commit touching .github/workflows/",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "rework",
+      "description": "Squash reconciliation commit without merge parent left PR CONFLICTING until second merge",
+      "evidenceRefs": ["TE-007", "TE-008", "WM-002"],
+      "estimatedImpact": "medium",
+      "savedBy": "Record merge parent in same session as semantic reconciliation",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "verification",
+      "description": "Multiple workflow_dispatch runs queued 7–15 minutes on windows-latest without runner acquisition",
+      "evidenceRefs": ["TE-011", "actions run 31127385888"],
+      "estimatedImpact": "high",
+      "savedBy": "Check GitHub Actions hosted runner availability/billing before declaring CI blocked vs code blocked",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "operator_attention",
+      "description": "Operator must complete gh device login for workflow OAuth scope — agent cannot self-grant",
+      "evidenceRefs": ["TE-012", "gh auth refresh context deadline exceeded"],
+      "estimatedImpact": "high",
+      "savedBy": "Preflight gh auth status -s workflow at session start for any CI/workflow mission",
+      "roiRank": 4
+    },
+    {
+      "wasteId": "TW-005",
+      "type": "tool",
+      "description": "MCP smoke failed until feature-branch allowedReadRoots were unioned into post-merge MCP config",
+      "evidenceRefs": ["TE-004", "TE-005"],
+      "estimatedImpact": "low",
+      "savedBy": "After merge taking main mcp/office-admin-mcp.config.json, always union feature-only knowledge-index paths",
+      "roiRank": 5
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Git push blocked on workflow files until operator grants workflow OAuth scope",
+      "operatorCost": "high",
+      "systemFix": "Document dual-path publish: git push without workflow delta + GitHub MCP push_files for workflow-only changes",
+      "evidenceRefs": ["TE-006", "TE-008"],
+      "linkedWasteIds": ["TW-001", "TW-004"]
+    },
+    {
+      "frictionId": "OF-002",
+      "trigger": "CI auto-trigger assumed broken but root cause split between OAuth/workflow registration and hosted runner queue",
+      "operatorCost": "medium",
+      "systemFix": "Separate diagnostics: (1) push event count per SHA, (2) runner acquisition annotation",
+      "evidenceRefs": ["TE-010", "TE-011"],
+      "linkedWasteIds": ["TW-003"]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Reconcile PR #29 with ~26 conflicts against origin/main",
+      "actualExecution": {
+        "steps": [
+          "git merge origin/main",
+          "Resolve 27 conflicts file-by-file",
+          "Regenerate indexes and deploy:gate",
+          "Push merge commit with workflow changes — rejected",
+          "Soft-reset single commit without workflow delta",
+          "Second merge for merge parent only"
+        ],
+        "outcome": "MERGEABLE PR; extra commits and MCP workflow push",
+        "evidenceRefs": ["TE-003", "TE-006", "TE-007", "TE-008", "TE-009"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "gh auth status — confirm workflow scope or plan MCP-only workflow lane upfront",
+          "git merge origin/main and resolve conflicts once",
+          "Regenerate indexes + deploy:gate",
+          "Push reconciliation without .github/workflows delta",
+          "MCP push_files for workflow governance delta",
+          "Verify PR mergeable in same pass"
+        ],
+        "outcome": "Same mergeable PR with fewer probe commits",
+        "requiredPreflight": ["office.get_agent_preflight", "gh auth status -h github.com"]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "high",
+        "operatorFrustration": "medium"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Prove GitHub fully healthy — validate-code PASS on final HEAD",
+      "actualExecution": {
+        "steps": [
+          "workflow_dispatch validate-code/docs",
+          "Wait in queued state",
+          "Prior run failed: windows-latest runner not acquired after 15m"
+        ],
+        "outcome": "BLOCKED — no PASS on 62e5f28",
+        "evidenceRefs": ["TE-011", "31127385888", "31128870278 queued"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Confirm hosted runner pool healthy in GitHub billing/settings",
+          "workflow_dispatch on final SHA",
+          "Watch for runner acquisition within 5m; escalate if queued >10m"
+        ],
+        "outcome": "Clear PASS/FAIL on code vs infrastructure",
+        "requiredPreflight": ["gh run view --job=<id> for runner_name"]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "medium",
+        "operatorFrustration": "high"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Git push of merge commit containing workflow file without workflow OAuth scope",
+      "whereItHappened": "Second merge commit push after origin/main reconciliation",
+      "whyItWasWrong": "GitHub rejects OAuth pushes touching .github/workflows without workflow scope",
+      "correctFirstMove": "Preflight gh auth status; exclude workflow file from git push; MCP push_files for workflow delta",
+      "preventiveControl": "gh auth refresh -h github.com -s workflow at CI mission start",
+      "seedTarget": "IH-OFFICE-ADMIN-GITHUB-WORKFLOW-OAUTH-SCOPE-001",
+      "executionDeltaId": "ED-001"
+    },
+    {
+      "wrongMoveId": "WM-002",
+      "summary": "Squash reconciliation without merge parent left PR CONFLICTING",
+      "whereItHappened": "cfeb626 publish before 0c689db merge parent",
+      "whyItWasWrong": "GitHub mergeability requires merge commit ancestry against main, not tree-only squash",
+      "correctFirstMove": "Record merge parent in same session after semantic reconciliation",
+      "preventiveControl": "gh pr view --json mergeable after every reconciliation push",
+      "seedTarget": "IH-OFFICE-ADMIN-PR-MERGE-WITHOUT-WORKFLOW-SCOPE-001",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "Main merge conflict resolution performed twice",
+      "firstKnownInstance": "Prior session git merge --abort after 26 conflicts",
+      "priorIndexSlice": "agent transcript 4597ed7a",
+      "whyRepeated": "Squash publish without merge parent required second merge pass",
+      "avoidableBy": "Dual-lane workflow publish + single merge-parent commit workflow",
+      "recommendedAction": "add_guard"
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "registryPath": "work-progress/harvest-packet-registry.json",
+    "hubSlicesConsulted": [
+      "BY-KIND/active-work-blockers.json",
+      "BY-KIND/thread-autopsy-index.json"
+    ],
+    "commandIndexConsulted": true,
+    "commandIndexPath": "work-progress/command-index.json",
+    "duplicatesFound": 0,
+    "note": "No prior harvest for office-admin-pr29-github-health; adjacent office-admin-ryzen9desk bootstrap packet is distinct scope"
+  },
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Workflow OAuth scope preflight for Office Admin CI missions",
+      "whyItPays": "Eliminates push rejection and enables git-native workflow registration",
+      "effort": "low",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "savedWasteIds": ["TW-001", "TW-004"],
+      "seedAs": "rule",
+      "suggestedWorkPackageId": "office-admin-github-workflow-oauth-preflight-v1"
+    },
+    {
+      "rank": 2,
+      "title": "Dual-lane workflow publish (git body + MCP workflow file)",
+      "whyItPays": "Unblocks reconciliation when workflow scope missing",
+      "effort": "medium",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "savedWasteIds": ["TW-001", "TW-002"],
+      "seedAs": "runbook",
+      "suggestedWorkPackageId": "office-admin-pr-merge-without-workflow-scope-v1"
+    },
+    {
+      "rank": 3,
+      "title": "Hosted windows-latest runner health check before CI closeout",
+      "whyItPays": "Separates code gate failure from GitHub infrastructure queue failure",
+      "effort": "low",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "savedWasteIds": ["TW-003"],
+      "seedAs": "command",
+      "suggestedWorkPackageId": "office-admin-windows-runner-health-v1"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "CAPITALGLASS-OFFICE-ADMIN GITHUB FULLY HEALTHY",
+      "currentStatus": "BLOCKED",
+      "doNotClaimUntil": [
+        "validate-code PASS on final HEAD SHA",
+        "validate-docs PASS on final HEAD SHA",
+        "push or pull_request workflow run exists for final SHA"
+      ],
+      "lastKnownEvidence": [
+        "TE-010",
+        "TE-011",
+        "TE-013",
+        "actions run 31127385888 runner not acquired"
+      ],
+      "proofCommandId": "office-admin-validate-code-dispatch-v1"
+    },
+    {
+      "awardOrVerdict": "PR #29 merged",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "Mission operator explicitly approves merge"
+      ],
+      "lastKnownEvidence": [
+        "TE-009",
+        "gh pr view 29 mergeable MERGEABLE unmerged"
+      ]
+    }
+  ]
+}

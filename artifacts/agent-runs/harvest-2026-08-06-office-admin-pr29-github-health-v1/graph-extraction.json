@@ -1,0 +1,830 @@
+{
+  "packetKind": "graph-extraction",
+  "schemaVersion": "cg-master-graph-extraction-v1",
+  "extractionId": "extraction:harvest-2026-08-06-office-admin-pr29-github-health-v1",
+  "harvestId": "harvest-2026-08-06-office-admin-pr29-github-health-v1",
+  "workPackageId": "harvest-2026-08-06-office-admin-pr29-github-health-v1",
+  "producer": {
+    "repositoryId": "repo:capitalglass-cross-agent",
+    "capability": "harvest-graph-extraction",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "id": "harvest:harvest-2026-08-06-office-admin-pr29-github-health-v1",
+      "nodeType": "Harvest",
+      "displayName": "harvest-2026-08-06-office-admin-pr29-github-health-v1",
+      "lifecycleState": "lifecycle:canonical",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+        "sourceCommitSha": "1e490a8bec1791d2eb367d69d3e44d0f905063db",
+        "retrievalResult": "INDEX_HIT_AI_CACHE"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:office-admin-pr29-reconcile-verdict-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "PR #29 main reconciliation complete — CI health still BLOCKED",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "PARTIAL",
+      "metadata": {
+        "packetVerdict": "MERGEABLE_PR_CI_BLOCKED",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "pointer-only",
+        "projectFile": "work-progress/projects/2026-08-06_office-admin-pr29-github-health-v1.md",
+        "advancementGate": "validate-code PASS + validate-docs PASS on final HEAD + push event proven"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-pr29-reconcile-verdict-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-pr29-reconcile-verdict-v1.json"
+        }
+      }
+    },
+    {
+      "id": "entity:blocker-blocker-office-admin-pr29-reconcile-verdict-v1",
+      "nodeType": "Entity",
+      "displayName": "blocker-office-admin-pr29-reconcile-verdict-v1",
+      "metadata": {
+        "entityKind": "harvest-blocker",
+        "blockerOwner": null
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-pr29-reconcile-verdict-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-pr29-reconcile-verdict-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:office-admin-github-ci-auto-trigger-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Push and pull_request workflows not firing on feature branch",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "OPEN",
+      "metadata": {
+        "packetVerdict": "UNPROVEN_AUTO_TRIGGER",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "pointer-only",
+        "projectFile": "work-progress/projects/2026-08-06_office-admin-pr29-github-health-v1.md",
+        "advancementGate": "gh api actions/runs?head_sha=<sha> total_count >= 1 with event push"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-github-ci-auto-trigger-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-github-ci-auto-trigger-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:office-admin-windows-runner-queue-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "windows-latest hosted runner acquisition failure in validate-code/docs",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "OPEN",
+      "metadata": {
+        "packetVerdict": "RUNNER_NOT_ACQUIRED",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "pointer-only",
+        "projectFile": "work-progress/projects/2026-08-06_office-admin-pr29-github-health-v1.md",
+        "advancementGate": "validate-code run conclusion success on final HEAD"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-windows-runner-queue-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-windows-runner-queue-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:office-admin-workflow-push-without-scope-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Attempted git push of merge commit containing workflow file without workflow OAuth scope",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "DOCUMENTED",
+      "metadata": {
+        "packetVerdict": "WM-001",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "pointer-only",
+        "projectFile": "work-progress/projects/2026-08-06_office-admin-pr29-github-health-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-workflow-push-without-scope-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-workflow-push-without-scope-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:office-admin-squash-without-merge-parent-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Squash reconciliation without merge parent left PR CONFLICTING",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "DOCUMENTED",
+      "metadata": {
+        "packetVerdict": "WM-002",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "pointer-only",
+        "projectFile": "work-progress/projects/2026-08-06_office-admin-pr29-github-health-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-squash-without-merge-parent-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-squash-without-merge-parent-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:office-admin-merge-attempt-twice-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Main merge conflict resolution performed twice — first aborted, second after squash",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "DOCUMENTED",
+      "metadata": {
+        "packetVerdict": "AVOIDABLE",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "pointer-only",
+        "projectFile": "work-progress/projects/2026-08-06_office-admin-pr29-github-health-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-merge-attempt-twice-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-merge-attempt-twice-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:office-admin-mcp-config-union-after-main-merge-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Union feature allowedReadRoots immediately after taking main MCP config",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "PROVEN",
+      "metadata": {
+        "packetVerdict": "OPTIMAL_PATH_USED",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "pointer-only",
+        "projectFile": "work-progress/projects/2026-08-06_office-admin-pr29-github-health-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-mcp-config-union-after-main-merge-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-mcp-config-union-after-main-merge-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:office-admin-deploy-gate-ci-smoke-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "npm run deploy:gate with CI smoke actor env",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RECORDED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "pointer-only",
+        "projectFile": "work-progress/projects/2026-08-06_office-admin-pr29-github-health-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-deploy-gate-ci-smoke-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-deploy-gate-ci-smoke-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:office-admin-push-trigger-count-command-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Count workflow runs per HEAD SHA — proves auto-trigger",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RECORDED",
+      "metadata": {
+        "packetVerdict": "DIAGNOSTIC",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "pointer-only",
+        "projectFile": "work-progress/projects/2026-08-06_office-admin-pr29-github-health-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-push-trigger-count-command-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-push-trigger-count-command-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:office-admin-pr29-mergeable-evidence-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "PR #29 MERGEABLE/CLEAN after merge parent",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "FROZEN",
+      "metadata": {
+        "packetVerdict": "AUTHORITATIVE",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "pointer-only",
+        "projectFile": "work-progress/projects/2026-08-06_office-admin-pr29-github-health-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-pr29-mergeable-evidence-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-pr29-mergeable-evidence-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:office-admin-github-health-closeout-guards-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Office Admin GitHub health mission — GO gate checklist",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "CANDIDATE",
+      "metadata": {
+        "packetVerdict": "POLICY_GATED",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "pointer-only",
+        "projectFile": "work-progress/projects/2026-08-06_office-admin-pr29-github-health-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-github-health-closeout-guards-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-github-health-closeout-guards-v1.json"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:harvest-harvest-2026-08-06-office-admin-pr29-github-health-v1-contains-workpackage-office-admin-pr29-reconcile-verdict-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-office-admin-pr29-github-health-v1",
+      "targetId": "workpackage:office-admin-pr29-reconcile-verdict-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-office-admin-pr29-reconcile-verdict-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:office-admin-pr29-reconcile-verdict-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-pr29-reconcile-verdict-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-pr29-reconcile-verdict-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-office-admin-pr29-reconcile-verdict-v1-blocked-by-entity-blocker-blocker-office-admin-pr29-reconcile-verdict-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:office-admin-pr29-reconcile-verdict-v1",
+      "targetId": "entity:blocker-blocker-office-admin-pr29-reconcile-verdict-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-pr29-reconcile-verdict-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-pr29-reconcile-verdict-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-office-admin-pr29-reconcile-verdict-v1-blocked-by-entity-blocker-blocker-office-admin-pr29-reconcile-verdict-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:office-admin-pr29-reconcile-verdict-v1",
+      "targetId": "entity:blocker-blocker-office-admin-pr29-reconcile-verdict-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-pr29-reconcile-verdict-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-pr29-reconcile-verdict-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-06-office-admin-pr29-github-health-v1-contains-workpackage-office-admin-github-ci-auto-trigger-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-office-admin-pr29-github-health-v1",
+      "targetId": "workpackage:office-admin-github-ci-auto-trigger-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-office-admin-github-ci-auto-trigger-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:office-admin-github-ci-auto-trigger-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-github-ci-auto-trigger-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-github-ci-auto-trigger-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-06-office-admin-pr29-github-health-v1-contains-workpackage-office-admin-windows-runner-queue-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-office-admin-pr29-github-health-v1",
+      "targetId": "workpackage:office-admin-windows-runner-queue-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-office-admin-windows-runner-queue-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:office-admin-windows-runner-queue-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-windows-runner-queue-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-windows-runner-queue-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-06-office-admin-pr29-github-health-v1-contains-workpackage-office-admin-workflow-push-without-scope-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-office-admin-pr29-github-health-v1",
+      "targetId": "workpackage:office-admin-workflow-push-without-scope-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-office-admin-workflow-push-without-scope-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:office-admin-workflow-push-without-scope-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-workflow-push-without-scope-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-workflow-push-without-scope-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-06-office-admin-pr29-github-health-v1-contains-workpackage-office-admin-squash-without-merge-parent-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-office-admin-pr29-github-health-v1",
+      "targetId": "workpackage:office-admin-squash-without-merge-parent-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-office-admin-squash-without-merge-parent-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:office-admin-squash-without-merge-parent-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-squash-without-merge-parent-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-squash-without-merge-parent-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-06-office-admin-pr29-github-health-v1-contains-workpackage-office-admin-merge-attempt-twice-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-office-admin-pr29-github-health-v1",
+      "targetId": "workpackage:office-admin-merge-attempt-twice-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-office-admin-merge-attempt-twice-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:office-admin-merge-attempt-twice-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-merge-attempt-twice-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-merge-attempt-twice-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-06-office-admin-pr29-github-health-v1-contains-workpackage-office-admin-mcp-config-union-after-main-merge-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-office-admin-pr29-github-health-v1",
+      "targetId": "workpackage:office-admin-mcp-config-union-after-main-merge-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-office-admin-mcp-config-union-after-main-merge-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:office-admin-mcp-config-union-after-main-merge-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-mcp-config-union-after-main-merge-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-mcp-config-union-after-main-merge-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-06-office-admin-pr29-github-health-v1-contains-workpackage-office-admin-deploy-gate-ci-smoke-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-office-admin-pr29-github-health-v1",
+      "targetId": "workpackage:office-admin-deploy-gate-ci-smoke-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-office-admin-deploy-gate-ci-smoke-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:office-admin-deploy-gate-ci-smoke-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-deploy-gate-ci-smoke-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-deploy-gate-ci-smoke-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-06-office-admin-pr29-github-health-v1-contains-workpackage-office-admin-push-trigger-count-command-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-office-admin-pr29-github-health-v1",
+      "targetId": "workpackage:office-admin-push-trigger-count-command-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-office-admin-push-trigger-count-command-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:office-admin-push-trigger-count-command-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-push-trigger-count-command-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-push-trigger-count-command-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-06-office-admin-pr29-github-health-v1-contains-workpackage-office-admin-pr29-mergeable-evidence-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-office-admin-pr29-github-health-v1",
+      "targetId": "workpackage:office-admin-pr29-mergeable-evidence-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-office-admin-pr29-mergeable-evidence-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:office-admin-pr29-mergeable-evidence-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-pr29-mergeable-evidence-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-pr29-mergeable-evidence-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-06-office-admin-pr29-github-health-v1-contains-workpackage-office-admin-github-health-closeout-guards-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-office-admin-pr29-github-health-v1",
+      "targetId": "workpackage:office-admin-github-health-closeout-guards-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-office-admin-github-health-closeout-guards-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:office-admin-github-health-closeout-guards-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T22:55:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-github-health-closeout-guards-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/compact-records/office-admin-github-health-closeout-guards-v1.json"
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "provenance": {
+    "producerRepositoryId": "repo:capitalglass-cross-agent",
+    "producerCapability": "harvest-graph-extraction",
+    "sourceAuthority": "authority:cross-agent-harvest",
+    "classification": "observed",
+    "verificationState": "verified",
+    "recordedAt": "2026-08-06T22:55:00.000Z",
+    "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/harvest-manifest-v1.json",
+    "sourceAnchorDetail": {
+      "anchorType": "file-path",
+      "locator": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/harvest-manifest-v1.json"
+    }
+  }
+}

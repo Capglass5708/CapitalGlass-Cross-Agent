@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-office-admin-pr29-github-health-v1",
+  "packetId": "office-admin-windows-runner-queue-v1",
+  "state": "OPEN",
+  "packetVerdict": "RUNNER_NOT_ACQUIRED",
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "ownerIndexingStatus": "pointer-only",
+  "nextAction": "Check GitHub Actions billing/runner availability; re-dispatch after pool healthy",
+  "evidenceRefs": [
+    "TE-011",
+    "actions run 31127385888",
+    "31128870278 queued"
+  ],
+  "doNotAdvance": [
+    "Claim validate-code PASS while job queued 15m+ with empty runner_name"
+  ],
+  "advancementGate": "validate-code run conclusion success on final HEAD",
+  "contentHash": "bd43e0fbaa955f5198f25fbec30bfd0eef24839ec4a63bba81fa3fce8ea37e5d"
+}

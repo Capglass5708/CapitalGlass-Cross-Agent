@@ -1,0 +1,62 @@
+{
+  "schema": "harvest-protocol-self-learning-input-v1@1.0.0",
+  "harvestId": "harvest-protocol-self-learning-fixture-v1",
+  "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceProtocolVersion": "1.0.0",
+  "sourceProtocolHash": "fixture-protocol-hash",
+  "sourceReceipt": "artifacts/agent-runs/harvest-protocol-self-learning-fixture-v1/validation-result.json",
+  "observedAt": "2026-08-06T00:00:00.000Z",
+  "protocolImprovementCandidates": [
+    {
+      "candidateId": "HPC-001-validator",
+      "category": "HARVEST_VALIDATOR",
+      "title": "Require protocol-self-learning export only after harvest:validate PASS",
+      "protocolProblem": "Protocol self-learning export could run before validation",
+      "currentProtocolBehavior": "Export may be attempted without validation receipt",
+      "desiredProtocolBehavior": "Export blocked unless validation-result.json verdict is PASS",
+      "proposedProtocolChange": "Enforce validation gate in export-protocol-self-learning",
+      "targetProtocolFiles": [
+        "scripts/harvest/lib/protocol-self-learning-export-lib.mjs"
+      ],
+      "targetSchemas": [],
+      "targetValidators": [
+        "scripts/harvest/validate-harvest.mjs"
+      ],
+      "targetCommands": [
+        "npm run harvest:validate",
+        "npm run harvest:export:protocol-self-learning"
+      ],
+      "evidenceRefs": [
+        "EVT-HARVEST-PROTOCOL-001"
+      ],
+      "crossCheckCommands": [],
+      "risk": "UNKNOWN",
+      "confidence": "LOW",
+      "authorityStatus": "PROPOSAL",
+      "reviewStatus": "PENDING",
+      "automaticImplementationEligible": false,
+      "requiredGates": [
+        "harvest:validate",
+        "test:harvest"
+      ],
+      "rollbackPlan": "Revert feature branch; preserve L package hash"
+    }
+  ],
+  "evidence": [],
+  "crossCheckCommands": [
+    "npm run harvest:validate -- harvest-protocol-self-learning-fixture-v1",
+    "npm run harvest:export:protocol-self-learning -- --harvest-id=harvest-protocol-self-learning-fixture-v1 --json"
+  ],
+  "invalidationTriggers": [
+    "harvest_manifest_hash_changes",
+    "validation_receipt_missing",
+    "governance_rejection"
+  ],
+  "authority": {
+    "sourceOwner": "CapitalGlass-Cross-Agent",
+    "processingOwner": "Data-Extraction",
+    "approvalOwner": "CG-Platform-Governance-MCP",
+    "catalogRole": "RETRIEVAL_ONLY"
+  },
+  "contentHash": "sha256:bde4226da77ea32b4659f1a580b514095aaa80e2ae36f10d3e705c3f75412378"
+}

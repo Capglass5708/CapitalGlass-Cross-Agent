@@ -1,0 +1,193 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-office-admin-pr29-github-health-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-OFFICE-ADMIN-GITHUB-WORKFLOW-OAUTH-SCOPE-001",
+      "questionId": "IHOFFICEADMI",
+      "canonicalQuestion": "Why does git push reject validate-code.yml on CapitalGlass-Office-Admin?",
+      "alternateQuestions": [
+        "What gh auth scopes are required to push GitHub Actions workflow files?",
+        "How to publish workflow fixes when workflow scope is missing?"
+      ],
+      "shortAnswer": "Git push rejecting .github/workflows changes without workflow scope; use MCP push_files or refresh gh auth before workflow edits.",
+      "detailedAnswer": "Office Admin CI missions require gh workflow OAuth scope",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-06T23:29:10.282Z",
+      "authorityRepo": "CapitalGlass-Office-Admin",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/seed-packets/IH-OFFICE-ADMIN-GITHUB-WORKFLOW-OAUTH-SCOPE-001.json"
+      ],
+      "authorityCommit": [
+        "5765201"
+      ],
+      "evidenceUrls": [
+        "TE-006",
+        "TE-012",
+        "gh auth status scopes gist read:org repo"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-06-office-admin-pr29-github-health-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Office-Admin"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Any Office Admin mission touching .github/workflows or CI auto-trigger repair",
+        "startAt": [
+          "work-progress/command-index.json",
+          "BY-KIND/thread-autopsy-index.json"
+        ],
+        "runPreflight": [
+          "gh auth status -h github.com",
+          "gh auth refresh -h github.com -s workflow"
+        ],
+        "doNot": [
+          "Assume git push will register workflow triggers after MCP-only workflow commits",
+          "Retry identical git push without workflow scope"
+        ],
+        "proveBeforeClaiming": [
+          "gh auth status lists workflow scope",
+          "Push of workflow file succeeds or MCP push_files receipt SHA recorded"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-OFFICE-ADMIN-PR-MERGE-WITHOUT-WORKFLOW-SCOPE-001",
+      "questionId": "IHOFFICEADMI",
+      "canonicalQuestion": "How to reconcile a conflicting PR when git push blocks workflow files?",
+      "alternateQuestions": [
+        "Why does squash reconciliation leave PR CONFLICTING?",
+        "What is the dual-lane workflow publish pattern for Office Admin?"
+      ],
+      "shortAnswer": "Merge main semantically, push body without workflow delta, then MCP-publish workflow file; record merge parent for GitHub mergeability.",
+      "detailedAnswer": "Reconcile conflicted PR when workflow OAuth scope is missing",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-06T23:29:10.283Z",
+      "authorityRepo": "CapitalGlass-Office-Admin",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/seed-packets/IH-OFFICE-ADMIN-PR-MERGE-WITHOUT-WORKFLOW-SCOPE-001.json"
+      ],
+      "authorityCommit": [
+        "5765201"
+      ],
+      "evidenceUrls": [
+        "cfeb626",
+        "0c689db",
+        "1534a4e",
+        "TE-007",
+        "TE-008",
+        "TE-009"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-06-office-admin-pr29-github-health-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Office-Admin"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "PR mergeable CONFLICTING with workflow file changes needed and gh lacks workflow scope",
+        "startAt": [
+          "gh pr view <n> --json mergeable,mergeStateStatus",
+          "mcp/office-admin-mcp.config.json"
+        ],
+        "runPreflight": [
+          "npm run deploy:gate with CI smoke actor env",
+          "git merge origin/main"
+        ],
+        "doNot": [
+          "Force push",
+          "Merge PR when mission says keep unmerged",
+          "Skip merge parent commit — GitHub needs two-parent merge for CLEAN state"
+        ],
+        "proveBeforeClaiming": [
+          "gh pr view shows mergeable MERGEABLE",
+          "git rev-list --left-right --count origin/<branch>...HEAD is 0/0"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "runbook"
+    },
+    {
+      "ihPfspId": "IH-OFFICE-ADMIN-WINDOWS-LATEST-RUNNER-QUEUE-001",
+      "questionId": "IHOFFICEADMI",
+      "canonicalQuestion": "Why is validate-code stuck queued on CapitalGlass-Office-Admin?",
+      "alternateQuestions": [
+        "What does 'job was not acquired by Runner of type hosted' mean?",
+        "How to prove validate-code failure is infrastructure not deploy:gate?"
+      ],
+      "shortAnswer": "GitHub Actions jobs on windows-latest can queue 15m+ then fail with hosted runner acquisition error; distinguish from code gate failure.",
+      "detailedAnswer": "validate-code queued forever — windows-latest runner not acquired",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-06T23:29:10.283Z",
+      "authorityRepo": "CapitalGlass-Office-Admin",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/seed-packets/IH-OFFICE-ADMIN-WINDOWS-LATEST-RUNNER-QUEUE-001.json"
+      ],
+      "authorityCommit": [
+        "5765201"
+      ],
+      "evidenceUrls": [
+        "actions run 31127385888",
+        "TE-011",
+        "local deploy:gate PASS on 62e5f28 tree"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-06-office-admin-pr29-github-health-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Office-Admin"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "validate-code or validate-docs workflow_dispatch queued >5 minutes",
+        "startAt": [
+          "gh run view <run-id> --json status,jobs",
+          "gh api repos/.../actions/jobs/<job-id>"
+        ],
+        "runPreflight": [
+          "npm run deploy:gate locally with CI smoke env first"
+        ],
+        "doNot": [
+          "Claim GO from local deploy:gate alone when mission requires GitHub PASS",
+          "Cancel and re-dispatch endlessly without checking runner pool/billing"
+        ],
+        "proveBeforeClaiming": [
+          "gh run shows conclusion success on final HEAD SHA",
+          "Job runner_name populated (not empty while queued 15m+)"
+        ]
+      },
+      "promotionClass": "HUMAN_REVIEW",
+      "kind": "failure-pattern"
+    }
+  ]
+}

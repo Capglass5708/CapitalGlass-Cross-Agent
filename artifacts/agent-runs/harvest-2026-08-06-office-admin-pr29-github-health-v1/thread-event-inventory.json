@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-office-admin-pr29-github-health-v1",
+  "threadScope": "CapitalGlass-Office-Admin PR #29 main reconciliation, CI auto-trigger repair, and GitHub health milestone closeout",
+  "generatedAt": "2026-08-06T22:55:00.000Z",
+  "events": [
+    {
+      "eventId": "TE-001",
+      "phase": "operator",
+      "summary": "Mission capitalglass-office-admin-fully-healthy-github-v1 wave office-admin-pr29-main-reconcile-and-ci-auto-trigger-v1",
+      "evidenceRefs": ["user mission prompt — 16 GO criteria including mergeable PR #29 unmerged"]
+    },
+    {
+      "eventId": "TE-002",
+      "phase": "baseline",
+      "summary": "Baseline: PR #29 CONFLICTING/DIRTY, ~26 conflicts vs main, validate-docs PASS on 1b23aed, validate-code unproven, push triggers absent",
+      "evidenceRefs": [
+        "gh pr view 29 mergeable CONFLICTING",
+        "actions run 31127714801 validate-docs success on 1b23aed"
+      ]
+    },
+    {
+      "eventId": "TE-003",
+      "phase": "implementation",
+      "summary": "git merge origin/main — 27 content conflicts across bible, endpoints, MCP config, tools.ts, indexes",
+      "evidenceRefs": ["git diff --name-only --diff-filter=U — 27 files"]
+    },
+    {
+      "eventId": "TE-004",
+      "phase": "implementation",
+      "summary": "Semantic conflict resolution: CG-MACHINE-1 rename, Fred/WesleyDesk personalization, union package.json scripts, MCP allowedReadRoots merge",
+      "evidenceRefs": ["cfeb626", "mcp/office-admin-mcp.config.json union to 62 roots"]
+    },
+    {
+      "eventId": "TE-005",
+      "phase": "verification",
+      "summary": "Local deploy:gate PASS after MCP smoke failures fixed via allowedReadRoots union",
+      "evidenceRefs": ["npm run deploy:gate exit 0 on reconciled tree"]
+    },
+    {
+      "eventId": "TE-006",
+      "phase": "implementation",
+      "summary": "First merge commit push rejected — OAuth App lacks workflow scope for validate-code.yml",
+      "evidenceRefs": ["git push remote rejected workflow scope message"]
+    },
+    {
+      "eventId": "TE-007",
+      "phase": "implementation",
+      "summary": "Soft-reset publish strategy: single reconciliation commit cfeb626 without workflow file delta; push succeeded",
+      "evidenceRefs": ["cfeb626..origin parity 0/0"]
+    },
+    {
+      "eventId": "TE-008",
+      "phase": "implementation",
+      "summary": "Recorded merge parent 0c689db; workflow governance prep 1534a4e via GitHub MCP push_files",
+      "evidenceRefs": ["0c689db merge(main)", "1534a4e MCP commit"]
+    },
+    {
+      "eventId": "TE-009",
+      "phase": "verification",
+      "summary": "PR #29 became MERGEABLE/CLEAN after merge parent recorded",
+      "evidenceRefs": ["gh pr view 29 mergeStateStatus CLEAN mergeable MERGEABLE"]
+    },
+    {
+      "eventId": "TE-010",
+      "phase": "verification",
+      "summary": "Push and pull_request auto-triggers produced zero runs for cfeb626, 0c689db, 1534a4e, 62e5f28 despite path-filter matches",
+      "evidenceRefs": [
+        "gh api actions/runs head_sha=cfeb626 total_count=0",
+        "last push event 97a7a01"
+      ]
+    },
+    {
+      "eventId": "TE-011",
+      "phase": "verification",
+      "summary": "workflow_dispatch runs queued 15m+ then failed runner acquisition on windows-latest",
+      "evidenceRefs": [
+        "actions run 31127385888 annotation: job was not acquired by Runner of type hosted"
+      ]
+    },
+    {
+      "eventId": "TE-012",
+      "phase": "operator",
+      "summary": "gh auth refresh -s workflow device login timed out — workflow scope still missing",
+      "evidenceRefs": ["gh auth status scopes: gist, read:org, repo only"]
+    },
+    {
+      "eventId": "TE-013",
+      "phase": "closeout",
+      "summary": "Milestone verdict BLOCKED — merge done, CI auto-trigger and validate-code PASS on final HEAD not proven",
+      "evidenceRefs": ["FINAL VERDICT BLOCKED closeout in thread"]
+    }
+  ]
+}

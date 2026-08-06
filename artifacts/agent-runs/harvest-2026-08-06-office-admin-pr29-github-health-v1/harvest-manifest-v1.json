@@ -1,0 +1,459 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-office-admin-pr29-github-health-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "1e490a8bec1791d2eb367d69d3e44d0f905063db",
+  "sourceBranch": "feat/harvest-protocol-self-learning-only-v1",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-06T22:55:00.000Z",
+  "updatedAt": "2026-08-06T22:55:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "Claim CAPITALGLASS-OFFICE-ADMIN GITHUB FULLY HEALTHY without validate-code and validate-docs PASS on final HEAD",
+    "Claim automatic push/pull_request CI triggers proven when head_sha workflow run count is zero",
+    "Merge PR #29 when mission requires it remain open",
+    "Treat local deploy:gate PASS as substitute for GitHub validate-code PASS when GO criteria require both",
+    "Run index:publish or harvest:publish-hub-seed from Cursor"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-06-office-admin-pr29-github-health-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 5,
+      "seeds": 3,
+      "roiItems": 3,
+      "operatorFriction": 2,
+      "executionDeltas": 2
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Operator runs harvest:publish-hub-seed + index:publish — NOT_RUN_BY_CURSOR",
+    "note": "Git harvest record only"
+  },
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "1.0.0",
+    "sourceProtocolHash": "7c7de722891ac79ae0dd0365a152283b4d693d919abd5505214a23db4971382b"
+  },
+  "protocolImprovementCandidates": [
+    {
+      "candidateId": "HPC-OA-PUBLICATION-TRUTH-001",
+      "category": "PUBLICATION_TRUTH",
+      "title": "Block HARVEST_COMPLETE when hub publish truth is not-run without explicit operator deferral receipt",
+      "protocolProblem": "This harvest records projection.hubPublishStatus not-run while overallHarvestVerdict is HARVEST_COMPLETE",
+      "currentProtocolBehavior": "validate-harvest allows PASS when hub publish was not executed and only a manifest note defers it",
+      "desiredProtocolBehavior": "Publication-truth validator requires either hubPublishStatus published or a publication-deferral receipt with operator attestation",
+      "proposedProtocolChange": "Add publication-truth gate to harvest:validate and require publication-deferral packet when hub publish is deferred",
+      "targetProtocolFiles": [
+        "scripts/harvest/validate-harvest.mjs",
+        "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"
+      ],
+      "targetValidators": [
+        "scripts/harvest/validate-harvest.mjs"
+      ],
+      "targetCommands": [
+        "npm run harvest:validate",
+        "npm run harvest:publish-hub-seed"
+      ],
+      "evidenceRefs": [
+        "EVT-OA-PROJECTION-NOT-RUN",
+        "TE-013"
+      ],
+      "risk": "MEDIUM",
+      "confidence": "HIGH",
+      "authorityStatus": "PROPOSAL",
+      "reviewStatus": "PENDING",
+      "automaticImplementationEligible": false
+    },
+    {
+      "candidateId": "HPC-OA-PROMPTOPS-BOUNDARY-001",
+      "category": "PROMPTOPS_PROMOTION_BOUNDARY",
+      "title": "Require explicit promotion boundary when prompt harvest finds candidates but approves zero",
+      "protocolProblem": "promptHarvest reports 12 candidates with approved 0 and indexUpdated false without a promotion-boundary receipt",
+      "currentProtocolBehavior": "Prompt extraction can complete with PROMPT_HARVEST_PENDING_REVIEW only in manifest summary",
+      "desiredProtocolBehavior": "PromptOps promotion-boundary packet required before closeout when candidatesFound > 0 and approved === 0",
+      "proposedProtocolChange": "Extend prompt-extraction closeout to emit prompt-promotion-boundary receipt and block protocol-self-learning export until present",
+      "targetProtocolFiles": [
+        "scripts/harvest/lib/prompt-extraction-lib.mjs"
+      ],
+      "targetValidators": [
+        "scripts/harvest/validate-thread-autopsy-cli.mjs"
+      ],
+      "targetCommands": [
+        "npm run harvest:extract-prompts",
+        "npm run harvest:validate-autopsy"
+      ],
+      "evidenceRefs": [
+        "EVT-OA-PROMPT-PENDING",
+        "prompt-candidate-cb144c9980b8"
+      ],
+      "risk": "LOW",
+      "confidence": "HIGH",
+      "authorityStatus": "PROPOSAL",
+      "reviewStatus": "PENDING",
+      "automaticImplementationEligible": false
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerPath": "work-progress/ACTIVE_WORK.md",
+    "ledgerContentHashBefore": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096",
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096",
+    "note": "Coordination harvest — ledger update deferred to operator if promotion warranted"
+  },
+  "packets": [
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "packetKind": "decision",
+      "packetId": "office-admin-pr29-reconcile-verdict-v1",
+      "packetTitle": "PR #29 main reconciliation complete — CI health still BLOCKED",
+      "state": "PARTIAL",
+      "packetVerdict": "MERGEABLE_PR_CI_BLOCKED",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerMcp": "user-office-admin-mcp",
+      "evidenceRefs": [
+        "TE-009",
+        "TE-013",
+        "62e5f28",
+        "0c689db"
+      ],
+      "decision": "All merge conflicts resolved; PR #29 MERGEABLE/CLEAN; GitHub CI auto-trigger and validate-code PASS on final HEAD not proven",
+      "alternativesRejected": [
+        "Force push to rewrite history",
+        "Merge PR #29 to clear conflicts",
+        "Declare GO from local deploy:gate only"
+      ],
+      "nextAction": "Operator grants workflow scope, fixes runner pool, re-dispatches CI on 62e5f28",
+      "advancementGate": "validate-code PASS + validate-docs PASS on final HEAD + push event proven",
+      "doNotAdvance": [
+        "Claim fully healthy until GO criteria met"
+      ],
+      "projectFile": "work-progress/projects/2026-08-06_office-admin-pr29-github-health-v1.md",
+      "ownerIndexingStatus": "pointer-only",
+      "commitRefs": [
+        "cfeb626",
+        "0c689db",
+        "1534a4e",
+        "62e5f28"
+      ],
+      "blockers": [
+        "office-admin-github-ci-auto-trigger-v1",
+        "office-admin-windows-runner-queue-v1"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "packetKind": "blocker",
+      "packetId": "office-admin-github-ci-auto-trigger-v1",
+      "packetTitle": "Push and pull_request workflows not firing on feature branch",
+      "state": "OPEN",
+      "packetVerdict": "UNPROVEN_AUTO_TRIGGER",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerMcp": "user-office-admin-mcp",
+      "blockerId": "office-admin-github-ci-auto-trigger",
+      "status": "OPEN",
+      "proofCommandId": "office-admin-push-trigger-count-command-v1",
+      "evidenceRefs": [
+        "TE-010",
+        "head_sha cfeb626 total_count=0",
+        "last push event 97a7a01"
+      ],
+      "nextAction": "After workflow scope granted, push path-filtered commit and verify event:push run created",
+      "advancementGate": "gh api actions/runs?head_sha=<sha> total_count >= 1 with event push",
+      "doNotAdvance": [
+        "Assume workflow_dispatch success proves auto-trigger"
+      ],
+      "projectFile": "work-progress/projects/2026-08-06_office-admin-pr29-github-health-v1.md",
+      "ownerIndexingStatus": "pointer-only",
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "packetKind": "blocker",
+      "packetId": "office-admin-windows-runner-queue-v1",
+      "packetTitle": "windows-latest hosted runner acquisition failure in validate-code/docs",
+      "state": "OPEN",
+      "packetVerdict": "RUNNER_NOT_ACQUIRED",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerMcp": "user-office-admin-mcp",
+      "blockerId": "office-admin-windows-runner-queue",
+      "status": "OPEN",
+      "proofCommandId": "office-admin-validate-code-dispatch-v1",
+      "evidenceRefs": [
+        "TE-011",
+        "actions run 31127385888",
+        "31128870278 queued"
+      ],
+      "nextAction": "Check GitHub Actions billing/runner availability; re-dispatch after pool healthy",
+      "advancementGate": "validate-code run conclusion success on final HEAD",
+      "doNotAdvance": [
+        "Claim validate-code PASS while job queued 15m+ with empty runner_name"
+      ],
+      "projectFile": "work-progress/projects/2026-08-06_office-admin-pr29-github-health-v1.md",
+      "ownerIndexingStatus": "pointer-only",
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "packetKind": "mistake",
+      "packetId": "office-admin-workflow-push-without-scope-v1",
+      "packetTitle": "Attempted git push of merge commit containing workflow file without workflow OAuth scope",
+      "state": "DOCUMENTED",
+      "packetVerdict": "WM-001",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "wrongMoveId": "WM-001",
+      "actualExecution": "Merged main with auto-merged validate-code.yml; git push rejected by OAuth App workflow scope gate",
+      "optimalExecution": "Preflight gh auth status for workflow scope; exclude workflow file from git push; MCP push_files for workflow delta",
+      "preventiveControl": "gh auth refresh -s workflow at CI mission start",
+      "evidenceRefs": [
+        "TE-006",
+        "WM-001",
+        "IH-OFFICE-ADMIN-GITHUB-WORKFLOW-OAUTH-SCOPE-001"
+      ],
+      "nextAction": "Operator completes device auth for workflow scope",
+      "projectFile": "work-progress/projects/2026-08-06_office-admin-pr29-github-health-v1.md",
+      "ownerIndexingStatus": "pointer-only",
+      "commitRefs": [],
+      "blockers": [],
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "packetKind": "mistake",
+      "packetId": "office-admin-squash-without-merge-parent-v1",
+      "packetTitle": "Squash reconciliation without merge parent left PR CONFLICTING",
+      "state": "DOCUMENTED",
+      "packetVerdict": "WM-002",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "wrongMoveId": "WM-002",
+      "actualExecution": "Soft-reset single commit cfeb626 on top of 1b23aed — tree reconciled but GitHub still showed CONFLICTING",
+      "optimalExecution": "Record merge parent commit merging origin/main in same session after semantic reconciliation",
+      "preventiveControl": "Verify gh pr view mergeable after every reconciliation push",
+      "evidenceRefs": [
+        "TE-007",
+        "TE-008",
+        "TE-009"
+      ],
+      "nextAction": "None — corrected in thread",
+      "projectFile": "work-progress/projects/2026-08-06_office-admin-pr29-github-health-v1.md",
+      "ownerIndexingStatus": "pointer-only",
+      "commitRefs": [],
+      "blockers": [],
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "packetKind": "repeated_work",
+      "packetId": "office-admin-merge-attempt-twice-v1",
+      "packetTitle": "Main merge conflict resolution performed twice — first aborted, second after squash",
+      "state": "DOCUMENTED",
+      "packetVerdict": "AVOIDABLE",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "duplicateId": "DW-001",
+      "firstKnownInstance": "Prior session git merge --abort after 26 conflicts",
+      "priorIndexSlice": "conversation transcript 4597ed7a",
+      "whyMissed": "Squash publish without merge parent required second merge pass",
+      "evidenceRefs": [
+        "TE-003",
+        "TE-007",
+        "TE-008",
+        "WM-002"
+      ],
+      "nextAction": "Use single merge-with-parent workflow when workflow scope constrained",
+      "projectFile": "work-progress/projects/2026-08-06_office-admin-pr29-github-health-v1.md",
+      "ownerIndexingStatus": "pointer-only",
+      "commitRefs": [],
+      "blockers": [],
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "packetKind": "faster_path",
+      "packetId": "office-admin-mcp-config-union-after-main-merge-v1",
+      "packetTitle": "Union feature allowedReadRoots immediately after taking main MCP config",
+      "state": "PROVEN",
+      "packetVerdict": "OPTIMAL_PATH_USED",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "situation": "deploy:gate mcp:smoke failed after merge took main office-admin-mcp.config.json",
+      "whatHappened": "Smoke failed for fred-wsl, screensaver, infrastructure tools until allowedReadRoots unioned from feature branch",
+      "rightFirstMove": "After checkout --theirs on mcp config, union feature-only knowledge-index paths before deploy:gate",
+      "requiredGuard": "Run mcp:smoke before full deploy:gate after any MCP config merge",
+      "evidenceRefs": [
+        "TE-004",
+        "TE-005",
+        "TW-005"
+      ],
+      "nextAction": "Bake union step into merge playbook for Office Admin MCP config conflicts",
+      "projectFile": "work-progress/projects/2026-08-06_office-admin-pr29-github-health-v1.md",
+      "ownerIndexingStatus": "pointer-only",
+      "commitRefs": [],
+      "blockers": [],
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "packetKind": "command",
+      "packetId": "office-admin-deploy-gate-ci-smoke-v1",
+      "packetTitle": "npm run deploy:gate with CI smoke actor env",
+      "state": "RECORDED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "command": "CI=true OFFICE_ADMIN_OPS_ALLOW_ANY_MACHINE=1 OFFICE_ADMIN_RUNNER_TEST_ACTOR_ADAPTER=1 OFFICE_ADMIN_TEST_ACTOR_JSON='{\"username\":\"ci-smoke-runner\",\"domain\":\"TEST\",\"sid\":\"S-1-5-21-1001\",\"machineName\":\"CG-WESLEYWORK-01\",\"processId\":3000,\"elevated\":true}' npm run deploy:gate",
+      "host": "WSL2 ext4 mutation repo",
+      "provesGate": "Office Admin code/docs/index contract parity with validate-code deploy-gate step",
+      "expectedPassSignal": "deploy:gate exit 0; mcp:smoke SMOKE PASS; office-admin:validate-agent-knowledge PASS",
+      "evidenceRefs": [
+        "TE-005",
+        "validate-code.yml deploy-gate step env block"
+      ],
+      "nextAction": "Run on every material Office Admin reconciliation before push",
+      "doNotAdvance": [
+        "Substitute for GitHub validate-code when GO requires remote PASS"
+      ],
+      "projectFile": "work-progress/projects/2026-08-06_office-admin-pr29-github-health-v1.md",
+      "ownerIndexingStatus": "pointer-only",
+      "commitRefs": [
+        "cfeb626",
+        "0c689db"
+      ],
+      "blockers": [],
+      "advancementGate": "not-required"
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "packetKind": "command",
+      "packetId": "office-admin-push-trigger-count-command-v1",
+      "packetTitle": "Count workflow runs per HEAD SHA — proves auto-trigger",
+      "state": "RECORDED",
+      "packetVerdict": "DIAGNOSTIC",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "command": "gh api repos/Capglass5708/CapitalGlass-Office-Admin/actions/runs?head_sha=<sha> --jq '.total_count'",
+      "host": "WSL2 with gh auth",
+      "provesGate": "Push or pull_request event created workflow runs for commit",
+      "expectedPassSignal": "total_count >= 1 with event push or pull_request in run list",
+      "evidenceRefs": [
+        "TE-010",
+        "cfeb626 total_count=0"
+      ],
+      "nextAction": "Run after every push during CI health missions",
+      "projectFile": "work-progress/projects/2026-08-06_office-admin-pr29-github-health-v1.md",
+      "ownerIndexingStatus": "pointer-only",
+      "commitRefs": [],
+      "blockers": [],
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "packetKind": "evidence",
+      "packetId": "office-admin-pr29-mergeable-evidence-v1",
+      "packetTitle": "PR #29 MERGEABLE/CLEAN after merge parent",
+      "state": "FROZEN",
+      "packetVerdict": "AUTHORITATIVE",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "type": "github-pr-state",
+      "pathOrSha": "https://github.com/Capglass5708/CapitalGlass-Office-Admin/pull/29 @ 0c689db/62e5f28",
+      "provesWhat": "All merge conflicts resolved; PR ready but unmerged per mission",
+      "evidenceRefs": [
+        "TE-009",
+        "gh pr view 29 mergeable MERGEABLE"
+      ],
+      "nextAction": "Re-verify before merge when operator approves",
+      "projectFile": "work-progress/projects/2026-08-06_office-admin-pr29-github-health-v1.md",
+      "ownerIndexingStatus": "pointer-only",
+      "commitRefs": [
+        "0c689db"
+      ],
+      "blockers": [],
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "packetKind": "protocol_upgrade",
+      "packetId": "office-admin-github-health-closeout-guards-v1",
+      "packetTitle": "Office Admin GitHub health mission — GO gate checklist",
+      "state": "CANDIDATE",
+      "packetVerdict": "POLICY_GATED",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "seedAs": "IH-OFFICE-ADMIN-PR-MERGE-WITHOUT-WORKFLOW-SCOPE-001",
+      "promotionClass": "POLICY_GATED",
+      "futureAgentInstructions": {
+        "whenThisAppears": "capitalglass-office-admin-fully-healthy-github-v1 or PR reconcile + CI auto-trigger missions",
+        "startAt": [
+          "BY-KIND/thread-autopsy-index.json",
+          "work-progress/command-index.json",
+          "gh pr view <n> --json mergeable,mergeStateStatus,headRefOid"
+        ],
+        "runPreflight": [
+          "gh auth status -h github.com",
+          "npm run deploy:gate with CI smoke env",
+          "gh api actions/runs?head_sha=<head> --jq .total_count"
+        ],
+        "doNot": [
+          "Force push",
+          "Merge PR when mission says unmerged",
+          "Claim GO without validate-code PASS on final HEAD",
+          "Run index:publish from Cursor"
+        ],
+        "proveBeforeClaiming": [
+          "PR mergeable MERGEABLE",
+          "parity 0/0",
+          "validate-code + validate-docs PASS on final HEAD",
+          "push event run exists for final SHA or root cause documented"
+        ]
+      },
+      "evidenceRefs": [
+        "harvest-2026-08-06-office-admin-pr29-github-health-v1",
+        "TE-013"
+      ],
+      "nextAction": "Promote to Office Admin cursor rule after operator review",
+      "projectFile": "work-progress/projects/2026-08-06_office-admin-pr29-github-health-v1.md",
+      "ownerIndexingStatus": "pointer-only",
+      "commitRefs": [],
+      "blockers": [],
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    }
+  ],
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 12,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 12,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-cb144c9980b8",
+      "prompt-candidate-53e4e039039f",
+      "prompt-candidate-807ec32d99e5",
+      "prompt-candidate-d60fdafac680",
+      "prompt-candidate-3257a436c558",
+      "prompt-candidate-9538d91b7fcd",
+      "prompt-candidate-e7fe18e7f109",
+      "prompt-candidate-f1a13d591cf1",
+      "prompt-candidate-9978981f52cd",
+      "prompt-candidate-3df14fbabdb3",
+      "prompt-candidate-73dcb5ef7cc6",
+      "prompt-candidate-1b26675e4ffc"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}
