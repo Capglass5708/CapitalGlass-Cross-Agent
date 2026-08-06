@@ -38,14 +38,13 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 
 | Packet ID | State | Verdict | Owner repo | Project file | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `pkt-decision-001` | COMPLETE | PASS | CapitalGlass-Documents | [harvest-2026-08-04-document-center-adaptive-details-w17-v1.md](./harvest-2026-08-04-document-center-adaptive-details-w17-v1.md) | Operator completes W17; then amend checkpoint with wave-17 evidence |
-| `pkt-blocker-001` | BLOCKED | BLOCKED | CapitalGlass-Documents | [harvest-2026-08-04-document-center-adaptive-details-w17-v1.md](./harvest-2026-08-04-document-center-adaptive-details-w17-v1.md) | Hub SSO login, 70-item checklist, Chrome-close capture script |
-| `pkt-mistake-001` | COMPLETE | PASS | CapitalGlass-Documents | [harvest-2026-08-04-document-center-adaptive-details-w17-v1.md](./harvest-2026-08-04-document-center-adaptive-details-w17-v1.md) | Publish seed IH-DOC-ADAPTIVE-LOCKED-BRANCH-001 on Phase B |
-| `pkt-repeated-001` | COMPLETE | PASS | CapitalGlass-Documents | [harvest-2026-08-04-document-center-adaptive-details-w17-v1.md](./harvest-2026-08-04-document-center-adaptive-details-w17-v1.md) | Enforce single writer on locked branch during W17 |
-| `pkt-faster-001` | COMPLETE | PASS | CapitalGlass-Documents | [harvest-2026-08-04-document-center-adaptive-details-w17-v1.md](./harvest-2026-08-04-document-center-adaptive-details-w17-v1.md) | Operator follows wave-17 sign-in section before capture |
-| `cmd-w17-capture` | PENDING | HOLD | CapitalGlass-Documents | [harvest-2026-08-04-document-center-adaptive-details-w17-v1.md](./harvest-2026-08-04-document-center-adaptive-details-w17-v1.md) | Operator runs after Hub SSO and Chrome close |
-| `pkt-evidence-001` | COMPLETE | PASS | CapitalGlass-Documents | [harvest-2026-08-04-document-center-adaptive-details-w17-v1.md](./harvest-2026-08-04-document-center-adaptive-details-w17-v1.md) | None until W17 PASS |
-| `pkt-proto-001` | COMPLETE | PASS | CapitalGlass-Cross-Agent | [harvest-2026-08-04-document-center-adaptive-details-w17-v1.md](./harvest-2026-08-04-document-center-adaptive-details-w17-v1.md) | Phase B publish via harvest:publish-intelligence-full |
+| `ryzen9desk-managed-executor-v1` | RUNNER_BOOTSTRAP_CHECKPOINT_STARTED | CODE_READY_FOR_RUNNER_BOOTSTRAP | CG-AppBuilder-MCP | [2026-08-03_ryzen9desk-managed-executor-v1.md](./2026-08-03_ryzen9desk-managed-executor-v1.md) | CG-AppBuilder-MCP mission: RYZEN9DESK WSL install from main + dispatch executor-smoke receipt |
+| `active-ledger-ci-path-and-hash-stability-v1` | COMPLETE | PASS | CG-AppBuilder-MCP | [2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md](./2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md) | None unless test:active-ledger-sync regresses on main |
+| `project-folder-synology-primary-v1-dev-environment` | HOLD | CONTRACT_PASS_HOSTED_DEV_HOLD | CapitalGlass-Documents | [project-folder-synology-primary-v1-dev-hosted-environment.md](./project-folder-synology-primary-v1-dev-hosted-environment.md) | Resolve Vercel BLOCKED deploy and Supabase dev isolation (owner: CapitalGlass-Documents) |
+| `cross-agent-retrieval-failover-v1.1` | ADOPTED | PASS | CapitalGlass-Cross-Agent | handoffs/CURRENT_HANDOFF.md | Recurring: use layered failover for suite status when L: unavailable |
+| `wsl2-native-repo-library-migration-v1` | PARTIAL | FILESYSTEM_PASS_OPERATIONAL_CLEANUP_RECORDED | CG-AppBuilder-MCP | [2026-08-03_wsl2-native-repo-library-migration-v1.md](./2026-08-03_wsl2-native-repo-library-migration-v1.md) | Per-repo ext4 verification; RYZEN9DESK alignment via separate executor mission |
+| `office-admin-ryzen9desk-managed-executor-bootstrap-v1` | INDEXED | CODE_READY_FOR_RUNNER_BOOTSTRAP | CapitalGlass-Office-Admin | [2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md](./2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md) | Runner bootstrap remains CG-AppBuilder-MCP mission; do not claim MANAGED_EXECUTOR_ONLINE |
+| `ai-cached-sdlc-cursor-integration-go-v1` | WARN | PASS | CG-AppBuilder-MCP | [ai-cached-sdlc-cursor-integration-go-v1.md](./ai-cached-sdlc-cursor-integration-go-v1.md) | Merge feature branches; run Data-Extraction waverunner:harvest:publish-l after export |
 
 <!-- HARVEST-PACKET-INDEX:END -->
 
