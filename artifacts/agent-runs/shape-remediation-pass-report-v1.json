@@ -1,0 +1,538 @@
+{
+  "schemaVersion": "shape-remediation-pass-report-v1",
+  "generatedAt": "2026-08-06T07:17:00.000Z",
+  "repoRoot": "/tmp/cross-agent-harvest-remediation",
+  "summary": {
+    "inspected": 73,
+    "alreadyReady": 44,
+    "reshapedReady": 0,
+    "insufficientEvidence": 29,
+    "malformed": 0,
+    "sourceConflict": 0,
+    "scopeIncompleteLegacy": 8,
+    "skippedDuplicate": 0,
+    "stagedToLDrive": 19,
+    "idempotentlySkipped": 0,
+    "filesCreated": [
+      "artifacts/agent-runs/active-ledger-blocker-gate-sweep-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/cg-master-graph-harvest-contract-split-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/cg-master-graph-harvest-seed-promotion-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/cg-master-graph-hub-publication-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/cg-master-graph-office-admin-registry-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/cg-master-graph-planning-transfer-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/chat-thread-harvest-protocol-hot-cache-roi-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/chatgpt-draft-l-staging/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/chatgpt-harvest-l-move/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/complete-project-folder-synology-intelligence-publication-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/cross-agent-index-freshness-gate-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/cross-agent-index-operational-efficiency-audit-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/cross-agent-index-publication-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/cross-agent-master-graph-harvest-contributor-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-03-direct-connect-slice6-autopsy-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-04-asg-go-shared-db-closeout-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-04-asg-hardening-authority-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-04-chat-gpt-harvest-protocol-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-04-cursor-harvest-protocol-session-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-04-estate-scout-hook-sync-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-04-harvest-publication-ingest-closeout-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-04-hot-cache-platform-thread-autopsy-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-04-hub-publication-verify-autopsy-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-04-m2-plans-intake-closeout-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-04-operational-publish-friction-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-04-prompt-cache-connectivity-thread-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-04-three-way-improvement-slice6-thread-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-04-wesleywork-l-windows-closeout-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-04-wesleywork-z-l-mobility-closeout-chatgpt-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-04-z-l-drive-offlan-session-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-05-asg-go-hardening-three-lane-closeout-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-05-bid-composer-integration-planning-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-05-chat-harvest-system-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-05-chatgpt-branch-protocol-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-05-chatgpt-l-drive-runner-recovery-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-05-chatgpt-protocol-refinement-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-05-chatgpt-protocol-rerun-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-05-estate-hot-cache-batch-closeout-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-05-hot-cache-platform-thread-autopsy-v2/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-05-hot-cache-wave-a-harvest-git-closeout-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-05-master-graph-glazing-intake-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-05-mini-sas-ethernet-thread-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-05-north-star-lifecycle-thread-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-05-prompt-cache-connectivity-observed-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-05-prompt-catalog-scout-trim-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-05-revu-estimator-productivity-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-05-rosewood-cover-plan-index-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-05-wesleydesk-connectivity-repair-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-06-ryzen9desk-deterministic-connectivity-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-06-suite-advancement-m1-and-phase2-boundary-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-current-cross-thread-state-v2/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-empirical-downstream-handoff-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-empirical-samples-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-project-folder-synology-primary-chat-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/harvest-prompt-extraction-post-merge-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/intelligence-hub-capability-expansion-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/intelligence-hub-harvest-write-authority-repair-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/project-folder-synology-primary-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/project-folder-synology-primary-v1-dev-deployment-unblock/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/project-folder-synology-primary-v1-dev-environment/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/project-folder-synology-primary-v1-dev-hosted-environment/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/project-folder-synology-primary-v1-dev-reproducibility-hardening/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/three-way-agent-improvement-intelligence-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/three-way-agent-improvement-publication-request-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/wesleywork-drive-mount-task-dedupe-v1/shape-remediation-receipt-v1.json",
+      "artifacts/agent-runs/wesleywork-z-l-mobility-error86-v1/shape-remediation-receipt-v1.json"
+    ],
+    "filesModified": []
+  },
+  "results": [
+    {
+      "harvestId": "active-ledger-blocker-gate-sweep-v1",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "cg-master-graph-harvest-contract-split-v1",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "cg-master-graph-harvest-seed-promotion-v1",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "cg-master-graph-hub-publication-v1",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "cg-master-graph-office-admin-registry-v1",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "cg-master-graph-planning-transfer-v1",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "chat-thread-harvest-protocol-hot-cache-roi-v1",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "chatgpt-draft-l-staging",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "chatgpt-harvest-l-move",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "complete-project-folder-synology-intelligence-publication-v1",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "cross-agent-index-freshness-gate-v1",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "cross-agent-index-operational-efficiency-audit-v1",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "cross-agent-index-publication-v1",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "cross-agent-master-graph-harvest-contributor-v1",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "harvest-2026-08-03-cross-thread-platform-state-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "SCOPE_INCOMPLETE_LEGACY"
+    },
+    {
+      "harvestId": "harvest-2026-08-03-direct-connect-slice6-autopsy-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "STAGED"
+    },
+    {
+      "harvestId": "harvest-2026-08-03-wesleydesk-runner-slice6-closeout-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "STAGED"
+    },
+    {
+      "harvestId": "harvest-2026-08-04-asg-go-shared-db-closeout-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "STAGED"
+    },
+    {
+      "harvestId": "harvest-2026-08-04-asg-hardening-authority-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "SCOPE_INCOMPLETE_LEGACY"
+    },
+    {
+      "harvestId": "harvest-2026-08-04-chat-gpt-harvest-protocol-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "SCOPE_INCOMPLETE_LEGACY"
+    },
+    {
+      "harvestId": "harvest-2026-08-04-cursor-harvest-protocol-session-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "SCOPE_INCOMPLETE_LEGACY"
+    },
+    {
+      "harvestId": "harvest-2026-08-04-estate-scout-hook-sync-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "STAGED"
+    },
+    {
+      "harvestId": "harvest-2026-08-04-harvest-publication-ingest-closeout-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "STAGED"
+    },
+    {
+      "harvestId": "harvest-2026-08-04-hot-cache-platform-thread-autopsy-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "STAGED"
+    },
+    {
+      "harvestId": "harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "STAGED"
+    },
+    {
+      "harvestId": "harvest-2026-08-04-hub-publication-verify-autopsy-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "STAGED"
+    },
+    {
+      "harvestId": "harvest-2026-08-04-m2-plans-intake-closeout-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "STAGED"
+    },
+    {
+      "harvestId": "harvest-2026-08-04-operational-publish-friction-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "STAGED"
+    },
+    {
+      "harvestId": "harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "STAGED"
+    },
+    {
+      "harvestId": "harvest-2026-08-04-prompt-cache-connectivity-thread-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "STAGED"
+    },
+    {
+      "harvestId": "harvest-2026-08-04-three-lane-suite-closeout-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "STAGED"
+    },
+    {
+      "harvestId": "harvest-2026-08-04-three-way-improvement-slice6-thread-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "STAGED"
+    },
+    {
+      "harvestId": "harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "STAGED"
+    },
+    {
+      "harvestId": "harvest-2026-08-04-wesleywork-l-windows-closeout-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "STAGED"
+    },
+    {
+      "harvestId": "harvest-2026-08-04-wesleywork-z-l-mobility-closeout-chatgpt-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": null
+    },
+    {
+      "harvestId": "harvest-2026-08-04-z-l-drive-offlan-session-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "SCOPE_INCOMPLETE_LEGACY"
+    },
+    {
+      "harvestId": "harvest-2026-08-05-asg-go-hardening-three-lane-closeout-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": null
+    },
+    {
+      "harvestId": "harvest-2026-08-05-bid-composer-integration-planning-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": null
+    },
+    {
+      "harvestId": "harvest-2026-08-05-chat-harvest-system-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": null
+    },
+    {
+      "harvestId": "harvest-2026-08-05-chatgpt-branch-protocol-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": null
+    },
+    {
+      "harvestId": "harvest-2026-08-05-chatgpt-l-drive-runner-recovery-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": null
+    },
+    {
+      "harvestId": "harvest-2026-08-05-chatgpt-protocol-refinement-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "SCOPE_INCOMPLETE_LEGACY"
+    },
+    {
+      "harvestId": "harvest-2026-08-05-chatgpt-protocol-rerun-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": null
+    },
+    {
+      "harvestId": "harvest-2026-08-05-estate-hot-cache-batch-closeout-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": null
+    },
+    {
+      "harvestId": "harvest-2026-08-05-hot-cache-platform-thread-autopsy-v2",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": null
+    },
+    {
+      "harvestId": "harvest-2026-08-05-hot-cache-wave-a-harvest-git-closeout-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "STAGED"
+    },
+    {
+      "harvestId": "harvest-2026-08-05-master-graph-glazing-intake-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": null
+    },
+    {
+      "harvestId": "harvest-2026-08-05-mini-sas-ethernet-thread-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": null
+    },
+    {
+      "harvestId": "harvest-2026-08-05-north-star-lifecycle-thread-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": null
+    },
+    {
+      "harvestId": "harvest-2026-08-05-prompt-cache-connectivity-observed-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": null
+    },
+    {
+      "harvestId": "harvest-2026-08-05-prompt-catalog-scout-trim-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "STAGED"
+    },
+    {
+      "harvestId": "harvest-2026-08-05-revu-estimator-productivity-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": null
+    },
+    {
+      "harvestId": "harvest-2026-08-05-rosewood-cover-plan-index-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": null
+    },
+    {
+      "harvestId": "harvest-2026-08-05-wesleydesk-connectivity-repair-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "STAGED"
+    },
+    {
+      "harvestId": "harvest-2026-08-06-ryzen9desk-deterministic-connectivity-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": null
+    },
+    {
+      "harvestId": "harvest-2026-08-06-suite-advancement-m1-and-phase2-boundary-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": null
+    },
+    {
+      "harvestId": "harvest-current-cross-thread-state-v2",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "SCOPE_INCOMPLETE_LEGACY"
+    },
+    {
+      "harvestId": "harvest-empirical-downstream-handoff-v1",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "harvest-empirical-samples-v1",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "harvest-project-folder-synology-primary-chat-v1",
+      "classification": "ALREADY_READY",
+      "ingestReadiness": "READY_FOR_INGEST",
+      "staging": "SCOPE_INCOMPLETE_LEGACY"
+    },
+    {
+      "harvestId": "harvest-prompt-extraction-post-merge-v1",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "intelligence-hub-capability-expansion-v1",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "intelligence-hub-harvest-write-authority-repair-v1",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "project-folder-synology-primary-v1",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "project-folder-synology-primary-v1-dev-deployment-unblock",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "project-folder-synology-primary-v1-dev-environment",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "project-folder-synology-primary-v1-dev-hosted-environment",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "project-folder-synology-primary-v1-dev-reproducibility-hardening",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "project-folder-synology-primary-v1-production-promotion",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "three-way-agent-improvement-intelligence-v1",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "three-way-agent-improvement-publication-request-v1",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "wesleywork-drive-mount-task-dedupe-v1",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    },
+    {
+      "harvestId": "wesleywork-z-l-mobility-error86-v1",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "ingestReadiness": "NOT_READY",
+      "staging": null
+    }
+  ],
+  "confirmations": {
+    "noSubstantiveFindingsInvented": true,
+    "noCodeChanged": true,
+    "noPublicationAction": true
+  }
+}
