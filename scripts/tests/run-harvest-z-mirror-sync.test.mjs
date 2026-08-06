@@ -14,13 +14,18 @@ const REPO_ROOT = path.resolve(__dirname, "../..");
 
 test("syncZHarvestMirror copies protocol sources to repo harvest/ mirror", () => {
   const tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), "z-harvest-mirror-"));
-  const srcRunbook = path.join(tmpRoot, "docs/runbooks/chat-thread-closeout-autopsy-harvest-v1.md");
-  fs.mkdirSync(path.dirname(srcRunbook), { recursive: true });
-  fs.writeFileSync(srcRunbook, "# Harvest protocol fixture\n", "utf8");
+  const srcProtocol = path.join(tmpRoot, "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md");
+  fs.mkdirSync(path.dirname(srcProtocol), { recursive: true });
+  fs.writeFileSync(srcProtocol, "# Harvest protocol fixture\n### Lane C — test\n", "utf8");
 
-  const srcPrompt = path.join(tmpRoot, "docs/harvest-z-mirror/PROMPT-EXTRACTION-AND-PROMOTION-v1.md");
-  fs.mkdirSync(path.dirname(srcPrompt), { recursive: true });
+  const srcPrompt = path.join(tmpRoot, "harvest/protocol/PROMPT-EXTRACTION-AND-PROMOTION-v1.md");
   fs.writeFileSync(srcPrompt, "# Prompt extraction fixture\n", "utf8");
+
+  const srcRunbook = path.join(tmpRoot, "harvest/protocol/HARVEST-INGESTION-RUNBOOK-v1.md");
+  fs.writeFileSync(srcRunbook, "# Runbook fixture\n", "utf8");
+
+  const srcChatgpt = path.join(tmpRoot, "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md");
+  fs.writeFileSync(srcChatgpt, "# ChatGPT lane fixture\n", "utf8");
 
   const result = syncZHarvestMirror({
     repoRoot: tmpRoot,
@@ -30,8 +35,8 @@ test("syncZHarvestMirror copies protocol sources to repo harvest/ mirror", () =>
   });
 
   try {
-    assert.equal(result.ok, false);
-    assert.equal(result.receipt.verdict, "Z_HARVEST_MIRROR_SYNC_PARTIAL");
+    assert.equal(result.ok, true);
+    assert.equal(result.receipt.verdict, "Z_HARVEST_REPO_MIRROR_PASS");
 
     const protocolDest = path.join(
       tmpRoot,

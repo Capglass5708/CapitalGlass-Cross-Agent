@@ -3,11 +3,9 @@ import path from "node:path";
 
 import { hashCanonicalJson } from "./hash.mjs";
 import { resolveHubRoot } from "./publish-hub-seed-lib.mjs";
+import { requiredDuplicationSliceNames, allDuplicationSliceNames } from "./duplication-index-registry.mjs";
 
-const REQUIRED_HUB_SLICES = [
-  "active-work-blockers.json",
-  "thread-autopsy-index.json",
-];
+const REQUIRED_HUB_SLICES = requiredDuplicationSliceNames();
 
 const SEMANTIC_DUPLICATE_THRESHOLD = 0.65;
 

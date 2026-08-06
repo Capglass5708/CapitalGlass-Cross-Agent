@@ -1,0 +1,19 @@
+{
+  "orchestrator": "scripts/harvest/lib/publish-intelligence-full-lib.mjs",
+  "hardenedWrapper": "scripts/harvest/lib/publication-hardening-orchestrator.mjs",
+  "phases": [
+    "sync-derived",
+    "z-mirror",
+    "duplication-preflight",
+    "validate",
+    "compile-seed-packets",
+    "blind-retrieval",
+    "publish-hub-seed",
+    "ledger-sync",
+    "hot-routing",
+    "optional-supabase",
+    "consolidated-closeout"
+  ],
+  "idempotency": "transaction-state.json per runId",
+  "authorityGuard": "z-mirror-authority-guard.mjs"
+}
