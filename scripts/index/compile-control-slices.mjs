@@ -178,18 +178,53 @@ function buildReceiptsSlice() {
   for (const rel of receiptPaths) {
     const data = readJson(rel);
     if (!data) continue;
+    const nested =
+      data.executionReceipt && typeof data.executionReceipt === "object"
+        ? data.executionReceipt
+        : null;
     receipts.push({
       path: rel,
-      workPackageId: data.workPackageId ?? data.harvestId ?? null,
-      verdict: data.verdict ?? data.operationalVerdict ?? null,
+      schemaVersion:
+        nested?.schemaVersion ?? data.schemaVersion ?? null,
+      workPackageId:
+        nested?.workPackageId ?? data.workPackageId ?? data.harvestId ?? null,
+      verdict:
+        nested?.verdict ??
+        data.verdict ??
+        data.operationalVerdict ??
+        data.finalVerdict ??
+        null,
+      gatesCount: Array.isArray(nested?.gates)
+        ? nested.gates.length
+        : Array.isArray(data.gates)
+          ? data.gates.length
+          : Array.isArray(data.gatesRun)
+            ? data.gatesRun.length
+            : 0,
+      hasCanonicalExecutionReceipt:
+        nested?.schemaVersion === "cg-execution-receipt-v1@1.0.0",
       updatedAt: data.generatedAt ?? data.updatedAt ?? data.closedAt ?? null,
     });
   }
+
+  const byWorkPackageId = {};
+  for (const receipt of receipts) {
+    if (!receipt.workPackageId) continue;
+    if (!byWorkPackageId[receipt.workPackageId]) {
+      byWorkPackageId[receipt.workPackageId] = [];
+    }
+    byWorkPackageId[receipt.workPackageId].push(receipt);
+  }
+
   return {
-    schemaVersion: "intelligence-hub-receipts-slice-v1@1.0.0",
+    schemaVersion: "intelligence-hub-receipts-slice-v1@1.1.0",
     updatedAt: new Date().toISOString(),
     receiptCount: receipts.length,
     receipts,
+    fieldIndex: {
+      schemaVersion: "receipt-field-index-v1@1.0.0",
+      byWorkPackageId,
+    },
   };
 }
 
