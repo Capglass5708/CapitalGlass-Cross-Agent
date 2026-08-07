@@ -171,6 +171,112 @@ export function buildGraphExtractionFromManifest(manifest, options = {}) {
   return extraction;
 }
 
+/**
+ * Enrich graph extraction with intelligence-index entities (P1-F).
+ * @param {object} extraction
+ * @param {object} intelligenceIndex
+ */
+export function enrichGraphExtractionWithIntelligence(extraction, intelligenceIndex) {
+  const nodes = [...(extraction.nodes || [])];
+  const edges = [...(extraction.edges || [])];
+  const warnings = [...(extraction.warnings || [])];
+  const harvestId = extraction.harvestId;
+  const harvestNodeId = `harvest:${harvestId}`;
+
+  for (const entity of intelligenceIndex.entities || []) {
+    const intelNodeId = entity.entityId;
+    if (!nodes.some((n) => n.id === intelNodeId)) {
+      nodes.push({
+        id: intelNodeId,
+        nodeType: "IntelligenceEntity",
+        displayName: entity.identity?.conceptKey || intelNodeId,
+        metadata: {
+          dimensions: entity.dimensions ?? {},
+          observationCount: (entity.observations || []).length,
+        },
+        provenance: {
+          producerRepositoryId: PRODUCER_REPO,
+          producerCapability: PRODUCER_CAPABILITY,
+          sourceAuthority: SOURCE_AUTHORITY,
+          classification: "derived",
+          verificationState: "verified",
+          recordedAt: new Date().toISOString(),
+          evidenceAnchor: `work-progress/harvest-intelligence-index.json#${intelNodeId}`,
+        },
+      });
+    }
+
+    if (nodes.some((n) => n.id === harvestNodeId)) {
+      edges.push({
+        id: `edge:${slugForEdge(harvestNodeId)}-intel-${slugForEdge(intelNodeId)}`,
+        edgeType: "ENRICHES",
+        sourceId: harvestNodeId,
+        targetId: intelNodeId,
+        provenance: {
+          producerRepositoryId: PRODUCER_REPO,
+          producerCapability: PRODUCER_CAPABILITY,
+          sourceAuthority: SOURCE_AUTHORITY,
+          classification: "derived",
+          verificationState: "verified",
+          recordedAt: new Date().toISOString(),
+          evidenceAnchor: `work-progress/harvest-intelligence-index.json#${intelNodeId}`,
+        },
+      });
+    }
+
+    for (const obs of entity.observations || []) {
+      if (obs.harvestId !== harvestId) continue;
+      const obsNodeId = `observation:${obs.observationId}`;
+      if (!nodes.some((n) => n.id === obsNodeId)) {
+        nodes.push({
+          id: obsNodeId,
+          nodeType: "Observation",
+          displayName: obs.observationId,
+          metadata: {
+            rawRef: obs.source?.rawRef ?? null,
+            signalClass: obs.snapshot?.signalClass ?? null,
+          },
+          provenance: {
+            producerRepositoryId: PRODUCER_REPO,
+            producerCapability: PRODUCER_CAPABILITY,
+            sourceAuthority: SOURCE_AUTHORITY,
+            classification: "observed",
+            verificationState: "verified",
+            recordedAt: obs.observedAt ?? new Date().toISOString(),
+            evidenceAnchor: obs.source?.rawRef ?? null,
+          },
+        });
+      }
+      edges.push({
+        id: `edge:${slugForEdge(intelNodeId)}-observed-${slugForEdge(obsNodeId)}`,
+        edgeType: "OBSERVED_BY",
+        sourceId: intelNodeId,
+        targetId: obsNodeId,
+        provenance: {
+          producerRepositoryId: PRODUCER_REPO,
+          producerCapability: PRODUCER_CAPABILITY,
+          sourceAuthority: SOURCE_AUTHORITY,
+          classification: "observed",
+          verificationState: "verified",
+          recordedAt: obs.observedAt ?? new Date().toISOString(),
+          evidenceAnchor: obs.source?.rawRef ?? null,
+        },
+      });
+    }
+  }
+
+  return {
+    ...extraction,
+    nodes,
+    edges,
+    warnings,
+    intelligenceEnrichment: {
+      entityCount: (intelligenceIndex.entities || []).length,
+      enrichedAt: new Date().toISOString(),
+    },
+  };
+}
+
 export function writeGraphExtraction(runDir, manifest, options = {}) {
   const extraction = buildGraphExtractionFromManifest(manifest, options);
   const outPath = path.join(runDir, "graph-extraction.json");

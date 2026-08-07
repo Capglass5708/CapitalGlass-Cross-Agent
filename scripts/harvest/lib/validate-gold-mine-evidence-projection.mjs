@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import { validateGoldMineEvidenceProjectionSchema } from "./schema-validate.mjs";
+import { validateGoldMineEvidenceProjectionSchema, validateGoldMineEvidenceProjectionV2Schema } from "./schema-validate.mjs";
 
 const ORDINAL_ONLY_RE = /^(GOLD|HP|OUT|OG|TW|OF|ED|EVT)-\d{3,4}$/i;
 const SHA40_RE = /^[0-9a-f]{40}$/i;
@@ -197,6 +197,61 @@ export function validateGoldMineEvidenceProjection({ runDir, manifest, tier }) {
     warnings,
     projectionPath,
     projectionCount: projections.length,
+    schemaOk: schemaResult.ok,
+  };
+}
+
+/**
+ * Warn-only Gold Mine v2 projection validation (P1 expansion).
+ * @param {{ runDir: string; manifest: object }} opts
+ */
+export function validateGoldMineEvidenceProjectionV2({ runDir, manifest }) {
+  const warnings = [];
+  const projectionPath = path.join(runDir, "gold-mine-evidence-projections-v2.json");
+  if (!fs.existsSync(projectionPath)) {
+    return { skipped: true, warnings, projectionPath: null, projectionCount: 0 };
+  }
+
+  let projectionDoc;
+  try {
+    projectionDoc = JSON.parse(fs.readFileSync(projectionPath, "utf8"));
+  } catch (err) {
+    warnings.push(`gold-mine-evidence-projections-v2.json unreadable: ${err.message}`);
+    return { skipped: false, warnings, projectionPath, projectionCount: 0 };
+  }
+
+  const schemaResult = validateGoldMineEvidenceProjectionV2Schema(projectionDoc);
+  if (!schemaResult.ok) {
+    for (const err of schemaResult.errors) {
+      warnings.push(`gold-mine projection v2 schema (warn-only): ${err}`);
+    }
+  }
+
+  if (projectionDoc.harvestId && manifest.harvestId && projectionDoc.harvestId !== manifest.harvestId) {
+    warnings.push(
+      `gold-mine projection v2 harvestId ${projectionDoc.harvestId} !== manifest ${manifest.harvestId}`,
+    );
+  }
+
+  const expansionReceiptPath = path.join(runDir, "intelligence-expansion-receipt.json");
+  if (fs.existsSync(expansionReceiptPath)) {
+    try {
+      const receipt = JSON.parse(fs.readFileSync(expansionReceiptPath, "utf8"));
+      if (receipt.sourceSectionsDropped > 0) {
+        warnings.push(
+          `intelligence expansion dropped ${receipt.sourceSectionsDropped} sections — lossless contract violated`,
+        );
+      }
+    } catch {
+      warnings.push("intelligence-expansion-receipt.json unreadable");
+    }
+  }
+
+  return {
+    skipped: false,
+    warnings,
+    projectionPath,
+    projectionCount: (projectionDoc.projections ?? []).length,
     schemaOk: schemaResult.ok,
   };
 }

@@ -13,6 +13,10 @@ const GOLD_MINE_PROJECTION_SCHEMA_PATH = path.join(
   SCHEMA_DIR,
   "gold-mine-evidence-projection-v1.schema.json",
 );
+const GOLD_MINE_PROJECTION_V2_SCHEMA_PATH = path.join(
+  SCHEMA_DIR,
+  "gold-mine-evidence-projection-v2.schema.json",
+);
 
 let ajvInstance;
 const compiledValidators = new Map();
@@ -57,4 +61,8 @@ export function validateHarvestSeedPacketSchema(seed) {
 
 export function validateGoldMineEvidenceProjectionSchema(doc) {
   return validateAgainstSchemaFile(GOLD_MINE_PROJECTION_SCHEMA_PATH, doc, "goldMine ");
+}
+
+export function validateGoldMineEvidenceProjectionV2Schema(doc) {
+  return validateAgainstSchemaFile(GOLD_MINE_PROJECTION_V2_SCHEMA_PATH, doc, "goldMineV2 ");
 }

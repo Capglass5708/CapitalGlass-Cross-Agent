@@ -30,6 +30,10 @@ function run(cmd, label) {
 console.log(`harvest:record — syncing derived views for ${harvestId}`);
 run(`node scripts/harvest/sync-derived.mjs --harvest-id=${harvestId}`, "sync-derived");
 run(`node scripts/harvest/reconcile-registry-boundary.mjs --harvest-id=${harvestId}`, "reconcile-registry-boundary");
+const chatgptSource = path.join(REPO_ROOT, "artifacts/agent-runs", harvestId, "chatgpt-findings-source.md");
+if (fs.existsSync(chatgptSource)) {
+  run(`node scripts/harvest/expand-intelligence.mjs --harvest-id=${harvestId}`, "expand-intelligence");
+}
 run(`node scripts/harvest/merge-intelligence-index.mjs --harvest-id=${harvestId}`, "merge-intelligence-index");
 run("node scripts/harvest/render-harvest-index.mjs", "render-harvest-index");
 run(`node scripts/harvest/validate-harvest.mjs --harvest-id=${harvestId}`, "validate-harvest");
