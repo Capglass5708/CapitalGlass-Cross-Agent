@@ -2,8 +2,10 @@
 
 **Work package:** `revu-estimating-spine-and-master-graph-integration-v1`  
 **Wave:** `PHASE_A_TRUTH_AUTHORITY_CONTRACTS_V1`  
-**Owner:** CapitalGlass-Cross-Agent (contract) · CapitalGlassRevu (producer adapter Phase B)  
-**Gate:** `ESTIMATING_EVIDENCE_ENVELOPE_CONTRACT_PASS`
+**Coordination owner:** CapitalGlass-Cross-Agent (adoption plan / milestone pointers only)  
+**Constitutional schema owner:** `CG-Platform-Governance-MCP`  
+**Producer adapter (Phase B):** CapitalGlassRevu  
+**Gate:** `ESTIMATING_EVIDENCE_ENVELOPE_AUTHORITY_PASS` (Phase 2)
 
 ## Purpose
 
@@ -35,9 +37,20 @@ Unify three existing package shapes into one cross-app envelope so Revu, Compute
 - Skipping `human_review` for production scope export
 - Activating Master Graph node IDs (`cg:{nodeType}:...`) without ADR vs `namespace:slug`
 
-## Schema
+## Canonical schema (constitutional authority)
 
-`cg-estimating-evidence-envelope-v1.schema.json` in this directory.
+**Do not treat the copy in this directory as schema authority.**
+
+| Field | Value |
+| --- | --- |
+| Owner | `CG-Platform-Governance-MCP` |
+| Path | `schemas/cg-estimating-evidence-envelope-v1.schema.json` |
+| Authority lock | `docs/governance/estimating-evidence-envelope-authority-v1.json` |
+| Version | `1.0.0` |
+
+The file `cg-estimating-evidence-envelope-v1.schema.json` in this directory is a **Phase A design draft** retained for milestone history. Phase 2 promoted the canonical schema to Governance.
+
+Phase 2 closeout: `CG-Platform-Governance-MCP/artifacts/agent-runs/revu-estimating-spine-and-master-graph-integration-v1/phase-2-evidence-envelope-authority-closeout.json`
 
 ## Revu local pointers
 
