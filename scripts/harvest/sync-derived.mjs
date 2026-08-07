@@ -10,6 +10,7 @@ import { REPO_ROOT, harvestRunDir, manifestPath, HARVEST_ID } from "./lib/paths.
 import { runPromptHarvestPipeline } from "./lib/prompt-extraction-lib.mjs";
 import { syncZHarvestMirror } from "./lib/z-harvest-mirror-lib.mjs";
 import { resolveAppBuilderRoot } from "../index/lib/resolve-repo-roots.mjs";
+import { attachExecutionReceipt } from "./lib/execution-receipt-adapter.mjs";
 
 const harvestId = process.argv[2] || HARVEST_ID;
 const runDir = harvestRunDir(harvestId);
@@ -236,6 +237,13 @@ function computeCoverage(manifest, compactDir) {
 }
 
 function main() {
+  return mainAsync().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+}
+
+async function mainAsync() {
   const manifest = readJson(manifestFile);
   const ledgerPath = path.join(REPO_ROOT, manifest.ledgerLineage?.ledgerPath || "work-progress/ACTIVE_WORK.md");
   const ledgerAfter = fs.existsSync(ledgerPath) ? hashFileContent(fs.readFileSync(ledgerPath, "utf8")) : null;
@@ -294,10 +302,17 @@ function main() {
   writeJson(manifestFile, manifest);
   const harvestManifestHashFinal = hashCanonicalJson(manifest);
   writeJson(path.join(runDir, "packet-index.json"), buildPacketIndex(manifest));
-  writeJson(
-    path.join(runDir, "receipt.json"),
-    buildReceipt(manifest, harvestManifestHashFinal, ledgerBeforeHash, ledgerAfter, manifest.promptHarvest),
+  const baseReceipt = buildReceipt(
+    manifest,
+    harvestManifestHashFinal,
+    ledgerBeforeHash,
+    ledgerAfter,
+    manifest.promptHarvest,
   );
+  const attached = await attachExecutionReceipt(baseReceipt, {
+    gatesRun: ['harvest:manifest-sync', 'harvest:derived-views'],
+  });
+  writeJson(path.join(runDir, "receipt.json"), attached.ok ? attached.artifact : baseReceipt);
   fs.writeFileSync(path.join(runDir, "HARVEST_SUMMARY.md"), buildSummary(manifest, harvestManifestHashFinal), "utf8");
   writeJson(path.join(runDir, "coverage.json"), computeCoverage(manifest, compactDir));
 
