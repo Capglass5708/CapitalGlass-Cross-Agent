@@ -1,0 +1,220 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-gold-mine-compounding-reference-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "verification",
+      "description": "Premature PASS before git durability — operator correction required",
+      "evidenceRefs": [
+        "TE-004"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Interim PASS_WITH_WARN + git-durability-closeout artifact",
+      "roiRank": 2,
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL"
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "rework",
+      "description": "Receipt-field signals mined as separate candidates until constitutional suppression",
+      "evidenceRefs": [
+        "TE-002"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "execution-receipt-field-authority.mjs + CONSTITUTIONAL_RECEIPT_FIELD_COVERED",
+      "roiRank": 1,
+      "goldMineSignalClass": "PROBLEM_SIGNAL"
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "agent",
+      "description": "Interpreting 0 open candidates as full estate optimization without product proof",
+      "evidenceRefs": [
+        "TE-012"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "product-estate operational proof + corpusBias reporting in harvest v1.1",
+      "roiRank": 3,
+      "goldMineSignalClass": "OBSERVABILITY_GAP"
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Operator had to correct premature PASS verdict",
+      "operatorCost": "medium",
+      "systemFix": "Wave closeout requires git parity receipt before PASS",
+      "evidenceRefs": [
+        "TE-004"
+      ],
+      "linkedWasteIds": [
+        "TW-001"
+      ],
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL",
+      "manualStep": "Verify git push parity",
+      "frequency": "observed",
+      "avoidable": true,
+      "automationCandidate": true,
+      "businessWorkflow": "Gold Mine wave closeout",
+      "operatorRole": "operator",
+      "rootCause": "Closeout claimed before push evidence"
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Gold Mine full wave closeout",
+      "actualExecution": {
+        "steps": [
+          "Claim PASS with gitParityProven false"
+        ],
+        "outcome": "operator rejection"
+      },
+      "optimalExecution": {
+        "steps": [
+          "PASS_WITH_WARN until push",
+          "Emit git-durability-closeout"
+        ],
+        "outcome": "truthful interim"
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "medium"
+      },
+      "preventiveControl": "git-durability-closeout-v1.json required"
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Next ROI frontier after infrastructure",
+      "actualExecution": {
+        "steps": [
+          "Stop at 0 open candidates"
+        ],
+        "outcome": "false confidence on product estate"
+      },
+      "optimalExecution": {
+        "steps": [
+          "Run product-estate operational proof",
+          "Record corpusBias"
+        ],
+        "outcome": "honest frontier"
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "low"
+      },
+      "preventiveControl": "gold-mine:product-estate-proof + harvest v1.1 corpus coverage"
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Premature PASS without git parity",
+      "whyItWasWrong": "Wave acceptance rules require durable Git authority",
+      "correctFirstMove": "PASS_WITH_WARN + git durability closeout",
+      "preventiveControl": "git-durability-closeout-v1.json",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "Receipt-field Gold Mine candidates",
+      "whyRepeated": "Same constitutional fields mined across waves",
+      "firstKnownInstance": "gold-mine-highest-roi-contract-normalization-v1",
+      "priorIndexSlice": "BY-KIND/active-work-blockers.json",
+      "whyMissed": "Discovery lacked implementation-resolution until this wave",
+      "avoidableBy": "execution-receipt-field-authority gate",
+      "recommendedAction": "add_guard"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Product-estate operational proof → remeasure loop",
+      "whyItPays": "Surfaces estimating/document/Revu friction — next tangible ROI",
+      "effort": "medium",
+      "operatorValue": "high",
+      "businessValue": "high",
+      "platformValue": "medium",
+      "agentValue": "medium",
+      "reliabilityValue": "high",
+      "automationLeverage": "high",
+      "estimatedComplexity": "medium",
+      "blastRadius": "estate-wide",
+      "confidence": "high",
+      "evidenceDiversity": "probe-results + operational report",
+      "rootCauseLeverage": "shifts Gold Mine from SDLC to product",
+      "goldMineSignalClass": "BUSINESS_WORKFLOW_SIGNAL",
+      "novelty": "NEW",
+      "savedWasteIds": [
+        "TW-003"
+      ],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 2,
+      "title": "Harvest v1.1 fail-closed after reference harvests",
+      "whyItPays": "Cleaner Gold Mine ingest; fewer prose reconstructions",
+      "effort": "low",
+      "platformValue": "high",
+      "goldMineSignalClass": "ADOPTION_SIGNAL",
+      "novelty": "NEW",
+      "savedWasteIds": [],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 3,
+      "title": "Computer Estimator probe env (pip install -e) for estate proof",
+      "whyItPays": "Unblocks 3 estimating probes currently FAIL",
+      "effort": "low",
+      "businessValue": "high",
+      "goldMineSignalClass": "PROBLEM_SIGNAL",
+      "novelty": "NEW",
+      "savedWasteIds": [],
+      "seedAs": "command"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "ESTATE_FULLY_OPTIMIZED",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "product-estate operational proof PASS on critical workflows",
+        "gold-mine:remeasure with product evidence"
+      ],
+      "lastKnownEvidence": [
+        "0 open candidates",
+        "7 product probe FAILs"
+      ]
+    },
+    {
+      "awardOrVerdict": "HARVEST_PROTOCOL_V1_1_FAIL_CLOSED",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "2+ reference harvests inspected",
+        "warn-only warning taxonomy stable"
+      ],
+      "lastKnownEvidence": [
+        "warn-only validator shipped",
+        "this reference harvest"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "mcp-servers.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-07T20:31:47.013Z",
+    "preflightReceiptHash": "gold-mine-compounding-reference-v1"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-gold-mine-compounding-reference-v1",
+  "packetId": "gold-mine-product-estate-proof-launched-v1",
+  "state": "IN_PROGRESS",
+  "packetVerdict": "PASS_WITH_WARN",
+  "ownerRepo": "Data-Extraction",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Harvest operational report → Hub → gold-mine:remeasure for product candidates",
+  "evidenceRefs": [
+    "TE-010",
+    "artifacts/agent-runs/gold-mine-product-estate-operational-proof-v1/PRODUCT-ESTATE-OPERATIONAL-REPORT.md",
+    "23 probes: 13 PASS, 7 FAIL, 1 BLOCKED"
+  ],
+  "doNotAdvance": [
+    "Interpret 0 open Gold Mine candidates as estate-wide optimization"
+  ],
+  "advancementGate": "npm run gold-mine:remeasure after hub refresh",
+  "contentHash": "5a18a42f0bc05bb8cc8977f42fe1c6fd7145e49051d8a30bfc0debb523bb7d33"
+}

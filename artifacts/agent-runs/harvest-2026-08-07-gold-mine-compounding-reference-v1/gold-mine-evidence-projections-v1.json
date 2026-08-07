@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "gold-mine-evidence-projection-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-gold-mine-compounding-reference-v1",
+  "sourceCommitSha": "486cfefe7f86102c661df376de3706d798b6c9c2",
+  "corpusBias": {
+    "evidenceDomainDistribution": {
+      "sdlc": 45,
+      "governance": 25,
+      "receiptPlumbing": 20,
+      "infrastructure": 15,
+      "productOperation": 8,
+      "operatorWorkflow": 5,
+      "businessWorkflow": 5
+    },
+    "corpusBiasWarning": "SDLC/governance-heavy corpus exhausted at 0 open — product surfaces under-observed",
+    "underObservedDomains": [
+      "Computer Estimator",
+      "Human Estimator",
+      "Scraper",
+      "Revu production",
+      "Live Document Center BFF"
+    ]
+  },
+  "productWorkflowCoverage": {
+    "computerEstimator": "NOT_OBSERVED",
+    "humanEstimator": "NOT_OBSERVED",
+    "documentCenter": "OBSERVED",
+    "planSetProcessing": "NOT_OBSERVED",
+    "ocrParser": "NOT_OBSERVED",
+    "revuBluebeam": "OBSERVED",
+    "bidComposer": "OBSERVED",
+    "proposals": "NOT_OBSERVED",
+    "vae": "OBSERVED",
+    "scraper": "NOT_OBSERVED",
+    "crossAppHandoffs": "OBSERVED",
+    "operatorReentry": "OBSERVED"
+  },
+  "projections": [
+    {
+      "projectionId": "GMP-INFRA-RESOLUTION-001",
+      "signalClass": "RESOLUTION_SIGNAL",
+      "lifecycleHint": "RESOLVED_OBSERVED",
+      "workPackageId": "gold-mine-full-open-population-implementation-v1",
+      "implementationDigestRef": "sha256:execution-receipt-field-authority-v1",
+      "evidenceStrength": "high",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "novelty": "RESOLUTION_EVIDENCE",
+      "implementationState": "VERIFIED_FIXED",
+      "summary": "15 receipt-field false positives resolved via constitutional suppression; 0 open after remeasure",
+      "evidenceRefs": [
+        "Data-Extraction@20e235e9f59ffbe0b3b436d902736283b93b2d67",
+        "gold-mine:verify 20/20 PASS"
+      ],
+      "validatesExisting": [
+        "gold-mine-highest-roi-contract-normalization-v1"
+      ]
+    },
+    {
+      "projectionId": "GMP-SUCCESS-COMPOUNDING-001",
+      "signalClass": "SUCCESS_PATTERN",
+      "lifecycleHint": "RESOLVED_OBSERVED",
+      "workPackageId": "gold-mine-full-open-population-implementation-v1",
+      "evidenceStrength": "high",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "novelty": "NEW",
+      "implementationState": "ADOPTED",
+      "summary": "Gold Mine compounding loop operational: implement → remeasure → COMPOUNDING_SIGNAL_PRESENT",
+      "evidenceRefs": [
+        "TE-007",
+        "§10 remeasurement receipt"
+      ]
+    },
+    {
+      "projectionId": "GMP-PRODUCT-FRONTIER-001",
+      "signalClass": "BUSINESS_WORKFLOW_SIGNAL",
+      "lifecycleHint": "OPEN",
+      "workPackageId": "gold-mine-product-estate-operational-proof-v1",
+      "evidenceStrength": "medium",
+      "businessImpact": "ESTIMATING",
+      "evidenceEra": "IMPLEMENTATION_WAVE",
+      "novelty": "NEW",
+      "implementationState": "PARTIAL",
+      "summary": "Product-estate operational proof launched; 7 FAIL 1 BLOCKED — next Gold Mine input frontier",
+      "evidenceRefs": [
+        "artifacts/agent-runs/gold-mine-product-estate-operational-proof-v1/workflow-probe-results-v1.json"
+      ]
+    },
+    {
+      "projectionId": "GMP-OBS-ESTIMATOR-001",
+      "signalClass": "OBSERVABILITY_GAP",
+      "lifecycleHint": "OPEN",
+      "evidenceStrength": "medium",
+      "businessImpact": "ESTIMATING",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "summary": "Computer Estimator probes FAIL — ModuleNotFoundError; production estimating NOT_PROVEN",
+      "evidenceRefs": [
+        "estimator-regression-unit FAIL",
+        "workflow-probe-results-v1.json"
+      ]
+    },
+    {
+      "projectionId": "GMP-HARVEST-V11-001",
+      "signalClass": "ADOPTION_SIGNAL",
+      "lifecycleHint": "OPEN",
+      "workPackageId": "harvest-protocol-v1-1-gold-mine-compounding-v1",
+      "evidenceStrength": "high",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "IMPLEMENTATION_WAVE",
+      "novelty": "NEW",
+      "implementationState": "IMPLEMENTED_IN_THREAD",
+      "summary": "Harvest v1.1/v2.1 + warn-only gold-mine projection validator — this reference harvest",
+      "evidenceRefs": [
+        "CapitalGlass-Cross-Agent@486cfefe7f86102c661df376de3706d798b6c9c2",
+        "gold-mine-evidence-projection-v1.schema.json"
+      ],
+      "adopts": [
+        "GOLD-MINE-NORTH-STAR-CHARTER.md"
+      ]
+    }
+  ]
+}

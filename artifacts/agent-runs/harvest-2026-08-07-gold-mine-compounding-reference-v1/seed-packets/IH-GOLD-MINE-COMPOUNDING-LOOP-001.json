@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-GOLD-MINE-COMPOUNDING-LOOP-001",
+  "kind": "lesson",
+  "title": "Gold Mine compounding loop after infrastructure waves",
+  "summary": "When plumbing corpus hits 0 open: run product-estate operational proof, harvest with v1.1 corpusBias, remeasure for product candidates — do not claim estate optimized.",
+  "retrievalQuestions": [
+    "What do I do when Gold Mine has zero open candidates?",
+    "How do I avoid false confidence after SDLC-heavy Gold Mine waves?",
+    "What is the next frontier after gold-mine-full-open-population?"
+  ],
+  "evidenceRefs": [
+    "TE-008",
+    "TE-010",
+    "GMP-PRODUCT-FRONTIER-001"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Gold Mine 0 open after infrastructure wave",
+    "startAt": [
+      "GOLD-MINE-NORTH-STAR-CHARTER.md",
+      "PRODUCT-ESTATE-OPERATIONAL-REPORT.md"
+    ],
+    "runPreflight": [
+      "npm run gold-mine:product-estate-proof",
+      "npm run gold-mine:remeasure"
+    ],
+    "doNot": [
+      "Claim estate fully optimized",
+      "Skip corpusBias in harvest"
+    ],
+    "proveBeforeClaiming": [
+      "productWorkflowCoverage shows OBSERVED for target workflows"
+    ]
+  },
+  "ownerRepo": "Data-Extraction",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 1
+}
