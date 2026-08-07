@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-gold-mine-compounding-reference-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-GOLD-MINE-COMPOUNDING-LOOP-001",
+      "questionId": "IHGOLDMINECO",
+      "canonicalQuestion": "What do I do when Gold Mine has zero open candidates?",
+      "alternateQuestions": [
+        "How do I avoid false confidence after SDLC-heavy Gold Mine waves?",
+        "What is the next frontier after gold-mine-full-open-population?"
+      ],
+      "shortAnswer": "When plumbing corpus hits 0 open: run product-estate operational proof, harvest with v1.1 corpusBias, remeasure for product candidates — do not claim estate optimized.",
+      "detailedAnswer": "Gold Mine compounding loop after infrastructure waves",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-07T20:35:53.245Z",
+      "authorityRepo": "Data-Extraction",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-07-gold-mine-compounding-reference-v1/seed-packets/IH-GOLD-MINE-COMPOUNDING-LOOP-001.json"
+      ],
+      "authorityCommit": [
+        "be967d2"
+      ],
+      "evidenceUrls": [
+        "TE-008",
+        "TE-010",
+        "GMP-PRODUCT-FRONTIER-001"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-07-gold-mine-compounding-reference-v1"
+      ],
+      "entities": [
+        "Data-Extraction"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Gold Mine 0 open after infrastructure wave",
+        "startAt": [
+          "GOLD-MINE-NORTH-STAR-CHARTER.md",
+          "PRODUCT-ESTATE-OPERATIONAL-REPORT.md"
+        ],
+        "runPreflight": [
+          "npm run gold-mine:product-estate-proof",
+          "npm run gold-mine:remeasure"
+        ],
+        "doNot": [
+          "Claim estate fully optimized",
+          "Skip corpusBias in harvest"
+        ],
+        "proveBeforeClaiming": [
+          "productWorkflowCoverage shows OBSERVED for target workflows"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "lesson"
+    },
+    {
+      "ihPfspId": "IH-HARVEST-GOLD-MINE-PROJECTION-001",
+      "questionId": "IHHARVESTGOL",
+      "canonicalQuestion": "How does harvest feed Gold Mine discovery?",
+      "alternateQuestions": [
+        "What file carries Gold Mine signal classification from harvest?",
+        "When does harvest:validate warn on ordinal-only candidate ids?"
+      ],
+      "shortAnswer": "T2+ harvests project goldMineSignalClass, corpusBias, productWorkflowCoverage into gold-mine-evidence-projections-v1.json; validate warn-only via harvest:validate.",
+      "detailedAnswer": "Harvest v1.1 gold-mine-evidence-projections-v1.json",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-07T20:35:53.245Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-07-gold-mine-compounding-reference-v1/seed-packets/IH-HARVEST-GOLD-MINE-PROJECTION-001.json"
+      ],
+      "authorityCommit": [
+        "be967d2"
+      ],
+      "evidenceUrls": [
+        "harvest/protocol v1.1",
+        "validate-gold-mine-evidence-projection.mjs"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-07-gold-mine-compounding-reference-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Thread closeout with product or Gold Mine implications",
+        "startAt": [
+          "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"
+        ],
+        "runPreflight": [
+          "npm run harvest:validate -- <harvest-id>"
+        ],
+        "doNot": [
+          "Use GOLD-#### as durable identity",
+          "Suppress low-value distinct signals"
+        ],
+        "proveBeforeClaiming": [
+          "gold-mine-evidence-projections-v1.json validates warn-only"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "lesson"
+    }
+  ]
+}

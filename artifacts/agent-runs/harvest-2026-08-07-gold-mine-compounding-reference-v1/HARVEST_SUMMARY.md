@@ -1,6 +1,6 @@
 # Harvest summary — derived view
 
-**Authority:** `harvest-manifest-v1.json` (`2f80672fc6a1…`)
+**Authority:** `harvest-manifest-v1.json` (`eb2c5a3ebd4c…`)
 **Work package:** `harvest-2026-08-07-gold-mine-compounding-reference-v1`
 **Mission class:** `chat-thread-closeout-autopsy-harvest-v1`
 **Verdict:** `HARVEST_COMPLETE`
@@ -28,5 +28,5 @@
 
 ## Projection sync
 
-Status: `not-run` (hub: `not-run`)
+Status: `synced` (hub: `published`)
 

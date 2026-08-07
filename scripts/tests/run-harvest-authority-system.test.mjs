@@ -41,8 +41,9 @@ function test(name, fn) {
 
 const snapshot = snapshotRepoPaths(REPO_ROOT, MUTATING_PATHS);
 try {
-  execSync("node scripts/harvest/sync-derived.mjs", { cwd: REPO_ROOT, stdio: "pipe" });
-  execSync("node scripts/harvest/render-harvest-index.mjs", { cwd: REPO_ROOT, stdio: "pipe" });
+  execSync(`node scripts/harvest/render-harvest-index.mjs ${HARVEST_ID}`, { cwd: REPO_ROOT, stdio: "pipe" });
+  execSync(`node scripts/harvest/validate-harvest.mjs ${HARVEST_ID}`, { cwd: REPO_ROOT, stdio: "pipe" });
+  execSync(`node scripts/harvest/sync-derived.mjs ${HARVEST_ID}`, { cwd: REPO_ROOT, stdio: "pipe" });
 
   test("harvest manifest exists and has 6 packets", () => {
     const manifest = readJson(`artifacts/agent-runs/${HARVEST_ID}/harvest-manifest-v1.json`);
@@ -126,7 +127,7 @@ try {
   });
 
   test("validate gate passes", () => {
-    execSync("node scripts/harvest/validate-harvest.mjs", { cwd: REPO_ROOT, stdio: "pipe" });
+    execSync(`node scripts/harvest/validate-harvest.mjs ${HARVEST_ID}`, { cwd: REPO_ROOT, stdio: "pipe" });
     const result = readJson(`artifacts/agent-runs/${HARVEST_ID}/validation-result.json`);
     assert.equal(result.verdict, "PASS");
     assert.equal(result.schemaValidation, "PASS");

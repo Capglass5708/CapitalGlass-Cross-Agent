@@ -8,6 +8,8 @@
 **Restoration:** v2 promotes the proven `chat-gpt-harvest` Git lane to `main` with deterministic gates (supersedes draft-only v1 on `main`).  
 **v2.1 upgrade:** Gold Mine compounding — harvest generates classified evidence, not chat narrative alone.
 
+**Shared Git contract:** [CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md](./CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md) — `CHATGPT_HARVEST_GIT_GATE`, verdict stages, `chat-gpt-harvest` branch rules.
+
 **Governing compounding context (read-only):** `L:\02-catalog\Harvest\GOLD-MINE-NORTH-STAR-CHARTER.md`  
 Harvest is **one evidence source** into Gold Mine compounding. Gold Mine does **not** own harvest authority; Data-Extraction owns discovery and candidate lifecycle.
 
