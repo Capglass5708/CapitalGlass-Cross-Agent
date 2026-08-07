@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "gold-mine-candidate-triage-g0-receipt-v1",
+  "milestoneId": "gold-mine-candidate-triage-and-chatgpt-draft-ingest-v1",
+  "gate": "G0",
+  "verdict": "PASS",
+  "completedAt": "2026-08-07T22:35:00.000Z",
+  "dataExtraction": {
+    "featureBranch": "feat/harvest-branch-investigation-m23-m24",
+    "featureHead": "dd97e8b2de48ecea84ec4231d6f33e00b83de008",
+    "mainHead": "1a7e234dea369b1000b821a22684286a24c447df",
+    "mergeCommit": "1a7e234dea369b1000b821a22684286a24c447df",
+    "pushState": "PUSHED",
+    "ahead": 0,
+    "behind": 0,
+    "consumerTest": "npm run test:harvest-intelligence-consumer — PASS"
+  },
+  "scriptsOnMain": [
+    "scripts/gold-mine/lib/harvest-intelligence-consumer-lib.mjs",
+    "scripts/gold-mine/run-harvest-intelligence-remeasurement.mjs",
+    "gold-mine:remeasure-harvest-intelligence"
+  ]
+}

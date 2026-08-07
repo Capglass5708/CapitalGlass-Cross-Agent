@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "gold-mine-triage-g3-reconciliation-v1",
+  "milestoneId": "gold-mine-candidate-triage-and-chatgpt-draft-ingest-v1",
+  "verdict": "PASS",
+  "recordedAt": "2026-08-07T22:44:30.000Z",
+  "identityModel": "candidateDigest primary; candidateId secondary",
+  "distinctValidSuppressed": 0,
+  "duplicatesMerged": 0,
+  "noSuppressionAccounting": {
+    "validCandidatesDiscovered": 112,
+    "goldMineCandidates": 112,
+    "suppressedBecauseLowValue": 0,
+    "suppressedBecauseDeferred": 0,
+    "suppressedBecauseNoAction": 0,
+    "verdict": "PASS"
+  },
+  "populationDelta": {
+    "baselineMilestone": "harvest-intelligence-index-expansion-and-operational-hardening-v1",
+    "baselineIntelligenceEvaluated": 395,
+    "baselineCandidateCount": 92,
+    "currentIntelligenceEvaluated": 482,
+    "currentCandidateCount": 112,
+    "intelligenceDelta": 87,
+    "candidateDelta": 20,
+    "classification": "NET_NEW_CANDIDATES_FROM_HARVEST_INGEST_WITHOUT_SUPPRESSION"
+  },
+  "reconciliationBuckets": {
+    "NEW": 20,
+    "RECURRENCE": "not separately enumerated — digest-stable persistence assumed for prior 92",
+    "REGRESSION": 0,
+    "RESOLVED_OBSERVED": "tracked per-candidate lifecycleState in manifest",
+    "DUPLICATE_LINKED": 0,
+    "DISAPPEARED": 0
+  },
+  "consumerContract": {
+    "verdict": "PASS",
+    "knownCoreCount": 99,
+    "unmodeledIntelligenceCount": 93
+  },
+  "evidencePaths": [
+    "Data-Extraction/artifacts/agent-runs/gold-mine-v1/no-suppression-accounting.json",
+    "Data-Extraction/artifacts/agent-runs/gold-mine-v1/harvest-intelligence-remeasurement-receipt.json",
+    "Data-Extraction/artifacts/agent-runs/gold-mine-v1/gold-mine-manifest.json"
+  ]
+}

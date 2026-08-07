@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "gold-mine-triage-g4-operator-review-v1",
+  "milestoneId": "gold-mine-candidate-triage-and-chatgpt-draft-ingest-v1",
+  "verdict": "PASS — OPERATOR_REVIEW_PACKET_READY",
+  "recordedAt": "2026-08-07T22:44:30.000Z",
+  "autoImplementationAttempted": false,
+  "manifestDigest": "sha256:9a15079bd2eab93b923ec41063c60b294df5ab43045a5746b8925323145e1852",
+  "candidateCount": 112,
+  "humanDecisionsRequired": 112,
+  "humanDecisionsRecorded": 0,
+  "operatorArtifacts": {
+    "manifest": "Data-Extraction/artifacts/agent-runs/gold-mine-v1/gold-mine-manifest.json",
+    "operatorManifest": "Data-Extraction/artifacts/agent-runs/gold-mine-v1/gold-mine-operator-manifest.json",
+    "operatorMarkdown": "Data-Extraction/artifacts/agent-runs/gold-mine-v1/GOLD-MINE-OPERATOR.md",
+    "retrievalCommand": "npm run gold-mine:manifest"
+  },
+  "digestBinding": {
+    "operatorManifestIncludesManifestDigest": true,
+    "approvalRequiresMatchingDigest": true,
+    "gates": [
+      "test:gold-mine-approval-digest-binding",
+      "verify:gold-mine-operator-manifest",
+      "verify:human-approval-required"
+    ]
+  },
+  "summary": {
+    "byRecommendation": {
+      "DEFER": 93,
+      "NO_ACTION": 19,
+      "IMPLEMENT": 0
+    },
+    "byValue": {
+      "LOW": 112
+    },
+    "byHumanDecision": {
+      "unreviewed": 112
+    }
+  },
+  "operatorInstruction": "Review GOLD-MINE-OPERATOR.md and record human decisions per candidate before any implementation wave. This milestone does not authorize implementation."
+}

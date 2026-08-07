@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "gold-mine-triage-g2-bridge-expand-hub-v1",
+  "milestoneId": "gold-mine-candidate-triage-and-chatgpt-draft-ingest-v1",
+  "verdict": "PASS",
+  "recordedAt": "2026-08-07T22:44:30.000Z",
+  "bridgeMode": "INGEST_EXPAND_SKIP_GIT_GATE_ON_MAIN",
+  "harvests": [
+    {
+      "harvestId": "harvest-2026-08-07-gold-mine-compounding-protocol-upgrade-v1",
+      "sourceSectionsDropped": 0,
+      "projectionsEmitted": 46,
+      "mergeStats": {
+        "newEntities": 17,
+        "enrichedEntities": 29,
+        "observationsAdded": 46,
+        "entitiesAfter": 99
+      },
+      "expansionReceipt": "artifacts/agent-runs/harvest-2026-08-07-gold-mine-compounding-protocol-upgrade-v1/intelligence-expansion-receipt.json"
+    },
+    {
+      "harvestId": "harvest-2026-08-07-cross-agent-authority-convergence-closeout-v1",
+      "sourceSectionsDropped": 0,
+      "projectionsEmitted": 37,
+      "mergeStats": {
+        "newEntities": 0,
+        "enrichedEntities": 37,
+        "observationsAdded": 37,
+        "entitiesAfter": 99
+      },
+      "expansionReceipt": "artifacts/agent-runs/harvest-2026-08-07-cross-agent-authority-convergence-closeout-v1/intelligence-expansion-receipt.json"
+    }
+  ],
+  "hubRefresh": {
+    "command": "npm run harvest:generate-intelligence-retrieval",
+    "verdict": "PASS",
+    "entities": 99,
+    "entitiesDeleted": 0,
+    "sliceRows": 192,
+    "views": 8
+  },
+  "milestoneAudit": {
+    "command": "npm run harvest:audit-intelligence-milestone",
+    "verdict": "PASS"
+  },
+  "goldMineRemeasurement": {
+    "repo": "Data-Extraction",
+    "command": "npm run gold-mine:remeasure-harvest-intelligence",
+    "verdict": "PASS",
+    "intelligenceEvaluated": 482,
+    "candidateCount": 112,
+    "distinctValidSuppressed": 0,
+    "sourceHubSnapshot": "5c86e0b1b61d87d1e7fad9d170f12dd9296d303c4607bd0f80cfdba810da83de",
+    "manifestDigest": "sha256:9a15079bd2eab93b923ec41063c60b294df5ab43045a5746b8925323145e1852",
+    "receiptPath": "Data-Extraction/artifacts/agent-runs/gold-mine-v1/harvest-intelligence-remeasurement-receipt.json"
+  },
+  "stableDigestSnapshot": "g2-stable-digest-snapshot.json"
+}
