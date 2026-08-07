@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://capitalglass/cg-estimating-evidence-envelope-v1.schema.json",
+  "title": "Capital Glass estimating evidence envelope v1",
+  "description": "Cross-app envelope for parser evidence, Revu approved scope, and human estimator disposition. Phase A contract only — no runtime adapter in Phase A.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "envelopeId",
+    "generatedAt",
+    "projectId",
+    "documentIdentity",
+    "provenanceChain",
+    "packages"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "cg-estimating-evidence-envelope-v1"
+    },
+    "envelopeId": { "type": "string", "format": "uuid" },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "projectId": { "type": "string" },
+    "bidId": { "type": ["string", "null"] },
+    "documentIdentity": {
+      "type": "object",
+      "required": ["documentId", "documentHash"],
+      "properties": {
+        "documentId": { "type": "string", "description": "project_documents.id" },
+        "documentHash": { "type": "string" },
+        "planSetId": { "type": ["string", "null"] },
+        "sheetId": { "type": ["string", "null"] },
+        "pageIdentity": { "type": ["string", "null"] }
+      }
+    },
+    "provenanceChain": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["stage", "system", "receiptRef"],
+        "properties": {
+          "stage": {
+            "enum": [
+              "detection",
+              "parser_evidence",
+              "revu_markup",
+              "human_review",
+              "scope_candidate",
+              "commercial_disposition"
+            ]
+          },
+          "system": { "type": "string" },
+          "receiptRef": { "type": "string" },
+          "immutable": { "type": "boolean", "default": true }
+        }
+      }
+    },
+    "packages": {
+      "type": "object",
+      "properties": {
+        "parserEvidencePackage": {
+          "type": ["object", "null"],
+          "description": "Computer Estimator / parserEvidencePackage@1.0.0 snapshot"
+        },
+        "revuApprovedScopePackage": {
+          "type": ["object", "null"],
+          "description": "revu-approved-scope-package-v1"
+        },
+        "humanEstimatorScopeEvaluation": {
+          "type": ["object", "null"],
+          "description": "human-estimator-scope-evaluation-v1"
+        }
+      }
+    },
+    "disposition": {
+      "type": "object",
+      "properties": {
+        "commercialWriteAuthorized": { "type": "boolean", "const": false },
+        "importStatus": {
+          "enum": ["pending_review", "accepted_for_review", "rejected", "superseded"]
+        }
+      }
+    }
+  }
+}
