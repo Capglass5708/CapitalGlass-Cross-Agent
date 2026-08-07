@@ -1,4 +1,4 @@
-# Chat Thread Closeout Autopsy — ChatGPT Protocol v2
+# Chat Thread Closeout Autopsy — ChatGPT Protocol v2.1
 
 **Work package pattern:** `chat-thread-closeout-autopsy-harvest-chatgpt-v1`  
 **Parent protocol (Cursor / operator):** [chat-thread-closeout-autopsy-harvest-v1.md](./chat-thread-closeout-autopsy-harvest-v1.md)  
@@ -6,7 +6,10 @@
 **Authority repo:** `CapitalGlass-Cross-Agent`  
 **Lane:** `CHAT_CONTEXT_ONLY` — visible conversation + attachments only  
 **Restoration:** v2 promotes the proven `chat-gpt-harvest` Git lane to `main` with deterministic gates (supersedes draft-only v1 on `main`).  
-**Shared Git contract:** [CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md](./CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md)
+**v2.1 upgrade:** Gold Mine compounding — harvest generates classified evidence, not chat narrative alone.
+
+**Governing compounding context (read-only):** `L:\02-catalog\Harvest\GOLD-MINE-NORTH-STAR-CHARTER.md`  
+Harvest is **one evidence source** into Gold Mine compounding. Gold Mine does **not** own harvest authority; Data-Extraction owns discovery and candidate lifecycle.
 
 ---
 
@@ -35,6 +38,8 @@ Use **ChatGPT** to compress a completed conversation into a **designated harvest
 **Full autopsy lane (this file):** structured OBSERVED intelligence — events, packets, waste, ROI, seeds when the thread contains durable lessons.
 
 ChatGPT produces **draft source material** and **publishes it to Git staging** (`chat-gpt-harvest`). Cursor **ingests, validates, canonicalizes, and publishes** to `main`, Z, L, index, and cache.
+
+**v2.1 compounding rule:** A harvest must not merely describe what happened. Each durable finding should be expressible as evidence Gold Mine can later classify (`PROBLEM_SIGNAL`, `RESOLUTION_SIGNAL`, adoption proof, operational performance, operator friction, or product/functionality opportunity).
 
 **ChatGPT is never source of truth** for code, deploy status, index state, or `HARVEST_COMPLETE`.
 
@@ -294,6 +299,92 @@ If the Action is not on `main` or the runner is offline, findings remain valid o
 
 ---
 
+## Gold Mine compounding fields (v2.1 — apply to findings)
+
+### A. `goldMineSignalClass` (recommended on every HP/ROI/friction/delta/seed)
+
+```yaml
+goldMineSignalClass:
+  PROBLEM_SIGNAL | RESOLUTION_SIGNAL | ADOPTION_SIGNAL | PERFORMANCE_SIGNAL
+  | OPERATOR_FRICTION_SIGNAL | AGENT_FRICTION_SIGNAL | OBSERVABILITY_GAP
+  | BUSINESS_WORKFLOW_SIGNAL | SUCCESS_PATTERN
+```
+
+Distinguish **problem** from **resolution/adoption** at the source. Do not let Data-Extraction infer this from prose alone.
+
+### B. `implementationState` + `resolutionTarget` (when thread addressed work)
+
+```yaml
+implementationState:
+  OBSERVED_OPEN | IMPLEMENTED_IN_THREAD | VERIFIED_FIXED | ADOPTED
+  | PARTIAL | BLOCKED | UNKNOWN
+resolvesCandidateDigest: <digest when known>
+resolvesRootCauseId: <stable id when known>
+```
+
+### C. Stable identity (hard rule)
+
+**Ordinals are labels only.** Never treat `GOLD-0007`, `HP-003`, etc. as durable identity. When referencing Gold Mine intelligence, preserve `candidateDigest`, digest-derived `candidateId`, `workPackageId`, or content hashes. Display ordinals are presentation only.
+
+### D. `novelty` discriminator (per improvement finding)
+
+```yaml
+novelty: NEW | KNOWN_EXISTING | RECURRENCE | REGRESSION | RESOLUTION_EVIDENCE | UNKNOWN_PENDING_DEDUP
+```
+
+### E. Observed improvement outcomes (required section when work completed)
+
+For completed work, record **before / after / proof / residual / proven vs implemented**:
+
+```yaml
+outcomeId: OUT-###
+beforeState:
+afterState:
+measurableChange:
+proof:
+remainingResidual:
+improvementProven: true|false  # implemented ≠ proven
+```
+
+### F. Expanded ROI item fields (beyond rank)
+
+Each ROI item should capture where evidence exists (no invented estimates):
+
+`operatorValue`, `businessValue`, `platformValue`, `agentValue`, `reliabilityValue`, `automationLeverage`, `estimatedComplexity`, `blastRadius`, `confidence`, `evidenceDiversity`, `rootCauseLeverage`, `goldMineSignalClass`, `novelty`, `businessImpact` (see parent protocol enum).
+
+### G. Product-workflow signal capture (required coverage block)
+
+State whether the thread touched (OBSERVED / NOT_OBSERVED / UNKNOWN):
+
+Computer Estimator, Human Estimator, Document Center, plan-set processing, OCR/parser, Revu/Bluebeam, Bid Composer, proposals, VAE, Scraper, cross-app handoffs, operator re-entry, manual intervention — including non-bug friction.
+
+### H. Observability gaps (`OG-###`)
+
+```yaml
+observabilityGapId: OG-###
+whatWeNeededToKnow:
+whyItWasNotObservable:
+workflow:
+missingMetricOrReceipt:
+recommendedInstrumentation:
+goldMineSignalClass: OBSERVABILITY_GAP
+```
+
+### I. Success patterns (`SUCCESS_PATTERN`)
+
+Record evidence-backed wins: fast retrieval, authority routing worked, cache eliminated work, automated handoff succeeded, contract prevented a mistake. Gold Mine needs positive patterns, not only failure avoidance.
+
+### J. Corpus bias note (mandatory one-liner)
+
+```text
+corpusBiasNote: <e.g. "Thread evidence is SDLC/governance-heavy; product workflows under-observed">
+underObservedDomains: [Computer Estimator, Revu, ...]
+```
+
+If zero open Gold Mine candidates but product surfaces were NOT_OBSERVED, state that explicitly — **do not imply estate-wide optimization**.
+
+---
+
 ## Required output structure
 
 Produce **one** `chatgpt-findings-source.md` with:
@@ -302,18 +393,23 @@ Produce **one** `chatgpt-findings-source.md` with:
 2. Harvest tier rationale
 3. Retrieval preflight
 4. Thread event inventory (`EVT-###`)
-5. Harvest packets (`HP-###`, kinds as applicable)
+5. Harvest packets (`HP-###`, kinds as applicable) — include `goldMineSignalClass`, `implementationState`, `novelty` when applicable
 6. Execution deltas (`ED-###`)
-7. Waste ledger (`TW-###` or `NONE_FOUND`)
-8. Duplication detector (`DUP-###`)
-9. Operator friction (`OF-###`)
-10. ROI backlog (ranked)
-11. Do-not-advance guards
-12. Seed packet candidates (JSON blocks)
-13. Future-agent instructions
-14. Publication truth table
-15. `gitPublicationReceipt` (after push)
-16. Cursor handoff command
+7. **Observed improvement outcomes (`OUT-###`)** when work completed
+8. Waste ledger (`TW-###` or `NONE_FOUND`)
+9. Duplication detector (`DUP-###`) — digest-aware, not ordinal-only
+10. Operator friction (`OF-###`)
+11. Observability gaps (`OG-###`) or `NONE_FOUND`
+12. Success patterns (`SUCCESS_PATTERN` entries) or `NONE_FOUND`
+13. ROI backlog (ranked, expanded fields per §F)
+14. **Product-workflow coverage** (OBSERVED / NOT_OBSERVED matrix)
+15. **Corpus bias note** + `underObservedDomains[]`
+16. Do-not-advance guards
+17. Seed packet candidates (JSON blocks)
+18. Future-agent instructions
+19. Publication truth table
+20. `gitPublicationReceipt` (after push)
+21. Cursor handoff command
 
 **Template reference:** `artifacts/agent-runs/harvest-2026-08-04-chatgpt-autopsy-findings-v1/`
 
@@ -366,9 +462,10 @@ npm run harvest:publish-intelligence-full -- --harvest-id=<id>
 ## Duplication prevention (ChatGPT lane)
 
 1. Treat pasted harvest/index reports as stale until Cursor verifies
-2. Record `DUP-###` when the thread re-debated the same milestone
+2. Record `DUP-###` when the thread re-debated the same milestone — use **digest/hash identity**, not ordinal labels
 3. Do not invent seed IDs duplicating pasted registry excerpts
 4. Label `NEEDS_REGISTRY_LOOKUP_FIRST` on repeated_work packets
+5. **No suppression:** low-value or deferred observations remain valid Gold Mine evidence; deduplicate true duplicates only — do not discard distinct improvement signals because they seem unimportant
 
 ---
 
@@ -398,9 +495,9 @@ projection.hubPublishStatus: not-run
 ## ChatGPT opener prompt (copy/paste)
 
 ```text
-Run chat-thread-closeout-autopsy-harvest-chatgpt-v1 v2.
+Run chat-thread-closeout-autopsy-harvest-chatgpt-v1 v2.1.
 
-Lane: CHAT_CONTEXT_ONLY. Protocol v2 — mandatory chat-gpt-harvest Git publication.
+Lane: CHAT_CONTEXT_ONLY. Protocol v2.1 — Gold Mine compounding evidence + mandatory chat-gpt-harvest Git publication.
 
 Declare mode in your first sentence: REVIEW_ONLY or DRAFT_FILE.
 
@@ -411,7 +508,7 @@ Closeout requires CHATGPT_HARVEST_GIT_GATE PASS before CHATGPT_SOURCE_PUBLISHED.
 
 Do NOT claim INDEX_HIT, HARVEST_COMPLETE, OPERATIONAL, or FULLY_SEEDED.
 
-Produce chatgpt-findings-source.md with EVT/HP sections, ROI, seeds, publication truth table.
+Produce chatgpt-findings-source.md with EVT/HP/OUT/OG sections, goldMineSignalClass, implementationState, novelty, product-workflow coverage, corpus bias note, expanded ROI, SUCCESS_PATTERN, seeds, publication truth table.
 
 After push: emit gitPublicationReceipt; verdict CHATGPT_SOURCE_PUBLISHED.
 

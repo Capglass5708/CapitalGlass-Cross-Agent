@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://capitalglass.dev/schemas/gold-mine-evidence-projection-v1.json",
+  "title": "Gold Mine Evidence Projection v1 (harvest → Data-Extraction)",
+  "description": "Optional harvest-side projection consumed by Gold Mine discovery. Introduced in chat-thread-closeout-autopsy-harvest-v1.1.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "harvestId", "projections"],
+  "properties": {
+    "schemaVersion": { "const": "gold-mine-evidence-projection-v1@1.0.0" },
+    "harvestId": { "type": "string", "minLength": 1 },
+    "sourceCommitSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "corpusBias": { "$ref": "#/$defs/corpusBias" },
+    "productWorkflowCoverage": { "$ref": "#/$defs/productWorkflowCoverage" },
+    "projections": {
+      "type": "array",
+      "minItems": 0,
+      "items": { "$ref": "#/$defs/projection" }
+    }
+  },
+  "$defs": {
+    "signalClass": {
+      "enum": [
+        "PROBLEM_SIGNAL",
+        "RESOLUTION_SIGNAL",
+        "ADOPTION_SIGNAL",
+        "PERFORMANCE_SIGNAL",
+        "OPERATOR_FRICTION_SIGNAL",
+        "AGENT_FRICTION_SIGNAL",
+        "OBSERVABILITY_GAP",
+        "BUSINESS_WORKFLOW_SIGNAL",
+        "SUCCESS_PATTERN"
+      ]
+    },
+    "businessImpact": {
+      "enum": [
+        "PLATFORM_INTERNAL",
+        "OPERATOR_PRODUCTIVITY",
+        "ESTIMATING",
+        "DOCUMENT_PROCESSING",
+        "BID_TURNAROUND",
+        "PROPOSAL_QUALITY",
+        "DATA_QUALITY",
+        "CUSTOMER_DELIVERY",
+        "BUSINESS_RELIABILITY"
+      ]
+    },
+    "evidenceEra": {
+      "enum": [
+        "PRE_IMPLEMENTATION",
+        "IMPLEMENTATION_WAVE",
+        "POST_IMPLEMENTATION",
+        "UNKNOWN"
+      ]
+    },
+    "implementationState": {
+      "enum": [
+        "OBSERVED_OPEN",
+        "IMPLEMENTED_IN_THREAD",
+        "VERIFIED_FIXED",
+        "ADOPTED",
+        "PARTIAL",
+        "BLOCKED",
+        "UNKNOWN"
+      ]
+    },
+    "novelty": {
+      "enum": [
+        "NEW",
+        "KNOWN_EXISTING",
+        "RECURRENCE",
+        "REGRESSION",
+        "RESOLUTION_EVIDENCE",
+        "UNKNOWN_PENDING_DEDUP"
+      ]
+    },
+    "coverageState": {
+      "enum": ["OBSERVED", "NOT_OBSERVED", "UNKNOWN"]
+    },
+    "projection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["projectionId", "signalClass", "summary", "evidenceRefs"],
+      "properties": {
+        "projectionId": { "type": "string" },
+        "packetId": { "type": "string" },
+        "signalClass": { "$ref": "#/$defs/signalClass" },
+        "lifecycleHint": { "enum": ["OPEN", "RESOLVED_OBSERVED", "UNKNOWN"] },
+        "rootCauseKey": { "type": "string" },
+        "candidateDigestRef": { "type": "string" },
+        "implementationDigestRef": { "type": "string" },
+        "workPackageId": { "type": "string" },
+        "evidenceStrength": { "enum": ["low", "medium", "high"] },
+        "operatorImpact": { "type": "string" },
+        "businessImpact": { "$ref": "#/$defs/businessImpact" },
+        "evidenceEra": { "$ref": "#/$defs/evidenceEra" },
+        "observedAt": { "type": "string", "format": "date-time" },
+        "sourceRunId": { "type": "string" },
+        "sourceWorkPackageId": { "type": "string" },
+        "sourceCommitSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "novelty": { "$ref": "#/$defs/novelty" },
+        "implementationState": { "$ref": "#/$defs/implementationState" },
+        "resolves": { "type": "array", "items": { "type": "string" } },
+        "supersedes": { "type": "array", "items": { "type": "string" } },
+        "adopts": { "type": "array", "items": { "type": "string" } },
+        "validatesExisting": { "type": "array", "items": { "type": "string" } },
+        "contradicts": { "type": "array", "items": { "type": "string" } },
+        "regresses": { "type": "array", "items": { "type": "string" } },
+        "summary": { "type": "string" },
+        "evidenceRefs": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+      }
+    },
+    "productWorkflowCoverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "computerEstimator": { "$ref": "#/$defs/coverageState" },
+        "humanEstimator": { "$ref": "#/$defs/coverageState" },
+        "documentCenter": { "$ref": "#/$defs/coverageState" },
+        "planSetProcessing": { "$ref": "#/$defs/coverageState" },
+        "ocrParser": { "$ref": "#/$defs/coverageState" },
+        "revuBluebeam": { "$ref": "#/$defs/coverageState" },
+        "bidComposer": { "$ref": "#/$defs/coverageState" },
+        "proposals": { "$ref": "#/$defs/coverageState" },
+        "vae": { "$ref": "#/$defs/coverageState" },
+        "scraper": { "$ref": "#/$defs/coverageState" },
+        "crossAppHandoffs": { "$ref": "#/$defs/coverageState" },
+        "operatorReentry": { "$ref": "#/$defs/coverageState" }
+      }
+    },
+    "corpusBias": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "evidenceDomainDistribution": {
+          "type": "object",
+          "additionalProperties": { "type": "number", "minimum": 0 }
+        },
+        "corpusBiasWarning": { "type": "string" },
+        "underObservedDomains": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

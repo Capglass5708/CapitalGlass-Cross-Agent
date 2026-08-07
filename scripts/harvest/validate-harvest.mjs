@@ -7,6 +7,10 @@ import path from "node:path";
 import { hashCanonicalJson } from "./lib/hash.mjs";
 import { validateManifestSchema } from "./lib/schema-validate.mjs";
 import { validateThreadAutopsy } from "./lib/validate-thread-autopsy.mjs";
+import {
+  validateGoldMineEvidenceProjection,
+  validateOutcomePackets,
+} from "./lib/validate-gold-mine-evidence-projection.mjs";
 import { REPO_ROOT, harvestRunDir, manifestPath, HARVEST_ID } from "./lib/paths.mjs";
 
 const harvestId = process.argv[2] || HARVEST_ID;
@@ -213,6 +217,14 @@ function main() {
     warnings.push(...autopsyResult.warnings);
   }
 
+  const goldMineResult = validateGoldMineEvidenceProjection({
+    runDir,
+    manifest,
+    tier: autopsyResult.tier ?? manifest.threadAutopsy?.tier,
+  });
+  warnings.push(...goldMineResult.warnings);
+  validateOutcomePackets(manifest, warnings);
+
   const graphExtractionPath = path.join(runDir, "graph-extraction.json");
   const graphValidationPath = path.join(runDir, "graph-extraction-validation-result.json");
   if (!fs.existsSync(graphExtractionPath)) {
@@ -251,6 +263,7 @@ function writeResult(errors, warnings, pass = false, manifestHash = null, schema
         ? "FAIL"
         : "PASS",
     threadAutopsyTier: autopsyResult?.tier ?? null,
+    goldMineProjectionValidation: "WARN_ONLY",
     errorCount: errors.length,
     warningCount: warnings.length,
     errors,

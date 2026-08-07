@@ -1,9 +1,10 @@
-# Chat Thread Closeout Autopsy, Harvest, and Intelligence Hub Seed Protocol v1
+# Chat Thread Closeout Autopsy, Harvest, and Intelligence Hub Seed Protocol v1.1
 
 **Work package pattern:** `chat-thread-closeout-autopsy-harvest-v1` or `harvest-YYYY-MM-DD-<slug>-v1`  
 **Authority repo:** CapitalGlass-Cross-Agent  
 **Companion:** [Intelligence Hub accommodation](../intelligence-hub/thread-autopsy-hub-accommodation-v1.md)  
-**Base harvest runbook:** [harvest-record-validate-sync.md](./harvest-record-validate-sync.md)
+**Base harvest runbook:** [harvest-record-validate-sync.md](./harvest-record-validate-sync.md)  
+**Compounding context:** `L:\02-catalog\Harvest\GOLD-MINE-NORTH-STAR-CHARTER.md` (harvest → Hub → Gold Mine → implementation → remeasure)
 
 ---
 
@@ -23,7 +24,9 @@ Convert a completed ChatGPT or Cursor thread into **reusable Intelligence Hub kn
 
 This is **not** a chat summary. It is a **thread autopsy and intelligence extraction protocol**.
 
-Cross-Agent records coordination, receipts, ledger updates, and seed manifests only. Implementation code belongs in owner repos.
+**v1.1 compounding rule:** Harvest deliberately generates high-quality evidence for Gold Mine classification — problems, resolutions, adoption, performance, friction, observability gaps, and product opportunities — not narrative alone.
+
+Cross-Agent records coordination, receipts, ledger updates, and seed manifests only. Implementation code belongs in owner repos. **Data-Extraction** owns Gold Mine discovery, candidate digests, and §10 remeasurement; harvest supplies semantic evidence upstream.
 
 ---
 
@@ -70,8 +73,73 @@ Do not claim hub publication or `FULLY_SEEDED` without `index:freshness-gate` re
 5. Do not mark a blocker closed because a prompt says so — verify artifact, command, or commit.
 6. Wrong moves must be structured records, not buried prose.
 7. Cursor agents **record only** — operator runs `index:publish` and hub seed publish.
+8. **Stable identity invariant:** ordinals (`HP-###`, `GOLD-####`, packet sequence) are presentation only. Cross-run correlation must use content hashes, `candidateDigest`, `packetId`, `workPackageId`, `sourceCommitSha`, or other stable semantic identifiers.
+9. **No distinct-signal suppression:** low-value, deferred, uncertain, or currently infeasible observations remain eligible Gold Mine evidence. Harvest may deduplicate true duplicates but must not discard valid improvement signals because they appear unimportant.
+10. **Resolved-but-visible:** findings with `lifecycleState: RESOLVED_OBSERVED` (or equivalent resolution hint) must remain retrievable — resolution is not deletion.
 
 ---
+
+## Gold Mine evidence contract (v1.1)
+
+Each canonical packet (or parallel projection file `gold-mine-evidence-projections-v1.json`) should project into:
+
+```json
+{
+  "signalClass": "PROBLEM_SIGNAL",
+  "lifecycleHint": "OPEN",
+  "rootCauseKey": "",
+  "candidateDigestRef": "",
+  "implementationDigestRef": "",
+  "workPackageId": "",
+  "evidenceStrength": "low|medium|high",
+  "sourceDiversity": {},
+  "operatorImpact": "",
+  "businessImpact": "PLATFORM_INTERNAL",
+  "evidenceEra": "PRE_IMPLEMENTATION",
+  "observedAt": "ISO-8601",
+  "sourceRunId": "",
+  "sourceWorkPackageId": "",
+  "sourceCommitSha": "",
+  "novelty": "NEW",
+  "implementationState": "OBSERVED_OPEN",
+  "resolves": [],
+  "supersedes": [],
+  "adopts": [],
+  "validatesExisting": [],
+  "contradicts": [],
+  "regresses": []
+}
+```
+
+| `signalClass` | Use when |
+| --- | --- |
+| `PROBLEM_SIGNAL` | Recurring defect, friction, failure, gap |
+| `RESOLUTION_SIGNAL` | Fix/adoption evidence; pair with `implementationState` |
+| `ADOPTION_SIGNAL` | Contract/tooling adopted and in use |
+| `PERFORMANCE_SIGNAL` | Latency, throughput, cache, duration |
+| `OPERATOR_FRICTION_SIGNAL` | Manual steps, re-entry, intervention |
+| `AGENT_FRICTION_SIGNAL` | Scout/cache/routing/tooling pain for agents |
+| `OBSERVABILITY_GAP` | Could not measure what we needed |
+| `BUSINESS_WORKFLOW_SIGNAL` | Estimating, documents, bids, proposals, field ops |
+| `SUCCESS_PATTERN` | Evidence-backed pattern that worked well |
+
+Data-Extraction remains responsible for final discovery and candidate creation. Harvest provides cleaner semantic evidence.
+
+**Optional artifact schema:** `scripts/harvest/schema/gold-mine-evidence-projection-v1.schema.json` (Cross-Agent). Validators may warn-only until v1.1 enforcement lands.
+
+### Compounding downstream loop (post-publication)
+
+```text
+validated harvest
+→ Intelligence Hub publication
+→ Gold Mine ingest / discovery (Data-Extraction)
+→ operator-approved implementation wave
+→ product-estate operational proof / new harvest
+→ Gold Mine §10 remeasurement
+→ updated manifest + open candidates
+```
+
+Harvest protocol ends at validated publication; **§10 remeasurement is a formal downstream consumer**, not harvest authority.
 
 ## Lanes
 
@@ -135,6 +203,13 @@ Use this lane only when a validated harvest contains evidence-backed improvement
 
 Lane C is **separate** from Lane B Intelligence Hub seed publication and from the WaveRunner self-improvement lane (`L:\02-catalog\SDLC Gated Wave Protocols\WaveRunner Self Improvements Harvesting`). Do not merge outputs.
 
+**Lane D — Gold Mine estate projection (downstream, not Lane C):**
+
+- **Lane C** = improve the harvest protocol itself.
+- **Gold Mine projection** = improve the broader Capital Glass estate from harvested evidence.
+
+Do not route application/product findings into Lane C. Project them via `goldMineSignalClass` / `gold-mine-evidence-projections-v1.json` for Data-Extraction discovery.
+
 **Eligibility (all required):**
 
 1. Identifies a defect, weakness, inefficiency, or missing control in the harvest protocol.
@@ -160,7 +235,7 @@ Unrelated packets remain in their existing lanes and must **not** appear in the 
 
 ---
 
-## Eight mandatory packet kinds
+## Nine mandatory packet kinds
 
 Every T1+ harvest must cover applicable kinds (structured JSON, not prose):
 
@@ -174,6 +249,11 @@ Every T1+ harvest must cover applicable kinds (structured JSON, not prose):
 | **command** | Proof command | `command`, `host`, `provesGate`, `expectedPassSignal` |
 | **evidence** | Receipt anchor | `type`, `pathOrSha`, `provesWhat` |
 | **protocol_upgrade** | Reusable guard | `seedAs`, `ownerRepo`, `promotionClass`, `futureAgentInstructions` |
+| **outcome** | Post-implementation result | `changeImplemented`, `beforeState`, `afterState`, `measurement`, `expectedEffect`, `observedEffect`, `residuals`, `regressions`, `effectiveness` |
+
+**`outcome.effectiveness`:** `PROVEN_EFFECTIVE` | `PARTIAL` | `NO_OBSERVABLE_EFFECT_YET` | `INEFFECTIVE` | `REGRESSED`
+
+Optional on all kinds: `goldMineSignalClass`, `novelty`, `implementationState`, `businessImpact`, `evidenceEra`, `goldMineProjection` (see Gold Mine evidence contract).
 
 Packets: `harvest-manifest-v1.json` → `packets[]` + `compact-records/<packet-id>.json`.
 
@@ -189,7 +269,9 @@ Packets: `harvest-manifest-v1.json` → `packets[]` + `compact-records/<packet-i
 | **3. Execution delta** | `executionDeltas[]` in autopsy bundle | Actual vs optimal for mistakes/faster-paths |
 | **4. Waste & friction** | `waste[]`, `operatorFriction[]` | Ledger or `NONE_FOUND` with proof |
 | **5. Duplication & commands** | `duplicateWork[]`, command-index updates | Registry + hub slices consulted |
-| **6. ROI & seeds** | `roiBacklog`, `seed-packets/` | Ranked ROI; seeds with retrieval questions |
+| **6. ROI & seeds** | `roiBacklog`, `seed-packets/`, `gold-mine-evidence-projections-v1.json` (optional) | Ranked ROI; seeds with retrieval questions; Gold Mine projections |
+| **6b. Product coverage & corpus bias** | `productWorkflowCoverage`, `corpusBias` in autopsy bundle | OBSERVED/NOT_OBSERVED matrix; `underObservedDomains[]` |
+| **6c. Operational telemetry** | `operationalMeasurements[]` when execution occurred | Durations, retries, warnings, cache, fallbacks, interventions |
 | **7. Do-not-advance sync** | Global + `work-progress/do-not-advance-registry.json` | No PASS without `lastKnownEvidence` |
 | **8. Validate & handoff** | `validation-result.json` | `harvest:validate` PASS |
 | **9. Protocol self-learning (Lane C, optional)** | `data-extraction-handoff/harvest-protocol-self-learning-input.json` + L catalog package | Only when `protocolImprovementCandidates[]` exist; unrelated build/app packets excluded |
@@ -318,9 +400,81 @@ Before recording repeats, consult:
   "operatorCost": "high",
   "systemFix": "Mandatory scout preflight before asking operator",
   "evidenceRefs": ["user correction turn 28"],
-  "linkedWasteIds": ["TW-004"]
+  "linkedWasteIds": ["TW-004"],
+  "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL",
+  "manualStep": "",
+  "frequency": "observed|recurring|unknown",
+  "minutesPerOccurrence": null,
+  "avoidable": true,
+  "automationCandidate": true,
+  "businessWorkflow": "",
+  "operatorRole": "",
+  "rootCause": ""
 }
 ```
+
+Record `minutesPerOccurrence` only when actually observed — no invented estimates.
+
+### Business impact classification (optional per candidate-worthy packet)
+
+`PLATFORM_INTERNAL` | `OPERATOR_PRODUCTIVITY` | `ESTIMATING` | `DOCUMENT_PROCESSING` | `BID_TURNAROUND` | `PROPOSAL_QUALITY` | `DATA_QUALITY` | `CUSTOMER_DELIVERY` | `BUSINESS_RELIABILITY`
+
+### Product-workflow coverage (T2+ mandatory)
+
+```json
+{
+  "productWorkflowCoverage": {
+    "computerEstimator": "OBSERVED|NOT_OBSERVED|UNKNOWN",
+    "humanEstimator": "OBSERVED|NOT_OBSERVED|UNKNOWN",
+    "documentCenter": "OBSERVED|NOT_OBSERVED|UNKNOWN",
+    "planSetProcessing": "OBSERVED|NOT_OBSERVED|UNKNOWN",
+    "ocrParser": "OBSERVED|NOT_OBSERVED|UNKNOWN",
+    "revuBluebeam": "OBSERVED|NOT_OBSERVED|UNKNOWN",
+    "bidComposer": "OBSERVED|NOT_OBSERVED|UNKNOWN",
+    "proposals": "OBSERVED|NOT_OBSERVED|UNKNOWN",
+    "vae": "OBSERVED|NOT_OBSERVED|UNKNOWN",
+    "scraper": "OBSERVED|NOT_OBSERVED|UNKNOWN",
+    "crossAppHandoffs": "OBSERVED|NOT_OBSERVED|UNKNOWN",
+    "operatorReentry": "OBSERVED|NOT_OBSERVED|UNKNOWN"
+  }
+}
+```
+
+### Corpus bias detection (T2+ mandatory)
+
+```json
+{
+  "corpusBias": {
+    "evidenceDomainDistribution": {
+      "sdlc": 0,
+      "governance": 0,
+      "receiptPlumbing": 0,
+      "infrastructure": 0,
+      "productOperation": 0,
+      "operatorWorkflow": 0,
+      "businessWorkflow": 0
+    },
+    "corpusBiasWarning": "SDLC-heavy corpus — do not interpret zero open Gold Mine candidates as estate-wide optimization",
+    "underObservedDomains": ["Computer Estimator", "Revu", "Bid Composer"]
+  }
+}
+```
+
+Use relative weights or counts from thread evidence only.
+
+### Operational measurements (when execution occurred)
+
+Capture where available in `operationalMeasurements[]`:
+
+`wallClockDurationMs`, `retries`, `failures`, `warnings`, `cacheState`, `rawScans`, `fallbackUsage`, `apiCallCount`, `manualInterventions`, `recordsProcessed`, `gateDurationMs`, `retrievalDurationMs`, `probeId`, `workflow`
+
+### Observability gaps (`observabilityGaps[]`)
+
+Same structure as ChatGPT `OG-###` — first-class Gold Mine material.
+
+### Success patterns (`successPatterns[]`)
+
+Evidence-backed positive patterns (`goldMineSignalClass: SUCCESS_PATTERN`).
 
 ### Future-agent instructions (per seed packet)
 
@@ -376,6 +530,7 @@ artifacts/agent-runs/<harvest-id>/
   thread-autopsy-bundle.json
   thread-event-inventory.json
   code-touch-summary.json
+  gold-mine-evidence-projections-v1.json   # optional v1.1 — Data-Extraction ingest
   seed-packets/
     <seed-id>.json
   seed-packet-index.json
@@ -528,7 +683,9 @@ Retrieval: <code> | Cache: <code>
 Lane: <owner-repo|cross-agent|none>
 
 Harvest packets: <n> | Waste: <n> | Operator friction: <n> | Duplicates: <n>
-Execution deltas: <n> | Seed packets: <n>
+Execution deltas: <n> | Outcomes: <n> | Seed packets: <n>
+Gold Mine projections: <n> | Observability gaps: <n> | Success patterns: <n>
+Product coverage: <observed surfaces> | Corpus bias: <warning or none>
 ROI top-3: 1) <title> 2) <title> 3) <title>
 
 Do-not-advance:
@@ -558,12 +715,22 @@ Next operator action: <one sentence>
 - [ ] Harvest manifest + compact records exist
 - [ ] Thread autopsy bundle exists (T1+)
 - [ ] Waste ledger or `NONE_FOUND` with proof
-- [ ] ROI backlog ranked
-- [ ] Duplication check logged
+- [ ] ROI backlog ranked (expanded value fields where evidence exists)
+- [ ] Duplication check logged (digest/hash identity — not ordinal-only)
 - [ ] Do-not-advance map + registry updated when reusable
 - [ ] Seed packets atomic with retrieval questions (T2+)
 - [ ] `harvest:validate` PASS or gaps labeled `HARVEST_PARTIAL`
 - [ ] Publication truthfully labeled; no false FULLY_SEEDED
+- [ ] **Gold Mine:** `goldMineSignalClass` assigned where applicable
+- [ ] **Gold Mine:** problem vs resolution/adoption evidence distinguished
+- [ ] **Gold Mine:** stable identities used (`candidateDigest`, hashes — ordinals presentation-only)
+- [ ] **Gold Mine:** `evidenceEra` / pre-post implementation recorded when relevant
+- [ ] **Gold Mine:** `businessImpact` / product domain classified where applicable
+- [ ] **Gold Mine:** `outcome` packets or `OUT-###` for implemented work
+- [ ] **Gold Mine:** `productWorkflowCoverage` + `corpusBias` reported (T2+)
+- [ ] **Gold Mine:** no distinct valid improvement signal suppressed
+- [ ] **Gold Mine:** resolved evidence remains retrievable (`RESOLVED_OBSERVED` or resolution hint)
+- [ ] **Gold Mine:** observability gaps + success patterns recorded or `NONE_FOUND`
 - [ ] **Lane C:** protocol-only candidates selected (when lane used)
 - [ ] **Lane C:** unrelated build/application/CI/product packets excluded from Lane C package
 - [ ] **Lane C:** source evidence exists for each protocol-improvement candidate
@@ -578,9 +745,9 @@ Next operator action: <one sentence>
 ## Cursor opener prompt
 
 ```text
-Run chat-thread-closeout-autopsy-harvest-v1.
+Run chat-thread-closeout-autopsy-harvest-v1 (v1.1 Gold Mine compounding).
 
-Review this entire thread and harvest it into durable Intelligence Hub seed material.
+Review this entire thread and harvest it into durable Intelligence Hub seed material **and** Gold Mine-classified evidence.
 
 Tier: T1 (use T2 if long thread, user frustration, multi-repo, or repeated work).
 
@@ -588,14 +755,19 @@ Start with Intelligence Hub / Cross-Agent index. Log INDEX_HIT_AI_CACHE, INDEX_H
 
 Produce structured closeout autopsy (not prose summary):
 - thread event inventory with evidenceRefs
-- harvest manifest packets (8 kinds as applicable)
-- thread-autopsy-bundle.json (waste ledger, execution deltas, duplicates, ROI, operator friction, do-not-advance map)
+- harvest manifest packets (9 kinds as applicable) with goldMineSignalClass, novelty, implementationState where applicable
+- thread-autopsy-bundle.json (waste ledger, execution deltas, duplicates, ROI, operator friction, do-not-advance map, productWorkflowCoverage, corpusBias, operationalMeasurements, observabilityGaps, successPatterns)
+- optional gold-mine-evidence-projections-v1.json per Gold Mine evidence contract
 - code-touch summary with SHAs where available
 - atomic seed-packets/ with futureAgentInstructions (T2+)
+- outcome packets (OUT / kind:outcome) for implemented work with before/after and effectiveness
 
 Separate actual execution from optimal execution for every mistake.
 Force waste ledger and ROI ranking.
+Use stable digest/hash identity — ordinals are presentation only.
+Report corpus bias and under-observed product domains explicitly.
 Consult harvest-packet-registry, command-index, and hub BY-KIND slices before recording duplicate work.
+Do not suppress distinct improvement signals because they seem low-value.
 
 Respect Cross-Agent boundaries: coordination, receipts, ledger, manifests only. Implementation in owner repos.
 

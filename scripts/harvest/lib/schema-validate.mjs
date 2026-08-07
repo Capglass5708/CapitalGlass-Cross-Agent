@@ -9,6 +9,10 @@ const SCHEMA_DIR = path.join(__dirname, "../schema");
 const MANIFEST_SCHEMA_PATH = path.join(SCHEMA_DIR, "harvest-manifest-v1.schema.json");
 const AUTOPSY_BUNDLE_SCHEMA_PATH = path.join(SCHEMA_DIR, "thread-autopsy-bundle-v1.schema.json");
 const SEED_PACKET_SCHEMA_PATH = path.join(SCHEMA_DIR, "harvest-seed-packet-v1.schema.json");
+const GOLD_MINE_PROJECTION_SCHEMA_PATH = path.join(
+  SCHEMA_DIR,
+  "gold-mine-evidence-projection-v1.schema.json",
+);
 
 let ajvInstance;
 const compiledValidators = new Map();
@@ -49,4 +53,8 @@ export function validateThreadAutopsyBundleSchema(bundle) {
 
 export function validateHarvestSeedPacketSchema(seed) {
   return validateAgainstSchemaFile(SEED_PACKET_SCHEMA_PATH, seed, "seed ");
+}
+
+export function validateGoldMineEvidenceProjectionSchema(doc) {
+  return validateAgainstSchemaFile(GOLD_MINE_PROJECTION_SCHEMA_PATH, doc, "goldMine ");
 }
