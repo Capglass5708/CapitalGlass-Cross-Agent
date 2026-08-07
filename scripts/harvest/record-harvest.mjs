@@ -35,6 +35,7 @@ if (fs.existsSync(chatgptSource)) {
   run(`node scripts/harvest/expand-intelligence.mjs --harvest-id=${harvestId}`, "expand-intelligence");
 }
 run(`node scripts/harvest/merge-intelligence-index.mjs --harvest-id=${harvestId}`, "merge-intelligence-index");
+run(`node scripts/harvest/generate-harvest-intelligence-retrieval.mjs`, "generate-intelligence-retrieval");
 run("node scripts/harvest/render-harvest-index.mjs", "render-harvest-index");
 run(`node scripts/harvest/validate-harvest.mjs --harvest-id=${harvestId}`, "validate-harvest");
 console.log("harvest:record OK");

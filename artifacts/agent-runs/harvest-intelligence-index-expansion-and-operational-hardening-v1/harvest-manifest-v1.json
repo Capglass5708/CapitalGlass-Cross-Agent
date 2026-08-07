@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-intelligence-index-expansion-and-operational-hardening-v1",
+  "missionClass": "harvest-intelligence-index-expansion-milestone-closeout-v1",
+  "sourceCommitSha": "cf7eefc0963992378d4c38b19f63aaa0f8506246",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-07T22:10:00.000Z",
+  "updatedAt": "2026-08-07T22:10:00.000Z",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "2.2.0",
+    "authorityStatus": "PROPOSAL",
+    "catalogRole": "RETRIEVAL_ONLY",
+    "automaticProtocolMutation": false
+  },
+  "protocolImprovementCandidates": [
+    {
+      "candidateId": "HPC-INTEL-001",
+      "category": "HARVEST_INDEX",
+      "title": "Entity/observation intelligence index is append-merge authority",
+      "protocolProblem": "Harvest findings were flattened into derived INDEX views without stable entity identity.",
+      "desiredProtocolBehavior": "harvest-intelligence-index.json owns entities/observations; INDEX.md and ranked views are derived only.",
+      "proposedProtocolChange": "Document entity index as authority; gate deletedEntities=0 on every merge.",
+      "targetProtocolFiles": ["harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"],
+      "targetCommands": ["npm run harvest:merge-intelligence-index", "npm run test:harvest"],
+      "evidenceRefs": ["artifacts/agent-runs/harvest-intelligence-index-expansion-and-operational-hardening-v1/p0-closeout-receipt.json"]
+    },
+    {
+      "candidateId": "HPC-INTEL-002",
+      "category": "HARVEST_ROUTING",
+      "title": "Explicit harvest ID resolver fail-closed",
+      "protocolProblem": "Silent reference harvest IDs caused authority drift.",
+      "desiredProtocolBehavior": "resolve-harvest-id.mjs fails closed; record-harvest propagates one ID to all children.",
+      "targetValidators": ["scripts/harvest/lib/resolve-harvest-id.mjs"],
+      "targetCommands": ["npm run test:harvest"],
+      "evidenceRefs": ["artifacts/agent-runs/harvest-intelligence-index-expansion-and-operational-hardening-v1/p0-closeout-receipt.json"]
+    },
+    {
+      "candidateId": "HPC-INTEL-003",
+      "category": "RETRIEVAL_PREFLIGHT",
+      "title": "Hub harvest-intelligence slice for indexed retrieval",
+      "protocolProblem": "Expanded intelligence required raw scan without compact Hub projection.",
+      "desiredProtocolBehavior": "work-progress/intelligence-hub-slices/harvest-intelligence.json derives from entity index with rawRef pointers.",
+      "targetProtocolFiles": ["work-progress/intelligence-hub-slices/harvest-intelligence.json"],
+      "targetCommands": ["npm run harvest:generate-intelligence-retrieval"],
+      "evidenceRefs": ["artifacts/agent-runs/harvest-intelligence-index-expansion-and-operational-hardening-v1/p2-hub-slice-receipt.json"]
+    },
+    {
+      "candidateId": "HPC-INTEL-004",
+      "category": "HARVEST_SCHEMA",
+      "title": "Lossless expansion and Gold Mine projection v2",
+      "protocolProblem": "Rich ChatGPT findings were constrained to legacy schema buckets.",
+      "desiredProtocolBehavior": "expand-intelligence preserves all sections; UNMODELED_INTELLIGENCE queue captures unknown types.",
+      "targetSchemas": ["scripts/harvest/schema/gold-mine-evidence-projection-v2.schema.json"],
+      "targetCommands": ["npm run harvest:expand-intelligence"],
+      "evidenceRefs": ["artifacts/agent-runs/harvest-intelligence-index-expansion-and-operational-hardening-v1/p1-closeout-receipt.json"]
+    },
+    {
+      "candidateId": "HPC-INTEL-005",
+      "category": "DUPLICATION_PREVENTION",
+      "title": "ChatGPT DRAFT_READY_DOWNLOAD and provenance-only duplicates",
+      "protocolProblem": "ChatGPT drafts could compete with canonical Cursor harvests.",
+      "desiredProtocolBehavior": "DRAFT_READY_DOWNLOAD → git gate → ingest; DUPLICATE_PROVENANCE_ONLY links via sameAs/provenanceFor.",
+      "targetProtocolFiles": ["harvest/protocol/CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md"],
+      "targetCommands": ["npm run harvest:chatgpt-closeout-from-download", "npm run harvest:migrate-chatgpt-drafts"],
+      "evidenceRefs": ["artifacts/agent-runs/harvest-intelligence-index-expansion-and-operational-hardening-v1/p2-chatgpt-draft-migration-receipt.json"]
+    },
+    {
+      "candidateId": "HPC-INTEL-006",
+      "category": "HARVEST_AUTHORITY_BOUNDARY",
+      "title": "Data-Extraction consumer must not suppress distinct valid intelligence",
+      "protocolProblem": "Gold Mine could narrow intake to modeled classes only.",
+      "desiredProtocolBehavior": "Consumer retains KNOWN_CORE, EXTENSION_PRESERVED, UNMODELED_INTELLIGENCE; distinctValidSuppressed=0.",
+      "targetCommands": ["npm run test:harvest-intelligence-consumer", "npm run gold-mine:remeasure-harvest-intelligence"],
+      "evidenceRefs": ["Data-Extraction/artifacts/agent-runs/gold-mine-v1/harvest-intelligence-remeasurement-receipt.json"]
+    },
+    {
+      "candidateId": "HPC-INTEL-007",
+      "category": "HARVEST_INDEX",
+      "title": "Ranked views and corpus coverage are non-authoritative derived subsets",
+      "protocolProblem": "Top-N rankings could be mistaken for complete corpus.",
+      "desiredProtocolBehavior": "Ranked views include sourceEntityId; coverage distinguishes OBSERVED vs NOT_OBSERVED.",
+      "targetProtocolFiles": ["work-progress/harvest-intelligence-views/"],
+      "evidenceRefs": ["artifacts/agent-runs/harvest-intelligence-index-expansion-and-operational-hardening-v1/p2-ranked-views-receipt.json", "artifacts/agent-runs/harvest-intelligence-index-expansion-and-operational-hardening-v1/p2-corpus-coverage-receipt.json"]
+    }
+  ],
+  "packets": []
+}

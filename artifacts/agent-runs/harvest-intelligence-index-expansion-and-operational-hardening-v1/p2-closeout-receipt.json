@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "harvest-intelligence-p2-closeout-v1",
+  "milestoneId": "harvest-intelligence-index-expansion-and-operational-hardening-v1",
+  "waveId": "harvest-intelligence-index-expansion-final-integration-and-closeout-v1",
+  "phase": "P2",
+  "verdict": "P2_PASS_WITH_WARN",
+  "completedAt": "2026-08-07T22:12:00.000Z",
+  "baselineSha": "cf7eefc0963992378d4c38b19f63aaa0f8506246",
+  "gates": {
+    "p2AHubSlice": "PASS",
+    "p2BRankedViews": "PASS",
+    "p2CCorpusCoverage": "PASS",
+    "p2DConsumerContract": "PASS",
+    "p2EGoldMineRemeasure": "PASS",
+    "p2FChatGptDraftMigration": "PASS_WITH_WARN",
+    "laneCExport": "EXPORT_PASS",
+    "performance": "PASS",
+    "milestoneAudit": "PASS",
+    "testHarvest": "PASS"
+  },
+  "preservation": {
+    "sourceSectionsDropped": 0,
+    "deletedEntities": 0,
+    "distinctValidSuppressed": 0,
+    "rawRefFailures": 0,
+    "sourceHashFailures": 0,
+    "entities": 82,
+    "observations": 82,
+    "unmodeledRetained": 23,
+    "extensionsPreserved": 0,
+    "relationshipsAdded": 6
+  },
+  "warnings": [
+    "Requested ChatGPT draft harvest IDs missing; substitutes used for two migrations (CURSOR_MANIFEST_ONLY)",
+    "Legacy P0 compact-record observations use existence-only round-trip in milestone audit (anchored ChatGPT observations fully hash-verified)",
+    "Data-Extraction consumer commit on feat/harvest-branch-investigation-m23-m24 pending merge to main"
+  ],
+  "receipts": {
+    "p2Baseline": "p2-baseline-receipt.json",
+    "p2HubSlice": "p2-hub-slice-receipt.json",
+    "p2RankedViews": "p2-ranked-views-receipt.json",
+    "p2CorpusCoverage": "p2-corpus-coverage-receipt.json",
+    "p2ChatGptMigration": "p2-chatgpt-draft-migration-receipt.json",
+    "p2Performance": "p2-performance-receipt.json",
+    "milestoneAudit": "milestone-preservation-audit.json",
+    "laneC": "data-extraction-handoff/protocol-self-learning-export-receipt.json"
+  },
+  "nextPhase": "FORMAL_MILESTONE_CLOSEOUT"
+}
