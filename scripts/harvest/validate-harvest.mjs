@@ -11,9 +11,10 @@ import {
   validateGoldMineEvidenceProjection,
   validateOutcomePackets,
 } from "./lib/validate-gold-mine-evidence-projection.mjs";
-import { REPO_ROOT, harvestRunDir, manifestPath, HARVEST_ID } from "./lib/paths.mjs";
+import { REPO_ROOT, harvestRunDir, manifestPath } from "./lib/paths.mjs";
+import { resolveHarvestIdFromProcessArgv } from "./lib/resolve-harvest-id.mjs";
 
-const harvestId = process.argv[2] || HARVEST_ID;
+const { harvestId } = resolveHarvestIdFromProcessArgv({ allowReferenceDefault: true });
 const runDir = harvestRunDir(harvestId);
 const manifestFile = manifestPath(harvestId);
 

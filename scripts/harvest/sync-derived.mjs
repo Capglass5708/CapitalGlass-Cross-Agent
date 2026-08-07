@@ -6,12 +6,13 @@ import fs from "node:fs";
 import path from "node:path";
 import { execSync } from "node:child_process";
 import { hashCanonicalJson, hashFileContent } from "./lib/hash.mjs";
-import { REPO_ROOT, harvestRunDir, manifestPath, HARVEST_ID } from "./lib/paths.mjs";
+import { REPO_ROOT, harvestRunDir, manifestPath } from "./lib/paths.mjs";
+import { resolveHarvestIdFromProcessArgv } from "./lib/resolve-harvest-id.mjs";
 import { runPromptHarvestPipeline } from "./lib/prompt-extraction-lib.mjs";
 import { syncZHarvestMirror } from "./lib/z-harvest-mirror-lib.mjs";
 import { resolveAppBuilderRoot } from "../index/lib/resolve-repo-roots.mjs";
 
-const harvestId = process.argv[2] || HARVEST_ID;
+const { harvestId } = resolveHarvestIdFromProcessArgv({ allowReferenceDefault: true });
 const runDir = harvestRunDir(harvestId);
 const manifestFile = manifestPath(harvestId);
 
@@ -57,7 +58,7 @@ function buildPacketIndex(manifest) {
     missionClass: manifest.missionClass,
     runMode: "derived-from-manifest",
     retrievalOutcome: manifest.retrievalResult,
-    authority: "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/harvest-manifest-v1.json",
+    authority: `artifacts/agent-runs/${manifest.harvestId}/harvest-manifest-v1.json`,
     harvestManifestHash: hashCanonicalJson(manifest),
     packets: manifest.packets.map((packet) => ({
       id: packet.packetId,

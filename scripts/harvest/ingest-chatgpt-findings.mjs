@@ -10,22 +10,35 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { HARVEST_ID, REPO_ROOT } from "./lib/paths.mjs";
+import { REPO_ROOT } from "./lib/paths.mjs";
+import { resolveHarvestId } from "./lib/resolve-harvest-id.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 function parseArgs(argv) {
   let input = null;
-  let harvestId = HARVEST_ID;
+  let harvestId = null;
   for (const arg of argv) {
     if (arg.startsWith("--input=")) input = arg.slice("--input=".length);
     else if (arg.startsWith("--harvest-id=")) harvestId = arg.slice("--harvest-id=".length);
+  }
+  if (!harvestId) {
+    try {
+      ({ harvestId } = resolveHarvestId(argv, { allowReferenceDefault: false }));
+    } catch {
+      harvestId = null;
+    }
   }
   return { input, harvestId };
 }
 
 function main() {
-  const { input, harvestId } = parseArgs(process.argv.slice(2));
+  const { input, harvestId: parsedId } = parseArgs(process.argv.slice(2));
+  if (!parsedId) {
+    console.error("harvest:ingest-chatgpt-findings FAIL — --harvest-id is required (BLOCKED_MISSING_HARVEST_ID)");
+    process.exit(1);
+  }
+  const harvestId = parsedId;
   if (!input) {
     console.error("harvest:ingest-chatgpt-findings FAIL — --input is required");
     process.exit(1);

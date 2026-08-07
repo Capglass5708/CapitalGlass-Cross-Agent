@@ -89,6 +89,7 @@ ChatGPT does **not** merge to `main`, run validators, publish to the Intelligenc
 | Stage | ChatGPT may claim | Meaning |
 | --- | --- | --- |
 | Draft created only | `DRAFT_READY` | Findings Markdown complete in chat or local file; Git gate **not** passed |
+| Draft complete, download ready (no Git in ChatGPT env) | `DRAFT_READY_DOWNLOAD` | **Normal success** — rich artifact ready for Cursor `harvest:chatgpt-closeout-from-download` bridge |
 | Draft committed + remote push verified | `CHATGPT_SOURCE_PUBLISHED` | `CHATGPT_HARVEST_GIT_GATE` PASS; SHA receipt recorded |
 | Cursor validation / index / publication complete | `HARVEST_COMPLETE` | **Forbidden in ChatGPT** — Cursor after `harvest:validate` PASS |
 

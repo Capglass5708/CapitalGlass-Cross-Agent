@@ -27,6 +27,8 @@ const REQUIRED_MARKERS = [
   "BLOCKED_GIT_PUBLICATION",
 ];
 
+const V22_MARKERS = ["DRAFT_READY_DOWNLOAD"];
+
 function readProtocol(name) {
   const filePath = path.join(PROTOCOL_DIR, name);
   assert.ok(fs.existsSync(filePath), `missing protocol file: ${name}`);
@@ -72,6 +74,14 @@ test("all ChatGPT lane protocols agree on Git staging constants", () => {
     const content = readProtocol(name);
     for (const marker of REQUIRED_MARKERS) {
       assert.ok(content.includes(marker), `${name} missing marker: ${marker}`);
+    }
+    if (
+      name === "CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md" ||
+      name === "CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md"
+    ) {
+      for (const marker of V22_MARKERS) {
+        assert.ok(content.includes(marker), `${name} missing v2.2 marker: ${marker}`);
+      }
     }
   }
 

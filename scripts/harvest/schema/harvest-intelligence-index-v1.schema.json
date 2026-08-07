@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harvest-intelligence-index-v1.schema.json",
+  "title": "Harvest Intelligence Index v1",
+  "type": "object",
+  "required": ["schemaVersion", "updatedAt", "entities"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": "harvest-intelligence-index-v1" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "entities": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/intelligenceEntity" }
+    }
+  },
+  "$defs": {
+    "intelligenceEntity": {
+      "type": "object",
+      "required": ["entityId", "identity", "core", "dimensions", "extensions", "relationships", "observations"],
+      "additionalProperties": true,
+      "properties": {
+        "entityId": { "type": "string", "pattern": "^intel:" },
+        "identity": { "type": "object", "additionalProperties": true },
+        "firstSeenAt": { "type": "string" },
+        "lifecycleState": { "type": "string" },
+        "supersededBy": { "type": ["string", "null"] },
+        "core": { "type": "object", "additionalProperties": true },
+        "dimensions": { "type": "object", "additionalProperties": true },
+        "extensions": { "type": "object", "additionalProperties": true },
+        "classification": {
+          "type": "string",
+          "enum": ["KNOWN_CORE", "EXTENSION_PRESERVED", "UNMODELED_INTELLIGENCE"]
+        },
+        "relationships": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["type", "target"],
+            "properties": {
+              "type": { "type": "string" },
+              "target": { "type": "string" }
+            }
+          }
+        },
+        "observations": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/observation" }
+        }
+      }
+    },
+    "observation": {
+      "type": "object",
+      "required": ["observationId", "harvestId", "observedAt", "source", "snapshot", "sourceExcerptHash"],
+      "additionalProperties": true,
+      "properties": {
+        "observationId": { "type": "string", "pattern": "^obs:" },
+        "harvestId": { "type": "string" },
+        "workPackageId": { "type": "string" },
+        "observedAt": { "type": "string" },
+        "source": {
+          "type": "object",
+          "required": ["lane", "rawRef"],
+          "properties": {
+            "lane": { "type": "string" },
+            "rawRef": { "type": "string" },
+            "packetId": { "type": "string" },
+            "ordinalRef": { "type": "string" }
+          }
+        },
+        "provenance": { "type": "object", "additionalProperties": true },
+        "snapshot": { "type": "object", "additionalProperties": true },
+        "sourceExcerptHash": { "type": "string" }
+      }
+    }
+  }
+}

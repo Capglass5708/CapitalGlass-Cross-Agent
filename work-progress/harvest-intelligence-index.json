@@ -1,0 +1,381 @@
+{
+  "schemaVersion": "harvest-intelligence-index-v1",
+  "updatedAt": "2026-08-07T21:31:35.402Z",
+  "entities": [
+    {
+      "entityId": "intel:4a8c45cc3e5eaa4d0907e65ffb95c85a1c97dca3",
+      "identity": {
+        "conceptKey": "ryzen9desk-managed-executor-v1",
+        "candidateDigestRef": null,
+        "packetId": "ryzen9desk-managed-executor-v1"
+      },
+      "firstSeenAt": "2026-08-03T18:46:26.513Z",
+      "lifecycleState": "active",
+      "supersededBy": null,
+      "core": {
+        "signalClass": "CODE_READY_FOR_RUNNER_BOOTSTRAP",
+        "summary": "CG-AppBuilder-MCP mission: RYZEN9DESK WSL install from main + dispatch executor-smoke receipt",
+        "evidenceRefs": [
+          "CG-AppBuilder-MCP/.github/workflows/ryzen9desk-executor-dispatch.yml",
+          "CG-AppBuilder-MCP/scripts/executor/ryzen9desk-executor-allowlist.json"
+        ]
+      },
+      "dimensions": {
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "affectedRepos": [],
+        "lifecycleState": "RUNNER_BOOTSTRAP_CHECKPOINT_STARTED",
+        "implementationState": "RUNNER_BOOTSTRAP_CHECKPOINT_STARTED",
+        "effectiveness": "CODE_READY_FOR_RUNNER_BOOTSTRAP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/2026-08-03_ryzen9desk-managed-executor-v1.md"
+      },
+      "extensions": {},
+      "classification": "KNOWN_CORE",
+      "relationships": [
+        {
+          "type": "observedIn",
+          "target": "harvest:harvest-2026-08-03-cross-thread-platform-state-v1"
+        }
+      ],
+      "observations": [
+        {
+          "observationId": "obs:5ca400b19fb7bbbb5ed1a061f42adf39a738c0bf",
+          "harvestId": "harvest-2026-08-03-cross-thread-platform-state-v1",
+          "workPackageId": "harvest-2026-08-03-cross-thread-platform-state-v1",
+          "observedAt": "2026-08-03T18:46:26.513Z",
+          "source": {
+            "lane": "CURSOR",
+            "rawRef": "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/compact-records/ryzen9desk-managed-executor-v1.json",
+            "packetId": "ryzen9desk-managed-executor-v1",
+            "ordinalRef": "ryzen9desk-managed-executor-v1"
+          },
+          "provenance": {
+            "sourceCommitSha": "99d69141bdcf81ab002af8438c8131888ce0d2ce",
+            "protocolVersion": null,
+            "gitPublicationReceipt": null
+          },
+          "snapshot": {
+            "signalClass": "CODE_READY_FOR_RUNNER_BOOTSTRAP",
+            "lifecycleState": "RUNNER_BOOTSTRAP_CHECKPOINT_STARTED",
+            "implementationState": "RUNNER_BOOTSTRAP_CHECKPOINT_STARTED",
+            "effectiveness": "CODE_READY_FOR_RUNNER_BOOTSTRAP",
+            "evidenceStrength": "indexed"
+          },
+          "sourceExcerptHash": "b571afb971544265db1f0b582a8ee619240e2a6b7de0f65b2ae5d1226cce3222"
+        }
+      ]
+    },
+    {
+      "entityId": "intel:2ac17d9049ee495cbcf3ec9a1481d8f3a68d91e0",
+      "identity": {
+        "conceptKey": "active-ledger-ci-path-and-hash-stability-v1",
+        "candidateDigestRef": null,
+        "packetId": "active-ledger-ci-path-and-hash-stability-v1"
+      },
+      "firstSeenAt": "2026-08-03T18:46:26.513Z",
+      "lifecycleState": "active",
+      "supersededBy": null,
+      "core": {
+        "signalClass": "PASS",
+        "summary": "None unless test:active-ledger-sync regresses on main",
+        "evidenceRefs": [
+          "CG-AppBuilder-MCP/scripts/tests/run-active-ledger-paths.test.mjs"
+        ]
+      },
+      "dimensions": {
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "affectedRepos": [],
+        "lifecycleState": "COMPLETE",
+        "implementationState": "COMPLETE",
+        "effectiveness": "PASS",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md"
+      },
+      "extensions": {},
+      "classification": "KNOWN_CORE",
+      "relationships": [
+        {
+          "type": "observedIn",
+          "target": "harvest:harvest-2026-08-03-cross-thread-platform-state-v1"
+        }
+      ],
+      "observations": [
+        {
+          "observationId": "obs:74f97f070865310f489ae54ade375dcede25d66e",
+          "harvestId": "harvest-2026-08-03-cross-thread-platform-state-v1",
+          "workPackageId": "harvest-2026-08-03-cross-thread-platform-state-v1",
+          "observedAt": "2026-08-03T18:46:26.513Z",
+          "source": {
+            "lane": "CURSOR",
+            "rawRef": "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/compact-records/active-ledger-ci-path-and-hash-stability-v1.json",
+            "packetId": "active-ledger-ci-path-and-hash-stability-v1",
+            "ordinalRef": "active-ledger-ci-path-and-hash-stability-v1"
+          },
+          "provenance": {
+            "sourceCommitSha": "99d69141bdcf81ab002af8438c8131888ce0d2ce",
+            "protocolVersion": null,
+            "gitPublicationReceipt": null
+          },
+          "snapshot": {
+            "signalClass": "PASS",
+            "lifecycleState": "COMPLETE",
+            "implementationState": "COMPLETE",
+            "effectiveness": "PASS",
+            "evidenceStrength": "indexed"
+          },
+          "sourceExcerptHash": "688b92349e2585602102e6e0e21007511ca8f32572a717a6fb77247ac37fda7a"
+        }
+      ]
+    },
+    {
+      "entityId": "intel:adb7eaf3351967b17bc110f5920cbeed7559582c",
+      "identity": {
+        "conceptKey": "project-folder-synology-primary-v1-dev-environment",
+        "candidateDigestRef": null,
+        "packetId": "project-folder-synology-primary-v1-dev-environment"
+      },
+      "firstSeenAt": "2026-08-03T18:46:26.513Z",
+      "lifecycleState": "active",
+      "supersededBy": null,
+      "core": {
+        "signalClass": "CONTRACT_PASS_HOSTED_DEV_HOLD",
+        "summary": "Resolve Vercel BLOCKED deploy and Supabase dev isolation (owner: CapitalGlass-Documents)",
+        "evidenceRefs": [
+          "work-progress/projects/project-folder-synology-primary-v1-dev-hosted-environment.md"
+        ]
+      },
+      "dimensions": {
+        "ownerRepo": "CapitalGlass-Documents",
+        "affectedRepos": [],
+        "lifecycleState": "HOLD",
+        "implementationState": "HOLD",
+        "effectiveness": "CONTRACT_PASS_HOSTED_DEV_HOLD",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/project-folder-synology-primary-v1-dev-hosted-environment.md"
+      },
+      "extensions": {},
+      "classification": "KNOWN_CORE",
+      "relationships": [
+        {
+          "type": "observedIn",
+          "target": "harvest:harvest-2026-08-03-cross-thread-platform-state-v1"
+        }
+      ],
+      "observations": [
+        {
+          "observationId": "obs:b539e5f2e51bcf3e069df6c1b9c5bd8da2e80c74",
+          "harvestId": "harvest-2026-08-03-cross-thread-platform-state-v1",
+          "workPackageId": "harvest-2026-08-03-cross-thread-platform-state-v1",
+          "observedAt": "2026-08-03T18:46:26.513Z",
+          "source": {
+            "lane": "CURSOR",
+            "rawRef": "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/compact-records/project-folder-synology-primary-v1-dev-environment.json",
+            "packetId": "project-folder-synology-primary-v1-dev-environment",
+            "ordinalRef": "project-folder-synology-primary-v1-dev-environment"
+          },
+          "provenance": {
+            "sourceCommitSha": "99d69141bdcf81ab002af8438c8131888ce0d2ce",
+            "protocolVersion": null,
+            "gitPublicationReceipt": null
+          },
+          "snapshot": {
+            "signalClass": "CONTRACT_PASS_HOSTED_DEV_HOLD",
+            "lifecycleState": "HOLD",
+            "implementationState": "HOLD",
+            "effectiveness": "CONTRACT_PASS_HOSTED_DEV_HOLD",
+            "evidenceStrength": "indexed"
+          },
+          "sourceExcerptHash": "2a54e7fd5283b3ad9c7c3a0dfb2952ae1375c2d3d53ee3a6c04ab60b2fd947f9"
+        }
+      ]
+    },
+    {
+      "entityId": "intel:f36536f188a854fc624628f9245247f02853e28b",
+      "identity": {
+        "conceptKey": "cross-agent-retrieval-failover-v1.1",
+        "candidateDigestRef": null,
+        "packetId": "cross-agent-retrieval-failover-v1.1"
+      },
+      "firstSeenAt": "2026-08-03T18:46:26.513Z",
+      "lifecycleState": "active",
+      "supersededBy": null,
+      "core": {
+        "signalClass": "PASS",
+        "summary": "Recurring: use layered failover for suite status when L: unavailable",
+        "evidenceRefs": [
+          "decisions/DECISION_LOG.md",
+          "handoffs/CURRENT_HANDOFF.md"
+        ]
+      },
+      "dimensions": {
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "affectedRepos": [],
+        "lifecycleState": "ADOPTED",
+        "implementationState": "ADOPTED",
+        "effectiveness": "PASS",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "handoffs/CURRENT_HANDOFF.md"
+      },
+      "extensions": {},
+      "classification": "KNOWN_CORE",
+      "relationships": [
+        {
+          "type": "observedIn",
+          "target": "harvest:harvest-2026-08-03-cross-thread-platform-state-v1"
+        }
+      ],
+      "observations": [
+        {
+          "observationId": "obs:b3919cbea90b80e1aec084a1e010b2879d04d09a",
+          "harvestId": "harvest-2026-08-03-cross-thread-platform-state-v1",
+          "workPackageId": "harvest-2026-08-03-cross-thread-platform-state-v1",
+          "observedAt": "2026-08-03T18:46:26.513Z",
+          "source": {
+            "lane": "CURSOR",
+            "rawRef": "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/compact-records/cross-agent-retrieval-failover-v1.1.json",
+            "packetId": "cross-agent-retrieval-failover-v1.1",
+            "ordinalRef": "cross-agent-retrieval-failover-v1.1"
+          },
+          "provenance": {
+            "sourceCommitSha": "99d69141bdcf81ab002af8438c8131888ce0d2ce",
+            "protocolVersion": null,
+            "gitPublicationReceipt": null
+          },
+          "snapshot": {
+            "signalClass": "PASS",
+            "lifecycleState": "ADOPTED",
+            "implementationState": "ADOPTED",
+            "effectiveness": "PASS",
+            "evidenceStrength": "indexed"
+          },
+          "sourceExcerptHash": "47d8569c4a7d8d53928f13bc687d4ebbfc80d800e0d70f8b983c91152e351318"
+        }
+      ]
+    },
+    {
+      "entityId": "intel:94c4601cef99ef3bb322c976cc988d2880b3728c",
+      "identity": {
+        "conceptKey": "wsl2-native-repo-library-migration-v1",
+        "candidateDigestRef": null,
+        "packetId": "wsl2-native-repo-library-migration-v1"
+      },
+      "firstSeenAt": "2026-08-03T18:46:26.513Z",
+      "lifecycleState": "active",
+      "supersededBy": null,
+      "core": {
+        "signalClass": "FILESYSTEM_PASS_OPERATIONAL_CLEANUP_RECORDED",
+        "summary": "Per-repo ext4 verification; RYZEN9DESK alignment via separate executor mission",
+        "evidenceRefs": [
+          "work-progress/projects/2026-08-03_wsl2-native-repo-library-migration-v1.md"
+        ]
+      },
+      "dimensions": {
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "affectedRepos": [],
+        "lifecycleState": "PARTIAL",
+        "implementationState": "PARTIAL",
+        "effectiveness": "FILESYSTEM_PASS_OPERATIONAL_CLEANUP_RECORDED",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/2026-08-03_wsl2-native-repo-library-migration-v1.md"
+      },
+      "extensions": {},
+      "classification": "KNOWN_CORE",
+      "relationships": [
+        {
+          "type": "observedIn",
+          "target": "harvest:harvest-2026-08-03-cross-thread-platform-state-v1"
+        }
+      ],
+      "observations": [
+        {
+          "observationId": "obs:3f7fe42519d0b774acb036c5e9a97368feb31115",
+          "harvestId": "harvest-2026-08-03-cross-thread-platform-state-v1",
+          "workPackageId": "harvest-2026-08-03-cross-thread-platform-state-v1",
+          "observedAt": "2026-08-03T18:46:26.513Z",
+          "source": {
+            "lane": "CURSOR",
+            "rawRef": "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/compact-records/wsl2-native-repo-library-migration-v1.json",
+            "packetId": "wsl2-native-repo-library-migration-v1",
+            "ordinalRef": "wsl2-native-repo-library-migration-v1"
+          },
+          "provenance": {
+            "sourceCommitSha": "99d69141bdcf81ab002af8438c8131888ce0d2ce",
+            "protocolVersion": null,
+            "gitPublicationReceipt": null
+          },
+          "snapshot": {
+            "signalClass": "FILESYSTEM_PASS_OPERATIONAL_CLEANUP_RECORDED",
+            "lifecycleState": "PARTIAL",
+            "implementationState": "PARTIAL",
+            "effectiveness": "FILESYSTEM_PASS_OPERATIONAL_CLEANUP_RECORDED",
+            "evidenceStrength": "indexed"
+          },
+          "sourceExcerptHash": "ff53ad40c0f8eb1f343474390ff1b838eb8cc01d2d22a00995d8bf614a0048fa"
+        }
+      ]
+    },
+    {
+      "entityId": "intel:b493da1e5814842a0dc7dfa026c908c9390b68d2",
+      "identity": {
+        "conceptKey": "office-admin-ryzen9desk-managed-executor-bootstrap-v1",
+        "candidateDigestRef": null,
+        "packetId": "office-admin-ryzen9desk-managed-executor-bootstrap-v1"
+      },
+      "firstSeenAt": "2026-08-03T18:46:26.513Z",
+      "lifecycleState": "active",
+      "supersededBy": null,
+      "core": {
+        "signalClass": "CODE_READY_FOR_RUNNER_BOOTSTRAP",
+        "summary": "Runner bootstrap remains CG-AppBuilder-MCP mission; do not claim MANAGED_EXECUTOR_ONLINE",
+        "evidenceRefs": [
+          "CapitalGlass-Office-Admin/docs/runbooks/ryzen9desk-managed-executor-office-admin.md",
+          "work-progress/projects/2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md"
+        ]
+      },
+      "dimensions": {
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "affectedRepos": [],
+        "lifecycleState": "INDEXED",
+        "implementationState": "INDEXED",
+        "effectiveness": "CODE_READY_FOR_RUNNER_BOOTSTRAP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md"
+      },
+      "extensions": {},
+      "classification": "KNOWN_CORE",
+      "relationships": [
+        {
+          "type": "observedIn",
+          "target": "harvest:harvest-2026-08-03-cross-thread-platform-state-v1"
+        }
+      ],
+      "observations": [
+        {
+          "observationId": "obs:f1070c8f0f320b27c9132dd5c9d78b8cbc4c7932",
+          "harvestId": "harvest-2026-08-03-cross-thread-platform-state-v1",
+          "workPackageId": "harvest-2026-08-03-cross-thread-platform-state-v1",
+          "observedAt": "2026-08-03T18:46:26.513Z",
+          "source": {
+            "lane": "CURSOR",
+            "rawRef": "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/compact-records/office-admin-ryzen9desk-managed-executor-bootstrap-v1.json",
+            "packetId": "office-admin-ryzen9desk-managed-executor-bootstrap-v1",
+            "ordinalRef": "office-admin-ryzen9desk-managed-executor-bootstrap-v1"
+          },
+          "provenance": {
+            "sourceCommitSha": "99d69141bdcf81ab002af8438c8131888ce0d2ce",
+            "protocolVersion": null,
+            "gitPublicationReceipt": null
+          },
+          "snapshot": {
+            "signalClass": "CODE_READY_FOR_RUNNER_BOOTSTRAP",
+            "lifecycleState": "INDEXED",
+            "implementationState": "INDEXED",
+            "effectiveness": "CODE_READY_FOR_RUNNER_BOOTSTRAP",
+            "evidenceStrength": "indexed"
+          },
+          "sourceExcerptHash": "6b864c1a99b6d35caf320c3a94543e1d3d99dad65793926ef3ed6bb99a35794c"
+        }
+      ]
+    }
+  ]
+}

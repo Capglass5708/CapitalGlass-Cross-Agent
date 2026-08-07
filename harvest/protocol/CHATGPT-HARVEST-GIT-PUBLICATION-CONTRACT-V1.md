@@ -37,6 +37,7 @@ Only **`main`** and published **Z / L mirrors** define ChatGPT harvest behavior.
 | Stage | ChatGPT may claim | Lane-specific draft alias |
 | --- | --- | --- |
 | Draft in chat / file only | `DRAFT_READY` | `SYSTEM_ADVANCEMENT_DRAFT_READY` (ADVANCEMENT) |
+| Download-ready without Git access | `DRAFT_READY_DOWNLOAD` | Normal ChatGPT terminal success — Cursor bridge owns Git |
 | Git gate PASS + remote SHA verified | `CHATGPT_SOURCE_PUBLISHED` | same |
 | Cursor validate / hub publish complete | `HARVEST_COMPLETE` | **Forbidden in ChatGPT** |
 

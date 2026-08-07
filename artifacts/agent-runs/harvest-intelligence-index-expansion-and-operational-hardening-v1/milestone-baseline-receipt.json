@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "harvest-intelligence-milestone-baseline-v1",
+  "milestoneId": "harvest-intelligence-index-expansion-and-operational-hardening-v1",
+  "executionMode": "MILESTONE_WAVE",
+  "capturedAt": "2026-08-07T22:35:00.000Z",
+  "repo": "CapitalGlass-Cross-Agent",
+  "branch": "main",
+  "headSha": "f8ba6061ec4b03d27a00395b6d575fc478343b57",
+  "phase": "P0_FOUNDATION",
+  "registryPacketCount": 188,
+  "intelligenceEntityCountAfterSeed": 6,
+  "knownTestFailuresBefore": ["run-harvest-z-mirror-sync.test.mjs unit fixture incomplete sources"],
+  "p0Deliverables": [
+    "scripts/harvest/lib/resolve-harvest-id.mjs",
+    "scripts/harvest/lib/intelligence-index-lib.mjs",
+    "scripts/harvest/lib/reconcile-registry-boundary-lib.mjs",
+    "scripts/harvest/lib/chatgpt-git-gate-lib.mjs",
+    "work-progress/harvest-intelligence-index.json",
+    "scripts/harvest/schema/harvest-intelligence-index-v1.schema.json"
+  ],
+  "p0Commands": [
+    "harvest:merge-intelligence-index",
+    "harvest:reconcile-registry-boundary",
+    "harvest:chatgpt-publish-draft",
+    "harvest:chatgpt-git-gate",
+    "harvest:chatgpt-closeout-from-download"
+  ]
+}

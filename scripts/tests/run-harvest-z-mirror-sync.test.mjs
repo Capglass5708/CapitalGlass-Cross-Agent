@@ -7,6 +7,8 @@ import { fileURLToPath } from "node:url";
 
 import {
   syncZHarvestMirror,
+  Z_HARVEST_PROTOCOL_SOURCES,
+  Z_HARVEST_EXTERNAL_PROTOCOL_SOURCES,
 } from "../harvest/lib/z-harvest-mirror-lib.mjs";
 import { restoreRepoSnapshot, snapshotRepoPaths } from "./lib/preserve-worktree.mjs";
 
@@ -15,18 +17,30 @@ const REPO_ROOT = path.resolve(__dirname, "../..");
 
 test("syncZHarvestMirror copies protocol sources to repo harvest/ mirror", () => {
   const tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), "z-harvest-mirror-"));
-  const srcProtocol = path.join(tmpRoot, "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md");
-  fs.mkdirSync(path.dirname(srcProtocol), { recursive: true });
-  fs.writeFileSync(srcProtocol, "# Harvest protocol fixture\n### Lane C — test\n", "utf8");
 
-  const srcPrompt = path.join(tmpRoot, "harvest/protocol/PROMPT-EXTRACTION-AND-PROMOTION-v1.md");
-  fs.writeFileSync(srcPrompt, "# Prompt extraction fixture\n", "utf8");
+  for (const entry of Z_HARVEST_PROTOCOL_SOURCES) {
+    const src = path.join(tmpRoot, entry.source);
+    fs.mkdirSync(path.dirname(src), { recursive: true });
+    const canonical = path.join(REPO_ROOT, entry.source);
+    if (fs.existsSync(canonical)) {
+      fs.copyFileSync(canonical, src);
+    } else {
+      fs.writeFileSync(src, `# fixture ${entry.source}\n`, "utf8");
+    }
+  }
 
-  const srcRunbook = path.join(tmpRoot, "harvest/protocol/HARVEST-INGESTION-RUNBOOK-v1.md");
-  fs.writeFileSync(srcRunbook, "# Runbook fixture\n", "utf8");
-
-  const srcChatgpt = path.join(tmpRoot, "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md");
-  fs.writeFileSync(srcChatgpt, "# ChatGPT lane fixture\n", "utf8");
+  for (const entry of Z_HARVEST_EXTERNAL_PROTOCOL_SOURCES) {
+    const externalRoot = entry.resolveRepoRoot(tmpRoot);
+    const src = path.join(externalRoot, entry.source);
+    fs.mkdirSync(path.dirname(src), { recursive: true });
+    const canonicalRoot = entry.resolveRepoRoot(REPO_ROOT);
+    const canonical = path.join(canonicalRoot, entry.source);
+    if (fs.existsSync(canonical)) {
+      fs.copyFileSync(canonical, src);
+    } else {
+      fs.writeFileSync(src, `# external fixture ${entry.source}\n`, "utf8");
+    }
+  }
 
   const result = syncZHarvestMirror({
     repoRoot: tmpRoot,
