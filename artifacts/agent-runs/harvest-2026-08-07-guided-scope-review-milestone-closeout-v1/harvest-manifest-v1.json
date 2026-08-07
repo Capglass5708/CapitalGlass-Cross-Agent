@@ -1,0 +1,282 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-guided-scope-review-milestone-closeout-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "ef801772096b04b59c3196f2299be04fe008de2b",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-BidComposer",
+  "createdAt": "2026-08-07T00:12:00.000Z",
+  "updatedAt": "2026-08-07T00:12:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "Claim proposal issued on Rosewood without human Scope Review dispositions",
+    "Reactivate four superseded smoke-import Rosewood bids as canonical",
+    "Run index:publish or harvest:publish-hub-seed from Cursor",
+    "Claim FULLY_SEEDED without index:freshness-gate receipt"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-07-guided-scope-review-milestone-closeout-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-07-guided-scope-review-milestone-closeout-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 3,
+      "seeds": 2,
+      "roiItems": 3,
+      "operatorFriction": 0,
+      "executionDeltas": 2
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Operator runs harvest:publish-hub-seed + index:publish — NOT_RUN_BY_CURSOR"
+  },
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "1.0.0",
+    "eligibleCandidates": 0,
+    "rejectedUnrelatedCandidates": 0,
+    "exportStatus": "not-run",
+    "dataExtractionStatus": "not-run",
+    "catalogPublishStatus": "not-run",
+    "retrievalStatus": "not-run",
+    "targetCatalog": "L:\\02-catalog\\Harvest\\Harvest Protocol Self Learning",
+    "authorityStatus": "PROPOSAL",
+    "automaticProtocolMutation": false
+  },
+  "relatedRepos": [
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "branch": "main",
+      "commitSha": "ae4caf883ce0778bbcd7cc2467b0566d668ac50b",
+      "role": "SDLC prepare, migration registration, Auto v3.2 closeout"
+    },
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "feat/harvest-supabase-projection-improvements-v1",
+      "commitSha": "d407de53de147e656ac7a7393cba6261d0152a51",
+      "role": "harvest recording authority"
+    }
+  ],
+  "packets": [
+    {
+      "packetKind": "decision",
+      "packetId": "guided-scope-review-milestone-closed-v1",
+      "packetTitle": "bid-composer-guided-scope-review-and-proposal-disposition-v1 MILESTONE_CLOSED",
+      "state": "COMPLETE",
+      "packetVerdict": "MILESTONE_CLOSED",
+      "ownerRepo": "CapitalGlass-BidComposer",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md",
+      "nextAction": "Operator opens Scope Review URL and begins Rosewood disposition pilot",
+      "advancementGate": "GO_FOR_ESTIMATOR_SCOPE_REVIEW",
+      "doNotAdvance": [
+        "PROPOSAL_ISSUED without readyToIssue true"
+      ],
+      "evidenceRefs": [
+        "TE-009",
+        "formal-milestone-closeout-receipt-v1.json"
+      ],
+      "commitRefs": [
+        "CapitalGlass-BidComposer@ef801772096b04b59c3196f2299be04fe008de2b"
+      ],
+      "blockers": []
+    },
+    {
+      "packetKind": "evidence",
+      "packetId": "scope-review-production-deploy-evidence-v1",
+      "packetTitle": "Production deploy runtime SHA matches merge SHA",
+      "state": "COMPLETE",
+      "packetVerdict": "VERIFIED",
+      "ownerRepo": "CapitalGlass-BidComposer",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md",
+      "nextAction": "None — production aligned",
+      "advancementGate": "GUIDED_SCOPE_REVIEW_RUNTIME_ALIGNMENT_PASS",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-005",
+        "dpl_2rtKPhq1i4NRJuo2rDwDeVPn3AHN",
+        "3eb2d9d01071c1168cbe26f297a8148af3545f6b"
+      ],
+      "commitRefs": [
+        "CapitalGlass-BidComposer@3eb2d9d01071c1168cbe26f297a8148af3545f6b"
+      ],
+      "blockers": []
+    },
+    {
+      "packetKind": "command",
+      "packetId": "rosewood-scope-seed-idempotency-v1",
+      "packetTitle": "Rosewood 34-item scope import idempotent via upsertScopeReviewSeedItems",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-BidComposer",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md",
+      "nextAction": "Re-import returns 0 inserts",
+      "advancementGate": "ROSEWOOD_34_ITEM_SCOPE_QUEUE_PASS",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-006",
+        "rosewood-34-item-import-receipt.json"
+      ],
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetKind": "blocker",
+      "packetId": "scope-review-issue-gate-active-v1",
+      "packetTitle": "Unresolved scope blocks proposal issue on Rosewood",
+      "state": "ACTIVE",
+      "packetVerdict": "EXPECTED_BLOCK",
+      "ownerRepo": "CapitalGlass-BidComposer",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md",
+      "nextAction": "Human reviews 34 pending items in Guided Review",
+      "advancementGate": "readyToIssue true",
+      "doNotAdvance": [
+        "PROPOSAL_ISSUED"
+      ],
+      "evidenceRefs": [
+        "TE-007",
+        "SCOPE_REVIEW_PENDING_ITEMS"
+      ],
+      "commitRefs": [],
+      "blockers": [
+        "34 pending_review items"
+      ]
+    },
+    {
+      "packetKind": "mistake",
+      "packetId": "sdlc-dirty-tree-closeout-v1",
+      "packetTitle": "SDLC prepare blocked on untracked closeout artifacts",
+      "state": "RESOLVED",
+      "packetVerdict": "CORRECTED",
+      "ownerRepo": "CapitalGlass-BidComposer",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md",
+      "nextAction": "Commit artifacts before formal closeout prepare",
+      "advancementGate": "sdlc:cursor:prepare READY",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "WM-001",
+        "TW-001"
+      ],
+      "commitRefs": [
+        "CapitalGlass-BidComposer@ef801772096b04b59c3196f2299be04fe008de2b"
+      ],
+      "blockers": []
+    },
+    {
+      "packetKind": "repeated_work",
+      "packetId": "rosewood-smoke-bid-duplicate-v1",
+      "packetTitle": "Four smoke Rosewood bids preserved — scope queue only on canonical bid",
+      "state": "COMPLETE",
+      "packetVerdict": "DUPLICATE_AVOIDED",
+      "ownerRepo": "CapitalGlass-BidComposer",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md",
+      "nextAction": "Do not seed or pilot on supersededCandidateBidIds",
+      "advancementGate": "registry canonicalBidId match",
+      "doNotAdvance": [
+        "Merge smoke bids into canonical"
+      ],
+      "evidenceRefs": [
+        "TE-002",
+        "DW-001"
+      ],
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetKind": "faster_path",
+      "packetId": "sso-ui-proof-admin-lane-v1",
+      "packetTitle": "Verify Scope Review queue via admin repository when SSO blocks browser",
+      "state": "COMPLETE",
+      "packetVerdict": "CLASSIFIED",
+      "ownerRepo": "CapitalGlass-BidComposer",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md",
+      "nextAction": "Operator captures authenticated screenshots separately",
+      "advancementGate": "OPERATOR_ONLY screenshot optional",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-010",
+        "TW-002"
+      ],
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetKind": "protocol_upgrade",
+      "packetId": "guided-scope-review-closeout-runbook-v1",
+      "packetTitle": "Formal closeout requires git + runtime + DB + L export + harvest",
+      "state": "COMPLETE",
+      "packetVerdict": "DOCUMENTED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md",
+      "nextAction": "Use seed packets IH-GUIDED-SCOPE-REVIEW-ROSEWOOD-PILOT-001",
+      "advancementGate": "harvest:validate PASS",
+      "doNotAdvance": [
+        "index:publish from Cursor"
+      ],
+      "evidenceRefs": [
+        "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "futureAgentInstructions": {
+        "whenThisAppears": "Bid Composer milestone production closeout",
+        "startAt": [
+          "BY-KIND/thread-autopsy-index.json",
+          "formal-milestone-closeout-receipt-v1.json"
+        ],
+        "runPreflight": [
+          "npm run agent:index:scout -- --json"
+        ],
+        "doNot": [
+          "Stop at deployed without seed proof",
+          "Run index:publish from Cursor"
+        ],
+        "proveBeforeClaiming": [
+          "34 pending DB count",
+          "runtime SHA",
+          "L publication receipt"
+        ]
+      }
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": null,
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 8,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 8,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-8663930c83af",
+      "prompt-candidate-c3bf50f0fca6",
+      "prompt-candidate-08dac00d3e3f",
+      "prompt-candidate-6d48ef7cec97",
+      "prompt-candidate-90aa2bacfd8b",
+      "prompt-candidate-25876c23480a",
+      "prompt-candidate-338ba28855a7",
+      "prompt-candidate-9c70bf3078b1"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

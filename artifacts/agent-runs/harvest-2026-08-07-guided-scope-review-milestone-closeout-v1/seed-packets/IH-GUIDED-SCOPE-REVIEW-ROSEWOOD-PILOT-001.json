@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-GUIDED-SCOPE-REVIEW-ROSEWOOD-PILOT-001",
+  "kind": "runbook",
+  "title": "Rosewood guided Scope Review production pilot entry",
+  "summary": "Canonical Rosewood bid has 34 pending window-scope items on production Scope Review after PR #56 merge and migration 20260806235908.",
+  "retrievalQuestions": [
+    "What is the canonical Rosewood bid ID for Scope Review?",
+    "What production URL opens guided Scope Review for Rosewood?"
+  ],
+  "evidenceRefs": [
+    "CapitalGlass-BidComposer@ef801772096b04b59c3196f2299be04fe008de2b",
+    "TE-005",
+    "TE-006"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Rosewood Scope Review pilot or 34 window mark queue",
+    "startAt": [
+      "docs/canonical-bids/registry.json",
+      "docs/application-bible/10-GUIDED-SCOPE-REVIEW-MILESTONE.md"
+    ],
+    "runPreflight": [
+      "npm run agent:index:scout -- --json"
+    ],
+    "doNot": [
+      "Seed scope items on smoke duplicate_import bids",
+      "Claim GO_FOR_ESTIMATOR_SCOPE_REVIEW without 34 pending on canonical draft"
+    ],
+    "proveBeforeClaiming": [
+      "bid_scope_review_items count=34 pending on bid 633908da",
+      "runtime SHA matches merge SHA 3eb2d9d"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-BidComposer",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 1,
+  "wasteIds": ["TW-003"]
+}

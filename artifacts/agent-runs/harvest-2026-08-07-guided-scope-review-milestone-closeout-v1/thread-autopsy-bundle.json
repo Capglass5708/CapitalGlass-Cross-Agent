@@ -1,0 +1,162 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-guided-scope-review-milestone-closeout-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "verification",
+      "description": "SDLC cursor prepare BLOCKED on dirty tree until closeout artifacts committed",
+      "evidenceRefs": ["TE-009", "sdlc BLOCK_BASELINE_DIRTY before ef80177"],
+      "estimatedImpact": "low",
+      "savedBy": "Commit harvest/closeout artifacts before npm run sdlc:cursor:prepare",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "verification",
+      "description": "Agent could not capture authenticated Scope Review UI — Microsoft SSO required",
+      "evidenceRefs": ["TE-010", "production-scope-review-auth-redirect.png"],
+      "estimatedImpact": "medium",
+      "savedBy": "Classify as OPERATOR_ONLY evidence; verify via admin repository + DB counts",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "context",
+      "description": "Long multi-wave thread summarized mid-flight — re-verification required at formal closeout",
+      "evidenceRefs": ["conversation summary boundary"],
+      "estimatedImpact": "medium",
+      "savedBy": "Formal closeout phase re-runs git/runtime/DB/L export proofs",
+      "roiRank": 1
+    }
+  ],
+  "operatorFriction": [],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Rosewood bid identity for Scope Review pilot",
+      "actualExecution": {
+        "steps": ["Four smoke-import bids created ambiguity", "CREATE_FRESH_CANONICAL_BID designated 633908da"],
+        "outcome": "PASS",
+        "evidenceRefs": ["TE-002"]
+      },
+      "optimalExecution": {
+        "steps": ["Consult registry + projects.raw_attributes before any seed"],
+        "outcome": "Avoid pilot on wrong bid",
+        "requiredPreflight": ["docs/canonical-bids/registry.json"]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "high",
+        "operatorFrustration": "medium"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Production go-live gate sequence",
+      "actualExecution": {
+        "steps": ["Migration apply", "Merge PR", "Deploy", "Seed 34 items", "L export", "Formal docs"],
+        "outcome": "PASS",
+        "evidenceRefs": ["TE-004", "TE-005", "TE-006", "TE-008"]
+      },
+      "optimalExecution": {
+        "steps": ["Nonprod migration validation receipt", "Final CI", "Shared migration", "Merge", "Deploy main", "Seed", "Live proof"],
+        "outcome": "Same end state with explicit gate receipts per wave",
+        "requiredPreflight": ["npm run sdlc:cursor:prepare --json"]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Closeout artifacts left untracked blocking SDLC prepare",
+      "whyItWasWrong": "FORMAL_CLOSEOUT requires clean baseline for authoritative protocol",
+      "correctFirstMove": "Commit closeout receipts before sdlc:cursor:prepare",
+      "preventiveControl": "Commit artifacts in same wave as closeout docs",
+      "executionDeltaId": "ED-002",
+      "actualExecution": "Untracked artifacts on main",
+      "optimalExecution": "Single closeout commit then SDLC prepare READY"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "Rosewood scope queue seeding",
+      "whyRepeated": "Prior smoke bids had GPT bid-sheet imports only",
+      "firstKnownInstance": "rosewood-ingestion-smoke-candidate-v1 bids",
+      "priorIndexSlice": "docs/canonical-bids/registry.json",
+      "whyMissed": "Canonical designation happened late in milestone",
+      "avoidableBy": "CREATE_FRESH_CANONICAL_BID before scope-review UI pilot",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Canonical bid registry gate before production seed",
+      "whyItPays": "Eliminates ambiguous Rosewood pilot identity rework",
+      "effort": "low",
+      "savedWasteIds": ["TW-003"],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 2,
+      "title": "Commit closeout artifacts before SDLC prepare",
+      "whyItPays": "Avoids BLOCK_BASELINE_DIRTY on formal closeout waves",
+      "effort": "low",
+      "savedWasteIds": ["TW-001"],
+      "seedAs": "command"
+    },
+    {
+      "rank": 3,
+      "title": "Admin repository proof lane for SSO-gated UI",
+      "whyItPays": "Agent can verify queue/readiness without Microsoft session",
+      "effort": "medium",
+      "savedWasteIds": ["TW-002"],
+      "seedAs": "command"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "GO_FOR_ESTIMATOR_SCOPE_REVIEW",
+      "currentStatus": "CLOSED",
+      "doNotClaimUntil": [
+        "Operator opens production Scope Review and begins disposition"
+      ],
+      "lastKnownEvidence": [
+        "34 pending items",
+        "runtime SHA 3eb2d9d",
+        "readyToIssue false"
+      ]
+    },
+    {
+      "awardOrVerdict": "PROPOSAL_ISSUED",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": ["Human completes Scope Review dispositions", "readyToIssue true"],
+      "lastKnownEvidence": ["SCOPE_REVIEW_PENDING_ITEMS gate"]
+    },
+    {
+      "awardOrVerdict": "FULLY_SEEDED_HUB",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": ["harvest:publish-hub-seed", "index:freshness-gate"],
+      "lastKnownEvidence": ["projection.hubPublishStatus not-run"]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-07T00:12:00.000Z",
+    "preflightReceiptHash": "INDEX_HIT_AI_CACHE scout 2026-08-07"
+  }
+}

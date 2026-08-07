@@ -48,7 +48,15 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 | `faster-path-l-protocol-stale-v1` | RESOLVED | SYNCED | CapitalGlass-Cross-Agent | [INDEX.md](./INDEX.md) | See harvest manifest packet |
 | `blocker-test-harvest-z-mirror-v1` | OPEN | DEFERRED | Data-Extraction | [INDEX.md](./INDEX.md) | harvest-z-mirror-source-repair-v1 |
 
-<!-- HARVEST-PACKET-INDEX:END -->
+
+| `guided-scope-review-milestone-closed-v1` | COMPLETE | MILESTONE_CLOSED | CapitalGlass-BidComposer | [harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md](./harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md) | Operator opens Scope Review URL and begins Rosewood disposition pilot |
+| `scope-review-production-deploy-evidence-v1` | COMPLETE | VERIFIED | CapitalGlass-BidComposer | [harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md](./harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md) | None — production aligned |
+| `rosewood-scope-seed-idempotency-v1` | COMPLETE | PASS | CapitalGlass-BidComposer | [harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md](./harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md) | Re-import returns 0 inserts |
+| `scope-review-issue-gate-active-v1` | ACTIVE | EXPECTED_BLOCK | CapitalGlass-BidComposer | [harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md](./harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md) | Human reviews 34 pending items in Guided Review |
+| `sdlc-dirty-tree-closeout-v1` | RESOLVED | CORRECTED | CapitalGlass-BidComposer | [harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md](./harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md) | Commit artifacts before formal closeout prepare |
+| `rosewood-smoke-bid-duplicate-v1` | COMPLETE | DUPLICATE_AVOIDED | CapitalGlass-BidComposer | [harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md](./harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md) | Do not seed or pilot on supersededCandidateBidIds |
+| `sso-ui-proof-admin-lane-v1` | COMPLETE | CLASSIFIED | CapitalGlass-BidComposer | [harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md](./harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md) | Operator captures authenticated screenshots separately |
+| `guided-scope-review-closeout-runbook-v1` | COMPLETE | DOCUMENTED | CapitalGlass-Cross-Agent | [CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md](./CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md) | Use seed packets IH-GUIDED-SCOPE-REVIEW-ROSEWOOD-PILOT-001 |<!-- HARVEST-PACKET-INDEX:END -->
 
 ## Active projects
 

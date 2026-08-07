@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-guided-scope-review-milestone-closeout-v1",
+  "threadScope": "Bid Composer guided Scope Review milestone — production boundary, migration, PR #56 merge, deploy, 34-item Rosewood seed, formal closeout",
+  "generatedAt": "2026-08-07T00:12:00.000Z",
+  "events": [
+    {
+      "eventId": "TE-001",
+      "phase": "operator",
+      "summary": "MILESTONE_WAVE prompt: complete guided Scope Review through operator handoff on canonical Rosewood bid",
+      "evidenceRefs": ["user prompt rosewood-guided-scope-review-production-go-live-and-operator-handoff-v1"]
+    },
+    {
+      "eventId": "TE-002",
+      "phase": "discovery",
+      "summary": "Rosewood bid identity resolved — CREATE_FRESH_CANONICAL_BID; four smoke candidates preserved as duplicate_import",
+      "evidenceRefs": [
+        "CapitalGlass-BidComposer/docs/canonical-bids/registry.json",
+        "rosewood-canonical-bid-designation-receipt.json"
+      ]
+    },
+    {
+      "eventId": "TE-003",
+      "phase": "verification",
+      "summary": "CI Validate SUCCESS on PR head d31a596 (run 31132613250)",
+      "evidenceRefs": [
+        "https://github.com/Capglass5708/CapitalGlass-BidComposer/actions/runs/31132613250"
+      ]
+    },
+    {
+      "eventId": "TE-004",
+      "phase": "implementation",
+      "summary": "Shared migration bid_scope_review_guided_v1 applied — version 20260806235908",
+      "evidenceRefs": [
+        "shared-migration-receipt-20260806230000.json",
+        "supabase_migrations.schema_migrations 20260806235908"
+      ]
+    },
+    {
+      "eventId": "TE-005",
+      "phase": "implementation",
+      "summary": "PR #56 merged to main at 3eb2d9d; production deploy READY dpl_2rtKPhq1i4NRJuo2rDwDeVPn3AHN",
+      "evidenceRefs": [
+        "gh pr view 56 mergeCommit",
+        "Vercel deployment dpl_2rtKPhq1i4NRJuo2rDwDeVPn3AHN"
+      ]
+    },
+    {
+      "eventId": "TE-006",
+      "phase": "implementation",
+      "summary": "Rosewood 34 window marks seeded idempotently (34 insert, 0 on second import)",
+      "evidenceRefs": ["rosewood-34-item-import-receipt.json"]
+    },
+    {
+      "eventId": "TE-007",
+      "phase": "verification",
+      "summary": "Commercial safety — readyToIssue false, SCOPE_REVIEW_PENDING_ITEMS gate, zero dispositions",
+      "evidenceRefs": ["formal-milestone-closeout-receipt-v1.json"]
+    },
+    {
+      "eventId": "TE-008",
+      "phase": "verification",
+      "summary": "L: export to Rosewood Computer Estimator workspace with 34 pending in publication receipt",
+      "evidenceRefs": [
+        "L:/.../Computer Estimator/00 - Status/publication-receipt.json"
+      ]
+    },
+    {
+      "eventId": "TE-009",
+      "phase": "closeout",
+      "summary": "Formal milestone closeout docs committed ef80177; MILESTONE_CLOSED GO_FOR_ESTIMATOR_SCOPE_REVIEW",
+      "evidenceRefs": [
+        "CapitalGlass-BidComposer@ef801772096b04b59c3196f2299be04fe008de2b",
+        "docs/application-bible/10-GUIDED-SCOPE-REVIEW-MILESTONE.md"
+      ]
+    },
+    {
+      "eventId": "TE-010",
+      "phase": "verification",
+      "summary": "Authenticated Scope Review UI screenshots blocked by Microsoft SSO — classified OPERATOR_ONLY",
+      "evidenceRefs": ["production-scope-review-auth-redirect.png"]
+    }
+  ]
+}
