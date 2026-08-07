@@ -1,0 +1,205 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-direct-connect-three-controller-closeout-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "verification",
+      "description": "Knowledge-index manifest refreshed on WSL ext4 with untracked docs (161) caused CI deploy:gate FAIL on clean runner (156)",
+      "evidenceRefs": ["TE-004", "github run 31153360085", "f30c7bd fix commit"],
+      "estimatedImpact": "high",
+      "savedBy": "npm run ops:refresh-knowledge-index only from clean git checkout (Windows bundle clone or CI-equivalent)",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "host",
+      "description": "Initial deploy:gate used stale C:\\Developer\\repos checkout on wrong branch with dirty tree",
+      "evidenceRefs": ["conversation summary Wave D partial"],
+      "estimatedImpact": "medium",
+      "savedBy": "Use WSL ext4 bundle clone or temp clean checkout at feature SHA before gates",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "verification",
+      "description": "WSL deploy:gate failed ops:validate (Test-OfficeAdminDailyTasks) while Windows path passed",
+      "evidenceRefs": ["WSL ops:validate FAIL vs Windows PASS"],
+      "estimatedImpact": "medium",
+      "savedBy": "Run Office Admin deploy:gate from WESLEY_WORK Windows PowerShell per milestone contract",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "verification",
+      "description": "Gitleaks working-tree scan false-positive on office.verify_ryzen9desk_outcome_evidence before allowlist",
+      "evidenceRefs": [".gitleaks.toml office\\.[a-z0-9_]+ allowlist"],
+      "estimatedImpact": "low",
+      "savedBy": "Pre-allowlist MCP tool slug pattern in .gitleaks.toml for Office Admin direct-connect tools",
+      "roiRank": 4
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Operator had to re-prompt Wave D→E→F sequence after partial Wave D and conversation summary boundary",
+      "operatorCost": "medium",
+      "frequency": "observed",
+      "systemFix": "Single multi-wave execution package with explicit terminal state gates reduces re-entry",
+      "evidenceRefs": ["TE-001", "user continuation prompt"],
+      "linkedWasteIds": ["TW-002"]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Office Admin CI deploy:gate after Wave D push",
+      "actualExecution": {
+        "steps": [
+          "Refresh knowledge index on WSL with local untracked docs",
+          "Commit manifest with 161 docs",
+          "Push — CI validate-knowledge-index FAIL"
+        ],
+        "outcome": "FAIL then fix",
+        "evidenceRefs": ["TE-004", "TE-005"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "git bundle clone clean checkout",
+          "npm run ops:refresh-knowledge-index on clean tree only",
+          "node scripts/ops/validate-knowledge-index.mjs before push"
+        ],
+        "outcome": "CI green first push",
+        "requiredPreflight": ["clean checkout parity gate"]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "medium"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Wave F post-merge runtime proof",
+      "actualExecution": {
+        "steps": [
+          "Clone main to Windows temp",
+          "Invoke mesh + controller live closeouts from WESLEY_WORK",
+          "Commit closeout receipts to main"
+        ],
+        "outcome": "PASS",
+        "evidenceRefs": ["TE-007", "TE-008"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Same — canonical pattern already optimal"
+        ],
+        "outcome": "PASS",
+        "requiredPreflight": ["npm run agent:index:scout"]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Knowledge-index manifest generated from WSL tree with untracked documentation paths",
+      "whyItWasWrong": "validate-knowledge-index compares manifest to repository scan; untracked files inflate doc count on dev host only",
+      "correctFirstMove": "Regenerate manifest from clean git-only checkout before commit",
+      "preventiveControl": "CI-parity refresh script or pre-push gate on clean worktree",
+      "executionDeltaId": "ED-001"
+    },
+    {
+      "wrongMoveId": "WM-002",
+      "summary": "Attempted deploy:gate from stale NTFS Office Admin checkout",
+      "whyItWasWrong": "Wrong branch and dirty state invalid for milestone gate evidence",
+      "correctFirstMove": "WSL ext4 canonical repo or git bundle temp clone at feature SHA",
+      "preventiveControl": "check:canonical-authority-checkout / verify branch before deploy:gate",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "Direct Connect mesh/controller live closeout",
+      "whyRepeated": "Wave C pre-merge proofs re-run post-merge on canonical main",
+      "firstKnownInstance": "harvest-2026-08-03-direct-connect-slice6-autopsy-v1 / Wave C artifacts @ 0d245ed",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "whyMissed": "Post-merge runtime re-proof required by Wave F contract — intentional not accidental",
+      "avoidableBy": "N/A — required post-merge verification",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Clean-checkout knowledge-index refresh gate before Office Admin push",
+      "whyItPays": "Eliminates CI deploy:gate manifest drift class (161 vs 156 docs)",
+      "effort": "low",
+      "savedWasteIds": ["TW-001"],
+      "seedAs": "command"
+    },
+    {
+      "rank": 2,
+      "title": "Document WESLEY_WORK Windows-only deploy:gate lane for Office Admin",
+      "whyItPays": "Avoids WSL ops:validate false failures and enables PASS_LIVE_SUBSTANTIVE vault/Z",
+      "effort": "low",
+      "savedWasteIds": ["TW-003"],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 3,
+      "title": "Multi-wave terminal execution package with gate checklist",
+      "whyItPays": "Reduces operator re-prompt across D/E/F boundaries",
+      "effort": "medium",
+      "savedWasteIds": ["OF-001"],
+      "seedAs": "runbook"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "direct-connect-three-controller-topology-wesleydesk-completion-v1 OPERATIONAL",
+      "currentStatus": "CLOSED",
+      "doNotClaimUntil": [
+        "Do not re-open milestone without new defect evidence"
+      ],
+      "lastKnownEvidence": [
+        "6/6 mesh PASS post-merge",
+        "controller failover PASS",
+        "PR #57 #290 merged",
+        "dc4df82 closeout on main"
+      ]
+    },
+    {
+      "awardOrVerdict": "FULLY_SEEDED_HUB",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "harvest:publish-hub-seed",
+        "index:freshness-gate"
+      ],
+      "lastKnownEvidence": ["projection.hubPublishStatus not-run"]
+    },
+    {
+      "awardOrVerdict": "WESLEYDESK_Z_PRE_LOGIN_MOUNT",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": ["Separate drive-mobility work package"],
+      "lastKnownEvidence": ["wesleydesk/persistence-proof.json repairRequired"]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-07T20:55:00.000Z",
+    "preflightReceiptHash": "INDEX_HIT_AI_CACHE scout be967d2"
+  }
+}

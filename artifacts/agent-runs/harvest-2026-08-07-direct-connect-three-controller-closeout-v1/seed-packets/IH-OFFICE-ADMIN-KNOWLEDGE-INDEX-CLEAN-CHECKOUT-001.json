@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-OFFICE-ADMIN-KNOWLEDGE-INDEX-CLEAN-CHECKOUT-001",
+  "kind": "command",
+  "title": "Office Admin knowledge-index must refresh from clean git checkout only",
+  "summary": "ops:refresh-knowledge-index on WSL with untracked docs breaks CI deploy:gate validate-knowledge-index; use git bundle clean clone.",
+  "retrievalQuestions": [
+    "Why does Office Admin deploy:gate fail on mcp/knowledge-index/manifest.json in CI?",
+    "How do I refresh knowledge index with CI parity before push?"
+  ],
+  "evidenceRefs": [
+    "TE-004",
+    "TE-005",
+    "CapitalGlass-Office-Admin@f30c7bd3fdb2fa47f69cabe7e02a554c787c5517"
+  ],
+  "sourcePacketIds": ["office-admin-ci-manifest-drift-v1"],
+  "wasteIds": ["TW-001"],
+  "roiRank": 1,
+  "futureAgentInstructions": {
+    "whenThisAppears": "Office Admin CI fails validate-knowledge-index after manifest refresh",
+    "startAt": [
+      "mcp/knowledge-index/manifest.json",
+      "scripts/ops/refresh-knowledge-index.mjs"
+    ],
+    "runPreflight": ["npm run agent:index:scout -- --json"],
+    "doNot": [
+      "Run ops:refresh-knowledge-index on WSL tree with untracked docs",
+      "Claim deploy:gate PASS from WSL when Windows live vault required"
+    ],
+    "proveBeforeClaiming": [
+      "node scripts/ops/validate-knowledge-index.mjs on clean checkout",
+      "doc count matches CI runner"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

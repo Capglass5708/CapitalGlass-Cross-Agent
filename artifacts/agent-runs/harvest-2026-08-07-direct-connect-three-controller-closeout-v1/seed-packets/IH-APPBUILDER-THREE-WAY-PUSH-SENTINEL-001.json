@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-APPBUILDER-THREE-WAY-PUSH-SENTINEL-001",
+  "kind": "lesson",
+  "title": "AppBuilder feature branches require THREE_WAY_PUSH_APPROVED=YES",
+  "summary": "CG-AppBuilder-MCP protected branches block push without THREE_WAY_PUSH_APPROVED=YES sentinel env var.",
+  "retrievalQuestions": [
+    "Why did AppBuilder feature branch push fail?",
+    "What env var is required to push feat branches on CG-AppBuilder-MCP?"
+  ],
+  "evidenceRefs": [
+    "TE-006",
+    "CG-AppBuilder-MCP@388a595b75ef77cdc2aa638a4a030d822dd8c98b",
+    "PR #290"
+  ],
+  "sourcePacketIds": ["appbuilder-companion-merge-v1"],
+  "roiRank": 3,
+  "futureAgentInstructions": {
+    "whenThisAppears": "Pushing AppBuilder MCP feature branch for cross-repo milestone",
+    "startAt": ["docs/handoff/CURRENT.md", "3-way push sentinel docs"],
+    "runPreflight": ["npm run closeout:gate"],
+    "doNot": ["git push without THREE_WAY_PUSH_APPROVED=YES on protected AppBuilder branches"],
+    "proveBeforeClaiming": ["Remote push exit 0 with sentinel acknowledgment in output"]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}

@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "thread-autopsy-analytics-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-direct-connect-three-controller-closeout-v1",
+  "generatedAt": "2026-08-07T20:55:00.000Z",
+  "productWorkflowCoverage": {
+    "computerEstimator": "NOT_OBSERVED",
+    "humanEstimator": "NOT_OBSERVED",
+    "documentCenter": "NOT_OBSERVED",
+    "planSetProcessing": "NOT_OBSERVED",
+    "ocrParser": "NOT_OBSERVED",
+    "revuBluebeam": "NOT_OBSERVED",
+    "bidComposer": "NOT_OBSERVED",
+    "proposals": "NOT_OBSERVED",
+    "vae": "NOT_OBSERVED",
+    "scraper": "NOT_OBSERVED",
+    "crossAppHandoffs": "OBSERVED",
+    "operatorReentry": "OBSERVED"
+  },
+  "corpusBias": {
+    "evidenceDomainDistribution": {
+      "sdlc": 2,
+      "governance": 1,
+      "receiptPlumbing": 4,
+      "infrastructure": 5,
+      "productOperation": 0,
+      "operatorWorkflow": 2,
+      "businessWorkflow": 0
+    },
+    "corpusBiasWarning": "Infrastructure/SDLC-heavy — zero product estimating/document workflow in this thread",
+    "underObservedDomains": [
+      "Computer Estimator",
+      "Document Center",
+      "Bid Composer"
+    ]
+  },
+  "operationalMeasurements": [
+    {
+      "workflow": "Office Admin CI gate retry",
+      "failures": 1,
+      "retries": 1,
+      "gateDurationMs": 140000,
+      "probeId": "deploy:gate",
+      "notes": "First CI fail knowledge-index; second run pass after f30c7bd"
+    },
+    {
+      "workflow": "Wave F mesh live closeout",
+      "wallClockDurationMs": 39700,
+      "probeId": "Invoke-CgDirectConnectThreeNodeMeshLiveCloseout.ps1",
+      "manualInterventions": 0
+    }
+  ],
+  "observabilityGaps": [],
+  "successPatterns": [
+    {
+      "patternId": "SP-001",
+      "title": "Git bundle clean clone for Windows gate parity",
+      "summary": "WSL git bundle → Windows temp clone at exact SHA produces CI-identical knowledge-index counts",
+      "evidenceRefs": ["TE-005", "office-admin-wave-d-gate2"],
+      "goldMineSignalClass": "SUCCESS_PATTERN"
+    },
+    {
+      "patternId": "SP-002",
+      "title": "Post-merge live re-proof on canonical main clone",
+      "summary": "Wave F mesh+controller closeouts from WESLEY_WORK on fresh main checkout closes publication loop",
+      "evidenceRefs": ["TE-007", "final-closeout-operational.json"],
+      "goldMineSignalClass": "SUCCESS_PATTERN"
+    }
+  ]
+}

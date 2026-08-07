@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "gold-mine-evidence-projection-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-direct-connect-three-controller-closeout-v1",
+  "generatedAt": "2026-08-07T20:55:00.000Z",
+  "projections": [
+    {
+      "projectionId": "GMP-001",
+      "signalClass": "PROBLEM_SIGNAL",
+      "lifecycleHint": "RESOLVED_OBSERVED",
+      "rootCauseKey": "office-admin-knowledge-index-wsl-untracked-drift",
+      "workPackageId": "direct-connect-three-controller-topology-wesleydesk-completion-v1",
+      "evidenceStrength": "high",
+      "operatorImpact": "CI retry and extra commit required",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "PRE_IMPLEMENTATION",
+      "observedAt": "2026-08-07T06:18:00.000Z",
+      "sourceWorkPackageId": "direct-connect-three-controller-topology-wesleydesk-completion-v1",
+      "sourceCommitSha": "f30c7bd3fdb2fa47f69cabe7e02a554c787c5517",
+      "novelty": "NEW",
+      "implementationState": "RESOLVED_OBSERVED",
+      "resolves": ["WM-001", "TW-001"],
+      "evidenceRefs": ["TE-004", "TE-005"]
+    },
+    {
+      "projectionId": "GMP-002",
+      "signalClass": "RESOLUTION_SIGNAL",
+      "lifecycleHint": "CLOSED",
+      "rootCauseKey": "direct-connect-three-controller-milestone",
+      "workPackageId": "direct-connect-three-controller-topology-wesleydesk-completion-v1",
+      "evidenceStrength": "high",
+      "operatorImpact": "Three-node mesh + controller topology operational",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-07T06:28:00.000Z",
+      "sourceCommitSha": "dc4df82b2e9d9e910ef0b86c7c33aa9bc42abb8b",
+      "novelty": "NEW",
+      "implementationState": "PROVEN_EFFECTIVE",
+      "validatesExisting": ["harvest-2026-08-03-direct-connect-slice6-autopsy-v1"],
+      "evidenceRefs": ["TE-007", "TE-008", "final-closeout-operational.json"]
+    },
+    {
+      "projectionId": "GMP-003",
+      "signalClass": "OPERATOR_FRICTION_SIGNAL",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "multi-wave-closeout-re-entry",
+      "workPackageId": "direct-connect-three-controller-topology-wesleydesk-completion-v1",
+      "evidenceStrength": "medium",
+      "operatorImpact": "Operator re-prompted continuation after summary boundary",
+      "businessImpact": "OPERATOR_PRODUCTIVITY",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-07T20:50:00.000Z",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "evidenceRefs": ["OF-001", "TE-001"]
+    },
+    {
+      "projectionId": "GMP-004",
+      "signalClass": "SUCCESS_PATTERN",
+      "lifecycleHint": "ADOPTED",
+      "rootCauseKey": "wesleywork-windows-powershell-live-admin-ssh",
+      "workPackageId": "direct-connect-three-controller-topology-wesleydesk-completion-v1",
+      "evidenceStrength": "high",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-07T06:25:55.802Z",
+      "implementationState": "PROVEN_EFFECTIVE",
+      "adopts": ["SP-002"],
+      "evidenceRefs": ["controller-live-closeout-summary.json", "mesh-live-closeout-summary.json"]
+    }
+  ]
+}

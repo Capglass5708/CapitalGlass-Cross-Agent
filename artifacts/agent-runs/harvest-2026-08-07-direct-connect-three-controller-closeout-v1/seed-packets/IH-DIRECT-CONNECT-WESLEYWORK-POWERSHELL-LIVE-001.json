@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-DIRECT-CONNECT-WESLEYWORK-POWERSHELL-LIVE-001",
+  "kind": "runbook",
+  "title": "Direct Connect mesh and controller live closeout from WESLEY_WORK PowerShell",
+  "summary": "Six-direction mesh and controller failover proofs require Windows PowerShell on CG-WESLEYWORK-01 with clean main checkout — not WSL ssh.",
+  "retrievalQuestions": [
+    "How do I prove 6/6 direct connect mesh admin connectivity?",
+    "Where do I run Invoke-CgDirectConnectControllerFailoverLiveCloseout?"
+  ],
+  "evidenceRefs": [
+    "TE-007",
+    "CapitalGlass-Office-Admin/artifacts/.../mesh-live-closeout-summary.json",
+    "CapitalGlass-Office-Admin@857dca2bcc954f457a60526110a8d5f39807da12"
+  ],
+  "sourcePacketIds": ["direct-connect-milestone-operational-v1"],
+  "executionDeltaRefs": ["ED-002"],
+  "roiRank": 2,
+  "futureAgentInstructions": {
+    "whenThisAppears": "Direct connect milestone needs live mesh or controller proof",
+    "startAt": [
+      "scripts/devices/CG-WESLEYWORK-01/Invoke-CgDirectConnectThreeNodeMeshLiveCloseout.ps1",
+      "BY-KIND/host-authority.json"
+    ],
+    "runPreflight": ["npm run agent:index:scout -- --json"],
+    "doNot": [
+      "Run live SSH mesh proofs from WSL",
+      "Use C:\\Developer\\repos stale NTFS checkout",
+      "Claim OPERATIONAL without post-merge re-proof on canonical main SHA"
+    ],
+    "proveBeforeClaiming": [
+      "connectivity/mesh-live-closeout-summary.json verdict PASS 6/6",
+      "controller/controller-live-closeout-summary.json verdict PASS"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

@@ -1,0 +1,403 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-direct-connect-three-controller-closeout-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "51c7cafc4c1887cc9ad4ac7a0aa0c515f365f622",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-07T20:55:00.000Z",
+  "updatedAt": "2026-08-07T20:55:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "Claim FULLY_SEEDED without index:freshness-gate receipt",
+    "Run index:publish or harvest:publish-hub-seed from Cursor",
+    "Re-open direct-connect-three-controller-topology-wesleydesk-completion-v1 without new defect evidence",
+    "Claim WESLEYDESK Z: pre-login mount resolved — ADVISORY only"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-07-direct-connect-three-controller-closeout-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-07-direct-connect-three-controller-closeout-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 4,
+      "seeds": 3,
+      "roiItems": 3,
+      "operatorFriction": 1,
+      "executionDeltas": 2
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Operator runs harvest:publish-hub-seed + index:publish — NOT_RUN_BY_CURSOR"
+  },
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "1.1.0",
+    "eligibleCandidates": 0,
+    "rejectedUnrelatedCandidates": 0,
+    "exportStatus": "not-run",
+    "dataExtractionStatus": "not-run",
+    "catalogPublishStatus": "not-run",
+    "retrievalStatus": "not-run",
+    "targetCatalog": "L:\\02-catalog\\Harvest\\Harvest Protocol Self Learning",
+    "authorityStatus": "PROPOSAL",
+    "automaticProtocolMutation": false
+  },
+  "relatedRepos": [
+    {
+      "repo": "CapitalGlass-Office-Admin",
+      "branch": "main",
+      "commitSha": "dc4df82b2e9d9e910ef0b86c7c33aa9bc42abb8b",
+      "mergeSha": "857dca2bcc954f457a60526110a8d5f39807da12",
+      "pr": "#57",
+      "role": "primary owner — mesh, persistence, controller, gates"
+    },
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "branch": "main",
+      "commitSha": "388a595b75ef77cdc2aa638a4a030d822dd8c98b",
+      "pr": "#290",
+      "role": "companion topology v2 + regression receipts"
+    }
+  ],
+  "supersededClaims": [
+    {
+      "packetId": "harvest-2026-08-03-direct-connect-slice6-autopsy-v1",
+      "claim": "PERSISTENT_AVAILABILITY_PASS / mesh incomplete",
+      "supersededBy": "direct-connect-three-controller-topology-wesleydesk-completion-v1 OPERATIONAL/CLOSED — 6/6 mesh + controller live proof",
+      "recordedAt": "2026-08-07T20:55:00.000Z"
+    }
+  ],
+  "packets": [
+    {
+      "packetKind": "outcome",
+      "packetId": "direct-connect-three-controller-milestone-operational-v1",
+      "packetTitle": "direct-connect-three-controller-topology-wesleydesk-completion-v1 OPERATIONAL/CLOSED",
+      "state": "COMPLETE",
+      "packetVerdict": "OPERATIONAL_CLOSED",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-direct-connect-three-controller-closeout-v1.md",
+      "nextAction": "Operator may run harvest:publish-hub-seed + index:freshness-gate for hub projection",
+      "advancementGate": "POST_MERGE_RUNTIME_PASS",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-007",
+        "TE-008",
+        "final-closeout-operational.json"
+      ],
+      "commitRefs": [
+        "CapitalGlass-Office-Admin@dc4df82b2e9d9e910ef0b86c7c33aa9bc42abb8b",
+        "CapitalGlass-Office-Admin@857dca2bcc954f457a60526110a8d5f39807da12",
+        "CG-AppBuilder-MCP@388a595b75ef77cdc2aa638a4a030d822dd8c98b"
+      ],
+      "blockers": [],
+      "goldMineSignalClass": "RESOLUTION_SIGNAL",
+      "changeImplemented": "Three-node controller topology with 6/6 mesh, persistence, controller failover, publication",
+      "beforeState": "GO_WITH_LIVE_CLOSEOUT_PENDING (Wave 2 partial mesh)",
+      "afterState": "OPERATIONAL / CLOSED on canonical main",
+      "measurement": "6/6 mesh + controller gates PASS post-merge",
+      "expectedEffect": "WESLEYWORK primary, WESLEYDESK standby, RYZEN executor ready",
+      "observedEffect": "All Wave F gates PASS",
+      "effectiveness": "PROVEN_EFFECTIVE",
+      "residuals": [
+        "wesleydesk-z-pre-login-mount ADVISORY"
+      ]
+    },
+    {
+      "packetKind": "decision",
+      "packetId": "wave-d-gates-before-publication-v1",
+      "packetTitle": "Wave D gates must pass on WESLEY_WORK Windows before Wave E push",
+      "state": "COMPLETE",
+      "packetVerdict": "ENFORCED",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-direct-connect-three-controller-closeout-v1.md",
+      "nextAction": "None — pattern recorded",
+      "advancementGate": "WAVE_D_PASS",
+      "doNotAdvance": [
+        "Push before deploy:gate green"
+      ],
+      "evidenceRefs": [
+        "TE-002",
+        "wave-d-closeout-summary.json"
+      ],
+      "commitRefs": [
+        "CapitalGlass-Office-Admin@aa44381d99066e44090d702f09211496c020b419"
+      ],
+      "blockers": [],
+      "decision": "Complete deploy:gate, bible sync, gitleaks, persistence applicability before git push",
+      "alternativesRejected": [
+        "Push on WSL-only gate evidence",
+        "Skip CI parity manifest refresh"
+      ]
+    },
+    {
+      "packetKind": "evidence",
+      "packetId": "office-admin-pr57-merge-evidence-v1",
+      "packetTitle": "Office Admin PR #57 merged with CI gate PASS",
+      "state": "COMPLETE",
+      "packetVerdict": "VERIFIED",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-direct-connect-three-controller-closeout-v1.md",
+      "nextAction": "None",
+      "advancementGate": "OFFICE_ADMIN_GIT_AUTHORITY_CANONICAL",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-006",
+        "https://github.com/Capglass5708/CapitalGlass-Office-Admin/pull/57"
+      ],
+      "commitRefs": [
+        "CapitalGlass-Office-Admin@857dca2bcc954f457a60526110a8d5f39807da12"
+      ],
+      "blockers": [],
+      "type": "merge_receipt",
+      "pathOrSha": "857dca2bcc954f457a60526110a8d5f39807da12",
+      "provesWhat": "Feature branch published and merged via branch protection"
+    },
+    {
+      "packetKind": "evidence",
+      "packetId": "appbuilder-pr290-merge-evidence-v1",
+      "packetTitle": "AppBuilder PR #290 merged with validate-main PASS",
+      "state": "COMPLETE",
+      "packetVerdict": "VERIFIED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-direct-connect-three-controller-closeout-v1.md",
+      "nextAction": "None",
+      "advancementGate": "APPBUILDER_GIT_AUTHORITY_CANONICAL",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-006",
+        "https://github.com/Capglass5708/CG-AppBuilder-MCP/pull/290"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@388a595b75ef77cdc2aa638a4a030d822dd8c98b"
+      ],
+      "blockers": [],
+      "type": "merge_receipt",
+      "pathOrSha": "388a595b75ef77cdc2aa638a4a030d822dd8c98b",
+      "provesWhat": "Companion topology receipts on canonical main"
+    },
+    {
+      "packetKind": "command",
+      "packetId": "office-admin-deploy-gate-windows-v1",
+      "packetTitle": "Office Admin deploy:gate from WESLEY_WORK Windows PowerShell",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-direct-connect-three-controller-closeout-v1.md",
+      "nextAction": "Use clean checkout; refresh external knowledge when vault/Z mounted",
+      "advancementGate": "DEPLOY_GATE",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-002"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "command": "npm run deploy:gate",
+      "host": "CG-WESLEYWORK-01 Windows PowerShell",
+      "provesGate": "DEPLOY_GATE",
+      "expectedPassSignal": "office-admin:validate-agent-knowledge PASS"
+    },
+    {
+      "packetKind": "command",
+      "packetId": "direct-connect-mesh-live-closeout-v1",
+      "packetTitle": "Six-direction mesh live closeout orchestrator",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-direct-connect-three-controller-closeout-v1.md",
+      "nextAction": "Re-run after mesh key rotation",
+      "advancementGate": "FULL_MESH_ADMIN_CONNECTIVITY",
+      "doNotAdvance": [
+        "Claim 6/6 from fixture tests alone"
+      ],
+      "evidenceRefs": [
+        "TE-007",
+        "mesh-live-closeout-summary.json"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "command": "powershell -ExecutionPolicy Bypass -File scripts/devices/CG-WESLEYWORK-01/Invoke-CgDirectConnectThreeNodeMeshLiveCloseout.ps1 -RepoRoot <clean-main>",
+      "host": "CG-WESLEYWORK-01",
+      "provesGate": "FULL_MESH_ADMIN_CONNECTIVITY",
+      "expectedPassSignal": "verdict=PASS directions=6/6"
+    },
+    {
+      "packetKind": "mistake",
+      "packetId": "office-admin-ci-manifest-drift-v1",
+      "packetTitle": "WSL knowledge-index refresh included untracked docs — CI failed",
+      "state": "RESOLVED",
+      "packetVerdict": "CORRECTED",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-direct-connect-three-controller-closeout-v1.md",
+      "nextAction": "Always refresh manifest from clean checkout",
+      "advancementGate": "validate-knowledge-index PASS on CI",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "WM-001",
+        "TW-001",
+        "TE-004",
+        "TE-005"
+      ],
+      "commitRefs": [
+        "CapitalGlass-Office-Admin@f30c7bd3fdb2fa47f69cabe7e02a554c787c5517"
+      ],
+      "blockers": [],
+      "wrongMoveId": "WM-001",
+      "actualExecution": "161 docs manifest from WSL",
+      "optimalExecution": "156 docs from clean bundle clone",
+      "preventiveControl": "Clean-checkout refresh before commit"
+    },
+    {
+      "packetKind": "faster_path",
+      "packetId": "git-bundle-ci-parity-v1",
+      "packetTitle": "Git bundle to Windows temp clone for CI-parity gates",
+      "state": "COMPLETE",
+      "packetVerdict": "CLASSIFIED",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-direct-connect-three-controller-closeout-v1.md",
+      "nextAction": "Automate as pre-push helper",
+      "advancementGate": "CI_PARITY",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "SP-001",
+        "TE-005"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "situation": "Need deploy:gate / knowledge-index evidence matching CI runner",
+      "whatHappened": "git bundle from WSL → Windows clone → refresh → validate",
+      "rightFirstMove": "Bundle clone before any manifest commit on multi-host milestones",
+      "requiredGuard": "validate-knowledge-index on same tree before push"
+    },
+    {
+      "packetKind": "repeated_work",
+      "packetId": "post-merge-live-reproof-v1",
+      "packetTitle": "Intentional post-merge mesh/controller re-proof on canonical main",
+      "state": "COMPLETE",
+      "packetVerdict": "REQUIRED_NOT_DUPLICATE",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-direct-connect-three-controller-closeout-v1.md",
+      "nextAction": "None",
+      "advancementGate": "POST_MERGE_RUNTIME",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "DW-001",
+        "TE-007"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "duplicateId": "DW-001",
+      "firstKnownInstance": "Wave C pre-merge @ 0d245ed",
+      "priorIndexSlice": "harvest-2026-08-03-direct-connect-slice6-autopsy-v1",
+      "whyMissed": "Wave F contract requires canonical main proof"
+    },
+    {
+      "packetKind": "protocol_upgrade",
+      "packetId": "gitleaks-mcp-tool-slug-allowlist-v1",
+      "packetTitle": "Gitleaks allowlist for office.* MCP tool identifier false positives",
+      "state": "COMPLETE",
+      "packetVerdict": "SHIPPED",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-direct-connect-three-controller-closeout-v1.md",
+      "nextAction": "Monitor CI gitleaks working-tree step",
+      "advancementGate": "SECURITY_GATE",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TW-004",
+        ".gitleaks.toml"
+      ],
+      "commitRefs": [
+        "CapitalGlass-Office-Admin@aa44381d99066e44090d702f09211496c020b419"
+      ],
+      "blockers": [],
+      "seedAs": "IH-OFFICE-ADMIN-KNOWLEDGE-INDEX-CLEAN-CHECKOUT-001",
+      "ownerRepoTarget": "CapitalGlass-Office-Admin",
+      "promotionClass": "POLICY_GATED",
+      "futureAgentInstructions": {
+        "whenThisAppears": "gitleaks generic-api-key on office.verify_* tool names",
+        "startAt": [
+          ".gitleaks.toml"
+        ],
+        "runPreflight": [],
+        "doNot": [
+          "Commit private keys — only allowlist tool slug patterns"
+        ],
+        "proveBeforeClaiming": [
+          "gitleaks detect --no-git PASS"
+        ]
+      }
+    },
+    {
+      "packetKind": "blocker",
+      "packetId": "hub-publication-not-run-v1",
+      "packetTitle": "Intelligence Hub seed publication pending operator",
+      "state": "ACTIVE",
+      "packetVerdict": "EXPECTED_HOLD",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-direct-connect-three-controller-closeout-v1.md",
+      "nextAction": "Operator: harvest:publish-hub-seed + index:freshness-gate",
+      "advancementGate": "index:freshness-gate PASS",
+      "doNotAdvance": [
+        "FULLY_SEEDED_HUB"
+      ],
+      "evidenceRefs": [
+        "projection.hubPublishStatus not-run"
+      ],
+      "commitRefs": [],
+      "blockers": [
+        "NOT_RUN_BY_CURSOR policy"
+      ],
+      "blockerId": "HUB_PUBLISH_PENDING",
+      "status": "OPEN",
+      "proofCommandId": "npm run index:freshness-gate"
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096",
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 12,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 12,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-f1b43b774982",
+      "prompt-candidate-70435e721a08",
+      "prompt-candidate-5932254ab9cb",
+      "prompt-candidate-3230324341ec",
+      "prompt-candidate-aa1895dc9149",
+      "prompt-candidate-c7a588010dcb",
+      "prompt-candidate-9978981f52cd",
+      "prompt-candidate-37ff39f5c060",
+      "prompt-candidate-90aa2bacfd8b",
+      "prompt-candidate-57814648e4ef",
+      "prompt-candidate-806ddd3827b4",
+      "prompt-candidate-618bf1ea261b"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

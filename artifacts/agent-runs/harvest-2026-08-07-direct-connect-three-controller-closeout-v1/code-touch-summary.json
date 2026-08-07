@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "code-touch-summary-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-direct-connect-three-controller-closeout-v1",
+  "generatedAt": "2026-08-07T20:55:00.000Z",
+  "repos": [
+    {
+      "repo": "CapitalGlass-Office-Admin",
+      "branch": "feat/direct-connect-three-controller-wesleydesk-v1",
+      "featureHeadSha": "f30c7bd3fdb2fa47f69cabe7e02a554c787c5517",
+      "mergeSha": "857dca2bcc954f457a60526110a8d5f39807da12",
+      "closeoutSha": "dc4df82b2e9d9e910ef0b86c7c33aa9bc42abb8b",
+      "pr": "#57",
+      "role": "primary — mesh, persistence, controller closeout, gates"
+    },
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "branch": "feat/direct-connect-three-controller-wesleydesk-v1",
+      "featureHeadSha": "d57f23b0e0e308ed62ec1d99cb894399cb50ea97",
+      "mergeSha": "388a595b75ef77cdc2aa638a4a030d822dd8c98b",
+      "pr": "#290",
+      "role": "companion topology v2 receipts + regression gate"
+    },
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "main",
+      "commitSha": "51c7cafc4c1887cc9ad4ac7a0aa0c515f365f622",
+      "role": "harvest recording authority"
+    }
+  ],
+  "keyPaths": [
+    "CapitalGlass-Office-Admin/scripts/devices/CG-WESLEYWORK-01/Invoke-CgDirectConnectThreeNodeMeshLiveCloseout.ps1",
+    "CapitalGlass-Office-Admin/scripts/devices/CG-WESLEYWORK-01/Invoke-CgDirectConnectControllerFailoverLiveCloseout.ps1",
+    "CapitalGlass-Office-Admin/process/direct-connect/",
+    "CG-AppBuilder-MCP/scripts/direct-connect/ryzen9desk-connection-topology.v2.json",
+    "CG-AppBuilder-MCP/scripts/tests/run-direct-connect-topology-v2-three-node.test.mjs"
+  ],
+  "closeoutCommitScope": "Wave F post-merge runtime receipts + operational closeout JSON on Office Admin main"
+}

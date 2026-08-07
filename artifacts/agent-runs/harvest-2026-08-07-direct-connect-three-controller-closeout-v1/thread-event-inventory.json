@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-direct-connect-three-controller-closeout-v1",
+  "threadScope": "direct-connect-three-controller-topology-wesleydesk-completion-v1 — Waves D/E/F terminal closeout (gates, publication, post-merge runtime)",
+  "generatedAt": "2026-08-07T20:55:00.000Z",
+  "events": [
+    {
+      "eventId": "TE-001",
+      "phase": "operator",
+      "summary": "Operator directed Wave D first (deploy:gate Windows, bible sync, gitleaks, persistence applicability) then Wave E/F without re-prompt",
+      "evidenceRefs": ["user prompt direct-connect-3node-terminal-multiwave-v4"]
+    },
+    {
+      "eventId": "TE-002",
+      "phase": "verification",
+      "summary": "Wave D deploy:gate PASS on clean Windows clone after ops:refresh-external-knowledge + ops:refresh-knowledge-index; PASS_LIVE_SUBSTANTIVE vault/Z",
+      "evidenceRefs": [
+        "C:\\Users\\wesle\\AppData\\Local\\Temp\\office-admin-wave-d-gate",
+        "wave-d-closeout-summary.json"
+      ]
+    },
+    {
+      "eventId": "TE-003",
+      "phase": "verification",
+      "summary": "Direct-connect regressions PASS on WSL (53 tests across mesh, topology, persistence-process, mcp-tools, ssh-gates)",
+      "evidenceRefs": ["npm run test:direct-connect-* exit 0"]
+    },
+    {
+      "eventId": "TE-004",
+      "phase": "mistake",
+      "summary": "Office Admin CI deploy:gate FAIL — knowledge-index manifest generated on WSL included untracked docs (161 vs 156)",
+      "evidenceRefs": [
+        "github actions run 31153360085",
+        "f30c7bd CI failure"
+      ]
+    },
+    {
+      "eventId": "TE-005",
+      "phase": "implementation",
+      "summary": "CI fix: regenerate manifest from clean Windows bundle checkout; gitleaks office MCP tool slug allowlist",
+      "evidenceRefs": [
+        "CapitalGlass-Office-Admin@f30c7bd3fdb2fa47f69cabe7e02a554c787c5517",
+        ".gitleaks.toml"
+      ]
+    },
+    {
+      "eventId": "TE-006",
+      "phase": "publication",
+      "summary": "Wave E — Office Admin PR #57 and AppBuilder PR #290 pushed; CI green; merged via branch protection",
+      "evidenceRefs": [
+        "Office-Admin merge 857dca2bcc954f457a60526110a8d5f39807da12",
+        "CG-AppBuilder-MCP merge 388a595b75ef77cdc2aa638a4a030d822dd8c98b",
+        "THREE_WAY_PUSH_APPROVED=YES"
+      ]
+    },
+    {
+      "eventId": "TE-007",
+      "phase": "verification",
+      "summary": "Wave F post-merge — 6/6 mesh PASS (breakGlassUsed false) and controller failover/failback PASS from WESLEY_WORK PowerShell on main@857dca2",
+      "evidenceRefs": [
+        "connectivity/mesh-live-closeout-summary.json",
+        "controller/controller-live-closeout-summary.json"
+      ]
+    },
+    {
+      "eventId": "TE-008",
+      "phase": "closeout",
+      "summary": "Milestone OPERATIONAL/CLOSED — final-closeout-operational.json committed Office Admin main dc4df82",
+      "evidenceRefs": [
+        "CapitalGlass-Office-Admin@dc4df82b2e9d9e910ef0b86c7c33aa9bc42abb8b",
+        "final-closeout-operational.json"
+      ]
+    },
+    {
+      "eventId": "TE-009",
+      "phase": "verification",
+      "summary": "WESLEYDESK_NO_LOGIN_PERSISTENCE receipt e2b33ba still applicable — no persistence code changes after proof",
+      "evidenceRefs": ["wesleydesk/persistence-proof.json", "git log e2b33ba..0d245ed"]
+    }
+  ]
+}

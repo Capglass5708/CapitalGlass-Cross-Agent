@@ -38,12 +38,12 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 
 | Packet ID | State | Verdict | Owner repo | Project file | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `gold-mine-full-open-population-complete-v1` | COMPLETE | PASS | Data-Extraction | [INDEX.md](./INDEX.md) | Run product-estate operational proof as next discovery frontier |
-| `gold-mine-receipt-field-authority-v1` | COMPLETE | SHIPPED | Data-Extraction | [INDEX.md](./INDEX.md) | Monitor remeasure for receipt-field recurrence only with new evidence |
-| `gold-mine-product-estate-proof-launched-v1` | IN_PROGRESS | PASS_WITH_WARN | Data-Extraction | [INDEX.md](./INDEX.md) | Harvest operational report → Hub → gold-mine:remeasure for product candidates |
-| `harvest-protocol-v1-1-gold-mine-compounding-v1` | COMPLETE | DOCUMENTED | CapitalGlass-Cross-Agent | [INDEX.md](./INDEX.md) | Run 1–2 reference harvests warn-only before fail-closed enforcement |
-| `gold-mine-corpus-sdlc-bias-v1` | RECORDED | OBSERVED | Data-Extraction | [INDEX.md](./INDEX.md) | Weight product-estate operational proof in next remeasure |
-| `mistake-premature-pass-git-durability-v1` | FIXED | PASS | Data-Extraction | [INDEX.md](./INDEX.md) | See harvest manifest packet |
+| `product-estate-operational-proof-measurement-v1` | COMPLETE | PASS_WITH_WARN | Data-Extraction | [INDEX.md](./INDEX.md) | npm run gold-mine:remeasure after hub publish |
+| `product-estate-v11-evidence-native-v1` | COMPLETE | SHIPPED | Data-Extraction | [INDEX.md](./INDEX.md) | Harvest ingests projections without reconstruction |
+| `computer-estimator-estate-probe-failures-v1` | OPEN | FAIL | Computer Estimator | [INDEX.md](./INDEX.md) | Operator-approved implementation wave after gold-mine:remeasure |
+| `document-hub-handoff-probe-failures-v1` | OPEN | FAIL | CapitalGlass-Documents | [INDEX.md](./INDEX.md) | Surface as product candidates in remeasure |
+| `mcp-doctor-gate-blocked-v1` | OPEN | BLOCKED | CG-AppBuilder-MCP | [INDEX.md](./INDEX.md) | Operator PM2 approval or documented exception |
+| `corpus-shift-product-heavy-v1` | RECORDED | OBSERVED | Data-Extraction | [INDEX.md](./INDEX.md) | Compare remeasure candidate population vs infrastructure wave |
 
 <!-- HARVEST-PACKET-INDEX:END -->
 
