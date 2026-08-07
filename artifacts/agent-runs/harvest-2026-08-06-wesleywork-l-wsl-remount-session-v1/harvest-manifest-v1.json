@@ -1,0 +1,338 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "b2c6c66bbaf53cdeab12c98404f7d1075fbc4888",
+  "sourceBranch": "feat/cg-estimating-evidence-envelope-v1",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-07T02:22:00.000Z",
+  "updatedAt": "2026-08-07T02:22:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "rawScanRequired": false,
+  "sourceCommitShaIndex": "57652017edb5b4c6166cd1888488213e7414b06c",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "Remap Windows L: when wsl:bootstrap-l-research:verify shows windowsDriveAvailable true",
+    "Claim L_DRIVE_NOT_MOUNTED_IN_WSL for WSL-only drvfs gap when Windows L: is healthy",
+    "Run index:publish or harvest:publish-hub-seed from Cursor",
+    "Skip wsl:install-l-fstab recommendation after successful bootstrap when fstab empty"
+  ],
+  "threadAutopsy": {
+    "tier": "T1",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 3,
+      "seeds": 2,
+      "roiItems": 3,
+      "operatorFriction": 0,
+      "executionDeltas": 1
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Operator Phase B — harvest:publish-intelligence-full",
+    "note": "Recording only; bootstrap authority in CG-AppBuilder-MCP"
+  },
+  "ledgerLineage": {
+    "ledgerPath": "work-progress/ACTIVE_WORK.md",
+    "ledgerContentHashBefore": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096",
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  },
+  "supersededClaims": [],
+  "extends": {
+    "harvestId": "harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1",
+    "reason": "Operational application of shipped bootstrap — WSL layer only, Windows already OK"
+  },
+  "packets": [
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [
+        "wesley-work-l-research-bootstrap-protocol-v1"
+      ],
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "nextAction": "Operator: npm run wsl:install-l-fstab for reboot durability (no /etc/fstab L entry yet)",
+      "advancementGate": "npm run wsl:bootstrap-l-research → state HEALTHY; test -r /mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/AGENT_START_HERE.md",
+      "doNotAdvance": [
+        "Remap Windows L: when bootstrap reports windowsDriveAvailable true",
+        "Claim L_DRIVE_NOT_MOUNTED_IN_WSL when only WSL drvfs bridge is missing"
+      ],
+      "packetKind": "blocker",
+      "packetId": "wsl-l-unmounted-windows-ok-v1",
+      "packetTitle": "WSL /mnt/l inactive while Windows L: mapped on WESLEY_WORK",
+      "state": "RESOLVED",
+      "packetVerdict": "BOOTSTRAP_HEALTHY",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "evidenceRefs": [
+        "wsl:bootstrap-l-research:verify state BLOCKED mountActive:false",
+        "windowsProbe INDEX_OK DisplayRoot \\\\wesleydesk\\CapitalGlass-L",
+        "CG-AppBuilder-MCP/runtime/wesley-work-l-research-bootstrap/latest.json",
+        "thread-autopsy-bundle.json#ED-001"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "nextAction": "First-line WSL L recovery: npm run wsl:bootstrap-l-research",
+      "advancementGate": "state HEALTHY in runtime/wesley-work-l-research-bootstrap/latest.json",
+      "doNotAdvance": [
+        "Manual sudo mount without verify-only preflight when bootstrap exists"
+      ],
+      "packetKind": "command",
+      "packetId": "wsl-bootstrap-l-research-command-v1",
+      "packetTitle": "Remount WSL /mnt/l from healthy Windows L: via bootstrap",
+      "state": "RECORDED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/runtime/wesley-work-l-research-bootstrap/latest.json",
+        "actionTaken: mounted"
+      ],
+      "command": "npm run wsl:bootstrap-l-research",
+      "host": "WESLEY_WORK",
+      "provesGate": "wesley-work-l-research-bootstrap",
+      "expectedPassSignal": "state HEALTHY"
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "nextAction": "npm run wsl:install-l-fstab (sudo once)",
+      "advancementGate": "grep 'L:' /etc/fstab returns drvfs entry",
+      "doNotAdvance": [
+        "Assume bootstrap mount survives wsl --shutdown without fstab"
+      ],
+      "packetKind": "protocol_upgrade",
+      "packetId": "wsl-l-fstab-persistence-gap-v1",
+      "packetTitle": "WSL L: drvfs not in /etc/fstab — remount lost after WSL restart",
+      "state": "OPEN",
+      "packetVerdict": "OPERATOR_ACTION",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "evidenceRefs": [
+        "grep /etc/fstab NO_L_FSTAB_ENTRY",
+        "CURSOR_WSL_REMOTE_SETUP.md wsl:install-l-fstab"
+      ],
+      "seedAs": "runbook",
+      "promotionClass": "POLICY_GATED",
+      "futureAgentInstructions": {
+        "whenThisAppears": "L remounted but drops after WSL restart",
+        "startAt": [
+          "grep L: /etc/fstab",
+          "runtime/wesley-work-l-research-bootstrap/latest.json"
+        ],
+        "runPreflight": [
+          "npm run wsl:bootstrap-l-research:verify"
+        ],
+        "doNot": [
+          "Repeat bootstrap without recommending fstab install"
+        ],
+        "proveBeforeClaiming": [
+          "wsl:install-l-fstab applied or fstab entry present"
+        ]
+      }
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "nextAction": "After bootstrap HEALTHY, scout should show L hub readable on next turn",
+      "advancementGate": "test -d /mnt/l/Capital-Glass-Intelligence-Hub/00-master-index",
+      "doNotAdvance": [
+        "Claim INDEX_HIT on L hub slices while /mnt/l inactive"
+      ],
+      "packetKind": "evidence",
+      "packetId": "scout-l-unavailable-layer-alignment-v1",
+      "packetTitle": "Scout layerAlignment L_UNAVAILABLE until WSL /mnt/l mounted",
+      "state": "RECORDED",
+      "packetVerdict": "CONFIRMED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "evidenceRefs": [
+        "hooks_context layerAlignment L_UNAVAILABLE",
+        "agent:index:scout INDEX_HIT_AI_CACHE with L hub path unreachable"
+      ],
+      "type": "runtime-receipt",
+      "pathOrSha": "CG-AppBuilder-MCP/runtime/wesley-work-l-research-bootstrap/latest.json",
+      "provesWhat": "WSL L bridge restored; Intelligence Hub L path reachable"
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "nextAction": "Document in seed: verify-only distinguishes Windows vs WSL layer",
+      "advancementGate": "npm run wsl:bootstrap-l-research:verify within first diagnosis step",
+      "doNotAdvance": [],
+      "packetKind": "faster_path",
+      "packetId": "wesleywork-l-remount-faster-path-v1",
+      "packetTitle": "Run bootstrap verify before Windows remap on WESLEY_WORK",
+      "state": "RECORDED",
+      "packetVerdict": "LESSON_RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "evidenceRefs": [
+        "thread-autopsy-bundle.json#ED-001"
+      ],
+      "situation": "User reports L drive needs remount",
+      "whatHappened": "Office Admin matrix + Windows probe before bootstrap verify",
+      "rightFirstMove": "npm run wsl:bootstrap-l-research:verify — if windowsDriveAvailable && !mountActive → bootstrap only",
+      "requiredGuard": "wesley-work-l-research-bootstrap-v1"
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "nextAction": "Operator fstab install closes durability gap; not a new Windows remap incident",
+      "advancementGate": "fstab installed OR logon task remaps L on Windows boot",
+      "doNotAdvance": [
+        "Re-harvest full Windows Tailscale remap playbook when verify shows Windows OK"
+      ],
+      "packetKind": "repeated_work",
+      "packetId": "l-remount-recurrence-indexed-v1",
+      "packetTitle": "L: remount recurrence — same class as prior August harvests",
+      "state": "RECORDED",
+      "packetVerdict": "INDEXED_NOT_NEW",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "evidenceRefs": [
+        "harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1",
+        "harvest-2026-08-04-wesleywork-l-windows-closeout-v1"
+      ],
+      "duplicateId": "DW-L-REMOUNT-RECURRENCE-2026-08",
+      "firstKnownInstance": "harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "whyMissed": "WSL drvfs not persisted in fstab after prior session mount"
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "nextAction": "None for Windows layer",
+      "advancementGate": "bootstrap state HEALTHY",
+      "doNotAdvance": [
+        "Run Ensure-CgWesleyWorkDriveMounts.ps1 when windows probe INDEX_OK"
+      ],
+      "packetKind": "decision",
+      "packetId": "l-remount-session-decision-v1",
+      "packetTitle": "WSL-only remount sufficient — Windows L: already mapped",
+      "state": "RECORDED",
+      "packetVerdict": "ACCEPTED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/runtime/wesley-work-l-research-bootstrap/latest.json",
+        "windowsDriveAvailable:true mountActive:false after verify"
+      ],
+      "decision": "Apply wsl:bootstrap-l-research only; skip Windows ForceRemap",
+      "alternativesRejected": [
+        "Windows Ensure-CgWesleyWorkDriveMounts.ps1 ForceRemap",
+        "Manual net use L: when DisplayRoot already \\\\wesleydesk\\CapitalGlass-L"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "nextAction": "Bootstrap script uses PowerShell via resolved path — prefer npm bootstrap over ad-hoc ps",
+      "advancementGate": "Windows probes via bootstrap windowsProbe.method powershell",
+      "doNotAdvance": [],
+      "packetKind": "mistake",
+      "packetId": "powershell-path-wsl-diagnosis-v1",
+      "packetTitle": "powershell.exe not on PATH — use full System32 path from WSL",
+      "state": "RECORDED",
+      "packetVerdict": "WORKAROUND_APPLIED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "not-required",
+      "evidenceRefs": [
+        "powershell.exe: command not found",
+        "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe OK"
+      ],
+      "wrongMoveId": "WM-PS-PATH-001",
+      "actualExecution": {
+        "steps": [
+          "powershell.exe -NoProfile -Command ...",
+          "exit 127"
+        ],
+        "outcome": "FAIL",
+        "evidenceRefs": [
+          "shell which powershell.exe empty"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "npm run wsl:bootstrap-l-research:verify (embedded Windows probe)",
+          "Or /mnt/c/Windows/System32/.../powershell.exe"
+        ],
+        "outcome": "Windows L state known without PATH dependency",
+        "requiredPreflight": [
+          "wsl:bootstrap-l-research:verify"
+        ]
+      },
+      "preventiveControl": "Use bootstrap verify as first Windows L probe from WSL agents"
+    }
+  ],
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 9,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 9,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-25d8892e2ad5",
+      "prompt-candidate-4781f0e20438",
+      "prompt-candidate-dfd0cc8b703c",
+      "prompt-candidate-f60df313c159",
+      "prompt-candidate-1739c6ca570c",
+      "prompt-candidate-05469ac7d207",
+      "prompt-candidate-e7fe18e7f109",
+      "prompt-candidate-8e9ea4bf8fbf",
+      "prompt-candidate-367d95740f80"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

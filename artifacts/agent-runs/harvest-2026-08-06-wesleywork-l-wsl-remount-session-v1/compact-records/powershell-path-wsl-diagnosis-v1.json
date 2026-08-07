@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1",
+  "packetId": "powershell-path-wsl-diagnosis-v1",
+  "state": "RECORDED",
+  "packetVerdict": "WORKAROUND_APPLIED",
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "ownerIndexingStatus": "not-required",
+  "nextAction": "Bootstrap script uses PowerShell via resolved path — prefer npm bootstrap over ad-hoc ps",
+  "evidenceRefs": [
+    "powershell.exe: command not found",
+    "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe OK"
+  ],
+  "doNotAdvance": [],
+  "advancementGate": "Windows probes via bootstrap windowsProbe.method powershell",
+  "contentHash": "3a52d31c16439d4ecce5772425f2239e162d0baf79cbf894cbb7f56cd37bc20f"
+}

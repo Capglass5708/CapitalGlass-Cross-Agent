@@ -1,0 +1,179 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1",
+  "tier": "T1",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "retrieval",
+      "description": "Office Admin drive matrix consulted before bootstrap verify narrowed failure to WSL-only",
+      "evidenceRefs": [
+        "TE-002",
+        "TE-003"
+      ],
+      "estimatedImpact": "low",
+      "savedBy": "npm run wsl:bootstrap-l-research:verify as first diagnostic command",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "tool",
+      "description": "powershell.exe not on PATH — failed first Windows probe attempt",
+      "evidenceRefs": [
+        "WM-PS-PATH-001"
+      ],
+      "estimatedImpact": "low",
+      "savedBy": "Use bootstrap verify instead of raw powershell.exe from WSL",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "rework",
+      "description": "Recurrent L remount — fstab never installed after prior bootstrap sessions",
+      "evidenceRefs": [
+        "harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1",
+        "TE-006"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "npm run wsl:install-l-fstab after first HEALTHY bootstrap",
+      "roiRank": 3
+    }
+  ],
+  "operatorFriction": [],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "User reports L drive needs remount on WESLEY_WORK",
+      "actualExecution": {
+        "steps": [
+          "Scout preflight + mount check",
+          "Office Admin drive connectivity matrix",
+          "powershell.exe probe failed (PATH)",
+          "bootstrap verify → Windows OK, WSL inactive",
+          "bootstrap mount → HEALTHY"
+        ],
+        "outcome": "PASS — correct layer identified",
+        "evidenceRefs": [
+          "TE-001",
+          "TE-004"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "npm run wsl:bootstrap-l-research:verify immediately",
+          "If windowsDriveAvailable && !mountActive → npm run wsl:bootstrap-l-research",
+          "Check fstab; recommend install-l-fstab if missing"
+        ],
+        "outcome": "Same HEALTHY in fewer tool round-trips",
+        "requiredPreflight": [
+          "wsl:bootstrap-l-research:verify"
+        ],
+        "evidenceRefs": [
+          "wesley-work-l-research-bootstrap-v1"
+        ]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-PS-PATH-001",
+      "summary": "Invoked powershell.exe without full path when not on WSL PATH",
+      "whereItHappened": "Initial Windows L probe",
+      "whyItWasWrong": "WSL PATH may omit Windows PowerShell; bootstrap has embedded probe",
+      "correctFirstMove": "npm run wsl:bootstrap-l-research:verify",
+      "preventiveControl": "Prefer bootstrap verify over ad-hoc PowerShell from WSL",
+      "seedTarget": "IH-WSL-L-BOOTSTRAP-FIRST-001",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "WESLEY_WORK L: WSL drvfs remount recurrence",
+      "firstKnownInstance": "harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "whyRepeated": "fstab persistence not applied after prior HEALTHY bootstrap",
+      "avoidableBy": "wsl:install-l-fstab operator action",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Install WSL L: fstab persistence",
+      "whyItPays": "Stops repeat operator remount after WSL restart",
+      "effort": "low",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "savedWasteIds": [
+        "TW-003"
+      ],
+      "seedAs": "runbook",
+      "suggestedWorkPackageId": "wesley-work-l-fstab-persistence-v1"
+    },
+    {
+      "rank": 2,
+      "title": "Agent first-move: bootstrap verify on L remount reports",
+      "whyItPays": "Separates Windows vs WSL layer in one command",
+      "effort": "low",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "savedWasteIds": [
+        "TW-001"
+      ],
+      "seedAs": "rule",
+      "suggestedWorkPackageId": "wesley-work-l-research-bootstrap-v1"
+    },
+    {
+      "rank": 3,
+      "title": "Auto-run bootstrap from scout hook when L_UNAVAILABLE on WESLEY_WORK",
+      "whyItPays": "Self-heal WSL layer before agent turn",
+      "effort": "medium",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "savedWasteIds": [
+        "TW-003"
+      ],
+      "seedAs": "hook",
+      "suggestedWorkPackageId": "wesley-work-l-scout-auto-bootstrap-v1"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "L_HUB_INDEX_HIT",
+      "currentStatus": "CLOSED",
+      "doNotClaimUntil": [
+        "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index readable"
+      ],
+      "lastKnownEvidence": [
+        "TE-005",
+        "CG-AppBuilder-MCP/runtime/wesley-work-l-research-bootstrap/latest.json"
+      ],
+      "proofCommandId": "wsl-bootstrap-l-research-command-v1"
+    },
+    {
+      "awardOrVerdict": "L_REBOOT_DURABLE",
+      "currentStatus": "OPEN",
+      "doNotClaimUntil": [
+        "grep L: /etc/fstab or wsl:install-l-fstab receipt"
+      ],
+      "lastKnownEvidence": [
+        "TE-006",
+        "NO_L_FSTAB_ENTRY"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "BY-KIND/thread-autopsy-index.json",
+      "BY-KIND/active-work-blockers.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-07T02:22:00.000Z",
+    "note": "Extends harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1 — operational session not new Windows incident"
+  }
+}

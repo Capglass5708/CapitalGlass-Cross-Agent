@@ -1,0 +1,113 @@
+{
+  "schemaVersion": "cross-agent-harvest-packet-index-v1@1.0.0",
+  "workPackageId": "harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1",
+  "generatedAt": "2026-08-07T02:22:00.000Z",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "runMode": "derived-from-manifest",
+  "retrievalOutcome": "INDEX_HIT_AI_CACHE",
+  "authority": "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/harvest-manifest-v1.json",
+  "harvestManifestHash": "d52fcaf351a480e693354291d5ed1283caf6a444d78b226b7b70294773ad82a6",
+  "packets": [
+    {
+      "id": "wsl-l-unmounted-windows-ok-v1",
+      "label": "wsl-l-unmounted-windows-ok-v1",
+      "state": "RESOLVED",
+      "verdict": "BOOTSTRAP_HEALTHY",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "crossAgentProject": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "doNotAdvance": [
+        "Remap Windows L: when bootstrap reports windowsDriveAvailable true",
+        "Claim L_DRIVE_NOT_MOUNTED_IN_WSL when only WSL drvfs bridge is missing"
+      ],
+      "commitRefs": []
+    },
+    {
+      "id": "wsl-bootstrap-l-research-command-v1",
+      "label": "wsl-bootstrap-l-research-command-v1",
+      "state": "RECORDED",
+      "verdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "crossAgentProject": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "doNotAdvance": [
+        "Manual sudo mount without verify-only preflight when bootstrap exists"
+      ],
+      "commitRefs": []
+    },
+    {
+      "id": "wsl-l-fstab-persistence-gap-v1",
+      "label": "wsl-l-fstab-persistence-gap-v1",
+      "state": "OPEN",
+      "verdict": "OPERATOR_ACTION",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "crossAgentProject": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "doNotAdvance": [
+        "Assume bootstrap mount survives wsl --shutdown without fstab"
+      ],
+      "commitRefs": []
+    },
+    {
+      "id": "scout-l-unavailable-layer-alignment-v1",
+      "label": "scout-l-unavailable-layer-alignment-v1",
+      "state": "RECORDED",
+      "verdict": "CONFIRMED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "crossAgentProject": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "doNotAdvance": [
+        "Claim INDEX_HIT on L hub slices while /mnt/l inactive"
+      ],
+      "commitRefs": []
+    },
+    {
+      "id": "wesleywork-l-remount-faster-path-v1",
+      "label": "wesleywork-l-remount-faster-path-v1",
+      "state": "RECORDED",
+      "verdict": "LESSON_RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "crossAgentProject": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "doNotAdvance": [],
+      "commitRefs": []
+    },
+    {
+      "id": "l-remount-recurrence-indexed-v1",
+      "label": "l-remount-recurrence-indexed-v1",
+      "state": "RECORDED",
+      "verdict": "INDEXED_NOT_NEW",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "crossAgentProject": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "doNotAdvance": [
+        "Re-harvest full Windows Tailscale remap playbook when verify shows Windows OK"
+      ],
+      "commitRefs": []
+    },
+    {
+      "id": "l-remount-session-decision-v1",
+      "label": "l-remount-session-decision-v1",
+      "state": "RECORDED",
+      "verdict": "ACCEPTED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "crossAgentProject": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "doNotAdvance": [
+        "Run Ensure-CgWesleyWorkDriveMounts.ps1 when windows probe INDEX_OK"
+      ],
+      "commitRefs": []
+    },
+    {
+      "id": "powershell-path-wsl-diagnosis-v1",
+      "label": "powershell-path-wsl-diagnosis-v1",
+      "state": "RECORDED",
+      "verdict": "WORKAROUND_APPLIED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "not-required",
+      "crossAgentProject": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+      "doNotAdvance": [],
+      "commitRefs": []
+    }
+  ]
+}

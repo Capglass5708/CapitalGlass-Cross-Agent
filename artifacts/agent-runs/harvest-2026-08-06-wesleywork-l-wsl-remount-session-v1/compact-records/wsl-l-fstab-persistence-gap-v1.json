@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1",
+  "packetId": "wsl-l-fstab-persistence-gap-v1",
+  "state": "OPEN",
+  "packetVerdict": "OPERATOR_ACTION",
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "npm run wsl:install-l-fstab (sudo once)",
+  "evidenceRefs": [
+    "grep /etc/fstab NO_L_FSTAB_ENTRY",
+    "CURSOR_WSL_REMOTE_SETUP.md wsl:install-l-fstab"
+  ],
+  "doNotAdvance": [
+    "Assume bootstrap mount survives wsl --shutdown without fstab"
+  ],
+  "advancementGate": "grep 'L:' /etc/fstab returns drvfs entry",
+  "contentHash": "e70377257aaabf3cfcb900e0b2fb4e1cfa81e7fe39db020441cf03a734bcbb25"
+}

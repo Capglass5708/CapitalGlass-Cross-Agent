@@ -1,0 +1,78 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-wsl-l-bootstrap-first-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "0dc3dd8d055a5aa150b6a2d0550615e903239c4e",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1",
+      "seedId": "IH-WSL-L-BOOTSTRAP-FIRST-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-07T02:40:06.938Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "69c1cefa3864f696965c926a67811c720c10270c8951fd8f7140eeb85af31513"
+  },
+  "body": {
+    "seedId": "IH-WSL-L-BOOTSTRAP-FIRST-001",
+    "kind": "failure-pattern",
+    "title": "WESLEY_WORK L remount — bootstrap verify before Windows remap",
+    "summary": "When user reports L offline, run wsl:bootstrap-l-research:verify. If Windows L OK but mountActive false, run wsl:bootstrap-l-research only.",
+    "canonicalQuestion": "L drive needs remount on WESLEY_WORK — Windows or WSL layer?",
+    "alternateQuestions": [
+      "Scout shows L_UNAVAILABLE but hot cache works — what to run?"
+    ],
+    "shortAnswer": "When user reports L offline, run wsl:bootstrap-l-research:verify. If Windows L OK but mountActive false, run wsl:bootstrap-l-research only.",
+    "detailedAnswer": "WESLEY_WORK L remount — bootstrap verify before Windows remap",
+    "retrievalQuestions": [
+      "L drive needs remount on WESLEY_WORK — Windows or WSL layer?",
+      "Scout shows L_UNAVAILABLE but hot cache works — what to run?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "User says L drive needs remount on WESLEY_WORK",
+      "startAt": [
+        "runtime/wesley-work-l-research-bootstrap/latest.json",
+        "CURSOR_WSL_REMOTE_SETUP.md § L drive"
+      ],
+      "runPreflight": [
+        "npm run wsl:bootstrap-l-research:verify",
+        "npm run wsl:bootstrap-l-research"
+      ],
+      "doNot": [
+        "ForceRemap Windows L when verify shows windowsDriveAvailable true",
+        "Use powershell.exe without full path from WSL"
+      ],
+      "proveBeforeClaiming": [
+        "state HEALTHY in bootstrap artifact",
+        "AGENT_START_HERE.md readable under /mnt/l"
+      ]
+    },
+    "evidenceRefs": [
+      "harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1",
+      "CG-AppBuilder-MCP/runtime/wesley-work-l-research-bootstrap/latest.json",
+      "harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/seed-packets/IH-WSL-L-BOOTSTRAP-FIRST-001.json"
+    ],
+    "harvestId": "harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1"
+  }
+}

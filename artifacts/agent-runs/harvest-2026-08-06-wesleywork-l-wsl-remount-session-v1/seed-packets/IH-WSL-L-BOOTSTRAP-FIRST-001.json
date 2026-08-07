@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-WSL-L-BOOTSTRAP-FIRST-001",
+  "kind": "failure-pattern",
+  "title": "WESLEY_WORK L remount — bootstrap verify before Windows remap",
+  "summary": "When user reports L offline, run wsl:bootstrap-l-research:verify. If Windows L OK but mountActive false, run wsl:bootstrap-l-research only.",
+  "retrievalQuestions": [
+    "L drive needs remount on WESLEY_WORK — Windows or WSL layer?",
+    "Scout shows L_UNAVAILABLE but hot cache works — what to run?"
+  ],
+  "evidenceRefs": [
+    "harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1",
+    "CG-AppBuilder-MCP/runtime/wesley-work-l-research-bootstrap/latest.json",
+    "harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "User says L drive needs remount on WESLEY_WORK",
+    "startAt": [
+      "runtime/wesley-work-l-research-bootstrap/latest.json",
+      "CURSOR_WSL_REMOTE_SETUP.md § L drive"
+    ],
+    "runPreflight": [
+      "npm run wsl:bootstrap-l-research:verify",
+      "npm run wsl:bootstrap-l-research"
+    ],
+    "doNot": [
+      "ForceRemap Windows L when verify shows windowsDriveAvailable true",
+      "Use powershell.exe without full path from WSL"
+    ],
+    "proveBeforeClaiming": [
+      "state HEALTHY in bootstrap artifact",
+      "AGENT_START_HERE.md readable under /mnt/l"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

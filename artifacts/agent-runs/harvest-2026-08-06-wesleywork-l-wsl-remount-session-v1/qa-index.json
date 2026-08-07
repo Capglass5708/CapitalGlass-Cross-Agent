@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-WSL-L-BOOTSTRAP-FIRST-001",
+      "questionId": "IHWSLLBOOTST",
+      "canonicalQuestion": "L drive needs remount on WESLEY_WORK — Windows or WSL layer?",
+      "alternateQuestions": [
+        "Scout shows L_UNAVAILABLE but hot cache works — what to run?"
+      ],
+      "shortAnswer": "When user reports L offline, run wsl:bootstrap-l-research:verify. If Windows L OK but mountActive false, run wsl:bootstrap-l-research only.",
+      "detailedAnswer": "WESLEY_WORK L remount — bootstrap verify before Windows remap",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-07T02:40:06.933Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/seed-packets/IH-WSL-L-BOOTSTRAP-FIRST-001.json"
+      ],
+      "authorityCommit": [
+        "0dc3dd8"
+      ],
+      "evidenceUrls": [
+        "harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1",
+        "CG-AppBuilder-MCP/runtime/wesley-work-l-research-bootstrap/latest.json",
+        "harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "User says L drive needs remount on WESLEY_WORK",
+        "startAt": [
+          "runtime/wesley-work-l-research-bootstrap/latest.json",
+          "CURSOR_WSL_REMOTE_SETUP.md § L drive"
+        ],
+        "runPreflight": [
+          "npm run wsl:bootstrap-l-research:verify",
+          "npm run wsl:bootstrap-l-research"
+        ],
+        "doNot": [
+          "ForceRemap Windows L when verify shows windowsDriveAvailable true",
+          "Use powershell.exe without full path from WSL"
+        ],
+        "proveBeforeClaiming": [
+          "state HEALTHY in bootstrap artifact",
+          "AGENT_START_HERE.md readable under /mnt/l"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-WSL-L-FSTAB-PERSIST-001",
+      "questionId": "IHWSLLFSTABP",
+      "canonicalQuestion": "Why does L keep dropping in WSL after I fixed it yesterday?",
+      "alternateQuestions": [
+        "wsl:bootstrap-l-research HEALTHY but gone after reboot?"
+      ],
+      "shortAnswer": "Bootstrap mounts /mnt/l via drvfs but remount is lost on WSL restart without wsl:install-l-fstab.",
+      "detailedAnswer": "WSL L: remount recurrence — install fstab after first HEALTHY bootstrap",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-07T02:40:06.933Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/seed-packets/IH-WSL-L-FSTAB-PERSIST-001.json"
+      ],
+      "authorityCommit": [
+        "0dc3dd8"
+      ],
+      "evidenceUrls": [
+        "harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1",
+        "grep /etc/fstab NO_L_FSTAB_ENTRY"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Repeat L remount on same machine within days",
+        "startAt": [
+          "/etc/fstab",
+          "runtime/wesley-work-l-research-bootstrap/latest.json"
+        ],
+        "runPreflight": [
+          "npm run wsl:install-l-fstab"
+        ],
+        "doNot": [
+          "Close thread without fstab check when recommending durability"
+        ],
+        "proveBeforeClaiming": [
+          "L: entry in /etc/fstab"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    }
+  ]
+}

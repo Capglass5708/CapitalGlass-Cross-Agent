@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "harvest-closeout-status-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1",
+  "milestoneVerdict": "GO_WITH_CLOSEOUT_PENDING",
+  "updatedAt": "2026-08-07T02:44:00.000Z",
+  "host": "WESLEY_WORK",
+  "completed": {
+    "wslLRemount": {
+      "verdict": "HEALTHY",
+      "fstab": ["Z: /mnt/z drvfs defaults 0 0", "L: /mnt/l drvfs defaults 0 0"],
+      "bootstrapArtifact": "CG-AppBuilder-MCP/runtime/wesley-work-l-research-bootstrap/latest.json"
+    },
+    "hubSeedPublish": {
+      "verdict": "PUBLISH_PASS",
+      "receipt": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/hub-publication-receipt.json",
+      "seedIds": ["IH-WSL-L-BOOTSTRAP-FIRST-001", "IH-WSL-L-FSTAB-PERSIST-001"]
+    },
+    "harvestValidate": {
+      "verdict": "PASS",
+      "manifestHash": "d52fcaf351a480e693354291d5ed1283caf6a444d78b226b7b70294773ad82a6"
+    }
+  },
+  "pending": {
+    "wesleydeskPublishFull": {
+      "command": "npm run harvest:publish-intelligence-full -- --harvest-id=harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1 --allow-republish --skip-tests",
+      "ownerHost": "WESLEYDESK",
+      "reason": "Ledger sync, hot-routing, Z AI-cache pipeline; duplication-preflight hangs on WESLEY_WORK L: SMB catalog scan"
+    },
+    "indexFreshnessGate": {
+      "command": "npm run index:freshness-gate",
+      "ownerHost": "WESLEYDESK",
+      "runAfter": "harvest:publish-intelligence-full PASS"
+    },
+    "gitAuthority": {
+      "repo": "CapitalGlass-Cross-Agent",
+      "required": "commit and push harvest artifacts before claiming Git canonical"
+    },
+    "rebootDurability": {
+      "note": "After WESLEY_WORK reboot: map Z:/L: on Windows first, then wsl --shutdown and reopen WSL"
+    }
+  },
+  "operationalTarget": "harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1 fully OPERATIONAL / CLOSED"
+}

@@ -1,0 +1,577 @@
+{
+  "packetKind": "graph-extraction",
+  "schemaVersion": "cg-master-graph-extraction-v1",
+  "extractionId": "extraction:harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1",
+  "harvestId": "harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1",
+  "workPackageId": "harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1",
+  "producer": {
+    "repositoryId": "repo:capitalglass-cross-agent",
+    "capability": "harvest-graph-extraction",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "id": "harvest:harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1",
+      "nodeType": "Harvest",
+      "displayName": "harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1",
+      "lifecycleState": "lifecycle:canonical",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+        "sourceCommitSha": "b2c6c66bbaf53cdeab12c98404f7d1075fbc4888",
+        "retrievalResult": "INDEX_HIT_AI_CACHE"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T02:22:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:wsl-l-unmounted-windows-ok-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "WSL /mnt/l inactive while Windows L: mapped on WESLEY_WORK",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RESOLVED",
+      "metadata": {
+        "packetVerdict": "BOOTSTRAP_HEALTHY",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+        "advancementGate": "npm run wsl:bootstrap-l-research → state HEALTHY; test -r /mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/AGENT_START_HERE.md"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T02:22:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/wsl-l-unmounted-windows-ok-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/wsl-l-unmounted-windows-ok-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:wsl-bootstrap-l-research-command-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Remount WSL /mnt/l from healthy Windows L: via bootstrap",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RECORDED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+        "advancementGate": "state HEALTHY in runtime/wesley-work-l-research-bootstrap/latest.json"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T02:22:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/wsl-bootstrap-l-research-command-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/wsl-bootstrap-l-research-command-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:wsl-l-fstab-persistence-gap-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "WSL L: drvfs not in /etc/fstab — remount lost after WSL restart",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "OPEN",
+      "metadata": {
+        "packetVerdict": "OPERATOR_ACTION",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+        "advancementGate": "grep 'L:' /etc/fstab returns drvfs entry"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T02:22:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/wsl-l-fstab-persistence-gap-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/wsl-l-fstab-persistence-gap-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:scout-l-unavailable-layer-alignment-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Scout layerAlignment L_UNAVAILABLE until WSL /mnt/l mounted",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RECORDED",
+      "metadata": {
+        "packetVerdict": "CONFIRMED",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+        "advancementGate": "test -d /mnt/l/Capital-Glass-Intelligence-Hub/00-master-index"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T02:22:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/scout-l-unavailable-layer-alignment-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/scout-l-unavailable-layer-alignment-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:wesleywork-l-remount-faster-path-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Run bootstrap verify before Windows remap on WESLEY_WORK",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RECORDED",
+      "metadata": {
+        "packetVerdict": "LESSON_RECORDED",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+        "advancementGate": "npm run wsl:bootstrap-l-research:verify within first diagnosis step"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T02:22:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/wesleywork-l-remount-faster-path-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/wesleywork-l-remount-faster-path-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:l-remount-recurrence-indexed-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "L: remount recurrence — same class as prior August harvests",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RECORDED",
+      "metadata": {
+        "packetVerdict": "INDEXED_NOT_NEW",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+        "advancementGate": "fstab installed OR logon task remaps L on Windows boot"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T02:22:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/l-remount-recurrence-indexed-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/l-remount-recurrence-indexed-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:l-remount-session-decision-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "WSL-only remount sufficient — Windows L: already mapped",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RECORDED",
+      "metadata": {
+        "packetVerdict": "ACCEPTED",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+        "advancementGate": "bootstrap state HEALTHY"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T02:22:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/l-remount-session-decision-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/l-remount-session-decision-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:powershell-path-wsl-diagnosis-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "powershell.exe not on PATH — use full System32 path from WSL",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RECORDED",
+      "metadata": {
+        "packetVerdict": "WORKAROUND_APPLIED",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "not-required",
+        "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+        "advancementGate": "Windows probes via bootstrap windowsProbe.method powershell"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T02:22:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/powershell-path-wsl-diagnosis-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/powershell-path-wsl-diagnosis-v1.json"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:harvest-harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1-contains-workpackage-wsl-l-unmounted-windows-ok-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1",
+      "targetId": "workpackage:wsl-l-unmounted-windows-ok-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T02:22:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-wsl-l-unmounted-windows-ok-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:wsl-l-unmounted-windows-ok-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T02:22:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/wsl-l-unmounted-windows-ok-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/wsl-l-unmounted-windows-ok-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1-contains-workpackage-wsl-bootstrap-l-research-command-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1",
+      "targetId": "workpackage:wsl-bootstrap-l-research-command-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T02:22:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-wsl-bootstrap-l-research-command-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:wsl-bootstrap-l-research-command-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T02:22:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/wsl-bootstrap-l-research-command-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/wsl-bootstrap-l-research-command-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1-contains-workpackage-wsl-l-fstab-persistence-gap-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1",
+      "targetId": "workpackage:wsl-l-fstab-persistence-gap-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T02:22:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-wsl-l-fstab-persistence-gap-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:wsl-l-fstab-persistence-gap-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T02:22:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/wsl-l-fstab-persistence-gap-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/wsl-l-fstab-persistence-gap-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1-contains-workpackage-scout-l-unavailable-layer-alignment-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1",
+      "targetId": "workpackage:scout-l-unavailable-layer-alignment-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T02:22:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-scout-l-unavailable-layer-alignment-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:scout-l-unavailable-layer-alignment-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T02:22:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/scout-l-unavailable-layer-alignment-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/scout-l-unavailable-layer-alignment-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1-contains-workpackage-wesleywork-l-remount-faster-path-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1",
+      "targetId": "workpackage:wesleywork-l-remount-faster-path-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T02:22:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-wesleywork-l-remount-faster-path-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:wesleywork-l-remount-faster-path-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T02:22:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/wesleywork-l-remount-faster-path-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/wesleywork-l-remount-faster-path-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1-contains-workpackage-l-remount-recurrence-indexed-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1",
+      "targetId": "workpackage:l-remount-recurrence-indexed-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T02:22:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-l-remount-recurrence-indexed-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:l-remount-recurrence-indexed-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T02:22:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/l-remount-recurrence-indexed-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/l-remount-recurrence-indexed-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1-contains-workpackage-l-remount-session-decision-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1",
+      "targetId": "workpackage:l-remount-session-decision-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T02:22:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-l-remount-session-decision-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:l-remount-session-decision-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T02:22:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/l-remount-session-decision-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/l-remount-session-decision-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1-contains-workpackage-powershell-path-wsl-diagnosis-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1",
+      "targetId": "workpackage:powershell-path-wsl-diagnosis-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T02:22:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-powershell-path-wsl-diagnosis-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:powershell-path-wsl-diagnosis-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T02:22:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/powershell-path-wsl-diagnosis-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/compact-records/powershell-path-wsl-diagnosis-v1.json"
+        }
+      }
+    }
+  ],
+  "warnings": [
+    "skipped RELATED_TO wsl-l-unmounted-windows-ok-v1 -> wesley-work-l-research-bootstrap-protocol-v1 (target not in manifest)"
+  ],
+  "provenance": {
+    "producerRepositoryId": "repo:capitalglass-cross-agent",
+    "producerCapability": "harvest-graph-extraction",
+    "sourceAuthority": "authority:cross-agent-harvest",
+    "classification": "observed",
+    "verificationState": "verified",
+    "recordedAt": "2026-08-07T02:22:00.000Z",
+    "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/harvest-manifest-v1.json",
+    "sourceAnchorDetail": {
+      "anchorType": "file-path",
+      "locator": "artifacts/agent-runs/harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1/harvest-manifest-v1.json"
+    }
+  }
+}
