@@ -43,7 +43,18 @@ test("duplication registry includes thread-autopsy-index", () => {
 test("capability preflight classifies supabase without printing secrets", () => {
   const report = runPublicationCapabilityPreflight({ repoRoot: REPO_ROOT });
   assert.ok(["AVAILABLE", "OPTIONAL_UNAVAILABLE"].includes(report.capabilities.supabase));
-  assert.ok(!JSON.stringify(report).includes("SUPABASE_ACCESS_TOKEN="));
+  assert.ok(report.supabaseCapability?.authMethod);
+  assert.ok(!JSON.stringify(report).match(/eyJ[A-Za-z0-9_-]{10,}/));
+});
+
+test("supabase capability resolves doppler profile without secret values", async () => {
+  const { resolveSupabaseProjectionCapability } = await import(
+    "../harvest/lib/supabase-projection-capability-lib.mjs"
+  );
+  const capability = resolveSupabaseProjectionCapability();
+  assert.ok(["AVAILABLE", "OPTIONAL_UNAVAILABLE"].includes(capability.status));
+  assert.ok(["env-token", "supabase-cli", "doppler", "none"].includes(capability.authMethod));
+  assert.equal(capability.dopplerProfile.project, "cg-mcp");
 });
 
 test("dry run for production harvest is side-effect safe on protocol hashes", () => {

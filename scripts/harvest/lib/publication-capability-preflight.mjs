@@ -3,6 +3,7 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 
 import { resolveDataExtractionRoot } from "../../index/lib/resolve-repo-roots.mjs";
+import { resolveSupabaseProjectionCapability } from "./supabase-projection-capability-lib.mjs";
 import { Z_HARVEST_PROTOCOL_ROOT } from "./z-harvest-mirror-lib.mjs";
 
 function isMountPoint(mountPath) {
@@ -19,16 +20,6 @@ function redactEnvPresence(name) {
   return "AVAILABLE";
 }
 
-function checkSupabaseAuth() {
-  if (process.env.SUPABASE_ACCESS_TOKEN?.trim()) return "AVAILABLE";
-  const login = spawnSync("supabase", ["projects", "list"], {
-    encoding: "utf8",
-    timeout: 8000,
-  });
-  if (login.status === 0) return "AVAILABLE";
-  return "OPTIONAL_UNAVAILABLE";
-}
-
 function checkWaveSdlcSource(repoRoot) {
   const deRoot = resolveDataExtractionRoot(repoRoot);
   const p = path.join(deRoot, "docs/platform/CURSOR_HARVEST_INGEST_CLOSEOUT_WAVE_SDLC_V1.md");
@@ -39,13 +30,14 @@ function checkWaveSdlcSource(repoRoot) {
  * Host capability preflight — never returns secret values.
  */
 export function runPublicationCapabilityPreflight({ repoRoot, hubRoot = "/mnt/l/Capital-Glass-Intelligence-Hub" } = {}) {
+  const supabaseCapability = resolveSupabaseProjectionCapability();
   const capabilities = {
     git: fs.existsSync(path.join(repoRoot, ".git")) ? "AVAILABLE" : "REQUIRED_UNAVAILABLE",
     gitPush: "UNVERIFIED",
     lDrive: isMountPoint("/mnt/l") && fs.existsSync(path.join(hubRoot, "00-master-index")) ? "AVAILABLE" : "REQUIRED_UNAVAILABLE",
     zDrive: isMountPoint("/mnt/z") && fs.existsSync(Z_HARVEST_PROTOCOL_ROOT) ? "AVAILABLE" : "OPTIONAL_UNAVAILABLE",
     zWaveSdlcSource: checkWaveSdlcSource(repoRoot),
-    supabase: checkSupabaseAuth(),
+    supabase: supabaseCapability.status,
     promptOps: fs.existsSync(path.join(repoRoot, "work-progress/command-index.json"))
       ? "AVAILABLE"
       : "OPTIONAL_UNAVAILABLE",
@@ -67,6 +59,11 @@ export function runPublicationCapabilityPreflight({ repoRoot, hubRoot = "/mnt/l/
     schemaVersion: "harvest-publication-capability-preflight-v1@1.0.0",
     generatedAt: new Date().toISOString(),
     capabilities,
+    supabaseCapability: {
+      authMethod: supabaseCapability.authMethod,
+      dopplerProfile: supabaseCapability.dopplerProfile,
+      probes: supabaseCapability.probes,
+    },
     requiredUnavailable,
     optionalUnavailable,
     preflightVerdict,
