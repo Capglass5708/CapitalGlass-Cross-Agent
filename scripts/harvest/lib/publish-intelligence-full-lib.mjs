@@ -17,6 +17,11 @@ import {
 } from "./register-hub-index.mjs";
 import { fanoutHostAiCache } from "./host-ai-cache-fanout-lib.mjs";
 import { syncZHarvestMirror } from "./z-harvest-mirror-lib.mjs";
+import {
+  buildDopplerWrappedCommand,
+  resolveSupabaseProjectionCapability,
+  shouldWrapSupabaseCommand,
+} from "./supabase-projection-capability-lib.mjs";
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
@@ -42,15 +47,36 @@ function parseJsonFromProcessOutput(stdout) {
   }
 }
 
-function runAppBuilderJsonScript(appBuilderRoot, scriptRel, args = [], env = {}) {
+function runAppBuilderJsonScript(appBuilderRoot, scriptRel, args = [], env = {}, options = {}) {
   const scriptPath = path.join(appBuilderRoot, scriptRel);
-  const cmd = `node ${JSON.stringify(scriptPath)} ${args.join(" ")}`.trim();
+  const inner = `node ${JSON.stringify(scriptPath)} ${args.join(" ")}`.trim();
+  const cmd =
+    options.useDoppler === true
+      ? buildDopplerWrappedCommand(inner, options.dopplerProfile)
+      : inner;
   const stdout = execSync(cmd, {
     cwd: appBuilderRoot,
     env: { ...process.env, ...env },
     encoding: "utf8",
+    shell: true,
   });
   return parseJsonFromProcessOutput(stdout);
+}
+
+function runSupabaseAppBuilderJsonScript(appBuilderRoot, scriptRel, args = [], env = {}) {
+  const capability = resolveSupabaseProjectionCapability();
+  if (capability.status !== "AVAILABLE") {
+    return {
+      ok: false,
+      code: "SUPABASE_CAPABILITY_UNAVAILABLE",
+      verdict: "SUPABASE_SKIPPED",
+      capability,
+    };
+  }
+  return runAppBuilderJsonScript(appBuilderRoot, scriptRel, args, env, {
+    useDoppler: shouldWrapSupabaseCommand(capability),
+    dopplerProfile: capability.dopplerProfile,
+  });
 }
 
 function runStep(label, cmd, cwd, env = {}) {
@@ -427,7 +453,7 @@ export function publishIntelligenceFull({
     let supabaseProjection = { ok: false, code: "SKIP" };
     if (!skipSupabaseProjection) {
       try {
-        supabaseProjection = runAppBuilderJsonScript(
+        supabaseProjection = runSupabaseAppBuilderJsonScript(
           appBuilderRoot,
           "scripts/intelligence-hub/thread-autopsy/project-supabase.mjs",
           [`--harvest-id=${harvestId}`, "--apply", "--json"],
@@ -436,12 +462,23 @@ export function publishIntelligenceFull({
             CAPITALGLASS_CROSS_AGENT_ROOT: repoRoot,
           },
         );
-        stages.push({
-          label: "thread-autopsy-supabase",
-          ok: supabaseProjection.apply?.ok !== false,
-          verdict: supabaseProjection.verdict,
-          counts: supabaseProjection.counts,
-        });
+        if (supabaseProjection.code === "SUPABASE_CAPABILITY_UNAVAILABLE") {
+          stages.push({
+            label: "thread-autopsy-supabase",
+            ok: false,
+            skipped: true,
+            verdict: supabaseProjection.verdict,
+            capability: supabaseProjection.capability?.authMethod,
+          });
+        } else {
+          stages.push({
+            label: "thread-autopsy-supabase",
+            ok: supabaseProjection.apply?.ok !== false,
+            verdict: supabaseProjection.verdict,
+            counts: supabaseProjection.counts,
+            authMethod: resolveSupabaseProjectionCapability().authMethod,
+          });
+        }
       } catch (err) {
         supabaseProjection = { ok: false, code: "SUPABASE_PROJECTION_FAIL", error: String(err.message ?? err) };
         stages.push({ label: "thread-autopsy-supabase", ok: false, error: supabaseProjection.error });
@@ -453,18 +490,29 @@ export function publishIntelligenceFull({
     let promptSupabaseProjection = { ok: false, code: "SKIP" };
     if (!skipSupabaseProjection) {
       try {
-        promptSupabaseProjection = runAppBuilderJsonScript(
+        promptSupabaseProjection = runSupabaseAppBuilderJsonScript(
           appBuilderRoot,
           "scripts/harvest-prompt-projection/project-harvest-prompts.mjs",
           ["--json"],
           { CROSS_AGENT_ROOT: repoRoot },
         );
-        stages.push({
-          label: "harvest-prompt-supabase",
-          ok: promptSupabaseProjection.ok !== false,
-          verdict: promptSupabaseProjection.verdict,
-          recordCount: promptSupabaseProjection.recordCount ?? 0,
-        });
+        if (promptSupabaseProjection.code === "SUPABASE_CAPABILITY_UNAVAILABLE") {
+          stages.push({
+            label: "harvest-prompt-supabase",
+            ok: false,
+            skipped: true,
+            verdict: promptSupabaseProjection.verdict,
+            capability: promptSupabaseProjection.capability?.authMethod,
+          });
+        } else {
+          stages.push({
+            label: "harvest-prompt-supabase",
+            ok: promptSupabaseProjection.ok !== false,
+            verdict: promptSupabaseProjection.verdict,
+            recordCount: promptSupabaseProjection.recordCount ?? 0,
+            authMethod: resolveSupabaseProjectionCapability().authMethod,
+          });
+        }
       } catch (err) {
         promptSupabaseProjection = {
           ok: false,
