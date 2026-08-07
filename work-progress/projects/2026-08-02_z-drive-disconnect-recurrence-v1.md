@@ -64,3 +64,9 @@ If a path 404s in Cross-Agent, resolve from the **owner repo** at the commit cit
 
 - DE handoff bootstrap shipped CG-AppBuilder-MCP d6ad9624; preflight PASS.
 - Seeds: IH-WESLEY-WORK-L-RESEARCH-BOOTSTRAP-001, IH-DE-HANDOFF-PIPE-EXIT-001, IH-MCP-BUILD-STAMP-WINDOWS-PM2-001, IH-WSL2-DRVF-9P-FSTYPE-001.
+
+### 2026-08-06 — Thread harvest harvest-2026-08-06-wesleywork-l-wsl-remount-session-v1
+
+- WSL /mnt/l remounted via bootstrap; Windows L: already OK.
+- Operator gap: wsl:install-l-fstab not yet applied.
+- Seeds: IH-WSL-L-BOOTSTRAP-FIRST-001, IH-WSL-L-FSTAB-PERSIST-001.

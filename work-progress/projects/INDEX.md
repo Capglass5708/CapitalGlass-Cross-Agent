@@ -38,25 +38,14 @@ _Generated from `harvest-manifest-v1.json`. Do not edit manually — run `npm ru
 
 | Packet ID | State | Verdict | Owner repo | Project file | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `lane-c-cross-agent-export-shipped-v1` | COMPLETE | SHIPPED | CapitalGlass-Cross-Agent | [INDEX.md](./INDEX.md) | Use harvest:export:protocol-self-learning after harvest:validate PASS |
-| `lane-c-data-extraction-pipeline-shipped-v1` | COMPLETE | SHIPPED | Data-Extraction | [INDEX.md](./INDEX.md) | HARVEST_PROTOCOL_CATALOG_ROOT=/mnt/l for L publication |
-| `lane-c-protocol-docs-aligned-v1` | COMPLETE | DOCUMENTED | CapitalGlass-Cross-Agent | [INDEX.md](./INDEX.md) | Sync docs/runbooks source to match harvest/protocol before z-mirror |
-| `lane-c-production-acceptance-v1` | COMPLETE | RETRIEVAL_PASS | Data-Extraction | [INDEX.md](./INDEX.md) | Governance review for protocol promotion — not auto-merge |
-| `lane-c-all-spokes-go-with-warn-v1` | COMPLETE | GO_WITH_WARN | CapitalGlass-Cross-Agent | [INDEX.md](./INDEX.md) | Defer harvest-z-mirror-source-repair-v1 as separate maintenance |
-| `mistake-verify-republished-empty-v1` | FIXED | PASS | Data-Extraction | [INDEX.md](./INDEX.md) | See harvest manifest packet |
-| `mistake-z-mirror-overwrote-protocol-v1` | OPEN | WARN | CapitalGlass-Cross-Agent | [INDEX.md](./INDEX.md) | See harvest manifest packet |
-| `faster-path-l-protocol-stale-v1` | RESOLVED | SYNCED | CapitalGlass-Cross-Agent | [INDEX.md](./INDEX.md) | See harvest manifest packet |
-| `blocker-test-harvest-z-mirror-v1` | OPEN | DEFERRED | Data-Extraction | [INDEX.md](./INDEX.md) | harvest-z-mirror-source-repair-v1 |
+| `ryzen9desk-managed-executor-v1` | RUNNER_BOOTSTRAP_CHECKPOINT_STARTED | CODE_READY_FOR_RUNNER_BOOTSTRAP | CG-AppBuilder-MCP | [2026-08-03_ryzen9desk-managed-executor-v1.md](./2026-08-03_ryzen9desk-managed-executor-v1.md) | CG-AppBuilder-MCP mission: RYZEN9DESK WSL install from main + dispatch executor-smoke receipt |
+| `active-ledger-ci-path-and-hash-stability-v1` | COMPLETE | PASS | CG-AppBuilder-MCP | [2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md](./2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md) | None unless test:active-ledger-sync regresses on main |
+| `project-folder-synology-primary-v1-dev-environment` | HOLD | CONTRACT_PASS_HOSTED_DEV_HOLD | CapitalGlass-Documents | [project-folder-synology-primary-v1-dev-hosted-environment.md](./project-folder-synology-primary-v1-dev-hosted-environment.md) | Resolve Vercel BLOCKED deploy and Supabase dev isolation (owner: CapitalGlass-Documents) |
+| `cross-agent-retrieval-failover-v1.1` | ADOPTED | PASS | CapitalGlass-Cross-Agent | handoffs/CURRENT_HANDOFF.md | Recurring: use layered failover for suite status when L: unavailable |
+| `wsl2-native-repo-library-migration-v1` | PARTIAL | FILESYSTEM_PASS_OPERATIONAL_CLEANUP_RECORDED | CG-AppBuilder-MCP | [2026-08-03_wsl2-native-repo-library-migration-v1.md](./2026-08-03_wsl2-native-repo-library-migration-v1.md) | Per-repo ext4 verification; RYZEN9DESK alignment via separate executor mission |
+| `office-admin-ryzen9desk-managed-executor-bootstrap-v1` | INDEXED | CODE_READY_FOR_RUNNER_BOOTSTRAP | CapitalGlass-Office-Admin | [2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md](./2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md) | Runner bootstrap remains CG-AppBuilder-MCP mission; do not claim MANAGED_EXECUTOR_ONLINE |
 
-
-| `guided-scope-review-milestone-closed-v1` | COMPLETE | MILESTONE_CLOSED | CapitalGlass-BidComposer | [harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md](./harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md) | Operator opens Scope Review URL and begins Rosewood disposition pilot |
-| `scope-review-production-deploy-evidence-v1` | COMPLETE | VERIFIED | CapitalGlass-BidComposer | [harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md](./harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md) | None — production aligned |
-| `rosewood-scope-seed-idempotency-v1` | COMPLETE | PASS | CapitalGlass-BidComposer | [harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md](./harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md) | Re-import returns 0 inserts |
-| `scope-review-issue-gate-active-v1` | ACTIVE | EXPECTED_BLOCK | CapitalGlass-BidComposer | [harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md](./harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md) | Human reviews 34 pending items in Guided Review |
-| `sdlc-dirty-tree-closeout-v1` | RESOLVED | CORRECTED | CapitalGlass-BidComposer | [harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md](./harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md) | Commit artifacts before formal closeout prepare |
-| `rosewood-smoke-bid-duplicate-v1` | COMPLETE | DUPLICATE_AVOIDED | CapitalGlass-BidComposer | [harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md](./harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md) | Do not seed or pilot on supersededCandidateBidIds |
-| `sso-ui-proof-admin-lane-v1` | COMPLETE | CLASSIFIED | CapitalGlass-BidComposer | [harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md](./harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md) | Operator captures authenticated screenshots separately |
-| `guided-scope-review-closeout-runbook-v1` | COMPLETE | DOCUMENTED | CapitalGlass-Cross-Agent | [CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md](./CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md) | Use seed packets IH-GUIDED-SCOPE-REVIEW-ROSEWOOD-PILOT-001 |<!-- HARVEST-PACKET-INDEX:END -->
+<!-- HARVEST-PACKET-INDEX:END -->
 
 ## Active projects
 
