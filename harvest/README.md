@@ -18,7 +18,10 @@ Z:\\Capital-Glass-Dev\\Harvest\\protocol\\CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V
 | `protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md` | Thread closeout autopsy (Cursor) |
 | `protocol/HARVEST-INGESTION-RUNBOOK-v1.md` | Record → validate → sync → publication |
 | `protocol/PROMPT-EXTRACTION-AND-PROMOTION-v1.md` | Prompt candidate extraction + Supabase seed |
-| `protocol/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md` | ChatGPT draft lane |
+| `protocol/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md` | ChatGPT OBSERVED autopsy lane (v2) |
+| `protocol/CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md` | Shared Git gate + verdict contract |
+| `protocol/CHAT-THREAD-SYSTEM-ADVANCEMENT-HARVEST-CHATGPT-V1.md` | ChatGPT ADVANCEMENT synthesis (v2) |
+| `protocol/CHATGPT-DRAFT-BATCH-ASSESSMENT-T2-V1.md` | T2 batch assessor for draft queue |
 | `protocol/CURSOR_HARVEST_INGEST_CLOSEOUT_WAVE_SDLC_V1.md` | Gated wave SDLC (canonical: Data-Extraction) |
 
 ## Publication modes
@@ -46,5 +49,5 @@ Updates this tree and `Z:\\Capital-Glass-Dev\\Harvest` when the Z: drive is moun
 
 **Do not hand-edit mirrored protocol files** — edit git sources under `docs/runbooks/`, `docs/harvest-z-mirror/`, or `Data-Extraction/docs/platform/` (wave SDLC), then re-sync.
 
-Generated: 2026-08-06T18:11:22.203Z
-Source commit: 56686e9f33f3ff6f42f26c1a3a5c101f361e0a08
+Generated: 2026-08-07T15:26:39.068Z
+Source commit: 9146913c743c07d477379a67f67e257dc9333607

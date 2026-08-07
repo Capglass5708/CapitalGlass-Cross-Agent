@@ -36,6 +36,31 @@ export const Z_HARVEST_PROTOCOL_SOURCES = [
     ],
   },
   {
+    source: "harvest/protocol/CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md",
+    destinations: [
+      "protocol/CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md",
+      "protocol/chatgpt-harvest-git-publication-contract-v1.md",
+    ],
+  },
+  {
+    source: "harvest/protocol/CHAT-THREAD-SYSTEM-ADVANCEMENT-HARVEST-CHATGPT-V1.md",
+    destinations: [
+      "protocol/CHAT-THREAD-SYSTEM-ADVANCEMENT-HARVEST-CHATGPT-V1.md",
+      "protocol/chat-thread-system-advancement-harvest-chatgpt-v1.md",
+    ],
+  },
+  {
+    source: "harvest/protocol/CHATGPT-DRAFT-BATCH-ASSESSMENT-T2-V1.md",
+    destinations: [
+      "protocol/CHATGPT-DRAFT-BATCH-ASSESSMENT-T2-V1.md",
+      "protocol/chatgpt-draft-batch-assessment-t2-v1.md",
+    ],
+  },
+  {
+    source: "harvest/protocol/system-advancement-quality-gate.md",
+    destinations: ["protocol/system-advancement-quality-gate.md"],
+  },
+  {
     source: "harvest/protocol/PROMPT-EXTRACTION-AND-PROMOTION-v1.md",
     destinations: ["protocol/PROMPT-EXTRACTION-AND-PROMOTION-v1.md"],
   },
@@ -71,7 +96,10 @@ Z:\\\\Capital-Glass-Dev\\\\Harvest\\\\protocol\\\\CHAT-THREAD-CLOSEOUT-AUTOPSY-H
 | \`protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md\` | Thread closeout autopsy (Cursor) |
 | \`protocol/HARVEST-INGESTION-RUNBOOK-v1.md\` | Record → validate → sync → publication |
 | \`protocol/PROMPT-EXTRACTION-AND-PROMOTION-v1.md\` | Prompt candidate extraction + Supabase seed |
-| \`protocol/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md\` | ChatGPT draft lane |
+| \`protocol/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md\` | ChatGPT OBSERVED autopsy lane (v2) |
+| \`protocol/CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md\` | Shared Git gate + verdict contract |
+| \`protocol/CHAT-THREAD-SYSTEM-ADVANCEMENT-HARVEST-CHATGPT-V1.md\` | ChatGPT ADVANCEMENT synthesis (v2) |
+| \`protocol/CHATGPT-DRAFT-BATCH-ASSESSMENT-T2-V1.md\` | T2 batch assessor for draft queue |
 | \`protocol/CURSOR_HARVEST_INGEST_CLOSEOUT_WAVE_SDLC_V1.md\` | Gated wave SDLC (canonical: Data-Extraction) |
 
 ## Publication modes
