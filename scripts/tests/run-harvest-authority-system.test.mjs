@@ -5,11 +5,20 @@ import { execSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { hashCanonicalJson } from "../harvest/lib/hash.mjs";
 import { validateManifestSchema } from "../harvest/lib/schema-validate.mjs";
+import { restoreRepoSnapshot, snapshotRepoPaths } from "./lib/preserve-worktree.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "../..");
 const HARVEST_ID = "harvest-2026-08-03-cross-thread-platform-state-v1";
 const RUN_DIR = path.join(REPO_ROOT, "artifacts/agent-runs", HARVEST_ID);
+
+const MUTATING_PATHS = [
+  `artifacts/agent-runs/${HARVEST_ID}`,
+  "work-progress/harvest-packet-registry.json",
+  "work-progress/projects/INDEX.md",
+  "harvest/README.md",
+  "harvest/z-mirror-sync-receipt.json",
+];
 
 function readJson(rel) {
   return JSON.parse(fs.readFileSync(path.join(REPO_ROOT, rel), "utf8"));
@@ -30,96 +39,101 @@ function test(name, fn) {
   }
 }
 
-execSync("node scripts/harvest/sync-derived.mjs", { cwd: REPO_ROOT, stdio: "pipe" });
-execSync("node scripts/harvest/render-harvest-index.mjs", { cwd: REPO_ROOT, stdio: "pipe" });
+const snapshot = snapshotRepoPaths(REPO_ROOT, MUTATING_PATHS);
+try {
+  execSync("node scripts/harvest/sync-derived.mjs", { cwd: REPO_ROOT, stdio: "pipe" });
+  execSync("node scripts/harvest/render-harvest-index.mjs", { cwd: REPO_ROOT, stdio: "pipe" });
 
-test("harvest manifest exists and has 6 packets", () => {
-  const manifest = readJson(`artifacts/agent-runs/${HARVEST_ID}/harvest-manifest-v1.json`);
-  assert.equal(manifest.packets.length, 6);
-  assert.equal(manifest.schemaVersion, "cross-agent-harvest-manifest-v1@1.0.0");
-});
+  test("harvest manifest exists and has 6 packets", () => {
+    const manifest = readJson(`artifacts/agent-runs/${HARVEST_ID}/harvest-manifest-v1.json`);
+    assert.equal(manifest.packets.length, 6);
+    assert.equal(manifest.schemaVersion, "cross-agent-harvest-manifest-v1@1.0.0");
+  });
 
-test("compact record count equals packet count", () => {
-  const manifest = readJson(`artifacts/agent-runs/${HARVEST_ID}/harvest-manifest-v1.json`);
-  const files = fs.readdirSync(path.join(RUN_DIR, "compact-records")).filter((f) => f.endsWith(".json"));
-  assert.equal(files.length, manifest.packets.length);
-});
+  test("compact record count equals packet count", () => {
+    const manifest = readJson(`artifacts/agent-runs/${HARVEST_ID}/harvest-manifest-v1.json`);
+    const files = fs.readdirSync(path.join(RUN_DIR, "compact-records")).filter((f) => f.endsWith(".json"));
+    assert.equal(files.length, manifest.packets.length);
+  });
 
-test("registry includes all packet IDs", () => {
-  const manifest = readJson(`artifacts/agent-runs/${HARVEST_ID}/harvest-manifest-v1.json`);
-  const registry = readJson("work-progress/harvest-packet-registry.json");
-  for (const packet of manifest.packets) {
-    assert.ok(registry.packets[packet.packetId], `missing registry entry ${packet.packetId}`);
-  }
-});
+  test("registry includes all packet IDs", () => {
+    const manifest = readJson(`artifacts/agent-runs/${HARVEST_ID}/harvest-manifest-v1.json`);
+    const registry = readJson("work-progress/harvest-packet-registry.json");
+    for (const packet of manifest.packets) {
+      assert.ok(registry.packets[packet.packetId], `missing registry entry ${packet.packetId}`);
+    }
+  });
 
-test("INDEX generated section matches manifest packet IDs", () => {
-  const manifest = readJson(`artifacts/agent-runs/${HARVEST_ID}/harvest-manifest-v1.json`);
-  const index = fs.readFileSync(path.join(REPO_ROOT, "work-progress/projects/INDEX.md"), "utf8");
-  assert.ok(index.includes("<!-- HARVEST-PACKET-INDEX:START -->"));
-  for (const packet of manifest.packets) {
-    assert.ok(index.includes(packet.packetId));
-  }
-});
+  test("INDEX generated section matches manifest packet IDs", () => {
+    const manifest = readJson(`artifacts/agent-runs/${HARVEST_ID}/harvest-manifest-v1.json`);
+    const index = fs.readFileSync(path.join(REPO_ROOT, "work-progress/projects/INDEX.md"), "utf8");
+    assert.ok(index.includes("<!-- HARVEST-PACKET-INDEX:START -->"));
+    for (const packet of manifest.packets) {
+      assert.ok(index.includes(packet.packetId));
+    }
+  });
 
-test("forbidden key scan passes on manifest", () => {
-  const manifest = JSON.stringify(readJson(`artifacts/agent-runs/${HARVEST_ID}/harvest-manifest-v1.json`));
-  assert.ok(!/\"apiKey\"/i.test(manifest));
-  assert.ok(!/\"password\"/i.test(manifest));
-});
+  test("forbidden key scan passes on manifest", () => {
+    const manifest = JSON.stringify(readJson(`artifacts/agent-runs/${HARVEST_ID}/harvest-manifest-v1.json`));
+    assert.ok(!/\"apiKey\"/i.test(manifest));
+    assert.ok(!/\"password\"/i.test(manifest));
+  });
 
-test("HOLD packets include doNotAdvance", () => {
-  const manifest = readJson(`artifacts/agent-runs/${HARVEST_ID}/harvest-manifest-v1.json`);
-  const hold = manifest.packets.find((p) => p.state === "HOLD");
-  assert.ok(hold);
-  assert.ok(hold.doNotAdvance.length > 0);
-});
+  test("HOLD packets include doNotAdvance", () => {
+    const manifest = readJson(`artifacts/agent-runs/${HARVEST_ID}/harvest-manifest-v1.json`);
+    const hold = manifest.packets.find((p) => p.state === "HOLD");
+    assert.ok(hold);
+    assert.ok(hold.doNotAdvance.length > 0);
+  });
 
-test("ownerRepo boundary exists for every packet", () => {
-  const manifest = readJson(`artifacts/agent-runs/${HARVEST_ID}/harvest-manifest-v1.json`);
-  const boundary = readJson("work-progress/owner-repo-boundary-index.json");
-  const registry = readJson("work-progress/harvest-packet-registry.json");
-  const registryPacketIds = Object.keys(registry.packets).sort();
-  const boundaryPacketIds = boundary.packets.map((p) => p.packetId).sort();
-  assert.deepEqual(
-    boundaryPacketIds,
-    registryPacketIds,
-    "boundary index must mirror harvest-packet-registry authority",
-  );
-  for (const packet of manifest.packets) {
-    const entry = boundary.packets.find((p) => p.packetId === packet.packetId);
-    assert.ok(entry, `boundary missing manifest packet ${packet.packetId}`);
-    assert.equal(entry.ownerRepo, packet.ownerRepo, `ownerRepo drift for ${packet.packetId}`);
-  }
-});
+  test("ownerRepo boundary exists for every packet", () => {
+    const manifest = readJson(`artifacts/agent-runs/${HARVEST_ID}/harvest-manifest-v1.json`);
+    const boundary = readJson("work-progress/owner-repo-boundary-index.json");
+    const registry = readJson("work-progress/harvest-packet-registry.json");
+    const registryPacketIds = Object.keys(registry.packets).sort();
+    const boundaryPacketIds = boundary.packets.map((p) => p.packetId).sort();
+    assert.deepEqual(
+      boundaryPacketIds,
+      registryPacketIds,
+      "boundary index must mirror harvest-packet-registry authority",
+    );
+    for (const packet of manifest.packets) {
+      const entry = boundary.packets.find((p) => p.packetId === packet.packetId);
+      assert.ok(entry, `boundary missing manifest packet ${packet.packetId}`);
+      assert.equal(entry.ownerRepo, packet.ownerRepo, `ownerRepo drift for ${packet.packetId}`);
+    }
+  });
 
-test("coverage score emits with gradeAfter", () => {
-  const manifest = readJson(`artifacts/agent-runs/${HARVEST_ID}/harvest-manifest-v1.json`);
-  const coverage = readJson(`artifacts/agent-runs/${HARVEST_ID}/coverage.json`);
-  assert.ok(coverage.overallCoverageScore > 0);
-  assert.ok(["A", "A+"].includes(coverage.gradeAfter));
-  assert.equal(coverage.metrics.packetsWithOwnerIndexed, manifest.packets.length);
-});
+  test("coverage score emits with gradeAfter", () => {
+    const manifest = readJson(`artifacts/agent-runs/${HARVEST_ID}/harvest-manifest-v1.json`);
+    const coverage = readJson(`artifacts/agent-runs/${HARVEST_ID}/coverage.json`);
+    assert.ok(coverage.overallCoverageScore > 0);
+    assert.ok(["A", "A+"].includes(coverage.gradeAfter));
+    assert.equal(coverage.metrics.packetsWithOwnerIndexed, manifest.packets.length);
+  });
 
-test("receipt links harvestManifestHash", () => {
-  const manifest = readJson(`artifacts/agent-runs/${HARVEST_ID}/harvest-manifest-v1.json`);
-  const receipt = readJson(`artifacts/agent-runs/${HARVEST_ID}/receipt.json`);
-  const expected = hashCanonicalJson(manifest);
-  assert.equal(receipt.harvestManifestHash, expected);
-});
+  test("receipt links harvestManifestHash", () => {
+    const manifest = readJson(`artifacts/agent-runs/${HARVEST_ID}/harvest-manifest-v1.json`);
+    const receipt = readJson(`artifacts/agent-runs/${HARVEST_ID}/receipt.json`);
+    const expected = hashCanonicalJson(manifest);
+    assert.equal(receipt.harvestManifestHash, expected);
+  });
 
-test("schema validation passes on manifest", () => {
-  const manifest = readJson(`artifacts/agent-runs/${HARVEST_ID}/harvest-manifest-v1.json`);
-  const result = validateManifestSchema(manifest);
-  assert.equal(result.ok, true, result.errors?.join("; "));
-});
+  test("schema validation passes on manifest", () => {
+    const manifest = readJson(`artifacts/agent-runs/${HARVEST_ID}/harvest-manifest-v1.json`);
+    const result = validateManifestSchema(manifest);
+    assert.equal(result.ok, true, result.errors?.join("; "));
+  });
 
-test("validate gate passes", () => {
-  execSync("node scripts/harvest/validate-harvest.mjs", { cwd: REPO_ROOT, stdio: "pipe" });
-  const result = readJson(`artifacts/agent-runs/${HARVEST_ID}/validation-result.json`);
-  assert.equal(result.verdict, "PASS");
-  assert.equal(result.schemaValidation, "PASS");
-});
+  test("validate gate passes", () => {
+    execSync("node scripts/harvest/validate-harvest.mjs", { cwd: REPO_ROOT, stdio: "pipe" });
+    const result = readJson(`artifacts/agent-runs/${HARVEST_ID}/validation-result.json`);
+    assert.equal(result.verdict, "PASS");
+    assert.equal(result.schemaValidation, "PASS");
+  });
+} finally {
+  restoreRepoSnapshot(REPO_ROOT, snapshot);
+}
 
 console.log(`\n# tests ${passed + failed} pass ${passed} fail ${failed}`);
 process.exit(failed > 0 ? 1 : 0);
