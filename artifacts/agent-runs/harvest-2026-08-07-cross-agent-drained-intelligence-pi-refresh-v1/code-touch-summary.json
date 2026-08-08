@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "cross-agent-harvest-code-touch-summary-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-cross-agent-drained-intelligence-pi-refresh-v1",
+  "repos": [
+    {
+      "repo": "Data-Extraction",
+      "branch": "feat/harvest-branch-investigation-m23-m24",
+      "commits": [
+        "a413f8ec1b09d1f0925cdc8b208de91f11d3a467",
+        "20e235e9f59ffbe0b3b436d902736283b93b2d67"
+      ],
+      "paths": [
+        "artifacts/agent-runs/cross-agent-drained-intelligence-publication-and-pi-refresh-v1/",
+        "artifacts/agent-runs/cross-agent-raw-corpus-bulk-ingestion-v1/bulk-closeout-v1.json",
+        "scripts/cross-agent-pi-refresh/"
+      ],
+      "role": "mutation + closeout receipts"
+    },
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "main",
+      "commits": ["a082553e210c4606d8efca321bdbead847c8ab62"],
+      "paths": [
+        "runtime/index-publication/latest.json",
+        "artifacts/agent-runs/cross-agent-index-freshness-gate-v1/latest.json"
+      ],
+      "role": "Hub publication authority"
+    },
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "branch": "main",
+      "commits": ["a84d1ae747d7905c8dd74726846da3decb322e2e"],
+      "paths": ["scripts/derived-intel/run-v1e-live-publication.mjs"],
+      "role": "DE PI publication pipeline"
+    }
+  ],
+  "frozenUpstream": [
+    "cross-agent-full-drain",
+    "Z/L custody",
+    "compaction 1afc65d",
+    "bulk ingestion",
+    "gold-mine:full-wave"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-AI-CACHE-ESTATE-CONSUMER-PROOF-001",
+  "kind": "command",
+  "title": "Wave D estate consumer proof on WESLEYDESK or RYZEN9DESK",
+  "summary": "Run cold then hot material-session proof at adc0df53 with isolated PROOF_ROOT; assert Z_GOVERNED bible_authority_evidence hydration and hot KPI thresholds.",
+  "retrievalQuestions": [
+    "How do I prove ai-cache-preflight-evidence-reuse-v1 on WESLEYDESK?",
+    "What keyHash must match across estate hosts for bible_authority_evidence?"
+  ],
+  "evidenceRefs": [
+    "CG-AppBuilder-MCP@adc0df5348f0c299ebbd953962c9b30d05ec7b0e",
+    "TE-008",
+    "artifacts/agent-runs/ai-cache-preflight-evidence-reuse-v1/wave-d-estate-consumer-proof-v3/run-estate-consumer-proof.sh"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "ai-cache-preflight-evidence-reuse-v1 milestone closeout or Wave D consumer proof",
+    "startAt": [
+      "artifacts/agent-runs/ai-cache-preflight-evidence-reuse-v1/wave-d-estate-consumer-proof-v3/run-estate-consumer-proof.sh",
+      "artifacts/agent-runs/ai-cache-preflight-evidence-reuse-v1/milestone-closeout-v1.json"
+    ],
+    "runPreflight": [
+      "git rev-parse HEAD must equal adc0df5348f0c299ebbd953962c9b30d05ec7b0e",
+      "npm run agent:index:scout -- --json"
+    ],
+    "doNot": [
+      "Run proof from WESLEY_WORK and label as WESLEYDESK",
+      "Use --allow-dirty for formal live-fast-gate proof",
+      "Require aggregate evidenceKindHitRate >= 60% on cold pass"
+    ],
+    "proveBeforeClaiming": [
+      "COLD_PASS: cacheStatus=HIT regenerated=false promotionSource=Z_GOVERNED for bible_authority_evidence",
+      "keyHash 642ce22c31c6ffd1042c7a251f3c76dcd8b7aa431e715898fce6d979cd8c21b5",
+      "objectHash 956600cdffeae9dedc0da5624e16b6fbe3254d0563f773223abf6e58cc4581e3",
+      "HOT_PASS: evidenceKindHitRate >= 60% preflightContextReuseRate >= 70%"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 1,
+  "wasteIds": ["TW-001", "TW-002", "TW-003"]
+}

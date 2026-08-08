@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "gold-mine-evidence-projections-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-cursor-healthkeeper-preflight-dedupe-v1",
+  "generatedAt": "2026-08-07T20:55:00.000Z",
+  "sourceCommitSha": "d18bb64358dd428bc7350337a3d12a599d5b4ff1",
+  "productWorkflowCoverage": {
+    "computerEstimator": "NOT_OBSERVED",
+    "humanEstimator": "NOT_OBSERVED",
+    "documentCenter": "NOT_OBSERVED",
+    "planSetProcessing": "NOT_OBSERVED",
+    "ocrParser": "NOT_OBSERVED",
+    "revuBluebeam": "NOT_OBSERVED",
+    "bidComposer": "NOT_OBSERVED",
+    "proposals": "NOT_OBSERVED",
+    "vae": "NOT_OBSERVED",
+    "scraper": "NOT_OBSERVED",
+    "crossAppHandoffs": "NOT_OBSERVED",
+    "operatorReentry": "OBSERVED"
+  },
+  "corpusBias": {
+    "evidenceDomainDistribution": {
+      "sdlc": 8,
+      "governance": 2,
+      "receiptPlumbing": 4,
+      "infrastructure": 5,
+      "productOperation": 0,
+      "operatorWorkflow": 1,
+      "businessWorkflow": 0
+    },
+    "corpusBiasWarning": "SDLC/infrastructure-heavy thread — zero product workflow signals; do not infer estate-wide product health from this harvest",
+    "underObservedDomains": [
+      "Computer Estimator",
+      "Document Center",
+      "Bid Composer",
+      "Revu"
+    ]
+  },
+  "projections": [
+    {
+      "projectionId": "gmp-cursor-healthkeeper-dedupe-resolution-v1",
+      "signalClass": "RESOLUTION_SIGNAL",
+      "lifecycleHint": "RESOLVED_OBSERVED",
+      "rootCauseKey": "healthkeeper-duplicate-preflight-ownership",
+      "workPackageId": "cg-cursor-healthkeeper-preflight-dedupe-v1",
+      "evidenceStrength": "high",
+      "operatorImpact": "Faster deterministic Cursor session start; less false WARN from Hub/MCP",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-07T20:55:00.000Z",
+      "sourceWorkPackageId": "cg-cursor-healthkeeper-preflight-dedupe-v1",
+      "sourceCommitSha": "d18bb64358dd428bc7350337a3d12a599d5b4ff1",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_CLOSED",
+      "resolves": ["healthkeeper-v11-owned-downstream-checks-v1"],
+      "evidenceRefs": ["d18bb64358dd428bc7350337a3d12a599d5b4ff1", "TE-005"]
+    },
+    {
+      "projectionId": "gmp-cursor-health-gate-performance-v1",
+      "signalClass": "PERFORMANCE_SIGNAL",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "cursor-substrate-preflight-latency",
+      "workPackageId": "cg-cursor-healthkeeper-preflight-integration-v1",
+      "evidenceStrength": "medium",
+      "operatorImpact": "~4.6s gate vs ~70s full preflight",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-07T20:55:00.000Z",
+      "sourceCommitSha": "bf6c38c73ed19e8faab36d7889dae9272abd6e01",
+      "novelty": "NEW",
+      "implementationState": "ADOPTED",
+      "evidenceRefs": ["OM-001", "OM-002"]
+    },
+    {
+      "projectionId": "gmp-healthkeeper-integration-pattern-v1",
+      "signalClass": "SUCCESS_PATTERN",
+      "lifecycleHint": "OPEN",
+      "workPackageId": "cg-cursor-healthkeeper-preflight-integration-v1",
+      "evidenceStrength": "high",
+      "operatorImpact": "BLOCKED fast-fail before expensive gates on broken Unix IPC",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-07T20:55:00.000Z",
+      "sourceCommitSha": "bf6c38c73ed19e8faab36d7889dae9272abd6e01",
+      "novelty": "NEW",
+      "implementationState": "ADOPTED",
+      "evidenceRefs": ["SP-001", "bf6c38c7"]
+    }
+  ]
+}

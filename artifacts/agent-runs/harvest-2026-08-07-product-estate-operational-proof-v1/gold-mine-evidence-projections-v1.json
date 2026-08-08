@@ -1,0 +1,324 @@
+{
+  "schemaVersion": "gold-mine-evidence-projection-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-product-estate-operational-proof-v1",
+  "sourceCommitSha": "20e235e9f59ffbe0b3b436d902736283b93b2d67",
+  "corpusBias": {
+    "evidenceDomainDistribution": {
+      "gold-mine-intelligence": 4,
+      "platform-health": 9,
+      "governance": 4,
+      "intelligence-hub": 4,
+      "document-center": 22,
+      "hub": 4,
+      "cross-app-handoff": 4,
+      "estimating": 13,
+      "bid-composer": 9,
+      "revu": 13,
+      "visual-asset-engine": 9,
+      "procurement": 4
+    },
+    "corpusBiasWarning": "Product-estate observational run shifts corpus toward workflow probes; SDLC/governance still represented via platform gates",
+    "underObservedDomains": [
+      "Computer Estimator production path",
+      "Human Estimator",
+      "Scraper ingestion path",
+      "Live proposal issuance",
+      "Desktop Revu/Bluebeam operator loop",
+      "Live Document Center shared-dev extraction"
+    ]
+  },
+  "productWorkflowCoverage": {
+    "computerEstimator": "OBSERVED",
+    "humanEstimator": "NOT_OBSERVED",
+    "documentCenter": "OBSERVED",
+    "planSetProcessing": "OBSERVED",
+    "ocrParser": "NOT_OBSERVED",
+    "revuBluebeam": "OBSERVED",
+    "bidComposer": "OBSERVED",
+    "proposals": "NOT_OBSERVED",
+    "vae": "OBSERVED",
+    "scraper": "NOT_OBSERVED",
+    "crossAppHandoffs": "OBSERVED",
+    "operatorReentry": "OBSERVED"
+  },
+  "projections": [
+    {
+      "projectionId": "GMP-PEOP-001",
+      "workPackageId": "gold-mine-product-estate-operational-proof-v1",
+      "sourceRunId": "2026-08-07T20-48-27-453Z",
+      "evidenceEra": "IMPLEMENTATION_WAVE",
+      "novelty": "NEW",
+      "lifecycleHint": "OPEN",
+      "observedAt": "2026-08-07T20:48:27.460Z",
+      "implementationDigestRef": "sha256:probe-platform-mcp-doctor-gate@6b28c6c4a36eee70",
+      "evidenceRefs": [
+        "workflow-probe-results-v1.json#platform-mcp-doctor-gate",
+        "sha256:probe-platform-mcp-doctor-gate@6b28c6c4a36eee70"
+      ],
+      "businessImpact": "PLATFORM_INTERNAL",
+      "signalClass": "OPERATOR_FRICTION_SIGNAL",
+      "implementationState": "BLOCKED",
+      "evidenceStrength": "medium",
+      "operatorImpact": "Probe blocked — secrets, missing checkout, or environment gate",
+      "summary": "platform-mcp-doctor-gate BLOCKED — MCP doctor gate"
+    },
+    {
+      "projectionId": "GMP-PEOP-002",
+      "workPackageId": "gold-mine-product-estate-operational-proof-v1",
+      "sourceRunId": "2026-08-07T20-48-27-453Z",
+      "evidenceEra": "IMPLEMENTATION_WAVE",
+      "novelty": "NEW",
+      "lifecycleHint": "OPEN",
+      "observedAt": "2026-08-07T20:48:27.460Z",
+      "implementationDigestRef": "sha256:probe-cross-agent-harvest-validate@a0572219ddb88b80",
+      "evidenceRefs": [
+        "workflow-probe-results-v1.json#cross-agent-harvest-validate",
+        "sha256:probe-cross-agent-harvest-validate@a0572219ddb88b80"
+      ],
+      "businessImpact": "PLATFORM_INTERNAL",
+      "signalClass": "PROBLEM_SIGNAL",
+      "implementationState": "OBSERVED_OPEN",
+      "evidenceStrength": "high",
+      "summary": "cross-agent-harvest-validate FAIL — Harvest validation: nerated section missing packet ryzen9desk-managed-executor-v1"
+    },
+    {
+      "projectionId": "GMP-PEOP-003",
+      "workPackageId": "gold-mine-product-estate-operational-proof-v1",
+      "sourceRunId": "2026-08-07T20-48-27-453Z",
+      "evidenceEra": "IMPLEMENTATION_WAVE",
+      "novelty": "NEW",
+      "lifecycleHint": "OPEN",
+      "observedAt": "2026-08-07T20:48:27.460Z",
+      "implementationDigestRef": "sha256:probe-documents-bff-health@301557432179d1ec",
+      "evidenceRefs": [
+        "workflow-probe-results-v1.json#documents-bff-health",
+        "sha256:probe-documents-bff-health@301557432179d1ec"
+      ],
+      "businessImpact": "DOCUMENT_PROCESSING",
+      "signalClass": "PROBLEM_SIGNAL",
+      "implementationState": "OBSERVED_OPEN",
+      "evidenceStrength": "high",
+      "summary": "documents-bff-health FAIL — Document Center BFF health: lth] FAILED:"
+    },
+    {
+      "projectionId": "GMP-PEOP-004",
+      "workPackageId": "gold-mine-product-estate-operational-proof-v1",
+      "sourceRunId": "2026-08-07T20-48-27-453Z",
+      "evidenceEra": "IMPLEMENTATION_WAVE",
+      "novelty": "NEW",
+      "lifecycleHint": "OPEN",
+      "observedAt": "2026-08-07T20:48:27.460Z",
+      "implementationDigestRef": "sha256:probe-dashboard-document-contract@ffe80f842da96953",
+      "evidenceRefs": [
+        "workflow-probe-results-v1.json#dashboard-document-contract",
+        "sha256:probe-dashboard-document-contract@ffe80f842da96953"
+      ],
+      "businessImpact": "DOCUMENT_PROCESSING",
+      "signalClass": "OPERATOR_FRICTION_SIGNAL",
+      "implementationState": "PARTIAL",
+      "evidenceStrength": "medium",
+      "summary": "dashboard-document-contract PASS_WITH_WARN — Dashboard Document Layer consumer contract"
+    },
+    {
+      "projectionId": "GMP-PEOP-005",
+      "workPackageId": "gold-mine-product-estate-operational-proof-v1",
+      "sourceRunId": "2026-08-07T20-48-27-453Z",
+      "evidenceEra": "IMPLEMENTATION_WAVE",
+      "novelty": "NEW",
+      "lifecycleHint": "OPEN",
+      "observedAt": "2026-08-07T20:48:27.460Z",
+      "implementationDigestRef": "sha256:probe-po-document-contract@cc71a6c6f02eaacc",
+      "evidenceRefs": [
+        "workflow-probe-results-v1.json#po-document-contract",
+        "sha256:probe-po-document-contract@cc71a6c6f02eaacc"
+      ],
+      "businessImpact": "DOCUMENT_PROCESSING",
+      "signalClass": "OPERATOR_FRICTION_SIGNAL",
+      "implementationState": "PARTIAL",
+      "evidenceStrength": "medium",
+      "summary": "po-document-contract PASS_WITH_WARN — PO app Document Layer consumer contract"
+    },
+    {
+      "projectionId": "GMP-PEOP-006",
+      "workPackageId": "gold-mine-product-estate-operational-proof-v1",
+      "sourceRunId": "2026-08-07T20-48-27-453Z",
+      "evidenceEra": "IMPLEMENTATION_WAVE",
+      "novelty": "NEW",
+      "lifecycleHint": "OPEN",
+      "observedAt": "2026-08-07T20:48:27.460Z",
+      "implementationDigestRef": "sha256:probe-hub-dashboard-smoke@1725cfb74d48de7e",
+      "evidenceRefs": [
+        "workflow-probe-results-v1.json#hub-dashboard-smoke",
+        "sha256:probe-hub-dashboard-smoke@1725cfb74d48de7e"
+      ],
+      "businessImpact": "OPERATOR_PRODUCTIVITY",
+      "signalClass": "PROBLEM_SIGNAL",
+      "implementationState": "OBSERVED_OPEN",
+      "evidenceStrength": "high",
+      "summary": "hub-dashboard-smoke FAIL — Hub dashboard contract smoke: accessToken for Document Center BFF bootstrap"
+    },
+    {
+      "projectionId": "GMP-PEOP-007",
+      "workPackageId": "gold-mine-product-estate-operational-proof-v1",
+      "sourceRunId": "2026-08-07T20-48-27-453Z",
+      "evidenceEra": "IMPLEMENTATION_WAVE",
+      "novelty": "NEW",
+      "lifecycleHint": "OPEN",
+      "observedAt": "2026-08-07T20:48:27.460Z",
+      "implementationDigestRef": "sha256:probe-estimator-regression-unit@e84dfd0893297cda",
+      "evidenceRefs": [
+        "workflow-probe-results-v1.json#estimator-regression-unit",
+        "sha256:probe-estimator-regression-unit@e84dfd0893297cda"
+      ],
+      "businessImpact": "ESTIMATING",
+      "signalClass": "PROBLEM_SIGNAL",
+      "implementationState": "OBSERVED_OPEN",
+      "evidenceStrength": "high",
+      "summary": "estimator-regression-unit FAIL — Computer Estimator regression unit suite: )"
+    },
+    {
+      "projectionId": "GMP-PEOP-008",
+      "workPackageId": "gold-mine-product-estate-operational-proof-v1",
+      "sourceRunId": "2026-08-07T20-48-27-453Z",
+      "evidenceEra": "IMPLEMENTATION_WAVE",
+      "novelty": "NEW",
+      "lifecycleHint": "OPEN",
+      "observedAt": "2026-08-07T20:48:27.460Z",
+      "implementationDigestRef": "sha256:probe-estimator-schedule-extraction@65d7e26ea468f992",
+      "evidenceRefs": [
+        "workflow-probe-results-v1.json#estimator-schedule-extraction",
+        "sha256:probe-estimator-schedule-extraction@65d7e26ea468f992"
+      ],
+      "businessImpact": "ESTIMATING",
+      "signalClass": "PROBLEM_SIGNAL",
+      "implementationState": "OBSERVED_OPEN",
+      "evidenceStrength": "high",
+      "summary": "estimator-schedule-extraction FAIL — Plan schedule extraction: ansforms import BBox"
+    },
+    {
+      "projectionId": "GMP-PEOP-009",
+      "workPackageId": "gold-mine-product-estate-operational-proof-v1",
+      "sourceRunId": "2026-08-07T20-48-27-453Z",
+      "evidenceEra": "IMPLEMENTATION_WAVE",
+      "novelty": "NEW",
+      "lifecycleHint": "OPEN",
+      "observedAt": "2026-08-07T20:48:27.460Z",
+      "implementationDigestRef": "sha256:probe-estimator-evidence-spine@334aa95992bb643f",
+      "evidenceRefs": [
+        "workflow-probe-results-v1.json#estimator-evidence-spine",
+        "sha256:probe-estimator-evidence-spine@334aa95992bb643f"
+      ],
+      "businessImpact": "ESTIMATING",
+      "signalClass": "PROBLEM_SIGNAL",
+      "implementationState": "OBSERVED_OPEN",
+      "evidenceStrength": "high",
+      "summary": "estimator-evidence-spine FAIL — Parser evidence spine: ts/unit/test_evidence_spine.py:10: in <module>"
+    },
+    {
+      "projectionId": "GMP-PEOP-010",
+      "workPackageId": "gold-mine-product-estate-operational-proof-v1",
+      "sourceRunId": "2026-08-07T20-48-27-453Z",
+      "evidenceEra": "IMPLEMENTATION_WAVE",
+      "novelty": "NEW",
+      "lifecycleHint": "OPEN",
+      "observedAt": "2026-08-07T20:48:27.460Z",
+      "implementationDigestRef": "sha256:probe-revu-bid-composer-binding@dd595fc83730d725",
+      "evidenceRefs": [
+        "workflow-probe-results-v1.json#revu-bid-composer-binding",
+        "sha256:probe-revu-bid-composer-binding@dd595fc83730d725"
+      ],
+      "businessImpact": "ESTIMATING",
+      "signalClass": "PROBLEM_SIGNAL",
+      "implementationState": "OBSERVED_OPEN",
+      "evidenceStrength": "high",
+      "summary": "revu-bid-composer-binding FAIL — Revu → Bid Composer takeoff binding: {"
+    },
+    {
+      "projectionId": "GMP-PEOP-011",
+      "workPackageId": "gold-mine-product-estate-operational-proof-v1",
+      "sourceRunId": "2026-08-07T20-48-27-453Z",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "novelty": "NEW",
+      "lifecycleHint": "RESOLVED_OBSERVED",
+      "observedAt": "2026-08-07T20:48:27.461Z",
+      "signalClass": "SUCCESS_PATTERN",
+      "implementationState": "ADOPTED",
+      "evidenceStrength": "medium",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "summary": "Observational product-estate proof (fast): 13/23 probes PASS without intervention",
+      "evidenceRefs": [
+        "workflow-probe-results-v1.json",
+        "runId:2026-08-07T20-48-27-453Z"
+      ]
+    },
+    {
+      "projectionId": "GMP-PEOP-012",
+      "workPackageId": "gold-mine-product-estate-operational-proof-v1",
+      "sourceRunId": "2026-08-07T20-48-27-453Z",
+      "evidenceEra": "IMPLEMENTATION_WAVE",
+      "novelty": "NEW",
+      "lifecycleHint": "OPEN",
+      "observedAt": "2026-08-07T20:48:27.461Z",
+      "signalClass": "OBSERVABILITY_GAP",
+      "implementationState": "OBSERVED_OPEN",
+      "evidenceStrength": "medium",
+      "businessImpact": "ESTIMATING",
+      "summary": "Human Estimator MCP / review loop NOT_PROVEN in fast tier — no probe exercised",
+      "evidenceRefs": [
+        "productWorkflowCoverage.humanEstimator=NOT_OBSERVED"
+      ]
+    },
+    {
+      "projectionId": "GMP-PEOP-013",
+      "workPackageId": "gold-mine-product-estate-operational-proof-v1",
+      "sourceRunId": "2026-08-07T20-48-27-453Z",
+      "evidenceEra": "IMPLEMENTATION_WAVE",
+      "novelty": "NEW",
+      "lifecycleHint": "OPEN",
+      "observedAt": "2026-08-07T20:48:27.461Z",
+      "signalClass": "OBSERVABILITY_GAP",
+      "implementationState": "OBSERVED_OPEN",
+      "evidenceStrength": "medium",
+      "businessImpact": "ESTIMATING",
+      "summary": "Scraper ingestion path NOT_PROVEN in fast tier — no probe exercised",
+      "evidenceRefs": [
+        "productWorkflowCoverage.scraper=NOT_OBSERVED"
+      ]
+    },
+    {
+      "projectionId": "GMP-PEOP-014",
+      "workPackageId": "gold-mine-product-estate-operational-proof-v1",
+      "sourceRunId": "2026-08-07T20-48-27-453Z",
+      "evidenceEra": "IMPLEMENTATION_WAVE",
+      "novelty": "NEW",
+      "lifecycleHint": "OPEN",
+      "observedAt": "2026-08-07T20:48:27.461Z",
+      "signalClass": "OBSERVABILITY_GAP",
+      "implementationState": "OBSERVED_OPEN",
+      "evidenceStrength": "medium",
+      "businessImpact": "ESTIMATING",
+      "summary": "Proposal issuance end-to-end NOT_PROVEN in fast tier — no probe exercised",
+      "evidenceRefs": [
+        "productWorkflowCoverage.proposals=NOT_OBSERVED"
+      ]
+    },
+    {
+      "projectionId": "GMP-PEOP-015",
+      "workPackageId": "gold-mine-product-estate-operational-proof-v1",
+      "sourceRunId": "2026-08-07T20-48-27-453Z",
+      "evidenceEra": "IMPLEMENTATION_WAVE",
+      "novelty": "NEW",
+      "lifecycleHint": "OPEN",
+      "observedAt": "2026-08-07T20:48:27.461Z",
+      "signalClass": "BUSINESS_WORKFLOW_SIGNAL",
+      "implementationState": "PARTIAL",
+      "evidenceStrength": "high",
+      "businessImpact": "BUSINESS_RELIABILITY",
+      "summary": "Product estate exposes real workflow failures — next Gold Mine discovery should surface product-level candidates",
+      "evidenceRefs": [
+        "workflow-probe-results-v1.json",
+        "gold-mine-product-estate-operational-proof-v1"
+      ]
+    }
+  ]
+}

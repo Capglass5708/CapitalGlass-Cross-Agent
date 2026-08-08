@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-PRODUCT-ESTATE-OPERATIONAL-PROOF-001",
+  "kind": "runbook",
+  "title": "Product-estate operational proof observational loop",
+  "summary": "After infrastructure Gold Mine waves: run gold-mine:product-estate-proof (observational), harvest v1.1 projections, publish, remeasure — do not fix mid-run.",
+  "retrievalQuestions": [
+    "How do I measure Capital Glass product workflows for Gold Mine?",
+    "What runs after zero open infrastructure candidates?",
+    "Where are v1.1 product-estate projections stored?"
+  ],
+  "evidenceRefs": [
+    "TE-PE-001",
+    "gold-mine-evidence-projections-v1.json"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Stage 3 product estate exercise",
+    "startAt": [
+      "PRODUCT-ESTATE-OPERATIONAL-REPORT.md",
+      "workflow-probe-registry.mjs"
+    ],
+    "runPreflight": [
+      "npm run gold-mine:product-estate-proof",
+      "npm run harvest:validate"
+    ],
+    "doNot": [
+      "Fix probes during observational run",
+      "Skip harvest projections file"
+    ],
+    "proveBeforeClaiming": [
+      "product-estate-operational-proof-final-state-v1.json harvestReady true"
+    ]
+  },
+  "ownerRepo": "Data-Extraction",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 1
+}

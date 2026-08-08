@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-CURSOR-HEALTHKEEPER-V12-OWNERSHIP-001",
+  "kind": "lesson",
+  "title": "Healthkeeper v1.2 substrate-only ownership — no Hub/MCP/storage verdicts",
+  "summary": "Healthkeeper answers whether Cursor/WSL substrate is healthy; L:/Z authority, Hub index, MCP doctor, and Bible gates remain downstream only.",
+  "retrievalQuestions": [
+    "What must NOT affect Healthkeeper BLOCKED verdict?",
+    "What schema version is substrate-only healthkeeper evidence?"
+  ],
+  "evidenceRefs": [
+    "CG-AppBuilder-MCP@d18bb64358dd428bc7350337a3d12a599d5b4ff1",
+    "cg-cursor-wsl-healthkeeper-v1.2@1.0.0",
+    "TE-005"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Editing cg-cursor-wsl-healthkeeper.sh or health evidence schema",
+    "startAt": [
+      "docs/wsl/CURSOR_SESSION_FAST_HEALTH_GATE.md",
+      "scripts/wsl/lib/cg-cursor-wsl-healthkeeper-evidence.mjs"
+    ],
+    "runPreflight": [
+      "npm run test:cursor-wsl-healthkeeper-dedupe",
+      "npm run agent:index:scout -- --json"
+    ],
+    "doNot": [
+      "Add check_hub_authority or check_drives back to healthkeeper",
+      "WARN on MCP -32000 connection errors in healthkeeper verdict",
+      "Use healthkeeper to prove mcp:doctor readiness"
+    ],
+    "proveBeforeClaiming": [
+      "deprecated.hubAuthority.nonAuthoritative true in latest.json",
+      "canonicalResolution only — not storage authority"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 1,
+  "wasteIds": ["TW-001"]
+}

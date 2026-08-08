@@ -1,0 +1,122 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-product-estate-operational-proof-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-PRODUCT-ESTATE-OPERATIONAL-PROOF-001",
+      "questionId": "IHPRODUCTEST",
+      "canonicalQuestion": "How do I measure Capital Glass product workflows for Gold Mine?",
+      "alternateQuestions": [
+        "What runs after zero open infrastructure candidates?",
+        "Where are v1.1 product-estate projections stored?"
+      ],
+      "shortAnswer": "After infrastructure Gold Mine waves: run gold-mine:product-estate-proof (observational), harvest v1.1 projections, publish, remeasure — do not fix mid-run.",
+      "detailedAnswer": "Product-estate operational proof observational loop",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-07T20:55:45.132Z",
+      "authorityRepo": "Data-Extraction",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/seed-packets/IH-PRODUCT-ESTATE-OPERATIONAL-PROOF-001.json"
+      ],
+      "authorityCommit": [
+        "f8ba606"
+      ],
+      "evidenceUrls": [
+        "TE-PE-001",
+        "gold-mine-evidence-projections-v1.json"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-07-product-estate-operational-proof-v1"
+      ],
+      "entities": [
+        "Data-Extraction"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Stage 3 product estate exercise",
+        "startAt": [
+          "PRODUCT-ESTATE-OPERATIONAL-REPORT.md",
+          "workflow-probe-registry.mjs"
+        ],
+        "runPreflight": [
+          "npm run gold-mine:product-estate-proof",
+          "npm run harvest:validate"
+        ],
+        "doNot": [
+          "Fix probes during observational run",
+          "Skip harvest projections file"
+        ],
+        "proveBeforeClaiming": [
+          "product-estate-operational-proof-final-state-v1.json harvestReady true"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "runbook"
+    },
+    {
+      "ihPfspId": "IH-PRODUCT-ESTATE-PROBE-FAILURES-001",
+      "questionId": "IHPRODUCTEST",
+      "canonicalQuestion": "Which product estate probes failed in August 2026?",
+      "alternateQuestions": [
+        "Why is Computer Estimator NOT_PROVEN?",
+        "What blocks MCP doctor gate?"
+      ],
+      "shortAnswer": "7 FAIL: Computer Estimator (3), documents-bff-health, hub-dashboard-smoke, cross-agent-harvest-validate, revu-bid-composer-binding. 1 BLOCKED: mcp-doctor-gate.",
+      "detailedAnswer": "Product-estate probe failure population (fast tier 2026-08-07)",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-07T20:55:45.132Z",
+      "authorityRepo": "Data-Extraction",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/seed-packets/IH-PRODUCT-ESTATE-PROBE-FAILURES-001.json"
+      ],
+      "authorityCommit": [
+        "f8ba606"
+      ],
+      "evidenceUrls": [
+        "workflow-probe-results-v1.json",
+        "GMP-PEOP-004"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-07-product-estate-operational-proof-v1"
+      ],
+      "entities": [
+        "Data-Extraction"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Product Gold Mine candidate triage",
+        "startAt": [
+          "workflow-probe-results-v1.json"
+        ],
+        "runPreflight": [
+          "npm run gold-mine:remeasure"
+        ],
+        "doNot": [
+          "Treat env install failures as resolved without re-probe"
+        ],
+        "proveBeforeClaiming": [
+          "Probe PASS in subsequent observational run"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "lesson"
+    }
+  ]
+}

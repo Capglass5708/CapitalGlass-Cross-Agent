@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "cross-agent-harvest-blind-retrieval-benchmark-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-cursor-healthkeeper-preflight-dedupe-v1",
+  "testedAt": "2026-08-07T20:55:03.581Z",
+  "blindQueryOnly": true,
+  "seedCount": 2,
+  "fixtureCount": 4,
+  "results": [
+    {
+      "query": "What runs first in agent:preflight:app-builder-mcp?",
+      "returnedId": "IH-CURSOR-HEALTHKEEPER-SUBSTRATE-GATE-001",
+      "expectedSeedId": "IH-CURSOR-HEALTHKEEPER-SUBSTRATE-GATE-001",
+      "topK": [
+        {
+          "seedId": "IH-CURSOR-HEALTHKEEPER-SUBSTRATE-GATE-001",
+          "score": 6
+        },
+        {
+          "seedId": "IH-CURSOR-HEALTHKEEPER-V12-OWNERSHIP-001",
+          "score": 4
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "How does CURSOR_HEALTH_BLOCKED skip expensive suite gates?",
+      "returnedId": "IH-CURSOR-HEALTHKEEPER-SUBSTRATE-GATE-001",
+      "expectedSeedId": "IH-CURSOR-HEALTHKEEPER-SUBSTRATE-GATE-001",
+      "topK": [
+        {
+          "seedId": "IH-CURSOR-HEALTHKEEPER-SUBSTRATE-GATE-001",
+          "score": 8
+        },
+        {
+          "seedId": "IH-CURSOR-HEALTHKEEPER-V12-OWNERSHIP-001",
+          "score": 4
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "What must NOT affect Healthkeeper BLOCKED verdict?",
+      "returnedId": "IH-CURSOR-HEALTHKEEPER-V12-OWNERSHIP-001",
+      "expectedSeedId": "IH-CURSOR-HEALTHKEEPER-V12-OWNERSHIP-001",
+      "topK": [
+        {
+          "seedId": "IH-CURSOR-HEALTHKEEPER-V12-OWNERSHIP-001",
+          "score": 6
+        },
+        {
+          "seedId": "IH-CURSOR-HEALTHKEEPER-SUBSTRATE-GATE-001",
+          "score": 3
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "What schema version is substrate-only healthkeeper evidence?",
+      "returnedId": "IH-CURSOR-HEALTHKEEPER-V12-OWNERSHIP-001",
+      "expectedSeedId": "IH-CURSOR-HEALTHKEEPER-V12-OWNERSHIP-001",
+      "topK": [
+        {
+          "seedId": "IH-CURSOR-HEALTHKEEPER-V12-OWNERSHIP-001",
+          "score": 7
+        },
+        {
+          "seedId": "IH-CURSOR-HEALTHKEEPER-SUBSTRATE-GATE-001",
+          "score": 2
+        }
+      ],
+      "pass": true
+    }
+  ],
+  "verdict": "BLIND_RETRIEVAL_PASS"
+}

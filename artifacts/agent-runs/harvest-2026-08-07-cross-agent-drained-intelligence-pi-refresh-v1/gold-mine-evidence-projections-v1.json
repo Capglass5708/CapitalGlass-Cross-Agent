@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "gold-mine-evidence-projections-v1",
+  "harvestId": "harvest-2026-08-07-cross-agent-drained-intelligence-pi-refresh-v1",
+  "projections": [
+    {
+      "signalClass": "SUCCESS_PATTERN",
+      "lifecycleHint": "RESOLVED_OBSERVED",
+      "rootCauseKey": "authority-convergence-lane-gates",
+      "workPackageId": "cross-agent-drained-intelligence-publication-and-pi-refresh-v1",
+      "evidenceStrength": "high",
+      "operatorImpact": "Reduced duplicate drain/bulk/PI rework",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-07T20:32:00.000Z",
+      "sourceWorkPackageId": "cross-agent-drained-intelligence-publication-and-pi-refresh-v1",
+      "sourceCommitSha": "20e235e9f59ffbe0b3b436d902736283b93b2d67",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_RESOLVED",
+      "evidenceRefs": ["SP-001", "final-provenance-receipt.json"]
+    },
+    {
+      "signalClass": "OPERATOR_FRICTION_SIGNAL",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "de-feature-branch-pi-authority-split",
+      "workPackageId": "data-extraction-feature-main-merge-v1",
+      "evidenceStrength": "high",
+      "operatorImpact": "PI on feature SHA diverges from origin/main until PR merge",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-07T20:30:00.000Z",
+      "sourceWorkPackageId": "cross-agent-drained-intelligence-publication-and-pi-refresh-v1",
+      "sourceCommitSha": "a413f8ec1b09d1f0925cdc8b208de91f11d3a467",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "evidenceRefs": ["ED-001", "de-git-authority-decision.json"]
+    },
+    {
+      "signalClass": "OBSERVABILITY_GAP",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "pi-mcp-auth-blocked-drift-check",
+      "workPackageId": "cross-agent-drained-intelligence-publication-and-pi-refresh-v1",
+      "evidenceStrength": "medium",
+      "operatorImpact": "Cannot machine-verify PI drift without login",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-07T20:45:00.000Z",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "evidenceRefs": ["OG-001"]
+    }
+  ]
+}

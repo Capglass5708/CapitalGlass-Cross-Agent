@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-ESTIMATING-SPINE-OPERATOR-SIGNOFF-001",
+  "kind": "runbook",
+  "title": "Estimating spine operator pilot signoff — W22 Rosewood entry",
+  "summary": "Human validation milestone frozen at PENDING_OPERATOR_WALKTHROUGH; 16 visual checks + fail-closed validator before ESTIMATING_SPINE_OPERATOR_PILOT_SIGNOFF_PASS.",
+  "retrievalQuestions": [
+    "What is the operator pilot signoff URL for Rosewood W22?",
+    "Why does estimating-spine:operator-pilot:signoff:validate fail before walkthrough?"
+  ],
+  "evidenceRefs": [
+    "CapitalGlass-BidComposer/artifacts/agent-runs/estimating-spine-operator-pilot-signoff-v1/operator-pilot-signoff-v1.json",
+    "TE-003",
+    "TE-005",
+    "633908da-7098-4509-b05a-91bd683b988f"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "estimating-spine-operator-pilot-signoff-v1 or W22 operator walkthrough",
+    "startAt": [
+      "fixtures/estimating-spine/live/operator-pilot-signoff-subject-v1.json",
+      "artifacts/agent-runs/estimating-spine-operator-pilot-signoff-v1/operator-pilot-signoff-v1.json"
+    ],
+    "runPreflight": [
+      "npm run agent:index:scout -- --json",
+      "npm run estimating-spine:operator-pilot:signoff"
+    ],
+    "doNot": [
+      "Fabricate visual PASS without operator screenshots",
+      "Execute human disposition merely for proof",
+      "Add architecture/features inside signoff milestone",
+      "Claim ESTIMATING_SPINE_OPERATOR_PILOT_SIGNOFF_PASS before validator PASS"
+    ],
+    "proveBeforeClaiming": [
+      "16 checks non-null in receipt",
+      "screenshots/ populated",
+      "W22 review_status pending_review unless operator intentionally acted",
+      "humanDispositionExecuted false"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-BidComposer",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 1,
+  "wasteIds": ["TW-002"]
+}

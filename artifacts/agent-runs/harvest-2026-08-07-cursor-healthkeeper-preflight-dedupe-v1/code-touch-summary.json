@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "code-touch-summary-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-cursor-healthkeeper-preflight-dedupe-v1",
+  "generatedAt": "2026-08-07T20:55:00.000Z",
+  "repos": [
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "branch": "main",
+      "integrationSha": "bf6c38c73ed19e8faab36d7889dae9272abd6e01",
+      "dedupeSha": "d18bb64358dd428bc7350337a3d12a599d5b4ff1",
+      "role": "primary — healthkeeper gate, preflight integration, v1.2 dedupe"
+    },
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "main",
+      "role": "harvest recording authority"
+    }
+  ],
+  "keyPaths": [
+    "scripts/wsl/cg-cursor-wsl-healthkeeper.sh",
+    "scripts/wsl/lib/cg-cursor-wsl-healthkeeper-evidence.mjs",
+    "scripts/lib/cursor-health-preflight-gate.mjs",
+    "scripts/wsl/run-cg-cursor-wsl-healthkeeper.sh",
+    "scripts/wsl/run-cg-cursor-health-preflight-gate.sh",
+    "scripts/suite-governance/agent-preflight-app-builder-mcp.mjs",
+    "scripts/tests/run-cursor-health-preflight-gate.test.mjs",
+    "scripts/tests/run-cg-cursor-wsl-healthkeeper-dedupe.test.mjs",
+    "docs/wsl/CURSOR_SESSION_FAST_HEALTH_GATE.md",
+    "/mnt/l/02-catalog/Cursur Health/cg-cursor-wsl-healthkeeper.sh"
+  ],
+  "testsRun": [
+    "npm run test:cursor-health-preflight-gate",
+    "npm run test:cursor-wsl-healthkeeper-dedupe",
+    "npm run cursor:wsl:health-preflight-gate",
+    "npm run agent:preflight:app-builder-mcp"
+  ],
+  "publishedToOrigin": false
+}

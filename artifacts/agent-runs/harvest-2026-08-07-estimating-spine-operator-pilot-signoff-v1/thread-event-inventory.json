@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1",
+  "threadScope": "Estimating spine ROI convergence closeout → operator pilot signoff scaffold → FORMAL_CLOSEOUT preflight → estate git pull",
+  "generatedAt": "2026-08-07T20:50:00.000Z",
+  "events": [
+    {
+      "eventId": "TE-001",
+      "phase": "closeout",
+      "summary": "estimating-spine-roi-convergence-and-operator-value-v1 closed ESTIMATING_SPINE_ROI_CONVERGENCE_VERIFIED; production runtime 65eda0f",
+      "evidenceRefs": [
+        "CapitalGlass-BidComposer/artifacts/agent-runs/estimating-spine-roi-convergence-and-operator-value-v1/estimating-spine-roi-convergence-closeout-v1.json",
+        "CapitalGlass-BidComposer@65eda0f2f69a092461f4973a2023fec3498de425"
+      ]
+    },
+    {
+      "eventId": "TE-002",
+      "phase": "operator",
+      "summary": "estimating-spine-operator-pilot-signoff-v1 scoped as CONTROLLED_PATCH human validation — not a development wave",
+      "evidenceRefs": ["user prompt operator pilot signoff packet spec"]
+    },
+    {
+      "eventId": "TE-003",
+      "phase": "implementation",
+      "summary": "Operator signoff scaffold created: receipt, subject fixture, validator script, 16-check matrix; W22 bid/item IDs resolved via Supabase",
+      "evidenceRefs": [
+        "CapitalGlass-BidComposer/artifacts/agent-runs/estimating-spine-operator-pilot-signoff-v1/operator-pilot-signoff-v1.json",
+        "fixtures/estimating-spine/live/operator-pilot-signoff-subject-v1.json",
+        "bid_id 633908da-7098-4509-b05a-91bd683b988f",
+        "scope_review_item c0519d87-7a7b-4923-8882-92f7c63c4473"
+      ]
+    },
+    {
+      "eventId": "TE-004",
+      "phase": "operator",
+      "summary": "Milestone frozen PENDING_OPERATOR_WALKTHROUGH — repeated operator lock confirmations; no dev/disposition/pricing in signoff scope",
+      "evidenceRefs": ["conversation turns locked exactly as stated"]
+    },
+    {
+      "eventId": "TE-005",
+      "phase": "closeout",
+      "summary": "FORMAL_CLOSEOUT preflight PASS (ESTIMATING_SPINE_OPERATOR_SIGNOFF_PREFLIGHT_PASS); final gate blocked — BLOCK_OPERATOR_AUTHENTICATION + BLOCK_REQUIRED_VISUAL_EVIDENCE",
+      "evidenceRefs": [
+        "operator-pilot-signoff-preflight-v1.json",
+        "npm run estimating-spine:operator-pilot:signoff:validate exit 1"
+      ]
+    },
+    {
+      "eventId": "TE-006",
+      "phase": "verification",
+      "summary": "W22 commercial state unchanged at harvest time: pending_review, disposition null",
+      "evidenceRefs": ["supabase bid_scope_review_items query 2026-08-07"]
+    },
+    {
+      "eventId": "TE-007",
+      "phase": "operator",
+      "summary": "git pull all repos — 3 fast-forward, many already up to date, 10+ failed on scout-hook local drift or deleted upstream branches",
+      "evidenceRefs": ["~/repos bulk git pull session output"]
+    },
+    {
+      "eventId": "TE-008",
+      "phase": "verification",
+      "summary": "Operator signoff scaffold files remain uncommitted on CapitalGlass-BidComposer main (8120673 HEAD)",
+      "evidenceRefs": ["git status CapitalGlass-BidComposer 2026-08-07"]
+    }
+  ]
+}

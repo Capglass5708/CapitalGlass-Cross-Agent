@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-PRODUCT-ESTATE-PROBE-FAILURES-001",
+  "kind": "lesson",
+  "title": "Product-estate probe failure population (fast tier 2026-08-07)",
+  "summary": "7 FAIL: Computer Estimator (3), documents-bff-health, hub-dashboard-smoke, cross-agent-harvest-validate, revu-bid-composer-binding. 1 BLOCKED: mcp-doctor-gate.",
+  "retrievalQuestions": [
+    "Which product estate probes failed in August 2026?",
+    "Why is Computer Estimator NOT_PROVEN?",
+    "What blocks MCP doctor gate?"
+  ],
+  "evidenceRefs": [
+    "workflow-probe-results-v1.json",
+    "GMP-PEOP-004"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Product Gold Mine candidate triage",
+    "startAt": [
+      "workflow-probe-results-v1.json"
+    ],
+    "runPreflight": [
+      "npm run gold-mine:remeasure"
+    ],
+    "doNot": [
+      "Treat env install failures as resolved without re-probe"
+    ],
+    "proveBeforeClaiming": [
+      "Probe PASS in subsequent observational run"
+    ]
+  },
+  "ownerRepo": "Data-Extraction",
+  "targetSlice": "BY-KIND/active-work-blockers.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 2
+}

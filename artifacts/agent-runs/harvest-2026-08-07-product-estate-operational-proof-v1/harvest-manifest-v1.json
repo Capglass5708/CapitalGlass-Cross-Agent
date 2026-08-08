@@ -1,0 +1,282 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-product-estate-operational-proof-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "51c7cafc4c1887cc9ad4ac7a0aa0c515f365f622",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-07T20:52:43.708Z",
+  "updatedAt": "2026-08-07T20:52:43.708Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "goldMineHarvest": {
+    "protocolVersion": "1.1.0",
+    "chatGptProtocolVersion": "2.1.0",
+    "noSuppressionDeclared": true,
+    "distinctSignalsPreserved": true,
+    "projectionArtifact": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/gold-mine-evidence-projections-v1.json",
+    "validationMode": "WARN_ONLY",
+    "upstreamProofArtifact": "Data-Extraction@20e235e9f59ffbe0b3b436d902736283b93b2d67:artifacts/agent-runs/gold-mine-product-estate-operational-proof-v1/"
+  },
+  "doNotAdvance": [
+    "Fix product probes during observational measurement",
+    "Claim estate optimized with 7 FAIL / 1 BLOCKED",
+    "Run index:publish from Cursor",
+    "Hard-enforce harvest v1.1 before reviewing this harvest warnings"
+  ],
+  "supersededClaims": [
+    {
+      "claim": "productWorkflowCoverage computerEstimator NOT_OBSERVED (infrastructure reference harvest)",
+      "supersededBy": "OBSERVED with FAIL verdicts — honest measurement",
+      "evidenceRefs": [
+        "TE-PE-001",
+        "productWorkflowCoverage.computerEstimator"
+      ]
+    }
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 2,
+      "seeds": 2,
+      "roiItems": 3,
+      "operatorFriction": 1,
+      "executionDeltas": 1,
+      "goldMineProjections": 15
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "synced",
+    "hubPublishStatus": "published",
+    "hubPublishBlocker": "Agent runs publish-intelligence-full after validate",
+    "operationalReceiptPath": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/operational-publication-receipt.json",
+    "operationalAt": "2026-08-07T20:57:34.357Z"
+  },
+  "relatedRepos": [
+    {
+      "repo": "Data-Extraction",
+      "branch": "main",
+      "commitSha": "20e235e9f59ffbe0b3b436d902736283b93b2d67",
+      "role": "Product-estate proof owner"
+    }
+  ],
+  "packets": [
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [
+        "Data-Extraction@20e235e9f59ffbe0b3b436d902736283b93b2d67"
+      ],
+      "blockers": [],
+      "relatedPackets": [],
+      "projectFile": "work-progress/projects/INDEX.md",
+      "nextAction": "npm run gold-mine:remeasure after hub publish",
+      "advancementGate": "npm run harvest:publish-intelligence-full",
+      "doNotAdvance": [
+        "Fix probes mid-run unless blocked from continuing",
+        "Claim estate optimized"
+      ],
+      "packetKind": "outcome",
+      "packetId": "product-estate-operational-proof-measurement-v1",
+      "packetTitle": "Observational product-estate proof complete (fast tier)",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS_WITH_WARN",
+      "ownerRepo": "Data-Extraction",
+      "effectiveness": "PARTIAL",
+      "beforeState": "Infrastructure Gold Mine 0 open; product workflows NOT_PROVEN",
+      "afterState": "23 probes: 13 PASS, 7 FAIL, 1 BLOCKED",
+      "measurement": "npm run gold-mine:product-estate-proof -- --skip-sdlc",
+      "expectedEffect": "Honest product-estate telemetry for Gold Mine discovery",
+      "observedEffect": "15 v1.1 projections; 8/12 workflow keys OBSERVED",
+      "residuals": "Human Estimator, Scraper, Proposals, OCR live path NOT_OBSERVED",
+      "regressions": [],
+      "goldMineSignalClass": "BUSINESS_WORKFLOW_SIGNAL",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "businessImpact": "BUSINESS_RELIABILITY",
+      "evidenceEra": "IMPLEMENTATION_WAVE",
+      "evidenceRefs": [
+        "TE-PE-001",
+        "Data-Extraction@20e235e9f59ffbe0b3b436d902736283b93b2d67",
+        "artifacts/agent-runs/gold-mine-product-estate-operational-proof-v1/PRODUCT-ESTATE-OPERATIONAL-REPORT.md",
+        "workflow-probe-results-v1.json"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "projectFile": "work-progress/projects/INDEX.md",
+      "nextAction": "Harvest ingests projections without reconstruction",
+      "advancementGate": "harvest:validate WARN_ONLY on projections",
+      "doNotAdvance": [],
+      "packetKind": "protocol_upgrade",
+      "packetId": "product-estate-v11-evidence-native-v1",
+      "packetTitle": "Product-estate proof emits harvest-native gold-mine-evidence-projections-v1.json",
+      "state": "COMPLETE",
+      "packetVerdict": "SHIPPED",
+      "ownerRepo": "Data-Extraction",
+      "goldMineSignalClass": "ADOPTION_SIGNAL",
+      "novelty": "NEW",
+      "implementationState": "ADOPTED",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceRefs": [
+        "scripts/gold-mine-product-estate-proof/lib/build-evidence-projections.mjs",
+        "gold-mine-evidence-projections-v1.json",
+        "npm run test:gold-mine-product-estate-proof"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "projectFile": "work-progress/projects/INDEX.md",
+      "nextAction": "Operator-approved implementation wave after gold-mine:remeasure",
+      "advancementGate": "estimator probes PASS in next observational run",
+      "doNotAdvance": [
+        "pip install -e mid-harvest without operator approval"
+      ],
+      "packetKind": "evidence",
+      "packetId": "computer-estimator-estate-probe-failures-v1",
+      "packetTitle": "Computer Estimator estate probes FAIL — estimating path not production-ready",
+      "state": "OPEN",
+      "packetVerdict": "FAIL",
+      "ownerRepo": "Computer Estimator",
+      "goldMineSignalClass": "PROBLEM_SIGNAL",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "businessImpact": "ESTIMATING",
+      "evidenceRefs": [
+        "estimator-regression-unit FAIL",
+        "estimator-schedule-extraction FAIL",
+        "estimator-evidence-spine FAIL",
+        "GMP-PEOP-004"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "projectFile": "work-progress/projects/INDEX.md",
+      "nextAction": "Surface as product candidates in remeasure",
+      "advancementGate": "smoke:bff-health PASS",
+      "doNotAdvance": [],
+      "packetKind": "evidence",
+      "packetId": "document-hub-handoff-probe-failures-v1",
+      "packetTitle": "Document BFF + Hub dashboard probes FAIL — consumer handoff gaps",
+      "state": "OPEN",
+      "packetVerdict": "FAIL",
+      "ownerRepo": "CapitalGlass-Documents",
+      "goldMineSignalClass": "PROBLEM_SIGNAL",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "businessImpact": "DOCUMENT_PROCESSING",
+      "evidenceRefs": [
+        "documents-bff-health FAIL",
+        "hub-dashboard-smoke FAIL",
+        "cross-agent-harvest-validate FAIL"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "projectFile": "work-progress/projects/INDEX.md",
+      "nextAction": "Operator PM2 approval or documented exception",
+      "advancementGate": "npm run mcp:doctor:gate PASS",
+      "doNotAdvance": [
+        "Claim MCP suite healthy while doctor gate BLOCKED"
+      ],
+      "packetKind": "evidence",
+      "packetId": "mcp-doctor-gate-blocked-v1",
+      "packetTitle": "MCP doctor gate BLOCKED — operator friction on PM2 approvals",
+      "state": "OPEN",
+      "packetVerdict": "BLOCKED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL",
+      "novelty": "KNOWN_EXISTING",
+      "implementationState": "BLOCKED",
+      "businessImpact": "OPERATOR_PRODUCTIVITY",
+      "evidenceRefs": [
+        "platform-mcp-doctor-gate BLOCKED",
+        "GMP-PEOP-002"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "projectFile": "work-progress/projects/INDEX.md",
+      "nextAction": "Compare remeasure candidate population vs infrastructure wave",
+      "advancementGate": "gold-mine:remeasure shows product-class candidates",
+      "doNotAdvance": [],
+      "packetKind": "evidence",
+      "packetId": "corpus-shift-product-heavy-v1",
+      "packetTitle": "Corpus bias shifts from SDLC-heavy to product-workflow distribution",
+      "state": "RECORDED",
+      "packetVerdict": "OBSERVED",
+      "ownerRepo": "Data-Extraction",
+      "goldMineSignalClass": "OBSERVABILITY_GAP",
+      "novelty": "NEW",
+      "businessImpact": "ESTIMATING",
+      "evidenceRefs": [
+        "corpusBias in gold-mine-evidence-projections-v1.json",
+        "productWorkflowCoverage"
+      ]
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096",
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 7,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 7,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-355b8d3297e5",
+      "prompt-candidate-79e600839659",
+      "prompt-candidate-13825dbd2652",
+      "prompt-candidate-5f55433e3b72",
+      "prompt-candidate-2c25cdcd96ee",
+      "prompt-candidate-25876c23480a",
+      "prompt-candidate-169111656ce0"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

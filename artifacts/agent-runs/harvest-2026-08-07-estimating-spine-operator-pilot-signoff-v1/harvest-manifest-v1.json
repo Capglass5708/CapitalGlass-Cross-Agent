@@ -1,0 +1,340 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "8120673a83cee4a1b5143aa3be327bd5cbdb526a",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-BidComposer",
+  "createdAt": "2026-08-07T20:50:00.000Z",
+  "updatedAt": "2026-08-07T20:50:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "Claim ESTIMATING_SPINE_OPERATOR_PILOT_SIGNOFF_PASS without operator screenshots and validator PASS",
+    "Fabricate visual PASS on Scope Review cockpit checks",
+    "Execute W22 human disposition before signoff gate closes",
+    "Add architecture/features inside estimating-spine-operator-pilot-signoff-v1",
+    "Run index:publish or harvest:publish-hub-seed from Cursor",
+    "Claim FULLY_SEEDED without index:freshness-gate receipt"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 4,
+      "seeds": 2,
+      "roiItems": 3,
+      "operatorFriction": 2,
+      "executionDeltas": 2
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Operator runs harvest:publish-hub-seed + index:publish — NOT_RUN_BY_CURSOR"
+  },
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "1.1.0",
+    "eligibleCandidates": 0,
+    "rejectedUnrelatedCandidates": 0,
+    "exportStatus": "not-run",
+    "dataExtractionStatus": "not-run",
+    "catalogPublishStatus": "not-run",
+    "retrievalStatus": "not-run",
+    "targetCatalog": "L:\\02-catalog\\Harvest\\Harvest Protocol Self Learning",
+    "authorityStatus": "PROPOSAL",
+    "automaticProtocolMutation": false
+  },
+  "supersededClaims": [],
+  "relatedRepos": [
+    {
+      "repo": "CapitalGlass-BidComposer",
+      "branch": "main",
+      "commitSha": "8120673a83cee4a1b5143aa3be327bd5cbdb526a",
+      "productionRuntimeSha": "65eda0f2f69a092461f4973a2023fec3498de425",
+      "role": "operator signoff scaffold + ROI convergence baseline"
+    },
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "main",
+      "commitSha": "51c7cafc4c1887cc9ad4ac7a0aa0c515f365f622",
+      "role": "harvest recording authority"
+    },
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "branch": "main",
+      "commitSha": "1c699449f604bf6268a606a5df1dbbadf2811b14",
+      "role": "scout preflight"
+    }
+  ],
+  "packets": [
+    {
+      "packetKind": "decision",
+      "packetId": "operator-pilot-human-validation-milestone-v1",
+      "packetTitle": "estimating-spine-operator-pilot-signoff-v1 is human validation only — not a dev wave",
+      "state": "COMPLETE",
+      "packetVerdict": "LOCKED",
+      "ownerRepo": "CapitalGlass-BidComposer",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1.md",
+      "nextAction": "Operator completes 16-check walkthrough + screenshots",
+      "advancementGate": "PENDING_OPERATOR_WALKTHROUGH",
+      "doNotAdvance": [
+        "Architecture changes inside signoff milestone"
+      ],
+      "evidenceRefs": [
+        "TE-002",
+        "TE-004"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "goldMineSignalClass": "SUCCESS_PATTERN",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "businessImpact": "ESTIMATING"
+    },
+    {
+      "packetKind": "outcome",
+      "packetId": "roi-convergence-baseline-verified-v1",
+      "packetTitle": "estimating-spine-roi-convergence-and-operator-value-v1 ESTIMATING_SPINE_ROI_CONVERGENCE_VERIFIED",
+      "state": "COMPLETE",
+      "packetVerdict": "VERIFIED",
+      "ownerRepo": "CapitalGlass-BidComposer",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1.md",
+      "nextAction": "None — technical prerequisite satisfied",
+      "advancementGate": "ESTIMATING_SPINE_ROI_CONVERGENCE_VERIFIED",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-001",
+        "65eda0f"
+      ],
+      "commitRefs": [
+        "CapitalGlass-BidComposer@65eda0f2f69a092461f4973a2023fec3498de425"
+      ],
+      "blockers": [],
+      "effectiveness": "PROVEN_EFFECTIVE",
+      "beforeState": "Integration incomplete",
+      "afterState": "Production runtime 65eda0f; Rosewood open path PASS",
+      "goldMineSignalClass": "RESOLUTION_SIGNAL",
+      "implementationState": "ADOPTED"
+    },
+    {
+      "packetKind": "blocker",
+      "packetId": "operator-visual-evidence-blocked-v1",
+      "packetTitle": "Operator signoff gate blocked — no authenticated visual evidence",
+      "state": "ACTIVE",
+      "packetVerdict": "BLOCK_OPERATOR_AUTHENTICATION",
+      "ownerRepo": "CapitalGlass-BidComposer",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1.md",
+      "nextAction": "Operator signs into Hub and completes Scope Review walkthrough",
+      "advancementGate": "ESTIMATING_SPINE_OPERATOR_PILOT_SIGNOFF_PASS",
+      "doNotAdvance": [
+        "Claim signoff PASS without screenshots"
+      ],
+      "evidenceRefs": [
+        "TE-005",
+        "BLOCK_REQUIRED_VISUAL_EVIDENCE",
+        "OG-001"
+      ],
+      "commitRefs": [],
+      "blockers": [
+        "0/16 checks completed",
+        "0 screenshots"
+      ],
+      "goldMineSignalClass": "OBSERVABILITY_GAP"
+    },
+    {
+      "packetKind": "evidence",
+      "packetId": "operator-signoff-receipt-scaffold-v1",
+      "packetTitle": "Operator pilot signoff receipt + preflight artifacts exist",
+      "state": "COMPLETE",
+      "packetVerdict": "SCAFFOLD_READY",
+      "ownerRepo": "CapitalGlass-BidComposer",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1.md",
+      "nextAction": "Operator fills checks + visualEvidence[]",
+      "advancementGate": "ESTIMATING_SPINE_OPERATOR_SIGNOFF_RECEIPT_COMPLETE_PASS",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "operator-pilot-signoff-v1.json",
+        "operator-pilot-signoff-preflight-v1.json",
+        "operator-pilot-signoff-subject-v1.json",
+        "TE-003"
+      ],
+      "commitRefs": [],
+      "blockers": [
+        "Uncommitted on BC main TE-008"
+      ]
+    },
+    {
+      "packetKind": "command",
+      "packetId": "operator-signoff-validate-command-v1",
+      "packetTitle": "Fail-closed operator signoff validator",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-BidComposer",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1.md",
+      "nextAction": "Re-run after operator evidence; expect exit 0 on PASS",
+      "advancementGate": "ESTIMATING_SPINE_OPERATOR_SIGNOFF_VALIDATOR_PASS",
+      "doNotAdvance": [
+        "Override validator exit 1 manually"
+      ],
+      "evidenceRefs": [
+        "npm run estimating-spine:operator-pilot:signoff:validate"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "command": "npm run estimating-spine:operator-pilot:signoff:validate",
+      "host": "CapitalGlass-BidComposer",
+      "provesGate": "ESTIMATING_SPINE_OPERATOR_PILOT_SIGNOFF_PASS",
+      "expectedPassSignal": "verdict PASS or PASS_WITH_WARN; exit 0"
+    },
+    {
+      "packetKind": "faster_path",
+      "packetId": "separate-human-validation-milestone-v1",
+      "packetTitle": "Split operator signoff from integration closeout — validator fails until human evidence",
+      "state": "COMPLETE",
+      "packetVerdict": "CLASSIFIED",
+      "ownerRepo": "CapitalGlass-BidComposer",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1.md",
+      "nextAction": "Reuse pattern for future operator-only gates",
+      "advancementGate": "CONTROLLED_PATCH",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "ED-001",
+        "SP-001",
+        "TE-002"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "situation": "Post-integration operator usability proof",
+      "whatHappened": "Scaffold + preflight only; no fabricated PASS",
+      "rightFirstMove": "Operator walkthrough before agent closeout attempt",
+      "requiredGuard": "signoff:validate fail-closed"
+    },
+    {
+      "packetKind": "repeated_work",
+      "packetId": "milestone-lock-reconfirmation-v1",
+      "packetTitle": "Thread re-locked same milestone state without new operator evidence",
+      "state": "COMPLETE",
+      "packetVerdict": "DUPLICATE_COORDINATION",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1.md",
+      "nextAction": "Pause until operator returns with walkthrough evidence",
+      "advancementGate": "none",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "DW-001",
+        "TE-004",
+        "TW-001"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "duplicateId": "DW-001",
+      "firstKnownInstance": "First locked confirmation in thread",
+      "priorIndexSlice": "N/A",
+      "whyMissed": "Awaiting human walkthrough"
+    },
+    {
+      "packetKind": "mistake",
+      "packetId": "estate-bulk-pull-without-hook-reconcile-v1",
+      "packetTitle": "git pull all repos without classifying scout-hook conflicts first",
+      "state": "COMPLETE",
+      "packetVerdict": "PARTIAL_FAILURE",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1.md",
+      "nextAction": "Reconcile scout hooks per failure class then retry",
+      "advancementGate": "estate-sync-clean",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "ED-002",
+        "TE-007",
+        "TW-003"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "wrongMoveId": "WM-ESTATE-PULL-001",
+      "actualExecution": "Single ff-only loop on all repos",
+      "optimalExecution": "Classify failures: scout-hook | dirty-tree | deleted-branch | merge-conflict",
+      "preventiveControl": "Estate pull runbook with per-class recovery",
+      "goldMineSignalClass": "AGENT_FRICTION_SIGNAL"
+    },
+    {
+      "packetKind": "protocol_upgrade",
+      "packetId": "no-fabricated-visual-pass-guard-v1",
+      "packetTitle": "Operator signoff requires visual evidence — agent must not infer UI PASS",
+      "state": "COMPLETE",
+      "packetVerdict": "DOCUMENTED",
+      "ownerRepo": "CapitalGlass-BidComposer",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1.md",
+      "nextAction": "Promote to POLICY_GATED cursor rule if repeated",
+      "advancementGate": "harvest seed IH-ESTIMATING-SPINE-OPERATOR-SIGNOFF-001",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-005",
+        "SP-001"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "seedAs": "runbook",
+      "ownerRepoTarget": "CapitalGlass-BidComposer",
+      "promotionClass": "POLICY_GATED",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Operator pilot signoff or SSO-gated UI verification",
+        "startAt": [
+          "operator-pilot-signoff-v1.json"
+        ],
+        "runPreflight": [
+          "npm run estimating-spine:operator-pilot:signoff:validate"
+        ],
+        "doNot": [
+          "Infer visual PASS from APIs or DB state"
+        ],
+        "proveBeforeClaiming": [
+          "screenshots exist",
+          "validator exit 0"
+        ]
+      }
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": null,
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 8,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 8,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-86239ffa60d2",
+      "prompt-candidate-5f60fe31c174",
+      "prompt-candidate-5e63446df147",
+      "prompt-candidate-1d0e36c16204",
+      "prompt-candidate-25876c23480a",
+      "prompt-candidate-9978981f52cd",
+      "prompt-candidate-5a3120a00881",
+      "prompt-candidate-df90ed02a686"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

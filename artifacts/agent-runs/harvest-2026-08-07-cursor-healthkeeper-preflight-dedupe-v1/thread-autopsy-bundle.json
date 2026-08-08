@@ -1,0 +1,184 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-cursor-healthkeeper-preflight-dedupe-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "rework",
+      "description": "Healthkeeper v1.1 duplicated L:/Z findmnt, Hub index, PI process, and MCP connection verdicts already owned downstream",
+      "evidenceRefs": ["TE-005", "healthkeeper v1.1 check_drives/check_hub_authority"],
+      "estimatedImpact": "medium",
+      "savedBy": "v1.2 dedupe — one owner per check; ~4.6s gate stays substrate-only",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "context",
+      "description": "Conversation summarized mid-thread before dedupe completion — required re-read of partial file state",
+      "evidenceRefs": ["conversation summary handoff"],
+      "estimatedImpact": "low",
+      "savedBy": "Harvest records SHAs and ownership matrix as durable truth",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "verification",
+      "description": "Full preflight ~70s run conflated with healthkeeper success when reporting overall BLOCKED",
+      "evidenceRefs": ["TE-008"],
+      "estimatedImpact": "low",
+      "savedBy": "Separate cursorHealthGate verdict from downstream STEPS in closeout language",
+      "roiRank": 2
+    }
+  ],
+  "operatorFriction": [],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Healthkeeper ownership overlapped preflight/scout/MCP layers",
+      "actualExecution": {
+        "steps": [
+          "Ship integration v1.1 with L:/Z, Hub, PI, MCP checks in healthkeeper",
+          "Defer dedupe to follow-on milestone"
+        ],
+        "outcome": "PASS_INTEGRATED then rework",
+        "evidenceRefs": ["bf6c38c7", "TE-001"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Define ownership matrix before first healthkeeper ship",
+          "Integrate gate with substrate-only checks from day one"
+        ],
+        "outcome": "Single milestone, no duplicate authoritative verification",
+        "requiredPreflight": ["docs/wsl/CURSOR_SESSION_FAST_HEALTH_GATE.md ownership table"]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "low"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Dedupe implementation after context compression",
+      "actualExecution": {
+        "steps": [
+          "Resume from summary",
+          "Re-read healthkeeper bash + gate mjs",
+          "Fix async test bug",
+          "Sync L: canonical",
+          "Live gate + preflight proof"
+        ],
+        "outcome": "PASS_DEDUPED",
+        "evidenceRefs": ["d18bb643", "TE-006"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Complete dedupe in same session as integration closeout",
+          "Or emit harvest immediately after integration with REDUCE_TO_SIGNAL notes"
+        ],
+        "outcome": "Less context re-entry",
+        "requiredPreflight": ["agent transcript + bf6c38c SHA pinned in harvest"]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "medium",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Healthkeeper v1.1 WARN/BLOCK on Hub/MCP/storage authority",
+      "whyItWasWrong": "Duplicated downstream preflight/scout ownership; blurred substrate vs platform readiness",
+      "correctFirstMove": "Record canonicalResolution only; leave storage/Hub/MCP to downstream gates",
+      "preventiveControl": "v1.2 verdict purity — PI/MCP log lines informational only",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "L:/Z drive visibility findmnt in healthkeeper vs z-drive preflight",
+      "whyRepeated": "v1.1 healthkeeper proved storage before z-drive gate ran",
+      "firstKnownInstance": "z-drive:pre-session-gate in agent preflight STEPS",
+      "priorIndexSlice": "work-progress/command-index.json",
+      "whyMissed": "Integration milestone prioritized wiring speed over ownership purity",
+      "avoidableBy": "Ownership matrix in CURSOR_SESSION_FAST_HEALTH_GATE.md before v1.1",
+      "recommendedAction": "index"
+    },
+    {
+      "duplicateId": "DW-002",
+      "subject": "MCP connection error parsing in healthkeeper vs mcp:doctor",
+      "whyRepeated": "Log scan WARN overlapped MCP doctor failure class",
+      "firstKnownInstance": "mcp:doctor step in agent-preflight-app-builder-mcp",
+      "priorIndexSlice": "BY-KIND/mcp-servers.json",
+      "whyMissed": "Borderline checks deferred explicitly to dedupe wave",
+      "avoidableBy": "classifyRecentLogVerdictImpact pure rules at integration time",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Substrate-only healthkeeper contract in Application Bible / MCP knowledge",
+      "whyItPays": "Prevents re-introducing Hub/MCP/storage checks into fast gate",
+      "effort": "low",
+      "savedWasteIds": ["TW-001"],
+      "seedAs": "rule"
+    },
+    {
+      "rank": 2,
+      "title": "Preflight receipt separates cursorHealthGate vs downstream blocker list",
+      "whyItPays": "Operators do not misread overall BLOCKED as healthkeeper regression",
+      "effort": "low",
+      "savedWasteIds": ["TW-003"],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 3,
+      "title": "Push dedupe commit and refresh Platform Intelligence index",
+      "whyItPays": "Remote authority matches local PASS_DEDUPED proof",
+      "effort": "low",
+      "savedWasteIds": [],
+      "seedAs": "runbook"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "PASS_DEDUPED",
+      "currentStatus": "CLOSED",
+      "doNotClaimUntil": ["Do not reopen milestone for downstream mcp:doctor or Bible sync failures"],
+      "lastKnownEvidence": [
+        "d18bb64358dd428bc7350337a3d12a599d5b4ff1",
+        "schema cg-cursor-wsl-healthkeeper-v1.2@1.0.0",
+        "test:cursor-wsl-healthkeeper-dedupe PASS"
+      ]
+    },
+    {
+      "awardOrVerdict": "CURSOR_HEALTH_PUBLISHED",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": ["git push origin main", "index catch-up"],
+      "lastKnownEvidence": ["NO PUSH PERFORMED", "local ahead of origin"]
+    },
+    {
+      "awardOrVerdict": "FULLY_SEEDED_HUB",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": ["harvest:publish-hub-seed", "index:freshness-gate"],
+      "lastKnownEvidence": ["projection.hubPublishStatus not-run"]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "mcp-servers.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-07T20:50:25.000Z",
+    "preflightReceiptHash": "INDEX_HIT_AI_CACHE scout be967d2e"
+  }
+}

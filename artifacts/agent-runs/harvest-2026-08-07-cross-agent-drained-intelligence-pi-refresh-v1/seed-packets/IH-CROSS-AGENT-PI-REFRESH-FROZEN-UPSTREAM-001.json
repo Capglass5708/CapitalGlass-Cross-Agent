@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-CROSS-AGENT-PI-REFRESH-FROZEN-UPSTREAM-001",
+  "kind": "runbook",
+  "title": "Cross-agent drained intelligence PI refresh — frozen upstream guards",
+  "summary": "After GO on cross-agent-drained-intelligence-publication-and-pi-refresh-v1, do not reopen drain, bulk ingestion, compaction 1afc65d, or gold-mine full-wave. Next work is DE feature→main merge only.",
+  "retrievalQuestions": [
+    "What milestones are frozen after cross-agent PI refresh closeout?",
+    "What is the Data-Extraction PI authority SHA vs main?",
+    "Which operator follow-ups remain after cross-agent-drained-intelligence-publication-and-pi-refresh-v1?"
+  ],
+  "evidenceRefs": [
+    "Data-Extraction@20e235e9f59ffbe0b3b436d902736283b93b2d67",
+    "final-provenance-receipt.json",
+    "TE-006",
+    "SP-001"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Cross-agent corpus, Hub PI, or Data-Extraction PI refresh after Aug 2026 drain wave",
+    "startAt": [
+      "Data-Extraction/artifacts/agent-runs/cross-agent-drained-intelligence-publication-and-pi-refresh-v1/FINAL_CLOSEOUT.md",
+      "Data-Extraction/artifacts/agent-runs/cross-agent-drained-intelligence-publication-and-pi-refresh-v1/final-provenance-receipt.json",
+      "BY-KIND/thread-autopsy-index.json"
+    ],
+    "runPreflight": [
+      "npm run agent:index:scout -- --json"
+    ],
+    "doNot": [
+      "Re-run cross-agent full drain or 812 bulk ingestion",
+      "Push compaction commit 1afc65d",
+      "Reopen cross-agent-drained-intelligence-publication-and-pi-refresh-v1",
+      "Run index:publish or harvest:publish-hub-seed from Cursor"
+    ],
+    "proveBeforeClaiming": [
+      "final-provenance-receipt.json programVerdict GO",
+      "Cross-Agent runtime/index-publication/latest.json PUBLISH_PASS @ a082553",
+      "DE publicationId daa3add1-4d7e-4b83-afd3-0d09a5fe785f"
+    ]
+  },
+  "ownerRepo": "Data-Extraction",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 1,
+  "wasteIds": ["TW-001"]
+}

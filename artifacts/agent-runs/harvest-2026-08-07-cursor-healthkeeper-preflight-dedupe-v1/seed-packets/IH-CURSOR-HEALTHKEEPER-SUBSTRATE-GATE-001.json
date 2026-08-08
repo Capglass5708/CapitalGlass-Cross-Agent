@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-CURSOR-HEALTHKEEPER-SUBSTRATE-GATE-001",
+  "kind": "runbook",
+  "title": "Cursor WSL healthkeeper runs first in app-builder preflight",
+  "summary": "agent:preflight:app-builder-mcp invokes cursor:health-preflight-gate before auto-v32 and mcp:doctor; PASS/WARN continue, BLOCKED fast-fails with freshness-bound latest.json.",
+  "retrievalQuestions": [
+    "What runs first in agent:preflight:app-builder-mcp?",
+    "How does CURSOR_HEALTH_BLOCKED skip expensive suite gates?"
+  ],
+  "evidenceRefs": [
+    "CG-AppBuilder-MCP@bf6c38c73ed19e8faab36d7889dae9272abd6e01",
+    "TE-002",
+    "TE-003"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Cursor WSL preflight or health gate integration",
+    "startAt": [
+      "docs/wsl/CURSOR_SESSION_FAST_HEALTH_GATE.md",
+      "scripts/lib/cursor-health-preflight-gate.mjs"
+    ],
+    "runPreflight": [
+      "npm run cursor:wsl:health-preflight-gate"
+    ],
+    "doNot": [
+      "Remove health gate from preflight order",
+      "Invoke --prune from preflight gate",
+      "Claim PASS without generatedAt >= gate start"
+    ],
+    "proveBeforeClaiming": [
+      "cursorHealthGate first in runtime/agent-preflight/app-builder-mcp/latest.json STEPS",
+      "CURSOR_HEALTH_PASS or CURSOR_HEALTH_WARN"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 1,
+  "wasteIds": ["TW-003"]
+}

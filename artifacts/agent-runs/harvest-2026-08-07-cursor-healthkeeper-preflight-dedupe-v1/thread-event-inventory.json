@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-cursor-healthkeeper-preflight-dedupe-v1",
+  "threadScope": "Cursor WSL Healthkeeper preflight integration then ownership dedupe — substrate-only v1.2, PASS_DEDUPED, no push",
+  "generatedAt": "2026-08-07T20:55:00.000Z",
+  "events": [
+    {
+      "eventId": "TE-001",
+      "phase": "operator",
+      "summary": "MILESTONE cg-cursor-healthkeeper-preflight-integration-v1 — wire healthkeeper as first gate in agent:preflight:app-builder-mcp",
+      "evidenceRefs": ["user prompt integration milestone", "bf6c38c73ed19e8faab36d7889dae9272abd6e01"]
+    },
+    {
+      "eventId": "TE-002",
+      "phase": "implementation",
+      "summary": "Added cursor-health-preflight-gate.mjs, run wrappers, gate tests; healthkeeper runs before auto-v32 and expensive suite gates",
+      "evidenceRefs": [
+        "scripts/lib/cursor-health-preflight-gate.mjs",
+        "scripts/suite-governance/agent-preflight-app-builder-mcp.mjs",
+        "npm run test:cursor-health-preflight-gate PASS"
+      ]
+    },
+    {
+      "eventId": "TE-003",
+      "phase": "verification",
+      "summary": "Live acceptance — health gate ~4.6s CURSOR_HEALTH_PASS; full preflight continued; canonicalResolution L_CANONICAL",
+      "evidenceRefs": [
+        "~/.local/state/cg-cursor-health/latest.json",
+        "runtime/agent-preflight/app-builder-mcp/latest.json cursorHealthGate"
+      ]
+    },
+    {
+      "eventId": "TE-004",
+      "phase": "operator",
+      "summary": "MILESTONE cg-cursor-healthkeeper-preflight-dedupe-v1 — remove duplicate ownership vs scout/preflight/MCP doctor",
+      "evidenceRefs": ["user prompt dedupe milestone spec"]
+    },
+    {
+      "eventId": "TE-005",
+      "phase": "implementation",
+      "summary": "Healthkeeper v1.2 — removed L:/Z findmnt, Hub AGENT_START_HERE, PI process health, MCP readiness verdicts; v1.2 evidence envelope",
+      "evidenceRefs": [
+        "d18bb64358dd428bc7350337a3d12a599d5b4ff1",
+        "scripts/wsl/lib/cg-cursor-wsl-healthkeeper-evidence.mjs",
+        "/mnt/l/02-catalog/Cursur Health/cg-cursor-wsl-healthkeeper.sh"
+      ]
+    },
+    {
+      "eventId": "TE-006",
+      "phase": "verification",
+      "summary": "Unit tests PASS — dedupe (5) + gate (11); live gate CURSOR_HEALTH_PASS with schema v1.2",
+      "evidenceRefs": ["npm run test:cursor-wsl-healthkeeper-dedupe", "npm run cursor:wsl:health-preflight-gate"]
+    },
+    {
+      "eventId": "TE-007",
+      "phase": "closeout",
+      "summary": "Operator confirmed PASS_DEDUPED locked; local commit not published; downstream blockers correctly out of scope",
+      "evidenceRefs": ["user confirmation turn", "NO PUSH PERFORMED"]
+    },
+    {
+      "eventId": "TE-008",
+      "phase": "verification",
+      "summary": "Full preflight BLOCKED on mcp:doctor, Bible sync, contract gate — unrelated to healthkeeper dedupe",
+      "evidenceRefs": [
+        "runtime/agent-preflight/app-builder-mcp/latest.json blockers",
+        "agent:preflight:app-builder-mcp ~70s run"
+      ]
+    }
+  ]
+}
