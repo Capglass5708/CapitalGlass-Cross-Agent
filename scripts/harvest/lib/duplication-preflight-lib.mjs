@@ -262,9 +262,29 @@ function validateConsultationClaims({ bundle, sources }) {
   return errors;
 }
 
+function detectHostPublicationRouting(hubRoot) {
+  const machineId = (process.env.CG_WSL_MACHINE_ROLE ?? "unknown").toUpperCase();
+  const lMounted = fs.existsSync(hubRoot);
+  const threadIndex = loadThreadAutopsyIndex(hubRoot);
+  const smbRisk = machineId === "WESLEY_WORK";
+  const useIndexedOnly = smbRisk && Boolean(threadIndex);
+  return {
+    machineId,
+    lMounted,
+    smbRisk,
+    useIndexedOnly,
+    duplicationSource: useIndexedOnly ? "indexed-thread-autopsy" : "full-catalog-scan",
+    catalogScanSkipped: useIndexedOnly,
+  };
+}
+
 /**
  * Automated duplication preflight — consults registry, command-index, and L: hub slices.
  */
+export function resolvePublicationRoutingForPreflight({ repoRoot, hubRoot } = {}) {
+  return detectHostPublicationRouting(hubRoot ?? resolveHubRoot());
+}
+
 export function runDuplicationPreflight({
   repoRoot,
   harvestId,
@@ -291,8 +311,15 @@ export function runDuplicationPreflight({
   const sources = consultSources({ repoRoot, hubRoot });
   errors.push(...sources.errors);
 
+  const publicationRouting = detectHostPublicationRouting(hubRoot);
+  if (publicationRouting.verdict === "WRONG_EXECUTION_HOST") {
+    errors.push(`publication routing: canonical host required (${publicationRouting.canonicalHost})`);
+  }
+
   const threadAutopsyIndex = loadThreadAutopsyIndex(hubRoot);
-  const catalogSeeds = loadCatalogSeeds(hubRoot);
+  const catalogSeeds = publicationRouting.catalogScanSkipped
+    ? []
+    : loadCatalogSeeds(hubRoot);
   const seeds = listSeedPackets(runDirResolved);
 
   const harvestCollisions = findHarvestCollisions({
@@ -375,6 +402,7 @@ export function runDuplicationPreflight({
     generatedAt: new Date().toISOString(),
     mode,
     hubRoot,
+    publicationRouting,
     sourcesConsulted: {
       registryPath: "work-progress/harvest-packet-registry.json",
       registryReadable: Boolean(sources.registry),
