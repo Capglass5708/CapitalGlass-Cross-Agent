@@ -1,0 +1,183 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-UH-001",
+      "type": "rework",
+      "description": "SDLC integration tests failed until async/await added to runSdlcCursorPipeline callers",
+      "evidenceRefs": ["TE-UH-003", "scripts/tests/run-sdlc-protocol-cursor-integration.test.mjs"],
+      "estimatedImpact": "medium",
+      "savedBy": "Make runSdlcCursorPipeline tests async by default in test harness",
+      "roiRank": 2,
+      "goldMineSignalClass": "AGENT_FRICTION_SIGNAL"
+    },
+    {
+      "wasteId": "TW-UH-002",
+      "type": "deploy",
+      "description": "Z publish copyFileSync EPERM on WSL drvfs — required manual cp -r workaround",
+      "evidenceRefs": ["TE-UH-004"],
+      "estimatedImpact": "medium",
+      "savedBy": "union-publish drvfs-safe copy fallback (shell cp) for /mnt/z releases",
+      "roiRank": 1,
+      "goldMineSignalClass": "INFRASTRUCTURE_ENVIRONMENT"
+    },
+    {
+      "wasteId": "TW-UH-003",
+      "type": "verification",
+      "description": "Proof wave initially PASS_WITH_WARN due to surface coverage bias in synthetic closeout",
+      "evidenceRefs": ["TE-UH-006", "build-proof-wave-closeout.mjs"],
+      "estimatedImpact": "low",
+      "savedBy": "Reference all surfacesTouched in proof findings observedBehavior",
+      "roiRank": 4,
+      "goldMineSignalClass": "OBSERVABILITY_GAP"
+    },
+    {
+      "wasteId": "TW-UH-004",
+      "type": "operator_attention",
+      "description": "Untracked artifacts/agent-runs blocked execute with BLOCK_BASELINE_DIRTY",
+      "evidenceRefs": ["TE-UH-007"],
+      "estimatedImpact": "medium",
+      "savedBy": "gitignore z-release-staging + artifact hygiene doc in durable-closeout contract",
+      "roiRank": 3,
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL"
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-UH-001",
+      "trigger": "THREE_WAY_PUSH_APPROVED=YES required for git push sentinel",
+      "operatorCost": "low",
+      "systemFix": "Document push approval as routine durability action for milestone waves",
+      "evidenceRefs": ["TE-UH-005"],
+      "linkedWasteIds": [],
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL",
+      "manualStep": "Set THREE_WAY_PUSH_APPROVED=YES for authorized milestone push",
+      "frequency": "observed",
+      "avoidable": true,
+      "automationCandidate": false,
+      "businessWorkflow": "SDLC durable closeout",
+      "operatorRole": "operator",
+      "rootCause": "3-way push sentinel gate"
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-UH-001",
+      "situation": "Publish updated SDLC protocol to Z AI-Cache-Authority from WSL",
+      "actualExecution": {
+        "steps": ["npm run sdlc:cursor:publish-protocol --apply", "copyFileSync EPERM on drvfs"],
+        "outcome": "FAIL then manual cp + promote",
+        "evidenceRefs": ["TE-UH-004"]
+      },
+      "optimalExecution": {
+        "steps": ["Detect drvfs", "Use cp -r fallback in union-publish", "promoteZAiCacheRelease"],
+        "outcome": "Single-command publish",
+        "requiredPreflight": ["test -w /mnt/z/.../releases"]
+      },
+      "deltaCost": { "time": "medium", "tokens": "low", "operatorFrustration": "low" },
+      "preventiveControl": "union-publish drvfs fallback"
+    },
+    {
+      "executionDeltaId": "ED-UH-002",
+      "situation": "Run sdlc:cursor:execute proof wave after implementation",
+      "actualExecution": {
+        "steps": ["Run execute with dirty untracked artifact dirs", "BLOCK_BASELINE_DIRTY", "Move dirs aside", "Re-run"],
+        "outcome": "PASS after tree cleanup",
+        "evidenceRefs": ["TE-UH-007", "TE-UH-006"]
+      },
+      "optimalExecution": {
+        "steps": ["Commit or stash artifact noise before execute", "Clean tree"],
+        "outcome": "First-run DURABLE_COMPLETE",
+        "requiredPreflight": ["git status --porcelain"]
+      },
+      "deltaCost": { "time": "low", "tokens": "low", "operatorFrustration": "medium" },
+      "preventiveControl": "Artifact hygiene in orchestrator preflight hint"
+    },
+    {
+      "executionDeltaId": "ED-UH-003",
+      "situation": "Integration tests for async SDLC cursor pipeline",
+      "actualExecution": {
+        "steps": ["Call runSdlcCursorPipeline without await", "Assert on undefined state"],
+        "outcome": "FAIL until tests marked async",
+        "evidenceRefs": ["TE-UH-005"]
+      },
+      "optimalExecution": {
+        "steps": ["Mark test async", "await runSdlcCursorPipeline", "Assert on resolved state"],
+        "outcome": "PASS on first run",
+        "requiredPreflight": ["grep runSdlcCursorPipeline in test files"]
+      },
+      "deltaCost": { "time": "low", "tokens": "low", "operatorFrustration": "low" },
+      "preventiveControl": "Async pipeline test lint or typed wrapper"
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-UH-001",
+      "summary": "Called runSdlcCursorPipeline without await in integration tests",
+      "whyItWasWrong": "Async pipeline returned Promise; tests compared undefined to READY",
+      "correctFirstMove": "Mark affected tests async and await runSdlcCursorPipeline",
+      "preventiveControl": "Async pipeline test lint or typed wrapper",
+      "executionDeltaId": "ED-UH-003"
+    }
+  ],
+  "duplicateWork": [],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "union-publish drvfs-safe Z release copy",
+      "whyItPays": "Eliminates manual cp workaround on every WSL protocol publish",
+      "effort": "low",
+      "businessValue": "high",
+      "goldMineSignalClass": "INFRASTRUCTURE_ENVIRONMENT",
+      "novelty": "NEW",
+      "savedWasteIds": ["TW-UH-002"],
+      "seedAs": "command"
+    },
+    {
+      "rank": 2,
+      "title": "Artifact hygiene gate before sdlc:cursor:execute",
+      "whyItPays": "Prevents BLOCK_BASELINE_DIRTY false blocks after proof runs",
+      "effort": "low",
+      "businessValue": "medium",
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL",
+      "novelty": "NEW",
+      "savedWasteIds": ["TW-UH-004"],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 3,
+      "title": "Document THREE_WAY_PUSH_APPROVED as routine milestone durability",
+      "whyItPays": "Reduces push friction on authorized SDLC waves",
+      "effort": "low",
+      "businessValue": "medium",
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL",
+      "novelty": "NEW",
+      "savedWasteIds": [],
+      "seedAs": "owner-artifact"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "DURABLE_COMPLETE",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": ["Clean working tree on consumer milestone runs without moving artifacts"],
+      "lastKnownEvidence": ["a26faa49 proof receipt", "distinctValidSuppressed=0"]
+    },
+    {
+      "awardOrVerdict": "HUB_FULLY_SEEDED",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": ["harvest:publish-hub-seed", "index:freshness-gate PASS"],
+      "lastKnownEvidence": ["hubPublishStatus: not-run"]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": ["active-work-blockers.json", "thread-autopsy-index.json"],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-08T01:23:15.208Z",
+    "preflightReceiptHash": "scout-brief-f8ba6061"
+  }
+}

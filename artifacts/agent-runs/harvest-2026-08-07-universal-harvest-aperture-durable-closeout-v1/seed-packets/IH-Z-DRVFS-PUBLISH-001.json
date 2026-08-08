@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-Z-DRVFS-PUBLISH-001",
+  "kind": "failure-pattern",
+  "title": "Z AI-cache publish EPERM on WSL drvfs copyFileSync",
+  "summary": "sdlc:cursor:publish-protocol --apply may fail copying to /mnt/z; use cp fallback then promote.",
+  "retrievalQuestions": [
+    "Why does Z protocol publish fail with EPERM on WSL?",
+    "What is the recovery for AI-cache release publish on drvfs?"
+  ],
+  "evidenceRefs": [
+    "TE-UH-004",
+    "AI-CACHE-RELEASE-20260806-f83861600831"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "publish-protocol-to-z or union-publish copyFileSync EPERM on /mnt/z",
+    "startAt": [
+      "scripts/ai-cache-z-master/lib/union-publish.mjs",
+      "artifacts/agent-runs/<wp>/z-release-staging"
+    ],
+    "runPreflight": [
+      "test -w /mnt/z/Capital-Glass-Intelligence-Hub/AI-Cache-Authority/releases",
+      "npm run sdlc:cursor:publish-protocol -- --json"
+    ],
+    "doNot": [
+      "Claim Z CURRENT promoted without verifyProtocolAuthority AUTHORITATIVE",
+      "Retry copyFileSync indefinitely on drvfs"
+    ],
+    "proveBeforeClaiming": [
+      "cat Z:/.../CURRENT/current-ai-cache-release.json matches releaseId",
+      "promoteZAiCacheRelease ok: true"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "HUMAN_REVIEW",
+  "status": "CANDIDATE"
+}

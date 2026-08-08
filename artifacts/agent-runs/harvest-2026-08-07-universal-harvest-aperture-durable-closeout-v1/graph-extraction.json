@@ -1,0 +1,681 @@
+{
+  "packetKind": "graph-extraction",
+  "schemaVersion": "cg-master-graph-extraction-v1",
+  "extractionId": "extraction:harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1",
+  "harvestId": "harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1",
+  "workPackageId": "harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1",
+  "producer": {
+    "repositoryId": "repo:capitalglass-cross-agent",
+    "capability": "harvest-graph-extraction",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "id": "harvest:harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1",
+      "nodeType": "Harvest",
+      "displayName": "harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1",
+      "lifecycleState": "lifecycle:canonical",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+        "sourceCommitSha": "a26faa49a45697678827aba732a9ac82b00f7a8f",
+        "retrievalResult": "INDEX_HIT_AI_CACHE"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:uh-extend-sdlc-stack-not-parallel-hub-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Extend existing SDLC harvest stack; no parallel Product/SDLC Hub",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "ADOPTED",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md",
+        "advancementGate": "DURABLE_COMPLETE receipt on proof wave"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-extend-sdlc-stack-not-parallel-hub-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-extend-sdlc-stack-not-parallel-hub-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:uh-z-drvfs-publish-eperm-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Z publish copyFileSync EPERM on WSL drvfs",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "ACTIVE",
+      "metadata": {
+        "packetVerdict": "WORKAROUND_DOCUMENTED",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md",
+        "advancementGate": "npm run sdlc:cursor:publish-protocol --apply succeeds without manual cp"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-z-drvfs-publish-eperm-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-z-drvfs-publish-eperm-v1.json"
+        }
+      }
+    },
+    {
+      "id": "entity:blocker-blocker-uh-z-drvfs-publish-eperm-v1",
+      "nodeType": "Entity",
+      "displayName": "blocker-uh-z-drvfs-publish-eperm-v1",
+      "metadata": {
+        "entityKind": "harvest-blocker",
+        "blockerOwner": null
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-z-drvfs-publish-eperm-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-z-drvfs-publish-eperm-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:uh-async-test-miss-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Integration tests called async pipeline without await",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RESOLVED",
+      "metadata": {
+        "packetVerdict": "FIXED",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md",
+        "advancementGate": "36/36 tests pass"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-async-test-miss-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-async-test-miss-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:uh-proof-wave-retry-dirty-tree-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Proof wave required tree cleanup retry after BLOCK_BASELINE_DIRTY",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "DOCUMENTED",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md",
+        "advancementGate": "First-run DURABLE_COMPLETE on clean tree"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-proof-wave-retry-dirty-tree-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-proof-wave-retry-dirty-tree-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:uh-clean-tree-before-execute-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "git status clean before sdlc:cursor:execute",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "DOCUMENTED",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md",
+        "advancementGate": "No BLOCK_BASELINE_DIRTY on proof"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-clean-tree-before-execute-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-clean-tree-before-execute-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:uh-sdlc-cursor-execute-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "npm run sdlc:cursor:execute durable milestone orchestrator",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "PROVEN",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md",
+        "advancementGate": "verdict DURABLE_COMPLETE in receipt JSON"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-sdlc-cursor-execute-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-sdlc-cursor-execute-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:uh-durability-receipt-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "DURABLE_COMPLETE durability receipt at a26faa49",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "VERIFIED",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md",
+        "advancementGate": "parity 0/0 + handoff ok"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-durability-receipt-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-durability-receipt-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:uh-ready-not-terminal-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "READY is prepare-only for implementation milestones",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "SHIPPED",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md",
+        "advancementGate": "Test 36 READY not durable alone"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-ready-not-terminal-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-ready-not-terminal-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:uh-milestone-outcome-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "universal-harvest-aperture operational with DURABLE_COMPLETE proof",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "PROVEN_EFFECTIVE",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md",
+        "advancementGate": "harvest:publish-hub-seed"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-milestone-outcome-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-milestone-outcome-v1.json"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:harvest-harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1-contains-workpackage-uh-extend-sdlc-stack-not-parallel-hub-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1",
+      "targetId": "workpackage:uh-extend-sdlc-stack-not-parallel-hub-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-uh-extend-sdlc-stack-not-parallel-hub-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:uh-extend-sdlc-stack-not-parallel-hub-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-extend-sdlc-stack-not-parallel-hub-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-extend-sdlc-stack-not-parallel-hub-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1-contains-workpackage-uh-z-drvfs-publish-eperm-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1",
+      "targetId": "workpackage:uh-z-drvfs-publish-eperm-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-uh-z-drvfs-publish-eperm-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:uh-z-drvfs-publish-eperm-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-z-drvfs-publish-eperm-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-z-drvfs-publish-eperm-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-uh-z-drvfs-publish-eperm-v1-blocked-by-entity-blocker-blocker-uh-z-drvfs-publish-eperm-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:uh-z-drvfs-publish-eperm-v1",
+      "targetId": "entity:blocker-blocker-uh-z-drvfs-publish-eperm-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-z-drvfs-publish-eperm-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-z-drvfs-publish-eperm-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1-contains-workpackage-uh-async-test-miss-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1",
+      "targetId": "workpackage:uh-async-test-miss-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-uh-async-test-miss-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:uh-async-test-miss-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-async-test-miss-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-async-test-miss-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1-contains-workpackage-uh-proof-wave-retry-dirty-tree-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1",
+      "targetId": "workpackage:uh-proof-wave-retry-dirty-tree-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-uh-proof-wave-retry-dirty-tree-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:uh-proof-wave-retry-dirty-tree-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-proof-wave-retry-dirty-tree-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-proof-wave-retry-dirty-tree-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1-contains-workpackage-uh-clean-tree-before-execute-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1",
+      "targetId": "workpackage:uh-clean-tree-before-execute-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-uh-clean-tree-before-execute-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:uh-clean-tree-before-execute-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-clean-tree-before-execute-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-clean-tree-before-execute-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1-contains-workpackage-uh-sdlc-cursor-execute-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1",
+      "targetId": "workpackage:uh-sdlc-cursor-execute-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-uh-sdlc-cursor-execute-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:uh-sdlc-cursor-execute-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-sdlc-cursor-execute-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-sdlc-cursor-execute-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1-contains-workpackage-uh-durability-receipt-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1",
+      "targetId": "workpackage:uh-durability-receipt-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-uh-durability-receipt-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:uh-durability-receipt-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-durability-receipt-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-durability-receipt-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1-contains-workpackage-uh-ready-not-terminal-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1",
+      "targetId": "workpackage:uh-ready-not-terminal-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-uh-ready-not-terminal-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:uh-ready-not-terminal-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-ready-not-terminal-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-ready-not-terminal-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1-contains-workpackage-uh-milestone-outcome-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1",
+      "targetId": "workpackage:uh-milestone-outcome-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-uh-milestone-outcome-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:uh-milestone-outcome-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T01:25:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-milestone-outcome-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/compact-records/uh-milestone-outcome-v1.json"
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "provenance": {
+    "producerRepositoryId": "repo:capitalglass-cross-agent",
+    "producerCapability": "harvest-graph-extraction",
+    "sourceAuthority": "authority:cross-agent-harvest",
+    "classification": "observed",
+    "verificationState": "verified",
+    "recordedAt": "2026-08-08T01:25:00.000Z",
+    "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/harvest-manifest-v1.json",
+    "sourceAnchorDetail": {
+      "anchorType": "file-path",
+      "locator": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/harvest-manifest-v1.json"
+    }
+  }
+}

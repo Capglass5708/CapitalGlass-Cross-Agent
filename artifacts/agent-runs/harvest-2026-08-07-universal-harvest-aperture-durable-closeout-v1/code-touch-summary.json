@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "cross-agent-code-touch-summary-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1",
+  "generatedAt": "2026-08-08T01:25:00.000Z",
+  "repos": [
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "branch": "main",
+      "commits": [
+        {
+          "sha": "c76d6b59a45697678827aba732a9ac82b00f7a8f",
+          "message": "feat(sdlc): universal harvest aperture and durable-closeout orchestrator",
+          "role": "primary-implementation"
+        },
+        {
+          "sha": "a26faa49a45697678827aba732a9ac82b00f7a8f",
+          "message": "fix(sdlc): align proof-wave surface coverage for DURABLE_COMPLETE",
+          "role": "proof-wave-coverage-fix"
+        }
+      ],
+      "pathsTouched": [
+        "scripts/sdlc-protocol-cursor/lib/canonical-harvest-lanes.mjs",
+        "scripts/sdlc-protocol-cursor/lib/universal-harvest-envelope.mjs",
+        "scripts/sdlc-protocol-cursor/lib/validate-durability.mjs",
+        "scripts/sdlc-protocol-cursor/lib/verify-git-parity.mjs",
+        "scripts/sdlc-protocol-cursor/lib/build-proof-wave-closeout.mjs",
+        "scripts/sdlc-protocol-cursor/run-sdlc-authorized-milestone.mjs",
+        "scripts/tests/run-sdlc-protocol-cursor-integration.test.mjs",
+        "services/cursor-mcp-server/src/sdlc-protocol-cursor-tools.ts",
+        "docs/protocol-governance/CAPITAL-GLASS-SDLC-MILESTONE-WAVE-AGENT-RULE.md"
+      ]
+    },
+    {
+      "repo": "CG-Platform-Governance-MCP",
+      "branch": "feat/cg-estimating-evidence-envelope-authority-v1",
+      "commits": [
+        {
+          "sha": "f18bea2",
+          "message": "docs(sdlc): sync universal harvest and durable-closeout protocol authority",
+          "role": "governance-mirror",
+          "note": "short sha only — not merged to governance main"
+        }
+      ],
+      "pathsTouched": [
+        "docs/protocol-governance/CAPITAL-GLASS-SDLC-MILESTONE-WAVE-AGENT-RULE.md"
+      ]
+    },
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "main",
+      "commits": [],
+      "pathsTouched": [
+        "artifacts/agent-runs/harvest-universal-harvest-aperture-and-multilane-intelligence-v1/sdlc-intelligence-harvest.json"
+      ],
+      "role": "handoff-consumer"
+    }
+  ]
+}

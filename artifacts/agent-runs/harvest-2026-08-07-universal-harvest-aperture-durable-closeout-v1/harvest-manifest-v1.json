@@ -1,0 +1,366 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "a26faa49a45697678827aba732a9ac82b00f7a8f",
+  "sourceBranch": "main",
+  "sourceRepo": "CG-AppBuilder-MCP",
+  "createdAt": "2026-08-08T01:25:00.000Z",
+  "updatedAt": "2026-08-08T01:25:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "rawScanRequired": false,
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "subject": "universal-harvest-aperture-and-multilane-intelligence-v1 — durable closeout orchestrator + DURABLE_COMPLETE proof",
+  "doNotAdvance": [
+    "Claim hub FULLY_SEEDED without harvest:publish-hub-seed and index:freshness-gate",
+    "Run index:publish or harvest:publish-hub-seed from Cursor",
+    "Treat READY or tests-pass as terminal for MILESTONE_WAVE implementation",
+    "Suppress low-value harvest lanes — distinctValidSuppressed must remain 0"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 4,
+      "seeds": 2,
+      "roiItems": 3,
+      "operatorFriction": 1,
+      "executionDeltas": 3
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Operator runs harvest:publish-hub-seed + index:publish — NOT_RUN_BY_CURSOR"
+  },
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "1.1.0",
+    "eligibleCandidates": 0,
+    "rejectedUnrelatedCandidates": 0,
+    "exportStatus": "not-run",
+    "dataExtractionStatus": "not-run",
+    "catalogPublishStatus": "not-run",
+    "retrievalStatus": "not-run",
+    "targetCatalog": "L:\\02-catalog\\Harvest\\Harvest Protocol Self Learning",
+    "authorityStatus": "PROPOSAL",
+    "automaticProtocolMutation": false
+  },
+  "relatedRepos": [
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "branch": "main",
+      "commitSha": "a26faa49a45697678827aba732a9ac82b00f7a8f",
+      "role": "universal-harvest + durable-closeout implementation"
+    },
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "main",
+      "commitSha": "f060d4bfb86ba5d8eea8977e90a80435cbce253b",
+      "role": "harvest recording + SDLC handoff consumer"
+    },
+    {
+      "repo": "CG-Platform-Governance-MCP",
+      "branch": "feat/cg-estimating-evidence-envelope-authority-v1",
+      "commitSha": "f18bea2",
+      "role": "governance doc mirror (not main)"
+    }
+  ],
+  "sdlcDurabilityHandoff": {
+    "workPackageId": "universal-harvest-aperture-and-multilane-intelligence-v1",
+    "durabilityReceiptPath": "CG-AppBuilder-MCP/artifacts/agent-runs/universal-harvest-aperture-and-multilane-intelligence-v1/sdlc-durability-receipt.json",
+    "verdict": "DURABLE_COMPLETE",
+    "distinctValidSuppressed": 0,
+    "crossAgentHarvestPath": "artifacts/agent-runs/harvest-universal-harvest-aperture-and-multilane-intelligence-v1/sdlc-intelligence-harvest.json"
+  },
+  "packets": [
+    {
+      "packetKind": "decision",
+      "packetId": "uh-extend-sdlc-stack-not-parallel-hub-v1",
+      "packetTitle": "Extend existing SDLC harvest stack; no parallel Product/SDLC Hub",
+      "state": "COMPLETE",
+      "packetVerdict": "ADOPTED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md",
+      "nextAction": "Use sdlc:cursor:execute for future MILESTONE_WAVE closeouts",
+      "advancementGate": "DURABLE_COMPLETE receipt on proof wave",
+      "doNotAdvance": [
+        "Create second harvest Hub"
+      ],
+      "evidenceRefs": [
+        "TE-UH-002",
+        "SP-UH-001"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@c76d6b59a45697678827aba732a9ac82b00f7a8f"
+      ],
+      "blockers": [],
+      "decision": "Embed universalHarvest in create-intelligence-harvest v2",
+      "alternativesRejected": [
+        "Parallel Product Estate Hub",
+        "App-local harvest only"
+      ]
+    },
+    {
+      "packetKind": "blocker",
+      "packetId": "uh-z-drvfs-publish-eperm-v1",
+      "packetTitle": "Z publish copyFileSync EPERM on WSL drvfs",
+      "state": "ACTIVE",
+      "packetVerdict": "WORKAROUND_DOCUMENTED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md",
+      "nextAction": "Add drvfs-safe copy fallback to union-publish",
+      "advancementGate": "npm run sdlc:cursor:publish-protocol --apply succeeds without manual cp",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-UH-004",
+        "IH-Z-DRVFS-PUBLISH-001"
+      ],
+      "commitRefs": [],
+      "blockers": [
+        "EPERM copyfile /mnt/z"
+      ],
+      "blockerId": "uh-z-drvfs-publish-eperm",
+      "status": "OPEN",
+      "proofCommandId": "npm run sdlc:cursor:publish-protocol -- --apply --json"
+    },
+    {
+      "packetKind": "mistake",
+      "packetId": "uh-async-test-miss-v1",
+      "packetTitle": "Integration tests called async pipeline without await",
+      "state": "RESOLVED",
+      "packetVerdict": "FIXED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md",
+      "nextAction": "None",
+      "advancementGate": "36/36 tests pass",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-UH-003",
+        "WM-UH-001"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@c76d6b59a45697678827aba732a9ac82b00f7a8f"
+      ],
+      "blockers": [],
+      "wrongMoveId": "WM-UH-001",
+      "actualExecution": "Sync test calls returned undefined verdict",
+      "optimalExecution": "async tests with await runSdlcCursorPipeline",
+      "preventiveControl": "Async pipeline test lint"
+    },
+    {
+      "packetKind": "repeated_work",
+      "packetId": "uh-proof-wave-retry-dirty-tree-v1",
+      "packetTitle": "Proof wave required tree cleanup retry after BLOCK_BASELINE_DIRTY",
+      "state": "COMPLETE",
+      "packetVerdict": "DOCUMENTED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md",
+      "nextAction": "Artifact hygiene before execute",
+      "advancementGate": "First-run DURABLE_COMPLETE on clean tree",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-UH-007",
+        "ED-UH-002"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "duplicateId": "uh-execute-dirty-retry",
+      "firstKnownInstance": "TE-UH-007",
+      "priorIndexSlice": "thread-autopsy-index.json",
+      "whyMissed": "Untracked proof artifact dirs left on tree"
+    },
+    {
+      "packetKind": "faster_path",
+      "packetId": "uh-clean-tree-before-execute-v1",
+      "packetTitle": "git status clean before sdlc:cursor:execute",
+      "state": "COMPLETE",
+      "packetVerdict": "DOCUMENTED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md",
+      "nextAction": "Add preflight hint in orchestrator when dirty",
+      "advancementGate": "No BLOCK_BASELINE_DIRTY on proof",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "ED-UH-002",
+        "TW-UH-004"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "situation": "Run durable execute after proof artifacts generated",
+      "whatHappened": "Untracked artifact dirs blocked prepare",
+      "rightFirstMove": "Stash or gitignore proof staging dirs before execute",
+      "requiredGuard": "git status --porcelain in milestone closeout checklist"
+    },
+    {
+      "packetKind": "command",
+      "packetId": "uh-sdlc-cursor-execute-v1",
+      "packetTitle": "npm run sdlc:cursor:execute durable milestone orchestrator",
+      "state": "COMPLETE",
+      "packetVerdict": "PROVEN",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md",
+      "nextAction": "Use for all MILESTONE_WAVE durable closeouts",
+      "advancementGate": "verdict DURABLE_COMPLETE in receipt JSON",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-UH-006",
+        "IH-SDLC-DURABLE-EXECUTE-001"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@a26faa49a45697678827aba732a9ac82b00f7a8f"
+      ],
+      "blockers": [],
+      "command": "npm run sdlc:cursor:execute -- --work-package=<id> --closeout=<path> --json",
+      "host": "wsl",
+      "provesGate": "DURABLE_COMPLETE",
+      "expectedPassSignal": "verdict:DURABLE_COMPLETE distinctValidSuppressed:0"
+    },
+    {
+      "packetKind": "evidence",
+      "packetId": "uh-durability-receipt-v1",
+      "packetTitle": "DURABLE_COMPLETE durability receipt at a26faa49",
+      "state": "COMPLETE",
+      "packetVerdict": "VERIFIED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md",
+      "nextAction": "Reference in future SDLC closeouts",
+      "advancementGate": "parity 0/0 + handoff ok",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "artifacts/agent-runs/universal-harvest-aperture-and-multilane-intelligence-v1/sdlc-durability-receipt.json",
+        "AI-CACHE-RELEASE-20260806-f83861600831"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@a26faa49a45697678827aba732a9ac82b00f7a8f"
+      ],
+      "blockers": [],
+      "type": "durability-receipt",
+      "pathOrSha": "a26faa49a45697678827aba732a9ac82b00f7a8f",
+      "provesWhat": "End-to-end authorized milestone reached DURABLE_COMPLETE with zero suppression"
+    },
+    {
+      "packetKind": "protocol_upgrade",
+      "packetId": "uh-ready-not-terminal-v1",
+      "packetTitle": "READY is prepare-only for implementation milestones",
+      "state": "COMPLETE",
+      "packetVerdict": "SHIPPED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md",
+      "nextAction": "Enforce in compile-cursor-prompt + validate-durability",
+      "advancementGate": "Test 36 READY not durable alone",
+      "doNotAdvance": [
+        "Claim milestone done at READY"
+      ],
+      "evidenceRefs": [
+        "TE-UH-001",
+        "validate-durability.mjs"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@c76d6b59a45697678827aba732a9ac82b00f7a8f"
+      ],
+      "blockers": [],
+      "seedAs": "POLICY_GATED",
+      "ownerRepoTarget": "CG-AppBuilder-MCP",
+      "promotionClass": "POLICY_GATED",
+      "futureAgentInstructions": {
+        "whenThisAppears": "MILESTONE_WAVE prepare returns READY",
+        "startAt": [
+          "run-sdlc-authorized-milestone.mjs"
+        ],
+        "runPreflight": [
+          "sdlc:cursor:execute"
+        ],
+        "doNot": [
+          "Stop after prepare READY"
+        ],
+        "proveBeforeClaiming": [
+          "sdlc-durability-receipt.json verdict"
+        ]
+      }
+    },
+    {
+      "packetKind": "outcome",
+      "packetId": "uh-milestone-outcome-v1",
+      "packetTitle": "universal-harvest-aperture operational with DURABLE_COMPLETE proof",
+      "state": "COMPLETE",
+      "packetVerdict": "PROVEN_EFFECTIVE",
+      "effectiveness": "PROVEN_EFFECTIVE",
+      "beforeState": "READY/tests-only closeout; manual admin follow-ups; lane suppression risk",
+      "afterState": "sdlc:cursor:execute → harvest → handoff → parity → DURABLE_COMPLETE; distinctValidSuppressed=0",
+      "measurement": "36/36 tests; proof receipt; Z CURRENT f83861600831",
+      "expectedEffect": "One milestone prompt reaches durable closeout without operator rescue",
+      "observedEffect": "DURABLE_COMPLETE achieved; handoff to Cross-Agent; git parity 0/0",
+      "residuals": [
+        "Z drvfs publish workaround",
+        "artifact dirty-tree friction",
+        "governance mirror on feature branch"
+      ],
+      "regressions": [],
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md",
+      "nextAction": "Operator hub seed publish when ready",
+      "advancementGate": "harvest:publish-hub-seed",
+      "doNotAdvance": [
+        "FULLY_SEEDED without freshness gate"
+      ],
+      "evidenceRefs": [
+        "TE-UH-006",
+        "TE-UH-005",
+        "gmp-uh-durable-orchestrator"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@c76d6b59a45697678827aba732a9ac82b00f7a8f",
+        "CG-AppBuilder-MCP@a26faa49a45697678827aba732a9ac82b00f7a8f"
+      ],
+      "blockers": [],
+      "changeImplemented": "Universal harvest envelope + durable-closeout orchestrator + MCP execute tool"
+    }
+  ],
+  "goldMineHarvest": {
+    "noSuppressionDeclared": true,
+    "projectionArtifact": "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/gold-mine-evidence-projections-v1.json"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 9,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 9,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-bce7a46958c7",
+      "prompt-candidate-6f31beb39fd6",
+      "prompt-candidate-9cc43fa7a88e",
+      "prompt-candidate-870832fee613",
+      "prompt-candidate-d73a2c5efcab",
+      "prompt-candidate-11d892b91d16",
+      "prompt-candidate-25876c23480a",
+      "prompt-candidate-4d7624f546bc",
+      "prompt-candidate-befb3d8c01f4"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  },
+  "ledgerLineage": {
+    "ledgerContentHashBefore": null,
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1",
+  "threadScope": "universal-harvest-aperture-and-multilane-intelligence-v1 MILESTONE_WAVE — protocol authority, AppBuilder SDLC stack, Z publish, DURABLE_COMPLETE proof",
+  "generatedAt": "2026-08-08T01:25:00.000Z",
+  "events": [
+    {
+      "eventId": "TE-UH-001",
+      "phase": "operator",
+      "summary": "Operator requested operational end-to-end milestone: universal harvest + durable closeout through DURABLE_COMPLETE (not READY/tests-only)",
+      "evidenceRefs": ["user query universal-harvest-aperture-and-multilane-intelligence-v1 MILESTONE_WAVE"]
+    },
+    {
+      "eventId": "TE-UH-002",
+      "phase": "implementation",
+      "summary": "Universal harvest envelope, coverage accounting, validate-durability, run-sdlc-authorized-milestone orchestrator wired in CG-AppBuilder-MCP",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP@c76d6b59a45697678827aba732a9ac82b00f7a8f",
+        "scripts/sdlc-protocol-cursor/run-sdlc-authorized-milestone.mjs"
+      ]
+    },
+    {
+      "eventId": "TE-UH-003",
+      "phase": "verification",
+      "summary": "SDLC integration tests 26/36 then 36/36 after async/await fixes, missionClass default, closeout validation fix",
+      "evidenceRefs": ["npm run test:sdlc-protocol-cursor", "TE-UH-003-test-failures-resolved"]
+    },
+    {
+      "eventId": "TE-UH-004",
+      "phase": "implementation",
+      "summary": "Z protocol publish: dry-run OK; node copyFileSync EPERM on /mnt/z; manual cp -r + promoteZAiCacheRelease succeeded",
+      "evidenceRefs": [
+        "AI-CACHE-RELEASE-20260806-f83861600831",
+        "artifacts/agent-runs/universal-harvest-aperture-and-multilane-intelligence-v1/z-protocol-publish-receipt.json"
+      ]
+    },
+    {
+      "eventId": "TE-UH-005",
+      "phase": "verification",
+      "summary": "Commits c76d6b59 + a26faa49 pushed to origin/main with THREE_WAY_PUSH_APPROVED=YES; parity 0/0",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP@a26faa49a45697678827aba732a9ac82b00f7a8f",
+        "git push origin main"
+      ]
+    },
+    {
+      "eventId": "TE-UH-006",
+      "phase": "verification",
+      "summary": "Proof wave DURABLE_COMPLETE: distinctValidSuppressed=0, multi-lane harvest, Cross-Agent handoff written",
+      "evidenceRefs": [
+        "artifacts/agent-runs/universal-harvest-aperture-and-multilane-intelligence-v1/sdlc-durability-receipt.json",
+        "CapitalGlass-Cross-Agent/artifacts/agent-runs/harvest-universal-harvest-aperture-and-multilane-intelligence-v1/sdlc-intelligence-harvest.json"
+      ]
+    },
+    {
+      "eventId": "TE-UH-007",
+      "phase": "mistake",
+      "summary": "execute blocked by BLOCK_BASELINE_DIRTY when untracked artifacts/agent-runs/* present on tree",
+      "evidenceRefs": ["BLOCK_BASELINE_DIRTY", "TE-UH-007"]
+    },
+    {
+      "eventId": "TE-UH-008",
+      "phase": "closeout",
+      "summary": "Governance doc synced to CG-Platform-Governance-MCP feature branch; L catalog protocol files remain operator-owned publication",
+      "evidenceRefs": [
+        "docs/protocol-governance/CAPITAL-GLASS-SDLC-MILESTONE-WAVE-AGENT-RULE.md",
+        "CG-Platform-Governance-MCP@f18bea2"
+      ]
+    }
+  ]
+}

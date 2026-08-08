@@ -230,6 +230,15 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `sso-ui-proof-admin-lane-v1` | — | COMPLETE | CLASSIFIED | CapitalGlass-BidComposer | `harvest-2026-08-07-guided-scope-review-milestone-closeout-v1` | see harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md |
 | `synology-primary-foundation-prior-harvest-v1` | — | INDEXED_NOT_DUPLICATE | BOUNDARY_RECORDED | CapitalGlass-Cross-Agent | `harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1` | see harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1.md |
 | `three-way-agent-improvement-intelligence-v1` | — | OPERATIONAL_CLOSEOUT_COMPLETE | THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL | CG-AppBuilder-MCP | `harvest-2026-08-04-three-way-improvement-slice6-thread-v1` | see 2026-08-03_three-way-agent-improvement-intelligence-v1.md |
+| `uh-async-test-miss-v1` | — | RESOLVED | FIXED | CG-AppBuilder-MCP | `harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1` | see harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md |
+| `uh-clean-tree-before-execute-v1` | — | COMPLETE | DOCUMENTED | CG-AppBuilder-MCP | `harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1` | see harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md |
+| `uh-durability-receipt-v1` | — | COMPLETE | VERIFIED | CG-AppBuilder-MCP | `harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1` | see harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md |
+| `uh-extend-sdlc-stack-not-parallel-hub-v1` | — | COMPLETE | ADOPTED | CG-AppBuilder-MCP | `harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1` | see harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md |
+| `uh-milestone-outcome-v1` | — | COMPLETE | PROVEN_EFFECTIVE | CG-AppBuilder-MCP | `harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1` | see harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md |
+| `uh-proof-wave-retry-dirty-tree-v1` | — | COMPLETE | DOCUMENTED | CG-AppBuilder-MCP | `harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1` | see harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md |
+| `uh-ready-not-terminal-v1` | — | COMPLETE | SHIPPED | CG-AppBuilder-MCP | `harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1` | see harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md |
+| `uh-sdlc-cursor-execute-v1` | — | COMPLETE | PROVEN | CG-AppBuilder-MCP | `harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1` | see harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md |
+| `uh-z-drvfs-publish-eperm-v1` | — | ACTIVE | WORKAROUND_DOCUMENTED | CG-AppBuilder-MCP | `harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1` | see harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md |
 | `ultimate-sdlc-dark-package-go-v1` | — | GO | PASS | CG-AppBuilder-MCP | `harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1` | see ultimate-sdlc-dark-package-go-v1.md |
 | `ultimate-sdlc-runner-go-v1` | — | GO | PASS | CG-AppBuilder-MCP | `harvest-2026-08-04-asg-go-shared-db-closeout-v1` | see ultimate-sdlc-runner-go-v1.md |
 | `wave-d-gates-before-publication-v1` | — | COMPLETE | ENFORCED | CapitalGlass-Office-Admin | `harvest-2026-08-07-direct-connect-three-controller-closeout-v1` | see harvest-2026-08-07-direct-connect-three-controller-closeout-v1.md |
@@ -260,7 +269,7 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `z-drive-force-remap-wsl-cwd-v1` | — | RECORDED | PASS | CapitalGlass-Office-Admin | `harvest-2026-08-04-z-l-drive-offlan-session-v1` | see 2026-08-02_z-drive-disconnect-recurrence-v1.md |
 | `z-l-drive-offlan-partial-availability-v1` | — | PARTIAL_DRIVE_AVAILABILITY | Z_OK_L_BLOCKED_OFF_LAN | CapitalGlass-Office-Admin | `harvest-2026-08-04-z-l-drive-offlan-session-v1` | see 2026-08-02_z-drive-disconnect-recurrence-v1.md |
 
-_220 registry packets · 99 intelligence entities_
+_229 registry packets · 99 intelligence entities_
 
 <!-- HARVEST-PACKET-INDEX:END -->
 

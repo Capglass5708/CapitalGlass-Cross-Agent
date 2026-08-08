@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "gold-mine-evidence-projections-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1",
+  "generatedAt": "2026-08-08T01:25:00.000Z",
+  "noSuppressionDeclared": true,
+  "projections": [
+    {
+      "projectionId": "gmp-uh-drvfs-z-publish",
+      "signalClass": "PROBLEM_SIGNAL",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "wsl-drvfs-copyfile-eperm",
+      "workPackageId": "universal-harvest-aperture-and-multilane-intelligence-v1",
+      "evidenceStrength": "high",
+      "operatorImpact": "Manual cp workaround on every Z publish from WSL",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-08T00:04:37.416Z",
+      "sourceWorkPackageId": "universal-harvest-aperture-and-multilane-intelligence-v1",
+      "sourceCommitSha": "a26faa49a45697678827aba732a9ac82b00f7a8f",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "evidenceRefs": ["TE-UH-004", "TW-UH-002"]
+    },
+    {
+      "projectionId": "gmp-uh-durable-orchestrator",
+      "signalClass": "ADOPTION_SIGNAL",
+      "lifecycleHint": "RESOLVED",
+      "rootCauseKey": "agent-stops-before-admin-closeout",
+      "workPackageId": "universal-harvest-aperture-and-multilane-intelligence-v1",
+      "evidenceStrength": "high",
+      "operatorImpact": "Single milestone prompt can reach DURABLE_COMPLETE",
+      "businessImpact": "OPERATOR_PRODUCTIVITY",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-08T00:06:32.273Z",
+      "sourceWorkPackageId": "universal-harvest-aperture-and-multilane-intelligence-v1",
+      "sourceCommitSha": "a26faa49a45697678827aba732a9ac82b00f7a8f",
+      "novelty": "NEW",
+      "implementationState": "ADOPTED",
+      "validatesExisting": ["harvest-ai-cached-sdlc-protocol-cursor-integration-v1"],
+      "evidenceRefs": ["TE-UH-006", "SP-UH-002"]
+    },
+    {
+      "projectionId": "gmp-uh-artifact-dirty-block",
+      "signalClass": "OPERATOR_FRICTION_SIGNAL",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "baseline-dirty-untracked-artifacts",
+      "workPackageId": "universal-harvest-aperture-and-multilane-intelligence-v1",
+      "evidenceStrength": "medium",
+      "operatorImpact": "Execute blocked until artifact dirs moved",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-08T00:05:55.443Z",
+      "sourceCommitSha": "a26faa49a45697678827aba732a9ac82b00f7a8f",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "evidenceRefs": ["TE-UH-007", "TW-UH-004"]
+    },
+    {
+      "projectionId": "gmp-uh-zero-suppression",
+      "signalClass": "SUCCESS_PATTERN",
+      "lifecycleHint": "RESOLVED",
+      "workPackageId": "universal-harvest-aperture-and-multilane-intelligence-v1",
+      "evidenceStrength": "high",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-08T00:06:32.273Z",
+      "sourceCommitSha": "a26faa49a45697678827aba732a9ac82b00f7a8f",
+      "novelty": "NEW",
+      "implementationState": "PROVEN_EFFECTIVE",
+      "evidenceRefs": ["distinctValidSuppressed:0", "TE-UH-006"]
+    }
+  ]
+}
