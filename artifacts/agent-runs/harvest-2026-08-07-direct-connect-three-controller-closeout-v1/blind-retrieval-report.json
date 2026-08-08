@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "cross-agent-harvest-blind-retrieval-benchmark-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-direct-connect-three-controller-closeout-v1",
+  "testedAt": "2026-08-08T01:23:30.270Z",
+  "blindQueryOnly": true,
+  "seedCount": 3,
+  "fixtureCount": 6,
+  "results": [
+    {
+      "query": "Why did AppBuilder feature branch push fail?",
+      "returnedId": "IH-APPBUILDER-THREE-WAY-PUSH-SENTINEL-001",
+      "expectedSeedId": "IH-APPBUILDER-THREE-WAY-PUSH-SENTINEL-001",
+      "topK": [
+        {
+          "seedId": "IH-APPBUILDER-THREE-WAY-PUSH-SENTINEL-001",
+          "score": 5
+        },
+        {
+          "seedId": "IH-OFFICE-ADMIN-KNOWLEDGE-INDEX-CLEAN-CHECKOUT-001",
+          "score": 2
+        },
+        {
+          "seedId": "IH-DIRECT-CONNECT-WESLEYWORK-POWERSHELL-LIVE-001",
+          "score": 1
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "What env var is required to push feat branches on CG-AppBuilder-MCP?",
+      "returnedId": "IH-APPBUILDER-THREE-WAY-PUSH-SENTINEL-001",
+      "expectedSeedId": "IH-APPBUILDER-THREE-WAY-PUSH-SENTINEL-001",
+      "topK": [
+        {
+          "seedId": "IH-APPBUILDER-THREE-WAY-PUSH-SENTINEL-001",
+          "score": 6
+        },
+        {
+          "seedId": "IH-OFFICE-ADMIN-KNOWLEDGE-INDEX-CLEAN-CHECKOUT-001",
+          "score": 2
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "How do I prove 6/6 direct connect mesh admin connectivity?",
+      "returnedId": "IH-DIRECT-CONNECT-WESLEYWORK-POWERSHELL-LIVE-001",
+      "expectedSeedId": "IH-DIRECT-CONNECT-WESLEYWORK-POWERSHELL-LIVE-001",
+      "topK": [
+        {
+          "seedId": "IH-DIRECT-CONNECT-WESLEYWORK-POWERSHELL-LIVE-001",
+          "score": 6
+        },
+        {
+          "seedId": "IH-OFFICE-ADMIN-KNOWLEDGE-INDEX-CLEAN-CHECKOUT-001",
+          "score": 2
+        },
+        {
+          "seedId": "IH-APPBUILDER-THREE-WAY-PUSH-SENTINEL-001",
+          "score": 1
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "Where do I run Invoke-CgDirectConnectControllerFailoverLiveCloseout?",
+      "returnedId": "IH-DIRECT-CONNECT-WESLEYWORK-POWERSHELL-LIVE-001",
+      "expectedSeedId": "IH-DIRECT-CONNECT-WESLEYWORK-POWERSHELL-LIVE-001",
+      "topK": [
+        {
+          "seedId": "IH-DIRECT-CONNECT-WESLEYWORK-POWERSHELL-LIVE-001",
+          "score": 3
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "Why does Office Admin deploy:gate fail on mcp/knowledge-index/manifest.json in CI?",
+      "returnedId": "IH-OFFICE-ADMIN-KNOWLEDGE-INDEX-CLEAN-CHECKOUT-001",
+      "expectedSeedId": "IH-OFFICE-ADMIN-KNOWLEDGE-INDEX-CLEAN-CHECKOUT-001",
+      "topK": [
+        {
+          "seedId": "IH-OFFICE-ADMIN-KNOWLEDGE-INDEX-CLEAN-CHECKOUT-001",
+          "score": 10
+        },
+        {
+          "seedId": "IH-DIRECT-CONNECT-WESLEYWORK-POWERSHELL-LIVE-001",
+          "score": 5
+        },
+        {
+          "seedId": "IH-APPBUILDER-THREE-WAY-PUSH-SENTINEL-001",
+          "score": 2
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "How do I refresh knowledge index with CI parity before push?",
+      "returnedId": "IH-OFFICE-ADMIN-KNOWLEDGE-INDEX-CLEAN-CHECKOUT-001",
+      "expectedSeedId": "IH-OFFICE-ADMIN-KNOWLEDGE-INDEX-CLEAN-CHECKOUT-001",
+      "topK": [
+        {
+          "seedId": "IH-OFFICE-ADMIN-KNOWLEDGE-INDEX-CLEAN-CHECKOUT-001",
+          "score": 7
+        },
+        {
+          "seedId": "IH-APPBUILDER-THREE-WAY-PUSH-SENTINEL-001",
+          "score": 3
+        },
+        {
+          "seedId": "IH-DIRECT-CONNECT-WESLEYWORK-POWERSHELL-LIVE-001",
+          "score": 3
+        }
+      ],
+      "pass": true
+    }
+  ],
+  "verdict": "BLIND_RETRIEVAL_PASS"
+}

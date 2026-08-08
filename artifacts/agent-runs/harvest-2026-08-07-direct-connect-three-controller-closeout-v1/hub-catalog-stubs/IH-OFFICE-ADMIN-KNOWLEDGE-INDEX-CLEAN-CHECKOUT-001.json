@@ -1,0 +1,79 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-office-admin-knowledge-index-clean-checkout-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "f060d4bfb86ba5d8eea8977e90a80435cbce253b",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-07-direct-connect-three-controller-closeout-v1",
+      "seedId": "IH-OFFICE-ADMIN-KNOWLEDGE-INDEX-CLEAN-CHECKOUT-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-08T01:23:30.095Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "critical",
+    "contentHash": "836c57b5af1fd44aa6aa2e12073dbd13eb810519e17fa01712e1842153d4780c"
+  },
+  "body": {
+    "seedId": "IH-OFFICE-ADMIN-KNOWLEDGE-INDEX-CLEAN-CHECKOUT-001",
+    "kind": "command",
+    "title": "Office Admin knowledge-index must refresh from clean git checkout only",
+    "summary": "ops:refresh-knowledge-index on WSL with untracked docs breaks CI deploy:gate validate-knowledge-index; use git bundle clean clone.",
+    "canonicalQuestion": "Why does Office Admin deploy:gate fail on mcp/knowledge-index/manifest.json in CI?",
+    "alternateQuestions": [
+      "How do I refresh knowledge index with CI parity before push?"
+    ],
+    "shortAnswer": "ops:refresh-knowledge-index on WSL with untracked docs breaks CI deploy:gate validate-knowledge-index; use git bundle clean clone.",
+    "detailedAnswer": "Office Admin knowledge-index must refresh from clean git checkout only",
+    "retrievalQuestions": [
+      "Why does Office Admin deploy:gate fail on mcp/knowledge-index/manifest.json in CI?",
+      "How do I refresh knowledge index with CI parity before push?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Office Admin CI fails validate-knowledge-index after manifest refresh",
+      "startAt": [
+        "mcp/knowledge-index/manifest.json",
+        "scripts/ops/refresh-knowledge-index.mjs"
+      ],
+      "runPreflight": [
+        "npm run agent:index:scout -- --json"
+      ],
+      "doNot": [
+        "Run ops:refresh-knowledge-index on WSL tree with untracked docs",
+        "Claim deploy:gate PASS from WSL when Windows live vault required"
+      ],
+      "proveBeforeClaiming": [
+        "node scripts/ops/validate-knowledge-index.mjs on clean checkout",
+        "doc count matches CI runner"
+      ]
+    },
+    "evidenceRefs": [
+      "TE-004",
+      "TE-005",
+      "CapitalGlass-Office-Admin@f30c7bd3fdb2fa47f69cabe7e02a554c787c5517"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [
+      "TW-001"
+    ],
+    "operatorFrictionIds": [],
+    "roiRank": 1,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Office-Admin",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-07-direct-connect-three-controller-closeout-v1/seed-packets/IH-OFFICE-ADMIN-KNOWLEDGE-INDEX-CLEAN-CHECKOUT-001.json"
+    ],
+    "harvestId": "harvest-2026-08-07-direct-connect-three-controller-closeout-v1"
+  }
+}
