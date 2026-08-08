@@ -1,0 +1,77 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-z-drvfs-publish-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "93e91fa2d0cb5b6d12af0e5376a54d17504be0e9",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1",
+      "seedId": "IH-Z-DRVFS-PUBLISH-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-08T01:33:19.743Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "24ddcc90d09c91e6ced447304b1f6e8e30e3e62a6687ff85a449332ce513e025"
+  },
+  "body": {
+    "seedId": "IH-Z-DRVFS-PUBLISH-001",
+    "kind": "failure-pattern",
+    "title": "Z AI-cache publish EPERM on WSL drvfs copyFileSync",
+    "summary": "sdlc:cursor:publish-protocol --apply may fail copying to /mnt/z; use cp fallback then promote.",
+    "canonicalQuestion": "Why does Z protocol publish fail with EPERM on WSL?",
+    "alternateQuestions": [
+      "What is the recovery for AI-cache release publish on drvfs?"
+    ],
+    "shortAnswer": "sdlc:cursor:publish-protocol --apply may fail copying to /mnt/z; use cp fallback then promote.",
+    "detailedAnswer": "Z AI-cache publish EPERM on WSL drvfs copyFileSync",
+    "retrievalQuestions": [
+      "Why does Z protocol publish fail with EPERM on WSL?",
+      "What is the recovery for AI-cache release publish on drvfs?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "publish-protocol-to-z or union-publish copyFileSync EPERM on /mnt/z",
+      "startAt": [
+        "scripts/ai-cache-z-master/lib/union-publish.mjs",
+        "artifacts/agent-runs/<wp>/z-release-staging"
+      ],
+      "runPreflight": [
+        "test -w /mnt/z/Capital-Glass-Intelligence-Hub/AI-Cache-Authority/releases",
+        "npm run sdlc:cursor:publish-protocol -- --json"
+      ],
+      "doNot": [
+        "Claim Z CURRENT promoted without verifyProtocolAuthority AUTHORITATIVE",
+        "Retry copyFileSync indefinitely on drvfs"
+      ],
+      "proveBeforeClaiming": [
+        "cat Z:/.../CURRENT/current-ai-cache-release.json matches releaseId",
+        "promoteZAiCacheRelease ok: true"
+      ]
+    },
+    "evidenceRefs": [
+      "TE-UH-004",
+      "AI-CACHE-RELEASE-20260806-f83861600831"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "HUMAN_REVIEW",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/seed-packets/IH-Z-DRVFS-PUBLISH-001.json"
+    ],
+    "harvestId": "harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1"
+  }
+}

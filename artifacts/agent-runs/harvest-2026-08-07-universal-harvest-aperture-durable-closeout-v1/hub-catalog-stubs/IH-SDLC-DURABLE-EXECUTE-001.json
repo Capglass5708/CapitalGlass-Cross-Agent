@@ -1,0 +1,80 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-sdlc-durable-execute-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "93e91fa2d0cb5b6d12af0e5376a54d17504be0e9",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1",
+      "seedId": "IH-SDLC-DURABLE-EXECUTE-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-08T01:33:19.743Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "87677243bd1341ccb2d936c0b96ba36ba42d1bd671f309b1adfdaaf1ef5a8a0b"
+  },
+  "body": {
+    "seedId": "IH-SDLC-DURABLE-EXECUTE-001",
+    "kind": "runbook",
+    "title": "Authorized milestone through DURABLE_COMPLETE via sdlc:cursor:execute",
+    "summary": "After implementation, run orchestrator with clean tree; do not stop at READY or tests-only.",
+    "canonicalQuestion": "How do I close an SDLC milestone without operator push/publish follow-ups?",
+    "alternateQuestions": [
+      "What command produces DURABLE_COMPLETE with universal multi-lane harvest?"
+    ],
+    "shortAnswer": "After implementation, run orchestrator with clean tree; do not stop at READY or tests-only.",
+    "detailedAnswer": "Authorized milestone through DURABLE_COMPLETE via sdlc:cursor:execute",
+    "retrievalQuestions": [
+      "How do I close an SDLC milestone without operator push/publish follow-ups?",
+      "What command produces DURABLE_COMPLETE with universal multi-lane harvest?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "MILESTONE_WAVE implementation milestone needs durable closeout",
+      "startAt": [
+        "Z:/Capital-Glass-Intelligence-Hub/AI-Cache-Authority/CURRENT/current-ai-cache-release.json",
+        "CG-AppBuilder-MCP/scripts/sdlc-protocol-cursor/run-sdlc-authorized-milestone.mjs"
+      ],
+      "runPreflight": [
+        "npm run agent:index:scout -- --json",
+        "git status --porcelain",
+        "npm run test:sdlc-protocol-cursor"
+      ],
+      "doNot": [
+        "Stop at READY for implementation milestones",
+        "Claim DURABLE_COMPLETE with BLOCK_BASELINE_DIRTY tree",
+        "Skip Cross-Agent handoff when durable closeout required"
+      ],
+      "proveBeforeClaiming": [
+        "npm run sdlc:cursor:execute -- --work-package=<id> --closeout=<path> --json",
+        "receipt.verdict === DURABLE_COMPLETE",
+        "accounting.distinctValidSuppressed === 0"
+      ]
+    },
+    "evidenceRefs": [
+      "CG-AppBuilder-MCP@a26faa49a45697678827aba732a9ac82b00f7a8f",
+      "artifacts/agent-runs/universal-harvest-aperture-and-multilane-intelligence-v1/sdlc-durability-receipt.json"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/seed-packets/IH-SDLC-DURABLE-EXECUTE-001.json"
+    ],
+    "harvestId": "harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1"
+  }
+}

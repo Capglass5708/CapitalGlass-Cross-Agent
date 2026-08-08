@@ -1,0 +1,128 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-SDLC-DURABLE-EXECUTE-001",
+      "questionId": "IHSDLCDURABL",
+      "canonicalQuestion": "How do I close an SDLC milestone without operator push/publish follow-ups?",
+      "alternateQuestions": [
+        "What command produces DURABLE_COMPLETE with universal multi-lane harvest?"
+      ],
+      "shortAnswer": "After implementation, run orchestrator with clean tree; do not stop at READY or tests-only.",
+      "detailedAnswer": "Authorized milestone through DURABLE_COMPLETE via sdlc:cursor:execute",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-08T01:33:19.742Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/seed-packets/IH-SDLC-DURABLE-EXECUTE-001.json"
+      ],
+      "authorityCommit": [
+        "93e91fa"
+      ],
+      "evidenceUrls": [
+        "CG-AppBuilder-MCP@a26faa49a45697678827aba732a9ac82b00f7a8f",
+        "artifacts/agent-runs/universal-harvest-aperture-and-multilane-intelligence-v1/sdlc-durability-receipt.json"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "MILESTONE_WAVE implementation milestone needs durable closeout",
+        "startAt": [
+          "Z:/Capital-Glass-Intelligence-Hub/AI-Cache-Authority/CURRENT/current-ai-cache-release.json",
+          "CG-AppBuilder-MCP/scripts/sdlc-protocol-cursor/run-sdlc-authorized-milestone.mjs"
+        ],
+        "runPreflight": [
+          "npm run agent:index:scout -- --json",
+          "git status --porcelain",
+          "npm run test:sdlc-protocol-cursor"
+        ],
+        "doNot": [
+          "Stop at READY for implementation milestones",
+          "Claim DURABLE_COMPLETE with BLOCK_BASELINE_DIRTY tree",
+          "Skip Cross-Agent handoff when durable closeout required"
+        ],
+        "proveBeforeClaiming": [
+          "npm run sdlc:cursor:execute -- --work-package=<id> --closeout=<path> --json",
+          "receipt.verdict === DURABLE_COMPLETE",
+          "accounting.distinctValidSuppressed === 0"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "runbook"
+    },
+    {
+      "ihPfspId": "IH-Z-DRVFS-PUBLISH-001",
+      "questionId": "IHZDRVFSPUBL",
+      "canonicalQuestion": "Why does Z protocol publish fail with EPERM on WSL?",
+      "alternateQuestions": [
+        "What is the recovery for AI-cache release publish on drvfs?"
+      ],
+      "shortAnswer": "sdlc:cursor:publish-protocol --apply may fail copying to /mnt/z; use cp fallback then promote.",
+      "detailedAnswer": "Z AI-cache publish EPERM on WSL drvfs copyFileSync",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-08T01:33:19.742Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/seed-packets/IH-Z-DRVFS-PUBLISH-001.json"
+      ],
+      "authorityCommit": [
+        "93e91fa"
+      ],
+      "evidenceUrls": [
+        "TE-UH-004",
+        "AI-CACHE-RELEASE-20260806-f83861600831"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "publish-protocol-to-z or union-publish copyFileSync EPERM on /mnt/z",
+        "startAt": [
+          "scripts/ai-cache-z-master/lib/union-publish.mjs",
+          "artifacts/agent-runs/<wp>/z-release-staging"
+        ],
+        "runPreflight": [
+          "test -w /mnt/z/Capital-Glass-Intelligence-Hub/AI-Cache-Authority/releases",
+          "npm run sdlc:cursor:publish-protocol -- --json"
+        ],
+        "doNot": [
+          "Claim Z CURRENT promoted without verifyProtocolAuthority AUTHORITATIVE",
+          "Retry copyFileSync indefinitely on drvfs"
+        ],
+        "proveBeforeClaiming": [
+          "cat Z:/.../CURRENT/current-ai-cache-release.json matches releaseId",
+          "promoteZAiCacheRelease ok: true"
+        ]
+      },
+      "promotionClass": "HUMAN_REVIEW",
+      "kind": "failure-pattern"
+    }
+  ]
+}
