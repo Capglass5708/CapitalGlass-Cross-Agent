@@ -1,0 +1,183 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-direct-connect-three-controller-closeout-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-APPBUILDER-THREE-WAY-PUSH-SENTINEL-001",
+      "questionId": "IHAPPBUILDER",
+      "canonicalQuestion": "Why did AppBuilder feature branch push fail?",
+      "alternateQuestions": [
+        "What env var is required to push feat branches on CG-AppBuilder-MCP?"
+      ],
+      "shortAnswer": "CG-AppBuilder-MCP protected branches block push without THREE_WAY_PUSH_APPROVED=YES sentinel env var.",
+      "detailedAnswer": "AppBuilder feature branches require THREE_WAY_PUSH_APPROVED=YES",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-08T01:23:30.092Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-07-direct-connect-three-controller-closeout-v1/seed-packets/IH-APPBUILDER-THREE-WAY-PUSH-SENTINEL-001.json"
+      ],
+      "authorityCommit": [
+        "f060d4b"
+      ],
+      "evidenceUrls": [
+        "TE-006",
+        "CG-AppBuilder-MCP@388a595b75ef77cdc2aa638a4a030d822dd8c98b",
+        "PR #290"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-07-direct-connect-three-controller-closeout-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Pushing AppBuilder MCP feature branch for cross-repo milestone",
+        "startAt": [
+          "docs/handoff/CURRENT.md",
+          "3-way push sentinel docs"
+        ],
+        "runPreflight": [
+          "npm run closeout:gate"
+        ],
+        "doNot": [
+          "git push without THREE_WAY_PUSH_APPROVED=YES on protected AppBuilder branches"
+        ],
+        "proveBeforeClaiming": [
+          "Remote push exit 0 with sentinel acknowledgment in output"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "lesson"
+    },
+    {
+      "ihPfspId": "IH-DIRECT-CONNECT-WESLEYWORK-POWERSHELL-LIVE-001",
+      "questionId": "IHDIRECTCONN",
+      "canonicalQuestion": "How do I prove 6/6 direct connect mesh admin connectivity?",
+      "alternateQuestions": [
+        "Where do I run Invoke-CgDirectConnectControllerFailoverLiveCloseout?"
+      ],
+      "shortAnswer": "Six-direction mesh and controller failover proofs require Windows PowerShell on CG-WESLEYWORK-01 with clean main checkout — not WSL ssh.",
+      "detailedAnswer": "Direct Connect mesh and controller live closeout from WESLEY_WORK PowerShell",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-08T01:23:30.093Z",
+      "authorityRepo": "CapitalGlass-Office-Admin",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-07-direct-connect-three-controller-closeout-v1/seed-packets/IH-DIRECT-CONNECT-WESLEYWORK-POWERSHELL-LIVE-001.json"
+      ],
+      "authorityCommit": [
+        "f060d4b"
+      ],
+      "evidenceUrls": [
+        "TE-007",
+        "CapitalGlass-Office-Admin/artifacts/.../mesh-live-closeout-summary.json",
+        "CapitalGlass-Office-Admin@857dca2bcc954f457a60526110a8d5f39807da12"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-07-direct-connect-three-controller-closeout-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Office-Admin"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Direct connect milestone needs live mesh or controller proof",
+        "startAt": [
+          "scripts/devices/CG-WESLEYWORK-01/Invoke-CgDirectConnectThreeNodeMeshLiveCloseout.ps1",
+          "BY-KIND/host-authority.json"
+        ],
+        "runPreflight": [
+          "npm run agent:index:scout -- --json"
+        ],
+        "doNot": [
+          "Run live SSH mesh proofs from WSL",
+          "Use C:\\Developer\\repos stale NTFS checkout",
+          "Claim OPERATIONAL without post-merge re-proof on canonical main SHA"
+        ],
+        "proveBeforeClaiming": [
+          "connectivity/mesh-live-closeout-summary.json verdict PASS 6/6",
+          "controller/controller-live-closeout-summary.json verdict PASS"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "runbook"
+    },
+    {
+      "ihPfspId": "IH-OFFICE-ADMIN-KNOWLEDGE-INDEX-CLEAN-CHECKOUT-001",
+      "questionId": "IHOFFICEADMI",
+      "canonicalQuestion": "Why does Office Admin deploy:gate fail on mcp/knowledge-index/manifest.json in CI?",
+      "alternateQuestions": [
+        "How do I refresh knowledge index with CI parity before push?"
+      ],
+      "shortAnswer": "ops:refresh-knowledge-index on WSL with untracked docs breaks CI deploy:gate validate-knowledge-index; use git bundle clean clone.",
+      "detailedAnswer": "Office Admin knowledge-index must refresh from clean git checkout only",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-08T01:23:30.093Z",
+      "authorityRepo": "CapitalGlass-Office-Admin",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-07-direct-connect-three-controller-closeout-v1/seed-packets/IH-OFFICE-ADMIN-KNOWLEDGE-INDEX-CLEAN-CHECKOUT-001.json"
+      ],
+      "authorityCommit": [
+        "f060d4b"
+      ],
+      "evidenceUrls": [
+        "TE-004",
+        "TE-005",
+        "CapitalGlass-Office-Admin@f30c7bd3fdb2fa47f69cabe7e02a554c787c5517"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "command",
+        "harvest-2026-08-07-direct-connect-three-controller-closeout-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Office-Admin"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Office Admin CI fails validate-knowledge-index after manifest refresh",
+        "startAt": [
+          "mcp/knowledge-index/manifest.json",
+          "scripts/ops/refresh-knowledge-index.mjs"
+        ],
+        "runPreflight": [
+          "npm run agent:index:scout -- --json"
+        ],
+        "doNot": [
+          "Run ops:refresh-knowledge-index on WSL tree with untracked docs",
+          "Claim deploy:gate PASS from WSL when Windows live vault required"
+        ],
+        "proveBeforeClaiming": [
+          "node scripts/ops/validate-knowledge-index.mjs on clean checkout",
+          "doc count matches CI runner"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "command"
+    }
+  ]
+}

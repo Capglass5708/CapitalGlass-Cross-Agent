@@ -1,0 +1,75 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-appbuilder-three-way-push-sentinel-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "f060d4bfb86ba5d8eea8977e90a80435cbce253b",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-07-direct-connect-three-controller-closeout-v1",
+      "seedId": "IH-APPBUILDER-THREE-WAY-PUSH-SENTINEL-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-08T01:23:30.095Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "f494b8b55cf4ad1ca803494c82e741671cf2166f9a4559ca8ae960b01890f9c0"
+  },
+  "body": {
+    "seedId": "IH-APPBUILDER-THREE-WAY-PUSH-SENTINEL-001",
+    "kind": "lesson",
+    "title": "AppBuilder feature branches require THREE_WAY_PUSH_APPROVED=YES",
+    "summary": "CG-AppBuilder-MCP protected branches block push without THREE_WAY_PUSH_APPROVED=YES sentinel env var.",
+    "canonicalQuestion": "Why did AppBuilder feature branch push fail?",
+    "alternateQuestions": [
+      "What env var is required to push feat branches on CG-AppBuilder-MCP?"
+    ],
+    "shortAnswer": "CG-AppBuilder-MCP protected branches block push without THREE_WAY_PUSH_APPROVED=YES sentinel env var.",
+    "detailedAnswer": "AppBuilder feature branches require THREE_WAY_PUSH_APPROVED=YES",
+    "retrievalQuestions": [
+      "Why did AppBuilder feature branch push fail?",
+      "What env var is required to push feat branches on CG-AppBuilder-MCP?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Pushing AppBuilder MCP feature branch for cross-repo milestone",
+      "startAt": [
+        "docs/handoff/CURRENT.md",
+        "3-way push sentinel docs"
+      ],
+      "runPreflight": [
+        "npm run closeout:gate"
+      ],
+      "doNot": [
+        "git push without THREE_WAY_PUSH_APPROVED=YES on protected AppBuilder branches"
+      ],
+      "proveBeforeClaiming": [
+        "Remote push exit 0 with sentinel acknowledgment in output"
+      ]
+    },
+    "evidenceRefs": [
+      "TE-006",
+      "CG-AppBuilder-MCP@388a595b75ef77cdc2aa638a4a030d822dd8c98b",
+      "PR #290"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": 3,
+    "doNotAdvance": [],
+    "promotionClass": "AUTOMATIC",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-07-direct-connect-three-controller-closeout-v1/seed-packets/IH-APPBUILDER-THREE-WAY-PUSH-SENTINEL-001.json"
+    ],
+    "harvestId": "harvest-2026-08-07-direct-connect-three-controller-closeout-v1"
+  }
+}

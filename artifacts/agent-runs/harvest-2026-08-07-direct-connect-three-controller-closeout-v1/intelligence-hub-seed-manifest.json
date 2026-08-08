@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "cross-agent-harvest-seed-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-direct-connect-three-controller-closeout-v1",
+  "subject": "direct-connect-three-controller-topology-wesleydesk-completion-v1 OPERATIONAL/CLOSED",
+  "tier": "T2",
+  "seedRecordCount": 3,
+  "retrievalQuestions": [
+    {
+      "retrievalId": "RQ01",
+      "seedId": "IH-APPBUILDER-THREE-WAY-PUSH-SENTINEL-001",
+      "query": "Why did AppBuilder feature branch push fail?"
+    },
+    {
+      "retrievalId": "RQ02",
+      "seedId": "IH-APPBUILDER-THREE-WAY-PUSH-SENTINEL-001",
+      "query": "What env var is required to push feat branches on CG-AppBuilder-MCP?"
+    },
+    {
+      "retrievalId": "RQ11",
+      "seedId": "IH-DIRECT-CONNECT-WESLEYWORK-POWERSHELL-LIVE-001",
+      "query": "How do I prove 6/6 direct connect mesh admin connectivity?"
+    },
+    {
+      "retrievalId": "RQ12",
+      "seedId": "IH-DIRECT-CONNECT-WESLEYWORK-POWERSHELL-LIVE-001",
+      "query": "Where do I run Invoke-CgDirectConnectControllerFailoverLiveCloseout?"
+    },
+    {
+      "retrievalId": "RQ21",
+      "seedId": "IH-OFFICE-ADMIN-KNOWLEDGE-INDEX-CLEAN-CHECKOUT-001",
+      "query": "Why does Office Admin deploy:gate fail on mcp/knowledge-index/manifest.json in CI?"
+    },
+    {
+      "retrievalId": "RQ22",
+      "seedId": "IH-OFFICE-ADMIN-KNOWLEDGE-INDEX-CLEAN-CHECKOUT-001",
+      "query": "How do I refresh knowledge index with CI parity before push?"
+    }
+  ],
+  "roiTop3": [
+    {
+      "rank": 1,
+      "title": "Clean-checkout knowledge-index refresh gate before Office Admin push",
+      "seedId": "IH-OFFICE-ADMIN-KNOWLEDGE-INDEX-CLEAN-CHECKOUT-001"
+    },
+    {
+      "rank": 2,
+      "title": "Document WESLEY_WORK Windows-only deploy:gate lane for Office Admin",
+      "seedId": "IH-DIRECT-CONNECT-WESLEYWORK-POWERSHELL-LIVE-001"
+    },
+    {
+      "rank": 3,
+      "title": "Multi-wave terminal execution package with gate checklist",
+      "seedId": "IH-APPBUILDER-THREE-WAY-PUSH-SENTINEL-001"
+    }
+  ],
+  "byKindSlice": "00-master-index/BY-KIND/thread-autopsy-index.json",
+  "catalogRoot": "02-catalog/knowledge-objects/cross-agent-harvest"
+}
