@@ -1,0 +1,297 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-08-asg-thread-continuation-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "fb423d2ffff47397978f50c413c586454758cd30",
+  "sourceBranch": "main",
+  "sourceRepo": "CG-AppBuilder-MCP",
+  "createdAt": "2026-08-08T00:12:00.000Z",
+  "updatedAt": "2026-08-08T00:12:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "priorHarvestId": "harvest-2026-08-07-asg-ge-wave-closeout-v1",
+  "doNotAdvance": [
+    "Claim systemsGoVerdict GO while git-parity DIRTY_WORKTREE",
+    "Claim ALL_SYSTEMS_GO_ALWAYS_WORKS_V1 — CLOSED",
+    "Run index:publish or harvest:publish-hub-seed from Cursor"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-08-asg-thread-continuation-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-08-asg-thread-continuation-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 3,
+      "seeds": 1,
+      "roiItems": 3,
+      "operatorFriction": 1,
+      "executionDeltas": 1
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Operator runs harvest:publish-hub-seed + index:publish — NOT_RUN_BY_CURSOR"
+  },
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "1.1.0",
+    "eligibleCandidates": 0,
+    "rejectedUnrelatedCandidates": 0,
+    "exportStatus": "not-run",
+    "dataExtractionStatus": "not-run",
+    "catalogPublishStatus": "not-run",
+    "retrievalStatus": "not-run",
+    "targetCatalog": "L:\\02-catalog\\Harvest\\Harvest Protocol Self Learning",
+    "authorityStatus": "PROPOSAL",
+    "automaticProtocolMutation": false
+  },
+  "relatedRepos": [
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "main",
+      "role": "harvest authority + prior bundle harvest-2026-08-07-asg-ge-wave-closeout-v1"
+    }
+  ],
+  "packets": [
+    {
+      "packetKind": "decision",
+      "packetId": "asg-warn-correct-for-dirty-tree-v1",
+      "packetTitle": "ASG WARN on dirty worktree is correct — not a regression",
+      "state": "COMPLETE",
+      "packetVerdict": "EXPECTED_WARN",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-08-asg-thread-continuation-v1.md",
+      "nextAction": "Clean tree or commit session artifacts then re-run ASG",
+      "advancementGate": "git status --short empty",
+      "doNotAdvance": [
+        "systemsGoVerdict GO"
+      ],
+      "evidenceRefs": [
+        "TE-004",
+        "377e6da2"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@fb423d2ffff47397978f50c413c586454758cd30"
+      ],
+      "blockers": [],
+      "decision": "WARN is truthful; preflight PASS does not override git-parity",
+      "alternativesRejected": [
+        "Treat WARN as ASG broken"
+      ]
+    },
+    {
+      "packetKind": "outcome",
+      "packetId": "asg-routine-run-outcome-v1",
+      "packetTitle": "Operator ASG run 377e6da2 — WARN with preflight PASS",
+      "state": "COMPLETE",
+      "packetVerdict": "PROVEN_EFFECTIVE",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-08-asg-thread-continuation-v1.md",
+      "nextAction": "git pull + clean tree + re-run for GO",
+      "advancementGate": "systemsGoVerdict GO",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-004"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@fb423d2ffff47397978f50c413c586454758cd30"
+      ],
+      "blockers": [],
+      "changeImplemented": "Routine observe-only ASG on session-dirty tree",
+      "beforeState": "Unknown parity without run",
+      "afterState": "WARN + causal git-parity evidence; zeroWritesProven true",
+      "measurement": "systemsGoVerdict WARN; preflightVerdict PASS",
+      "expectedEffect": "Causal verdict not false GO",
+      "observedEffect": "WARN as designed",
+      "residuals": [
+        "52 dirty paths",
+        "1 behind origin/main"
+      ],
+      "regressions": [],
+      "effectiveness": "PROVEN_EFFECTIVE"
+    },
+    {
+      "packetKind": "blocker",
+      "packetId": "wesleywork-dirty-worktree-v1",
+      "packetTitle": "CG-AppBuilder-MCP dirty worktree blocks GO",
+      "state": "ACTIVE",
+      "packetVerdict": "EXPECTED_BLOCK",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-08-asg-thread-continuation-v1.md",
+      "nextAction": "Commit or stash ~52 modified paths",
+      "advancementGate": "git status --short empty",
+      "doNotAdvance": [
+        "systemsGoVerdict GO"
+      ],
+      "evidenceRefs": [
+        "TE-004",
+        "git-parity:dirty-worktree:WESLEY_WORK"
+      ],
+      "commitRefs": [],
+      "blockers": [
+        "DIRTY_WORKTREE ~52 files"
+      ],
+      "blockerId": "git-parity-dirty-worktree",
+      "status": "OPEN",
+      "proofCommandId": "git status --short"
+    },
+    {
+      "packetKind": "evidence",
+      "packetId": "asg-receipt-377e6da2-v1",
+      "packetTitle": "ASG dark-runner receipt WARN @ fb423d2",
+      "state": "COMPLETE",
+      "packetVerdict": "VERIFIED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-08-asg-thread-continuation-v1.md",
+      "nextAction": "None",
+      "advancementGate": "receipt exists",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "artifacts/agent-runs/ultimate-sdlc-runner-dark-package-v1/377e6da2-0619-46b7-8d40-9718e2e96503/dark-runner-receipt.json"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "type": "receipt",
+      "pathOrSha": "377e6da2-0619-46b7-8d40-9718e2e96503",
+      "provesWhat": "ASG WARN on dirty tree with preflight PASS"
+    },
+    {
+      "packetKind": "command",
+      "packetId": "asg-go-recovery-commands-v1",
+      "packetTitle": "Recover GO from WARN — pull, clean, re-run",
+      "state": "COMPLETE",
+      "packetVerdict": "DOCUMENTED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-08-asg-thread-continuation-v1.md",
+      "nextAction": "Operator runs recovery chain",
+      "advancementGate": "systemsGoVerdict GO",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "ED-001",
+        "IH-ASG-GIT-PARITY-WARN-001"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "command": "git pull origin main && test -z \"$(git status --short)\" && npm run all-systems-go -- --json",
+      "host": "CG-RYZEN9DESK-01 WSL",
+      "provesGate": "systemsGoVerdict GO",
+      "expectedPassSignal": "systemsGoVerdict GO in JSON receipt"
+    },
+    {
+      "packetKind": "faster_path",
+      "packetId": "check-git-before-asg-v1",
+      "packetTitle": "Check git parity before invoking ASG",
+      "state": "COMPLETE",
+      "packetVerdict": "CLASSIFIED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-08-asg-thread-continuation-v1.md",
+      "nextAction": "Add to ALL_SYSTEMS_GO_RUNBOOK operator checklist",
+      "advancementGate": "documented",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "ED-001",
+        "TW-001"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "situation": "Operator requests RUN ALL SYSTEMS GO",
+      "whatHappened": "ASG ran immediately on dirty tree",
+      "rightFirstMove": "git status --short && behind/ahead check",
+      "requiredGuard": "empty worktree or explicit operator waive"
+    },
+    {
+      "packetKind": "repeated_work",
+      "packetId": "harvest-protocol-second-pass-v1",
+      "packetTitle": "Full harvest protocol run twice in one thread",
+      "state": "COMPLETE",
+      "packetVerdict": "DUPLICATE_AVOIDED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-08-asg-thread-continuation-v1.md",
+      "nextAction": "Use continuation harvest ID for mid-session deltas",
+      "advancementGate": "harvest:validate PASS",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "DW-001",
+        "harvest-2026-08-07-asg-ge-wave-closeout-v1"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "duplicateId": "DW-001",
+      "firstKnownInstance": "harvest-2026-08-07-asg-ge-wave-closeout-v1",
+      "priorIndexSlice": "thread-autopsy-index.json",
+      "whyMissed": "ASG event after first harvest"
+    },
+    {
+      "packetKind": "protocol_upgrade",
+      "packetId": "asg-operator-git-preflight-v1",
+      "packetTitle": "Operator git preflight before routine ASG",
+      "state": "COMPLETE",
+      "packetVerdict": "DOCUMENTED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-08-asg-thread-continuation-v1.md",
+      "nextAction": "Promote seed IH-ASG-GIT-PARITY-WARN-001",
+      "advancementGate": "harvest:validate PASS",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "L:/02-catalog/Harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md",
+        "TE-004"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "seedAs": "runbook",
+      "promotionClass": "POLICY_GATED",
+      "futureAgentInstructions": {
+        "whenThisAppears": "RUN ALL SYSTEMS GO operator request",
+        "startAt": [
+          "git status --short"
+        ],
+        "runPreflight": [
+          "git rev-list --left-right --count HEAD...origin/main"
+        ],
+        "doNot": [
+          "Run ASG on dirty tree without warning operator"
+        ],
+        "proveBeforeClaiming": [
+          "systemsGoVerdict GO"
+        ]
+      }
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": null,
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 6,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 6,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-7d7e2fc09683",
+      "prompt-candidate-5f1cf24ba4e3",
+      "prompt-candidate-25876c23480a",
+      "prompt-candidate-2f8441e6a35e",
+      "prompt-candidate-90aa2bacfd8b",
+      "prompt-candidate-81d68553f397"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

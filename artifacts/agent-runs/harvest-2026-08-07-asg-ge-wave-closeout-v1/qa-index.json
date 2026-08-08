@@ -1,0 +1,187 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-asg-ge-wave-closeout-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-ASG-FORMAL-PROOF-GIT-CLEAN-001",
+      "questionId": "IHASGFORMALP",
+      "canonicalQuestion": "Why does ASG return WARN instead of GO during wave closeout?",
+      "alternateQuestions": [
+        "What git state is required before formal ASG proof?"
+      ],
+      "shortAnswer": "all-systems-go --formal-proof on dirty worktree returns WARN from git-parity lane, not GO — wave acceptance needs clean tree before RUN1/RUN2.",
+      "detailedAnswer": "Formal ASG proof requires clean git worktree",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-07T20:51:05.744Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-07-asg-ge-wave-closeout-v1/seed-packets/IH-ASG-FORMAL-PROOF-GIT-CLEAN-001.json"
+      ],
+      "authorityCommit": [
+        "a082553"
+      ],
+      "evidenceUrls": [
+        "CG-AppBuilder-MCP@a84d1ae747d7905c8dd74726846da3decb322e2e",
+        "TE-010",
+        "ED-001"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-07-asg-ge-wave-closeout-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Wave closeout requires ASG RUN1/RUN2 GO",
+        "startAt": [
+          "docs/work-packages/all-systems-go-always-works-v1.md",
+          "artifacts/agent-runs/all-systems-go-always-works-v1/wave-ge-closeout-v1.json"
+        ],
+        "runPreflight": [
+          "git status --short",
+          "npm run agent:preflight:app-builder-mcp"
+        ],
+        "doNot": [
+          "Write closeout artifacts before formal proof",
+          "Treat WARN as wave acceptance"
+        ],
+        "proveBeforeClaiming": [
+          "git status --short empty",
+          "systemsGoVerdict GO twice with formalProof true"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-ASG-WSL-MCP-TOPOLOGY-001",
+      "questionId": "IHASGWSLMCPT",
+      "canonicalQuestion": "How does ASG find MCP endpoint from WSL?",
+      "alternateQuestions": [
+        "Why should MCP_API_URL not be set manually for routine ASG?"
+      ],
+      "shortAnswer": "ASG and guard:mcp-runtime-freshness use asg-topology-resolve.mjs with cursor-wsl.env to reach Windows host MCP on supported Ryzen desk topology.",
+      "detailedAnswer": "WSL resolves Windows MCP without manual MCP_API_URL",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-07T20:51:05.744Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-07-asg-ge-wave-closeout-v1/seed-packets/IH-ASG-WSL-MCP-TOPOLOGY-001.json"
+      ],
+      "authorityCommit": [
+        "a082553"
+      ],
+      "evidenceUrls": [
+        "scripts/ultimate-sdlc-runner/lib/asg-topology-resolve.mjs",
+        "TE-010",
+        "SP-002"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-07-asg-ge-wave-closeout-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "ASG BLOCKED on MCP topology or stale runtime",
+        "startAt": [
+          "~/.config/capital-glass/cursor-wsl.env",
+          "scripts/wsl/machines/ryzen9desk.machine.json"
+        ],
+        "runPreflight": [
+          "source ~/.config/capital-glass/cursor-wsl.env",
+          "npm run guard:mcp-runtime-freshness"
+        ],
+        "doNot": [
+          "Hard-code transient WSL gateway IPs in ASG",
+          "Export MCP_API_URL manually unless debugging"
+        ],
+        "proveBeforeClaiming": [
+          "evidenceEnvelope.mcpEndpointResolutionMethod explicit-env-or-cursor-wsl-env",
+          "mcpRuntimeOwner WINDOWS_HOST"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "runbook"
+    },
+    {
+      "ihPfspId": "IH-DOCUMENT-OCR-CONTRACT-M4PDS-001",
+      "questionId": "IHDOCUMENTOC",
+      "canonicalQuestion": "Why does agent:preflight BLOCK on mcp:contract-audit after Documents refactor?",
+      "alternateQuestions": [
+        "What fixes DOCUMENT_CENTER_OCR_AUTHORITY_DRIFT in contract audit?"
+      ],
+      "shortAnswer": "After M4PDS processingSourceAuthority refactor, mcp:contract-audit fails on SharePoint-specific symbol checks until enforcement accepts assertProcessingSourceAuthority and pickProcessingStorageLocation.",
+      "detailedAnswer": "Document Layer contract audit drifts when OCR authority refactors",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-07T20:51:05.744Z",
+      "authorityRepo": "CapitalGlass-Documents",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-07-asg-ge-wave-closeout-v1/seed-packets/IH-DOCUMENT-OCR-CONTRACT-M4PDS-001.json"
+      ],
+      "authorityCommit": [
+        "a082553"
+      ],
+      "evidenceUrls": [
+        "TE-008",
+        "TE-009",
+        "CapitalGlass-Documents/scripts/lib/mcp-document-contract-enforcement.mjs"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-07-asg-ge-wave-closeout-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Documents"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "futureAgentInstructions": {
+        "whenThisAppears": "mcp:contract-audit DOCUMENT_CENTER_OCR_AUTHORITY_DRIFT",
+        "startAt": [
+          "CapitalGlass-Documents/scripts/lib/mcp-document-contract-enforcement.mjs",
+          "CapitalGlass-Documents/api/lib/document-ocr-jobs.ts"
+        ],
+        "runPreflight": [
+          "npm run mcp:contract-audit",
+          "npm run agent:preflight:app-builder-mcp"
+        ],
+        "doNot": [
+          "Disable mcp:contract-audit in preflight",
+          "Assume SharePoint-only symbol names after M4PDS"
+        ],
+        "proveBeforeClaiming": [
+          "mcp:contract-audit exit 0",
+          "preflight verdict PASS or PASS_WITH_WARNINGS"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    }
+  ]
+}

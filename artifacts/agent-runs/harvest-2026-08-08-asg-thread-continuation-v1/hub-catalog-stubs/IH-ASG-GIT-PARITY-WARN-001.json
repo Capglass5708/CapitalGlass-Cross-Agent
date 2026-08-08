@@ -1,0 +1,79 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-asg-git-parity-warn-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "a082553e210c4606d8efca321bdbead847c8ab62",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-08-asg-thread-continuation-v1",
+      "seedId": "IH-ASG-GIT-PARITY-WARN-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-08T00:12:04.169Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "critical",
+    "contentHash": "a777c0a6bca77d5b4edda65d83088448c20970fd19943bd86f98280ec1ce6658"
+  },
+  "body": {
+    "seedId": "IH-ASG-GIT-PARITY-WARN-001",
+    "kind": "failure-pattern",
+    "title": "Routine ASG on dirty worktree returns WARN not GO",
+    "summary": "npm run all-systems-go on WESLEY_WORK with uncommitted changes triggers git-parity DIRTY_WORKTREE WARN even when preflight PASS.",
+    "canonicalQuestion": "Why did all-systems-go return WARN when preflight passed?",
+    "alternateQuestions": [
+      "What must be true for systemsGoVerdict GO on Ryzen desk?"
+    ],
+    "shortAnswer": "npm run all-systems-go on WESLEY_WORK with uncommitted changes triggers git-parity DIRTY_WORKTREE WARN even when preflight PASS.",
+    "detailedAnswer": "Routine ASG on dirty worktree returns WARN not GO",
+    "retrievalQuestions": [
+      "Why did all-systems-go return WARN when preflight passed?",
+      "What must be true for systemsGoVerdict GO on Ryzen desk?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Operator runs all-systems-go and gets WARN",
+      "startAt": [
+        "git status --short",
+        "runtime/agent-preflight/app-builder-mcp/latest.json"
+      ],
+      "runPreflight": [
+        "git rev-list --left-right --count HEAD...origin/main"
+      ],
+      "doNot": [
+        "Claim GO when git-parity lane is WARN",
+        "Reset dirty tree without operator approval"
+      ],
+      "proveBeforeClaiming": [
+        "git status --short empty",
+        "systemsGoVerdict GO in receipt JSON"
+      ]
+    },
+    "evidenceRefs": [
+      "CG-AppBuilder-MCP@fb423d2ffff47397978f50c413c586454758cd30",
+      "377e6da2-0619-46b7-8d40-9718e2e96503",
+      "TE-004"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [
+      "TW-001"
+    ],
+    "operatorFrictionIds": [],
+    "roiRank": 1,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-08-asg-thread-continuation-v1/seed-packets/IH-ASG-GIT-PARITY-WARN-001.json"
+    ],
+    "harvestId": "harvest-2026-08-08-asg-thread-continuation-v1"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-CHATGPT-GIT-GATE-001",
+  "kind": "runbook",
+  "title": "CHATGPT_HARVEST_GIT_GATE mandatory closeout",
+  "summary": "ChatGPT DRAFT_FILE closeout requires push to chat-gpt-harvest with remote SHA verification before CHATGPT_SOURCE_PUBLISHED.",
+  "retrievalQuestions": [
+    "What gate must ChatGPT pass before Cursor ingest?",
+    "When can ChatGPT claim CHATGPT_SOURCE_PUBLISHED?"
+  ],
+  "evidenceRefs": [
+    "harvest/protocol/CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md",
+    "commit bf3952e",
+    "EVT-003"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "ChatGPT harvest closeout on chat-gpt-harvest branch",
+    "startAt": ["harvest/protocol/CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md"],
+    "runPreflight": ["Verify gitPublicationReceipt remoteVerified true"],
+    "doNot": ["claim HARVEST_COMPLETE", "hand off without SHA receipt"],
+    "proveBeforeClaiming": ["CHATGPT_HARVEST_GIT_GATE PASS"]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

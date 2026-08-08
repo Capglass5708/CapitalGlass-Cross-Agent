@@ -1,0 +1,233 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-chatgpt-git-publication-restoration-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-CHATGPT-GIT-GATE-001",
+      "questionId": "IHCHATGPTGIT",
+      "canonicalQuestion": "What gate must ChatGPT pass before Cursor ingest?",
+      "alternateQuestions": [
+        "When can ChatGPT claim CHATGPT_SOURCE_PUBLISHED?"
+      ],
+      "shortAnswer": "ChatGPT DRAFT_FILE closeout requires push to chat-gpt-harvest with remote SHA verification before CHATGPT_SOURCE_PUBLISHED.",
+      "detailedAnswer": "CHATGPT_HARVEST_GIT_GATE mandatory closeout",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-08T00:12:01.707Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/seed-packets/IH-CHATGPT-GIT-GATE-001.json"
+      ],
+      "authorityCommit": [
+        "a082553"
+      ],
+      "evidenceUrls": [
+        "harvest/protocol/CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md",
+        "commit bf3952e",
+        "EVT-003"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-07-chatgpt-git-publication-restoration-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "ChatGPT harvest closeout on chat-gpt-harvest branch",
+        "startAt": [
+          "harvest/protocol/CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md"
+        ],
+        "runPreflight": [
+          "Verify gitPublicationReceipt remoteVerified true"
+        ],
+        "doNot": [
+          "claim HARVEST_COMPLETE",
+          "hand off without SHA receipt"
+        ],
+        "proveBeforeClaiming": [
+          "CHATGPT_HARVEST_GIT_GATE PASS"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "runbook"
+    },
+    {
+      "ihPfspId": "IH-GH-WORKFLOW-SCOPE-001",
+      "questionId": "IHGHWORKFLOW",
+      "canonicalQuestion": "Why was git push rejected for chatgpt-harvest-move-to-l.yml?",
+      "alternateQuestions": [
+        "How do I add workflow scope to gh?"
+      ],
+      "shortAnswer": "git push to main with new .github/workflows/* requires gh OAuth workflow scope.",
+      "detailedAnswer": "Grant workflow scope before pushing GitHub Actions YAML",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-08T00:12:01.707Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/seed-packets/IH-GH-WORKFLOW-SCOPE-001.json"
+      ],
+      "authorityCommit": [
+        "a082553"
+      ],
+      "evidenceUrls": [
+        "EVT-005",
+        "EVT-007"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-07-chatgpt-git-publication-restoration-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Push includes .github/workflows changes",
+        "startAt": [
+          "gh auth status -h github.com"
+        ],
+        "runPreflight": [
+          "gh auth refresh -h github.com -s workflow --clipboard"
+        ],
+        "doNot": [
+          "retry push without workflow scope"
+        ],
+        "proveBeforeClaiming": [
+          "gh auth status lists workflow"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "runbook"
+    },
+    {
+      "ihPfspId": "IH-LIVE-PILOT-CHAIN-001",
+      "questionId": "IHLIVEPILOTC",
+      "canonicalQuestion": "What steps prove ChatGPT harvest restoration is operational?",
+      "alternateQuestions": [
+        "When can restoration milestone become CLOSED_GO?"
+      ],
+      "shortAnswer": "After GIT_AUTHORITY_PASS, prove ChatGPT push → Action → L staging → Cursor ingest → validate before CLOSED_GO.",
+      "detailedAnswer": "ChatGPT restoration live pilot chain",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-08T00:12:01.707Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/seed-packets/IH-LIVE-PILOT-CHAIN-001.json"
+      ],
+      "authorityCommit": [
+        "a082553"
+      ],
+      "evidenceUrls": [
+        "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md",
+        "EVT-008"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-07-chatgpt-git-publication-restoration-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "GIT_AUTHORITY_PASS / LIVE_PILOT_PENDING milestone",
+        "startAt": [
+          "CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md v2"
+        ],
+        "runPreflight": [
+          "ChatGPT CHATGPT_SOURCE_PUBLISHED",
+          "npm run harvest:ingest-chatgpt-findings",
+          "npm run harvest:validate"
+        ],
+        "doNot": [
+          "claim CLOSED_GO without pilot validate PASS"
+        ],
+        "proveBeforeClaiming": [
+          "harvest:validate PASS on pilot harvest-id"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "runbook"
+    },
+    {
+      "ihPfspId": "IH-PROTOCOL-PROMOTION-DRIFT-001",
+      "questionId": "IHPROTOCOLPR",
+      "canonicalQuestion": "Why did ChatGPT stop pushing harvest findings?",
+      "alternateQuestions": [
+        "What makes a harvest protocol operational?"
+      ],
+      "shortAnswer": "chat-gpt-harvest branch protocol text does not define operator behavior until merged to main and mirrored to Z/L.",
+      "detailedAnswer": "ChatGPT protocol on branch is not operational until promoted to main",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-08T00:12:01.707Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/seed-packets/IH-PROTOCOL-PROMOTION-DRIFT-001.json"
+      ],
+      "authorityCommit": [
+        "a082553"
+      ],
+      "evidenceUrls": [
+        "EVT-002",
+        "feaab57 not on main",
+        "L mirror from z-mirror"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-07-chatgpt-git-publication-restoration-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Split behavior between branch protocol and L/Z copies",
+        "startAt": [
+          "harvest/protocol/CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md"
+        ],
+        "runPreflight": [
+          "git rev-parse origin/main",
+          "npm run harvest:sync-z-mirror"
+        ],
+        "doNot": [
+          "treat chat-gpt-harvest branch docs as authority"
+        ],
+        "proveBeforeClaiming": [
+          "main SHA contains protocol + consistency test PASS"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "lesson"
+    }
+  ]
+}

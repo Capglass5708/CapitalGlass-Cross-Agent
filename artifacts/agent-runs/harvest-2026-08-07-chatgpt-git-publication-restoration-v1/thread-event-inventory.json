@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "cross-agent-thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-chatgpt-git-publication-restoration-v1",
+  "events": [
+    {
+      "eventId": "EVT-001",
+      "description": "User asked why CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1 no longer pushes findings to git",
+      "actor": "user",
+      "evidenceRefs": ["L:\\02-catalog\\Harvest\\protocol\\CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md"],
+      "stateChange": "Investigation opened"
+    },
+    {
+      "eventId": "EVT-002",
+      "description": "Diagnosed protocol promotion drift: chat-gpt-harvest lane proven on branch, never merged to main; L mirrored weaker draft-only protocol",
+      "actor": "cursor",
+      "evidenceRefs": ["git log feaab57/749f617 not on main", "66542dd on main"],
+      "stateChange": "Root cause: split estate not execution failure"
+    },
+    {
+      "eventId": "EVT-003",
+      "description": "User specified v2 contract: CHATGPT_HARVEST_GIT_GATE, three verdict stages, DRAFT_FILE write boundary",
+      "actor": "user",
+      "evidenceRefs": ["chat: deterministic contract design"],
+      "stateChange": "Restoration scope defined"
+    },
+    {
+      "eventId": "EVT-004",
+      "description": "Implemented restoration wave: v2 protocols, shared contract, workflow, scripts, consistency test; commit bf3952e",
+      "actor": "cursor",
+      "evidenceRefs": [
+        "bf3952e58c500036e11d8f42d810df3c2a7314af",
+        "21 files in commit"
+      ],
+      "stateChange": "IMPLEMENTED_LOCAL"
+    },
+    {
+      "eventId": "EVT-005",
+      "description": "git push rejected: OAuth missing workflow scope for Actions file",
+      "actor": "system",
+      "evidenceRefs": ["remote rejected chatgpt-harvest-move-to-l.yml"],
+      "stateChange": "BLOCKED_GIT_AUTH_SCOPE"
+    },
+    {
+      "eventId": "EVT-006",
+      "description": "gh auth refresh device flow timeouts before operator completed browser step",
+      "actor": "system",
+      "evidenceRefs": ["context deadline exceeded x2"],
+      "stateChange": "Auth still blocked"
+    },
+    {
+      "eventId": "EVT-007",
+      "description": "gh auth refresh with workflow scope succeeded; git push main; HEAD and origin/main aligned at bf3952e",
+      "actor": "operator",
+      "evidenceRefs": ["gh scopes include workflow", "git push origin main"],
+      "stateChange": "GIT_AUTHORITY_PASS"
+    },
+    {
+      "eventId": "EVT-008",
+      "description": "Session closeout recorded HOLD; live pilot pending",
+      "actor": "cursor",
+      "evidenceRefs": ["session-closeout-v3.2.json"],
+      "stateChange": "LIVE_PILOT_PENDING"
+    },
+    {
+      "eventId": "EVT-009",
+      "description": "User invoked CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1 Cursor protocol for this thread",
+      "actor": "user",
+      "evidenceRefs": ["L:\\02-catalog\\Harvest\\protocol\\CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md RUN FILE"],
+      "stateChange": "T2 Cursor harvest recording"
+    }
+  ]
+}

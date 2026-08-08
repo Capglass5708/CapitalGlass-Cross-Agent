@@ -1,0 +1,78 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-asg-wsl-mcp-topology-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "a082553e210c4606d8efca321bdbead847c8ab62",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-07-asg-ge-wave-closeout-v1",
+      "seedId": "IH-ASG-WSL-MCP-TOPOLOGY-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-07T20:51:05.744Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "340f1f617105b3ee074cb316ef599a4c2ac24b9670c459df20c38234b28c0761"
+  },
+  "body": {
+    "seedId": "IH-ASG-WSL-MCP-TOPOLOGY-001",
+    "kind": "runbook",
+    "title": "WSL resolves Windows MCP without manual MCP_API_URL",
+    "summary": "ASG and guard:mcp-runtime-freshness use asg-topology-resolve.mjs with cursor-wsl.env to reach Windows host MCP on supported Ryzen desk topology.",
+    "canonicalQuestion": "How does ASG find MCP endpoint from WSL?",
+    "alternateQuestions": [
+      "Why should MCP_API_URL not be set manually for routine ASG?"
+    ],
+    "shortAnswer": "ASG and guard:mcp-runtime-freshness use asg-topology-resolve.mjs with cursor-wsl.env to reach Windows host MCP on supported Ryzen desk topology.",
+    "detailedAnswer": "WSL resolves Windows MCP without manual MCP_API_URL",
+    "retrievalQuestions": [
+      "How does ASG find MCP endpoint from WSL?",
+      "Why should MCP_API_URL not be set manually for routine ASG?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "ASG BLOCKED on MCP topology or stale runtime",
+      "startAt": [
+        "~/.config/capital-glass/cursor-wsl.env",
+        "scripts/wsl/machines/ryzen9desk.machine.json"
+      ],
+      "runPreflight": [
+        "source ~/.config/capital-glass/cursor-wsl.env",
+        "npm run guard:mcp-runtime-freshness"
+      ],
+      "doNot": [
+        "Hard-code transient WSL gateway IPs in ASG",
+        "Export MCP_API_URL manually unless debugging"
+      ],
+      "proveBeforeClaiming": [
+        "evidenceEnvelope.mcpEndpointResolutionMethod explicit-env-or-cursor-wsl-env",
+        "mcpRuntimeOwner WINDOWS_HOST"
+      ]
+    },
+    "evidenceRefs": [
+      "scripts/ultimate-sdlc-runner/lib/asg-topology-resolve.mjs",
+      "TE-010",
+      "SP-002"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": 3,
+    "doNotAdvance": [],
+    "promotionClass": "AUTOMATIC",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-07-asg-ge-wave-closeout-v1/seed-packets/IH-ASG-WSL-MCP-TOPOLOGY-001.json"
+    ],
+    "harvestId": "harvest-2026-08-07-asg-ge-wave-closeout-v1"
+  }
+}

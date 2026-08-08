@@ -1,0 +1,75 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-protocol-promotion-drift-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "a082553e210c4606d8efca321bdbead847c8ab62",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-07-chatgpt-git-publication-restoration-v1",
+      "seedId": "IH-PROTOCOL-PROMOTION-DRIFT-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-08T00:12:01.708Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "5bf3668da2e9ef9d3b4d38a78bf7d15af0d4523e6ead27c0dffe972db34050b4"
+  },
+  "body": {
+    "seedId": "IH-PROTOCOL-PROMOTION-DRIFT-001",
+    "kind": "lesson",
+    "title": "ChatGPT protocol on branch is not operational until promoted to main",
+    "summary": "chat-gpt-harvest branch protocol text does not define operator behavior until merged to main and mirrored to Z/L.",
+    "canonicalQuestion": "Why did ChatGPT stop pushing harvest findings?",
+    "alternateQuestions": [
+      "What makes a harvest protocol operational?"
+    ],
+    "shortAnswer": "chat-gpt-harvest branch protocol text does not define operator behavior until merged to main and mirrored to Z/L.",
+    "detailedAnswer": "ChatGPT protocol on branch is not operational until promoted to main",
+    "retrievalQuestions": [
+      "Why did ChatGPT stop pushing harvest findings?",
+      "What makes a harvest protocol operational?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Split behavior between branch protocol and L/Z copies",
+      "startAt": [
+        "harvest/protocol/CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md"
+      ],
+      "runPreflight": [
+        "git rev-parse origin/main",
+        "npm run harvest:sync-z-mirror"
+      ],
+      "doNot": [
+        "treat chat-gpt-harvest branch docs as authority"
+      ],
+      "proveBeforeClaiming": [
+        "main SHA contains protocol + consistency test PASS"
+      ]
+    },
+    "evidenceRefs": [
+      "EVT-002",
+      "feaab57 not on main",
+      "L mirror from z-mirror"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Cross-Agent",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/seed-packets/IH-PROTOCOL-PROMOTION-DRIFT-001.json"
+    ],
+    "harvestId": "harvest-2026-08-07-chatgpt-git-publication-restoration-v1"
+  }
+}

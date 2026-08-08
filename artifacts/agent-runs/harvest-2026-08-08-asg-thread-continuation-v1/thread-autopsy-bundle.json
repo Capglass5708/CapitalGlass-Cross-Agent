@@ -1,0 +1,138 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-08-asg-thread-continuation-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "verification",
+      "description": "Routine ASG invoked on dirty worktree — WARN instead of GO; operator must interpret git-parity lane",
+      "evidenceRefs": ["TE-004", "377e6da2"],
+      "estimatedImpact": "medium",
+      "savedBy": "git status --short before npm run all-systems-go",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "operator_attention",
+      "description": "Harvest protocol run twice in same thread — second pass needed for ASG WARN delta",
+      "evidenceRefs": ["TE-002", "TE-005"],
+      "estimatedImpact": "low",
+      "savedBy": "Append thread events to existing harvest or single closeout at session end",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "deploy",
+      "description": "Local main 1 behind origin/main during ASG — parity drift risk",
+      "evidenceRefs": ["TE-004", "git rev-list 0 1"],
+      "estimatedImpact": "low",
+      "savedBy": "git pull origin main before ASG when behind",
+      "roiRank": 2
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "RUN ALL SYSTEMS GO returned WARN not GO",
+      "operatorCost": "medium",
+      "systemFix": "Surface git-parity dirty count in ASG CLI summary before JSON dump",
+      "evidenceRefs": ["TE-003", "TE-004"],
+      "linkedWasteIds": ["TW-001"]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Operator asked for All Systems Go on active session",
+      "actualExecution": {
+        "steps": [
+          "Ran npm run all-systems-go -- --json on dirty tree (52 files)",
+          "Received WARN from git-parity"
+        ],
+        "outcome": "WARN",
+        "evidenceRefs": ["TE-004"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "git pull if behind origin/main",
+          "git status --short — must be empty",
+          "npm run all-systems-go -- --json"
+        ],
+        "outcome": "GO when estate otherwise healthy",
+        "requiredPreflight": ["agent:preflight:app-builder-mcp PASS"]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "medium"
+      }
+    }
+  ],
+  "wrongMoves": [],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "Second full harvest on same thread",
+      "whyRepeated": "ASG WARN event occurred after first harvest closed",
+      "firstKnownInstance": "harvest-2026-08-07-asg-ge-wave-closeout-v1",
+      "priorIndexSlice": "thread-autopsy-index.json",
+      "whyMissed": "Session continued after G+E harvest",
+      "avoidableBy": "Defer harvest until operator session end or use harvest continuation manifest",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Pre-ASG git parity one-liner in runbook",
+      "whyItPays": "Avoids WARN surprise when operator expects GO",
+      "effort": "low",
+      "savedWasteIds": ["TW-001"],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 2,
+      "title": "git pull before ASG when behind origin/main",
+      "whyItPays": "Keeps receipt SHA aligned with published main",
+      "effort": "low",
+      "savedWasteIds": ["TW-003"],
+      "seedAs": "command"
+    },
+    {
+      "rank": 3,
+      "title": "Harvest continuation packet for mid-session ASG events",
+      "whyItPays": "Reduces duplicate full autopsy runs",
+      "effort": "medium",
+      "savedWasteIds": ["TW-002"],
+      "seedAs": "index-slice"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "systemsGoVerdict GO",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "git status --short empty on WESLEY_WORK",
+        "Aligned with origin/main or documented divergence"
+      ],
+      "lastKnownEvidence": ["377e6da2 WARN DIRTY_WORKTREE", "preflight PASS"]
+    },
+    {
+      "awardOrVerdict": "ALL_SYSTEMS_GO_ALWAYS_WORKS_V1 — CLOSED",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": ["Parent milestone gates from harvest-2026-08-07-asg-ge-wave-closeout-v1"],
+      "lastKnownEvidence": ["wave G+E CLOSED only"]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-08T00:11:14.838Z"
+  }
+}

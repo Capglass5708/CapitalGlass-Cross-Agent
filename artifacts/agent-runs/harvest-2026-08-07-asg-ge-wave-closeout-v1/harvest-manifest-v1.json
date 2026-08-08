@@ -1,0 +1,363 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-asg-ge-wave-closeout-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "a84d1ae747d7905c8dd74726846da3decb322e2e",
+  "sourceBranch": "main",
+  "sourceRepo": "CG-AppBuilder-MCP",
+  "createdAt": "2026-08-07T20:50:00.000Z",
+  "updatedAt": "2026-08-07T20:50:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "Claim ALL_SYSTEMS_GO_ALWAYS_WORKS_V1 — CLOSED before A–F + H3–H10 pass",
+    "Claim asg:converge --all PASS while structural index INDEX_BEHIND",
+    "Run ASG formal proof on dirty worktree and treat WARN as wave acceptance",
+    "Run index:publish or harvest:publish-hub-seed from Cursor",
+    "Claim FULLY_SEEDED without index:freshness-gate receipt"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-07-asg-ge-wave-closeout-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-07-asg-ge-wave-closeout-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 4,
+      "seeds": 3,
+      "roiItems": 3,
+      "operatorFriction": 1,
+      "executionDeltas": 2
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Operator runs harvest:publish-hub-seed + index:publish — NOT_RUN_BY_CURSOR"
+  },
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "1.1.0",
+    "eligibleCandidates": 0,
+    "rejectedUnrelatedCandidates": 0,
+    "exportStatus": "not-run",
+    "dataExtractionStatus": "not-run",
+    "catalogPublishStatus": "not-run",
+    "retrievalStatus": "not-run",
+    "targetCatalog": "L:\\02-catalog\\Harvest\\Harvest Protocol Self Learning",
+    "authorityStatus": "PROPOSAL",
+    "automaticProtocolMutation": false
+  },
+  "relatedRepos": [
+    {
+      "repo": "CapitalGlass-Documents",
+      "branch": "main",
+      "commitSha": "1c8d9b234d0329b199c23e958ae49d4fa5aba9dc",
+      "role": "mcp:contract-audit OCR authority alignment (local patch)"
+    },
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "main",
+      "commitSha": "a082553e210c4606d8efca321bdbead847c8ab62",
+      "role": "harvest recording authority"
+    }
+  ],
+  "packets": [
+    {
+      "packetKind": "decision",
+      "packetId": "asg-wave-ge-closed-parent-open-v1",
+      "packetTitle": "asg-wave3-ge-run-bound-evidence-topology-v1 CLOSED; parent milestone OPEN",
+      "state": "COMPLETE",
+      "packetVerdict": "WAVE_CLOSED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-asg-ge-wave-closeout-v1.md",
+      "nextAction": "Execute asg-wave3-ab-index-promptops-convergence-v1",
+      "advancementGate": "G+E acceptance matrix satisfied",
+      "doNotAdvance": [
+        "ALL_SYSTEMS_GO_ALWAYS_WORKS_V1 — CLOSED"
+      ],
+      "evidenceRefs": [
+        "TE-010",
+        "TE-011",
+        "wave-ge-closeout-v1.json"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@a84d1ae747d7905c8dd74726846da3decb322e2e"
+      ],
+      "blockers": [],
+      "decision": "Close G+E sub-wave only; advance active wave to A+B",
+      "alternativesRejected": [
+        "Parent milestone CLOSED with partial A–F"
+      ]
+    },
+    {
+      "packetKind": "outcome",
+      "packetId": "asg-ge-formal-proof-outcome-v1",
+      "packetTitle": "G+E formal ASG proof GO twice on clean tree",
+      "state": "COMPLETE",
+      "packetVerdict": "PROVEN_EFFECTIVE",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-asg-ge-wave-closeout-v1.md",
+      "nextAction": "None for G+E scope",
+      "advancementGate": "ASG RUN1/RUN2 GO",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-010",
+        "915e2a17",
+        "9b95524a"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@a84d1ae747d7905c8dd74726846da3decb322e2e"
+      ],
+      "blockers": [],
+      "changeImplemented": "Run-bound evidence envelope + WSL/MCP topology resolution",
+      "beforeState": "ASG could BLOCK on stale preflight; manual MCP_API_URL sometimes required",
+      "afterState": "formalProof GO with evidenceEnvelope CURRENT and zeroWritesProven true",
+      "measurement": "test:asg-durability 5/5; ASG RUN1/RUN2 GO",
+      "expectedEffect": "Healthy estate returns GO without manual prep for G+E lanes",
+      "observedEffect": "GO achieved after preflight + git-clean proof",
+      "residuals": [
+        "Parent A–F partial",
+        "H3–H10 not run"
+      ],
+      "regressions": [],
+      "effectiveness": "PROVEN_EFFECTIVE"
+    },
+    {
+      "packetKind": "blocker",
+      "packetId": "asg-converge-all-blocked-v1",
+      "packetTitle": "asg:converge --all not exit 0 at wave closeout SHA",
+      "state": "ACTIVE",
+      "packetVerdict": "EXPECTED_BLOCK",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-asg-ge-wave-closeout-v1.md",
+      "nextAction": "A+B wave: index parity + PromptOps publication",
+      "advancementGate": "asg:converge --all exit 0",
+      "doNotAdvance": [
+        "Parent milestone CLOSED"
+      ],
+      "evidenceRefs": [
+        "TE-006",
+        "OG-001"
+      ],
+      "commitRefs": [],
+      "blockers": [
+        "structural index INDEX_BEHIND",
+        "PromptOps drift race"
+      ],
+      "blockerId": "asg-converge-all",
+      "status": "OPEN",
+      "proofCommandId": "npm run asg:converge -- --all"
+    },
+    {
+      "packetKind": "blocker",
+      "packetId": "documents-ocr-contract-drift-v1",
+      "packetTitle": "mcp:contract-audit OCR authority drift after M4PDS refactor",
+      "state": "RESOLVED_OBSERVED",
+      "packetVerdict": "PATCHED_LOCALLY",
+      "ownerRepo": "CapitalGlass-Documents",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-asg-ge-wave-closeout-v1.md",
+      "nextAction": "Commit Documents contract enforcement patch to main",
+      "advancementGate": "npm run mcp:contract-audit exit 0",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-008",
+        "TE-009"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "blockerId": "DOCUMENT_CENTER_OCR_AUTHORITY_DRIFT",
+      "status": "RESOLVED_OBSERVED",
+      "proofCommandId": "npm run mcp:contract-audit"
+    },
+    {
+      "packetKind": "mistake",
+      "packetId": "premature-parent-go-claim-v1",
+      "packetTitle": "Suggested parent milestone close with partial phases",
+      "state": "RESOLVED",
+      "packetVerdict": "CORRECTED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-asg-ge-wave-closeout-v1.md",
+      "nextAction": "Use wave acceptance matrix only",
+      "advancementGate": "operator correction accepted",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "WM-001",
+        "TE-002"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "wrongMoveId": "WM-001",
+      "actualExecution": "GO_WITH_LIVE_PROOF_PENDING / parent close implied",
+      "optimalExecution": "IN_PROGRESS until wave boundary met",
+      "preventiveControl": "Explicit waveId in closeout receipt"
+    },
+    {
+      "packetKind": "repeated_work",
+      "packetId": "promptops-index-ci-churn-v1",
+      "packetTitle": "suite-prompt-index.json auto-commit during active session",
+      "state": "ACTIVE",
+      "packetVerdict": "DUPLICATE_RISK",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-asg-ge-wave-closeout-v1.md",
+      "nextAction": "A+B wave SHA-bound PromptOps publication",
+      "advancementGate": "prompts:check:index stable across main advance",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "DW-001",
+        "TE-006"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "duplicateId": "DW-001",
+      "firstKnownInstance": "prior ASG convergence sessions",
+      "priorIndexSlice": "promptops/generated/suite-prompt-index.json",
+      "whyMissed": "Remote main advance during long session"
+    },
+    {
+      "packetKind": "faster_path",
+      "packetId": "git-clean-before-formal-asg-v1",
+      "packetTitle": "Clean worktree before formal ASG RUN1/RUN2",
+      "state": "COMPLETE",
+      "packetVerdict": "CLASSIFIED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-asg-ge-wave-closeout-v1.md",
+      "nextAction": "Enforce in test:asg-durability and wave closeout checklist",
+      "advancementGate": "git status --short empty",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "ED-001",
+        "TW-002"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "situation": "Formal ASG proof for wave acceptance",
+      "whatHappened": "Untracked closeout artifacts caused git-parity WARN",
+      "rightFirstMove": "Prove on clean tree; write closeout artifacts after proof",
+      "requiredGuard": "git status --short before all-systems-go --formal-proof"
+    },
+    {
+      "packetKind": "command",
+      "packetId": "asg-ge-acceptance-commands-v1",
+      "packetTitle": "G+E wave proof command chain",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-asg-ge-wave-closeout-v1.md",
+      "nextAction": "Reuse for future wave closeouts",
+      "advancementGate": "all commands exit 0",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-010",
+        "wave-ge-closeout-v1.json"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "command": "npm run test:asg-durability && npm run asg:converge -- --phases=bible && npm run all-systems-go -- --json --formal-proof --no-cache",
+      "host": "CG-RYZEN9DESK-01 WSL",
+      "provesGate": "asg-wave3-ge acceptance",
+      "expectedPassSignal": "systemsGoVerdict GO; zeroAuthoritativeWritesProven true"
+    },
+    {
+      "packetKind": "evidence",
+      "packetId": "wave-ge-closeout-receipt-v1",
+      "packetTitle": "Wave G+E closeout receipt and ASG dark-runner receipts",
+      "state": "COMPLETE",
+      "packetVerdict": "VERIFIED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-asg-ge-wave-closeout-v1.md",
+      "nextAction": "Commit wave-ge-closeout-v1.json to main",
+      "advancementGate": "receipt paths exist",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "artifacts/agent-runs/all-systems-go-always-works-v1/wave-ge-closeout-v1.json",
+        "artifacts/agent-runs/ultimate-sdlc-runner-dark-package-v1/915e2a17-91b5-45d8-9f97-b761836fcc72/dark-runner-receipt.json"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@a84d1ae747d7905c8dd74726846da3decb322e2e"
+      ],
+      "blockers": [],
+      "type": "receipt",
+      "pathOrSha": "wave-ge-closeout-v1.json",
+      "provesWhat": "G+E wave CLOSED with formal ASG GO proof"
+    },
+    {
+      "packetKind": "protocol_upgrade",
+      "packetId": "asg-wave-scoped-closeout-v1",
+      "packetTitle": "Sub-wave closeout before parent milestone verdict",
+      "state": "COMPLETE",
+      "packetVerdict": "DOCUMENTED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-asg-ge-wave-closeout-v1.md",
+      "nextAction": "Apply to A+B wave closeout",
+      "advancementGate": "harvest:validate PASS",
+      "doNotAdvance": [
+        "index:publish from Cursor"
+      ],
+      "evidenceRefs": [
+        "docs/work-packages/all-systems-go-always-works-v1.md",
+        "L:/02-catalog/Harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "seedAs": "runbook",
+      "promotionClass": "POLICY_GATED",
+      "futureAgentInstructions": {
+        "whenThisAppears": "ALL_SYSTEMS_GO milestone multi-wave execution",
+        "startAt": [
+          "docs/work-packages/all-systems-go-always-works-v1.md"
+        ],
+        "runPreflight": [
+          "npm run agent:index:scout -- --json"
+        ],
+        "doNot": [
+          "Claim parent CLOSED when only sub-wave complete"
+        ],
+        "proveBeforeClaiming": [
+          "Wave acceptance matrix + RUN1/RUN2 GO receipts"
+        ]
+      }
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": null,
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 10,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 10,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-8eea3f42dca6",
+      "prompt-candidate-d8e55d598bca",
+      "prompt-candidate-51f88f2bcb1f",
+      "prompt-candidate-30b273aea416",
+      "prompt-candidate-9a98ef46c87d",
+      "prompt-candidate-061d08b29f8e",
+      "prompt-candidate-90aa2bacfd8b",
+      "prompt-candidate-25876c23480a",
+      "prompt-candidate-b68ac8016f27",
+      "prompt-candidate-a095618f12ac"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

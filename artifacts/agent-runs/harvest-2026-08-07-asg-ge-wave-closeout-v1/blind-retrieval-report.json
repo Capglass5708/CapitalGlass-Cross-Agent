@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "cross-agent-harvest-blind-retrieval-benchmark-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-asg-ge-wave-closeout-v1",
+  "testedAt": "2026-08-07T20:51:42.993Z",
+  "blindQueryOnly": true,
+  "seedCount": 3,
+  "fixtureCount": 6,
+  "results": [
+    {
+      "query": "Why does ASG return WARN instead of GO during wave closeout?",
+      "returnedId": "IH-ASG-FORMAL-PROOF-GIT-CLEAN-001",
+      "expectedSeedId": "IH-ASG-FORMAL-PROOF-GIT-CLEAN-001",
+      "topK": [
+        {
+          "seedId": "IH-ASG-FORMAL-PROOF-GIT-CLEAN-001",
+          "score": 7
+        },
+        {
+          "seedId": "IH-DOCUMENT-OCR-CONTRACT-M4PDS-001",
+          "score": 2
+        },
+        {
+          "seedId": "IH-ASG-WSL-MCP-TOPOLOGY-001",
+          "score": 1
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "What git state is required before formal ASG proof?",
+      "returnedId": "IH-ASG-FORMAL-PROOF-GIT-CLEAN-001",
+      "expectedSeedId": "IH-ASG-FORMAL-PROOF-GIT-CLEAN-001",
+      "topK": [
+        {
+          "seedId": "IH-ASG-FORMAL-PROOF-GIT-CLEAN-001",
+          "score": 6
+        },
+        {
+          "seedId": "IH-DOCUMENT-OCR-CONTRACT-M4PDS-001",
+          "score": 2
+        },
+        {
+          "seedId": "IH-ASG-WSL-MCP-TOPOLOGY-001",
+          "score": 1
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "How does ASG find MCP endpoint from WSL?",
+      "returnedId": "IH-ASG-WSL-MCP-TOPOLOGY-001",
+      "expectedSeedId": "IH-ASG-WSL-MCP-TOPOLOGY-001",
+      "topK": [
+        {
+          "seedId": "IH-ASG-WSL-MCP-TOPOLOGY-001",
+          "score": 4
+        },
+        {
+          "seedId": "IH-ASG-FORMAL-PROOF-GIT-CLEAN-001",
+          "score": 2
+        },
+        {
+          "seedId": "IH-DOCUMENT-OCR-CONTRACT-M4PDS-001",
+          "score": 1
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "Why should MCP_API_URL not be set manually for routine ASG?",
+      "returnedId": "IH-ASG-WSL-MCP-TOPOLOGY-001",
+      "expectedSeedId": "IH-ASG-WSL-MCP-TOPOLOGY-001",
+      "topK": [
+        {
+          "seedId": "IH-ASG-WSL-MCP-TOPOLOGY-001",
+          "score": 3
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "Why does agent:preflight BLOCK on mcp:contract-audit after Documents refactor?",
+      "returnedId": "IH-DOCUMENT-OCR-CONTRACT-M4PDS-001",
+      "expectedSeedId": "IH-DOCUMENT-OCR-CONTRACT-M4PDS-001",
+      "topK": [
+        {
+          "seedId": "IH-DOCUMENT-OCR-CONTRACT-M4PDS-001",
+          "score": 9
+        },
+        {
+          "seedId": "IH-ASG-FORMAL-PROOF-GIT-CLEAN-001",
+          "score": 3
+        },
+        {
+          "seedId": "IH-ASG-WSL-MCP-TOPOLOGY-001",
+          "score": 3
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "What fixes DOCUMENT_CENTER_OCR_AUTHORITY_DRIFT in contract audit?",
+      "returnedId": "IH-DOCUMENT-OCR-CONTRACT-M4PDS-001",
+      "expectedSeedId": "IH-DOCUMENT-OCR-CONTRACT-M4PDS-001",
+      "topK": [
+        {
+          "seedId": "IH-DOCUMENT-OCR-CONTRACT-M4PDS-001",
+          "score": 8
+        },
+        {
+          "seedId": "IH-ASG-FORMAL-PROOF-GIT-CLEAN-001",
+          "score": 1
+        }
+      ],
+      "pass": true
+    }
+  ],
+  "verdict": "BLIND_RETRIEVAL_PASS"
+}

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-ASG-WSL-MCP-TOPOLOGY-001",
+  "kind": "runbook",
+  "title": "WSL resolves Windows MCP without manual MCP_API_URL",
+  "summary": "ASG and guard:mcp-runtime-freshness use asg-topology-resolve.mjs with cursor-wsl.env to reach Windows host MCP on supported Ryzen desk topology.",
+  "retrievalQuestions": [
+    "How does ASG find MCP endpoint from WSL?",
+    "Why should MCP_API_URL not be set manually for routine ASG?"
+  ],
+  "evidenceRefs": [
+    "scripts/ultimate-sdlc-runner/lib/asg-topology-resolve.mjs",
+    "TE-010",
+    "SP-002"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "ASG BLOCKED on MCP topology or stale runtime",
+    "startAt": [
+      "~/.config/capital-glass/cursor-wsl.env",
+      "scripts/wsl/machines/ryzen9desk.machine.json"
+    ],
+    "runPreflight": [
+      "source ~/.config/capital-glass/cursor-wsl.env",
+      "npm run guard:mcp-runtime-freshness"
+    ],
+    "doNot": [
+      "Hard-code transient WSL gateway IPs in ASG",
+      "Export MCP_API_URL manually unless debugging"
+    ],
+    "proveBeforeClaiming": [
+      "evidenceEnvelope.mcpEndpointResolutionMethod explicit-env-or-cursor-wsl-env",
+      "mcpRuntimeOwner WINDOWS_HOST"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/host-authority.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE",
+  "roiRank": 3,
+  "wasteIds": []
+}

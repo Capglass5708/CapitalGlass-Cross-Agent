@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-chatgpt-git-publication-restoration-v1",
+  "packetId": "chatgpt-harvest-git-gate-v2-v1",
+  "state": "COMPLETE",
+  "packetVerdict": "PASS",
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "ChatGPT closeouts must reach CHATGPT_SOURCE_PUBLISHED before Cursor ingest",
+  "evidenceRefs": [
+    "harvest/protocol/CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md",
+    "scripts/tests/run-harvest-chatgpt-protocol-consistency.test.mjs",
+    "EVT-003",
+    "EVT-004"
+  ],
+  "doNotAdvance": [
+    "Claim HARVEST_COMPLETE from ChatGPT lane"
+  ],
+  "advancementGate": "run-harvest-chatgpt-protocol-consistency.test.mjs PASS",
+  "contentHash": "ed78310ff55863e7ca93162c57a4492c6d594a25953cea6ae993a08d083bc16d"
+}

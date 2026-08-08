@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-DOCUMENT-OCR-CONTRACT-M4PDS-001",
+  "kind": "failure-pattern",
+  "title": "Document Layer contract audit drifts when OCR authority refactors",
+  "summary": "After M4PDS processingSourceAuthority refactor, mcp:contract-audit fails on SharePoint-specific symbol checks until enforcement accepts assertProcessingSourceAuthority and pickProcessingStorageLocation.",
+  "retrievalQuestions": [
+    "Why does agent:preflight BLOCK on mcp:contract-audit after Documents refactor?",
+    "What fixes DOCUMENT_CENTER_OCR_AUTHORITY_DRIFT in contract audit?"
+  ],
+  "evidenceRefs": [
+    "TE-008",
+    "TE-009",
+    "CapitalGlass-Documents/scripts/lib/mcp-document-contract-enforcement.mjs"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "mcp:contract-audit DOCUMENT_CENTER_OCR_AUTHORITY_DRIFT",
+    "startAt": [
+      "CapitalGlass-Documents/scripts/lib/mcp-document-contract-enforcement.mjs",
+      "CapitalGlass-Documents/api/lib/document-ocr-jobs.ts"
+    ],
+    "runPreflight": [
+      "npm run mcp:contract-audit",
+      "npm run agent:preflight:app-builder-mcp"
+    ],
+    "doNot": [
+      "Disable mcp:contract-audit in preflight",
+      "Assume SharePoint-only symbol names after M4PDS"
+    ],
+    "proveBeforeClaiming": [
+      "mcp:contract-audit exit 0",
+      "preflight verdict PASS or PASS_WITH_WARNINGS"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Documents",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 1,
+  "wasteIds": ["TW-003"]
+}

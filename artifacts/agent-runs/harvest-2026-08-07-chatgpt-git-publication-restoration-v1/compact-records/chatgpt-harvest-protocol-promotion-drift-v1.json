@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-chatgpt-git-publication-restoration-v1",
+  "packetId": "chatgpt-harvest-protocol-promotion-drift-v1",
+  "state": "RESOLVED",
+  "packetVerdict": "PASS",
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Live pilot: ChatGPT push → Action → Cursor ingest → validate",
+  "evidenceRefs": [
+    "commit bf3952e58c500036e11d8f42d810df3c2a7314af",
+    "commits feaab57/749f617 not on main before restoration",
+    "EVT-001",
+    "EVT-002"
+  ],
+  "doNotAdvance": [
+    "CLOSED_GO until live chain passes"
+  ],
+  "advancementGate": "CHATGPT_SOURCE_PUBLISHED + harvest:validate PASS on pilot harvest-id",
+  "contentHash": "9d6008a84e6afc0840fb8221b86ee947bc0beede2bbb1e7d3eb1dd9de19f8bda"
+}

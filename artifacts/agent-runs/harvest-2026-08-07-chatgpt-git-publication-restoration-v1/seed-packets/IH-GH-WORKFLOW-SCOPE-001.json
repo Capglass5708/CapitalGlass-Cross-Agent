@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-GH-WORKFLOW-SCOPE-001",
+  "kind": "runbook",
+  "title": "Grant workflow scope before pushing GitHub Actions YAML",
+  "summary": "git push to main with new .github/workflows/* requires gh OAuth workflow scope.",
+  "retrievalQuestions": [
+    "Why was git push rejected for chatgpt-harvest-move-to-l.yml?",
+    "How do I add workflow scope to gh?"
+  ],
+  "evidenceRefs": ["EVT-005", "EVT-007"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Push includes .github/workflows changes",
+    "startAt": ["gh auth status -h github.com"],
+    "runPreflight": ["gh auth refresh -h github.com -s workflow --clipboard"],
+    "doNot": ["retry push without workflow scope"],
+    "proveBeforeClaiming": ["gh auth status lists workflow"]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/command-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

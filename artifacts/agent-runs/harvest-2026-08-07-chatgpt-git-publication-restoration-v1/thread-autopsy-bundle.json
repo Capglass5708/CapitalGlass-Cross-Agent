@@ -1,0 +1,153 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-chatgpt-git-publication-restoration-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "rework",
+      "description": "Protocol promotion drift caused ChatGPT and operators to follow stale L/Z copies without mandatory git push",
+      "evidenceRefs": ["EVT-001", "EVT-002"],
+      "estimatedImpact": "high",
+      "savedBy": "Operational authority invariant + z-mirror sync from main only",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "operator_attention",
+      "description": "Multiple gh auth refresh timeouts waiting for device flow in agent session",
+      "evidenceRefs": ["EVT-005", "EVT-006"],
+      "estimatedImpact": "medium",
+      "savedBy": "Interactive terminal gh auth refresh --clipboard before push",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "verification",
+      "description": "User and agent briefly held conflicting milestone states (BLOCKED vs PASS) until GitHub re-checked",
+      "evidenceRefs": ["EVT-007", "EVT-008"],
+      "estimatedImpact": "low",
+      "savedBy": "Always verify origin/main SHA after push",
+      "roiRank": 4
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Push blocked without workflow OAuth scope",
+      "operatorCost": "medium",
+      "systemFix": "gh auth refresh -h github.com -s workflow",
+      "evidenceRefs": ["EVT-005"],
+      "linkedWasteIds": ["TW-002"]
+    },
+    {
+      "frictionId": "OF-002",
+      "trigger": "Which protocol file for ChatGPT vs Cursor closeout",
+      "operatorCost": "low",
+      "systemFix": "CHATGPT v2 for ChatGPT lane; CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1 for Cursor lane",
+      "evidenceRefs": ["EVT-001", "EVT-009"],
+      "linkedWasteIds": ["TW-001"]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Restore ChatGPT git push lane",
+      "actualExecution": {
+        "steps": ["Branch-only docs never merged; L mirrored weak protocol"],
+        "outcome": "DRIFT"
+      },
+      "optimalExecution": {
+        "steps": ["Merge gate + contract to main; z-mirror; consistency test"],
+        "outcome": "Single authority surface"
+      },
+      "deltaCost": { "time": "high", "tokens": "high", "operatorFrustration": "medium" },
+      "preventiveControl": "run-harvest-chatgpt-protocol-consistency.test.mjs"
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Push restoration commit with workflow file",
+      "actualExecution": {
+        "steps": ["OAuth push without workflow scope", "agent device flow timeouts"],
+        "outcome": "BLOCKED then delayed"
+      },
+      "optimalExecution": {
+        "steps": ["gh auth refresh -s workflow in interactive shell", "immediate push"],
+        "outcome": "GIT_AUTHORITY_PASS"
+      },
+      "deltaCost": { "time": "medium", "tokens": "low", "operatorFrustration": "medium" },
+      "preventiveControl": "Document workflow scope in restoration runbook"
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Treating chat-gpt-harvest branch protocol as operational without main promotion",
+      "whyItWasWrong": "L/Z mirrors synced from main; branch-only text misled ChatGPT closeouts",
+      "correctFirstMove": "Promote contract to main before declaring lane operational",
+      "preventiveControl": "Operational authority invariant in contract v1",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Main-only protocol authority + consistency test",
+      "whyItPays": "Prevents split-estate ChatGPT drift",
+      "effort": "low",
+      "savedWasteIds": ["TW-001"],
+      "seedAs": "rule"
+    },
+    {
+      "rank": 2,
+      "title": "CHATGPT_HARVEST_GIT_GATE in every ChatGPT closeout",
+      "whyItPays": "Deterministic SHA receipt before Cursor ingest",
+      "effort": "low",
+      "savedWasteIds": [],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 3,
+      "title": "gh workflow scope before pushing Actions YAML",
+      "whyItPays": "Avoids push rejection on restoration waves",
+      "effort": "low",
+      "savedWasteIds": ["TW-002"],
+      "seedAs": "command"
+    },
+    {
+      "rank": 4,
+      "title": "Live pilot gate before CLOSED_GO",
+      "whyItPays": "Proves Action → L → ingest chain",
+      "effort": "medium",
+      "savedWasteIds": [],
+      "seedAs": "runbook"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "CLOSED_GO",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "CHATGPT_SOURCE_PUBLISHED on pilot",
+        "chatgpt-harvest-move-to-l receipt",
+        "harvest:validate PASS on pilot ingest"
+      ],
+      "lastKnownEvidence": ["GIT_AUTHORITY_PASS / LIVE_PILOT_PENDING"]
+    },
+    {
+      "awardOrVerdict": "FULLY_SEEDED",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": ["harvest:publish-intelligence-full receipt"],
+      "lastKnownEvidence": ["hubPublishStatus not-run"]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": ["harvest-packet-registry.json"],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-07T21:00:00.000Z",
+    "notes": "No duplicate packet for chatgpt-git-gate restoration theme in registry"
+  }
+}

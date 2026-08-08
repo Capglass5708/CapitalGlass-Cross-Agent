@@ -1,0 +1,73 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-gh-workflow-scope-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "a082553e210c4606d8efca321bdbead847c8ab62",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-07-chatgpt-git-publication-restoration-v1",
+      "seedId": "IH-GH-WORKFLOW-SCOPE-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-08T00:12:01.708Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "08a8b8904efe0214340fbd77deb74e7e60bd9f68222f386197f11f3cc7df88b0"
+  },
+  "body": {
+    "seedId": "IH-GH-WORKFLOW-SCOPE-001",
+    "kind": "runbook",
+    "title": "Grant workflow scope before pushing GitHub Actions YAML",
+    "summary": "git push to main with new .github/workflows/* requires gh OAuth workflow scope.",
+    "canonicalQuestion": "Why was git push rejected for chatgpt-harvest-move-to-l.yml?",
+    "alternateQuestions": [
+      "How do I add workflow scope to gh?"
+    ],
+    "shortAnswer": "git push to main with new .github/workflows/* requires gh OAuth workflow scope.",
+    "detailedAnswer": "Grant workflow scope before pushing GitHub Actions YAML",
+    "retrievalQuestions": [
+      "Why was git push rejected for chatgpt-harvest-move-to-l.yml?",
+      "How do I add workflow scope to gh?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Push includes .github/workflows changes",
+      "startAt": [
+        "gh auth status -h github.com"
+      ],
+      "runPreflight": [
+        "gh auth refresh -h github.com -s workflow --clipboard"
+      ],
+      "doNot": [
+        "retry push without workflow scope"
+      ],
+      "proveBeforeClaiming": [
+        "gh auth status lists workflow"
+      ]
+    },
+    "evidenceRefs": [
+      "EVT-005",
+      "EVT-007"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Cross-Agent",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/seed-packets/IH-GH-WORKFLOW-SCOPE-001.json"
+    ],
+    "harvestId": "harvest-2026-08-07-chatgpt-git-publication-restoration-v1"
+  }
+}

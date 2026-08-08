@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-ASG-GIT-PARITY-WARN-001",
+  "kind": "failure-pattern",
+  "title": "Routine ASG on dirty worktree returns WARN not GO",
+  "summary": "npm run all-systems-go on WESLEY_WORK with uncommitted changes triggers git-parity DIRTY_WORKTREE WARN even when preflight PASS.",
+  "retrievalQuestions": [
+    "Why did all-systems-go return WARN when preflight passed?",
+    "What must be true for systemsGoVerdict GO on Ryzen desk?"
+  ],
+  "evidenceRefs": [
+    "CG-AppBuilder-MCP@fb423d2ffff47397978f50c413c586454758cd30",
+    "377e6da2-0619-46b7-8d40-9718e2e96503",
+    "TE-004"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Operator runs all-systems-go and gets WARN",
+    "startAt": [
+      "git status --short",
+      "runtime/agent-preflight/app-builder-mcp/latest.json"
+    ],
+    "runPreflight": ["git rev-list --left-right --count HEAD...origin/main"],
+    "doNot": [
+      "Claim GO when git-parity lane is WARN",
+      "Reset dirty tree without operator approval"
+    ],
+    "proveBeforeClaiming": [
+      "git status --short empty",
+      "systemsGoVerdict GO in receipt JSON"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 1,
+  "wasteIds": ["TW-001"]
+}

@@ -1,0 +1,174 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-chatgpt-git-publication-restoration-v1",
+  "missionClass": "harvest",
+  "sourceCommitSha": "a082553e210c4606d8efca321bdbead847c8ab62",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "retrievalResult": "FAILOVER_GIT_LEDGER",
+  "retrievalNote": "index:preflight module missing; L protocol file read from /mnt/l; git log used for bf3952e authority",
+  "doNotAdvance": [
+    "CLOSED_GO",
+    "FULLY_SEEDED",
+    "LIVE_PILOT_COMPLETE"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 3,
+      "seeds": 4,
+      "roiItems": 4,
+      "operatorFriction": 2
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run"
+  },
+  "packets": [
+    {
+      "packetId": "chatgpt-harvest-protocol-promotion-drift-v1",
+      "packetTitle": "ChatGPT harvest Git lane developed on branch but not promoted to main",
+      "state": "RESOLVED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "harvest/protocol/CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md",
+      "nextAction": "Live pilot: ChatGPT push → Action → Cursor ingest → validate",
+      "advancementGate": "CHATGPT_SOURCE_PUBLISHED + harvest:validate PASS on pilot harvest-id",
+      "doNotAdvance": [
+        "CLOSED_GO until live chain passes"
+      ],
+      "evidenceRefs": [
+        "commit bf3952e58c500036e11d8f42d810df3c2a7314af",
+        "commits feaab57/749f617 not on main before restoration",
+        "EVT-001",
+        "EVT-002"
+      ],
+      "commitRefs": [
+        "bf3952e58c500036e11d8f42d810df3c2a7314af",
+        "a082553e210c4606d8efca321bdbead847c8ab62"
+      ],
+      "blockers": [
+        "live end-to-end pilot NOT_RUN"
+      ]
+    },
+    {
+      "packetId": "chatgpt-harvest-git-gate-v2-v1",
+      "packetTitle": "CHATGPT_HARVEST_GIT_GATE + three-stage verdict contract",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md",
+      "nextAction": "ChatGPT closeouts must reach CHATGPT_SOURCE_PUBLISHED before Cursor ingest",
+      "advancementGate": "run-harvest-chatgpt-protocol-consistency.test.mjs PASS",
+      "doNotAdvance": [
+        "Claim HARVEST_COMPLETE from ChatGPT lane"
+      ],
+      "evidenceRefs": [
+        "harvest/protocol/CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md",
+        "scripts/tests/run-harvest-chatgpt-protocol-consistency.test.mjs",
+        "EVT-003",
+        "EVT-004"
+      ],
+      "commitRefs": [
+        "bf3952e58c500036e11d8f42d810df3c2a7314af"
+      ],
+      "blockers": []
+    },
+    {
+      "packetId": "gh-workflow-scope-push-block-v1",
+      "packetTitle": "GitHub push blocked until gh workflow OAuth scope granted",
+      "state": "RESOLVED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "harvest/protocol/CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md",
+      "nextAction": "Use gh auth refresh -h github.com -s workflow --clipboard before pushing workflow files",
+      "advancementGate": "gh auth status lists workflow scope",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "EVT-006",
+        "EVT-007",
+        ".github/workflows/chatgpt-harvest-move-to-l.yml"
+      ],
+      "commitRefs": [
+        "bf3952e58c500036e11d8f42d810df3c2a7314af"
+      ],
+      "blockers": []
+    },
+    {
+      "packetId": "chatgpt-restoration-milestone-hold-v1",
+      "packetTitle": "Restoration milestone GIT_AUTHORITY_PASS / LIVE_PILOT_PENDING",
+      "state": "OPEN",
+      "packetVerdict": "HOLD",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-chatgpt-git-publication-restoration-v1.md",
+      "nextAction": "Run live ChatGPT harvest pilot per protocol v2 opener",
+      "advancementGate": "Action L move + harvest:ingest-chatgpt-findings + harvest:validate PASS",
+      "doNotAdvance": [
+        "CLOSED_GO",
+        "OPERATIONAL harvest publish without pilot"
+      ],
+      "evidenceRefs": [
+        "artifacts/agent-runs/chatgpt-harvest-git-publication-restoration-v1/session-closeout-v3.2.json",
+        "EVT-008",
+        "EVT-009"
+      ],
+      "commitRefs": [
+        "a082553e210c4606d8efca321bdbead847c8ab62"
+      ],
+      "blockers": [
+        "liveChatgptPushPilot NOT_RUN"
+      ]
+    }
+  ],
+  "updatedAt": "2026-08-07T21:00:00.000Z",
+  "ledgerLineage": {
+    "ledgerContentHashBefore": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096",
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 20,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 20,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-83850c0137cd",
+      "prompt-candidate-dcb78c4d18ba",
+      "prompt-candidate-f2dd9c85f5ce",
+      "prompt-candidate-da6697ed8b08",
+      "prompt-candidate-aaff6eef11f2",
+      "prompt-candidate-a7ab08f723c9",
+      "prompt-candidate-c1a03f4069a5",
+      "prompt-candidate-2de5ab2d3d6e",
+      "prompt-candidate-092d53bb01e6",
+      "prompt-candidate-9c15d862a436",
+      "prompt-candidate-90aa2bacfd8b",
+      "prompt-candidate-ba7128555e84",
+      "prompt-candidate-e9f85b2a8611",
+      "prompt-candidate-30e98a33f8f4",
+      "prompt-candidate-2ac6e8ad5498",
+      "prompt-candidate-df1c6d5c5a5a",
+      "prompt-candidate-d83a9bf81cac",
+      "prompt-candidate-1d5ed58b6db0",
+      "prompt-candidate-73cdd39d3b96",
+      "prompt-candidate-035689107462"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

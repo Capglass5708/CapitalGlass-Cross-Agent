@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-asg-ge-wave-closeout-v1",
+  "threadScope": "ALL_SYSTEMS_GO_ALWAYS_WORKS_V1 — Wave G+E (run-bound evidence + WSL/MCP topology) implementation, continuation, and formal wave closeout",
+  "generatedAt": "2026-08-07T20:50:00.000Z",
+  "events": [
+    {
+      "eventId": "TE-001",
+      "phase": "operator",
+      "summary": "MILESTONE_WAVE ALL_SYSTEMS_GO_ALWAYS_WORKS_V1 — phases G+E then A+B+C+D+F+H in one pass",
+      "evidenceRefs": ["docs/work-packages/all-systems-go-always-works-v1.md", "user prompt 2026-08-07"]
+    },
+    {
+      "eventId": "TE-002",
+      "phase": "verification",
+      "summary": "User rejected premature GO_WITH_LIVE_PROOF_PENDING — phases A–F PARTIAL, asg:converge --all exit 1",
+      "evidenceRefs": ["user correction CONTINUATION_REQUIRED"]
+    },
+    {
+      "eventId": "TE-003",
+      "phase": "implementation",
+      "summary": "Phase G+E landed — asg-evidence-binding, topology-resolve, test:asg-durability @ 269c8366",
+      "evidenceRefs": ["CG-AppBuilder-MCP@269c8366b57523ee5e0b9f51ea7595a003fbb907"]
+    },
+    {
+      "eventId": "TE-004",
+      "phase": "implementation",
+      "summary": "Convergence orchestration asg:converge phases index/promptops/bible/rules/l-cache @ c67ed423",
+      "evidenceRefs": ["CG-AppBuilder-MCP@c67ed423"]
+    },
+    {
+      "eventId": "TE-005",
+      "phase": "implementation",
+      "summary": "Structural index v1e import/reconcile via Management API; publish path fixed for Supabase CLI removal",
+      "evidenceRefs": [
+        "artifacts/agent-runs/platform-intelligence-graph-v1e-live-finalization/repositories/CG-AppBuilder-MCP/reconciliation-report.json"
+      ]
+    },
+    {
+      "eventId": "TE-006",
+      "phase": "verification",
+      "summary": "PromptOps drift and suite:contract-gate blocked asg:converge --all intermittently",
+      "evidenceRefs": ["npm run prompts:check:index", "npm run suite:contract-gate"]
+    },
+    {
+      "eventId": "TE-007",
+      "phase": "operator",
+      "summary": "User directed close closest milestone boundary — asg-wave3-ge-run-bound-evidence-topology-v1",
+      "evidenceRefs": ["user prompt close closest milestone"]
+    },
+    {
+      "eventId": "TE-008",
+      "phase": "verification",
+      "summary": "agent:preflight BLOCKED on mcp:contract-audit DOCUMENT_CENTER_OCR_AUTHORITY_DRIFT after M4PDS refactor",
+      "evidenceRefs": ["runtime/agent-preflight/app-builder-mcp/latest.json", "npm run mcp:contract-audit"]
+    },
+    {
+      "eventId": "TE-009",
+      "phase": "implementation",
+      "summary": "CapitalGlass-Documents contract enforcement updated for processingSourceAuthority symbols",
+      "evidenceRefs": ["CapitalGlass-Documents/scripts/lib/mcp-document-contract-enforcement.mjs"]
+    },
+    {
+      "eventId": "TE-010",
+      "phase": "verification",
+      "summary": "ASG RUN1/RUN2 GO with formalProof on clean tree @ a84d1ae7 — 915e2a17, 9b95524a",
+      "evidenceRefs": [
+        "artifacts/agent-runs/ultimate-sdlc-runner-dark-package-v1/915e2a17-91b5-45d8-9f97-b761836fcc72/dark-runner-receipt.json",
+        "artifacts/agent-runs/ultimate-sdlc-runner-dark-package-v1/9b95524a-c9d4-4fee-aae1-b7320d8112ea/dark-runner-receipt.json"
+      ]
+    },
+    {
+      "eventId": "TE-011",
+      "phase": "closeout",
+      "summary": "Wave G+E CLOSED; parent ALL_SYSTEMS_GO_ALWAYS_WORKS_V1 OPEN; next wave A+B",
+      "evidenceRefs": [
+        "artifacts/agent-runs/all-systems-go-always-works-v1/wave-ge-closeout-v1.json",
+        "docs/work-packages/all-systems-go-always-works-v1.md"
+      ]
+    },
+    {
+      "eventId": "TE-012",
+      "phase": "closeout",
+      "summary": "auto:v3:session-closeout governance BLOCKED REQUIRED_EVIDENCE_MISSING — harvest/corpus not run",
+      "evidenceRefs": [
+        "artifacts/agent-runs/all-systems-go-always-works-v1/governance-closeout-blocked-receipt-v1.json"
+      ]
+    }
+  ]
+}

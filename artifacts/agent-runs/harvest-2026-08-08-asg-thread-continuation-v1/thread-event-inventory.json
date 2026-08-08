@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-08-asg-thread-continuation-v1",
+  "threadScope": "ALL_SYSTEMS_GO_ALWAYS_WORKS_V1 continuation — G+E wave closeout, harvest v1, operator ASG run, harvest v2",
+  "generatedAt": "2026-08-08T00:12:00.000Z",
+  "priorHarvestId": "harvest-2026-08-07-asg-ge-wave-closeout-v1",
+  "events": [
+    {
+      "eventId": "TE-001",
+      "phase": "closeout",
+      "summary": "Wave asg-wave3-ge-run-bound-evidence-topology-v1 CLOSED @ a84d1ae7 with formal ASG GO x2",
+      "evidenceRefs": [
+        "harvest-2026-08-07-asg-ge-wave-closeout-v1",
+        "artifacts/agent-runs/all-systems-go-always-works-v1/wave-ge-closeout-v1.json"
+      ]
+    },
+    {
+      "eventId": "TE-002",
+      "phase": "closeout",
+      "summary": "harvest-2026-08-07-asg-ge-wave-closeout-v1 recorded — validate PASS, blind retrieval PASS",
+      "evidenceRefs": [
+        "CapitalGlass-Cross-Agent/artifacts/agent-runs/harvest-2026-08-07-asg-ge-wave-closeout-v1/validation-result.json"
+      ]
+    },
+    {
+      "eventId": "TE-003",
+      "phase": "operator",
+      "summary": "Operator requested RUN ALL SYSTEMS GO",
+      "evidenceRefs": ["user prompt RUN ALL SYSTEMS GO"]
+    },
+    {
+      "eventId": "TE-004",
+      "phase": "verification",
+      "summary": "ASG returned WARN — git-parity DIRTY_WORKTREE (~52 files); preflight PASS; zeroWrites true",
+      "evidenceRefs": [
+        "377e6da2-0619-46b7-8d40-9718e2e96503",
+        "artifacts/agent-runs/ultimate-sdlc-runner-dark-package-v1/377e6da2-0619-46b7-8d40-9718e2e96503/dark-runner-receipt.json"
+      ]
+    },
+    {
+      "eventId": "TE-005",
+      "phase": "operator",
+      "summary": "Operator re-ran CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1 on thread continuation",
+      "evidenceRefs": ["L:/02-catalog/Harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"]
+    }
+  ]
+}

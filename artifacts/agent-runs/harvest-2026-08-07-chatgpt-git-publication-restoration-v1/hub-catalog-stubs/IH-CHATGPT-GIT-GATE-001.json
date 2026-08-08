@@ -1,0 +1,75 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-chatgpt-git-gate-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "a082553e210c4606d8efca321bdbead847c8ab62",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-07-chatgpt-git-publication-restoration-v1",
+      "seedId": "IH-CHATGPT-GIT-GATE-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-08T00:12:01.708Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "fa1e6eb0edada62e6e1b571d17c472297afdf583d43311c37c9c2cf2c5346c81"
+  },
+  "body": {
+    "seedId": "IH-CHATGPT-GIT-GATE-001",
+    "kind": "runbook",
+    "title": "CHATGPT_HARVEST_GIT_GATE mandatory closeout",
+    "summary": "ChatGPT DRAFT_FILE closeout requires push to chat-gpt-harvest with remote SHA verification before CHATGPT_SOURCE_PUBLISHED.",
+    "canonicalQuestion": "What gate must ChatGPT pass before Cursor ingest?",
+    "alternateQuestions": [
+      "When can ChatGPT claim CHATGPT_SOURCE_PUBLISHED?"
+    ],
+    "shortAnswer": "ChatGPT DRAFT_FILE closeout requires push to chat-gpt-harvest with remote SHA verification before CHATGPT_SOURCE_PUBLISHED.",
+    "detailedAnswer": "CHATGPT_HARVEST_GIT_GATE mandatory closeout",
+    "retrievalQuestions": [
+      "What gate must ChatGPT pass before Cursor ingest?",
+      "When can ChatGPT claim CHATGPT_SOURCE_PUBLISHED?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "ChatGPT harvest closeout on chat-gpt-harvest branch",
+      "startAt": [
+        "harvest/protocol/CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md"
+      ],
+      "runPreflight": [
+        "Verify gitPublicationReceipt remoteVerified true"
+      ],
+      "doNot": [
+        "claim HARVEST_COMPLETE",
+        "hand off without SHA receipt"
+      ],
+      "proveBeforeClaiming": [
+        "CHATGPT_HARVEST_GIT_GATE PASS"
+      ]
+    },
+    "evidenceRefs": [
+      "harvest/protocol/CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md",
+      "commit bf3952e",
+      "EVT-003"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Cross-Agent",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/seed-packets/IH-CHATGPT-GIT-GATE-001.json"
+    ],
+    "harvestId": "harvest-2026-08-07-chatgpt-git-publication-restoration-v1"
+  }
+}

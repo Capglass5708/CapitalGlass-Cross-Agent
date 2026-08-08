@@ -1,0 +1,196 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-asg-ge-wave-closeout-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "verification",
+      "description": "Premature parent-milestone GO claim before A–F convergence and H3–H10 durability",
+      "evidenceRefs": ["TE-002", "user correction CONTINUATION_REQUIRED"],
+      "estimatedImpact": "high",
+      "savedBy": "Close sub-waves with explicit acceptance matrix; never claim ALL_SYSTEMS_GO_ALWAYS_WORKS_V1 CLOSED until final gate",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "rework",
+      "description": "ASG WARN on dirty worktree from closeout artifacts — required cleanup before RUN1/RUN2 GO proof",
+      "evidenceRefs": ["TE-010", "git-parity DIRTY_WORKTREE lane"],
+      "estimatedImpact": "medium",
+      "savedBy": "Run formal ASG proof before writing untracked artifacts, or gitignore ephemeral runtime under artifacts/",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "context",
+      "description": "mcp:contract-audit failed on stale OCR symbol checks after Documents M4PDS refactor — blocked preflight",
+      "evidenceRefs": ["TE-008", "TE-009"],
+      "estimatedImpact": "high",
+      "savedBy": "Update document contract enforcement when processingSourceAuthority replaces SharePoint-specific guards",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "deploy",
+      "description": "Structural index publication lagged origin/main — INDEX_BEHIND after each main advance",
+      "evidenceRefs": ["TE-005", "TE-006"],
+      "estimatedImpact": "medium",
+      "savedBy": "platform-intelligence:close-parity on push with Management API env",
+      "roiRank": 4
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "User rejected invalid GO_WITH_LIVE_PROOF_PENDING closeout",
+      "operatorCost": "high",
+      "systemFix": "Wave-scoped closeout receipts with explicit phase matrix before parent milestone verdict",
+      "evidenceRefs": ["TE-002"],
+      "linkedWasteIds": ["TW-001"]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Formal ASG proof for G+E wave acceptance",
+      "actualExecution": {
+        "steps": [
+          "Ran ASG with untracked closeout artifacts present",
+          "Received WARN from git-parity DIRTY_WORKTREE",
+          "Removed untracked files and re-ran"
+        ],
+        "outcome": "GO after cleanup",
+        "evidenceRefs": ["TE-010"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "git status --short must be clean",
+          "npm run test:asg-durability",
+          "npm run asg:converge -- --phases=bible",
+          "npm run all-systems-go -- --json --formal-proof --no-cache twice"
+        ],
+        "outcome": "GO on first RUN1/RUN2 without WARN detour",
+        "requiredPreflight": ["agent:preflight:app-builder-mcp PASS"]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "medium",
+        "operatorFrustration": "low"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Preflight BLOCKED during G+E closeout attempt",
+      "actualExecution": {
+        "steps": [
+          "ASG BLOCKED on preflightVerdict BLOCKED",
+          "Traced to mcp:contract-audit DOCUMENT_CENTER_OCR_AUTHORITY_DRIFT",
+          "Patched Documents contract enforcement for M4PDS symbols"
+        ],
+        "outcome": "PASS",
+        "evidenceRefs": ["TE-008", "TE-009"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Run npm run mcp:contract-audit before formal ASG",
+          "Align contract enforcement with owner-repo refactors in same wave"
+        ],
+        "outcome": "Preflight PASS without cross-repo surprise",
+        "requiredPreflight": ["npm run mcp:contract-audit"]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "medium"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Claimed parent milestone progress as CLOSED/GO when A–F partial",
+      "whyItWasWrong": "Work package requires all phases + H matrix for parent CLOSE",
+      "correctFirstMove": "Close only asg-wave3-ge with explicit RUN1/RUN2 GO proof",
+      "preventiveControl": "Wave acceptance matrix in work package before parent verdict",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "PromptOps suite-prompt-index.json CI auto-commit churn",
+      "whyRepeated": "main advances during session invalidate fingerprint checks",
+      "firstKnownInstance": "prior ASG convergence sessions",
+      "priorIndexSlice": "promptops/generated/suite-prompt-index.json",
+      "whyMissed": "Race between verify collect and remote advance",
+      "avoidableBy": "PROMPTOPS_SKIP_COLLECT=1 + SHA-bound publication in A+B wave",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Wave-scoped closeout gate before parent milestone verdict",
+      "whyItPays": "Prevents operator rejection and false GO claims",
+      "effort": "low",
+      "savedWasteIds": ["TW-001"],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 2,
+      "title": "Git-clean invariant before formal ASG proof",
+      "whyItPays": "Eliminates git-parity WARN false negatives on RUN1/RUN2",
+      "effort": "low",
+      "savedWasteIds": ["TW-002"],
+      "seedAs": "command"
+    },
+    {
+      "rank": 3,
+      "title": "Contract-audit sync with Documents M4PDS refactors",
+      "whyItPays": "Keeps app-builder preflight PASS without emergency cross-repo patches",
+      "effort": "medium",
+      "savedWasteIds": ["TW-003"],
+      "seedAs": "rule"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "ALL_SYSTEMS_GO_ALWAYS_WORKS_V1 — CLOSED",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "Phases A–G complete",
+        "H3–H10 durability matrix executed",
+        "asg:converge --all exit 0 on healthy estate"
+      ],
+      "lastKnownEvidence": ["wave-ge-closeout-v1.json waveConclusion CLOSED only for G+E"]
+    },
+    {
+      "awardOrVerdict": "asg:converge --all PASS",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "Structural index current at HEAD",
+        "PromptOps continuous publication",
+        "suite:contract-gate stable"
+      ],
+      "lastKnownEvidence": ["TE-006", "INDEX_BEHIND"]
+    },
+    {
+      "awardOrVerdict": "FULLY_SEEDED_HUB",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": ["harvest:publish-hub-seed", "index:freshness-gate"],
+      "lastKnownEvidence": ["projection.hubPublishStatus not-run"]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "mcp-servers.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-07T20:47:49.903Z"
+  }
+}

@@ -1,0 +1,397 @@
+{
+  "packetKind": "graph-extraction",
+  "schemaVersion": "cg-master-graph-extraction-v1",
+  "extractionId": "extraction:harvest-2026-08-07-chatgpt-git-publication-restoration-v1",
+  "harvestId": "harvest-2026-08-07-chatgpt-git-publication-restoration-v1",
+  "workPackageId": "harvest-2026-08-07-chatgpt-git-publication-restoration-v1",
+  "producer": {
+    "repositoryId": "repo:capitalglass-cross-agent",
+    "capability": "harvest-graph-extraction",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "id": "harvest:harvest-2026-08-07-chatgpt-git-publication-restoration-v1",
+      "nodeType": "Harvest",
+      "displayName": "harvest-2026-08-07-chatgpt-git-publication-restoration-v1",
+      "lifecycleState": "lifecycle:canonical",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "missionClass": "harvest",
+        "sourceCommitSha": "a082553e210c4606d8efca321bdbead847c8ab62",
+        "retrievalResult": "FAILOVER_GIT_LEDGER"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T21:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:chatgpt-harvest-protocol-promotion-drift-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "ChatGPT harvest Git lane developed on branch but not promoted to main",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RESOLVED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "harvest/protocol/CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md",
+        "advancementGate": "CHATGPT_SOURCE_PUBLISHED + harvest:validate PASS on pilot harvest-id"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T21:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/compact-records/chatgpt-harvest-protocol-promotion-drift-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/compact-records/chatgpt-harvest-protocol-promotion-drift-v1.json"
+        }
+      }
+    },
+    {
+      "id": "entity:blocker-blocker-chatgpt-harvest-protocol-promotion-drift-v1",
+      "nodeType": "Entity",
+      "displayName": "blocker-chatgpt-harvest-protocol-promotion-drift-v1",
+      "metadata": {
+        "entityKind": "harvest-blocker",
+        "blockerOwner": null
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T21:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/compact-records/chatgpt-harvest-protocol-promotion-drift-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/compact-records/chatgpt-harvest-protocol-promotion-drift-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:chatgpt-harvest-git-gate-v2-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "CHATGPT_HARVEST_GIT_GATE + three-stage verdict contract",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md",
+        "advancementGate": "run-harvest-chatgpt-protocol-consistency.test.mjs PASS"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T21:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/compact-records/chatgpt-harvest-git-gate-v2-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/compact-records/chatgpt-harvest-git-gate-v2-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:gh-workflow-scope-push-block-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "GitHub push blocked until gh workflow OAuth scope granted",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RESOLVED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "harvest/protocol/CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md",
+        "advancementGate": "gh auth status lists workflow scope"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T21:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/compact-records/gh-workflow-scope-push-block-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/compact-records/gh-workflow-scope-push-block-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:chatgpt-restoration-milestone-hold-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Restoration milestone GIT_AUTHORITY_PASS / LIVE_PILOT_PENDING",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "OPEN",
+      "metadata": {
+        "packetVerdict": "HOLD",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-07-chatgpt-git-publication-restoration-v1.md",
+        "advancementGate": "Action L move + harvest:ingest-chatgpt-findings + harvest:validate PASS"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T21:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/compact-records/chatgpt-restoration-milestone-hold-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/compact-records/chatgpt-restoration-milestone-hold-v1.json"
+        }
+      }
+    },
+    {
+      "id": "entity:blocker-blocker-chatgpt-restoration-milestone-hold-v1",
+      "nodeType": "Entity",
+      "displayName": "blocker-chatgpt-restoration-milestone-hold-v1",
+      "metadata": {
+        "entityKind": "harvest-blocker",
+        "blockerOwner": null
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T21:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/compact-records/chatgpt-restoration-milestone-hold-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/compact-records/chatgpt-restoration-milestone-hold-v1.json"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:harvest-harvest-2026-08-07-chatgpt-git-publication-restoration-v1-contains-workpackage-chatgpt-harvest-protocol-promotion-drift-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-07-chatgpt-git-publication-restoration-v1",
+      "targetId": "workpackage:chatgpt-harvest-protocol-promotion-drift-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T21:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-chatgpt-harvest-protocol-promotion-drift-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:chatgpt-harvest-protocol-promotion-drift-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T21:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/compact-records/chatgpt-harvest-protocol-promotion-drift-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/compact-records/chatgpt-harvest-protocol-promotion-drift-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-chatgpt-harvest-protocol-promotion-drift-v1-blocked-by-entity-blocker-blocker-chatgpt-harvest-protocol-promotion-drift-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:chatgpt-harvest-protocol-promotion-drift-v1",
+      "targetId": "entity:blocker-blocker-chatgpt-harvest-protocol-promotion-drift-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T21:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/compact-records/chatgpt-harvest-protocol-promotion-drift-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/compact-records/chatgpt-harvest-protocol-promotion-drift-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-07-chatgpt-git-publication-restoration-v1-contains-workpackage-chatgpt-harvest-git-gate-v2-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-07-chatgpt-git-publication-restoration-v1",
+      "targetId": "workpackage:chatgpt-harvest-git-gate-v2-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T21:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-chatgpt-harvest-git-gate-v2-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:chatgpt-harvest-git-gate-v2-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T21:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/compact-records/chatgpt-harvest-git-gate-v2-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/compact-records/chatgpt-harvest-git-gate-v2-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-07-chatgpt-git-publication-restoration-v1-contains-workpackage-gh-workflow-scope-push-block-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-07-chatgpt-git-publication-restoration-v1",
+      "targetId": "workpackage:gh-workflow-scope-push-block-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T21:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-gh-workflow-scope-push-block-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:gh-workflow-scope-push-block-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T21:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/compact-records/gh-workflow-scope-push-block-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/compact-records/gh-workflow-scope-push-block-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-07-chatgpt-git-publication-restoration-v1-contains-workpackage-chatgpt-restoration-milestone-hold-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-07-chatgpt-git-publication-restoration-v1",
+      "targetId": "workpackage:chatgpt-restoration-milestone-hold-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T21:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-chatgpt-restoration-milestone-hold-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:chatgpt-restoration-milestone-hold-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T21:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/compact-records/chatgpt-restoration-milestone-hold-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/compact-records/chatgpt-restoration-milestone-hold-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-chatgpt-restoration-milestone-hold-v1-blocked-by-entity-blocker-blocker-chatgpt-restoration-milestone-hold-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:chatgpt-restoration-milestone-hold-v1",
+      "targetId": "entity:blocker-blocker-chatgpt-restoration-milestone-hold-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T21:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/compact-records/chatgpt-restoration-milestone-hold-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/compact-records/chatgpt-restoration-milestone-hold-v1.json"
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "provenance": {
+    "producerRepositoryId": "repo:capitalglass-cross-agent",
+    "producerCapability": "harvest-graph-extraction",
+    "sourceAuthority": "authority:cross-agent-harvest",
+    "classification": "observed",
+    "verificationState": "verified",
+    "recordedAt": "2026-08-07T21:00:00.000Z",
+    "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/harvest-manifest-v1.json",
+    "sourceAnchorDetail": {
+      "anchorType": "file-path",
+      "locator": "artifacts/agent-runs/harvest-2026-08-07-chatgpt-git-publication-restoration-v1/harvest-manifest-v1.json"
+    }
+  }
+}

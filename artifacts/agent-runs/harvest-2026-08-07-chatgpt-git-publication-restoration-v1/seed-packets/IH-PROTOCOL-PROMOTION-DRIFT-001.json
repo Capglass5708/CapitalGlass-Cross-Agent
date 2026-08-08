@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-PROTOCOL-PROMOTION-DRIFT-001",
+  "kind": "lesson",
+  "title": "ChatGPT protocol on branch is not operational until promoted to main",
+  "summary": "chat-gpt-harvest branch protocol text does not define operator behavior until merged to main and mirrored to Z/L.",
+  "retrievalQuestions": [
+    "Why did ChatGPT stop pushing harvest findings?",
+    "What makes a harvest protocol operational?"
+  ],
+  "evidenceRefs": ["EVT-002", "feaab57 not on main", "L mirror from z-mirror"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Split behavior between branch protocol and L/Z copies",
+    "startAt": ["harvest/protocol/CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md"],
+    "runPreflight": ["git rev-parse origin/main", "npm run harvest:sync-z-mirror"],
+    "doNot": ["treat chat-gpt-harvest branch docs as authority"],
+    "proveBeforeClaiming": ["main SHA contains protocol + consistency test PASS"]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

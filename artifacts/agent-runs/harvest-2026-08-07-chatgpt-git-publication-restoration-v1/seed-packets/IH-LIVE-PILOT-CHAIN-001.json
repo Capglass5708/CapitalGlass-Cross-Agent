@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-LIVE-PILOT-CHAIN-001",
+  "kind": "runbook",
+  "title": "ChatGPT restoration live pilot chain",
+  "summary": "After GIT_AUTHORITY_PASS, prove ChatGPT push → Action → L staging → Cursor ingest → validate before CLOSED_GO.",
+  "retrievalQuestions": [
+    "What steps prove ChatGPT harvest restoration is operational?",
+    "When can restoration milestone become CLOSED_GO?"
+  ],
+  "evidenceRefs": [
+    "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md",
+    "EVT-008"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "GIT_AUTHORITY_PASS / LIVE_PILOT_PENDING milestone",
+    "startAt": ["CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md v2"],
+    "runPreflight": [
+      "ChatGPT CHATGPT_SOURCE_PUBLISHED",
+      "npm run harvest:ingest-chatgpt-findings",
+      "npm run harvest:validate"
+    ],
+    "doNot": ["claim CLOSED_GO without pilot validate PASS"],
+    "proveBeforeClaiming": ["harvest:validate PASS on pilot harvest-id"]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

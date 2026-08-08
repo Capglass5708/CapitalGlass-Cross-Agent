@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-ASG-FORMAL-PROOF-GIT-CLEAN-001",
+  "kind": "failure-pattern",
+  "title": "Formal ASG proof requires clean git worktree",
+  "summary": "all-systems-go --formal-proof on dirty worktree returns WARN from git-parity lane, not GO — wave acceptance needs clean tree before RUN1/RUN2.",
+  "retrievalQuestions": [
+    "Why does ASG return WARN instead of GO during wave closeout?",
+    "What git state is required before formal ASG proof?"
+  ],
+  "evidenceRefs": [
+    "CG-AppBuilder-MCP@a84d1ae747d7905c8dd74726846da3decb322e2e",
+    "TE-010",
+    "ED-001"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Wave closeout requires ASG RUN1/RUN2 GO",
+    "startAt": [
+      "docs/work-packages/all-systems-go-always-works-v1.md",
+      "artifacts/agent-runs/all-systems-go-always-works-v1/wave-ge-closeout-v1.json"
+    ],
+    "runPreflight": [
+      "git status --short",
+      "npm run agent:preflight:app-builder-mcp"
+    ],
+    "doNot": [
+      "Write closeout artifacts before formal proof",
+      "Treat WARN as wave acceptance"
+    ],
+    "proveBeforeClaiming": [
+      "git status --short empty",
+      "systemsGoVerdict GO twice with formalProof true"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 2,
+  "wasteIds": ["TW-002"]
+}

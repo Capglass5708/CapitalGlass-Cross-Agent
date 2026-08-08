@@ -1,0 +1,80 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-asg-formal-proof-git-clean-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "a082553e210c4606d8efca321bdbead847c8ab62",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-07-asg-ge-wave-closeout-v1",
+      "seedId": "IH-ASG-FORMAL-PROOF-GIT-CLEAN-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-07T20:51:05.744Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "abe2f21a8e3a30e4c86c799478ee25bf55a1daeb2663a2d11a7f153517ce062d"
+  },
+  "body": {
+    "seedId": "IH-ASG-FORMAL-PROOF-GIT-CLEAN-001",
+    "kind": "failure-pattern",
+    "title": "Formal ASG proof requires clean git worktree",
+    "summary": "all-systems-go --formal-proof on dirty worktree returns WARN from git-parity lane, not GO — wave acceptance needs clean tree before RUN1/RUN2.",
+    "canonicalQuestion": "Why does ASG return WARN instead of GO during wave closeout?",
+    "alternateQuestions": [
+      "What git state is required before formal ASG proof?"
+    ],
+    "shortAnswer": "all-systems-go --formal-proof on dirty worktree returns WARN from git-parity lane, not GO — wave acceptance needs clean tree before RUN1/RUN2.",
+    "detailedAnswer": "Formal ASG proof requires clean git worktree",
+    "retrievalQuestions": [
+      "Why does ASG return WARN instead of GO during wave closeout?",
+      "What git state is required before formal ASG proof?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Wave closeout requires ASG RUN1/RUN2 GO",
+      "startAt": [
+        "docs/work-packages/all-systems-go-always-works-v1.md",
+        "artifacts/agent-runs/all-systems-go-always-works-v1/wave-ge-closeout-v1.json"
+      ],
+      "runPreflight": [
+        "git status --short",
+        "npm run agent:preflight:app-builder-mcp"
+      ],
+      "doNot": [
+        "Write closeout artifacts before formal proof",
+        "Treat WARN as wave acceptance"
+      ],
+      "proveBeforeClaiming": [
+        "git status --short empty",
+        "systemsGoVerdict GO twice with formalProof true"
+      ]
+    },
+    "evidenceRefs": [
+      "CG-AppBuilder-MCP@a84d1ae747d7905c8dd74726846da3decb322e2e",
+      "TE-010",
+      "ED-001"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [
+      "TW-002"
+    ],
+    "operatorFrictionIds": [],
+    "roiRank": 2,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-07-asg-ge-wave-closeout-v1/seed-packets/IH-ASG-FORMAL-PROOF-GIT-CLEAN-001.json"
+    ],
+    "harvestId": "harvest-2026-08-07-asg-ge-wave-closeout-v1"
+  }
+}
