@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-WESLEYDESK-WORKER-DEPLOY-DESK-LOCAL-001",
+  "kind": "runbook",
+  "title": "Wesleydesk plan-processing worker deploy requires desk-local elevated proof",
+  "summary": "BLOCKED_WESLEYDESK_WORKER_DEPLOY is a host gate — SSH from RYZEN9 and office-worker healthz 502 are not architecture failures. Operator runs wesleydesk-plan-processing-worker-deploy-closeout.ps1 on CG-WESLEYDESK-01.",
+  "retrievalQuestions": [
+    "Why is Wesleydesk worker deploy blocked after Beacon/Rosewood PLAN_INTELLIGENCE_READY?",
+    "Can I verify Wesleydesk worker from WSL SSH?",
+    "What promotes BLOCKED_WESLEYDESK_WORKER_DEPLOY to PLAN_SET_PROCESSING_ENGINE_READY?"
+  ],
+  "evidenceRefs": [
+    "TE-007",
+    "TE-010",
+    "wesleydesk-plan-processing-worker-deploy-closeout-v1/closeout-receipt.json",
+    "scripts/proof/wesleydesk-plan-processing-worker-deploy-closeout.ps1"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "BLOCKED_WESLEYDESK_WORKER_DEPLOY or Wesleydesk worker health 502",
+    "startAt": [
+      "CapitalGlass-Documents/scripts/proof/wesleydesk-plan-processing-worker-deploy-closeout.ps1",
+      "CapitalGlass-Documents/artifacts/agent-runs/wesleydesk-plan-processing-worker-deploy-closeout-v1/closeout-receipt.json"
+    ],
+    "runPreflight": [
+      "git rev-parse HEAD on CG-WESLEYDESK-01 vs origin/main",
+      ".\\scripts\\proof\\wesleydesk-plan-processing-worker-deploy-closeout.ps1"
+    ],
+    "doNot": [
+      "Redesign OCR/parser architecture",
+      "Claim PLAN_SET_PROCESSING_ENGINE_READY from remote SSH probes",
+      "Start M4PI before plain PLAN_SET_PROCESSING_ENGINE_READY"
+    ],
+    "proveBeforeClaiming": [
+      "CapitalGlass-Office-Document-Worker healthy at current build",
+      "Intelligence sidecar on 8791",
+      "Bounded Synology-primary job without SharePoint-authority error",
+      "aggregate-plan-intelligence drift check on both snapshot IDs"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Documents",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 1,
+  "wasteIds": ["TW-003"]
+}

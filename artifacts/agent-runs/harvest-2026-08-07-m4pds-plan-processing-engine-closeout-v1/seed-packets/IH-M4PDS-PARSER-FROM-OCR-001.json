@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-M4PDS-PARSER-FROM-OCR-001",
+  "kind": "lesson",
+  "title": "Parser-from-OCR artifact path for oversize and monolith plan sets",
+  "summary": "applyPlanSetParserFromOcrArtifact reads document_ocr_pages.text and ingests parser bindings without production intelligence HTTP — fixed Rosewood 192-page accounting when POST intelligence-results returned 502.",
+  "retrievalQuestions": [
+    "How to parser-bind Rosewood monolith without re-reading 100MB PDF?",
+    "Why does intelligence-results return 502 during parser drain?",
+    "What is applyPlanSetParserFromOcrArtifact?"
+  ],
+  "evidenceRefs": [
+    "TE-003",
+    "TE-005",
+    "src/plan-set-processing/lane-binding-execution-bridge.ts",
+    "scripts/proof/apply-plan-set-parser-from-ocr.ts"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Parser incomplete for oversize plan set or intelligence HTTP 502",
+    "startAt": [
+      "CapitalGlass-Documents/src/plan-set-processing/lane-binding-execution-bridge.ts",
+      "CapitalGlass-Documents/scripts/proof/apply-plan-set-parser-from-ocr.ts"
+    ],
+    "runPreflight": [
+      "doppler run -p cg-documents -c prd -- npx tsx scripts/proof/aggregate-plan-intelligence.ts <snapshotId>",
+      "doppler run -p cg-documents -c prd -- npx tsx scripts/proof/apply-plan-set-parser-from-ocr.ts <snapshotId>"
+    ],
+    "doNot": [
+      "Re-OCR completed pages for parser recovery",
+      "Assume text_content column — use document_ocr_pages.text"
+    ],
+    "proveBeforeClaiming": [
+      "aggregate-plan-intelligence shows parser count matches OCR count",
+      "readiness PLAN_INTELLIGENCE_READY"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Documents",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 2,
+  "wasteIds": ["TW-002"]
+}

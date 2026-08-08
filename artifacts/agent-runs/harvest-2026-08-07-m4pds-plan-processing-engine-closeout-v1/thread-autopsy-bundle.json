@@ -1,0 +1,290 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "rework",
+      "description": "ocrExtractJob referenced undefined fetched on Synology path — blocked OCR drain until Uint8Array.from(fetchedBytes) fix",
+      "evidenceRefs": [
+        "TE-002",
+        "CapitalGlass-Documents@e4e4bfb"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Contract test on worker fetch path before claiming Synology-primary PASS",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "verification",
+      "description": "Parser recovery pursued via production intelligence HTTP while sidecar returned 502 — delayed full Rosewood accounting",
+      "evidenceRefs": [
+        "TE-003",
+        "TE-005"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Prefer parser-from-OCR direct ingest when oversize/monolith; prove via aggregate-plan-intelligence before HTTP path",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "host",
+      "description": "Wesleydesk worker deploy proof attempted from RYZEN9 without desk-local elevation — SSH/WinRM denied; healthz 502",
+      "evidenceRefs": [
+        "TE-007",
+        "TE-010"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Operator-only wesleydesk-plan-processing-worker-deploy-closeout.ps1 on CG-WESLEYDESK-01 Admin PowerShell",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "operator_attention",
+      "description": "Long multi-wave thread risked further architecture churn after data plane was already PLAN_INTELLIGENCE_READY on both fixtures",
+      "evidenceRefs": [
+        "TE-009",
+        "TE-004",
+        "TE-005"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Honor BLOCKED_WESLEYDESK_WORKER_DEPLOY — no M4PI until PLAN_SET_PROCESSING_ENGINE_READY after desk proofs",
+      "roiRank": 4
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Remote Wesleydesk deploy verification from non-desk host failed with auth and 502",
+      "operatorCost": "medium",
+      "systemFix": "Run deploy closeout PS1 locally on CG-WESLEYDESK-01; do not claim worker PASS from WSL SSH probes",
+      "evidenceRefs": [
+        "TE-007",
+        "TE-010"
+      ],
+      "linkedWasteIds": [
+        "TW-003"
+      ]
+    },
+    {
+      "frictionId": "OF-002",
+      "trigger": "Operator had to freeze processing architecture after data-plane completion",
+      "operatorCost": "low",
+      "systemFix": "Closeout receipt with explicit doNotAdvance on architecture redesign",
+      "evidenceRefs": [
+        "TE-009"
+      ],
+      "linkedWasteIds": [
+        "TW-004"
+      ]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Full Beacon + Rosewood OCR and parser accounting on Synology-primary worker",
+      "actualExecution": {
+        "steps": [
+          "Fixed ocrExtractJob fetch bug on Synology path",
+          "Drained OCR queue from RYZEN9 with Doppler prd",
+          "Recovered Beacon parser via sync + OCR-artifact path",
+          "Rosewood 192-page monolith OCR then apply-plan-set-parser-from-ocr"
+        ],
+        "outcome": "Both fixtures PLAN_INTELLIGENCE_READY — 274 pages accounted",
+        "evidenceRefs": [
+          "TE-002",
+          "TE-004",
+          "TE-005"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Land fetch fix before first Synology drain claim",
+          "Use parser-from-OCR for oversize fixtures first",
+          "Run aggregate-plan-intelligence as single accounting gate"
+        ],
+        "outcome": "Same readiness with less HTTP 502 debugging",
+        "requiredPreflight": [
+          "npm run gate:plan-set-processing-handoff",
+          "npx tsx scripts/proof/aggregate-plan-intelligence.ts <snapshotId>"
+        ],
+        "evidenceRefs": [
+          "TE-003",
+          "TE-006"
+        ]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "high",
+        "operatorFrustration": "low"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Wesleydesk production worker deploy closeout",
+      "actualExecution": {
+        "steps": [
+          "SSH and Invoke-Command from RYZEN9",
+          "office-worker.capitalglasstxapps.com/healthz probe",
+          "Recorded BLOCKED_WESLEYDESK_WORKER_DEPLOY with operator PS1"
+        ],
+        "outcome": "Data plane complete; host gate open — not architecture defect",
+        "evidenceRefs": [
+          "TE-007",
+          "TE-010"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Operator runs wesleydesk-plan-processing-worker-deploy-closeout.ps1 on desk",
+          "Prove single canonical worker + intelligence sidecar 8791",
+          "Re-run aggregate-plan-intelligence drift check"
+        ],
+        "outcome": "PLAN_SET_PROCESSING_ENGINE_READY promotion",
+        "requiredPreflight": [
+          "git rev-parse HEAD on desk matches origin/main",
+          ".\\scripts\\proof\\wesleydesk-plan-processing-worker-deploy-closeout.ps1"
+        ],
+        "evidenceRefs": [
+          "TE-010"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "medium"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Claiming Synology-primary OCR PASS before ocrExtractJob fetch fix",
+      "whereItHappened": "Early M4PDS drain attempts",
+      "whyItWasWrong": "fetched undefined aborted jobs — authority error masked runtime bug",
+      "correctFirstMove": "Fix worker fetch path; re-enqueue failed jobs",
+      "preventiveControl": "Worker integration test on Synology byte fetch before drain closeout",
+      "seedTarget": "IH-M4PDS-SYNOLOGY-OCR-FETCH-001",
+      "executionDeltaId": "ED-001"
+    },
+    {
+      "wrongMoveId": "WM-002",
+      "summary": "Remote Wesleydesk worker verification from RYZEN9 WSL",
+      "whereItHappened": "wesleydesk-plan-processing-worker-deploy-closeout-v1",
+      "whyItWasWrong": "Desk host requires local elevated session; remote probes falsely imply deploy failure on architecture",
+      "correctFirstMove": "Record BLOCKED_WESLEYDESK_WORKER_DEPLOY and hand operator PS1",
+      "preventiveControl": "Host authority gate in closeout receipt — desk-local proof only",
+      "seedTarget": "IH-WESLEYDESK-WORKER-DEPLOY-DESK-LOCAL-001",
+      "executionDeltaId": "ED-002"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "Synology-primary project-folder processing foundation",
+      "firstKnownInstance": "harvest-project-folder-synology-primary-chat-v1",
+      "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
+      "whyRepeated": "This thread closes M4PDS runtime + full fixture accounting — prior harvest was production promotion not worker runtime closeout",
+      "avoidableBy": "Index M4PDS as distinct closeout boundary from project-folder promotion",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Desk-local Wesleydesk worker deploy runbook + health gate",
+      "whyItPays": "Unblocks PLAN_SET_PROCESSING_ENGINE_READY without remote false negatives",
+      "effort": "low",
+      "ownerRepo": "CapitalGlass-Documents",
+      "savedWasteIds": [
+        "TW-003"
+      ],
+      "seedAs": "runbook",
+      "suggestedWorkPackageId": "wesleydesk-plan-processing-worker-deploy-closeout-v1"
+    },
+    {
+      "rank": 2,
+      "title": "Parser-from-OCR as default oversize/monolith path",
+      "whyItPays": "Avoids production intelligence HTTP 502 on large plan sets",
+      "effort": "low",
+      "ownerRepo": "CapitalGlass-Documents",
+      "savedWasteIds": [
+        "TW-002"
+      ],
+      "seedAs": "rule",
+      "suggestedWorkPackageId": "plan-set-parser-from-ocr-default-v1"
+    },
+    {
+      "rank": 3,
+      "title": "Synology OCR worker fetch integration gate in CI",
+      "whyItPays": "Prevents fetched-undefined class regressions on authority switch",
+      "effort": "medium",
+      "ownerRepo": "CapitalGlass-Documents",
+      "savedWasteIds": [
+        "TW-001"
+      ],
+      "seedAs": "test",
+      "suggestedWorkPackageId": "m4pds-synology-ocr-fetch-gate-v1"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "PLAN_INTELLIGENCE_READY (Beacon + Rosewood)",
+      "currentStatus": "CLOSED",
+      "doNotClaimUntil": [
+        "New processingSnapshotId without re-running aggregate-plan-intelligence"
+      ],
+      "lastKnownEvidence": [
+        "TE-004",
+        "TE-005"
+      ],
+      "proofCommandId": "aggregate-plan-intelligence-v1"
+    },
+    {
+      "awardOrVerdict": "PLAN_SET_PROCESSING_ENGINE_READY",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "CG-WESLEYDESK-01 desk-local four proofs PASS",
+        "No drift on ce0db433 and 748545a7 snapshots"
+      ],
+      "lastKnownEvidence": [
+        "TE-010",
+        "BLOCKED_WESLEYDESK_WORKER_DEPLOY"
+      ],
+      "proofCommandId": "wesleydesk-plan-processing-worker-deploy-closeout.ps1"
+    },
+    {
+      "awardOrVerdict": "plan-intelligence-estimating-spine-handoff-v1 (M4PI)",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "Plain PLAN_SET_PROCESSING_ENGINE_READY after Wesleydesk deploy"
+      ],
+      "lastKnownEvidence": [
+        "TE-009"
+      ]
+    },
+    {
+      "awardOrVerdict": "Further processing architecture redesign",
+      "currentStatus": "CLOSED",
+      "doNotClaimUntil": [
+        "Operator explicitly reopens architecture scope"
+      ],
+      "lastKnownEvidence": [
+        "TE-009"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "work-progress/harvest-packet-registry.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-08T00:10:00.000Z",
+    "note": "Distinct from project-folder-synology-primary harvest — M4PDS runtime + fixture accounting closeout"
+  }
+}

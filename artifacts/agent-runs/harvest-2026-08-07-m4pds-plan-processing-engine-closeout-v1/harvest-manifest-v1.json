@@ -1,0 +1,369 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "a082553e210c4606d8efca321bdbead847c8ab62",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-08T00:15:00.000Z",
+  "updatedAt": "2026-08-08T00:15:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "Claim PLAN_SET_PROCESSING_ENGINE_READY before CG-WESLEYDESK-01 desk-local four proofs",
+    "Start plan-intelligence-estimating-spine-handoff-v1 (M4PI) before plain PLAN_SET_PROCESSING_ENGINE_READY",
+    "Redesign processing architecture — operator froze scope after data-plane completion",
+    "Re-run full 274-job OCR/parser ceremony without drift evidence",
+    "Run index:publish or harvest:publish-hub-seed from Cursor",
+    "Claim FULLY_SEEDED without index:freshness-gate receipt"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 4,
+      "seeds": 3,
+      "roiItems": 3,
+      "operatorFriction": 2,
+      "executionDeltas": 2
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Operator runs harvest:publish-hub-seed + index:publish — NOT_RUN_BY_CURSOR"
+  },
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "1.1.0",
+    "eligibleCandidates": 0,
+    "rejectedUnrelatedCandidates": 0,
+    "exportStatus": "not-run",
+    "dataExtractionStatus": "not-run",
+    "catalogPublishStatus": "not-run",
+    "retrievalStatus": "not-run",
+    "targetCatalog": "L:\\02-catalog\\Harvest\\Harvest Protocol Self Learning",
+    "authorityStatus": "PROPOSAL",
+    "automaticProtocolMutation": false
+  },
+  "relatedRepos": [
+    {
+      "repo": "CapitalGlass-Documents",
+      "branch": "main",
+      "commitSha": "29be72cd7032533dd670caace53bae48335b507f",
+      "role": "M4PDS runtime fixes, fixture accounting, Wesleydesk closeout receipts"
+    },
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "main",
+      "commitSha": "a082553e210c4606d8efca321bdbead847c8ab62",
+      "role": "harvest recording authority"
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerPath": "work-progress/ACTIVE_WORK.md",
+    "ledgerContentHashBefore": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096",
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  },
+  "packets": [
+    {
+      "packetKind": "decision",
+      "packetId": "m4pds-data-plane-complete-wesleydesk-gate-v1",
+      "packetTitle": "Data plane PLAN_INTELLIGENCE_READY; Wesleydesk deploy is sole remaining gate",
+      "state": "COMPLETE",
+      "packetVerdict": "BLOCKED_WESLEYDESK_WORKER_DEPLOY",
+      "ownerRepo": "CapitalGlass-Documents",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1.md",
+      "nextAction": "Operator runs wesleydesk-plan-processing-worker-deploy-closeout.ps1 on CG-WESLEYDESK-01",
+      "advancementGate": "Desk-local four proofs + no snapshot drift",
+      "doNotAdvance": [
+        "M4PI before PLAN_SET_PROCESSING_ENGINE_READY",
+        "Architecture redesign"
+      ],
+      "evidenceRefs": [
+        "TE-004",
+        "TE-005",
+        "TE-009",
+        "TE-010"
+      ],
+      "commitRefs": [
+        "CapitalGlass-Documents@29be72cd7032533dd670caace53bae48335b507f"
+      ],
+      "blockers": [],
+      "decision": "Close processing architecture work; host deploy gate is operator-only",
+      "alternativesRejected": [
+        "Further OCR/parser redesign",
+        "Remote Wesleydesk proof from RYZEN9"
+      ]
+    },
+    {
+      "packetKind": "outcome",
+      "packetId": "beacon-hill-plan-intelligence-ready-v1",
+      "packetTitle": "Beacon Hill ce0db433 — 82/82 OCR and parser",
+      "state": "COMPLETE",
+      "packetVerdict": "PLAN_INTELLIGENCE_READY",
+      "ownerRepo": "CapitalGlass-Documents",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1.md",
+      "nextAction": "Drift check only — do not re-process",
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Re-OCR Beacon without new snapshot"
+      ],
+      "evidenceRefs": [
+        "TE-004",
+        "ce0db433-2214-45b8-bf43-00077f179bf4"
+      ],
+      "commitRefs": [
+        "CapitalGlass-Documents@e4e4bfb"
+      ],
+      "blockers": [],
+      "changeImplemented": "Synology-primary OCR drain + parser-from-OCR recovery",
+      "beforeState": "Incomplete parser bindings; stale intelligence jobs",
+      "afterState": "82/82 OCR, 82/82 parser",
+      "measurement": "aggregate-plan-intelligence.ts",
+      "expectedEffect": "PLAN_INTELLIGENCE_READY",
+      "observedEffect": "PLAN_INTELLIGENCE_READY",
+      "residuals": [],
+      "regressions": [],
+      "effectiveness": "PROVEN_EFFECTIVE"
+    },
+    {
+      "packetKind": "outcome",
+      "packetId": "rosewood-plan-intelligence-ready-v1",
+      "packetTitle": "Rosewood 748545a7 — 192/192 OCR and parser via monolith + OCR-artifact",
+      "state": "COMPLETE",
+      "packetVerdict": "PLAN_INTELLIGENCE_READY",
+      "ownerRepo": "CapitalGlass-Documents",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1.md",
+      "nextAction": "Drift check only — do not re-read 100MB monolith",
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Re-OCR Rosewood monolith without new snapshot"
+      ],
+      "evidenceRefs": [
+        "TE-005",
+        "748545a7-5114-47dd-a979-3d72a0b3b8eb"
+      ],
+      "commitRefs": [
+        "CapitalGlass-Documents@e4e4bfb"
+      ],
+      "blockers": [],
+      "changeImplemented": "Monolith OCR job + apply-plan-set-parser-from-ocr",
+      "beforeState": "100MB parser blocker; intelligence HTTP 502",
+      "afterState": "192/192 OCR, 192/192 parser",
+      "measurement": "apply-plan-set-parser-from-ocr.ts ~193s",
+      "expectedEffect": "PLAN_INTELLIGENCE_READY without binary reread",
+      "observedEffect": "PLAN_INTELLIGENCE_READY",
+      "residuals": [],
+      "regressions": [],
+      "effectiveness": "PROVEN_EFFECTIVE"
+    },
+    {
+      "packetKind": "blocker",
+      "packetId": "wesleydesk-worker-deploy-blocked-v1",
+      "packetTitle": "CG-WESLEYDESK-01 worker deploy not proven — host authority gate",
+      "state": "ACTIVE",
+      "packetVerdict": "BLOCKED_WESLEYDESK_WORKER_DEPLOY",
+      "ownerRepo": "CapitalGlass-Documents",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/wesleydesk-plan-processing-worker-deploy-closeout-v1.md",
+      "nextAction": "Desk-local deploy closeout PS1",
+      "advancementGate": "wesleydesk-plan-processing-worker-deploy-closeout.ps1 PASS",
+      "doNotAdvance": [
+        "PLAN_SET_PROCESSING_ENGINE_READY",
+        "M4PI"
+      ],
+      "evidenceRefs": [
+        "TE-007",
+        "TE-010",
+        "artifacts/agent-runs/wesleydesk-plan-processing-worker-deploy-closeout-v1/closeout-receipt.json"
+      ],
+      "commitRefs": [
+        "CapitalGlass-Documents@29be72cd7032533dd670caace53bae48335b507f"
+      ],
+      "blockers": [
+        "SSH Permission denied from RYZEN9",
+        "office-worker healthz HTTP 502",
+        "Desk-local proof required"
+      ],
+      "blockerId": "WESLEYDESK_WORKER_DEPLOY",
+      "status": "OPEN",
+      "proofCommandId": "wesleydesk-plan-processing-worker-deploy-closeout.ps1"
+    },
+    {
+      "packetKind": "mistake",
+      "packetId": "remote-wesleydesk-worker-proof-v1",
+      "packetTitle": "Attempted Wesleydesk worker verification from non-desk host",
+      "state": "RESOLVED",
+      "packetVerdict": "RECORDED_WRONG_MOVE",
+      "ownerRepo": "CapitalGlass-Documents",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1.md",
+      "nextAction": "Use desk-local runbook seed IH-WESLEYDESK-WORKER-DEPLOY-DESK-LOCAL-001",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "WM-002",
+        "TE-007"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "mistake": "SSH/WinRM from RYZEN9 treated as deploy authority",
+      "correction": "BLOCKED_WESLEYDESK_WORKER_DEPLOY with operator PS1 handoff",
+      "preventiveControl": "Host authority gate in closeout receipt"
+    },
+    {
+      "packetKind": "repeated_work",
+      "packetId": "synology-primary-foundation-prior-harvest-v1",
+      "packetTitle": "Distinct from project-folder-synology-primary promotion harvest",
+      "state": "INDEXED_NOT_DUPLICATE",
+      "packetVerdict": "BOUNDARY_RECORDED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1.md",
+      "nextAction": "Index M4PDS runtime closeout as separate boundary",
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Merge with project-folder promotion harvest as same milestone"
+      ],
+      "evidenceRefs": [
+        "DW-001",
+        "harvest-project-folder-synology-primary-chat-v1"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "priorInstance": "harvest-project-folder-synology-primary-chat-v1",
+      "whyNotDuplicate": "M4PDS closes worker runtime + full fixture accounting"
+    },
+    {
+      "packetKind": "faster_path",
+      "packetId": "parser-from-ocr-default-v1",
+      "packetTitle": "Parser-from-OCR before production intelligence HTTP for oversize sets",
+      "state": "ADOPTED",
+      "packetVerdict": "PROVEN_SHORTCUT",
+      "ownerRepo": "CapitalGlass-Documents",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1.md",
+      "nextAction": "Default enqueueLaneParserJob to OCR-artifact path for monolith",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-003",
+        "TE-005",
+        "IH-M4PDS-PARSER-FROM-OCR-001"
+      ],
+      "commitRefs": [
+        "CapitalGlass-Documents@e4e4bfb"
+      ],
+      "blockers": [],
+      "shortcut": "applyPlanSetParserFromOcrArtifact direct ingest",
+      "timeSaved": "~HTTP 502 debugging + avoids binary reread"
+    },
+    {
+      "packetKind": "command",
+      "packetId": "plan-processing-proof-commands-v1",
+      "packetTitle": "Canonical proof commands for plan intelligence accounting",
+      "state": "RECORDED",
+      "packetVerdict": "COMMAND_INDEXED",
+      "ownerRepo": "CapitalGlass-Documents",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1.md",
+      "nextAction": "Use for drift checks post-Wesleydesk deploy",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-006"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "commands": [
+        "npm run gate:plan-set-processing-handoff",
+        "doppler run -p cg-documents -c prd -- npx tsx scripts/proof/aggregate-plan-intelligence.ts <snapshotId>",
+        "doppler run -p cg-documents -c prd -- npx tsx scripts/proof/apply-plan-set-parser-from-ocr.ts <snapshotId>",
+        ".\\scripts\\proof\\wesleydesk-plan-processing-worker-deploy-closeout.ps1"
+      ]
+    },
+    {
+      "packetKind": "evidence",
+      "packetId": "m4pds-closeout-receipt-chain-v1",
+      "packetTitle": "Closeout receipt chain — M4PDS through Wesleydesk deploy",
+      "state": "RECORDED",
+      "packetVerdict": "EVIDENCE_BOUND",
+      "ownerRepo": "CapitalGlass-Documents",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1.md",
+      "nextAction": "Operator completes Wesleydesk receipt update on desk proof",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "artifacts/agent-runs/m4pds-synology-primary-worker-runtime-closeout-v1/",
+        "artifacts/agent-runs/plan-set-processing-engine-production-finalize-v1/",
+        "artifacts/agent-runs/wesleydesk-plan-processing-worker-deploy-closeout-v1/closeout-receipt.json"
+      ],
+      "commitRefs": [
+        "CapitalGlass-Documents@1c8d9b2",
+        "CapitalGlass-Documents@e4e4bfb",
+        "CapitalGlass-Documents@e300615",
+        "CapitalGlass-Documents@29be72cd7032533dd670caace53bae48335b507f"
+      ],
+      "blockers": []
+    },
+    {
+      "packetKind": "protocol_upgrade",
+      "packetId": "processing-architecture-freeze-v1",
+      "packetTitle": "Operator froze processing architecture after data-plane completion",
+      "state": "ACTIVE",
+      "packetVerdict": "SCOPE_FROZEN",
+      "ownerRepo": "CapitalGlass-Documents",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1.md",
+      "nextAction": "Only Wesleydesk host gate unless operator reopens architecture",
+      "advancementGate": "Operator explicit reopen",
+      "doNotAdvance": [
+        "Second OCR stack",
+        "Parser redesign",
+        "SharePoint-only authority revert"
+      ],
+      "evidenceRefs": [
+        "TE-009"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "protocolChange": "BLOCKED_WESLEYDESK_WORKER_DEPLOY is host gate not architecture defect"
+    }
+  ],
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 11,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 11,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-fefb9b87955a",
+      "prompt-candidate-1f824e94d220",
+      "prompt-candidate-cac2929ac77b",
+      "prompt-candidate-db39a71cd058",
+      "prompt-candidate-4477d2206a33",
+      "prompt-candidate-5126919dca01",
+      "prompt-candidate-b0b003c9f900",
+      "prompt-candidate-625190d25475",
+      "prompt-candidate-9978981f52cd",
+      "prompt-candidate-45871340b212",
+      "prompt-candidate-78c4f8dac8ff"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

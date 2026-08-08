@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1",
+  "packetId": "m4pds-data-plane-complete-wesleydesk-gate-v1",
+  "state": "COMPLETE",
+  "packetVerdict": "BLOCKED_WESLEYDESK_WORKER_DEPLOY",
+  "ownerRepo": "CapitalGlass-Documents",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Operator runs wesleydesk-plan-processing-worker-deploy-closeout.ps1 on CG-WESLEYDESK-01",
+  "evidenceRefs": [
+    "TE-004",
+    "TE-005",
+    "TE-009",
+    "TE-010"
+  ],
+  "doNotAdvance": [
+    "M4PI before PLAN_SET_PROCESSING_ENGINE_READY",
+    "Architecture redesign"
+  ],
+  "advancementGate": "Desk-local four proofs + no snapshot drift",
+  "contentHash": "a6cc6cadf2985deacb65992d4d90c1f3dabb50bf68aa7b89e6cf22e41acd0377"
+}

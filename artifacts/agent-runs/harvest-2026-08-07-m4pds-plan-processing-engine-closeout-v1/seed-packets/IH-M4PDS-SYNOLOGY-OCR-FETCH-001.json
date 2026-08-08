@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-M4PDS-SYNOLOGY-OCR-FETCH-001",
+  "kind": "failure-pattern",
+  "title": "Synology OCR drain fails when ocrExtractJob references undefined fetched",
+  "summary": "PREVIEW_CACHE_AUTHORITY synology-not-SharePoint-authoritative masked a worker bug — fetched undefined on byte path until Uint8Array.from(fetchedBytes) and fetchedBytes.byteLength fix at e4e4bfb.",
+  "retrievalQuestions": [
+    "Why Synology OCR jobs fail with fetched is not defined?",
+    "PREVIEW_CACHE_AUTHORITY provider synology is not SharePoint-authoritative — is architecture wrong?"
+  ],
+  "evidenceRefs": [
+    "TE-002",
+    "CapitalGlass-Documents@e4e4bfb",
+    "workers/document-preview-cache/src/ocrExtractJob.ts"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Synology OCR job failure during document-preview-cache drain",
+    "startAt": [
+      "CapitalGlass-Documents/workers/document-preview-cache/src/ocrExtractJob.ts",
+      "workers/document-preview-cache/src/synologyOcrDrain.ts"
+    ],
+    "runPreflight": [
+      "Inspect failed job error text in Supabase document_ocr_jobs",
+      "npm run gate:workers-hardening"
+    ],
+    "doNot": [
+      "Revert to SharePoint-only authority as fix",
+      "Claim Synology-primary PASS without successful drain sample"
+    ],
+    "proveBeforeClaiming": [
+      "At least one Synology-primary OCR job SUCCEEDED after fix",
+      "No fetched undefined in worker logs"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Documents",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 3,
+  "wasteIds": ["TW-001"]
+}

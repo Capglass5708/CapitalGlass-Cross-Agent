@@ -1,0 +1,103 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1",
+  "threadScope": "M4P/M4PH/M4PD/M4PDS plan-set processing engine — Synology-primary worker runtime, Beacon/Rosewood full OCR+parser accounting, production finalize, Wesleydesk deploy gate",
+  "generatedAt": "2026-08-08T00:15:00.000Z",
+  "events": [
+    {
+      "eventId": "TE-001",
+      "phase": "operator",
+      "summary": "m4pds-synology-primary-worker-runtime-closeout-v1 — deploy/verify Synology-primary document-preview-cache on Wesleydesk; full Rosewood (192) and Beacon Hill (82) live accounting",
+      "evidenceRefs": [
+        "CapitalGlass-Documents/artifacts/agent-runs/m4pds-synology-primary-worker-runtime-closeout-v1/"
+      ]
+    },
+    {
+      "eventId": "TE-002",
+      "phase": "implementation",
+      "summary": "Runtime fix ocrExtractJob — Uint8Array.from(fetchedBytes); fetchedBytes.byteLength; eliminated PREVIEW_CACHE_AUTHORITY synology-not-SharePoint-authoritative on drain",
+      "evidenceRefs": [
+        "CapitalGlass-Documents@e4e4bfb",
+        "workers/document-preview-cache/src/ocrExtractJob.ts"
+      ]
+    },
+    {
+      "eventId": "TE-003",
+      "phase": "implementation",
+      "summary": "Parser-from-OCR artifact path — applyPlanSetParserFromOcrArtifact, loadOcrPageTextForProvenance (document_ocr_pages.text); bypass production intelligence HTTP 502",
+      "evidenceRefs": [
+        "CapitalGlass-Documents@e4e4bfb",
+        "src/plan-set-processing/lane-binding-execution-bridge.ts"
+      ]
+    },
+    {
+      "eventId": "TE-004",
+      "phase": "verification",
+      "summary": "Beacon Hill ce0db433 — 82/82 OCR, 82/82 parser; PLAN_INTELLIGENCE_READY",
+      "evidenceRefs": [
+        "scripts/proof/aggregate-plan-intelligence.ts",
+        "ce0db433-2214-45b8-bf43-00077f179bf4"
+      ]
+    },
+    {
+      "eventId": "TE-005",
+      "phase": "verification",
+      "summary": "Rosewood 748545a7 — 192/192 OCR via monolith job; 192/192 parser via apply-plan-set-parser-from-ocr (~193s, no binary reread)",
+      "evidenceRefs": [
+        "scripts/proof/apply-plan-set-parser-from-ocr.ts",
+        "748545a7-5114-47dd-a979-3d72a0b3b8eb"
+      ]
+    },
+    {
+      "eventId": "TE-006",
+      "phase": "verification",
+      "summary": "Four regression gates PASS — gate:plan-set-processing-handoff, workers-hardening, execution-depth, source-authority-hardening",
+      "evidenceRefs": [
+        "CapitalGlass-Documents/package.json gate scripts"
+      ]
+    },
+    {
+      "eventId": "TE-007",
+      "phase": "verification",
+      "summary": "Wesleydesk remote proof failed — SSH Permission denied; Invoke-Command Access denied; office-worker healthz HTTP 502",
+      "evidenceRefs": [
+        "wesleydesk-plan-processing-worker-deploy-closeout-v1/closeout-receipt.json"
+      ]
+    },
+    {
+      "eventId": "TE-008",
+      "phase": "closeout",
+      "summary": "plan-set-processing-engine-production-finalize-v1 — git push runtime fixes; verdict data plane complete; BLOCKED_WESLEYDESK_WORKER_DEPLOY",
+      "evidenceRefs": [
+        "CapitalGlass-Documents@e300615",
+        "artifacts/agent-runs/plan-set-processing-engine-production-finalize-v1/"
+      ]
+    },
+    {
+      "eventId": "TE-009",
+      "phase": "operator",
+      "summary": "User confirmed no further processing architecture changes — operator-only Wesleydesk deploy closeout remains",
+      "evidenceRefs": [
+        "conversation transcript — operator freeze on architecture"
+      ]
+    },
+    {
+      "eventId": "TE-010",
+      "phase": "closeout",
+      "summary": "wesleydesk-plan-processing-worker-deploy-closeout-v1 receipt + operator PS1 ExpectedSha aligned; origin/main 29be72cd",
+      "evidenceRefs": [
+        "CapitalGlass-Documents@29be72cd",
+        "scripts/proof/wesleydesk-plan-processing-worker-deploy-closeout.ps1",
+        "artifacts/agent-runs/wesleydesk-plan-processing-worker-deploy-closeout-v1/closeout-receipt.json"
+      ]
+    },
+    {
+      "eventId": "TE-011",
+      "phase": "operator",
+      "summary": "Harvest protocol invoked — CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1 Lane B",
+      "evidenceRefs": [
+        "L:\\02-catalog\\Harvest\\protocol\\CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"
+      ]
+    }
+  ]
+}
