@@ -12,14 +12,38 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-08-04 |
-| Current focus | Blocker gate sweep shipped — 3 cleared, 5 domain-gated; next: DC production smoke rerun + auto-publisher v1.1 |
+| Last updated | 2026-08-07 |
+| Current focus | Universal harvest closed `DURABLE_COMPLETE`; next: estate hot-cache alignment → `autonomous-sdlc-durability-friction-hardening-v1` |
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Project index | `work-progress/projects/INDEX.md` |
 
 ## Current saved work
+
+### 2026-08-07 CT — autonomous-sdlc-durability-friction-hardening-v1 (charter lock)
+
+| Field | Value |
+| --- | --- |
+| Work package | `autonomous-sdlc-durability-friction-hardening-v1` |
+| Precursor | **`estate-hot-cache-layer-alignment-v1`** — clear scout `layerAlignment: DRIFT` before MILESTONE_WAVE |
+| Verdict | **CHARTER_LOCKED** — not started |
+| Provenance | `harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1` @ `73b2fe2` |
+| Wave scope | drvfs Z fallback, artifact hygiene, push autonomy, async guard, index freshness auto-repair |
+| AMCR gate | `operatorRescueCount=0`, `humanKnowledgeLeak=false`, `agentStopsBeforeDurableCloseout=false`, `falsePass=false` |
+| Deferred | `gold-mine-projection-schema-hardening-v1`, prompt-harvest review, governance merge, Z mirror |
+| Project files | `work-progress/projects/2026-08-07_estate-hot-cache-layer-alignment-v1.md`, `2026-08-07_autonomous-sdlc-durability-friction-hardening-v1.md` |
+| Next | Run estate hot-cache alignment; then single MILESTONE_WAVE in `CG-AppBuilder-MCP` |
+
+### 2026-08-07 CT — harvest universal-harvest durable closeout (closed)
+
+| Field | Value |
+| --- | --- |
+| Work package | `harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1` |
+| Verdict | **DURABLE_COMPLETE** @ `CapitalGlass-Cross-Agent@73b2fe2` |
+| Receipt | `artifacts/agent-runs/harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1/` |
+| Open blocker (forward) | `uh-z-drvfs-publish-eperm-v1` → friction-hardening WP #1 |
+| Next | None — compounding queue captured in friction-hardening charter |
 
 ### 2026-08-04 CT — active-ledger-blocker-gate-sweep-v1
 
