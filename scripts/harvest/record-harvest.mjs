@@ -3,7 +3,6 @@
  * harvest:record — sync derived views, merge intelligence index, reconcile registry, validate.
  */
 import fs from "node:fs";
-import path from "node:path";
 import { execSync } from "node:child_process";
 import { manifestPath, REPO_ROOT } from "./lib/paths.mjs";
 import { resolveHarvestIdFromProcessArgv } from "./lib/resolve-harvest-id.mjs";
