@@ -1,0 +1,52 @@
+{
+  "milestoneId": "commercial-glazing-scope-intelligence-spine-v1",
+  "phase": "PHASE_2_PLAN_VISION_ADAPTER",
+  "verdict": "R2_REAL_PLAN_VISION_LIMITED_PASS",
+  "gate": "R2_REAL_PLAN_VISION_LIMITED_PASS",
+  "observedAt": "2026-08-09T06:04:06.849768+00:00",
+  "documentId": "c2464d55-70c0-481c-8c6c-caed82cb0f0d",
+  "documentName": "Morton Ranch Apartments - CG-1997-26 - Drawings - Architectural",
+  "ceCommitSha": "pending-after-commit",
+  "rasterCasRoot": "/home/wesle/repos/Computer Estimator/data",
+  "selectedSheetCount": 8,
+  "selectedSheets": [
+    "A1.0",
+    "A2.0",
+    "A2.1",
+    "A2.2",
+    "A3.0a",
+    "A14.6",
+    "A14.6",
+    "A156.19"
+  ],
+  "candidateCountSelected": 172,
+  "observationCount": 384,
+  "reconciliation": {
+    "MATCHED": 1,
+    "VISION_ONLY": 383,
+    "CE_ONLY": 171,
+    "AMBIGUOUS": 0,
+    "matchedRate": 0.0018
+  },
+  "detector": "deterministic_grid_mullion_v1",
+  "interpretation": {
+    "visionProducesGeometry": true,
+    "ceTextBboxesAreTight": true,
+    "learnedCvBackendJustified": false,
+    "nextImprovement": "region-focused detector around CE seeds and assembly-scale bbox expansion before Phase 3"
+  },
+  "evidence": {
+    "ceArtifact": "artifacts/phase-2-raster-plan-vision-receipt.json",
+    "orchestrator": "npm run phase2:raster-plan-vision (CE: scripts/run_phase2_raster_plan_vision.py)"
+  },
+  "canonicalPhaseSequence": {
+    "phase1": "R1_CE_LIVE_CANDIDATES_PASS",
+    "phase2": "R2_REAL_PLAN_VISION_LIMITED_PASS",
+    "phase3": "WAITING_ON_PHASE_2_FULL_PASS",
+    "phase5FullSpine": "NOT_ADVANCED",
+    "phase5ParallelFixture": "PHASE_5_FIXTURE_PROOF_BLOCKED_PARALLEL"
+  },
+  "nextCanonicalPhase": "PHASE_2_PLAN_VISION_ADAPTER",
+  "productionUnlocked": false,
+  "valuesPrinted": false
+}
