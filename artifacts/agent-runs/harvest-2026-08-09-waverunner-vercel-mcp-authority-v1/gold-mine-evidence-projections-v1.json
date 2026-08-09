@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "gold-mine-evidence-projection-v1@1.0.0",
+  "harvestId": "harvest-2026-08-09-waverunner-vercel-mcp-authority-v1",
+  "projections": [
+    {
+      "projectionId": "GMP-001",
+      "signalClass": "SUCCESS_PATTERN",
+      "lifecycleHint": "RESOLVED_OBSERVED",
+      "summary": "mcp:health:once before strict recovers stale blocked suite",
+      "evidenceRefs": [
+        "4754e920d"
+      ],
+      "evidenceStrength": "high",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "implementationState": "VERIFIED_FIXED",
+      "novelty": "NEW"
+    },
+    {
+      "projectionId": "GMP-002",
+      "signalClass": "OBSERVABILITY_GAP",
+      "lifecycleHint": "OPEN",
+      "summary": "Vercel READY masks revision lag",
+      "evidenceRefs": [
+        "vercel-estate-deployment-matrix.json"
+      ],
+      "evidenceStrength": "high",
+      "businessImpact": "BUSINESS_RELIABILITY",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "implementationState": "PARTIAL",
+      "novelty": "NEW"
+    }
+  ],
+  "sourceCommitSha": "dec1dd8607c2a5b38176fbb37b8973fc46138223"
+}
