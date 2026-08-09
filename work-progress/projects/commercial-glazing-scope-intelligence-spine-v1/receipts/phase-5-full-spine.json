@@ -1,0 +1,124 @@
+{
+  "milestoneId": "commercial-glazing-scope-intelligence-spine-v1",
+  "phase": "PHASE_5_FULL_SPINE",
+  "verdict": "R5_REVU_FULL_SPINE_BLOCKED_HOST_DEPENDENCY",
+  "gate": "R5_REVU_FULL_SPINE_BLOCKED_HOST_DEPENDENCY",
+  "observedAt": "2026-08-09T07:46:40.565Z",
+  "runId": "p5-274d9b28115238c6",
+  "canonicalPhaseSequence": {
+    "phase1": "R1_CE_LIVE_CANDIDATES_PASS",
+    "phase2": "R2_REAL_PLAN_VISION_PASS_WITH_MEASURED_LIMITATIONS",
+    "phase3": "R3_DRAWING_RELATIONSHIP_PASS",
+    "phase4": "R4_ASSEMBLY_INTELLIGENCE_PASS_WITH_MEASURED_LIMITATIONS",
+    "phase5FullSpine": "R5_REVU_FULL_SPINE_BLOCKED_HOST_DEPENDENCY",
+    "phase5ParallelFixture": "PHASE_5_FIXTURE_PROOF_BLOCKED_PARALLEL",
+    "phase6OmissionCoverage": "NOT_ADVANCED"
+  },
+  "sourceCommits": {
+    "ce": "5e9f97a7ed12258b3be0183fcbe9ec4fd61bd705",
+    "revu": "d7d6addf50fc0c4a084dbe46cd31eac5943489a2"
+  },
+  "sourceReceipts": {
+    "phase1": "artifacts/phase-1-candidates.json",
+    "phase2": "artifacts/phase-2-raster-plan-vision-receipt.json",
+    "phase3": "artifacts/phase-3-drawing-relationships-receipt.json",
+    "phase4": "artifacts/phase-4-assembly-intelligence-receipt.json"
+  },
+  "phaseReceiptVerdicts": {
+    "phase2": "R2_REAL_PLAN_VISION_PASS_WITH_MEASURED_LIMITATIONS",
+    "phase3": "R3_DRAWING_RELATIONSHIP_PASS",
+    "phase4": "R4_ASSEMBLY_INTELLIGENCE_PASS_WITH_MEASURED_LIMITATIONS"
+  },
+  "handoff": {
+    "schemaVersion": "commercial-glazing-ce-revu-handoff-v1",
+    "handoffCount": 9,
+    "selectedCandidateIds": [
+      "cgobs-0672abac7361b50e1f81",
+      "cgobs-4563fcbe53d075d1edb3",
+      "cgobs-572992639d394d81c64f",
+      "cgobs-1d4c3652872799327556",
+      "cgobs-2e7bab4c23dd1bbb61f3",
+      "cgobs-40c11bb9003f7c84adf1",
+      "cgobs-caf03ee0a159ca854fc8",
+      "cgobs-954c69afba74cab8ae4a",
+      "cgobs-02693e35756eb520192b"
+    ],
+    "selectedAssemblyIds": [
+      "cgasm-7b9ff23fd4c77446925a",
+      "cgasm-a48f48a19df9f87a8437",
+      "cgasm-c2e5772bb0724f1dd251",
+      "cgasm-17b5a24df47ad5016a98"
+    ],
+    "geometryCoordinateSpace": "page_relative_top_left",
+    "ceHandoffPath": "Computer-Estimator-glazing-spine/artifacts/agent-runs/commercial-glazing-scope-intelligence-spine-v1/phase-5-full-spine/p5-274d9b28115238c6/ce-revu-handoff.json",
+    "revuPlanReceiptPath": "CapitalGlassRevu/artifacts/agent-runs/commercial-glazing-scope-intelligence-spine-v1/phase-5-full-spine/p5-274d9b28115238c6/phase-5-full-spine-receipt.json"
+  },
+  "planOnlyIntegration": {
+    "passed": true,
+    "planReadyCount": 9,
+    "onePlanActionPerCandidate": true,
+    "identityAgreementRate": 1,
+    "geometryAgreementRate": 1,
+    "assemblyMetadataAgreementRate": 1,
+    "assemblyReadbackPreserved": true,
+    "commercialWrites": false,
+    "graphWrites": false,
+    "productionUnlocked": false
+  },
+  "liveExecution": {
+    "performed": false,
+    "blockedReason": "authorized_windows_bluebeam_host_required",
+    "gate1": {
+      "launcherPresent": false,
+      "stdioProbe": "FAIL",
+      "authorizedHost": false,
+      "classification": "REVU_MCP_RUNTIME_DEFECT",
+      "host": {
+        "platform": "linux",
+        "computerName": "WesleyWork"
+      }
+    }
+  },
+  "metrics": {
+    "handoffCount": 9,
+    "planReadyCount": 9,
+    "createdCount": 0,
+    "readbackVerifiedCount": 0,
+    "identityAgreementRate": 1,
+    "geometryAgreementRate": 1,
+    "assemblyMetadataAgreementRate": 1,
+    "duplicateMarkupCount": 0,
+    "rollbackSuccessRate": null,
+    "reviewRequiredCount": 5,
+    "failedCount": 0,
+    "planned": 9,
+    "created": 0,
+    "verified": 0,
+    "skippedExisting": 0,
+    "rolledBack": 0
+  },
+  "phase4LimitationsPreserved": [
+    "128/172 candidates currently ungrouped",
+    "11 single-observation visual assemblies",
+    "low average assembly confidence",
+    "G01 role diversity incomplete",
+    "schedule cluster still coarse"
+  ],
+  "phase4FollowUps": [
+    "merge valid single-member visual neighborhoods",
+    "split large schedule cluster when stronger mark evidence exists",
+    "improve G01 role diversity when sidelite/transom evidence appears"
+  ],
+  "targetRevuBranch": "feat/revu-window-door-markup-validation-v1",
+  "safety": {
+    "productionUnlocked": false,
+    "commercialWriteAuthorized": false,
+    "proposalIssueAuthorized": false,
+    "masterGraphWriteAuthorized": false,
+    "mainMergeAuthorized": false
+  },
+  "interpretation": "CE Phase 1–4 output deterministically drives Revu markup planning with assembly metadata preserved. Plan-only integration passed on WSL. Live CREATE→READBACK→IDEMPOTENCY→ROLLBACK remains blocked pending authorized Bluebeam Windows host with gate1 PASS.",
+  "nextCanonicalPhase": "PHASE_5_FULL_SPINE_LIVE_EXECUTION_THEN_PHASE_6_OMISSION_COVERAGE",
+  "operatorAction": "On authorized Bluebeam Windows host: npm run gate1:diagnose-mcp (require launcherPresent=true, stdioProbe=PASS, authorizedHost=true), then run CE-derived handoff execute batch with rollback verification.",
+  "valuesPrinted": false
+}
