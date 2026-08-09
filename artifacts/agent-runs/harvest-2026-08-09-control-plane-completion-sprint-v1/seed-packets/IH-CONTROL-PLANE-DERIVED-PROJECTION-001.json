@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-CONTROL-PLANE-DERIVED-PROJECTION-001",
+  "kind": "lesson",
+  "title": "Agent control-plane uses derived projections only — no editable truth stores",
+  "summary": "material_session_front_door composes capability.find, blocker.resolve, and reflex shadow as read-only advisory lanes; GO/NO_GO is not mutated by reuse or shadow guidance.",
+  "retrievalQuestions": [
+    "What is the Capital Glass agent control-plane decision chain?",
+    "Can capability guidance or reflex shadow change GO/NO_GO?"
+  ],
+  "evidenceRefs": [
+    "CG-AppBuilder-MCP@ed064ba0aaf1d17f7f64d6d8c8799c035e78029e",
+    "TE-002",
+    "TE-003",
+    "TE-004",
+    "SP-002"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Agent startup or material session preflight in CG-AppBuilder-MCP",
+    "startAt": [
+      "scripts/material-session/material-session-front-door.mjs",
+      "docs/work-packages/canonical-capability-reuse-discovery-v1.md"
+    ],
+    "runPreflight": [
+      "npm run agent:preflight:app-builder-mcp",
+      "CallMcpTool material_session_front_door"
+    ],
+    "doNot": [
+      "Treat capabilityGuidance or reflexShadow as hard GO/NO_GO mutation",
+      "Build editable truth stores for capability or blocker state"
+    ],
+    "proveBeforeClaiming": [
+      "CAPABILITY_DISCOVERY_SOURCE_ROLE=DERIVED_REUSE_PROJECTION",
+      "REFLEX_EXECUTION_MODE=OBSERVE_ONLY"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 2,
+  "wasteIds": []
+}

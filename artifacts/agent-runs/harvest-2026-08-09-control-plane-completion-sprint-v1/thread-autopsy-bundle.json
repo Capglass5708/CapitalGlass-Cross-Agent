@@ -1,0 +1,171 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-09-control-plane-completion-sprint-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "context",
+      "description": "Canonical CG-AppBuilder-MCP checkout on milestone-orchestration-push missing scripts/material-session/ caused false stale-state reads during re-investigation",
+      "evidenceRefs": ["TE-005"],
+      "estimatedImpact": "medium",
+      "savedBy": "Verify control-plane state from origin/main or formal-go-wt worktree, not dirty non-main checkout",
+      "roiRank": 1,
+      "goldMineSignalClass": "AGENT_FRICTION_SIGNAL"
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "rework",
+      "description": "Reflex shadow recommendationMatched false until evidence-in-options merge bug fixed during slice 2",
+      "evidenceRefs": ["TE-004"],
+      "estimatedImpact": "medium",
+      "savedBy": "Contract test for effectiveEvidence merge before claiming shadow outcome match",
+      "roiRank": 2,
+      "goldMineSignalClass": "PROBLEM_SIGNAL"
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "agent",
+      "description": "Stale work-package doc still says reflex Slice 2 pending merge after durable main publication",
+      "evidenceRefs": ["TE-007", "docs/work-packages/agent-reflex-shadow-observation-v1.md"],
+      "estimatedImpact": "low",
+      "savedBy": "Update WP doc status at slice-2 merge closeout",
+      "roiRank": 3,
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL"
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "agent",
+      "description": "Two blocker-resolution lanes (blocker-resolution/ vs blocker/resolve-blocker.mjs) without documented unification or governance bridge",
+      "evidenceRefs": ["TE-006"],
+      "estimatedImpact": "medium",
+      "savedBy": "Governance promotion contract defines repair-class eligibility across lanes",
+      "roiRank": 4,
+      "goldMineSignalClass": "OBSERVABILITY_GAP"
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Operator asked RE INVESTIGATE and WHAT IS CURRENT STATE after multi-slice sprint — required git archaeology across worktrees",
+      "operatorCost": "medium",
+      "systemFix": "Single suite-index pointer for control-plane milestone completion receipts on main",
+      "evidenceRefs": ["TE-005", "TE-008"],
+      "linkedWasteIds": ["TW-001"],
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL",
+      "manualStep": "Confirm which checkout/worktree is authority before status claims",
+      "frequency": "observed",
+      "avoidable": true,
+      "automationCandidate": true,
+      "rootCause": "Multiple worktrees and non-main dirty checkout without completion receipt slice"
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Operator needs authoritative control-plane completion status after multi-slice sprint",
+      "actualExecution": {
+        "steps": [
+          "Checked canonical checkout on milestone-orchestration-push",
+          "Compared worktree SHAs manually",
+          "Ran test suites on formal-go-wt"
+        ],
+        "outcome": "PASS after worktree disambiguation",
+        "evidenceRefs": ["TE-005"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "npm run agent:index:scout -- --json",
+          "git merge-base --is-ancestor <milestone-sha> origin/main",
+          "Run control-plane test bundle on main-tipped worktree",
+          "Emit single completion receipt artifact per work package"
+        ],
+        "outcome": "Status answer in under 30s without checkout confusion",
+        "requiredPreflight": ["npm run agent:index:scout -- --json"]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Treating non-main dirty canonical checkout as authority for control-plane file presence",
+      "whereItHappened": "Re-investigation git/checkout survey",
+      "whyItWasWrong": "milestone-orchestration-push branch lacks material-session paths and carries runtime drift unrelated to sprint",
+      "correctFirstMove": "Use origin/main or dedicated formal-go-wt; verify with git merge-base --is-ancestor",
+      "preventiveControl": "check:canonical-authority-checkout before status claims",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Governance promotion contract for reflex-autonomy-governance-promotion-v1",
+      "whyItPays": "Unblocks AUTO_ALLOWED graduation with constitutional authority; closes open control-plane sequence",
+      "effort": "medium",
+      "savedWasteIds": ["TW-004"],
+      "seedAs": "rule",
+      "ownerRepo": "CG-Platform-Governance-MCP"
+    },
+    {
+      "rank": 2,
+      "title": "Control-plane completion receipt slice on main merge",
+      "whyItPays": "Eliminates worktree archaeology for operator status questions",
+      "effort": "low",
+      "savedWasteIds": ["TW-001", "OF-001"],
+      "seedAs": "owner-artifact",
+      "ownerRepo": "CG-AppBuilder-MCP"
+    },
+    {
+      "rank": 3,
+      "title": "Unify or document dual blocker-resolution lane boundary",
+      "whyItPays": "Prevents agents applying wrong resolver for repair-class vs recipe projection",
+      "effort": "medium",
+      "savedWasteIds": ["TW-004"],
+      "seedAs": "rule",
+      "ownerRepo": "CG-AppBuilder-MCP"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "AUTO_ALLOWED",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "reflex-autonomy-governance-promotion-v1 complete",
+        "Shadow observations accumulated with SHADOW_VALIDATED metrics",
+        "Governance MCP promotion gate PASS"
+      ],
+      "lastKnownEvidence": [
+        "REFLEX_EXECUTION_MODE=OBSERVE_ONLY on main @ ed064ba0a",
+        "Autonomy ladder SUGGEST_ONLY only"
+      ]
+    },
+    {
+      "awardOrVerdict": "CONTROL_PLANE_COMPLETE",
+      "currentStatus": "CLOSED",
+      "doNotClaimUntil": [
+        "npm run test:capability-reuse-discovery && npm run test:blocker-resolution && npm run test:agent-reflex-shadow-observation PASS on main worktree"
+      ],
+      "lastKnownEvidence": [
+        "All milestone SHAs ancestors of origin/main @ ebe83914c",
+        "Control-plane test suites PASS on formal-go-wt"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "mcp-servers.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-09T15:15:00.000Z"
+  }
+}

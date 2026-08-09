@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-DUAL-BLOCKER-RESOLUTION-LANE-001",
+  "kind": "failure-pattern",
+  "title": "Two blocker-resolution lanes coexist — recipe projection vs repair-class routing",
+  "summary": "material-session uses scripts/blocker-resolution/ for resolutionGuidance; worldview added scripts/blocker/resolve-blocker.mjs for AUTO_SAFE/AUTO_BOUNDED classification — not unified without governance contract.",
+  "retrievalQuestions": [
+    "Which blocker resolver does material_session_front_door use?",
+    "What is the difference between blocker-resolution and blocker/resolve-blocker?"
+  ],
+  "evidenceRefs": [
+    "CG-AppBuilder-MCP@a3b178941d88fa44fa48d64d400faf809360ffe7",
+    "CG-AppBuilder-MCP@f7e8c5fd2b4b636c8c4f96bf93e2674ddf21c4b2",
+    "TE-006",
+    "TW-004"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Blocker repair routing or autonomy graduation work in CG-AppBuilder-MCP",
+    "startAt": [
+      "scripts/blocker-resolution/lib/blocker-resolve.mjs",
+      "scripts/blocker/resolve-blocker.mjs",
+      "scripts/material-session/lib/resolution-guidance.mjs"
+    ],
+    "runPreflight": ["npm run blocker:resolve -- --blocker-code <code> --json"],
+    "doNot": [
+      "Merge repair-class logic into blocker.resolve() projection",
+      "Put reflex/autonomy execution into blocker-resolution layer"
+    ],
+    "proveBeforeClaiming": [
+      "BLOCKER_RESOLUTION_SOURCE_ROLE=DERIVED_REPAIR_PROJECTION",
+      "Governance promotion contract defines lane bridge"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "HUMAN_REVIEW",
+  "status": "CANDIDATE",
+  "roiRank": 3,
+  "wasteIds": ["TW-004"]
+}

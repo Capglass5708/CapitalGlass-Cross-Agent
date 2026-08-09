@@ -1,0 +1,368 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-09-control-plane-completion-sprint-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "3eaf66acc08e1e6d62fc6af67846db321080ec2f",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-09T15:20:00.000Z",
+  "updatedAt": "2026-08-09T15:35:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "AUTO_ALLOWED repairs until reflex-autonomy-governance-promotion-v1",
+    "index:publish or harvest:publish-hub-seed from Cursor",
+    "Unify blocker-resolution lanes without governance contract"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-09-control-plane-completion-sprint-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-09-control-plane-completion-sprint-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 4,
+      "seeds": 3,
+      "roiItems": 3,
+      "operatorFriction": 1,
+      "executionDeltas": 1
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Operator runs harvest:publish-hub-seed + index:publish — NOT_RUN_BY_CURSOR"
+  },
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "1.1.0",
+    "eligibleCandidates": 0,
+    "rejectedUnrelatedCandidates": 0,
+    "exportStatus": "not-run",
+    "dataExtractionStatus": "not-run",
+    "catalogPublishStatus": "not-run",
+    "retrievalStatus": "not-run",
+    "targetCatalog": "L:\\02-catalog\\Harvest\\Harvest Protocol Self Learning",
+    "authorityStatus": "PROPOSAL",
+    "automaticProtocolMutation": false
+  },
+  "relatedRepos": [
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "branch": "main",
+      "commitSha": "ebe83914c2e7dfae5f0cc0437a8791a1ea0288fb",
+      "role": "Control-plane implementation owner"
+    }
+  ],
+  "packets": [
+    {
+      "packetKind": "decision",
+      "packetId": "control-plane-derived-projection-v1",
+      "packetTitle": "Agent control-plane uses derived projections only — advisory front-door composition",
+      "state": "COMPLETE",
+      "packetVerdict": "DECIDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-09-control-plane-completion-sprint-v1.md",
+      "nextAction": "Start reflex-autonomy-governance-promotion-v1",
+      "advancementGate": "governance promotion contract",
+      "doNotAdvance": [
+        "AUTO_ALLOWED"
+      ],
+      "evidenceRefs": [
+        "TE-002",
+        "TE-003",
+        "TE-004",
+        "SP-002"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@ed064ba0aaf1d17f7f64d6d8c8799c035e78029e"
+      ],
+      "blockers": [],
+      "decision": "material_session_front_door composes capability.find, blocker.resolve, reflex shadow as read-only advisory; no truth-store mutation from guidance",
+      "alternativesRejected": [
+        "Editable capability/blocker truth stores in MCP",
+        "Reflex shadow mutating GO/NO_GO"
+      ],
+      "goldMineSignalClass": "SUCCESS_PATTERN",
+      "novelty": "NEW",
+      "implementationState": "ADOPTED",
+      "businessImpact": "PLATFORM_INTERNAL"
+    },
+    {
+      "packetKind": "blocker",
+      "packetId": "governance-promotion-not-started-v1",
+      "packetTitle": "reflex-autonomy-governance-promotion-v1 not started — blocks AUTO_ALLOWED",
+      "state": "ACTIVE",
+      "packetVerdict": "BLOCKED",
+      "ownerRepo": "CG-Platform-Governance-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-09-control-plane-completion-sprint-v1.md",
+      "nextAction": "Draft governance promotion work package Slice 1",
+      "advancementGate": "Governance MCP promotion contract",
+      "doNotAdvance": [
+        "AUTO_ALLOWED"
+      ],
+      "evidenceRefs": [
+        "TE-007",
+        "IH-GOVERNANCE-PROMOTION-BOUNDARY-001"
+      ],
+      "commitRefs": [],
+      "blockers": [
+        "governance-promotion-contract-missing"
+      ],
+      "blockerId": "reflex-autonomy-governance-promotion-v1",
+      "status": "OPEN",
+      "proofCommandId": "governance_get_required_evidence",
+      "goldMineSignalClass": "PROBLEM_SIGNAL"
+    },
+    {
+      "packetKind": "blocker",
+      "packetId": "dual-blocker-resolution-lane-v1",
+      "packetTitle": "Parallel blocker-resolution lanes without documented bridge",
+      "state": "ACTIVE",
+      "packetVerdict": "HOLD",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-09-control-plane-completion-sprint-v1.md",
+      "nextAction": "Document lane boundary in governance promotion contract",
+      "advancementGate": "architecture contract",
+      "doNotAdvance": [
+        "unified-blocker-resolver-without-governance"
+      ],
+      "evidenceRefs": [
+        "TE-006",
+        "TW-004"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@a3b178941d88fa44fa48d64d400faf809360ffe7"
+      ],
+      "blockers": [
+        "dual-lane-ambiguity"
+      ],
+      "blockerId": "dual-blocker-resolution-lanes",
+      "status": "OPEN",
+      "proofCommandId": "read scripts/blocker-resolution vs scripts/blocker/resolve-blocker.mjs",
+      "goldMineSignalClass": "OBSERVABILITY_GAP"
+    },
+    {
+      "packetKind": "mistake",
+      "packetId": "non-main-checkout-status-v1",
+      "packetTitle": "Used non-main dirty checkout for control-plane file presence check",
+      "state": "COMPLETE",
+      "packetVerdict": "CLASSIFIED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-09-control-plane-completion-sprint-v1.md",
+      "nextAction": "Prefer formal-go-wt or origin/main for status",
+      "advancementGate": "documented",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "WM-001",
+        "ED-001",
+        "TW-001"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "wrongMoveId": "WM-001",
+      "actualExecution": "Surveyed milestone-orchestration-push checkout missing material-session/",
+      "optimalExecution": "git merge-base --is-ancestor ed064ba0a origin/main on formal-go-wt",
+      "preventiveControl": "check:canonical-authority-checkout + worktree discipline",
+      "goldMineSignalClass": "AGENT_FRICTION_SIGNAL"
+    },
+    {
+      "packetKind": "faster_path",
+      "packetId": "control-plane-status-first-move-v1",
+      "packetTitle": "Verify control-plane on main-tipped worktree with test bundle",
+      "state": "COMPLETE",
+      "packetVerdict": "CLASSIFIED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-09-control-plane-completion-sprint-v1.md",
+      "nextAction": "Add completion receipt artifact per milestone merge",
+      "advancementGate": "documented",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-005",
+        "ED-001"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "situation": "Operator asks current state after multi-slice sprint",
+      "whatHappened": "Manual worktree archaeology before test verification",
+      "rightFirstMove": "merge-base check + npm run test:capability-reuse-discovery test:blocker-resolution test:agent-reflex-shadow-observation on main worktree",
+      "requiredGuard": "origin/main as authority SHA",
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL"
+    },
+    {
+      "packetKind": "command",
+      "packetId": "control-plane-test-bundle-v1",
+      "packetTitle": "Control-plane verification test commands",
+      "state": "COMPLETE",
+      "packetVerdict": "DOCUMENTED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-09-control-plane-completion-sprint-v1.md",
+      "nextAction": "Run after any control-plane change",
+      "advancementGate": "all PASS",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-005",
+        "OM-001"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@ebe83914c2e7dfae5f0cc0437a8791a1ea0288fb"
+      ],
+      "blockers": [],
+      "command": "npm run test:capability-reuse-discovery && npm run test:blocker-resolution && npm run test:agent-reflex-shadow-observation && npm run test:material-session-front-door-mcp-surface",
+      "host": "WSL CG-AppBuilder-MCP worktree on main",
+      "provesGate": "CONTROL_PLANE_COMPLETE",
+      "expectedPassSignal": "10/10, 12/12, 11/11, 5/5 respectively"
+    },
+    {
+      "packetKind": "evidence",
+      "packetId": "control-plane-main-lineage-v1",
+      "packetTitle": "Control-plane milestone commits are ancestors of origin/main",
+      "state": "COMPLETE",
+      "packetVerdict": "VERIFIED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-09-control-plane-completion-sprint-v1.md",
+      "nextAction": "None — durable on main",
+      "advancementGate": "verified",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP@ed064ba0aaf1d17f7f64d6d8c8799c035e78029e",
+        "CG-AppBuilder-MCP@ebe83914c2e7dfae5f0cc0437a8791a1ea0288fb",
+        "TE-005"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@92db985a007a5fb4ac87fdee80c5dcee753da247",
+        "CG-AppBuilder-MCP@08c37007bb656e543c86fc9506b4bf05a8729389",
+        "CG-AppBuilder-MCP@1379fe3a72c80cdaabded27436e68758c0a76874",
+        "CG-AppBuilder-MCP@f7e8c5fd2b4b636c8c4f96bf93e2674ddf21c4b2",
+        "CG-AppBuilder-MCP@1e44c7adb6217ad57163329d6174f81b6bc2108b",
+        "CG-AppBuilder-MCP@0beca4443fc6862fb3e7d6e52e2ac75730e352ec",
+        "CG-AppBuilder-MCP@ed064ba0aaf1d17f7f64d6d8c8799c035e78029e"
+      ],
+      "blockers": [],
+      "type": "git-lineage",
+      "pathOrSha": "git merge-base --is-ancestor ed064ba0a origin/main",
+      "provesWhat": "Reflex shadow and full control-plane chain shipped on main"
+    },
+    {
+      "packetKind": "protocol_upgrade",
+      "packetId": "slice1-slice2-commit-pattern-v1",
+      "packetTitle": "Foundation slice 1 + front-door advisory slice 2 as separate commits per milestone",
+      "state": "COMPLETE",
+      "packetVerdict": "DOCUMENTED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-09-control-plane-completion-sprint-v1.md",
+      "nextAction": "Reuse for governance promotion milestone",
+      "advancementGate": "documented",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-002",
+        "TE-003",
+        "TE-004",
+        "SP-001"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "seedAs": "sdlc-pattern",
+      "promotionClass": "POLICY_GATED",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Multi-slice control-plane milestone in CG-AppBuilder-MCP",
+        "startAt": [
+          "docs/work-packages/"
+        ],
+        "runPreflight": [
+          "npm run agent:preflight:app-builder-mcp"
+        ],
+        "doNot": [
+          "Combine foundation and front-door integration in one commit when slice boundary is required"
+        ],
+        "proveBeforeClaiming": [
+          "Slice 1 tests pass without front-door wiring",
+          "Slice 2 integration tests pass"
+        ]
+      },
+      "goldMineSignalClass": "SUCCESS_PATTERN"
+    },
+    {
+      "packetKind": "outcome",
+      "packetId": "control-plane-sprint-outcome-v1",
+      "packetTitle": "Control-plane decision chain DURABLE_COMPLETE on origin/main",
+      "state": "COMPLETE",
+      "packetVerdict": "PROVEN_EFFECTIVE",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-09-control-plane-completion-sprint-v1.md",
+      "nextAction": "Governance promotion milestone",
+      "advancementGate": "CONTROL_PLANE_COMPLETE",
+      "doNotAdvance": [
+        "AUTO_ALLOWED"
+      ],
+      "evidenceRefs": [
+        "TE-005",
+        "OM-001",
+        "control-plane-main-lineage-v1"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@ebe83914c2e7dfae5f0cc0437a8791a1ea0288fb"
+      ],
+      "blockers": [
+        "governance-promotion-not-started"
+      ],
+      "changeImplemented": "material_session_front_door + capability.find + blocker.resolve + reflex shadow OBSERVE_ONLY on main",
+      "beforeState": "Agents relied on prompt memory for startup questions",
+      "afterState": "Read-only decision chain with advisory guidance lanes; tests pass",
+      "measurement": "43/43 control-plane related tests PASS on formal-go-wt",
+      "expectedEffect": "Agents query front door instead of guessing suite state",
+      "observedEffect": "Implementation complete; live MCP registration not probed in thread",
+      "residuals": [
+        "Governance promotion not started",
+        "Dual blocker lanes",
+        "Stale reflex WP doc",
+        "MCP live tool probe not recorded"
+      ],
+      "regressions": [],
+      "effectiveness": "PROVEN_EFFECTIVE",
+      "goldMineSignalClass": "RESOLUTION_SIGNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "businessImpact": "PLATFORM_INTERNAL"
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096",
+    "ledgerContentHashAfter": "694802466ba0497386120146f3a168389285afecf8ee084da75876df972de70a"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 10,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 10,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-4f5a007d65b5",
+      "prompt-candidate-2a4ff0645e8a",
+      "prompt-candidate-d68ed152a165",
+      "prompt-candidate-f53cbd265c2c",
+      "prompt-candidate-3c748e37ad43",
+      "prompt-candidate-68f6534548aa",
+      "prompt-candidate-9c15d862a436",
+      "prompt-candidate-90aa2bacfd8b",
+      "prompt-candidate-4ef839058d3c",
+      "prompt-candidate-0d06920a7af9"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

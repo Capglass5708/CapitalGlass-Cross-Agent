@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "code-touch-summary-v1@1.0.0",
+  "harvestId": "harvest-2026-08-09-control-plane-completion-sprint-v1",
+  "primaryOwnerRepo": "CG-AppBuilder-MCP",
+  "generatedAt": "2026-08-09T15:20:00.000Z",
+  "sourceCommitSha": "ebe83914c2e7dfae5f0cc0437a8791a1ea0288fb",
+  "touchedAreas": [
+    {
+      "area": "material-session front door",
+      "paths": [
+        "scripts/material-session/material-session-front-door.mjs",
+        "scripts/material-session/lib/capability-guidance.mjs",
+        "scripts/material-session/lib/resolution-guidance.mjs",
+        "services/cursor-mcp-server/src/sdlc-protocol-cursor-tools.ts"
+      ],
+      "commitRefs": ["CG-AppBuilder-MCP@92db985a007a5fb4ac87fdee80c5dcee753da247"]
+    },
+    {
+      "area": "capability discovery",
+      "paths": [
+        "scripts/capability-discovery/lib/capability-find.mjs",
+        "scripts/capability-discovery/lib/collect-capability-evidence.mjs",
+        "runtime/capability-discovery/intent-domain-profiles.json"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@08c37007bb656e543c86fc9506b4bf05a8729389",
+        "CG-AppBuilder-MCP@1379fe3a72c80cdaabded27436e68758c0a76874"
+      ]
+    },
+    {
+      "area": "blocker resolution",
+      "paths": [
+        "scripts/blocker-resolution/lib/blocker-resolve.mjs",
+        "runtime/blocker-resolution/blocker-repair-profiles.json"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@f7e8c5fd2b4b636c8c4f96bf93e2674ddf21c4b2",
+        "CG-AppBuilder-MCP@1e44c7adb6217ad57163329d6174f81b6bc2108b"
+      ]
+    },
+    {
+      "area": "reflex shadow",
+      "paths": [
+        "scripts/agent-reflex/lib/observe-reflex-shadow.mjs",
+        "scripts/agent-reflex/lib/evaluate-shadow-outcome.mjs",
+        "scripts/agent-reflex/lib/compute-autonomy-qualification.mjs"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@0beca4443fc6862fb3e7d6e52e2ac75730e352ec",
+        "CG-AppBuilder-MCP@ed064ba0aaf1d17f7f64d6d8c8799c035e78029e"
+      ]
+    },
+    {
+      "area": "worldview blocker repair-class (post-sprint, parallel lane)",
+      "paths": ["scripts/blocker/resolve-blocker.mjs"],
+      "commitRefs": ["CG-AppBuilder-MCP@a3b178941d88fa44fa48d64d400faf809360ffe7"]
+    }
+  ],
+  "testCommands": [
+    "npm run test:capability-reuse-discovery",
+    "npm run test:blocker-resolution",
+    "npm run test:agent-reflex-shadow-observation",
+    "npm run test:material-session-front-door-mcp-surface"
+  ]
+}

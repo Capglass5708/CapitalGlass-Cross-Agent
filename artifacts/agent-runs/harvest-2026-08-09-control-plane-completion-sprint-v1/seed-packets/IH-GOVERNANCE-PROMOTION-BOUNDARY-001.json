@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-GOVERNANCE-PROMOTION-BOUNDARY-001",
+  "kind": "architecture",
+  "title": "AUTO_ALLOWED repairs blocked until reflex-autonomy-governance-promotion-v1",
+  "summary": "Reflex shadow accumulates OBSERVE_ONLY observations; Governance owns SUGGEST_ONLY → SHADOW_VALIDATED → AUTO_ELIGIBLE → AUTO_ALLOWED graduation — not builder layer.",
+  "retrievalQuestions": [
+    "When can reflex shadow execute repairs automatically?",
+    "What is the next milestone after agent-reflex-shadow-observation-v1?"
+  ],
+  "evidenceRefs": [
+    "TE-007",
+    "docs/work-packages/agent-reflex-shadow-observation-v1.md",
+    "scripts/agent-reflex/lib/compute-autonomy-qualification.mjs"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Agent proposes auto-repair or AUTO_ALLOWED graduation from shadow metrics",
+    "startAt": [
+      "docs/work-packages/agent-reflex-shadow-observation-v1.md",
+      "CG-Platform-Governance-MCP governance_run_material_preflight"
+    ],
+    "runPreflight": [
+      "npm run reflex:shadow:observe -- --dry-run --json",
+      "governance_get_required_evidence via Governance MCP"
+    ],
+    "doNot": [
+      "Enable exec/spawn in reflex or blocker-resolution layers",
+      "Claim AUTO_ALLOWED without Governance promotion PASS"
+    ],
+    "proveBeforeClaiming": [
+      "reflex-autonomy-governance-promotion-v1 DURABLE_COMPLETE",
+      "Shadow metrics meet SHADOW_VALIDATED threshold"
+    ]
+  },
+  "ownerRepo": "CG-Platform-Governance-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 1,
+  "wasteIds": ["TW-004"]
+}
