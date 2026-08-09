@@ -1,63 +1,66 @@
 {
   "milestoneId": "commercial-glazing-scope-intelligence-spine-v1",
-  "phase": "PHASE_2_PLAN_VISION_ADAPTER",
+  "phase": "PHASE_2C_ASSOCIATION_CALIBRATION",
   "verdict": "R2_REAL_PLAN_VISION_LIMITED_PASS",
   "gate": "R2_REAL_PLAN_VISION_LIMITED_PASS",
-  "observedAt": "2026-08-09T06:12:48.974855+00:00",
+  "observedAt": "2026-08-09T06:45:00.000000+00:00",
   "documentId": "c2464d55-70c0-481c-8c6c-caed82cb0f0d",
   "documentName": "Morton Ranch Apartments - CG-1997-26 - Drawings - Architectural",
-  "ceCommitSha": "8a52fd9",
+  "ceCommitSha": "255bd76",
   "rasterCasRoot": "/home/wesle/repos/Computer Estimator/data",
+  "parameterSetId": "calibrated_v1",
   "selectedSheetCount": 8,
-  "selectedSheets": [
-    "A1.0",
-    "A2.0",
-    "A2.1",
-    "A2.2",
-    "A3.0a",
-    "A14.6",
-    "A14.6",
-    "A156.19"
-  ],
+  "selectedSheets": ["A1.0", "A2.0", "A2.1", "A2.2", "A3.0a", "A14.6", "A14.6", "A156.19"],
   "candidateCountSelected": 172,
   "seedNeighborhoodCount": 172,
-  "observationCount": 1844,
-  "detectionLane": "seed_guided_neighborhood",
+  "observationCount": 2033,
+  "detectionLane": "seed_guided_neighborhood_adaptive",
+  "previousAssociationRate": 0.0698,
+  "newAssociationRate": 0.0698,
+  "globalAssociationRate": 0.0698,
+  "strongSystemAssociationRate": 0.0348,
+  "reviewedSampleCount": 192,
+  "sampleTruePositiveCount": 9,
+  "sampleFalsePositiveCount": 19,
+  "sampleUncertainCount": 164,
+  "reviewedAssociationPrecision": 0.3214,
+  "precisionLabelSource": "geometry_heuristic_v1",
   "reconciliation": {
     "ASSOCIATED_ASSEMBLY": 12,
-    "AMBIGUOUS_ASSOCIATION": 1,
-    "CE_ONLY": 159,
-    "VISION_NEAR_CE_SEED": 1832,
-    "VISION_UNSEEDED": 0,
-    "VISION_OVERLAPS_TEXT_CONTEXT": 0,
-    "VISION_REPEATED_GRID_ONLY": 0
+    "AMBIGUOUS_ASSOCIATION": 0,
+    "CE_ONLY": 160,
+    "VISION_NEAR_CE_SEED_HIGH_SCORE": 14,
+    "VISION_NEAR_CE_SEED_LOW_SCORE": 2013,
+    "VISION_COMPONENT_CANDIDATE": 6
   },
   "gateMetrics": {
     "seedNeighborhoodCoverage": 1.0,
     "assemblyAssociationRate": 0.0698,
+    "strongSystemCandidateCount": 115,
+    "strongSystemAssociatedCount": 4,
+    "strongSystemAssociationRate": 0.0348,
     "falseAssemblyRate": 0.0,
     "coordinateConsistency": true,
     "deterministicRerun": true
   },
-  "legacyReconciliation": {
-    "MATCHED": 3,
-    "VISION_ONLY": 1829,
-    "CE_ONLY": 170,
-    "AMBIGUOUS": 12,
-    "matchedRate": 0.0016
+  "calibrationComparison": {
+    "selectedParameterSetId": "calibrated_v1",
+    "alternateHighCoverageSet": "calibrated_v2",
+    "alternateHighCoverageAssociationRate": 0.1221,
+    "alternateHighCoverageFalseAssemblyRate": 0.4286,
+    "selectionRationale": "quality_first_false_assembly_control"
   },
-  "detector": "deterministic_grid_mullion_seed_guided_v1",
   "interpretation": {
-    "visionProducesGeometry": true,
-    "ceTextBboxesAreTight": true,
-    "assemblyScaleAlignmentProven": true,
-    "containmentBridgeBeatsIouOnly": true,
-    "learnedCvBackendJustified": false,
-    "nextImprovement": "tune neighborhood span and association thresholds; review VISION_NEAR_CE_SEED grid noise; raise assemblyAssociationRate before Phase 3"
+    "associationBridgeProven": true,
+    "fullPassGateNotMet": true,
+    "visualAssociationCeilingEvidence": "Most Morton Ranch CE candidates are tight text marks on elevation/schedule context; ~160/172 remain CE_ONLY after seed-guided detection. Raising association rate to 0.35 without learned CV requires either human-reviewed truth expansion or schedule-to-plan linkage (Phase 3). calibrated_v2 reaches 0.1221 association but 0.43 heuristic false-assembly rate — rejected for production parameter set.",
+    "a1_a3_zero_observations": "A1.0 and A3.0a have no Phase 1 candidates on selected sheets; zero seeds/observations expected.",
+    "nextImprovement": "Phase 3 drawing relationship engine; human review of 192-sample crops; tune storefront neighborhood on A2.x sheets"
   },
-  "reviewedAssociationSampleSize": 12,
   "evidence": {
     "ceArtifact": "artifacts/phase-2-raster-plan-vision-receipt.json",
+    "reviewSample": "artifacts/phase-2-association-review-sample.json",
+    "reviewCropsDir": "artifacts/phase-2-review-crops",
     "orchestrator": "scripts/run_phase2_raster_plan_vision.py"
   },
   "canonicalPhaseSequence": {
@@ -67,7 +70,8 @@
     "phase5FullSpine": "NOT_ADVANCED",
     "phase5ParallelFixture": "PHASE_5_FIXTURE_PROOF_BLOCKED_PARALLEL"
   },
-  "nextCanonicalPhase": "PHASE_2_PLAN_VISION_ADAPTER",
+  "nextCanonicalPhase": "PHASE_2C_ASSOCIATION_CALIBRATION",
   "productionUnlocked": false,
+  "commercialWriteAuthorized": false,
   "valuesPrinted": false
 }
