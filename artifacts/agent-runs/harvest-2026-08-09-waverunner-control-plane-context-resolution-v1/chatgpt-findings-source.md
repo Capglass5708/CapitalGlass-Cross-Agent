@@ -8,6 +8,7 @@
 **Source:** Current visible ChatGPT thread + attached protocol only  
 **Target tier:** T2  
 **Initial verdict:** `DRAFT_READY`  
+**Final ChatGPT verdict:** `CHATGPT_SOURCE_PUBLISHED`  
 **Closeout target:** `CHATGPT_SOURCE_PUBLISHED` — never `HARVEST_COMPLETE`
 
 ---
@@ -28,7 +29,7 @@ A separate MCP estate-health recovery later restored 14/14 MCP health and a full
 
 A remaining open issue is distinct from this completed rail: with the production execution lock restored to `pg-estimator-trust-closure-recovery-v1`, the same bare WaveRunner command reportedly selects the PG milestone but fails at `VERIFIED_CONTEXT_COMPILE_FAILED` on a `governedSpineHash` semantic subcheck. This is a separate PG projection/currentness recovery lane and must not be used to reopen deterministic milestone resolution.
 
-**Artifact verdict before Git gate:** `DRAFT_READY`
+**Artifact verdict after Git gate:** `CHATGPT_SOURCE_PUBLISHED`
 
 ---
 
@@ -58,7 +59,9 @@ This thread is strongly SDLC/governance weighted, with a smaller but material CE
 Retrieval: INDEX_NOT_AVAILABLE_IN_CHAT_CONTEXT
 Cache: NOT_APPLICABLE
 rawScanRequired: false
-sourceCommitSha: UNKNOWN
+sourceCommitSha: 1dd6541ff767b9171800824d199a5b492f0fcdce
+sourceBranch: chat-gpt-harvest
+sourceRepo: Capglass5708/CapitalGlass-Cross-Agent
 ```
 
 No claim is made that Intelligence Hub, Z, L, Supabase, or AI-cache retrieval was executed by ChatGPT in this harvest session.
@@ -761,8 +764,8 @@ No estate-wide product optimization conclusion should be inferred from this thre
 
 | Layer | State (ChatGPT closeout) |
 | --- | --- |
-| Git draft (`chat-gpt-harvest`) | `not-run` |
-| `CHATGPT_HARVEST_GIT_GATE` | `not-run` |
+| Git draft (`chat-gpt-harvest`) | `1dd6541ff767b9171800824d199a5b492f0fcdce` |
+| `CHATGPT_HARVEST_GIT_GATE` | `PASS` |
 | L: draft staging (Action move) | `not-run` |
 | Cursor ingest | `not-run` |
 | `harvest:validate` | `not-run` |
@@ -782,9 +785,24 @@ projection.hubPublishStatus: not-run
 
 ## 20. gitPublicationReceipt
 
-`PENDING_CHATGPT_HARVEST_GIT_GATE`
+```json
+{
+  "gitPublicationReceipt": {
+    "gate": "CHATGPT_HARVEST_GIT_GATE",
+    "verdict": "PASS",
+    "repo": "Capglass5708/CapitalGlass-Cross-Agent",
+    "branch": "chat-gpt-harvest",
+    "harvestId": "harvest-2026-08-09-waverunner-control-plane-context-resolution-v1",
+    "artifactPath": "artifacts/agent-runs/harvest-2026-08-09-waverunner-control-plane-context-resolution-v1/chatgpt-findings-source.md",
+    "localCommitSha": "1dd6541ff767b9171800824d199a5b492f0fcdce",
+    "remoteCommitSha": "1dd6541ff767b9171800824d199a5b492f0fcdce",
+    "remoteVerified": true,
+    "publicationTransport": "GitHub connector contents API direct remote branch write"
+  }
+}
+```
 
-This section will be updated only after the designated artifact is committed to `chat-gpt-harvest` and the remote commit is verified.
+The gate receipt records the first remote publication commit. This file is then updated in-place only to embed that receipt; the follow-up receipt-pin commit is reported in ChatGPT closeout so Cursor can pull the latest branch head.
 
 ---
 
