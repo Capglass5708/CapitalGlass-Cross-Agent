@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "experience-episode-v1@1.0.0",
+  "title": "Experience Episode",
+  "description": "Problem → actions → operator intervention → outcome → applicability.",
+  "type": "object",
+  "required": [
+    "schema",
+    "episodeId",
+    "lifecycle",
+    "problem",
+    "actionsAttempted",
+    "outcome",
+    "applicability",
+    "rootCauseKey",
+    "triggerFingerprint",
+    "contextCompatibilityDigest",
+    "sourceRawRef",
+    "sourceExcerptHash",
+    "observationRefs"
+  ],
+  "properties": {
+    "schema": { "const": "experience-episode-v1@1.0.0" },
+    "episodeId": { "type": "string", "pattern": "^episode:" },
+    "lifecycle": {
+      "enum": ["OPEN", "RESOLVED_OBSERVED", "UNKNOWN"]
+    },
+    "problem": { "type": "string", "minLength": 1 },
+    "actionsAttempted": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/actionAttempt" }
+    },
+    "operatorIntervention": { "$ref": "#/$defs/operatorIntervention" },
+    "outcome": { "$ref": "#/$defs/outcome" },
+    "applicability": { "$ref": "#/$defs/applicability" },
+    "rootCauseKey": { "type": "string", "minLength": 1 },
+    "triggerFingerprint": { "type": "string", "minLength": 1 },
+    "contextCompatibilityDigest": { "type": "string", "pattern": "^sha256:" },
+    "sourceRawRef": { "type": "string", "minLength": 1 },
+    "sourceExcerptHash": { "type": "string", "pattern": "^sha256:" },
+    "observationRefs": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^xobs:" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "actionAttempt": {
+      "type": "object",
+      "required": ["action", "result"],
+      "properties": {
+        "action": { "type": "string" },
+        "result": { "enum": ["SUCCEEDED", "FAILED", "PARTIAL", "UNKNOWN"] },
+        "evidenceRefs": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "operatorIntervention": {
+      "type": ["object", "null"],
+      "properties": {
+        "intervention": { "type": "string" },
+        "reasonClass": {
+          "enum": ["MACHINE_WRONG", "HUMAN_PREFERENCE", "SOURCE_AMBIGUOUS", "UNKNOWN"]
+        },
+        "evidenceRefs": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "outcome": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": { "type": "string" },
+        "summary": { "type": "string" },
+        "evidenceRefs": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "applicability": {
+      "type": "object",
+      "properties": {
+        "repos": { "type": "array", "items": { "type": "string" } },
+        "workflows": { "type": "array", "items": { "type": "string" } },
+        "missionClasses": { "type": "array", "items": { "type": "string" } },
+        "counterexamples": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

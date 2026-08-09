@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "experience-observation-v1@1.0.0",
+  "title": "Experience Observation",
+  "description": "Normalized observable evidence in the Experience Graph (xobs namespace).",
+  "type": "object",
+  "required": [
+    "schema",
+    "observationId",
+    "sourceRefs",
+    "eventClass",
+    "measurementClass",
+    "provenance",
+    "context",
+    "evidence",
+    "sourceRawRef",
+    "sourceExcerptHash",
+    "observedAt"
+  ],
+  "properties": {
+    "schema": { "const": "experience-observation-v1@1.0.0" },
+    "observationId": { "type": "string", "pattern": "^xobs:" },
+    "sourceRefs": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "eventClass": { "type": "string", "minLength": 1 },
+    "measurementClass": {
+      "enum": ["MEASURED", "DERIVED", "ESTIMATED_RANGE", "QUALITATIVE", "UNKNOWN"]
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["sourceLane", "emitter"],
+      "properties": {
+        "sourceLane": { "type": "string" },
+        "emitter": { "type": "string" },
+        "harvestId": { "type": ["string", "null"] },
+        "workPackageId": { "type": ["string", "null"] }
+      }
+    },
+    "context": { "type": "object" },
+    "evidence": {
+      "type": "object",
+      "required": ["summary"],
+      "properties": {
+        "summary": { "type": "string" },
+        "detailRefs": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "sourceRawRef": { "type": "string", "minLength": 1 },
+    "sourceExcerptHash": { "type": "string", "pattern": "^sha256:" },
+    "observedAt": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}
