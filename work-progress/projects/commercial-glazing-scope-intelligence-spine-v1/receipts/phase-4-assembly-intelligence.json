@@ -1,0 +1,47 @@
+{
+  "milestoneId": "commercial-glazing-scope-intelligence-spine-v1",
+  "phase": "PHASE_4_ASSEMBLY_INTELLIGENCE",
+  "subPhases": {
+    "phase4a": "relationship_backed_assembly_grouping",
+    "phase4b": "component_role_assignment",
+    "phase4c": "stable_assembly_identity_revision_continuity",
+    "phase4d": "assembly_completeness_unresolved_component_checks"
+  },
+  "verdict": "R4_ASSEMBLY_INTELLIGENCE_PASS_WITH_MEASURED_LIMITATIONS",
+  "gate": "R4_ASSEMBLY_INTELLIGENCE_PASS_WITH_MEASURED_LIMITATIONS",
+  "observedAt": "2026-08-09T07:32:20.422069+00:00",
+  "documentId": "c2464d55-70c0-481c-8c6c-caed82cb0f0d",
+  "ceCommitSha": "5e93cedb3f529bad067afd1f487116d6370612b1",
+  "phase3Verdict": "R3_DRAWING_RELATIONSHIP_PASS",
+  "phase3EvidenceResolutionRate": 0.3023,
+  "assemblyCount": 13,
+  "ungroupedCandidateCount": 128,
+  "averageAssemblyConfidence": 0.1928,
+  "averageCompletenessScore": 0.3457,
+  "assemblyKindCounts": {
+    "STOREFRONT_DETAIL_ASSEMBLY": 1,
+    "SCHEDULE_CORROBORATED_CLUSTER": 1,
+    "VISUAL_NEIGHBORHOOD_ASSEMBLY": 11
+  },
+  "tests": "tests/unit/test_assembly_intelligence.py",
+  "productionUnlocked": false,
+  "phase5Advanced": true,
+  "canonicalPhaseSequence": {
+    "phase1": "R1_CE_LIVE_CANDIDATES_PASS",
+    "phase2": "R2_REAL_PLAN_VISION_PASS_WITH_MEASURED_LIMITATIONS",
+    "phase3": "R3_DRAWING_RELATIONSHIP_PASS",
+    "phase4": "R4_ASSEMBLY_INTELLIGENCE_PASS_WITH_MEASURED_LIMITATIONS",
+    "phase5FullSpine": "NOT_ADVANCED",
+    "phase5ParallelFixture": "PHASE_5_FIXTURE_PROOF_BLOCKED_PARALLEL"
+  },
+  "nextCanonicalPhase": "PHASE_5_FULL_SPINE",
+  "interpretation": {
+    "evidenceBackedAssemblies": true,
+    "primaryAssemblies": {
+      "storefrontDetailG01": 1,
+      "scheduleCorroboratedCluster": 1,
+      "visualNeighborhoodSingletons": 11
+    },
+    "measuredLimitations": "Most candidates remain ungrouped; visual neighborhoods are single-observation assemblies; role coverage incomplete on schedule cluster"
+  }
+}
