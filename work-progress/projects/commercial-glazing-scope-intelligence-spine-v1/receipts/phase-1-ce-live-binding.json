@@ -1,18 +1,51 @@
 {
   "milestoneId": "commercial-glazing-scope-intelligence-spine-v1",
   "phase": "PHASE_1_CE_LIVE_EVIDENCE_BINDING",
-  "verdict": "BLOCKED",
+  "verdict": "PASS",
   "gate": "R1_CE_LIVE_CANDIDATES_PASS",
-  "observedAt": "2026-08-09T05:30:00.000Z",
-  "blocker": {
-    "code": "UNVERIFIED_EXTERNAL_DEPENDENCY",
-    "reason": "CE Postgres unavailable: localhost:5433 connection refused; docker not available in WSL session to start computer_estimator_db",
-    "operatorAction": "On host with Docker: cd Computer-Estimator-glazing-spine && docker compose up -d db && doppler run -- python3 scripts/emit_commercial_glazing_candidates.py --document-id <known-doc-id>"
+  "observedAt": "2026-08-09T06:15:00.000Z",
+  "documentId": "c2464d55-70c0-481c-8c6c-caed82cb0f0d",
+  "documentName": "Morton Ranch Apartments - CG-1997-26 - Drawings - Architectural",
+  "ceCommitSha": "pending-after-commit",
+  "worktree": "/home/wesle/repos/Computer-Estimator-glazing-spine",
+  "branch": "feat/commercial-glazing-scope-candidates-v1",
+  "runtimeRecovery": {
+    "classification": "DOCKER_DAEMON_UNAVAILABLE_THEN_RECOVERED",
+    "dockerCliInWsl": "DOCKER_CLI_MISSING",
+    "dockerDesktopWindows": "STARTED",
+    "container": "computer_estimator_db",
+    "port": 5433,
+    "databaseConnectivity": "PASS"
   },
-  "offlineVerification": {
-    "pytest": "tests/unit/test_commercial_glazing_candidates.py tests/unit/test_commercial_glazing_evidence_candidates.py — PASS",
-    "worktree": "/home/wesle/repos/Computer-Estimator-glazing-spine @ 4cc5b0c"
+  "relationsUsed": [
+    "current_text_blocks",
+    "current_regions",
+    "current_tables"
+  ],
+  "candidateCount": 172,
+  "reviewDispositions": {
+    "NEEDS_REVIEW": 164,
+    "PROPOSE_FOR_REVU": 8,
+    "EXCLUDE_FROM_GLAZING": 0
   },
-  "nextPhase": "PHASE_1_CE_LIVE_EVIDENCE_BINDING",
+  "validation": {
+    "CE_DATABASE_CONNECTIVITY": "PASS",
+    "REAL_DOCUMENT_RESOLVED": "PASS",
+    "LIVE_CANDIDATE_EMIT": "PASS",
+    "PROVENANCE": "PASS",
+    "GEOMETRY": "PASS",
+    "IDENTITY": "PASS",
+    "WEAK_TERM_SAFETY": "PASS",
+    "UNIT_TESTS": "PASS"
+  },
+  "fixesApplied": [
+    "bind current_* readers through plan_sheets/plan_files document join",
+    "normalize live bbox_x1..bbox_y2 page-relative geometry",
+    "filter glazing seed terms in SQL to avoid LIMIT starvation on large documents"
+  ],
+  "artifactPath": "artifacts/phase-1-candidates.json",
+  "nextPhase": "PHASE_2_PLAN_VISION_ADAPTER",
+  "productionUnlocked": false,
+  "commercialWriteAuthorized": false,
   "valuesPrinted": false
 }
