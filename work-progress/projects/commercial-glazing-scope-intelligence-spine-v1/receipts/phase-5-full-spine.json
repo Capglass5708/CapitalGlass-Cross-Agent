@@ -3,7 +3,7 @@
   "phase": "PHASE_5_FULL_SPINE",
   "verdict": "R5_REVU_FULL_SPINE_BLOCKED_HOST_DEPENDENCY",
   "gate": "R5_REVU_FULL_SPINE_BLOCKED_HOST_DEPENDENCY",
-  "observedAt": "2026-08-09T07:46:40.565Z",
+  "observedAt": "2026-08-09T14:52:25.901Z",
   "runId": "p5-274d9b28115238c6",
   "canonicalPhaseSequence": {
     "phase1": "R1_CE_LIVE_CANDIDATES_PASS",
@@ -11,91 +11,75 @@
     "phase3": "R3_DRAWING_RELATIONSHIP_PASS",
     "phase4": "R4_ASSEMBLY_INTELLIGENCE_PASS_WITH_MEASURED_LIMITATIONS",
     "phase5FullSpine": "R5_REVU_FULL_SPINE_BLOCKED_HOST_DEPENDENCY",
+    "phase5PlanOnly": "PASS",
     "phase5ParallelFixture": "PHASE_5_FIXTURE_PROOF_BLOCKED_PARALLEL",
     "phase6OmissionCoverage": "NOT_ADVANCED"
   },
   "sourceCommits": {
-    "ce": "5e9f97a7ed12258b3be0183fcbe9ec4fd61bd705",
-    "revu": "d7d6addf50fc0c4a084dbe46cd31eac5943489a2"
+    "ce": "fabfb987ed12258b3be0183fcbe9ec4fd61bd705",
+    "revu": "da9c8d6"
   },
-  "sourceReceipts": {
-    "phase1": "artifacts/phase-1-candidates.json",
-    "phase2": "artifacts/phase-2-raster-plan-vision-receipt.json",
-    "phase3": "artifacts/phase-3-drawing-relationships-receipt.json",
-    "phase4": "artifacts/phase-4-assembly-intelligence-receipt.json"
-  },
-  "phaseReceiptVerdicts": {
-    "phase2": "R2_REAL_PLAN_VISION_PASS_WITH_MEASURED_LIMITATIONS",
-    "phase3": "R3_DRAWING_RELATIONSHIP_PASS",
-    "phase4": "R4_ASSEMBLY_INTELLIGENCE_PASS_WITH_MEASURED_LIMITATIONS"
+  "windowsHostRecovery": {
+    "host": {
+      "platform": "win32",
+      "computerName": "Wesley_Work"
+    },
+    "branchRecovered": "feat/revu-window-door-markup-validation-v1",
+    "revuUiLaunched": true,
+    "gate1": {
+      "launcherPresent": true,
+      "revuExePresent": true,
+      "revuUiProcessRunning": true,
+      "stdioProbe": "FAIL",
+      "openFileError": "MCP not allowed",
+      "classification": "REVU_MCP_ENTITLEMENT_OR_HOST_AUTHORIZATION_BLOCKED",
+      "runtimeDefect": {
+        "code": "REVU_MCP_ENTITLEMENT_OR_HOST_AUTHORIZATION_BLOCKED",
+        "detail": "MCP not allowed",
+        "primarySuspect": "COMPLETE_PLAN_NOT_MAX"
+      }
+    },
+    "liveExecutionAttempted": true,
+    "liveExecutionPerformed": false
   },
   "handoff": {
-    "schemaVersion": "commercial-glazing-ce-revu-handoff-v1",
+    "runId": "p5-274d9b28115238c6",
     "handoffCount": 9,
-    "selectedCandidateIds": [
-      "cgobs-0672abac7361b50e1f81",
-      "cgobs-4563fcbe53d075d1edb3",
-      "cgobs-572992639d394d81c64f",
-      "cgobs-1d4c3652872799327556",
-      "cgobs-2e7bab4c23dd1bbb61f3",
-      "cgobs-40c11bb9003f7c84adf1",
-      "cgobs-caf03ee0a159ca854fc8",
-      "cgobs-954c69afba74cab8ae4a",
-      "cgobs-02693e35756eb520192b"
-    ],
-    "selectedAssemblyIds": [
-      "cgasm-7b9ff23fd4c77446925a",
-      "cgasm-a48f48a19df9f87a8437",
-      "cgasm-c2e5772bb0724f1dd251",
-      "cgasm-17b5a24df47ad5016a98"
-    ],
-    "geometryCoordinateSpace": "page_relative_top_left",
-    "ceHandoffPath": "Computer-Estimator-glazing-spine/artifacts/agent-runs/commercial-glazing-scope-intelligence-spine-v1/phase-5-full-spine/p5-274d9b28115238c6/ce-revu-handoff.json",
-    "revuPlanReceiptPath": "CapitalGlassRevu/artifacts/agent-runs/commercial-glazing-scope-intelligence-spine-v1/phase-5-full-spine/p5-274d9b28115238c6/phase-5-full-spine-receipt.json"
+    "unchanged": true,
+    "ceHandoffPath": "Computer-Estimator-glazing-spine/artifacts/agent-runs/commercial-glazing-scope-intelligence-spine-v1/phase-5-full-spine/p5-274d9b28115238c6/ce-revu-handoff.json"
   },
   "planOnlyIntegration": {
     "passed": true,
     "planReadyCount": 9,
-    "onePlanActionPerCandidate": true,
-    "identityAgreementRate": 1,
-    "geometryAgreementRate": 1,
-    "assemblyMetadataAgreementRate": 1,
-    "assemblyReadbackPreserved": true,
-    "commercialWrites": false,
-    "graphWrites": false,
-    "productionUnlocked": false
+    "identityAgreementRate": 1
   },
-  "liveExecution": {
+  "liveProof": {
     "performed": false,
-    "blockedReason": "authorized_windows_bluebeam_host_required",
-    "gate1": {
-      "launcherPresent": false,
-      "stdioProbe": "FAIL",
-      "authorizedHost": false,
-      "classification": "REVU_MCP_RUNTIME_DEFECT",
-      "host": {
-        "platform": "linux",
-        "computerName": "WesleyWork"
-      }
-    }
+    "blockedReason": "REVU_MCP_ENTITLEMENT_OR_HOST_AUTHORIZATION_BLOCKED",
+    "operatorRemediation": [
+      "Assign Bluebeam Revu Max seat (not Complete) to active BBID",
+      "Revu > Preferences > Admin > MCP: enable MCP and authorize supported host",
+      "Restart Revu; re-run npm run gate1:diagnose-mcp until stdioProbe=PASS",
+      "Set CG_MORTON_RANCH_AUTHORIZED_PDF to Morton Ranch CAS PDF path (70ee1da7...db3b.pdf)",
+      "Re-run: node scripts/run-phase5-ce-full-spine.mjs --handoff <dir> --execute"
+    ]
+  },
+  "mortonRanchPdf": {
+    "documentId": "c2464d55-70c0-481c-8c6c-caed82cb0f0d",
+    "casPath": "data/cas/sha256/70ee1da7ba6b645cd6a64163b520406fa7d29123a48f3eb4a9ed9eb015b3db3b.pdf",
+    "resolvedOnHost": false,
+    "note": "Resolve via CE CAS metadata authority; do not rescan entire Z: dev share"
   },
   "metrics": {
-    "handoffCount": 9,
-    "planReadyCount": 9,
-    "createdCount": 0,
-    "readbackVerifiedCount": 0,
-    "identityAgreementRate": 1,
-    "geometryAgreementRate": 1,
-    "assemblyMetadataAgreementRate": 1,
-    "duplicateMarkupCount": 0,
-    "rollbackSuccessRate": null,
-    "reviewRequiredCount": 5,
-    "failedCount": 0,
     "planned": 9,
     "created": 0,
     "verified": 0,
-    "skippedExisting": 0,
-    "rolledBack": 0
+    "identityAgreementRate": null,
+    "geometryAgreementRate": null,
+    "assemblyMetadataAgreementRate": null,
+    "duplicateMarkupCount": 0,
+    "rollbackSuccessRate": null,
+    "verifiedMarkupUuids": []
   },
   "phase4LimitationsPreserved": [
     "128/172 candidates currently ungrouped",
@@ -104,21 +88,13 @@
     "G01 role diversity incomplete",
     "schedule cluster still coarse"
   ],
-  "phase4FollowUps": [
-    "merge valid single-member visual neighborhoods",
-    "split large schedule cluster when stronger mark evidence exists",
-    "improve G01 role diversity when sidelite/transom evidence appears"
-  ],
-  "targetRevuBranch": "feat/revu-window-door-markup-validation-v1",
   "safety": {
     "productionUnlocked": false,
     "commercialWriteAuthorized": false,
-    "proposalIssueAuthorized": false,
-    "masterGraphWriteAuthorized": false,
+    "controlledRevuFixtureWriteAuthorized": false,
     "mainMergeAuthorized": false
   },
-  "interpretation": "CE Phase 1–4 output deterministically drives Revu markup planning with assembly metadata preserved. Plan-only integration passed on WSL. Live CREATE→READBACK→IDEMPOTENCY→ROLLBACK remains blocked pending authorized Bluebeam Windows host with gate1 PASS.",
+  "interpretation": "Windows host recovered (Revu UI running, launcher present). Live MCP blocked with MCP not allowed — entitlement/host authorization defect, not missing launcher. Phase 5 plan-only remains valid; live CREATE→READBACK→IDEMPOTENCY→ROLLBACK awaits Max/MCP admin unblock and Morton Ranch authorized PDF path.",
   "nextCanonicalPhase": "PHASE_5_FULL_SPINE_LIVE_EXECUTION_THEN_PHASE_6_OMISSION_COVERAGE",
-  "operatorAction": "On authorized Bluebeam Windows host: npm run gate1:diagnose-mcp (require launcherPresent=true, stdioProbe=PASS, authorizedHost=true), then run CE-derived handoff execute batch with rollback verification.",
   "valuesPrinted": false
 }
