@@ -1,0 +1,18 @@
+{
+  "milestoneId": "commercial-glazing-scope-intelligence-spine-v1",
+  "phase": "PHASE_1_CE_LIVE_EVIDENCE_BINDING",
+  "verdict": "BLOCKED",
+  "gate": "R1_CE_LIVE_CANDIDATES_PASS",
+  "observedAt": "2026-08-09T05:30:00.000Z",
+  "blocker": {
+    "code": "UNVERIFIED_EXTERNAL_DEPENDENCY",
+    "reason": "CE Postgres unavailable: localhost:5433 connection refused; docker not available in WSL session to start computer_estimator_db",
+    "operatorAction": "On host with Docker: cd Computer-Estimator-glazing-spine && docker compose up -d db && doppler run -- python3 scripts/emit_commercial_glazing_candidates.py --document-id <known-doc-id>"
+  },
+  "offlineVerification": {
+    "pytest": "tests/unit/test_commercial_glazing_candidates.py tests/unit/test_commercial_glazing_evidence_candidates.py — PASS",
+    "worktree": "/home/wesle/repos/Computer-Estimator-glazing-spine @ 4cc5b0c"
+  },
+  "nextPhase": "PHASE_1_CE_LIVE_EVIDENCE_BINDING",
+  "valuesPrinted": false
+}
