@@ -1,0 +1,34 @@
+{
+  "milestoneId": "commercial-glazing-scope-intelligence-spine-v1",
+  "phase": "PHASE_0_RECOVERY",
+  "waveRunner": "FULL_WAVERUNNER",
+  "verdict": "PHASE_0_PASS",
+  "observedAt": "2026-08-09T05:25:00.000Z",
+  "mode": "SKELETON_AND_CONCEPT_BUILD — LIVE_VERIFICATION_PENDING",
+  "gates": {
+    "branchFamilyLocated": "PASS",
+    "contractCompatibilityGate": "PASS",
+    "projectContextResolvable": "PASS_WITH_DEFERRAL",
+    "unexplainedDrift": "PASS_WITH_STASHED_WORKTREES"
+  },
+  "contractGateEvidence": "CG-AppBuilder-MCP npm run glazing-spine:contract-gate",
+  "projectContextPacket": "CG-AppBuilder-MCP/fixtures/commercial-glazing-spine/project-context-packet-beacon-hill-v1.json",
+  "appBuilderHead": "pending_push_after_rebase",
+  "deferrals": [
+    {
+      "id": "ce-local-postgres-down",
+      "reason": "DATABASE_URL localhost:5433 connection refused",
+      "blocks": "PHASE_1 live evidence binding",
+      "classification": "UNVERIFIED_EXTERNAL_DEPENDENCY"
+    },
+    {
+      "id": "beacon-hill-document-identity-unbound",
+      "reason": "Document Layer bind pending for Beacon Hill CG-2036-26",
+      "blocks": "PHASE_9 benchmark"
+    }
+  ],
+  "nextPhase": "PHASE_1_CE_LIVE_EVIDENCE_BINDING",
+  "commercialWriteAuthorized": false,
+  "productionUnlocked": false,
+  "valuesPrinted": false
+}
