@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-MCP-HEALTH-ONCE-BEFORE-STRICT-001",
+  "kind": "success-pattern",
+  "title": "Prime integrations health before strict MCP suite probe",
+  "summary": "Run mcp:health:once before mcp:health --strict to avoid transient 11/3 blocked sharepoint/supabase evidence after long preflight steps.",
+  "retrievalQuestions": [
+    "Why does strict mcp:health show blocked MCPs after long bible sync?",
+    "What recovers MCP suite to 14/0/0/0 without architecture changes?"
+  ],
+  "evidenceRefs": [
+    "CG-AppBuilder-MCP/scripts/lib/mcp-health/preflight-eligibility.mjs",
+    "chat:preflight attempt 3 vs 4"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Material preflight fails mcp-health-authority with blocked count > 0 after long steps",
+    "startAt": ["runtime/mcp-health-receipt/latest.json", "runtime/integrations-health-cycle.lock"],
+    "runPreflight": ["npm run mcp:health:once", "npm run mcp:health -- --strict"],
+    "doNot": ["Reopen MCP architecture on first 11/3 without refresh", "Infer health from exit code alone"],
+    "proveBeforeClaiming": ["14/0/0/0 on canonical receipt with observedAt fresh"]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}
