@@ -3,10 +3,10 @@
   "phase": "PHASE_2_PLAN_VISION_ADAPTER",
   "verdict": "R2_REAL_PLAN_VISION_LIMITED_PASS",
   "gate": "R2_REAL_PLAN_VISION_LIMITED_PASS",
-  "observedAt": "2026-08-09T06:04:06.849768+00:00",
+  "observedAt": "2026-08-09T06:12:48.974855+00:00",
   "documentId": "c2464d55-70c0-481c-8c6c-caed82cb0f0d",
   "documentName": "Morton Ranch Apartments - CG-1997-26 - Drawings - Architectural",
-  "ceCommitSha": "02cc0f4",
+  "ceCommitSha": "8a52fd9",
   "rasterCasRoot": "/home/wesle/repos/Computer Estimator/data",
   "selectedSheetCount": 8,
   "selectedSheets": [
@@ -20,24 +20,45 @@
     "A156.19"
   ],
   "candidateCountSelected": 172,
-  "observationCount": 384,
+  "seedNeighborhoodCount": 172,
+  "observationCount": 1844,
+  "detectionLane": "seed_guided_neighborhood",
   "reconciliation": {
-    "MATCHED": 1,
-    "VISION_ONLY": 383,
-    "CE_ONLY": 171,
-    "AMBIGUOUS": 0,
-    "matchedRate": 0.0018
+    "ASSOCIATED_ASSEMBLY": 12,
+    "AMBIGUOUS_ASSOCIATION": 1,
+    "CE_ONLY": 159,
+    "VISION_NEAR_CE_SEED": 1832,
+    "VISION_UNSEEDED": 0,
+    "VISION_OVERLAPS_TEXT_CONTEXT": 0,
+    "VISION_REPEATED_GRID_ONLY": 0
   },
-  "detector": "deterministic_grid_mullion_v1",
+  "gateMetrics": {
+    "seedNeighborhoodCoverage": 1.0,
+    "assemblyAssociationRate": 0.0698,
+    "falseAssemblyRate": 0.0,
+    "coordinateConsistency": true,
+    "deterministicRerun": true
+  },
+  "legacyReconciliation": {
+    "MATCHED": 3,
+    "VISION_ONLY": 1829,
+    "CE_ONLY": 170,
+    "AMBIGUOUS": 12,
+    "matchedRate": 0.0016
+  },
+  "detector": "deterministic_grid_mullion_seed_guided_v1",
   "interpretation": {
     "visionProducesGeometry": true,
     "ceTextBboxesAreTight": true,
+    "assemblyScaleAlignmentProven": true,
+    "containmentBridgeBeatsIouOnly": true,
     "learnedCvBackendJustified": false,
-    "nextImprovement": "region-focused detector around CE seeds and assembly-scale bbox expansion before Phase 3"
+    "nextImprovement": "tune neighborhood span and association thresholds; review VISION_NEAR_CE_SEED grid noise; raise assemblyAssociationRate before Phase 3"
   },
+  "reviewedAssociationSampleSize": 12,
   "evidence": {
     "ceArtifact": "artifacts/phase-2-raster-plan-vision-receipt.json",
-    "orchestrator": "npm run phase2:raster-plan-vision (CE: scripts/run_phase2_raster_plan_vision.py)"
+    "orchestrator": "scripts/run_phase2_raster_plan_vision.py"
   },
   "canonicalPhaseSequence": {
     "phase1": "R1_CE_LIVE_CANDIDATES_PASS",
