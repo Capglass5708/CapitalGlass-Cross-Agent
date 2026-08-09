@@ -14,10 +14,10 @@ Create a coordinated commercial-glazing intelligence spine that can discover lik
 | `Computer-Estimator-` | `feat/commercial-glazing-scope-candidates-v1` | Plan evidence → commercial glazing candidates |
 | `CG-Computer-Estimator-MCP` | `feat/commercial-glazing-scope-candidates-v1` | Read-only candidate spoke |
 | `CapitalGlassRevu` | `feat/revu-window-door-markup-validation-v1` | Revu markup, measurement, read-back, evidence |
-| `CG-Human-Estimator-MCP` | `feat/commercial-glazing-scope-review-intelligence-v1` | Read-only review intelligence |
+| `CG-Human-Estimator-MCP` | `feat/commercial-glazing-scope-review-intelligence-v1` | Read-only review intelligence; neutral runtime migration in progress |
 | `Data-Extraction` | `feat/historical-commercial-glazing-scope-evidence-v1` | Historical bid-sheet / reviewed-scope evidence |
-| `CG-Platform-Governance-MCP` | `feat/commercial-glazing-agent-governance-v1` | Agent permissions, authority, release policy |
-| `CG-AppBuilder-MCP` | `feat/commercial-glazing-agent-orchestration-v1` | Agent orchestration adapters and routing |
+| `CG-Platform-Governance-MCP` | `feat/commercial-glazing-agent-governance-v1` | Agent permissions, canonical contracts, lifecycle, release policy |
+| `CG-AppBuilder-MCP` | `feat/commercial-glazing-agent-orchestration-v1` | Agent orchestration, run state, compatibility gate, routing |
 | `CapitalGlass-BidComposer` | `feat/commercial-glazing-remodel-scope-consumer-v1` | Remodel proposal consumer |
 | `Cursor-ProposalGenerator` | `feat/commercial-glazing-new-construction-scope-consumer-v1` | New-construction proposal consumer |
 | `CapitalGlass-Cross-Agent` | `work/commercial-glazing-scope-intelligence-spine-v1` | Coordination only; no product implementation |
@@ -27,6 +27,17 @@ Create a coordinated commercial-glazing intelligence spine that can discover lik
 - `REMODEL` → Bid Composer.
 - `NEW_CONSTRUCTION` → Proposal Generator.
 - Upstream CE/Revu/Human Estimator scope objects are proposal-consumer-neutral.
+
+## Structural hardening now implemented
+
+1. Governance owns `commercial-glazing-contract-registry-v1`; consumers must use compatible/hash-bound mirrors and fail closed on drift.
+2. Governance owns `project-context-packet-v1`; spokes must not independently reinterpret project routing when a packet is present.
+3. CE separates exact `observationId` from durable `scopeIdentity` so revisions do not automatically create unrelated business objects.
+4. Governance owns `commercial-glazing-scope-lifecycle-v1`; AI may advance through review-required states but human disposition is required before `APPROVED_SCOPE`.
+5. AppBuilder owns `commercial-glazing-agent-run-state-v1` with resumable `runId`, transition receipts, partial-failure accounting and no-repeat verified mutation semantics.
+6. AppBuilder owns the fail-closed `commercial-glazing-contract-compatibility-gate-v1`.
+7. Human Estimator launcher now supports an explicit neutral runtime migration path; legacy Bid Composer hosting stays default until parity gates pass.
+8. CE MCP, Revu, HE, Data Extraction, Bid Composer and Proposal Generator declare canonical contract consumption and `BLOCKED_CONTRACT_DRIFT` behavior.
 
 ## Agent lane
 
@@ -52,17 +63,19 @@ Permission levels:
 
 ## Live verification gates
 
-1. CE real DB schema + candidate generation smoke.
-2. CE MCP candidate exposure smoke.
-3. Revu fixture markup/read-back.
-4. Human Estimator review packet against Revu evidence.
-5. Historical bid-sheet + matching-plan pilot.
-6. Agent orchestration dry-run across read-only spokes.
-7. Beacon Hill single-sheet reviewed truth set.
-8. Remodel routing proof to Bid Composer.
-9. New-construction routing proof to Proposal Generator.
-10. Explicit governance approval before any production/autonomous commercial write.
+1. Governance canonical contract registry resolves and all consumer declarations pass compatibility gate.
+2. CE real DB schema + candidate generation smoke, including `observationId`/`scopeIdentity` behavior.
+3. CE MCP candidate exposure smoke.
+4. Revu fixture markup/read-back with lifecycle/provenance preservation.
+5. Human Estimator review packet against Revu evidence.
+6. Neutral HE runtime reaches tool parity before changing the default away from legacy host.
+7. Historical bid-sheet + matching-plan pilot.
+8. Agent orchestration dry-run across read-only spokes with resumable run-state receipt.
+9. Beacon Hill single-sheet reviewed truth set.
+10. Remodel routing proof to Bid Composer.
+11. New-construction routing proof to Proposal Generator.
+12. Explicit governance approval before any production/autonomous commercial write.
 
 ## Hard boundaries
 
-Cross-Agent stores coordination only. Governance owns policy. AppBuilder executes orchestration adapters only. CE discovers; Revu marks/proves; Human Estimator reviews; downstream apps own estimator disposition and proposal application. No agent may silently approve scope, price, graph facts, or proposal issuance.
+Cross-Agent stores coordination only. Governance owns policy and canonical cross-spoke contracts. AppBuilder executes orchestration adapters only. CE discovers; Revu marks/proves; Human Estimator reviews; downstream apps own estimator disposition and proposal application. No agent may silently approve scope, price, graph facts, or proposal issuance.
