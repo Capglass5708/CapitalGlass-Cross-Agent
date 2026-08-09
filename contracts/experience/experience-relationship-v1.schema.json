@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "experience-relationship-v1@1.0.0",
+  "title": "Experience Relationship",
+  "description": "Deterministic or explicit edges between Experience entities.",
+  "type": "object",
+  "required": [
+    "schema",
+    "relationshipId",
+    "edgeKind",
+    "origin",
+    "fromRef",
+    "toRef",
+    "evidenceRefs",
+    "sourceRawRef",
+    "sourceExcerptHash"
+  ],
+  "properties": {
+    "schema": { "const": "experience-relationship-v1@1.0.0" },
+    "relationshipId": { "type": "string", "minLength": 1 },
+    "edgeKind": {
+      "enum": [
+        "ATTEMPTED",
+        "FAILED_TO_RESOLVE",
+        "RESOLVED_BY",
+        "CAUSED_BY",
+        "OVERRIDDEN_BY",
+        "VALIDATED_BY"
+      ]
+    },
+    "origin": {
+      "enum": ["EXPLICIT", "DERIVED_DETERMINISTIC", "MODEL_INFERRED"]
+    },
+    "fromRef": { "type": "string", "minLength": 1 },
+    "toRef": { "type": "string", "minLength": 1 },
+    "causalityClass": {
+      "enum": ["DIRECT", "CONTRIBUTING", "CORRELATED", "UNKNOWN"]
+    },
+    "evidenceRefs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "sourceRawRef": { "type": "string", "minLength": 1 },
+    "sourceExcerptHash": { "type": "string", "pattern": "^sha256:" }
+  },
+  "additionalProperties": false
+}

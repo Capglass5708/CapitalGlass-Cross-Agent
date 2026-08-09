@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "experience-pattern-v1@1.0.0",
+  "title": "Experience Pattern",
+  "description": "Lifecycle shell for success/failure/wrong-move patterns. Policy determines promotion thresholds.",
+  "type": "object",
+  "required": [
+    "schema",
+    "patternId",
+    "patternKind",
+    "lifecycleStatus",
+    "summary",
+    "sourceRawRef",
+    "sourceExcerptHash",
+    "episodeRefs"
+  ],
+  "properties": {
+    "schema": { "const": "experience-pattern-v1@1.0.0" },
+    "patternId": { "type": "string", "pattern": "^pattern:" },
+    "patternKind": {
+      "enum": ["SUCCESS", "FAILURE", "WRONG_MOVE", "HUMAN_CORRECTION", "UNKNOWN"]
+    },
+    "lifecycleStatus": {
+      "enum": [
+        "OBSERVED",
+        "CORRELATED",
+        "REPEATED",
+        "VERIFIED_PATTERN",
+        "REUSABLE",
+        "ADOPTED",
+        "REGRESSED",
+        "DEPRECATED",
+        "ACTIVE",
+        "MITIGATED",
+        "RESOLVED",
+        "SUPERSEDED",
+        "UNKNOWN"
+      ]
+    },
+    "summary": { "type": "string", "minLength": 1 },
+    "conditions": { "type": "array", "items": { "type": "string" } },
+    "recommendedAction": { "type": ["string", "null"] },
+    "prevention": { "type": ["string", "null"] },
+    "repeatability": { "type": ["string", "null"] },
+    "supersededBy": { "type": ["string", "null"] },
+    "freshnessStatus": {
+      "enum": ["CURRENT", "STALE", "SUPERSEDED", "UNKNOWN"]
+    },
+    "firstObservedAt": { "type": "string", "format": "date-time" },
+    "lastObservedAt": { "type": "string", "format": "date-time" },
+    "lastVerifiedAgainst": { "type": ["string", "null"] },
+    "sourceEpoch": { "type": ["string", "null"] },
+    "sourceRawRef": { "type": "string", "minLength": 1 },
+    "sourceExcerptHash": { "type": "string", "pattern": "^sha256:" },
+    "episodeRefs": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^episode:" }
+    }
+  },
+  "additionalProperties": false
+}

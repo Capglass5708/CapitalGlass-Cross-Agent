@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "experience-economic-impact-v1@1.0.0",
+  "title": "Experience Economic Impact",
+  "description": "Economic assessment for Experience episodes and patterns. UNKNOWN does not equal zero.",
+  "type": "object",
+  "required": [
+    "schema",
+    "impactId",
+    "measurementClass",
+    "valueRealizationState",
+    "valueConfidence",
+    "valueEvidenceRefs",
+    "targetRef",
+    "sourceRawRef",
+    "sourceExcerptHash"
+  ],
+  "properties": {
+    "schema": { "const": "experience-economic-impact-v1@1.0.0" },
+    "impactId": { "type": "string", "minLength": 1 },
+    "measurementClass": {
+      "enum": ["MEASURED", "DERIVED", "ESTIMATED_RANGE", "QUALITATIVE", "UNKNOWN"]
+    },
+    "valueRealizationState": {
+      "enum": ["POTENTIAL", "EXPECTED", "REALIZED"]
+    },
+    "valueConfidence": {
+      "enum": ["HIGH", "MEDIUM", "LOW", "UNKNOWN"]
+    },
+    "valueEvidenceRefs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "targetRef": { "type": "string", "minLength": 1 },
+    "dimensions": {
+      "type": "object",
+      "properties": {
+        "businessImpact": { "type": ["number", "null"] },
+        "operatorTimeMinutes": { "type": ["number", "null"] },
+        "reworkCount": { "type": ["number", "null"] },
+        "recurrenceCount": { "type": ["number", "null"] },
+        "crossWorkflowReach": { "type": ["number", "null"] },
+        "evidenceConfidence": { "type": ["number", "null"] },
+        "implementationEffort": { "type": ["number", "null"] }
+      }
+    },
+    "qualitativeSummary": { "type": ["string", "null"] },
+    "sourceRawRef": { "type": "string", "minLength": 1 },
+    "sourceExcerptHash": { "type": "string", "pattern": "^sha256:" }
+  },
+  "additionalProperties": false
+}

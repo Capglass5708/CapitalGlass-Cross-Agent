@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "business-workflow-observation-v1@1.0.0",
+  "title": "Business Workflow Observation",
+  "description": "Lightweight product emitter contract. OBSERVE_ONLY, non-blocking, reference-first, idempotent.",
+  "type": "object",
+  "required": [
+    "schema",
+    "observationId",
+    "eventType",
+    "productKey",
+    "workflowKey",
+    "referencePayload",
+    "observeOnly",
+    "idempotencyKey",
+    "observedAt"
+  ],
+  "properties": {
+    "schema": { "const": "business-workflow-observation-v1@1.0.0" },
+    "observationId": { "type": "string", "pattern": "^obs:" },
+    "eventType": { "type": "string", "minLength": 1 },
+    "productKey": { "type": "string", "minLength": 1 },
+    "workflowKey": { "type": "string", "minLength": 1 },
+    "referencePayload": {
+      "type": "object",
+      "description": "Reference-only pointers; no bulk document copies."
+    },
+    "correctionReasonCode": {
+      "enum": [
+        "MISSED_FIELD",
+        "WRONG_VALUE",
+        "WRONG_SECTION",
+        "WRONG_DOCUMENT_SOURCE",
+        "WRONG_SCOPE",
+        "DUPLICATE",
+        "FORMAT_ERROR",
+        "POPULATION_MAPPING_ERROR",
+        "PREVIEW_MISMATCH",
+        "USER_PREFERENCE",
+        "SOURCE_AMBIGUOUS",
+        "OTHER"
+      ]
+    },
+    "correctionProvenance": {
+      "enum": ["MACHINE_WRONG", "HUMAN_PREFERENCE", "SOURCE_AMBIGUOUS", "UNKNOWN"]
+    },
+    "observeOnly": { "const": true },
+    "idempotencyKey": { "type": "string", "minLength": 1 },
+    "observedAt": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}
