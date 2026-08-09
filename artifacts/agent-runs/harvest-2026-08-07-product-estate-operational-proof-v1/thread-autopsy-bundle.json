@@ -1,0 +1,142 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-product-estate-operational-proof-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-PE-001",
+      "type": "retrieval",
+      "description": "Infrastructure Gold Mine exhausted plumbing; product friction invisible until estate proof",
+      "evidenceRefs": [
+        "TE-PE-005"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "gold-mine:product-estate-proof observational runner",
+      "roiRank": 1,
+      "goldMineSignalClass": "OBSERVABILITY_GAP"
+    },
+    {
+      "wasteId": "TW-PE-002",
+      "type": "rework",
+      "description": "Computer Estimator probes fail on missing package install in WSL checkout",
+      "evidenceRefs": [
+        "TE-PE-003"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Document env prerequisite in probe registry; fix in implementation wave only",
+      "roiRank": 2,
+      "goldMineSignalClass": "PROBLEM_SIGNAL"
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-PE-001",
+      "trigger": "MCP doctor gate requires PM2 operator approvals",
+      "operatorCost": "medium",
+      "systemFix": "Pre-approved PM2 matrix or doctor gate exception path",
+      "evidenceRefs": [
+        "platform-mcp-doctor-gate"
+      ],
+      "linkedWasteIds": [],
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL",
+      "manualStep": "Approve PM2 processes for MCP doctor",
+      "frequency": "observed",
+      "avoidable": true,
+      "automationCandidate": false,
+      "businessWorkflow": "Suite MCP health",
+      "operatorRole": "operator",
+      "rootCause": "PM2 approval gate"
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-PE-001",
+      "situation": "Post-infrastructure Gold Mine",
+      "actualExecution": {
+        "steps": [
+          "Stop at 0 open candidates"
+        ],
+        "outcome": "false product confidence"
+      },
+      "optimalExecution": {
+        "steps": [
+          "Run product-estate proof",
+          "Harvest v1.1 projections"
+        ],
+        "outcome": "product candidate frontier"
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      },
+      "preventiveControl": "gold-mine:product-estate-proof + this harvest"
+    }
+  ],
+  "wrongMoves": [],
+  "duplicateWork": [],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "gold-mine:remeasure after product-estate harvest publish",
+      "whyItPays": "Populates product-level Gold Mine candidates from honest probes",
+      "effort": "low",
+      "businessValue": "high",
+      "goldMineSignalClass": "BUSINESS_WORKFLOW_SIGNAL",
+      "novelty": "NEW",
+      "savedWasteIds": [
+        "TW-PE-001"
+      ],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 2,
+      "title": "Computer Estimator estate probe environment fix",
+      "whyItPays": "Unblocks 3 estimating probes — separates env vs product defects",
+      "effort": "low",
+      "businessValue": "high",
+      "goldMineSignalClass": "PROBLEM_SIGNAL",
+      "novelty": "NEW",
+      "savedWasteIds": [
+        "TW-PE-002"
+      ],
+      "seedAs": "command"
+    },
+    {
+      "rank": 3,
+      "title": "Full-tier Doppler live probes",
+      "whyItPays": "Exercises OCR/parser and shared-dev document paths",
+      "effort": "medium",
+      "businessValue": "high",
+      "goldMineSignalClass": "OBSERVABILITY_GAP",
+      "novelty": "NEW",
+      "savedWasteIds": [],
+      "seedAs": "runbook"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "ESTATE_FULLY_OPTIMIZED",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "Critical product probes PASS",
+        "gold-mine:remeasure with product evidence"
+      ],
+      "lastKnownEvidence": [
+        "7 FAIL",
+        "1 BLOCKED"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-07T20:52:43.708Z",
+    "preflightReceiptHash": "product-estate-operational-proof-v1"
+  }
+}

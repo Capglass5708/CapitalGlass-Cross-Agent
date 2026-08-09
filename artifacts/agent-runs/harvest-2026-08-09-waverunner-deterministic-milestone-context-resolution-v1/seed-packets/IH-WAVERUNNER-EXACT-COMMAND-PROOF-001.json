@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-WAVERUNNER-EXACT-COMMAND-PROOF-001",
+  "kind": "runbook",
+  "title": "Terminal proof requires literal npm run sdlc:waverunner",
+  "summary": "TERMINAL_OPERATOR_EXACT_COMMAND_PROOF cannot be satisfied by --resolve-only or fixture overrides alone.",
+  "retrievalQuestions": [
+    "What proves bare WaveRunner terminal acceptance?",
+    "Can --resolve-only substitute for operator command proof?"
+  ],
+  "evidenceRefs": ["TE-004", "TE-005"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Claiming BARE_WAVERUNNER_DETERMINISTIC_CONTEXT_RESOLUTION_PASS",
+    "startAt": ["milestone terminal contract"],
+    "runPreflight": [],
+    "doNot": ["Claim PASS from --resolve-only only", "Skip exact-command acceptance receipt"],
+    "proveBeforeClaiming": [
+      "command=npm run sdlc:waverunner",
+      "milestonePinUsed=false",
+      "fixtureRootOverrideUsed=false"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE",
+  "roiRank": 1,
+  "wasteIds": ["TW-001"]
+}

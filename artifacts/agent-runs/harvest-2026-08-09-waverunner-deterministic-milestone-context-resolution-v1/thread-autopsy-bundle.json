@@ -1,0 +1,157 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-09-waverunner-deterministic-milestone-context-resolution-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "verification",
+      "description": "Terminal proof used --resolve-only + fixture before operator required exact command",
+      "evidenceRefs": ["TE-004"],
+      "estimatedImpact": "medium",
+      "savedBy": "TERMINAL_OPERATOR_EXACT_COMMAND_PROOF gate before DURABLE_COMPLETE",
+      "roiRank": 1,
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL"
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "host",
+      "description": "WSL repo detached at origin/main without slice files; required reset to milestone-orchestration-push",
+      "evidenceRefs": ["TE-002"],
+      "estimatedImpact": "medium",
+      "savedBy": "Verify branch on WSL ext4 before slice implementation",
+      "roiRank": 2,
+      "goldMineSignalClass": "AGENT_FRICTION_SIGNAL"
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "rework",
+      "description": "Token economy regression after agent_prompt replaced tiny_prompt in orchestrate path",
+      "evidenceRefs": ["TE-002"],
+      "estimatedImpact": "low",
+      "savedBy": "Run test:ai-context-compiler-token-economy in waverunner integration",
+      "roiRank": 3,
+      "goldMineSignalClass": "PROBLEM_SIGNAL"
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Operator narrowed DURABLE_COMPLETE until literal npm run sdlc:waverunner proof",
+      "operatorCost": "medium",
+      "systemFix": "TERMINAL_OPERATOR_EXACT_COMMAND_PROOF in milestone terminal contracts",
+      "evidenceRefs": ["TE-004"],
+      "linkedWasteIds": ["TW-001"],
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL",
+      "frequency": "observed",
+      "avoidable": true,
+      "automationCandidate": true,
+      "rootCause": "Safe-mode proof substituted for operator command in acceptance contract"
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Claim waverunner milestone DURABLE_COMPLETE",
+      "actualExecution": {
+        "steps": ["Fixture --resolve-only proof", "Initial DURABLE_COMPLETE claim"],
+        "outcome": "PARTIAL",
+        "evidenceRefs": ["TE-004"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Run npm run sdlc:waverunner",
+          "Pin terminal-operator-exact-command-acceptance.json",
+          "Then claim DURABLE_COMPLETE"
+        ],
+        "outcome": "PASS",
+        "requiredPreflight": ["npm run agent:index:scout -- --json"]
+      },
+      "deltaCost": { "time": "medium", "tokens": "low", "operatorFrustration": "medium" }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Slice 4 implementation on WSL workspace",
+      "actualExecution": {
+        "steps": ["Edit on detached HEAD", "Discover missing slice files", "git reset --hard origin/milestone-orchestration-push"],
+        "outcome": "RECOVERED",
+        "evidenceRefs": ["TE-002"]
+      },
+      "optimalExecution": {
+        "steps": ["git branch && rev-parse before edits", "Checkout milestone-orchestration-push first"],
+        "outcome": "Avoid false start",
+        "requiredPreflight": ["npm run check:canonical-authority-checkout"]
+      },
+      "deltaCost": { "time": "medium", "tokens": "medium", "operatorFrustration": "low" }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Terminal proof via --resolve-only fixture not exact operator command",
+      "whereItHappened": "Slice 4 initial closeout",
+      "whyItWasWrong": "Acceptance contract required npm run sdlc:waverunner with no flags",
+      "correctFirstMove": "Run literal npm run sdlc:waverunner and pin acceptance receipt",
+      "preventiveControl": "TERMINAL_OPERATOR_EXACT_COMMAND_PROOF",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "TERMINAL_OPERATOR_EXACT_COMMAND_PROOF in bare-front-door milestones",
+      "whyItPays": "Prevents safe-mode proofs substituting for operator command",
+      "effort": "low",
+      "savedWasteIds": ["TW-001"],
+      "seedAs": "rule",
+      "ownerRepo": "CG-AppBuilder-MCP"
+    },
+    {
+      "rank": 2,
+      "title": "PG governedSpineHash recovery as separate work package",
+      "whyItPays": "Production lock bare run selects PG; compile must pass independently",
+      "effort": "medium",
+      "savedWasteIds": [],
+      "seedAs": "owner-artifact",
+      "ownerRepo": "CG-AppBuilder-MCP"
+    },
+    {
+      "rank": 3,
+      "title": "WSL branch guard before material slice work",
+      "whyItPays": "Avoids detached-HEAD missing slice files",
+      "effort": "low",
+      "savedWasteIds": ["TW-002"],
+      "seedAs": "command",
+      "ownerRepo": "CG-AppBuilder-MCP"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "waverunner-deterministic-milestone-context-resolution-v1 architecture changes",
+      "currentStatus": "CLOSED",
+      "doNotClaimUntil": ["New approved milestone/work package"],
+      "lastKnownEvidence": [
+        "milestone-state-receipt.json DURABLE_COMPLETE",
+        "17a2a86d9a8eb46819b16513ee66a51d723895e9"
+      ]
+    },
+    {
+      "awardOrVerdict": "pg-estimator bare waverunner compile PASS",
+      "currentStatus": "BLOCKED",
+      "doNotClaimUntil": ["governedSpineHash semanticEquivalence true for PG context"],
+      "lastKnownEvidence": ["TE-006", "VERIFIED_CONTEXT_COMPILE_FAILED"]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "mcp-servers.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-09T15:15:00.000Z"
+  }
+}

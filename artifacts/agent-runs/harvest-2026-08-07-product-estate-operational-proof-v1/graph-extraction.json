@@ -1,0 +1,428 @@
+{
+  "packetKind": "graph-extraction",
+  "schemaVersion": "cg-master-graph-extraction-v1",
+  "extractionId": "extraction:harvest-2026-08-07-product-estate-operational-proof-v1",
+  "harvestId": "harvest-2026-08-07-product-estate-operational-proof-v1",
+  "workPackageId": "harvest-2026-08-07-product-estate-operational-proof-v1",
+  "producer": {
+    "repositoryId": "repo:capitalglass-cross-agent",
+    "capability": "harvest-graph-extraction",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "id": "harvest:harvest-2026-08-07-product-estate-operational-proof-v1",
+      "nodeType": "Harvest",
+      "displayName": "harvest-2026-08-07-product-estate-operational-proof-v1",
+      "lifecycleState": "lifecycle:canonical",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+        "sourceCommitSha": "51c7cafc4c1887cc9ad4ac7a0aa0c515f365f622",
+        "retrievalResult": "INDEX_HIT_AI_CACHE"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T20:52:43.708Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:product-estate-operational-proof-measurement-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Observational product-estate proof complete (fast tier)",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "PASS_WITH_WARN",
+        "ownerRepo": "Data-Extraction",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/INDEX.md",
+        "advancementGate": "npm run harvest:publish-intelligence-full"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T20:52:43.708Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/compact-records/product-estate-operational-proof-measurement-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/compact-records/product-estate-operational-proof-measurement-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:product-estate-v11-evidence-native-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Product-estate proof emits harvest-native gold-mine-evidence-projections-v1.json",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "SHIPPED",
+        "ownerRepo": "Data-Extraction",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/INDEX.md",
+        "advancementGate": "harvest:validate WARN_ONLY on projections"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T20:52:43.708Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/compact-records/product-estate-v11-evidence-native-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/compact-records/product-estate-v11-evidence-native-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:computer-estimator-estate-probe-failures-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Computer Estimator estate probes FAIL — estimating path not production-ready",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "OPEN",
+      "metadata": {
+        "packetVerdict": "FAIL",
+        "ownerRepo": "Computer Estimator",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/INDEX.md",
+        "advancementGate": "estimator probes PASS in next observational run"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T20:52:43.708Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/compact-records/computer-estimator-estate-probe-failures-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/compact-records/computer-estimator-estate-probe-failures-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:document-hub-handoff-probe-failures-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Document BFF + Hub dashboard probes FAIL — consumer handoff gaps",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "OPEN",
+      "metadata": {
+        "packetVerdict": "FAIL",
+        "ownerRepo": "CapitalGlass-Documents",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/INDEX.md",
+        "advancementGate": "smoke:bff-health PASS"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T20:52:43.708Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/compact-records/document-hub-handoff-probe-failures-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/compact-records/document-hub-handoff-probe-failures-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:mcp-doctor-gate-blocked-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "MCP doctor gate BLOCKED — operator friction on PM2 approvals",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "OPEN",
+      "metadata": {
+        "packetVerdict": "BLOCKED",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/INDEX.md",
+        "advancementGate": "npm run mcp:doctor:gate PASS"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T20:52:43.708Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/compact-records/mcp-doctor-gate-blocked-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/compact-records/mcp-doctor-gate-blocked-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:corpus-shift-product-heavy-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Corpus bias shifts from SDLC-heavy to product-workflow distribution",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RECORDED",
+      "metadata": {
+        "packetVerdict": "OBSERVED",
+        "ownerRepo": "Data-Extraction",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/INDEX.md",
+        "advancementGate": "gold-mine:remeasure shows product-class candidates"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T20:52:43.708Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/compact-records/corpus-shift-product-heavy-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/compact-records/corpus-shift-product-heavy-v1.json"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:harvest-harvest-2026-08-07-product-estate-operational-proof-v1-contains-workpackage-product-estate-operational-proof-measurement-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-07-product-estate-operational-proof-v1",
+      "targetId": "workpackage:product-estate-operational-proof-measurement-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T20:52:43.708Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-data-extraction-owns-workpackage-product-estate-operational-proof-measurement-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:data-extraction",
+      "targetId": "workpackage:product-estate-operational-proof-measurement-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T20:52:43.708Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/compact-records/product-estate-operational-proof-measurement-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/compact-records/product-estate-operational-proof-measurement-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-07-product-estate-operational-proof-v1-contains-workpackage-product-estate-v11-evidence-native-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-07-product-estate-operational-proof-v1",
+      "targetId": "workpackage:product-estate-v11-evidence-native-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T20:52:43.708Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-data-extraction-owns-workpackage-product-estate-v11-evidence-native-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:data-extraction",
+      "targetId": "workpackage:product-estate-v11-evidence-native-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T20:52:43.708Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/compact-records/product-estate-v11-evidence-native-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/compact-records/product-estate-v11-evidence-native-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-07-product-estate-operational-proof-v1-contains-workpackage-computer-estimator-estate-probe-failures-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-07-product-estate-operational-proof-v1",
+      "targetId": "workpackage:computer-estimator-estate-probe-failures-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T20:52:43.708Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-07-product-estate-operational-proof-v1-contains-workpackage-document-hub-handoff-probe-failures-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-07-product-estate-operational-proof-v1",
+      "targetId": "workpackage:document-hub-handoff-probe-failures-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T20:52:43.708Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-documents-owns-workpackage-document-hub-handoff-probe-failures-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-documents",
+      "targetId": "workpackage:document-hub-handoff-probe-failures-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T20:52:43.708Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/compact-records/document-hub-handoff-probe-failures-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/compact-records/document-hub-handoff-probe-failures-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-07-product-estate-operational-proof-v1-contains-workpackage-mcp-doctor-gate-blocked-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-07-product-estate-operational-proof-v1",
+      "targetId": "workpackage:mcp-doctor-gate-blocked-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T20:52:43.708Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-mcp-doctor-gate-blocked-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:mcp-doctor-gate-blocked-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T20:52:43.708Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/compact-records/mcp-doctor-gate-blocked-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/compact-records/mcp-doctor-gate-blocked-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-07-product-estate-operational-proof-v1-contains-workpackage-corpus-shift-product-heavy-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-07-product-estate-operational-proof-v1",
+      "targetId": "workpackage:corpus-shift-product-heavy-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T20:52:43.708Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-data-extraction-owns-workpackage-corpus-shift-product-heavy-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:data-extraction",
+      "targetId": "workpackage:corpus-shift-product-heavy-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-07T20:52:43.708Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/compact-records/corpus-shift-product-heavy-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/compact-records/corpus-shift-product-heavy-v1.json"
+        }
+      }
+    }
+  ],
+  "warnings": [
+    "unmapped ownerRepo Computer Estimator for packet computer-estimator-estate-probe-failures-v1"
+  ],
+  "provenance": {
+    "producerRepositoryId": "repo:capitalglass-cross-agent",
+    "producerCapability": "harvest-graph-extraction",
+    "sourceAuthority": "authority:cross-agent-harvest",
+    "classification": "observed",
+    "verificationState": "verified",
+    "recordedAt": "2026-08-07T20:52:43.708Z",
+    "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/harvest-manifest-v1.json",
+    "sourceAnchorDetail": {
+      "anchorType": "file-path",
+      "locator": "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/harvest-manifest-v1.json"
+    }
+  }
+}

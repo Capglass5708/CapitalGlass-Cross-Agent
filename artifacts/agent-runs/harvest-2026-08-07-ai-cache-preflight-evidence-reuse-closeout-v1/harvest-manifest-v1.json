@@ -1,0 +1,313 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "adc0df5348f0c299ebbd953962c9b30d05ec7b0e",
+  "sourceBranch": "main",
+  "sourceRepo": "CG-AppBuilder-MCP",
+  "createdAt": "2026-08-07T20:50:00.000Z",
+  "updatedAt": "2026-08-07T20:50:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "Claim ai-cache-preflight-evidence-reuse-v1 CLOSED without WESLEYDESK and RYZEN9DESK COLD_PASS + HOT_PASS",
+    "Count wave-d-wesleydesk artifact on WesleyWork as formal estate proof",
+    "Use --allow-dirty for formal live-fast-gate estate proof",
+    "Run index:publish or harvest:publish-hub-seed from Cursor"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 4,
+      "seeds": 2,
+      "roiItems": 3,
+      "operatorFriction": 1,
+      "executionDeltas": 2
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Operator runs harvest:publish-hub-seed + index:publish — NOT_RUN_BY_CURSOR"
+  },
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "1.0.0",
+    "eligibleCandidates": 0,
+    "rejectedUnrelatedCandidates": 0,
+    "exportStatus": "not-run",
+    "dataExtractionStatus": "not-run",
+    "catalogPublishStatus": "not-run",
+    "retrievalStatus": "not-run",
+    "targetCatalog": "L:\\02-catalog\\Harvest\\Harvest Protocol Self Learning",
+    "authorityStatus": "PROPOSAL",
+    "automaticProtocolMutation": false
+  },
+  "relatedRepos": [
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "branch": "main",
+      "commitSha": "adc0df5348f0c299ebbd953962c9b30d05ec7b0e",
+      "role": "Z hydration, auto-v32 fixtures, WESLEY_WORK consumer proof, operator script"
+    },
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "main",
+      "commitSha": "51c7cafc4c1887cc9ad4ac7a0aa0c515f365f622",
+      "role": "harvest recording authority"
+    }
+  ],
+  "packets": [
+    {
+      "packetKind": "decision",
+      "packetId": "ai-cache-milestone-blocked-pending-estate-proof-v1",
+      "packetTitle": "ai-cache-preflight-evidence-reuse-v1 remains BLOCKED until two-host consumer proof",
+      "state": "ACTIVE",
+      "packetVerdict": "BLOCKED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1.md",
+      "nextAction": "Operator runs run-estate-consumer-proof.sh on WESLEYDESK and RYZEN9DESK at adc0df53",
+      "advancementGate": "WESLEYDESK_CONSUMER_PROOF_PASS AND RYZEN9DESK_CONSUMER_PROOF_PASS",
+      "doNotAdvance": [
+        "MILESTONE_CLOSED",
+        "Cross-machine canonical reuse PASS"
+      ],
+      "evidenceRefs": [
+        "TE-009",
+        "milestone-closeout-v1.json"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@adc0df5348f0c299ebbd953962c9b30d05ec7b0e"
+      ],
+      "blockers": [
+        "WESLEYDESK_CONSUMER_PROOF_MISSING",
+        "RYZEN9DESK_CONSUMER_PROOF_MISSING"
+      ]
+    },
+    {
+      "packetKind": "blocker",
+      "packetId": "estate-consumer-proof-host-access-v1",
+      "packetTitle": "SSH to WESLEYDESK/RYZEN9DESK denied from WESLEY_WORK agent",
+      "state": "ACTIVE",
+      "packetVerdict": "OPERATOR_REQUIRED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1.md",
+      "nextAction": "Open Cursor WSL on each consumer host and run proof script locally",
+      "advancementGate": "COLD_PASS and HOT_PASS receipts per host",
+      "doNotAdvance": [
+        "Remote proof from WESLEY_WORK via SSH"
+      ],
+      "evidenceRefs": [
+        "TE-007",
+        "OF-001"
+      ],
+      "commitRefs": [],
+      "blockers": [
+        "permission denied publickey"
+      ]
+    },
+    {
+      "packetKind": "mistake",
+      "packetId": "invalid-wesleydesk-proof-on-wesleywork-v1",
+      "packetTitle": "Prior wave-d-wesleydesk ran on WesleyWork with warm D cache",
+      "state": "RESOLVED",
+      "packetVerdict": "INVALIDATED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1.md",
+      "nextAction": "Do not reference ai-cache-preflight-evidence-reuse-v1-wave-d-wesleydesk as formal proof",
+      "advancementGate": "hostname + isolated PROOF_ROOT validation",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-010",
+        "WM-001"
+      ],
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetKind": "repeated_work",
+      "packetId": "bible-evidence-identity-revalidation-v1",
+      "packetTitle": "Same keyHash/objectHash re-checked cold and hot — intentional cache proof",
+      "state": "COMPLETE",
+      "packetVerdict": "BY_DESIGN",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1.md",
+      "nextAction": "None — success pattern",
+      "advancementGate": "Z_GOVERNED identity match",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-005",
+        "TE-006",
+        "DW-001"
+      ],
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetKind": "faster_path",
+      "packetId": "detached-worktree-dirty-main-v1",
+      "packetTitle": "Use git worktree add --detach when main has uncommitted artifacts",
+      "state": "COMPLETE",
+      "packetVerdict": "DOCUMENTED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1.md",
+      "nextAction": "Prefer detached worktree over --allow-dirty",
+      "advancementGate": "LIVE_WORKTREE_DIRTY avoided",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TW-004",
+        "WM-002"
+      ],
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetKind": "command",
+      "packetId": "run-estate-consumer-proof-v3-v1",
+      "packetTitle": "run-estate-consumer-proof.sh cold+hot material-session per host",
+      "state": "COMPLETE",
+      "packetVerdict": "READY",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1.md",
+      "nextAction": "bash .../run-estate-consumer-proof.sh wesleydesk then ryzen9desk",
+      "advancementGate": "COLD_PASS HOT_PASS stdout",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-008",
+        "IH-AI-CACHE-ESTATE-CONSUMER-PROOF-001"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@adc0df5348f0c299ebbd953962c9b30d05ec7b0e"
+      ],
+      "blockers": []
+    },
+    {
+      "packetKind": "evidence",
+      "packetId": "wesley-work-z-hydration-proof-v1",
+      "packetTitle": "WESLEY_WORK cold Z_GOVERNED + hot reuse at canonical evidence hashes",
+      "state": "COMPLETE",
+      "packetVerdict": "VERIFIED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1.md",
+      "nextAction": "Replicate on WESLEYDESK and RYZEN9DESK",
+      "advancementGate": "cross-host-receipt all hosts PASS",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-005",
+        "TE-006",
+        "wesley-work-cold-consumer.json",
+        "wesley-work-hot-consumer.json",
+        "keyHash 642ce22c31c6ffd1042c7a251f3c76dcd8b7aa431e715898fce6d979cd8c21b5"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@adc0df5348f0c299ebbd953962c9b30d05ec7b0e"
+      ],
+      "blockers": []
+    },
+    {
+      "packetKind": "protocol_upgrade",
+      "packetId": "init-temp-git-fixture-live-fast-gate-v1",
+      "packetTitle": "initTempGitFixture for auto-v32 material preflight test harness",
+      "state": "COMPLETE",
+      "packetVerdict": "SHIPPED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1.md",
+      "nextAction": "Reuse pattern for any test chaining live-fast-gate",
+      "advancementGate": "15/15 run-auto-v32-execution-gate",
+      "doNotAdvance": [
+        "Weaken LIVE_NOT_GIT_REPO in production"
+      ],
+      "evidenceRefs": [
+        "TE-002",
+        "IH-AI-CACHE-TEMP-GIT-FIXTURE-001"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@adc0df5348f0c299ebbd953962c9b30d05ec7b0e"
+      ],
+      "blockers": []
+    },
+    {
+      "packetKind": "outcome",
+      "packetId": "wave-d-implementation-outcome-v1",
+      "packetTitle": "Z hydration shipped; auto-v32 15/15; closeout:gate PASS; milestone not CLOSED",
+      "state": "PARTIAL",
+      "packetVerdict": "IMPLEMENTATION_COMPLETE_PROOF_PARTIAL",
+      "effectiveness": "PARTIAL",
+      "beforeState": "12/15 auto-v32 FAIL; no Z hydration path; invalid cross-host proof artifact",
+      "afterState": "15/15 auto-v32 PASS; Z_GOVERNED cold hydration on WESLEY_WORK; WESLEYDESK/RYZEN9DESK proof pending",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1.md",
+      "nextAction": "Two-host operator proof then update milestone-closeout-v1.json to CLOSED",
+      "advancementGate": "ai-cache-preflight-evidence-reuse-v1 MILESTONE_CLOSED",
+      "doNotAdvance": [
+        "Parent ai-cache-deterministic-hit-rate ROI closure"
+      ],
+      "evidenceRefs": [
+        "TE-003",
+        "TE-004",
+        "TE-009"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@34e73e16b37284f2cb1b87cff27151bb45d76100",
+        "CG-AppBuilder-MCP@adc0df5348f0c299ebbd953962c9b30d05ec7b0e"
+      ],
+      "blockers": [
+        "WESLEYDESK_CONSUMER_PROOF_MISSING",
+        "RYZEN9DESK_CONSUMER_PROOF_MISSING"
+      ]
+    }
+  ],
+  "supersededClaims": [
+    {
+      "claim": "WESLEYDESK consumer proof PASS from wave-d-wesleydesk WP",
+      "supersededBy": "invalid-wesleydesk-proof-on-wesleywork-v1",
+      "reason": "Executed on WesleyWork hostname with warm shared D cache at 350bc96e"
+    }
+  ],
+  "goldMineHarvest": {
+    "noSuppressionDeclared": true,
+    "projectionArtifact": "artifacts/agent-runs/harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1/gold-mine-evidence-projections-v1.json"
+  },
+  "ledgerLineage": {
+    "ledgerContentHashBefore": null,
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 8,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 8,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-39c8086037af",
+      "prompt-candidate-253489ebaadd",
+      "prompt-candidate-7b234748a114",
+      "prompt-candidate-ef5e259d4b91",
+      "prompt-candidate-90aa2bacfd8b",
+      "prompt-candidate-e7fe18e7f109",
+      "prompt-candidate-f98a76281989",
+      "prompt-candidate-4d7624f546bc"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

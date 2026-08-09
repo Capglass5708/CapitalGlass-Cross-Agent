@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-DE-FEATURE-MAIN-PI-AUTHORITY-001",
+  "kind": "runbook",
+  "title": "Data-Extraction PI on feature branch — merge before claiming main authority",
+  "summary": "Milestone selected FEATURE_BRANCH_IS_TEMPORARY_PI_AUTHORITY. PI indexed @ a413f8e on feat/harvest-branch-investigation-m23-m24; origin/main lags until PR merge.",
+  "retrievalQuestions": [
+    "Why does Data-Extraction PI SHA differ from origin/main?",
+    "What is the correct v1e publication command for DE PI refresh?",
+    "When is derived-intel:build required before v1e-live-publication?"
+  ],
+  "evidenceRefs": [
+    "de-git-authority-decision.json",
+    "data-extraction-pi-publication-receipt.json",
+    "ED-001",
+    "TE-005",
+    "TE-007"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Data-Extraction PI drift, merge planning, or v1e publication",
+    "startAt": [
+      "Data-Extraction/artifacts/agent-runs/cross-agent-drained-intelligence-publication-and-pi-refresh-v1/de-git-authority-decision.json",
+      "CG-AppBuilder-MCP/scripts/derived-intel/run-v1e-live-publication.mjs"
+    ],
+    "runPreflight": [
+      "npm run derived-intel:build",
+      "doppler run -- node scripts/derived-intel/run-v1e-live-publication.mjs --repo Data-Extraction"
+    ],
+    "doNot": [
+      "Claim origin/main is PI-current while feature branch holds authority",
+      "Skip derived-intel:build after profile changes"
+    ],
+    "proveBeforeClaiming": [
+      "git merge feat/harvest-branch-investigation-m23-m24 → main",
+      "v1e receipt publicationId matches Supabase projection"
+    ]
+  },
+  "ownerRepo": "Data-Extraction",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 2,
+  "wasteIds": ["TW-003"]
+}

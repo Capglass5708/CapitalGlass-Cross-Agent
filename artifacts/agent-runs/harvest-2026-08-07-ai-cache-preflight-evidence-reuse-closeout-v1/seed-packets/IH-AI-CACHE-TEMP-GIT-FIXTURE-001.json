@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-AI-CACHE-TEMP-GIT-FIXTURE-001",
+  "kind": "runbook",
+  "title": "initTempGitFixture for auto-v32 and live-fast-gate tests",
+  "summary": "When material preflight invokes live-fast-gate, test temp directories must be git repos or LIVE_NOT_GIT_REPO fails harness tests.",
+  "retrievalQuestions": [
+    "Why does auto-v32 execution gate fail with LIVE_NOT_GIT_REPO?",
+    "How to fix temp fixture for live-fast-gate in tests?"
+  ],
+  "evidenceRefs": [
+    "CG-AppBuilder-MCP@adc0df5348f0c299ebbd953962c9b30d05ec7b0e",
+    "scripts/tests/helpers/init-temp-git-fixture.mjs",
+    "TE-002"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "auto-v32 regression or LIVE_NOT_GIT_REPO in test harness",
+    "startAt": [
+      "scripts/tests/helpers/init-temp-git-fixture.mjs",
+      "scripts/tests/run-auto-v32-execution-gate.test.mjs"
+    ],
+    "runPreflight": [
+      "npm run test:ai-cache-preflight-evidence",
+      "node scripts/tests/run-auto-v32-execution-gate.test.mjs"
+    ],
+    "doNot": [
+      "Weaken LIVE_NOT_GIT_REPO in production live-fast-gate for test convenience",
+      "Use bare mkdtemp without git init for material preflight tests"
+    ],
+    "proveBeforeClaiming": [
+      "15/15 run-auto-v32-execution-gate PASS",
+      "Negative test: live fast gate blocks non-git repo"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 2,
+  "wasteIds": ["TW-004"]
+}

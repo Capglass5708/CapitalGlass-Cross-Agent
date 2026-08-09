@@ -1,0 +1,76 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-mcp-health-once-before-strict-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "9cb234fc3c4484a3bcd133323534980158b55ba9",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-09-waverunner-vercel-mcp-authority-v1",
+      "seedId": "IH-MCP-HEALTH-ONCE-BEFORE-STRICT-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-09T15:34:21.191Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "42f88340efffe7dacd13a5efb043220159cc7a88f2d1a58f2be2116ce08b26aa"
+  },
+  "body": {
+    "seedId": "IH-MCP-HEALTH-ONCE-BEFORE-STRICT-001",
+    "kind": "lesson",
+    "title": "Prime integrations health before strict MCP suite probe",
+    "summary": "Run mcp:health:once before mcp:health --strict to avoid transient 11/3 blocked sharepoint/supabase evidence after long preflight steps.",
+    "canonicalQuestion": "Why does strict mcp:health show blocked MCPs after long bible sync?",
+    "alternateQuestions": [
+      "What recovers MCP suite to 14/0/0/0 without architecture changes?"
+    ],
+    "shortAnswer": "Run mcp:health:once before mcp:health --strict to avoid transient 11/3 blocked sharepoint/supabase evidence after long preflight steps.",
+    "detailedAnswer": "Prime integrations health before strict MCP suite probe",
+    "retrievalQuestions": [
+      "Why does strict mcp:health show blocked MCPs after long bible sync?",
+      "What recovers MCP suite to 14/0/0/0 without architecture changes?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Material preflight fails mcp-health-authority with blocked count > 0 after long steps",
+      "startAt": [
+        "runtime/mcp-health-receipt/latest.json",
+        "runtime/integrations-health-cycle.lock"
+      ],
+      "runPreflight": [
+        "npm run mcp:health:once",
+        "npm run mcp:health -- --strict"
+      ],
+      "doNot": [
+        "Reopen MCP architecture on first 11/3 without refresh",
+        "Infer health from exit code alone"
+      ],
+      "proveBeforeClaiming": [
+        "14/0/0/0 on canonical receipt with observedAt fresh"
+      ]
+    },
+    "evidenceRefs": [
+      "CG-AppBuilder-MCP/scripts/lib/mcp-health/preflight-eligibility.mjs",
+      "chat:preflight attempt 3 vs 4"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-09-waverunner-vercel-mcp-authority-v1/seed-packets/IH-MCP-HEALTH-ONCE-BEFORE-STRICT-001.json"
+    ],
+    "harvestId": "harvest-2026-08-09-waverunner-vercel-mcp-authority-v1"
+  }
+}

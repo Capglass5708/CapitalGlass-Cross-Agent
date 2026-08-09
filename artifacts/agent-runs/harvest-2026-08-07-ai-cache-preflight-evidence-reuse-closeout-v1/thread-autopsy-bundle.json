@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "host",
+      "description": "Attempted SSH remote consumer proof from WESLEY_WORK — permission denied on both Tailscale targets",
+      "evidenceRefs": ["TE-007"],
+      "estimatedImpact": "medium",
+      "savedBy": "Run run-estate-consumer-proof.sh locally on WESLEYDESK and RYZEN9DESK WSL",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "verification",
+      "description": "Invalid formal proof artifact: wave-d-wesleydesk WP executed on WesleyWork with warm shared D cache",
+      "evidenceRefs": ["TE-010"],
+      "estimatedImpact": "high",
+      "savedBy": "Require machine.hostname match + isolated PROOF_ROOT + clean worktree before counting estate proof",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "operator_attention",
+      "description": "Multi-turn thread summarized mid-flight; operator re-stated closure criteria and KPI refinement",
+      "evidenceRefs": ["TE-008"],
+      "estimatedImpact": "medium",
+      "savedBy": "Formal closeout operator script with embedded assertions",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "verification",
+      "description": "Dirty main worktree on WESLEY_WORK blocked material-session until detached worktree used",
+      "evidenceRefs": ["LIVE_WORKTREE_DIRTY on first cold attempt"],
+      "estimatedImpact": "low",
+      "savedBy": "git worktree add --detach for formal proof when artifacts dirty main",
+      "roiRank": 4
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Agent cannot execute on WESLEYDESK/RYZEN9DESK; operator must run two-host proof manually",
+      "operatorCost": "high",
+      "frequency": "observed",
+      "systemFix": "SSH agent key for cgremoteadmin or Cursor session opened on each consumer host",
+      "evidenceRefs": ["TE-007", "TE-008"],
+      "linkedWasteIds": ["TW-001"]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Auto-v32 execution gate 12/15 FAIL after live-fast-gate added to material preflight",
+      "actualExecution": {
+        "steps": ["Temp mkdtemp fixtures without git init", "LIVE_NOT_GIT_REPO in 3 tests"],
+        "outcome": "FAIL",
+        "evidenceRefs": ["TE-002"]
+      },
+      "optimalExecution": {
+        "steps": ["initTempGitFixture with minimal commit", "Add negative test for non-git path only"],
+        "outcome": "15/15 without weakening production gate",
+        "requiredPreflight": ["run-auto-v32-execution-gate"]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "low"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Cross-machine consumer proof architecture gap",
+      "actualExecution": {
+        "steps": ["Promotion wrote Z objects", "Cold local D had no hydration path", "Implemented z-hydrate on miss"],
+        "outcome": "PASS on WESLEY_WORK simulation",
+        "evidenceRefs": ["TE-003", "TE-005"]
+      },
+      "optimalExecution": {
+        "steps": ["Design Z hydration in Wave C promotion scope", "Prove on two additional hosts in same wave"],
+        "outcome": "Milestone CLOSED in one estate pass",
+        "requiredPreflight": ["governed promotion receipt readable from all hosts"]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "high",
+        "operatorFrustration": "medium"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Counted wave-d-wesleydesk WP on WesleyWork as cross-machine proof",
+      "whyItWasWrong": "consumerMachine must be WESLEYDESK; used warm D not isolated cold store",
+      "correctFirstMove": "Isolated PROOF_ROOT + hostname verification before recording cross-host receipt",
+      "preventiveControl": "run-estate-consumer-proof.sh asserts hostname via operator host role arg",
+      "executionDeltaId": "ED-002"
+    },
+    {
+      "wrongMoveId": "WM-002",
+      "summary": "Suggested --allow-dirty for formal estate proof in earlier wave",
+      "whyItWasWrong": "Undermines live-fast-gate authority the milestone proves",
+      "correctFirstMove": "Clean worktree or detached worktree at canonical SHA",
+      "preventiveControl": "Formal proof script exits on dirty porcelain",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "Z promotion bible_authority_evidence identity",
+      "whyRepeated": "Re-validated same keyHash/objectHash across cold and hot passes",
+      "firstKnownInstance": "WESLEY_WORK producer promotion receipt 642ce22c",
+      "priorIndexSlice": "Z preflight-evidence-promotion/receipts/bible_authority_evidence-642ce22c31c6ffd1.json",
+      "whyMissed": "Expected — per-run fresh receipt with reused object is by design",
+      "avoidableBy": "N/A — intentional cache proof pattern",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Operator estate proof script with host assertions",
+      "whyItPays": "Eliminates invalid cross-host receipts and manual KPI interpretation",
+      "effort": "low",
+      "savedWasteIds": ["TW-001", "TW-002", "TW-003"],
+      "seedAs": "command"
+    },
+    {
+      "rank": 2,
+      "title": "initTempGitFixture standard for any test invoking live-fast-gate",
+      "whyItPays": "Prevents LIVE_NOT_GIT_REPO regressions when material preflight chains evidence",
+      "effort": "low",
+      "savedWasteIds": ["TW-004"],
+      "seedAs": "hook"
+    },
+    {
+      "rank": 3,
+      "title": "Cross-host SSH or remote proof lane for estate closeouts",
+      "whyItPays": "Removes operator manual two-host step for Wave D class milestones",
+      "effort": "high",
+      "savedWasteIds": ["TW-001"],
+      "seedAs": "runbook"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "ai-cache-preflight-evidence-reuse-v1 CLOSED",
+      "currentStatus": "BLOCKED",
+      "doNotClaimUntil": [
+        "WESLEYDESK cold+hot COLD_PASS HOT_PASS at adc0df53",
+        "RYZEN9DESK cold+hot COLD_PASS HOT_PASS at adc0df53",
+        "Same bible_authority_evidence keyHash/objectHash across all three hosts"
+      ],
+      "lastKnownEvidence": [
+        "WESLEY_WORK PASS",
+        "milestone-closeout-v1.json status BLOCKED"
+      ]
+    },
+    {
+      "awardOrVerdict": "Cross-machine canonical reuse PASS",
+      "currentStatus": "OPEN",
+      "doNotClaimUntil": ["WESLEYDESK and RYZEN9DESK Z_GOVERNED cold hydration proof"],
+      "lastKnownEvidence": ["TE-005", "TE-006"]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-07T20:50:00.000Z"
+  }
+}

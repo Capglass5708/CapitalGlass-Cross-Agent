@@ -1,0 +1,370 @@
+{
+  "schema": "sdlc-cursor-intelligence-harvest-v2@1.0.0",
+  "milestoneId": "proposal-report-extraction-population-completeness-v1",
+  "waveId": "proposal-report-extraction-population-completeness-v1",
+  "provenance": {
+    "ruleId": "capital-glass-sdlc-milestone-wave-agent-rule",
+    "releaseId": "AI-CACHE-RELEASE-20260806-2012d9645b9e",
+    "sourceHash": "b3569def1203d672f726f9d45d73d7c4133661c822e3c92c533d71039ff6ca6d",
+    "headSha": "363a3cf1f74f56bee116bab8209736c66aabdb9f",
+    "branch": "main",
+    "preparedAt": "2026-08-08T21:59:22.335Z"
+  },
+  "verifiedTruths": [
+    "Active report estate remains 9; RPTDOORHARDWAREBID RETIRED_BY_OPERATOR",
+    "Wave B1 Metal PO line-detail implementation at 363a3cf1 preserved",
+    "Wave B2 added optional General Elevation glassType/glazingMakeup column discovery with CROSS_CHECK_ONLY authority",
+    "Wave B3 Door PO fields dispositioned to door-card + evidence-only pricing lines",
+    "Wave B4 evidence/binding closeout: zero CRITICAL open gaps across active estate",
+    "Production /api/version still 4e45f78e — retirement and B1 production proof PENDING",
+    "gate:report-contract-registry PASS",
+    "gate:report-matrix-terminal-state PASS",
+    "check:parser-golden-fixtures PASS",
+    "gate:metal-po-pricing-bridge PASS"
+  ],
+  "derivedConclusions": [],
+  "decisions": [],
+  "changes": [],
+  "commands": [],
+  "gateResults": [
+    {
+      "command": "npm run gate:report-contract-registry",
+      "result": "PASS"
+    },
+    {
+      "command": "npm run gate:report-matrix-terminal-state",
+      "result": "PASS"
+    },
+    {
+      "command": "npm run gate:reports-deployment-queue",
+      "result": "PASS"
+    },
+    {
+      "command": "npm run check:parser-golden-fixtures",
+      "result": "PASS"
+    },
+    {
+      "command": "npm run gate:metal-po-pricing-bridge",
+      "result": "PASS"
+    },
+    {
+      "command": "npm run inventory:milestone-completeness-closeout",
+      "result": "PASS_WITH_WARN"
+    }
+  ],
+  "evidence": [
+    "artifacts/agent-runs/proposal-report-extraction-population-completeness-v1/milestone-completeness-closeout.json",
+    "artifacts/agent-runs/proposal-report-extraction-population-completeness-v1/wave-b/b1-closeout.json",
+    "artifacts/agent-runs/proposal-report-extraction-population-completeness-v1/wave-b/b2-closeout.json",
+    "artifacts/agent-runs/proposal-report-extraction-population-completeness-v1/wave-b/b3-closeout.json",
+    "artifacts/agent-runs/proposal-report-extraction-population-completeness-v1/wave-b/b4-evidence-binding-closeout.json",
+    "artifacts/agent-runs/proposal-report-extraction-population-completeness-v1/wave-a/report-field-inventory-matrix.json"
+  ],
+  "risks": [],
+  "blockers": [],
+  "unknowns": [],
+  "crossCheckInstructions": [
+    "git -C /home/wesle/repos/Cursor-ProposalGenerator rev-parse HEAD",
+    "npm run sdlc:cursor:drift-check -- --work-package=proposal-report-extraction-population-completeness-v1",
+    "test -f artifacts/agent-runs/proposal-report-extraction-population-completeness-v1/sdlc-cursor-prepare-receipt.json"
+  ],
+  "futureCreationOpportunities": [],
+  "recommendedNextWave": "",
+  "universalHarvest": {
+    "harvestVersion": "universal-harvest-envelope-v1@1.0.0",
+    "milestoneId": "proposal-report-extraction-population-completeness-v1",
+    "waveId": "proposal-report-extraction-population-completeness-v1",
+    "executionMode": null,
+    "source": {
+      "repository": "/home/wesle/repos/Cursor-ProposalGenerator",
+      "sha": "363a3cf1f74f56bee116bab8209736c66aabdb9f",
+      "environment": "wesley_work",
+      "machine": "wesley_work",
+      "observedAt": "2026-08-08T22:05:56.281Z",
+      "receiptRefs": []
+    },
+    "surfacesTouched": {
+      "repositories": [],
+      "applications": [],
+      "businessWorkflows": [],
+      "operatorInteractions": [],
+      "crossAppHandoffs": [],
+      "runtimeServices": [],
+      "documentsOrData": [],
+      "externalIntegrations": [],
+      "machinesOrEnvironments": []
+    },
+    "findings": [
+      {
+        "findingId": "verified-9fd0a16a54f4",
+        "stableIdentity": "Active report estate remains 9; RPTDOORHARDWAREBID RETIRED_BY_OPERATOR",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Active report estate remains 9; RPTDOORHARDWAREBID RETIRED_BY_OPERATOR",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-26e268948b6c",
+        "stableIdentity": "Wave B1 Metal PO line-detail implementation at 363a3cf1 preserved",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Wave B1 Metal PO line-detail implementation at 363a3cf1 preserved",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-d19a1379600e",
+        "stableIdentity": "Wave B2 added optional General Elevation glassType/glazingMakeup column discovery with CROSS_CHECK_ONLY authority",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Wave B2 added optional General Elevation glassType/glazingMakeup column discovery with CROSS_CHECK_ONLY authority",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-ebb047ad37a4",
+        "stableIdentity": "Wave B3 Door PO fields dispositioned to door-card + evidence-only pricing lines",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Wave B3 Door PO fields dispositioned to door-card + evidence-only pricing lines",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-ad78236cb33a",
+        "stableIdentity": "Wave B4 evidence/binding closeout: zero CRITICAL open gaps across active estate",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Wave B4 evidence/binding closeout: zero CRITICAL open gaps across active estate",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-aea8f8f4ad74",
+        "stableIdentity": "Production /api/version still 4e45f78e — retirement and B1 production proof PENDING",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Production /api/version still 4e45f78e — retirement and B1 production proof PENDING",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-e796a1ed3399",
+        "stableIdentity": "gate:report-contract-registry PASS",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "gate:report-contract-registry PASS",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-dcd782714608",
+        "stableIdentity": "gate:report-matrix-terminal-state PASS",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "gate:report-matrix-terminal-state PASS",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-09af12f47b86",
+        "stableIdentity": "check:parser-golden-fixtures PASS",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "check:parser-golden-fixtures PASS",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-685e48e346e4",
+        "stableIdentity": "gate:metal-po-pricing-bridge PASS",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "gate:metal-po-pricing-bridge PASS",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      }
+    ],
+    "coverage": {
+      "touchedSurfaceCount": 0,
+      "harvestedSurfaceCount": 10,
+      "unharvestedTouchedSurfaces": [],
+      "coverageVerdict": "COVERAGE_OK",
+      "harvestedSurfaceKeys": [
+        "lane:AUTONOMOUS_AGENT_SDLC",
+        "lane:DOCUMENTATION_KNOWLEDGE",
+        "type:verified_truth"
+      ]
+    },
+    "accounting": {
+      "sourceObservations": 10,
+      "findingsPreserved": 10,
+      "distinctValidSuppressed": 0,
+      "unknownUsefulPreserved": 0
+    },
+    "canonicalLanes": [
+      "AUTONOMOUS_AGENT_SDLC",
+      "PRODUCT_FUNCTIONALITY",
+      "PRODUCT_WORKFLOW",
+      "OPERATOR_FRICTION",
+      "INTEGRATION_HANDOFF",
+      "DATA_EXTRACTION_QUALITY",
+      "PERFORMANCE_RELIABILITY",
+      "BUSINESS_PROCESS",
+      "OBSERVABILITY_GAP",
+      "SUCCESS_PATTERN",
+      "SECURITY_GOVERNANCE",
+      "DOCUMENTATION_KNOWLEDGE",
+      "INFRASTRUCTURE_ENVIRONMENT",
+      "COST_EFFICIENCY",
+      "FUTURE_OPPORTUNITY",
+      "UNMODELED_INTELLIGENCE"
+    ],
+    "envelopeHash": "ce6e66f58c1e2d5f84af14d0b0a71e035409bd8fa0acba479124d826ceb58819"
+  },
+  "universalHarvestEnvelopeSchema": "universal-harvest-envelope-v1@1.0.0",
+  "harvestHash": "ef0ffa5021bedecbf488851639e927185cf51343277919ac8dcad45f5215ab3f",
+  "sdlcCursorBridge": {
+    "schema": "sdlc-cursor-waverunner-handoff-bridge-receipt-v1@1.0.0",
+    "workPackageId": "proposal-report-extraction-population-completeness-v1",
+    "harvestId": "harvest-proposal-report-extraction-population-completeness-v1",
+    "packetHash": "d07f6c063210f3bcdf18646c0d7f58447a3294c5ceb4abc298a370542cbe7fff",
+    "promptHash": "f4d11f5a87a411a7bb2424850d43bdb8875da18f417fdc0027856f82b82e19b9",
+    "prepareReceiptPath": "/home/wesle/repos/CG-AppBuilder-MCP/artifacts/agent-runs/proposal-report-extraction-population-completeness-v1/sdlc-cursor-prepare-receipt.json",
+    "authorityStatus": "PROPOSAL",
+    "catalogRole": "RETRIEVAL_ONLY",
+    "processingOwner": "Data-Extraction",
+    "sourceOwner": "CapitalGlass-Cross-Agent"
+  }
+}

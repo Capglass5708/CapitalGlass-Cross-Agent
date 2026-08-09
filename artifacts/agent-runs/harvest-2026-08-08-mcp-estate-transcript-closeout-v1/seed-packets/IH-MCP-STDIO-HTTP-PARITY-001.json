@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-MCP-STDIO-HTTP-PARITY-001",
+  "kind": "failure-pattern",
+  "title": "HTTP /projects 200 does not prove cg-app-builder-mcp healthy",
+  "summary": "integrations-preflight /projects can pass while stdio list_projects returns AUTH_REFRESH_FAILED SESSION_STALE until Cursor MCP Restart.",
+  "retrievalQuestions": [
+    "Why does mcp-api health pass but cg-app-builder-mcp tools fail?",
+    "What proves Capital Glass App Builder MCP is actually functional?"
+  ],
+  "evidenceRefs": [
+    "CG-AppBuilder-MCP@8c13735786a58a79313118744168ce50f3bcf154",
+    "mcp-post-repair-verification-v1/mcp-estate-health-receipt.json",
+    "TE-004",
+    "TW-002"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "MCP repair claimed healthy from PM2 or HTTP checks",
+    "startAt": [
+      "runtime/agent-preflight/app-builder-mcp/latest.json",
+      "artifacts/agent-runs/mcp-post-repair-verification-v1/"
+    ],
+    "runPreflight": ["CallMcpTool user-cg-app-builder-mcp list_projects"],
+    "doNot": [
+      "Declare MCP_100_PERCENT_HEALTHY from HTTP /projects alone",
+      "Skip Cursor MCP Restart after token refresh"
+    ],
+    "proveBeforeClaiming": [
+      "list_projects returns project list",
+      "falseGreenTests CONNECTED_BUT_EXPIRED_JWT PASS"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 1,
+  "wasteIds": ["TW-002"]
+}

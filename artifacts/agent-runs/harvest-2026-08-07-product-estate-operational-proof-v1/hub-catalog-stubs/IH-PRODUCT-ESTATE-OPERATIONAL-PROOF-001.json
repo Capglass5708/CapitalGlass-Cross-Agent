@@ -1,0 +1,78 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-product-estate-operational-proof-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "f8ba6061ec4b03d27a00395b6d575fc478343b57",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-07-product-estate-operational-proof-v1",
+      "seedId": "IH-PRODUCT-ESTATE-OPERATIONAL-PROOF-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-07T20:55:45.133Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "critical",
+    "contentHash": "19717b148448550adae6194503e694ef54548f7716f50c9233085c01635432f0"
+  },
+  "body": {
+    "seedId": "IH-PRODUCT-ESTATE-OPERATIONAL-PROOF-001",
+    "kind": "runbook",
+    "title": "Product-estate operational proof observational loop",
+    "summary": "After infrastructure Gold Mine waves: run gold-mine:product-estate-proof (observational), harvest v1.1 projections, publish, remeasure — do not fix mid-run.",
+    "canonicalQuestion": "How do I measure Capital Glass product workflows for Gold Mine?",
+    "alternateQuestions": [
+      "What runs after zero open infrastructure candidates?",
+      "Where are v1.1 product-estate projections stored?"
+    ],
+    "shortAnswer": "After infrastructure Gold Mine waves: run gold-mine:product-estate-proof (observational), harvest v1.1 projections, publish, remeasure — do not fix mid-run.",
+    "detailedAnswer": "Product-estate operational proof observational loop",
+    "retrievalQuestions": [
+      "How do I measure Capital Glass product workflows for Gold Mine?",
+      "What runs after zero open infrastructure candidates?",
+      "Where are v1.1 product-estate projections stored?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Stage 3 product estate exercise",
+      "startAt": [
+        "PRODUCT-ESTATE-OPERATIONAL-REPORT.md",
+        "workflow-probe-registry.mjs"
+      ],
+      "runPreflight": [
+        "npm run gold-mine:product-estate-proof",
+        "npm run harvest:validate"
+      ],
+      "doNot": [
+        "Fix probes during observational run",
+        "Skip harvest projections file"
+      ],
+      "proveBeforeClaiming": [
+        "product-estate-operational-proof-final-state-v1.json harvestReady true"
+      ]
+    },
+    "evidenceRefs": [
+      "TE-PE-001",
+      "gold-mine-evidence-projections-v1.json"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": 1,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "Data-Extraction",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/seed-packets/IH-PRODUCT-ESTATE-OPERATIONAL-PROOF-001.json"
+    ],
+    "harvestId": "harvest-2026-08-07-product-estate-operational-proof-v1"
+  }
+}

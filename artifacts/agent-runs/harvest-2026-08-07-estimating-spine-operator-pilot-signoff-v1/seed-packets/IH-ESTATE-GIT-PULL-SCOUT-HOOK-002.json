@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-ESTATE-GIT-PULL-SCOUT-HOOK-002",
+  "kind": "failure-pattern",
+  "title": "Estate git pull fails when scout hooks drift from upstream",
+  "summary": "Bulk git pull --ff-only on ~/repos fails when local .cursor/hooks* differ from remote; reconcile or stash before mass sync.",
+  "retrievalQuestions": [
+    "Why does git pull fail with untracked .cursor/hooks.json would be overwritten?",
+    "How to safely pull all Capital Glass repos after scout hook sync?"
+  ],
+  "evidenceRefs": ["TE-007", "TW-003", "OF-002"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "git pull all repos or estate sync after scout hook install",
+    "startAt": [
+      "CG-AppBuilder-MCP/agent-packs/three-way-agent/hooks/",
+      "work-progress/command-index.json"
+    ],
+    "runPreflight": ["npm run agent:index:scout -- --json"],
+    "doNot": ["Force pull over scout hooks without classification", "Delete local hooks without backup"],
+    "proveBeforeClaiming": ["Per-repo failure class: scout-hook | dirty-tree | deleted-branch | merge-conflict"]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 2,
+  "wasteIds": ["TW-003"]
+}

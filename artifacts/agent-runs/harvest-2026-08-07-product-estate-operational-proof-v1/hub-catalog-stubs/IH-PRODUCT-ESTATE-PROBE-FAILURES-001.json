@@ -1,0 +1,75 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-product-estate-probe-failures-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "f8ba6061ec4b03d27a00395b6d575fc478343b57",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-07-product-estate-operational-proof-v1",
+      "seedId": "IH-PRODUCT-ESTATE-PROBE-FAILURES-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-07T20:55:45.133Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "9eb1afd149eb000e8d1e179bdb42fd519b0f23f46aee1367698c123d3c3e9b3d"
+  },
+  "body": {
+    "seedId": "IH-PRODUCT-ESTATE-PROBE-FAILURES-001",
+    "kind": "lesson",
+    "title": "Product-estate probe failure population (fast tier 2026-08-07)",
+    "summary": "7 FAIL: Computer Estimator (3), documents-bff-health, hub-dashboard-smoke, cross-agent-harvest-validate, revu-bid-composer-binding. 1 BLOCKED: mcp-doctor-gate.",
+    "canonicalQuestion": "Which product estate probes failed in August 2026?",
+    "alternateQuestions": [
+      "Why is Computer Estimator NOT_PROVEN?",
+      "What blocks MCP doctor gate?"
+    ],
+    "shortAnswer": "7 FAIL: Computer Estimator (3), documents-bff-health, hub-dashboard-smoke, cross-agent-harvest-validate, revu-bid-composer-binding. 1 BLOCKED: mcp-doctor-gate.",
+    "detailedAnswer": "Product-estate probe failure population (fast tier 2026-08-07)",
+    "retrievalQuestions": [
+      "Which product estate probes failed in August 2026?",
+      "Why is Computer Estimator NOT_PROVEN?",
+      "What blocks MCP doctor gate?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Product Gold Mine candidate triage",
+      "startAt": [
+        "workflow-probe-results-v1.json"
+      ],
+      "runPreflight": [
+        "npm run gold-mine:remeasure"
+      ],
+      "doNot": [
+        "Treat env install failures as resolved without re-probe"
+      ],
+      "proveBeforeClaiming": [
+        "Probe PASS in subsequent observational run"
+      ]
+    },
+    "evidenceRefs": [
+      "workflow-probe-results-v1.json",
+      "GMP-PEOP-004"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": 2,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "Data-Extraction",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-07-product-estate-operational-proof-v1/seed-packets/IH-PRODUCT-ESTATE-PROBE-FAILURES-001.json"
+    ],
+    "harvestId": "harvest-2026-08-07-product-estate-operational-proof-v1"
+  }
+}

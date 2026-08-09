@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-product-estate-operational-proof-v1",
+  "packetId": "product-estate-operational-proof-measurement-v1",
+  "state": "COMPLETE",
+  "packetVerdict": "PASS_WITH_WARN",
+  "ownerRepo": "Data-Extraction",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "npm run gold-mine:remeasure after hub publish",
+  "evidenceRefs": [
+    "TE-PE-001",
+    "Data-Extraction@20e235e9f59ffbe0b3b436d902736283b93b2d67",
+    "artifacts/agent-runs/gold-mine-product-estate-operational-proof-v1/PRODUCT-ESTATE-OPERATIONAL-REPORT.md",
+    "workflow-probe-results-v1.json"
+  ],
+  "doNotAdvance": [
+    "Fix probes mid-run unless blocked from continuing",
+    "Claim estate optimized"
+  ],
+  "advancementGate": "npm run harvest:publish-intelligence-full",
+  "contentHash": "acc5892de207e58b429e851e8be58ec23ed302dd5e7a9e56ab47b600479aa16b"
+}

@@ -1,0 +1,51 @@
+[
+  {
+    "projectionId": "GMP-001",
+    "packetId": "operator-signoff-fail-closed-validator-v1",
+    "signalClass": "SUCCESS_PATTERN",
+    "lifecycleHint": "OPEN",
+    "rootCauseKey": "fabricated-visual-pass-prevention",
+    "evidenceStrength": "high",
+    "operatorImpact": "Trustworthy signoff gate — validator exits 1 until operator evidence exists",
+    "businessImpact": "ESTIMATING",
+    "evidenceEra": "POST_IMPLEMENTATION",
+    "observedAt": "2026-08-07T20:50:00.000Z",
+    "sourceWorkPackageId": "estimating-spine-operator-pilot-signoff-v1",
+    "sourceCommitSha": "8120673a83cee4a1b5143aa3be327bd5cbdb526a",
+    "novelty": "NEW",
+    "implementationState": "OBSERVED_OPEN",
+    "evidenceRefs": ["TE-003", "TE-005", "SP-001"]
+  },
+  {
+    "projectionId": "GMP-002",
+    "packetId": "operator-sso-visual-gap-v1",
+    "signalClass": "OBSERVABILITY_GAP",
+    "lifecycleHint": "OPEN",
+    "rootCauseKey": "sso-gated-ui-no-agent-probe",
+    "evidenceStrength": "high",
+    "operatorImpact": "Estimator must personally verify cockpit; blocks unattended signoff closeout",
+    "businessImpact": "OPERATOR_PRODUCTIVITY",
+    "evidenceEra": "POST_IMPLEMENTATION",
+    "observedAt": "2026-08-07T20:50:00.000Z",
+    "sourceWorkPackageId": "estimating-spine-operator-pilot-signoff-v1",
+    "novelty": "KNOWN_RECURRENCE",
+    "implementationState": "OBSERVED_OPEN",
+    "evidenceRefs": ["OG-001", "OF-001", "TE-005"]
+  },
+  {
+    "projectionId": "GMP-003",
+    "packetId": "estate-scout-hook-pull-friction-v1",
+    "signalClass": "AGENT_FRICTION_SIGNAL",
+    "lifecycleHint": "OPEN",
+    "rootCauseKey": "scout-hook-estate-sync-merge-conflict",
+    "evidenceStrength": "medium",
+    "operatorImpact": "Mass git pull fails across multiple repos",
+    "businessImpact": "PLATFORM_INTERNAL",
+    "evidenceEra": "POST_IMPLEMENTATION",
+    "observedAt": "2026-08-07T20:50:00.000Z",
+    "sourceWorkPackageId": "estate-git-pull-session",
+    "novelty": "KNOWN_RECURRENCE",
+    "implementationState": "OBSERVED_OPEN",
+    "evidenceRefs": ["TE-007", "TW-003", "OF-002"]
+  }
+]

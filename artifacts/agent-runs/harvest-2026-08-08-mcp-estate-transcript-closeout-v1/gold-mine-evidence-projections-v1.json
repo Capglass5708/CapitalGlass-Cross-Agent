@@ -1,0 +1,121 @@
+{
+  "schemaVersion": "gold-mine-evidence-projection-v1@1.0.0",
+  "harvestId": "harvest-2026-08-08-mcp-estate-transcript-closeout-v1",
+  "sourceCommitSha": "dca7cd447464ffa0689d9a8c190ea17d4a34393b",
+  "productWorkflowCoverage": {
+    "computerEstimator": "NOT_OBSERVED",
+    "humanEstimator": "NOT_OBSERVED",
+    "documentCenter": "NOT_OBSERVED",
+    "planSetProcessing": "NOT_OBSERVED",
+    "ocrParser": "NOT_OBSERVED",
+    "revuBluebeam": "NOT_OBSERVED",
+    "bidComposer": "NOT_OBSERVED",
+    "proposals": "NOT_OBSERVED",
+    "vae": "NOT_OBSERVED",
+    "scraper": "NOT_OBSERVED",
+    "crossAppHandoffs": "NOT_OBSERVED",
+    "operatorReentry": "OBSERVED"
+  },
+  "corpusBias": {
+    "evidenceDomainDistribution": {
+      "sdlc": 2,
+      "governance": 0,
+      "receiptPlumbing": 3,
+      "infrastructure": 8,
+      "productOperation": 0,
+      "operatorWorkflow": 2,
+      "businessWorkflow": 0
+    },
+    "corpusBiasWarning": "Infrastructure-heavy thread — MCP/host/repair dominates; zero product-estimating evidence",
+    "underObservedDomains": [
+      "Computer Estimator",
+      "Document Center",
+      "Revu",
+      "Bid Composer"
+    ]
+  },
+  "projections": [
+    {
+      "projectionId": "GMP-001",
+      "signalClass": "PROBLEM_SIGNAL",
+      "summary": "cg-app-builder-mcp stdio session stale after JWT refresh until Cursor MCP restart",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "mcp-stdio-stale-session-after-jwt-refresh",
+      "workPackageId": "mcp-post-repair-verification-v1",
+      "evidenceStrength": "high",
+      "operatorImpact": "cg-app-builder-mcp tools fail until MCP restart",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-08T14:54:00.000Z",
+      "sourceWorkPackageId": "harvest-2026-08-08-mcp-estate-transcript-closeout-v1",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "evidenceRefs": ["TE-004", "TW-002", "OG-001"]
+    },
+    {
+      "projectionId": "GMP-002",
+      "signalClass": "PROBLEM_SIGNAL",
+      "summary": "Dual PM2 mcp-api processes bind port 3001 on Windows and WSL",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "dual-pm2-mcp-api-port-3001",
+      "workPackageId": "mcp-estate-repair-v1",
+      "evidenceStrength": "medium",
+      "operatorImpact": "Backend binding ambiguity Windows vs WSL",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-08T14:50:00.000Z",
+      "sourceWorkPackageId": "harvest-2026-08-08-mcp-estate-transcript-closeout-v1",
+      "novelty": "RECURRENCE",
+      "implementationState": "OBSERVED_OPEN",
+      "evidenceRefs": ["TW-003", "TE-003"]
+    },
+    {
+      "projectionId": "GMP-003",
+      "signalClass": "AGENT_FRICTION_SIGNAL",
+      "summary": "Windows-hosted wsl.localhost workspace used WSL mcp.json profile incorrectly",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "windows-hosted-wsl-path-wrong-mcp-profile",
+      "evidenceStrength": "high",
+      "operatorImpact": "Capital Glass MCPs invisible until Windows mcp.json created",
+      "businessImpact": "OPERATOR_PRODUCTIVITY",
+      "evidenceEra": "PRE_IMPLEMENTATION",
+      "observedAt": "2026-08-08T14:20:00.000Z",
+      "sourceWorkPackageId": "harvest-2026-08-08-mcp-estate-transcript-closeout-v1",
+      "novelty": "RECURRENCE",
+      "implementationState": "PARTIAL",
+      "evidenceRefs": ["TE-002", "TW-001"]
+    },
+    {
+      "projectionId": "GMP-004",
+      "signalClass": "SUCCESS_PATTERN",
+      "summary": "L Transcripts registry script assigns monotonic 000001 prefixes without collisions",
+      "lifecycleHint": "RESOLVED_OBSERVED",
+      "rootCauseKey": "l-transcripts-sequential-numbering",
+      "evidenceStrength": "high",
+      "operatorImpact": "Stable transcript archive IDs starting 000001",
+      "businessImpact": "OPERATOR_PRODUCTIVITY",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-08T15:10:00.000Z",
+      "sourceWorkPackageId": "harvest-2026-08-08-mcp-estate-transcript-closeout-v1",
+      "novelty": "NEW",
+      "implementationState": "VERIFIED_FIXED",
+      "evidenceRefs": ["TE-005", "SP-002"]
+    },
+    {
+      "projectionId": "GMP-005",
+      "signalClass": "OBSERVABILITY_GAP",
+      "summary": "mcp:doctor lacks stdio-vs-HTTP functional parity check",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "mcp-doctor-no-stdio-parity-check",
+      "evidenceStrength": "medium",
+      "operatorImpact": "Doctor WARN yellow while core MCP stdio fails",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-08T14:46:00.000Z",
+      "sourceWorkPackageId": "harvest-2026-08-08-mcp-estate-transcript-closeout-v1",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "evidenceRefs": ["OG-001"]
+    }
+  ]
+}

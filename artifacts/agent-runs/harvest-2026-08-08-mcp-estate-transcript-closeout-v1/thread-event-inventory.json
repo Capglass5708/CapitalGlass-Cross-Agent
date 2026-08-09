@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-08-mcp-estate-transcript-closeout-v1",
+  "threadScope": "MCP estate repair, post-repair verification (MCP_HEALTH_BLOCKED), L:\\Transcripts numbering, harvest closeout",
+  "generatedAt": "2026-08-08T15:35:00.000Z",
+  "events": [
+    {
+      "eventId": "TE-001",
+      "phase": "operator",
+      "summary": "Operator requested all Capital Glass MCPs available and functional",
+      "evidenceRefs": ["user prompt: MCP repair"]
+    },
+    {
+      "eventId": "TE-002",
+      "phase": "diagnosis",
+      "summary": "Windows-hosted workspace (\\\\wsl.localhost\\) had no C:\\Users\\wesle\\.cursor\\mcp.json; only marketplace plugin MCPs loaded in session",
+      "evidenceRefs": ["GetMcpTools catalog: plugin-azure, plugin-supabase only initially"]
+    },
+    {
+      "eventId": "TE-003",
+      "phase": "repair",
+      "summary": "reconnect-cursor-mcp.ps1 created Windows mcp.json (15 servers); WSL Repair-Cursor-McpJson-Wsl.sh regenerated 14-server config; PM2 mcp-api online on Windows+WSL; JWT refreshed",
+      "evidenceRefs": [
+        "C:\\Users\\wesle\\.cursor\\mcp.json",
+        "Cursor-MCP-Kit\\reconnect-cursor-mcp.ps1",
+        "TE-003-pm2"
+      ]
+    },
+    {
+      "eventId": "TE-004",
+      "phase": "verification",
+      "summary": "Post-repair audit: HTTP /projects 200 but cg-app-builder-mcp list_projects AUTH_REFRESH_FAILED SESSION_STALE; user-supabase needsAuth; verdict MCP_HEALTH_BLOCKED",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/artifacts/agent-runs/mcp-post-repair-verification-v1/mcp-estate-health-receipt.json",
+        "TE-004"
+      ]
+    },
+    {
+      "eventId": "TE-005",
+      "phase": "implementation",
+      "summary": "L:\\Transcripts sequential numbering: Assign-TranscriptNumbers.ps1 + registry; six files renamed 000001–000006",
+      "evidenceRefs": [
+        "L:\\Transcripts\\_scripts\\Assign-TranscriptNumbers.ps1",
+        "L:\\Transcripts\\_registry\\transcript-registry.json"
+      ]
+    },
+    {
+      "eventId": "TE-006",
+      "phase": "operator",
+      "summary": "Operator invoked CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1 on full thread",
+      "evidenceRefs": ["L:/02-catalog/Harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"]
+    }
+  ]
+}

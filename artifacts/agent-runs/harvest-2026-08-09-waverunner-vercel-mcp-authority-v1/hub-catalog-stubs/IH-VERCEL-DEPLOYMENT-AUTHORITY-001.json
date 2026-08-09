@@ -1,0 +1,76 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-vercel-deployment-authority-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "9cb234fc3c4484a3bcd133323534980158b55ba9",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-09-waverunner-vercel-mcp-authority-v1",
+      "seedId": "IH-VERCEL-DEPLOYMENT-AUTHORITY-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-09T15:34:21.192Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "7056ae585b079ea83e867a60afc4514cb0de132ed36162adda775aafbec202f0"
+  },
+  "body": {
+    "seedId": "IH-VERCEL-DEPLOYMENT-AUTHORITY-001",
+    "kind": "failure-pattern",
+    "title": "Vercel READY does not imply production revision parity",
+    "summary": "Use vercel-deployment-authority receipts for revision lag, alias binding, and BLOCKED states; MCP transport can be healthy while apps lag.",
+    "canonicalQuestion": "Why is Proposal Generator BLOCKED while Vercel MCP is healthy?",
+    "alternateQuestions": [
+      "How to prove production revision without manual Vercel CLI?"
+    ],
+    "shortAnswer": "Use vercel-deployment-authority receipts for revision lag, alias binding, and BLOCKED states; MCP transport can be healthy while apps lag.",
+    "detailedAnswer": "Vercel READY does not imply production revision parity",
+    "retrievalQuestions": [
+      "Why is Proposal Generator BLOCKED while Vercel MCP is healthy?",
+      "How to prove production revision without manual Vercel CLI?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Production proof or deployment closeout for Capital Glass Vercel apps",
+      "startAt": [
+        "runtime/vercel-deployment-receipt/",
+        "npm run vercel:deployment-authority:audit"
+      ],
+      "runPreflight": [
+        "npm run vercel:deployment-authority:audit -- --project=<name> --write-receipts"
+      ],
+      "doNot": [
+        "Treat deployment URL as production proof",
+        "Claim READY without revisionParity PASS"
+      ],
+      "proveBeforeClaiming": [
+        "revisionParity",
+        "productionBinding",
+        "receiptHash fresh"
+      ]
+    },
+    "evidenceRefs": [
+      "CG-AppBuilder-MCP/artifacts/agent-runs/mcp-health-and-vercel-deployment-authority-hardening-v1/vercel-deployment-authority-cg-proposal-generator.json"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-09-waverunner-vercel-mcp-authority-v1/seed-packets/IH-VERCEL-DEPLOYMENT-AUTHORITY-001.json"
+    ],
+    "harvestId": "harvest-2026-08-09-waverunner-vercel-mcp-authority-v1"
+  }
+}

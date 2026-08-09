@@ -1,0 +1,578 @@
+{
+  "schema": "sdlc-cursor-intelligence-harvest-v2@1.0.0",
+  "milestoneId": "waverunner-mcp-health-authority-preflight-integration-v1",
+  "waveId": "waverunner-mcp-health-authority-preflight-integration-v1",
+  "provenance": {
+    "ruleId": "capital-glass-sdlc-milestone-wave-agent-rule",
+    "releaseId": "AI-CACHE-RELEASE-20260806-2012d9645b9e",
+    "sourceHash": "b3569def1203d672f726f9d45d73d7c4133661c822e3c92c533d71039ff6ca6d",
+    "headSha": "4754e920da384c89f7274a37b7bb91fca2a7f886",
+    "branch": "waverunner-mcp-health-authority-preflight-integration-v1",
+    "preparedAt": "2026-08-09T07:49:08.665Z"
+  },
+  "verifiedTruths": [
+    "Canonical MCP health receipt reports MCP_100_PERCENT_HEALTHY with 14/0/0/0 counts",
+    "mcp-health-authority preflight step PASS with MCP_HEALTH_PASS eligibility",
+    "test:mcp-health-preflight-eligibility PASS (15/15)",
+    "test:waverunner-execution-context-cache PASS including EXECUTION_CONTEXT_CACHE_HIT",
+    "test:waverunner-repair-execution-safety PASS (9/9)",
+    "scraper-handoff-health PASS after worktree npm install restored ajv",
+    "check:application-bibles-sync PASS after app-builder-mcp mirror sync",
+    "document-center-mcp-preflight-gate PASS with CAPITALGLASS_DOCUMENTS_ROOT",
+    "suite:contract-gate PASS after promptops index refresh committed"
+  ],
+  "derivedConclusions": [],
+  "decisions": [],
+  "changes": [],
+  "commands": [],
+  "gateResults": [
+    {
+      "gate": "agent:preflight:app-builder-mcp",
+      "command": "npm run agent:preflight:app-builder-mcp",
+      "environment": "wsl-material",
+      "result": "PASS"
+    },
+    {
+      "gate": "test:mcp-health-preflight-eligibility",
+      "command": "npm run test:mcp-health-preflight-eligibility",
+      "environment": "local",
+      "result": "PASS"
+    },
+    {
+      "gate": "scraper:health",
+      "command": "npm run scraper:health",
+      "environment": "local",
+      "result": "PASS"
+    },
+    {
+      "gate": "suite:contract-gate",
+      "command": "npm run suite:contract-gate",
+      "environment": "local",
+      "result": "PASS"
+    },
+    {
+      "gate": "check:application-bibles-sync",
+      "command": "npm run check:application-bibles-sync",
+      "environment": "local",
+      "result": "PASS"
+    },
+    {
+      "gate": "document-center-mcp-preflight-gate",
+      "command": "CAPITALGLASS_DOCUMENTS_ROOT=$HOME/repos/CapitalGlass-Documents node scripts/suite-governance/document-center-mcp-preflight-gate.mjs",
+      "environment": "local",
+      "result": "PASS"
+    }
+  ],
+  "evidence": [
+    "runtime/mcp-health-receipt/latest.json",
+    "runtime/agent-preflight/app-builder-mcp/latest.json",
+    "runtime/agent-preflight/mcp-health-eligibility/latest.json",
+    "artifacts/agent-runs/waverunner-mcp-health-authority-preflight-integration-v1/governance-material-preflight-v1.json",
+    "artifacts/agent-runs/waverunner-mcp-health-authority-preflight-integration-v1/implementation-receipt.json"
+  ],
+  "risks": [],
+  "blockers": [],
+  "unknowns": [],
+  "crossCheckInstructions": [
+    "git -C /home/wesle/repos/worktrees/CG-AppBuilder-MCP/waverunner-mcp-health-authority-preflight-integration-v1 rev-parse HEAD",
+    "npm run sdlc:cursor:drift-check -- --work-package=waverunner-mcp-health-authority-preflight-integration-v1",
+    "test -f artifacts/agent-runs/waverunner-mcp-health-authority-preflight-integration-v1/sdlc-cursor-prepare-receipt.json"
+  ],
+  "futureCreationOpportunities": [],
+  "recommendedNextWave": "mcp-health-and-vercel-deployment-authority-hardening-v1",
+  "universalHarvest": {
+    "harvestVersion": "universal-harvest-envelope-v1@1.0.0",
+    "milestoneId": "waverunner-mcp-health-authority-preflight-integration-v1",
+    "waveId": "waverunner-mcp-health-authority-preflight-integration-v1",
+    "executionMode": "MILESTONE_WAVE",
+    "source": {
+      "repository": "/home/wesle/repos/worktrees/CG-AppBuilder-MCP/waverunner-mcp-health-authority-preflight-integration-v1",
+      "sha": "4754e920da384c89f7274a37b7bb91fca2a7f886",
+      "environment": "wesley_work",
+      "machine": "wesley_work",
+      "observedAt": "2026-08-09T07:52:17.378Z",
+      "receiptRefs": []
+    },
+    "surfacesTouched": {
+      "repositories": [],
+      "applications": [],
+      "businessWorkflows": [],
+      "operatorInteractions": [],
+      "crossAppHandoffs": [],
+      "runtimeServices": [],
+      "documentsOrData": [],
+      "externalIntegrations": [],
+      "machinesOrEnvironments": []
+    },
+    "findings": [
+      {
+        "findingId": "canonical-mcp-health-authority-path",
+        "stableIdentity": "canonical-mcp-health-authority-path",
+        "findingType": "success_pattern",
+        "laneMembership": [
+          "SECURITY_GOVERNANCE"
+        ],
+        "primaryLane": "SECURITY_GOVERNANCE",
+        "claimClass": "derived",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Master preflight consumes canonical MCP health receipt via mcp-health-authority step with strict eligibility semantics and receipt-over-exit-code invariant",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "material-preflight-durability",
+        "stableIdentity": "material-preflight-durability",
+        "findingType": "operator_observation",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "derived",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Material master preflight requires governed worktree cleanliness, fresh health receipt, and survives long bible-sync steps without stale-receipt guard failure",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "worktree-probe-context-separation",
+        "stableIdentity": "worktree-probe-context-separation",
+        "findingType": "success_pattern",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "derived",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Canonical health refresh separated from worktree-only probe artifacts; unrelated ai-cache-health probe mutations must be restored before live-fast gate",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "railway-wsl-health-refresh",
+        "stableIdentity": "railway-wsl-health-refresh",
+        "findingType": "success_pattern",
+        "laneMembership": [
+          "INFRASTRUCTURE_ENVIRONMENT"
+        ],
+        "primaryLane": "INFRASTRUCTURE_ENVIRONMENT",
+        "claimClass": "derived",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Bounded canonical health refresh recovers transient Supabase/SharePoint evidence when integrations-health cycle runs before strict probe",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "capitalglass-documents-root-dc-gate",
+        "stableIdentity": "capitalglass-documents-root-dc-gate",
+        "findingType": "operator_observation",
+        "laneMembership": [
+          "INFRASTRUCTURE_ENVIRONMENT"
+        ],
+        "primaryLane": "INFRASTRUCTURE_ENVIRONMENT",
+        "claimClass": "derived",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "CAPITALGLASS_DOCUMENTS_ROOT required for document-center-mcp-preflight-gate in worktrees",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "suite-bible-cache-utilize-friction",
+        "stableIdentity": "suite-bible-cache-utilize-friction",
+        "findingType": "operator_observation",
+        "laneMembership": [
+          "PERFORMANCE_RELIABILITY",
+          "OPERATOR_FRICTION"
+        ],
+        "primaryLane": "PERFORMANCE_RELIABILITY",
+        "claimClass": "derived",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "suite:bible-cache:utilize ran ~32 minutes during material preflight, produced no useful utilization summary in captured output, and mutates unrelated ai-cache-health-wesleywork-v1 cache-health-probe.json",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "mcp-health-receipt-handoff",
+        "stableIdentity": "mcp-health-receipt-handoff",
+        "findingType": "success_pattern",
+        "laneMembership": [
+          "INTEGRATION_HANDOFF"
+        ],
+        "primaryLane": "INTEGRATION_HANDOFF",
+        "claimClass": "derived",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "MCP Health receipt flows through material preflight into WaveRunner execution context via mcpHealthRef and eligibility packet",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "bible-cache-utilize-observability-gap",
+        "stableIdentity": "bible-cache-utilize-observability-gap",
+        "findingType": "operator_observation",
+        "laneMembership": [
+          "OBSERVABILITY_GAP"
+        ],
+        "primaryLane": "OBSERVABILITY_GAP",
+        "claimClass": "derived",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "suite:bible-cache:utilize produced no useful utilization summary in captured preflight output",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-9474c0224472",
+        "stableIdentity": "Canonical MCP health receipt reports MCP_100_PERCENT_HEALTHY with 14/0/0/0 counts",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Canonical MCP health receipt reports MCP_100_PERCENT_HEALTHY with 14/0/0/0 counts",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-2c311a19546a",
+        "stableIdentity": "mcp-health-authority preflight step PASS with MCP_HEALTH_PASS eligibility",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "mcp-health-authority preflight step PASS with MCP_HEALTH_PASS eligibility",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-fa58319b6a1e",
+        "stableIdentity": "test:mcp-health-preflight-eligibility PASS (15/15)",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "test:mcp-health-preflight-eligibility PASS (15/15)",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-9252e966c159",
+        "stableIdentity": "test:waverunner-execution-context-cache PASS including EXECUTION_CONTEXT_CACHE_HIT",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "test:waverunner-execution-context-cache PASS including EXECUTION_CONTEXT_CACHE_HIT",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-6ab2a911c8a7",
+        "stableIdentity": "test:waverunner-repair-execution-safety PASS (9/9)",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "test:waverunner-repair-execution-safety PASS (9/9)",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-839784a9bf4e",
+        "stableIdentity": "scraper-handoff-health PASS after worktree npm install restored ajv",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "scraper-handoff-health PASS after worktree npm install restored ajv",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-ee97fc37c792",
+        "stableIdentity": "check:application-bibles-sync PASS after app-builder-mcp mirror sync",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "check:application-bibles-sync PASS after app-builder-mcp mirror sync",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-a402b7973ce5",
+        "stableIdentity": "document-center-mcp-preflight-gate PASS with CAPITALGLASS_DOCUMENTS_ROOT",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "document-center-mcp-preflight-gate PASS with CAPITALGLASS_DOCUMENTS_ROOT",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-9ced7c45a75a",
+        "stableIdentity": "suite:contract-gate PASS after promptops index refresh committed",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "suite:contract-gate PASS after promptops index refresh committed",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "success-67b80a7ec5f6",
+        "stableIdentity": "success-67b80a7ec5f6",
+        "findingType": "success_pattern",
+        "laneMembership": [
+          "SUCCESS_PATTERN"
+        ],
+        "primaryLane": "SUCCESS_PATTERN",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Receipt selection rejects wrong-host, detached fixture, and stale authority receipts before preflight consumes MCP health",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "success-5e05a76bee0c",
+        "stableIdentity": "success-5e05a76bee0c",
+        "findingType": "success_pattern",
+        "laneMembership": [
+          "SUCCESS_PATTERN"
+        ],
+        "primaryLane": "SUCCESS_PATTERN",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Path B closeout: repair unrelated gate drift (ajv, bible mirror, promptops index, DC env) without reopening MCP architecture",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      }
+    ],
+    "coverage": {
+      "touchedSurfaceCount": 0,
+      "harvestedSurfaceCount": 19,
+      "unharvestedTouchedSurfaces": [],
+      "coverageVerdict": "COVERAGE_OK",
+      "harvestedSurfaceKeys": [
+        "lane:SECURITY_GOVERNANCE",
+        "type:success_pattern",
+        "lane:AUTONOMOUS_AGENT_SDLC",
+        "type:operator_observation",
+        "lane:INFRASTRUCTURE_ENVIRONMENT",
+        "lane:PERFORMANCE_RELIABILITY",
+        "lane:OPERATOR_FRICTION",
+        "lane:INTEGRATION_HANDOFF",
+        "lane:OBSERVABILITY_GAP",
+        "lane:DOCUMENTATION_KNOWLEDGE",
+        "type:verified_truth",
+        "lane:SUCCESS_PATTERN"
+      ]
+    },
+    "accounting": {
+      "sourceObservations": 19,
+      "findingsPreserved": 19,
+      "distinctValidSuppressed": 0,
+      "unknownUsefulPreserved": 0
+    },
+    "canonicalLanes": [
+      "AUTONOMOUS_AGENT_SDLC",
+      "PRODUCT_FUNCTIONALITY",
+      "PRODUCT_WORKFLOW",
+      "OPERATOR_FRICTION",
+      "INTEGRATION_HANDOFF",
+      "DATA_EXTRACTION_QUALITY",
+      "PERFORMANCE_RELIABILITY",
+      "BUSINESS_PROCESS",
+      "OBSERVABILITY_GAP",
+      "SUCCESS_PATTERN",
+      "SECURITY_GOVERNANCE",
+      "DOCUMENTATION_KNOWLEDGE",
+      "INFRASTRUCTURE_ENVIRONMENT",
+      "COST_EFFICIENCY",
+      "FUTURE_OPPORTUNITY",
+      "UNMODELED_INTELLIGENCE"
+    ],
+    "envelopeHash": "79acab4f13b00d042b4c8cbffaf5273f136c46af74cb1db7eb134ceb1837dd55"
+  },
+  "universalHarvestEnvelopeSchema": "universal-harvest-envelope-v1@1.0.0",
+  "harvestHash": "6a40287b5c427de4c40c9d520d6faf2fb4c1d0a466fe3eb90b2e273420c2fe4e",
+  "sdlcCursorBridge": {
+    "schema": "sdlc-cursor-waverunner-handoff-bridge-receipt-v1@1.0.0",
+    "workPackageId": "waverunner-mcp-health-authority-preflight-integration-v1",
+    "harvestId": "harvest-waverunner-mcp-health-authority-preflight-integration-v1",
+    "packetHash": "219fb3a2d084474c8ada8d8cec6e5b85474be2b5ce91568828a106aefdd9001c",
+    "promptHash": "6578ab950c035473f257900081bb7df550594dfb1e24994cb05b22915ba71576",
+    "prepareReceiptPath": "/home/wesle/repos/worktrees/CG-AppBuilder-MCP/waverunner-mcp-health-authority-preflight-integration-v1/artifacts/agent-runs/waverunner-mcp-health-authority-preflight-integration-v1/sdlc-cursor-prepare-receipt.json",
+    "authorityStatus": "PROPOSAL",
+    "catalogRole": "RETRIEVAL_ONLY",
+    "processingOwner": "Data-Extraction",
+    "sourceOwner": "CapitalGlass-Cross-Agent"
+  }
+}

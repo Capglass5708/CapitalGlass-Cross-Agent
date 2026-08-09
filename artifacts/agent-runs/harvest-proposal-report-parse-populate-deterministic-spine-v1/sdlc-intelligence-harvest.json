@@ -1,0 +1,573 @@
+{
+  "schema": "sdlc-cursor-intelligence-harvest-v2@1.0.0",
+  "milestoneId": "proposal-report-parse-populate-deterministic-spine-v1",
+  "waveId": "proposal-report-parse-populate-deterministic-spine-v1",
+  "provenance": {
+    "ruleId": "capital-glass-sdlc-milestone-wave-agent-rule",
+    "releaseId": "AI-CACHE-RELEASE-20260806-2012d9645b9e",
+    "sourceHash": "b3569def1203d672f726f9d45d73d7c4133661c822e3c92c533d71039ff6ca6d",
+    "headSha": "654a0b0e2b4f9098d3bf2fc221c147dbed96ca56",
+    "branch": "main",
+    "preparedAt": "2026-08-08T18:19:24.139Z"
+  },
+  "verifiedTruths": [
+    "ReportContract registry is sole dispatch authority — no duplicate manual handler switch",
+    "Metal PO Interior/Exterior deploy requires version-bound metalPoScopeBindings matching source document version",
+    "resolveReportWorkspaceTruth adjudicates checklist, receipt, and proof harness consistently",
+    "RPTBOM_PDF resolves NOT_IN_SCOPE on Beacon Hill via bom_pdf_when_filed scope rule when no BOM PDF filed",
+    "Production /api/version serves merge SHA 7930ccfdd7751b9f60437dd16735675ab7df97e9",
+    "Wave D production matrix resolves all 10 required reports to canonical terminal states"
+  ],
+  "derivedConclusions": [],
+  "decisions": [],
+  "changes": [],
+  "commands": [],
+  "gateResults": [
+    {
+      "gate": "gate:reports-control-plane",
+      "result": "PASS"
+    },
+    {
+      "gate": "proof:report-matrix-terminal-state:production-http",
+      "result": "PASS",
+      "detail": "10/10 terminal states"
+    },
+    {
+      "gate": "proof:beacon-hill-wave-abc:production-http",
+      "result": "PASS",
+      "detail": "Metal PO version binding + idempotency"
+    },
+    {
+      "gate": "Vercel production deploy",
+      "result": "PASS",
+      "detail": "7930ccfd live"
+    }
+  ],
+  "evidence": [
+    "artifacts/agent-runs/proposal-report-parse-populate-deterministic-spine-v1/report-matrix-terminal-state-proof.json",
+    "artifacts/agent-runs/proposal-report-parse-populate-deterministic-spine-v1/report-matrix-terminal-state-production-http-proof.json",
+    "artifacts/agent-runs/proposal-report-parse-populate-deterministic-spine-v1/beacon-hill-wave-abc-production-http-proof.json"
+  ],
+  "risks": [],
+  "blockers": [],
+  "unknowns": [],
+  "crossCheckInstructions": [
+    "git -C /home/wesle/repos/Cursor-ProposalGenerator rev-parse HEAD",
+    "npm run sdlc:cursor:drift-check -- --work-package=proposal-report-parse-populate-deterministic-spine-v1",
+    "test -f artifacts/agent-runs/proposal-report-parse-populate-deterministic-spine-v1/sdlc-cursor-prepare-receipt.json"
+  ],
+  "futureCreationOpportunities": [],
+  "recommendedNextWave": "NONE",
+  "universalHarvest": {
+    "harvestVersion": "universal-harvest-envelope-v1@1.0.0",
+    "milestoneId": "proposal-report-parse-populate-deterministic-spine-v1",
+    "waveId": "proposal-report-parse-populate-deterministic-spine-v1",
+    "executionMode": "FORMAL_CLOSEOUT",
+    "source": {
+      "repository": "/home/wesle/repos/Cursor-ProposalGenerator",
+      "sha": "654a0b0e2b4f9098d3bf2fc221c147dbed96ca56",
+      "environment": "unknown",
+      "machine": null,
+      "observedAt": "2026-08-08T18:19:24.178Z",
+      "receiptRefs": []
+    },
+    "surfacesTouched": {
+      "repositories": [
+        "Cursor-ProposalGenerator"
+      ],
+      "applications": [
+        "Proposal Generator"
+      ],
+      "businessWorkflows": [
+        "required-reports-parse-populate",
+        "metal-po-pricing-deployment",
+        "report-population-trust-receipts"
+      ],
+      "operatorInteractions": [
+        "intelligence/reports checklist",
+        "report deployment dry-run and apply"
+      ],
+      "crossAppHandoffs": [],
+      "runtimeServices": [
+        "proposal.capitalglasstxapps.com"
+      ],
+      "documentsOrData": [
+        "report-contract-registry",
+        "parser-evidence-metal-po",
+        "classified-project-documents"
+      ],
+      "externalIntegrations": [],
+      "machinesOrEnvironments": [
+        "production"
+      ]
+    },
+    "findings": [
+      {
+        "findingId": "spine-wave-a-contract-dispatch",
+        "stableIdentity": "spine-wave-a-contract-dispatch",
+        "findingType": "architecture_verified",
+        "laneMembership": [
+          "PRODUCT_WORKFLOW",
+          "PERFORMANCE_RELIABILITY"
+        ],
+        "primaryLane": "PRODUCT_WORKFLOW",
+        "claimClass": "derived",
+        "confidence": "high",
+        "evidenceRefs": [
+          "src/lib/project-intelligence/report-contract-registry.ts",
+          "src/lib/project-intelligence/report-deploy-handlers/dispatch-registry.ts"
+        ],
+        "rawRefs": [],
+        "observedBehavior": "ReportContract registry drives unified dispatch-registry; manual switch removed from report-deploy-handlers",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "spine-wave-b-metal-po-version-binding",
+        "stableIdentity": "spine-wave-b-metal-po-version-binding",
+        "findingType": "architecture_verified",
+        "laneMembership": [
+          "PRODUCT_WORKFLOW",
+          "PERFORMANCE_RELIABILITY"
+        ],
+        "primaryLane": "PRODUCT_WORKFLOW",
+        "claimClass": "derived",
+        "confidence": "high",
+        "evidenceRefs": [
+          "artifacts/agent-runs/proposal-report-parse-populate-deterministic-spine-v1/beacon-hill-wave-abc-production-http-proof.json"
+        ],
+        "rawRefs": [],
+        "observedBehavior": "Metal PO Interior/Exterior AUTO_POPULATED_CURRENT requires metalPoScopeBindings doc+version match; stale source invalidates currentness",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "spine-wave-c-truth-unification",
+        "stableIdentity": "spine-wave-c-truth-unification",
+        "findingType": "architecture_verified",
+        "laneMembership": [
+          "PRODUCT_WORKFLOW",
+          "AUTONOMOUS_AGENT_SDLC"
+        ],
+        "primaryLane": "PRODUCT_WORKFLOW",
+        "claimClass": "derived",
+        "confidence": "high",
+        "evidenceRefs": [
+          "src/lib/project-intelligence/report-truth/resolve-report-truth.ts"
+        ],
+        "rawRefs": [],
+        "observedBehavior": "resolveReportWorkspaceTruth shared by build-required-report-rows, build-receipt, and proof harness",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "spine-wave-d-terminal-matrix",
+        "stableIdentity": "spine-wave-d-terminal-matrix",
+        "findingType": "production_proof",
+        "laneMembership": [
+          "PRODUCT_WORKFLOW",
+          "PERFORMANCE_RELIABILITY"
+        ],
+        "primaryLane": "PRODUCT_WORKFLOW",
+        "claimClass": "derived",
+        "confidence": "high",
+        "evidenceRefs": [
+          "artifacts/agent-runs/proposal-report-parse-populate-deterministic-spine-v1/report-matrix-terminal-state-production-http-proof.json"
+        ],
+        "rawRefs": [],
+        "observedBehavior": "Production HTTP matrix 10/10: RPTBOM_PDF NOT_IN_SCOPE via bom_pdf_when_filed on Beacon Hill",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "spine-success-pattern",
+        "stableIdentity": "spine-success-pattern",
+        "findingType": "success_pattern",
+        "laneMembership": [
+          "SUCCESS_PATTERN"
+        ],
+        "primaryLane": "SUCCESS_PATTERN",
+        "claimClass": "derived",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Incremental Waves A-D with gates between waves delivered production-trusted parse-populate spine without redesign",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-e6be442ad14c",
+        "stableIdentity": "ReportContract registry is sole dispatch authority — no duplicate manual handler switch",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "ReportContract registry is sole dispatch authority — no duplicate manual handler switch",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-4a73dada4537",
+        "stableIdentity": "Metal PO Interior/Exterior deploy requires version-bound metalPoScopeBindings matching source document version",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Metal PO Interior/Exterior deploy requires version-bound metalPoScopeBindings matching source document version",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-7d464bd596aa",
+        "stableIdentity": "resolveReportWorkspaceTruth adjudicates checklist, receipt, and proof harness consistently",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "resolveReportWorkspaceTruth adjudicates checklist, receipt, and proof harness consistently",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-105aee8c685e",
+        "stableIdentity": "RPTBOM_PDF resolves NOT_IN_SCOPE on Beacon Hill via bom_pdf_when_filed scope rule when no BOM PDF filed",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "RPTBOM_PDF resolves NOT_IN_SCOPE on Beacon Hill via bom_pdf_when_filed scope rule when no BOM PDF filed",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-7c9e8b268e4f",
+        "stableIdentity": "Production /api/version serves merge SHA 7930ccfdd7751b9f60437dd16735675ab7df97e9",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Production /api/version serves merge SHA 7930ccfdd7751b9f60437dd16735675ab7df97e9",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-9bef6bcfec13",
+        "stableIdentity": "Wave D production matrix resolves all 10 required reports to canonical terminal states",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Wave D production matrix resolves all 10 required reports to canonical terminal states",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "success-e18c460c175f",
+        "stableIdentity": "success-e18c460c175f",
+        "findingType": "success_pattern",
+        "laneMembership": [
+          "SUCCESS_PATTERN"
+        ],
+        "primaryLane": "SUCCESS_PATTERN",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Single ReportContract registry with derived catalogs eliminates dispatch drift",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "success-7ba7841f37f6",
+        "stableIdentity": "success-7ba7841f37f6",
+        "findingType": "success_pattern",
+        "laneMembership": [
+          "SUCCESS_PATTERN"
+        ],
+        "primaryLane": "SUCCESS_PATTERN",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "bom_pdf_when_filed scope rule yields deterministic NOT_IN_SCOPE without unresolved terminal gap",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "success-b86c96082a5d",
+        "stableIdentity": "success-b86c96082a5d",
+        "findingType": "success_pattern",
+        "laneMembership": [
+          "SUCCESS_PATTERN"
+        ],
+        "primaryLane": "SUCCESS_PATTERN",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Shared resolveReportWorkspaceTruth prevents checklist/receipt/proof divergence",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "product-9391b3892517",
+        "stableIdentity": "product-9391b3892517",
+        "findingType": "product_observation",
+        "laneMembership": [
+          "PRODUCT_FUNCTIONALITY",
+          "PRODUCT_WORKFLOW"
+        ],
+        "primaryLane": "PRODUCT_FUNCTIONALITY",
+        "claimClass": "derived",
+        "confidence": "medium",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Beacon Hill (5d38b25a-c391-4d7c-8866-f8a1f4cea942) is canonical proof project for report matrix",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "product-54ba88d03a23",
+        "stableIdentity": "product-54ba88d03a23",
+        "findingType": "product_observation",
+        "laneMembership": [
+          "PRODUCT_FUNCTIONALITY",
+          "PRODUCT_WORKFLOW"
+        ],
+        "primaryLane": "PRODUCT_FUNCTIONALITY",
+        "claimClass": "derived",
+        "confidence": "medium",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Pre-existing validate CI failures (9 tests on main) are unrelated to spine milestone",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      }
+    ],
+    "coverage": {
+      "touchedSurfaceCount": 12,
+      "harvestedSurfaceCount": 16,
+      "unharvestedTouchedSurfaces": [
+        {
+          "category": "repositories",
+          "surface": "Cursor-ProposalGenerator",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "applications",
+          "surface": "Proposal Generator",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "businessWorkflows",
+          "surface": "required-reports-parse-populate",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "businessWorkflows",
+          "surface": "metal-po-pricing-deployment",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "businessWorkflows",
+          "surface": "report-population-trust-receipts",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "operatorInteractions",
+          "surface": "intelligence/reports checklist",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "operatorInteractions",
+          "surface": "report deployment dry-run and apply",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "runtimeServices",
+          "surface": "proposal.capitalglasstxapps.com",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "documentsOrData",
+          "surface": "parser-evidence-metal-po",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "documentsOrData",
+          "surface": "classified-project-documents",
+          "reason": "no_finding_references_surface"
+        }
+      ],
+      "coverageVerdict": "WARN_HARVEST_COVERAGE_BIAS",
+      "harvestedSurfaceKeys": [
+        "lane:PRODUCT_WORKFLOW",
+        "lane:PERFORMANCE_RELIABILITY",
+        "type:architecture_verified",
+        "lane:AUTONOMOUS_AGENT_SDLC",
+        "type:production_proof",
+        "lane:SUCCESS_PATTERN",
+        "type:success_pattern",
+        "lane:DOCUMENTATION_KNOWLEDGE",
+        "type:verified_truth",
+        "lane:PRODUCT_FUNCTIONALITY",
+        "type:product_observation"
+      ]
+    },
+    "accounting": {
+      "sourceObservations": 16,
+      "findingsPreserved": 16,
+      "distinctValidSuppressed": 0,
+      "unknownUsefulPreserved": 0
+    },
+    "canonicalLanes": [
+      "AUTONOMOUS_AGENT_SDLC",
+      "PRODUCT_FUNCTIONALITY",
+      "PRODUCT_WORKFLOW",
+      "OPERATOR_FRICTION",
+      "INTEGRATION_HANDOFF",
+      "DATA_EXTRACTION_QUALITY",
+      "PERFORMANCE_RELIABILITY",
+      "BUSINESS_PROCESS",
+      "OBSERVABILITY_GAP",
+      "SUCCESS_PATTERN",
+      "SECURITY_GOVERNANCE",
+      "DOCUMENTATION_KNOWLEDGE",
+      "INFRASTRUCTURE_ENVIRONMENT",
+      "COST_EFFICIENCY",
+      "FUTURE_OPPORTUNITY",
+      "UNMODELED_INTELLIGENCE"
+    ],
+    "envelopeHash": "86cae33154ac3653013807ea91002b7aee83e11d7229c1770844070c3a88e478"
+  },
+  "universalHarvestEnvelopeSchema": "universal-harvest-envelope-v1@1.0.0",
+  "harvestHash": "f9dc2ba017330c56bd2c748948558d683e342c1de07d782d7b78fb4d5ea8d7d4",
+  "sdlcCursorBridge": {
+    "schema": "sdlc-cursor-waverunner-handoff-bridge-receipt-v1@1.0.0",
+    "workPackageId": "proposal-report-parse-populate-deterministic-spine-v1",
+    "harvestId": "harvest-proposal-report-parse-populate-deterministic-spine-v1",
+    "packetHash": "e55e69c0c8124139f26cd2e9d9fbdd0973846ef4308b287153ac63c9a87336a6",
+    "promptHash": "8d170bef5dc9dad7c583e061985c6bbd25340b31e104eb541700723ef2774d49",
+    "prepareReceiptPath": "/home/wesle/repos/CG-AppBuilder-MCP/artifacts/agent-runs/proposal-report-parse-populate-deterministic-spine-v1/sdlc-cursor-prepare-receipt.json",
+    "authorityStatus": "PROPOSAL",
+    "catalogRole": "RETRIEVAL_ONLY",
+    "processingOwner": "Data-Extraction",
+    "sourceOwner": "CapitalGlass-Cross-Agent"
+  }
+}

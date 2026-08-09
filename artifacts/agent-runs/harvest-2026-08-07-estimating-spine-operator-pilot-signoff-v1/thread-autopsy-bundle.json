@@ -1,0 +1,203 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "operator_attention",
+      "description": "Multiple consecutive thread turns re-locked same milestone state without new evidence",
+      "evidenceRefs": ["TE-004"],
+      "estimatedImpact": "medium",
+      "savedBy": "Single lock receipt + await operator walkthrough before further agent turns",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "verification",
+      "description": "Agent cannot perform authenticated Scope Review visual walkthrough — Hub SSO required",
+      "evidenceRefs": ["TE-005", "BLOCK_OPERATOR_AUTHENTICATION"],
+      "estimatedImpact": "high",
+      "savedBy": "Classify as OPERATOR_ONLY; validator fails until human screenshots exist",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "rework",
+      "description": "Estate git pull failed on 10+ repos due to scout-hook local drift vs upstream",
+      "evidenceRefs": ["TE-007"],
+      "estimatedImpact": "medium",
+      "savedBy": "Reconcile scout hooks before bulk pull or use stash policy per repo class",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "verification",
+      "description": "Operator signoff scaffold left uncommitted — blocks clean BC publication baseline",
+      "evidenceRefs": ["TE-008"],
+      "estimatedImpact": "low",
+      "savedBy": "Commit scaffold in same wave as harvest or document as intentional HOLD",
+      "roiRank": 4
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Operator must personally walk Scope Review cockpit — agent cannot substitute visual PASS",
+      "operatorCost": "high",
+      "systemFix": "Keep signoff:validate fail-closed until screenshots + 16 checks recorded",
+      "evidenceRefs": ["TE-005", "TE-002"],
+      "linkedWasteIds": ["TW-002"]
+    },
+    {
+      "frictionId": "OF-002",
+      "trigger": "Bulk git pull blocked on scout-hook file conflicts across estate repos",
+      "operatorCost": "medium",
+      "systemFix": "Document estate-sync scout hook reconciliation runbook before mass pull",
+      "evidenceRefs": ["TE-007"],
+      "linkedWasteIds": ["TW-003"]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Operator pilot signoff closeout requested",
+      "actualExecution": {
+        "steps": [
+          "Scaffold receipt + validator",
+          "Run automated preflight only",
+          "Correctly refuse fabricated visual PASS"
+        ],
+        "outcome": "PREFLIGHT_PASS_OPERATOR_EVIDENCE_BLOCKED",
+        "evidenceRefs": ["TE-005"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Operator completes walkthrough first",
+          "Then agent validates receipt + runs signoff:validate"
+        ],
+        "outcome": "ESTIMATING_SPINE_OPERATOR_PILOT_SIGNOFF_PASS claimable",
+        "requiredPreflight": ["Hub authenticated session"]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "medium",
+        "operatorFrustration": "low"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "git pull all repos",
+      "actualExecution": {
+        "steps": ["Single loop git pull --ff-only on ~/repos/*"],
+        "outcome": "PARTIAL — many scout-hook and branch-tracking failures",
+        "evidenceRefs": ["TE-007"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Classify repos by failure class",
+          "Reconcile scout hooks or stash",
+          "Reset deleted upstream branches to main"
+        ],
+        "outcome": "Clean estate sync with failure report per class",
+        "requiredPreflight": ["work-progress/command-index.json"]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "low",
+        "operatorFrustration": "medium"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-ESTATE-PULL-001",
+      "summary": "git pull all repos without classifying scout-hook conflicts first",
+      "whyItWasWrong": "Mass pull aborted on 10+ repos; operator must reconcile hooks manually",
+      "correctFirstMove": "Run estate pull with per-class recovery (scout-hook | dirty-tree | deleted-branch)",
+      "preventiveControl": "Estate git-pull runbook seed IH-ESTATE-GIT-PULL-SCOUT-HOOK-002",
+      "executionDeltaId": "ED-002"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "Re-stating milestone lock without new operator evidence",
+      "whyRepeated": "Operator confirmed frozen state multiple times",
+      "firstKnownInstance": "TE-004 first lock confirmation",
+      "priorIndexSlice": "N/A",
+      "whyMissed": "Awaiting human walkthrough — no new state to record",
+      "avoidableBy": "Pause agent responses until operator returns with screenshots",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Operator walkthrough packet with fail-closed validator",
+      "whyItPays": "Prevents fabricated visual PASS on commercial cockpit",
+      "effort": "low",
+      "savedWasteIds": ["TW-002"],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 2,
+      "title": "Estate git-pull reconciliation for scout-hook drift",
+      "whyItPays": "Unblocks mass sync across 30+ repos",
+      "effort": "medium",
+      "savedWasteIds": ["TW-003"],
+      "seedAs": "command"
+    },
+    {
+      "rank": 3,
+      "title": "Commit operator signoff scaffold before next BC closeout",
+      "whyItPays": "Avoids dirty-tree blocks on formal closeout",
+      "effort": "low",
+      "savedWasteIds": ["TW-004"],
+      "seedAs": "command"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "ESTIMATING_SPINE_OPERATOR_PILOT_SIGNOFF_PASS",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "16 checks completed with PASS/WARN/FAIL",
+        "screenshots attached",
+        "npm run estimating-spine:operator-pilot:signoff:validate returns PASS or PASS_WITH_WARN"
+      ],
+      "lastKnownEvidence": [
+        "operator-pilot-signoff-v1.json verdict PENDING_OPERATOR_WALKTHROUGH",
+        "0 screenshots captured"
+      ]
+    },
+    {
+      "awardOrVerdict": "W22_FIRST_HUMAN_DISPOSITION",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": ["ESTIMATING_SPINE_OPERATOR_PILOT_SIGNOFF_PASS"],
+      "lastKnownEvidence": ["W22 pending_review disposition null TE-006"]
+    },
+    {
+      "awardOrVerdict": "estimating-spine-estimator-productivity-and-learning-v1",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": ["Operator signoff gate closed"],
+      "lastKnownEvidence": ["nextMilestoneOnPass in receipt"]
+    },
+    {
+      "awardOrVerdict": "FULLY_SEEDED_HUB",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": ["harvest:publish-hub-seed", "index:freshness-gate"],
+      "lastKnownEvidence": ["projection.hubPublishStatus not-run"]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-07T20:52:00.000Z"
+  }
+}

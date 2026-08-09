@@ -1,0 +1,620 @@
+{
+  "schema": "sdlc-cursor-intelligence-harvest-v2@1.0.0",
+  "milestoneId": "wesleydesk-full-control-closeout-v1",
+  "waveId": "wesleydesk-full-control-closeout-v1",
+  "provenance": {
+    "ruleId": "capital-glass-sdlc-milestone-wave-agent-rule",
+    "releaseId": "AI-CACHE-RELEASE-20260806-f83861600831",
+    "sourceHash": "6d93f27edbe1346d88fd5104d7b1700c01c7d7268a8836e507c2420ef965b292",
+    "headSha": "96f38acae801474a362d426aabb9012fe1dcfdb4",
+    "branch": "work/wesleydesk-full-control-closeout-v1",
+    "preparedAt": "2026-08-08T03:13:58.475Z"
+  },
+  "verifiedTruths": [
+    "WSL ext4 work branch work/wesleydesk-full-control-closeout-v1 at b04dd5d includes Gate A stub restoration (71387ee) and OpenSSH hardening",
+    "SSH from WESLEY_WORK to wesleydesk succeeds; sshd RUNNING on desk",
+    "WESLEYDESK active console user is fred (not Wesley) as of 2026-08-07 evening probe",
+    "com.docker.service STOPPED on desk during Fred session; validate:wesleydesk-data-plane not run",
+    "Office worker public /healthz returns HTTP 200",
+    "CapitalGlass-Tailscale-LoginScreen last task result 0; office worker and tunnel tasks triggered with expected long-running scheduler codes",
+    "IT Vault reachable at D:\\Admin Keys\\Capital-Glass-IT-Vault with MACHINE-LOCK.json; WESLEYDESK endpoint secrets directory exists",
+    "test:wesleydesk-controller PASS; test:wesleydesk-control-plane exits 1 solely due CG-AppBuilder-MCP Phase 0 unrelated dirty tree",
+    "Desk operational Documents clone on main at 29be72c — pre-merge expectation"
+  ],
+  "derivedConclusions": [
+    "Full operational control including Docker data plane and login-screen reboot survivability is not yet durably proven",
+    "Remote SSH + scheduled-task control plane is operational for office worker and tunnel paths",
+    "C:\\Developer checkout on main is not authoritative for milestone SHA; WSL ext4 work branch is publication authority for this wave"
+  ],
+  "decisions": [
+    "Record Gate B as PASS_WITH_WARN rather than unconditional PASS to avoid false-green on AppBuilder Phase 0",
+    "Do not reboot WESLEYDESK while Fred holds active console session",
+    "Do not run Docker repair under Fred console — kit requires Wesley interactive session",
+    "Commit milestone evidence artifacts only; exclude unrelated DC prompts and AppBuilder dirty trees"
+  ],
+  "changes": [],
+  "commands": [],
+  "gateResults": [
+    {
+      "gate": "A",
+      "verdict": "GATE_A_PASS",
+      "commit": "71387ee"
+    },
+    {
+      "gate": "B",
+      "verdict": "GATE_B_PASS_WITH_WARN",
+      "note": "WESLEYDESK_DEPS_PASS; canonical npm exit 1 AppBuilder hygiene"
+    },
+    {
+      "gate": "C",
+      "verdict": "GATE_C_PASS_WITH_WARN"
+    },
+    {
+      "gate": "D",
+      "verdict": "BLOCKED_WESLEY_CONSOLE_SESSION"
+    },
+    {
+      "gate": "E",
+      "verdict": "BLOCKED_ACTIVE_USER_SESSION_REBOOT"
+    },
+    {
+      "gate": "F",
+      "verdict": "GATE_F_PASS_WITH_WARN"
+    },
+    {
+      "gate": "G",
+      "verdict": "GATE_G_PASS_WITH_WARN"
+    }
+  ],
+  "evidence": [
+    "artifacts/agent-runs/wesleydesk-full-control-closeout-v1/phase-a-wave-baseline.json",
+    "artifacts/agent-runs/wesleydesk-full-control-closeout-v1/gate-a-git-durability-receipt.json",
+    "artifacts/agent-runs/wesleydesk-full-control-closeout-v1/gate-b-remote-control-receipt.json",
+    "artifacts/agent-runs/wesleydesk-full-control-closeout-v1/gate-c-outcome-verification.json",
+    "artifacts/agent-runs/wesleydesk-full-control-closeout-v1/gate-d-data-plane-receipt.json",
+    "artifacts/agent-runs/wesleydesk-full-control-closeout-v1/gate-e-login-screen-reboot-receipt.json",
+    "artifacts/agent-runs/wesleydesk-full-control-closeout-v1/gate-f-authority-hygiene-receipt.json",
+    "artifacts/agent-runs/wesleydesk-full-control-closeout-v1/gate-g-final-closeout-receipt.json",
+    "artifacts/agent-runs/wesleydesk-full-control-closeout-v1/milestone-position.json"
+  ],
+  "risks": [
+    "Docker Desktop remains stopped until Wesley interactive console session",
+    "Login-screen SSH survivability unproven until safe controlled reboot",
+    "Unrelated AppBuilder dirty tree continues to fail aggregate control-plane npm script"
+  ],
+  "blockers": [
+    "BLOCKED_WESLEY_CONSOLE_SESSION",
+    "BLOCKED_ACTIVE_USER_SESSION_REBOOT"
+  ],
+  "unknowns": [],
+  "crossCheckInstructions": [
+    "git -C /home/wesle/repos/CapitalGlass-Documents rev-parse HEAD",
+    "npm run sdlc:cursor:drift-check -- --work-package=wesleydesk-full-control-closeout-v1",
+    "test -f artifacts/agent-runs/wesleydesk-full-control-closeout-v1/sdlc-cursor-prepare-receipt.json"
+  ],
+  "futureCreationOpportunities": [],
+  "recommendedNextWave": "wesleydesk-full-control-closeout-v1-wave-docker-and-reboot (Wesley console + safe reboot + validate:data-plane + merge + desk GitSync)",
+  "universalHarvest": {
+    "harvestVersion": "universal-harvest-envelope-v1@1.0.0",
+    "milestoneId": "wesleydesk-full-control-closeout-v1",
+    "waveId": "wesleydesk-full-control-closeout-v1",
+    "executionMode": "MILESTONE_WAVE",
+    "source": {
+      "repository": "/home/wesle/repos/CapitalGlass-Documents",
+      "sha": "96f38acae801474a362d426aabb9012fe1dcfdb4",
+      "environment": "wesley_work",
+      "machine": "wesley_work",
+      "observedAt": "2026-08-08T03:13:58.572Z",
+      "receiptRefs": []
+    },
+    "surfacesTouched": {
+      "repositories": [
+        "CapitalGlass-Documents",
+        "CG-AppBuilder-MCP (preflight dependency only)"
+      ],
+      "applications": [],
+      "businessWorkflows": [],
+      "operatorInteractions": [],
+      "crossAppHandoffs": [],
+      "runtimeServices": [],
+      "documentsOrData": [],
+      "externalIntegrations": [],
+      "machinesOrEnvironments": [],
+      "machines": [
+        "WESLEY_WORK",
+        "WESLEYDESK"
+      ],
+      "environments": [
+        "WSL ext4",
+        "Windows native PowerShell",
+        "Windows login screen (not tested)"
+      ],
+      "services": [
+        "sshd",
+        "Tailscale",
+        "Task Scheduler",
+        "CapitalGlass-Office-Document-Worker",
+        "Cloudflare tunnel",
+        "com.docker.service",
+        "WSL"
+      ],
+      "authority": [
+        "Z network-admin share",
+        "Git work branch",
+        "ProgramData recovery kit",
+        "IT Vault D:\\Admin Keys"
+      ]
+    },
+    "findings": [
+      {
+        "findingId": "wesleydesk-git-stub-corruption",
+        "stableIdentity": "wesleydesk-git-stub-corruption",
+        "findingType": "observation",
+        "laneMembership": [
+          "SUCCESS_PATTERN",
+          "SECURITY_GOVERNANCE",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "SUCCESS_PATTERN",
+        "claimClass": "derived",
+        "confidence": "medium",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "openssh-stderr-hardening",
+        "stableIdentity": "openssh-stderr-hardening",
+        "findingType": "observation",
+        "laneMembership": [
+          "OPERATOR_FRICTION",
+          "SUCCESS_PATTERN",
+          "INFRASTRUCTURE_ENVIRONMENT"
+        ],
+        "primaryLane": "OPERATOR_FRICTION",
+        "claimClass": "derived",
+        "confidence": "medium",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "wsl-vs-native-powershell-ssh",
+        "stableIdentity": "wsl-vs-native-powershell-ssh",
+        "findingType": "observation",
+        "laneMembership": [
+          "OPERATOR_FRICTION",
+          "INFRASTRUCTURE_ENVIRONMENT"
+        ],
+        "primaryLane": "OPERATOR_FRICTION",
+        "claimClass": "derived",
+        "confidence": "medium",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "appbuilder-preflight-contamination",
+        "stableIdentity": "appbuilder-preflight-contamination",
+        "findingType": "observation",
+        "laneMembership": [
+          "OBSERVABILITY_GAP",
+          "UNRELATED_ESTATE_HYGIENE"
+        ],
+        "primaryLane": "OBSERVABILITY_GAP",
+        "claimClass": "derived",
+        "confidence": "medium",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "fred-console-blocks-docker-gate",
+        "stableIdentity": "fred-console-blocks-docker-gate",
+        "findingType": "observation",
+        "laneMembership": [
+          "OPERATOR_FRICTION",
+          "HUMAN_GATE"
+        ],
+        "primaryLane": "OPERATOR_FRICTION",
+        "claimClass": "derived",
+        "confidence": "medium",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "long-running-schtasks-hresult",
+        "stableIdentity": "long-running-schtasks-hresult",
+        "findingType": "observation",
+        "laneMembership": [
+          "OBSERVABILITY_GAP",
+          "PERFORMANCE_RELIABILITY"
+        ],
+        "primaryLane": "OBSERVABILITY_GAP",
+        "claimClass": "derived",
+        "confidence": "medium",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "no-login-reboot-not-proven",
+        "stableIdentity": "no-login-reboot-not-proven",
+        "findingType": "observation",
+        "laneMembership": [
+          "SECURITY_GOVERNANCE",
+          "HUMAN_GATE"
+        ],
+        "primaryLane": "SECURITY_GOVERNANCE",
+        "claimClass": "derived",
+        "confidence": "medium",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-54747fd1f6fc",
+        "stableIdentity": "WSL ext4 work branch work/wesleydesk-full-control-closeout-v1 at b04dd5d includes Gate A stub restoration (71387ee) and ",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "WSL ext4 work branch work/wesleydesk-full-control-closeout-v1 at b04dd5d includes Gate A stub restoration (71387ee) and OpenSSH hardening",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-f7d3118659ea",
+        "stableIdentity": "SSH from WESLEY_WORK to wesleydesk succeeds; sshd RUNNING on desk",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "SSH from WESLEY_WORK to wesleydesk succeeds; sshd RUNNING on desk",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-b6f690e8d0c4",
+        "stableIdentity": "WESLEYDESK active console user is fred (not Wesley) as of 2026-08-07 evening probe",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "WESLEYDESK active console user is fred (not Wesley) as of 2026-08-07 evening probe",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-16522d74b615",
+        "stableIdentity": "com.docker.service STOPPED on desk during Fred session; validate:wesleydesk-data-plane not run",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "com.docker.service STOPPED on desk during Fred session; validate:wesleydesk-data-plane not run",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-e731228c1cbf",
+        "stableIdentity": "Office worker public /healthz returns HTTP 200",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Office worker public /healthz returns HTTP 200",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-1a720dbfe116",
+        "stableIdentity": "CapitalGlass-Tailscale-LoginScreen last task result 0; office worker and tunnel tasks triggered with expected long-runni",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "CapitalGlass-Tailscale-LoginScreen last task result 0; office worker and tunnel tasks triggered with expected long-running scheduler codes",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-757aa75fd968",
+        "stableIdentity": "IT Vault reachable at D:\\Admin Keys\\Capital-Glass-IT-Vault with MACHINE-LOCK.json; WESLEYDESK endpoint secrets directory",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "IT Vault reachable at D:\\Admin Keys\\Capital-Glass-IT-Vault with MACHINE-LOCK.json; WESLEYDESK endpoint secrets directory exists",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-c7fd7f7a9540",
+        "stableIdentity": "test:wesleydesk-controller PASS; test:wesleydesk-control-plane exits 1 solely due CG-AppBuilder-MCP Phase 0 unrelated di",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "test:wesleydesk-controller PASS; test:wesleydesk-control-plane exits 1 solely due CG-AppBuilder-MCP Phase 0 unrelated dirty tree",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-9bf686b598d4",
+        "stableIdentity": "Desk operational Documents clone on main at 29be72c — pre-merge expectation",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Desk operational Documents clone on main at 29be72c — pre-merge expectation",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      }
+    ],
+    "coverage": {
+      "touchedSurfaceCount": 18,
+      "harvestedSurfaceCount": 16,
+      "unharvestedTouchedSurfaces": [
+        {
+          "category": "repositories",
+          "surface": "CapitalGlass-Documents",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "repositories",
+          "surface": "CG-AppBuilder-MCP (preflight dependency only)",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "environments",
+          "surface": "Windows native PowerShell",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "environments",
+          "surface": "Windows login screen (not tested)",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "services",
+          "surface": "Task Scheduler",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "services",
+          "surface": "CapitalGlass-Office-Document-Worker",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "services",
+          "surface": "Cloudflare tunnel",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "authority",
+          "surface": "Z network-admin share",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "authority",
+          "surface": "Git work branch",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "authority",
+          "surface": "ProgramData recovery kit",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "authority",
+          "surface": "IT Vault D:\\Admin Keys",
+          "reason": "no_finding_references_surface"
+        }
+      ],
+      "coverageVerdict": "WARN_HARVEST_COVERAGE_BIAS",
+      "harvestedSurfaceKeys": [
+        "lane:SUCCESS_PATTERN",
+        "lane:SECURITY_GOVERNANCE",
+        "lane:DOCUMENTATION_KNOWLEDGE",
+        "type:observation",
+        "lane:OPERATOR_FRICTION",
+        "lane:INFRASTRUCTURE_ENVIRONMENT",
+        "lane:OBSERVABILITY_GAP",
+        "lane:UNRELATED_ESTATE_HYGIENE",
+        "lane:HUMAN_GATE",
+        "lane:PERFORMANCE_RELIABILITY",
+        "lane:AUTONOMOUS_AGENT_SDLC",
+        "type:verified_truth"
+      ]
+    },
+    "accounting": {
+      "sourceObservations": 16,
+      "findingsPreserved": 16,
+      "distinctValidSuppressed": 0,
+      "unknownUsefulPreserved": 0
+    },
+    "canonicalLanes": [
+      "AUTONOMOUS_AGENT_SDLC",
+      "PRODUCT_FUNCTIONALITY",
+      "PRODUCT_WORKFLOW",
+      "OPERATOR_FRICTION",
+      "INTEGRATION_HANDOFF",
+      "DATA_EXTRACTION_QUALITY",
+      "PERFORMANCE_RELIABILITY",
+      "BUSINESS_PROCESS",
+      "OBSERVABILITY_GAP",
+      "SUCCESS_PATTERN",
+      "SECURITY_GOVERNANCE",
+      "DOCUMENTATION_KNOWLEDGE",
+      "INFRASTRUCTURE_ENVIRONMENT",
+      "COST_EFFICIENCY",
+      "FUTURE_OPPORTUNITY",
+      "UNMODELED_INTELLIGENCE"
+    ],
+    "envelopeHash": "f6d22c58f78f941b7aa85daea6cefe5520284b0ffc2b2cc4004f2f3c7d4b9c90"
+  },
+  "universalHarvestEnvelopeSchema": "universal-harvest-envelope-v1@1.0.0",
+  "harvestHash": "1ee2b0cb8be9e56d1794f4750c67c3dd45ff2d7d5f315708eeb5d5f10cfee612",
+  "sdlcCursorBridge": {
+    "schema": "sdlc-cursor-waverunner-handoff-bridge-receipt-v1@1.0.0",
+    "workPackageId": "wesleydesk-full-control-closeout-v1",
+    "harvestId": "harvest-wesleydesk-full-control-closeout-v1",
+    "packetHash": "57a7ab8c096db7c23f5a6449a0e82c57ebac751c6cda9b4fa768d8687de35edf",
+    "promptHash": "27578e92714801391b288fa73f64e800a770ecc1f04d33f31fa0e7b90c48c56f",
+    "prepareReceiptPath": "/home/wesle/repos/CG-AppBuilder-MCP/artifacts/agent-runs/wesleydesk-full-control-closeout-v1/sdlc-cursor-prepare-receipt.json",
+    "authorityStatus": "PROPOSAL",
+    "catalogRole": "RETRIEVAL_ONLY",
+    "processingOwner": "Data-Extraction",
+    "sourceOwner": "CapitalGlass-Cross-Agent"
+  }
+}

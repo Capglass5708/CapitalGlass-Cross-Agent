@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-TRANSCRIPT-SEQUENTIAL-ID-001",
+  "kind": "runbook",
+  "title": "L:\\Transcripts monotonic 000001_ numbering via registry script",
+  "summary": "Assign-TranscriptNumbers.ps1 renames unnumbered files to six-digit prefix; registry tracks nextSequence and assignment history.",
+  "retrievalQuestions": [
+    "How are Cursor chat transcripts numbered on L drive?",
+    "What script assigns the next transcript sequence number?"
+  ],
+  "evidenceRefs": [
+    "L:\\Transcripts\\_scripts\\Assign-TranscriptNumbers.ps1",
+    "L:\\Transcripts\\_registry\\transcript-registry.json",
+    "TE-005"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "New transcript markdown dropped in L:\\Transcripts",
+    "startAt": [
+      "L:\\Transcripts\\_registry\\transcript-registry.json"
+    ],
+    "runPreflight": [
+      "powershell -File L:\\Transcripts\\_scripts\\Assign-TranscriptNumbers.ps1 -DryRun"
+    ],
+    "doNot": [
+      "Hand-number files without updating registry",
+      "Reuse sequence numbers after deletion"
+    ],
+    "proveBeforeClaiming": [
+      "nextSequence increments",
+      "filename matches ^\\d{6}_"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE",
+  "roiRank": 3,
+  "wasteIds": []
+}

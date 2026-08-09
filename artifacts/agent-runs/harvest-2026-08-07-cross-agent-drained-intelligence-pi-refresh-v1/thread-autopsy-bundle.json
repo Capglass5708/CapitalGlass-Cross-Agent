@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-cross-agent-drained-intelligence-pi-refresh-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "context",
+      "description": "Conversation summarized mid-thread — authority SHAs drifted (bf3952e → a082553 on Cross-Agent main)",
+      "evidenceRefs": ["TE-006", "preflight vs live origin/main fetch"],
+      "estimatedImpact": "medium",
+      "savedBy": "Always fetch origin/main before PI publication lane",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "verification",
+      "description": "PI MCP CONTROL_PLANE_UNAVAILABLE — required doppler v1e pipeline instead",
+      "evidenceRefs": ["get_publication_provenance failure", "TE-005"],
+      "estimatedImpact": "low",
+      "savedBy": "Default to doppler run v1e-live-publication for DE PI refresh",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "rework",
+      "description": "derived-intel-core stale dist blocked first v1e attempt",
+      "evidenceRefs": ["Unknown repository profile: Data-Extraction"],
+      "estimatedImpact": "low",
+      "savedBy": "npm run derived-intel:build before v1e-live-publication",
+      "roiRank": 2
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Operator live PI drift check blocked by approval/login",
+      "operatorCost": "low",
+      "systemFix": "Do not override closeout receipts with unverified PI reads",
+      "evidenceRefs": ["operator acceptance message"],
+      "linkedWasteIds": [],
+      "frequency": "observed"
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Data-Extraction PI authority SHA selection",
+      "actualExecution": {
+        "steps": [
+          "FEATURE_BRANCH_IS_TEMPORARY_PI_AUTHORITY",
+          "v1e publish @ a413f8e",
+          "Push feature branch"
+        ],
+        "outcome": "PASS",
+        "evidenceRefs": ["TE-005", "TE-007"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Merge feature → main first",
+          "Publish PI @ main SHA"
+        ],
+        "outcome": "Single Git authority line for PI and operators",
+        "requiredPreflight": ["de-git-authority-decision.json"]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Cross-Agent coordination vs codeintel PI",
+      "actualExecution": {
+        "steps": [
+          "index:publish Hub lane @ a082553",
+          "Document ledgerOnly — no codeintel CURRENT"
+        ],
+        "outcome": "PASS",
+        "evidenceRefs": ["TE-004"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Confirm publication model in preflight before gate naming"
+        ],
+        "outcome": "Avoid NO_CURRENT_PUBLICATION confusion",
+        "requiredPreflight": ["register-cross-agent-repo metadata ledgerOnly"]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Preflight pinned Cross-Agent main @ bf3952e while origin had advanced",
+      "whyItWasWrong": "Publication lane must target live canonical main",
+      "correctFirstMove": "git fetch origin main before Lane C",
+      "preventiveControl": "Preflight receipt must use fetched origin/main SHA",
+      "executionDeltaId": "ED-002"
+    }
+  ],
+  "duplicateWork": [],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Automate DE feature→main merge gate before PI publish",
+      "whyItPays": "Eliminates split Git authority between PI index and origin/main",
+      "effort": "medium",
+      "ownerRepo": "Data-Extraction",
+      "savedWasteIds": ["TW-001"],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 2,
+      "title": "Preflight script: fetch origin/main SHA into milestone receipts",
+      "whyItPays": "Avoids stale SHA pins at publication lane start",
+      "effort": "low",
+      "savedWasteIds": ["TW-001"],
+      "seedAs": "command"
+    },
+    {
+      "rank": 3,
+      "title": "Document Cross-Agent ledgerOnly PI model in harvest seed",
+      "whyItPays": "Prevents NO_CURRENT_PUBLICATION confusion on coordination repo",
+      "effort": "low",
+      "savedWasteIds": ["TW-002"],
+      "seedAs": "index-slice"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "cross-agent-drained-intelligence-publication-and-pi-refresh-v1 GO",
+      "currentStatus": "CLOSED",
+      "doNotClaimUntil": [
+        "Operator explicitly reopens milestone with new work package"
+      ],
+      "lastKnownEvidence": [
+        "final-provenance-receipt.json programVerdict GO",
+        "all seven gates PASS"
+      ]
+    },
+    {
+      "awardOrVerdict": "BULK_INGESTION_CLOSED_CORPUS_CURRENT",
+      "currentStatus": "CLOSED",
+      "doNotClaimUntil": [
+        "New approved bulk ingestion work package"
+      ],
+      "lastKnownEvidence": [
+        "bulk-closeout-v1.json",
+        "812/812 drain capture frozen"
+      ]
+    },
+    {
+      "awardOrVerdict": "FULLY_SEEDED_HUB",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "harvest:publish-hub-seed",
+        "index:freshness-gate"
+      ],
+      "lastKnownEvidence": [
+        "projection.hubPublishStatus not-run"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-07T21:00:00.000Z"
+  }
+}

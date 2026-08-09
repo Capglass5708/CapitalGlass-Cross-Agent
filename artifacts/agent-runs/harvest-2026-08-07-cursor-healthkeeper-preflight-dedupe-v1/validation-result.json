@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "cross-agent-harvest-validation-result-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-cursor-healthkeeper-preflight-dedupe-v1",
+  "validatedAt": "2026-08-07T20:54:36.229Z",
+  "verdict": "PASS",
+  "harvestManifestHash": "ab2a8022b090a978790f56403f1fe1ca965fb286e0a486d3932dbdb696849df1",
+  "schemaValidation": "PASS",
+  "threadAutopsyValidation": "PASS",
+  "threadAutopsyTier": "T2",
+  "goldMineProjectionValidation": "WARN_ONLY",
+  "errorCount": 0,
+  "warningCount": 10,
+  "errors": [],
+  "warnings": [
+    "no supersededClaims in manifest",
+    "goldMineHarvest.noSuppressionDeclared not true — confirm distinct improvement signals were not suppressed",
+    "gold-mine projection schema (warn-only): goldMine / must NOT have additional properties",
+    "gold-mine projection schema (warn-only): goldMine /schemaVersion must be equal to constant",
+    "gold-mine projection schema (warn-only): goldMine /projections/0 must have required property 'summary'",
+    "gold-mine projection schema (warn-only): goldMine /projections/0/implementationState must be equal to one of the allowed values",
+    "gold-mine projection schema (warn-only): goldMine /projections/1 must have required property 'summary'",
+    "gold-mine projection schema (warn-only): goldMine /projections/2 must have required property 'summary'",
+    "gold-mine projection gmp-cursor-healthkeeper-dedupe-resolution-v1: invalid implementationState OBSERVED_CLOSED",
+    "gold-mine projection gmp-cursor-healthkeeper-dedupe-resolution-v1: RESOLUTION_SIGNAL should pair with VERIFIED_FIXED|ADOPTED|PARTIAL implementationState"
+  ]
+}

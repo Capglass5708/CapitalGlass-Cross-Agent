@@ -1,0 +1,396 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-cursor-healthkeeper-preflight-dedupe-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "d18bb64358dd428bc7350337a3d12a599d5b4ff1",
+  "sourceBranch": "main",
+  "sourceRepo": "CG-AppBuilder-MCP",
+  "createdAt": "2026-08-07T20:55:00.000Z",
+  "updatedAt": "2026-08-07T20:55:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "Reopen cg-cursor-healthkeeper-preflight-dedupe-v1 for mcp:doctor or Bible sync failures",
+    "Claim healthkeeper BLOCKED when only downstream preflight failed",
+    "Run index:publish or harvest:publish-hub-seed from Cursor",
+    "Claim FULLY_SEEDED without index:freshness-gate receipt"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-07-cursor-healthkeeper-preflight-dedupe-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-07-cursor-healthkeeper-preflight-dedupe-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 3,
+      "seeds": 2,
+      "roiItems": 3,
+      "operatorFriction": 0,
+      "executionDeltas": 2
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Operator runs harvest:publish-hub-seed + index:publish — NOT_RUN_BY_CURSOR"
+  },
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "1.1.0",
+    "eligibleCandidates": 1,
+    "rejectedUnrelatedCandidates": 0,
+    "exportStatus": "not-run",
+    "dataExtractionStatus": "not-run",
+    "catalogPublishStatus": "not-run",
+    "retrievalStatus": "not-run",
+    "targetCatalog": "L:\\02-catalog\\Harvest\\Harvest Protocol Self Learning",
+    "authorityStatus": "PROPOSAL",
+    "automaticProtocolMutation": false
+  },
+  "relatedRepos": [
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "branch": "main",
+      "commitSha": "d18bb64358dd428bc7350337a3d12a599d5b4ff1",
+      "role": "healthkeeper integration + dedupe implementation"
+    },
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "main",
+      "role": "harvest recording authority"
+    }
+  ],
+  "packets": [
+    {
+      "packetKind": "decision",
+      "packetId": "cursor-healthkeeper-dedupe-milestone-closed-v1",
+      "packetTitle": "cg-cursor-healthkeeper-preflight-dedupe-v1 CLOSED PASS_DEDUPED",
+      "state": "COMPLETE",
+      "packetVerdict": "MILESTONE_CLOSED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-cursor-healthkeeper-preflight-dedupe-v1.md",
+      "nextAction": "Push d18bb643 when operator approves publication",
+      "advancementGate": "PASS_DEDUPED",
+      "doNotAdvance": [
+        "Reopen for downstream mcp:doctor failures"
+      ],
+      "evidenceRefs": [
+        "TE-007",
+        "d18bb64358dd428bc7350337a3d12a599d5b4ff1"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@d18bb64358dd428bc7350337a3d12a599d5b4ff1"
+      ],
+      "blockers": [],
+      "goldMineSignalClass": "RESOLUTION_SIGNAL",
+      "implementationState": "OBSERVED_CLOSED"
+    },
+    {
+      "packetKind": "outcome",
+      "packetId": "healthkeeper-v12-dedupe-outcome-v1",
+      "packetTitle": "Healthkeeper v1.2 substrate-only verdict purity",
+      "state": "COMPLETE",
+      "packetVerdict": "PROVEN_EFFECTIVE",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-cursor-healthkeeper-preflight-dedupe-v1.md",
+      "nextAction": "None — dedupe complete locally",
+      "advancementGate": "PASS_DEDUPED",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-005",
+        "TE-006",
+        "OM-001"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@d18bb64358dd428bc7350337a3d12a599d5b4ff1"
+      ],
+      "blockers": [],
+      "changeImplemented": "Removed duplicate Hub/storage/MCP readiness checks; v1.2 evidence schema",
+      "beforeState": "Healthkeeper v1.1 WARN/BLOCK on L:/Z, Hub, PI, MCP logs",
+      "afterState": "Substrate-only PASS in ~4.6s; downstream owns platform checks",
+      "measurement": "gate 4550ms; 16 unit tests PASS",
+      "expectedEffect": "No duplicate authoritative verification",
+      "observedEffect": "CURSOR_HEALTH_PASS; full preflight BLOCKED only on downstream gates",
+      "residuals": [
+        "Local commit not on origin/main"
+      ],
+      "regressions": [],
+      "effectiveness": "PROVEN_EFFECTIVE",
+      "goldMineSignalClass": "PERFORMANCE_SIGNAL",
+      "businessImpact": "PLATFORM_INTERNAL"
+    },
+    {
+      "packetKind": "evidence",
+      "packetId": "healthkeeper-integration-sha-bf6c38c-v1",
+      "packetTitle": "Preflight integration commit wires health gate first",
+      "state": "COMPLETE",
+      "packetVerdict": "VERIFIED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-cursor-healthkeeper-preflight-dedupe-v1.md",
+      "nextAction": "None",
+      "advancementGate": "PASS_INTEGRATED",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-002",
+        "bf6c38c73ed19e8faab36d7889dae9272abd6e01"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@bf6c38c73ed19e8faab36d7889dae9272abd6e01"
+      ],
+      "blockers": [],
+      "type": "git-commit",
+      "pathOrSha": "bf6c38c73ed19e8faab36d7889dae9272abd6e01",
+      "provesWhat": "cursor:health-preflight-gate runs before auto-v32 and suite gates"
+    },
+    {
+      "packetKind": "evidence",
+      "packetId": "healthkeeper-dedupe-sha-d18bb643-v1",
+      "packetTitle": "Dedupe commit — v1.2 schema and ownership purity",
+      "state": "COMPLETE",
+      "packetVerdict": "VERIFIED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-cursor-healthkeeper-preflight-dedupe-v1.md",
+      "nextAction": "git push when approved",
+      "advancementGate": "PASS_DEDUPED",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-005",
+        "TE-006"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@d18bb64358dd428bc7350337a3d12a599d5b4ff1"
+      ],
+      "blockers": [],
+      "type": "git-commit",
+      "pathOrSha": "d18bb64358dd428bc7350337a3d12a599d5b4ff1",
+      "provesWhat": "Healthkeeper no longer duplicates preflight/scout/MCP ownership"
+    },
+    {
+      "packetKind": "command",
+      "packetId": "cursor-wsl-health-preflight-gate-v1",
+      "packetTitle": "Fast Cursor substrate health gate",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-cursor-healthkeeper-preflight-dedupe-v1.md",
+      "nextAction": "Run before material Cursor sessions on WSL",
+      "advancementGate": "CURSOR_HEALTH_PASS",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-006",
+        "OM-001"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "command": "npm run cursor:wsl:health-preflight-gate",
+      "host": "WSL ext4 CG-AppBuilder-MCP",
+      "provesGate": "cursor substrate readiness",
+      "expectedPassSignal": "CURSOR_HEALTH_PASS"
+    },
+    {
+      "packetKind": "command",
+      "packetId": "cursor-healthkeeper-dedupe-tests-v1",
+      "packetTitle": "Healthkeeper dedupe and gate regression tests",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-cursor-healthkeeper-preflight-dedupe-v1.md",
+      "nextAction": "Run in CI or before healthkeeper changes",
+      "advancementGate": "test PASS",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-006"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "command": "npm run test:cursor-wsl-healthkeeper-dedupe && npm run test:cursor-health-preflight-gate",
+      "host": "WSL ext4 CG-AppBuilder-MCP",
+      "provesGate": "verdict purity + v1.2 schema acceptance",
+      "expectedPassSignal": "16 tests pass"
+    },
+    {
+      "packetKind": "mistake",
+      "packetId": "healthkeeper-v11-owned-downstream-checks-v1",
+      "packetTitle": "v1.1 healthkeeper duplicated downstream authority checks",
+      "state": "RESOLVED",
+      "packetVerdict": "CORRECTED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-cursor-healthkeeper-preflight-dedupe-v1.md",
+      "nextAction": "Do not re-add Hub/MCP/storage gates to healthkeeper",
+      "advancementGate": "v1.2 shipped",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "WM-001",
+        "DW-001",
+        "DW-002"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@d18bb64358dd428bc7350337a3d12a599d5b4ff1"
+      ],
+      "blockers": [],
+      "wrongMoveId": "WM-001",
+      "actualExecution": "WARN/BLOCK from L:/Z, Hub, PI, MCP in healthkeeper",
+      "optimalExecution": "Substrate-only checks; canonicalResolution signal only",
+      "preventiveControl": "CURSOR_SESSION_FAST_HEALTH_GATE.md ownership table + v1.2 tests"
+    },
+    {
+      "packetKind": "repeated_work",
+      "packetId": "healthkeeper-duplicated-preflight-checks-v1",
+      "packetTitle": "Duplicate storage and MCP verification between healthkeeper and preflight",
+      "state": "COMPLETE",
+      "packetVerdict": "REMEDIATED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-cursor-healthkeeper-preflight-dedupe-v1.md",
+      "nextAction": "Consult duplicationCheck before adding healthkeeper checks",
+      "advancementGate": "execution count 1 per owner",
+      "doNotAdvance": [
+        "Restore check_drives in healthkeeper"
+      ],
+      "evidenceRefs": [
+        "DW-001",
+        "DW-002",
+        "TE-005"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "duplicateId": "DW-001",
+      "firstKnownInstance": "z-drive preflight + mcp:doctor in agent preflight",
+      "priorIndexSlice": "BY-KIND/mcp-servers.json",
+      "whyMissed": "Integration shipped before dedupe wave"
+    },
+    {
+      "packetKind": "faster_path",
+      "packetId": "healthkeeper-ownership-matrix-first-v1",
+      "packetTitle": "Define one-owner-per-check before first healthkeeper ship",
+      "state": "COMPLETE",
+      "packetVerdict": "DOCUMENTED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-cursor-healthkeeper-preflight-dedupe-v1.md",
+      "nextAction": "Use ownership table for future healthkeeper changes",
+      "advancementGate": "docs updated",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "ED-001",
+        "docs/wsl/CURSOR_SESSION_FAST_HEALTH_GATE.md"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "situation": "Two-milestone integrate-then-dedupe",
+      "whatHappened": "v1.1 shipped with overlap; dedupe required second pass",
+      "rightFirstMove": "Substrate-only healthkeeper from integration milestone",
+      "requiredGuard": "Ownership matrix in gate doc"
+    },
+    {
+      "packetKind": "protocol_upgrade",
+      "packetId": "healthkeeper-substrate-only-ownership-v12-v1",
+      "packetTitle": "Healthkeeper owns Cursor/WSL substrate only — v1.2",
+      "state": "COMPLETE",
+      "packetVerdict": "DOCUMENTED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-cursor-healthkeeper-preflight-dedupe-v1.md",
+      "nextAction": "Future agents read CURSOR_SESSION_FAST_HEALTH_GATE.md before editing healthkeeper",
+      "advancementGate": "harvest:validate PASS",
+      "doNotAdvance": [
+        "Add Hub proof to healthkeeper",
+        "BLOCK on MCP doctor failure in healthkeeper"
+      ],
+      "evidenceRefs": [
+        "docs/wsl/CURSOR_SESSION_FAST_HEALTH_GATE.md",
+        "cg-cursor-wsl-healthkeeper-v1.2@1.0.0"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@d18bb64358dd428bc7350337a3d12a599d5b4ff1"
+      ],
+      "blockers": [],
+      "seedAs": "POLICY_GATED",
+      "promotionClass": "POLICY_GATED",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Cursor WSL healthkeeper or preflight gate changes",
+        "startAt": [
+          "docs/wsl/CURSOR_SESSION_FAST_HEALTH_GATE.md",
+          "L:/02-catalog/Cursur Health/cg-cursor-wsl-healthkeeper.sh"
+        ],
+        "runPreflight": [
+          "npm run cursor:wsl:health-preflight-gate",
+          "npm run test:cursor-wsl-healthkeeper-dedupe"
+        ],
+        "doNot": [
+          "Add L:/Z storage authority to healthkeeper verdict",
+          "Add Hub AGENT_START_HERE proof to healthkeeper",
+          "BLOCK on MCP connection errors from log scan alone"
+        ],
+        "proveBeforeClaiming": [
+          "latest.json schemaVersion v1.2",
+          "CURSOR_HEALTH_PASS with generatedAt >= gate start"
+        ]
+      }
+    },
+    {
+      "packetKind": "blocker",
+      "packetId": "app-builder-preflight-downstream-blockers-v1",
+      "packetTitle": "Full preflight BLOCKED — mcp:doctor, Bible sync, contract gate",
+      "state": "ACTIVE",
+      "packetVerdict": "BLOCKED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-cursor-healthkeeper-preflight-dedupe-v1.md",
+      "nextAction": "Triage mcp:doctor first per closeout:gate priority",
+      "advancementGate": "agent:preflight PASS",
+      "doNotAdvance": [
+        "Reopen healthkeeper dedupe milestone"
+      ],
+      "evidenceRefs": [
+        "TE-008",
+        "runtime/agent-preflight/app-builder-mcp/latest.json"
+      ],
+      "commitRefs": [],
+      "blockers": [
+        "mcp:doctor exit 1",
+        "check:application-bibles-sync exit 1",
+        "suite:contract-gate exit 1"
+      ],
+      "blockerId": "app-builder-preflight-suite-gates",
+      "status": "OPEN",
+      "proofCommandId": "npm run agent:preflight:app-builder-mcp"
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": null,
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 8,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 8,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-c75d9df91401",
+      "prompt-candidate-37e44ecbb300",
+      "prompt-candidate-3d656b2ffe67",
+      "prompt-candidate-169d38296a5d",
+      "prompt-candidate-6fd75f555a33",
+      "prompt-candidate-9978981f52cd",
+      "prompt-candidate-17a3ad739f87",
+      "prompt-candidate-c6617a0485cd"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

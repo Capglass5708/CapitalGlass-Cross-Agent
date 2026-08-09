@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-WAVERUNNER-CLOSEOUT-CHAIN-001",
+  "kind": "runbook",
+  "title": "Material milestone closeout requires full chain not implementation-only",
+  "summary": "DURABLE_COMPLETE requires master preflight PASS, session closeout, harvest, closeout:gate, and git durability — not implementation push alone.",
+  "retrievalQuestions": [
+    "What is required after waverunner milestone implementation?",
+    "When is terminalVerdict BLOCKED vs DURABLE_COMPLETE?"
+  ],
+  "evidenceRefs": [
+    "chat:waverunner DURABLE_COMPLETE cb47e827e",
+    "chat:vercel milestone BLOCKED at implementation"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "SDLC WaveRunner formal closeout milestone",
+    "startAt": ["runtime/agent-preflight/app-builder-mcp/latest.json", "docs/CLOSEOUT_EFFICIENCY_LAYER.md"],
+    "runPreflight": ["npm run agent:preflight:app-builder-mcp", "npm run closeout:gate"],
+    "doNot": ["Call DURABLE_COMPLETE after tests only", "Skip session closeout before harvest"],
+    "proveBeforeClaiming": ["verdict PASS", "HEAD == origin", "remainingMilestoneGap NONE"]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

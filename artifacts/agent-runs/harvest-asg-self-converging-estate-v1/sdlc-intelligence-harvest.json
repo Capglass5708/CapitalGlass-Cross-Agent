@@ -1,0 +1,326 @@
+{
+  "schema": "sdlc-cursor-intelligence-harvest-v2@1.0.0",
+  "milestoneId": "asg-self-converging-estate-v1",
+  "waveId": "asg-self-converging-estate-v1",
+  "provenance": {
+    "ruleId": "capital-glass-sdlc-milestone-wave-agent-rule",
+    "releaseId": "AI-CACHE-RELEASE-20260806-f83861600831",
+    "sourceHash": "6d93f27edbe1346d88fd5104d7b1700c01c7d7268a8836e507c2420ef965b292",
+    "headSha": "2be11b9758e3b98f2112f591071ca6b4152726ba",
+    "branch": "asg-self-converging-estate-v1",
+    "preparedAt": "2026-08-08T03:27:44.941Z"
+  },
+  "verifiedTruths": [
+    "sdlc prepare pipeline returned READY with authoritative protocol",
+    "universal harvest envelope preserves multi-lane findings"
+  ],
+  "derivedConclusions": [],
+  "decisions": [],
+  "changes": [
+    "scripts/sdlc-protocol-cursor/* universal harvest + durable closeout"
+  ],
+  "commands": [
+    "npm run test:sdlc-protocol-cursor",
+    "npm run sdlc:cursor:execute -- --proof-wave"
+  ],
+  "gateResults": [
+    {
+      "gate": "run-sdlc-protocol-cursor-integration.test.mjs",
+      "result": "PASS"
+    },
+    {
+      "gate": "sdlc:cursor:execute --proof-wave",
+      "result": "PASS"
+    }
+  ],
+  "evidence": [
+    "artifacts/agent-runs/asg-self-converging-estate-v1/sdlc-cursor-prepare-receipt.json",
+    "artifacts/agent-runs/asg-self-converging-estate-v1/sdlc-universal-harvest.json"
+  ],
+  "risks": [],
+  "blockers": [],
+  "unknowns": [],
+  "crossCheckInstructions": [
+    "git -C /home/wesle/repos/CG-AppBuilder-MCP-asg-self-converging-estate-v1 rev-parse HEAD",
+    "test -f artifacts/agent-runs/asg-self-converging-estate-v1/sdlc-durability-receipt.json"
+  ],
+  "futureCreationOpportunities": [],
+  "recommendedNextWave": "",
+  "universalHarvest": {
+    "harvestVersion": "universal-harvest-envelope-v1@1.0.0",
+    "milestoneId": "asg-self-converging-estate-v1",
+    "waveId": "asg-self-converging-estate-v1",
+    "executionMode": "FORMAL_CLOSEOUT",
+    "source": {
+      "repository": "/home/wesle/repos/CG-AppBuilder-MCP-asg-self-converging-estate-v1",
+      "sha": "2be11b9758e3b98f2112f591071ca6b4152726ba",
+      "environment": "wesley_work",
+      "machine": "wesley_work",
+      "observedAt": "2026-08-08T03:27:44.951Z",
+      "receiptRefs": []
+    },
+    "surfacesTouched": {
+      "repositories": [
+        "CG-AppBuilder-MCP"
+      ],
+      "applications": [
+        "Document Center",
+        "Bid Composer"
+      ],
+      "businessWorkflows": [
+        "estimating-intake-handoff"
+      ],
+      "operatorInteractions": [],
+      "crossAppHandoffs": [
+        "document-center-bff"
+      ],
+      "runtimeServices": [
+        "sdlc-protocol-cursor"
+      ],
+      "documentsOrData": [],
+      "externalIntegrations": [],
+      "machinesOrEnvironments": []
+    },
+    "findings": [
+      {
+        "findingId": "proof-sdlc-lane",
+        "stableIdentity": "proof-sdlc-lane",
+        "findingType": "sdlc_observation",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "INFRASTRUCTURE_ENVIRONMENT"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "derived",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "CG-AppBuilder-MCP sdlc-protocol-cursor prepare classifies MILESTONE_WAVE without forcing harvest lane",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "proof-product-lane",
+        "stableIdentity": "proof-product-lane",
+        "findingType": "workflow_observation",
+        "laneMembership": [
+          "PRODUCT_WORKFLOW",
+          "INTEGRATION_HANDOFF",
+          "PERFORMANCE_RELIABILITY"
+        ],
+        "primaryLane": "PRODUCT_WORKFLOW",
+        "claimClass": "derived",
+        "confidence": "medium",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Bid Composer estimating-intake-handoff via document-center-bff to Document Center completed in prior product-estate wave",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "proof-success",
+        "stableIdentity": "proof-success",
+        "findingType": "success_pattern",
+        "laneMembership": [
+          "SUCCESS_PATTERN",
+          "AUTONOMOUS_AGENT_SDLC"
+        ],
+        "primaryLane": "SUCCESS_PATTERN",
+        "claimClass": "derived",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "AMCR cycle 1 completed without operator rescue on retrieval failover",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "proof-unmodeled",
+        "stableIdentity": "proof-unmodeled",
+        "findingType": "novel_signal",
+        "laneMembership": [
+          "UNMODELED_INTELLIGENCE"
+        ],
+        "primaryLane": "UNMODELED_INTELLIGENCE",
+        "claimClass": "derived",
+        "confidence": "medium",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Operator prefers single milestone prompt without admin follow-ups",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {
+          "signalClass": "operator_preference"
+        }
+      },
+      {
+        "findingId": "verified-dfa2482c49d1",
+        "stableIdentity": "sdlc prepare pipeline returned READY with authoritative protocol",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "sdlc prepare pipeline returned READY with authoritative protocol",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-06180197d0e6",
+        "stableIdentity": "universal harvest envelope preserves multi-lane findings",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "universal harvest envelope preserves multi-lane findings",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "success-d043aa1fca76",
+        "stableIdentity": "success-d043aa1fca76",
+        "findingType": "success_pattern",
+        "laneMembership": [
+          "SUCCESS_PATTERN"
+        ],
+        "primaryLane": "SUCCESS_PATTERN",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Git-ledger failover recovery pattern reusable for index preflight",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "product-6db22f43b8ec",
+        "stableIdentity": "product-6db22f43b8ec",
+        "findingType": "product_observation",
+        "laneMembership": [
+          "PRODUCT_FUNCTIONALITY",
+          "PRODUCT_WORKFLOW"
+        ],
+        "primaryLane": "PRODUCT_FUNCTIONALITY",
+        "claimClass": "derived",
+        "confidence": "medium",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Product-estate probe surface represented in harvest",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      }
+    ],
+    "coverage": {
+      "touchedSurfaceCount": 6,
+      "harvestedSurfaceCount": 8,
+      "unharvestedTouchedSurfaces": [],
+      "coverageVerdict": "COVERAGE_OK",
+      "harvestedSurfaceKeys": [
+        "lane:AUTONOMOUS_AGENT_SDLC",
+        "lane:INFRASTRUCTURE_ENVIRONMENT",
+        "type:sdlc_observation",
+        "lane:PRODUCT_WORKFLOW",
+        "lane:INTEGRATION_HANDOFF",
+        "lane:PERFORMANCE_RELIABILITY",
+        "type:workflow_observation",
+        "lane:SUCCESS_PATTERN",
+        "type:success_pattern",
+        "lane:UNMODELED_INTELLIGENCE",
+        "type:novel_signal",
+        "lane:DOCUMENTATION_KNOWLEDGE",
+        "type:verified_truth",
+        "lane:PRODUCT_FUNCTIONALITY",
+        "type:product_observation"
+      ]
+    },
+    "accounting": {
+      "sourceObservations": 8,
+      "findingsPreserved": 8,
+      "distinctValidSuppressed": 0,
+      "unknownUsefulPreserved": 1
+    },
+    "canonicalLanes": [
+      "AUTONOMOUS_AGENT_SDLC",
+      "PRODUCT_FUNCTIONALITY",
+      "PRODUCT_WORKFLOW",
+      "OPERATOR_FRICTION",
+      "INTEGRATION_HANDOFF",
+      "DATA_EXTRACTION_QUALITY",
+      "PERFORMANCE_RELIABILITY",
+      "BUSINESS_PROCESS",
+      "OBSERVABILITY_GAP",
+      "SUCCESS_PATTERN",
+      "SECURITY_GOVERNANCE",
+      "DOCUMENTATION_KNOWLEDGE",
+      "INFRASTRUCTURE_ENVIRONMENT",
+      "COST_EFFICIENCY",
+      "FUTURE_OPPORTUNITY",
+      "UNMODELED_INTELLIGENCE"
+    ],
+    "envelopeHash": "5cd1d23622f4591716915895f0a12ecc634eb0be0b8a1a7cdab87a75452b37a7"
+  },
+  "universalHarvestEnvelopeSchema": "universal-harvest-envelope-v1@1.0.0",
+  "harvestHash": "86eb2c682860e299540c00b7857b580bb6400cd0d5db840cd159ee23dc898527",
+  "sdlcCursorBridge": {
+    "schema": "sdlc-cursor-waverunner-handoff-bridge-receipt-v1@1.0.0",
+    "workPackageId": "asg-self-converging-estate-v1",
+    "harvestId": "harvest-asg-self-converging-estate-v1",
+    "packetHash": "36501f9460727827ca61a7cc0c56ced53d928ab1e1f42d4353dbd595f725a767",
+    "promptHash": "21951b55554bd1576199ffd0c2fcd0e38bca71abbfbc0537bda2cc7663ee7239",
+    "prepareReceiptPath": "/home/wesle/repos/CG-AppBuilder-MCP-asg-self-converging-estate-v1/artifacts/agent-runs/asg-self-converging-estate-v1/sdlc-cursor-prepare-receipt.json",
+    "authorityStatus": "PROPOSAL",
+    "catalogRole": "RETRIEVAL_ONLY",
+    "processingOwner": "Data-Extraction",
+    "sourceOwner": "CapitalGlass-Cross-Agent"
+  }
+}

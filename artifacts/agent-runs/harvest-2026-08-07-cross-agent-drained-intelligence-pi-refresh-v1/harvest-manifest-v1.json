@@ -1,0 +1,324 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-cross-agent-drained-intelligence-pi-refresh-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "20e235e9f59ffbe0b3b436d902736283b93b2d67",
+  "sourceBranch": "feat/harvest-branch-investigation-m23-m24",
+  "sourceRepo": "Data-Extraction",
+  "createdAt": "2026-08-07T21:00:00.000Z",
+  "updatedAt": "2026-08-07T21:00:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "Reopen cross-agent-drained-intelligence-publication-and-pi-refresh-v1",
+    "Re-run cross-agent full drain or 812 bulk ingestion",
+    "Push compaction commit 1afc65d",
+    "Run gold-mine:full-wave",
+    "Run index:publish or harvest:publish-hub-seed from Cursor",
+    "Claim Data-Extraction origin/main is PI authority before feature merge"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-07-cross-agent-drained-intelligence-pi-refresh-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-07-cross-agent-drained-intelligence-pi-refresh-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 3,
+      "seeds": 2,
+      "roiItems": 3,
+      "operatorFriction": 1,
+      "executionDeltas": 2
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Operator runs harvest:publish-hub-seed + index:publish — NOT_RUN_BY_CURSOR"
+  },
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "1.1.0",
+    "eligibleCandidates": 0,
+    "rejectedUnrelatedCandidates": 0,
+    "exportStatus": "not-run",
+    "dataExtractionStatus": "not-run",
+    "catalogPublishStatus": "not-run",
+    "retrievalStatus": "not-run",
+    "targetCatalog": "L:\\02-catalog\\Harvest\\Harvest Protocol Self Learning",
+    "authorityStatus": "PROPOSAL",
+    "automaticProtocolMutation": false
+  },
+  "relatedRepos": [
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "main",
+      "commitSha": "a082553e210c4606d8efca321bdbead847c8ab62",
+      "role": "Hub index publication authority + harvest recording"
+    },
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "branch": "main",
+      "commitSha": "a84d1ae747d7905c8dd74726846da3decb322e2e",
+      "role": "v1e-live-publication pipeline"
+    },
+    {
+      "repo": "Data-Extraction",
+      "branch": "feat/harvest-branch-investigation-m23-m24",
+      "commitSha": "a413f8ec1b09d1f0925cdc8b208de91f11d3a467",
+      "role": "PI publication SHA lineage"
+    }
+  ],
+  "packets": [
+    {
+      "packetKind": "decision",
+      "packetId": "cross-agent-pi-refresh-milestone-closed-v1",
+      "packetTitle": "cross-agent-drained-intelligence-publication-and-pi-refresh-v1 GO / CLOSED",
+      "state": "COMPLETE",
+      "packetVerdict": "MILESTONE_CLOSED",
+      "ownerRepo": "Data-Extraction",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-cross-agent-drained-intelligence-pi-refresh-v1.md",
+      "nextAction": "Operator merges DE feature → main as new work package",
+      "advancementGate": "END_TO_END_PROVENANCE_PASS",
+      "doNotAdvance": [
+        "Reopen milestone lanes A–F"
+      ],
+      "evidenceRefs": [
+        "TE-006",
+        "final-provenance-receipt.json",
+        "FINAL_CLOSEOUT.md"
+      ],
+      "commitRefs": [
+        "Data-Extraction@20e235e9f59ffbe0b3b436d902736283b93b2d67"
+      ],
+      "blockers": []
+    },
+    {
+      "packetKind": "outcome",
+      "packetId": "bulk-hub-provenance-chain-pass-v1",
+      "packetTitle": "812 sources → 17 packages → 243 intelligence with provenance PASS",
+      "state": "COMPLETE",
+      "packetVerdict": "VERIFIED",
+      "ownerRepo": "Data-Extraction",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-cross-agent-drained-intelligence-pi-refresh-v1.md",
+      "nextAction": "None — frozen upstream",
+      "advancementGate": "BULK_HUB_PROVENANCE_PASS",
+      "doNotAdvance": [
+        "Re-ingest 812 corpus"
+      ],
+      "evidenceRefs": [
+        "TE-002",
+        "TE-003",
+        "bulk-hub-provenance-verification.json",
+        "provenance-gate.json"
+      ],
+      "commitRefs": [
+        "Data-Extraction@a413f8ec1b09d1f0925cdc8b208de91f11d3a467"
+      ],
+      "blockers": []
+    },
+    {
+      "packetKind": "evidence",
+      "packetId": "cross-agent-hub-publish-pass-v1",
+      "packetTitle": "Cross-Agent index:publish PUBLISH_PASS @ main a082553",
+      "state": "COMPLETE",
+      "packetVerdict": "VERIFIED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-cross-agent-drained-intelligence-pi-refresh-v1.md",
+      "nextAction": "Operator hub seed publish if desired",
+      "advancementGate": "CROSS_AGENT_PI_PUBLICATION_CURRENT",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-004",
+        "runtime/index-publication/latest.json",
+        "cross-agent-pi-publication-receipt.json"
+      ],
+      "commitRefs": [
+        "CapitalGlass-Cross-Agent@a082553e210c4606d8efca321bdbead847c8ab62"
+      ],
+      "blockers": []
+    },
+    {
+      "packetKind": "evidence",
+      "packetId": "data-extraction-v1e-pi-current-v1",
+      "packetTitle": "Data-Extraction v1e PI CURRENT with publicationId daa3add1",
+      "state": "COMPLETE",
+      "packetVerdict": "VERIFIED",
+      "ownerRepo": "Data-Extraction",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-cross-agent-drained-intelligence-pi-refresh-v1.md",
+      "nextAction": "Merge feature to align main with PI SHA",
+      "advancementGate": "DATA_EXTRACTION_PI_INDEX_CURRENT",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-005",
+        "data-extraction-pi-publication-receipt.json",
+        "publicationId:daa3add1-4d7e-4b83-afd3-0d09a5fe785f"
+      ],
+      "commitRefs": [
+        "Data-Extraction@a413f8ec1b09d1f0925cdc8b208de91f11d3a467"
+      ],
+      "blockers": []
+    },
+    {
+      "packetKind": "command",
+      "packetId": "de-v1e-live-publication-command-v1",
+      "packetTitle": "doppler v1e-live-publication after derived-intel:build",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-cross-agent-drained-intelligence-pi-refresh-v1.md",
+      "nextAction": "Reuse for future DE PI refresh waves",
+      "advancementGate": "v1e publication receipt",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-005",
+        "TW-003",
+        "scripts/derived-intel/run-v1e-live-publication.mjs"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@a84d1ae747d7905c8dd74726846da3decb322e2e"
+      ],
+      "blockers": []
+    },
+    {
+      "packetKind": "blocker",
+      "packetId": "de-main-lags-feature-pi-v1",
+      "packetTitle": "Data-Extraction origin/main lags PI authority feature branch",
+      "state": "ACTIVE",
+      "packetVerdict": "EXPECTED_HOUSEKEEPING",
+      "ownerRepo": "Data-Extraction",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-cross-agent-drained-intelligence-pi-refresh-v1.md",
+      "nextAction": "PR merge feat/harvest-branch-investigation-m23-m24 → main",
+      "advancementGate": "main SHA matches a413f8e or later",
+      "doNotAdvance": [
+        "Claim main is PI-current"
+      ],
+      "evidenceRefs": [
+        "TE-007",
+        "de-git-authority-decision.json",
+        "ED-001"
+      ],
+      "commitRefs": [
+        "Data-Extraction@6b2ee5b (main lags)"
+      ],
+      "blockers": [
+        "Feature branch not merged to main"
+      ]
+    },
+    {
+      "packetKind": "mistake",
+      "packetId": "preflight-stale-cross-agent-sha-v1",
+      "packetTitle": "Preflight pinned bf3952e while origin/main was a082553",
+      "state": "RESOLVED",
+      "packetVerdict": "CORRECTED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-cross-agent-drained-intelligence-pi-refresh-v1.md",
+      "nextAction": "Fetch origin/main in milestone preflight scripts",
+      "advancementGate": "publication @ live main SHA",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "WM-001",
+        "TW-001"
+      ],
+      "commitRefs": [
+        "CapitalGlass-Cross-Agent@a082553e210c4606d8efca321bdbead847c8ab62"
+      ],
+      "blockers": []
+    },
+    {
+      "packetKind": "faster_path",
+      "packetId": "cross-agent-ledger-only-pi-model-v1",
+      "packetTitle": "Cross-Agent PI is Hub ledger publication — not codeintel CURRENT",
+      "state": "COMPLETE",
+      "packetVerdict": "CLASSIFIED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-cross-agent-drained-intelligence-pi-refresh-v1.md",
+      "nextAction": "Document in harvest seed for future agents",
+      "advancementGate": "NO_CURRENT_PUBLICATION confusion avoided",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "ED-002",
+        "TE-004"
+      ],
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetKind": "protocol_upgrade",
+      "packetId": "frozen-upstream-milestone-closeout-v1",
+      "packetTitle": "Authority convergence milestone requires frozen upstream + lane gates",
+      "state": "COMPLETE",
+      "packetVerdict": "DOCUMENTED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md",
+      "nextAction": "Use seed IH-CROSS-AGENT-PI-REFRESH-FROZEN-UPSTREAM-001",
+      "advancementGate": "harvest:validate PASS",
+      "doNotAdvance": [
+        "index:publish from Cursor"
+      ],
+      "evidenceRefs": [
+        "L:\\02-catalog\\Harvest\\protocol\\CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md",
+        "SP-001"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "futureAgentInstructions": {
+        "whenThisAppears": "Post-drain PI refresh or bulk closeout threads",
+        "startAt": [
+          "final-provenance-receipt.json",
+          "BY-KIND/thread-autopsy-index.json"
+        ],
+        "runPreflight": [
+          "npm run agent:index:scout -- --json"
+        ],
+        "doNot": [
+          "Re-run frozen upstream lanes",
+          "Run index:publish from Cursor"
+        ],
+        "proveBeforeClaiming": [
+          "All seven milestone gates PASS",
+          "Hub + DE publication receipts"
+        ]
+      }
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": null,
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 9,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 9,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-7d14bd8a1153",
+      "prompt-candidate-fb0dc100fee5",
+      "prompt-candidate-129be2424833",
+      "prompt-candidate-fe7d665468ff",
+      "prompt-candidate-21596e99ef74",
+      "prompt-candidate-499af0c3cd73",
+      "prompt-candidate-9978981f52cd",
+      "prompt-candidate-2647c8c7dbbb",
+      "prompt-candidate-64dfd1747a08"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

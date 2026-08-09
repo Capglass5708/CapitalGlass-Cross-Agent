@@ -1,0 +1,895 @@
+{
+  "packetKind": "graph-extraction",
+  "schemaVersion": "cg-master-graph-extraction-v1",
+  "extractionId": "extraction:harvest-2026-08-08-mcp-estate-transcript-closeout-v1",
+  "harvestId": "harvest-2026-08-08-mcp-estate-transcript-closeout-v1",
+  "workPackageId": "harvest-2026-08-08-mcp-estate-transcript-closeout-v1",
+  "producer": {
+    "repositoryId": "repo:capitalglass-cross-agent",
+    "capability": "harvest-graph-extraction",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "id": "harvest:harvest-2026-08-08-mcp-estate-transcript-closeout-v1",
+      "nodeType": "Harvest",
+      "displayName": "harvest-2026-08-08-mcp-estate-transcript-closeout-v1",
+      "lifecycleState": "lifecycle:canonical",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+        "sourceCommitSha": "dca7cd447464ffa0689d9a8c190ea17d4a34393b",
+        "retrievalResult": "INDEX_HIT_AI_CACHE"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:mcp-health-functional-probe-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "MCP suite health requires stdio functional probes not config presence",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "DECIDED",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-08-mcp-estate-transcript-closeout-v1.md",
+        "advancementGate": "documented"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/mcp-health-functional-probe-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/mcp-health-functional-probe-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:cg-app-builder-stale-session-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "cg-app-builder-mcp list_projects SESSION_STALE after JWT refresh",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "ACTIVE",
+      "metadata": {
+        "packetVerdict": "BLOCKED",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-08-mcp-estate-transcript-closeout-v1.md",
+        "advancementGate": "list_projects ok"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/cg-app-builder-stale-session-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/cg-app-builder-stale-session-v1.json"
+        }
+      }
+    },
+    {
+      "id": "entity:blocker-blocker-cg-app-builder-stale-session-v1",
+      "nodeType": "Entity",
+      "displayName": "blocker-cg-app-builder-stale-session-v1",
+      "metadata": {
+        "entityKind": "harvest-blocker",
+        "blockerOwner": null
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/cg-app-builder-stale-session-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/cg-app-builder-stale-session-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:supabase-hosted-oauth-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "user-supabase and user-supabase-mcp-control need Cursor OAuth",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "ACTIVE",
+      "metadata": {
+        "packetVerdict": "AUTH_BLOCKED",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-08-mcp-estate-transcript-closeout-v1.md",
+        "advancementGate": "serverStatus ready + functional probe"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/supabase-hosted-oauth-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/supabase-hosted-oauth-v1.json"
+        }
+      }
+    },
+    {
+      "id": "entity:blocker-blocker-supabase-hosted-oauth-v1",
+      "nodeType": "Entity",
+      "displayName": "blocker-supabase-hosted-oauth-v1",
+      "metadata": {
+        "entityKind": "harvest-blocker",
+        "blockerOwner": null
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/supabase-hosted-oauth-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/supabase-hosted-oauth-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:http-projects-false-green-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "HTTP /projects 200 while stdio MCP failed",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "CLASSIFIED",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-08-mcp-estate-transcript-closeout-v1.md",
+        "advancementGate": "seed published"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/http-projects-false-green-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/http-projects-false-green-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:establish-cursor-host-first-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Establish CURSOR_HOST before any MCP repair",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "CLASSIFIED",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-08-mcp-estate-transcript-closeout-v1.md",
+        "advancementGate": "documented"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/establish-cursor-host-first-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/establish-cursor-host-first-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:mcp-repair-command-chain-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "WESLEY_WORK MCP repair and verification commands",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "DOCUMENTED",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-08-mcp-estate-transcript-closeout-v1.md",
+        "advancementGate": "MCP_100_PERCENT_HEALTHY"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/mcp-repair-command-chain-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/mcp-repair-command-chain-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:mcp-estate-health-receipt-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Post-repair MCP estate verification receipt",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "VERIFIED",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-08-mcp-estate-transcript-closeout-v1.md",
+        "advancementGate": "suiteVerdict MCP_100_PERCENT_HEALTHY"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/mcp-estate-health-receipt-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/mcp-estate-health-receipt-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:windows-mcp-json-bootstrap-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Windows-hosted WSL paths require C:\\Users\\<user>\\.cursor\\mcp.json",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "DOCUMENTED",
+        "ownerRepo": "Cursor-MCP-Kit",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-08-mcp-estate-transcript-closeout-v1.md",
+        "advancementGate": "harvest:validate PASS"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/windows-mcp-json-bootstrap-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/windows-mcp-json-bootstrap-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:mcp-repair-partial-outcome-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "MCP estate repair — config restored, functional health blocked",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "PARTIAL",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-08-mcp-estate-transcript-closeout-v1.md",
+        "advancementGate": "MCP_100_PERCENT_HEALTHY"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/mcp-repair-partial-outcome-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/mcp-repair-partial-outcome-v1.json"
+        }
+      }
+    },
+    {
+      "id": "entity:blocker-blocker-mcp-repair-partial-outcome-v1",
+      "nodeType": "Entity",
+      "displayName": "blocker-mcp-repair-partial-outcome-v1",
+      "metadata": {
+        "entityKind": "harvest-blocker",
+        "blockerOwner": null
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/mcp-repair-partial-outcome-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/mcp-repair-partial-outcome-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:transcript-numbering-outcome-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "L:\\Transcripts sequential numbering operational",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "PROVEN_EFFECTIVE",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-08-mcp-estate-transcript-closeout-v1.md",
+        "advancementGate": "nextSequence 7"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/transcript-numbering-outcome-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/transcript-numbering-outcome-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:transcript-numbering-command-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Assign transcript sequential IDs on L:",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "DOCUMENTED",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-08-mcp-estate-transcript-closeout-v1.md",
+        "advancementGate": "documented"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/transcript-numbering-command-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/transcript-numbering-command-v1.json"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:harvest-harvest-2026-08-08-mcp-estate-transcript-closeout-v1-contains-workpackage-mcp-health-functional-probe-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-08-mcp-estate-transcript-closeout-v1",
+      "targetId": "workpackage:mcp-health-functional-probe-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-mcp-health-functional-probe-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:mcp-health-functional-probe-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/mcp-health-functional-probe-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/mcp-health-functional-probe-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-08-mcp-estate-transcript-closeout-v1-contains-workpackage-cg-app-builder-stale-session-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-08-mcp-estate-transcript-closeout-v1",
+      "targetId": "workpackage:cg-app-builder-stale-session-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-cg-app-builder-stale-session-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:cg-app-builder-stale-session-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/cg-app-builder-stale-session-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/cg-app-builder-stale-session-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-cg-app-builder-stale-session-v1-blocked-by-entity-blocker-blocker-cg-app-builder-stale-session-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:cg-app-builder-stale-session-v1",
+      "targetId": "entity:blocker-blocker-cg-app-builder-stale-session-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/cg-app-builder-stale-session-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/cg-app-builder-stale-session-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-08-mcp-estate-transcript-closeout-v1-contains-workpackage-supabase-hosted-oauth-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-08-mcp-estate-transcript-closeout-v1",
+      "targetId": "workpackage:supabase-hosted-oauth-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-supabase-hosted-oauth-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:supabase-hosted-oauth-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/supabase-hosted-oauth-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/supabase-hosted-oauth-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-supabase-hosted-oauth-v1-blocked-by-entity-blocker-blocker-supabase-hosted-oauth-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:supabase-hosted-oauth-v1",
+      "targetId": "entity:blocker-blocker-supabase-hosted-oauth-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/supabase-hosted-oauth-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/supabase-hosted-oauth-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-08-mcp-estate-transcript-closeout-v1-contains-workpackage-http-projects-false-green-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-08-mcp-estate-transcript-closeout-v1",
+      "targetId": "workpackage:http-projects-false-green-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-http-projects-false-green-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:http-projects-false-green-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/http-projects-false-green-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/http-projects-false-green-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-08-mcp-estate-transcript-closeout-v1-contains-workpackage-establish-cursor-host-first-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-08-mcp-estate-transcript-closeout-v1",
+      "targetId": "workpackage:establish-cursor-host-first-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-establish-cursor-host-first-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:establish-cursor-host-first-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/establish-cursor-host-first-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/establish-cursor-host-first-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-08-mcp-estate-transcript-closeout-v1-contains-workpackage-mcp-repair-command-chain-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-08-mcp-estate-transcript-closeout-v1",
+      "targetId": "workpackage:mcp-repair-command-chain-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-mcp-repair-command-chain-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:mcp-repair-command-chain-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/mcp-repair-command-chain-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/mcp-repair-command-chain-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-08-mcp-estate-transcript-closeout-v1-contains-workpackage-mcp-estate-health-receipt-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-08-mcp-estate-transcript-closeout-v1",
+      "targetId": "workpackage:mcp-estate-health-receipt-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-mcp-estate-health-receipt-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:mcp-estate-health-receipt-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/mcp-estate-health-receipt-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/mcp-estate-health-receipt-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-08-mcp-estate-transcript-closeout-v1-contains-workpackage-windows-mcp-json-bootstrap-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-08-mcp-estate-transcript-closeout-v1",
+      "targetId": "workpackage:windows-mcp-json-bootstrap-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-08-mcp-estate-transcript-closeout-v1-contains-workpackage-mcp-repair-partial-outcome-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-08-mcp-estate-transcript-closeout-v1",
+      "targetId": "workpackage:mcp-repair-partial-outcome-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-mcp-repair-partial-outcome-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:mcp-repair-partial-outcome-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/mcp-repair-partial-outcome-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/mcp-repair-partial-outcome-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-mcp-repair-partial-outcome-v1-blocked-by-entity-blocker-blocker-mcp-repair-partial-outcome-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:mcp-repair-partial-outcome-v1",
+      "targetId": "entity:blocker-blocker-mcp-repair-partial-outcome-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/mcp-repair-partial-outcome-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/mcp-repair-partial-outcome-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-mcp-repair-partial-outcome-v1-blocked-by-entity-blocker-blocker-mcp-repair-partial-outcome-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:mcp-repair-partial-outcome-v1",
+      "targetId": "entity:blocker-blocker-mcp-repair-partial-outcome-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/mcp-repair-partial-outcome-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/mcp-repair-partial-outcome-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-08-mcp-estate-transcript-closeout-v1-contains-workpackage-transcript-numbering-outcome-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-08-mcp-estate-transcript-closeout-v1",
+      "targetId": "workpackage:transcript-numbering-outcome-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-transcript-numbering-outcome-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:transcript-numbering-outcome-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/transcript-numbering-outcome-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/transcript-numbering-outcome-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-08-mcp-estate-transcript-closeout-v1-contains-workpackage-transcript-numbering-command-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-08-mcp-estate-transcript-closeout-v1",
+      "targetId": "workpackage:transcript-numbering-command-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-transcript-numbering-command-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:transcript-numbering-command-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T15:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/transcript-numbering-command-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/compact-records/transcript-numbering-command-v1.json"
+        }
+      }
+    }
+  ],
+  "warnings": [
+    "unmapped ownerRepo Cursor-MCP-Kit for packet windows-mcp-json-bootstrap-v1"
+  ],
+  "provenance": {
+    "producerRepositoryId": "repo:capitalglass-cross-agent",
+    "producerCapability": "harvest-graph-extraction",
+    "sourceAuthority": "authority:cross-agent-harvest",
+    "classification": "observed",
+    "verificationState": "verified",
+    "recordedAt": "2026-08-08T15:35:00.000Z",
+    "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/harvest-manifest-v1.json",
+    "sourceAnchorDetail": {
+      "anchorType": "file-path",
+      "locator": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/harvest-manifest-v1.json"
+    }
+  }
+}

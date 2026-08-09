@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-WAVERUNNER-PG-SPINE-SEPARATE-001",
+  "kind": "blocker",
+  "title": "PG governedSpineHash is separate from waverunner rail",
+  "summary": "Production lock may select pg-estimator; compile failure is PG projection lane not waverunner architecture defect.",
+  "retrievalQuestions": [
+    "Why does bare waverunner fail on production lock?",
+    "Is governedSpineHash a waverunner bug?"
+  ],
+  "evidenceRefs": ["TE-006"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Bare npm run sdlc:waverunner selects pg-estimator and fails compile",
+    "startAt": ["artifacts/agent-runs/milestone-execution-lock.json"],
+    "runPreflight": [],
+    "doNot": ["Reopen frozen waverunner architecture to fix PG"],
+    "proveBeforeClaiming": ["resolvedMilestone identity", "blockerCode VERIFIED_CONTEXT_COMPILE_FAILED"]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/active-work-blockers.json",
+  "promotionClass": "HUMAN_REVIEW",
+  "status": "CANDIDATE",
+  "roiRank": 2,
+  "wasteIds": []
+}

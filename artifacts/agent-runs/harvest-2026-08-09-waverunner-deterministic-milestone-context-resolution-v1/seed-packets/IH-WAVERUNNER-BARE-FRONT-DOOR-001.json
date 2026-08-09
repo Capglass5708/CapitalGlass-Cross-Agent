@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-WAVERUNNER-BARE-FRONT-DOOR-001",
+  "kind": "runbook",
+  "title": "Normal operator SDLC WaveRunner invocation",
+  "summary": "Run npm run sdlc:waverunner; machine resolves milestone, continuation, and compact verified context without --milestone.",
+  "retrievalQuestions": [
+    "How does operator continue WaveRunner without naming milestone?",
+    "What is the bare WaveRunner command?"
+  ],
+  "evidenceRefs": ["TE-005", "terminal-operator-exact-command-acceptance.json"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Operator says run the SDLC WaveRunner",
+    "startAt": ["CG-AppBuilder-MCP npm run sdlc:waverunner"],
+    "runPreflight": ["npm run agent:index:scout -- --json"],
+    "doNot": ["Require conversational milestone pinning", "Use --mcp-root fixture for production claims"],
+    "proveBeforeClaiming": ["resolutionStatus=RESOLVED", "contextConsumedByExecution=true"]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/mcp-servers.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE",
+  "roiRank": 1,
+  "wasteIds": ["TW-001"]
+}

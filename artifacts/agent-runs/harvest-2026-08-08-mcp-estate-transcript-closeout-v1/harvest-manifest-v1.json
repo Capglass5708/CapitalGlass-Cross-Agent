@@ -1,0 +1,401 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-08-mcp-estate-transcript-closeout-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "dca7cd447464ffa0689d9a8c190ea17d4a34393b",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-08T15:35:00.000Z",
+  "updatedAt": "2026-08-08T15:35:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "MCP_100_PERCENT_HEALTHY until list_projects + Supabase OAuth pass",
+    "index:publish or harvest:publish-hub-seed from Cursor"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-08-mcp-estate-transcript-closeout-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 4,
+      "seeds": 3,
+      "roiItems": 3,
+      "operatorFriction": 1,
+      "executionDeltas": 1
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Operator runs harvest:publish-hub-seed + index:publish — NOT_RUN_BY_CURSOR"
+  },
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "1.1.0",
+    "eligibleCandidates": 0,
+    "rejectedUnrelatedCandidates": 0,
+    "exportStatus": "not-run",
+    "dataExtractionStatus": "not-run",
+    "catalogPublishStatus": "not-run",
+    "retrievalStatus": "not-run",
+    "targetCatalog": "L:\\02-catalog\\Harvest\\Harvest Protocol Self Learning",
+    "authorityStatus": "PROPOSAL",
+    "automaticProtocolMutation": false
+  },
+  "relatedRepos": [
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "branch": "main",
+      "commitSha": "8c13735786a58a79313118744168ce50f3bcf154",
+      "role": "MCP repair, verification receipt, scout preflight"
+    },
+    {
+      "repo": "Cursor-MCP-Kit",
+      "branch": "main",
+      "role": "reconnect-cursor-mcp.ps1, Repair-Cursor-McpJson-Wsl.sh"
+    }
+  ],
+  "packets": [
+    {
+      "packetKind": "decision",
+      "packetId": "mcp-health-functional-probe-v1",
+      "packetTitle": "MCP suite health requires stdio functional probes not config presence",
+      "state": "COMPLETE",
+      "packetVerdict": "DECIDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-08-mcp-estate-transcript-closeout-v1.md",
+      "nextAction": "Enforce in post-repair verification checklist",
+      "advancementGate": "documented",
+      "doNotAdvance": [
+        "MCP_100_PERCENT_HEALTHY from HTTP only"
+      ],
+      "evidenceRefs": [
+        "TE-004",
+        "TW-002"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@8c13735786a58a79313118744168ce50f3bcf154"
+      ],
+      "blockers": [],
+      "decision": "Functional CallMcpTool probe is denominator for required MCP health",
+      "alternativesRejected": [
+        "PM2 online + mcp.json present = healthy"
+      ],
+      "goldMineSignalClass": "OBSERVABILITY_GAP",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "businessImpact": "PLATFORM_INTERNAL"
+    },
+    {
+      "packetKind": "blocker",
+      "packetId": "cg-app-builder-stale-session-v1",
+      "packetTitle": "cg-app-builder-mcp list_projects SESSION_STALE after JWT refresh",
+      "state": "ACTIVE",
+      "packetVerdict": "BLOCKED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-08-mcp-estate-transcript-closeout-v1.md",
+      "nextAction": "Cursor MCP Restart then re-probe list_projects",
+      "advancementGate": "list_projects ok",
+      "doNotAdvance": [
+        "MCP_100_PERCENT_HEALTHY"
+      ],
+      "evidenceRefs": [
+        "TE-004",
+        "mcp-estate-health-receipt.json"
+      ],
+      "commitRefs": [],
+      "blockers": [
+        "AUTH_REFRESH_FAILED SESSION_STALE"
+      ],
+      "blockerId": "cg-app-builder-stale-stdio-session",
+      "status": "OPEN",
+      "proofCommandId": "CallMcpTool user-cg-app-builder-mcp list_projects",
+      "goldMineSignalClass": "PROBLEM_SIGNAL"
+    },
+    {
+      "packetKind": "blocker",
+      "packetId": "supabase-hosted-oauth-v1",
+      "packetTitle": "user-supabase and user-supabase-mcp-control need Cursor OAuth",
+      "state": "ACTIVE",
+      "packetVerdict": "AUTH_BLOCKED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-08-mcp-estate-transcript-closeout-v1.md",
+      "nextAction": "Complete browser OAuth in Cursor Settings → MCP",
+      "advancementGate": "serverStatus ready + functional probe",
+      "doNotAdvance": [
+        "MCP_100_PERCENT_HEALTHY"
+      ],
+      "evidenceRefs": [
+        "TE-004"
+      ],
+      "commitRefs": [],
+      "blockers": [
+        "needsAuth"
+      ],
+      "blockerId": "supabase-mcp-oauth",
+      "status": "OPEN",
+      "proofCommandId": "GetMcpTools user-supabase",
+      "goldMineSignalClass": "PROBLEM_SIGNAL"
+    },
+    {
+      "packetKind": "mistake",
+      "packetId": "http-projects-false-green-v1",
+      "packetTitle": "HTTP /projects 200 while stdio MCP failed",
+      "state": "COMPLETE",
+      "packetVerdict": "CLASSIFIED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-08-mcp-estate-transcript-closeout-v1.md",
+      "nextAction": "Seed IH-MCP-STDIO-HTTP-PARITY-001",
+      "advancementGate": "seed published",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "WM-001",
+        "ED-001"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "wrongMoveId": "WM-001",
+      "actualExecution": "Relied on integrations-preflight /projects 200",
+      "optimalExecution": "CallMcpTool list_projects after MCP restart",
+      "preventiveControl": "Post-repair verification matrix",
+      "goldMineSignalClass": "AGENT_FRICTION_SIGNAL"
+    },
+    {
+      "packetKind": "faster_path",
+      "packetId": "establish-cursor-host-first-v1",
+      "packetTitle": "Establish CURSOR_HOST before any MCP repair",
+      "state": "COMPLETE",
+      "packetVerdict": "CLASSIFIED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-08-mcp-estate-transcript-closeout-v1.md",
+      "nextAction": "Add to CURSOR_MCP_LOCAL_SETUP.md",
+      "advancementGate": "documented",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-002",
+        "TW-001"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "situation": "Operator opens \\\\wsl.localhost\\ workspace",
+      "whatHappened": "Agent repaired WSL mcp.json while Cursor used Windows profile (missing)",
+      "rightFirstMove": "Detect WINDOWS vs REMOTE_WSL; repair active profile mcp.json",
+      "requiredGuard": "Workspace path probe before mcp.json edits",
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL"
+    },
+    {
+      "packetKind": "command",
+      "packetId": "mcp-repair-command-chain-v1",
+      "packetTitle": "WESLEY_WORK MCP repair and verification commands",
+      "state": "COMPLETE",
+      "packetVerdict": "DOCUMENTED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-08-mcp-estate-transcript-closeout-v1.md",
+      "nextAction": "Operator runs remaining steps after MCP restart",
+      "advancementGate": "MCP_100_PERCENT_HEALTHY",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-003",
+        "TE-004"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "command": "reconnect-cursor-mcp.ps1 -SkipPm2; npm run mcp:setup (WSL); Cursor MCP Restart; CallMcpTool list_projects",
+      "host": "WESLEY_WORK Windows + WSL",
+      "provesGate": "MCP functional health",
+      "expectedPassSignal": "list_projects ok; supabase serverStatus ready"
+    },
+    {
+      "packetKind": "evidence",
+      "packetId": "mcp-estate-health-receipt-v1",
+      "packetTitle": "Post-repair MCP estate verification receipt",
+      "state": "COMPLETE",
+      "packetVerdict": "VERIFIED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-08-mcp-estate-transcript-closeout-v1.md",
+      "nextAction": "Re-run after MCP restart",
+      "advancementGate": "suiteVerdict MCP_100_PERCENT_HEALTHY",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/artifacts/agent-runs/mcp-post-repair-verification-v1/mcp-estate-health-receipt.json"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "type": "receipt",
+      "pathOrSha": "mcp-post-repair-verification-v1/mcp-estate-health-receipt.json",
+      "provesWhat": "MCP_HEALTH_BLOCKED — 11 healthy, 3 blocked required MCPs"
+    },
+    {
+      "packetKind": "protocol_upgrade",
+      "packetId": "windows-mcp-json-bootstrap-v1",
+      "packetTitle": "Windows-hosted WSL paths require C:\\Users\\<user>\\.cursor\\mcp.json",
+      "state": "COMPLETE",
+      "packetVerdict": "DOCUMENTED",
+      "ownerRepo": "Cursor-MCP-Kit",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-08-mcp-estate-transcript-closeout-v1.md",
+      "nextAction": "Seed IH-WINDOWS-MCP-PROFILE-001",
+      "advancementGate": "harvest:validate PASS",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-002",
+        "TE-003"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "seedAs": "runbook",
+      "promotionClass": "POLICY_GATED",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Workspace path contains \\\\wsl.localhost\\",
+        "startAt": [
+          "Test-Path $env:USERPROFILE\\.cursor\\mcp.json"
+        ],
+        "runPreflight": [
+          "Cursor-MCP-Kit\\reconnect-cursor-mcp.ps1 -SkipPm2"
+        ],
+        "doNot": [
+          "Assume WSL ~/.cursor/mcp.json is active for Cursor"
+        ],
+        "proveBeforeClaiming": [
+          "GetMcpTools shows user-cg-app-builder-mcp"
+        ]
+      },
+      "goldMineSignalClass": "SUCCESS_PATTERN"
+    },
+    {
+      "packetKind": "outcome",
+      "packetId": "mcp-repair-partial-outcome-v1",
+      "packetTitle": "MCP estate repair — config restored, functional health blocked",
+      "state": "COMPLETE",
+      "packetVerdict": "PARTIAL",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-08-mcp-estate-transcript-closeout-v1.md",
+      "nextAction": "MCP restart + OAuth + re-probe",
+      "advancementGate": "MCP_100_PERCENT_HEALTHY",
+      "doNotAdvance": [
+        "MCP_100_PERCENT_HEALTHY"
+      ],
+      "evidenceRefs": [
+        "TE-003",
+        "TE-004"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@8c13735786a58a79313118744168ce50f3bcf154"
+      ],
+      "blockers": [
+        "cg-app-builder-stale-session",
+        "supabase-oauth"
+      ],
+      "changeImplemented": "Windows mcp.json, PM2 online, JWT refreshed, 11/14 MCPs functionally healthy",
+      "beforeState": "No Windows mcp.json; plugin MCPs only",
+      "afterState": "15 configured; MCP_HEALTH_BLOCKED",
+      "measurement": "11 healthy required, 3 blocked",
+      "expectedEffect": "All required MCPs functional after restart",
+      "observedEffect": "Partial — integration MCPs pass; core app-builder blocked",
+      "residuals": [
+        "SESSION_STALE",
+        "supabase needsAuth",
+        "dual PM2"
+      ],
+      "regressions": [],
+      "effectiveness": "PARTIAL",
+      "goldMineSignalClass": "RESOLUTION_SIGNAL",
+      "evidenceEra": "POST_IMPLEMENTATION"
+    },
+    {
+      "packetKind": "outcome",
+      "packetId": "transcript-numbering-outcome-v1",
+      "packetTitle": "L:\\Transcripts sequential numbering operational",
+      "state": "COMPLETE",
+      "packetVerdict": "PROVEN_EFFECTIVE",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-08-mcp-estate-transcript-closeout-v1.md",
+      "nextAction": "Run Assign-TranscriptNumbers.ps1 after new drops",
+      "advancementGate": "nextSequence 7",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-005",
+        "L:\\Transcripts\\_registry\\transcript-registry.json"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "changeImplemented": "Assign-TranscriptNumbers.ps1 + registry; 6 files numbered 000001–000006",
+      "beforeState": "Unnumbered cursor transcript markdown files",
+      "afterState": "Monotonic 000001_ prefix; nextSequence 7",
+      "measurement": "6 assignments in registry",
+      "expectedEffect": "Every new file gets next ID",
+      "observedEffect": "Dry-run + live assign succeeded",
+      "residuals": [],
+      "regressions": [],
+      "effectiveness": "PROVEN_EFFECTIVE",
+      "goldMineSignalClass": "SUCCESS_PATTERN",
+      "businessImpact": "OPERATOR_PRODUCTIVITY"
+    },
+    {
+      "packetKind": "command",
+      "packetId": "transcript-numbering-command-v1",
+      "packetTitle": "Assign transcript sequential IDs on L:",
+      "state": "COMPLETE",
+      "packetVerdict": "DOCUMENTED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-08-mcp-estate-transcript-closeout-v1.md",
+      "nextAction": "Optional -Watch mode for auto-assign",
+      "advancementGate": "documented",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-005"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "command": "powershell -ExecutionPolicy Bypass -File L:\\Transcripts\\_scripts\\Assign-TranscriptNumbers.ps1",
+      "host": "WESLEY_WORK Windows",
+      "provesGate": "transcript numbered",
+      "expectedPassSignal": "Assigned N file(s). Next sequence: N+1"
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096",
+    "ledgerContentHashAfter": "694802466ba0497386120146f3a168389285afecf8ee084da75876df972de70a"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 11,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 11,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-e324a2910c1b",
+      "prompt-candidate-e40ccbabb726",
+      "prompt-candidate-d7bba9577198",
+      "prompt-candidate-4b7100a7991a",
+      "prompt-candidate-eb83073527c0",
+      "prompt-candidate-38fc87014e8f",
+      "prompt-candidate-fa16cee66d14",
+      "prompt-candidate-e7fe18e7f109",
+      "prompt-candidate-18b61e6aa0eb",
+      "prompt-candidate-5a3120a00881",
+      "prompt-candidate-87099607c741"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

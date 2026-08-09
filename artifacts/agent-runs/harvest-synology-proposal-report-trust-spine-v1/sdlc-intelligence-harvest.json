@@ -1,0 +1,713 @@
+{
+  "schema": "sdlc-cursor-intelligence-harvest-v2@1.0.0",
+  "milestoneId": "synology-proposal-report-trust-spine-v1",
+  "waveId": "synology-proposal-report-trust-spine-v1",
+  "provenance": {
+    "ruleId": "capital-glass-sdlc-milestone-wave-agent-rule",
+    "releaseId": "AI-CACHE-RELEASE-20260806-2012d9645b9e",
+    "sourceHash": "b3569def1203d672f726f9d45d73d7c4133661c822e3c92c533d71039ff6ca6d",
+    "headSha": "29f1abe9ce1d913c3f93ee230c3c516a6a3a2c55",
+    "branch": "work/pg-estimator-trust-closure-recovery-v1",
+    "preparedAt": "2026-08-08T17:30:23.592Z"
+  },
+  "verifiedTruths": [
+    "Commit 3e2f4e3b pushed to origin/work/pg-estimator-trust-closure-recovery-v1 and merged to main via PR #125",
+    "Production serves gitCommitSha 3e2f4e3bf666a013612a4c5b3de25f3bdc7fa3c5 at https://proposal.capitalglasstxapps.com",
+    "Beacon Hill RPTMETALPOINT status VERIFIED_CURRENT in production HTTP proof",
+    "Beacon Hill RPTMETALPOEXT status VERIFIED_CURRENT in production HTTP proof",
+    "Beacon Hill RPTMISCDOORFAB status REVIEW_REQUIRED by design in production HTTP proof",
+    "Production workspace interiorStock=13690.05 and parsedLineCount=55 for Metal PO Interior source document",
+    "Local and production Wave ABC proofs PASS with 6/6 governed reports verified",
+    "deploy:gate and npm run build PASS on milestone commit",
+    "Milestone evidence artifacts committed and pushed (7986db69, 29f1abe9)",
+    "Production /api/version gitCommitSha 3e2f4e3b matches Wave ABC production proof productionSha",
+    "Wave D estimator-trust E2E explicitly scoped to pg-estimator-trust-closure-recovery-v1; not a terminal gate for report-trust-wave-abc alias"
+  ],
+  "derivedConclusions": [
+    "Filed metal_po_interior/exterior documents now contribute independent interior/exterior scope evidence before workspace pricing is applied",
+    "Metal PO apply path uses expectedUpdatedAt with bounded stale-write retry without weakening concurrency protection"
+  ],
+  "decisions": [],
+  "changes": [
+    "report-scope-applicability: filed metal_po_interior/exterior as scope evidence",
+    "build-required-report-rows: wire classified documents into scope resolver",
+    "apply-metal-po-pricing-to-workspace: expectedUpdatedAt + bounded stale-write retry",
+    "regression tests for scope, integration boundary, and revision retry loop"
+  ],
+  "commands": [
+    "npm run test:metal-po-pricing-bridge-authority",
+    "npm run deploy:gate",
+    "npm run build",
+    "npm run proof:beacon-hill-wave-abc:doppler",
+    "npm run proof:beacon-hill-wave-abc:production-http:doppler",
+    "npx vercel build --prod && npx vc deploy --prebuilt --prod"
+  ],
+  "gateResults": [
+    {
+      "gate": "report-scope-applicability.test.ts",
+      "command": "node --test src/lib/project-intelligence/__tests__/report-scope-applicability.test.ts",
+      "environment": "local",
+      "result": "PASS"
+    },
+    {
+      "gate": "build-required-report-rows.test.ts",
+      "command": "node --test src/lib/project-intelligence/__tests__/build-required-report-rows.test.ts",
+      "environment": "local",
+      "result": "PASS"
+    },
+    {
+      "gate": "apply-metal-po-pricing-to-workspace.test.ts",
+      "command": "npm run test:metal-po-pricing-bridge-authority",
+      "environment": "local",
+      "result": "PASS"
+    },
+    {
+      "gate": "deploy:gate",
+      "command": "npm run deploy:gate",
+      "environment": "local",
+      "result": "PASS"
+    },
+    {
+      "gate": "build",
+      "command": "npm run build",
+      "environment": "local",
+      "result": "PASS"
+    },
+    {
+      "gate": "proof:beacon-hill-wave-abc:doppler",
+      "command": "npm run proof:beacon-hill-wave-abc:doppler",
+      "environment": "prd-doppler",
+      "result": "PASS"
+    },
+    {
+      "gate": "proof:beacon-hill-wave-abc:production-http:doppler",
+      "command": "npm run proof:beacon-hill-wave-abc:production-http:doppler",
+      "environment": "production",
+      "result": "PASS"
+    }
+  ],
+  "evidence": [
+    "Cursor-ProposalGenerator/artifacts/agent-runs/synology-proposal-report-trust-spine-v1/beacon-hill-wave-abc-population-proof.json",
+    "Cursor-ProposalGenerator/artifacts/agent-runs/synology-proposal-report-trust-spine-v1/beacon-hill-wave-abc-production-http-proof.json",
+    "Cursor-ProposalGenerator/artifacts/agent-runs/synology-proposal-report-trust-spine-v1/beacon-hill-metal-po-runtime-probe.json",
+    "https://proposal.capitalglasstxapps.com/api/version",
+    "https://github.com/Capglass5708/Cursor-ProposalGenerator/pull/125"
+  ],
+  "risks": [],
+  "blockers": [],
+  "unknowns": [
+    "No naturally occurring production stale_write conflict observed during closeout; retry behavior proven by unit tests and revision-token wiring"
+  ],
+  "crossCheckInstructions": [
+    "curl -sS https://proposal.capitalglasstxapps.com/api/version",
+    "cd ~/repos/Cursor-ProposalGenerator && npm run proof:beacon-hill-wave-abc:production-http:doppler",
+    "git -C ~/repos/Cursor-ProposalGenerator rev-parse origin/work/pg-estimator-trust-closure-recovery-v1"
+  ],
+  "futureCreationOpportunities": [],
+  "recommendedNextWave": "",
+  "universalHarvest": {
+    "harvestVersion": "universal-harvest-envelope-v1@1.0.0",
+    "milestoneId": "synology-proposal-report-trust-spine-v1",
+    "waveId": "synology-proposal-report-trust-spine-v1",
+    "executionMode": "FORMAL_CLOSEOUT",
+    "source": {
+      "repository": "/home/wesle/repos/Cursor-ProposalGenerator",
+      "sha": "29f1abe9ce1d913c3f93ee230c3c516a6a3a2c55",
+      "environment": "wesley_work",
+      "machine": "wesley_work",
+      "observedAt": "2026-08-08T17:30:23.658Z",
+      "receiptRefs": []
+    },
+    "surfacesTouched": {
+      "repositories": [
+        "Cursor-ProposalGenerator"
+      ],
+      "applications": [
+        "Proposal Generator"
+      ],
+      "businessWorkflows": [
+        "Beacon Hill estimating reports",
+        "Metal PO Interior apply",
+        "Wave ABC report trust proof"
+      ],
+      "operatorInteractions": [
+        "Reports verify-population apply path"
+      ],
+      "crossAppHandoffs": [
+        "Document Layer filed report evidence"
+      ],
+      "runtimeServices": [
+        "proposal-editable-workspace-db",
+        "Vercel production"
+      ],
+      "documentsOrData": [
+        "metal_po_interior",
+        "metal_po_exterior"
+      ],
+      "externalIntegrations": [
+        "Vercel",
+        "Supabase"
+      ],
+      "machinesOrEnvironments": [
+        "WESLEY_WORK WSL",
+        "production"
+      ]
+    },
+    "findings": [
+      {
+        "findingId": "pg-metal-po-scope-evidence-gap",
+        "stableIdentity": "filed-metal-po-not-in-scope-signals",
+        "findingType": "defect_closed",
+        "laneMembership": [
+          "PRODUCT_FUNCTIONALITY",
+          "PRODUCT_WORKFLOW"
+        ],
+        "primaryLane": "PRODUCT_FUNCTIONALITY",
+        "claimClass": "PRODUCT_FUNCTIONALITY",
+        "confidence": "high",
+        "evidenceRefs": [
+          "beacon-hill-wave-abc-population-proof.json",
+          "report-scope-applicability.ts"
+        ],
+        "rawRefs": [],
+        "observedBehavior": "Beacon Hill Metal PO Interior parsed ($13690.05, 55 lines) but orchestrator skipped as not_in_scope because deriveProjectScopeSignals ignored filed metal PO documents",
+        "expectedBehavior": "",
+        "impact": "Interior report trust blocked despite valid filed evidence",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "pg-metal-po-stale-write-apply",
+        "stableIdentity": "metal-po-apply-missing-expectedUpdatedAt",
+        "findingType": "defect_closed",
+        "laneMembership": [
+          "PERFORMANCE_RELIABILITY",
+          "PRODUCT_WORKFLOW"
+        ],
+        "primaryLane": "PERFORMANCE_RELIABILITY",
+        "claimClass": "PERFORMANCE_RELIABILITY",
+        "confidence": "high",
+        "evidenceRefs": [
+          "apply-metal-po-pricing-to-workspace.ts",
+          "runWorkspaceRevisionRetryLoop tests"
+        ],
+        "rawRefs": [],
+        "observedBehavior": "applyMetalPoPricingFromReportDocument saved without expectedUpdatedAt causing stale_write on existing workspace rows",
+        "expectedBehavior": "",
+        "impact": "Apply workflow could fail after scope fix until revision token retry added",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "pg-wave-abc-production-proof-pass",
+        "stableIdentity": "beacon-hill-wave-abc-production-pass",
+        "findingType": "success_pattern",
+        "laneMembership": [
+          "SUCCESS_PATTERN",
+          "AUTONOMOUS_AGENT_SDLC"
+        ],
+        "primaryLane": "SUCCESS_PATTERN",
+        "claimClass": "SUCCESS_PATTERN",
+        "confidence": "high",
+        "evidenceRefs": [
+          "beacon-hill-wave-abc-production-http-proof.json"
+        ],
+        "rawRefs": [],
+        "observedBehavior": "Canonical proof:beacon-hill-wave-abc:production-http:doppler PASS with 6/6 verified and Door Fab REVIEW_REQUIRED preserved",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "pg-vercel-prebuilt-deploy-path",
+        "stableIdentity": "proposal-generator-vercel-prebuilt-prod",
+        "findingType": "pattern",
+        "laneMembership": [
+          "INFRASTRUCTURE_ENVIRONMENT",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "INFRASTRUCTURE_ENVIRONMENT",
+        "claimClass": "INFRASTRUCTURE_ENVIRONMENT",
+        "confidence": "high",
+        "evidenceRefs": [
+          "wave-d6b-vercel-deploy.log",
+          "/api/version SHA parity"
+        ],
+        "rawRefs": [],
+        "observedBehavior": "Production cutover uses vercel build --prod then vc deploy --prebuilt --prod --scope capital-glass --project cg-proposal-generator with Doppler prd env",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "pg-unrelated-dirty-worktree",
+        "stableIdentity": "estimator-trust-closure-unrelated-dirty",
+        "findingType": "warning",
+        "laneMembership": [
+          "OPERATOR_FRICTION",
+          "AUTONOMOUS_AGENT_SDLC"
+        ],
+        "primaryLane": "OPERATOR_FRICTION",
+        "claimClass": "OPERATOR_FRICTION",
+        "confidence": "high",
+        "evidenceRefs": [
+          "git status"
+        ],
+        "rawRefs": [],
+        "observedBehavior": "Branch work/pg-estimator-trust-closure-recovery-v1 has unrelated unstaged estimator-trust files; milestone commit kept allowlisted scope only",
+        "expectedBehavior": "",
+        "impact": "SDLC prepare required --allow-dirty; does not affect milestone durability",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-0dce3b7f1bf9",
+        "stableIdentity": "Commit 3e2f4e3b pushed to origin/work/pg-estimator-trust-closure-recovery-v1 and merged to main via PR #125",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Commit 3e2f4e3b pushed to origin/work/pg-estimator-trust-closure-recovery-v1 and merged to main via PR #125",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-92869f1fc706",
+        "stableIdentity": "Production serves gitCommitSha 3e2f4e3bf666a013612a4c5b3de25f3bdc7fa3c5 at https://proposal.capitalglasstxapps.com",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Production serves gitCommitSha 3e2f4e3bf666a013612a4c5b3de25f3bdc7fa3c5 at https://proposal.capitalglasstxapps.com",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-b770f65212f0",
+        "stableIdentity": "Beacon Hill RPTMETALPOINT status VERIFIED_CURRENT in production HTTP proof",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Beacon Hill RPTMETALPOINT status VERIFIED_CURRENT in production HTTP proof",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-a2fdc373ff79",
+        "stableIdentity": "Beacon Hill RPTMETALPOEXT status VERIFIED_CURRENT in production HTTP proof",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Beacon Hill RPTMETALPOEXT status VERIFIED_CURRENT in production HTTP proof",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-3d25e9fe2f9e",
+        "stableIdentity": "Beacon Hill RPTMISCDOORFAB status REVIEW_REQUIRED by design in production HTTP proof",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Beacon Hill RPTMISCDOORFAB status REVIEW_REQUIRED by design in production HTTP proof",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-4af06ef6343f",
+        "stableIdentity": "Production workspace interiorStock=13690.05 and parsedLineCount=55 for Metal PO Interior source document",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Production workspace interiorStock=13690.05 and parsedLineCount=55 for Metal PO Interior source document",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-302fa684be46",
+        "stableIdentity": "Local and production Wave ABC proofs PASS with 6/6 governed reports verified",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Local and production Wave ABC proofs PASS with 6/6 governed reports verified",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-2dc7f0692acc",
+        "stableIdentity": "deploy:gate and npm run build PASS on milestone commit",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "deploy:gate and npm run build PASS on milestone commit",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-909a435554c6",
+        "stableIdentity": "Milestone evidence artifacts committed and pushed (7986db69, 29f1abe9)",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Milestone evidence artifacts committed and pushed (7986db69, 29f1abe9)",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-c93ba5a85dd2",
+        "stableIdentity": "Production /api/version gitCommitSha 3e2f4e3b matches Wave ABC production proof productionSha",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Production /api/version gitCommitSha 3e2f4e3b matches Wave ABC production proof productionSha",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-afa4972f4b91",
+        "stableIdentity": "Wave D estimator-trust E2E explicitly scoped to pg-estimator-trust-closure-recovery-v1; not a terminal gate for report-t",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Wave D estimator-trust E2E explicitly scoped to pg-estimator-trust-closure-recovery-v1; not a terminal gate for report-trust-wave-abc alias",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "success-8f18997e5064",
+        "stableIdentity": "success-8f18997e5064",
+        "findingType": "success_pattern",
+        "laneMembership": [
+          "SUCCESS_PATTERN"
+        ],
+        "primaryLane": "SUCCESS_PATTERN",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Filed report documents as first-class scope evidence separate from applied workspace pricing",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "success-8293cff6e910",
+        "stableIdentity": "success-8293cff6e910",
+        "findingType": "success_pattern",
+        "laneMembership": [
+          "SUCCESS_PATTERN"
+        ],
+        "primaryLane": "SUCCESS_PATTERN",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Extracted runWorkspaceRevisionRetryLoop for testable optimistic-concurrency without mock.module",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "success-a80bff09fbb1",
+        "stableIdentity": "success-a80bff09fbb1",
+        "findingType": "success_pattern",
+        "laneMembership": [
+          "SUCCESS_PATTERN"
+        ],
+        "primaryLane": "SUCCESS_PATTERN",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Production HTTP proof harness validates live SHA before Wave ABC assertions",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      }
+    ],
+    "coverage": {
+      "touchedSurfaceCount": 15,
+      "harvestedSurfaceCount": 19,
+      "unharvestedTouchedSurfaces": [
+        {
+          "category": "repositories",
+          "surface": "Cursor-ProposalGenerator",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "applications",
+          "surface": "Proposal Generator",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "businessWorkflows",
+          "surface": "Beacon Hill estimating reports",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "businessWorkflows",
+          "surface": "Metal PO Interior apply",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "businessWorkflows",
+          "surface": "Wave ABC report trust proof",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "operatorInteractions",
+          "surface": "Reports verify-population apply path",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "crossAppHandoffs",
+          "surface": "Document Layer filed report evidence",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "runtimeServices",
+          "surface": "proposal-editable-workspace-db",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "runtimeServices",
+          "surface": "Vercel production",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "documentsOrData",
+          "surface": "metal_po_interior",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "documentsOrData",
+          "surface": "metal_po_exterior",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "externalIntegrations",
+          "surface": "Supabase",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "machinesOrEnvironments",
+          "surface": "WESLEY_WORK WSL",
+          "reason": "no_finding_references_surface"
+        }
+      ],
+      "coverageVerdict": "WARN_HARVEST_COVERAGE_BIAS",
+      "harvestedSurfaceKeys": [
+        "lane:PRODUCT_FUNCTIONALITY",
+        "lane:PRODUCT_WORKFLOW",
+        "type:defect_closed",
+        "lane:PERFORMANCE_RELIABILITY",
+        "lane:SUCCESS_PATTERN",
+        "lane:AUTONOMOUS_AGENT_SDLC",
+        "type:success_pattern",
+        "lane:INFRASTRUCTURE_ENVIRONMENT",
+        "lane:DOCUMENTATION_KNOWLEDGE",
+        "type:pattern",
+        "lane:OPERATOR_FRICTION",
+        "type:warning",
+        "type:verified_truth"
+      ]
+    },
+    "accounting": {
+      "sourceObservations": 19,
+      "findingsPreserved": 19,
+      "distinctValidSuppressed": 0,
+      "unknownUsefulPreserved": 0
+    },
+    "canonicalLanes": [
+      "AUTONOMOUS_AGENT_SDLC",
+      "PRODUCT_FUNCTIONALITY",
+      "PRODUCT_WORKFLOW",
+      "OPERATOR_FRICTION",
+      "INTEGRATION_HANDOFF",
+      "DATA_EXTRACTION_QUALITY",
+      "PERFORMANCE_RELIABILITY",
+      "BUSINESS_PROCESS",
+      "OBSERVABILITY_GAP",
+      "SUCCESS_PATTERN",
+      "SECURITY_GOVERNANCE",
+      "DOCUMENTATION_KNOWLEDGE",
+      "INFRASTRUCTURE_ENVIRONMENT",
+      "COST_EFFICIENCY",
+      "FUTURE_OPPORTUNITY",
+      "UNMODELED_INTELLIGENCE"
+    ],
+    "envelopeHash": "f8e61177dc77dcadeb95c16de96ac871e26aa7cedf4d21311b6f3ff6b57dafd9"
+  },
+  "universalHarvestEnvelopeSchema": "universal-harvest-envelope-v1@1.0.0",
+  "harvestHash": "8673035948b626cf562505e47d234ca10eabdda5a42ba01be3d854f5db9ca3d8",
+  "sdlcCursorBridge": {
+    "schema": "sdlc-cursor-waverunner-handoff-bridge-receipt-v1@1.0.0",
+    "workPackageId": "synology-proposal-report-trust-spine-v1",
+    "harvestId": "harvest-synology-proposal-report-trust-spine-v1",
+    "packetHash": "8e8d45aca8407bdd5e9c7ea4aabf9c8356bb5547a27a014732ea5f1d3d7b1410",
+    "promptHash": "9b049ce10155f3017c61ca3d023338b5ed9ae1387b1df543759155e830fa0248",
+    "prepareReceiptPath": "/home/wesle/repos/CG-AppBuilder-MCP/artifacts/agent-runs/synology-proposal-report-trust-spine-v1/sdlc-cursor-prepare-receipt.json",
+    "authorityStatus": "PROPOSAL",
+    "catalogRole": "RETRIEVAL_ONLY",
+    "processingOwner": "Data-Extraction",
+    "sourceOwner": "CapitalGlass-Cross-Agent"
+  }
+}

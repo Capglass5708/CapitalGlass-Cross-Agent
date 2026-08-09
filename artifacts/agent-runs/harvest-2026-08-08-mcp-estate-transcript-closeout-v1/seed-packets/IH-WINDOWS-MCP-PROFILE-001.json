@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-WINDOWS-MCP-PROFILE-001",
+  "kind": "failure-pattern",
+  "title": "\\\\wsl.localhost\\ workspace uses Windows mcp.json not WSL",
+  "summary": "Opening repo via \\\\wsl.localhost\\Ubuntu-24.04\\ leaves WSL ~/.cursor/mcp.json inactive; run reconnect-cursor-mcp.ps1 to create %USERPROFILE%\\.cursor\\mcp.json.",
+  "retrievalQuestions": [
+    "Why are Capital Glass MCPs missing when L drive and WSL repos work?",
+    "Which mcp.json is active for Windows-hosted Cursor workspace?"
+  ],
+  "evidenceRefs": [
+    "TE-002",
+    "TE-003",
+    "TW-001",
+    "C:\\Users\\wesle\\.cursor\\mcp.json"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Workspace path contains wsl.localhost",
+    "startAt": [
+      "CURSOR_HOST detection",
+      "%USERPROFILE%\\.cursor\\mcp.json"
+    ],
+    "runPreflight": [
+      "Cursor-MCP-Kit\\reconnect-cursor-mcp.ps1 -SkipPm2 -SkipNetwork"
+    ],
+    "doNot": [
+      "Only repair WSL ~/.cursor/mcp.json",
+      "Assume Remote-WSL without verifying shell"
+    ],
+    "proveBeforeClaiming": [
+      "GetMcpTools lists user-cg-app-builder-mcp",
+      "CURSOR_HOST=WINDOWS documented"
+    ]
+  },
+  "ownerRepo": "Cursor-MCP-Kit",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 2,
+  "wasteIds": ["TW-001"]
+}

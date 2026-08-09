@@ -1,0 +1,159 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-08-mcp-estate-transcript-closeout-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "host",
+      "description": "Windows-hosted \\\\wsl.localhost\\ workspace hid WSL mcp.json — Capital Glass MCPs absent until Windows profile config created",
+      "evidenceRefs": ["TE-002"],
+      "estimatedImpact": "high",
+      "savedBy": "Open Remote-WSL ~/repos or run reconnect-cursor-mcp.ps1 before MCP work",
+      "roiRank": 1,
+      "goldMineSignalClass": "AGENT_FRICTION_SIGNAL"
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "verification",
+      "description": "HTTP /projects 200 treated as MCP health while stdio cg-app-builder-mcp list_projects failed SESSION_STALE",
+      "evidenceRefs": ["TE-004", "mcp-estate-health-receipt.json"],
+      "estimatedImpact": "high",
+      "savedBy": "Functional MCP tool probe after every JWT refresh + Cursor MCP restart",
+      "roiRank": 2,
+      "goldMineSignalClass": "OBSERVABILITY_GAP"
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "deploy",
+      "description": "Dual PM2 mcp-api on port 3001 (Windows node + WSL PM2) — backend binding ambiguity",
+      "evidenceRefs": ["TE-003", "TE-004"],
+      "estimatedImpact": "medium",
+      "savedBy": "Single canonical PM2 owner per host mode (WSL Remote vs Windows)",
+      "roiRank": 3,
+      "goldMineSignalClass": "PROBLEM_SIGNAL"
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "operator_attention",
+      "description": "Test-Cursor-Mcps.ps1 parse error blocked kit verification script",
+      "evidenceRefs": ["TE-003"],
+      "estimatedImpact": "low",
+      "savedBy": "Fix Cursor-MCP-Kit Test-Cursor-Mcps.ps1 syntax",
+      "roiRank": 4
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "MCP repair appeared complete but verification proved MCP_HEALTH_BLOCKED",
+      "operatorCost": "high",
+      "systemFix": "Closeout gate must require CallMcpTool list_projects not HTTP /projects alone",
+      "evidenceRefs": ["TE-004"],
+      "linkedWasteIds": ["TW-002"],
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL",
+      "manualStep": "Cursor MCP Restart after JWT refresh",
+      "frequency": "observed",
+      "avoidable": true,
+      "automationCandidate": true,
+      "rootCause": "Long-running stdio MCP child retains stale auth session"
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Operator needs all MCPs functional on WESLEY_WORK",
+      "actualExecution": {
+        "steps": [
+          "Repaired config and PM2",
+          "Declared repair complete from config + HTTP 200"
+        ],
+        "outcome": "PARTIAL",
+        "evidenceRefs": ["TE-003"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Establish CURSOR_HOST (WINDOWS vs REMOTE_WSL)",
+          "Repair correct mcp.json for active host",
+          "Refresh JWT for active backend",
+          "Cursor MCP Restart",
+          "CallMcpTool list_projects on cg-app-builder-mcp",
+          "Complete Supabase OAuth for configured HTTP MCPs"
+        ],
+        "outcome": "MCP_100_PERCENT_HEALTHY or explicit BLOCKED list",
+        "requiredPreflight": ["npm run agent:index:scout -- --json"]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "high",
+        "operatorFrustration": "high"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Declared MCP repair complete before stdio functional probe passed",
+      "whereItHappened": "Post-repair verification closeout",
+      "whyItWasWrong": "HTTP /projects returned 200 while cg-app-builder-mcp list_projects still failed SESSION_STALE",
+      "correctFirstMove": "Cursor MCP Restart then CallMcpTool list_projects on cg-app-builder-mcp",
+      "preventiveControl": "Post-repair verification protocol before closeout",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "MCP health = stdio functional probe, not HTTP /projects alone",
+      "whyItPays": "Prevents false-green MCP repair closeouts",
+      "effort": "low",
+      "savedWasteIds": ["TW-002"],
+      "seedAs": "rule",
+      "ownerRepo": "CG-AppBuilder-MCP"
+    },
+    {
+      "rank": 2,
+      "title": "Windows vs Remote-WSL host detection in MCP repair runbook",
+      "whyItPays": "Avoids missing mcp.json on wrong profile",
+      "effort": "low",
+      "savedWasteIds": ["TW-001"],
+      "seedAs": "runbook",
+      "ownerRepo": "Cursor-MCP-Kit"
+    },
+    {
+      "rank": 3,
+      "title": "Single mcp-api PM2 owner on port 3001 per machine",
+      "whyItPays": "Eliminates dual-backend JWT confusion",
+      "effort": "medium",
+      "savedWasteIds": ["TW-003"],
+      "seedAs": "command",
+      "ownerRepo": "CG-AppBuilder-MCP"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "MCP_100_PERCENT_HEALTHY",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "cg-app-builder-mcp list_projects ok after MCP restart",
+        "user-supabase and user-supabase-mcp-control OAuth complete and probed",
+        "activeBackendBinding proven for active Cursor host"
+      ],
+      "lastKnownEvidence": [
+        "mcp-estate-health-receipt.json suiteVerdict MCP_HEALTH_BLOCKED",
+        "11 healthy / 3 blocked required MCPs"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-08T15:30:00.000Z"
+  }
+}

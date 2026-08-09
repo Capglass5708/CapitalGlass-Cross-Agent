@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "gold-mine-evidence-projection-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1",
+  "sourceCommitSha": "adc0df5348f0c299ebbd953962c9b30d05ec7b0e",
+  "corpusBias": {
+    "evidenceDomainDistribution": {
+      "sdlc": 4,
+      "governance": 2,
+      "receiptPlumbing": 5,
+      "infrastructure": 3,
+      "productOperation": 0,
+      "operatorWorkflow": 2,
+      "businessWorkflow": 0
+    },
+    "corpusBiasWarning": "SDLC/receipt-heavy corpus — platform cache milestone only",
+    "underObservedDomains": [
+      "Computer Estimator",
+      "Revu",
+      "Bid Composer",
+      "Document Center"
+    ]
+  },
+  "productWorkflowCoverage": {
+    "computerEstimator": "NOT_OBSERVED",
+    "humanEstimator": "NOT_OBSERVED",
+    "documentCenter": "NOT_OBSERVED",
+    "planSetProcessing": "NOT_OBSERVED",
+    "ocrParser": "NOT_OBSERVED",
+    "revuBluebeam": "NOT_OBSERVED",
+    "bidComposer": "NOT_OBSERVED",
+    "proposals": "NOT_OBSERVED",
+    "vae": "NOT_OBSERVED",
+    "scraper": "NOT_OBSERVED",
+    "crossAppHandoffs": "OBSERVED",
+    "operatorReentry": "OBSERVED"
+  },
+  "projections": [
+    {
+      "projectionId": "GMP-AI-CACHE-Z-HYDRATE-001",
+      "signalClass": "SUCCESS_PATTERN",
+      "lifecycleHint": "RESOLVED_OBSERVED",
+      "workPackageId": "ai-cache-preflight-evidence-reuse-v1",
+      "sourceCommitSha": "adc0df5348f0c299ebbd953962c9b30d05ec7b0e",
+      "evidenceStrength": "high",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "novelty": "NEW",
+      "implementationState": "VERIFIED_FIXED",
+      "summary": "Cold local D hydrates promoted bible_authority_evidence from Z without regeneration",
+      "evidenceRefs": ["TE-005", "TE-006", "wesley-work-cold-consumer.json"]
+    },
+    {
+      "projectionId": "GMP-AI-CACHE-ESTATE-FRICTION-001",
+      "signalClass": "OPERATOR_FRICTION_SIGNAL",
+      "lifecycleHint": "OPEN",
+      "workPackageId": "ai-cache-preflight-evidence-reuse-v1",
+      "evidenceStrength": "high",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "summary": "WESLEYDESK and RYZEN9DESK consumer proof requires local operator execution — SSH from WESLEY_WORK denied",
+      "evidenceRefs": ["TE-007", "OF-001"]
+    },
+    {
+      "projectionId": "GMP-AI-CACHE-INVALID-PROOF-001",
+      "signalClass": "RESOLUTION_SIGNAL",
+      "lifecycleHint": "RESOLVED_OBSERVED",
+      "workPackageId": "ai-cache-preflight-evidence-reuse-v1",
+      "evidenceStrength": "high",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "PRE_IMPLEMENTATION",
+      "novelty": "RECURRENCE",
+      "implementationState": "VERIFIED_FIXED",
+      "summary": "Prior wave-d-wesleydesk material-session on WesleyWork with warm D counted as cross-host proof — invalidated",
+      "evidenceRefs": ["TE-010", "WM-001", "supersededClaims"]
+    },
+    {
+      "projectionId": "GMP-AI-CACHE-GIT-FIXTURE-001",
+      "signalClass": "RESOLUTION_SIGNAL",
+      "lifecycleHint": "RESOLVED_OBSERVED",
+      "workPackageId": "ai-cache-preflight-evidence-reuse-v1",
+      "sourceCommitSha": "adc0df5348f0c299ebbd953962c9b30d05ec7b0e",
+      "evidenceStrength": "high",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "novelty": "NEW",
+      "implementationState": "ADOPTED",
+      "summary": "initTempGitFixture restores auto-v32 execution gate 15/15 without weakening LIVE_NOT_GIT_REPO",
+      "evidenceRefs": ["TE-002", "IH-AI-CACHE-TEMP-GIT-FIXTURE-001"]
+    },
+    {
+      "projectionId": "GMP-AI-CACHE-MILESTONE-BLOCKED-001",
+      "signalClass": "PROBLEM_SIGNAL",
+      "lifecycleHint": "OPEN",
+      "workPackageId": "ai-cache-preflight-evidence-reuse-v1",
+      "evidenceStrength": "high",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "novelty": "NEW",
+      "implementationState": "BLOCKED",
+      "summary": "Milestone BLOCKED pending WESLEYDESK and RYZEN9DESK COLD_PASS HOT_PASS at adc0df53",
+      "evidenceRefs": ["TE-009", "milestone-closeout-v1.json"]
+    }
+  ]
+}

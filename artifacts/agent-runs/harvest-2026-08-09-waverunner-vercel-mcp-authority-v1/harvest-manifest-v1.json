@@ -1,0 +1,268 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-09-waverunner-vercel-mcp-authority-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "d8f7c97d8258e9d3e7d8bcdd2abf604df0322e1b",
+  "sourceBranch": "work/commercial-glazing-scope-intelligence-spine-v1",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-09T15:15:00.000Z",
+  "updatedAt": "2026-08-09T15:37:43.519Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "VERCEL_MILESTONE_DURABLE_COMPLETE",
+    "MCP_HEALTH_ARCHITECTURE_REOPEN",
+    "PROPOSAL_GENERATOR_BUSINESS_LOGIC_CHANGES"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-09-waverunner-vercel-mcp-authority-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-09-waverunner-vercel-mcp-authority-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 6,
+      "seeds": 3,
+      "roiItems": 6,
+      "operatorFriction": 2
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "synced",
+    "hubPublishStatus": "published"
+  },
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "1.1.0",
+    "eligibleCandidates": 0,
+    "rejectedUnrelatedCandidates": 0,
+    "exportStatus": "not-run",
+    "dataExtractionStatus": "not-run",
+    "catalogPublishStatus": "not-run",
+    "retrievalStatus": "not-run",
+    "authorityStatus": "PROPOSAL",
+    "automaticProtocolMutation": false
+  },
+  "commitEvidence": [
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "sha": "cb47e827ebaa11284e509444efe8fc673a90fb50",
+      "role": "waverunner-mcp-health-authority-durable-complete"
+    },
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "sha": "11742718a32304f4be58805ed2363a92c99f8084",
+      "role": "vercel-deployment-authority-implementation"
+    }
+  ],
+  "packets": [
+    {
+      "packetId": "waverunner-mcp-health-durable-complete-v1",
+      "packetTitle": "WaveRunner MCP health authority milestone durable complete",
+      "kind": "outcome",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerMcp": "user-cg-app-builder-mcp",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-09_waverunner-mcp-health-durable-complete-v1.md",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/artifacts/agent-runs/waverunner-mcp-health-authority-preflight-integration-v1/session-closeout-v3.2.json",
+        "CG-AppBuilder-MCP/runtime/mcp-health-receipt/latest.json",
+        "chat:master-preflight PASS 2026-08-09T07:47:50Z"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "cb47e827ebaa11284e509444efe8fc673a90fb50",
+          "note": "durable closeout commit"
+        }
+      ],
+      "nextAction": "Do not reopen unless canonical MCP health regresses",
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "MCP_HEALTH_ARCHITECTURE_REOPEN"
+      ],
+      "blockers": [],
+      "goldMineSignalClass": "SUCCESS_PATTERN",
+      "novelty": "NEW",
+      "implementationState": "PROVEN_EFFECTIVE"
+    },
+    {
+      "packetId": "vercel-deployment-authority-implementation-v1",
+      "packetTitle": "Vercel deployment authority layer implemented",
+      "kind": "outcome",
+      "state": "IMPLEMENTATION_COMPLETE",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerMcp": "user-cg-app-builder-mcp",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-09_vercel-deployment-authority-implementation-v1.md",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/scripts/lib/vercel-deployment-authority/",
+        "CG-AppBuilder-MCP/artifacts/agent-runs/mcp-health-and-vercel-deployment-authority-hardening-v1/vercel-estate-deployment-matrix.json",
+        "CG-AppBuilder-MCP/artifacts/agent-runs/mcp-health-and-vercel-deployment-authority-hardening-v1/vercel-deployment-authority-cg-proposal-generator.json"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "11742718a32304f4be58805ed2363a92c99f8084",
+          "note": "vercel deployment authority implementation"
+        }
+      ],
+      "nextAction": "Run formal closeout chain on milestone branch",
+      "advancementGate": "master-preflight PASS + session closeout + closeout:gate",
+      "doNotAdvance": [
+        "VERCEL_MILESTONE_DURABLE_COMPLETE"
+      ],
+      "blockers": [],
+      "goldMineSignalClass": "ADOPTION_SIGNAL",
+      "novelty": "NEW",
+      "implementationState": "PARTIAL"
+    },
+    {
+      "packetId": "vercel-milestone-closeout-pending-v1",
+      "packetTitle": "Vercel milestone formal closeout not finished",
+      "kind": "blocker",
+      "state": "HOLD",
+      "packetVerdict": "BLOCKED",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerMcp": "user-cg-app-builder-mcp",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-09_vercel-milestone-closeout-pending-v1.md",
+      "evidenceRefs": [
+        "chat:terminalVerdict BLOCKED for mcp-health-and-vercel-deployment-authority-hardening-v1"
+      ],
+      "commitRefs": [],
+      "nextAction": "npm run agent:preflight:app-builder-mcp on worktree branch then SDLC closeout",
+      "advancementGate": "masterPreflight PASS artifact",
+      "doNotAdvance": [
+        "VERCEL_MILESTONE_DURABLE_COMPLETE",
+        "PASS_WITH_WARN without remainingMilestoneGap NONE"
+      ],
+      "blockers": [
+        {
+          "id": "vercel-closeout-chain-pending",
+          "owner": "CG-AppBuilder-MCP",
+          "summary": "No master preflight PASS on vercel milestone branch"
+        }
+      ],
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL"
+    },
+    {
+      "packetId": "mcp-health-once-before-strict-v1",
+      "packetTitle": "Prime integrations cycle before strict MCP health",
+      "kind": "faster_path",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-09_waverunner-mcp-health-durable-complete-v1.md",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/scripts/lib/mcp-health/preflight-eligibility.mjs",
+        "chat:11/3 blocked sharepoint/supabase without mcp:health:once"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "4754e920da384c89f7274a37b7bb91fca2a7f886",
+          "note": "prime integrations before strict"
+        }
+      ],
+      "nextAction": "Keep in material preflight refresh path",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "blockers": [],
+      "goldMineSignalClass": "SUCCESS_PATTERN"
+    },
+    {
+      "packetId": "porcelain-parse-worktree-eligibility-v1",
+      "packetTitle": "Git porcelain M-space index-only path misclassification",
+      "kind": "mistake",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-09_waverunner-mcp-health-durable-complete-v1.md",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/scripts/suite-governance/lib/material-worktree-eligibility.mjs",
+        "chat:LIVE_WORKTREE_DIRTY false positive"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "a5b0424c9",
+          "note": "slice(2) porcelain fix"
+        }
+      ],
+      "nextAction": "None — fixed in milestone branch",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "blockers": [],
+      "goldMineSignalClass": "RESOLUTION_SIGNAL"
+    },
+    {
+      "packetId": "cmd-agent-preflight-app-builder-mcp-v1",
+      "packetTitle": "Material master preflight gate command",
+      "kind": "command",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-09_waverunner-mcp-health-durable-complete-v1.md",
+      "evidenceRefs": [
+        "runtime/agent-preflight/app-builder-mcp/latest.json verdict PASS"
+      ],
+      "commitRefs": [],
+      "nextAction": "Run before any material closeout claim",
+      "advancementGate": "verdict PASS in latest.json",
+      "doNotAdvance": [
+        "PASS_WITHOUT_PREFLIGHT_ARTIFACT"
+      ],
+      "blockers": [],
+      "command": "npm run agent:preflight:app-builder-mcp",
+      "host": "WSL worktree",
+      "provesGate": "master-preflight",
+      "expectedPassSignal": "verdict: PASS"
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096",
+    "ledgerContentHashAfter": "694802466ba0497386120146f3a168389285afecf8ee084da75876df972de70a"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 12,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 12,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-43e53773610a",
+      "prompt-candidate-a5df16c915d9",
+      "prompt-candidate-4ec0346e0164",
+      "prompt-candidate-a76f0c40b742",
+      "prompt-candidate-74903881b7d9",
+      "prompt-candidate-a0bdac47cb42",
+      "prompt-candidate-3c22c100920f",
+      "prompt-candidate-90aa2bacfd8b",
+      "prompt-candidate-d99cd723478b",
+      "prompt-candidate-9978981f52cd",
+      "prompt-candidate-4eea91267a4e",
+      "prompt-candidate-ba7128555e84"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}
