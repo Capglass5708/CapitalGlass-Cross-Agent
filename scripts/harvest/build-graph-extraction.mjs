@@ -6,7 +6,15 @@ import fs from "node:fs";
 import { harvestRunDir, manifestPath, HARVEST_ID } from "./lib/paths.mjs";
 import { writeGraphExtraction } from "./lib/graph-extraction-builder-lib.mjs";
 
-const harvestId = process.argv[2] || HARVEST_ID;
+function parseHarvestId(argv) {
+  for (const arg of argv) {
+    if (arg.startsWith("--harvest-id=")) return arg.slice("--harvest-id=".length);
+  }
+  const positional = argv.find((a) => !a.startsWith("-"));
+  return positional || HARVEST_ID;
+}
+
+const harvestId = parseHarvestId(process.argv.slice(2));
 const manifestFile = manifestPath(harvestId);
 const runDir = harvestRunDir(harvestId);
 
