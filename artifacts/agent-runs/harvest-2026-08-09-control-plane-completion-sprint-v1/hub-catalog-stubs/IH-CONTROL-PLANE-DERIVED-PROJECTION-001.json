@@ -1,0 +1,80 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-control-plane-derived-projection-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "9cb234fc3c4484a3bcd133323534980158b55ba9",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-09-control-plane-completion-sprint-v1",
+      "seedId": "IH-CONTROL-PLANE-DERIVED-PROJECTION-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-09T15:34:38.979Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "494290ac936db92bb1b3733f78a37375ecf1e2567c7e57d7bcfa856c466c35bb"
+  },
+  "body": {
+    "seedId": "IH-CONTROL-PLANE-DERIVED-PROJECTION-001",
+    "kind": "lesson",
+    "title": "Agent control-plane uses derived projections only — no editable truth stores",
+    "summary": "material_session_front_door composes capability.find, blocker.resolve, and reflex shadow as read-only advisory lanes; GO/NO_GO is not mutated by reuse or shadow guidance.",
+    "canonicalQuestion": "What is the Capital Glass agent control-plane decision chain?",
+    "alternateQuestions": [
+      "Can capability guidance or reflex shadow change GO/NO_GO?"
+    ],
+    "shortAnswer": "material_session_front_door composes capability.find, blocker.resolve, and reflex shadow as read-only advisory lanes; GO/NO_GO is not mutated by reuse or shadow guidance.",
+    "detailedAnswer": "Agent control-plane uses derived projections only — no editable truth stores",
+    "retrievalQuestions": [
+      "What is the Capital Glass agent control-plane decision chain?",
+      "Can capability guidance or reflex shadow change GO/NO_GO?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Agent startup or material session preflight in CG-AppBuilder-MCP",
+      "startAt": [
+        "scripts/material-session/material-session-front-door.mjs",
+        "docs/work-packages/canonical-capability-reuse-discovery-v1.md"
+      ],
+      "runPreflight": [
+        "npm run agent:preflight:app-builder-mcp",
+        "CallMcpTool material_session_front_door"
+      ],
+      "doNot": [
+        "Treat capabilityGuidance or reflexShadow as hard GO/NO_GO mutation",
+        "Build editable truth stores for capability or blocker state"
+      ],
+      "proveBeforeClaiming": [
+        "CAPABILITY_DISCOVERY_SOURCE_ROLE=DERIVED_REUSE_PROJECTION",
+        "REFLEX_EXECUTION_MODE=OBSERVE_ONLY"
+      ]
+    },
+    "evidenceRefs": [
+      "CG-AppBuilder-MCP@ed064ba0aaf1d17f7f64d6d8c8799c035e78029e",
+      "TE-002",
+      "TE-003",
+      "TE-004",
+      "SP-002"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": 2,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-09-control-plane-completion-sprint-v1/seed-packets/IH-CONTROL-PLANE-DERIVED-PROJECTION-001.json"
+    ],
+    "harvestId": "harvest-2026-08-09-control-plane-completion-sprint-v1"
+  }
+}

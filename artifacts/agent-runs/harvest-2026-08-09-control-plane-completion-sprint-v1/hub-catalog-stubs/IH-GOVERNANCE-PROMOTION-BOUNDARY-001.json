@@ -1,0 +1,80 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-governance-promotion-boundary-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "9cb234fc3c4484a3bcd133323534980158b55ba9",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-09-control-plane-completion-sprint-v1",
+      "seedId": "IH-GOVERNANCE-PROMOTION-BOUNDARY-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-09T15:34:38.990Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "critical",
+    "contentHash": "de48048b17183fd8718e67fa7dc6f00a3d3672ccdf2001bee357114c22e329b3"
+  },
+  "body": {
+    "seedId": "IH-GOVERNANCE-PROMOTION-BOUNDARY-001",
+    "kind": "architecture",
+    "title": "AUTO_ALLOWED repairs blocked until reflex-autonomy-governance-promotion-v1",
+    "summary": "Reflex shadow accumulates OBSERVE_ONLY observations; Governance owns SUGGEST_ONLY → SHADOW_VALIDATED → AUTO_ELIGIBLE → AUTO_ALLOWED graduation — not builder layer.",
+    "canonicalQuestion": "When can reflex shadow execute repairs automatically?",
+    "alternateQuestions": [
+      "What is the next milestone after agent-reflex-shadow-observation-v1?"
+    ],
+    "shortAnswer": "Reflex shadow accumulates OBSERVE_ONLY observations; Governance owns SUGGEST_ONLY → SHADOW_VALIDATED → AUTO_ELIGIBLE → AUTO_ALLOWED graduation — not builder layer.",
+    "detailedAnswer": "AUTO_ALLOWED repairs blocked until reflex-autonomy-governance-promotion-v1",
+    "retrievalQuestions": [
+      "When can reflex shadow execute repairs automatically?",
+      "What is the next milestone after agent-reflex-shadow-observation-v1?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Agent proposes auto-repair or AUTO_ALLOWED graduation from shadow metrics",
+      "startAt": [
+        "docs/work-packages/agent-reflex-shadow-observation-v1.md",
+        "CG-Platform-Governance-MCP governance_run_material_preflight"
+      ],
+      "runPreflight": [
+        "npm run reflex:shadow:observe -- --dry-run --json",
+        "governance_get_required_evidence via Governance MCP"
+      ],
+      "doNot": [
+        "Enable exec/spawn in reflex or blocker-resolution layers",
+        "Claim AUTO_ALLOWED without Governance promotion PASS"
+      ],
+      "proveBeforeClaiming": [
+        "reflex-autonomy-governance-promotion-v1 DURABLE_COMPLETE",
+        "Shadow metrics meet SHADOW_VALIDATED threshold"
+      ]
+    },
+    "evidenceRefs": [
+      "TE-007",
+      "docs/work-packages/agent-reflex-shadow-observation-v1.md",
+      "scripts/agent-reflex/lib/compute-autonomy-qualification.mjs"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [
+      "TW-004"
+    ],
+    "operatorFrictionIds": [],
+    "roiRank": 1,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-Platform-Governance-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-09-control-plane-completion-sprint-v1/seed-packets/IH-GOVERNANCE-PROMOTION-BOUNDARY-001.json"
+    ],
+    "harvestId": "harvest-2026-08-09-control-plane-completion-sprint-v1"
+  }
+}
