@@ -1,0 +1,295 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-09-waverunner-vercel-mcp-authority-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "verification",
+      "description": "Four master preflight attempts before PASS — long bible sync and stale health receipt after long steps",
+      "evidenceRefs": [
+        "chat:preflight runs 1-4",
+        "CG-AppBuilder-MCP master preflight ~25min"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "mcp:health:once before strict + guard refresh; bounded health refresh in preflight-eligibility",
+      "roiRank": 1,
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL"
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "rework",
+      "description": "closeout:gate OPS_HEALTH_RED until canonical MCP health refresh before mcp:doctor:gate",
+      "evidenceRefs": [
+        "chat:closeout gate failure",
+        "mcp:doctor projection stale"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Refresh canonical health immediately before closeout:gate when material session ran long",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "context",
+      "description": "suite:bible-cache:utilize ~32min mutates unrelated ai-cache-health probe — required restore before each preflight",
+      "evidenceRefs": [
+        "chat:bible-cache utilize",
+        "artifacts/agent-runs/ai-cache-health-wesleywork-v1/cache-health-probe.json"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Isolate probe mutation from material preflight or exclude from worktree eligibility",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "deploy",
+      "description": "Vercel estate shows REVISION_LAG and alias mismatch while MCP transport healthy — manual CLI investigation pattern",
+      "evidenceRefs": [
+        "vercel-estate-deployment-matrix.json",
+        "vercel-deployment-authority-cg-proposal-generator.json"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "npm run vercel:deployment-authority:audit before claiming production proof",
+      "roiRank": 4,
+      "goldMineSignalClass": "OBSERVABILITY_GAP"
+    },
+    {
+      "wasteId": "TW-005",
+      "type": "operator_attention",
+      "description": "User requested explicit chat state and protocol RUN FILE after long multi-milestone session",
+      "evidenceRefs": [
+        "chat:WHAT IS THE CURRENT STATE",
+        "chat:RUN FILE harvest protocol"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Thread autopsy harvest at milestone boundaries without operator prompt",
+      "roiRank": 5
+    },
+    {
+      "wasteId": "TW-006",
+      "type": "agent",
+      "description": "LIVE_WORKTREE_DIRTY false positive from porcelain parse bug on index-only modified paths",
+      "evidenceRefs": [
+        "material-worktree-eligibility.mjs slice(3) bug"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "git porcelain slice(2).trimStart() for path extraction",
+      "roiRank": 6
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Long fragile master preflight (~25min) blocks closeout progress visibility",
+      "operatorCost": "high",
+      "frequency": "recurring",
+      "systemFix": "Emit step-level progress receipts during material preflight; separate fast gate lane",
+      "evidenceRefs": [
+        "TW-001"
+      ],
+      "linkedWasteIds": [
+        "TW-001",
+        "TW-005"
+      ],
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL"
+    },
+    {
+      "frictionId": "OF-002",
+      "trigger": "Vercel deployment UNKNOWN/READY confusion without revision parity",
+      "operatorCost": "high",
+      "frequency": "observed",
+      "systemFix": "Consume vercel-deployment-receipt in WaveRunner production closeout",
+      "evidenceRefs": [
+        "TW-004"
+      ],
+      "linkedWasteIds": [
+        "TW-004"
+      ],
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL"
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Master preflight blocked on MCP health 11/3 after long bible sync",
+      "actualExecution": {
+        "steps": [
+          "Run strict mcp:health only",
+          "Retry preflight"
+        ],
+        "outcome": "FAIL until integrations cycle primed",
+        "evidenceRefs": [
+          "chat:preflight attempt 3"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "rm stale integrations lock if dead PID",
+          "npm run mcp:health:once",
+          "npm run mcp:health -- --strict",
+          "then preflight"
+        ],
+        "outcome": "14/0/0/0 before material gates",
+        "requiredPreflight": [
+          "mcp-health-authority refresh in preflight-eligibility"
+        ]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "medium",
+        "operatorFrustration": "medium"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Operator released Vercel deployment authority milestone",
+      "actualExecution": {
+        "steps": [
+          "Implement library",
+          "Push implementation",
+          "Stop before formal closeout"
+        ],
+        "outcome": "BLOCKED terminal verdict",
+        "evidenceRefs": [
+          "11742718a",
+          "chat:implementation shipped closeout pending"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Same implementation",
+          "Immediately schedule master preflight + closeout chain"
+        ],
+        "outcome": "DURABLE_COMPLETE or explicit BLOCKED with gate name only",
+        "requiredPreflight": [
+          "agent:preflight:app-builder-mcp"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Stopped Vercel milestone at implementation push without formal closeout chain",
+      "whyItWasWrong": "Implementation push alone leaves BLOCKED terminal verdict; DURABLE_COMPLETE requires preflight PASS, session closeout, and closeout:gate",
+      "correctFirstMove": "On milestone worktree run npm run agent:preflight:app-builder-mcp then SDLC prepare, session closeout, harvest, and closeout:gate",
+      "preventiveControl": "IH-WAVERUNNER-CLOSEOUT-CHAIN-001 runbook before claiming milestone shipped",
+      "executionDeltaId": "ED-002",
+      "evidenceRefs": [
+        "TW-005",
+        "11742718a"
+      ]
+    }
+  ],
+  "duplicateWork": [],
+  "roiBacklog": [
+    {
+      "roiRank": 1,
+      "title": "Automate mcp:health:once primer in all material preflight paths",
+      "savedWasteIds": [
+        "TW-001"
+      ],
+      "expectedBenefit": "Eliminate 11/3 false blocked suite after long steps",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "confidence": "high",
+      "seedAs": "command",
+      "suggestedWorkPackageId": "IH-MCP-HEALTH-ONCE-BEFORE-STRICT-001"
+    },
+    {
+      "roiRank": 2,
+      "title": "Vercel deployment authority in production closeout contract",
+      "savedWasteIds": [
+        "TW-004",
+        "TW-004"
+      ],
+      "expectedBenefit": "Deterministic revision parity without CLI investigation",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "confidence": "high",
+      "seedAs": "runbook",
+      "suggestedWorkPackageId": "IH-VERCEL-DEPLOYMENT-AUTHORITY-001"
+    },
+    {
+      "roiRank": 3,
+      "title": "Isolate bible-cache:utilize probe side effects from worktree eligibility",
+      "savedWasteIds": [
+        "TW-003"
+      ],
+      "expectedBenefit": "Remove manual probe restore before each preflight",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "confidence": "medium",
+      "seedAs": "rule",
+      "suggestedWorkPackageId": "mcp-health-and-vercel-deployment-authority-hardening-v1"
+    },
+    {
+      "roiRank": 4,
+      "title": "Preflight progress receipts for long material runs",
+      "savedWasteIds": [
+        "TW-001",
+        "OF-001"
+      ],
+      "expectedBenefit": "Operator visibility during 20+ minute gates",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "confidence": "medium",
+      "seedAs": "hook",
+      "suggestedWorkPackageId": "mcp-health-and-vercel-deployment-authority-hardening-v1"
+    },
+    {
+      "roiRank": 5,
+      "title": "Complete Vercel milestone formal closeout on pushed branch",
+      "savedWasteIds": [
+        "TW-005"
+      ],
+      "expectedBenefit": "Clear terminal verdict without operator state queries",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "confidence": "high",
+      "seedAs": "runbook",
+      "suggestedWorkPackageId": "IH-WAVERUNNER-CLOSEOUT-CHAIN-001"
+    },
+    {
+      "roiRank": 6,
+      "title": "Hub publish thread autopsy for this harvest (operator)",
+      "savedWasteIds": [
+        "TW-005"
+      ],
+      "expectedBenefit": "Future agents retrieve waverunner+vercel lessons in <30s",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "confidence": "medium",
+      "seedAs": "index-slice",
+      "suggestedWorkPackageId": "harvest-2026-08-09-waverunner-vercel-mcp-authority-v1"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "guard": "VERCEL_MILESTONE_DURABLE_COMPLETE",
+      "reason": "Master preflight not PASS on mcp-health-and-vercel-deployment-authority-hardening-v1",
+      "lastKnownEvidence": "11742718a implementation only",
+      "doNotClaimUntil": [
+        "master preflight PASS on mcp-health-and-vercel-deployment-authority-hardening-v1",
+        "session-closeout-v3.2.json on milestone branch",
+        "closeout:gate PASS"
+      ]
+    },
+    {
+      "guard": "MCP_HEALTH_ARCHITECTURE_REOPEN",
+      "reason": "waverunner-mcp-health-authority DURABLE_COMPLETE unless health regresses",
+      "lastKnownEvidence": "cb47e827e closeout receipts",
+      "doNotClaimUntil": [
+        "fresh canonical MCP health regresses to blocked or degraded"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "commandIndexConsulted": true,
+    "hubSlicesConsulted": [
+      "BY-KIND/active-work-blockers.json",
+      "BY-KIND/thread-autopsy-index.json"
+    ]
+  }
+}

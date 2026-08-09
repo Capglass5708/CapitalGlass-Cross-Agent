@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-VERCEL-DEPLOYMENT-AUTHORITY-001",
+  "kind": "failure-pattern",
+  "title": "Vercel READY does not imply production revision parity",
+  "summary": "Use vercel-deployment-authority receipts for revision lag, alias binding, and BLOCKED states; MCP transport can be healthy while apps lag.",
+  "retrievalQuestions": [
+    "Why is Proposal Generator BLOCKED while Vercel MCP is healthy?",
+    "How to prove production revision without manual Vercel CLI?"
+  ],
+  "evidenceRefs": [
+    "CG-AppBuilder-MCP/artifacts/agent-runs/mcp-health-and-vercel-deployment-authority-hardening-v1/vercel-deployment-authority-cg-proposal-generator.json"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Production proof or deployment closeout for Capital Glass Vercel apps",
+    "startAt": [
+      "runtime/vercel-deployment-receipt/",
+      "npm run vercel:deployment-authority:audit"
+    ],
+    "runPreflight": [
+      "npm run vercel:deployment-authority:audit -- --project=<name> --write-receipts"
+    ],
+    "doNot": [
+      "Treat deployment URL as production proof",
+      "Claim READY without revisionParity PASS"
+    ],
+    "proveBeforeClaiming": [
+      "revisionParity",
+      "productionBinding",
+      "receiptHash fresh"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "gold-mine-evidence-projection-v1@1.0.0",
+  "harvestId": "harvest-2026-08-09-waverunner-vercel-mcp-authority-v1",
+  "projections": [
+    {
+      "projectionId": "GMP-001",
+      "signalClass": "SUCCESS_PATTERN",
+      "lifecycleHint": "RESOLVED_OBSERVED",
+      "rootCauseKey": "mcp-health-stale-after-long-preflight",
+      "workPackageId": "waverunner-mcp-health-authority-preflight-integration-v1",
+      "sourceCommitSha": "4754e920da384c89f7274a37b7bb91fca2a7f886",
+      "evidenceStrength": "high",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "implementationState": "VERIFIED_FIXED",
+      "novelty": "NEW",
+      "summary": "Prime integrations cycle with mcp:health:once before strict MCP health",
+      "evidenceRefs": [
+        "4754e920d"
+      ]
+    },
+    {
+      "projectionId": "GMP-002",
+      "signalClass": "OBSERVABILITY_GAP",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "vercel-revision-parity-ambiguous",
+      "workPackageId": "mcp-health-and-vercel-deployment-authority-hardening-v1",
+      "sourceCommitSha": "11742718a32304f4be58805ed2363a92c99f8084",
+      "evidenceStrength": "high",
+      "businessImpact": "BUSINESS_RELIABILITY",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "implementationState": "PARTIAL",
+      "novelty": "NEW",
+      "summary": "Vercel READY can mask production alias mismatch",
+      "evidenceRefs": [
+        "vercel-estate-deployment-matrix.json"
+      ]
+    },
+    {
+      "projectionId": "GMP-003",
+      "signalClass": "OPERATOR_FRICTION_SIGNAL",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "long-material-preflight",
+      "evidenceStrength": "high",
+      "businessImpact": "OPERATOR_PRODUCTIVITY",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "implementationState": "OBSERVED_OPEN",
+      "novelty": "RECURRENCE",
+      "summary": "Material master preflight runs 20+ minutes",
+      "evidenceRefs": [
+        "TW-001"
+      ]
+    }
+  ],
+  "sourceCommitSha": "dec1dd8607c2a5b38176fbb37b8973fc46138223",
+  "productWorkflowCoverage": {
+    "computerEstimator": "NOT_OBSERVED",
+    "humanEstimator": "NOT_OBSERVED",
+    "documentCenter": "NOT_OBSERVED",
+    "planSetProcessing": "NOT_OBSERVED",
+    "ocrParser": "NOT_OBSERVED",
+    "revuBluebeam": "NOT_OBSERVED",
+    "bidComposer": "NOT_OBSERVED",
+    "proposals": "OBSERVED",
+    "vae": "NOT_OBSERVED",
+    "scraper": "NOT_OBSERVED",
+    "crossAppHandoffs": "OBSERVED",
+    "operatorReentry": "OBSERVED"
+  },
+  "corpusBias": {
+    "evidenceDomainDistribution": {
+      "sdlc": 8,
+      "governance": 4,
+      "receiptPlumbing": 6,
+      "infrastructure": 5,
+      "productOperation": 2,
+      "operatorWorkflow": 4,
+      "businessWorkflow": 1
+    },
+    "corpusBiasWarning": "SDLC-heavy corpus — thread focused on MCP preflight and Vercel control plane not estimating/document workflows",
+    "underObservedDomains": [
+      "Computer Estimator",
+      "Revu",
+      "Bid Composer",
+      "Document Center"
+    ]
+  }
+}
