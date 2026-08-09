@@ -1,0 +1,51 @@
+{
+  "milestoneId": "commercial-glazing-scope-intelligence-spine-v1",
+  "phase": "PHASE_5_PARALLEL_FIXTURE_PROOF",
+  "lane": "PARALLEL_EXECUTION_ALLOWED",
+  "canonicalPhaseSequence": {
+    "phase0": "PHASE_0_PASS",
+    "phase1": "BLOCKED_UNVERIFIED_EXTERNAL_DEPENDENCY",
+    "phase5FullSpine": "NOT_ADVANCED"
+  },
+  "verdict": "PHASE_5_FIXTURE_PROOF_BLOCKED_PARALLEL",
+  "observedAt": "2026-08-09T05:24:40.422Z",
+  "host": {
+    "platform": "linux",
+    "hostname": "WesleyWork",
+    "authorizedBluebeamHost": false
+  },
+  "blocker": {
+    "code": "UNVERIFIED_EXTERNAL_DEPENDENCY",
+    "reason": "Bluebeam Revu MCP launcher missing on WSL host; live CREATE→READBACK→IDEMPOTENT→ROLLBACK not executed",
+    "classification": "REVU_MCP_RUNTIME_DEFECT"
+  },
+  "offlineProof": {
+    "commercialGlazingMarkupUnitTest": "COMMERCIAL_GLAZING_SCOPE_MARKUP_FOUNDATION_PASS",
+    "omissionReviewUnitTest": "OMISSION_REVIEW_OVERLAY_PASS",
+    "omissionInvariants": {
+      "subject": "CG_GLAZING_OMISSION_REVIEW",
+      "cgApprovedScope": false,
+      "cgHumanReviewRequired": true,
+      "pass": true
+    },
+    "metadataFieldsInPlan": [
+      "cgCandidateId",
+      "cgObservationId",
+      "cgScopeIdentity",
+      "cgRunId",
+      "cgScopeClass",
+      "cgHumanReviewRequired"
+    ]
+  },
+  "evidence": {
+    "revuRepo": "CapitalGlassRevu",
+    "branch": "feat/revu-window-door-markup-validation-v1",
+    "orchestrator": "npm run phase5:parallel-fixture-proof",
+    "receiptPath": "artifacts/agent-runs/commercial-glazing-scope-intelligence-spine-v1/phase-5-parallel-fixture-proof/af5553ae-02e0-4a12-b2bc-328d5152314e/parallel-fixture-proof-receipt.json"
+  },
+  "operatorAction": "On authorized Bluebeam Windows host: checkout feat/revu-window-door-markup-validation-v1, enable MCP launcher, run npm run phase5:parallel-fixture-proof with CG_REVU_COMMERCIAL_SCOPE_MARKUP_ALLOWED=true",
+  "nextCanonicalPhase": "PHASE_1_CE_LIVE_EVIDENCE_BINDING",
+  "productionUnlocked": false,
+  "commercialWriteAuthorized": false,
+  "valuesPrinted": false
+}
