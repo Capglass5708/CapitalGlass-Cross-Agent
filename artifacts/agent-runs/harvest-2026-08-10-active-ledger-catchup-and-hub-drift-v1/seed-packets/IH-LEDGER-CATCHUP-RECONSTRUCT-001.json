@@ -1,0 +1,17 @@
+{
+  "seedId": "IH-LEDGER-CATCHUP-RECONSTRUCT-001",
+  "kind": "tooling",
+  "promotionClass": "proposal",
+  "title": "Reconstruct ledger delta from harvest manifests",
+  "summary": "Use active-ledger:reconstruct-catchup after index-only divergence.",
+  "triggers": [
+    "LEDGER_UPDATE_REQUIRED"
+  ],
+  "commands": [
+    "npm run active-ledger:reconstruct-catchup -- --since=YYYY-MM-DD --json"
+  ],
+  "evidenceRefs": [
+    "TE-002",
+    "TE-003"
+  ]
+}

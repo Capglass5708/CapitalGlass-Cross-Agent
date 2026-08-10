@@ -1,0 +1,17 @@
+{
+  "seedId": "IH-LEDGER-STALENESS-GATE-001",
+  "kind": "operator-procedure",
+  "promotionClass": "proposal",
+  "title": "Run active-ledger staleness gate before material closeout",
+  "summary": "Fail closed when ACTIVE_WORK lags INDEX or Hub slices drift.",
+  "triggers": [
+    "material closeout",
+    "WaveRunner admission"
+  ],
+  "commands": [
+    "npm run active-ledger:staleness-gate -- --fail-on-stale"
+  ],
+  "evidenceRefs": [
+    "TE-004"
+  ]
+}

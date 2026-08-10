@@ -1,0 +1,184 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "rework",
+      "description": "Manual reconstruction of six days of ledger delta",
+      "evidenceRefs": [
+        "TE-002"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "active-ledger:reconstruct-catchup automation",
+      "roiRank": 1,
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL"
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "agent",
+      "description": "Agents trusted INDEX without ACTIVE_WORK freshness check",
+      "evidenceRefs": [
+        "TE-001"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "active-ledger:staleness-gate",
+      "roiRank": 2,
+      "goldMineSignalClass": "AGENT_FRICTION_SIGNAL"
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "context",
+      "description": "Hub slices served stale blockers during drift window",
+      "evidenceRefs": [
+        "TE-003"
+      ],
+      "estimatedImpact": "low",
+      "savedBy": "active-ledger:sync --publish after ledger repair",
+      "roiRank": 3,
+      "goldMineSignalClass": "OBSERVABILITY_GAP_SIGNAL"
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "description": "Operator told to commit harvest manually after validate PASS",
+      "evidenceRefs": [
+        "TE-005"
+      ],
+      "correction": "Harvest v1.2 Git durability rule — agent commit/push scoped artifacts",
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL"
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Ledger catch-up after harvest-heavy week",
+      "actualExecution": {
+        "steps": [
+          "INDEX updated via harvest commits",
+          "ACTIVE_WORK frozen since 08-04"
+        ],
+        "outcome": "STALE",
+        "evidenceRefs": [
+          "TE-002"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Project ledger entry on each harvest closeout",
+          "staleness-gate in WaveRunner"
+        ],
+        "outcome": "CURRENT",
+        "requiredPreflight": [
+          "active-ledger:staleness-gate"
+        ]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "medium",
+        "operatorFrustration": "medium"
+      },
+      "preventiveControl": "active-ledger:staleness-gate + reconstruct-catchup"
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Hub publication after Git advance",
+      "actualExecution": {
+        "steps": [
+          "Git advanced without L: publish"
+        ],
+        "outcome": "DRIFT",
+        "evidenceRefs": [
+          "TE-003"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "active-ledger:sync --publish after ledger commit"
+        ],
+        "outcome": "IN_SYNC",
+        "requiredPreflight": [
+          "lint PASS"
+        ]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      },
+      "preventiveControl": "Bundle publish into ledger repair milestone"
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "trigger": "Harvest validate PASS without Git durability",
+      "wrongMove": "Declare HARVEST_COMPLETE and ask operator to git commit",
+      "wastedEffort": "Operator re-entry + stale coordination truth",
+      "bestKnownAction": "HARVEST_GIT_DURABILITY_GATE before terminal verdict",
+      "prevention": "Harvest protocol v1.2 + tooling",
+      "evidenceRefs": [
+        "TE-005"
+      ]
+    }
+  ],
+  "roiBacklog": [
+    {
+      "roiId": "ROI-001",
+      "title": "Ledger staleness gate",
+      "seedAs": "automation",
+      "priority": 1,
+      "evidenceRefs": [
+        "TE-004"
+      ]
+    },
+    {
+      "roiId": "ROI-002",
+      "title": "Catch-up reconstruction CLI",
+      "seedAs": "tooling",
+      "priority": 2,
+      "evidenceRefs": [
+        "TE-003"
+      ]
+    },
+    {
+      "roiId": "ROI-003",
+      "title": "WaveRunner ledger closeout hook",
+      "seedAs": "integration",
+      "priority": 3,
+      "evidenceRefs": [
+        "TE-004"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "status": "PASS",
+    "notes": "References upstream harvests; does not duplicate Rosewood/EG-01 packets"
+  },
+  "doNotAdvanceMap": {
+    "entries": [
+      {
+        "guard": "Re-harvest product milestones",
+        "currentStatus": "FORBIDDEN",
+        "reason": "Upstream harvests validated"
+      },
+      {
+        "guard": "Claim Hub current without publish receipt",
+        "currentStatus": "FORBIDDEN",
+        "reason": "Publish required"
+      }
+    ]
+  },
+  "futureAgentInstructions": [
+    {
+      "instructionId": "FAI-001",
+      "priority": 1,
+      "startAt": "work-progress/ACTIVE_WORK.md Last updated field",
+      "run": "npm run active-ledger:staleness-gate -- --fail-on-stale",
+      "neverDo": "Trust INDEX alone when ACTIVE_WORK is older"
+    }
+  ]
+}

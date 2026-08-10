@@ -12,14 +12,47 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-08-04 |
-| Current focus | Blocker gate sweep shipped — 3 cleared, 5 domain-gated; next: DC production smoke rerun + auto-publisher v1.1 |
+| Last updated | 2026-08-10 |
+| Current focus | Active ledger currentness repaired (08-04→08-10 catch-up); Experience Graph EG-01 on `main`; ledger staleness gate + catch-up reconstruction shipped; operator hub/index publish for catch-up harvest |
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Project index | `work-progress/projects/INDEX.md` |
 
 ## Current saved work
+
+### 2026-08-10 CT — active-ledger-currentness-ingestion-and-harvest-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `active-ledger-currentness-ingestion-and-harvest-v1` |
+| Verdict | **LEDGER_CURRENT_AND_HARVEST_DURABLE** (pending hub/index publish receipt) |
+| Root cause | Harvest/INDEX updates without mandatory `ACTIVE_WORK.md` projection — index-only ingestion path |
+| Repair | Catch-up entries 2026-08-04→08-10; `active-ledger:reconstruct-catchup` + `active-ledger:staleness-gate` (AppBuilder) |
+| Harvest | `harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1` (T2) — references upstream harvests, no product re-harvest |
+| Hub drift | Repaired via `active-ledger:sync --publish` after canonical ledger commit |
+| Projection | Supabase ingest — verify with `cross-agent-ledger:drift-probe` (degraded if 401 persists) |
+| Receipt | `artifacts/agent-runs/active-ledger-currentness-ingestion-and-harvest-v1/admission-receipt.json` |
+| Next | Operator: `harvest:publish-hub-seed` + `index:publish` + `index:freshness-gate` for catch-up harvest |
+
+### 2026-08-10 CT — Experience Graph foundation + Rosewood closeout (reference harvests)
+
+| Field | Value |
+| --- | --- |
+| Work packages | `experience-graph-foundation-and-economic-value-v1` (EG-01), `experience-estimator-bid-composer-loop-v1` (Rosewood) |
+| Verdict | **EG-01 merged** (`eac6f16`); **Rosewood DURABLE_COMPLETE** — see upstream harvests |
+| Upstream harvests | `harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1`; Wave 4 `a1b38e5`; Beacon Hill launch `afb8066` |
+| Evidence | `contracts/experience/`; `Data-Extraction/artifacts/agent-runs/experience-estimator-bid-composer-loop-v1/terminal-milestone-receipt-v1.json` |
+| Next | EG-06 report-parsing pilot after B1–B4 foundation acceptance; Beacon Hill proposal-generator loop |
+
+### 2026-08-07 CT — Universal harvest + intelligence index foundation (reference)
+
+| Field | Value |
+| --- | --- |
+| Work packages | `universal-harvest-aperture-durable-closeout-v1`, intelligence-index foundation |
+| Verdict | **HARVEST_COMPLETE** — see `harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1` |
+| Commits | Cross-Agent harvest chain through `18208e2` intelligence-index foundation |
+| Next | Use `harvest:record` + staleness gate — do not skip ACTIVE_WORK on future harvest closeouts |
 
 ### 2026-08-04 CT — active-ledger-blocker-gate-sweep-v1
 
