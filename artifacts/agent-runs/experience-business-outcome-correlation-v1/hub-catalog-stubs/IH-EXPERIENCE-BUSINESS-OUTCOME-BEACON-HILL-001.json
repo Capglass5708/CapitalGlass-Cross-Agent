@@ -1,0 +1,78 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-experience-business-outcome-beacon-hill-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "e61b3497fcaadbe3cca549ed0e78eafaeeb0cc42",
+      "branch": "main",
+      "harvestId": "experience-business-outcome-correlation-v1",
+      "seedId": "IH-EXPERIENCE-BUSINESS-OUTCOME-BEACON-HILL-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-10T00:17:46.564Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "critical",
+    "contentHash": "634681d0cd679efb260575fdaf233627667e71daef4ba49c3aeb22b837ff26da"
+  },
+  "body": {
+    "seedId": "IH-EXPERIENCE-BUSINESS-OUTCOME-BEACON-HILL-001",
+    "kind": "lesson",
+    "title": "Proposal population mismatch corrected before final acceptance — business outcome linked",
+    "summary": "Beacon Hill EG-06 chain: population_mismatch → final_output_accepted → PROPOSAL_CORRECTED with CONTRIBUTING causality. Gold Mine v2 scored.",
+    "canonicalQuestion": "report population mismatch corrected before proposal acceptance",
+    "alternateQuestions": [],
+    "shortAnswer": "Beacon Hill EG-06 chain: population_mismatch → final_output_accepted → PROPOSAL_CORRECTED with CONTRIBUTING causality. Gold Mine v2 scored.",
+    "detailedAnswer": "Proposal population mismatch corrected before final acceptance — business outcome linked",
+    "retrievalQuestions": [
+      "report population mismatch corrected before proposal acceptance"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Proposal population mismatch corrected before final acceptance — business outcome linked",
+      "startAt": [
+        "artifacts/agent-runs/experience-business-outcome-correlation-v1/thread-autopsy-bundle.json"
+      ],
+      "runPreflight": [
+        "npm run test:estimating-experience-pipeline",
+        "npm run test:business-outcome-correlation-pipeline"
+      ],
+      "doNot": [
+        "Create cg-opening-envelope-v2",
+        "Fabricate dimensions or business outcomes"
+      ],
+      "proveBeforeClaiming": [
+        "REAL_PROJECT_PILOT=PASS",
+        "RETRIEVAL=PASS",
+        "MODEL_INFERRED_AUTHORITY_LEAKAGE=0"
+      ]
+    },
+    "evidenceRefs": [
+      "artifacts/agent-runs/experience-business-outcome-correlation-v1/business-outcome-correlation-proof.json",
+      "scripts/tests/fixtures/experience-business-outcome-correlation-v1/beacon-hill-business-outcome.json"
+    ],
+    "executionDeltaRefs": [
+      "ED-001"
+    ],
+    "wasteIds": [
+      "TW-001"
+    ],
+    "operatorFrictionIds": [],
+    "roiRank": 1,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "Data-Extraction",
+    "authorityPath": [
+      "artifacts/agent-runs/experience-business-outcome-correlation-v1/seed-packets/IH-EXPERIENCE-BUSINESS-OUTCOME-BEACON-HILL-001.json"
+    ],
+    "harvestId": "experience-business-outcome-correlation-v1"
+  }
+}

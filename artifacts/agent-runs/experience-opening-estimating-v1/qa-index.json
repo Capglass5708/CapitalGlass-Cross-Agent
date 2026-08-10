@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "experience-opening-estimating-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-EXPERIENCE-OPENING-ESTIMATING-BEACON-HILL-001",
+      "questionId": "IHEXPERIENCE",
+      "canonicalQuestion": "storefront opening scope corrected on architectural elevation",
+      "alternateQuestions": [
+        "curtain wall opening accepted without correction from marked-up plan"
+      ],
+      "shortAnswer": "Real pilot: machine classified WINDOW_SYSTEM, human corrected to STOREFRONT on A6.2 elevation. Episode + deterministic edges + situation retrieval proven.",
+      "detailedAnswer": "Beacon Hill storefront scope correction becomes retrievable estimating precedent",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-10T00:17:30.005Z",
+      "authorityRepo": "Data-Extraction",
+      "authorityPath": [
+        "artifacts/agent-runs/experience-opening-estimating-v1/seed-packets/IH-EXPERIENCE-OPENING-ESTIMATING-BEACON-HILL-001.json"
+      ],
+      "authorityCommit": [
+        "e61b349"
+      ],
+      "evidenceUrls": [
+        "artifacts/agent-runs/experience-opening-estimating-v1/estimating-experience-pipeline-proof.json",
+        "scripts/tests/fixtures/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "experience-opening-estimating-v1"
+      ],
+      "entities": [
+        "Data-Extraction"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Beacon Hill storefront scope correction becomes retrievable estimating precedent",
+        "startAt": [
+          "artifacts/agent-runs/experience-opening-estimating-v1/thread-autopsy-bundle.json"
+        ],
+        "runPreflight": [
+          "npm run test:estimating-experience-pipeline",
+          "npm run test:business-outcome-correlation-pipeline"
+        ],
+        "doNot": [
+          "Create cg-opening-envelope-v2",
+          "Fabricate dimensions or business outcomes"
+        ],
+        "proveBeforeClaiming": [
+          "REAL_PROJECT_PILOT=PASS",
+          "RETRIEVAL=PASS",
+          "MODEL_INFERRED_AUTHORITY_LEAKAGE=0"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "lesson"
+    }
+  ]
+}

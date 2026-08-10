@@ -1,0 +1,118 @@
+{
+  "packetKind": "graph-extraction",
+  "schemaVersion": "cg-master-graph-extraction-v1",
+  "extractionId": "extraction:experience-business-outcome-correlation-v1",
+  "harvestId": "experience-business-outcome-correlation-v1",
+  "workPackageId": "experience-business-outcome-correlation-v1",
+  "producer": {
+    "repositoryId": "repo:capitalglass-cross-agent",
+    "capability": "harvest-graph-extraction",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "id": "harvest:experience-business-outcome-correlation-v1",
+      "nodeType": "Harvest",
+      "displayName": "experience-business-outcome-correlation-v1",
+      "lifecycleState": "lifecycle:canonical",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "missionClass": "material-closeout",
+        "sourceCommitSha": "01916006bd1d7761b68e1e6cb3295ec6a9011a73",
+        "retrievalResult": "INDEX_HIT"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T00:16:35.565Z",
+        "evidenceAnchor": "artifacts/agent-runs/experience-business-outcome-correlation-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/experience-business-outcome-correlation-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:experience-business-outcome-beacon-hill-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Beacon Hill business outcome correlation with retrieval",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "Data-Extraction",
+        "ownerIndexingStatus": "indexed"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T00:16:35.565Z",
+        "evidenceAnchor": "artifacts/agent-runs/experience-business-outcome-correlation-v1/compact-records/experience-business-outcome-beacon-hill-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/experience-business-outcome-correlation-v1/compact-records/experience-business-outcome-beacon-hill-v1.json"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:harvest-experience-business-outcome-correlation-v1-contains-workpackage-experience-business-outcome-beacon-hill-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:experience-business-outcome-correlation-v1",
+      "targetId": "workpackage:experience-business-outcome-beacon-hill-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T00:16:35.565Z",
+        "evidenceAnchor": "artifacts/agent-runs/experience-business-outcome-correlation-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/experience-business-outcome-correlation-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-data-extraction-owns-workpackage-experience-business-outcome-beacon-hill-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:data-extraction",
+      "targetId": "workpackage:experience-business-outcome-beacon-hill-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T00:16:35.565Z",
+        "evidenceAnchor": "artifacts/agent-runs/experience-business-outcome-correlation-v1/compact-records/experience-business-outcome-beacon-hill-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/experience-business-outcome-correlation-v1/compact-records/experience-business-outcome-beacon-hill-v1.json"
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "provenance": {
+    "producerRepositoryId": "repo:capitalglass-cross-agent",
+    "producerCapability": "harvest-graph-extraction",
+    "sourceAuthority": "authority:cross-agent-harvest",
+    "classification": "observed",
+    "verificationState": "verified",
+    "recordedAt": "2026-08-10T00:16:35.565Z",
+    "evidenceAnchor": "artifacts/agent-runs/experience-business-outcome-correlation-v1/harvest-manifest-v1.json",
+    "sourceAnchorDetail": {
+      "anchorType": "file-path",
+      "locator": "artifacts/agent-runs/experience-business-outcome-correlation-v1/harvest-manifest-v1.json"
+    }
+  }
+}
