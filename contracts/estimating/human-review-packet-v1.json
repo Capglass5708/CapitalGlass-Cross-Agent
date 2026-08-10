@@ -1,0 +1,33 @@
+{
+  "schema": "human-review-packet-v1@1.0.0",
+  "description": "Estimator-facing review packet assembled from deterministic schedule-join and Experience wiring receipts. Producer: Data-Extraction human-review lane. Consumer: Human Estimator UI, Bid Composer scope-review import (future), governed Experience learning handoff.",
+  "decisionEnum": ["APPROVE", "REJECT", "CORRECT", "DEFER"],
+  "reviewItemKinds": [
+    "JOINED_SCOPE_REVIEW",
+    "CG_GLAZING_OMISSION_REVIEW"
+  ],
+  "evidenceLanes": [
+    "CURRENT_PROJECT_EVIDENCE",
+    "EXPERIENCE_ADVISORY_EVIDENCE"
+  ],
+  "required": [
+    "schemaVersion",
+    "packetId",
+    "projectId",
+    "milestone",
+    "reviewItems"
+  ],
+  "fields": {
+    "reviewItem": {
+      "reviewItemId": "deterministic id",
+      "reviewItemKind": "JOINED_SCOPE_REVIEW | CG_GLAZING_OMISSION_REVIEW",
+      "scheduleAssociationState": "JOINED | SCHEDULE_ONLY | UNMATCHED",
+      "revuObservationJoinState": "JOINED | UNMATCHED",
+      "approvedScope": "boolean — false for omission/unmatched review",
+      "reviewRequired": "boolean",
+      "currentProjectEvidence": "schedule, enriched scope, revu observation, provenance",
+      "experienceAdvisoryEvidence": "retrieval score, episode refs — advisory only",
+      "humanDecision": "APPROVE | REJECT | CORRECT | DEFER | null until decided"
+    }
+  }
+}

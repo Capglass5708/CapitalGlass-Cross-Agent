@@ -1,0 +1,39 @@
+{
+  "schema": "enriched-glazing-scope-object-v1@1.0.0",
+  "description": "Deterministic join of opening identity with schedule row fields for commercial glazing scope assembly. Producer: Computer Estimator envelope reconciliation (schedule join). Consumer: Experience graph, Human Estimator, Bid Composer review lanes.",
+  "required": [
+    "schemaVersion",
+    "enrichedScopeId",
+    "stableScopeKey",
+    "projectId",
+    "openingIdentity",
+    "scheduleAssociation",
+    "attributes",
+    "scopeTypeCode",
+    "commercialState",
+    "calculationVersion"
+  ],
+  "fields": {
+    "openingIdentity": {
+      "openingCandidateId": "uuid",
+      "stableCandidateKey": "sha256-stable-key",
+      "mark": "schedule/opening mark when known",
+      "reconciliationState": "AGREE | PARSER_ONLY | REVU_ONLY | ..."
+    },
+    "scheduleAssociation": {
+      "state": "JOINED | SCHEDULE_ONLY | OPENING_ONLY | UNRESOLVED",
+      "scheduleEvidenceIds": "array of evidenceId",
+      "openingEvidenceIds": "array of evidenceId",
+      "associationMethod": "shared_mark | linked_ref | parser_only"
+    },
+    "attributes": {
+      "size": { "width": "number|null", "height": "number|null", "unit": "IN" },
+      "type": "typeMark or schedule type string|null",
+      "system": "manufacturer or system designation|null",
+      "material": "material string|null",
+      "remarks": "free-text remarks|null",
+      "quantity": { "value": "number", "unit": "EA" }
+    },
+    "scopeTypeCode": "commercial-glazing-scope-vocabulary-v1 code"
+  }
+}
