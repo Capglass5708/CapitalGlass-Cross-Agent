@@ -16,7 +16,9 @@ The thread records a control-plane milestone reported as merged to canonical `ma
 
 The conversation sharpened one important boundary: implementation durability and repository-wide terminal hygiene are separate states. A pre-existing PromptOps drift should not reopen completed control-plane engineering, but it cannot be ignored if the canonical closeout gate requires it to pass. The operator therefore requested a WaveRunner closeout mandate with broad tactical autonomy but narrow terminal scope.
 
-Current ChatGPT verdict at artifact creation: `DRAFT_READY` pending mandatory Git publication verification. After successful remote verification, the chat response may advance to `CHATGPT_SOURCE_PUBLISHED`; it must not claim `HARVEST_COMPLETE`.
+Current ChatGPT verdict: `CHATGPT_SOURCE_PUBLISHED`.
+
+Initial Git publication commit `a59f7d7693619bcbca292878e0c4c18f1d5face2` was verified as remote `chat-gpt-harvest` HEAD (0/0 parity) at first push. This corrective commit backfills durable receipt fields into the Git artifact itself (protocol receipt durability / `sourceCommitSha` Git durability). It must not claim `HARVEST_COMPLETE`.
 
 ## 2. Harvest tier rationale
 
@@ -35,7 +37,8 @@ Rationale:
 Retrieval: INDEX_NOT_AVAILABLE_IN_CHAT_CONTEXT
 Cache: NOT_APPLICABLE
 rawScanRequired: false
-sourceCommitSha: UNKNOWN_AT_DRAFT_CREATION
+verdict: CHATGPT_SOURCE_PUBLISHED
+sourceCommitSha: a59f7d7693619bcbca292878e0c4c18f1d5face2
 sourceBranch: chat-gpt-harvest
 sourceRepo: Capglass5708/CapitalGlass-Cross-Agent
 ```
@@ -499,8 +502,8 @@ Zero or few open product candidates from this thread must not be interpreted as 
 
 | Layer | State (ChatGPT closeout) |
 | --- | --- |
-| Git draft (`chat-gpt-harvest`) | `pending-gate-verification-at-artifact-write` |
-| `CHATGPT_HARVEST_GIT_GATE` | `pending-gate-verification-at-artifact-write` |
+| Git draft (`chat-gpt-harvest`) | `published` (initial SHA below; corrective receipt backfill on branch) |
+| `CHATGPT_HARVEST_GIT_GATE` | `PASS` |
 | L: draft staging (Action move) | `not-run` |
 | Cursor ingest | `not-run` |
 | `harvest:validate` | `not-run` |
@@ -518,29 +521,46 @@ projection.hubPublishStatus: not-run
 
 ## 20. gitPublicationReceipt
 
-The mandatory verified SHA receipt is emitted by ChatGPT in the closeout response after GitHub remote verification. It is not self-embedded with its own final commit SHA here because the commit SHA is a function of the committed content/tree; see `OG-003` protocol-upgrade candidate.
-
-Expected receipt fields:
+Durable Git receipt backfill after `CHATGPT_HARVEST_GIT_GATE` PASS. `sourceCommitSha` / `initialPublicationCommitSha` intentionally reference the **initial publication commit** (content commit), not this corrective backfill commit — see `OG-003` (self-referential commit identity).
 
 ```json
 {
   "gitPublicationReceipt": {
     "gate": "CHATGPT_HARVEST_GIT_GATE",
-    "verdict": "PENDING_AT_ARTIFACT_WRITE",
+    "verdict": "PASS",
     "repo": "Capglass5708/CapitalGlass-Cross-Agent",
     "branch": "chat-gpt-harvest",
     "harvestId": "harvest-2026-08-10-control-plane-terminal-closeout-v1",
     "artifactPath": "artifacts/agent-runs/harvest-2026-08-10-control-plane-terminal-closeout-v1/chatgpt-findings-source.md",
-    "localCommitSha": "EMIT_AFTER_PUSH",
-    "remoteCommitSha": "EMIT_AFTER_REMOTE_VERIFICATION",
-    "remoteVerified": false
+    "initialPublicationCommitSha": "a59f7d7693619bcbca292878e0c4c18f1d5face2",
+    "localCommitSha": "a59f7d7693619bcbca292878e0c4c18f1d5face2",
+    "remoteCommitSha": "a59f7d7693619bcbca292878e0c4c18f1d5face2",
+    "remoteVerified": true,
+    "receiptDurability": "CORRECTIVE_BACKFILL_ON_CHAT_GPT_HARVEST",
+    "branchCurrentnessProof": {
+      "checkedAt": "2026-08-10T15:50:33Z",
+      "protocolExpectation": "Checkout chat-gpt-harvest with main as base before writing",
+      "originMainSha": "fa757d0f38a67e18e66a92ddf2a1eaa04e8b7270",
+      "mergeBaseSha": "402352f4bb056e3f30115f7eb7d40e13000cafef",
+      "initialPublicationCommitSha": "a59f7d7693619bcbca292878e0c4c18f1d5face2",
+      "behindOriginMain": 56,
+      "aheadOfOriginMain": 91,
+      "status": "diverged",
+      "containsRecentMainExpansion": false,
+      "recentMainCommitsChecked": [
+        "420910d3c2ee2ef0300f1a0a1e703d87749c76f8",
+        "b41ef224",
+        "fa757d0f38a67e18e66a92ddf2a1eaa04e8b7270"
+      ],
+      "note": "At corrective backfill time, chat-gpt-harvest does not contain current main HEAD or the recent ledger/harvest expansion commits on main. Cursor ingest should treat content as valid ChatGPT source evidence, but must not assume staging branch ancestry equals current main."
+    }
   }
 }
 ```
 
 ## 21. Cursor handoff command
 
-After ChatGPT reports `CHATGPT_SOURCE_PUBLISHED` and a verified commit SHA:
+Source is `CHATGPT_SOURCE_PUBLISHED` with durable receipt backfill. Cursor ingest from:
 
 ```text
 Ingest ChatGPT thread autopsy findings per chat-thread-closeout-autopsy-harvest-chatgpt-v1 v2.1.
