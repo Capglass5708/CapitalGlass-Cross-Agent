@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-EXPERIENCE-PRODUCT-ROUTING-LOCKS-001",
+      "questionId": "IHEXPERIENCE",
+      "canonicalQuestion": "Which product owns Rosewood estimating scope review?",
+      "alternateQuestions": [
+        "Can Beacon Hill go through Bid Composer for the business loop milestone?",
+        "Is shared Experience allowed across Rosewood and Beacon Hill?"
+      ],
+      "shortAnswer": "Rosewood CG-2033-26 must stay on Bid Composer; Beacon Hill CG-2036-26 on Proposal Generator; shared Experience allowed; cross-routing forbidden.",
+      "detailedAnswer": "Product routing locks: Rosewood Bid Composer vs Beacon Hill Proposal Generator",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-10T02:59:28.917Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/seed-packets/IH-EXPERIENCE-PRODUCT-ROUTING-LOCKS-001.json"
+      ],
+      "authorityCommit": [
+        "afb8066"
+      ],
+      "evidenceUrls": [
+        "Data-Extraction/artifacts/agent-runs/experience-estimator-bid-composer-loop-v1/terminal-milestone-receipt-v1.json",
+        "work-progress/projects/experience-beacon-hill-proposal-generator-loop-v1.md"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Experience graph milestone spans multiple Capital Glass products",
+        "startAt": [
+          "work-progress/projects/capital-glass-experience-graph-compounding-v1.md"
+        ],
+        "runPreflight": [],
+        "doNot": [
+          "Route Rosewood through Proposal Generator",
+          "Route Beacon Hill through Bid Composer for live pilot"
+        ],
+        "proveBeforeClaiming": [
+          "rosewoodRoutedToBidComposer=true",
+          "beaconHillRoutedToBidComposer=false"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-EXPERIENCE-ROSEWOOD-BID-COMPOSER-LOOP-001",
+      "questionId": "IHEXPERIENCE",
+      "canonicalQuestion": "How do I get Rosewood W22/D-101 evidence into Bid Composer pending scope review?",
+      "alternateQuestions": [
+        "What is the smallest bridge from importSpineScopeReviewPackage to the database?",
+        "Which import source loads Rosewood estimating spine fixtures into scope review?"
+      ],
+      "shortAnswer": "Wire CE/Revu reconciliation through buildSpineEvaluationPackage and importSpineScopeReviewPackage into bid_scope_review_items via rosewood-estimating-spine-v1 without rebuilding disposition UI.",
+      "detailedAnswer": "Rosewood estimating spine import bridge for Bid Composer scope review",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-10T02:59:28.919Z",
+      "authorityRepo": "CapitalGlass-BidComposer",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/seed-packets/IH-EXPERIENCE-ROSEWOOD-BID-COMPOSER-LOOP-001.json"
+      ],
+      "authorityCommit": [
+        "afb8066"
+      ],
+      "evidenceUrls": [
+        "CapitalGlass-BidComposer@455e72db2d9110663c543bcc548eaff55dbda0c6",
+        "src/app/api/bids/[bidId]/scope-review/import/route.ts",
+        "scripts/lib/run-rosewood-estimator-bid-composer-loop-proof.mjs"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1"
+      ],
+      "entities": [
+        "CapitalGlass-BidComposer"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Rosewood or remodel bid needs estimating-spine scope review items",
+        "startAt": [
+          "fixtures/estimating-spine/ce-reconciliation-result-sample.json",
+          "import/route.ts"
+        ],
+        "runPreflight": [
+          "npm run estimating-spine:phases-6-7:test",
+          "npm run experience:estimator-bid-composer-loop:test"
+        ],
+        "doNot": [
+          "Rebuild envelope or Experience Graph",
+          "Route Rosewood through Proposal Generator"
+        ],
+        "proveBeforeClaiming": [
+          "writePerformed=false",
+          "EXPERIENCE_LINEAGE_LINKED to episode:08ae3c0859fd58f0"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "runbook"
+    }
+  ]
+}

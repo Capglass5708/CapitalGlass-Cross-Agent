@@ -1,0 +1,221 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "rework",
+      "description": "Cross-Agent PR #29 initially conflicted with legacy Wave 4 harvest artifacts on branch",
+      "evidenceRefs": [
+        "TE-007",
+        "WM-001"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Clean branch from main retaining only Rosewood milestone harvest generator/bundle",
+      "roiRank": 2,
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL"
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "agent",
+      "description": "Pilot script async/await bug wrote empty receipt {} before sync fix",
+      "evidenceRefs": [
+        "TE-003"
+      ],
+      "estimatedImpact": "low",
+      "savedBy": "Make runExperienceEstimatorBidComposerLoopPilot synchronous",
+      "roiRank": 3,
+      "goldMineSignalClass": "AGENT_FRICTION_SIGNAL"
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "context",
+      "description": "Subagent scout before compact index on milestone launch turn",
+      "evidenceRefs": [
+        "INDEX_MISS"
+      ],
+      "estimatedImpact": "low",
+      "savedBy": "npm run agent:index:scout before broad repo exploration",
+      "roiRank": 4,
+      "goldMineSignalClass": "AGENT_FRICTION_SIGNAL"
+    }
+  ],
+  "operatorFriction": [],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Cross-Agent coordination PR for Rosewood closeout",
+      "actualExecution": {
+        "steps": [
+          "Force-push branch with 8 commits including legacy Wave 4 overlap",
+          "Merge failed — not mergeable"
+        ],
+        "outcome": "FAIL",
+        "evidenceRefs": [
+          "TE-007"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Checkout main",
+          "Cherry-pick only milestone-specific files",
+          "Force-push clean branch",
+          "Merge"
+        ],
+        "outcome": "PASS",
+        "requiredPreflight": [
+          "git fetch origin main"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      },
+      "preventiveControl": "Coordination PRs: branch from current main, never stack on stale Wave 4 branch"
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Bid Composer scope import bridge",
+      "actualExecution": {
+        "steps": [
+          "Discovered importSpineScopeReviewPackage was in-memory only",
+          "Added upsertScopeReviewFromSpinePackage + rosewood-estimating-spine-v1 route"
+        ],
+        "outcome": "PASS",
+        "evidenceRefs": [
+          "TE-002",
+          "CapitalGlass-BidComposer@455e72d"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Scout scope-review import route first",
+          "Identify smallest DB persistence bridge"
+        ],
+        "outcome": "Same outcome faster",
+        "requiredPreflight": [
+          "import/route.ts",
+          "scope-review-repository.ts"
+        ]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "medium",
+        "operatorFrustration": "low"
+      },
+      "preventiveControl": "Bid Composer estimating-spine phases-6-7 tests already proved pure functions — scout DB gap before WaveRunner"
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Stack Rosewood closeout on branch containing duplicate Wave 4 harvest artifacts",
+      "whyItWasWrong": "Merge conflicts with main; coordination PR blocked",
+      "correctFirstMove": "Branch from main; add only new milestone harvest files",
+      "preventiveControl": "Cross-Agent coordination-only PRs must rebase on main before merge",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "Second estimating evidence envelope or Experience Graph stack",
+      "whyRepeated": "Risk of parallel authority during business-loop milestone",
+      "firstKnownInstance": "cg-estimating-evidence-envelope-v1",
+      "priorIndexSlice": "work-progress/projects/experience-opening-estimating-v1.md",
+      "whyMissed": "DO_NOT_REBUILD locks enforced in WaveRunner",
+      "avoidableBy": "Reuse Lane B infrastructure; enrich episode:08ae3c0859fd58f0 only",
+      "recommendedAction": "add_guard"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "experience-beacon-hill-proposal-generator-loop-v1",
+      "whyItPays": "Mirrors proven Rosewood loop on Beacon Hill Proposal Generator new-construction workflow",
+      "effort": "medium",
+      "operatorValue": "high",
+      "businessValue": "high",
+      "platformValue": "medium",
+      "agentValue": "high",
+      "reliabilityValue": "high",
+      "automationLeverage": "high",
+      "estimatedComplexity": "medium",
+      "blastRadius": "estimating-suite",
+      "confidence": "high",
+      "evidenceDiversity": "Rosewood terminal receipt + product routing proof",
+      "rootCauseLeverage": "closes proposal-generator business loop",
+      "goldMineSignalClass": "BUSINESS_WORKFLOW_SIGNAL",
+      "novelty": "NEW",
+      "savedWasteIds": [],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 2,
+      "title": "REAL_HUMAN_DISPOSITION ops acceptance on Rosewood",
+      "whyItPays": "Separates integration proof from production estimator workflow",
+      "effort": "low",
+      "operatorValue": "medium",
+      "businessValue": "medium",
+      "confidence": "high",
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL",
+      "novelty": "NEW",
+      "savedWasteIds": [],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 3,
+      "title": "Persist SpineHumanEstimatorEvaluationV1 JSON on bid_scope_review_items",
+      "whyItPays": "Eliminates mapper stub reconstruction in estimating cockpit",
+      "effort": "low",
+      "operatorValue": "medium",
+      "businessValue": "medium",
+      "confidence": "medium",
+      "goldMineSignalClass": "SUCCESS_PATTERN",
+      "novelty": "DEFERRED",
+      "savedWasteIds": [
+        "TW-002"
+      ],
+      "seedAs": "owner-artifact"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "experience-estimator-bid-composer-loop-v1",
+      "currentStatus": "CLOSED",
+      "doNotClaimUntil": [
+        "Reopen Rosewood Bid Composer development",
+        "Route Rosewood through Proposal Generator",
+        "Route Beacon Hill through Bid Composer",
+        "Treat SIMULATED_TEST_DISPOSITION as REAL_HUMAN_DISPOSITION"
+      ],
+      "lastKnownEvidence": [
+        "Data-Extraction/artifacts/agent-runs/experience-estimator-bid-composer-loop-v1/terminal-milestone-receipt-v1.json"
+      ]
+    },
+    {
+      "awardOrVerdict": "experience-beacon-hill-proposal-generator-loop-v1",
+      "currentStatus": "OPEN",
+      "doNotClaimUntil": [
+        "Start before reading Proposal Generator scope/population paths"
+      ],
+      "lastKnownEvidence": [
+        "work-progress/projects/experience-beacon-hill-proposal-generator-loop-v1.md"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "work-progress/harvest-packet-registry.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-10T02:55:11.346Z",
+    "preflightReceiptHash": "0dd062c4e05c801d0cfc16bb379654debbb68cbbd5f2646e98b8b3fa8226b0cd"
+  }
+}

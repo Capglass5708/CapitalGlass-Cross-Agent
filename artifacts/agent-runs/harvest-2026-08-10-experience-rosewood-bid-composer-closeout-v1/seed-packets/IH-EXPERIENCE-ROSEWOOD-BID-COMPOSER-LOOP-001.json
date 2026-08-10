@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-EXPERIENCE-ROSEWOOD-BID-COMPOSER-LOOP-001",
+  "kind": "runbook",
+  "title": "Rosewood estimating spine import bridge for Bid Composer scope review",
+  "summary": "Wire CE/Revu reconciliation through buildSpineEvaluationPackage and importSpineScopeReviewPackage into bid_scope_review_items via rosewood-estimating-spine-v1 without rebuilding disposition UI.",
+  "retrievalQuestions": [
+    "How do I get Rosewood W22/D-101 evidence into Bid Composer pending scope review?",
+    "What is the smallest bridge from importSpineScopeReviewPackage to the database?",
+    "Which import source loads Rosewood estimating spine fixtures into scope review?"
+  ],
+  "evidenceRefs": [
+    "CapitalGlass-BidComposer@455e72db2d9110663c543bcc548eaff55dbda0c6",
+    "src/app/api/bids/[bidId]/scope-review/import/route.ts",
+    "scripts/lib/run-rosewood-estimator-bid-composer-loop-proof.mjs"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Rosewood or remodel bid needs estimating-spine scope review items",
+    "startAt": ["fixtures/estimating-spine/ce-reconciliation-result-sample.json", "import/route.ts"],
+    "runPreflight": ["npm run estimating-spine:phases-6-7:test", "npm run experience:estimator-bid-composer-loop:test"],
+    "doNot": ["Rebuild envelope or Experience Graph", "Route Rosewood through Proposal Generator"],
+    "proveBeforeClaiming": ["writePerformed=false", "EXPERIENCE_LINEAGE_LINKED to episode:08ae3c0859fd58f0"]
+  },
+  "ownerRepo": "CapitalGlass-BidComposer",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

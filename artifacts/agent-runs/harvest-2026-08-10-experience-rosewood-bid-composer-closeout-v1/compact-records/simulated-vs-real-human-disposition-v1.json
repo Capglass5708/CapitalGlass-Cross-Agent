@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1",
+  "packetId": "simulated-vs-real-human-disposition-v1",
+  "state": "COMPLETE",
+  "packetVerdict": "DOCUMENTED",
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Ops: perform REAL_HUMAN_DISPOSITION as separate acceptance gate",
+  "evidenceRefs": [
+    "TE-005",
+    "terminal-milestone-receipt-v1.json humanReviewProvenance"
+  ],
+  "doNotAdvance": [
+    "Claim REAL_HUMAN_DISPOSITION from SIMULATED_TEST_DISPOSITION proof"
+  ],
+  "advancementGate": "humanReviewProvenance field present in terminal receipt",
+  "contentHash": "04c6ad383046074a5bcecba5d6a55303ea854d5080b10078dae1377f7f5ff463"
+}

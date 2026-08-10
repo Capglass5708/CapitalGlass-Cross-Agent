@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-EXPERIENCE-PRODUCT-ROUTING-LOCKS-001",
+  "kind": "failure-pattern",
+  "title": "Product routing locks: Rosewood Bid Composer vs Beacon Hill Proposal Generator",
+  "summary": "Rosewood CG-2033-26 must stay on Bid Composer; Beacon Hill CG-2036-26 on Proposal Generator; shared Experience allowed; cross-routing forbidden.",
+  "retrievalQuestions": [
+    "Which product owns Rosewood estimating scope review?",
+    "Can Beacon Hill go through Bid Composer for the business loop milestone?",
+    "Is shared Experience allowed across Rosewood and Beacon Hill?"
+  ],
+  "evidenceRefs": [
+    "Data-Extraction/artifacts/agent-runs/experience-estimator-bid-composer-loop-v1/terminal-milestone-receipt-v1.json",
+    "work-progress/projects/experience-beacon-hill-proposal-generator-loop-v1.md"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Experience graph milestone spans multiple Capital Glass products",
+    "startAt": ["work-progress/projects/capital-glass-experience-graph-compounding-v1.md"],
+    "runPreflight": [],
+    "doNot": ["Route Rosewood through Proposal Generator", "Route Beacon Hill through Bid Composer for live pilot"],
+    "proveBeforeClaiming": ["rosewoodRoutedToBidComposer=true", "beaconHillRoutedToBidComposer=false"]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

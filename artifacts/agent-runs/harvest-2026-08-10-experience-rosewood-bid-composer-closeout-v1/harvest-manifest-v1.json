@@ -1,0 +1,328 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "afb806669d60b98c0437a94d5a336c7e7e95d499",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-10T03:00:00.000Z",
+  "updatedAt": "2026-08-10T03:00:00.000Z",
+  "retrievalResult": "INDEX_MISS",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_VALIDATED",
+  "experienceGraphHarvest": {
+    "program": "capital-glass-experience-graph-compounding-v1",
+    "workPackageId": "experience-estimator-bid-composer-loop-v1",
+    "terminalReceiptPath": "Data-Extraction/artifacts/agent-runs/experience-estimator-bid-composer-loop-v1/terminal-milestone-receipt-v1.json",
+    "pilotProject": "Rosewood / CG-2033-26",
+    "primaryProduct": "CapitalGlass-BidComposer",
+    "upstreamEpisode": "episode:08ae3c0859fd58f0",
+    "humanDispositionNote": "SIMULATED_TEST_DISPOSITION — integration proof only"
+  },
+  "doNotAdvance": [
+    "Reopen experience-estimator-bid-composer-loop-v1 Rosewood implementation",
+    "Route Rosewood through Proposal Generator",
+    "Route Beacon Hill through Bid Composer",
+    "Claim REAL_HUMAN_DISPOSITION from SIMULATED_TEST_DISPOSITION proof",
+    "Run index:publish or harvest:publish-hub-seed from Cursor"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 3,
+      "seeds": 2,
+      "roiItems": 3,
+      "operatorFriction": 0,
+      "executionDeltas": 2,
+      "wrongMoves": 1
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Operator runs harvest:publish-hub-seed + index:publish — NOT_RUN_BY_CURSOR"
+  },
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "1.2.0",
+    "eligibleCandidates": 0,
+    "rejectedUnrelatedCandidates": 0,
+    "exportStatus": "not-run",
+    "dataExtractionStatus": "not-run",
+    "catalogPublishStatus": "not-run",
+    "retrievalStatus": "not-run",
+    "targetCatalog": "L:\\02-catalog\\Harvest\\Harvest Protocol Self Learning",
+    "authorityStatus": "PROPOSAL",
+    "automaticProtocolMutation": false
+  },
+  "relatedRepos": [
+    {
+      "repo": "CapitalGlass-BidComposer",
+      "branch": "main",
+      "commitSha": "455e72db2d9110663c543bcc548eaff55dbda0c6",
+      "role": "Rosewood spine import + scope loop proof"
+    },
+    {
+      "repo": "Data-Extraction",
+      "branch": "main",
+      "commitSha": "1f054e6333a3c2069768eecf9371c6475fcd0641",
+      "role": "Experience enrichment + terminal receipt"
+    },
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "main",
+      "commitSha": "afb806669d60b98c0437a94d5a336c7e7e95d499",
+      "role": "coordination + harvest"
+    }
+  ],
+  "supersededClaims": [
+    {
+      "claim": "Rosewood business loop incomplete pending importSpineScopeReviewPackage DB bridge",
+      "supersededBy": "rosewood-bid-composer-loop-durable-complete-v1",
+      "evidenceRefs": [
+        "TE-004",
+        "TE-005"
+      ]
+    }
+  ],
+  "packets": [
+    {
+      "packetKind": "outcome",
+      "packetId": "rosewood-bid-composer-loop-durable-complete-v1",
+      "packetTitle": "experience-estimator-bid-composer-loop-v1 DURABLE_COMPLETE (Rosewood)",
+      "state": "COMPLETE",
+      "packetVerdict": "DURABLE_COMPLETE",
+      "ownerRepo": "CapitalGlass-BidComposer",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/experience-estimator-bid-composer-loop-v1.md",
+      "nextAction": "Do not reopen; proceed to experience-beacon-hill-proposal-generator-loop-v1",
+      "advancementGate": "terminal-milestone-receipt-v1.json finalVerdict PILOT_PASS",
+      "doNotAdvance": [
+        "Reopen Rosewood Bid Composer development"
+      ],
+      "evidenceRefs": [
+        "TE-004",
+        "TE-005",
+        "Data-Extraction/artifacts/agent-runs/experience-estimator-bid-composer-loop-v1/terminal-milestone-receipt-v1.json"
+      ],
+      "commitRefs": [
+        "CapitalGlass-BidComposer@455e72d",
+        "Data-Extraction@1f054e6"
+      ],
+      "changeImplemented": "Rosewood evidence → HE eval → scope review → disposition → scope-item-v1 → proposal output → Experience → blind retrieval",
+      "beforeState": "importSpineScopeReviewPackage in-memory only; no bid-composer Experience enrichment",
+      "afterState": "Full business loop proven; product routing locks verified",
+      "effectiveness": "PROVEN_EFFECTIVE",
+      "blockers": []
+    },
+    {
+      "packetKind": "decision",
+      "packetId": "rosewood-freeze-beacon-hill-next-v1",
+      "packetTitle": "Freeze Rosewood; launch experience-beacon-hill-proposal-generator-loop-v1",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/experience-beacon-hill-proposal-generator-loop-v1.md",
+      "nextAction": "WaveRunner scout Proposal Generator scope/population paths",
+      "advancementGate": "mission-launch-receipt-v1.json exists",
+      "doNotAdvance": [
+        "Reopen Rosewood for REAL_HUMAN_DISPOSITION as same milestone"
+      ],
+      "evidenceRefs": [
+        "TE-006",
+        "work-progress/projects/experience-beacon-hill-proposal-generator-loop-v1.md"
+      ],
+      "decision": "Rosewood Bid Composer loop frozen; Beacon Hill Proposal Generator is next controlling milestone",
+      "alternativesRejected": [
+        "Reopen Rosewood for REAL_HUMAN_DISPOSITION as same milestone"
+      ],
+      "blockers": [],
+      "commitRefs": []
+    },
+    {
+      "packetKind": "evidence",
+      "packetId": "product-routing-locks-v1",
+      "packetTitle": "Rosewood→BidComposer, BeaconHill→ProposalGenerator, no cross-routing",
+      "state": "COMPLETE",
+      "packetVerdict": "VERIFIED",
+      "ownerRepo": "Data-Extraction",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/experience-estimator-bid-composer-loop-v1.md",
+      "nextAction": "Enforce in Beacon Hill milestone; no cross-product routing",
+      "advancementGate": "CROSS_PRODUCT_ROUTING_PASS in terminal receipt",
+      "doNotAdvance": [
+        "Route Rosewood through Proposal Generator",
+        "Route Beacon Hill through Bid Composer"
+      ],
+      "evidenceRefs": [
+        "TE-005",
+        "terminal-milestone-receipt-v1.json routing block"
+      ],
+      "type": "business_loop_proof",
+      "provesWhat": "CROSS_PRODUCT_ROUTING_PASS",
+      "blockers": [],
+      "commitRefs": []
+    },
+    {
+      "packetKind": "mistake",
+      "packetId": "cross-agent-pr29-conflict-v1",
+      "packetTitle": "Coordination PR conflicted with legacy Wave 4 artifacts",
+      "state": "RESOLVED",
+      "packetVerdict": "CORRECTED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/experience-estimator-bid-composer-loop-v1.md",
+      "nextAction": "Coordination PRs: branch from current main only",
+      "advancementGate": "PR merged at afb8066",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "WM-001",
+        "TW-001",
+        "TE-007"
+      ],
+      "actualExecution": "Stale branch with duplicate Wave 4 files",
+      "optimalExecution": "Clean branch from main with milestone-only files",
+      "blockers": [],
+      "commitRefs": []
+    },
+    {
+      "packetKind": "faster_path",
+      "packetId": "scout-spine-import-gap-v1",
+      "packetTitle": "Scout import route before implementing DB bridge",
+      "state": "COMPLETE",
+      "packetVerdict": "DOCUMENTED",
+      "ownerRepo": "CapitalGlass-BidComposer",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/experience-estimator-bid-composer-loop-v1.md",
+      "nextAction": "Reuse pattern for Beacon Hill scope import scout",
+      "advancementGate": "scope-review import route documented",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "ED-002",
+        "SP-001"
+      ],
+      "situation": "Rosewood business loop WaveRunner",
+      "rightFirstMove": "Read scope-review/import/route.ts + estimating-spine-phases-6-7 tests",
+      "blockers": [],
+      "commitRefs": []
+    },
+    {
+      "packetKind": "command",
+      "packetId": "rosewood-loop-proof-commands-v1",
+      "packetTitle": "Post-merge proof commands for Rosewood business loop",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-BidComposer",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/experience-estimator-bid-composer-loop-v1.md",
+      "nextAction": "Re-run after any BC/DE regression in estimating spine",
+      "advancementGate": "3/3 BC + 2/2 DE tests PASS",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-004"
+      ],
+      "command": "npm run experience:estimator-bid-composer-loop:test && npm run test:experience-estimator-bid-composer-loop (DE)",
+      "host": "WSL ext4",
+      "provesGate": "BUSINESS_LOOP",
+      "expectedPassSignal": "3/3 BC tests PASS; 2/2 DE tests PASS; finalVerdict PILOT_PASS",
+      "blockers": [],
+      "commitRefs": []
+    },
+    {
+      "packetKind": "protocol_upgrade",
+      "packetId": "simulated-vs-real-human-disposition-v1",
+      "packetTitle": "Label SIMULATED_TEST_DISPOSITION separately from REAL_HUMAN_DISPOSITION",
+      "state": "COMPLETE",
+      "packetVerdict": "DOCUMENTED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/experience-estimator-bid-composer-loop-v1.md",
+      "nextAction": "Ops: perform REAL_HUMAN_DISPOSITION as separate acceptance gate",
+      "advancementGate": "humanReviewProvenance field present in terminal receipt",
+      "doNotAdvance": [
+        "Claim REAL_HUMAN_DISPOSITION from SIMULATED_TEST_DISPOSITION proof"
+      ],
+      "evidenceRefs": [
+        "TE-005",
+        "terminal-milestone-receipt-v1.json humanReviewProvenance"
+      ],
+      "seedAs": "runbook",
+      "promotionClass": "POLICY_GATED",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Bid Composer scope review integration milestone closeout",
+        "startAt": [
+          "terminal-milestone-receipt-v1.json humanReviewProvenance"
+        ],
+        "runPreflight": [
+          "npm run experience:estimator-bid-composer-loop:pilot"
+        ],
+        "doNot": [
+          "Claim REAL_HUMAN_DISPOSITION when humanReviewProvenance is SIMULATED_TEST_DISPOSITION",
+          "Reopen frozen milestone for ops acceptance"
+        ],
+        "proveBeforeClaiming": [
+          "humanReviewProvenance field",
+          "Bid Composer review API PATCH with reviewed_by"
+        ]
+      },
+      "blockers": [],
+      "commitRefs": []
+    },
+    {
+      "packetKind": "blocker",
+      "packetId": "real-human-disposition-ops-gate-v1",
+      "packetTitle": "REAL_HUMAN_DISPOSITION ops acceptance not yet performed",
+      "state": "ACTIVE",
+      "packetVerdict": "EXPECTED_BLOCK",
+      "ownerRepo": "CapitalGlass-BidComposer",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/experience-estimator-bid-composer-loop-v1.md",
+      "nextAction": "Ops acceptance with real estimator review — separate from integration proof",
+      "advancementGate": "humanReviewProvenance REAL_HUMAN_DISPOSITION",
+      "doNotAdvance": [
+        "Reopen frozen Rosewood milestone for this gate"
+      ],
+      "evidenceRefs": [
+        "TE-005"
+      ],
+      "blockerId": "HUMAN_GATE_ESTIMATOR_REVIEW_REQUIRED",
+      "status": "deferred_to_ops",
+      "proofCommandId": "rosewood-loop-proof-commands-v1",
+      "blockers": [],
+      "commitRefs": []
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096",
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 8,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 8,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-1c65a9344beb",
+      "prompt-candidate-ba8444856157",
+      "prompt-candidate-17b21c0074b7",
+      "prompt-candidate-4d25798b65c6",
+      "prompt-candidate-8ee3452b851a",
+      "prompt-candidate-9c15d862a436",
+      "prompt-candidate-b68ac8016f27",
+      "prompt-candidate-fdf8e2550649"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

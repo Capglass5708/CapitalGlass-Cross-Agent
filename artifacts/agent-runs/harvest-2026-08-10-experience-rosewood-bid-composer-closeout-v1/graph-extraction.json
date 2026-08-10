@@ -1,0 +1,504 @@
+{
+  "packetKind": "graph-extraction",
+  "schemaVersion": "cg-master-graph-extraction-v1",
+  "extractionId": "extraction:harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1",
+  "harvestId": "harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1",
+  "workPackageId": "harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1",
+  "producer": {
+    "repositoryId": "repo:capitalglass-cross-agent",
+    "capability": "harvest-graph-extraction",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "id": "harvest:harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1",
+      "nodeType": "Harvest",
+      "displayName": "harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1",
+      "lifecycleState": "lifecycle:canonical",
+      "operationalState": "HARVEST_VALIDATED",
+      "metadata": {
+        "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+        "sourceCommitSha": "afb806669d60b98c0437a94d5a336c7e7e95d499",
+        "retrievalResult": "INDEX_MISS"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T03:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:rosewood-bid-composer-loop-durable-complete-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "experience-estimator-bid-composer-loop-v1 DURABLE_COMPLETE (Rosewood)",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "DURABLE_COMPLETE",
+        "ownerRepo": "CapitalGlass-BidComposer",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/experience-estimator-bid-composer-loop-v1.md",
+        "advancementGate": "terminal-milestone-receipt-v1.json finalVerdict PILOT_PASS"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T03:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/compact-records/rosewood-bid-composer-loop-durable-complete-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/compact-records/rosewood-bid-composer-loop-durable-complete-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:rosewood-freeze-beacon-hill-next-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Freeze Rosewood; launch experience-beacon-hill-proposal-generator-loop-v1",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/experience-beacon-hill-proposal-generator-loop-v1.md",
+        "advancementGate": "mission-launch-receipt-v1.json exists"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T03:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/compact-records/rosewood-freeze-beacon-hill-next-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/compact-records/rosewood-freeze-beacon-hill-next-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:product-routing-locks-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Rosewood→BidComposer, BeaconHill→ProposalGenerator, no cross-routing",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "VERIFIED",
+        "ownerRepo": "Data-Extraction",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/experience-estimator-bid-composer-loop-v1.md",
+        "advancementGate": "CROSS_PRODUCT_ROUTING_PASS in terminal receipt"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T03:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/compact-records/product-routing-locks-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/compact-records/product-routing-locks-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:cross-agent-pr29-conflict-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Coordination PR conflicted with legacy Wave 4 artifacts",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RESOLVED",
+      "metadata": {
+        "packetVerdict": "CORRECTED",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/experience-estimator-bid-composer-loop-v1.md",
+        "advancementGate": "PR merged at afb8066"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T03:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/compact-records/cross-agent-pr29-conflict-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/compact-records/cross-agent-pr29-conflict-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:scout-spine-import-gap-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Scout import route before implementing DB bridge",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "DOCUMENTED",
+        "ownerRepo": "CapitalGlass-BidComposer",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/experience-estimator-bid-composer-loop-v1.md",
+        "advancementGate": "scope-review import route documented"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T03:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/compact-records/scout-spine-import-gap-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/compact-records/scout-spine-import-gap-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:rosewood-loop-proof-commands-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Post-merge proof commands for Rosewood business loop",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-BidComposer",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/experience-estimator-bid-composer-loop-v1.md",
+        "advancementGate": "3/3 BC + 2/2 DE tests PASS"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T03:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/compact-records/rosewood-loop-proof-commands-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/compact-records/rosewood-loop-proof-commands-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:simulated-vs-real-human-disposition-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Label SIMULATED_TEST_DISPOSITION separately from REAL_HUMAN_DISPOSITION",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "DOCUMENTED",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/experience-estimator-bid-composer-loop-v1.md",
+        "advancementGate": "humanReviewProvenance field present in terminal receipt"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T03:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/compact-records/simulated-vs-real-human-disposition-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/compact-records/simulated-vs-real-human-disposition-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:real-human-disposition-ops-gate-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "REAL_HUMAN_DISPOSITION ops acceptance not yet performed",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "ACTIVE",
+      "metadata": {
+        "packetVerdict": "EXPECTED_BLOCK",
+        "ownerRepo": "CapitalGlass-BidComposer",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/experience-estimator-bid-composer-loop-v1.md",
+        "advancementGate": "humanReviewProvenance REAL_HUMAN_DISPOSITION"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T03:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/compact-records/real-human-disposition-ops-gate-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/compact-records/real-human-disposition-ops-gate-v1.json"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:harvest-harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1-contains-workpackage-rosewood-bid-composer-loop-durable-complete-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1",
+      "targetId": "workpackage:rosewood-bid-composer-loop-durable-complete-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T03:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1-contains-workpackage-rosewood-freeze-beacon-hill-next-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1",
+      "targetId": "workpackage:rosewood-freeze-beacon-hill-next-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T03:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-rosewood-freeze-beacon-hill-next-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:rosewood-freeze-beacon-hill-next-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T03:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/compact-records/rosewood-freeze-beacon-hill-next-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/compact-records/rosewood-freeze-beacon-hill-next-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1-contains-workpackage-product-routing-locks-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1",
+      "targetId": "workpackage:product-routing-locks-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T03:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-data-extraction-owns-workpackage-product-routing-locks-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:data-extraction",
+      "targetId": "workpackage:product-routing-locks-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T03:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/compact-records/product-routing-locks-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/compact-records/product-routing-locks-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1-contains-workpackage-cross-agent-pr29-conflict-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1",
+      "targetId": "workpackage:cross-agent-pr29-conflict-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T03:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-cross-agent-pr29-conflict-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:cross-agent-pr29-conflict-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T03:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/compact-records/cross-agent-pr29-conflict-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/compact-records/cross-agent-pr29-conflict-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1-contains-workpackage-scout-spine-import-gap-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1",
+      "targetId": "workpackage:scout-spine-import-gap-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T03:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1-contains-workpackage-rosewood-loop-proof-commands-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1",
+      "targetId": "workpackage:rosewood-loop-proof-commands-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T03:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1-contains-workpackage-simulated-vs-real-human-disposition-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1",
+      "targetId": "workpackage:simulated-vs-real-human-disposition-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T03:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-simulated-vs-real-human-disposition-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:simulated-vs-real-human-disposition-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T03:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/compact-records/simulated-vs-real-human-disposition-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/compact-records/simulated-vs-real-human-disposition-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1-contains-workpackage-real-human-disposition-ops-gate-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1",
+      "targetId": "workpackage:real-human-disposition-ops-gate-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T03:00:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/harvest-manifest-v1.json"
+        }
+      }
+    }
+  ],
+  "warnings": [
+    "unmapped ownerRepo CapitalGlass-BidComposer for packet rosewood-bid-composer-loop-durable-complete-v1",
+    "unmapped ownerRepo CapitalGlass-BidComposer for packet scout-spine-import-gap-v1",
+    "unmapped ownerRepo CapitalGlass-BidComposer for packet rosewood-loop-proof-commands-v1",
+    "unmapped ownerRepo CapitalGlass-BidComposer for packet real-human-disposition-ops-gate-v1"
+  ],
+  "provenance": {
+    "producerRepositoryId": "repo:capitalglass-cross-agent",
+    "producerCapability": "harvest-graph-extraction",
+    "sourceAuthority": "authority:cross-agent-harvest",
+    "classification": "observed",
+    "verificationState": "verified",
+    "recordedAt": "2026-08-10T03:00:00.000Z",
+    "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/harvest-manifest-v1.json",
+    "sourceAnchorDetail": {
+      "anchorType": "file-path",
+      "locator": "artifacts/agent-runs/harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1/harvest-manifest-v1.json"
+    }
+  }
+}
