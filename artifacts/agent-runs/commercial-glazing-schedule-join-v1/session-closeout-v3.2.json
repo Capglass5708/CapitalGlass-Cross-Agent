@@ -1,0 +1,206 @@
+{
+  "task": "Formal milestone closeout — commercial-glazing-schedule-join-v1 slices 1–4",
+  "missionClass": "closeout",
+  "outcome": "GOVERNANCE_CLOSEOUT_BLOCKED",
+  "hostMode": "cursor-wide",
+  "topology": "single-agent",
+  "confidence": "high",
+  "cheapSingleAgentOk": true,
+  "cheapestRedo": {
+    "commands": [
+      "cd Data-Extraction && npm run test:human-review-lane && npm run experience:human-review:live-beacon-hill"
+    ],
+    "estimatedClass": "mechanical",
+    "requiresOperator": false
+  },
+  "deterministicFirst": true,
+  "mixedMissions": false,
+  "material": false,
+  "workPackageId": "commercial-glazing-schedule-join-v1",
+  "verdict": "PASS",
+  "implementationAcceptance": "PASS",
+  "chatSummary": "1. Merged Data-Extraction PR #43 and CapitalGlass-Cross-Agent PR #32 to main.\n2. All four slices PASS on live Beacon Hill evidence chain.\n3. Safety invariants preserved: UNMATCHED_SCOPE_AUTO_PROMOTION=0, no BC/PG/pricing/commercial-auto writes.\n4. Parent milestone bound to merged main SHAs and terminal receipts.",
+  "mergeShas": {
+    "Data-Extraction": "8081826b6d46430baa84edcb376cfaf429cb25b8",
+    "CapitalGlass-Cross-Agent": "8d18ea94a367f2eb0a3d816781be154da979bcc6"
+  },
+  "sliceReceipts": {
+    "slice2": "Computer Estimator/artifacts/agent-runs/commercial-glazing-schedule-join-v1/live-beacon-hill-schedule-join-receipt.json",
+    "slice3": "Data-Extraction/artifacts/agent-runs/commercial-glazing-schedule-join-v1/live-beacon-hill-experience-wiring-receipt.json",
+    "slice4": "Data-Extraction/artifacts/agent-runs/commercial-glazing-schedule-join-v1/live-beacon-hill-human-review-lane-receipt.json"
+  },
+  "terminalGates": {
+    "HUMAN_REVIEW_LANE": "PASS",
+    "EXPERIENCE_PIPELINE_WIRING": "PASS",
+    "UNMATCHED_SCOPE_AUTO_PROMOTION": 0,
+    "BID_COMPOSER_WRITES": 0,
+    "PROPOSAL_GENERATOR_WRITES": 0
+  },
+  "recordedAt": "2026-08-10T16:32:21.378Z",
+  "protocolVersion": "auto-v3.2",
+  "protocolBaseline": "auto-v3",
+  "schemaVersion": "cheap-agent-telemetry-v1.3",
+  "quality": "ESTIMATE_ONLY",
+  "aiCacheBindingRun": false,
+  "aiCacheUtilization": "AGENT_CONTEXT_DISABLED",
+  "aiCacheRoot": "none",
+  "aiCacheHit": null,
+  "aiCacheEvidence": {
+    "schemaVersion": "auto-v32-closeout-cache-evidence-v1@1.0.0",
+    "status": "UNKNOWN",
+    "source": "unknown",
+    "evidencePath": null,
+    "authorityBytesAvoided": null,
+    "cacheKeyHash": null,
+    "bibleDbInputsCount": null,
+    "fallbackCount": null,
+    "pairingQuality": "UNPAIRED_AGGREGATE_ONLY",
+    "billingComparable": null,
+    "receipts": {
+      "compileEvidence": "/home/wesley/repos/CapitalGlass-Cross-Agent/artifacts/agent-runs/commercial-glazing-schedule-join-v1/compile-efficiency-evidence.json",
+      "contextCache": "/home/wesley/repos/CapitalGlass-Cross-Agent/artifacts/agent-runs/commercial-glazing-schedule-join-v1/context-cache.json",
+      "contextManifest": "/home/wesley/repos/CapitalGlass-Cross-Agent/artifacts/agent-runs/commercial-glazing-schedule-join-v1/context-manifest.json",
+      "readthroughEnforcement": "/home/wesley/repos/CapitalGlass-Cross-Agent/artifacts/runs/commercial-glazing-schedule-join-v1/cache-readthrough-enforcement-v3.2.json",
+      "disciplineCohort": null,
+      "providerPairing": "/home/wesley/repos/CapitalGlass-Cross-Agent/artifacts/agent-runs/commercial-glazing-schedule-join-v1/provider-token-pairing-v3.2.json"
+    }
+  },
+  "tokenUsageReport": {
+    "status": "MISSING",
+    "path": "",
+    "schemaVersion": "",
+    "billingVerified": false,
+    "aiCacheFieldsPresent": false
+  },
+  "executionContext": {
+    "captureMode": "LEGACY_UNKNOWN",
+    "provenanceStatus": "EXECUTION_CONTEXT_MISSING",
+    "worldviewId": null,
+    "inputContextDigest": null,
+    "contextGeneration": null,
+    "recordedAt": "2026-08-10T16:33:08.899Z"
+  },
+  "reuseLineage": {
+    "recordedAt": "2026-08-10T16:33:08.900Z",
+    "frontDoorRef": "artifacts/runs/commercial-glazing-schedule-join-v1/mission-front-door-v3.2.json",
+    "closeoutReplayRef": "artifacts/runs/commercial-glazing-schedule-join-v1/closeout-replay-verify-v3.2.json",
+    "authorityReuseRef": "artifacts/runs/commercial-glazing-schedule-join-v1/authority-reuse-verify-v3.2.json",
+    "cacheReadthroughRef": "artifacts/runs/commercial-glazing-schedule-join-v1/cache-readthrough-enforcement-v3.2.json",
+    "priorCloseoutRef": "artifacts/agent-runs/commercial-glazing-schedule-join-v1/session-closeout-v3.2.json",
+    "priorCloseoutDigest": "deb43189f8e18b908aebc780cfa704e737e5bf0c357953fc158a885abc8462ef",
+    "closeoutReplayVerdict": null,
+    "compileReuseMode": null,
+    "cacheReadThroughVerdict": null,
+    "overlapVerdict": null,
+    "reuseVerdict": null,
+    "changedLanes": [],
+    "applicableGates": [],
+    "skippedLanes": [],
+    "executedLanes": [],
+    "milestoneState": null,
+    "milestoneStateDigest": null,
+    "worldviewId": null,
+    "worldviewDigest": null,
+    "runtimePostureDigest": null,
+    "mcpHealthReceiptRef": null
+  },
+  "closeoutReplayVerdict": null,
+  "priorCloseoutDigest": "deb43189f8e18b908aebc780cfa704e737e5bf0c357953fc158a885abc8462ef",
+  "changedLanes": [],
+  "sourceEpochAfter": "8d18ea94a367f2eb0a3d816781be154da979bcc6",
+  "gitHead": "8d18ea94a367f2eb0a3d816781be154da979bcc6",
+  "executionPacketTelemetry": {
+    "schemaVersion": "execution-packet-telemetry-v1@1.0.0",
+    "packetResult": "PACKET_MISS",
+    "packetHitRate": 0,
+    "packetId": null,
+    "packetHash": null,
+    "queryClass": "authority-placement",
+    "liveCompileCount": 0,
+    "routedDatasetCount": 1,
+    "datasetHitCount": 0,
+    "datasetHitRate": 0,
+    "scoutInjectionBytes": 310,
+    "builderTierBytes": 2,
+    "promptBytesLoaded": 310,
+    "injectionBudgetBytes": null,
+    "scoutInjectionWithinBudget": true,
+    "builderInjectionWithinBudget": true,
+    "supabaseMissPathUsed": false,
+    "pgvectorUsed": false
+  },
+  "bibleCache": {
+    "schemaVersion": "auto-v32-bible-cache-freshness-v1@1.0.0",
+    "cacheKey": "none+1e91e5a5e4a12a72589d1dcbee140d9da9962ffbd5c9ab518b914c994fc5e140+auto-v3.2+2.0.0+1.0.0",
+    "missionProfileId": null,
+    "bibleHashBefore": null,
+    "bibleHashAfter": "1e91e5a5e4a12a72589d1dcbee140d9da9962ffbd5c9ab518b914c994fc5e140",
+    "cacheBibleHash": null,
+    "currentBibleHash": "1e91e5a5e4a12a72589d1dcbee140d9da9962ffbd5c9ab518b914c994fc5e140",
+    "protocolVersion": "auto-v3.2",
+    "sourceSelectionPolicyVersion": "2.0.0",
+    "operatorModeVersion": "1.0.0",
+    "cacheKeyHash": null,
+    "authorityCacheKeyHash": null,
+    "cacheReuseAllowed": true,
+    "authorityChanged": false,
+    "mirrorDriftDetected": null,
+    "syncRequired": false,
+    "contentUpdateRequired": false,
+    "freshnessChecked": true,
+    "reuseDecision": "REUSE_CACHED_BIBLE_AUTHORITY_VALID",
+    "priorCloseoutReuseAllowed": true,
+    "commandsRecommended": [
+      "check:application-bibles-sync -- --all"
+    ],
+    "workPackageId": "commercial-glazing-schedule-join-v1",
+    "verifiedAt": "2026-08-10T16:33:09.051Z"
+  },
+  "bibleStatus": {
+    "freshnessChecked": true,
+    "authorityChanged": false,
+    "mirrorDriftDetected": null,
+    "syncRequired": false,
+    "contentUpdateRequired": false,
+    "bibleHashBefore": null,
+    "bibleHashAfter": "1e91e5a5e4a12a72589d1dcbee140d9da9962ffbd5c9ab518b914c994fc5e140",
+    "reuseAllowed": true,
+    "commandsRecommended": [
+      "check:application-bibles-sync -- --all"
+    ],
+    "bibleCacheKey": "none+1e91e5a5e4a12a72589d1dcbee140d9da9962ffbd5c9ab518b914c994fc5e140+auto-v3.2+2.0.0+1.0.0"
+  },
+  "bibleDbFreshness": {
+    "mode": "warn-only",
+    "status": "SKIP",
+    "indexRunId": null,
+    "latestIndexedAt": null,
+    "staleApps": [],
+    "missingCacheLinks": [],
+    "oldBibleHashCacheLinks": [],
+    "staleCacheLinks": [],
+    "linkEvaluationSummary": null,
+    "dbAvailable": false,
+    "blocking": false,
+    "issueCount": 1,
+    "issueCodeCounts": {}
+  },
+  "closeoutLabels": [
+    "AUTO_V32_BIBLE_CACHE_FRESHNESS_VERIFIED",
+    "GOVERNANCE_CLOSEOUT_BLOCKED"
+  ],
+  "providerTokenPairing": {
+    "status": "ESTIMATE_ONLY",
+    "quality": "ESTIMATE_ONLY",
+    "receiptSha256": "997d3bba44bebb30c7d0c41922fcd7d8f8597abc869101834babb0fd020e708b"
+  },
+  "governanceCloseout": {
+    "decision": "BLOCK",
+    "reasonCodes": [
+      "REQUIRED_EVIDENCE_MISSING"
+    ],
+    "decisionPath": "/home/wesley/repos/CapitalGlass-Cross-Agent/artifacts/agent-runs/commercial-glazing-schedule-join-v1/governance-closeout-decision-v1.json",
+    "blockedReceiptPath": "/home/wesley/repos/CapitalGlass-Cross-Agent/artifacts/agent-runs/commercial-glazing-schedule-join-v1/governance-closeout-blocked-receipt-v1.json",
+    "closeoutExecutionAuthorized": false
+  }
+}

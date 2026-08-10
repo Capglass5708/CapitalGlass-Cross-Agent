@@ -1,7 +1,7 @@
 # commercial-glazing-schedule-join-v1
 
 **Program:** `capital-glass-experience-graph-compounding-v1`  
-**Status:** READY_FOR_CLOSEOUT  
+**Status:** DURABLE_COMPLETE  
 **Owner repos:** `Computer Estimator`, `CapitalGlass-Cross-Agent`, `Data-Extraction`  
 **Parent:** `experience-opening-estimating-v1` (Lane B)
 
@@ -113,7 +113,14 @@ npm run test:human-review-lane
 
 **Terminal gate:** `HUMAN_REVIEW_LANE=PASS` — evidence hierarchy preserved; Experience advisory-only; `UNMATCHED_SCOPE_AUTO_PROMOTION=0`; no BC/PG writes.
 
-**Parent milestone:** `commercial-glazing-schedule-join-v1` → **READY_FOR_CLOSEOUT**
+**Parent milestone:** `commercial-glazing-schedule-join-v1` → **DURABLE_COMPLETE**
+
+| Merge SHA | Repo |
+| --- | --- |
+| `8081826b` | Data-Extraction (#43) |
+| `8d18ea94` | CapitalGlass-Cross-Agent (#32) |
+
+Closeout receipts: `artifacts/agent-runs/commercial-glazing-schedule-join-v1/`
 
 ## Out of scope (this WP)
 

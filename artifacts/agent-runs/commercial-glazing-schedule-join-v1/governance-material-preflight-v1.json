@@ -1,0 +1,112 @@
+{
+  "schemaVersion": "governance-material-preflight-v1",
+  "decisionPhase": "PREFLIGHT",
+  "authorityId": "cg-platform-governance-mcp",
+  "policyVersion": "1.1.0",
+  "sessionId": "commercial-glazing-schedule-join-v1",
+  "attemptId": "commercial-glazing-schedule-join-v1",
+  "repository": "Capital Glass Cross Agent",
+  "revision": "773e51b0600f342ee46194b67b1e7a50f5bd5e8e",
+  "materiality": "MATERIAL",
+  "constitutionalHash": "sha256:95b25b7dcddabe409a646f5b3730db9c4654c1025f91a53ecf5c9c1fd43bace9",
+  "workPackageId": "commercial-glazing-schedule-join-v1",
+  "materialSession": true,
+  "missionClass": "closeout",
+  "decision": "REROUTE",
+  "constitutionalAlignment": "ALIGNED",
+  "constitutionalOwner": "CG-Platform-Governance-MCP",
+  "executionOwner": "Capital Glass Cross Agent",
+  "mutationRepoRoot": "/home/wesley/repos/capitalglass-cross-agent",
+  "requiredEvidence": [
+    {
+      "id": "work-package-id",
+      "required": true,
+      "kind": "identity"
+    },
+    {
+      "id": "mission-class",
+      "required": true,
+      "kind": "classification"
+    },
+    {
+      "id": "constitutional-alignment",
+      "required": true,
+      "kind": "governance"
+    },
+    {
+      "id": "preflight-receipt",
+      "required": false,
+      "materialOnly": true,
+      "kind": "verification"
+    },
+    {
+      "id": "session-closeout-v3.2",
+      "required": false,
+      "materialOnly": true,
+      "kind": "closeout"
+    },
+    {
+      "id": "harvest-manifest",
+      "required": false,
+      "materialOnly": true,
+      "kind": "harvest"
+    },
+    {
+      "id": "measured-reuse-receipt",
+      "required": false,
+      "materialOnly": true,
+      "kind": "reuse"
+    },
+    {
+      "id": "closeout-payload",
+      "required": true,
+      "kind": "closeout"
+    }
+  ],
+  "duplicateAuthorityStatus": "PASS",
+  "compileAuthorized": false,
+  "decisionSource": "CG-Platform-Governance-MCP",
+  "decisionAuthority": "cg-platform-governance-mcp",
+  "inputsHash": "sha256:95b25b7dcddabe409a646f5b3730db9c4654c1025f91a53ecf5c9c1fd43bace9",
+  "reasonCodes": [
+    "GOVERNANCE_PREFLIGHT_PASS",
+    "MUTATION_ROOT_PREFLIGHT_RECEIPT_UNRESOLVABLE",
+    "MUTATION_ROOT_REROUTE_REQUIRED",
+    "MUTATION_ROOT_WORK_PACKAGE_MISMATCH"
+  ],
+  "operatorActions": [
+    "Reroute mutation root to /home/wesley/repos/CG-AppBuilder-MCP"
+  ],
+  "rerouteTarget": "CG-AppBuilder-MCP",
+  "governancePrimary": true,
+  "phase3Rule": "MOVE_DECISIONS_NOT_EXECUTION",
+  "alignmentStatus": "ALIGNED",
+  "duplicateAuthorityCheck": "PASS",
+  "repoPreflightEvidence": null,
+  "repoPreflightBridge": null,
+  "mutationRootLinkage": {
+    "status": "WARN_AND_REROUTE",
+    "mutationRepoRoot": "/home/wesley/repos/CapitalGlass-Cross-Agent",
+    "expectedReceiptRoot": "/home/wesley/repos/CG-AppBuilder-MCP",
+    "preflightReceiptResolvable": false,
+    "rerouteRecommended": true,
+    "rerouteTarget": "CG-AppBuilder-MCP",
+    "rerouteRepoKey": "cg-appbuilder-mcp",
+    "reasonCodes": [
+      "MUTATION_ROOT_PREFLIGHT_RECEIPT_UNRESOLVABLE",
+      "MUTATION_ROOT_REROUTE_REQUIRED",
+      "MUTATION_ROOT_WORK_PACKAGE_MISMATCH"
+    ],
+    "ownership": {
+      "inferredOwner": "CG-AppBuilder-MCP",
+      "inferredRepoKey": "cg-appbuilder-mcp",
+      "matchedRepoKey": "capital-glass-cross-agent"
+    }
+  },
+  "observedAt": "2026-08-10T16:32:21.795Z",
+  "expiresAt": "2026-08-10T17:02:21.795Z",
+  "ttlMs": 1800000,
+  "decisionId": "sha256:73351211fdad7a5ac617ab8ed00db515188ac1af27d84bba5cbeb8c43e646356",
+  "decisionHash": "sha256:73351211fdad7a5ac617ab8ed00db515188ac1af27d84bba5cbeb8c43e646356",
+  "preflightDecisionLatencyMs": 3
+}
