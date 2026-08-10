@@ -48,9 +48,21 @@ Capital Glass converts operational and business experience into reusable, measur
 
 | Lane | Work package | Priority | Status |
 | --- | --- | --- | --- |
-| B | `experience-opening-estimating-v1` | PRIMARY | IN_PROGRESS |
-| A | `experience-business-outcome-correlation-v1` | PARALLEL (non-blocking) | IN_PROGRESS |
-| Follow-on | `experience-estimator-bid-composer-loop-v1` | — | PLANNED |
+| B | `experience-opening-estimating-v1` | PRIMARY | **DURABLE_COMPLETE** (DE `main` @ `b7655da`) |
+| A | `experience-business-outcome-correlation-v1` | PARALLEL | IN_PROGRESS (EG-06 harvest on `main`) |
+| Rosewood loop | `experience-estimator-bid-composer-loop-v1` | PRIMARY (completed) | **DURABLE_COMPLETE** (BC `455e72d`, DE `1f054e6`) |
+| **Follow-on** | **`experience-beacon-hill-proposal-generator-loop-v1`** | **PRIMARY (controlling)** | **LAUNCHED** |
+
+### Ledger distinction (Rosewood loop closeout)
+
+| Layer | Status |
+| --- | --- |
+| Business / product milestone | `experience-estimator-bid-composer-loop-v1` = **DURABLE_COMPLETE** |
+| CapitalGlass-BidComposer `main` | merged ✅ |
+| Data-Extraction `main` | merged ✅ |
+| Post-merge business-loop proof | PASS ✅ |
+| Cross-Agent coordination / Harvest publication | PR housekeeping — merge when convenient |
+| Human disposition | `SIMULATED_TEST_DISPOSITION` for integration; `REAL_HUMAN_DISPOSITION` = later ops proof |
 
 ## Hard invariants
 
