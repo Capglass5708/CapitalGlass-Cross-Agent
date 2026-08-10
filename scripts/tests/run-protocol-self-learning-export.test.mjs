@@ -69,9 +69,9 @@ assert.match(protocolDoc, /no automatic main merge/);
 
 assert.match(chatgptDoc, /Lane C — harvest protocol self-learning \(draft only\)/);
 assert.match(chatgptDoc, /harvest:export:protocol-self-learning/);
-assert.match(chatgptDoc, /does not\*\* run Data-Extraction/);
-assert.match(chatgptDoc, /protocolSelfLearning\.exportStatus: not-run/);
-assert.match(chatgptDoc, /WaveRunner self-improvement/);
+assert.match(chatgptDoc, /does \*\*not\*\* run export or Data-Extraction/);
+assert.match(chatgptDoc, /Lane C export \/ Data-Extraction/);
+assert.match(chatgptDoc, /Gold Mine does \*\*not\*\* own harvest authority/);
 
 console.log("ok - canonical protocol docs document Lane C alignment");
 

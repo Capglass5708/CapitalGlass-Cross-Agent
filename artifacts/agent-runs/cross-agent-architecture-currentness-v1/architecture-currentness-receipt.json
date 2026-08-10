@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "cross-agent-architecture-currentness-v1@1.0.0",
+  "workPackageId": "cross-agent-architecture-full-reconciliation-v1",
+  "canonicalMainShaAtStart": "fa757d0f38a67e18e66a92ddf2a1eaa04e8b7270",
+  "reconciliationBranchHead": "fa757d0f38a67e18e66a92ddf2a1eaa04e8b7270",
+  "evaluatedAt": "2026-08-10T16:23:28.091Z",
+  "openPrCount": 5,
+  "architecturePrCount": 1,
+  "supersededPrCount": 1,
+  "obsoletePrCount": 2,
+  "activeProductPrCount": 1,
+  "humanDecisionPrCount": 0,
+  "evidenceOnlyPrCount": 2,
+  "requiredDeltaCount": 6,
+  "requiredDeltaMergedCount": null,
+  "architectureTests": {
+    "HARVEST_CORE": "PASS",
+    "HARVEST_V2_1_CHATGPT_PROTOCOL": "PASS",
+    "GOLD_MINE_HANDOFF": "PASS",
+    "GIT_RETENTION": "PASS",
+    "RISK_REMEDIATION": "PASS",
+    "PUBLICATION_HARDENING": "PASS",
+    "LAYERED_VERDICT": "PASS",
+    "CONTENT_FRESHNESS": "PASS",
+    "IDENTITY": "PASS",
+    "HOT_CACHE": "PASS",
+    "QUERY_ROUTING": "PASS",
+    "PROTOCOL_SELF_LEARNING": "PASS",
+    "EXPERIENCE_GRAPH": "PASS",
+    "PHASE_B": "PASS"
+  },
+  "publicationProof": {
+    "phaseBRequiredLayerTruth": "PASS",
+    "legacyPipelineGuarded": "PASS",
+    "metadataChurnGuard": "PASS",
+    "gitRetentionGraphForbid": "PASS"
+  },
+  "remoteParity": "PENDING_MERGE",
+  "remainingArchitectureDebt": [
+    "PR #24 estimating evidence envelope remains open as ACTIVE_PRODUCT_WORK_NOT_ARCHITECTURE",
+    "PR #17/#23 evidence-only open pending operator close after disposition comments",
+    "PR #6/#15 close after reconciliation merge lands on main"
+  ],
+  "notes": [
+    "PR #6 not bulk-merged; required invariants reimplemented against current main architecture",
+    "Hot-cache/query-routing schema drift repaired (lazyCompileOnMiss, executionPacketId, routerMinScore)",
+    "Prompt extraction gate test now resolves AppBuilder via resolveAppBuilderRoot"
+  ]
+}
