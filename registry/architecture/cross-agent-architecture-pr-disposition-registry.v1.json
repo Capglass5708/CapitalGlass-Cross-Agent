@@ -1,0 +1,117 @@
+{
+  "schemaVersion": "cross-agent-architecture-pr-disposition-registry-v1@1.0.0",
+  "workPackageId": "cross-agent-architecture-full-reconciliation-v1",
+  "canonicalMainAtEvaluation": "fa757d0f38a67e18e66a92ddf2a1eaa04e8b7270",
+  "evaluatedAt": "2026-08-10T16:15:00.000Z",
+  "authority": "origin/main",
+  "openPullRequests": [
+    {
+      "number": 6,
+      "title": "feat(harvest): medium-critical risk remediation v1",
+      "branch": "feat/cross-agent-risk-remediation-v1",
+      "domain": "harvest-architecture",
+      "operatingArchitecture": true,
+      "disposition": "REIMPLEMENT_ON_CURRENT_MAIN",
+      "supersedingAuthority": "work/cross-agent-architecture-full-reconciliation-v1 (required deltas) + existing main phase-b/layered-verdict/git-retention",
+      "notes": "Do not merge as-is (conflicts; written against superseded publication model). Required invariants reimplemented on current main."
+    },
+    {
+      "number": 15,
+      "title": "harvest: workflow-estate hot-cache closeout (T2)",
+      "branch": "harvest/workflow-estate-hot-cache-v1",
+      "domain": "harvest-evidence",
+      "operatingArchitecture": false,
+      "disposition": "ALREADY_SUPERSEDED",
+      "supersedingAuthority": "origin/main hot-cache dataset registry + query routing + later harvest protocol on main / L catalog",
+      "notes": "Mostly artifacts + older protocol copies. Hot-cache/query-routing architecture already on main."
+    },
+    {
+      "number": 17,
+      "title": "chore(harvest): record ingest-readiness remediation and L staging receipts",
+      "branch": "fix/reshape-cursor-harvests-for-ingest-v1",
+      "base": "chat-gpt-harvest",
+      "domain": "harvest-evidence",
+      "operatingArchitecture": false,
+      "disposition": "EVIDENCE_ONLY",
+      "supersedingAuthority": "chat-gpt-harvest staging lane + Cursor ingest pipeline on main",
+      "notes": "Base is chat-gpt-harvest, not main. Not residual Cross-Agent architecture debt."
+    },
+    {
+      "number": 23,
+      "title": "docs(harvest): add ChatGPT autopsy draft for Bid Composer scope review",
+      "branch": "feat/chatgpt-autopsy-bid-composer-scope-review-v1",
+      "domain": "harvest-evidence",
+      "operatingArchitecture": false,
+      "disposition": "EVIDENCE_ONLY",
+      "supersedingAuthority": "chat-gpt-harvest designated chatgpt-findings-source.md lane",
+      "notes": "Single autopsy markdown file. Prefer chat-gpt-harvest staging over merging evidence PR to main."
+    },
+    {
+      "number": 24,
+      "title": "docs(estimating): shared evidence envelope v1 contract",
+      "branch": "feat/cg-estimating-evidence-envelope-v1",
+      "domain": "estimating-product",
+      "operatingArchitecture": false,
+      "disposition": "ACTIVE_PRODUCT_WORK_NOT_ARCHITECTURE",
+      "supersedingAuthority": null,
+      "notes": "Estimating evidence envelope contract / product work. Leave open; not Cross-Agent operating-architecture debt. CONFLICTING vs main."
+    }
+  ],
+  "pr6CapabilityMap": [
+    {
+      "capability": "legacy_publication_guard",
+      "classification": "MIGRATED",
+      "mainSurface": "scripts/harvest/lib/harvest-legacy-publication-guard-lib.mjs"
+    },
+    {
+      "capability": "required_layer_truth_policy",
+      "classification": "MIGRATED",
+      "mainSurface": "scripts/harvest/lib/harvest-required-layer-policy-lib.mjs + publish-intelligence-full-lib wiring; phase-b layered verdict remains PRESENT_STRONGER for canonical path"
+    },
+    {
+      "capability": "metadata_churn_protection",
+      "classification": "MIGRATED",
+      "mainSurface": "scripts/harvest/lib/harvest-metadata-churn-lib.mjs"
+    },
+    {
+      "capability": "git_retention_graph_payload_forbid",
+      "classification": "MIGRATED",
+      "mainSurface": "scripts/harvest/lib/harvest-git-retention-lib.mjs FORBIDDEN_FILENAMES expansion"
+    },
+    {
+      "capability": "universal_git_payload_retention",
+      "classification": "PRESENT_STRONGER",
+      "mainSurface": "scripts/harvest/lib/harvest-git-retention-lib.mjs + test:harvest:git-retention"
+    },
+    {
+      "capability": "graph_staging_to_L",
+      "classification": "OBSOLETE",
+      "mainSurface": "Retention forbid + Experience Graph / promote-graph-seed path; full L staging model not restored"
+    },
+    {
+      "capability": "portable_graph_repo_resolution",
+      "classification": "MIGRATED",
+      "mainSurface": "scripts/harvest/lib/graph-repo-resolution-lib.mjs + graph-extraction-paths.mjs"
+    },
+    {
+      "capability": "ci_risk_gates",
+      "classification": "MIGRATED",
+      "mainSurface": "test:harvest:risk-remediation + test:cross-agent-architecture matrix"
+    },
+    {
+      "capability": "pr_governance_diff_gate",
+      "classification": "OBSOLETE",
+      "mainSurface": "Superseded by git-retention + metadata-churn + existing closeout gates; not ported as separate PR-diff scanner"
+    },
+    {
+      "capability": "authority_dogfood_tests",
+      "classification": "PRESENT_EQUIVALENT",
+      "mainSurface": "test:harvest:authority-dogfood"
+    },
+    {
+      "capability": "publication_identity_protections",
+      "classification": "PRESENT_STRONGER",
+      "mainSurface": "scripts/harvest/lib/publication-identity-lib.mjs + phase-b identity"
+    }
+  ]
+}

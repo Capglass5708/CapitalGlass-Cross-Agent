@@ -3,7 +3,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 import {
   containsSecrets,
@@ -14,11 +14,14 @@ import {
   runPromptHarvestPipeline,
   hashPromptContent,
 } from "../harvest/lib/prompt-extraction-lib.mjs";
-import { projectHarvestPrompts } from "../../../CG-AppBuilder-MCP/scripts/harvest-prompt-projection/project-harvest-prompts.mjs";
+import { resolveAppBuilderRoot } from "../index/lib/resolve-repo-roots.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "../..");
-const APPBUILDER_ROOT = path.resolve(REPO_ROOT, "..", "CG-AppBuilder-MCP");
+const APPBUILDER_ROOT = resolveAppBuilderRoot(REPO_ROOT);
+const { projectHarvestPrompts } = await import(
+  pathToFileURL(path.join(APPBUILDER_ROOT, "scripts/harvest-prompt-projection/project-harvest-prompts.mjs")).href
+);
 
 function withTempHarvest(fn) {
   const tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), "harvest-prompt-"));

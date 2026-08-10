@@ -91,6 +91,17 @@
         },
         "compactOnly": {
           "type": "boolean"
+        },
+        "executionPacketId": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Optional execution-packet binding for routed publication/query workflows."
+        },
+        "routerMinScore": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Optional minimum keyword score for this route to win."
         }
       }
     },

@@ -1,0 +1,30 @@
+name: Harvest architecture risk gates
+
+on:
+  push:
+    paths:
+      - "scripts/harvest/**"
+      - "scripts/tests/run-harvest-risk-remediation.test.mjs"
+      - "scripts/tests/run-harvest-git-retention.test.mjs"
+      - "scripts/tests/run-cross-agent-architecture-matrix.test.mjs"
+      - "package.json"
+  pull_request:
+    paths:
+      - "scripts/harvest/**"
+      - "scripts/tests/run-harvest-risk-remediation.test.mjs"
+      - "scripts/tests/run-harvest-git-retention.test.mjs"
+      - "scripts/tests/run-cross-agent-architecture-matrix.test.mjs"
+      - "package.json"
+
+jobs:
+  harvest-risk-gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Risk remediation guards
+        run: npm run test:harvest:risk-remediation
+      - name: Git retention
+        run: npm run test:harvest:git-retention

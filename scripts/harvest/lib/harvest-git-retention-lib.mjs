@@ -30,6 +30,12 @@ const FORBIDDEN_FILENAMES = new Set([
   "phase-c-receipt.json",
   "lock.json",
   "stale-lock-recovery-receipt.json",
+  // Graph / operational payloads must not be retained as Git harvest authority
+  "graph-extraction.json",
+  "graph-extraction-pointer-v1.json",
+  "graph-eligibility-status-v1.json",
+  "graph-extraction-validation-result.json",
+  "operational-publication-receipt.json",
 ]);
 
 const FORBIDDEN_DIR_NAMES = new Set([

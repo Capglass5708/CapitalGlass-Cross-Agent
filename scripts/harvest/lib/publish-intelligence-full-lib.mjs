@@ -22,6 +22,7 @@ import {
   resolveSupabaseProjectionCapability,
   shouldWrapSupabaseCommand,
 } from "./supabase-projection-capability-lib.mjs";
+import { computeLegacyPublicationVerdict } from "./harvest-required-layer-policy-lib.mjs";
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
@@ -536,8 +537,26 @@ export function publishIntelligenceFull({
     receipt.contentHash = hashCanonicalJson({ harvestId, gitHead, stages });
     writeJson(receiptPath, receipt);
 
+    const layerVerdict = computeLegacyPublicationVerdict({
+      manifest,
+      skipLedgerSync,
+      skipSupabaseProjection,
+      lPublishOk: Boolean(hubPublish?.ok !== false),
+      hubPublishOk: Boolean(hubPublish?.ok !== false),
+      supabaseProjection,
+    });
+
+    receipt.verdict = layerVerdict.verdict;
+    receipt.requiredLayerPolicy = {
+      tier: layerVerdict.tier,
+      degraded: Boolean(layerVerdict.degraded),
+      degradedReasons: layerVerdict.degradedReasons ?? [],
+      allowOperationalReceipt: Boolean(layerVerdict.allowOperationalReceipt),
+    };
+    writeJson(receiptPath, receipt);
+
     updateManifestProjection(runDir, {
-      hubPublishStatus: "published",
+      hubPublishStatus: layerVerdict.allowOperationalReceipt ? "published" : "degraded",
       operationalReceiptPath: `artifacts/agent-runs/${harvestId}/operational-publication-receipt.json`,
     });
     stages.push(
@@ -548,7 +567,26 @@ export function publishIntelligenceFull({
       ),
     );
 
-    return { ok: true, verdict: "OPERATIONAL", receipt, receiptPath, stages };
+    if (layerVerdict.verdict === "HARVEST_PUBLICATION_FAILED") {
+      return {
+        ok: false,
+        verdict: layerVerdict.verdict,
+        receipt,
+        receiptPath,
+        stages,
+        requiredLayerPolicy: receipt.requiredLayerPolicy,
+        errors: layerVerdict.degradedReasons ?? ["required layer policy blocked operational verdict"],
+      };
+    }
+
+    return {
+      ok: true,
+      verdict: layerVerdict.verdict,
+      receipt,
+      receiptPath,
+      stages,
+      requiredLayerPolicy: receipt.requiredLayerPolicy,
+    };
   } catch (err) {
     return {
       ok: false,
