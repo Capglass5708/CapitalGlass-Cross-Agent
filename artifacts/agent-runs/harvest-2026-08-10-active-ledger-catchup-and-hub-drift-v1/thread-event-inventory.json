@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1",
+  "events": [
+    {
+      "eventId": "TE-001",
+      "phase": "discovery",
+      "summary": "Ledger lint PASS but narrative stale since 2026-08-04",
+      "evidenceRefs": [
+        "ACTIVE_WORK.md"
+      ]
+    },
+    {
+      "eventId": "TE-002",
+      "phase": "analysis",
+      "summary": "INDEX/harvest commits continued without ACTIVE_WORK projection",
+      "evidenceRefs": [
+        "git log"
+      ]
+    },
+    {
+      "eventId": "TE-003",
+      "phase": "repair",
+      "summary": "Hub slice drift f398afd vs f019daf detected",
+      "evidenceRefs": [
+        "active-ledger:sync:check"
+      ]
+    },
+    {
+      "eventId": "TE-004",
+      "phase": "implementation",
+      "summary": "Shipped reconstruct-catchup + staleness-gate in AppBuilder",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP"
+      ]
+    },
+    {
+      "eventId": "TE-005",
+      "phase": "governance",
+      "summary": "Harvest v1.2 Git durability removes manual commit friction",
+      "evidenceRefs": [
+        "L: protocol v1.2"
+      ]
+    },
+    {
+      "eventId": "TE-006",
+      "phase": "closeout",
+      "summary": "T2 catch-up harvest created for ledger repair lane",
+      "evidenceRefs": [
+        "harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1"
+      ]
+    }
+  ]
+}

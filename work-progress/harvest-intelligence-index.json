@@ -1,6 +1,6 @@
 {
   "schemaVersion": "harvest-intelligence-index-v1",
-  "updatedAt": "2026-08-07T22:44:01.662Z",
+  "updatedAt": "2026-08-10T05:27:40.583Z",
   "entities": [
     {
       "entityId": "intel:4a8c45cc3e5eaa4d0907e65ffb95c85a1c97dca3",
@@ -4765,6 +4765,367 @@
       ],
       "relationships": [],
       "extensions": {}
+    },
+    {
+      "entityId": "intel:ae7219abdbe325939f144d982c51cdcf1b4902ec",
+      "identity": {
+        "conceptKey": "active-ledger-catchup-2026-08-10",
+        "candidateDigestRef": null,
+        "packetId": "active-ledger-catchup-2026-08-10"
+      },
+      "firstSeenAt": "2026-08-10T06:35:00.000Z",
+      "lifecycleState": "active",
+      "supersededBy": null,
+      "core": {
+        "signalClass": "LEDGER_CURRENT",
+        "summary": "Operator hub/index publication for catch-up harvest",
+        "evidenceRefs": [
+          "TE-001",
+          "TE-003"
+        ]
+      },
+      "dimensions": {
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "affectedRepos": [],
+        "lifecycleState": "COMPLETE",
+        "implementationState": "COMPLETE",
+        "effectiveness": "LEDGER_CURRENT",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/2026-08-10_active-ledger-currentness-ingestion-and-harvest-v1.md"
+      },
+      "extensions": {},
+      "classification": "KNOWN_CORE",
+      "relationships": [
+        {
+          "type": "observedIn",
+          "target": "harvest:harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1"
+        }
+      ],
+      "observations": [
+        {
+          "observationId": "obs:63e19bbb7b62cdc86f7813d38feef83e5b862b40",
+          "harvestId": "harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1",
+          "workPackageId": "active-ledger-currentness-ingestion-and-harvest-v1",
+          "observedAt": "2026-08-10T06:35:00.000Z",
+          "source": {
+            "lane": "CURSOR",
+            "rawRef": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/active-ledger-catchup-2026-08-10.json",
+            "packetId": "active-ledger-catchup-2026-08-10",
+            "ordinalRef": "active-ledger-catchup-2026-08-10"
+          },
+          "provenance": {
+            "sourceCommitSha": "PENDING_POST_COMMIT",
+            "protocolVersion": null,
+            "gitPublicationReceipt": null
+          },
+          "snapshot": {
+            "signalClass": "LEDGER_CURRENT",
+            "lifecycleState": "COMPLETE",
+            "implementationState": "COMPLETE",
+            "effectiveness": "LEDGER_CURRENT",
+            "evidenceStrength": "indexed"
+          },
+          "sourceExcerptHash": "27674016a0c3394347c0410e58ad8cbd93f19bc12d69d1983568c3bfca4ceb5b"
+        }
+      ]
+    },
+    {
+      "entityId": "intel:7a1f20007f0c8605aa45239716d06b6a72674a3f",
+      "identity": {
+        "conceptKey": "ledger-staleness-gate-v1",
+        "candidateDigestRef": null,
+        "packetId": "ledger-staleness-gate-v1"
+      },
+      "firstSeenAt": "2026-08-10T06:35:00.000Z",
+      "lifecycleState": "active",
+      "supersededBy": null,
+      "core": {
+        "signalClass": "ADOPTED",
+        "summary": "ledger-staleness-gate-v1",
+        "evidenceRefs": [
+          "TE-004"
+        ]
+      },
+      "dimensions": {
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "affectedRepos": [],
+        "lifecycleState": "COMPLETE",
+        "implementationState": "COMPLETE",
+        "effectiveness": "ADOPTED",
+        "projectFile": "work-progress/projects/2026-08-10_active-ledger-currentness-ingestion-and-harvest-v1.md"
+      },
+      "extensions": {},
+      "classification": "KNOWN_CORE",
+      "relationships": [
+        {
+          "type": "observedIn",
+          "target": "harvest:harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1"
+        }
+      ],
+      "observations": [
+        {
+          "observationId": "obs:cf1455bc8e05a988589d80403e211797763a5c06",
+          "harvestId": "harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1",
+          "workPackageId": "active-ledger-currentness-ingestion-and-harvest-v1",
+          "observedAt": "2026-08-10T06:35:00.000Z",
+          "source": {
+            "lane": "CURSOR",
+            "rawRef": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/ledger-staleness-gate-v1.json",
+            "packetId": "ledger-staleness-gate-v1",
+            "ordinalRef": "ledger-staleness-gate-v1"
+          },
+          "provenance": {
+            "sourceCommitSha": "PENDING_POST_COMMIT",
+            "protocolVersion": null,
+            "gitPublicationReceipt": null
+          },
+          "snapshot": {
+            "signalClass": "ADOPTED",
+            "lifecycleState": "COMPLETE",
+            "implementationState": "COMPLETE",
+            "effectiveness": "ADOPTED"
+          },
+          "sourceExcerptHash": "43be94a814905ea120f339a2618d1ff87e31b5f9b321a6a2182bd2fc40c2739d"
+        }
+      ]
+    },
+    {
+      "entityId": "intel:aad868a83ca5e9bf69d644184bf02800ec4430f5",
+      "identity": {
+        "conceptKey": "index-only-ledger-updates-v1",
+        "candidateDigestRef": null,
+        "packetId": "index-only-ledger-updates-v1"
+      },
+      "firstSeenAt": "2026-08-10T06:35:00.000Z",
+      "lifecycleState": "active",
+      "supersededBy": null,
+      "core": {
+        "signalClass": "ROOT_CAUSE_IDENTIFIED",
+        "summary": "index-only-ledger-updates-v1",
+        "evidenceRefs": [
+          "TE-002",
+          "WM-001"
+        ]
+      },
+      "dimensions": {
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "affectedRepos": [],
+        "lifecycleState": "RESOLVED",
+        "implementationState": "RESOLVED",
+        "effectiveness": "ROOT_CAUSE_IDENTIFIED"
+      },
+      "extensions": {},
+      "classification": "KNOWN_CORE",
+      "relationships": [
+        {
+          "type": "observedIn",
+          "target": "harvest:harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1"
+        }
+      ],
+      "observations": [
+        {
+          "observationId": "obs:02e7613509da625876d73603ba304f2ca158eab9",
+          "harvestId": "harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1",
+          "workPackageId": "active-ledger-currentness-ingestion-and-harvest-v1",
+          "observedAt": "2026-08-10T06:35:00.000Z",
+          "source": {
+            "lane": "CURSOR",
+            "rawRef": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/index-only-ledger-updates-v1.json",
+            "packetId": "index-only-ledger-updates-v1",
+            "ordinalRef": "index-only-ledger-updates-v1"
+          },
+          "provenance": {
+            "sourceCommitSha": "PENDING_POST_COMMIT",
+            "protocolVersion": null,
+            "gitPublicationReceipt": null
+          },
+          "snapshot": {
+            "signalClass": "ROOT_CAUSE_IDENTIFIED",
+            "lifecycleState": "RESOLVED",
+            "implementationState": "RESOLVED",
+            "effectiveness": "ROOT_CAUSE_IDENTIFIED"
+          },
+          "sourceExcerptHash": "6bb1d78e21aec1de9b5abe8d79a6e978b5a3fc2d35715148e4fb32ae32d1edd2"
+        }
+      ]
+    },
+    {
+      "entityId": "intel:0d86688f995c9e87317ecce148bf07987e3e16a0",
+      "identity": {
+        "conceptKey": "hub-active-work-slice-drift-v1",
+        "candidateDigestRef": null,
+        "packetId": "hub-active-work-slice-drift-v1"
+      },
+      "firstSeenAt": "2026-08-10T06:35:00.000Z",
+      "lifecycleState": "active",
+      "supersededBy": null,
+      "core": {
+        "signalClass": "REPAIRED",
+        "summary": "hub-active-work-slice-drift-v1",
+        "evidenceRefs": [
+          "TE-003"
+        ]
+      },
+      "dimensions": {
+        "ownerRepo": "Data-Extraction",
+        "affectedRepos": [],
+        "lifecycleState": "RESOLVED",
+        "implementationState": "RESOLVED",
+        "effectiveness": "REPAIRED"
+      },
+      "extensions": {},
+      "classification": "KNOWN_CORE",
+      "relationships": [
+        {
+          "type": "observedIn",
+          "target": "harvest:harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1"
+        }
+      ],
+      "observations": [
+        {
+          "observationId": "obs:a8fc80dcc0299623c9b9464b386f6bcf6555e8e6",
+          "harvestId": "harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1",
+          "workPackageId": "active-ledger-currentness-ingestion-and-harvest-v1",
+          "observedAt": "2026-08-10T06:35:00.000Z",
+          "source": {
+            "lane": "CURSOR",
+            "rawRef": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/hub-active-work-slice-drift-v1.json",
+            "packetId": "hub-active-work-slice-drift-v1",
+            "ordinalRef": "hub-active-work-slice-drift-v1"
+          },
+          "provenance": {
+            "sourceCommitSha": "PENDING_POST_COMMIT",
+            "protocolVersion": null,
+            "gitPublicationReceipt": null
+          },
+          "snapshot": {
+            "signalClass": "REPAIRED",
+            "lifecycleState": "RESOLVED",
+            "implementationState": "RESOLVED",
+            "effectiveness": "REPAIRED"
+          },
+          "sourceExcerptHash": "865e03e5907e58fb534e72bd2cb9f7dc58ecaf60f9e6f2535226398941ae9dbd"
+        }
+      ]
+    },
+    {
+      "entityId": "intel:8b9ca6ce22d8dfffc1abab5ff5ff6904680e4100",
+      "identity": {
+        "conceptKey": "harvest-git-durability-v1-2-context",
+        "candidateDigestRef": null,
+        "packetId": "harvest-git-durability-v1-2-context"
+      },
+      "firstSeenAt": "2026-08-10T06:35:00.000Z",
+      "lifecycleState": "active",
+      "supersededBy": null,
+      "core": {
+        "signalClass": "RECORDED",
+        "summary": "harvest-git-durability-v1-2-context",
+        "evidenceRefs": [
+          "L:/02-catalog/Harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"
+        ]
+      },
+      "dimensions": {
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "affectedRepos": [],
+        "lifecycleState": "COMPLETE",
+        "implementationState": "COMPLETE",
+        "effectiveness": "RECORDED"
+      },
+      "extensions": {},
+      "classification": "KNOWN_CORE",
+      "relationships": [
+        {
+          "type": "observedIn",
+          "target": "harvest:harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1"
+        }
+      ],
+      "observations": [
+        {
+          "observationId": "obs:76b95a1e291eb7c5987c4f5d77b900cb8a4da665",
+          "harvestId": "harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1",
+          "workPackageId": "active-ledger-currentness-ingestion-and-harvest-v1",
+          "observedAt": "2026-08-10T06:35:00.000Z",
+          "source": {
+            "lane": "CURSOR",
+            "rawRef": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/harvest-git-durability-v1-2-context.json",
+            "packetId": "harvest-git-durability-v1-2-context",
+            "ordinalRef": "harvest-git-durability-v1-2-context"
+          },
+          "provenance": {
+            "sourceCommitSha": "PENDING_POST_COMMIT",
+            "protocolVersion": null,
+            "gitPublicationReceipt": null
+          },
+          "snapshot": {
+            "signalClass": "RECORDED",
+            "lifecycleState": "COMPLETE",
+            "implementationState": "COMPLETE",
+            "effectiveness": "RECORDED"
+          },
+          "sourceExcerptHash": "25ff8e6e4d6fd4e69d4ff724a38156317aa3a2d10cbb33eb2b74f4aded7fe10b"
+        }
+      ]
+    },
+    {
+      "entityId": "intel:614398d8735156d8be4287487d6a048cb6a06dac",
+      "identity": {
+        "conceptKey": "upstream-harvest-references-v1",
+        "candidateDigestRef": null,
+        "packetId": "upstream-harvest-references-v1"
+      },
+      "firstSeenAt": "2026-08-10T06:35:00.000Z",
+      "lifecycleState": "active",
+      "supersededBy": null,
+      "core": {
+        "signalClass": "REFERENCED",
+        "summary": "upstream-harvest-references-v1",
+        "evidenceRefs": [
+          "harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1",
+          "harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1"
+        ]
+      },
+      "dimensions": {
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "affectedRepos": [],
+        "lifecycleState": "COMPLETE",
+        "implementationState": "COMPLETE",
+        "effectiveness": "REFERENCED"
+      },
+      "extensions": {},
+      "classification": "KNOWN_CORE",
+      "relationships": [
+        {
+          "type": "observedIn",
+          "target": "harvest:harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1"
+        }
+      ],
+      "observations": [
+        {
+          "observationId": "obs:63f568b737947453fc02ab26d1b7048564ec54b4",
+          "harvestId": "harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1",
+          "workPackageId": "active-ledger-currentness-ingestion-and-harvest-v1",
+          "observedAt": "2026-08-10T06:35:00.000Z",
+          "source": {
+            "lane": "CURSOR",
+            "rawRef": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/upstream-harvest-references-v1.json",
+            "packetId": "upstream-harvest-references-v1",
+            "ordinalRef": "upstream-harvest-references-v1"
+          },
+          "provenance": {
+            "sourceCommitSha": "PENDING_POST_COMMIT",
+            "protocolVersion": null,
+            "gitPublicationReceipt": null
+          },
+          "snapshot": {
+            "signalClass": "REFERENCED",
+            "lifecycleState": "COMPLETE",
+            "implementationState": "COMPLETE",
+            "effectiveness": "REFERENCED"
+          },
+          "sourceExcerptHash": "267282ee61051ee935d8a4b69a077fc74b5893289401aa3f0e3357ca8dc3b52a"
+        }
+      ]
     }
   ]
 }

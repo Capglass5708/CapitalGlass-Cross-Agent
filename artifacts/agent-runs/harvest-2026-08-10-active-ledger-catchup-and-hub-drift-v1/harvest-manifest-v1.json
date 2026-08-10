@@ -1,0 +1,188 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "420910d3c2ee2ef0300f1a0a1e703d87749c76f8",
+  "sourceBranch": "work/active-ledger-currentness-ingestion-and-harvest-v1",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-10T06:35:00.000Z",
+  "updatedAt": "2026-08-10T05:42:19.890Z",
+  "retrievalResult": "INDEX_HIT",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "workPackageId": "active-ledger-currentness-ingestion-and-harvest-v1",
+  "doNotAdvance": [
+    "Re-harvest Rosewood or EG-01 product outcomes — reference upstream harvests only",
+    "Claim Supabase IN_SYNC without drift-probe proof",
+    "Use stale L: Hub slices as authority over Git",
+    "index:publish from Cursor without operator authorization when policy requires operator"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 3,
+      "seeds": 2,
+      "roiItems": 3,
+      "operatorFriction": 1,
+      "executionDeltas": 2,
+      "wrongMoves": 1
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "pending",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Awaiting active-ledger:sync --publish after canonical commit"
+  },
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "1.2.0",
+    "eligibleCandidates": 1,
+    "exportStatus": "not-run",
+    "automaticProtocolMutation": false
+  },
+  "relatedRepos": [
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "work/active-ledger-currentness-ingestion-and-harvest-v1",
+      "role": "ledger + harvest"
+    },
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "branch": "main",
+      "role": "ingestion + staleness gate"
+    }
+  ],
+  "supersededClaims": [
+    {
+      "claim": "ACTIVE_WORK.md current through 2026-08-04 represents suite state",
+      "supersededBy": "active-ledger-catchup-2026-08-10",
+      "evidenceRefs": [
+        "TE-001",
+        "TE-002"
+      ]
+    }
+  ],
+  "packets": [
+    {
+      "packetKind": "outcome",
+      "packetId": "active-ledger-catchup-2026-08-10",
+      "packetTitle": "Canonical ledger catch-up 2026-08-04→2026-08-10",
+      "state": "COMPLETE",
+      "packetVerdict": "LEDGER_CURRENT",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-10_active-ledger-currentness-ingestion-and-harvest-v1.md",
+      "nextAction": "Operator hub/index publication for catch-up harvest",
+      "evidenceRefs": [
+        "TE-001",
+        "TE-003"
+      ],
+      "commitRefs": [
+        "CapitalGlass-Cross-Agent@PENDING"
+      ],
+      "changeImplemented": "ACTIVE_WORK.md + INDEX header aligned to durable delta",
+      "beforeState": "Ledger narrative frozen 2026-08-04 while harvests continued",
+      "afterState": "Catch-up entries reference upstream harvests without duplication",
+      "effectiveness": "PROVEN_EFFECTIVE",
+      "blockers": []
+    },
+    {
+      "packetKind": "decision",
+      "packetId": "ledger-staleness-gate-v1",
+      "packetTitle": "Enforce active-ledger staleness gate in closeout path",
+      "state": "COMPLETE",
+      "packetVerdict": "ADOPTED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "projectFile": "work-progress/projects/2026-08-10_active-ledger-currentness-ingestion-and-harvest-v1.md",
+      "evidenceRefs": [
+        "TE-004"
+      ],
+      "changeImplemented": "active-ledger:staleness-gate + reconstruct-catchup CLIs",
+      "blockers": []
+    },
+    {
+      "packetKind": "mistake",
+      "packetId": "index-only-ledger-updates-v1",
+      "packetTitle": "INDEX/harvest commits without ACTIVE_WORK projection",
+      "state": "RESOLVED",
+      "packetVerdict": "ROOT_CAUSE_IDENTIFIED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "evidenceRefs": [
+        "TE-002",
+        "WM-001"
+      ],
+      "doNotAdvance": [
+        "Allow index-only suite status updates without ledger projection"
+      ],
+      "blockers": []
+    },
+    {
+      "packetKind": "blocker",
+      "packetId": "hub-active-work-slice-drift-v1",
+      "packetTitle": "L: Hub active-work slices behind Git HEAD",
+      "state": "RESOLVED",
+      "packetVerdict": "REPAIRED",
+      "ownerRepo": "Data-Extraction",
+      "evidenceRefs": [
+        "TE-003"
+      ],
+      "beforeState": "Hub @ f398afd vs Git @ f019daf",
+      "afterState": "Republish via active-ledger:sync --publish",
+      "blockers": []
+    },
+    {
+      "packetKind": "protocol-upgrade",
+      "packetId": "harvest-git-durability-v1-2-context",
+      "packetTitle": "Harvest v1.2 Git durability expectation documented",
+      "state": "COMPLETE",
+      "packetVerdict": "RECORDED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "evidenceRefs": [
+        "L:/02-catalog/Harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"
+      ],
+      "blockers": []
+    },
+    {
+      "packetKind": "evidence",
+      "packetId": "upstream-harvest-references-v1",
+      "packetTitle": "Reference harvests 08-04→08-10 (no re-harvest)",
+      "state": "COMPLETE",
+      "packetVerdict": "REFERENCED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "evidenceRefs": [
+        "harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1",
+        "harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1"
+      ],
+      "blockers": []
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": null,
+    "ledgerContentHashAfter": "a769d1b134bf21e49ae22cfa3badabed36ea8eaef4315c60ff4e64362f138fa5"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 5,
+    "deduplicated": 1,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 4,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-d15be9141144",
+      "prompt-candidate-a7e0a6ef1a52",
+      "prompt-candidate-a2ee074052f9",
+      "prompt-candidate-169111656ce0",
+      "prompt-candidate-bc0b3d0842a8"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

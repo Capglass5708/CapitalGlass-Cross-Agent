@@ -1,0 +1,430 @@
+{
+  "packetKind": "graph-extraction",
+  "schemaVersion": "cg-master-graph-extraction-v1",
+  "extractionId": "extraction:harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1",
+  "harvestId": "harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1",
+  "workPackageId": "harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1",
+  "producer": {
+    "repositoryId": "repo:capitalglass-cross-agent",
+    "capability": "harvest-graph-extraction",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "id": "harvest:harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1",
+      "nodeType": "Harvest",
+      "displayName": "harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1",
+      "lifecycleState": "lifecycle:canonical",
+      "operationalState": "HARVEST_VALIDATED",
+      "metadata": {
+        "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+        "sourceCommitSha": "PENDING_POST_COMMIT",
+        "retrievalResult": "INDEX_HIT"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T06:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:active-ledger-catchup-2026-08-10",
+      "nodeType": "WorkPackage",
+      "displayName": "Canonical ledger catch-up 2026-08-04→2026-08-10",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "LEDGER_CURRENT",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/2026-08-10_active-ledger-currentness-ingestion-and-harvest-v1.md"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T06:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/active-ledger-catchup-2026-08-10.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/active-ledger-catchup-2026-08-10.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:ledger-staleness-gate-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Enforce active-ledger staleness gate in closeout path",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "ADOPTED",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "projectFile": "work-progress/projects/2026-08-10_active-ledger-currentness-ingestion-and-harvest-v1.md"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T06:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/ledger-staleness-gate-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/ledger-staleness-gate-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:index-only-ledger-updates-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "INDEX/harvest commits without ACTIVE_WORK projection",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RESOLVED",
+      "metadata": {
+        "packetVerdict": "ROOT_CAUSE_IDENTIFIED",
+        "ownerRepo": "CapitalGlass-Cross-Agent"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T06:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/index-only-ledger-updates-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/index-only-ledger-updates-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:hub-active-work-slice-drift-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "L: Hub active-work slices behind Git HEAD",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RESOLVED",
+      "metadata": {
+        "packetVerdict": "REPAIRED",
+        "ownerRepo": "Data-Extraction"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T06:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/hub-active-work-slice-drift-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/hub-active-work-slice-drift-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:harvest-git-durability-v1-2-context",
+      "nodeType": "WorkPackage",
+      "displayName": "Harvest v1.2 Git durability expectation documented",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "RECORDED",
+        "ownerRepo": "CapitalGlass-Cross-Agent"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T06:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/harvest-git-durability-v1-2-context.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/harvest-git-durability-v1-2-context.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:upstream-harvest-references-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Reference harvests 08-04→08-10 (no re-harvest)",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "REFERENCED",
+        "ownerRepo": "CapitalGlass-Cross-Agent"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T06:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/upstream-harvest-references-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/upstream-harvest-references-v1.json"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:harvest-harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1-contains-workpackage-active-ledger-catchup-2026-08-10",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1",
+      "targetId": "workpackage:active-ledger-catchup-2026-08-10",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T06:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-active-ledger-catchup-2026-08-10",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:active-ledger-catchup-2026-08-10",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T06:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/active-ledger-catchup-2026-08-10.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/active-ledger-catchup-2026-08-10.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1-contains-workpackage-ledger-staleness-gate-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1",
+      "targetId": "workpackage:ledger-staleness-gate-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T06:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-ledger-staleness-gate-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:ledger-staleness-gate-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T06:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/ledger-staleness-gate-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/ledger-staleness-gate-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1-contains-workpackage-index-only-ledger-updates-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1",
+      "targetId": "workpackage:index-only-ledger-updates-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T06:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-index-only-ledger-updates-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:index-only-ledger-updates-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T06:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/index-only-ledger-updates-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/index-only-ledger-updates-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1-contains-workpackage-hub-active-work-slice-drift-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1",
+      "targetId": "workpackage:hub-active-work-slice-drift-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T06:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-data-extraction-owns-workpackage-hub-active-work-slice-drift-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:data-extraction",
+      "targetId": "workpackage:hub-active-work-slice-drift-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T06:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/hub-active-work-slice-drift-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/hub-active-work-slice-drift-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1-contains-workpackage-harvest-git-durability-v1-2-context",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1",
+      "targetId": "workpackage:harvest-git-durability-v1-2-context",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T06:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-harvest-git-durability-v1-2-context",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:harvest-git-durability-v1-2-context",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T06:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/harvest-git-durability-v1-2-context.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/harvest-git-durability-v1-2-context.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1-contains-workpackage-upstream-harvest-references-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1",
+      "targetId": "workpackage:upstream-harvest-references-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T06:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-upstream-harvest-references-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:upstream-harvest-references-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-10T06:35:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/upstream-harvest-references-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compact-records/upstream-harvest-references-v1.json"
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "provenance": {
+    "producerRepositoryId": "repo:capitalglass-cross-agent",
+    "producerCapability": "harvest-graph-extraction",
+    "sourceAuthority": "authority:cross-agent-harvest",
+    "classification": "observed",
+    "verificationState": "verified",
+    "recordedAt": "2026-08-10T06:35:00.000Z",
+    "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/harvest-manifest-v1.json",
+    "sourceAnchorDetail": {
+      "anchorType": "file-path",
+      "locator": "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/harvest-manifest-v1.json"
+    }
+  }
+}

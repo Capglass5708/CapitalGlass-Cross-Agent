@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "cross-agent-thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1",
+  "generatedAt": "2026-08-10T03:00:00.000Z",
+  "events": [
+    {
+      "eventId": "TE-001",
+      "timestamp": "2026-08-10T01:30:00.000Z",
+      "kind": "milestone_launch",
+      "summary": "Registered experience-estimator-bid-composer-loop-v1 on Cross-Agent",
+      "evidenceRefs": [
+        "work-progress/projects/experience-estimator-bid-composer-loop-v1.md",
+        "artifacts/agent-runs/experience-estimator-bid-composer-loop-v1/mission-launch-receipt-v1.json",
+        "CapitalGlass-Cross-Agent@61d06c0"
+      ]
+    },
+    {
+      "eventId": "TE-002",
+      "timestamp": "2026-08-10T02:00:00.000Z",
+      "kind": "implementation",
+      "summary": "Rosewood spine import bridge: rosewood-estimating-spine-v1 → upsertScopeReviewFromSpinePackage",
+      "evidenceRefs": [
+        "CapitalGlass-BidComposer@077a6af",
+        "src/lib/estimating-spine/scope-review-import/map-spine-scope-review-to-repository-seed.ts"
+      ]
+    },
+    {
+      "eventId": "TE-003",
+      "timestamp": "2026-08-10T02:15:00.000Z",
+      "kind": "implementation",
+      "summary": "Data-Extraction bid-composer experience loop pipeline + blind retrieval",
+      "evidenceRefs": [
+        "Data-Extraction@34f3371",
+        "artifacts/agent-runs/experience-estimator-bid-composer-loop-v1/rosewood-business-loop-receipt-v1.json"
+      ]
+    },
+    {
+      "eventId": "TE-004",
+      "timestamp": "2026-08-10T02:25:00.000Z",
+      "kind": "merge",
+      "summary": "Owner repos merged: BidComposer PR #59, Data-Extraction PR #42",
+      "evidenceRefs": [
+        "CapitalGlass-BidComposer@455e72db2d9110663c543bcc548eaff55dbda0c6",
+        "Data-Extraction@1f054e6333a3c2069768eecf9371c6475fcd0641"
+      ]
+    },
+    {
+      "eventId": "TE-005",
+      "timestamp": "2026-08-10T02:35:00.000Z",
+      "kind": "verdict",
+      "summary": "Rosewood business loop DURABLE_COMPLETE; SIMULATED_TEST_DISPOSITION documented",
+      "evidenceRefs": [
+        "artifacts/agent-runs/experience-estimator-bid-composer-loop-v1/terminal-milestone-receipt-v1.json"
+      ]
+    },
+    {
+      "eventId": "TE-006",
+      "timestamp": "2026-08-10T02:45:00.000Z",
+      "kind": "freeze",
+      "summary": "Rosewood implementation frozen; Beacon Hill proposal-generator milestone launched",
+      "evidenceRefs": [
+        "work-progress/projects/experience-beacon-hill-proposal-generator-loop-v1.md",
+        "CapitalGlass-Cross-Agent@afb806669d60b98c0437a94d5a336c7e7e95d499"
+      ]
+    },
+    {
+      "eventId": "TE-007",
+      "timestamp": "2026-08-10T02:50:00.000Z",
+      "kind": "coordination",
+      "summary": "Cross-Agent PR #29 merged after clean rebase (Wave 4 artifacts from main only)",
+      "evidenceRefs": [
+        "CapitalGlass-Cross-Agent@afb806669d60b98c0437a94d5a336c7e7e95d499",
+        "https://github.com/Capglass5708/CapitalGlass-Cross-Agent/pull/29"
+      ]
+    }
+  ]
+}
