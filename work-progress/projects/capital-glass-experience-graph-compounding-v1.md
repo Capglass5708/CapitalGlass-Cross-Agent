@@ -42,7 +42,15 @@ Capital Glass converts operational and business experience into reusable, measur
 - **Track H:** Harvest Engine (`harvest-git-durability-and-protocol-convergence-v1`) — CG-AppBuilder-MCP
 - **Track A:** Governance promotion Slice 1 (`reflex-autonomy-governance-promotion-v1`) — CG-AppBuilder-MCP
 - **Track B:** Experience Graph foundation (this program) — Cross-Agent
-- **Track C:** EG-06 report parsing pilot — starts after B1–B4 foundation acceptance
+- **Track C:** EG-06 report parsing pilot — `experience-report-parsing-population-live-proof-v1` (live proof complete)
+
+## Fourth business expansion wave (ACTIVE)
+
+| Lane | Work package | Priority | Status |
+| --- | --- | --- | --- |
+| B | `experience-opening-estimating-v1` | PRIMARY | IN_PROGRESS |
+| A | `experience-business-outcome-correlation-v1` | PARALLEL (non-blocking) | IN_PROGRESS |
+| Follow-on | `experience-estimator-bid-composer-loop-v1` | — | PLANNED |
 
 ## Hard invariants
 
