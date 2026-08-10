@@ -4,14 +4,13 @@
   "promotionClass": "proposal",
   "title": "Reconstruct ledger delta from harvest manifests",
   "summary": "Use active-ledger:reconstruct-catchup after index-only divergence.",
-  "triggers": [
-    "LEDGER_UPDATE_REQUIRED"
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "roiRank": 2,
+  "retrievalQuestions": [
+    "How do I reconstruct ledger catch-up from harvest manifests?",
+    "What command lists durable delta since a date?"
   ],
-  "commands": [
-    "npm run active-ledger:reconstruct-catchup -- --since=YYYY-MM-DD --json"
-  ],
-  "evidenceRefs": [
-    "TE-002",
-    "TE-003"
-  ]
+  "triggers": ["LEDGER_UPDATE_REQUIRED"],
+  "commands": ["npm run active-ledger:reconstruct-catchup -- --since=YYYY-MM-DD --json"],
+  "evidenceRefs": ["TE-002", "TE-003"]
 }

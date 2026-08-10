@@ -1,0 +1,57 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-ledger-staleness-gate-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "420910d3c2ee2ef0300f1a0a1e703d87749c76f8",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1",
+      "seedId": "IH-LEDGER-STALENESS-GATE-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-10T05:42:06.092Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "critical",
+    "contentHash": "f24997f687994402cf95bcc60c9d626fcac76166395bec2e92a9c19daeb57b26"
+  },
+  "body": {
+    "seedId": "IH-LEDGER-STALENESS-GATE-001",
+    "kind": "operator-procedure",
+    "title": "Run active-ledger staleness gate before material closeout",
+    "summary": "Fail closed when ACTIVE_WORK lags INDEX or Hub slices drift.",
+    "canonicalQuestion": "How do I detect stale ACTIVE_WORK vs INDEX?",
+    "alternateQuestions": [
+      "What gate blocks ledger divergence at closeout?"
+    ],
+    "shortAnswer": "Fail closed when ACTIVE_WORK lags INDEX or Hub slices drift.",
+    "detailedAnswer": "Run active-ledger staleness gate before material closeout",
+    "retrievalQuestions": [
+      "How do I detect stale ACTIVE_WORK vs INDEX?",
+      "What gate blocks ledger divergence at closeout?"
+    ],
+    "evidenceRefs": [
+      "TE-004"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": 1,
+    "doNotAdvance": [],
+    "promotionClass": "proposal",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/seed-packets/IH-LEDGER-STALENESS-GATE-001.json"
+    ],
+    "harvestId": "harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1"
+  }
+}

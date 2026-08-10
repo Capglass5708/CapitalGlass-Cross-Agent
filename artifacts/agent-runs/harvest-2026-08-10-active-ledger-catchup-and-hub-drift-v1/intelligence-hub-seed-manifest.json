@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "cross-agent-harvest-seed-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1",
+  "subject": "Canonical ledger catch-up 2026-08-04→2026-08-10",
+  "tier": "T2",
+  "seedRecordCount": 2,
+  "retrievalQuestions": [
+    {
+      "retrievalId": "RQ01",
+      "seedId": "IH-LEDGER-CATCHUP-RECONSTRUCT-001",
+      "query": "How do I reconstruct ledger catch-up from harvest manifests?"
+    },
+    {
+      "retrievalId": "RQ02",
+      "seedId": "IH-LEDGER-CATCHUP-RECONSTRUCT-001",
+      "query": "What command lists durable delta since a date?"
+    },
+    {
+      "retrievalId": "RQ11",
+      "seedId": "IH-LEDGER-STALENESS-GATE-001",
+      "query": "How do I detect stale ACTIVE_WORK vs INDEX?"
+    },
+    {
+      "retrievalId": "RQ12",
+      "seedId": "IH-LEDGER-STALENESS-GATE-001",
+      "query": "What gate blocks ledger divergence at closeout?"
+    }
+  ],
+  "roiTop3": [
+    {
+      "title": "Ledger staleness gate",
+      "seedId": null
+    },
+    {
+      "title": "Catch-up reconstruction CLI",
+      "seedId": null
+    },
+    {
+      "title": "WaveRunner ledger closeout hook",
+      "seedId": null
+    }
+  ],
+  "byKindSlice": "00-master-index/BY-KIND/thread-autopsy-index.json",
+  "catalogRoot": "02-catalog/knowledge-objects/cross-agent-harvest"
+}

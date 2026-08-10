@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-LEDGER-CATCHUP-RECONSTRUCT-001",
+      "questionId": "IHLEDGERCATC",
+      "canonicalQuestion": "How do I reconstruct ledger catch-up from harvest manifests?",
+      "alternateQuestions": [
+        "What command lists durable delta since a date?"
+      ],
+      "shortAnswer": "Use active-ledger:reconstruct-catchup after index-only divergence.",
+      "detailedAnswer": "Reconstruct ledger delta from harvest manifests",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-10T05:42:06.086Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/seed-packets/IH-LEDGER-CATCHUP-RECONSTRUCT-001.json"
+      ],
+      "authorityCommit": [
+        "420910d"
+      ],
+      "evidenceUrls": [
+        "TE-002",
+        "TE-003"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "tooling",
+        "harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "promotionClass": "proposal",
+      "kind": "tooling"
+    },
+    {
+      "ihPfspId": "IH-LEDGER-STALENESS-GATE-001",
+      "questionId": "IHLEDGERSTAL",
+      "canonicalQuestion": "How do I detect stale ACTIVE_WORK vs INDEX?",
+      "alternateQuestions": [
+        "What gate blocks ledger divergence at closeout?"
+      ],
+      "shortAnswer": "Fail closed when ACTIVE_WORK lags INDEX or Hub slices drift.",
+      "detailedAnswer": "Run active-ledger staleness gate before material closeout",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-10T05:42:06.087Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/seed-packets/IH-LEDGER-STALENESS-GATE-001.json"
+      ],
+      "authorityCommit": [
+        "420910d"
+      ],
+      "evidenceUrls": [
+        "TE-004"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "operator-procedure",
+        "harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "promotionClass": "proposal",
+      "kind": "operator-procedure"
+    }
+  ]
+}

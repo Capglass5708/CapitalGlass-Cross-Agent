@@ -4,14 +4,13 @@
   "promotionClass": "proposal",
   "title": "Run active-ledger staleness gate before material closeout",
   "summary": "Fail closed when ACTIVE_WORK lags INDEX or Hub slices drift.",
-  "triggers": [
-    "material closeout",
-    "WaveRunner admission"
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "roiRank": 1,
+  "retrievalQuestions": [
+    "How do I detect stale ACTIVE_WORK vs INDEX?",
+    "What gate blocks ledger divergence at closeout?"
   ],
-  "commands": [
-    "npm run active-ledger:staleness-gate -- --fail-on-stale"
-  ],
-  "evidenceRefs": [
-    "TE-004"
-  ]
+  "triggers": ["material closeout", "WaveRunner admission"],
+  "commands": ["npm run active-ledger:staleness-gate -- --fail-on-stale"],
+  "evidenceRefs": ["TE-004"]
 }
