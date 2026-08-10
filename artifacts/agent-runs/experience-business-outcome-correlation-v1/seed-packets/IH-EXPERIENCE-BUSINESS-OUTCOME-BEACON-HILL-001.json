@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-EXPERIENCE-BUSINESS-OUTCOME-BEACON-HILL-001",
+  "kind": "lesson",
+  "title": "Proposal population mismatch corrected before final acceptance — business outcome linked",
+  "summary": "Beacon Hill EG-06 chain: population_mismatch → final_output_accepted → PROPOSAL_CORRECTED with CONTRIBUTING causality. Gold Mine v2 scored.",
+  "retrievalQuestions": [
+    "report population mismatch corrected before proposal acceptance"
+  ],
+  "evidenceRefs": [
+    "artifacts/agent-runs/experience-business-outcome-correlation-v1/business-outcome-correlation-proof.json",
+    "scripts/tests/fixtures/experience-business-outcome-correlation-v1/beacon-hill-business-outcome.json"
+  ],
+  "sourcePacketIds": [
+    "experience-business-outcome-correlation-v1"
+  ],
+  "executionDeltaRefs": [
+    "ED-001"
+  ],
+  "wasteIds": [
+    "TW-001"
+  ],
+  "roiRank": 1,
+  "futureAgentInstructions": {
+    "whenThisAppears": "Proposal population mismatch corrected before final acceptance — business outcome linked",
+    "startAt": [
+      "artifacts/agent-runs/experience-business-outcome-correlation-v1/thread-autopsy-bundle.json"
+    ],
+    "runPreflight": [
+      "npm run test:estimating-experience-pipeline",
+      "npm run test:business-outcome-correlation-pipeline"
+    ],
+    "doNot": [
+      "Create cg-opening-envelope-v2",
+      "Fabricate dimensions or business outcomes"
+    ],
+    "proveBeforeClaiming": [
+      "REAL_PROJECT_PILOT=PASS",
+      "RETRIEVAL=PASS",
+      "MODEL_INFERRED_AUTHORITY_LEAKAGE=0"
+    ]
+  },
+  "ownerRepo": "Data-Extraction",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

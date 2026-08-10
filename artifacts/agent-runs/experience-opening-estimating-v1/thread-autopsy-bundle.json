@@ -1,0 +1,141 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "experience-opening-estimating-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "rework",
+      "description": "Storefront misclassified as window system — human correction required",
+      "evidenceRefs": [
+        "TE-002",
+        "eobs:beacon-storefront-corrected"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Experience episode with WRONG_SCOPE correction provenance",
+      "roiRank": 1,
+      "goldMineSignalClass": "BUSINESS_WORKFLOW_SIGNAL"
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Human estimator must correct machine scope classification on real markups",
+      "operatorCost": "medium",
+      "systemFix": "Experience episode captures correction provenance for retrieval",
+      "evidenceRefs": [
+        "TE-001",
+        "TE-002",
+        "TE-003"
+      ],
+      "linkedWasteIds": [
+        "TW-001"
+      ],
+      "goldMineSignalClass": "BUSINESS_WORKFLOW_SIGNAL",
+      "manualStep": "Review opening scope on elevation markup",
+      "frequency": "observed",
+      "avoidable": true,
+      "automationCandidate": true,
+      "businessWorkflow": "opening-estimating",
+      "operatorRole": "estimator",
+      "rootCause": "Machine scope vocabulary mismatch on storefront vs window system"
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "opening-estimating",
+      "actualExecution": {
+        "steps": [
+          "Run pipeline on Beacon Hill pilot fixture with real envelope refs"
+        ],
+        "outcome": "Experience episodes + deterministic relationships + retrieval pass"
+      },
+      "optimalExecution": {
+        "steps": [
+          "Reuse cg-estimating-evidence-envelope-v1",
+          "Correlate without new graph store"
+        ],
+        "outcome": "DURABLE_COMPLETE with MODEL_INFERRED_AUTHORITY_LEAKAGE=0"
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      },
+      "preventiveControl": "Reuse existing estimating evidence contract — no parallel envelope"
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Treat architectural window markup as storefront without human review",
+      "whyItWasWrong": "Scope decision is as important as detection",
+      "correctFirstMove": "Capture CAPITAL_GLASS_SCOPE_DECISION with correction provenance",
+      "preventiveControl": "correlate-episode-from-estimating-evidence.mjs",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "Second estimating evidence envelope or retrieval stack",
+      "whyRepeated": "Prior waves risked parallel authority",
+      "firstKnownInstance": "cg-estimating-evidence-envelope-v1",
+      "priorIndexSlice": "BY-KIND/active-work-blockers.json",
+      "whyMissed": "Contract reuse gate enforced in Wave 4 scout",
+      "avoidableBy": "CONTRACT_REUSE gate — extend envelope only when validation fails",
+      "recommendedAction": "reuse_existing"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Bid Composer estimating loop (follow-on milestone)",
+      "whyItPays": "Connects opening evidence to proposal pricing chain",
+      "effort": "medium",
+      "operatorValue": "high",
+      "businessValue": "high",
+      "platformValue": "medium",
+      "agentValue": "high",
+      "reliabilityValue": "high",
+      "automationLeverage": "high",
+      "estimatedComplexity": "medium",
+      "blastRadius": "estimating-suite",
+      "confidence": "high",
+      "evidenceDiversity": "pilot fixture + envelope refs",
+      "rootCauseLeverage": "closes opening→bid loop",
+      "goldMineSignalClass": "BUSINESS_WORKFLOW_SIGNAL",
+      "novelty": "NEW",
+      "savedWasteIds": [
+        "TW-001"
+      ],
+      "seedAs": "runbook"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "experience-estimator-bid-composer-loop-v1",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "experience-opening-estimating-v1 DURABLE_COMPLETE on main",
+        "Estimating evidence contract stable after merge"
+      ],
+      "lastKnownEvidence": [
+        "experience-opening-estimating-v1",
+        "Data-Extraction@b4d22674ebefcdd85e397e77984203737e0fe994"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "mcp-servers.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-10T00:16:35.565Z",
+    "preflightReceiptHash": "experience-opening-estimating-v1"
+  }
+}

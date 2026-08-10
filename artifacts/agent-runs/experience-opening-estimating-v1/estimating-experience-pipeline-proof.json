@@ -1,0 +1,690 @@
+{
+  "schema": "estimating-experience-pipeline-v1@1.0.0",
+  "workflowRunId": "wr:beacon-hill-opening-estimating-v1",
+  "projectId": "5d38b25a-c391-4d7c-8866-f8a1f4cea942",
+  "projectNumber": "CG-2036-26",
+  "pilotProject": "Beacon Hill / CG-2036-26",
+  "productKey": "computer-estimator",
+  "workflowKey": "opening-estimating",
+  "glazingOpeningObservationCount": 2,
+  "humanReviewEvidenceCount": 2,
+  "estimatingExperienceEpisodeCount": 1,
+  "chain": [
+    "REAL_PROJECT_PLANS",
+    "ESTIMATING_EVIDENCE_ENVELOPE",
+    "OPENING_SCOPE_CLASSIFICATION",
+    "HUMAN_CORRECTION",
+    "EXPERIENCE_EPISODE",
+    "DETERMINISTIC_RELATIONSHIP",
+    "GOLD_MINE_V2_EVALUATION",
+    "RETRIEVABLE_EXPERIENCE"
+  ],
+  "chainComplete": true,
+  "episodeBundle": {
+    "schema": "experience-episodes-v1@1.0.0",
+    "workflowRunId": "wr:beacon-hill-opening-estimating-v1",
+    "productKey": "computer-estimator",
+    "workflowKey": "opening-estimating",
+    "projectId": "5d38b25a-c391-4d7c-8866-f8a1f4cea942",
+    "projectNumber": "CG-2036-26",
+    "pilotProject": "Beacon Hill / CG-2036-26",
+    "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
+    "sourceExcerptHash": "sha256:2063c29a6e974ece40166da4ccdfe0d49ada5da31230787f789bf127060b5ca8",
+    "observations": [
+      {
+        "schema": "experience-observation-v1@1.0.0",
+        "observationId": "xobs:0b16656f37675466",
+        "sourceRefs": [
+          "eobs:beacon-storefront-corrected",
+          "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+        ],
+        "eventClass": "ESTIMATING_OPENING",
+        "measurementClass": "QUALITATIVE",
+        "provenance": {
+          "sourceLane": "estimating",
+          "emitter": "correlate-episode-from-estimating-evidence",
+          "envelopeId": "dde89257-3ce0-4cab-913c-833b895e0288",
+          "evidenceKind": "revu_markup_measurement"
+        },
+        "context": {
+          "openingId": "beacon-hill-a6-2-storefront-01",
+          "scopeType": "STOREFRONT",
+          "machineScopeType": "WINDOW_SYSTEM",
+          "humanScopeType": "STOREFRONT",
+          "sheetId": "A6.2",
+          "drawingRef": "page:storefront-elevation",
+          "correctionReason": "WRONG_SCOPE"
+        },
+        "evidence": {
+          "summary": "Estimator corrected storefront entrance misclassified as window system on A6.2 elevation markup",
+          "detailRefs": [
+            "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json",
+            "envelope:dde89257-3ce0-4cab-913c-833b895e0288"
+          ]
+        },
+        "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
+        "sourceExcerptHash": "sha256:75cab213c489977d7863faaa244f4d84ac1351b0506843ca91ea742fa53c7740",
+        "observedAt": "2026-08-09T19:30:00.000Z"
+      },
+      {
+        "schema": "experience-observation-v1@1.0.0",
+        "observationId": "xobs:1865995fdf1316e5",
+        "sourceRefs": [
+          "eobs:beacon-curtainwall-accepted",
+          "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+        ],
+        "eventClass": "ESTIMATING_OPENING",
+        "measurementClass": "QUALITATIVE",
+        "provenance": {
+          "sourceLane": "estimating",
+          "emitter": "correlate-episode-from-estimating-evidence",
+          "envelopeId": "env-beacon-curtainwall-bay-02",
+          "evidenceKind": "revu_markup_measurement"
+        },
+        "context": {
+          "openingId": "beacon-hill-curtainwall-bay-02",
+          "scopeType": "CURTAIN_WALL",
+          "machineScopeType": "CURTAIN_WALL",
+          "humanScopeType": null,
+          "sheetId": "A6.2",
+          "drawingRef": "page:curtainwall-bay",
+          "correctionReason": null
+        },
+        "evidence": {
+          "summary": "Curtain wall bay opening accepted from marked-up plan without correction",
+          "detailRefs": [
+            "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json"
+          ]
+        },
+        "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
+        "sourceExcerptHash": "sha256:764c083499356e3c93456a80483b7314ed1df0069a3ab5999c2b195b3466c944",
+        "observedAt": "2026-08-09T19:31:00.000Z"
+      }
+    ],
+    "episodes": [
+      {
+        "schema": "experience-episode-v1@1.0.0",
+        "episodeId": "episode:e5aaa960ae28484b",
+        "lifecycle": "RESOLVED_CORRECTED",
+        "problem": "Machine classified beacon-hill-a6-2-storefront-01 as WINDOW_SYSTEM; estimator corrected to STOREFRONT",
+        "actionsAttempted": [
+          {
+            "action": "classify-opening:beacon-hill-a6-2-storefront-01",
+            "result": "FAILED",
+            "evidenceRefs": [
+              "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json",
+              "envelope:dde89257-3ce0-4cab-913c-833b895e0288"
+            ]
+          },
+          {
+            "action": "classify-opening:beacon-hill-curtainwall-bay-02",
+            "result": "SUCCEEDED",
+            "evidenceRefs": [
+              "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json"
+            ]
+          }
+        ],
+        "operatorIntervention": {
+          "intervention": "Corrected scope WINDOW_SYSTEM → STOREFRONT",
+          "reasonClass": "MACHINE_WRONG",
+          "evidenceRefs": [
+            "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json",
+            "envelope:dde89257-3ce0-4cab-913c-833b895e0288"
+          ]
+        },
+        "outcome": {
+          "status": "CORRECTED",
+          "summary": "Human estimator corrected opening scope classification",
+          "evidenceRefs": [
+            "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+          ]
+        },
+        "applicability": {
+          "repos": [
+            "Computer Estimator",
+            "CapitalGlassRevu",
+            "CapitalGlass-BidComposer"
+          ],
+          "workflows": [
+            "opening-estimating"
+          ],
+          "missionClasses": [
+            "experience-opening-estimating-v1"
+          ],
+          "counterexamples": [],
+          "projectId": "5d38b25a-c391-4d7c-8866-f8a1f4cea942",
+          "projectNumber": "CG-2036-26",
+          "pilotProject": "Beacon Hill / CG-2036-26"
+        },
+        "rootCauseKey": "opening-scope-correction:beacon-hill-a6-2-storefront-01",
+        "triggerFingerprint": "trigger:ed9b2eaae462",
+        "contextCompatibilityDigest": "sha256:78e09e23e6a7eb5579a19d51971abd16976d336e26ce46a64349e520f2e7aa3d",
+        "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
+        "sourceExcerptHash": "sha256:2063c29a6e974ece40166da4ccdfe0d49ada5da31230787f789bf127060b5ca8",
+        "observationRefs": [
+          "xobs:0b16656f37675466",
+          "xobs:1865995fdf1316e5"
+        ],
+        "openingObservationRefs": [
+          "eobs:beacon-storefront-corrected",
+          "eobs:beacon-curtainwall-accepted"
+        ]
+      }
+    ],
+    "suppressedCount": 0,
+    "glazingOpeningObservationCount": 2,
+    "humanReviewEvidenceCount": 2,
+    "estimatingExperienceEpisodeCount": 1
+  },
+  "relationshipBundle": {
+    "schema": "experience-relationships-v1@1.0.0",
+    "relationships": [
+      {
+        "schema": "experience-relationship-v1@1.0.0",
+        "relationshipId": "rel:f72a33ffdca6fb20",
+        "edgeKind": "VALIDATED_BY",
+        "origin": "DERIVED_DETERMINISTIC",
+        "fromRef": "episode:e5aaa960ae28484b",
+        "toRef": "xobs:0b16656f37675466",
+        "causalityClass": "CONTRIBUTING",
+        "evidenceRefs": [
+          "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+        ],
+        "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
+        "sourceExcerptHash": "sha256:2063c29a6e974ece40166da4ccdfe0d49ada5da31230787f789bf127060b5ca8"
+      },
+      {
+        "schema": "experience-relationship-v1@1.0.0",
+        "relationshipId": "rel:0185826576a7b440",
+        "edgeKind": "VALIDATED_BY",
+        "origin": "DERIVED_DETERMINISTIC",
+        "fromRef": "episode:e5aaa960ae28484b",
+        "toRef": "xobs:1865995fdf1316e5",
+        "causalityClass": "CONTRIBUTING",
+        "evidenceRefs": [
+          "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+        ],
+        "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
+        "sourceExcerptHash": "sha256:2063c29a6e974ece40166da4ccdfe0d49ada5da31230787f789bf127060b5ca8"
+      },
+      {
+        "schema": "experience-relationship-v1@1.0.0",
+        "relationshipId": "rel:814958055fabd2ec",
+        "edgeKind": "FAILED_TO_RESOLVE",
+        "origin": "DERIVED_DETERMINISTIC",
+        "fromRef": "episode:e5aaa960ae28484b",
+        "toRef": "action:classify-opening:beacon-hill-a6-2-storefront-01",
+        "causalityClass": "DIRECT",
+        "evidenceRefs": [
+          "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json",
+          "envelope:dde89257-3ce0-4cab-913c-833b895e0288"
+        ],
+        "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
+        "sourceExcerptHash": "sha256:2063c29a6e974ece40166da4ccdfe0d49ada5da31230787f789bf127060b5ca8"
+      },
+      {
+        "schema": "experience-relationship-v1@1.0.0",
+        "relationshipId": "rel:f6d89068259ca8f3",
+        "edgeKind": "ATTEMPTED",
+        "origin": "DERIVED_DETERMINISTIC",
+        "fromRef": "episode:e5aaa960ae28484b",
+        "toRef": "action:classify-opening:beacon-hill-curtainwall-bay-02",
+        "causalityClass": "CONTRIBUTING",
+        "evidenceRefs": [
+          "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json"
+        ],
+        "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
+        "sourceExcerptHash": "sha256:2063c29a6e974ece40166da4ccdfe0d49ada5da31230787f789bf127060b5ca8"
+      },
+      {
+        "schema": "experience-relationship-v1@1.0.0",
+        "relationshipId": "rel:24532eae59254893",
+        "edgeKind": "OVERRIDDEN_BY",
+        "origin": "DERIVED_DETERMINISTIC",
+        "fromRef": "episode:e5aaa960ae28484b",
+        "toRef": "operator:intervention",
+        "causalityClass": "DIRECT",
+        "evidenceRefs": [
+          "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json",
+          "envelope:dde89257-3ce0-4cab-913c-833b895e0288"
+        ],
+        "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
+        "sourceExcerptHash": "sha256:2063c29a6e974ece40166da4ccdfe0d49ada5da31230787f789bf127060b5ca8"
+      }
+    ],
+    "modelInferredCount": 0
+  },
+  "graphContribution": {
+    "schemaVersion": "experience-graph-contribution-v1@1.0.0",
+    "contributionId": "contribution:experience-graph-undefined-v1",
+    "producer": {
+      "repositoryId": "repo:data-extraction",
+      "capability": "experience-graph-foundation",
+      "version": "1.0.0"
+    },
+    "source": {
+      "sourceAuthority": "CapitalGlass-Cross-Agent",
+      "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+    },
+    "semanticKinds": [
+      "experience-observation",
+      "experience-episode",
+      "experience-pattern"
+    ],
+    "observations": [
+      {
+        "semanticKind": "experience-observation",
+        "entityId": "xobs:0b16656f37675466",
+        "payload": {
+          "schema": "experience-observation-v1@1.0.0",
+          "observationId": "xobs:0b16656f37675466",
+          "sourceRefs": [
+            "eobs:beacon-storefront-corrected",
+            "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+          ],
+          "eventClass": "ESTIMATING_OPENING",
+          "measurementClass": "QUALITATIVE",
+          "provenance": {
+            "sourceLane": "estimating",
+            "emitter": "correlate-episode-from-estimating-evidence",
+            "envelopeId": "dde89257-3ce0-4cab-913c-833b895e0288",
+            "evidenceKind": "revu_markup_measurement"
+          },
+          "context": {
+            "openingId": "beacon-hill-a6-2-storefront-01",
+            "scopeType": "STOREFRONT",
+            "machineScopeType": "WINDOW_SYSTEM",
+            "humanScopeType": "STOREFRONT",
+            "sheetId": "A6.2",
+            "drawingRef": "page:storefront-elevation",
+            "correctionReason": "WRONG_SCOPE"
+          },
+          "evidence": {
+            "summary": "Estimator corrected storefront entrance misclassified as window system on A6.2 elevation markup",
+            "detailRefs": [
+              "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json",
+              "envelope:dde89257-3ce0-4cab-913c-833b895e0288"
+            ]
+          },
+          "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
+          "sourceExcerptHash": "sha256:75cab213c489977d7863faaa244f4d84ac1351b0506843ca91ea742fa53c7740",
+          "observedAt": "2026-08-09T19:30:00.000Z"
+        },
+        "evidenceRefs": [
+          "eobs:beacon-storefront-corrected",
+          "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+        ]
+      },
+      {
+        "semanticKind": "experience-observation",
+        "entityId": "xobs:1865995fdf1316e5",
+        "payload": {
+          "schema": "experience-observation-v1@1.0.0",
+          "observationId": "xobs:1865995fdf1316e5",
+          "sourceRefs": [
+            "eobs:beacon-curtainwall-accepted",
+            "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+          ],
+          "eventClass": "ESTIMATING_OPENING",
+          "measurementClass": "QUALITATIVE",
+          "provenance": {
+            "sourceLane": "estimating",
+            "emitter": "correlate-episode-from-estimating-evidence",
+            "envelopeId": "env-beacon-curtainwall-bay-02",
+            "evidenceKind": "revu_markup_measurement"
+          },
+          "context": {
+            "openingId": "beacon-hill-curtainwall-bay-02",
+            "scopeType": "CURTAIN_WALL",
+            "machineScopeType": "CURTAIN_WALL",
+            "humanScopeType": null,
+            "sheetId": "A6.2",
+            "drawingRef": "page:curtainwall-bay",
+            "correctionReason": null
+          },
+          "evidence": {
+            "summary": "Curtain wall bay opening accepted from marked-up plan without correction",
+            "detailRefs": [
+              "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json"
+            ]
+          },
+          "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
+          "sourceExcerptHash": "sha256:764c083499356e3c93456a80483b7314ed1df0069a3ab5999c2b195b3466c944",
+          "observedAt": "2026-08-09T19:31:00.000Z"
+        },
+        "evidenceRefs": [
+          "eobs:beacon-curtainwall-accepted",
+          "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+        ]
+      },
+      {
+        "semanticKind": "experience-episode",
+        "entityId": "episode:e5aaa960ae28484b",
+        "payload": {
+          "schema": "experience-episode-v1@1.0.0",
+          "episodeId": "episode:e5aaa960ae28484b",
+          "lifecycle": "RESOLVED_CORRECTED",
+          "problem": "Machine classified beacon-hill-a6-2-storefront-01 as WINDOW_SYSTEM; estimator corrected to STOREFRONT",
+          "actionsAttempted": [
+            {
+              "action": "classify-opening:beacon-hill-a6-2-storefront-01",
+              "result": "FAILED",
+              "evidenceRefs": [
+                "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json",
+                "envelope:dde89257-3ce0-4cab-913c-833b895e0288"
+              ]
+            },
+            {
+              "action": "classify-opening:beacon-hill-curtainwall-bay-02",
+              "result": "SUCCEEDED",
+              "evidenceRefs": [
+                "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json"
+              ]
+            }
+          ],
+          "operatorIntervention": {
+            "intervention": "Corrected scope WINDOW_SYSTEM → STOREFRONT",
+            "reasonClass": "MACHINE_WRONG",
+            "evidenceRefs": [
+              "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json",
+              "envelope:dde89257-3ce0-4cab-913c-833b895e0288"
+            ]
+          },
+          "outcome": {
+            "status": "CORRECTED",
+            "summary": "Human estimator corrected opening scope classification",
+            "evidenceRefs": [
+              "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+            ]
+          },
+          "applicability": {
+            "repos": [
+              "Computer Estimator",
+              "CapitalGlassRevu",
+              "CapitalGlass-BidComposer"
+            ],
+            "workflows": [
+              "opening-estimating"
+            ],
+            "missionClasses": [
+              "experience-opening-estimating-v1"
+            ],
+            "counterexamples": [],
+            "projectId": "5d38b25a-c391-4d7c-8866-f8a1f4cea942",
+            "projectNumber": "CG-2036-26",
+            "pilotProject": "Beacon Hill / CG-2036-26"
+          },
+          "rootCauseKey": "opening-scope-correction:beacon-hill-a6-2-storefront-01",
+          "triggerFingerprint": "trigger:ed9b2eaae462",
+          "contextCompatibilityDigest": "sha256:78e09e23e6a7eb5579a19d51971abd16976d336e26ce46a64349e520f2e7aa3d",
+          "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
+          "sourceExcerptHash": "sha256:2063c29a6e974ece40166da4ccdfe0d49ada5da31230787f789bf127060b5ca8",
+          "observationRefs": [
+            "xobs:0b16656f37675466",
+            "xobs:1865995fdf1316e5"
+          ],
+          "openingObservationRefs": [
+            "eobs:beacon-storefront-corrected",
+            "eobs:beacon-curtainwall-accepted"
+          ]
+        },
+        "evidenceRefs": [
+          "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "observationId": "rel:f72a33ffdca6fb20",
+        "edgeType": "VALIDATED_BY",
+        "sourceLabel": "episode:e5aaa960ae28484b",
+        "targetLabel": "xobs:0b16656f37675466",
+        "classification": "DERIVED_DETERMINISTIC",
+        "evidenceRefs": [
+          "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+        ]
+      },
+      {
+        "observationId": "rel:0185826576a7b440",
+        "edgeType": "VALIDATED_BY",
+        "sourceLabel": "episode:e5aaa960ae28484b",
+        "targetLabel": "xobs:1865995fdf1316e5",
+        "classification": "DERIVED_DETERMINISTIC",
+        "evidenceRefs": [
+          "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+        ]
+      },
+      {
+        "observationId": "rel:814958055fabd2ec",
+        "edgeType": "FAILED_TO_RESOLVE",
+        "sourceLabel": "episode:e5aaa960ae28484b",
+        "targetLabel": "action:classify-opening:beacon-hill-a6-2-storefront-01",
+        "classification": "DERIVED_DETERMINISTIC",
+        "evidenceRefs": [
+          "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json",
+          "envelope:dde89257-3ce0-4cab-913c-833b895e0288"
+        ]
+      },
+      {
+        "observationId": "rel:f6d89068259ca8f3",
+        "edgeType": "ATTEMPTED",
+        "sourceLabel": "episode:e5aaa960ae28484b",
+        "targetLabel": "action:classify-opening:beacon-hill-curtainwall-bay-02",
+        "classification": "DERIVED_DETERMINISTIC",
+        "evidenceRefs": [
+          "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json"
+        ]
+      },
+      {
+        "observationId": "rel:24532eae59254893",
+        "edgeType": "OVERRIDDEN_BY",
+        "sourceLabel": "episode:e5aaa960ae28484b",
+        "targetLabel": "operator:intervention",
+        "classification": "DERIVED_DETERMINISTIC",
+        "evidenceRefs": [
+          "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json",
+          "envelope:dde89257-3ce0-4cab-913c-833b895e0288"
+        ]
+      }
+    ],
+    "producerReceipt": {
+      "recordedAt": "2026-08-10T00:16:35.614Z",
+      "contributionDigest": "sha256:0af608b0c1e3bbd1fee2df0559a461efa6c5a1fadeed6babb5dd8d3be2fbdf82"
+    }
+  },
+  "goldMineEvaluation": {
+    "schema": "gold-mine-candidate-score-v2@1.0.0",
+    "candidateId": "cand:e5aaa960ae28484b",
+    "missionProfile": "ESTIMATING_MISSION",
+    "rootCauseKey": "opening-scope-correction:beacon-hill-a6-2-storefront-01",
+    "triggerPattern": "trigger:ed9b2eaae462",
+    "specificObservedFailure": "Machine classified beacon-hill-a6-2-storefront-01 as WINDOW_SYSTEM; estimator corrected to STOREFRONT",
+    "actualConsequence": null,
+    "failedAttempts": [],
+    "successfulInterventions": [],
+    "applicability": [
+      "Computer Estimator",
+      "CapitalGlassRevu",
+      "CapitalGlass-BidComposer"
+    ],
+    "counterexamples": [],
+    "evidenceRefs": [
+      "episode:e5aaa960ae28484b"
+    ],
+    "measurementClass": "DERIVED",
+    "valueRealizationState": "POTENTIAL",
+    "valueConfidence": "UNKNOWN",
+    "valueEvidenceRefs": [
+      "episode:e5aaa960ae28484b"
+    ],
+    "dimensions": {
+      "BUSINESS_IMPACT": 8,
+      "OPERATOR_TIME": 20,
+      "REWORK": 1,
+      "BID_TURNAROUND": null,
+      "SCOPE_OMISSION_RISK": null,
+      "EVIDENCE_CONFIDENCE": 2,
+      "IMPLEMENTATION_EFFORT": 5
+    },
+    "compositeScore": 6.499999999999999,
+    "unknownPreserved": true,
+    "scoreDigest": "sha256:f30169bea80bd2b7eac0a84adb439d05447695ddd2dded8ba6ba615c5a2a2a5b"
+  },
+  "retrieval": {
+    "query": "storefront opening scope corrected elevation markup beacon hill",
+    "pass": true,
+    "rank": 1,
+    "score": 6,
+    "applicability": {
+      "repos": [
+        "Computer Estimator",
+        "CapitalGlassRevu",
+        "CapitalGlass-BidComposer"
+      ],
+      "workflows": [
+        "opening-estimating"
+      ],
+      "missionClasses": [
+        "experience-opening-estimating-v1"
+      ],
+      "counterexamples": [],
+      "projectId": "5d38b25a-c391-4d7c-8866-f8a1f4cea942",
+      "projectNumber": "CG-2036-26",
+      "pilotProject": "Beacon Hill / CG-2036-26"
+    },
+    "currentness": "LIVE_FIXTURE",
+    "evidenceRefs": [
+      "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+    ],
+    "wrongMoves": [
+      {
+        "episodeId": "episode:e5aaa960ae28484b",
+        "score": 6,
+        "problem": "Machine classified beacon-hill-a6-2-storefront-01 as WINDOW_SYSTEM; estimator corrected to STOREFRONT",
+        "rootCauseKey": "opening-scope-correction:beacon-hill-a6-2-storefront-01",
+        "applicability": {
+          "repos": [
+            "Computer Estimator",
+            "CapitalGlassRevu",
+            "CapitalGlass-BidComposer"
+          ],
+          "workflows": [
+            "opening-estimating"
+          ],
+          "missionClasses": [
+            "experience-opening-estimating-v1"
+          ],
+          "counterexamples": [],
+          "projectId": "5d38b25a-c391-4d7c-8866-f8a1f4cea942",
+          "projectNumber": "CG-2036-26",
+          "pilotProject": "Beacon Hill / CG-2036-26"
+        },
+        "evidenceRefs": [
+          "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+        ]
+      }
+    ],
+    "bestKnownAction": "Machine classified beacon-hill-a6-2-storefront-01 as WINDOW_SYSTEM; estimator corrected to STOREFRONT",
+    "goldMineComposite": 6.499999999999999,
+    "relationshipCount": 5,
+    "ranked": [
+      {
+        "episodeId": "episode:e5aaa960ae28484b",
+        "score": 6,
+        "problem": "Machine classified beacon-hill-a6-2-storefront-01 as WINDOW_SYSTEM; estimator corrected to STOREFRONT",
+        "rootCauseKey": "opening-scope-correction:beacon-hill-a6-2-storefront-01",
+        "applicability": {
+          "repos": [
+            "Computer Estimator",
+            "CapitalGlassRevu",
+            "CapitalGlass-BidComposer"
+          ],
+          "workflows": [
+            "opening-estimating"
+          ],
+          "missionClasses": [
+            "experience-opening-estimating-v1"
+          ],
+          "counterexamples": [],
+          "projectId": "5d38b25a-c391-4d7c-8866-f8a1f4cea942",
+          "projectNumber": "CG-2036-26",
+          "pilotProject": "Beacon Hill / CG-2036-26"
+        },
+        "evidenceRefs": [
+          "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+        ]
+      }
+    ]
+  },
+  "productCoverage": {
+    "before": {
+      "schema": "experience-product-coverage-evidence-v1@1.0.0",
+      "generatedAt": "2026-08-10T00:16:35.615Z",
+      "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
+      "totals": {
+        "products": 0,
+        "observations": 0,
+        "episodes": 0,
+        "corrections": 0,
+        "outcomes": 0
+      },
+      "corpusBias": {
+        "dominantProductKey": null,
+        "dominantShare": 0,
+        "underrepresentedProducts": []
+      },
+      "products": [],
+      "measurementClass": "COUNTED"
+    },
+    "after": {
+      "schema": "experience-product-coverage-evidence-v1@1.0.0",
+      "generatedAt": "2026-08-10T00:16:35.615Z",
+      "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
+      "totals": {
+        "products": 1,
+        "observations": 2,
+        "episodes": 1,
+        "corrections": 0,
+        "outcomes": 0
+      },
+      "corpusBias": {
+        "dominantProductKey": "computer-estimator",
+        "dominantShare": 1,
+        "underrepresentedProducts": []
+      },
+      "products": [
+        {
+          "productKey": "computer-estimator",
+          "observations": 2,
+          "episodes": 1,
+          "corrections": 0,
+          "outcomes": 0,
+          "workflows": {
+            "opening-estimating": 2
+          },
+          "corpusBiasScore": 1,
+          "episodeObservationRatio": 0.5
+        }
+      ],
+      "measurementClass": "COUNTED"
+    },
+    "eventBuckets": {
+      "opening_detected": "observations",
+      "scope_classified": "observations",
+      "scope_corrected": "corrections",
+      "scope_accepted": "outcomes"
+    },
+    "dominantProductShift": true
+  },
+  "gates": {
+    "REAL_PROJECT_PILOT": true,
+    "GLAZING_OPENING_OBSERVATIONS": true,
+    "HUMAN_REVIEW_EVIDENCE": true,
+    "EXPERIENCE_EPISODES": true,
+    "DETERMINISTIC_RELATIONSHIPS": true,
+    "GOLD_MINE_V2_SCORED": true,
+    "RETRIEVABLE_EXPERIENCE": true,
+    "PRODUCT_COVERAGE_REFRESH": true,
+    "MODEL_INFERRED_AUTHORITY_LEAKAGE": true
+  }
+}

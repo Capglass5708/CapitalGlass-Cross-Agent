@@ -1,0 +1,243 @@
+{
+  "schema": "experience-episodes-v1@1.0.0",
+  "harvestId": "experience-business-outcome-correlation-v1",
+  "sourceRawRef": "artifacts/agent-runs/experience-business-outcome-correlation-v1/business-outcome-correlation-proof.json",
+  "episodes": [
+    {
+      "schema": "experience-episode-v1@1.0.0",
+      "episodeId": "episode:ebba92b89da984f2",
+      "lifecycle": "RESOLVED_ACCEPTED",
+      "problem": "Report population mismatch required human review",
+      "actionsAttempted": [
+        {
+          "action": "document_parsed",
+          "result": "SUCCEEDED",
+          "evidenceRefs": [
+            "artifacts/agent-runs/experience-report-parsing-population-live-proof-v1/hosted-beacon-hill-verify-population.json",
+            "obs:beacon-doc-parsed"
+          ]
+        },
+        {
+          "action": "field_populated",
+          "result": "SUCCEEDED",
+          "evidenceRefs": [
+            "artifacts/agent-runs/experience-report-parsing-population-live-proof-v1/hosted-beacon-hill-verify-population.json",
+            "obs:beacon-populated"
+          ]
+        },
+        {
+          "action": "population_mismatch",
+          "result": "FAILED",
+          "evidenceRefs": [
+            "artifacts/agent-runs/experience-report-parsing-population-live-proof-v1/hosted-beacon-hill-verify-population.json",
+            "obs:beacon-mismatch"
+          ]
+        }
+      ],
+      "operatorIntervention": null,
+      "outcome": {
+        "status": "PROPOSAL_CORRECTED",
+        "summary": "Proposal/report population corrected before final acceptance",
+        "evidenceRefs": [
+          "artifacts/agent-runs/experience-report-parsing-population-live-proof-v1/hosted-beacon-hill-verify-population.json"
+        ]
+      },
+      "applicability": {
+        "repos": [
+          "Cursor-ProposalGenerator",
+          "CapitalGlass-Documents"
+        ],
+        "workflows": [
+          "report-parsing-population"
+        ],
+        "missionClasses": [
+          "experience-report-parsing-population-v1"
+        ],
+        "counterexamples": []
+      },
+      "rootCauseKey": "population-mapping-error",
+      "triggerFingerprint": "trigger:81f1d3387944",
+      "contextCompatibilityDigest": "sha256:8645968389ed73b081d42866afe01a22218bd4953c2362f786bb2e2628a0d930",
+      "sourceRawRef": "artifacts/agent-runs/experience-report-parsing-population-live-proof-v1/hosted-beacon-hill-verify-population.json",
+      "sourceExcerptHash": "sha256:0c421198f834611897ec023af2737fc3bdf9a40c7911c5f4c632d138dfd135cd",
+      "observationRefs": [
+        "xobs:859455138febc0ce",
+        "xobs:e90b70cd9ee04545",
+        "xobs:ec6ca7b53d26f24b",
+        "xobs:a8264b1569e858e4"
+      ],
+      "businessObservationRefs": [
+        "obs:beacon-doc-parsed",
+        "obs:beacon-populated",
+        "obs:beacon-mismatch",
+        "obs:beacon-accepted"
+      ],
+      "businessOutcomeCorrelation": {
+        "schema": "business-outcome-correlation-v1@1.0.0",
+        "projectId": "5d38b25a-c391-4d7c-8866-f8a1f4cea942",
+        "projectNumber": "CG-2036-26",
+        "proposalId": "beacon-hill-proposal-v1",
+        "revisionId": "rev-001",
+        "episodeId": "episode:ebba92b89da984f2",
+        "outcomeClass": "PROPOSAL_CORRECTED",
+        "causality": "CONTRIBUTING",
+        "observedAt": "2026-08-09T19:21:14.681Z",
+        "evidenceRefs": [
+          "obs:beacon-doc-parsed",
+          "obs:beacon-populated",
+          "obs:beacon-mismatch",
+          "obs:beacon-accepted"
+        ],
+        "modelInferred": false
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "schema": "experience-relationship-v1@1.0.0",
+      "relationshipId": "rel:d508e44a655a85f0",
+      "edgeKind": "VALIDATED_BY",
+      "origin": "DERIVED_DETERMINISTIC",
+      "fromRef": "episode:ebba92b89da984f2",
+      "toRef": "xobs:859455138febc0ce",
+      "causalityClass": "CONTRIBUTING",
+      "evidenceRefs": [
+        "artifacts/agent-runs/experience-report-parsing-population-live-proof-v1/hosted-beacon-hill-verify-population.json"
+      ],
+      "sourceRawRef": "artifacts/agent-runs/experience-report-parsing-population-live-proof-v1/hosted-beacon-hill-verify-population.json",
+      "sourceExcerptHash": "sha256:0c421198f834611897ec023af2737fc3bdf9a40c7911c5f4c632d138dfd135cd"
+    },
+    {
+      "schema": "experience-relationship-v1@1.0.0",
+      "relationshipId": "rel:fb5d138aba1b85e3",
+      "edgeKind": "VALIDATED_BY",
+      "origin": "DERIVED_DETERMINISTIC",
+      "fromRef": "episode:ebba92b89da984f2",
+      "toRef": "xobs:e90b70cd9ee04545",
+      "causalityClass": "CONTRIBUTING",
+      "evidenceRefs": [
+        "artifacts/agent-runs/experience-report-parsing-population-live-proof-v1/hosted-beacon-hill-verify-population.json"
+      ],
+      "sourceRawRef": "artifacts/agent-runs/experience-report-parsing-population-live-proof-v1/hosted-beacon-hill-verify-population.json",
+      "sourceExcerptHash": "sha256:0c421198f834611897ec023af2737fc3bdf9a40c7911c5f4c632d138dfd135cd"
+    },
+    {
+      "schema": "experience-relationship-v1@1.0.0",
+      "relationshipId": "rel:c36914f9de87a89e",
+      "edgeKind": "VALIDATED_BY",
+      "origin": "DERIVED_DETERMINISTIC",
+      "fromRef": "episode:ebba92b89da984f2",
+      "toRef": "xobs:ec6ca7b53d26f24b",
+      "causalityClass": "CONTRIBUTING",
+      "evidenceRefs": [
+        "artifacts/agent-runs/experience-report-parsing-population-live-proof-v1/hosted-beacon-hill-verify-population.json"
+      ],
+      "sourceRawRef": "artifacts/agent-runs/experience-report-parsing-population-live-proof-v1/hosted-beacon-hill-verify-population.json",
+      "sourceExcerptHash": "sha256:0c421198f834611897ec023af2737fc3bdf9a40c7911c5f4c632d138dfd135cd"
+    },
+    {
+      "schema": "experience-relationship-v1@1.0.0",
+      "relationshipId": "rel:0a9577282c56acc1",
+      "edgeKind": "VALIDATED_BY",
+      "origin": "DERIVED_DETERMINISTIC",
+      "fromRef": "episode:ebba92b89da984f2",
+      "toRef": "xobs:a8264b1569e858e4",
+      "causalityClass": "CONTRIBUTING",
+      "evidenceRefs": [
+        "artifacts/agent-runs/experience-report-parsing-population-live-proof-v1/hosted-beacon-hill-verify-population.json"
+      ],
+      "sourceRawRef": "artifacts/agent-runs/experience-report-parsing-population-live-proof-v1/hosted-beacon-hill-verify-population.json",
+      "sourceExcerptHash": "sha256:0c421198f834611897ec023af2737fc3bdf9a40c7911c5f4c632d138dfd135cd"
+    },
+    {
+      "schema": "experience-relationship-v1@1.0.0",
+      "relationshipId": "rel:96e5387aa338fef4",
+      "edgeKind": "ATTEMPTED",
+      "origin": "DERIVED_DETERMINISTIC",
+      "fromRef": "episode:ebba92b89da984f2",
+      "toRef": "action:document_parsed",
+      "causalityClass": "CONTRIBUTING",
+      "evidenceRefs": [
+        "artifacts/agent-runs/experience-report-parsing-population-live-proof-v1/hosted-beacon-hill-verify-population.json",
+        "obs:beacon-doc-parsed"
+      ],
+      "sourceRawRef": "artifacts/agent-runs/experience-report-parsing-population-live-proof-v1/hosted-beacon-hill-verify-population.json",
+      "sourceExcerptHash": "sha256:0c421198f834611897ec023af2737fc3bdf9a40c7911c5f4c632d138dfd135cd"
+    },
+    {
+      "schema": "experience-relationship-v1@1.0.0",
+      "relationshipId": "rel:67469268a5978085",
+      "edgeKind": "ATTEMPTED",
+      "origin": "DERIVED_DETERMINISTIC",
+      "fromRef": "episode:ebba92b89da984f2",
+      "toRef": "action:field_populated",
+      "causalityClass": "CONTRIBUTING",
+      "evidenceRefs": [
+        "artifacts/agent-runs/experience-report-parsing-population-live-proof-v1/hosted-beacon-hill-verify-population.json",
+        "obs:beacon-populated"
+      ],
+      "sourceRawRef": "artifacts/agent-runs/experience-report-parsing-population-live-proof-v1/hosted-beacon-hill-verify-population.json",
+      "sourceExcerptHash": "sha256:0c421198f834611897ec023af2737fc3bdf9a40c7911c5f4c632d138dfd135cd"
+    },
+    {
+      "schema": "experience-relationship-v1@1.0.0",
+      "relationshipId": "rel:2a2e8eec8ef7c523",
+      "edgeKind": "FAILED_TO_RESOLVE",
+      "origin": "DERIVED_DETERMINISTIC",
+      "fromRef": "episode:ebba92b89da984f2",
+      "toRef": "action:population_mismatch",
+      "causalityClass": "DIRECT",
+      "evidenceRefs": [
+        "artifacts/agent-runs/experience-report-parsing-population-live-proof-v1/hosted-beacon-hill-verify-population.json",
+        "obs:beacon-mismatch"
+      ],
+      "sourceRawRef": "artifacts/agent-runs/experience-report-parsing-population-live-proof-v1/hosted-beacon-hill-verify-population.json",
+      "sourceExcerptHash": "sha256:0c421198f834611897ec023af2737fc3bdf9a40c7911c5f4c632d138dfd135cd"
+    }
+  ],
+  "gates": {
+    "BUSINESS_OUTCOME_OBSERVATIONS": true,
+    "OUTCOME_LINKED_EPISODES": true,
+    "DETERMINISTIC_OUTCOME_RELATIONSHIPS": true,
+    "MODEL_INFERRED_AUTHORITY_LEAKAGE": true,
+    "GOLD_MINE_V2_SCORED": true,
+    "BUSINESS_OUTCOME_RETRIEVAL": true
+  },
+  "goldMineEvaluation": {
+    "schema": "gold-mine-candidate-score-v2@1.0.0",
+    "candidateId": "cand:ebba92b89da984f2",
+    "missionProfile": "PROPOSAL_MISSION",
+    "rootCauseKey": "population-mapping-error",
+    "triggerPattern": "trigger:81f1d3387944",
+    "specificObservedFailure": "Report population mismatch required human review",
+    "actualConsequence": null,
+    "failedAttempts": [],
+    "successfulInterventions": [],
+    "applicability": [
+      "Cursor-ProposalGenerator",
+      "CapitalGlass-Documents"
+    ],
+    "counterexamples": [],
+    "evidenceRefs": [
+      "episode:ebba92b89da984f2"
+    ],
+    "measurementClass": "DERIVED",
+    "valueRealizationState": "POTENTIAL",
+    "valueConfidence": "UNKNOWN",
+    "valueEvidenceRefs": [
+      "episode:ebba92b89da984f2"
+    ],
+    "dimensions": {
+      "BUSINESS_IMPACT": 7,
+      "PROPOSAL_QUALITY": null,
+      "OPERATOR_TIME": 25,
+      "MARGIN_EXPOSURE": null,
+      "EVIDENCE_CONFIDENCE": 4,
+      "IMPLEMENTATION_EFFORT": 4,
+      "IMPLEMENTATION_RISK": null
+    },
+    "compositeScore": 10.250000000000002,
+    "unknownPreserved": true,
+    "scoreDigest": "sha256:a2f14665d51e2aee2fb89595f581bbb6933b46e4256ed4635ad977acf1dca4f6"
+  }
+}
