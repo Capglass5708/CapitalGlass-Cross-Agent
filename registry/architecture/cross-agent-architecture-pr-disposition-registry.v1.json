@@ -1,8 +1,7 @@
 {
   "schemaVersion": "cross-agent-architecture-pr-disposition-registry-v1@1.0.0",
   "workPackageId": "cross-agent-architecture-full-reconciliation-v1",
-  "canonicalMainAtEvaluation": "fa757d0f38a67e18e66a92ddf2a1eaa04e8b7270",
-  "evaluatedAt": "2026-08-10T16:15:00.000Z",
+  "evaluatedAt": "2026-08-10T16:24:43.807Z",
   "authority": "origin/main",
   "openPullRequests": [
     {
@@ -13,7 +12,9 @@
       "operatingArchitecture": true,
       "disposition": "REIMPLEMENT_ON_CURRENT_MAIN",
       "supersedingAuthority": "work/cross-agent-architecture-full-reconciliation-v1 (required deltas) + existing main phase-b/layered-verdict/git-retention",
-      "notes": "Do not merge as-is (conflicts; written against superseded publication model). Required invariants reimplemented on current main."
+      "notes": "Do not merge as-is (conflicts; written against superseded publication model). Required invariants reimplemented on current main.",
+      "closedBy": "PR #31 disposition closeout",
+      "open": false
     },
     {
       "number": 15,
@@ -23,7 +24,9 @@
       "operatingArchitecture": false,
       "disposition": "ALREADY_SUPERSEDED",
       "supersedingAuthority": "origin/main hot-cache dataset registry + query routing + later harvest protocol on main / L catalog",
-      "notes": "Mostly artifacts + older protocol copies. Hot-cache/query-routing architecture already on main."
+      "notes": "Mostly artifacts + older protocol copies. Hot-cache/query-routing architecture already on main.",
+      "closedBy": "PR #31 disposition closeout",
+      "open": false
     },
     {
       "number": 17,
@@ -34,7 +37,9 @@
       "operatingArchitecture": false,
       "disposition": "EVIDENCE_ONLY",
       "supersedingAuthority": "chat-gpt-harvest staging lane + Cursor ingest pipeline on main",
-      "notes": "Base is chat-gpt-harvest, not main. Not residual Cross-Agent architecture debt."
+      "notes": "Base is chat-gpt-harvest, not main. Not residual Cross-Agent architecture debt.",
+      "closedBy": "PR #31 disposition closeout",
+      "open": false
     },
     {
       "number": 23,
@@ -44,7 +49,9 @@
       "operatingArchitecture": false,
       "disposition": "EVIDENCE_ONLY",
       "supersedingAuthority": "chat-gpt-harvest designated chatgpt-findings-source.md lane",
-      "notes": "Single autopsy markdown file. Prefer chat-gpt-harvest staging over merging evidence PR to main."
+      "notes": "Single autopsy markdown file. Prefer chat-gpt-harvest staging over merging evidence PR to main.",
+      "closedBy": "PR #31 disposition closeout",
+      "open": false
     },
     {
       "number": 24,
@@ -54,7 +61,8 @@
       "operatingArchitecture": false,
       "disposition": "ACTIVE_PRODUCT_WORK_NOT_ARCHITECTURE",
       "supersedingAuthority": null,
-      "notes": "Estimating evidence envelope contract / product work. Leave open; not Cross-Agent operating-architecture debt. CONFLICTING vs main."
+      "notes": "Estimating evidence envelope contract / product work. Leave open; not Cross-Agent operating-architecture debt. CONFLICTING vs main.",
+      "open": true
     }
   ],
   "pr6CapabilityMap": [
@@ -113,5 +121,17 @@
       "classification": "PRESENT_STRONGER",
       "mainSurface": "scripts/harvest/lib/publication-identity-lib.mjs + phase-b identity"
     }
-  ]
+  ],
+  "closureSummary": {
+    "closed": [
+      6,
+      15,
+      17,
+      23
+    ],
+    "leftOpenProduct": [
+      24
+    ],
+    "reconciliationPr": 31
+  }
 }
