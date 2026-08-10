@@ -1,30 +1,33 @@
 {
   "schemaVersion": "cross-agent-thread-event-inventory-v1@1.0.0",
   "harvestId": "experience-opening-estimating-v1",
-  "generatedAt": "2026-08-10T00:16:35.565Z",
+  "generatedAt": "2026-08-10T01:12:51.041Z",
   "events": [
     {
       "eventId": "TE-001",
-      "phase": "scout",
-      "summary": "Beacon Hill selected — real Revu markup + envelope refs",
+      "phase": "live-producer",
+      "summary": "Beacon Hill Revu storefront WA markup HUMAN_VERIFIED on A6.2",
       "evidenceRefs": [
-        "scripts/tests/fixtures/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+        "CapitalGlassRevu/fixtures/markup-report/spine-proof-storefront-v1.json",
+        "revu-markup-wa-001"
       ]
     },
     {
       "eventId": "TE-002",
-      "phase": "implementation",
-      "summary": "Opening scope observations + human correction episode",
+      "phase": "live-producer",
+      "summary": "Rosewood supplemental: W22 AGREE success + D-101 CE_ONLY wrong-move",
       "evidenceRefs": [
-        "artifacts/agent-runs/experience-opening-estimating-v1/estimating-experience-pipeline-proof.json"
+        "CapitalGlassRevu/fixtures/estimating-spine/ce-reconciliation-result-sample.json",
+        "artifacts/agent-runs/experience-opening-estimating-v1/live-producer-ingestion-receipt-v1.json"
       ]
     },
     {
       "eventId": "TE-003",
       "phase": "verification",
-      "summary": "Situation retrieval pass for storefront scope correction",
+      "summary": "Independent situation retrieval without naming pilot project or episode id",
       "evidenceRefs": [
-        "retrieval.pass=true"
+        "aluminum door schedule detected without plan markup validation agreement",
+        "episode:08ae3c0859fd58f0"
       ]
     }
   ]

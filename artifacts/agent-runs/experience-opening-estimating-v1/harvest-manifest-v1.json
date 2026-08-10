@@ -1,15 +1,74 @@
 {
-  "schema": "harvest-manifest-v1",
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
   "harvestId": "experience-opening-estimating-v1",
-  "tier": "T2",
-  "sourceLane": "cursor",
   "missionClass": "material-closeout",
-  "workPackageId": "experience-opening-estimating-v1",
-  "startingSha": "01916006bd1d7761b68e1e6cb3295ec6a9011a73",
-  "protocolVersion": "harvest-unified-closeout-v1@1.0.0",
-  "status": "BLOCKED",
-  "createdAt": "2026-08-10T00:16:47.766Z",
-  "closedAt": "2026-08-10T00:16:48.415Z",
-  "authorizedBranch": "work/experience-opening-estimating-v1",
-  "blockedReason": "GIT_DURABILITY_FAIL"
+  "sourceCommitSha": "7d0a987f4299464089900a729fa9753137e6d391",
+  "sourceBranch": "work/experience-opening-estimating-v1",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-10T01:12:51.041Z",
+  "updatedAt": "2026-08-10T01:12:51.041Z",
+  "retrievalResult": "INDEX_HIT",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "experienceGraphHarvest": {
+    "program": "capital-glass-experience-graph-compounding-v1",
+    "workPackageId": "experience-opening-estimating-v1",
+    "pipelineProofPath": "artifacts/agent-runs/experience-opening-estimating-v1/live-producer-ingestion-receipt-v1.json",
+    "liveProducerReceiptPath": "artifacts/agent-runs/experience-opening-estimating-v1/live-producer-ingestion-receipt-v1.json",
+    "featureHeadSha": "784c3c3e7e225c907fdd16749c574544a6e0ea16",
+    "modelInferredAuthorityLeakage": 0,
+    "pilotProject": "Beacon Hill / CG-2036-26",
+    "supplementalProject": "Rosewood / CG-2033-26",
+    "projectId": "5d38b25a-c391-4d7c-8866-f8a1f4cea942",
+    "experienceEpisodeId": "episode:08ae3c0859fd58f0",
+    "literalHumanCorrections": 0,
+    "liveProducerIngestion": true
+  },
+  "doNotAdvance": [
+    "Launch experience-estimator-bid-composer-loop-v1 before opening lane merged"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/experience-opening-estimating-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/experience-opening-estimating-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 1,
+      "seeds": 1,
+      "roiItems": 1,
+      "operatorFriction": 1,
+      "executionDeltas": 1,
+      "wrongMoves": 1
+    }
+  },
+  "relatedRepos": [
+    {
+      "repo": "Data-Extraction",
+      "branch": "work/experience-opening-estimating-v1",
+      "commitSha": "784c3c3e7e225c907fdd16749c574544a6e0ea16",
+      "role": "pipeline owner"
+    },
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "work/experience-opening-estimating-v1",
+      "commitSha": "7d0a987f4299464089900a729fa9753137e6d391",
+      "role": "contracts + harvest"
+    }
+  ],
+  "packets": [
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "packetKind": "outcome",
+      "packetId": "experience-opening-estimating-beacon-hill-v1",
+      "packetTitle": "Beacon Hill opening/scope Experience episodes with retrieval",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "Data-Extraction",
+      "evidenceRefs": [
+        "artifacts/agent-runs/experience-opening-estimating-v1/live-producer-ingestion-receipt-v1.json",
+        "Data-Extraction@784c3c3e7e225c907fdd16749c574544a6e0ea16"
+      ]
+    }
+  ]
 }

@@ -15,6 +15,8 @@ const AS_OF = new Date().toISOString();
 const SOURCE_SHA = execSync('git rev-parse HEAD', { cwd: REPO_ROOT, encoding: 'utf8' }).trim();
 const DE_SHA = execSync('git rev-parse HEAD', { cwd: DE_ROOT, encoding: 'utf8' }).trim();
 
+const LIVE_OPENING_RECEIPT =
+  'artifacts/agent-runs/experience-opening-estimating-v1/live-producer-ingestion-receipt-v1.json';
 const OPENING_FIXTURE =
   'scripts/tests/fixtures/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json';
 const OUTCOME_FIXTURE =
@@ -161,7 +163,14 @@ function seedPacket(harvestId, seedId, title, summary, questions, evidenceRefs) 
   };
 }
 
-function buildManifest(harvestId, workPackageId, packets, autopsyCounts, pipelineProofPath) {
+function buildManifest(
+  harvestId,
+  workPackageId,
+  packets,
+  autopsyCounts,
+  pipelineProofPath,
+  { liveReceipt = null, episodeId = null } = {},
+) {
   return {
     schemaVersion: 'cross-agent-harvest-manifest-v1@1.0.0',
     harvestId,
@@ -178,9 +187,15 @@ function buildManifest(harvestId, workPackageId, packets, autopsyCounts, pipelin
       program: 'capital-glass-experience-graph-compounding-v1',
       workPackageId,
       pipelineProofPath,
+      liveProducerReceiptPath: liveReceipt ? LIVE_OPENING_RECEIPT : null,
+      featureHeadSha: DE_SHA,
       modelInferredAuthorityLeakage: 0,
       pilotProject: 'Beacon Hill / CG-2036-26',
+      supplementalProject: 'Rosewood / CG-2033-26',
       projectId: '5d38b25a-c391-4d7c-8866-f8a1f4cea942',
+      experienceEpisodeId: episodeId,
+      literalHumanCorrections: 0,
+      liveProducerIngestion: liveReceipt?.gates?.LIVE_SLICE_2_PASS ?? null,
     },
     doNotAdvance: ['Launch experience-estimator-bid-composer-loop-v1 before opening lane merged'],
     threadAutopsy: {
@@ -207,16 +222,43 @@ function packet(base) {
   };
 }
 
-async function generateOpeningHarvest(openingPipeline) {
+async function generateOpeningHarvest(openingPipeline, liveReceipt = null) {
   const HARVEST_ID = 'experience-opening-estimating-v1';
   const RUN_DIR = path.join(REPO_ROOT, 'artifacts/agent-runs', HARVEST_ID);
-  const proofPath = `artifacts/agent-runs/${HARVEST_ID}/estimating-experience-pipeline-proof.json`;
+  const proofPath = liveReceipt
+    ? LIVE_OPENING_RECEIPT
+    : `artifacts/agent-runs/${HARVEST_ID}/estimating-experience-pipeline-proof.json`;
   writeJson(RUN_DIR, 'estimating-experience-pipeline-proof.json', openingPipeline);
+  if (liveReceipt) {
+    writeJson(RUN_DIR, 'live-producer-ingestion-receipt-v1.json', liveReceipt);
+  }
 
+  const episodeId = openingPipeline.episodeBundle?.episodes?.[0]?.episodeId ?? 'episode:unknown';
   const events = [
-    { eventId: 'TE-001', phase: 'scout', summary: 'Beacon Hill selected — real Revu markup + envelope refs', evidenceRefs: [OPENING_FIXTURE] },
-    { eventId: 'TE-002', phase: 'implementation', summary: 'Opening scope observations + human correction episode', evidenceRefs: [proofPath] },
-    { eventId: 'TE-003', phase: 'verification', summary: 'Situation retrieval pass for storefront scope correction', evidenceRefs: ['retrieval.pass=true'] },
+    {
+      eventId: 'TE-001',
+      phase: 'live-producer',
+      summary: 'Beacon Hill Revu storefront WA markup HUMAN_VERIFIED on A6.2',
+      evidenceRefs: [
+        'CapitalGlassRevu/fixtures/markup-report/spine-proof-storefront-v1.json',
+        'revu-markup-wa-001',
+      ],
+    },
+    {
+      eventId: 'TE-002',
+      phase: 'live-producer',
+      summary: 'Rosewood supplemental: W22 AGREE success + D-101 CE_ONLY wrong-move',
+      evidenceRefs: [
+        'CapitalGlassRevu/fixtures/estimating-spine/ce-reconciliation-result-sample.json',
+        proofPath,
+      ],
+    },
+    {
+      eventId: 'TE-003',
+      phase: 'verification',
+      summary: 'Independent situation retrieval without naming pilot project or episode id',
+      evidenceRefs: [openingPipeline.retrieval?.query ?? 'retrieval.pass=true', episodeId],
+    },
   ];
 
   writeJson(RUN_DIR, 'thread-event-inventory.json', {
@@ -230,10 +272,10 @@ async function generateOpeningHarvest(openingPipeline) {
     {
       wasteId: 'TW-001',
       type: 'rework',
-      description: 'Storefront misclassified as window system — human correction required',
-      evidenceRefs: ['TE-002', 'eobs:beacon-storefront-corrected'],
+      description: 'CE detected aluminum door D-101 without Revu markup validation (CE_ONLY wrong-move)',
+      evidenceRefs: ['TE-002', 'D-101', episodeId],
       estimatedImpact: 'medium',
-      savedBy: 'Experience episode with WRONG_SCOPE correction provenance',
+      savedBy: 'Experience episode captures parser-only opening without Revu validation',
       roiRank: 1,
       goldMineSignalClass: 'BUSINESS_WORKFLOW_SIGNAL',
     },
@@ -245,10 +287,10 @@ async function generateOpeningHarvest(openingPipeline) {
     baseAutopsy(HARVEST_ID, 'opening-estimating', events, [
       {
         wrongMoveId: 'WM-001',
-        summary: 'Treat architectural window markup as storefront without human review',
-        whyItWasWrong: 'Scope decision is as important as detection',
-        correctFirstMove: 'Capture CAPITAL_GLASS_SCOPE_DECISION with correction provenance',
-        preventiveControl: 'correlate-episode-from-estimating-evidence.mjs',
+        summary: 'Treat parser-only door schedule candidate as validated without Revu markup agreement',
+        whyItWasWrong: 'Opening scope decisions require producer validation, not parser-only inference',
+        correctFirstMove: 'Reconcile CE candidate with Revu markup evidence before trusting scope',
+        preventiveControl: 'ingest-live-estimating-producer-evidence.mjs + ce-revu-reconciliation',
         executionDeltaId: 'ED-001',
       },
     ], waste),
@@ -258,13 +300,14 @@ async function generateOpeningHarvest(openingPipeline) {
   writeJson(RUN_DIR, `seed-packets/${seedId}.json`, seedPacket(
     HARVEST_ID,
     seedId,
-    'Beacon Hill storefront scope correction becomes retrievable estimating precedent',
-    'Real pilot: machine classified WINDOW_SYSTEM, human corrected to STOREFRONT on A6.2 elevation. Episode + deterministic edges + situation retrieval proven.',
+    'Live estimating producer evidence becomes retrievable opening-scope precedent',
+    `Live pilot: Beacon Hill storefront HUMAN_VERIFIED; Rosewood W22 AGREE; D-101 CE_ONLY wrong-move. Episode ${episodeId} with independent retrieval and product coverage expansion.`,
     [
-      'storefront opening scope corrected on architectural elevation',
-      'curtain wall opening accepted without correction from marked-up plan',
+      'aluminum door schedule detected without plan markup validation agreement',
+      'storefront opening human verified on elevation markup',
+      'window schedule candidate validated when revu markup agrees',
     ],
-    [proofPath, OPENING_FIXTURE],
+    [proofPath, LIVE_OPENING_RECEIPT, OPENING_FIXTURE],
   ));
 
   const packets = [
@@ -289,7 +332,7 @@ async function generateOpeningHarvest(openingPipeline) {
       operatorFriction: 1,
       executionDeltas: 1,
       wrongMoves: 1,
-    }, proofPath),
+    }, proofPath, { liveReceipt, episodeId }),
   );
 
   writeJson(RUN_DIR, 'experience-episode-bundle.json', {
@@ -401,23 +444,20 @@ async function generateOutcomeHarvest(outcomePipeline) {
 }
 
 async function main() {
-  const { openingMod, outcomeMod } = await loadPipelineModules();
-  const openingPipeline = openingMod.runEstimatingExperiencePipelineFromFixture(
-    path.join(DE_ROOT, OPENING_FIXTURE),
-  );
-  const outcomePipeline = outcomeMod.runBusinessOutcomeCorrelationPipelineFromFixture(
-    path.join(DE_ROOT, OUTCOME_FIXTURE),
-  );
-
-  if (!openingPipeline.gates.RETRIEVABLE_EXPERIENCE) {
+  const liveReceiptPath = path.join(DE_ROOT, LIVE_OPENING_RECEIPT);
+  if (!fs.existsSync(liveReceiptPath)) {
+    throw new Error(`live producer receipt missing: ${liveReceiptPath}`);
+  }
+  const liveReceipt = JSON.parse(fs.readFileSync(liveReceiptPath, 'utf8'));
+  const openingPipeline = liveReceipt.pipeline;
+  if (!liveReceipt.gates?.LIVE_SLICE_2_PASS) {
+    throw new Error('live producer ingestion gate failed — cannot harvest fixture-only proof');
+  }
+  if (!openingPipeline?.gates?.RETRIEVABLE_EXPERIENCE) {
     throw new Error('opening pipeline retrieval gate failed');
   }
-  if (!outcomePipeline.gates.BUSINESS_OUTCOME_RETRIEVAL) {
-    throw new Error('outcome pipeline retrieval gate failed');
-  }
 
-  await generateOpeningHarvest(openingPipeline);
-  await generateOutcomeHarvest(outcomePipeline);
+  await generateOpeningHarvest(openingPipeline, liveReceipt);
 }
 
 main().catch((err) => {

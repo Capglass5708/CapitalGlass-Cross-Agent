@@ -1,19 +1,19 @@
 {
   "schema": "estimating-experience-pipeline-v1@1.0.0",
-  "workflowRunId": "wr:beacon-hill-opening-estimating-v1",
+  "workflowRunId": "wr:live-producer-ingestion:CG-2036-26:2026-08-10T00:58:46.290Z",
   "projectId": "5d38b25a-c391-4d7c-8866-f8a1f4cea942",
   "projectNumber": "CG-2036-26",
   "pilotProject": "Beacon Hill / CG-2036-26",
   "productKey": "computer-estimator",
   "workflowKey": "opening-estimating",
-  "glazingOpeningObservationCount": 2,
+  "glazingOpeningObservationCount": 3,
   "humanReviewEvidenceCount": 2,
   "estimatingExperienceEpisodeCount": 1,
   "chain": [
     "REAL_PROJECT_PLANS",
     "ESTIMATING_EVIDENCE_ENVELOPE",
     "OPENING_SCOPE_CLASSIFICATION",
-    "HUMAN_CORRECTION",
+    "HUMAN_ACCEPTANCE",
     "EXPERIENCE_EPISODE",
     "DETERMINISTIC_RELATIONSHIP",
     "GOLD_MINE_V2_EVALUATION",
@@ -22,24 +22,95 @@
   "chainComplete": true,
   "episodeBundle": {
     "schema": "experience-episodes-v1@1.0.0",
-    "workflowRunId": "wr:beacon-hill-opening-estimating-v1",
+    "workflowRunId": "wr:live-producer-ingestion:CG-2036-26:2026-08-10T00:58:46.290Z",
     "productKey": "computer-estimator",
     "workflowKey": "opening-estimating",
     "projectId": "5d38b25a-c391-4d7c-8866-f8a1f4cea942",
     "projectNumber": "CG-2036-26",
     "pilotProject": "Beacon Hill / CG-2036-26",
-    "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
-    "sourceExcerptHash": "sha256:2063c29a6e974ece40166da4ccdfe0d49ada5da31230787f789bf127060b5ca8",
+    "sourceRawRef": "live-producer-ingestion:CG-2036-26",
+    "sourceExcerptHash": "sha256:4d95dedaee5a1ac8e6e73438d1c87c56f304be92e8c4884354d8fcd745fbfa40",
     "observations": [
       {
         "schema": "experience-observation-v1@1.0.0",
-        "observationId": "xobs:0b16656f37675466",
+        "observationId": "xobs:bb82aa1c2c78dc06",
         "sourceRefs": [
-          "eobs:beacon-storefront-corrected",
-          "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+          "eobs:live:e684715c5a507897",
+          "live-producer-ingestion:CG-2036-26"
         ],
         "eventClass": "ESTIMATING_OPENING",
         "measurementClass": "QUALITATIVE",
+        "provenance": {
+          "sourceLane": "estimating",
+          "emitter": "correlate-episode-from-estimating-evidence",
+          "envelopeId": "2ca5caf1-36ee-5773-0aec-963d23eda5b5",
+          "evidenceKind": "opening_detection"
+        },
+        "context": {
+          "openingId": "D-101",
+          "scopeType": "ALUMINUM_DOOR",
+          "machineScopeType": "ALUMINUM_DOOR",
+          "humanScopeType": null,
+          "sheetId": "sheet:A-101",
+          "drawingRef": "page:3",
+          "correctionReason": "WRONG_SCOPE"
+        },
+        "evidence": {
+          "summary": "CE detected D-101 (ALUMINUM_DOOR) without Revu markup validation (CE_ONLY)",
+          "detailRefs": [
+            "CapitalGlassRevu/fixtures/estimating-spine/revu-validation-evidence-fixture.json",
+            "CapitalGlassRevu/fixtures/estimating-spine/ce-reconciliation-result-sample.json"
+          ]
+        },
+        "sourceRawRef": "live-producer-ingestion:CG-2036-26",
+        "sourceExcerptHash": "sha256:f2f7d6e5dc1970e0fce3451f8ef13b29a9bb4975a0a3f2207c2536a37880fd65",
+        "observedAt": "2026-08-07T03:19:04.817Z"
+      },
+      {
+        "schema": "experience-observation-v1@1.0.0",
+        "observationId": "xobs:de7cf5b492ca6158",
+        "sourceRefs": [
+          "eobs:live:28447cdad6fb7e37",
+          "live-producer-ingestion:CG-2036-26"
+        ],
+        "eventClass": "ESTIMATING_OPENING",
+        "measurementClass": "QUALITATIVE",
+        "provenance": {
+          "sourceLane": "estimating",
+          "emitter": "correlate-episode-from-estimating-evidence",
+          "envelopeId": "2ca5caf1-36ee-5773-0aec-963d23eda5b5",
+          "evidenceKind": "window_schedule_row"
+        },
+        "context": {
+          "openingId": "W22",
+          "scopeType": "WINDOW_SYSTEM",
+          "machineScopeType": "WINDOW_SYSTEM",
+          "humanScopeType": null,
+          "sheetId": "sheet:A-101",
+          "drawingRef": "page:3",
+          "correctionReason": null
+        },
+        "evidence": {
+          "summary": "CE and Revu agree on W22 (WINDOW_SYSTEM)",
+          "detailRefs": [
+            "CapitalGlassRevu/fixtures/estimating-spine/revu-validation-evidence-fixture.json",
+            "CapitalGlassRevu/fixtures/estimating-spine/ce-reconciliation-result-sample.json",
+            "revu-markup:revu-markup-w22-controlled-fixture"
+          ]
+        },
+        "sourceRawRef": "live-producer-ingestion:CG-2036-26",
+        "sourceExcerptHash": "sha256:27caf22bcac91d086228bee7d8e9fa701991e45fa8e3d6808dcbb5d8cdf1c2f8",
+        "observedAt": "2026-08-07T03:19:04.817Z"
+      },
+      {
+        "schema": "experience-observation-v1@1.0.0",
+        "observationId": "xobs:11ff01c6074ac704",
+        "sourceRefs": [
+          "eobs:live:7b392540cb4ecacd",
+          "live-producer-ingestion:CG-2036-26"
+        ],
+        "eventClass": "ESTIMATING_OPENING",
+        "measurementClass": "MEASURED",
         "provenance": {
           "sourceLane": "estimating",
           "emitter": "correlate-episode-from-estimating-evidence",
@@ -47,96 +118,67 @@
           "evidenceKind": "revu_markup_measurement"
         },
         "context": {
-          "openingId": "beacon-hill-a6-2-storefront-01",
+          "openingId": "revu-markup-wa-001",
           "scopeType": "STOREFRONT",
-          "machineScopeType": "WINDOW_SYSTEM",
+          "machineScopeType": "STOREFRONT",
           "humanScopeType": "STOREFRONT",
           "sheetId": "A6.2",
-          "drawingRef": "page:storefront-elevation",
-          "correctionReason": "WRONG_SCOPE"
-        },
-        "evidence": {
-          "summary": "Estimator corrected storefront entrance misclassified as window system on A6.2 elevation markup",
-          "detailRefs": [
-            "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json",
-            "envelope:dde89257-3ce0-4cab-913c-833b895e0288"
-          ]
-        },
-        "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
-        "sourceExcerptHash": "sha256:75cab213c489977d7863faaa244f4d84ac1351b0506843ca91ea742fa53c7740",
-        "observedAt": "2026-08-09T19:30:00.000Z"
-      },
-      {
-        "schema": "experience-observation-v1@1.0.0",
-        "observationId": "xobs:1865995fdf1316e5",
-        "sourceRefs": [
-          "eobs:beacon-curtainwall-accepted",
-          "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
-        ],
-        "eventClass": "ESTIMATING_OPENING",
-        "measurementClass": "QUALITATIVE",
-        "provenance": {
-          "sourceLane": "estimating",
-          "emitter": "correlate-episode-from-estimating-evidence",
-          "envelopeId": "env-beacon-curtainwall-bay-02",
-          "evidenceKind": "revu_markup_measurement"
-        },
-        "context": {
-          "openingId": "beacon-hill-curtainwall-bay-02",
-          "scopeType": "CURTAIN_WALL",
-          "machineScopeType": "CURTAIN_WALL",
-          "humanScopeType": null,
-          "sheetId": "A6.2",
-          "drawingRef": "page:curtainwall-bay",
+          "drawingRef": "page:12",
           "correctionReason": null
         },
         "evidence": {
-          "summary": "Curtain wall bay opening accepted from marked-up plan without correction",
+          "summary": "Storefront WA on A6.2 (HUMAN_VERIFIED)",
           "detailRefs": [
-            "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json"
+            "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json",
+            "CapitalGlassRevu/fixtures/markup-report/spine-proof-storefront-v1.json",
+            "revu-markup:revu-markup-wa-001"
           ]
         },
-        "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
-        "sourceExcerptHash": "sha256:764c083499356e3c93456a80483b7314ed1df0069a3ab5999c2b195b3466c944",
-        "observedAt": "2026-08-09T19:31:00.000Z"
+        "sourceRawRef": "live-producer-ingestion:CG-2036-26",
+        "sourceExcerptHash": "sha256:c49076002d88f5411df6cfc743f04276d74253a0880ef918467acc30f4b9a292",
+        "observedAt": "2026-08-07T14:30:00Z"
       }
     ],
     "episodes": [
       {
         "schema": "experience-episode-v1@1.0.0",
-        "episodeId": "episode:e5aaa960ae28484b",
-        "lifecycle": "RESOLVED_CORRECTED",
-        "problem": "Machine classified beacon-hill-a6-2-storefront-01 as WINDOW_SYSTEM; estimator corrected to STOREFRONT",
+        "episodeId": "episode:08ae3c0859fd58f0",
+        "lifecycle": "RESOLVED_ACCEPTED",
+        "problem": "CE detected D-101 (ALUMINUM_DOOR) without Revu markup validation (CE_ONLY)",
         "actionsAttempted": [
           {
-            "action": "classify-opening:beacon-hill-a6-2-storefront-01",
-            "result": "FAILED",
+            "action": "classify-opening:D-101",
+            "result": "SUCCEEDED",
             "evidenceRefs": [
-              "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json",
-              "envelope:dde89257-3ce0-4cab-913c-833b895e0288"
+              "CapitalGlassRevu/fixtures/estimating-spine/revu-validation-evidence-fixture.json",
+              "CapitalGlassRevu/fixtures/estimating-spine/ce-reconciliation-result-sample.json"
             ]
           },
           {
-            "action": "classify-opening:beacon-hill-curtainwall-bay-02",
+            "action": "classify-opening:W22",
             "result": "SUCCEEDED",
             "evidenceRefs": [
-              "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json"
+              "CapitalGlassRevu/fixtures/estimating-spine/revu-validation-evidence-fixture.json",
+              "CapitalGlassRevu/fixtures/estimating-spine/ce-reconciliation-result-sample.json",
+              "revu-markup:revu-markup-w22-controlled-fixture"
+            ]
+          },
+          {
+            "action": "classify-opening:revu-markup-wa-001",
+            "result": "SUCCEEDED",
+            "evidenceRefs": [
+              "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json",
+              "CapitalGlassRevu/fixtures/markup-report/spine-proof-storefront-v1.json",
+              "revu-markup:revu-markup-wa-001"
             ]
           }
         ],
-        "operatorIntervention": {
-          "intervention": "Corrected scope WINDOW_SYSTEM → STOREFRONT",
-          "reasonClass": "MACHINE_WRONG",
-          "evidenceRefs": [
-            "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json",
-            "envelope:dde89257-3ce0-4cab-913c-833b895e0288"
-          ]
-        },
+        "operatorIntervention": null,
         "outcome": {
-          "status": "CORRECTED",
-          "summary": "Human estimator corrected opening scope classification",
+          "status": "ACCEPTED",
+          "summary": "Opening scope accepted without correction",
           "evidenceRefs": [
-            "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+            "live-producer-ingestion:CG-2036-26"
           ]
         },
         "applicability": {
@@ -156,23 +198,25 @@
           "projectNumber": "CG-2036-26",
           "pilotProject": "Beacon Hill / CG-2036-26"
         },
-        "rootCauseKey": "opening-scope-correction:beacon-hill-a6-2-storefront-01",
-        "triggerFingerprint": "trigger:ed9b2eaae462",
-        "contextCompatibilityDigest": "sha256:78e09e23e6a7eb5579a19d51971abd16976d336e26ce46a64349e520f2e7aa3d",
-        "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
-        "sourceExcerptHash": "sha256:2063c29a6e974ece40166da4ccdfe0d49ada5da31230787f789bf127060b5ca8",
+        "rootCauseKey": "opening-wrong-move:d-101",
+        "triggerFingerprint": "trigger:080f8b383e5c",
+        "contextCompatibilityDigest": "sha256:e6e8a87c84290fa7897d282e6f363de633648e988403c1542e4782c1bb0cb7c8",
+        "sourceRawRef": "live-producer-ingestion:CG-2036-26",
+        "sourceExcerptHash": "sha256:4d95dedaee5a1ac8e6e73438d1c87c56f304be92e8c4884354d8fcd745fbfa40",
         "observationRefs": [
-          "xobs:0b16656f37675466",
-          "xobs:1865995fdf1316e5"
+          "xobs:bb82aa1c2c78dc06",
+          "xobs:de7cf5b492ca6158",
+          "xobs:11ff01c6074ac704"
         ],
         "openingObservationRefs": [
-          "eobs:beacon-storefront-corrected",
-          "eobs:beacon-curtainwall-accepted"
+          "eobs:live:e684715c5a507897",
+          "eobs:live:28447cdad6fb7e37",
+          "eobs:live:7b392540cb4ecacd"
         ]
       }
     ],
     "suppressedCount": 0,
-    "glazingOpeningObservationCount": 2,
+    "glazingOpeningObservationCount": 3,
     "humanReviewEvidenceCount": 2,
     "estimatingExperienceEpisodeCount": 1
   },
@@ -181,75 +225,92 @@
     "relationships": [
       {
         "schema": "experience-relationship-v1@1.0.0",
-        "relationshipId": "rel:f72a33ffdca6fb20",
+        "relationshipId": "rel:98aa2f21258bc07a",
         "edgeKind": "VALIDATED_BY",
         "origin": "DERIVED_DETERMINISTIC",
-        "fromRef": "episode:e5aaa960ae28484b",
-        "toRef": "xobs:0b16656f37675466",
+        "fromRef": "episode:08ae3c0859fd58f0",
+        "toRef": "xobs:bb82aa1c2c78dc06",
         "causalityClass": "CONTRIBUTING",
         "evidenceRefs": [
-          "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+          "live-producer-ingestion:CG-2036-26"
         ],
-        "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
-        "sourceExcerptHash": "sha256:2063c29a6e974ece40166da4ccdfe0d49ada5da31230787f789bf127060b5ca8"
+        "sourceRawRef": "live-producer-ingestion:CG-2036-26",
+        "sourceExcerptHash": "sha256:4d95dedaee5a1ac8e6e73438d1c87c56f304be92e8c4884354d8fcd745fbfa40"
       },
       {
         "schema": "experience-relationship-v1@1.0.0",
-        "relationshipId": "rel:0185826576a7b440",
+        "relationshipId": "rel:7c63ed63fd63398f",
         "edgeKind": "VALIDATED_BY",
         "origin": "DERIVED_DETERMINISTIC",
-        "fromRef": "episode:e5aaa960ae28484b",
-        "toRef": "xobs:1865995fdf1316e5",
+        "fromRef": "episode:08ae3c0859fd58f0",
+        "toRef": "xobs:de7cf5b492ca6158",
         "causalityClass": "CONTRIBUTING",
         "evidenceRefs": [
-          "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+          "live-producer-ingestion:CG-2036-26"
         ],
-        "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
-        "sourceExcerptHash": "sha256:2063c29a6e974ece40166da4ccdfe0d49ada5da31230787f789bf127060b5ca8"
+        "sourceRawRef": "live-producer-ingestion:CG-2036-26",
+        "sourceExcerptHash": "sha256:4d95dedaee5a1ac8e6e73438d1c87c56f304be92e8c4884354d8fcd745fbfa40"
       },
       {
         "schema": "experience-relationship-v1@1.0.0",
-        "relationshipId": "rel:814958055fabd2ec",
-        "edgeKind": "FAILED_TO_RESOLVE",
+        "relationshipId": "rel:3687b0bb0cb5fb42",
+        "edgeKind": "VALIDATED_BY",
         "origin": "DERIVED_DETERMINISTIC",
-        "fromRef": "episode:e5aaa960ae28484b",
-        "toRef": "action:classify-opening:beacon-hill-a6-2-storefront-01",
-        "causalityClass": "DIRECT",
+        "fromRef": "episode:08ae3c0859fd58f0",
+        "toRef": "xobs:11ff01c6074ac704",
+        "causalityClass": "CONTRIBUTING",
         "evidenceRefs": [
-          "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json",
-          "envelope:dde89257-3ce0-4cab-913c-833b895e0288"
+          "live-producer-ingestion:CG-2036-26"
         ],
-        "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
-        "sourceExcerptHash": "sha256:2063c29a6e974ece40166da4ccdfe0d49ada5da31230787f789bf127060b5ca8"
+        "sourceRawRef": "live-producer-ingestion:CG-2036-26",
+        "sourceExcerptHash": "sha256:4d95dedaee5a1ac8e6e73438d1c87c56f304be92e8c4884354d8fcd745fbfa40"
       },
       {
         "schema": "experience-relationship-v1@1.0.0",
-        "relationshipId": "rel:f6d89068259ca8f3",
+        "relationshipId": "rel:b0a6412ff3c1ebb5",
         "edgeKind": "ATTEMPTED",
         "origin": "DERIVED_DETERMINISTIC",
-        "fromRef": "episode:e5aaa960ae28484b",
-        "toRef": "action:classify-opening:beacon-hill-curtainwall-bay-02",
+        "fromRef": "episode:08ae3c0859fd58f0",
+        "toRef": "action:classify-opening:D-101",
         "causalityClass": "CONTRIBUTING",
         "evidenceRefs": [
-          "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json"
+          "CapitalGlassRevu/fixtures/estimating-spine/revu-validation-evidence-fixture.json",
+          "CapitalGlassRevu/fixtures/estimating-spine/ce-reconciliation-result-sample.json"
         ],
-        "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
-        "sourceExcerptHash": "sha256:2063c29a6e974ece40166da4ccdfe0d49ada5da31230787f789bf127060b5ca8"
+        "sourceRawRef": "live-producer-ingestion:CG-2036-26",
+        "sourceExcerptHash": "sha256:4d95dedaee5a1ac8e6e73438d1c87c56f304be92e8c4884354d8fcd745fbfa40"
       },
       {
         "schema": "experience-relationship-v1@1.0.0",
-        "relationshipId": "rel:24532eae59254893",
-        "edgeKind": "OVERRIDDEN_BY",
+        "relationshipId": "rel:472bca3934c9ea5a",
+        "edgeKind": "ATTEMPTED",
         "origin": "DERIVED_DETERMINISTIC",
-        "fromRef": "episode:e5aaa960ae28484b",
-        "toRef": "operator:intervention",
-        "causalityClass": "DIRECT",
+        "fromRef": "episode:08ae3c0859fd58f0",
+        "toRef": "action:classify-opening:W22",
+        "causalityClass": "CONTRIBUTING",
+        "evidenceRefs": [
+          "CapitalGlassRevu/fixtures/estimating-spine/revu-validation-evidence-fixture.json",
+          "CapitalGlassRevu/fixtures/estimating-spine/ce-reconciliation-result-sample.json",
+          "revu-markup:revu-markup-w22-controlled-fixture"
+        ],
+        "sourceRawRef": "live-producer-ingestion:CG-2036-26",
+        "sourceExcerptHash": "sha256:4d95dedaee5a1ac8e6e73438d1c87c56f304be92e8c4884354d8fcd745fbfa40"
+      },
+      {
+        "schema": "experience-relationship-v1@1.0.0",
+        "relationshipId": "rel:32827d5be50a258d",
+        "edgeKind": "ATTEMPTED",
+        "origin": "DERIVED_DETERMINISTIC",
+        "fromRef": "episode:08ae3c0859fd58f0",
+        "toRef": "action:classify-opening:revu-markup-wa-001",
+        "causalityClass": "CONTRIBUTING",
         "evidenceRefs": [
           "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json",
-          "envelope:dde89257-3ce0-4cab-913c-833b895e0288"
+          "CapitalGlassRevu/fixtures/markup-report/spine-proof-storefront-v1.json",
+          "revu-markup:revu-markup-wa-001"
         ],
-        "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
-        "sourceExcerptHash": "sha256:2063c29a6e974ece40166da4ccdfe0d49ada5da31230787f789bf127060b5ca8"
+        "sourceRawRef": "live-producer-ingestion:CG-2036-26",
+        "sourceExcerptHash": "sha256:4d95dedaee5a1ac8e6e73438d1c87c56f304be92e8c4884354d8fcd745fbfa40"
       }
     ],
     "modelInferredCount": 0
@@ -264,7 +325,7 @@
     },
     "source": {
       "sourceAuthority": "CapitalGlass-Cross-Agent",
-      "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+      "sourceRawRef": "live-producer-ingestion:CG-2036-26"
     },
     "semanticKinds": [
       "experience-observation",
@@ -274,16 +335,103 @@
     "observations": [
       {
         "semanticKind": "experience-observation",
-        "entityId": "xobs:0b16656f37675466",
+        "entityId": "xobs:bb82aa1c2c78dc06",
         "payload": {
           "schema": "experience-observation-v1@1.0.0",
-          "observationId": "xobs:0b16656f37675466",
+          "observationId": "xobs:bb82aa1c2c78dc06",
           "sourceRefs": [
-            "eobs:beacon-storefront-corrected",
-            "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+            "eobs:live:e684715c5a507897",
+            "live-producer-ingestion:CG-2036-26"
           ],
           "eventClass": "ESTIMATING_OPENING",
           "measurementClass": "QUALITATIVE",
+          "provenance": {
+            "sourceLane": "estimating",
+            "emitter": "correlate-episode-from-estimating-evidence",
+            "envelopeId": "2ca5caf1-36ee-5773-0aec-963d23eda5b5",
+            "evidenceKind": "opening_detection"
+          },
+          "context": {
+            "openingId": "D-101",
+            "scopeType": "ALUMINUM_DOOR",
+            "machineScopeType": "ALUMINUM_DOOR",
+            "humanScopeType": null,
+            "sheetId": "sheet:A-101",
+            "drawingRef": "page:3",
+            "correctionReason": "WRONG_SCOPE"
+          },
+          "evidence": {
+            "summary": "CE detected D-101 (ALUMINUM_DOOR) without Revu markup validation (CE_ONLY)",
+            "detailRefs": [
+              "CapitalGlassRevu/fixtures/estimating-spine/revu-validation-evidence-fixture.json",
+              "CapitalGlassRevu/fixtures/estimating-spine/ce-reconciliation-result-sample.json"
+            ]
+          },
+          "sourceRawRef": "live-producer-ingestion:CG-2036-26",
+          "sourceExcerptHash": "sha256:f2f7d6e5dc1970e0fce3451f8ef13b29a9bb4975a0a3f2207c2536a37880fd65",
+          "observedAt": "2026-08-07T03:19:04.817Z"
+        },
+        "evidenceRefs": [
+          "eobs:live:e684715c5a507897",
+          "live-producer-ingestion:CG-2036-26"
+        ]
+      },
+      {
+        "semanticKind": "experience-observation",
+        "entityId": "xobs:de7cf5b492ca6158",
+        "payload": {
+          "schema": "experience-observation-v1@1.0.0",
+          "observationId": "xobs:de7cf5b492ca6158",
+          "sourceRefs": [
+            "eobs:live:28447cdad6fb7e37",
+            "live-producer-ingestion:CG-2036-26"
+          ],
+          "eventClass": "ESTIMATING_OPENING",
+          "measurementClass": "QUALITATIVE",
+          "provenance": {
+            "sourceLane": "estimating",
+            "emitter": "correlate-episode-from-estimating-evidence",
+            "envelopeId": "2ca5caf1-36ee-5773-0aec-963d23eda5b5",
+            "evidenceKind": "window_schedule_row"
+          },
+          "context": {
+            "openingId": "W22",
+            "scopeType": "WINDOW_SYSTEM",
+            "machineScopeType": "WINDOW_SYSTEM",
+            "humanScopeType": null,
+            "sheetId": "sheet:A-101",
+            "drawingRef": "page:3",
+            "correctionReason": null
+          },
+          "evidence": {
+            "summary": "CE and Revu agree on W22 (WINDOW_SYSTEM)",
+            "detailRefs": [
+              "CapitalGlassRevu/fixtures/estimating-spine/revu-validation-evidence-fixture.json",
+              "CapitalGlassRevu/fixtures/estimating-spine/ce-reconciliation-result-sample.json",
+              "revu-markup:revu-markup-w22-controlled-fixture"
+            ]
+          },
+          "sourceRawRef": "live-producer-ingestion:CG-2036-26",
+          "sourceExcerptHash": "sha256:27caf22bcac91d086228bee7d8e9fa701991e45fa8e3d6808dcbb5d8cdf1c2f8",
+          "observedAt": "2026-08-07T03:19:04.817Z"
+        },
+        "evidenceRefs": [
+          "eobs:live:28447cdad6fb7e37",
+          "live-producer-ingestion:CG-2036-26"
+        ]
+      },
+      {
+        "semanticKind": "experience-observation",
+        "entityId": "xobs:11ff01c6074ac704",
+        "payload": {
+          "schema": "experience-observation-v1@1.0.0",
+          "observationId": "xobs:11ff01c6074ac704",
+          "sourceRefs": [
+            "eobs:live:7b392540cb4ecacd",
+            "live-producer-ingestion:CG-2036-26"
+          ],
+          "eventClass": "ESTIMATING_OPENING",
+          "measurementClass": "MEASURED",
           "provenance": {
             "sourceLane": "estimating",
             "emitter": "correlate-episode-from-estimating-evidence",
@@ -291,110 +439,73 @@
             "evidenceKind": "revu_markup_measurement"
           },
           "context": {
-            "openingId": "beacon-hill-a6-2-storefront-01",
+            "openingId": "revu-markup-wa-001",
             "scopeType": "STOREFRONT",
-            "machineScopeType": "WINDOW_SYSTEM",
+            "machineScopeType": "STOREFRONT",
             "humanScopeType": "STOREFRONT",
             "sheetId": "A6.2",
-            "drawingRef": "page:storefront-elevation",
-            "correctionReason": "WRONG_SCOPE"
-          },
-          "evidence": {
-            "summary": "Estimator corrected storefront entrance misclassified as window system on A6.2 elevation markup",
-            "detailRefs": [
-              "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json",
-              "envelope:dde89257-3ce0-4cab-913c-833b895e0288"
-            ]
-          },
-          "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
-          "sourceExcerptHash": "sha256:75cab213c489977d7863faaa244f4d84ac1351b0506843ca91ea742fa53c7740",
-          "observedAt": "2026-08-09T19:30:00.000Z"
-        },
-        "evidenceRefs": [
-          "eobs:beacon-storefront-corrected",
-          "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
-        ]
-      },
-      {
-        "semanticKind": "experience-observation",
-        "entityId": "xobs:1865995fdf1316e5",
-        "payload": {
-          "schema": "experience-observation-v1@1.0.0",
-          "observationId": "xobs:1865995fdf1316e5",
-          "sourceRefs": [
-            "eobs:beacon-curtainwall-accepted",
-            "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
-          ],
-          "eventClass": "ESTIMATING_OPENING",
-          "measurementClass": "QUALITATIVE",
-          "provenance": {
-            "sourceLane": "estimating",
-            "emitter": "correlate-episode-from-estimating-evidence",
-            "envelopeId": "env-beacon-curtainwall-bay-02",
-            "evidenceKind": "revu_markup_measurement"
-          },
-          "context": {
-            "openingId": "beacon-hill-curtainwall-bay-02",
-            "scopeType": "CURTAIN_WALL",
-            "machineScopeType": "CURTAIN_WALL",
-            "humanScopeType": null,
-            "sheetId": "A6.2",
-            "drawingRef": "page:curtainwall-bay",
+            "drawingRef": "page:12",
             "correctionReason": null
           },
           "evidence": {
-            "summary": "Curtain wall bay opening accepted from marked-up plan without correction",
+            "summary": "Storefront WA on A6.2 (HUMAN_VERIFIED)",
             "detailRefs": [
-              "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json"
+              "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json",
+              "CapitalGlassRevu/fixtures/markup-report/spine-proof-storefront-v1.json",
+              "revu-markup:revu-markup-wa-001"
             ]
           },
-          "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
-          "sourceExcerptHash": "sha256:764c083499356e3c93456a80483b7314ed1df0069a3ab5999c2b195b3466c944",
-          "observedAt": "2026-08-09T19:31:00.000Z"
+          "sourceRawRef": "live-producer-ingestion:CG-2036-26",
+          "sourceExcerptHash": "sha256:c49076002d88f5411df6cfc743f04276d74253a0880ef918467acc30f4b9a292",
+          "observedAt": "2026-08-07T14:30:00Z"
         },
         "evidenceRefs": [
-          "eobs:beacon-curtainwall-accepted",
-          "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+          "eobs:live:7b392540cb4ecacd",
+          "live-producer-ingestion:CG-2036-26"
         ]
       },
       {
         "semanticKind": "experience-episode",
-        "entityId": "episode:e5aaa960ae28484b",
+        "entityId": "episode:08ae3c0859fd58f0",
         "payload": {
           "schema": "experience-episode-v1@1.0.0",
-          "episodeId": "episode:e5aaa960ae28484b",
-          "lifecycle": "RESOLVED_CORRECTED",
-          "problem": "Machine classified beacon-hill-a6-2-storefront-01 as WINDOW_SYSTEM; estimator corrected to STOREFRONT",
+          "episodeId": "episode:08ae3c0859fd58f0",
+          "lifecycle": "RESOLVED_ACCEPTED",
+          "problem": "CE detected D-101 (ALUMINUM_DOOR) without Revu markup validation (CE_ONLY)",
           "actionsAttempted": [
             {
-              "action": "classify-opening:beacon-hill-a6-2-storefront-01",
-              "result": "FAILED",
+              "action": "classify-opening:D-101",
+              "result": "SUCCEEDED",
               "evidenceRefs": [
-                "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json",
-                "envelope:dde89257-3ce0-4cab-913c-833b895e0288"
+                "CapitalGlassRevu/fixtures/estimating-spine/revu-validation-evidence-fixture.json",
+                "CapitalGlassRevu/fixtures/estimating-spine/ce-reconciliation-result-sample.json"
               ]
             },
             {
-              "action": "classify-opening:beacon-hill-curtainwall-bay-02",
+              "action": "classify-opening:W22",
               "result": "SUCCEEDED",
               "evidenceRefs": [
-                "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json"
+                "CapitalGlassRevu/fixtures/estimating-spine/revu-validation-evidence-fixture.json",
+                "CapitalGlassRevu/fixtures/estimating-spine/ce-reconciliation-result-sample.json",
+                "revu-markup:revu-markup-w22-controlled-fixture"
+              ]
+            },
+            {
+              "action": "classify-opening:revu-markup-wa-001",
+              "result": "SUCCEEDED",
+              "evidenceRefs": [
+                "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json",
+                "CapitalGlassRevu/fixtures/markup-report/spine-proof-storefront-v1.json",
+                "revu-markup:revu-markup-wa-001"
               ]
             }
           ],
-          "operatorIntervention": {
-            "intervention": "Corrected scope WINDOW_SYSTEM → STOREFRONT",
-            "reasonClass": "MACHINE_WRONG",
-            "evidenceRefs": [
-              "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json",
-              "envelope:dde89257-3ce0-4cab-913c-833b895e0288"
-            ]
-          },
+          "operatorIntervention": null,
           "outcome": {
-            "status": "CORRECTED",
-            "summary": "Human estimator corrected opening scope classification",
+            "status": "ACCEPTED",
+            "summary": "Opening scope accepted without correction",
             "evidenceRefs": [
-              "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+              "live-producer-ingestion:CG-2036-26"
             ]
           },
           "applicability": {
@@ -414,91 +525,106 @@
             "projectNumber": "CG-2036-26",
             "pilotProject": "Beacon Hill / CG-2036-26"
           },
-          "rootCauseKey": "opening-scope-correction:beacon-hill-a6-2-storefront-01",
-          "triggerFingerprint": "trigger:ed9b2eaae462",
-          "contextCompatibilityDigest": "sha256:78e09e23e6a7eb5579a19d51971abd16976d336e26ce46a64349e520f2e7aa3d",
-          "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
-          "sourceExcerptHash": "sha256:2063c29a6e974ece40166da4ccdfe0d49ada5da31230787f789bf127060b5ca8",
+          "rootCauseKey": "opening-wrong-move:d-101",
+          "triggerFingerprint": "trigger:080f8b383e5c",
+          "contextCompatibilityDigest": "sha256:e6e8a87c84290fa7897d282e6f363de633648e988403c1542e4782c1bb0cb7c8",
+          "sourceRawRef": "live-producer-ingestion:CG-2036-26",
+          "sourceExcerptHash": "sha256:4d95dedaee5a1ac8e6e73438d1c87c56f304be92e8c4884354d8fcd745fbfa40",
           "observationRefs": [
-            "xobs:0b16656f37675466",
-            "xobs:1865995fdf1316e5"
+            "xobs:bb82aa1c2c78dc06",
+            "xobs:de7cf5b492ca6158",
+            "xobs:11ff01c6074ac704"
           ],
           "openingObservationRefs": [
-            "eobs:beacon-storefront-corrected",
-            "eobs:beacon-curtainwall-accepted"
+            "eobs:live:e684715c5a507897",
+            "eobs:live:28447cdad6fb7e37",
+            "eobs:live:7b392540cb4ecacd"
           ]
         },
         "evidenceRefs": [
-          "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+          "live-producer-ingestion:CG-2036-26"
         ]
       }
     ],
     "relationships": [
       {
-        "observationId": "rel:f72a33ffdca6fb20",
+        "observationId": "rel:98aa2f21258bc07a",
         "edgeType": "VALIDATED_BY",
-        "sourceLabel": "episode:e5aaa960ae28484b",
-        "targetLabel": "xobs:0b16656f37675466",
+        "sourceLabel": "episode:08ae3c0859fd58f0",
+        "targetLabel": "xobs:bb82aa1c2c78dc06",
         "classification": "DERIVED_DETERMINISTIC",
         "evidenceRefs": [
-          "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+          "live-producer-ingestion:CG-2036-26"
         ]
       },
       {
-        "observationId": "rel:0185826576a7b440",
+        "observationId": "rel:7c63ed63fd63398f",
         "edgeType": "VALIDATED_BY",
-        "sourceLabel": "episode:e5aaa960ae28484b",
-        "targetLabel": "xobs:1865995fdf1316e5",
+        "sourceLabel": "episode:08ae3c0859fd58f0",
+        "targetLabel": "xobs:de7cf5b492ca6158",
         "classification": "DERIVED_DETERMINISTIC",
         "evidenceRefs": [
-          "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+          "live-producer-ingestion:CG-2036-26"
         ]
       },
       {
-        "observationId": "rel:814958055fabd2ec",
-        "edgeType": "FAILED_TO_RESOLVE",
-        "sourceLabel": "episode:e5aaa960ae28484b",
-        "targetLabel": "action:classify-opening:beacon-hill-a6-2-storefront-01",
+        "observationId": "rel:3687b0bb0cb5fb42",
+        "edgeType": "VALIDATED_BY",
+        "sourceLabel": "episode:08ae3c0859fd58f0",
+        "targetLabel": "xobs:11ff01c6074ac704",
         "classification": "DERIVED_DETERMINISTIC",
         "evidenceRefs": [
-          "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json",
-          "envelope:dde89257-3ce0-4cab-913c-833b895e0288"
+          "live-producer-ingestion:CG-2036-26"
         ]
       },
       {
-        "observationId": "rel:f6d89068259ca8f3",
+        "observationId": "rel:b0a6412ff3c1ebb5",
         "edgeType": "ATTEMPTED",
-        "sourceLabel": "episode:e5aaa960ae28484b",
-        "targetLabel": "action:classify-opening:beacon-hill-curtainwall-bay-02",
+        "sourceLabel": "episode:08ae3c0859fd58f0",
+        "targetLabel": "action:classify-opening:D-101",
         "classification": "DERIVED_DETERMINISTIC",
         "evidenceRefs": [
-          "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json"
+          "CapitalGlassRevu/fixtures/estimating-spine/revu-validation-evidence-fixture.json",
+          "CapitalGlassRevu/fixtures/estimating-spine/ce-reconciliation-result-sample.json"
         ]
       },
       {
-        "observationId": "rel:24532eae59254893",
-        "edgeType": "OVERRIDDEN_BY",
-        "sourceLabel": "episode:e5aaa960ae28484b",
-        "targetLabel": "operator:intervention",
+        "observationId": "rel:472bca3934c9ea5a",
+        "edgeType": "ATTEMPTED",
+        "sourceLabel": "episode:08ae3c0859fd58f0",
+        "targetLabel": "action:classify-opening:W22",
+        "classification": "DERIVED_DETERMINISTIC",
+        "evidenceRefs": [
+          "CapitalGlassRevu/fixtures/estimating-spine/revu-validation-evidence-fixture.json",
+          "CapitalGlassRevu/fixtures/estimating-spine/ce-reconciliation-result-sample.json",
+          "revu-markup:revu-markup-w22-controlled-fixture"
+        ]
+      },
+      {
+        "observationId": "rel:32827d5be50a258d",
+        "edgeType": "ATTEMPTED",
+        "sourceLabel": "episode:08ae3c0859fd58f0",
+        "targetLabel": "action:classify-opening:revu-markup-wa-001",
         "classification": "DERIVED_DETERMINISTIC",
         "evidenceRefs": [
           "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-spine-proof.json",
-          "envelope:dde89257-3ce0-4cab-913c-833b895e0288"
+          "CapitalGlassRevu/fixtures/markup-report/spine-proof-storefront-v1.json",
+          "revu-markup:revu-markup-wa-001"
         ]
       }
     ],
     "producerReceipt": {
-      "recordedAt": "2026-08-10T00:16:35.614Z",
+      "recordedAt": "2026-08-10T00:58:46.292Z",
       "contributionDigest": "sha256:0af608b0c1e3bbd1fee2df0559a461efa6c5a1fadeed6babb5dd8d3be2fbdf82"
     }
   },
   "goldMineEvaluation": {
     "schema": "gold-mine-candidate-score-v2@1.0.0",
-    "candidateId": "cand:e5aaa960ae28484b",
+    "candidateId": "cand:08ae3c0859fd58f0",
     "missionProfile": "ESTIMATING_MISSION",
-    "rootCauseKey": "opening-scope-correction:beacon-hill-a6-2-storefront-01",
-    "triggerPattern": "trigger:ed9b2eaae462",
-    "specificObservedFailure": "Machine classified beacon-hill-a6-2-storefront-01 as WINDOW_SYSTEM; estimator corrected to STOREFRONT",
+    "rootCauseKey": "opening-wrong-move:d-101",
+    "triggerPattern": "trigger:080f8b383e5c",
+    "specificObservedFailure": "CE detected D-101 (ALUMINUM_DOOR) without Revu markup validation (CE_ONLY)",
     "actualConsequence": null,
     "failedAttempts": [],
     "successfulInterventions": [],
@@ -509,29 +635,29 @@
     ],
     "counterexamples": [],
     "evidenceRefs": [
-      "episode:e5aaa960ae28484b"
+      "episode:08ae3c0859fd58f0"
     ],
     "measurementClass": "DERIVED",
     "valueRealizationState": "POTENTIAL",
     "valueConfidence": "UNKNOWN",
     "valueEvidenceRefs": [
-      "episode:e5aaa960ae28484b"
+      "episode:08ae3c0859fd58f0"
     ],
     "dimensions": {
-      "BUSINESS_IMPACT": 8,
-      "OPERATOR_TIME": 20,
-      "REWORK": 1,
+      "BUSINESS_IMPACT": 6,
+      "OPERATOR_TIME": 8,
+      "REWORK": 0,
       "BID_TURNAROUND": null,
       "SCOPE_OMISSION_RISK": null,
-      "EVIDENCE_CONFIDENCE": 2,
+      "EVIDENCE_CONFIDENCE": 3,
       "IMPLEMENTATION_EFFORT": 5
     },
-    "compositeScore": 6.499999999999999,
+    "compositeScore": 4.214285714285714,
     "unknownPreserved": true,
-    "scoreDigest": "sha256:f30169bea80bd2b7eac0a84adb439d05447695ddd2dded8ba6ba615c5a2a2a5b"
+    "scoreDigest": "sha256:567be62af2d1c1983d1e15593168646a70f5b5f78a2003b8609e287a503b8308"
   },
   "retrieval": {
-    "query": "storefront opening scope corrected elevation markup beacon hill",
+    "query": "aluminum door schedule detected without plan markup validation agreement",
     "pass": true,
     "rank": 1,
     "score": 6,
@@ -554,45 +680,18 @@
     },
     "currentness": "LIVE_FIXTURE",
     "evidenceRefs": [
-      "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+      "live-producer-ingestion:CG-2036-26"
     ],
-    "wrongMoves": [
-      {
-        "episodeId": "episode:e5aaa960ae28484b",
-        "score": 6,
-        "problem": "Machine classified beacon-hill-a6-2-storefront-01 as WINDOW_SYSTEM; estimator corrected to STOREFRONT",
-        "rootCauseKey": "opening-scope-correction:beacon-hill-a6-2-storefront-01",
-        "applicability": {
-          "repos": [
-            "Computer Estimator",
-            "CapitalGlassRevu",
-            "CapitalGlass-BidComposer"
-          ],
-          "workflows": [
-            "opening-estimating"
-          ],
-          "missionClasses": [
-            "experience-opening-estimating-v1"
-          ],
-          "counterexamples": [],
-          "projectId": "5d38b25a-c391-4d7c-8866-f8a1f4cea942",
-          "projectNumber": "CG-2036-26",
-          "pilotProject": "Beacon Hill / CG-2036-26"
-        },
-        "evidenceRefs": [
-          "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
-        ]
-      }
-    ],
-    "bestKnownAction": "Machine classified beacon-hill-a6-2-storefront-01 as WINDOW_SYSTEM; estimator corrected to STOREFRONT",
-    "goldMineComposite": 6.499999999999999,
-    "relationshipCount": 5,
+    "wrongMoves": [],
+    "bestKnownAction": "CE detected D-101 (ALUMINUM_DOOR) without Revu markup validation (CE_ONLY)",
+    "goldMineComposite": 4.214285714285714,
+    "relationshipCount": 6,
     "ranked": [
       {
-        "episodeId": "episode:e5aaa960ae28484b",
+        "episodeId": "episode:08ae3c0859fd58f0",
         "score": 6,
-        "problem": "Machine classified beacon-hill-a6-2-storefront-01 as WINDOW_SYSTEM; estimator corrected to STOREFRONT",
-        "rootCauseKey": "opening-scope-correction:beacon-hill-a6-2-storefront-01",
+        "problem": "CE detected D-101 (ALUMINUM_DOOR) without Revu markup validation (CE_ONLY)",
+        "rootCauseKey": "opening-wrong-move:d-101",
         "applicability": {
           "repos": [
             "Computer Estimator",
@@ -611,7 +710,7 @@
           "pilotProject": "Beacon Hill / CG-2036-26"
         },
         "evidenceRefs": [
-          "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json"
+          "live-producer-ingestion:CG-2036-26"
         ]
       }
     ]
@@ -619,8 +718,8 @@
   "productCoverage": {
     "before": {
       "schema": "experience-product-coverage-evidence-v1@1.0.0",
-      "generatedAt": "2026-08-10T00:16:35.615Z",
-      "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
+      "generatedAt": "2026-08-10T00:58:46.293Z",
+      "sourceRawRef": "live-producer-ingestion:CG-2036-26",
       "totals": {
         "products": 0,
         "observations": 0,
@@ -638,11 +737,11 @@
     },
     "after": {
       "schema": "experience-product-coverage-evidence-v1@1.0.0",
-      "generatedAt": "2026-08-10T00:16:35.615Z",
-      "sourceRawRef": "artifacts/agent-runs/experience-opening-estimating-v1/beacon-hill-estimating-pilot.json",
+      "generatedAt": "2026-08-10T00:58:46.293Z",
+      "sourceRawRef": "live-producer-ingestion:CG-2036-26",
       "totals": {
         "products": 1,
-        "observations": 2,
+        "observations": 3,
         "episodes": 1,
         "corrections": 0,
         "outcomes": 0
@@ -655,15 +754,15 @@
       "products": [
         {
           "productKey": "computer-estimator",
-          "observations": 2,
+          "observations": 3,
           "episodes": 1,
           "corrections": 0,
           "outcomes": 0,
           "workflows": {
-            "opening-estimating": 2
+            "opening-estimating": 3
           },
           "corpusBiasScore": 1,
-          "episodeObservationRatio": 0.5
+          "episodeObservationRatio": 0.3333
         }
       ],
       "measurementClass": "COUNTED"

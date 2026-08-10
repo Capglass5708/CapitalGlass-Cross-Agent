@@ -7,13 +7,14 @@
     {
       "wasteId": "TW-001",
       "type": "rework",
-      "description": "Storefront misclassified as window system — human correction required",
+      "description": "CE detected aluminum door D-101 without Revu markup validation (CE_ONLY wrong-move)",
       "evidenceRefs": [
         "TE-002",
-        "eobs:beacon-storefront-corrected"
+        "D-101",
+        "episode:08ae3c0859fd58f0"
       ],
       "estimatedImpact": "medium",
-      "savedBy": "Experience episode with WRONG_SCOPE correction provenance",
+      "savedBy": "Experience episode captures parser-only opening without Revu validation",
       "roiRank": 1,
       "goldMineSignalClass": "BUSINESS_WORKFLOW_SIGNAL"
     }
@@ -70,10 +71,10 @@
   "wrongMoves": [
     {
       "wrongMoveId": "WM-001",
-      "summary": "Treat architectural window markup as storefront without human review",
-      "whyItWasWrong": "Scope decision is as important as detection",
-      "correctFirstMove": "Capture CAPITAL_GLASS_SCOPE_DECISION with correction provenance",
-      "preventiveControl": "correlate-episode-from-estimating-evidence.mjs",
+      "summary": "Treat parser-only door schedule candidate as validated without Revu markup agreement",
+      "whyItWasWrong": "Opening scope decisions require producer validation, not parser-only inference",
+      "correctFirstMove": "Reconcile CE candidate with Revu markup evidence before trusting scope",
+      "preventiveControl": "ingest-live-estimating-producer-evidence.mjs + ce-revu-reconciliation",
       "executionDeltaId": "ED-001"
     }
   ],
@@ -124,7 +125,7 @@
       ],
       "lastKnownEvidence": [
         "experience-opening-estimating-v1",
-        "Data-Extraction@b4d22674ebefcdd85e397e77984203737e0fe994"
+        "Data-Extraction@784c3c3e7e225c907fdd16749c574544a6e0ea16"
       ]
     }
   ],
@@ -136,7 +137,7 @@
       "work-progress/harvest-packet-registry.json"
     ],
     "commandIndexConsulted": true,
-    "checkedAt": "2026-08-10T00:17:39.523Z",
+    "checkedAt": "2026-08-10T01:13:39.818Z",
     "preflightReceiptHash": "cf06e2328e2e7435fa4c5c68b0ea5c03cf0dfaaaebc42ed018c9fc95fe04ab37"
   }
 }

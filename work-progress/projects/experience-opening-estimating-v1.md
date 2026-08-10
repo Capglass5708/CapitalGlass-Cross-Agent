@@ -3,7 +3,8 @@
 **Program:** `capital-glass-experience-graph-compounding-v1`  
 **Wave:** FOURTH_BUSINESS_EXPANSION_WAVE  
 **Priority:** PRIMARY (Lane B)  
-**Status:** IN_PROGRESS  
+**Status:** SLICE_2_LIVE_PROOF_PASS — Harvest T2 terminal closeout in progress  
+**Feature head:** `784c3c3` (Data-Extraction)  
 **Branch:** `work/experience-opening-estimating-v1`  
 **Owner repos:** `Data-Extraction`, `CapitalGlass-Cross-Agent`
 
