@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "experience-business-outcome-correlation-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-EXPERIENCE-BUSINESS-OUTCOME-BEACON-HILL-001",
+      "questionId": "IHEXPERIENCE",
+      "canonicalQuestion": "report population mismatch corrected before proposal acceptance",
+      "alternateQuestions": [],
+      "shortAnswer": "Beacon Hill EG-06 chain: population_mismatch → final_output_accepted → PROPOSAL_CORRECTED with CONTRIBUTING causality. Gold Mine v2 scored.",
+      "detailedAnswer": "Proposal population mismatch corrected before final acceptance — business outcome linked",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-10T00:17:46.561Z",
+      "authorityRepo": "Data-Extraction",
+      "authorityPath": [
+        "artifacts/agent-runs/experience-business-outcome-correlation-v1/seed-packets/IH-EXPERIENCE-BUSINESS-OUTCOME-BEACON-HILL-001.json"
+      ],
+      "authorityCommit": [
+        "e61b349"
+      ],
+      "evidenceUrls": [
+        "artifacts/agent-runs/experience-business-outcome-correlation-v1/business-outcome-correlation-proof.json",
+        "scripts/tests/fixtures/experience-business-outcome-correlation-v1/beacon-hill-business-outcome.json"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "experience-business-outcome-correlation-v1"
+      ],
+      "entities": [
+        "Data-Extraction"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Proposal population mismatch corrected before final acceptance — business outcome linked",
+        "startAt": [
+          "artifacts/agent-runs/experience-business-outcome-correlation-v1/thread-autopsy-bundle.json"
+        ],
+        "runPreflight": [
+          "npm run test:estimating-experience-pipeline",
+          "npm run test:business-outcome-correlation-pipeline"
+        ],
+        "doNot": [
+          "Create cg-opening-envelope-v2",
+          "Fabricate dimensions or business outcomes"
+        ],
+        "proveBeforeClaiming": [
+          "REAL_PROJECT_PILOT=PASS",
+          "RETRIEVAL=PASS",
+          "MODEL_INFERRED_AUTHORITY_LEAKAGE=0"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "lesson"
+    }
+  ]
+}

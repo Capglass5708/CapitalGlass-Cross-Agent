@@ -1,0 +1,17 @@
+{
+  "schema": "business-outcome-vocabulary-v1@1.0.0",
+  "outcomeClasses": [
+    { "code": "BID_SUBMITTED", "evidenceRequired": "Explicit bid submission record" },
+    { "code": "BID_DELAYED", "evidenceRequired": "Documented delay event" },
+    { "code": "BID_REVISED", "evidenceRequired": "Revision record with prior revision id" },
+    { "code": "AWARDED", "evidenceRequired": "Award confirmation" },
+    { "code": "LOST", "evidenceRequired": "Loss confirmation" },
+    { "code": "WITHDRAWN", "evidenceRequired": "Withdrawal record" },
+    { "code": "CLARIFICATION_REQUIRED", "evidenceRequired": "RFI/clarification artifact" },
+    { "code": "SCOPE_REVISION_REQUIRED", "evidenceRequired": "Scope revision request" },
+    { "code": "PROPOSAL_CORRECTED", "evidenceRequired": "population_mismatch or field_manually_corrected followed by final_output_accepted" },
+    { "code": "CHANGE_EVENT", "evidenceRequired": "Change order / change event record" },
+    { "code": "UNKNOWN", "evidenceRequired": "Default when downstream outcome not evidenced" }
+  ],
+  "causalityClasses": ["DIRECT", "CONTRIBUTING", "CORRELATED", "UNKNOWN"]
+}

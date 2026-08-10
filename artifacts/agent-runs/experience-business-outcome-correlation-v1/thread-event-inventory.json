@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "cross-agent-thread-event-inventory-v1@1.0.0",
+  "harvestId": "experience-business-outcome-correlation-v1",
+  "generatedAt": "2026-08-10T00:16:35.565Z",
+  "events": [
+    {
+      "eventId": "TE-001",
+      "phase": "reuse",
+      "summary": "EG-06 hosted observations reused — no duplicate event synonyms",
+      "evidenceRefs": [
+        "scripts/tests/fixtures/experience-business-outcome-correlation-v1/beacon-hill-business-outcome.json"
+      ]
+    },
+    {
+      "eventId": "TE-002",
+      "phase": "correlation",
+      "summary": "population_mismatch + final_output_accepted → PROPOSAL_CORRECTED",
+      "evidenceRefs": [
+        "artifacts/agent-runs/experience-business-outcome-correlation-v1/business-outcome-correlation-proof.json"
+      ]
+    },
+    {
+      "eventId": "TE-003",
+      "phase": "verification",
+      "summary": "Business outcome retrieval + Gold Mine v2 pass",
+      "evidenceRefs": [
+        "gates.BUSINESS_OUTCOME_RETRIEVAL=true"
+      ]
+    }
+  ]
+}

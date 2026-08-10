@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "experience-business-outcome-correlation-v1",
+  "missionClass": "material-closeout",
+  "sourceCommitSha": "01916006bd1d7761b68e1e6cb3295ec6a9011a73",
+  "sourceBranch": "work/experience-opening-estimating-v1",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-10T00:16:35.565Z",
+  "updatedAt": "2026-08-10T00:16:35.565Z",
+  "retrievalResult": "INDEX_HIT",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "experienceGraphHarvest": {
+    "program": "capital-glass-experience-graph-compounding-v1",
+    "workPackageId": "experience-business-outcome-correlation-v1",
+    "pipelineProofPath": "artifacts/agent-runs/experience-business-outcome-correlation-v1/business-outcome-correlation-proof.json",
+    "modelInferredAuthorityLeakage": 0,
+    "pilotProject": "Beacon Hill / CG-2036-26",
+    "projectId": "5d38b25a-c391-4d7c-8866-f8a1f4cea942"
+  },
+  "doNotAdvance": [
+    "Launch experience-estimator-bid-composer-loop-v1 before opening lane merged"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/experience-business-outcome-correlation-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/experience-business-outcome-correlation-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 1,
+      "seeds": 1,
+      "roiItems": 1,
+      "operatorFriction": 1,
+      "executionDeltas": 1,
+      "wrongMoves": 1
+    }
+  },
+  "relatedRepos": [
+    {
+      "repo": "Data-Extraction",
+      "branch": "work/experience-opening-estimating-v1",
+      "commitSha": "b4d22674ebefcdd85e397e77984203737e0fe994",
+      "role": "pipeline owner"
+    },
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "work/experience-opening-estimating-v1",
+      "commitSha": "01916006bd1d7761b68e1e6cb3295ec6a9011a73",
+      "role": "contracts + harvest"
+    }
+  ],
+  "packets": [
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "packetKind": "outcome",
+      "packetId": "experience-business-outcome-beacon-hill-v1",
+      "packetTitle": "Beacon Hill business outcome correlation with retrieval",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "Data-Extraction",
+      "evidenceRefs": [
+        "artifacts/agent-runs/experience-business-outcome-correlation-v1/business-outcome-correlation-proof.json",
+        "Data-Extraction@b4d22674ebefcdd85e397e77984203737e0fe994"
+      ]
+    }
+  ]
+}
