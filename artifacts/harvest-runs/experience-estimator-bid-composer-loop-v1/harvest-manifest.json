@@ -1,0 +1,233 @@
+{
+  "schema": "experience-bid-composer-loop-harvest-manifest-v1@1.0.0",
+  "harvestId": "experience-estimator-bid-composer-loop-v1",
+  "tier": "T2",
+  "generatedAt": "2026-08-10T02:32:51.674Z",
+  "terminalReceipt": "/home/wesle/repos/Data-Extraction/artifacts/agent-runs/experience-estimator-bid-composer-loop-v1/terminal-milestone-receipt-v1.json",
+  "mergeShas": {
+    "CapitalGlass-BidComposer": "455e72db2d9110663c543bcc548eaff55dbda0c6",
+    "Data-Extraction": "1f054e6333a3c2069768eecf9371c6475fcd0641",
+    "CapitalGlass-Cross-Agent": "5d97b5ad343850af8d1311f54b65cf5bd39444d5"
+  },
+  "pilotProject": "Rosewood / CG-2033-26",
+  "primaryProduct": "CapitalGlass-BidComposer",
+  "routing": {
+    "rosewoodRoutedToBidComposer": true,
+    "rosewoodRoutedToProposalGenerator": false,
+    "beaconHillRoutedToBidComposer": false,
+    "sharedExperienceReuseAllowed": true
+  },
+  "gates": {
+    "SCOPE_REVIEW_ITEMS_FROM_EVIDENCE": "PASS",
+    "EXPERIENCE_LINEAGE_LINKED": "PASS",
+    "writePerformed": false,
+    "HUMAN_ESTIMATOR_EVALUATION": "PASS",
+    "BID_COMPOSER_SCOPE_TO_OUTPUT_LINKAGE": "PASS",
+    "EVIDENCE_TO_HUMAN_REVIEW": "PASS",
+    "HUMAN_REVIEW_TO_BID_SCOPE": "PASS",
+    "BID_SCOPE_TO_OUTPUT": "PASS",
+    "EXPERIENCE_DECISION_LINEAGE": "PASS",
+    "DUPLICATE_OPENING_EPISODES": "PASS",
+    "OUTCOME_TO_EXPERIENCE": "PASS",
+    "NEXT_BID_BLIND_RETRIEVAL": "PASS",
+    "PRODUCT_COVERAGE_REFRESH": "PASS",
+    "GOLD_MINE_V2": "PASS",
+    "OUTPUT_TO_OUTCOME": "PASS",
+    "BUSINESS_LOOP": "PASS"
+  },
+  "blindRetrieval": [
+    {
+      "query": "door appears in estimator schedule but lacks corroborating plan markup; should it be promoted into bid scope before review?",
+      "result": {
+        "query": "door appears in estimator schedule but lacks corroborating plan markup; should it be promoted into bid scope before review?",
+        "pass": true,
+        "rank": 1,
+        "score": 12,
+        "applicability": {
+          "repos": [
+            "Computer Estimator",
+            "CapitalGlassRevu",
+            "CapitalGlass-BidComposer"
+          ],
+          "workflows": [
+            "opening-estimating"
+          ],
+          "missionClasses": [
+            "experience-opening-estimating-v1"
+          ],
+          "counterexamples": [],
+          "projectId": "5d38b25a-c391-4d7c-8866-f8a1f4cea942",
+          "projectNumber": "CG-2036-26",
+          "pilotProject": "Beacon Hill / CG-2036-26"
+        },
+        "currentness": "LIVE_FIXTURE",
+        "evidenceRefs": [
+          "live-producer-ingestion:CG-2036-26"
+        ],
+        "wrongMoves": [],
+        "bestKnownAction": "CE detected D-101 (ALUMINUM_DOOR) without Revu markup validation (CE_ONLY) Estimator schedule rows without corroborating plan markup should not auto-promote into bid scope before human review. Bid Composer scope decisions must preserve CE_ONLY uncertainty and wrong-move learning.",
+        "goldMineComposite": null,
+        "relationshipCount": 6,
+        "ranked": [
+          {
+            "episodeId": "episode:08ae3c0859fd58f0",
+            "score": 12,
+            "problem": "CE detected D-101 (ALUMINUM_DOOR) without Revu markup validation (CE_ONLY) Estimator schedule rows without corroborating plan markup should not auto-promote into bid scope before human review. Bid Composer scope decisions must preserve CE_ONLY uncertainty and wrong-move learning.",
+            "rootCauseKey": "opening-wrong-move:d-101",
+            "applicability": {
+              "repos": [
+                "Computer Estimator",
+                "CapitalGlassRevu",
+                "CapitalGlass-BidComposer"
+              ],
+              "workflows": [
+                "opening-estimating"
+              ],
+              "missionClasses": [
+                "experience-opening-estimating-v1"
+              ],
+              "counterexamples": [],
+              "projectId": "5d38b25a-c391-4d7c-8866-f8a1f4cea942",
+              "projectNumber": "CG-2036-26",
+              "pilotProject": "Beacon Hill / CG-2036-26"
+            },
+            "evidenceRefs": [
+              "live-producer-ingestion:CG-2036-26"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "query": "schedule row without plan markup validation should not auto enter bid scope",
+      "result": {
+        "query": "schedule row without plan markup validation should not auto enter bid scope",
+        "pass": true,
+        "rank": 1,
+        "score": 11,
+        "applicability": {
+          "repos": [
+            "Computer Estimator",
+            "CapitalGlassRevu",
+            "CapitalGlass-BidComposer"
+          ],
+          "workflows": [
+            "opening-estimating"
+          ],
+          "missionClasses": [
+            "experience-opening-estimating-v1"
+          ],
+          "counterexamples": [],
+          "projectId": "5d38b25a-c391-4d7c-8866-f8a1f4cea942",
+          "projectNumber": "CG-2036-26",
+          "pilotProject": "Beacon Hill / CG-2036-26"
+        },
+        "currentness": "LIVE_FIXTURE",
+        "evidenceRefs": [
+          "live-producer-ingestion:CG-2036-26"
+        ],
+        "wrongMoves": [],
+        "bestKnownAction": "CE detected D-101 (ALUMINUM_DOOR) without Revu markup validation (CE_ONLY) Estimator schedule rows without corroborating plan markup should not auto-promote into bid scope before human review. Bid Composer scope decisions must preserve CE_ONLY uncertainty and wrong-move learning.",
+        "goldMineComposite": null,
+        "relationshipCount": 6,
+        "ranked": [
+          {
+            "episodeId": "episode:08ae3c0859fd58f0",
+            "score": 11,
+            "problem": "CE detected D-101 (ALUMINUM_DOOR) without Revu markup validation (CE_ONLY) Estimator schedule rows without corroborating plan markup should not auto-promote into bid scope before human review. Bid Composer scope decisions must preserve CE_ONLY uncertainty and wrong-move learning.",
+            "rootCauseKey": "opening-wrong-move:d-101",
+            "applicability": {
+              "repos": [
+                "Computer Estimator",
+                "CapitalGlassRevu",
+                "CapitalGlass-BidComposer"
+              ],
+              "workflows": [
+                "opening-estimating"
+              ],
+              "missionClasses": [
+                "experience-opening-estimating-v1"
+              ],
+              "counterexamples": [],
+              "projectId": "5d38b25a-c391-4d7c-8866-f8a1f4cea942",
+              "projectNumber": "CG-2036-26",
+              "pilotProject": "Beacon Hill / CG-2036-26"
+            },
+            "evidenceRefs": [
+              "live-producer-ingestion:CG-2036-26"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "query": "human estimator excluded CE_ONLY door from bid composer scope",
+      "result": {
+        "query": "human estimator excluded CE_ONLY door from bid composer scope",
+        "pass": true,
+        "rank": 1,
+        "score": 9,
+        "applicability": {
+          "repos": [
+            "Computer Estimator",
+            "CapitalGlassRevu",
+            "CapitalGlass-BidComposer"
+          ],
+          "workflows": [
+            "opening-estimating"
+          ],
+          "missionClasses": [
+            "experience-opening-estimating-v1"
+          ],
+          "counterexamples": [],
+          "projectId": "5d38b25a-c391-4d7c-8866-f8a1f4cea942",
+          "projectNumber": "CG-2036-26",
+          "pilotProject": "Beacon Hill / CG-2036-26"
+        },
+        "currentness": "LIVE_FIXTURE",
+        "evidenceRefs": [
+          "live-producer-ingestion:CG-2036-26"
+        ],
+        "wrongMoves": [],
+        "bestKnownAction": "CE detected D-101 (ALUMINUM_DOOR) without Revu markup validation (CE_ONLY) Estimator schedule rows without corroborating plan markup should not auto-promote into bid scope before human review. Bid Composer scope decisions must preserve CE_ONLY uncertainty and wrong-move learning.",
+        "goldMineComposite": null,
+        "relationshipCount": 6,
+        "ranked": [
+          {
+            "episodeId": "episode:08ae3c0859fd58f0",
+            "score": 9,
+            "problem": "CE detected D-101 (ALUMINUM_DOOR) without Revu markup validation (CE_ONLY) Estimator schedule rows without corroborating plan markup should not auto-promote into bid scope before human review. Bid Composer scope decisions must preserve CE_ONLY uncertainty and wrong-move learning.",
+            "rootCauseKey": "opening-wrong-move:d-101",
+            "applicability": {
+              "repos": [
+                "Computer Estimator",
+                "CapitalGlassRevu",
+                "CapitalGlass-BidComposer"
+              ],
+              "workflows": [
+                "opening-estimating"
+              ],
+              "missionClasses": [
+                "experience-opening-estimating-v1"
+              ],
+              "counterexamples": [],
+              "projectId": "5d38b25a-c391-4d7c-8866-f8a1f4cea942",
+              "projectNumber": "CG-2036-26",
+              "pilotProject": "Beacon Hill / CG-2036-26"
+            },
+            "evidenceRefs": [
+              "live-producer-ingestion:CG-2036-26"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "businessLoopProof": {
+    "evidenceToHumanReview": true,
+    "humanReviewToBidScope": true,
+    "bidScopeToOutput": true,
+    "outcomeToExperience": true,
+    "nextBidBlindRetrieval": true
+  }
+}
