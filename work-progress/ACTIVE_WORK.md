@@ -12,14 +12,30 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-08-10 |
-| Current focus | Active ledger currentness repaired (08-04→08-10 catch-up); Experience Graph EG-01 on `main`; ledger staleness gate + catch-up reconstruction shipped; operator hub/index publish for catch-up harvest |
+| Last updated | 2026-08-11
+| Current focus | TWO_DESK_OPERATING_BOTH_READY (cheap hop both desks); pending WESLEYDESK index publish for hub slices
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Project index | `work-progress/projects/INDEX.md` |
 
 ## Current saved work
+
+
+### 2026-08-11 CT — two-desk-operating-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `two-desk-operating-v1` |
+| Verdict | **TWO_DESK_OPERATING_BOTH_READY** |
+| AppBuilder tip | `2c36e40e` (PR #350 merged) |
+| Proof | `Z:\Office\Wes\Direct Connect\handoffs\HANDOFF 8-11-26\TWO_DESK_OPERATING-PROOF-BOTH-READY.json` |
+| RYZEN | cheap hop READY ~3s |
+| WESLEYWORK | cheap hop READY / PASS_READY ~3s; L: hub mounted; soft-block closeout true |
+| Ops STATUS | Direct Connect `STATUS-UPDATE.json` + Network-Admin `status/dual-desk/two-desk-operating.latest.json` |
+| Project file | `work-progress/projects/2026-08-11_two-desk-operating-v1.md` |
+| Next | WESLEYDESK `index:publish` for L: BY-KIND refresh; optional OA MCP reconnect |
+
 
 ### 2026-08-10 CT — active-ledger-currentness-ingestion-and-harvest-v1
 
