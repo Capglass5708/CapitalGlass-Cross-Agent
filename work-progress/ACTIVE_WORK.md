@@ -13,13 +13,28 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-08-11
-| Current focus | TWO_DESK_OPERATING_BOTH_READY (cheap hop both desks); pending WESLEYDESK index publish for hub slices
+| Current focus | TWO_DESK_OPERATING + active-ledger exporter fix ratified on AppBuilder main (`251e96fb` / PR #353; Option C via PR #357); L: BY-KIND `two-desk-operating` published; next optional ChatGPT write-guard
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Project index | `work-progress/projects/INDEX.md` |
 
 ## Current saved work
+
+### 2026-08-11 CT — active-ledger-saved-work-exporter-fix + unauthorized-merge-353-ratify-cleanup-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `unauthorized-merge-353-ratify-cleanup-v1` (covers `active-ledger-saved-work-exporter-fix-v1`) |
+| Verdict | **COMPLETE** — exporter `###` Field/Value parser fixed; Option C ratified; main clean |
+| Exporter fix | AppBuilder PR #353 merge `251e96fb` (do not revert) |
+| Ratification | PR #357 `docs(incident): ratify unauthorized ChatGPT merge` @ `11bce54c` |
+| Investigation | Read-only / `NO_MUTATIONS` then operator Option C |
+| AppBuilder tip | `9385539c` (synced to origin/main) |
+| L: publish | BY-KIND from Cross-Agent `b320a157` — `two-desk-operating` confirmed |
+| Incident memory | AppBuilder `docs/incident-memory` + artifacts under `unauthorized-merge-353-ratify-cleanup-v1/` |
+| Closeout receipt | `CG-AppBuilder-MCP/artifacts/agent-runs/unauthorized-merge-353-ratify-cleanup-v1/session-closeout-v3.2.json` |
+| Next | Optional ChatGPT read-only / write-guard enforcement; hop packet refresh on AppBuilder tip |
 
 
 ### 2026-08-11 CT — two-desk-operating-v1
@@ -28,13 +43,14 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | --- | --- |
 | Work package | `two-desk-operating-v1` |
 | Verdict | **TWO_DESK_OPERATING_BOTH_READY** |
-| AppBuilder tip | `2c36e40e` (PR #350 merged) |
+| AppBuilder tip | `2c36e40e` (PR #350 merged); later tip includes exporter+ratify (`9385539c`) |
 | Proof | `Z:\Office\Wes\Direct Connect\handoffs\HANDOFF 8-11-26\TWO_DESK_OPERATING-PROOF-BOTH-READY.json` |
 | RYZEN | cheap hop READY ~3s |
 | WESLEYWORK | cheap hop READY / PASS_READY ~3s; L: hub mounted; soft-block closeout true |
 | Ops STATUS | Direct Connect `STATUS-UPDATE.json` + Network-Admin `status/dual-desk/two-desk-operating.latest.json` |
+| L: BY-KIND | Published with `two-desk-operating` match from Cross-Agent `b320a157` (index:publish done for this slice) |
 | Project file | `work-progress/projects/2026-08-11_two-desk-operating-v1.md` |
-| Next | WESLEYDESK `index:publish` for L: BY-KIND refresh; optional OA MCP reconnect |
+| Next | Optional OA MCP reconnect; optional ChatGPT read-only/write-guard follow-up (see ratify cleanup entry) |
 
 
 ### 2026-08-10 CT — active-ledger-currentness-ingestion-and-harvest-v1

@@ -38,11 +38,18 @@ WESLEYWORK (integration captain) and RYZEN9DESK (execution engine) operate as on
 | RYZEN9DESK | READY | true | yes | ~3s |
 | WESLEYWORK | READY | true | yes | ~3s |
 
+## Follow-on (2026-08-11 closeout)
+
+- L: BY-KIND refresh for `two-desk-operating` **done** (source Cross-Agent `b320a157`).
+- Active-ledger saved-work exporter Field/Value parser fixed on AppBuilder main (`251e96fb` / PR #353); unauthorized ChatGPT merge **Option C** ratified (PR #357) — do not revert.
+- AppBuilder tip at closeout: `9385539c`.
+
 ## Next actions
 
-1. Operator on WESLEYDESK: `index:publish` / GHA `index-publication.yml` so L: `BY-KIND` open-actions reflect this completion.
+1. ~~Operator on WESLEYDESK: `index:publish`~~ — done for two-desk BY-KIND slice (confirm-only; do not republish unless drift).
 2. Optional: reconnect `user-office-admin-mcp` on Ryzen for OA read tools.
-3. Backlog (not this WP): peer live-proof bridge for machine-readiness `DURABLE_COMPLETE`; PR #349 incremental PI.
+3. Optional follow-up WP: ChatGPT read-only / write-guard enforcement.
+4. Backlog (not this WP): peer live-proof bridge for machine-readiness `DURABLE_COMPLETE`; PR #349 incremental PI.
 
 ## Forbidden
 
