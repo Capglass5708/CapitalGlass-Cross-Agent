@@ -12,14 +12,26 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-08-10 |
-| Current focus | Active ledger currentness repaired (08-04→08-10 catch-up); Experience Graph EG-01 on `main`; ledger staleness gate + catch-up reconstruction shipped; operator hub/index publish for catch-up harvest |
+| Last updated | 2026-08-11 |
+| Current focus | Revu plan-markup readiness critical path (`revu-production-plan-markup-readiness-v1`); Gate 1 + Rosewood pilot coordination; active ledger currentness (08-10 catch-up) |
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Project index | `work-progress/projects/INDEX.md` |
 
 ## Current saved work
+
+### 2026-08-11 CT — revu-production-plan-markup-readiness-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `revu-production-plan-markup-readiness-v1` |
+| Verdict | **ACTIVE — operator-led** |
+| Goal | Rosewood single-sheet markup → Bid Composer Scope Review (W22 / A.520.1) |
+| Critical path | Phase 0–1 Gate 1 (WESLEYDESK) → DC open-path → CE parser → takeoff pilot → operator signoff |
+| Indexed blocker | `revu-mcp-production-workflow-locked` |
+| Project file | `work-progress/projects/2026-08-11_revu-production-plan-markup-readiness-v1.md` |
+| Next | Operator on **WESLEYDESK**: Max seat + `gate1:controlled-fixture` on foundation PDF |
 
 ### 2026-08-10 CT — active-ledger-currentness-ingestion-and-harvest-v1
 

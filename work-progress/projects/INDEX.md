@@ -387,6 +387,7 @@ Recommended follow-on work packages (not yet project files):
 
 | Project ID | Status | Next action |
 | --- | --- | --- |
+| `revu-production-plan-markup-readiness-v1` | ACTIVE — operator-led | Phase 0–1 on WESLEYDESK: Max seat + Gate 1 controlled fixture; see `2026-08-11_revu-production-plan-markup-readiness-v1.md` |
 | `revu-opening-detection-top10-v1` | Rosewood lane status corrected | Build `cg-opening-locator-v1`; if marking Rosewood in Revu, start with controlled sheet choice and do not assume CE parse or BC bid exists |
 
 ---
