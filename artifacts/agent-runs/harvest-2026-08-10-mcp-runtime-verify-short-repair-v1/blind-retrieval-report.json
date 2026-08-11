@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "cross-agent-harvest-blind-retrieval-benchmark-v1@1.0.0",
+  "harvestId": "harvest-2026-08-10-mcp-runtime-verify-short-repair-v1",
+  "testedAt": "2026-08-11T04:17:15.884Z",
+  "blindQueryOnly": true,
+  "seedCount": 2,
+  "fixtureCount": 4,
+  "results": [
+    {
+      "query": "Who owns MCP_API_URL for cg-mcp?",
+      "returnedId": "IH-MCP-RUNTIME-DOPPLER-ENV-001",
+      "expectedSeedId": "IH-MCP-RUNTIME-DOPPLER-ENV-001",
+      "topK": [
+        {
+          "seedId": "IH-MCP-RUNTIME-DOPPLER-ENV-001",
+          "score": 1
+        },
+        {
+          "seedId": "IH-MCP-RUNTIME-SHORT-REPAIR-001",
+          "score": 1
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "What is the correct repair when gateway IP MCP URL is dead?",
+      "returnedId": "IH-MCP-RUNTIME-DOPPLER-ENV-001",
+      "expectedSeedId": "IH-MCP-RUNTIME-DOPPLER-ENV-001",
+      "topK": [
+        {
+          "seedId": "IH-MCP-RUNTIME-DOPPLER-ENV-001",
+          "score": 6
+        },
+        {
+          "seedId": "IH-MCP-RUNTIME-SHORT-REPAIR-001",
+          "score": 2
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "Why does mcp:health fail with UNC path or MODULE_NOT_FOUND on WSL?",
+      "returnedId": "IH-MCP-RUNTIME-SHORT-REPAIR-001",
+      "expectedSeedId": "IH-MCP-RUNTIME-SHORT-REPAIR-001",
+      "topK": [
+        {
+          "seedId": "IH-MCP-RUNTIME-SHORT-REPAIR-001",
+          "score": 7
+        },
+        {
+          "seedId": "IH-MCP-RUNTIME-DOPPLER-ENV-001",
+          "score": 1
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "How do I fix missing dashboard-app-mcp without a new health system?",
+      "returnedId": "IH-MCP-RUNTIME-SHORT-REPAIR-001",
+      "expectedSeedId": "IH-MCP-RUNTIME-SHORT-REPAIR-001",
+      "topK": [
+        {
+          "seedId": "IH-MCP-RUNTIME-SHORT-REPAIR-001",
+          "score": 5
+        },
+        {
+          "seedId": "IH-MCP-RUNTIME-DOPPLER-ENV-001",
+          "score": 1
+        }
+      ],
+      "pass": true
+    }
+  ],
+  "verdict": "BLIND_RETRIEVAL_PASS"
+}

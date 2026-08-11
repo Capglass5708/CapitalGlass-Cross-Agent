@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-extensions-v1@1.0.0",
+  "harvestId": "harvest-2026-08-10-mcp-runtime-verify-short-repair-v1",
+  "productWorkflowCoverage": {
+    "computerEstimator": "NOT_OBSERVED",
+    "humanEstimator": "NOT_OBSERVED",
+    "documentCenter": "NOT_OBSERVED",
+    "planSetProcessing": "NOT_OBSERVED",
+    "ocrParser": "NOT_OBSERVED",
+    "revuBluebeam": "NOT_OBSERVED",
+    "bidComposer": "NOT_OBSERVED",
+    "proposals": "NOT_OBSERVED",
+    "vae": "NOT_OBSERVED",
+    "scraper": "NOT_OBSERVED",
+    "crossAppHandoffs": "NOT_OBSERVED",
+    "operatorReentry": "OBSERVED"
+  },
+  "corpusBias": {
+    "evidenceDomainDistribution": {
+      "sdlc": 1,
+      "governance": 0,
+      "receiptPlumbing": 2,
+      "infrastructure": 5,
+      "productOperation": 0,
+      "operatorWorkflow": 2,
+      "businessWorkflow": 0
+    },
+    "corpusBiasWarning": "Infrastructure/MCP-runtime heavy — not product-estimating evidence",
+    "underObservedDomains": [
+      "Computer Estimator",
+      "Revu",
+      "Bid Composer",
+      "Document Center"
+    ]
+  },
+  "operationalMeasurements": [
+    {
+      "workflow": "mcp:health",
+      "wallClockDurationMs": 72341,
+      "cacheState": "CACHE_MISS",
+      "probeId": "mcp-health-receipt-2026-08-10T17-24-15",
+      "manualInterventions": 1
+    }
+  ],
+  "observabilityGaps": [
+    {
+      "gapId": "OG-001",
+      "summary": "verify-wsl-mcp fails doppler-mcp-wiring when command is absolute node path even though spawn works",
+      "evidenceRefs": [
+        "TE-009"
+      ],
+      "goldMineSignalClass": "OBSERVABILITY_GAP"
+    }
+  ],
+  "successPatterns": [
+    {
+      "patternId": "SP-001",
+      "summary": "Short repair: mcp:health → repair only proven spawn/spoke gaps → re-health; Doppler for env",
+      "evidenceRefs": [
+        "TE-005",
+        "TE-007",
+        "TE-009"
+      ],
+      "goldMineSignalClass": "SUCCESS_PATTERN"
+    }
+  ]
+}

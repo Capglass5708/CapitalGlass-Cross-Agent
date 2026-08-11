@@ -1,0 +1,80 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-mcp-runtime-short-repair-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "4932f1b65c805ce78209e5ed7cfd51f6d9726b89",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-10-mcp-runtime-verify-short-repair-v1",
+      "seedId": "IH-MCP-RUNTIME-SHORT-REPAIR-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-11T04:17:15.791Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "critical",
+    "contentHash": "f17e44bc82f6ba045d7f86be62c410385391fd45a2b876bc6c755fc88c97798c"
+  },
+  "body": {
+    "seedId": "IH-MCP-RUNTIME-SHORT-REPAIR-001",
+    "kind": "failure-pattern",
+    "title": "MCP runtime spawn/PATH/spoke short repair",
+    "summary": "Run mcp:health with Linux node; repair absolute node paths and missing spokes only; Doppler owns env.",
+    "canonicalQuestion": "Why does mcp:health fail with UNC path or MODULE_NOT_FOUND on WSL?",
+    "alternateQuestions": [
+      "How do I fix missing dashboard-app-mcp without a new health system?"
+    ],
+    "shortAnswer": "Run mcp:health with Linux node; repair absolute node paths and missing spokes only; Doppler owns env.",
+    "detailedAnswer": "MCP runtime spawn/PATH/spoke short repair",
+    "retrievalQuestions": [
+      "Why does mcp:health fail with UNC path or MODULE_NOT_FOUND on WSL?",
+      "How do I fix missing dashboard-app-mcp without a new health system?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Cursor MCP spawn failures or UNVERIFIED required MCP",
+      "startAt": [
+        "mcp:health receipt",
+        "~/.cursor/mcp.json",
+        "integrations_health_summary"
+      ],
+      "runPreflight": [
+        "PATH includes ~/.nvm/.../bin",
+        "npm run mcp:health"
+      ],
+      "doNot": [
+        "Hand-edit Doppler env",
+        "Invent a parallel health system"
+      ],
+      "proveBeforeClaiming": [
+        "MCP_100_PERCENT_HEALTHY",
+        "Cursor MCP reload"
+      ]
+    },
+    "evidenceRefs": [
+      "CG-AppBuilder-MCP/runtime/mcp-health-receipt/receipt-2026-08-10T17-24-15-171Z.json",
+      "TE-002",
+      "TE-005",
+      "TE-009"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": 1,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-10-mcp-runtime-verify-short-repair-v1/seed-packets/IH-MCP-RUNTIME-SHORT-REPAIR-001.json"
+    ],
+    "harvestId": "harvest-2026-08-10-mcp-runtime-verify-short-repair-v1"
+  }
+}

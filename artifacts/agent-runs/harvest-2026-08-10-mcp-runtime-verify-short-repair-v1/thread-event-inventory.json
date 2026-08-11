@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "cross-agent-thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-10-mcp-runtime-verify-short-repair-v1",
+  "events": [
+    {
+      "eventId": "TE-001",
+      "at": "2026-08-10T17:14:00.000Z",
+      "type": "mission-start",
+      "summary": "Operator selected live MCP runtime verify → short repair (not a new health system)",
+      "evidenceRefs": [
+        "user_query: Live MCP runtime verify → short repair"
+      ]
+    },
+    {
+      "eventId": "TE-002",
+      "at": "2026-08-10T17:15:00.000Z",
+      "type": "failure-observed",
+      "summary": "Agent shell resolved Windows npm; Linux node missing from PATH → UNC mcp-health failure",
+      "evidenceRefs": [
+        "shell: npm run mcp:health CMD.EXE MODULE_NOT_FOUND"
+      ]
+    },
+    {
+      "eventId": "TE-003",
+      "at": "2026-08-10T17:16:34.000Z",
+      "type": "probe",
+      "summary": "mcp:health with nvm node → MCP_HEALTH_UNVERIFIED; dashboard-app-mcp MCP_LAUNCHER_MISSING",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/runtime/mcp-health-receipt/receipt-2026-08-10T17-16-34-115Z.json"
+      ]
+    },
+    {
+      "eventId": "TE-004",
+      "at": "2026-08-10T17:17:00.000Z",
+      "type": "root-cause",
+      "summary": "wire-cursor-app-mcps.mjs pointed dashboard folder at CapitalGlass Project Dashboard (missing); live folder capital-glass-project-dashboard",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/scripts/wire-cursor-app-mcps.mjs:27"
+      ]
+    },
+    {
+      "eventId": "TE-005",
+      "at": "2026-08-10T17:18:50.000Z",
+      "type": "repair",
+      "summary": "Runtime mcp.json: add dashboard-app-mcp + pin absolute nvm node paths; backup written",
+      "evidenceRefs": [
+        "~/.cursor/backups/mcp.json.20260810T171850Z.bak",
+        "~/.cursor/mcp.json"
+      ]
+    },
+    {
+      "eventId": "TE-006",
+      "at": "2026-08-10T17:19:00.000Z",
+      "type": "repair",
+      "summary": "Legacy symlink CapitalGlass Project Dashboard → capital-glass-project-dashboard",
+      "evidenceRefs": [
+        "~/repos/CapitalGlass Project Dashboard"
+      ]
+    },
+    {
+      "eventId": "TE-007",
+      "at": "2026-08-10T17:22:00.000Z",
+      "type": "operator-correction",
+      "summary": "Operator: doppler handles all env — stop hand-editing env values",
+      "evidenceRefs": [
+        "user_query: doppler handles all env"
+      ]
+    },
+    {
+      "eventId": "TE-008",
+      "at": "2026-08-10T17:22:30.000Z",
+      "type": "validation",
+      "summary": "Doppler cg-mcp/dev MCP_API_URL host 127.0.0.1:3001; live /health 200; gateway 172.19.192.1 dead",
+      "evidenceRefs": [
+        "doppler run -p cg-mcp -c dev (names/host-only)",
+        "curl http://127.0.0.1:3001/health"
+      ]
+    },
+    {
+      "eventId": "TE-009",
+      "at": "2026-08-10T17:24:15.000Z",
+      "type": "outcome",
+      "summary": "mcp:health SUITE_VERDICT=MCP_100_PERCENT_HEALTHY (21/21); backend 127.0.0.1:3001",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/runtime/mcp-health-receipt/receipt-2026-08-10T17-24-15-171Z.json"
+      ]
+    }
+  ]
+}

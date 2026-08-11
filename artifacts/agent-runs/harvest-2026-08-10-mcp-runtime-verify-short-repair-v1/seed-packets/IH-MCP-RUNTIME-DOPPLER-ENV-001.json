@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-MCP-RUNTIME-DOPPLER-ENV-001",
+  "kind": "runbook",
+  "title": "Doppler owns MCP API URL during runtime repair",
+  "summary": "Validate MCP_API_URL via doppler run host-only; sync runtime from Doppler — never hand-write env values.",
+  "retrievalQuestions": [
+    "Who owns MCP_API_URL for cg-mcp?",
+    "What is the correct repair when gateway IP MCP URL is dead?"
+  ],
+  "evidenceRefs": [
+    "TE-007",
+    "TE-008"
+  ],
+  "roiRank": 2,
+  "futureAgentInstructions": {
+    "whenThisAppears": "Suspected wrong MCP backend / host IP in local env files",
+    "startAt": [
+      "doppler secrets --only-names -p cg-mcp -c dev",
+      "integrations.config.json mcp_api_base"
+    ],
+    "runPreflight": [
+      "doppler run -p cg-mcp -c dev host-only check",
+      "curl 127.0.0.1:3001/health"
+    ],
+    "doNot": [
+      "Hand-edit cursor-wsl.env secret/env values as repair"
+    ],
+    "proveBeforeClaiming": [
+      "Doppler host matches live healthy backend"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

@@ -1,0 +1,75 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-mcp-runtime-doppler-env-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "4932f1b65c805ce78209e5ed7cfd51f6d9726b89",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-10-mcp-runtime-verify-short-repair-v1",
+      "seedId": "IH-MCP-RUNTIME-DOPPLER-ENV-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-11T04:17:15.791Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "42806e901e9f392e9ee81559e60fa342746408b98ba2c94946c3f4085e9c542a"
+  },
+  "body": {
+    "seedId": "IH-MCP-RUNTIME-DOPPLER-ENV-001",
+    "kind": "runbook",
+    "title": "Doppler owns MCP API URL during runtime repair",
+    "summary": "Validate MCP_API_URL via doppler run host-only; sync runtime from Doppler — never hand-write env values.",
+    "canonicalQuestion": "Who owns MCP_API_URL for cg-mcp?",
+    "alternateQuestions": [
+      "What is the correct repair when gateway IP MCP URL is dead?"
+    ],
+    "shortAnswer": "Validate MCP_API_URL via doppler run host-only; sync runtime from Doppler — never hand-write env values.",
+    "detailedAnswer": "Doppler owns MCP API URL during runtime repair",
+    "retrievalQuestions": [
+      "Who owns MCP_API_URL for cg-mcp?",
+      "What is the correct repair when gateway IP MCP URL is dead?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Suspected wrong MCP backend / host IP in local env files",
+      "startAt": [
+        "doppler secrets --only-names -p cg-mcp -c dev",
+        "integrations.config.json mcp_api_base"
+      ],
+      "runPreflight": [
+        "doppler run -p cg-mcp -c dev host-only check",
+        "curl 127.0.0.1:3001/health"
+      ],
+      "doNot": [
+        "Hand-edit cursor-wsl.env secret/env values as repair"
+      ],
+      "proveBeforeClaiming": [
+        "Doppler host matches live healthy backend"
+      ]
+    },
+    "evidenceRefs": [
+      "TE-007",
+      "TE-008"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": 2,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-10-mcp-runtime-verify-short-repair-v1/seed-packets/IH-MCP-RUNTIME-DOPPLER-ENV-001.json"
+    ],
+    "harvestId": "harvest-2026-08-10-mcp-runtime-verify-short-repair-v1"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "gold-mine-evidence-projection-v1@1.0.0",
+  "harvestId": "harvest-2026-08-10-mcp-runtime-verify-short-repair-v1",
+  "projections": [
+    {
+      "signalClass": "RESOLUTION_SIGNAL",
+      "lifecycleHint": "RESOLVED_OBSERVED",
+      "rootCauseKey": "dashboard-spoke-missing-wrong-wire-folder",
+      "workPackageId": "harvest-2026-08-10-mcp-runtime-verify-short-repair-v1",
+      "evidenceStrength": "high",
+      "operatorImpact": "Restores dashboard-app-mcp in Cursor sessions",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-10T17:24:15.171Z",
+      "sourceRunId": "mcp-health-receipt-2026-08-10T17-24-15",
+      "sourceWorkPackageId": "harvest-2026-08-10-mcp-runtime-verify-short-repair-v1",
+      "novelty": "NEW",
+      "implementationState": "RESOLVED_OBSERVED",
+      "resolves": [
+        "wire-dashboard-folder-string-v1-runtime"
+      ],
+      "packetId": "mcp-runtime-21-healthy-2026-08-10",
+      "sourceCommitSha": "4932f1b65c805ce78209e5ed7cfd51f6d9726b89"
+    },
+    {
+      "signalClass": "OPERATOR_FRICTION_SIGNAL",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "env-hand-edit-vs-doppler",
+      "workPackageId": "harvest-2026-08-10-mcp-runtime-verify-short-repair-v1",
+      "evidenceStrength": "high",
+      "operatorImpact": "Operator must correct agents that patch local env",
+      "businessImpact": "OPERATOR_PRODUCTIVITY",
+      "evidenceEra": "PRE_IMPLEMENTATION",
+      "sourceWorkPackageId": "harvest-2026-08-10-mcp-runtime-verify-short-repair-v1",
+      "novelty": "VALIDATES_EXISTING",
+      "implementationState": "OBSERVED_OPEN",
+      "packetId": "hand-edit-env-during-mcp-repair-v1",
+      "sourceCommitSha": "4932f1b65c805ce78209e5ed7cfd51f6d9726b89"
+    },
+    {
+      "signalClass": "AGENT_FRICTION_SIGNAL",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "wsl-agent-shell-windows-npm-path",
+      "workPackageId": "harvest-2026-08-10-mcp-runtime-verify-short-repair-v1",
+      "evidenceStrength": "high",
+      "operatorImpact": "Every MCP session pays PATH tax",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "PRE_IMPLEMENTATION",
+      "sourceWorkPackageId": "harvest-2026-08-10-mcp-runtime-verify-short-repair-v1",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "packetId": "TW-001",
+      "sourceCommitSha": "4932f1b65c805ce78209e5ed7cfd51f6d9726b89"
+    }
+  ],
+  "sourceCommitSha": "4932f1b65c805ce78209e5ed7cfd51f6d9726b89"
+}

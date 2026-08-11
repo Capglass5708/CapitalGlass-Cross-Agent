@@ -1,0 +1,126 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-10-mcp-runtime-verify-short-repair-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-MCP-RUNTIME-DOPPLER-ENV-001",
+      "questionId": "IHMCPRUNTIME",
+      "canonicalQuestion": "Who owns MCP_API_URL for cg-mcp?",
+      "alternateQuestions": [
+        "What is the correct repair when gateway IP MCP URL is dead?"
+      ],
+      "shortAnswer": "Validate MCP_API_URL via doppler run host-only; sync runtime from Doppler — never hand-write env values.",
+      "detailedAnswer": "Doppler owns MCP API URL during runtime repair",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-11T04:17:15.791Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-10-mcp-runtime-verify-short-repair-v1/seed-packets/IH-MCP-RUNTIME-DOPPLER-ENV-001.json"
+      ],
+      "authorityCommit": [
+        "4932f1b"
+      ],
+      "evidenceUrls": [
+        "TE-007",
+        "TE-008"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-10-mcp-runtime-verify-short-repair-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Suspected wrong MCP backend / host IP in local env files",
+        "startAt": [
+          "doppler secrets --only-names -p cg-mcp -c dev",
+          "integrations.config.json mcp_api_base"
+        ],
+        "runPreflight": [
+          "doppler run -p cg-mcp -c dev host-only check",
+          "curl 127.0.0.1:3001/health"
+        ],
+        "doNot": [
+          "Hand-edit cursor-wsl.env secret/env values as repair"
+        ],
+        "proveBeforeClaiming": [
+          "Doppler host matches live healthy backend"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "runbook"
+    },
+    {
+      "ihPfspId": "IH-MCP-RUNTIME-SHORT-REPAIR-001",
+      "questionId": "IHMCPRUNTIME",
+      "canonicalQuestion": "Why does mcp:health fail with UNC path or MODULE_NOT_FOUND on WSL?",
+      "alternateQuestions": [
+        "How do I fix missing dashboard-app-mcp without a new health system?"
+      ],
+      "shortAnswer": "Run mcp:health with Linux node; repair absolute node paths and missing spokes only; Doppler owns env.",
+      "detailedAnswer": "MCP runtime spawn/PATH/spoke short repair",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-11T04:17:15.791Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-10-mcp-runtime-verify-short-repair-v1/seed-packets/IH-MCP-RUNTIME-SHORT-REPAIR-001.json"
+      ],
+      "authorityCommit": [
+        "4932f1b"
+      ],
+      "evidenceUrls": [
+        "CG-AppBuilder-MCP/runtime/mcp-health-receipt/receipt-2026-08-10T17-24-15-171Z.json",
+        "TE-002",
+        "TE-005",
+        "TE-009"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-10-mcp-runtime-verify-short-repair-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Cursor MCP spawn failures or UNVERIFIED required MCP",
+        "startAt": [
+          "mcp:health receipt",
+          "~/.cursor/mcp.json",
+          "integrations_health_summary"
+        ],
+        "runPreflight": [
+          "PATH includes ~/.nvm/.../bin",
+          "npm run mcp:health"
+        ],
+        "doNot": [
+          "Hand-edit Doppler env",
+          "Invent a parallel health system"
+        ],
+        "proveBeforeClaiming": [
+          "MCP_100_PERCENT_HEALTHY",
+          "Cursor MCP reload"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    }
+  ]
+}

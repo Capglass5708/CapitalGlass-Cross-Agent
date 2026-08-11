@@ -1,0 +1,210 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-10-mcp-runtime-verify-short-repair-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "host",
+      "description": "Agent shell PATH preferred Windows npm; Linux node absent → every MCP npm script pays CMD/UNC tax",
+      "evidenceRefs": [
+        "TE-002"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Pin absolute nvm node in mcp.json + ensure nvm bin on WSL agent PATH before npm",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "rework",
+      "description": "Dashboard spoke silently skipped by wrong folder string in wire-cursor-app-mcps.mjs",
+      "evidenceRefs": [
+        "TE-003",
+        "TE-004"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Canonical folder capital-glass-project-dashboard + verify app-mcp-spokes",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "operator_attention",
+      "description": "Agent nearly hand-edited cursor-wsl.env MCP_API_URL; operator corrected Doppler-first",
+      "evidenceRefs": [
+        "TE-007",
+        "TE-008"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "doppler run / sync-wsl-mcp-runtime; never hand-write env values",
+      "roiRank": 3
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Agent started repairing local env file values for MCP_API_URL/host IP",
+      "operatorCost": "medium",
+      "systemFix": "Doppler cg-mcp owns MCP_API_URL; use doppler run / sync scripts only",
+      "evidenceRefs": [
+        "TE-007"
+      ],
+      "linkedWasteIds": [
+        "TW-003"
+      ]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "mcp:health fails in agent shell on Remote-WSL",
+      "actualExecution": {
+        "steps": [
+          "npm run mcp:health without nvm PATH",
+          "Hit Windows npm + UNC path"
+        ],
+        "outcome": "FAIL MODULE_NOT_FOUND",
+        "evidenceRefs": [
+          "TE-002"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Export nvm node bin first",
+          "node scripts/mcp-health.mjs",
+          "Or doppler run -- npm run mcp:health with Linux node"
+        ],
+        "outcome": "Would reach health authority immediately",
+        "requiredPreflight": [
+          "command -v node → Linux nvm path"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "dashboard-app-mcp UNVERIFIED / missing from user mcp.json",
+      "actualExecution": {
+        "steps": [
+          "Read mcp.json",
+          "Found wire folder CapitalGlass Project Dashboard missing",
+          "Runtime add spoke + absolute node"
+        ],
+        "outcome": "MCP_100_PERCENT_HEALTHY after repair",
+        "evidenceRefs": [
+          "TE-004",
+          "TE-005",
+          "TE-009"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "npm run mcp:health",
+          "If dashboard missing: fix wire folder to capital-glass-project-dashboard then mcp:repair:cursor",
+          "Do not invent env values"
+        ],
+        "outcome": "Same repair with durable wire script fix in worktree",
+        "requiredPreflight": [
+          "npm run mcp:health",
+          "verify-wsl-mcp app-mcp-spokes"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "medium"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Attempted/considered hand-editing cursor-wsl.env MCP backend URL",
+      "whereItHappened": "MCP runtime short repair after gateway probe",
+      "whyItWasWrong": "Doppler is env authority; local env drift creates second source of truth",
+      "correctFirstMove": "doppler run -p cg-mcp -c dev and compare host-only; sync-wsl-mcp-runtime",
+      "preventiveControl": "Doppler-first secrets policy + operator correction OF-001",
+      "seedTarget": "IH-MCP-RUNTIME-DOPPLER-ENV-001",
+      "executionDeltaId": "ED-002"
+    }
+  ],
+  "duplicateWork": [],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Fix wire-cursor-app-mcps dashboard folder to capital-glass-project-dashboard",
+      "whyItPays": "Stops silent spoke drop on every mcp:repair:cursor / wire pass",
+      "effort": "low",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "savedWasteIds": [
+        "TW-002"
+      ],
+      "seedAs": "owner-artifact",
+      "suggestedWorkPackageId": "mcp-wire-dashboard-folder-fix-v1"
+    },
+    {
+      "rank": 2,
+      "title": "Accept absolute node path in doppler-mcp-wiring verify (endswith /node)",
+      "whyItPays": "Removes false FAIL after WSL-safe absolute node pin",
+      "effort": "low",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "savedWasteIds": [
+        "TW-001"
+      ],
+      "seedAs": "test",
+      "suggestedWorkPackageId": "wsl-mcp-verify-absolute-node-v1"
+    },
+    {
+      "rank": 3,
+      "title": "Agent shell nvm PATH bootstrap for Remote-WSL sessions",
+      "whyItPays": "Eliminates Windows npm CMD tax on first command",
+      "effort": "medium",
+      "ownerRepo": "Cursor-MCP-Kit",
+      "savedWasteIds": [
+        "TW-001"
+      ],
+      "seedAs": "hook",
+      "suggestedWorkPackageId": "wsl-agent-shell-nvm-path-v1"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "MCP_100_PERCENT_HEALTHY",
+      "currentStatus": "CLOSED",
+      "doNotClaimUntil": [
+        "Fresh npm run mcp:health receipt with healthyRequiredMcps === expectedRequiredMcps",
+        "dashboard-app-mcp present in ~/.cursor/mcp.json with resolvable launcher"
+      ],
+      "lastKnownEvidence": [
+        "CG-AppBuilder-MCP/runtime/mcp-health-receipt/receipt-2026-08-10T17-24-15-171Z.json"
+      ],
+      "proofCommandId": "cmd-mcp-health"
+    },
+    {
+      "awardOrVerdict": "ENV_BACKEND_REPAIRED_BY_HAND_EDIT",
+      "currentStatus": "BLOCKED",
+      "doNotClaimUntil": [
+        "Doppler cg-mcp config owns MCP_API_URL",
+        "No hand-edited secret/env values claimed as repair"
+      ],
+      "lastKnownEvidence": [
+        "TE-007",
+        "TE-008"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "BY-KIND/active-work-blockers.json",
+      "BY-KIND/thread-autopsy-index.json (scout injection)",
+      "work-progress/harvest-packet-registry.json"
+    ],
+    "commandIndexConsulted": true,
+    "notes": "No prior harvest packet for dashboard-app-mcp spoke path; mcp-runtime appears in registry on unrelated topics"
+  }
+}

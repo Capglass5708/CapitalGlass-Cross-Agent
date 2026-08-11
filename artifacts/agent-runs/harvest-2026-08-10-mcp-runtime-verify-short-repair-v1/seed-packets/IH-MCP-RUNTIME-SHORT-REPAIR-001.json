@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-MCP-RUNTIME-SHORT-REPAIR-001",
+  "kind": "failure-pattern",
+  "title": "MCP runtime spawn/PATH/spoke short repair",
+  "summary": "Run mcp:health with Linux node; repair absolute node paths and missing spokes only; Doppler owns env.",
+  "retrievalQuestions": [
+    "Why does mcp:health fail with UNC path or MODULE_NOT_FOUND on WSL?",
+    "How do I fix missing dashboard-app-mcp without a new health system?"
+  ],
+  "evidenceRefs": [
+    "CG-AppBuilder-MCP/runtime/mcp-health-receipt/receipt-2026-08-10T17-24-15-171Z.json",
+    "TE-002",
+    "TE-005",
+    "TE-009"
+  ],
+  "roiRank": 1,
+  "futureAgentInstructions": {
+    "whenThisAppears": "Cursor MCP spawn failures or UNVERIFIED required MCP",
+    "startAt": [
+      "mcp:health receipt",
+      "~/.cursor/mcp.json",
+      "integrations_health_summary"
+    ],
+    "runPreflight": [
+      "PATH includes ~/.nvm/.../bin",
+      "npm run mcp:health"
+    ],
+    "doNot": [
+      "Hand-edit Doppler env",
+      "Invent a parallel health system"
+    ],
+    "proveBeforeClaiming": [
+      "MCP_100_PERCENT_HEALTHY",
+      "Cursor MCP reload"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

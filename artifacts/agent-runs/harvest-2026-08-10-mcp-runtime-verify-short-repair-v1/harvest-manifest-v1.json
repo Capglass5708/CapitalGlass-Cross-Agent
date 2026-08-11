@@ -1,0 +1,380 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-10-mcp-runtime-verify-short-repair-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceBranch": "harvest/harvest-2026-08-10-mcp-runtime-verify-short-repair-v1",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_VALIDATED",
+  "workPackageId": "harvest-2026-08-10-mcp-runtime-verify-short-repair-v1",
+  "doNotAdvance": [
+    "Hand-edit Doppler-owned MCP/env values during runtime repair",
+    "Claim MCP_100_PERCENT_HEALTHY without fresh mcp:health receipt",
+    "Build a new MCP health system when mcp:health + short repair suffice",
+    "index:publish or harvest:publish-hub-seed from Cursor"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-10-mcp-runtime-verify-short-repair-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-10-mcp-runtime-verify-short-repair-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 3,
+      "seeds": 2,
+      "roiItems": 3,
+      "operatorFriction": 1,
+      "executionDeltas": 2,
+      "wrongMoves": 1
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run"
+  },
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "1.2.0",
+    "eligibleCandidates": 0,
+    "rejectedUnrelatedCandidates": 0,
+    "exportStatus": "not-run",
+    "automaticProtocolMutation": false,
+    "authorityStatus": "PROPOSAL"
+  },
+  "relatedRepos": [
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "branch": "main",
+      "role": "mcp:health authority + wire scripts"
+    },
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "harvest/harvest-2026-08-10-mcp-runtime-verify-short-repair-v1",
+      "role": "harvest coordination"
+    },
+    {
+      "repo": "Cursor-MCP-Kit",
+      "branch": "unknown",
+      "role": "WSL mcp.json repair kit (consulted)"
+    }
+  ],
+  "packets": [
+    {
+      "packetKind": "outcome",
+      "packetId": "mcp-runtime-21-healthy-2026-08-10",
+      "packetTitle": "Live MCP runtime short repair reached MCP_100_PERCENT_HEALTHY",
+      "state": "COMPLETE",
+      "packetVerdict": "PROVEN_EFFECTIVE",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "projectFile": "work-progress/projects/harvest-2026-08-10-mcp-runtime-verify-short-repair-v1.md",
+      "evidenceRefs": [
+        "TE-009",
+        "CG-AppBuilder-MCP/runtime/mcp-health-receipt/receipt-2026-08-10T17-24-15-171Z.json"
+      ],
+      "changeImplemented": "User mcp.json dashboard spoke + absolute nvm node pins; legacy folder symlink",
+      "beforeState": "20/21 healthy; dashboard UNVERIFIED MCP_LAUNCHER_MISSING",
+      "afterState": "21/21 MCP_100_PERCENT_HEALTHY; backend http://127.0.0.1:3001",
+      "measurement": "mcp:health required healthy count",
+      "expectedEffect": "All required MCPs HEALTHY",
+      "observedEffect": "healthyRequiredMcps=21 expectedRequiredMcps=21 unverified=0",
+      "residuals": [
+        "verify-wsl-mcp doppler-mcp-wiring command-not-node with absolute node",
+        "wire-cursor-app-mcps.mjs still has wrong folder string in repo"
+      ],
+      "regressions": [],
+      "effectiveness": "PROVEN_EFFECTIVE",
+      "goldMineSignalClass": "RESOLUTION_SIGNAL",
+      "novelty": "NEW",
+      "implementationState": "RESOLVED_OBSERVED",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "blockers": [],
+      "ownerIndexingStatus": "pointer-only",
+      "nextAction": "Operator: Cursor MCP reload; then harvest:publish-hub-seed when publication intended",
+      "commitRefs": [
+        "CapitalGlass-Cross-Agent@4932f1b65c805ce78209e5ed7cfd51f6d9726b89"
+      ],
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Hand-edit Doppler-owned env values",
+        "Claim MCP_100_PERCENT_HEALTHY without fresh mcp:health receipt"
+      ]
+    },
+    {
+      "packetKind": "decision",
+      "packetId": "doppler-owns-mcp-env-values-v1",
+      "packetTitle": "Doppler owns MCP env values; runtime repair does not hand-edit env",
+      "state": "COMPLETE",
+      "packetVerdict": "ADOPTED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "projectFile": "work-progress/projects/harvest-2026-08-10-mcp-runtime-verify-short-repair-v1.md",
+      "evidenceRefs": [
+        "TE-007",
+        "TE-008"
+      ],
+      "alternativesRejected": [
+        "Hand-edit cursor-wsl.env MCP_API_URL/host IP"
+      ],
+      "goldMineSignalClass": "ADOPTION_SIGNAL",
+      "novelty": "VALIDATES_EXISTING",
+      "implementationState": "RESOLVED_OBSERVED",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "blockers": [],
+      "ownerIndexingStatus": "pointer-only",
+      "nextAction": "Retain as Intelligence Hub seed candidate",
+      "commitRefs": [
+        "CapitalGlass-Cross-Agent@4932f1b65c805ce78209e5ed7cfd51f6d9726b89"
+      ],
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Hand-edit Doppler-owned env values",
+        "Claim MCP_100_PERCENT_HEALTHY without fresh mcp:health receipt"
+      ]
+    },
+    {
+      "packetKind": "mistake",
+      "packetId": "hand-edit-env-during-mcp-repair-v1",
+      "packetTitle": "Near hand-edit of local env during MCP backend diagnosis",
+      "state": "RESOLVED",
+      "packetVerdict": "ROOT_CAUSE_IDENTIFIED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "evidenceRefs": [
+        "TE-007",
+        "WM-001"
+      ],
+      "doNotAdvance": [
+        "Claim env repaired via hand-edited local files when Doppler owns values"
+      ],
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL",
+      "blockers": [],
+      "projectFile": "work-progress/projects/harvest-2026-08-10-mcp-runtime-verify-short-repair-v1.md",
+      "ownerIndexingStatus": "pointer-only",
+      "nextAction": "Retain as Intelligence Hub seed candidate",
+      "commitRefs": [
+        "CapitalGlass-Cross-Agent@4932f1b65c805ce78209e5ed7cfd51f6d9726b89"
+      ],
+      "advancementGate": "not-required"
+    },
+    {
+      "packetKind": "blocker",
+      "packetId": "wire-dashboard-folder-string-v1",
+      "packetTitle": "wire-cursor-app-mcps dashboard folder string still wrong in repo",
+      "state": "OPEN",
+      "packetVerdict": "OPEN",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "evidenceRefs": [
+        "TE-004"
+      ],
+      "proofCommandId": "cmd-verify-spokes",
+      "status": "OPEN",
+      "goldMineSignalClass": "PROBLEM_SIGNAL",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "blockers": [
+        "Needs worktree edit — canonical checkout blocked this session"
+      ],
+      "projectFile": "work-progress/projects/harvest-2026-08-10-mcp-runtime-verify-short-repair-v1.md",
+      "ownerIndexingStatus": "pointer-only",
+      "nextAction": "Fix wire-cursor-app-mcps dashboard folder in CG-AppBuilder-MCP worktree",
+      "commitRefs": [
+        "CapitalGlass-Cross-Agent@4932f1b65c805ce78209e5ed7cfd51f6d9726b89"
+      ],
+      "advancementGate": "wire-cursor-app-mcps.mjs folder = capital-glass-project-dashboard + mcp:health PASS",
+      "doNotAdvance": [
+        "Hand-edit Doppler-owned env values",
+        "Claim MCP_100_PERCENT_HEALTHY without fresh mcp:health receipt"
+      ]
+    },
+    {
+      "packetKind": "faster_path",
+      "packetId": "mcp-health-first-short-repair-v1",
+      "packetTitle": "mcp:health then repair only proven spawn/spoke/backend gaps",
+      "state": "COMPLETE",
+      "packetVerdict": "ADOPTED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "evidenceRefs": [
+        "TE-001",
+        "TE-009",
+        "SP-001"
+      ],
+      "situation": "Every MCP-dependent session pays spawn/PATH tax",
+      "whatHappened": "Ran mcp:health, fixed dashboard spoke + absolute node, Doppler for env",
+      "rightFirstMove": "npm run mcp:health with Linux node; repair proven failures only",
+      "requiredGuard": "Do not build a new health system; do not hand-edit Doppler-owned env",
+      "goldMineSignalClass": "SUCCESS_PATTERN",
+      "blockers": [],
+      "projectFile": "work-progress/projects/harvest-2026-08-10-mcp-runtime-verify-short-repair-v1.md",
+      "ownerIndexingStatus": "pointer-only",
+      "nextAction": "Retain as Intelligence Hub seed candidate",
+      "commitRefs": [
+        "CapitalGlass-Cross-Agent@4932f1b65c805ce78209e5ed7cfd51f6d9726b89"
+      ],
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Hand-edit Doppler-owned env values",
+        "Claim MCP_100_PERCENT_HEALTHY without fresh mcp:health receipt"
+      ]
+    },
+    {
+      "packetKind": "command",
+      "packetId": "cmd-mcp-health",
+      "packetTitle": "Prove MCP health authority",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "evidenceRefs": [
+        "TE-009"
+      ],
+      "command": "export PATH=\"$HOME/.nvm/versions/node/v24.18.0/bin:$PATH\" && node scripts/mcp-health.mjs",
+      "host": "REMOTE_WSL",
+      "provesGate": "MCP_100_PERCENT_HEALTHY or document UNVERIFIED mcpId",
+      "expectedPassSignal": "SUITE_VERDICT=MCP_100_PERCENT_HEALTHY",
+      "blockers": [],
+      "projectFile": "work-progress/projects/harvest-2026-08-10-mcp-runtime-verify-short-repair-v1.md",
+      "ownerIndexingStatus": "pointer-only",
+      "nextAction": "Retain as Intelligence Hub seed candidate",
+      "commitRefs": [
+        "CapitalGlass-Cross-Agent@4932f1b65c805ce78209e5ed7cfd51f6d9726b89"
+      ],
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Hand-edit Doppler-owned env values",
+        "Claim MCP_100_PERCENT_HEALTHY without fresh mcp:health receipt"
+      ]
+    },
+    {
+      "packetKind": "command",
+      "packetId": "cmd-verify-spokes",
+      "packetTitle": "Prove app MCP spokes present",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "evidenceRefs": [
+        "TE-005"
+      ],
+      "command": "node scripts/wsl/verify-wsl-mcp.mjs --json",
+      "host": "REMOTE_WSL",
+      "provesGate": "app-mcp-spokes missing=[]",
+      "expectedPassSignal": "checks[name=app-mcp-spokes].missing length 0",
+      "blockers": [],
+      "projectFile": "work-progress/projects/harvest-2026-08-10-mcp-runtime-verify-short-repair-v1.md",
+      "ownerIndexingStatus": "pointer-only",
+      "nextAction": "Retain as Intelligence Hub seed candidate",
+      "commitRefs": [
+        "CapitalGlass-Cross-Agent@4932f1b65c805ce78209e5ed7cfd51f6d9726b89"
+      ],
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Hand-edit Doppler-owned env values",
+        "Claim MCP_100_PERCENT_HEALTHY without fresh mcp:health receipt"
+      ]
+    },
+    {
+      "packetKind": "evidence",
+      "packetId": "ev-mcp-health-21",
+      "packetTitle": "mcp-health receipt 21/21",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/runtime/mcp-health-receipt/receipt-2026-08-10T17-24-15-171Z.json"
+      ],
+      "type": "receipt",
+      "pathOrSha": "CG-AppBuilder-MCP/runtime/mcp-health-receipt/receipt-2026-08-10T17-24-15-171Z.json",
+      "provesWhat": "All required MCPs HEALTHY including dashboard-app-mcp after runtime repair",
+      "blockers": [],
+      "projectFile": "work-progress/projects/harvest-2026-08-10-mcp-runtime-verify-short-repair-v1.md",
+      "ownerIndexingStatus": "pointer-only",
+      "nextAction": "Retain as Intelligence Hub seed candidate",
+      "commitRefs": [
+        "CapitalGlass-Cross-Agent@4932f1b65c805ce78209e5ed7cfd51f6d9726b89"
+      ],
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Hand-edit Doppler-owned env values",
+        "Claim MCP_100_PERCENT_HEALTHY without fresh mcp:health receipt"
+      ]
+    },
+    {
+      "packetKind": "protocol_upgrade",
+      "packetId": "pu-mcp-runtime-short-repair-v1",
+      "packetTitle": "MCP runtime short-repair future-agent procedure",
+      "state": "COMPLETE",
+      "packetVerdict": "CANDIDATE",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "evidenceRefs": [
+        "TE-001",
+        "TE-007",
+        "TE-009"
+      ],
+      "seedAs": "IH-MCP-RUNTIME-SHORT-REPAIR-001",
+      "promotionClass": "POLICY_GATED",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Cursor MCP spawn/PATH/spoke gaps; sessions pay mcp:health tax",
+        "startAt": [
+          "npm run mcp:health",
+          "integrations_health_summary",
+          "~/.cursor/mcp.json"
+        ],
+        "runPreflight": [
+          "export PATH=$HOME/.nvm/versions/node/v24.18.0/bin:$PATH",
+          "npm run mcp:health"
+        ],
+        "doNot": [
+          "Build a new health system",
+          "Hand-edit Doppler-owned env values",
+          "Claim PASS without fresh mcp-health receipt"
+        ],
+        "proveBeforeClaiming": [
+          "MCP_100_PERCENT_HEALTHY receipt",
+          "dashboard-app-mcp in mcp.json",
+          "Cursor MCP reload"
+        ]
+      },
+      "blockers": [],
+      "projectFile": "work-progress/projects/harvest-2026-08-10-mcp-runtime-verify-short-repair-v1.md",
+      "ownerIndexingStatus": "pointer-only",
+      "nextAction": "Retain as Intelligence Hub seed candidate",
+      "commitRefs": [
+        "CapitalGlass-Cross-Agent@4932f1b65c805ce78209e5ed7cfd51f6d9726b89"
+      ],
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Hand-edit Doppler-owned env values",
+        "Claim MCP_100_PERCENT_HEALTHY without fresh mcp:health receipt"
+      ]
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": "a769d1b134bf21e49ae22cfa3badabed36ea8eaef4315c60ff4e64362f138fa5",
+    "ledgerContentHashAfter": "a769d1b134bf21e49ae22cfa3badabed36ea8eaef4315c60ff4e64362f138fa5"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 9,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 9,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-1ca90d7a44b8",
+      "prompt-candidate-f066025110a3",
+      "prompt-candidate-0e342fbcb77d",
+      "prompt-candidate-b22f3e4d7d96",
+      "prompt-candidate-25876c23480a",
+      "prompt-candidate-8be8558fe1e9",
+      "prompt-candidate-9978981f52cd",
+      "prompt-candidate-6c921cbcdccb",
+      "prompt-candidate-4d11de962890"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  },
+  "updatedAt": "2026-08-11T04:16:50.344Z",
+  "sourceCommitSha": "4932f1b65c805ce78209e5ed7cfd51f6d9726b89"
+}
