@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "gold-mine-evidence-projection-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1",
+  "sourceCommitSha": "51afc0c9f555a9c12b55ae7639500eaf66865b75",
+  "productWorkflowCoverage": {
+    "computerEstimator": "OBSERVED",
+    "humanEstimator": "NOT_OBSERVED",
+    "documentCenter": "NOT_OBSERVED",
+    "planSetProcessing": "OBSERVED",
+    "ocrParser": "OBSERVED",
+    "revuBluebeam": "OBSERVED",
+    "bidComposer": "NOT_OBSERVED",
+    "proposals": "NOT_OBSERVED",
+    "vae": "NOT_OBSERVED",
+    "scraper": "NOT_OBSERVED",
+    "crossAppHandoffs": "OBSERVED",
+    "operatorReentry": "OBSERVED"
+  },
+  "corpusBias": {
+    "evidenceDomainDistribution": {
+      "sdlc": 3,
+      "governance": 2,
+      "receiptPlumbing": 2,
+      "infrastructure": 4,
+      "productOperation": 5,
+      "operatorWorkflow": 3,
+      "businessWorkflow": 2
+    },
+    "corpusBiasWarning": "Infrastructure/executor-heavy thread — CE estimating outcomes pending live Ryzen run",
+    "underObservedDomains": [
+      "Bid Composer intake",
+      "Human estimator approval",
+      "Revu live markup"
+    ]
+  },
+  "projections": [
+    {
+      "projectionId": "GMP-SR-001",
+      "packetId": "l-smb-readdirsync-hang-v1",
+      "signalClass": "PERFORMANCE_SIGNAL",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "l-smb-readdirsync-hang",
+      "workPackageId": "smith-ranch-ce-revu-full-set-v1",
+      "evidenceStrength": "high",
+      "businessImpact": "ESTIMATING",
+      "evidenceEra": "PRE_IMPLEMENTATION",
+      "observedAt": "2026-08-12T04:35:00.000Z",
+      "sourceWorkPackageId": "smith-ranch-ce-revu-full-set-v1",
+      "sourceCommitSha": "cd807ac8f881d64e72e18058b95be74b221c164d",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "summary": "L: SMB readdirSync hung during Smith Ranch PDF manifest enumeration",
+      "evidenceRefs": [
+        "TE-005",
+        "TW-001",
+        "WM-001"
+      ]
+    },
+    {
+      "projectionId": "GMP-SR-002",
+      "packetId": "appbuilder-profile-merge-required-v1",
+      "signalClass": "OPERATOR_FRICTION_SIGNAL",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "appbuilder-merge-before-dispatch",
+      "workPackageId": "smith-ranch-ce-revu-full-set-v1",
+      "evidenceStrength": "high",
+      "businessImpact": "OPERATOR_PRODUCTIVITY",
+      "evidenceEra": "PRE_IMPLEMENTATION",
+      "observedAt": "2026-08-12T04:35:00.000Z",
+      "sourceWorkPackageId": "smith-ranch-ce-revu-full-set-v1",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "summary": "Remote Phase A blocked until AppBuilder profile merges to trusted main",
+      "evidenceRefs": [
+        "TE-007",
+        "TW-003"
+      ]
+    },
+    {
+      "projectionId": "GMP-SR-003",
+      "packetId": "smith-ranch-phase-a-profile-implemented-v1",
+      "signalClass": "SUCCESS_PATTERN",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "governed-executor-profile-fixed-paths",
+      "workPackageId": "smith-ranch-ce-revu-full-set-v1",
+      "evidenceStrength": "medium",
+      "businessImpact": "ESTIMATING",
+      "evidenceEra": "PRE_IMPLEMENTATION",
+      "observedAt": "2026-08-12T04:35:00.000Z",
+      "sourceWorkPackageId": "smith-ranch-ce-revu-full-set-v1",
+      "sourceCommitSha": "cd807ac8f881d64e72e18058b95be74b221c164d",
+      "novelty": "NEW",
+      "implementationState": "IMPLEMENTED_IN_THREAD",
+      "summary": "Fixed-path smith-ranch-ce-batch profile with drift gate and no Revu in Phase A",
+      "evidenceRefs": [
+        "TE-002",
+        "TE-004",
+        "SP-001"
+      ]
+    },
+    {
+      "projectionId": "GMP-SR-004",
+      "packetId": "cmd-dispatch-phase-a-v1",
+      "signalClass": "OBSERVABILITY_GAP",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "no-live-ryzen-phase-a-metrics",
+      "workPackageId": "smith-ranch-ce-revu-full-set-v1",
+      "evidenceStrength": "medium",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "PRE_IMPLEMENTATION",
+      "observedAt": "2026-08-12T04:35:00.000Z",
+      "sourceWorkPackageId": "smith-ranch-ce-revu-full-set-v1",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "summary": "No live Ryzen GPU batch duration or phase receipts captured yet",
+      "evidenceRefs": [
+        "TE-004",
+        "TE-007",
+        "OG-001"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,256 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "host",
+      "description": "L: SMB latency caused Node readdirSync/listPdfEntries to hang during manifest build on WESLEY_WORK",
+      "evidenceRefs": [
+        "TE-005",
+        "conversation ~54s find vs hung readdirSync"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Use find-based manifest enumeration on /mnt/l corpus paths; avoid readdirSync in live adapter",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "rework",
+      "description": "Operator hardening isOperatorJobAllowed returned object but test expected boolean; profile blocked until resolveOperatorWorkPackageForProfile fix",
+      "evidenceRefs": [
+        "TE-003"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Run test:ryzen-remote-operator-hardening before claiming dispatch eligibility",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "deploy",
+      "description": "Implementation complete locally but Remote Push Sentinel blocked AppBuilder push — dispatch cannot run on trusted main",
+      "evidenceRefs": [
+        "TE-007"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Operator THREE_WAY_PUSH_APPROVED=YES + PR merge before gh workflow dispatch",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "retrieval",
+      "description": "Initial session work preceded full Intelligence Hub harvest packet — coordination slice staged separately",
+      "evidenceRefs": [
+        "TE-006"
+      ],
+      "estimatedImpact": "low",
+      "savedBy": "Run chat-thread-closeout-autopsy-harvest-v1 at thread end (this run)",
+      "roiRank": 4
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Operator must merge AppBuilder branch and approve push before remote Phase A can start",
+      "operatorCost": "medium",
+      "frequency": "observed",
+      "systemFix": "Surface appbuilder-profile-merge-required in handoff STATUS.json and harvest do-not-advance",
+      "evidenceRefs": [
+        "TE-007"
+      ],
+      "linkedWasteIds": [
+        "TW-003"
+      ],
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL",
+      "avoidable": false,
+      "automationCandidate": false
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Build 235-PDF input manifest from L: architectural folder on WESLEY_WORK",
+      "actualExecution": {
+        "steps": [
+          "Node readdirSync in buildInputManifest",
+          "Hung/aborted",
+          "Fallback find -maxdepth 1 for staged manifest"
+        ],
+        "outcome": "PARTIAL",
+        "evidenceRefs": [
+          "TE-005"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "find-based manifest builder for /mnt/l paths",
+          "Compare digest to expected 235 count gate",
+          "Write manifest before adapter dry-run"
+        ],
+        "outcome": "Would avoid hang and match live adapter behavior",
+        "requiredPreflight": [
+          "test -d corpus root",
+          "find count == 235"
+        ]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "medium",
+        "operatorFrustration": "medium"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Enable smith-ranch-ce-batch in ryzen remote operator allowlist",
+      "actualExecution": {
+        "steps": [
+          "Added profile to allowlist",
+          "isOperatorJobAllowed failed — wrong work package hardcoded",
+          "Fixed resolveOperatorWorkPackageForProfile"
+        ],
+        "outcome": "PASS after fix",
+        "evidenceRefs": [
+          "TE-003"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Extend operator hardening tests when adding new mutation profile",
+          "Verify isOperatorJobAllowed.allowed before handoff"
+        ],
+        "outcome": "First-pass eligibility",
+        "requiredPreflight": [
+          "npm run test:ryzen-remote-operator-hardening"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Used readdirSync for L: SMB corpus listing on WESLEY_WORK",
+      "whyItWasWrong": "SMB mount latency/hang breaks bounded adapter preflight",
+      "correctFirstMove": "find-based manifest with fixed corpus root in contract",
+      "preventiveControl": "smith-ranch-ce-batch-contract listPdfEntries uses find on /mnt/l",
+      "executionDeltaId": "ED-001"
+    },
+    {
+      "wrongMoveId": "WM-002",
+      "summary": "isOperatorJobAllowed required dual-machine-development-workflow-v1 for all profiles",
+      "whyItWasWrong": "Blocked smith-ranch-ce-batch dispatch eligibility despite allowlist entry",
+      "correctFirstMove": "resolveOperatorWorkPackageForProfile from profile allowlist map",
+      "preventiveControl": "run-ryzen-remote-operator-hardening.test.mjs coverage for new profiles",
+      "executionDeltaId": "ED-002"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "Intelligence Hub slice for smith-ranch-ce-revu-full-set-v1",
+      "whyRepeated": "Coordination slice committed in Cross-Agent before formal thread autopsy harvest run",
+      "firstKnownInstance": "CapitalGlass-Cross-Agent@51afc0c chore(hub): harvest smith-ranch",
+      "priorIndexSlice": "work-progress/intelligence-hub-slices/smith-ranch-ce-revu-full-set-v1.json",
+      "whyMissed": "Parallel coordination harvest vs protocol Lane B autopsy — intentional staging",
+      "avoidableBy": "Single harvest run after implementation (this autopsy supersedes prose-only staging)",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Replace readdirSync with find-based manifest on L: SMB paths in smith-ranch adapter",
+      "whyItPays": "Prevents Phase A preflight hang on WESLEY_WORK and Ryzen when corpus on slow mount",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-001"
+      ],
+      "seedAs": "hook"
+    },
+    {
+      "rank": 2,
+      "title": "Operator merge gate checklist in Z handoff STATUS for mutation profiles",
+      "whyItPays": "Reduces blocked dispatch after local implementation PASS",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-003",
+        "OF-001"
+      ],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 3,
+      "title": "Auto-extend ryzen operator hardening tests when adding mutation profiles",
+      "whyItPays": "Catches work-package allowlist regressions before handoff",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-002"
+      ],
+      "seedAs": "command"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "PHASE_A_COMPLETE",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "phase-a-ce-batch-receipt.json",
+        "ce-revu-handoff.json from Ryzen run"
+      ],
+      "lastKnownEvidence": [
+        "PHASE_A_READY_FOR_REMOTE_DISPATCH — implementation only"
+      ]
+    },
+    {
+      "awardOrVerdict": "PHASE_B_REVU_MARKUP",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "revu-production-takeoff-pilot-v1 human gate",
+        "WINDOWS_INTERACTIVE proof"
+      ],
+      "lastKnownEvidence": [
+        "revuInvoked false in profile contract",
+        "revu-mcp-production-workflow-locked"
+      ]
+    },
+    {
+      "awardOrVerdict": "FULLY_SEEDED_HUB",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "harvest:publish-hub-seed",
+        "index:freshness-gate"
+      ],
+      "lastKnownEvidence": [
+        "projection.hubPublishStatus not-run"
+      ]
+    },
+    {
+      "awardOrVerdict": "LIVE_GHA_DISPATCH",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "AppBuilder profile merged to trusted main"
+      ],
+      "lastKnownEvidence": [
+        "appbuilder-profile-merge-required",
+        "TE-007"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "smith-ranch-ce-revu-full-set-v1.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-12T04:30:00.000Z",
+    "preflightReceiptHash": "INDEX_HIT_AI_CACHE scout 53eef60"
+  }
+}

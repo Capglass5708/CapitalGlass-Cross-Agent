@@ -1,0 +1,78 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-smith-ranch-dispatch-merge-gate-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "a9034fabe134ef44f3442235528486e0dc96b224",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1",
+      "seedId": "IH-SMITH-RANCH-DISPATCH-MERGE-GATE-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-12T04:29:02.997Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "396f85a49b5f5d26f3e72c8c3eb9ae9da7979cafc404c2544cadce2362709df1"
+  },
+  "body": {
+    "seedId": "IH-SMITH-RANCH-DISPATCH-MERGE-GATE-001",
+    "kind": "failure-pattern",
+    "title": "Smith Ranch Phase A dispatch blocked until AppBuilder main merge",
+    "summary": "Governed profile on feature branch; Remote Push Sentinel blocks push; GHA dispatch requires trusted main.",
+    "canonicalQuestion": "What blocks smith-ranch-ce-batch live dispatch after local tests PASS?",
+    "alternateQuestions": [
+      "Which approval env unlocks AppBuilder push?"
+    ],
+    "shortAnswer": "Governed profile on feature branch; Remote Push Sentinel blocks push; GHA dispatch requires trusted main.",
+    "detailedAnswer": "Smith Ranch Phase A dispatch blocked until AppBuilder main merge",
+    "retrievalQuestions": [
+      "What blocks smith-ranch-ce-batch live dispatch after local tests PASS?",
+      "Which approval env unlocks AppBuilder push?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "PHASE_A_READY_FOR_REMOTE_DISPATCH but no Ryzen run",
+      "startAt": [
+        "smith-ranch-ce-revu-full-set-v1.json",
+        "Z handoff STATUS.json"
+      ],
+      "runPreflight": [
+        "git merge-base main feat branch",
+        "THREE_WAY_PUSH_APPROVED"
+      ],
+      "doNot": [
+        "gh workflow dispatch before main contains profile",
+        "Treat offline tests as Phase A complete"
+      ],
+      "proveBeforeClaiming": [
+        "main contains cd807ac8f",
+        "phase-a-ce-batch-receipt.json exists"
+      ]
+    },
+    "evidenceRefs": [
+      "TE-007",
+      "TW-003",
+      "appbuilder-profile-merge-required"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "HUMAN_REVIEW",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1/seed-packets/IH-SMITH-RANCH-DISPATCH-MERGE-GATE-001.json"
+    ],
+    "harvestId": "harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1"
+  }
+}

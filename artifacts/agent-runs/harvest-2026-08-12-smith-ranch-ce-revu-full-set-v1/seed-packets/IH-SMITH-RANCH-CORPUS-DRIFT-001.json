@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-SMITH-RANCH-CORPUS-DRIFT-001",
+  "kind": "failure-pattern",
+  "title": "235-PDF INPUT_CORPUS_DRIFT gate for Smith Ranch",
+  "summary": "Expected 235 architectural PDFs; drift emits INPUT_CORPUS_DRIFT unless CG_SMITH_RANCH_CORPUS_DRIFT_APPROVED=true.",
+  "retrievalQuestions": [
+    "What is Smith Ranch expected PDF count and drift code?",
+    "How does operator approve corpus drift?"
+  ],
+  "evidenceRefs": [
+    "TE-005",
+    "smith-ranch-235-manifest-digest-v1",
+    "64b404b7702a86f9fdd28861ed2367956813676d85b3c94334b8aa1f753e742e"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Smith Ranch batch preflight count mismatch",
+    "startAt": [
+      "smith-ranch-input-manifest.json",
+      "smith-ranch-ce-batch-contract.mjs"
+    ],
+    "runPreflight": [
+      "compare manifest pdfCount to 235"
+    ],
+    "doNot": [
+      "Silently accept corpus drift",
+      "Change fixed source root without new work package"
+    ],
+    "proveBeforeClaiming": [
+      "drift gate PASS or explicit operator env approval"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-SMITH-RANCH-L-SMB-MANIFEST-001",
+  "kind": "failure-pattern",
+  "title": "L: SMB readdirSync hangs Smith Ranch corpus manifest",
+  "summary": "Node readdirSync on /mnt/l Capital-Glass-Projects architectural folder hung; find completed in ~54s.",
+  "retrievalQuestions": [
+    "Why does smith-ranch manifest build hang on WESLEY_WORK?",
+    "What replaces readdirSync for L: SMB PDF enumeration?"
+  ],
+  "evidenceRefs": [
+    "TE-005",
+    "TW-001",
+    "WM-001",
+    "ED-001"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Executor profile lists PDFs from L: on WESLEY_WORK SMB",
+    "startAt": [
+      "smith-ranch-ce-revu-full-set-v1.json",
+      "smith-ranch-ce-batch-contract.mjs"
+    ],
+    "runPreflight": [
+      "find fixed corpus -maxdepth 1 -name \"*.pdf\" | wc -l"
+    ],
+    "doNot": [
+      "fs.readdirSync on /mnt/l large folders"
+    ],
+    "proveBeforeClaiming": [
+      "pdfCount==235",
+      "manifest digest match"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

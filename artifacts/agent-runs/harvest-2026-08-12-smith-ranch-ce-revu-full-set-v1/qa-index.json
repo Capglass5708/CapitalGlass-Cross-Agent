@@ -1,0 +1,184 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-SMITH-RANCH-CORPUS-DRIFT-001",
+      "questionId": "IHSMITHRANCH",
+      "canonicalQuestion": "What is Smith Ranch expected PDF count and drift code?",
+      "alternateQuestions": [
+        "How does operator approve corpus drift?"
+      ],
+      "shortAnswer": "Expected 235 architectural PDFs; drift emits INPUT_CORPUS_DRIFT unless CG_SMITH_RANCH_CORPUS_DRIFT_APPROVED=true.",
+      "detailedAnswer": "235-PDF INPUT_CORPUS_DRIFT gate for Smith Ranch",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-12T04:29:02.994Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1/seed-packets/IH-SMITH-RANCH-CORPUS-DRIFT-001.json"
+      ],
+      "authorityCommit": [
+        "a9034fa"
+      ],
+      "evidenceUrls": [
+        "TE-005",
+        "smith-ranch-235-manifest-digest-v1",
+        "64b404b7702a86f9fdd28861ed2367956813676d85b3c94334b8aa1f753e742e"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Smith Ranch batch preflight count mismatch",
+        "startAt": [
+          "smith-ranch-input-manifest.json",
+          "smith-ranch-ce-batch-contract.mjs"
+        ],
+        "runPreflight": [
+          "compare manifest pdfCount to 235"
+        ],
+        "doNot": [
+          "Silently accept corpus drift",
+          "Change fixed source root without new work package"
+        ],
+        "proveBeforeClaiming": [
+          "drift gate PASS or explicit operator env approval"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-SMITH-RANCH-DISPATCH-MERGE-GATE-001",
+      "questionId": "IHSMITHRANCH",
+      "canonicalQuestion": "What blocks smith-ranch-ce-batch live dispatch after local tests PASS?",
+      "alternateQuestions": [
+        "Which approval env unlocks AppBuilder push?"
+      ],
+      "shortAnswer": "Governed profile on feature branch; Remote Push Sentinel blocks push; GHA dispatch requires trusted main.",
+      "detailedAnswer": "Smith Ranch Phase A dispatch blocked until AppBuilder main merge",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-12T04:29:02.994Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1/seed-packets/IH-SMITH-RANCH-DISPATCH-MERGE-GATE-001.json"
+      ],
+      "authorityCommit": [
+        "a9034fa"
+      ],
+      "evidenceUrls": [
+        "TE-007",
+        "TW-003",
+        "appbuilder-profile-merge-required"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "PHASE_A_READY_FOR_REMOTE_DISPATCH but no Ryzen run",
+        "startAt": [
+          "smith-ranch-ce-revu-full-set-v1.json",
+          "Z handoff STATUS.json"
+        ],
+        "runPreflight": [
+          "git merge-base main feat branch",
+          "THREE_WAY_PUSH_APPROVED"
+        ],
+        "doNot": [
+          "gh workflow dispatch before main contains profile",
+          "Treat offline tests as Phase A complete"
+        ],
+        "proveBeforeClaiming": [
+          "main contains cd807ac8f",
+          "phase-a-ce-batch-receipt.json exists"
+        ]
+      },
+      "promotionClass": "HUMAN_REVIEW",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-SMITH-RANCH-L-SMB-MANIFEST-001",
+      "questionId": "IHSMITHRANCH",
+      "canonicalQuestion": "Why does smith-ranch manifest build hang on WESLEY_WORK?",
+      "alternateQuestions": [
+        "What replaces readdirSync for L: SMB PDF enumeration?"
+      ],
+      "shortAnswer": "Node readdirSync on /mnt/l Capital-Glass-Projects architectural folder hung; find completed in ~54s.",
+      "detailedAnswer": "L: SMB readdirSync hangs Smith Ranch corpus manifest",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-12T04:29:02.994Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1/seed-packets/IH-SMITH-RANCH-L-SMB-MANIFEST-001.json"
+      ],
+      "authorityCommit": [
+        "a9034fa"
+      ],
+      "evidenceUrls": [
+        "TE-005",
+        "TW-001",
+        "WM-001",
+        "ED-001"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Executor profile lists PDFs from L: on WESLEY_WORK SMB",
+        "startAt": [
+          "smith-ranch-ce-revu-full-set-v1.json",
+          "smith-ranch-ce-batch-contract.mjs"
+        ],
+        "runPreflight": [
+          "find fixed corpus -maxdepth 1 -name \"*.pdf\" | wc -l"
+        ],
+        "doNot": [
+          "fs.readdirSync on /mnt/l large folders"
+        ],
+        "proveBeforeClaiming": [
+          "pdfCount==235",
+          "manifest digest match"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    }
+  ]
+}

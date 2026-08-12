@@ -1,0 +1,76 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-smith-ranch-corpus-drift-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "a9034fabe134ef44f3442235528486e0dc96b224",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1",
+      "seedId": "IH-SMITH-RANCH-CORPUS-DRIFT-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-12T04:29:02.997Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "cb76ffbf63d449a9f418fec9261f61005e144e451f1c594503957aa53c857b1c"
+  },
+  "body": {
+    "seedId": "IH-SMITH-RANCH-CORPUS-DRIFT-001",
+    "kind": "failure-pattern",
+    "title": "235-PDF INPUT_CORPUS_DRIFT gate for Smith Ranch",
+    "summary": "Expected 235 architectural PDFs; drift emits INPUT_CORPUS_DRIFT unless CG_SMITH_RANCH_CORPUS_DRIFT_APPROVED=true.",
+    "canonicalQuestion": "What is Smith Ranch expected PDF count and drift code?",
+    "alternateQuestions": [
+      "How does operator approve corpus drift?"
+    ],
+    "shortAnswer": "Expected 235 architectural PDFs; drift emits INPUT_CORPUS_DRIFT unless CG_SMITH_RANCH_CORPUS_DRIFT_APPROVED=true.",
+    "detailedAnswer": "235-PDF INPUT_CORPUS_DRIFT gate for Smith Ranch",
+    "retrievalQuestions": [
+      "What is Smith Ranch expected PDF count and drift code?",
+      "How does operator approve corpus drift?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Smith Ranch batch preflight count mismatch",
+      "startAt": [
+        "smith-ranch-input-manifest.json",
+        "smith-ranch-ce-batch-contract.mjs"
+      ],
+      "runPreflight": [
+        "compare manifest pdfCount to 235"
+      ],
+      "doNot": [
+        "Silently accept corpus drift",
+        "Change fixed source root without new work package"
+      ],
+      "proveBeforeClaiming": [
+        "drift gate PASS or explicit operator env approval"
+      ]
+    },
+    "evidenceRefs": [
+      "TE-005",
+      "smith-ranch-235-manifest-digest-v1",
+      "64b404b7702a86f9fdd28861ed2367956813676d85b3c94334b8aa1f753e742e"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "AUTOMATIC",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1/seed-packets/IH-SMITH-RANCH-CORPUS-DRIFT-001.json"
+    ],
+    "harvestId": "harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1"
+  }
+}

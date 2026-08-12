@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "cross-agent-thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1",
+  "threadScope": "smith-ranch-ce-revu-full-set-v1 — governed CE Phase A executor profile + cross-desk handoff",
+  "generatedAt": "2026-08-12T04:30:00.000Z",
+  "events": [
+    {
+      "eventId": "TE-001",
+      "phase": "operator",
+      "summary": "Operator mission smith-ranch-ce-revu-full-set-v1: CE Phase A on RYZEN9 + governed profile, no Revu markup",
+      "evidenceRefs": [
+        "user mission prompt"
+      ]
+    },
+    {
+      "eventId": "TE-002",
+      "phase": "implementation",
+      "summary": "Implemented smith-ranch-ce-batch executor profile in CG-AppBuilder-MCP (contract, adapter, allowlist, workflow, tests)",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP@cd807ac8f881d64e72e18058b95be74b221c164d"
+      ]
+    },
+    {
+      "eventId": "TE-003",
+      "phase": "implementation",
+      "summary": "Fixed isOperatorJobAllowed hardcoded dual-machine-development-workflow-v1 blocking Smith Ranch profile",
+      "evidenceRefs": [
+        "ryzen-remote-operator-hardening-lib.mjs",
+        "run-ryzen-remote-operator-hardening.test.mjs 16/16 PASS"
+      ]
+    },
+    {
+      "eventId": "TE-004",
+      "phase": "verification",
+      "summary": "npm run test:ryzen9desk-smith-ranch-ce-batch — 16/16 PASS offline",
+      "evidenceRefs": [
+        "scripts/tests/run-ryzen9desk-smith-ranch-ce-batch.test.mjs"
+      ]
+    },
+    {
+      "eventId": "TE-005",
+      "phase": "implementation",
+      "summary": "Staged Z handoff + 235-PDF manifest via find (digest 64b404b7...) — L: SMB slow for Node readdirSync",
+      "evidenceRefs": [
+        "/mnt/z/Office/Wes/Direct Connect/handoffs/smith-ranch-ce-revu-full-set-v1/smith-ranch-input-manifest.json"
+      ]
+    },
+    {
+      "eventId": "TE-006",
+      "phase": "harvest",
+      "summary": "Cross-Agent Intelligence Hub slice + project file + handoff row priority 1b",
+      "evidenceRefs": [
+        "CapitalGlass-Cross-Agent@51afc0c9f555a9c12b55ae7639500eaf66865b75",
+        "work-progress/intelligence-hub-slices/smith-ranch-ce-revu-full-set-v1.json"
+      ]
+    },
+    {
+      "eventId": "TE-007",
+      "phase": "blocker",
+      "summary": "AppBuilder push blocked by Remote Push Sentinel — profile not on trusted main for live GHA dispatch",
+      "evidenceRefs": [
+        "THREE_WAY_PUSH_APPROVED required",
+        "feat/cursor-wsl2-front-door-v1@2a6dbc642"
+      ]
+    },
+    {
+      "eventId": "TE-008",
+      "phase": "decision",
+      "summary": "Phase B Revu explicitly QUEUED_POLICY_GATE; adapter sets revuInvoked false",
+      "evidenceRefs": [
+        "smith-ranch-ce-batch-contract.mjs",
+        "revu-mcp-production-workflow-locked blocker slice"
+      ]
+    }
+  ]
+}

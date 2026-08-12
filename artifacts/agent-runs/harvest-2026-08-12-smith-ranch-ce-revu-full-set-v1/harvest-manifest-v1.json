@@ -1,0 +1,440 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "51afc0c9f555a9c12b55ae7639500eaf66865b75",
+  "sourceBranch": "work/active-ledger-currentness-ingestion-and-harvest-v1",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-12T04:30:00.000Z",
+  "updatedAt": "2026-08-12T04:35:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_VALIDATED",
+  "doNotAdvance": [
+    "PHASE_A_COMPLETE without phase-a-ce-batch-receipt.json and ce-revu-handoff.json from Ryzen",
+    "PHASE_B_REVU without human gate and WINDOWS_INTERACTIVE proof",
+    "Live GHA dispatch before AppBuilder profile on trusted main",
+    "FULLY_SEEDED without index:freshness-gate receipt",
+    "Run harvest:publish-hub-seed or index:publish from Cursor"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 4,
+      "seeds": 3,
+      "roiItems": 3,
+      "operatorFriction": 1,
+      "executionDeltas": 2,
+      "outcomes": 1
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Operator runs harvest:publish-hub-seed + index:publish — NOT_RUN_BY_CURSOR"
+  },
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "1.2.0",
+    "eligibleCandidates": 0,
+    "rejectedUnrelatedCandidates": 0,
+    "exportStatus": "not-run",
+    "dataExtractionStatus": "not-run",
+    "catalogPublishStatus": "not-run",
+    "retrievalStatus": "not-run",
+    "targetCatalog": "L:\\02-catalog\\Harvest\\Harvest Protocol Self Learning",
+    "authorityStatus": "PROPOSAL",
+    "automaticProtocolMutation": false
+  },
+  "relatedRepos": [
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "branch": "feat/cursor-wsl2-front-door-v1",
+      "commitSha": "2a6dbc642881d64e72e18058b95be74b221c164d",
+      "role": "smith-ranch-ce-batch executor profile + tests"
+    },
+    {
+      "repo": "Computer-Estimator-glazing-spine",
+      "branch": "unknown-at-harvest",
+      "commitSha": "unknown",
+      "role": "CE batch + phases 1-5 scripts (consumer)"
+    },
+    {
+      "repo": "Computer Estimator",
+      "branch": "unknown-at-harvest",
+      "commitSha": "unknown",
+      "role": "opening stack install script"
+    }
+  ],
+  "packets": [
+    {
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-12_smith-ranch-ce-revu-full-set-v1.md",
+      "blockers": [],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@cd807ac8f881d64e72e18058b95be74b221c164d",
+        "CG-AppBuilder-MCP@2a6dbc642881d64e72e18058b95be74b221c164d"
+      ],
+      "packetKind": "outcome",
+      "packetId": "smith-ranch-phase-a-profile-implemented-v1",
+      "packetTitle": "Governed smith-ranch-ce-batch executor profile implemented and tested offline",
+      "state": "CODE_COMPLETE",
+      "packetVerdict": "PHASE_A_READY_FOR_REMOTE_DISPATCH",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "nextAction": "Merge AppBuilder to main; dispatch ryzen9desk-executor-dispatch.yml",
+      "advancementGate": "APPBUILDER_MAIN_MERGE",
+      "doNotAdvance": [
+        "PHASE_A_COMPLETE without Ryzen receipts"
+      ],
+      "evidenceRefs": [
+        "TE-002",
+        "TE-004"
+      ],
+      "changeImplemented": "smith-ranch-ce-batch profile + adapter + 16 tests",
+      "beforeState": "No Smith Ranch remote CE batch path",
+      "afterState": "Profile allowlisted; offline tests PASS; Z handoff staged",
+      "measurement": "16/16 unit tests",
+      "expectedEffect": "Remote Phase A on Ryzen with 235 PDF batch + phases 1-5 on primary doc",
+      "observedEffect": "Offline validation only — no live run",
+      "effectiveness": "NO_OBSERVABLE_EFFECT_YET",
+      "residuals": [
+        "Live Ryzen execution pending",
+        "readdirSync SMB risk"
+      ],
+      "goldMineSignalClass": "RESOLUTION_SIGNAL"
+    },
+    {
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-12_smith-ranch-ce-revu-full-set-v1.md",
+      "blockers": [],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@cd807ac8f881d64e72e18058b95be74b221c164d",
+        "CG-AppBuilder-MCP@2a6dbc642881d64e72e18058b95be74b221c164d"
+      ],
+      "packetKind": "decision",
+      "packetId": "smith-ranch-fixed-corpus-no-revu-v1",
+      "packetTitle": "Fixed L: corpus root; Phase B Revu queued; no caller-controlled shell",
+      "state": "COMPLETE",
+      "packetVerdict": "ENFORCED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "nextAction": "None — contract locked in profile",
+      "advancementGate": "CONTRACT_FROZEN",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-001",
+        "TE-008"
+      ],
+      "decision": "235 PDF architectural folder only; revuInvoked false; phaseBStatus QUEUED_POLICY_GATE",
+      "alternativesRejected": [
+        "Per-sheet phases 2-5 across all 235 PDFs",
+        "Caller-supplied paths or shell strings"
+      ],
+      "goldMineSignalClass": "ADOPTION_SIGNAL"
+    },
+    {
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-12_smith-ranch-ce-revu-full-set-v1.md",
+      "blockers": [],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@cd807ac8f881d64e72e18058b95be74b221c164d",
+        "CG-AppBuilder-MCP@2a6dbc642881d64e72e18058b95be74b221c164d"
+      ],
+      "packetKind": "blocker",
+      "packetId": "appbuilder-profile-merge-required-v1",
+      "packetTitle": "AppBuilder profile must merge to trusted main before live dispatch",
+      "state": "HOLD",
+      "packetVerdict": "BLOCKED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "nextAction": "Operator PR merge with THREE_WAY_PUSH_APPROVED=YES",
+      "advancementGate": "MAIN_MERGE",
+      "doNotAdvance": [
+        "Live GHA dispatch before main merge"
+      ],
+      "evidenceRefs": [
+        "TE-007"
+      ],
+      "blockerId": "appbuilder-profile-merge-required",
+      "status": "OPEN",
+      "proofCommandId": "gh workflow run after main contains cd807ac8f",
+      "goldMineSignalClass": "PROBLEM_SIGNAL"
+    },
+    {
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-12_smith-ranch-ce-revu-full-set-v1.md",
+      "blockers": [],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@cd807ac8f881d64e72e18058b95be74b221c164d",
+        "CG-AppBuilder-MCP@2a6dbc642881d64e72e18058b95be74b221c164d"
+      ],
+      "packetKind": "blocker",
+      "packetId": "revu-phase-b-policy-gate-v1",
+      "packetTitle": "Revu Phase B blocked by suite production workflow lock",
+      "state": "HOLD",
+      "packetVerdict": "QUEUED_POLICY_GATE",
+      "ownerRepo": "CapitalGlassRevu",
+      "nextAction": "Complete revu-production-takeoff-pilot-v1 with human approval",
+      "advancementGate": "HUMAN_ESTIMATOR_APPROVAL",
+      "doNotAdvance": [
+        "Unattended Revu markup",
+        "phaseB before Phase A receipts"
+      ],
+      "evidenceRefs": [
+        "TE-008",
+        "BY-KIND/active-work-blockers revu-mcp-production-workflow-locked"
+      ],
+      "blockerId": "revu-mcp-production-workflow-locked",
+      "status": "OPEN",
+      "proofCommandId": "revu-production-takeoff-pilot-v1",
+      "goldMineSignalClass": "PROBLEM_SIGNAL"
+    },
+    {
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-12_smith-ranch-ce-revu-full-set-v1.md",
+      "blockers": [],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@cd807ac8f881d64e72e18058b95be74b221c164d",
+        "CG-AppBuilder-MCP@2a6dbc642881d64e72e18058b95be74b221c164d"
+      ],
+      "packetKind": "mistake",
+      "packetId": "operator-allowlist-wp-hardcode-v1",
+      "packetTitle": "isOperatorJobAllowed hardcoded wrong work package for new profile",
+      "state": "RESOLVED",
+      "packetVerdict": "FIXED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "nextAction": "None — fixed in same session",
+      "advancementGate": "TEST_PASS",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-003",
+        "WM-002"
+      ],
+      "wrongMoveId": "WM-002",
+      "actualExecution": "Required dual-machine-development-workflow-v1 for all profiles",
+      "optimalExecution": "resolveOperatorWorkPackageForProfile from allowlist",
+      "preventiveControl": "test:ryzen-remote-operator-hardening for new profiles",
+      "goldMineSignalClass": "RESOLUTION_SIGNAL"
+    },
+    {
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-12_smith-ranch-ce-revu-full-set-v1.md",
+      "blockers": [],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@cd807ac8f881d64e72e18058b95be74b221c164d",
+        "CG-AppBuilder-MCP@2a6dbc642881d64e72e18058b95be74b221c164d"
+      ],
+      "packetKind": "mistake",
+      "packetId": "l-smb-readdirsync-hang-v1",
+      "packetTitle": "readdirSync hung on L: SMB corpus enumeration",
+      "state": "OPEN",
+      "packetVerdict": "MITIGATION_CANDIDATE",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "nextAction": "Replace listPdfEntries with find-based builder in adapter",
+      "advancementGate": "ADAPTER_PATCH",
+      "doNotAdvance": [
+        "Claim Phase A preflight safe on WESLEY_WORK L: without fix"
+      ],
+      "evidenceRefs": [
+        "TE-005",
+        "WM-001"
+      ],
+      "wrongMoveId": "WM-001",
+      "actualExecution": "Node fs.readdirSync on /mnt/l/.../Architectural",
+      "optimalExecution": "find -maxdepth 1 enumeration like staged manifest",
+      "preventiveControl": "find-based manifest in smith-ranch-ce-batch-contract",
+      "goldMineSignalClass": "PERFORMANCE_SIGNAL"
+    },
+    {
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-12_smith-ranch-ce-revu-full-set-v1.md",
+      "blockers": [],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@cd807ac8f881d64e72e18058b95be74b221c164d",
+        "CG-AppBuilder-MCP@2a6dbc642881d64e72e18058b95be74b221c164d"
+      ],
+      "packetKind": "faster_path",
+      "packetId": "find-manifest-l-smb-v1",
+      "packetTitle": "Use find not readdirSync for L: SMB PDF manifests",
+      "state": "RECOMMENDED",
+      "packetVerdict": "ADVISORY",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "nextAction": "Patch adapter listPdfEntries",
+      "advancementGate": "CODE_CHANGE",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "ED-001",
+        "TW-001"
+      ],
+      "situation": "L: corpus manifest on WESLEY_WORK",
+      "whatHappened": "readdirSync hung; find completed in ~54s",
+      "rightFirstMove": "find-based manifest in contract module",
+      "requiredGuard": "INPUT_CORPUS_DRIFT gate with fixed expected count 235",
+      "goldMineSignalClass": "AGENT_FRICTION_SIGNAL"
+    },
+    {
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-12_smith-ranch-ce-revu-full-set-v1.md",
+      "blockers": [],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@cd807ac8f881d64e72e18058b95be74b221c164d",
+        "CG-AppBuilder-MCP@2a6dbc642881d64e72e18058b95be74b221c164d"
+      ],
+      "packetKind": "command",
+      "packetId": "cmd-test-smith-ranch-ce-batch-v1",
+      "packetTitle": "Offline proof: npm run test:ryzen9desk-smith-ranch-ce-batch",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "nextAction": "Re-run after adapter manifest fix",
+      "advancementGate": "TEST_PASS",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-004"
+      ],
+      "command": "npm run test:ryzen9desk-smith-ranch-ce-batch",
+      "host": "WESLEY_WORK WSL",
+      "provesGate": "PROFILE_CONTRACT",
+      "expectedPassSignal": "16/16 PASS",
+      "goldMineSignalClass": "SUCCESS_PATTERN"
+    },
+    {
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-12_smith-ranch-ce-revu-full-set-v1.md",
+      "blockers": [],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@cd807ac8f881d64e72e18058b95be74b221c164d",
+        "CG-AppBuilder-MCP@2a6dbc642881d64e72e18058b95be74b221c164d"
+      ],
+      "packetKind": "command",
+      "packetId": "cmd-dispatch-phase-a-v1",
+      "packetTitle": "Live Phase A dispatch after main merge",
+      "state": "PENDING",
+      "packetVerdict": "NOT_RUN",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "nextAction": "gh workflow run after merge",
+      "advancementGate": "MAIN_MERGE",
+      "doNotAdvance": [
+        "Dispatch before merge"
+      ],
+      "evidenceRefs": [
+        "TE-007"
+      ],
+      "command": "gh workflow run ryzen9desk-executor-dispatch.yml -f work_package_id=smith-ranch-ce-revu-full-set-v1 -f job_profile=smith-ranch-ce-batch -f approval_ref=smith-ranch-ce-revu-full-set-v1",
+      "host": "WESLEY_WORK",
+      "provesGate": "PHASE_A_LIVE",
+      "expectedPassSignal": "phase-a-ce-batch-receipt.json PASS",
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL"
+    },
+    {
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-12_smith-ranch-ce-revu-full-set-v1.md",
+      "blockers": [],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@cd807ac8f881d64e72e18058b95be74b221c164d",
+        "CG-AppBuilder-MCP@2a6dbc642881d64e72e18058b95be74b221c164d"
+      ],
+      "packetKind": "evidence",
+      "packetId": "smith-ranch-235-manifest-digest-v1",
+      "packetTitle": "235-PDF corpus manifest digest anchored",
+      "state": "COMPLETE",
+      "packetVerdict": "ANCHORED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "nextAction": "Re-verify digest on Ryzen before batch",
+      "advancementGate": "MANIFEST_MATCH",
+      "doNotAdvance": [
+        "Skip INPUT_CORPUS_DRIFT on live run"
+      ],
+      "evidenceRefs": [
+        "TE-005"
+      ],
+      "type": "manifest-digest",
+      "pathOrSha": "64b404b7702a86f9fdd28861ed2367956813676d85b3c94334b8aa1f753e742e",
+      "provesWhat": "Expected 235 architectural PDFs at fixed root",
+      "goldMineSignalClass": "ADOPTION_SIGNAL"
+    },
+    {
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-12_smith-ranch-ce-revu-full-set-v1.md",
+      "blockers": [],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@cd807ac8f881d64e72e18058b95be74b221c164d",
+        "CG-AppBuilder-MCP@2a6dbc642881d64e72e18058b95be74b221c164d"
+      ],
+      "packetKind": "protocol_upgrade",
+      "packetId": "smith-ranch-find-manifest-gate-v1",
+      "packetTitle": "Protocol: find-based L: SMB manifest enumeration for executor profiles",
+      "state": "CANDIDATE",
+      "packetVerdict": "POLICY_GATED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "nextAction": "Implement in smith-ranch-ce-batch-contract.mjs",
+      "advancementGate": "CODE_REVIEW",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TW-001",
+        "ROI-1"
+      ],
+      "seedAs": "POLICY_GATED",
+      "ownerRepoTarget": "CG-AppBuilder-MCP",
+      "promotionClass": "POLICY_GATED",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Executor profile reads PDF corpus from /mnt/l on WESLEY_WORK",
+        "startAt": [
+          "smith-ranch-ce-revu-full-set-v1.json slice",
+          "smith-ranch-ce-batch-contract.mjs"
+        ],
+        "runPreflight": [
+          "find corpus | wc -l",
+          "npm run test:ryzen9desk-smith-ranch-ce-batch"
+        ],
+        "doNot": [
+          "Use readdirSync on L: SMB for large folders",
+          "Dispatch before AppBuilder main merge"
+        ],
+        "proveBeforeClaiming": [
+          "manifest pdfCount==235",
+          "digest matches staged manifest"
+        ]
+      },
+      "goldMineSignalClass": "AGENT_FRICTION_SIGNAL"
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": "2f81b0c9d610dac8dfc1bc8e380c342ccdfad191b266ab9223b14bc66fa203c0",
+    "ledgerContentHashAfter": "2f81b0c9d610dac8dfc1bc8e380c342ccdfad191b266ab9223b14bc66fa203c0"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 12,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 12,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-53d54658dbe6",
+      "prompt-candidate-f82a02c3a74c",
+      "prompt-candidate-ea5a608412b6",
+      "prompt-candidate-2f78ca09f4db",
+      "prompt-candidate-d7d9e442e0d8",
+      "prompt-candidate-fa38688fbaa3",
+      "prompt-candidate-3654fbbbcefc",
+      "prompt-candidate-d1171dd1794b",
+      "prompt-candidate-e7fe18e7f109",
+      "prompt-candidate-611bfde12515",
+      "prompt-candidate-50b8ad737dd5",
+      "prompt-candidate-f426061bd309"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  },
+  "goldMineHarvest": {
+    "noSuppressionDeclared": true,
+    "note": "All distinct improvement signals retained including deferred live-run and Revu Phase B items"
+  }
+}

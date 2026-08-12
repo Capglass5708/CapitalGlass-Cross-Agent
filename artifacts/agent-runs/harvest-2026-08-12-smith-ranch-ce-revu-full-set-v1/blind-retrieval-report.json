@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "cross-agent-harvest-blind-retrieval-benchmark-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1",
+  "testedAt": "2026-08-12T04:29:03.393Z",
+  "blindQueryOnly": true,
+  "seedCount": 3,
+  "fixtureCount": 6,
+  "results": [
+    {
+      "query": "What is Smith Ranch expected PDF count and drift code?",
+      "returnedId": "IH-SMITH-RANCH-CORPUS-DRIFT-001",
+      "expectedSeedId": "IH-SMITH-RANCH-CORPUS-DRIFT-001",
+      "topK": [
+        {
+          "seedId": "IH-SMITH-RANCH-CORPUS-DRIFT-001",
+          "score": 7
+        },
+        {
+          "seedId": "IH-SMITH-RANCH-L-SMB-MANIFEST-001",
+          "score": 4
+        },
+        {
+          "seedId": "IH-SMITH-RANCH-DISPATCH-MERGE-GATE-001",
+          "score": 3
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "How does operator approve corpus drift?",
+      "returnedId": "IH-SMITH-RANCH-CORPUS-DRIFT-001",
+      "expectedSeedId": "IH-SMITH-RANCH-CORPUS-DRIFT-001",
+      "topK": [
+        {
+          "seedId": "IH-SMITH-RANCH-CORPUS-DRIFT-001",
+          "score": 5
+        },
+        {
+          "seedId": "IH-SMITH-RANCH-L-SMB-MANIFEST-001",
+          "score": 2
+        },
+        {
+          "seedId": "IH-SMITH-RANCH-DISPATCH-MERGE-GATE-001",
+          "score": 1
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "What blocks smith-ranch-ce-batch live dispatch after local tests PASS?",
+      "returnedId": "IH-SMITH-RANCH-DISPATCH-MERGE-GATE-001",
+      "expectedSeedId": "IH-SMITH-RANCH-DISPATCH-MERGE-GATE-001",
+      "topK": [
+        {
+          "seedId": "IH-SMITH-RANCH-DISPATCH-MERGE-GATE-001",
+          "score": 11
+        },
+        {
+          "seedId": "IH-SMITH-RANCH-CORPUS-DRIFT-001",
+          "score": 5
+        },
+        {
+          "seedId": "IH-SMITH-RANCH-L-SMB-MANIFEST-001",
+          "score": 4
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "Which approval env unlocks AppBuilder push?",
+      "returnedId": "IH-SMITH-RANCH-DISPATCH-MERGE-GATE-001",
+      "expectedSeedId": "IH-SMITH-RANCH-DISPATCH-MERGE-GATE-001",
+      "topK": [
+        {
+          "seedId": "IH-SMITH-RANCH-DISPATCH-MERGE-GATE-001",
+          "score": 5
+        },
+        {
+          "seedId": "IH-SMITH-RANCH-CORPUS-DRIFT-001",
+          "score": 1
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "Why does smith-ranch manifest build hang on WESLEY_WORK?",
+      "returnedId": "IH-SMITH-RANCH-L-SMB-MANIFEST-001",
+      "expectedSeedId": "IH-SMITH-RANCH-L-SMB-MANIFEST-001",
+      "topK": [
+        {
+          "seedId": "IH-SMITH-RANCH-L-SMB-MANIFEST-001",
+          "score": 8
+        },
+        {
+          "seedId": "IH-SMITH-RANCH-CORPUS-DRIFT-001",
+          "score": 6
+        },
+        {
+          "seedId": "IH-SMITH-RANCH-DISPATCH-MERGE-GATE-001",
+          "score": 4
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "What replaces readdirSync for L: SMB PDF enumeration?",
+      "returnedId": "IH-SMITH-RANCH-L-SMB-MANIFEST-001",
+      "expectedSeedId": "IH-SMITH-RANCH-L-SMB-MANIFEST-001",
+      "topK": [
+        {
+          "seedId": "IH-SMITH-RANCH-L-SMB-MANIFEST-001",
+          "score": 4
+        },
+        {
+          "seedId": "IH-SMITH-RANCH-CORPUS-DRIFT-001",
+          "score": 1
+        },
+        {
+          "seedId": "IH-SMITH-RANCH-DISPATCH-MERGE-GATE-001",
+          "score": 1
+        }
+      ],
+      "pass": true
+    }
+  ],
+  "verdict": "BLIND_RETRIEVAL_PASS"
+}

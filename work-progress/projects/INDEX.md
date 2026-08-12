@@ -68,12 +68,17 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `blocker-z-mirror-wave-sdlc-source-v1` | — | OPEN | DEFERRED | Data-Extraction | `harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1` | see harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1.md |
 | `bounded-command-closeout-v1` | — | RECORDED | PASS | CG-AppBuilder-MCP | `harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1` | see bounded-command-closeout-v1.md |
 | `bulk-hub-provenance-chain-pass-v1` | — | COMPLETE | VERIFIED | Data-Extraction | `harvest-2026-08-07-cross-agent-drained-intelligence-pi-refresh-v1` | see harvest-2026-08-07-cross-agent-drained-intelligence-pi-refresh-v1.md |
+| `ce-issued-proposal-corpus-foundation-v1` | `intel:21902621d8b25d…` | FOUNDATION_COMPLETE | PASS | CapitalGlass-Cross-Agent | `harvest-2026-08-12-issued-proposal-corpus-chat-v1` | see 2026-08-11_ce-issued-proposal-corpus-v1.md |
 | `chat-improvement-extract-chatgpt-v1` | — | ACTIVE | PASS | CapitalGlass-Cross-Agent | `harvest-2026-08-04-harvest-storage-chatgpt-lane-v1` | see 2026-08-04_chat-improvement-extract-chatgpt-v1.md |
 | `chatgpt-harvest-git-gate-v2-v1` | — | COMPLETE | PASS | CapitalGlass-Cross-Agent | `harvest-2026-08-07-chatgpt-git-publication-restoration-v1` | see CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md |
 | `chatgpt-harvest-protocol-promotion-drift-v1` | — | RESOLVED | PASS | CapitalGlass-Cross-Agent | `harvest-2026-08-07-chatgpt-git-publication-restoration-v1` | see CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md |
 | `chatgpt-restoration-milestone-hold-v1` | — | OPEN | HOLD | CapitalGlass-Cross-Agent | `harvest-2026-08-07-chatgpt-git-publication-restoration-v1` | see harvest-2026-08-07-chatgpt-git-publication-restoration-v1.md |
 | `chatgpt-ultimate-sdlc-thread-v1` | — | HARVEST_COMPLETE | HARVEST_COMPLETE | CapitalGlass-Cross-Agent | `harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1` | see harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1.md |
 | `check-git-before-asg-v1` | — | COMPLETE | CLASSIFIED | CG-AppBuilder-MCP | `harvest-2026-08-08-asg-thread-continuation-v1` | see harvest-2026-08-08-asg-thread-continuation-v1.md |
+| `cloudflare-mcp-health-layer-v1` | `intel:b0e08e02b32c8a…` | RESOLVED | PASS | CG-AppBuilder-MCP | `harvest-2026-08-11-cloudflare-mcp-repair-v1` | see HARVEST_SUMMARY.md |
+| `cloudflare-mcp-oauth-lock-v1` | `intel:c39b6c6f3d0635…` | RESOLVED | PASS | CG-AppBuilder-MCP | `harvest-2026-08-11-cloudflare-mcp-repair-v1` | see HARVEST_SUMMARY.md |
+| `cloudflare-mcp-operator-sequence-v1` | `intel:3d3fff2802d891…` | RESOLVED | PASS | CG-AppBuilder-MCP | `harvest-2026-08-11-cloudflare-mcp-repair-v1` | see HARVEST_SUMMARY.md |
+| `cloudflare-mcp-wrangler-auth-v1` | `intel:2417ae03ad729c…` | OPEN_OPERATOR | HOLD | CG-AppBuilder-MCP | `harvest-2026-08-11-cloudflare-mcp-repair-v1` | see HARVEST_SUMMARY.md |
 | `cmd-dispatch-phase-a-v1` | — | PENDING | NOT_RUN | CG-AppBuilder-MCP | `harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1` | see 2026-08-12_smith-ranch-ce-revu-full-set-v1.md |
 | `cmd-test-smith-ranch-ce-batch-v1` | — | COMPLETE | PASS | CG-AppBuilder-MCP | `harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1` | see 2026-08-12_smith-ranch-ce-revu-full-set-v1.md |
 | `cmd-w17-capture` | — | PENDING | HOLD | CapitalGlass-Documents | `harvest-2026-08-04-document-center-adaptive-details-w17-v1` | see harvest-2026-08-04-document-center-adaptive-details-w17-v1.md |
@@ -158,6 +163,15 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `intelligence-hub-index-ai-cache-freshness-v1` | — | FOUNDATION_PASS | PASS | CG-AppBuilder-MCP | `harvest-2026-08-04-three-way-improvement-slice6-thread-v1` | see 2026-08-03_intelligence-hub-index-ai-cache-freshness-v1.md |
 | `intelligence-hub-thread-autopsy-publication-v1` | — | PUBLICATION_COMPLETE | PASS | CapitalGlass-Cross-Agent | `harvest-2026-08-04-three-way-improvement-slice6-thread-v1` | see 2026-08-04_intelligence-hub-thread-autopsy-publication-v1.md |
 | `invalid-wesleydesk-proof-on-wesleywork-v1` | — | RESOLVED | INVALIDATED | CG-AppBuilder-MCP | `harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1` | see harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1.md |
+| `issued-proposal-corpus-evidence-v1` | `intel:9fd18a6629f909…` | RECORDED | PASS | CapitalGlass-Cross-Agent | `harvest-2026-08-12-issued-proposal-corpus-chat-v1` | see 2026-08-11_ce-issued-proposal-corpus-v1.md |
+| `issued-proposal-corpus-harvest-commands-v1` | `intel:44e2fe5c06a24c…` | DOCUMENTED | PASS | CapitalGlass-Cross-Agent | `harvest-2026-08-12-issued-proposal-corpus-chat-v1` | see 2026-08-11_ce-issued-proposal-corpus-v1.md |
+| `issued-proposal-corpus-rediscovery-v1` | `intel:992a89809e6b4f…` | MITIGATED | PASS | CapitalGlass-Cross-Agent | `harvest-2026-08-12-issued-proposal-corpus-chat-v1` | see 2026-08-11_ce-issued-proposal-corpus-v1.md |
+| `issued-proposal-harvest-not-learning-v1` | `intel:bfe64452c11102…` | ACTIVE | PASS | CapitalGlass-Cross-Agent | `harvest-2026-08-12-issued-proposal-corpus-chat-v1` | see 2026-08-12_issued-proposal-structured-estimator-learning-v1.md |
+| `issued-proposal-l-hub-publication-hold-v1` | `intel:a206e7d46d7cf2…` | HOLD | HOLD | CapitalGlass-Cross-Agent | `harvest-2026-08-12-issued-proposal-corpus-chat-v1` | see capital-glass-proposal-learning-compounding-spine-v1.md |
+| `issued-proposal-poppler-scout-path-v1` | `intel:8314bd9325ef66…` | INSTALLED | PASS | CG-AppBuilder-MCP | `harvest-2026-08-12-issued-proposal-corpus-chat-v1` | see 2026-08-12_issued-proposal-structured-estimator-learning-v1.md |
+| `issued-proposal-strings-pdf-mistake-v1` | `intel:f4ff1e05969079…` | RESOLVED | PASS | capital-glass-estimating-parser | `harvest-2026-08-12-issued-proposal-corpus-chat-v1` | see 2026-08-11_ce-issued-proposal-corpus-v1.md |
+| `issued-proposal-structured-learning-active-v1` | `intel:7d398ceeda1e36…` | IN_PROGRESS | HOLD | capital-glass-estimating-parser | `harvest-2026-08-12-issued-proposal-corpus-chat-v1` | see 2026-08-12_issued-proposal-structured-estimator-learning-v1.md |
+| `issued-proposal-z-boundary-protocol-v1` | `intel:6d6e370eacdab4…` | DOCUMENTED | PASS | Computer Estimator | `harvest-2026-08-12-issued-proposal-corpus-chat-v1` | see capital-glass-proposal-learning-compounding-spine-v1.md |
 | `l-drop-to-review-queue-proof-v1` | — | MILESTONE_PASS | PASS | CapitalGlass-Documents | `harvest-2026-08-04-m2-plans-intake-closeout-v1` | see l-drop-to-review-queue-proof-v1.md |
 | `l-smb-readdirsync-hang-v1` | — | OPEN | MITIGATION_CANDIDATE | CG-AppBuilder-MCP | `harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1` | see 2026-08-12_smith-ranch-ce-revu-full-set-v1.md |
 | `lane-c-export-command-v1` | — | COMPLETE | SHIPPED | CapitalGlass-Cross-Agent | `harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1` | see harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1.md |
@@ -289,7 +303,7 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `z-drive-force-remap-wsl-cwd-v1` | — | RECORDED | PASS | CapitalGlass-Office-Admin | `harvest-2026-08-04-z-l-drive-offlan-session-v1` | see 2026-08-02_z-drive-disconnect-recurrence-v1.md |
 | `z-l-drive-offlan-partial-availability-v1` | — | PARTIAL_DRIVE_AVAILABILITY | Z_OK_L_BLOCKED_OFF_LAN | CapitalGlass-Office-Admin | `harvest-2026-08-04-z-l-drive-offlan-session-v1` | see 2026-08-02_z-drive-disconnect-recurrence-v1.md |
 
-_249 registry packets · 108 intelligence entities_
+_263 registry packets · 122 intelligence entities_
 
 <!-- HARVEST-PACKET-INDEX:END -->
 

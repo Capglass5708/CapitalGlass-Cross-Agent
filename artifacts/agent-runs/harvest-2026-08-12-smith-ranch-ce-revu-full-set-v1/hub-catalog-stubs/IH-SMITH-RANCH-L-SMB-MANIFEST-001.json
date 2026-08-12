@@ -1,0 +1,77 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-smith-ranch-l-smb-manifest-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "a9034fabe134ef44f3442235528486e0dc96b224",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1",
+      "seedId": "IH-SMITH-RANCH-L-SMB-MANIFEST-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-12T04:29:02.997Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "b93f32d9a74ab20fcc26cc618beec51ab762682f9368da961b6210e0370d657a"
+  },
+  "body": {
+    "seedId": "IH-SMITH-RANCH-L-SMB-MANIFEST-001",
+    "kind": "failure-pattern",
+    "title": "L: SMB readdirSync hangs Smith Ranch corpus manifest",
+    "summary": "Node readdirSync on /mnt/l Capital-Glass-Projects architectural folder hung; find completed in ~54s.",
+    "canonicalQuestion": "Why does smith-ranch manifest build hang on WESLEY_WORK?",
+    "alternateQuestions": [
+      "What replaces readdirSync for L: SMB PDF enumeration?"
+    ],
+    "shortAnswer": "Node readdirSync on /mnt/l Capital-Glass-Projects architectural folder hung; find completed in ~54s.",
+    "detailedAnswer": "L: SMB readdirSync hangs Smith Ranch corpus manifest",
+    "retrievalQuestions": [
+      "Why does smith-ranch manifest build hang on WESLEY_WORK?",
+      "What replaces readdirSync for L: SMB PDF enumeration?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Executor profile lists PDFs from L: on WESLEY_WORK SMB",
+      "startAt": [
+        "smith-ranch-ce-revu-full-set-v1.json",
+        "smith-ranch-ce-batch-contract.mjs"
+      ],
+      "runPreflight": [
+        "find fixed corpus -maxdepth 1 -name \"*.pdf\" | wc -l"
+      ],
+      "doNot": [
+        "fs.readdirSync on /mnt/l large folders"
+      ],
+      "proveBeforeClaiming": [
+        "pdfCount==235",
+        "manifest digest match"
+      ]
+    },
+    "evidenceRefs": [
+      "TE-005",
+      "TW-001",
+      "WM-001",
+      "ED-001"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1/seed-packets/IH-SMITH-RANCH-L-SMB-MANIFEST-001.json"
+    ],
+    "harvestId": "harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1"
+  }
+}
