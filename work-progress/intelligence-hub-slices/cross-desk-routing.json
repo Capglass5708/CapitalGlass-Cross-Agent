@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "intelligence-hub-cross-desk-routing-v1@1.0.0",
+  "kind": "cross_desk_routing",
+  "updatedAt": "2026-08-12T22:15:00.000Z",
+  "workPackageId": "dual-machine-desk-sync-hub-v1",
+  "relatedWorkPackages": [
+    "direct-connect-first-read-enforcement-v1",
+    "direct-connect-hop-lessons-hub-v1"
+  ],
+  "sourceRepository": "CapitalGlass-Office-Admin",
+  "sourcePath": "mcp/knowledge-index/cg-direct-connect-auto-connect.v1.json",
+  "primaryTransport": "direct-connect",
+  "forbiddenFirstTransport": ["ssh", "tailscale-ssh", "scp"],
+  "integrationCaptain": "WESLEY_WORK",
+  "executionEngine": "RYZEN9DESK",
+  "frontDoorTool": "office.get_direct_connect_auto_connect_profile",
+  "defaultHandoffRootWsl": "/mnt/z/Office/Wes/Direct Connect/handoffs",
+  "defaultToolSequence": [
+    "office.get_direct_connect_auto_connect_profile",
+    "office.observe_ryzen9desk_runner",
+    "office.get_ryzen9desk_connection_status",
+    "office.list_direct_connect_handoffs",
+    "office.get_direct_connect_handoff",
+    "office.evaluate_ryzen9desk_dispatch_eligibility",
+    "office.request_ryzen9desk_dispatch"
+  ],
+  "preflightCommand": "npm run direct-connect:preflight -- --json",
+  "rulePath": "CG-AppBuilder-MCP/agent-packs/three-way-agent/rules/direct-connect-first-read.mdc",
+  "knowledgeIndexPath": "CapitalGlass-Office-Admin/mcp/knowledge-index/cg-direct-connect-auto-connect.v1.json",
+  "runbook": "CapitalGlass-Office-Admin/docs/runbooks/ryzen9desk-office-admin-mcp-connection.md",
+  "buses": {
+    "code": "GitHub origin/main — same SHA on both unify worktrees",
+    "handoff": "Z: dated folder — packets, hop file, receipts",
+    "epoch": "npm run dual-machine:write-hop-packet + session-start --cheap",
+    "sshBreakGlass": "ssh-admin-tailscale after hop — not the hop",
+    "ghaRunner": "Ryzen-only. WesleyWork dispatches to Ryzen, not the reverse."
+  },
+  "unifyWorktree": "CG-AppBuilder-MCP-worktrees/protocol-40-estate-unify-v1",
+  "squashLand": "After squash-merge, reset unify worktree to origin/main. Do not ff-only from PR SHA. Rewrite hop packet to live HEAD.",
+  "sshBreakGlass": {
+    "user": "wesle",
+    "notUser": "Wesley",
+    "target": "wesle@100.76.10.91",
+    "adminKeys": "C:\\ProgramData\\ssh\\administrators_authorized_keys",
+    "tailscaleSshWindows": "unsupported"
+  },
+  "estimatingSpineActivation": {
+    "workPackageId": "estimating-spine-ryzen9-activation-v1",
+    "verdict": "WSL_EXECUTOR_READY_WINDOWS_REVU_PENDING",
+    "handoffRootWsl": "/mnt/z/Office/Wes/Direct Connect/handoffs/estimating-spine-ryzen9-activation-v1",
+    "hubSliceGit": "work-progress/intelligence-hub-slices/estimating-spine-ryzen9-activation.json",
+    "harvestId": "harvest-2026-08-12-estimating-spine-ryzen9-activation-v1"
+  },
+  "smithRanchCeRevuFullSet": {
+    "workPackageId": "smith-ranch-ce-revu-full-set-v1",
+    "jobProfile": "smith-ranch-ce-batch",
+    "verdict": "PHASE_A_READY_FOR_REMOTE_DISPATCH",
+    "handoffRootWsl": "/mnt/z/Office/Wes/Direct Connect/handoffs/smith-ranch-ce-revu-full-set-v1",
+    "hubSliceGit": "work-progress/intelligence-hub-slices/smith-ranch-ce-revu-full-set-v1.json",
+    "harvestId": "harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1",
+    "projectId": "CG-2037-26",
+    "expectedPdfCount": 235,
+    "phaseBStatus": "QUEUED_POLICY_GATE"
+  },
+  "doNotMergeWith": "office-admin-direct-connect-persistence-compact-v1",
+  "retrievalCodes": [
+    "DIRECT_CONNECT_HIT",
+    "DIRECT_CONNECT_BLOCKED",
+    "DIRECT_CONNECT_FAILOVER_LOCAL",
+    "DIRECT_CONNECT_NOT_APPLICABLE"
+  ],
+  "fullSystemDoc": {
+    "hubPath": "L:/Capital-Glass-Intelligence-Hub/03-domains/office-infrastructure/knowledge/dual-machine-desk-sync-system-v1.md",
+    "gitSource": "CapitalGlass-Cross-Agent/work-progress/knowledge/dual-machine-desk-sync-system-v1.md",
+    "manifest": "L:/Capital-Glass-Intelligence-Hub/03-domains/office-infrastructure/manifests/dual-machine-desk-sync-v1.json",
+    "readWhen": "Agent or operator needs full desk-sync architecture beyond this compact slice",
+    "workPackageId": "dual-machine-desk-sync-hub-v1"
+  },
+  "pointers": {
+    "officeAdminKnowledge": "CapitalGlass-Office-Admin/mcp/knowledge-index/cg-direct-connect-auto-connect.v1.json",
+    "sshInbound": "CapitalGlass-Office-Admin/mcp/knowledge-index/cg-wesleywork-01-ssh-inbound-v1.json",
+    "deviceDoc": "CapitalGlass-Office-Admin/docs/devices/CG-WESLEYWORK-01/INBOUND-SSH-BREAK-GLASS.md",
+    "preflight": "CG-AppBuilder-MCP npm run direct-connect:preflight -- --json",
+    "dualMachineDeskSync": "L:/Capital-Glass-Intelligence-Hub/03-domains/office-infrastructure/knowledge/dual-machine-desk-sync-system-v1.md"
+  },
+  "hubAuthority": {
+    "compactSliceL": "L:/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/cross-desk-routing.json",
+    "gitFailoverMirror": "CapitalGlass-Cross-Agent/work-progress/intelligence-hub-slices/cross-desk-routing.json",
+    "note": "Keep identical to L BY-KIND when L is mountable; L wins on mount."
+  }
+}
