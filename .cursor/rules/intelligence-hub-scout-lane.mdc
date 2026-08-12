@@ -5,7 +5,7 @@ canonicalOwner: CG-AppBuilder-MCP
 canonicalPath: agent-packs/three-way-agent/rules/intelligence-hub-scout-lane.mdc
 generatedCopy: true
 ruleVersion: 1.0.0
-canonicalContentHash: 3d527ba7ce9c67b6b96913ddd6a8ffa6fdb9ba4d52fa543f1325973064c578ba
+canonicalContentHash: 58245dbcf3d6e5928147d0d5b38df205844cd6e7ecf5722abf1b2f1a851a5c29
 ---
 
 # Intelligence Hub scout lane (3-way scout tier)
@@ -41,6 +41,7 @@ npm run agent:index:preflight -- --json
 1. **Index first** — compact Intelligence Hub slices before repo grep, explore subagents, or recursive L: scan. See `intelligence-hub-first-read.mdc`.
 2. **Log retrieval codes** in every agent response:
    - Primary: `INDEX_HIT_AI_CACHE` | `INDEX_HIT` | `INDEX_MISS` | `L_DRIVE_NOT_MOUNTED_IN_WSL` | `FAILOVER_SUPABASE` | `FAILOVER_GIT_LEDGER`
+   - Cross-desk (when applicable): `DIRECT_CONNECT_HIT` | `DIRECT_CONNECT_BLOCKED` | `DIRECT_CONNECT_FAILOVER_LOCAL` | `DIRECT_CONNECT_NOT_APPLICABLE`
    - When compile lane checked: `CACHE_HIT` | `CACHE_MISS`
 3. **Report scout scan** — one-line scout verdict: publication status, `rawScanRequired`, aligned SHA when present.
 4. **Answer from indexed facts** when blockers/open actions suffice; repo inspection only on explicit index pointers.
@@ -63,5 +64,6 @@ When scout hook cannot load MCP modules, log `INDEX_MISS` and state the hook err
 ## Related
 
 - Index first-read rule: `intelligence-hub-first-read.mdc`
+- Direct Connect first-read rule: `direct-connect-first-read.mdc`
 - 3-way knowledge retention: `three-way-agent-knowledge-retention.mdc`
 - WSL estate manifest: `scripts/wsl/wsl-repo-library-manifest.v1.json`
