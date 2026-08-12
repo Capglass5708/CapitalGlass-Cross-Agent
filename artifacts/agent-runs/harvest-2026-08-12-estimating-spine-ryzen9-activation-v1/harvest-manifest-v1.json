@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-estimating-spine-ryzen9-activation-v1",
+  "missionClass": "harvest",
+  "sourceCommitSha": "PENDING_COMMIT",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-12T03:45:00.000Z",
+  "updatedAt": "2026-08-12T03:45:00.000Z",
+  "retrievalResult": "INDEX_HIT",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "PRODUCTION_REVU_MARKUP",
+    "WSL_RUNNER_AS_REVU_PROOF",
+    "CE_OPENING_STACK_WITHOUT_DESK_RUN"
+  ],
+  "generatedViews": [
+    "artifacts/agent-runs/harvest-2026-08-12-estimating-spine-ryzen9-activation-v1/packet-index.json",
+    "artifacts/agent-runs/harvest-2026-08-12-estimating-spine-ryzen9-activation-v1/HARVEST_SUMMARY.md",
+    "artifacts/agent-runs/harvest-2026-08-12-estimating-spine-ryzen9-activation-v1/receipt.json",
+    "artifacts/agent-runs/harvest-2026-08-12-estimating-spine-ryzen9-activation-v1/compact-records",
+    "work-progress/projects/2026-08-12_estimating-spine-ryzen9-activation-v1.md",
+    "work-progress/intelligence-hub-slices/estimating-spine-ryzen9-activation.json"
+  ],
+  "ownerRepoSummary": [
+    { "ownerRepo": "CG-AppBuilder-MCP", "packetCount": 2 },
+    { "ownerRepo": "CapitalGlass-Cross-Agent", "packetCount": 0 }
+  ],
+  "commitEvidence": [
+    {
+      "repo": "CapitalGlass-Office-Admin",
+      "sha": "9ee2e0f",
+      "role": "direct-connect-front-door-readonly-fix"
+    },
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "sha": "51946c4b5ddb3d4b06f1e61dac264470f41902a4",
+      "role": "dual-machine-ryzen-operator-at-harvest"
+    }
+  ],
+  "projection": {
+    "projectionSyncStatus": "blocked_git_mutation",
+    "hubPublishStatus": "PUBLISH_PASS",
+    "hubSeedReceipt": "artifacts/agent-runs/harvest-2026-08-12-estimating-spine-ryzen9-activation-v1/hub-publication-receipt.json",
+    "activeLedgerPublishReceipt": "CG-AppBuilder-MCP/runtime/active-ledger/sync-and-lint-latest.json",
+    "syncCommandChain": [
+      "npm run active-ledger:sync -- --publish",
+      "npm run harvest:publish-hub-seed -- --harvest-id=harvest-2026-08-12-estimating-spine-ryzen9-activation-v1",
+      "CROSS_AGENT_LEDGER_INGEST_APPROVED=1 npm run cross-agent-ledger:ingest -- --apply (blocked until Cross-Agent git clean + commit)"
+    ]
+  },
+  "packets": [
+    {
+      "packetId": "estimating-spine-ryzen9-activation-v1",
+      "packetTitle": "Estimating spine RYZEN9 activation from WESLEY_WORK",
+      "state": "WSL_EXECUTOR_READY",
+      "packetVerdict": "WSL_EXECUTOR_READY_WINDOWS_REVU_PENDING",
+      "harvestVerdictContribution": "RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "compactRecordPath": "artifacts/agent-runs/harvest-2026-08-12-estimating-spine-ryzen9-activation-v1/compact-records/estimating-spine-ryzen9-activation-v1.json",
+      "projectFilePath": "work-progress/projects/2026-08-12_estimating-spine-ryzen9-activation-v1.md"
+    },
+    {
+      "packetId": "ryzen9desk-managed-executor-v1",
+      "packetTitle": "RYZEN9DESK managed executor",
+      "state": "MANAGED_EXECUTOR_ONLINE",
+      "packetVerdict": "PARTIAL_REMOTE_PASS",
+      "harvestVerdictContribution": "ADVANCED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "compactRecordPath": "artifacts/agent-runs/harvest-2026-08-12-estimating-spine-ryzen9-activation-v1/compact-records/ryzen9desk-managed-executor-v1.json",
+      "projectFilePath": "work-progress/projects/2026-08-03_ryzen9desk-managed-executor-v1.md"
+    }
+  ]
+}

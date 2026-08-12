@@ -1,0 +1,418 @@
+{
+  "schemaVersion": "thread-autopsy-lifecycle-proof-v1@1.0.0",
+  "harvestId": "harvest-2026-08-04-three-lane-suite-closeout-v1",
+  "checkedAt": "2026-08-12T04:28:51.873Z",
+  "verdict": "LIFECYCLE_PROOF_PASS",
+  "steps": [
+    {
+      "step": "harvest:record",
+      "verdict": "PASS"
+    },
+    {
+      "step": "harvest:validate",
+      "verdict": "PASS"
+    },
+    {
+      "step": "harvest:validate-autopsy",
+      "verdict": "PASS",
+      "tier": "T2"
+    },
+    {
+      "step": "harvest:closeout-git",
+      "verdict": "WARN",
+      "mode": "dry-run",
+      "includedFiles": 6,
+      "blockedFiles": 28
+    },
+    {
+      "step": "harvest:publication-dry-run",
+      "verdict": "PASS",
+      "seedCount": 4,
+      "hubPublish": "NOT_RUN_BY_CURSOR"
+    },
+    {
+      "step": "test:harvest:authority-dogfood",
+      "verdict": "PASS"
+    }
+  ],
+  "gitDurability": {
+    "schemaVersion": "harvest-git-durability-report-v1@1.0.0",
+    "harvestId": "harvest-2026-08-04-three-lane-suite-closeout-v1",
+    "runId": "proof-thread-autopsy-lifecycle",
+    "generatedAt": "2026-08-12T04:28:44.306Z",
+    "gitDurabilityStatus": "BLOCKED",
+    "branch": "harvest/harvest-2026-08-04-three-lane-suite-closeout-v1",
+    "startSha": "a9034fabe134ef44f3442235528486e0dc96b224",
+    "finalSha": "a9034fabe134ef44f3442235528486e0dc96b224",
+    "commitSha": null,
+    "pushed": false,
+    "originParity": "not-run",
+    "dryRun": true,
+    "includedFiles": [
+      "artifacts/agent-runs/harvest-publication-reliability-and-roi-hardening-v1/git-durability-report.json",
+      "work-progress/harvest-packet-registry.json",
+      "work-progress/owner-repo-boundary-index.json",
+      "work-progress/projects/INDEX.md",
+      "scripts/harvest/generate-issued-proposal-corpus-chat-harvest.mjs",
+      "scripts/harvest/proof-thread-autopsy-lifecycle.mjs"
+    ],
+    "excludedFiles": [
+      "artifacts/agent-runs/cross-agent-index-freshness-gate-v1/latest.json",
+      "artifacts/agent-runs/cross-agent-index-publication-v1/latest.json",
+      "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/HARVEST_SUMMARY.md",
+      "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/graph-extraction-validation-result.json",
+      "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/harvest-manifest-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/packet-index.json",
+      "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/receipt.json",
+      "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/registry-boundary-reconcile-receipt.json",
+      "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/validation-result.json",
+      "artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/HARVEST_SUMMARY.md",
+      "artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/coverage.json",
+      "artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/graph-extraction-validation-result.json",
+      "artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/harvest-manifest-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/packet-index.json",
+      "artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/receipt.json",
+      "artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/validation-result.json",
+      "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/compile-seed-packets-receipt.json",
+      "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/hub-catalog-stubs/IH-LEDGER-CATCHUP-RECONSTRUCT-001.json",
+      "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/hub-catalog-stubs/IH-LEDGER-STALENESS-GATE-001.json",
+      "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/qa-index.json",
+      "artifacts/agent-runs/harvest-2026-08-10-active-ledger-catchup-and-hub-drift-v1/seed-packet-index.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/compile-seed-packets-receipt.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/harvest-manifest-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/hub-catalog-stubs/IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/hub-publication-receipt.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/intelligence-hub-seed-manifest.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/qa-index.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/seed-packet-index.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/seed-packets/IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001.json",
+      "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/receipt.json",
+      "artifacts/agent-runs/harvest-intelligence-index-expansion-and-operational-hardening-v1/p2-corpus-coverage-receipt.json",
+      "artifacts/agent-runs/harvest-intelligence-index-expansion-and-operational-hardening-v1/p2-hub-slice-receipt.json",
+      "artifacts/agent-runs/harvest-intelligence-index-expansion-and-operational-hardening-v1/p2-ranked-views-receipt.json",
+      "docs/runbooks/chat-thread-closeout-autopsy-harvest-v1.md",
+      "harvest/README.md",
+      "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md",
+      "harvest/protocol/chat-thread-closeout-autopsy-harvest-v1.md",
+      "harvest/z-mirror-sync-receipt.json",
+      "runtime/index-publication/latest.json",
+      "work-progress/harvest-intelligence-coverage.json",
+      "work-progress/harvest-intelligence-index.json",
+      "work-progress/harvest-intelligence-views/top-roi.json",
+      "work-progress/intelligence-hub-slices/commands.json",
+      "work-progress/intelligence-hub-slices/current-state.json",
+      "work-progress/intelligence-hub-slices/domains/direct-connect.json",
+      "work-progress/intelligence-hub-slices/domains/document-center.json",
+      "work-progress/intelligence-hub-slices/domains/proposal-generator.json",
+      "work-progress/intelligence-hub-slices/domains/revu.json",
+      "work-progress/intelligence-hub-slices/domains/synology-primary.json",
+      "work-progress/intelligence-hub-slices/domains/three-way-improvement.json",
+      "work-progress/intelligence-hub-slices/freshness-dashboard.json",
+      "work-progress/intelligence-hub-slices/harvest-intelligence.json",
+      "work-progress/intelligence-hub-slices/owner-boundaries.json",
+      "work-progress/intelligence-hub-slices/work-package-registry.json",
+      "work-progress/projects/2026-08-03_ryzen9desk-managed-executor-v1.md",
+      "artifacts/agent-runs/.worktree-snapshot-EuBUSb/",
+      "artifacts/agent-runs/blind-retrieval-report.json",
+      "artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/",
+      "artifacts/agent-runs/estate-flow-authority-normalization-v1/",
+      "artifacts/agent-runs/experience-report-parsing-population-live-proof-v1/",
+      "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/execution-packet-binding-delta.json",
+      "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/prompt-candidates.json",
+      "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/prompt-catalog-delta.json",
+      "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/prompt-deduplication-report.json",
+      "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/prompt-harvest-index-slice.json",
+      "artifacts/agent-runs/harvest-2026-08-03-cross-thread-platform-state-v1/prompt-promotion-decisions.json",
+      "artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/execution-packet-binding-delta.json",
+      "artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/intelligence-merge-receipt.json",
+      "artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/prompt-candidates.json",
+      "artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/prompt-catalog-delta.json",
+      "artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/prompt-deduplication-report.json",
+      "artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/prompt-harvest-index-slice.json",
+      "artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/prompt-promotion-decisions.json",
+      "artifacts/agent-runs/harvest-2026-08-04-three-lane-suite-closeout-v1/registry-boundary-reconcile-receipt.json",
+      "artifacts/agent-runs/harvest-2026-08-09-waverunner-vercel-mcp-authority-v1/",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/HARVEST_SUMMARY.md",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/compact-records/",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/coverage.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/execution-packet-binding-delta.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/gold-mine-evidence-projections-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/graph-extraction-validation-result.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/graph-extraction.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/hub-catalog-stubs/IH-CLOUDFLARE-MCP-HEALTH-LAYER-001.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/hub-catalog-stubs/IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/hub-catalog-stubs/IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/packet-index.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/prompt-candidates.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/prompt-catalog-delta.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/prompt-deduplication-report.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/prompt-harvest-index-slice.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/prompt-promotion-decisions.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/receipt.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/seed-packets/IH-CLOUDFLARE-MCP-HEALTH-LAYER-001.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/seed-packets/IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/seed-packets/IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/thread-autopsy-bundle.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/thread-event-inventory.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/validation-result.json",
+      "artifacts/agent-runs/harvest-2026-08-12-estimating-spine-ryzen9-activation-v1/",
+      "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/HARVEST_SUMMARY.md",
+      "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/code-touch-summary.json",
+      "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/compact-records/",
+      "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/coverage.json",
+      "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/execution-packet-binding-delta.json",
+      "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/gold-mine-evidence-projections-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/graph-extraction-validation-result.json",
+      "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/graph-extraction.json",
+      "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/harvest-manifest-v1.json",
+      "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/intelligence-merge-receipt.json",
+      "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/packet-index.json",
+      "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/prompt-candidates.json",
+      "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/prompt-catalog-delta.json",
+      "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/prompt-deduplication-report.json",
+      "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/prompt-harvest-index-slice.json",
+      "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/prompt-promotion-decisions.json",
+      "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/registry-boundary-reconcile-receipt.json",
+      "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/seed-packet-index.json",
+      "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/seed-packets/",
+      "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/thread-autopsy-bundle.json",
+      "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/thread-event-inventory.json",
+      "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/validation-result.json",
+      "artifacts/agent-runs/harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1/",
+      "artifacts/agent-runs/thread-autopsy-lifecycle-proof-v1/",
+      "contracts/proposal-learning/",
+      "harvest/protocol/thread-autopsy-hub-accommodation-v1.md",
+      "work-progress/intelligence-hub-slices/estimating-spine-ryzen9-activation.json",
+      "work-progress/projects/2026-08-12_estimating-spine-ryzen9-activation-v1.md",
+      "work-progress/projects/commercial-glazing-scope-intelligence-spine-v1/"
+    ],
+    "blockedFiles": [
+      "docs/runbooks/chat-thread-closeout-autopsy-harvest-v1.md",
+      "harvest/README.md",
+      "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md",
+      "harvest/protocol/chat-thread-closeout-autopsy-harvest-v1.md",
+      "runtime/index-publication/latest.json",
+      "work-progress/harvest-intelligence-coverage.json",
+      "work-progress/harvest-intelligence-index.json",
+      "work-progress/harvest-intelligence-views/top-roi.json",
+      "work-progress/intelligence-hub-slices/commands.json",
+      "work-progress/intelligence-hub-slices/current-state.json",
+      "work-progress/intelligence-hub-slices/domains/direct-connect.json",
+      "work-progress/intelligence-hub-slices/domains/document-center.json",
+      "work-progress/intelligence-hub-slices/domains/proposal-generator.json",
+      "work-progress/intelligence-hub-slices/domains/revu.json",
+      "work-progress/intelligence-hub-slices/domains/synology-primary.json",
+      "work-progress/intelligence-hub-slices/domains/three-way-improvement.json",
+      "work-progress/intelligence-hub-slices/freshness-dashboard.json",
+      "work-progress/intelligence-hub-slices/harvest-intelligence.json",
+      "work-progress/intelligence-hub-slices/owner-boundaries.json",
+      "work-progress/intelligence-hub-slices/work-package-registry.json",
+      "work-progress/projects/2026-08-03_ryzen9desk-managed-executor-v1.md",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/hub-catalog-stubs/IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001.json",
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/seed-packets/IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001.json",
+      "contracts/proposal-learning/",
+      "harvest/protocol/thread-autopsy-hub-accommodation-v1.md",
+      "work-progress/intelligence-hub-slices/estimating-spine-ryzen9-activation.json",
+      "work-progress/projects/2026-08-12_estimating-spine-ryzen9-activation-v1.md",
+      "work-progress/projects/commercial-glazing-scope-intelligence-spine-v1/"
+    ]
+  },
+  "publicationDryRun": {
+    "schemaVersion": "harvest-publication-dry-run-v1@1.0.0",
+    "harvestId": "harvest-2026-08-04-three-lane-suite-closeout-v1",
+    "sourceCommitSha": "587025d145791438fe725970e9f126a66231153d",
+    "plannedCreates": [
+      "02-catalog/knowledge-objects/cross-agent-harvest/IH-ASG-CLOSED-IMMUTABLE-013.json",
+      "02-catalog/knowledge-objects/cross-agent-harvest/IH-GOV-OWNERSHIP-PREFIX-011.json",
+      "02-catalog/knowledge-objects/cross-agent-harvest/IH-GOV-PREFLIGHT-LINKAGE-010.json",
+      "02-catalog/knowledge-objects/cross-agent-harvest/IH-NORTH-STAR-OBSERVE-CLI-012.json"
+    ],
+    "plannedUpdates": [],
+    "plannedDeletes": [],
+    "indexMutations": [
+      "00-master-index/BY-KIND/thread-autopsy-index.json"
+    ],
+    "seedRegistrations": [
+      "IH-ASG-CLOSED-IMMUTABLE-013",
+      "IH-GOV-OWNERSHIP-PREFIX-011",
+      "IH-GOV-PREFLIGHT-LINKAGE-010",
+      "IH-NORTH-STAR-OBSERVE-CLI-012"
+    ],
+    "promptCandidates": [
+      "prompt-candidate-28b128994729",
+      "prompt-candidate-cd877aa1753c",
+      "prompt-candidate-3d70fb694fa5",
+      "prompt-candidate-5299c2346648",
+      "prompt-candidate-633cb0ac7f93",
+      "prompt-candidate-78e2f685982f",
+      "prompt-candidate-3e34947f53b8",
+      "prompt-candidate-12b2611f4070",
+      "prompt-candidate-9c15d862a436",
+      "prompt-candidate-90aa2bacfd8b",
+      "prompt-candidate-169111656ce0",
+      "prompt-candidate-45871340b212",
+      "prompt-candidate-dbe99d0ecc5d"
+    ],
+    "supabaseProjection": {
+      "threadAutopsy": "PLANNED",
+      "harvestPrompts": "PLANNED"
+    },
+    "zMirrorPlan": {
+      "direction": "git-to-z",
+      "waveSdlcSourceReady": true
+    },
+    "lPublicationPlan": {
+      "catalogRoot": "02-catalog/knowledge-objects/cross-agent-harvest",
+      "seedCount": 4
+    },
+    "hotRoutingPlan": {
+      "layer": "c-hot-routing",
+      "optional": true
+    },
+    "authorityWarnings": [],
+    "staleSources": [],
+    "expectedContentHashes": {
+      "gitProtocol": {
+        "CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md": {
+          "hash": "e9b3710887f2623fd190337fa3fcbe06698421f50f929aab3a1050fdb37fc5b4",
+          "markers": {
+            "laneCSections": 1,
+            "laneCMentions": 1,
+            "bytes": 22253
+          }
+        },
+        "CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md": {
+          "hash": "8998d013c5839f4e92503f327d783302705e9345cf74aa2a4cec754601abdf75",
+          "markers": {
+            "laneCSections": 3,
+            "laneCMentions": 1,
+            "bytes": 35804
+          }
+        },
+        "CHAT-THREAD-SYSTEM-ADVANCEMENT-HARVEST-CHATGPT-V1.md": {
+          "hash": "9b53a3fc4c3d83f366784c2cfac853f15e7667f53cb5bc34650f2f72d26bc3da",
+          "markers": {
+            "laneCSections": 0,
+            "laneCMentions": 0,
+            "bytes": 19840
+          }
+        },
+        "CHATGPT-DRAFT-BATCH-ASSESSMENT-T2-V1.md": {
+          "hash": "4f8857ba4d76c57033db00aa51b9a5b10a9bd45a34f100224d7aa783849b257d",
+          "markers": {
+            "laneCSections": 0,
+            "laneCMentions": 0,
+            "bytes": 7448
+          }
+        },
+        "CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md": {
+          "hash": "47254fe1b564664195bd4c1e5fddb484bb77533ae670b94ed69b8393c1faf871",
+          "markers": {
+            "laneCSections": 0,
+            "laneCMentions": 0,
+            "bytes": 4058
+          }
+        },
+        "CURSOR_HARVEST_INGEST_CLOSEOUT_WAVE_SDLC_V1.md": {
+          "hash": "e1f5f67fd2270d4277499219c94a4fd06044a71cdeb7714f264490e791e7e22e",
+          "markers": {
+            "laneCSections": 0,
+            "laneCMentions": 0,
+            "bytes": 13853
+          }
+        },
+        "HARVEST-INGESTION-RUNBOOK-v1.md": {
+          "hash": "dbf646f726f00075d3aeb0d780c201effcff7b353ee93c9017c27050511d06a1",
+          "markers": {
+            "laneCSections": 0,
+            "laneCMentions": 0,
+            "bytes": 5253
+          }
+        },
+        "PROMPT-EXTRACTION-AND-PROMOTION-v1.md": {
+          "hash": "8d076a5a2d9503082479e4c7380f7ab072c57c415c3fd477998f348bff0e16dc",
+          "markers": {
+            "laneCSections": 0,
+            "laneCMentions": 0,
+            "bytes": 2084
+          }
+        },
+        "chat-thread-closeout-autopsy-harvest-chatgpt-v1.md": {
+          "hash": "e9b3710887f2623fd190337fa3fcbe06698421f50f929aab3a1050fdb37fc5b4",
+          "markers": {
+            "laneCSections": 1,
+            "laneCMentions": 1,
+            "bytes": 22253
+          }
+        },
+        "chat-thread-closeout-autopsy-harvest-v1.md": {
+          "hash": "8998d013c5839f4e92503f327d783302705e9345cf74aa2a4cec754601abdf75",
+          "markers": {
+            "laneCSections": 3,
+            "laneCMentions": 1,
+            "bytes": 35804
+          }
+        },
+        "chat-thread-system-advancement-harvest-chatgpt-v1.md": {
+          "hash": "9b53a3fc4c3d83f366784c2cfac853f15e7667f53cb5bc34650f2f72d26bc3da",
+          "markers": {
+            "laneCSections": 0,
+            "laneCMentions": 0,
+            "bytes": 19840
+          }
+        },
+        "chatgpt-draft-batch-assessment-t2-v1.md": {
+          "hash": "4f8857ba4d76c57033db00aa51b9a5b10a9bd45a34f100224d7aa783849b257d",
+          "markers": {
+            "laneCSections": 0,
+            "laneCMentions": 0,
+            "bytes": 7448
+          }
+        },
+        "chatgpt-harvest-git-publication-contract-v1.md": {
+          "hash": "47254fe1b564664195bd4c1e5fddb484bb77533ae670b94ed69b8393c1faf871",
+          "markers": {
+            "laneCSections": 0,
+            "laneCMentions": 0,
+            "bytes": 4058
+          }
+        },
+        "system-advancement-quality-gate.md": {
+          "hash": "dff47fdf5c410e7485632027d8860813b4bcec27a0e8c6106b9b193c5f322f96",
+          "markers": {
+            "laneCSections": 0,
+            "laneCMentions": 0,
+            "bytes": 2892
+          }
+        },
+        "thread-autopsy-hub-accommodation-v1.md": {
+          "hash": "42481f2494410eddd0c28d46fc2fdff56359d45c8bcaeb3d965c12abb895bb2c",
+          "markers": {
+            "laneCSections": 0,
+            "laneCMentions": 0,
+            "bytes": 9469
+          }
+        }
+      }
+    },
+    "requiredGateReadiness": {},
+    "optionalCapabilityReadiness": {
+      "git": "AVAILABLE",
+      "gitPush": "UNVERIFIED",
+      "lDrive": "AVAILABLE",
+      "zDrive": "AVAILABLE",
+      "zWaveSdlcSource": "AVAILABLE",
+      "supabase": "AVAILABLE",
+      "promptOps": "AVAILABLE",
+      "hotRouting": "AVAILABLE"
+    },
+    "dryRunVerdict": "DRY_RUN_PASS"
+  },
+  "blockers": [],
+  "operatorOwnedNotRun": [
+    "harvest:publish-hub-seed",
+    "harvest:publish-intelligence-full",
+    "index:publish",
+    "index:freshness-gate"
+  ]
+}

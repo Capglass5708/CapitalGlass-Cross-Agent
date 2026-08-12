@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-EG06-LIVE-BUSINESS-EXPERIENCE-PROOF-001",
+  "kind": "lesson",
+  "title": "EG-06 hosted staging business workflow observations require deployment identity plus service principal",
+  "summary": "Emitter repair on main is insufficient until proposal-staging serves the repair SHA and accepts internal-estimating service principal for verify-population. Hosted Vercel logs must show document_parsed with parseEvidence=workspace_loaded for already_loaded verified workspaces.",
+  "retrievalQuestions": [
+    "How do we prove EG-06 business workflow observations on proposal-staging?",
+    "What gates block LIVE_BUSINESS_EXPERIENCE_PROOF_COMPLETE after emitter repair merges?"
+  ],
+  "evidenceRefs": [
+    "artifacts/agent-runs/experience-report-parsing-population-live-proof-v1/hosted-business-workflow-observations.log",
+    "artifacts/agent-runs/experience-report-parsing-population-live-proof-v1/hosted-deployment-identity-receipt.json",
+    "artifacts/agent-runs/experience-report-parsing-population-live-proof-v1/live-hosted-experience-pipeline.json"
+  ],
+  "sourcePacketIds": ["experience-report-parsing-population-live-proof-v1"],
+  "executionDeltaRefs": [],
+  "wasteIds": [],
+  "roiRank": 1,
+  "futureAgentInstructions": {
+    "whenThisAppears": "EG-06 live proof or PASS_WITH_WARN on deployment identity",
+    "startAt": [
+      "https://proposal-staging.capitalglasstxapps.com/api/version",
+      "artifacts/agent-runs/experience-report-parsing-population-live-proof-v1/thread-autopsy-bundle.json"
+    ],
+    "runPreflight": [
+      "curl proposal-staging /api/version for repair SHA",
+      "POST verify-population with service principal",
+      "vercel logs grep [business-workflow-observation]"
+    ],
+    "doNot": [
+      "Treat local Doppler verify-population as hosted proof",
+      "Manufacture field_manually_corrected for telemetry coverage"
+    ],
+    "proveBeforeClaiming": [
+      "LIVE_DEPLOYMENT_IDENTITY_PASS on hosted SHA",
+      "Hosted observation log with document_parsed/field_populated/final_output_accepted",
+      "Business experience pipeline episode count >= 1"
+    ]
+  },
+  "ownerRepo": "Cursor-ProposalGenerator",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

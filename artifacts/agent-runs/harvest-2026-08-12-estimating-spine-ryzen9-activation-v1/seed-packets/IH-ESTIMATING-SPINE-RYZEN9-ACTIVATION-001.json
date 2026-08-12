@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-ESTIMATING-SPINE-RYZEN9-ACTIVATION-001",
+  "kind": "runbook",
+  "title": "Estimating spine RYZEN9 activation from WESLEY_WORK via Direct Connect GHA dispatch",
+  "summary": "WSL executor on RYZEN9 is READY (GPU smoke + repo preflight PASS); Windows Revu and CE opening stack remain desk-local; verdict WSL_EXECUTOR_READY_WINDOWS_REVU_PENDING.",
+  "retrievalQuestions": [
+    "What is the status of estimating-spine-ryzen9-activation-v1?",
+    "Which GHA runs proved RYZEN9 executor readiness from WESLEY_WORK?",
+    "Where is the Direct Connect handoff for estimating spine activation?"
+  ],
+  "evidenceRefs": [
+    "CG-AppBuilder-MCP/artifacts/agent-runs/estimating-spine-ryzen9-activation-v1/activation-manifest.json",
+    "Z:/Office/Wes/Direct Connect/handoffs/estimating-spine-ryzen9-activation-v1/mission-handoff.json",
+    "work-progress/projects/2026-08-12_estimating-spine-ryzen9-activation-v1.md",
+    "work-progress/intelligence-hub-slices/estimating-spine-ryzen9-activation.json"
+  ],
+  "sourcePacketIds": ["estimating-spine-ryzen9-activation-v1"],
+  "executionDeltaRefs": [],
+  "roiRank": 1,
+  "futureAgentInstructions": {
+    "whenThisAppears": "Cross-desk estimating spine work on RYZEN9 from WESLEY_WORK",
+    "startAt": [
+      "work-progress/intelligence-hub-slices/estimating-spine-ryzen9-activation.json",
+      "BY-KIND/cross-desk-routing.json",
+      "BY-KIND/host-authority.json"
+    ],
+    "runPreflight": [
+      "office.get_direct_connect_auto_connect_profile",
+      "npm run direct-connect:preflight -- --json"
+    ],
+    "doNot": [
+      "Treat WSL GHA runner online as Revu Windows interactive proof",
+      "Dispatch CE opening stack via GHA allowlist without desk run",
+      "Claim production Revu markup — revu-mcp-production-workflow-locked"
+    ],
+    "proveBeforeClaiming": [
+      "activation-manifest.json remoteProofRuns all recorded",
+      "handoff bus STATUS.json matches executor plane split"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

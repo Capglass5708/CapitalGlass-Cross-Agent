@@ -1,0 +1,117 @@
+{
+  "milestoneId": "commercial-glazing-scope-intelligence-spine-v1",
+  "phase": "PHASE_3B_SPATIAL_XREF_OPENING_MARK_SCHEDULE",
+  "verdict": "R3_DRAWING_RELATIONSHIP_PASS",
+  "gate": "R3_DRAWING_RELATIONSHIP_PASS",
+  "observedAt": "2026-08-09T07:11:33.009964+00:00",
+  "documentId": "c2464d55-70c0-481c-8c6c-caed82cb0f0d",
+  "documentName": "Morton Ranch Apartments - CG-1997-26 - Drawings - Architectural",
+  "ceCommitSha": "fe0b860411d9769b54a7772abf4d41fab782694e",
+  "phase2Verdict": "R2_REAL_PLAN_VISION_PASS_WITH_MEASURED_LIMITATIONS",
+  "previousEvidenceResolutionRate": 0.1512,
+  "newEvidenceResolutionRate": 0.3023,
+  "candidateCount": 172,
+  "xrefCountInspected": 0,
+  "xrefResolvedCandidateCount": 0,
+  "marksExtracted": 15,
+  "markExtractionRate": 0.0698,
+  "scheduleRowsNormalized": 0,
+  "markToScheduleResolvedCount": 0,
+  "visualResolvedCount": 12,
+  "relationshipOnlyResolvedCount": 40,
+  "bothResolvedCount": 1,
+  "unresolvedCount": 120,
+  "unresolvedReasonCounts": {
+    "NO_OPENING_MARK": 120
+  },
+  "perSheetMetrics": {
+    "A2.0": {
+      "candidateCount": 50,
+      "visualResolvedCount": 3,
+      "relationshipResolvedCount": 2,
+      "bothCount": 0,
+      "unresolvedCount": 45,
+      "evidenceResolutionRate": 0.1
+    },
+    "A2.1": {
+      "candidateCount": 50,
+      "visualResolvedCount": 5,
+      "relationshipResolvedCount": 6,
+      "bothCount": 0,
+      "unresolvedCount": 39,
+      "evidenceResolutionRate": 0.22
+    },
+    "A2.2": {
+      "candidateCount": 60,
+      "visualResolvedCount": 3,
+      "relationshipResolvedCount": 32,
+      "bothCount": 1,
+      "unresolvedCount": 24,
+      "evidenceResolutionRate": 0.6
+    },
+    "A14.6": {
+      "candidateCount": 6,
+      "visualResolvedCount": 0,
+      "relationshipResolvedCount": 0,
+      "bothCount": 0,
+      "unresolvedCount": 6,
+      "evidenceResolutionRate": 0.0
+    },
+    "A156.19": {
+      "candidateCount": 6,
+      "visualResolvedCount": 0,
+      "relationshipResolvedCount": 0,
+      "bothCount": 0,
+      "unresolvedCount": 6,
+      "evidenceResolutionRate": 0.0
+    }
+  },
+  "headlineMetric": "evidenceResolutionRate",
+  "evidenceResolution": {
+    "evidenceResolutionRate": 0.3023,
+    "visualResolutionRate": 0.0698,
+    "relationshipResolutionRate": 0.2384,
+    "bothLaneResolutionRate": 0.0058,
+    "visualAssociationCount": 12,
+    "visualOnlyCount": 11,
+    "relationshipOnlyCount": 40,
+    "bothLanesCount": 1,
+    "unresolvedCount": 120,
+    "ceOnlyGainedFromRelationships": 40,
+    "marksExtracted": 15,
+    "markExtractionRate": 0.0698,
+    "markToScheduleResolutionRate": 0.0,
+    "xrefResolvedCandidateCount": 0,
+    "xrefResolutionRate": 0.0,
+    "unresolvedReasonCounts": {
+      "NO_OPENING_MARK": 120
+    }
+  },
+  "relationshipTypeCounts": {
+    "PLAN_TO_OPENING_MARK": 15,
+    "PLAN_TO_DETAIL": 16,
+    "PLAN_MARK_TO_SCHEDULE": 25
+  },
+  "tests": "tests/unit/test_drawing_relationships.py",
+  "interpretation": {
+    "phase3bMechanisms": {
+      "spatialXrefBridging": "implemented; Morton Ranch xrefs on A3.x not co-located with A2 plan candidates",
+      "openingMarkExtraction": "spatial nearby text blocks",
+      "scheduleLinkage": "schedule-text corroboration + G01/G02 detail mark index to A14.x",
+      "insulationFalsePositiveFilter": "R-xx rejected as detail refs"
+    },
+    "measuredGain": "15.12% -> 30.23% evidenceResolutionRate",
+    "remainingGaps": "120 NO_OPENING_MARK; no same-sheet xrefs on A2 plan sheets"
+  },
+  "canonicalPhaseSequence": {
+    "phase1": "R1_CE_LIVE_CANDIDATES_PASS",
+    "phase2": "R2_REAL_PLAN_VISION_PASS_WITH_MEASURED_LIMITATIONS",
+    "phase3": "R3_DRAWING_RELATIONSHIP_PASS",
+    "phase4": "PHASE_4_ASSEMBLY_INTELLIGENCE_IN_PROGRESS",
+    "phase5FullSpine": "NOT_ADVANCED",
+    "phase5ParallelFixture": "PHASE_5_FIXTURE_PROOF_BLOCKED_PARALLEL"
+  },
+  "nextCanonicalPhase": "PHASE_4_ASSEMBLY_INTELLIGENCE",
+  "productionUnlocked": false,
+  "commercialWriteAuthorized": false
+}

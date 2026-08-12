@@ -1,0 +1,79 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-estate-flow-authority-normalization-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "e9f87d94d7000d000917186ac6ace15a534634a2",
+      "branch": "main",
+      "harvestId": "estate-flow-authority-normalization-v1",
+      "seedId": "IH-ESTATE-FLOW-AUTHORITY-NORMALIZATION-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-10T00:11:34.241Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "critical",
+    "contentHash": "ab3ca4f60635d17e600abf65f862366d4c706e8d8e6ba54e4cd3ea0b0b034426"
+  },
+  "body": {
+    "seedId": "IH-ESTATE-FLOW-AUTHORITY-NORMALIZATION-001",
+    "kind": "lesson",
+    "title": "Estate-flow shadow probe requires live Cross-Agent phase receipts and harvest compact records",
+    "summary": "ESTATE_WORK_QUEUE_SHADOW_PROBE_V1 fails with CANNOT_DETERMINE when commercial-glazing phase receipts, mcp-health harvest compacts, or mcp-health worktree branch authority are missing. Restore from canonical Git branches and verify worktree headEqualsOrigin before claiming DETERMINISTIC_PASS.",
+    "canonicalQuestion": "Why does estate-flow shadow probe return CANNOT_DETERMINE for commercial-glazing or mcp-health?",
+    "alternateQuestions": [
+      "What authority inputs must exist for ESTATE_WORK_QUEUE_SHADOW_PROBE_V1 DETERMINISTIC_PASS?"
+    ],
+    "shortAnswer": "ESTATE_WORK_QUEUE_SHADOW_PROBE_V1 fails with CANNOT_DETERMINE when commercial-glazing phase receipts, mcp-health harvest compacts, or mcp-health worktree branch authority are missing. Restore from canonical Git branches and verify worktree headEqualsOrigin before claiming DETERMINISTIC_PASS.",
+    "detailedAnswer": "Estate-flow shadow probe requires live Cross-Agent phase receipts and harvest compact records",
+    "retrievalQuestions": [
+      "Why does estate-flow shadow probe return CANNOT_DETERMINE for commercial-glazing or mcp-health?",
+      "What authority inputs must exist for ESTATE_WORK_QUEUE_SHADOW_PROBE_V1 DETERMINISTIC_PASS?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "estate-flow shadow probe regression or harvest closeout for authority normalization",
+      "startAt": [
+        "runtime/estate-flow-authority/shadow-probe-latest.json",
+        "artifacts/agent-runs/estate-flow-authority-normalization-v1/thread-autopsy-bundle.json"
+      ],
+      "runPreflight": [
+        "npm run estate-flow:shadow-probe -- --no-chat --mcp-root=/home/wesle/repos/CG-AppBuilder-MCP",
+        "verify Cross-Agent work-progress phase receipts on canonical branch",
+        "verify mcp-health worktree branch matches feature milestone"
+      ],
+      "doNot": [
+        "Hardcode prior golden classifications when live estate legitimately changed",
+        "Fabricate phase receipts or harvest compact records"
+      ],
+      "proveBeforeClaiming": [
+        "verdict=DETERMINISTIC_PASS with NO_CHAT=true",
+        "authorityConflicts=0 and unclassifiedFocusCandidates=0"
+      ]
+    },
+    "evidenceRefs": [
+      "artifacts/agent-runs/estate-flow-authority-normalization-v1/shadow-probe-pass.json",
+      "artifacts/agent-runs/estate-flow-authority-normalization-v1/thread-autopsy-bundle.json",
+      "runtime/estate-flow-authority/shadow-probe-latest.json"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": 1,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/estate-flow-authority-normalization-v1/seed-packets/IH-ESTATE-FLOW-AUTHORITY-NORMALIZATION-001.json"
+    ],
+    "harvestId": "estate-flow-authority-normalization-v1"
+  }
+}

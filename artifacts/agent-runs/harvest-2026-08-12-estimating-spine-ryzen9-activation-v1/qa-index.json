@@ -1,0 +1,189 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-estimating-spine-ryzen9-activation-v1",
+  "chatTranscriptCoverage": "PARTIAL",
+  "records": [
+    {
+      "ihPfspId": "IH-ESTIMATING-SPINE-RYZEN9-ACTIVATION-001",
+      "questionId": "IHESTIMATING",
+      "canonicalQuestion": "What is the status of estimating-spine-ryzen9-activation-v1?",
+      "alternateQuestions": [
+        "Which GHA runs proved RYZEN9 executor readiness from WESLEY_WORK?",
+        "Where is the Direct Connect handoff for estimating spine activation?"
+      ],
+      "shortAnswer": "WSL executor on RYZEN9 is READY (GPU smoke + repo preflight PASS); Windows Revu and CE opening stack remain desk-local; verdict WSL_EXECUTOR_READY_WINDOWS_REVU_PENDING.",
+      "detailedAnswer": "Estimating spine RYZEN9 activation from WESLEY_WORK via Direct Connect GHA dispatch",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-12T03:41:52.409Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-12-estimating-spine-ryzen9-activation-v1/seed-packets/IH-ESTIMATING-SPINE-RYZEN9-ACTIVATION-001.json"
+      ],
+      "authorityCommit": [
+        "53eef60"
+      ],
+      "evidenceUrls": [
+        "CG-AppBuilder-MCP/artifacts/agent-runs/estimating-spine-ryzen9-activation-v1/activation-manifest.json",
+        "Z:/Office/Wes/Direct Connect/handoffs/estimating-spine-ryzen9-activation-v1/mission-handoff.json",
+        "work-progress/projects/2026-08-12_estimating-spine-ryzen9-activation-v1.md",
+        "work-progress/intelligence-hub-slices/estimating-spine-ryzen9-activation.json"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-12-estimating-spine-ryzen9-activation-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Cross-desk estimating spine work on RYZEN9 from WESLEY_WORK",
+        "startAt": [
+          "work-progress/intelligence-hub-slices/estimating-spine-ryzen9-activation.json",
+          "BY-KIND/cross-desk-routing.json",
+          "BY-KIND/host-authority.json"
+        ],
+        "runPreflight": [
+          "office.get_direct_connect_auto_connect_profile",
+          "npm run direct-connect:preflight -- --json"
+        ],
+        "doNot": [
+          "Treat WSL GHA runner online as Revu Windows interactive proof",
+          "Dispatch CE opening stack via GHA allowlist without desk run",
+          "Claim production Revu markup — revu-mcp-production-workflow-locked"
+        ],
+        "proveBeforeClaiming": [
+          "activation-manifest.json remoteProofRuns all recorded",
+          "handoff bus STATUS.json matches executor plane split"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "runbook"
+    },
+    {
+      "ihPfspId": "IH-RYZEN9-EXECUTOR-PLANE-SPLIT-001",
+      "questionId": "IHRYZEN9EXEC",
+      "canonicalQuestion": "Can WSL runner online prove Revu MCP on RYZEN9?",
+      "alternateQuestions": [
+        "What runs on WSL_GHA_EXECUTOR vs WINDOWS_INTERACTIVE on RYZEN9DESK?"
+      ],
+      "shortAnswer": "Remote GHA on RYZEN9 WSL proves storage, GPU, and repo preflight only; Revu MCP and CE opening stack require WINDOWS_INTERACTIVE at the desk.",
+      "detailedAnswer": "RYZEN9 execution planes: WSL_GHA_EXECUTOR vs WINDOWS_INTERACTIVE",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-12T03:41:52.410Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-12-estimating-spine-ryzen9-activation-v1/seed-packets/IH-RYZEN9-EXECUTOR-PLANE-SPLIT-001.json"
+      ],
+      "authorityCommit": [
+        "53eef60"
+      ],
+      "evidenceUrls": [
+        "artifacts/agent-runs/harvest-2026-08-12-estimating-spine-ryzen9-activation-v1/compact-records/estimating-spine-ryzen9-activation-v1.json",
+        "CG-AppBuilder-MCP/scripts/executor/ryzen9desk-executor-allowlist.json"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "policy",
+        "harvest-2026-08-12-estimating-spine-ryzen9-activation-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Agent conflates RYZEN9 WSL runner health with Revu or CE opening readiness",
+        "startAt": [
+          "BY-KIND/host-authority.json",
+          "CapitalGlass-Office-Admin/mcp/knowledge-index/cg-direct-connect-auto-connect.v1.json"
+        ],
+        "runPreflight": [
+          "office.evaluate_ryzen9desk_dispatch_eligibility"
+        ],
+        "doNot": [
+          "Use SSH/Tailscale as first transport for cross-desk Revu proof",
+          "Clear revu-mcp-production-workflow-locked without live Gate 1 provenance"
+        ],
+        "proveBeforeClaiming": [
+          "WINDOWS_INTERACTIVE handoff receipt for Revu",
+          "CE opening stack install receipt on desk for opening detection"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "policy"
+    },
+    {
+      "ihPfspId": "IH-RYZEN9-MANAGED-EXECUTOR-ONLINE-001",
+      "questionId": "IHRYZEN9MANA",
+      "canonicalQuestion": "What is the status of ryzen9desk-managed-executor-v1?",
+      "alternateQuestions": [
+        "When did RYZEN9 managed executor reach PARTIAL_REMOTE_PASS?"
+      ],
+      "shortAnswer": "ryzen9desk-managed-executor-v1 advanced from prior blocked state to MANAGED_EXECUTOR_ONLINE with PARTIAL_REMOTE_PASS after five remote GHA proofs from WESLEY_WORK.",
+      "detailedAnswer": "RYZEN9DESK managed executor advanced to MANAGED_EXECUTOR_ONLINE",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-12T03:41:52.410Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-12-estimating-spine-ryzen9-activation-v1/seed-packets/IH-RYZEN9-MANAGED-EXECUTOR-ONLINE-001.json"
+      ],
+      "authorityCommit": [
+        "53eef60"
+      ],
+      "evidenceUrls": [
+        "work-progress/projects/2026-08-03_ryzen9desk-managed-executor-v1.md",
+        "artifacts/agent-runs/harvest-2026-08-12-estimating-spine-ryzen9-activation-v1/compact-records/ryzen9desk-managed-executor-v1.json",
+        "GHA:31560060271",
+        "GHA:31560208328"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "status",
+        "harvest-2026-08-12-estimating-spine-ryzen9-activation-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Suite status asks whether RYZEN9 executor is operational",
+        "startAt": [
+          "BY-KIND/active-work-ledger.json",
+          "work-progress/projects/2026-08-03_ryzen9desk-managed-executor-v1.md"
+        ],
+        "runPreflight": [
+          "npm run agent:index:scout -- --json"
+        ],
+        "doNot": [
+          "Re-block on cleared structured-ledger ingest HOLD",
+          "Downgrade to blocked without new failure evidence"
+        ],
+        "proveBeforeClaiming": [
+          "dual-machine-remote-status GHA PASS within freshness window",
+          "managed executor allowlist matches dispatched profiles"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "status"
+    }
+  ]
+}
