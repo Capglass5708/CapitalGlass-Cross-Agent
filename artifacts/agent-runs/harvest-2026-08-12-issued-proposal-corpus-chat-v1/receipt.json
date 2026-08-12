@@ -1,28 +1,67 @@
 {
-  "schemaVersion": "harvest-receipt-v1@1.0.0",
-  "harvestId": "harvest-2026-08-12-issued-proposal-corpus-chat-v1",
-  "workPackageId": "issued-proposal-structured-estimator-learning-v1",
-  "relatedWorkPackages": [
-    "ce-issued-proposal-corpus-v1",
-    "capital-glass-proposal-learning-compounding-spine-v1"
-  ],
-  "verdict": "HARVEST_COMPLETE",
-  "generatedAt": "2026-08-12T05:15:00.000Z",
-  "ownerRepo": "CapitalGlass-Cross-Agent",
-  "chatTranscriptId": "628ebd5b-d678-45ea-b8e0-6941c62eab40",
-  "hubPlacement": {
-    "gitFailoverSlices": [
-      "work-progress/intelligence-hub-slices/issued-proposal-learning-program-v1.json",
-      "work-progress/intelligence-hub-slices/issued-proposal-corpus-v1.json"
-    ],
-    "catalogPatchesPendingL": [
-      "artifacts/issued-proposal-corpus-v1/agent-build-catalog-patch-v1.json",
-      "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/agent-build-catalog-patch-learning-program-v1.json"
-    ],
-    "lPublishWorkflow": "WESLEYDESK index-publication.yml"
+  "schemaVersion": "cross-agent-harvest-receipt-v1@1.2.0",
+  "workPackageId": "harvest-2026-08-12-issued-proposal-corpus-chat-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "generatedAt": "2026-08-12T04:29:06.932Z",
+  "verdict": "HARVEST_VALIDATED",
+  "authority": "harvest-manifest-v1.json",
+  "harvestManifestPath": "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/harvest-manifest-v1.json",
+  "harvestManifestHash": "987dc7ebf152f856d3ec4c949cd4a382a2dabb85a6fec91dd962154728ce3ea6",
+  "sourceCommitSha": "a9034fabe134ef44f3442235528486e0dc96b224",
+  "sourceBranch": "work/active-ledger-currentness-ingestion-and-harvest-v1",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "ledgerContentHashBefore": "2f81b0c9d610dac8dfc1bc8e380c342ccdfad191b266ab9223b14bc66fa203c0",
+  "ledgerContentHashAfter": "2f81b0c9d610dac8dfc1bc8e380c342ccdfad191b266ab9223b14bc66fa203c0",
+  "projectionSyncStatus": "not-run",
+  "hubPublishStatus": "not-run",
+  "retrieval": {
+    "primaryOutcome": "INDEX_HIT_AI_CACHE",
+    "cacheOutcome": "CACHE_MISS",
+    "hubMount": "L_DRIVE_MOUNTED_IN_WSL"
   },
-  "artifacts": {
-    "markdown": "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/CHAT_INTELLIGENCE_HARVEST.md",
-    "extractJson": "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/chat-intelligence-extract-v1.json"
+  "constraintsHonored": {
+    "noSsh": true,
+    "noRunnerInstall": true,
+    "noWorkflowDispatch": true,
+    "noAppBuilderChanges": true,
+    "noPromptOpsCleanup": true,
+    "noLPublication": true,
+    "noTokenOrCredentialArtifacts": true
+  },
+  "packetCount": 10,
+  "packetIndexPath": "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/packet-index.json",
+  "summaryPath": "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/HARVEST_SUMMARY.md",
+  "coveragePath": "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/coverage.json",
+  "bootstrapNote": "RYZEN9DESK runner bootstrap is a separate CG-AppBuilder-MCP mission; harvest records coordination state only.",
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 13,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 13,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-f5cfc2b1b3fa",
+      "prompt-candidate-c28b7ffd558e",
+      "prompt-candidate-95394c892c63",
+      "prompt-candidate-01721cc9fff2",
+      "prompt-candidate-33360adb6704",
+      "prompt-candidate-479bb523d88d",
+      "prompt-candidate-7e4d7bfc3820",
+      "prompt-candidate-332ba665df46",
+      "prompt-candidate-35fb514192bc",
+      "prompt-candidate-8f7bc3f2b394",
+      "prompt-candidate-fc254a52a195",
+      "prompt-candidate-9c15d862a436",
+      "prompt-candidate-a821729331ed"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
   }
 }

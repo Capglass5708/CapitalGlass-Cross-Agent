@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-issued-proposal-corpus-chat-v1",
+  "packetId": "issued-proposal-l-hub-publication-hold-v1",
+  "state": "HOLD",
+  "packetVerdict": "HOLD",
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Operator runs index-publication.yml on WESLEYDESK; merge both catalog patches",
+  "evidenceRefs": [
+    "artifacts/issued-proposal-corpus-v1/agent-build-catalog-patch-v1.json",
+    "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/agent-build-catalog-patch-learning-program-v1.json"
+  ],
+  "doNotAdvance": [
+    "index:publish from Cursor",
+    "harvest:publish-hub-seed from Cursor",
+    "FULLY_SEEDED without operator receipt"
+  ],
+  "advancementGate": "index:freshness-gate PASS after publish",
+  "contentHash": "9a17d34f932d8a04f6fc28f9c0a2a7a4afe42f16a477bf53373cc88c83a3be0d"
+}

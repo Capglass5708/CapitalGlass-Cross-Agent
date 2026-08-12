@@ -1,0 +1,234 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-issued-proposal-corpus-chat-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-ISSUED-PROPOSAL-CORPUS-BOUNDARY-001",
+      "questionId": "IHISSUEDPROP",
+      "canonicalQuestion": "Is the Proposals folder CE batch intake?",
+      "alternateQuestions": [
+        "Where do issued proposal PDF benchmarks live?"
+      ],
+      "shortAnswer": "Z: Computer Estimator Sample Documents/Proposals holds 23 issued benchmarks; upstream is bid-sheets and full-plan-sets.",
+      "detailedAnswer": "Proposals/ is downstream issued output not CE plan intake",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-12T04:29:28.728Z",
+      "authorityRepo": "Computer Estimator",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/seed-packets/IH-ISSUED-PROPOSAL-CORPUS-BOUNDARY-001.json"
+      ],
+      "authorityCommit": [
+        "a9034fa"
+      ],
+      "evidenceUrls": [
+        "Z:/Capital-Glass-Dev/Computer Estimator Sample Documents/AGENT_SETUP.md",
+        "TE-004"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-12-issued-proposal-corpus-chat-v1"
+      ],
+      "entities": [
+        "Computer Estimator"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Computer Estimator office drop or batch intake routing",
+        "startAt": [
+          "work-progress/intelligence-hub-slices/issued-proposal-corpus-v1.json"
+        ],
+        "runPreflight": [
+          "Read AGENT_SETUP.md Proposals section"
+        ],
+        "doNot": [
+          "CE batch-process Proposals/",
+          "Treat issued PDFs as plan evidence intake"
+        ],
+        "proveBeforeClaiming": [
+          "corpusId ce-sample-issued-proposals-v1",
+          "notCePlanIntake true"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "runbook"
+    },
+    {
+      "ihPfspId": "IH-ISSUED-PROPOSAL-CORPUS-COMMANDS-003",
+      "questionId": "IHISSUEDPROP",
+      "canonicalQuestion": "How do I regenerate the 23 issued proposal corpus manifest?",
+      "alternateQuestions": [
+        "What tools are required for issued proposal PDF harvest?"
+      ],
+      "shortAnswer": "npm run harvest:issued-proposal-corpus from Cross-Agent with Z: mounted and poppler-utils.",
+      "detailedAnswer": "Regenerate issued proposal corpus manifest",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-12T04:29:28.728Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/seed-packets/IH-ISSUED-PROPOSAL-CORPUS-COMMANDS-003.json"
+      ],
+      "authorityCommit": [
+        "a9034fa"
+      ],
+      "evidenceUrls": [
+        "scripts/issued-proposal-corpus/harvest-issued-proposal-corpus-v1.py",
+        "TE-003"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "command",
+        "harvest-2026-08-12-issued-proposal-corpus-chat-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Refreshing ce-sample-issued-proposals-v1 manifest or regression pack",
+        "startAt": [
+          "artifacts/issued-proposal-corpus-v1/manifest.json"
+        ],
+        "runPreflight": [
+          "test -d /mnt/z/Capital-Glass-Dev",
+          "which pdftotext"
+        ],
+        "doNot": [
+          "Use strings on PDFs",
+          "Hand-edit manifest without re-running harvest"
+        ],
+        "proveBeforeClaiming": [
+          "manifest.json record count 23",
+          "harvest exit 0"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "command"
+    },
+    {
+      "ihPfspId": "IH-ISSUED-PROPOSAL-HARVEST-NOT-LEARNING-002",
+      "questionId": "IHISSUEDPROP",
+      "canonicalQuestion": "Can we close issued proposal learning after harvest PASS?",
+      "alternateQuestions": [
+        "What are hard exit criteria for structured estimator learning?"
+      ],
+      "shortAnswer": "WaveRunner must not close proposal learning on harvest alone; successor WP has eight hard exit criteria.",
+      "detailedAnswer": "23 PDFs harvested PASS is not learned from 23 proposals",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-12T04:29:28.728Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/seed-packets/IH-ISSUED-PROPOSAL-HARVEST-NOT-LEARNING-002.json"
+      ],
+      "authorityCommit": [
+        "a9034fa"
+      ],
+      "evidenceUrls": [
+        "chat-intelligence-extract-v1.json",
+        "issued-proposal-structured-estimator-learning-v1.md"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "decision",
+        "harvest-2026-08-12-issued-proposal-corpus-chat-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Closing ce-issued-proposal or proposal-learning compounding spine",
+        "startAt": [
+          "work-progress/projects/2026-08-12_issued-proposal-structured-estimator-learning-v1.md"
+        ],
+        "runPreflight": [
+          "Check hardExitCriteria array in chat extract"
+        ],
+        "doNot": [
+          "DURABLE_COMPLETE on harvest alone",
+          "Skip PLR and decision events"
+        ],
+        "proveBeforeClaiming": [
+          "test:issued-proposal-corpus-parity PASS",
+          "PROPOSAL_LEARNING_RECORD_V1 populated"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "decision"
+    },
+    {
+      "ihPfspId": "IH-ISSUED-PROPOSAL-STRUCTURED-LEARNING-EXIT-004",
+      "questionId": "IHISSUEDPROP",
+      "canonicalQuestion": "What is next after ce-issued-proposal-corpus foundation?",
+      "alternateQuestions": [
+        "When is plan-issued-proposal-crosswalk allowed?"
+      ],
+      "shortAnswer": "Slices 2–8: frame/glass extract, parity test, PLR, decision events, contradictions, boilerplate fingerprint, graph precedents, L publish.",
+      "detailedAnswer": "Structured estimator learning mandatory slice order",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-12T04:29:28.728Z",
+      "authorityRepo": "capital-glass-estimating-parser",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/seed-packets/IH-ISSUED-PROPOSAL-STRUCTURED-LEARNING-EXIT-004.json"
+      ],
+      "authorityCommit": [
+        "a9034fa"
+      ],
+      "evidenceUrls": [
+        "work-progress/projects/2026-08-12_issued-proposal-structured-estimator-learning-v1.md"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-12-issued-proposal-corpus-chat-v1"
+      ],
+      "entities": [
+        "capital-glass-estimating-parser"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Continuing issued proposal learning program",
+        "startAt": [
+          "work-progress/projects/2026-08-12_issued-proposal-structured-estimator-learning-v1.md"
+        ],
+        "runPreflight": [
+          "Confirm foundation FOUNDATION_COMPLETE not DURABLE_COMPLETE"
+        ],
+        "doNot": [
+          "Start plan-issued-proposal-crosswalk-v1 before structured learning DURABLE_COMPLETE"
+        ],
+        "proveBeforeClaiming": [
+          "All eight hardExitCriteria satisfied",
+          "L hub publication parity"
+        ]
+      },
+      "promotionClass": "HUMAN_REVIEW",
+      "kind": "runbook"
+    }
+  ]
+}

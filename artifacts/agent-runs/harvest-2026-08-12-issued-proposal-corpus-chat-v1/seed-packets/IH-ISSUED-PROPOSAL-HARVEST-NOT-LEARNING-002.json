@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-ISSUED-PROPOSAL-HARVEST-NOT-LEARNING-002",
+  "kind": "decision",
+  "title": "23 PDFs harvested PASS is not learned from 23 proposals",
+  "summary": "WaveRunner must not close proposal learning on harvest alone; successor WP has eight hard exit criteria.",
+  "retrievalQuestions": [
+    "Can we close issued proposal learning after harvest PASS?",
+    "What are hard exit criteria for structured estimator learning?"
+  ],
+  "evidenceRefs": [
+    "chat-intelligence-extract-v1.json",
+    "issued-proposal-structured-estimator-learning-v1.md"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Closing ce-issued-proposal or proposal-learning compounding spine",
+    "startAt": [
+      "work-progress/projects/2026-08-12_issued-proposal-structured-estimator-learning-v1.md"
+    ],
+    "runPreflight": [
+      "Check hardExitCriteria array in chat extract"
+    ],
+    "doNot": [
+      "DURABLE_COMPLETE on harvest alone",
+      "Skip PLR and decision events"
+    ],
+    "proveBeforeClaiming": [
+      "test:issued-proposal-corpus-parity PASS",
+      "PROPOSAL_LEARNING_RECORD_V1 populated"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "work-progress/intelligence-hub-slices/issued-proposal-learning-program-v1.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

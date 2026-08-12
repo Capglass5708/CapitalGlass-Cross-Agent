@@ -1,0 +1,75 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-issued-proposal-harvest-not-learning-002",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "a9034fabe134ef44f3442235528486e0dc96b224",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-12-issued-proposal-corpus-chat-v1",
+      "seedId": "IH-ISSUED-PROPOSAL-HARVEST-NOT-LEARNING-002"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-12T04:29:28.730Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "8ce52ce1949cf55a72dda4b5df6007ec55ad652bd7adfd3f495db9c7356a5f2d"
+  },
+  "body": {
+    "seedId": "IH-ISSUED-PROPOSAL-HARVEST-NOT-LEARNING-002",
+    "kind": "decision",
+    "title": "23 PDFs harvested PASS is not learned from 23 proposals",
+    "summary": "WaveRunner must not close proposal learning on harvest alone; successor WP has eight hard exit criteria.",
+    "canonicalQuestion": "Can we close issued proposal learning after harvest PASS?",
+    "alternateQuestions": [
+      "What are hard exit criteria for structured estimator learning?"
+    ],
+    "shortAnswer": "WaveRunner must not close proposal learning on harvest alone; successor WP has eight hard exit criteria.",
+    "detailedAnswer": "23 PDFs harvested PASS is not learned from 23 proposals",
+    "retrievalQuestions": [
+      "Can we close issued proposal learning after harvest PASS?",
+      "What are hard exit criteria for structured estimator learning?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Closing ce-issued-proposal or proposal-learning compounding spine",
+      "startAt": [
+        "work-progress/projects/2026-08-12_issued-proposal-structured-estimator-learning-v1.md"
+      ],
+      "runPreflight": [
+        "Check hardExitCriteria array in chat extract"
+      ],
+      "doNot": [
+        "DURABLE_COMPLETE on harvest alone",
+        "Skip PLR and decision events"
+      ],
+      "proveBeforeClaiming": [
+        "test:issued-proposal-corpus-parity PASS",
+        "PROPOSAL_LEARNING_RECORD_V1 populated"
+      ]
+    },
+    "evidenceRefs": [
+      "chat-intelligence-extract-v1.json",
+      "issued-proposal-structured-estimator-learning-v1.md"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Cross-Agent",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/seed-packets/IH-ISSUED-PROPOSAL-HARVEST-NOT-LEARNING-002.json"
+    ],
+    "harvestId": "harvest-2026-08-12-issued-proposal-corpus-chat-v1"
+  }
+}

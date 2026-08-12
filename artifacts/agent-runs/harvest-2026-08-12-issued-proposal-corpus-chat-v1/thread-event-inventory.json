@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-issued-proposal-corpus-chat-v1",
+  "threadScope": "23 issued proposal PDFs — corpus admission, maturity scorecard, structured learning program routing",
+  "generatedAt": "2026-08-12T04:29:06.932Z",
+  "events": [
+    {
+      "eventId": "TE-001",
+      "phase": "scout",
+      "summary": "Investigated Z: Proposals folder — 23 CG-####-26 PDFs Jan–Jun 2026",
+      "evidenceRefs": [
+        "INDEX_HIT_AI_CACHE",
+        "/mnt/z/Capital-Glass-Dev/Computer Estimator Sample Documents/Proposals"
+      ]
+    },
+    {
+      "eventId": "TE-002",
+      "phase": "blocker",
+      "summary": "strings on PDFs empty; installed poppler-utils pdftotext/pdfinfo",
+      "evidenceRefs": [
+        "apt install poppler-utils"
+      ]
+    },
+    {
+      "eventId": "TE-003",
+      "phase": "implementation",
+      "summary": "ce-issued-proposal-corpus-v1 manifest + harvest script + hub slices @ dde727a",
+      "evidenceRefs": [
+        "artifacts/issued-proposal-corpus-v1/manifest.json",
+        "CapitalGlass-Cross-Agent@dde727a"
+      ]
+    },
+    {
+      "eventId": "TE-004",
+      "phase": "documentation",
+      "summary": "Z: AGENT_SETUP.md — Proposals/ downstream benchmark; bid-sheets and full-plan-sets upstream",
+      "evidenceRefs": [
+        "Z:/Capital-Glass-Dev/Computer Estimator Sample Documents/AGENT_SETUP.md"
+      ]
+    },
+    {
+      "eventId": "TE-005",
+      "phase": "cross-repo",
+      "summary": "Bid Composer fixtures + parser executive-summary extractor pushed",
+      "evidenceRefs": [
+        "CapitalGlass-BidComposer@92b0ea1",
+        "capital-glass-estimating-parser@6601bec"
+      ]
+    },
+    {
+      "eventId": "TE-006",
+      "phase": "operator",
+      "summary": "User maturity correction — harvest PASS ≠ learned; successor WP + hard exit criteria",
+      "evidenceRefs": [
+        "chat transcript",
+        "issued-proposal-structured-estimator-learning-v1"
+      ]
+    },
+    {
+      "eventId": "TE-007",
+      "phase": "hub",
+      "summary": "Git failover slices + chat intelligence extract @ f96297f pending L: publish",
+      "evidenceRefs": [
+        "work-progress/intelligence-hub-slices/issued-proposal-learning-program-v1.json"
+      ]
+    },
+    {
+      "eventId": "TE-008",
+      "phase": "closeout",
+      "summary": "CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1 protocol invoked",
+      "evidenceRefs": [
+        "L:/02-catalog/Harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"
+      ]
+    }
+  ]
+}

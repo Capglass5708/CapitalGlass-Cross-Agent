@@ -1,0 +1,395 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-issued-proposal-corpus-chat-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "a9034fabe134ef44f3442235528486e0dc96b224",
+  "sourceBranch": "work/active-ledger-currentness-ingestion-and-harvest-v1",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-12T05:15:00.000Z",
+  "updatedAt": "2026-08-12T04:29:06.932Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_VALIDATED",
+  "chatTranscriptId": "628ebd5b-d678-45ea-b8e0-6941c62eab40",
+  "doNotAdvance": [
+    "Close capital-glass-proposal-learning-compounding-spine on harvest PASS alone",
+    "CE batch-process Proposals/ as plan intake",
+    "index:publish or harvest:publish-hub-seed from Cursor",
+    "Claim DURABLE_COMPLETE for issued-proposal learning before hard exit criteria",
+    "Use strings for PDF text extraction on issued proposals"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 3,
+      "seeds": 4,
+      "roiItems": 4,
+      "operatorFriction": 1,
+      "executionDeltas": 2,
+      "wrongMoves": 1
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Operator WESLEYDESK index-publication.yml — NOT_RUN_BY_CURSOR"
+  },
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "1.2.0",
+    "eligibleCandidates": 0,
+    "exportStatus": "not-run"
+  },
+  "relatedRepos": [
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "work/active-ledger-currentness-ingestion-and-harvest-v1",
+      "commitSha": "dde727aa6a58e0aaaa1914b34ff63a1734c434d2",
+      "role": "corpus foundation"
+    },
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "work/active-ledger-currentness-ingestion-and-harvest-v1",
+      "commitSha": "f96297fe18070ab1578831e925ff97a269a45fec",
+      "role": "chat intelligence git failover"
+    },
+    {
+      "repo": "CapitalGlass-BidComposer",
+      "branch": "main",
+      "commitSha": "92b0ea1",
+      "role": "consumer fixtures"
+    },
+    {
+      "repo": "capital-glass-estimating-parser",
+      "branch": "main",
+      "commitSha": "6601bec",
+      "role": "executive summary extractor"
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerPath": "work-progress/ACTIVE_WORK.md",
+    "ledgerContentHashBefore": "2f81b0c9d610dac8dfc1bc8e380c342ccdfad191b266ab9223b14bc66fa203c0",
+    "ledgerContentHashAfter": "2f81b0c9d610dac8dfc1bc8e380c342ccdfad191b266ab9223b14bc66fa203c0"
+  },
+  "supersededClaims": [
+    {
+      "packetId": "chat-intelligence-extract-v1",
+      "claim": "verdict HARVEST_COMPLETE without protocol autopsy artifacts",
+      "supersededBy": "harvest-2026-08-12-issued-proposal-corpus-chat-v1 full CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1",
+      "recordedAt": "2026-08-12T04:29:06.932Z"
+    }
+  ],
+  "packets": [
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": null,
+      "requiredOwnerArtifact": null,
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-Cross-Agent",
+          "sha": "dde727aa6a58e0aaaa1914b34ff63a1734c434d2",
+          "note": "corpus foundation"
+        }
+      ],
+      "blockers": [],
+      "relatedPackets": [
+        "issued-proposal-structured-learning-active-v1"
+      ],
+      "packetKind": "outcome",
+      "packetId": "ce-issued-proposal-corpus-foundation-v1",
+      "packetTitle": "23 issued proposal PDFs admitted as ce-issued-proposal-corpus-v1",
+      "state": "FOUNDATION_COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-11_ce-issued-proposal-corpus-v1.md",
+      "evidenceRefs": [
+        "artifacts/issued-proposal-corpus-v1/manifest.json",
+        "TE-003",
+        "Z:/Capital-Glass-Dev/Computer Estimator Sample Documents/Proposals"
+      ],
+      "nextAction": "Execute issued-proposal-structured-estimator-learning-v1 slices 2–8",
+      "advancementGate": "harvest:issued-proposal-corpus PASS with 23 records",
+      "doNotAdvance": [
+        "DURABLE_COMPLETE",
+        "close_program_on_harvest_pass_alone"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": null,
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [
+        "ce-issued-proposal-corpus-foundation-v1"
+      ],
+      "packetKind": "decision",
+      "packetId": "issued-proposal-harvest-not-learning-v1",
+      "packetTitle": "Harvest PASS is not structured estimator learning",
+      "state": "ACTIVE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-12_issued-proposal-structured-estimator-learning-v1.md",
+      "evidenceRefs": [
+        "TE-006",
+        "chat-intelligence-extract-v1.json#controllingRule"
+      ],
+      "nextAction": "Complete hard exit criteria before DURABLE_COMPLETE",
+      "advancementGate": "all eight hard exit criteria in successor WP",
+      "doNotAdvance": [
+        "WaveRunner close on harvest alone",
+        "PROPOSAL_LEARNING_DURABLE_COMPLETE"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": null,
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [
+        "L hub publication pending operator"
+      ],
+      "relatedPackets": [],
+      "packetKind": "blocker",
+      "packetId": "issued-proposal-l-hub-publication-hold-v1",
+      "packetTitle": "L: Intelligence Hub publication pending WESLEYDESK",
+      "state": "HOLD",
+      "packetVerdict": "HOLD",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/capital-glass-proposal-learning-compounding-spine-v1.md",
+      "evidenceRefs": [
+        "artifacts/issued-proposal-corpus-v1/agent-build-catalog-patch-v1.json",
+        "artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/agent-build-catalog-patch-learning-program-v1.json"
+      ],
+      "nextAction": "Operator runs index-publication.yml on WESLEYDESK; merge both catalog patches",
+      "advancementGate": "index:freshness-gate PASS after publish",
+      "doNotAdvance": [
+        "index:publish from Cursor",
+        "harvest:publish-hub-seed from Cursor",
+        "FULLY_SEEDED without operator receipt"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": null,
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "packetKind": "mistake",
+      "packetId": "issued-proposal-strings-pdf-mistake-v1",
+      "packetTitle": "strings on PDF binaries returns empty text",
+      "state": "RESOLVED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "capital-glass-estimating-parser",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-11_ce-issued-proposal-corpus-v1.md",
+      "evidenceRefs": [
+        "TE-002",
+        "WM-001"
+      ],
+      "nextAction": "Require poppler-utils pdftotext in corpus harvest preflight",
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Use strings for issued proposal PDF text extraction"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": null,
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "packetKind": "repeated_work",
+      "packetId": "issued-proposal-corpus-rediscovery-v1",
+      "packetTitle": "Re-scanning Z: Proposals without index slice",
+      "state": "MITIGATED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-11_ce-issued-proposal-corpus-v1.md",
+      "evidenceRefs": [
+        "DW-001",
+        "work-progress/intelligence-hub-slices/issued-proposal-corpus-v1.json"
+      ],
+      "nextAction": "Read git failover slice before re-harvesting corpus",
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": null,
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [
+        "issued-proposal-strings-pdf-mistake-v1"
+      ],
+      "packetKind": "faster_path",
+      "packetId": "issued-proposal-poppler-scout-path-v1",
+      "packetTitle": "Scout index then poppler-utils before corpus harvest",
+      "state": "INSTALLED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-12_issued-proposal-structured-estimator-learning-v1.md",
+      "evidenceRefs": [
+        "ED-001",
+        "TE-001"
+      ],
+      "nextAction": "Document poppler in Z: AGENT_SETUP.md corpus section",
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": null,
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [
+        "ce-issued-proposal-corpus-foundation-v1"
+      ],
+      "packetKind": "command",
+      "packetId": "issued-proposal-corpus-harvest-commands-v1",
+      "packetTitle": "Issued proposal corpus regeneration command chain",
+      "state": "DOCUMENTED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-11_ce-issued-proposal-corpus-v1.md",
+      "evidenceRefs": [
+        "npm run harvest:issued-proposal-corpus",
+        "artifacts/issued-proposal-corpus-v1/regression-pack-v1.json"
+      ],
+      "nextAction": "Add test:issued-proposal-corpus-parity in successor WP",
+      "advancementGate": "deterministic parity test per corpus bid",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": null,
+      "requiredOwnerArtifact": null,
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-BidComposer",
+          "sha": "92b0ea1",
+          "note": "consumer pointers"
+        },
+        {
+          "repo": "capital-glass-estimating-parser",
+          "sha": "6601bec",
+          "note": "executive summary extractor"
+        }
+      ],
+      "blockers": [],
+      "relatedPackets": [],
+      "packetKind": "evidence",
+      "packetId": "issued-proposal-corpus-evidence-v1",
+      "packetTitle": "Cross-repo evidence for 23-PDF corpus admission",
+      "state": "RECORDED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-11_ce-issued-proposal-corpus-v1.md",
+      "evidenceRefs": [
+        "f96297f",
+        "dde727a",
+        "CapitalGlass-BidComposer/fixtures/issued-proposal-corpus/",
+        "capital-glass-estimating-parser/scripts/extract-issued-proposal-executive-summary-v1.py"
+      ],
+      "nextAction": "None — foundation evidence frozen",
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": null,
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "packetKind": "protocol_upgrade",
+      "packetId": "issued-proposal-z-boundary-protocol-v1",
+      "packetTitle": "Proposals/ folder is downstream benchmark not CE intake",
+      "state": "DOCUMENTED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "Computer Estimator",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/capital-glass-proposal-learning-compounding-spine-v1.md",
+      "evidenceRefs": [
+        "Z:/Capital-Glass-Dev/Computer Estimator Sample Documents/AGENT_SETUP.md",
+        "TE-004"
+      ],
+      "nextAction": "Enforce in CE office-drop and batch intake docs",
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "CE batch process Proposals/",
+        "Treat issued PDFs as plan intake"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": null,
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [
+        "issued-proposal-harvest-not-learning-v1"
+      ],
+      "packetKind": "outcome",
+      "packetId": "issued-proposal-structured-learning-active-v1",
+      "packetTitle": "Successor WP issued-proposal-structured-estimator-learning-v1 ACTIVE",
+      "state": "IN_PROGRESS",
+      "packetVerdict": "HOLD",
+      "ownerRepo": "capital-glass-estimating-parser",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-12_issued-proposal-structured-estimator-learning-v1.md",
+      "evidenceRefs": [
+        "work-progress/projects/2026-08-12_issued-proposal-structured-estimator-learning-v1.md"
+      ],
+      "nextAction": "Slice 2: frame/glass schedule extractor; slice 3: parity test",
+      "advancementGate": "eight hard exit criteria complete",
+      "doNotAdvance": [
+        "DURABLE_COMPLETE before PLR + decision events populated"
+      ]
+    }
+  ],
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 13,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 13,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-f5cfc2b1b3fa",
+      "prompt-candidate-c28b7ffd558e",
+      "prompt-candidate-95394c892c63",
+      "prompt-candidate-01721cc9fff2",
+      "prompt-candidate-33360adb6704",
+      "prompt-candidate-479bb523d88d",
+      "prompt-candidate-7e4d7bfc3820",
+      "prompt-candidate-332ba665df46",
+      "prompt-candidate-35fb514192bc",
+      "prompt-candidate-8f7bc3f2b394",
+      "prompt-candidate-fc254a52a195",
+      "prompt-candidate-9c15d862a436",
+      "prompt-candidate-a821729331ed"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

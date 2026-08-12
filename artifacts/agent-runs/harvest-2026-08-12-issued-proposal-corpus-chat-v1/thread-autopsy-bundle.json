@@ -1,0 +1,223 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-issued-proposal-corpus-chat-v1",
+  "tier": "T2",
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "BY-KIND/active-work-blockers.json",
+      "work-progress/intelligence-hub-slices/issued-proposal-corpus-v1.json",
+      "work-progress/intelligence-hub-slices/issued-proposal-learning-program-v1.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-12T04:29:06.932Z"
+  },
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "agent",
+      "description": "Attempted strings on PDF binaries before poppler-utils",
+      "evidenceRefs": [
+        "TE-002",
+        "WM-001"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "apt install poppler-utils; pdftotext in harvest script",
+      "roiRank": 1,
+      "goldMineSignalClass": "AGENT_FRICTION_SIGNAL"
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "context",
+      "description": "Lightweight chat harvest claimed HARVEST_COMPLETE before full protocol autopsy",
+      "evidenceRefs": [
+        "f96297f receipt",
+        "TE-008"
+      ],
+      "estimatedImpact": "low",
+      "savedBy": "Run CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1 before terminal verdict",
+      "roiRank": 2,
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL"
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "operator_attention",
+      "description": "User corrected maturity — harvest admission ≠ structured learning complete",
+      "evidenceRefs": [
+        "TE-006"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Hard exit criteria on issued-proposal-structured-estimator-learning-v1",
+      "roiRank": 3,
+      "goldMineSignalClass": "BUSINESS_WORKFLOW_SIGNAL"
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Operator rejected DURABLE_COMPLETE on harvest alone",
+      "operatorCost": "medium",
+      "systemFix": "WaveRunner gate: require PLR + parity test before program close",
+      "evidenceRefs": [
+        "TE-006"
+      ],
+      "linkedWasteIds": [
+        "TW-003"
+      ]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "PDF text extraction for 23 issued proposals",
+      "actualExecution": {
+        "steps": [
+          "strings on PDF",
+          "empty output",
+          "pip install pypdf blocked PEP668",
+          "apt install poppler-utils"
+        ],
+        "outcome": "PASS after poppler",
+        "evidenceRefs": [
+          "TE-002"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Check Z: mount",
+          "Verify poppler-utils",
+          "pdftotext in harvest script"
+        ],
+        "outcome": "First-pass extraction",
+        "requiredPreflight": [
+          "which pdftotext"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Program maturity classification",
+      "actualExecution": {
+        "steps": [
+          "Foundation harvest PASS",
+          "Initial closeout framing"
+        ],
+        "outcome": "Risk of premature DURABLE_COMPLETE",
+        "evidenceRefs": [
+          "TE-006"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Scorecard A–C per lane",
+          "Successor WP with eight exit criteria",
+          "Defer plan crosswalk"
+        ],
+        "outcome": "FOUNDATION_COMPLETE only",
+        "requiredPreflight": [
+          "user maturity scorecard"
+        ]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "medium",
+        "operatorFrustration": "medium"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Used strings instead of pdftotext on issued proposal PDFs",
+      "whyItWasWrong": "Binary PDF strings extraction returns empty on these files",
+      "correctFirstMove": "poppler-utils pdftotext/pdfinfo in harvest preflight",
+      "preventiveControl": "harvest-issued-proposal-corpus-v1.py requires pdftotext",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "Re-discovering 23 PDF corpus without index",
+      "whyRepeated": "Before git failover slices landed",
+      "firstKnownInstance": "initial Z: folder scan",
+      "priorIndexSlice": "work-progress/intelligence-hub-slices/issued-proposal-corpus-v1.json",
+      "whyMissed": "Hub slice not published to L: yet",
+      "avoidableBy": "Read issued-proposal-corpus-v1.json failover slice first",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "issued-proposal-structured-estimator-learning-v1 slice 2 frame/glass extractor",
+      "whyItPays": "Unlocks parity test and PLR population — highest learning ROI",
+      "effort": "medium",
+      "operatorValue": "high",
+      "businessValue": "high",
+      "confidence": "high",
+      "goldMineSignalClass": "BUSINESS_WORKFLOW_SIGNAL",
+      "savedWasteIds": [
+        "TW-003"
+      ],
+      "seedAs": "owner-artifact"
+    },
+    {
+      "rank": 2,
+      "title": "test:issued-proposal-corpus-parity deterministic expectations",
+      "whyItPays": "Regression gate for 23-bid corpus — A- reproducibility to A",
+      "effort": "medium",
+      "savedWasteIds": [],
+      "seedAs": "command"
+    },
+    {
+      "rank": 3,
+      "title": "Operator L: hub publication for corpus + learning program slices",
+      "whyItPays": "Eliminates git failover-only retrieval for estate agents",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-002"
+      ],
+      "seedAs": "index-slice"
+    },
+    {
+      "rank": 4,
+      "title": "plan-issued-proposal-crosswalk-v1 after structured learning DURABLE_COMPLETE",
+      "whyItPays": "Supervised plan↔proposal learning — deferred correctly",
+      "effort": "high",
+      "savedWasteIds": [],
+      "seedAs": "runbook"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "ce-issued-proposal-corpus-v1",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "DURABLE_COMPLETE",
+        "structured learning hard exit criteria met"
+      ],
+      "lastKnownEvidence": [
+        "artifacts/issued-proposal-corpus-v1/manifest.json",
+        "dde727a"
+      ]
+    },
+    {
+      "awardOrVerdict": "capital-glass-proposal-learning-compounding-spine-v1",
+      "currentStatus": "OPEN",
+      "doNotClaimUntil": [
+        "Close program on harvest PASS alone"
+      ],
+      "lastKnownEvidence": [
+        "TE-006",
+        "issued-proposal-structured-estimator-learning-v1.md"
+      ]
+    }
+  ]
+}

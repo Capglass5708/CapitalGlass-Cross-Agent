@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-ISSUED-PROPOSAL-CORPUS-BOUNDARY-001",
+  "kind": "runbook",
+  "title": "Proposals/ is downstream issued output not CE plan intake",
+  "summary": "Z: Computer Estimator Sample Documents/Proposals holds 23 issued benchmarks; upstream is bid-sheets and full-plan-sets.",
+  "retrievalQuestions": [
+    "Is the Proposals folder CE batch intake?",
+    "Where do issued proposal PDF benchmarks live?"
+  ],
+  "evidenceRefs": [
+    "Z:/Capital-Glass-Dev/Computer Estimator Sample Documents/AGENT_SETUP.md",
+    "TE-004"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Computer Estimator office drop or batch intake routing",
+    "startAt": [
+      "work-progress/intelligence-hub-slices/issued-proposal-corpus-v1.json"
+    ],
+    "runPreflight": [
+      "Read AGENT_SETUP.md Proposals section"
+    ],
+    "doNot": [
+      "CE batch-process Proposals/",
+      "Treat issued PDFs as plan evidence intake"
+    ],
+    "proveBeforeClaiming": [
+      "corpusId ce-sample-issued-proposals-v1",
+      "notCePlanIntake true"
+    ]
+  },
+  "ownerRepo": "Computer Estimator",
+  "targetSlice": "work-progress/intelligence-hub-slices/issued-proposal-corpus-v1.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}

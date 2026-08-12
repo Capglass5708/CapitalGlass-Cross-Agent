@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-ISSUED-PROPOSAL-CORPUS-COMMANDS-003",
+  "kind": "command",
+  "title": "Regenerate issued proposal corpus manifest",
+  "summary": "npm run harvest:issued-proposal-corpus from Cross-Agent with Z: mounted and poppler-utils.",
+  "retrievalQuestions": [
+    "How do I regenerate the 23 issued proposal corpus manifest?",
+    "What tools are required for issued proposal PDF harvest?"
+  ],
+  "evidenceRefs": [
+    "scripts/issued-proposal-corpus/harvest-issued-proposal-corpus-v1.py",
+    "TE-003"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Refreshing ce-sample-issued-proposals-v1 manifest or regression pack",
+    "startAt": [
+      "artifacts/issued-proposal-corpus-v1/manifest.json"
+    ],
+    "runPreflight": [
+      "test -d /mnt/z/Capital-Glass-Dev",
+      "which pdftotext"
+    ],
+    "doNot": [
+      "Use strings on PDFs",
+      "Hand-edit manifest without re-running harvest"
+    ],
+    "proveBeforeClaiming": [
+      "manifest.json record count 23",
+      "harvest exit 0"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "artifacts/issued-proposal-corpus-v1/regression-pack-v1.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}
