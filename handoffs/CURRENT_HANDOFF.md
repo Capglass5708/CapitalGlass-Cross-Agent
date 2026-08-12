@@ -1,6 +1,6 @@
 # Current Handoff
 
-**Last reconciled:** 2026-08-03
+**Last reconciled:** 2026-08-12
 **Ledger commit anchor:** `8e4fd40` (verify with `git rev-parse HEAD` in this repo)
 
 Read these files first, in order:
@@ -64,8 +64,10 @@ Artifacts: `CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-index-preflight-e
 
 | Priority | Project | Status | Next action |
 | --- | --- | --- | --- |
-| 1 | `ryzen9desk-managed-executor-v1` | CODE_READY_FOR_RUNNER_BOOTSTRAP | Create runner group/env; install runner on RYZEN9DESK; dispatch `executor-smoke` |
-| 2 | `project-folder-synology-primary-v1-dev-environment` | ACTIVE | Deploy DC to dev URL; prove claim/complete on `L:\Capital-Glass-Projects-Dev` |
+| 1 | `estimating-spine-ryzen9-activation-v1` | WSL_EXECUTOR_READY_ESTIMATING_PARTIAL | RYZEN9 desk: CE opening stack + Revu Windows handoff |
+| 1b | `smith-ranch-ce-revu-full-set-v1` | PHASE_A_READY_FOR_REMOTE_DISPATCH | Merge AppBuilder `cd807ac8f` → dispatch `smith-ranch-ce-batch`; Phase B Revu queued |
+| 2 | `ryzen9desk-managed-executor-v1` | MANAGED_EXECUTOR_ONLINE | Maintain runner; optional `wsl2-canonical-setup` for full repo pin |
+| 3 | `project-folder-synology-primary-v1-dev-environment` | ACTIVE | Deploy DC to dev URL; prove claim/complete on `L:\Capital-Glass-Projects-Dev` |
 | 3 | `project-folder-synology-primary-v1` | HALTED — prod productionization failed | No prod until dev lane gates pass |
 | 4 | `wesleywork-drive-mount-task-dedupe-v1` | IMPLEMENTED — live deploy pending | Elevated Windows deploy on WESLEY_WORK |
 | 5 | `suite-ci-healing-v1` | PARTIAL PASS | Align `EXPECTED_DOCUMENT_CENTER_GIT_SHA` or redeploy DC; rerun smokes |

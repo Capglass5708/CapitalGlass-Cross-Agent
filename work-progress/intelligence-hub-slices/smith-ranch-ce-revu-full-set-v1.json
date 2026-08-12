@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "intelligence-hub-smith-ranch-ce-revu-full-set-slice-v1@1.0.0",
+  "updatedAt": "2026-08-12T04:22:00.000Z",
+  "workPackageId": "smith-ranch-ce-revu-full-set-v1",
+  "jobProfile": "smith-ranch-ce-batch",
+  "verdict": "PHASE_A_READY_FOR_REMOTE_DISPATCH",
+  "projectId": "CG-2037-26",
+  "projectName": "CG-2037-26 Smith Ranch Road",
+  "integrationCaptain": "WESLEY_WORK",
+  "executionEngine": "RYZEN9DESK",
+  "runner": "ryzen9desk-wsl2-CG-RYZEN9DESK-01",
+  "handoffRootWsl": "/mnt/z/Office/Wes/Direct Connect/handoffs/smith-ranch-ce-revu-full-set-v1",
+  "executionPlanes": {
+    "phaseA": {
+      "plane": "WSL_GHA_EXECUTOR",
+      "status": "READY_FOR_REMOTE_DISPATCH",
+      "profile": "smith-ranch-ce-batch",
+      "mutation": true,
+      "requiresGpu": true,
+      "requiresApproval": true
+    },
+    "phaseB": {
+      "plane": "WINDOWS_INTERACTIVE",
+      "status": "QUEUED_POLICY_GATE",
+      "revuInvokedByProfile": false
+    }
+  },
+  "sourceCorpus": {
+    "expectedPdfCount": 235,
+    "manifestDigest": "64b404b7702a86f9fdd28861ed2367956813676d85b3c94334b8aa1f753e742e",
+    "sourceRootWsl": "/mnt/l/Capital-Glass-Projects/CG-2037-26 - Smith Ranch Road/01 - Estimating/02 - Drawings/Architectural/Architectural",
+    "driftCode": "INPUT_CORPUS_DRIFT",
+    "driftApprovalEnv": "CG_SMITH_RANCH_CORPUS_DRIFT_APPROVED=true"
+  },
+  "blockers": [
+    "appbuilder-profile-merge-required",
+    "revu-production-takeoff-pilot-v1",
+    "revu-mcp-production-workflow-locked"
+  ],
+  "ownerRepos": [
+    "CG-AppBuilder-MCP",
+    "Computer-Estimator-glazing-spine",
+    "Computer Estimator"
+  ],
+  "projectFile": "work-progress/projects/2026-08-12_smith-ranch-ce-revu-full-set-v1.md",
+  "harvestArtifact": "CG-AppBuilder-MCP/artifacts/agent-runs/smith-ranch-ce-revu-full-set-v1/intelligence-hub-harvest-v1.json",
+  "appBuilderCommit": "cd807ac8f",
+  "appBuilderBranch": "feat/cursor-wsl2-front-door-v1",
+  "harvestId": "harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1",
+  "parentActivation": "estimating-spine-ryzen9-activation-v1"
+}
