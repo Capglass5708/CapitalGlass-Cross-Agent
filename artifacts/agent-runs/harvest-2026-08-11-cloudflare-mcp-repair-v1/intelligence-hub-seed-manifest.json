@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "cross-agent-harvest-seed-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-11-cloudflare-mcp-repair-v1",
+  "subject": "Cloudflare MCP OAuth lock 15170 or bearer insufficient_scope",
+  "tier": "T2",
+  "seedRecordCount": 1,
+  "retrievalQuestions": [
+    {
+      "retrievalId": "RQ01",
+      "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+      "query": "Why is Cloudflare MCP red in Cursor?"
+    },
+    {
+      "retrievalId": "RQ02",
+      "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+      "query": "Another instance is handling authentication on port 15170"
+    },
+    {
+      "retrievalId": "RQ03",
+      "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+      "query": "Cloudflare MCP insufficient_scope 403"
+    },
+    {
+      "retrievalId": "RQ04",
+      "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+      "query": "cloudflareState.overall green but MCP tools missing"
+    }
+  ],
+  "roiTop3": [],
+  "byKindSlice": "00-master-index/BY-KIND/thread-autopsy-index.json",
+  "catalogRoot": "02-catalog/knowledge-objects/cross-agent-harvest"
+}

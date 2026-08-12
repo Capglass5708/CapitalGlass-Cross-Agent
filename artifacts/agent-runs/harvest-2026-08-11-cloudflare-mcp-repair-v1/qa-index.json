@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-11-cloudflare-mcp-repair-v1",
+  "chatTranscriptCoverage": "PARTIAL",
+  "records": [
+    {
+      "ihPfspId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+      "questionId": "IHCLOUDFLARE",
+      "canonicalQuestion": "Why is Cloudflare MCP red in Cursor?",
+      "alternateQuestions": [
+        "Another instance is handling authentication on port 15170",
+        "Cloudflare MCP insufficient_scope 403",
+        "cloudflareState.overall green but MCP tools missing"
+      ],
+      "shortAnswer": "Cursor Cloudflare MCP fails when mcp-remote holds 127.0.0.1:15170 or CLOUDFLARE_API_TOKEN lacks user:read+account:read. Heal: mcp:cloudflare:heal → mcp:repair:cursor → restart MCP. Read cloudflareState.mcp not DNS overall.",
+      "detailedAnswer": "Cloudflare MCP — OAuth port 15170 lock or bearer insufficient_scope",
+      "currentStatus": "current",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-12T03:26:56.130Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/seed-packets/IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001.json"
+      ],
+      "authorityCommit": [
+        "6a09f1e"
+      ],
+      "evidenceUrls": [
+        "CG-AppBuilder-MCP/docs/incident-memory/workspace-cloudflare-mcp-oauth-lock-bearer-scope.md",
+        "CG-AppBuilder-MCP/docs/runbooks/cloudflare-mcp-repair.md",
+        "CG-AppBuilder-MCP/health-manager.cursor-mcp-contract.json",
+        "CG-AppBuilder-MCP/scripts/lib/cloudflare-mcp-health.mjs"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-11-cloudflare-mcp-repair-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Cloudflare MCP error, OAuth hang, or 403 on mcp.cloudflare.com",
+        "startAt": [
+          "CG-AppBuilder-MCP/docs/incident-memory/INDEX.md cloudflare row",
+          "CG-AppBuilder-MCP/docs/runbooks/cloudflare-mcp-repair.md",
+          "runtime/integrations-health.json → cloudflareState.mcp"
+        ],
+        "runPreflight": [
+          "cd CG-AppBuilder-MCP && npm run mcp:cloudflare:check",
+          "cd CG-AppBuilder-MCP && npm run mcp:cloudflare:heal",
+          "cd CG-AppBuilder-MCP && npm run mcp:repair:cursor"
+        ],
+        "doNot": [
+          "Use cloudflareState.overall (DNS) as MCP readiness",
+          "Skip OAuth lock clear when port 15170 conflict logged",
+          "Assume DNS-only CLOUDFLARE_API_TOKEN works for stdio MCP"
+        ],
+        "proveBeforeClaiming": [
+          "mcp:cloudflare:check shows bearer or HTTP fallback path",
+          "cloudflareState.mcp.overall not red after heal + Cursor MCP restart",
+          "Operator restarted Cursor MCP after mcp.json changes"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "failure-pattern"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-11-cloudflare-mcp-repair-v1",
+  "missionClass": "platform-ops-incident-closeout-harvest-v1",
+  "sourceCommitSha": "6a09f1ee6a3c4ebd4975df45d5cb0bc6e212eb93",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-11T22:30:00.000Z",
+  "updatedAt": "2026-08-11T22:30:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "rawScanRequired": false,
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "Treat cloudflareState.overall (DNS) as MCP readiness",
+    "Skip OAuth lock clear when port 15170 conflict is logged",
+    "Run index:publish from Cursor without operator gate when publication lock active"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "counts": {
+      "seeds": 1
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "seed-compiled",
+    "note": "Owner implementation CG-AppBuilder-MCP cloudflare-mcp-health-layer-v1"
+  },
+  "packets": [
+    {
+      "packetKind": "failure-pattern",
+      "packetId": "cloudflare-mcp-oauth-lock-bearer-scope-v1",
+      "packetTitle": "Cloudflare MCP OAuth lock 15170 or bearer insufficient_scope",
+      "state": "RESOLVED",
+      "packetVerdict": "DOCUMENTED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/docs/incident-memory/workspace-cloudflare-mcp-oauth-lock-bearer-scope.md",
+        "CG-AppBuilder-MCP/docs/runbooks/cloudflare-mcp-repair.md",
+        "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001"
+      ],
+      "nextAction": "npm run mcp:cloudflare:heal; restart Cursor MCP",
+      "commitRefs": [
+        "CG-AppBuilder-MCP@35ffd1a1"
+      ]
+    }
+  ]
+}
