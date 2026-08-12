@@ -1,0 +1,114 @@
+---
+description: Direct Connect first-read — mandatory cross-desk transport before SSH/Tailscale when coordinating WESLEY_WORK ↔ RYZEN9DESK
+alwaysApply: true
+canonicalOwner: CG-AppBuilder-MCP
+canonicalPath: agent-packs/three-way-agent/rules/direct-connect-first-read.mdc
+generatedCopy: true
+ruleVersion: 1.1.0
+canonicalContentHash: 7ca541c134e80cf34104df1d2ce14960f8ad769c5b5219059b408443cb6d19e8
+---
+
+# Direct Connect first-read (mandatory)
+
+For **cross-desk coordination** (WESLEY_WORK ↔ RYZEN9DESK), **Direct Connect is the only approved remote transport**. Inspect repos or run SSH/Tailscale only after Direct Connect fails closed or the operator is physically local on the target desk.
+
+This is a **mechanical gate**, not a preference.
+
+## Trigger topics
+
+Apply when the task may involve any of:
+
+- RYZEN9DESK, `cg-ryzen9desk-01`, second machine, cross-desk, replicate to desk
+- Remote execution, runner dispatch, Z: handoff bus, Direct Connect
+- WESLEY_WORK coordinating work on RYZEN9DESK (or reverse)
+
+**Local exception:** operator is **physically at the target desk** → run commands locally after `git pull`. Log `DIRECT_CONNECT_FAILOVER_LOCAL`.
+
+## Mandatory retrieval order
+
+**Do not** run `ssh`, `scp`, `tailscale ssh`, or ad-hoc remote shell discovery before these steps.
+
+### 1. Compact slice (when Hub mounted)
+
+Read (small JSON only):
+
+1. `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/cross-desk-routing.json`
+2. `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/host-authority.json`
+
+Git fallback when L: missing: `CapitalGlass-Cross-Agent/work-progress/intelligence-hub-slices/cross-desk-routing.json`
+
+Office Admin knowledge: `CapitalGlass-Office-Admin/mcp/knowledge-index/cg-direct-connect-auto-connect.v1.json`
+
+### 2. Office Admin MCP front door
+
+```text
+office.get_direct_connect_auto_connect_profile
+```
+
+Then the canonical sequence from the slice/knowledge index:
+
+```text
+office.get_ryzen9desk_connection_status
+office.list_direct_connect_handoffs / office.get_direct_connect_handoff
+office.evaluate_ryzen9desk_dispatch_eligibility
+office.request_ryzen9desk_dispatch   # delegation → CG-AppBuilder-MCP GHA
+```
+
+### 3. Z: handoff bus (the hop)
+
+WSL: `/mnt/z/Office/Wes/Direct Connect/handoffs`
+
+Env override: `OFFICE_ADMIN_DIRECT_CONNECT_HANDOFF_ROOT_WSL`
+
+The hop is **two buses**, not SSH:
+
+| Bus | Job |
+| --- | --- |
+| GitHub `origin/main` | Same code SHA on both **unify worktrees** |
+| Z: dated handoff folder | Packets, hop file, receipts |
+| `npm run dual-machine:write-hop-packet` + `session-start --cheap` | Peer epoch / `gitAligned` |
+
+SSH (`ssh-admin-tailscale`) is **optional break-glass after hop**. Do not treat SSH failure as hop failure.
+
+**Squash-land:** after a squash-merge, `git merge --ff-only origin/main` from the PR SHA fails. Reset the **unify worktree only** to `origin/main`, then rewrite the hop packet so `authorityEpoch` binds live HEAD. Never reset a dirty primary clone.
+
+**WesleyWork inbound SSH:** user is `wesle@`, not `Wesley@`. Admin keys live in `C:\ProgramData\ssh\administrators_authorized_keys`.
+
+Material preflight:
+
+```bash
+npm run direct-connect:preflight -- --json
+```
+
+## Retrieval codes (required in every response)
+
+| Code | Meaning |
+| --- | --- |
+| `DIRECT_CONNECT_HIT` | Slice/knowledge + MCP front door satisfied; transport lane clear |
+| `DIRECT_CONNECT_BLOCKED` | Cross-desk intent but handoff bus, runner, or required MCP tools unavailable — stop remote transport |
+| `DIRECT_CONNECT_FAILOVER_LOCAL` | Operator physically at target desk; local execution allowed |
+| `DIRECT_CONNECT_NOT_APPLICABLE` | Task is single-host; no cross-desk coordination |
+
+When Hub index also applies, log Hub codes first per `intelligence-hub-first-read.mdc`.
+
+## Forbidden before Direct Connect attempt
+
+- SSH / Tailscale as **first** transport for cross-desk missions
+- Treating WSL runner online as Revu Windows-interactive proof
+- `request_ryzen9desk_dispatch` executing GHA from Office Admin MCP (delegation only)
+- UNC / `\\wsl$` workspace roots for Capital Glass development
+
+## Execution planes
+
+| Plane | Host | When |
+| --- | --- | --- |
+| **WSL GHA executor** | RYZEN9DESK WSL | Runner dispatch, bootstrap, verify scripts |
+| **WINDOWS_INTERACTIVE** | RYZEN9DESK Windows | Revu live proof, Windows-only MCP |
+| **LOCAL_SAME_DESK** | Where operator sits | No Direct Connect transport required |
+
+## Related authority
+
+- Runbook: `CapitalGlass-Office-Admin/docs/runbooks/ryzen9desk-office-admin-mcp-connection.md`
+- Knowledge: `CapitalGlass-Office-Admin/mcp/knowledge-index/cg-direct-connect-auto-connect.v1.json`
+- Preflight: `CG-AppBuilder-MCP` → `npm run direct-connect:preflight`
+- Work package: `direct-connect-first-read-enforcement-v1`

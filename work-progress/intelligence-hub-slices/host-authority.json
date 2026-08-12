@@ -12,18 +12,24 @@
     },
     {
       "hostId": "WESLEY_WORK",
-      "role": "WSL dev, cross-agent ledger ingest",
+      "role": "WSL dev, cross-agent ledger ingest, hop-packet publisher",
       "paths": {
         "intelligenceHub": "/mnt/l/Capital-Glass-Intelligence-Hub",
-        "aiCache": "/mnt/d/AI Cursur Cache"
-      }
+        "aiCache": "/mnt/d/AI Cursur Cache",
+        "unifyWorktree": "CG-AppBuilder-MCP-worktrees/protocol-40-estate-unify-v1",
+        "directConnectHandoff": "/mnt/z/Office/Wes/Direct Connect/handoffs"
+      },
+      "hopBus": "GitHub origin/main + Z: dated handoff. SSH inbound is break-glass (wesle@), not the hop."
     },
     {
       "hostId": "RYZEN9DESK",
-      "role": "managed executor, Direct Connect endpoint",
+      "role": "managed executor, Direct Connect GHA runner, hop-packet peer",
       "paths": {
-        "aiCache": "C:/AI Cursur Cache"
-      }
+        "aiCache": "C:/AI Cursur Cache",
+        "unifyWorktree": "CG-AppBuilder-MCP-worktrees/protocol-40-estate-unify-v1",
+        "directConnectHandoff": "/mnt/z/Office/Wes/Direct Connect/handoffs"
+      },
+      "hopBus": "Pull origin/main on unify worktree, then session-start --cheap. SSH to WesleyWork is optional after hop."
     }
   ]
 }
