@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "cross-agent-gold-mine-evidence-projections-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1",
+  "projections": [
+    {
+      "projectionId": "GMP-001",
+      "topic": "credential-authority-ladder",
+      "sourceEvents": ["TE-005", "TE-006"],
+      "seedPacketIds": ["IH-RYZEN9DESK-L-CREDENTIAL-AUTHORITY-001"],
+      "hubPath": "L:/02-catalog/knowledge-objects/cross-agent-harvest/IH-RYZEN9DESK-L-CREDENTIAL-AUTHORITY-001.json",
+      "retrievalQuery": "RYZEN9DESK L drive stale vault password WSL smb-l authority"
+    },
+    {
+      "projectionId": "GMP-002",
+      "topic": "elevated-cred-staging",
+      "sourceEvents": ["TE-002", "TE-004"],
+      "seedPacketIds": ["IH-RYZEN9DESK-L-ELEVATED-CRED-STAGING-001"],
+      "hubPath": "L:/02-catalog/knowledge-objects/cross-agent-harvest/IH-RYZEN9DESK-L-ELEVATED-CRED-STAGING-001.json",
+      "retrievalQuery": "elevated PowerShell WSL cred staging net use admin"
+    },
+    {
+      "projectionId": "GMP-003",
+      "topic": "office-admin-mcp-drive-ops",
+      "sourceEvents": ["TE-008"],
+      "seedPacketIds": [],
+      "hubPath": null,
+      "ownerArtifact": "CapitalGlass-Office-Admin/mcp/knowledge-index/cg-ryzen9desk-01-drive-mount-operations.json",
+      "retrievalQuery": "CG-RYZEN9DESK-01 drive mount operations MCP"
+    }
+  ]
+}

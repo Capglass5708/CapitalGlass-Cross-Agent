@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "cross-agent-thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1",
+  "events": [
+    {
+      "eventId": "TE-001",
+      "at": "2026-08-12T16:40:00.000Z",
+      "type": "mission-start",
+      "summary": "Operator requested RYZEN9DESK sync, MCP gateway, L: remount with persistence",
+      "evidenceRefs": ["session: ryzen9desk estate sync + drive remap thread"]
+    },
+    {
+      "eventId": "TE-002",
+      "at": "2026-08-12T16:45:00.000Z",
+      "type": "failure-observed",
+      "summary": "Windows L: ERROR_86; elevated sync FATAL no credential source; WSL /tmp unreadable from admin",
+      "evidenceRefs": [
+        "C:/ProgramData/CapitalGlass/OfficeAdmin/logs/ryzen9thumb-drive-sync.log",
+        "C:/ProgramData/CapitalGlass/OfficeAdmin/logs/agent-drive-remap-l-force.log"
+      ]
+    },
+    {
+      "eventId": "TE-003",
+      "at": "2026-08-12T16:49:00.000Z",
+      "type": "probe",
+      "summary": "Operator pointed to D:\\Admin Keys on RYZEN9THUMB; vault MACHINE-LOCK present",
+      "evidenceRefs": ["user: D:\\Admin Keys", "vault: wesleydesk-smb-wesley.vault exists"]
+    },
+    {
+      "eventId": "TE-004",
+      "at": "2026-08-12T16:56:00.000Z",
+      "type": "repair",
+      "summary": "Elevated persist updated protected store from WSL creds; ForceRemap exit 3 (L still failing)",
+      "evidenceRefs": [
+        "C:/ProgramData/CapitalGlass/OfficeAdmin/logs/ryzen9desk-l-persist.log",
+        "C:/ProgramData/CapitalGlass/OfficeAdmin/logs/cg-wesleywork-drive-mount-2026-08-12-115608.log"
+      ]
+    },
+    {
+      "eventId": "TE-005",
+      "at": "2026-08-12T17:00:00.000Z",
+      "type": "root-cause",
+      "summary": "Vault bootstrap wrote stale L password (1326); LAN path error 67 from Wi-Fi segment",
+      "evidenceRefs": [
+        "C:/ProgramData/CapitalGlass/OfficeAdmin/logs/ryzen9desk-l-vault-persist.log",
+        "probe: ERROR_86 and 1326 on wesleydesk L map"
+      ]
+    },
+    {
+      "eventId": "TE-006",
+      "at": "2026-08-12T17:00:30.000Z",
+      "type": "repair",
+      "summary": "User-session net use L: \\\\wesleydesk\\CapitalGlass-L /persistent:yes from cd C:\\ recovered L hub index",
+      "evidenceRefs": ["map-l-user.ps1 execution", "Test-Path L hub index True"]
+    },
+    {
+      "eventId": "TE-007",
+      "at": "2026-08-12T17:05:00.000Z",
+      "type": "repair",
+      "summary": "CapitalGlass-WesleyWork-DriveMount-* persistence tasks installed for user wesley",
+      "evidenceRefs": ["schtasks: Logon Health Unlock LanRecheck Ready"]
+    },
+    {
+      "eventId": "TE-008",
+      "at": "2026-08-12T17:15:00.000Z",
+      "type": "protocol_upgrade",
+      "summary": "Incident + runbook + MCP ops + Hub seeds IH-RYZEN9DESK-L-* published",
+      "evidenceRefs": [
+        "CapitalGlass-Office-Admin/docs/incidents/2026-08-12-cg-ryzen9desk-l-drive-credential-authority.md",
+        "L:/02-catalog/knowledge-objects/cross-agent-harvest/IH-RYZEN9DESK-L-CREDENTIAL-AUTHORITY-001.json"
+      ]
+    },
+    {
+      "eventId": "TE-009",
+      "at": "2026-08-12T17:20:00.000Z",
+      "type": "validation",
+      "summary": "Auto v3.2 session closeout recorded; Windows L+Z and WSL mount authority PASS",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/artifacts/agent-runs/cg-ryzen9desk-l-drive-credential-authority-v1/session-closeout-v3.2.json"
+      ]
+    }
+  ]
+}

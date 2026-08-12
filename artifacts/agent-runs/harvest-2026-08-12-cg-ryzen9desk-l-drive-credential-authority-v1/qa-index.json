@@ -1,0 +1,132 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-RYZEN9DESK-L-CREDENTIAL-AUTHORITY-001",
+      "questionId": "IHRYZEN9DESK",
+      "canonicalQuestion": "Why does RYZEN9DESK Windows L: fail with ERROR_86 or 1326 after vault bootstrap?",
+      "alternateQuestions": [
+        "CG-RYZEN9DESK-01 L drive remap keeps failing — what credential source is authoritative?",
+        "How do I persist L: on Ryzen9 desk without breaking Intelligence Hub retrieval?"
+      ],
+      "shortAnswer": "On CG-RYZEN9DESK-01 use Tailscale wesleydesk for L:, WSL smb-l.credentials before vault bootstrap, never overwrite working protected store with stale D:\\Admin Keys vault L secret.",
+      "detailedAnswer": "RYZEN9DESK L: credential authority ladder and remap recurrence",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-12T17:28:39.369Z",
+      "authorityRepo": "CapitalGlass-Office-Admin",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/seed-packets/IH-RYZEN9DESK-L-CREDENTIAL-AUTHORITY-001.json"
+      ],
+      "authorityCommit": [
+        "0194365"
+      ],
+      "evidenceUrls": [
+        "CapitalGlass-Office-Admin/docs/incidents/2026-08-12-cg-ryzen9desk-l-drive-credential-authority.md",
+        "CapitalGlass-Office-Admin/mcp/knowledge-index/cg-ryzen9desk-01-drive-mount-operations.json",
+        "C:/ProgramData/CapitalGlass/OfficeAdmin/logs/ryzen9desk-l-vault-persist.log",
+        "C:/ProgramData/CapitalGlass/OfficeAdmin/logs/cg-wesleywork-drive-mount-2026-08-12-115608.log"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Office-Admin"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "futureAgentInstructions": {
+        "whenThisAppears": "CG-RYZEN9DESK-01 Windows L: missing, ForceRemap exit 3, ERROR_86/1326/67 on L map",
+        "startAt": [
+          "CapitalGlass-Office-Admin/docs/devices/CG-RYZEN9DESK-01/NETWORK-DRIVES.md",
+          "mcp/knowledge-index/cg-ryzen9desk-01-drive-mount-operations.json",
+          "/etc/capital-glass/smb-l.credentials"
+        ],
+        "runPreflight": [
+          "Test-Path L:\\Capital-Glass-Intelligence-Hub\\00-master-index",
+          "Test-NetConnection wesleydesk -Port 445",
+          "CG_WSL_MACHINE_ROLE=ryzen9desk npm run wsl:mount-authority-drives -- --json"
+        ],
+        "doNot": [
+          "Run Import-DriveCredentialsFromVaultBootstrap when L: already maps via working WSL or cmdkey creds",
+          "Trust D:\\Admin Keys vault L secret without live net use proof",
+          "Run net use or Ensure-CgWesleyWorkDriveMounts from WSL UNC working directory",
+          "ForceRemap when L hub index already healthy"
+        ],
+        "proveBeforeClaiming": [
+          "net use shows L: \\\\wesleydesk\\CapitalGlass-L",
+          "Test-Path L:\\Capital-Glass-Intelligence-Hub\\00-master-index",
+          "findmnt /mnt/l readable with hub index"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-RYZEN9DESK-L-ELEVATED-CRED-STAGING-001",
+      "questionId": "IHRYZEN9DESK",
+      "canonicalQuestion": "Why does elevated drive sync fail with WSL credential files unreadable?",
+      "alternateQuestions": [
+        "ryzen9thumb-drive-sync FATAL no credential source — how to stage creds for admin?"
+      ],
+      "shortAnswer": "Copy smb-l.credentials to C:\\Users\\<user>\\AppData\\Local\\Temp before elevated Update-EndpointDriveCredentials; never rely on \\\\wsl.localhost or /tmp from admin PowerShell.",
+      "detailedAnswer": "Elevated Windows cannot read WSL credential staging paths",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-12T17:28:39.369Z",
+      "authorityRepo": "CapitalGlass-Office-Admin",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/seed-packets/IH-RYZEN9DESK-L-ELEVATED-CRED-STAGING-001.json"
+      ],
+      "authorityCommit": [
+        "0194365"
+      ],
+      "evidenceUrls": [
+        "C:/ProgramData/CapitalGlass/OfficeAdmin/logs/ryzen9thumb-drive-sync.log",
+        "CapitalGlass-Office-Admin/docs/incidents/2026-08-12-cg-ryzen9desk-l-drive-credential-authority.md"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Office-Admin"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Elevated sync script reports WSL credential files unreadable or FATAL no credential source",
+        "startAt": [
+          "/etc/capital-glass/smb-l.credentials",
+          "C:\\Users\\Wesley\\AppData\\Local\\Temp\\cg-smb-l-restore.credentials"
+        ],
+        "runPreflight": [
+          "Non-elevated: copy WSL cred file to Windows LocalAppData Temp",
+          "Elevated: Update-EndpointDriveCredentials.ps1 reads Windows path only"
+        ],
+        "doNot": [
+          "Pass \\\\wsl.localhost paths to Start-Process -Verb RunAs scripts",
+          "Assume /tmp in WSL is visible to elevated Windows PowerShell"
+        ],
+        "proveBeforeClaiming": [
+          "Test-Path C:\\Users\\Wesley\\AppData\\Local\\Temp\\cg-smb-l-restore.credentials from elevated session"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    }
+  ]
+}

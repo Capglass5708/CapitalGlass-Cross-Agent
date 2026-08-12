@@ -1,0 +1,722 @@
+{
+  "packetKind": "graph-extraction",
+  "schemaVersion": "cg-master-graph-extraction-v1",
+  "extractionId": "extraction:harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1",
+  "harvestId": "harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1",
+  "workPackageId": "harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1",
+  "producer": {
+    "repositoryId": "repo:capitalglass-cross-agent",
+    "capability": "harvest-graph-extraction",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "id": "harvest:harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1",
+      "nodeType": "Harvest",
+      "displayName": "harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1",
+      "lifecycleState": "lifecycle:canonical",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+        "sourceCommitSha": "0194365ab357ab935ab430734eecc8c7a5103cb9",
+        "retrievalResult": "INDEX_HIT"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:ryzen9desk-l-drive-recovered-2026-08-12",
+      "nodeType": "WorkPackage",
+      "displayName": "CG-RYZEN9DESK-01 L: drive remapped with persistence tasks",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "PROVEN_EFFECTIVE",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/ryzen9desk-l-drive-recovered-2026-08-12.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/ryzen9desk-l-drive-recovered-2026-08-12.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:wsl-smb-l-credential-authority-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "WSL /etc/capital-glass/smb-l.credentials is live L authority on RYZEN9DESK",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "ADOPTED",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/wsl-smb-l-credential-authority-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/wsl-smb-l-credential-authority-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:vault-bootstrap-overwrite-protected-store-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Vault bootstrap overwrote working protected store with stale L cred",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RESOLVED",
+      "metadata": {
+        "packetVerdict": "ROOT_CAUSE_IDENTIFIED",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md",
+        "advancementGate": "vault-l-cred-refresh-v1"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/vault-bootstrap-overwrite-protected-store-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/vault-bootstrap-overwrite-protected-store-v1.json"
+        }
+      }
+    },
+    {
+      "id": "entity:blocker-blocker-vault-bootstrap-overwrite-protected-store-v1",
+      "nodeType": "Entity",
+      "displayName": "blocker-vault-bootstrap-overwrite-protected-store-v1",
+      "metadata": {
+        "entityKind": "harvest-blocker",
+        "blockerOwner": null
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/vault-bootstrap-overwrite-protected-store-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/vault-bootstrap-overwrite-protected-store-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:vault-l-cred-stale-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "wesleydesk-smb-wesley.vault L cred stale (net use 1326)",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "OPEN",
+      "metadata": {
+        "packetVerdict": "OPEN",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md",
+        "advancementGate": "vault decrypt + net use L without 1326"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/vault-l-cred-stale-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/vault-l-cred-stale-v1.json"
+        }
+      }
+    },
+    {
+      "id": "entity:blocker-blocker-vault-l-cred-stale-v1",
+      "nodeType": "Entity",
+      "displayName": "blocker-vault-l-cred-stale-v1",
+      "metadata": {
+        "entityKind": "harvest-blocker",
+        "blockerOwner": null
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/vault-l-cred-stale-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/vault-l-cred-stale-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:user-session-net-use-before-force-remap-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "User-session net use from C:\\ before elevated ForceRemap",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "ADOPTED",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/user-session-net-use-before-force-remap-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/user-session-net-use-before-force-remap-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:cmd-ryzen9desk-l-probe",
+      "nodeType": "WorkPackage",
+      "displayName": "Prove RYZEN9DESK L drive and WSL mount authority",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/cmd-ryzen9desk-l-probe.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/cmd-ryzen9desk-l-probe.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:cmd-wsl-mount-authority",
+      "nodeType": "WorkPackage",
+      "displayName": "Prove WSL /mnt/l Intelligence Hub mount",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/cmd-wsl-mount-authority.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/cmd-wsl-mount-authority.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:ev-hub-seeds-published",
+      "nodeType": "WorkPackage",
+      "displayName": "Intelligence Hub seeds IH-RYZEN9DESK-L-* published",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md",
+        "advancementGate": "index:freshness-gate PASS"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/ev-hub-seeds-published.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/ev-hub-seeds-published.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:pu-ryzen9desk-l-remap-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "RYZEN9DESK L drive remap future-agent procedure",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "CANDIDATE",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/pu-ryzen9desk-l-remap-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/pu-ryzen9desk-l-remap-v1.json"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:harvest-harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1-contains-workpackage-ryzen9desk-l-drive-recovered-2026-08-12",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1",
+      "targetId": "workpackage:ryzen9desk-l-drive-recovered-2026-08-12",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-ryzen9desk-l-drive-recovered-2026-08-12",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:ryzen9desk-l-drive-recovered-2026-08-12",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/ryzen9desk-l-drive-recovered-2026-08-12.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/ryzen9desk-l-drive-recovered-2026-08-12.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1-contains-workpackage-wsl-smb-l-credential-authority-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1",
+      "targetId": "workpackage:wsl-smb-l-credential-authority-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-wsl-smb-l-credential-authority-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:wsl-smb-l-credential-authority-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/wsl-smb-l-credential-authority-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/wsl-smb-l-credential-authority-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1-contains-workpackage-vault-bootstrap-overwrite-protected-store-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1",
+      "targetId": "workpackage:vault-bootstrap-overwrite-protected-store-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-vault-bootstrap-overwrite-protected-store-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:vault-bootstrap-overwrite-protected-store-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/vault-bootstrap-overwrite-protected-store-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/vault-bootstrap-overwrite-protected-store-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-vault-bootstrap-overwrite-protected-store-v1-blocked-by-entity-blocker-blocker-vault-bootstrap-overwrite-protected-store-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:vault-bootstrap-overwrite-protected-store-v1",
+      "targetId": "entity:blocker-blocker-vault-bootstrap-overwrite-protected-store-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/vault-bootstrap-overwrite-protected-store-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/vault-bootstrap-overwrite-protected-store-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1-contains-workpackage-vault-l-cred-stale-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1",
+      "targetId": "workpackage:vault-l-cred-stale-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-vault-l-cred-stale-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:vault-l-cred-stale-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/vault-l-cred-stale-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/vault-l-cred-stale-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-vault-l-cred-stale-v1-blocked-by-entity-blocker-blocker-vault-l-cred-stale-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:vault-l-cred-stale-v1",
+      "targetId": "entity:blocker-blocker-vault-l-cred-stale-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/vault-l-cred-stale-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/vault-l-cred-stale-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1-contains-workpackage-user-session-net-use-before-force-remap-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1",
+      "targetId": "workpackage:user-session-net-use-before-force-remap-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-user-session-net-use-before-force-remap-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:user-session-net-use-before-force-remap-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/user-session-net-use-before-force-remap-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/user-session-net-use-before-force-remap-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1-contains-workpackage-cmd-ryzen9desk-l-probe",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1",
+      "targetId": "workpackage:cmd-ryzen9desk-l-probe",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-cmd-ryzen9desk-l-probe",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:cmd-ryzen9desk-l-probe",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/cmd-ryzen9desk-l-probe.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/cmd-ryzen9desk-l-probe.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1-contains-workpackage-cmd-wsl-mount-authority",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1",
+      "targetId": "workpackage:cmd-wsl-mount-authority",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-cmd-wsl-mount-authority",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:cmd-wsl-mount-authority",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/cmd-wsl-mount-authority.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/cmd-wsl-mount-authority.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1-contains-workpackage-ev-hub-seeds-published",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1",
+      "targetId": "workpackage:ev-hub-seeds-published",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-ev-hub-seeds-published",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:ev-hub-seeds-published",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/ev-hub-seeds-published.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/ev-hub-seeds-published.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1-contains-workpackage-pu-ryzen9desk-l-remap-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1",
+      "targetId": "workpackage:pu-ryzen9desk-l-remap-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-pu-ryzen9desk-l-remap-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:pu-ryzen9desk-l-remap-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T17:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/pu-ryzen9desk-l-remap-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/compact-records/pu-ryzen9desk-l-remap-v1.json"
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "provenance": {
+    "producerRepositoryId": "repo:capitalglass-cross-agent",
+    "producerCapability": "harvest-graph-extraction",
+    "sourceAuthority": "authority:cross-agent-harvest",
+    "classification": "observed",
+    "verificationState": "verified",
+    "recordedAt": "2026-08-12T17:30:00.000Z",
+    "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/harvest-manifest-v1.json",
+    "sourceAnchorDetail": {
+      "anchorType": "file-path",
+      "locator": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/harvest-manifest-v1.json"
+    }
+  }
+}

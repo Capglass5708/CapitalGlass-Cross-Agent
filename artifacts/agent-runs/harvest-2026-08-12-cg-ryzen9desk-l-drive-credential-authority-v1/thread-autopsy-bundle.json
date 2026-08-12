@@ -1,0 +1,212 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "rework",
+      "description": "Elevated ForceRemap and vault bootstrap attempted before confirming WSL smb-l authority and user-session net use",
+      "evidenceRefs": ["TE-002", "TE-004", "TE-005"],
+      "estimatedImpact": "high",
+      "savedBy": "Credential authority ladder: WSL smb-l → user-session net use → protected store → vault last",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "host",
+      "description": "Elevated PowerShell cannot read WSL /tmp or \\\\wsl.localhost cred staging paths",
+      "evidenceRefs": ["TE-002", "TE-004"],
+      "estimatedImpact": "high",
+      "savedBy": "Stage creds to C:\\Users\\<user>\\AppData\\Local\\Temp before admin net use",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "rework",
+      "description": "Import-DriveCredentialsFromVaultBootstrap overwrote working protected store with stale vault L password (1326)",
+      "evidenceRefs": ["TE-005"],
+      "estimatedImpact": "high",
+      "savedBy": "Never vault-import when WSL smb-l already valid; gate vault import on probe success",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "operator_attention",
+      "description": "UNC cwd from WSL agent shell caused cmdkey/net use failures until cd C:\\",
+      "evidenceRefs": ["TE-006"],
+      "estimatedImpact": "medium",
+      "savedBy": "Drive remap scripts must Set-Location C:\\ before net use",
+      "roiRank": 4
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Agent ran elevated remap from WSL UNC working directory",
+      "operatorCost": "medium",
+      "systemFix": "User-session net use from C:\\ with staged creds; document in NETWORK-DRIVES.md",
+      "evidenceRefs": ["TE-006"],
+      "linkedWasteIds": ["TW-004"]
+    },
+    {
+      "frictionId": "OF-002",
+      "trigger": "Vault USB present but wesleydesk-smb-wesley.vault password stale vs live WSL creds",
+      "operatorCost": "high",
+      "systemFix": "Refresh vault L secret when SMB password rotates; populate OFFICE_SMB_* in Doppler",
+      "evidenceRefs": ["TE-003", "TE-005"],
+      "linkedWasteIds": ["TW-003"]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "L: drive missing on CG-RYZEN9DESK-01 after estate sync",
+      "actualExecution": {
+        "steps": [
+          "Elevated ryzen9thumb-drive-sync with vault bootstrap",
+          "ForceRemap from admin context",
+          "Vault import overwrote protected store",
+          "LAN IP path error 67 attempts"
+        ],
+        "outcome": "L still ERROR_86 / 1326 until user-session remap",
+        "evidenceRefs": ["TE-002", "TE-004", "TE-005"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Verify WSL /etc/capital-glass/smb-l.credentials",
+          "Stage to Local\\Temp, cd C:\\, user-session net use \\\\wesleydesk\\CapitalGlass-L /persistent:yes",
+          "Then elevated persist-only to protected store",
+          "Install CapitalGlass-WesleyWork-DriveMount-* tasks"
+        ],
+        "outcome": "L hub index reachable in one user-session pass",
+        "requiredPreflight": [
+          "Test-Path /mnt/l/Capital-Glass-Intelligence-Hub/00-master-index",
+          "cmdkey list wesleydesk"
+        ]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "medium",
+        "operatorFrustration": "high"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Intelligence Hub harvest and MCP index update after L recovery",
+      "actualExecution": {
+        "steps": [
+          "Incident doc + device runbook + MCP JSON",
+          "Partial harvest manifest + hub seed publish",
+          "harvest:validate failed on missing packets[]"
+        ],
+        "outcome": "Hub seeds live; full T2 harvest incomplete until autopsy run",
+        "evidenceRefs": ["TE-008", "TE-009"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Complete harvest-manifest packets before publish",
+          "harvest:validate PASS then harvest:publish-hub-seed"
+        ],
+        "outcome": "Single-pass harvest with validation gate",
+        "requiredPreflight": ["CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1 protocol at session end"]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Vault bootstrap import before validating WSL smb-l as live authority",
+      "whereItHappened": "ryzen9desk-l-vault-persist elevated script",
+      "whyItWasWrong": "Stale vault L password replaced working WSL-synced protected store",
+      "correctFirstMove": "Probe WSL smb-l; user-session net use; only then sync to protected store",
+      "preventiveControl": "Credential authority ladder in IH-RYZEN9DESK-L-CREDENTIAL-AUTHORITY-001",
+      "seedTarget": "IH-RYZEN9DESK-L-CREDENTIAL-AUTHORITY-001",
+      "executionDeltaId": "ED-001"
+    },
+    {
+      "wrongMoveId": "WM-002",
+      "summary": "Elevated net use with cred file on WSL UNC path",
+      "whereItHappened": "agent-drive-remap-l-force.log FATAL",
+      "whyItWasWrong": "Admin context cannot read \\\\wsl.localhost or /tmp staging",
+      "correctFirstMove": "Copy creds to C:\\Users\\Wesley\\AppData\\Local\\Temp\\ then user-session net use",
+      "preventiveControl": "IH-RYZEN9DESK-L-ELEVATED-CRED-STAGING-001",
+      "seedTarget": "IH-RYZEN9DESK-L-ELEVATED-CRED-STAGING-001",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Refresh wesleydesk-smb-wesley.vault on IT Vault USB",
+      "whyItPays": "Eliminates 1326 on vault-bootstrap path for future remaps",
+      "effort": "low",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "savedWasteIds": ["TW-003"],
+      "seedAs": "owner-artifact",
+      "suggestedWorkPackageId": "vault-l-secret-refresh-v1"
+    },
+    {
+      "rank": 2,
+      "title": "Populate OFFICE_SMB_* in Doppler capital-glass-agent-ops/prd",
+      "whyItPays": "Agent-ops scripts can resolve L creds without vault USB",
+      "effort": "low",
+      "ownerRepo": "capital-glass-agent-ops",
+      "savedWasteIds": ["TW-003"],
+      "seedAs": "rule",
+      "suggestedWorkPackageId": "office-smb-doppler-v1"
+    },
+    {
+      "rank": 3,
+      "title": "Gate Import-DriveCredentialsFromVaultBootstrap on live probe",
+      "whyItPays": "Prevents overwriting good protected store with stale vault",
+      "effort": "medium",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "savedWasteIds": ["TW-001", "TW-003"],
+      "seedAs": "hook",
+      "suggestedWorkPackageId": "vault-import-probe-gate-v1"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "L_DRIVE_FULLY_OPERATIONAL",
+      "currentStatus": "CLOSED",
+      "doNotClaimUntil": [
+        "Windows L: maps to \\\\wesleydesk\\CapitalGlass-L with hub index present",
+        "WSL /mnt/l mount authority PASS",
+        "CapitalGlass-WesleyWork-DriveMount-* tasks Ready for wesley"
+      ],
+      "lastKnownEvidence": [
+        "TE-006",
+        "TE-007",
+        "TE-009"
+      ],
+      "proofCommandId": "cmd-ryzen9desk-l-probe"
+    },
+    {
+      "awardOrVerdict": "VAULT_L_AUTHORITY",
+      "currentStatus": "BLOCKED",
+      "doNotClaimUntil": [
+        "wesleydesk-smb-wesley.vault decrypts and maps L without 1326",
+        "OFFICE_SMB_* present in Doppler prd"
+      ],
+      "lastKnownEvidence": ["TE-005", "VAULT_L_SECRET_STALE"]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "BY-KIND/thread-autopsy-index.json",
+      "BY-KIND/active-work-blockers.json"
+    ],
+    "commandIndexConsulted": true,
+    "notes": "No prior IH packet for RYZEN9DESK L credential authority; related CG-WESLEYWORK drive mount docs exist but different endpoint"
+  }
+}

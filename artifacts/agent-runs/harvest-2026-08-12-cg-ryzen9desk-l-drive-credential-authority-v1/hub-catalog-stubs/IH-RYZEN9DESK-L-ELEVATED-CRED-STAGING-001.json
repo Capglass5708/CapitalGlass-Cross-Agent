@@ -1,0 +1,76 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-ryzen9desk-l-elevated-cred-staging-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "0194365ab357ab935ab430734eecc8c7a5103cb9",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1",
+      "seedId": "IH-RYZEN9DESK-L-ELEVATED-CRED-STAGING-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-12T17:28:39.370Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "04a201169318d6b4b5acadacc5ac30ae0940f2826398ac5024d55802e59ddda7"
+  },
+  "body": {
+    "seedId": "IH-RYZEN9DESK-L-ELEVATED-CRED-STAGING-001",
+    "kind": "failure-pattern",
+    "title": "Elevated Windows cannot read WSL credential staging paths",
+    "summary": "Copy smb-l.credentials to C:\\Users\\<user>\\AppData\\Local\\Temp before elevated Update-EndpointDriveCredentials; never rely on \\\\wsl.localhost or /tmp from admin PowerShell.",
+    "canonicalQuestion": "Why does elevated drive sync fail with WSL credential files unreadable?",
+    "alternateQuestions": [
+      "ryzen9thumb-drive-sync FATAL no credential source — how to stage creds for admin?"
+    ],
+    "shortAnswer": "Copy smb-l.credentials to C:\\Users\\<user>\\AppData\\Local\\Temp before elevated Update-EndpointDriveCredentials; never rely on \\\\wsl.localhost or /tmp from admin PowerShell.",
+    "detailedAnswer": "Elevated Windows cannot read WSL credential staging paths",
+    "retrievalQuestions": [
+      "Why does elevated drive sync fail with WSL credential files unreadable?",
+      "ryzen9thumb-drive-sync FATAL no credential source — how to stage creds for admin?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Elevated sync script reports WSL credential files unreadable or FATAL no credential source",
+      "startAt": [
+        "/etc/capital-glass/smb-l.credentials",
+        "C:\\Users\\Wesley\\AppData\\Local\\Temp\\cg-smb-l-restore.credentials"
+      ],
+      "runPreflight": [
+        "Non-elevated: copy WSL cred file to Windows LocalAppData Temp",
+        "Elevated: Update-EndpointDriveCredentials.ps1 reads Windows path only"
+      ],
+      "doNot": [
+        "Pass \\\\wsl.localhost paths to Start-Process -Verb RunAs scripts",
+        "Assume /tmp in WSL is visible to elevated Windows PowerShell"
+      ],
+      "proveBeforeClaiming": [
+        "Test-Path C:\\Users\\Wesley\\AppData\\Local\\Temp\\cg-smb-l-restore.credentials from elevated session"
+      ]
+    },
+    "evidenceRefs": [
+      "C:/ProgramData/CapitalGlass/OfficeAdmin/logs/ryzen9thumb-drive-sync.log",
+      "CapitalGlass-Office-Admin/docs/incidents/2026-08-12-cg-ryzen9desk-l-drive-credential-authority.md"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": 2,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Office-Admin",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/seed-packets/IH-RYZEN9DESK-L-ELEVATED-CRED-STAGING-001.json"
+    ],
+    "harvestId": "harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "cross-agent-harvest-blind-retrieval-benchmark-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1",
+  "testedAt": "2026-08-12T17:28:39.454Z",
+  "blindQueryOnly": true,
+  "seedCount": 2,
+  "fixtureCount": 5,
+  "results": [
+    {
+      "query": "Why does RYZEN9DESK Windows L: fail with ERROR_86 or 1326 after vault bootstrap?",
+      "returnedId": "IH-RYZEN9DESK-L-CREDENTIAL-AUTHORITY-001",
+      "expectedSeedId": "IH-RYZEN9DESK-L-CREDENTIAL-AUTHORITY-001",
+      "topK": [
+        {
+          "seedId": "IH-RYZEN9DESK-L-CREDENTIAL-AUTHORITY-001",
+          "score": 10
+        },
+        {
+          "seedId": "IH-RYZEN9DESK-L-ELEVATED-CRED-STAGING-001",
+          "score": 5
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "CG-RYZEN9DESK-01 L drive remap keeps failing — what credential source is authoritative?",
+      "returnedId": "IH-RYZEN9DESK-L-CREDENTIAL-AUTHORITY-001",
+      "expectedSeedId": "IH-RYZEN9DESK-L-CREDENTIAL-AUTHORITY-001",
+      "topK": [
+        {
+          "seedId": "IH-RYZEN9DESK-L-CREDENTIAL-AUTHORITY-001",
+          "score": 9
+        },
+        {
+          "seedId": "IH-RYZEN9DESK-L-ELEVATED-CRED-STAGING-001",
+          "score": 4
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "How do I persist L: on Ryzen9 desk without breaking Intelligence Hub retrieval?",
+      "returnedId": "IH-RYZEN9DESK-L-CREDENTIAL-AUTHORITY-001",
+      "expectedSeedId": "IH-RYZEN9DESK-L-CREDENTIAL-AUTHORITY-001",
+      "topK": [
+        {
+          "seedId": "IH-RYZEN9DESK-L-CREDENTIAL-AUTHORITY-001",
+          "score": 7
+        },
+        {
+          "seedId": "IH-RYZEN9DESK-L-ELEVATED-CRED-STAGING-001",
+          "score": 2
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "Why does elevated drive sync fail with WSL credential files unreadable?",
+      "returnedId": "IH-RYZEN9DESK-L-ELEVATED-CRED-STAGING-001",
+      "expectedSeedId": "IH-RYZEN9DESK-L-ELEVATED-CRED-STAGING-001",
+      "topK": [
+        {
+          "seedId": "IH-RYZEN9DESK-L-ELEVATED-CRED-STAGING-001",
+          "score": 9
+        },
+        {
+          "seedId": "IH-RYZEN9DESK-L-CREDENTIAL-AUTHORITY-001",
+          "score": 5
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "ryzen9thumb-drive-sync FATAL no credential source — how to stage creds for admin?",
+      "returnedId": "IH-RYZEN9DESK-L-ELEVATED-CRED-STAGING-001",
+      "expectedSeedId": "IH-RYZEN9DESK-L-ELEVATED-CRED-STAGING-001",
+      "topK": [
+        {
+          "seedId": "IH-RYZEN9DESK-L-ELEVATED-CRED-STAGING-001",
+          "score": 9
+        },
+        {
+          "seedId": "IH-RYZEN9DESK-L-CREDENTIAL-AUTHORITY-001",
+          "score": 5
+        }
+      ],
+      "pass": true
+    }
+  ],
+  "verdict": "BLIND_RETRIEVAL_PASS"
+}

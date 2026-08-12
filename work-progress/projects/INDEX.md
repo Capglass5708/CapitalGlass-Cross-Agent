@@ -74,8 +74,10 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `chatgpt-ultimate-sdlc-thread-v1` | — | HARVEST_COMPLETE | HARVEST_COMPLETE | CapitalGlass-Cross-Agent | `harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1` | see harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1.md |
 | `check-git-before-asg-v1` | — | COMPLETE | CLASSIFIED | CG-AppBuilder-MCP | `harvest-2026-08-08-asg-thread-continuation-v1` | see harvest-2026-08-08-asg-thread-continuation-v1.md |
 | `cmd-mcp-health` | — | COMPLETE | PASS | CG-AppBuilder-MCP | `harvest-2026-08-10-mcp-runtime-verify-short-repair-v1` | see harvest-2026-08-10-mcp-runtime-verify-short-repair-v1.md |
+| `cmd-ryzen9desk-l-probe` | — | COMPLETE | PASS | CapitalGlass-Office-Admin | `harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1` | see 2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md |
 | `cmd-verify-spokes` | — | COMPLETE | PASS | CG-AppBuilder-MCP | `harvest-2026-08-10-mcp-runtime-verify-short-repair-v1` | see harvest-2026-08-10-mcp-runtime-verify-short-repair-v1.md |
 | `cmd-w17-capture` | — | PENDING | HOLD | CapitalGlass-Documents | `harvest-2026-08-04-document-center-adaptive-details-w17-v1` | see harvest-2026-08-04-document-center-adaptive-details-w17-v1.md |
+| `cmd-wsl-mount-authority` | — | COMPLETE | PASS | CapitalGlass-Office-Admin | `harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1` | see 2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md |
 | `command-estate-pull-loop` | — | EXECUTED | PASS | CapitalGlass-Office-Admin | `harvest-2026-08-04-wsl-estate-git-pull-v1` | see harvest-2026-08-04-wsl-estate-git-pull-v1.md |
 | `complete-project-folder-synology-intelligence-publication-v1` | — | PUBLICATION_COMPLETE | PASS | CapitalGlass-Cross-Agent | `harvest-2026-08-04-three-way-improvement-slice6-thread-v1` | see 2026-08-03_complete-project-folder-synology-intelligence-publication-v1.md |
 | `computer-estimator-estate-probe-failures-v1` | — | OPEN | FAIL | Computer Estimator | `harvest-2026-08-07-product-estate-operational-proof-v1` | see INDEX.md |
@@ -109,6 +111,7 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `doppler-owns-mcp-env-values-v1` | — | COMPLETE | ADOPTED | CG-AppBuilder-MCP | `harvest-2026-08-10-mcp-runtime-verify-short-repair-v1` | see harvest-2026-08-10-mcp-runtime-verify-short-repair-v1.md |
 | `estate-bulk-pull-without-hook-reconcile-v1` | — | COMPLETE | PARTIAL_FAILURE | CapitalGlass-Cross-Agent | `harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1` | see harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1.md |
 | `estate-consumer-proof-host-access-v1` | — | ACTIVE | OPERATOR_REQUIRED | CG-AppBuilder-MCP | `harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1` | see harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1.md |
+| `ev-hub-seeds-published` | — | COMPLETE | PASS | CapitalGlass-Cross-Agent | `harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1` | see 2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md |
 | `ev-mcp-health-21` | — | COMPLETE | PASS | CG-AppBuilder-MCP | `harvest-2026-08-10-mcp-runtime-verify-short-repair-v1` | see harvest-2026-08-10-mcp-runtime-verify-short-repair-v1.md |
 | `evidence-pull-summary` | — | CAPTURED | PASS | CapitalGlass-Cross-Agent | `harvest-2026-08-04-wsl-estate-git-pull-v1` | see harvest-2026-08-04-wsl-estate-git-pull-v1.md |
 | `frozen-upstream-milestone-closeout-v1` | — | COMPLETE | DOCUMENTED | CapitalGlass-Cross-Agent | `harvest-2026-08-07-cross-agent-drained-intelligence-pi-refresh-v1` | see harvest-2026-08-07-cross-agent-drained-intelligence-pi-refresh-v1.md |
@@ -221,6 +224,7 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `proposal-generator-staging-e2e-closure-v1` | — | STAGING_E2E_CLOSED | PASS | Cursor-ProposalGenerator-1 | `harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1` | see thread-event-inventory.json |
 | `protocol-upgrade-estate-pull-seed` | — | CANDIDATE | PASS | CapitalGlass-Cross-Agent | `harvest-2026-08-04-wsl-estate-git-pull-v1` | see harvest-2026-08-04-wsl-estate-git-pull-v1.md |
 | `pu-mcp-runtime-short-repair-v1` | — | COMPLETE | CANDIDATE | CG-AppBuilder-MCP | `harvest-2026-08-10-mcp-runtime-verify-short-repair-v1` | see harvest-2026-08-10-mcp-runtime-verify-short-repair-v1.md |
+| `pu-ryzen9desk-l-remap-v1` | — | COMPLETE | CANDIDATE | CapitalGlass-Office-Admin | `harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1` | see 2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md |
 | `real-human-disposition-ops-gate-v1` | — | ACTIVE | EXPECTED_BLOCK | CapitalGlass-BidComposer | `harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1` | see experience-estimator-bid-composer-loop-v1.md |
 | `receipt-lineage-warn-to-go-v1` | — | RECORDED | PASS | CG-AppBuilder-MCP | `harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1` | see receipt-lineage-warn-to-go-v1.md |
 | `remote-wesleydesk-worker-proof-v1` | — | RESOLVED | RECORDED_WRONG_MOVE | CapitalGlass-Documents | `harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1` | see harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1.md |
@@ -232,6 +236,7 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `rosewood-scope-seed-idempotency-v1` | — | COMPLETE | PASS | CapitalGlass-BidComposer | `harvest-2026-08-07-guided-scope-review-milestone-closeout-v1` | see harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md |
 | `rosewood-smoke-bid-duplicate-v1` | — | COMPLETE | DUPLICATE_AVOIDED | CapitalGlass-BidComposer | `harvest-2026-08-07-guided-scope-review-milestone-closeout-v1` | see harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md |
 | `run-estate-consumer-proof-v3-v1` | — | COMPLETE | READY | CG-AppBuilder-MCP | `harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1` | see harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1.md |
+| `ryzen9desk-l-drive-recovered-2026-08-12` | — | COMPLETE | PROVEN_EFFECTIVE | CapitalGlass-Office-Admin | `harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1` | see 2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md |
 | `ryzen9desk-managed-executor-v1` | `intel:4a8c45cc3e5eaa…` | RUNNER_BOOTSTRAP_CHECKPOINT_STARTED | CODE_READY_FOR_RUNNER_BOOTSTRAP | CG-AppBuilder-MCP | `harvest-2026-08-03-cross-thread-platform-state-v1` | see 2026-08-03_ryzen9desk-managed-executor-v1.md |
 | `scope-review-issue-gate-active-v1` | — | ACTIVE | EXPECTED_BLOCK | CapitalGlass-BidComposer | `harvest-2026-08-07-guided-scope-review-milestone-closeout-v1` | see harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md |
 | `scope-review-production-deploy-evidence-v1` | — | COMPLETE | VERIFIED | CapitalGlass-BidComposer | `harvest-2026-08-07-guided-scope-review-milestone-closeout-v1` | see harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md |
@@ -257,6 +262,9 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `uh-z-drvfs-publish-eperm-v1` | — | ACTIVE | WORKAROUND_DOCUMENTED | CG-AppBuilder-MCP | `harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1` | see harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md |
 | `ultimate-sdlc-dark-package-go-v1` | — | GO | PASS | CG-AppBuilder-MCP | `harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1` | see ultimate-sdlc-dark-package-go-v1.md |
 | `ultimate-sdlc-runner-go-v1` | — | GO | PASS | CG-AppBuilder-MCP | `harvest-2026-08-04-asg-go-shared-db-closeout-v1` | see ultimate-sdlc-runner-go-v1.md |
+| `user-session-net-use-before-force-remap-v1` | — | COMPLETE | ADOPTED | CapitalGlass-Office-Admin | `harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1` | see 2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md |
+| `vault-bootstrap-overwrite-protected-store-v1` | — | RESOLVED | ROOT_CAUSE_IDENTIFIED | CapitalGlass-Office-Admin | `harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1` | see 2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md |
+| `vault-l-cred-stale-v1` | — | OPEN | OPEN | CapitalGlass-Office-Admin | `harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1` | see 2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md |
 | `wave-d-gates-before-publication-v1` | — | COMPLETE | ENFORCED | CapitalGlass-Office-Admin | `harvest-2026-08-07-direct-connect-three-controller-closeout-v1` | see harvest-2026-08-07-direct-connect-three-controller-closeout-v1.md |
 | `wave-d-implementation-outcome-v1` | — | PARTIAL | IMPLEMENTATION_COMPLETE_PROOF_PARTIAL | CG-AppBuilder-MCP | `harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1` | see harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1.md |
 | `wave-ge-closeout-receipt-v1` | — | COMPLETE | VERIFIED | CG-AppBuilder-MCP | `harvest-2026-08-07-asg-ge-wave-closeout-v1` | see harvest-2026-08-07-asg-ge-wave-closeout-v1.md |
@@ -281,12 +289,13 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `wire-dashboard-folder-string-v1` | — | OPEN | OPEN | CG-AppBuilder-MCP | `harvest-2026-08-10-mcp-runtime-verify-short-repair-v1` | see harvest-2026-08-10-mcp-runtime-verify-short-repair-v1.md |
 | `wsl-drvfs-ghost-mount-v1` | — | DOCUMENTED | PASS | CG-AppBuilder-MCP | `harvest-2026-08-04-z-l-drive-offlan-session-v1` | see 2026-08-02_z-drive-disconnect-recurrence-v1.md |
 | `wsl-estate-git-pull-run` | — | PARTIAL_PASS | PASS_WITH_GAPS | CapitalGlass-Office-Admin | `harvest-2026-08-04-wsl-estate-git-pull-v1` | see harvest-2026-08-04-wsl-estate-git-pull-v1.md |
+| `wsl-smb-l-credential-authority-v1` | — | COMPLETE | ADOPTED | CapitalGlass-Office-Admin | `harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1` | see 2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md |
 | `wsl-supabase-cli-spawn-v1` | — | SHIPPED | PASS | CG-AppBuilder-MCP | `harvest-2026-08-04-asg-go-shared-db-closeout-v1` | see wsl-supabase-cli-spawn-v1.md |
 | `wsl2-native-repo-library-migration-v1` | `intel:94c4601cef99ef…` | PARTIAL | FILESYSTEM_PASS_OPERATIONAL_CLEANUP_RECORDED | CG-AppBuilder-MCP | `harvest-2026-08-03-cross-thread-platform-state-v1` | see 2026-08-03_wsl2-native-repo-library-migration-v1.md |
 | `z-drive-force-remap-wsl-cwd-v1` | — | RECORDED | PASS | CapitalGlass-Office-Admin | `harvest-2026-08-04-z-l-drive-offlan-session-v1` | see 2026-08-02_z-drive-disconnect-recurrence-v1.md |
 | `z-l-drive-offlan-partial-availability-v1` | — | PARTIAL_DRIVE_AVAILABILITY | Z_OK_L_BLOCKED_OFF_LAN | CapitalGlass-Office-Admin | `harvest-2026-08-04-z-l-drive-offlan-session-v1` | see 2026-08-02_z-drive-disconnect-recurrence-v1.md |
 
-_246 registry packets · 105 intelligence entities_
+_255 registry packets · 105 intelligence entities_
 
 <!-- HARVEST-PACKET-INDEX:END -->
 

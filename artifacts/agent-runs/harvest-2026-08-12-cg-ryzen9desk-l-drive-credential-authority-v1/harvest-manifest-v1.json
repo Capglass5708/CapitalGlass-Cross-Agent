@@ -1,0 +1,380 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceBranch": "harvest/harvest-2026-08-10-mcp-runtime-verify-short-repair-v1",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "sourceCommitSha": "0194365ab357ab935ab430734eecc8c7a5103cb9",
+  "retrievalResult": "INDEX_HIT",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "workPackageId": "cg-ryzen9desk-l-drive-credential-authority-v1",
+  "doNotAdvance": [
+    "Run Import-DriveCredentialsFromVaultBootstrap when L: hub index already healthy on RYZEN9DESK",
+    "Trust D:\\Admin Keys vault L entry without live net use proof against wesleydesk",
+    "Stage credentials only under WSL /tmp for elevated Windows consumption",
+    "Run Ensure-CgWesleyWorkDriveMounts or net use from WSL UNC working directory",
+    "ForceRemap with -RequireL when L:\\Capital-Glass-Intelligence-Hub\\00-master-index already True",
+    "index:publish or harvest:publish-hub-seed from Cursor when operator lane required"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 4,
+      "seeds": 2,
+      "roiItems": 3,
+      "operatorFriction": 2,
+      "executionDeltas": 2,
+      "wrongMoves": 2
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "synced",
+    "hubPublishStatus": "published"
+  },
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "1.2.0",
+    "eligibleCandidates": 0,
+    "rejectedUnrelatedCandidates": 0,
+    "exportStatus": "not-run",
+    "automaticProtocolMutation": false,
+    "authorityStatus": "PROPOSAL"
+  },
+  "relatedRepos": [
+    {
+      "repo": "CapitalGlass-Office-Admin",
+      "branch": "main",
+      "role": "incident, device runbook, MCP ops index"
+    },
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "harvest/harvest-2026-08-10-mcp-runtime-verify-short-repair-v1",
+      "role": "harvest coordination + hub seeds"
+    },
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "branch": "main",
+      "role": "Auto v3.2 session closeout"
+    }
+  ],
+  "packets": [
+    {
+      "packetKind": "outcome",
+      "packetId": "ryzen9desk-l-drive-recovered-2026-08-12",
+      "packetTitle": "CG-RYZEN9DESK-01 L: drive remapped with persistence tasks",
+      "state": "COMPLETE",
+      "packetVerdict": "PROVEN_EFFECTIVE",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "projectFile": "work-progress/projects/2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md",
+      "evidenceRefs": [
+        "TE-006",
+        "TE-007",
+        "TE-009"
+      ],
+      "changeImplemented": "User-session net use L: \\\\wesleydesk\\CapitalGlass-L /persistent:yes; CapitalGlass-WesleyWork-DriveMount-* tasks",
+      "beforeState": "L: ERROR_86; WSL /mnt/l missing hub index; elevated remap exit 3",
+      "afterState": "Windows L+Z OK; WSL mount authority PASS; hub index reachable",
+      "measurement": "Test-Path L hub index + schtasks Ready",
+      "expectedEffect": "L hub index available from Windows and WSL",
+      "observedEffect": "L:\\Capital-Glass-Intelligence-Hub\\00-master-index present; persistence tasks Ready",
+      "residuals": [
+        "VAULT_L_SECRET_STALE",
+        "OFFICE_SMB_* missing in Doppler"
+      ],
+      "regressions": [],
+      "effectiveness": "PROVEN_EFFECTIVE",
+      "goldMineSignalClass": "RESOLUTION_SIGNAL",
+      "novelty": "NEW",
+      "implementationState": "RESOLVED_OBSERVED",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "blockers": [],
+      "ownerIndexingStatus": "indexed",
+      "nextAction": "Refresh vault L entry when SMB cred rotates",
+      "commitRefs": [
+        "CapitalGlass-Office-Admin@e670782"
+      ],
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Claim vault L authority without 1326-free net use proof"
+      ]
+    },
+    {
+      "packetKind": "decision",
+      "packetId": "wsl-smb-l-credential-authority-v1",
+      "packetTitle": "WSL /etc/capital-glass/smb-l.credentials is live L authority on RYZEN9DESK",
+      "state": "COMPLETE",
+      "packetVerdict": "ADOPTED",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "projectFile": "work-progress/projects/2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md",
+      "evidenceRefs": [
+        "TE-005",
+        "TE-006",
+        "WM-001"
+      ],
+      "alternativesRejected": [
+        "Vault bootstrap as first credential source",
+        "LAN IP \\\\192.168.1.109\\CapitalGlass-L as primary path"
+      ],
+      "goldMineSignalClass": "ADOPTION_SIGNAL",
+      "novelty": "NEW",
+      "implementationState": "RESOLVED_OBSERVED",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "blockers": [],
+      "ownerIndexingStatus": "indexed",
+      "nextAction": "Retain as Intelligence Hub seed IH-RYZEN9DESK-L-CREDENTIAL-AUTHORITY-001",
+      "commitRefs": [
+        "CapitalGlass-Cross-Agent@0194365ab357ab935ab430734eecc8c7a5103cb9"
+      ],
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Vault-import before WSL smb-l probe"
+      ]
+    },
+    {
+      "packetKind": "mistake",
+      "packetId": "vault-bootstrap-overwrite-protected-store-v1",
+      "packetTitle": "Vault bootstrap overwrote working protected store with stale L cred",
+      "state": "RESOLVED",
+      "packetVerdict": "ROOT_CAUSE_IDENTIFIED",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "evidenceRefs": [
+        "TE-005",
+        "WM-001"
+      ],
+      "doNotAdvance": [
+        "Run Import-DriveCredentialsFromVaultBootstrap without live probe"
+      ],
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL",
+      "blockers": [
+        "VAULT_L_SECRET_STALE"
+      ],
+      "projectFile": "work-progress/projects/2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md",
+      "ownerIndexingStatus": "indexed",
+      "nextAction": "Gate vault import on probe success",
+      "commitRefs": [
+        "CapitalGlass-Cross-Agent@0194365ab357ab935ab430734eecc8c7a5103cb9"
+      ],
+      "advancementGate": "vault-l-cred-refresh-v1"
+    },
+    {
+      "packetKind": "blocker",
+      "packetId": "vault-l-cred-stale-v1",
+      "packetTitle": "wesleydesk-smb-wesley.vault L cred stale (net use 1326)",
+      "state": "OPEN",
+      "packetVerdict": "OPEN",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "evidenceRefs": [
+        "TE-003",
+        "TE-005"
+      ],
+      "proofCommandId": "cmd-ryzen9desk-l-probe",
+      "status": "OPEN",
+      "goldMineSignalClass": "PROBLEM_SIGNAL",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "blockers": [
+        "Operator must refresh vault USB L cred"
+      ],
+      "projectFile": "work-progress/projects/2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md",
+      "ownerIndexingStatus": "indexed",
+      "nextAction": "Refresh wesleydesk-smb-wesley.vault on RYZEN9THUMB",
+      "commitRefs": [
+        "CapitalGlass-Cross-Agent@0194365ab357ab935ab430734eecc8c7a5103cb9"
+      ],
+      "advancementGate": "vault decrypt + net use L without 1326",
+      "doNotAdvance": [
+        "Claim vault-bootstrap path operational"
+      ]
+    },
+    {
+      "packetKind": "faster_path",
+      "packetId": "user-session-net-use-before-force-remap-v1",
+      "packetTitle": "User-session net use from C:\\ before elevated ForceRemap",
+      "state": "COMPLETE",
+      "packetVerdict": "ADOPTED",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "evidenceRefs": [
+        "TE-006",
+        "ED-001",
+        "SP-001"
+      ],
+      "situation": "L: missing after estate sync on RYZEN9DESK",
+      "whatHappened": "Elevated remap failed; user-session net use with WSL creds recovered L immediately",
+      "rightFirstMove": "Stage creds to Local\\Temp; cd C:\\; net use L: \\\\wesleydesk\\CapitalGlass-L /persistent:yes",
+      "requiredGuard": "Do not vault-import when WSL smb-l already valid",
+      "goldMineSignalClass": "SUCCESS_PATTERN",
+      "blockers": [],
+      "projectFile": "work-progress/projects/2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md",
+      "ownerIndexingStatus": "indexed",
+      "nextAction": "Document in NETWORK-DRIVES.md (done)",
+      "commitRefs": [
+        "CapitalGlass-Office-Admin@e670782"
+      ],
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "ForceRemap as first move when hub index probe not run"
+      ]
+    },
+    {
+      "packetKind": "command",
+      "packetId": "cmd-ryzen9desk-l-probe",
+      "packetTitle": "Prove RYZEN9DESK L drive and WSL mount authority",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "evidenceRefs": [
+        "TE-006",
+        "TE-009"
+      ],
+      "command": "powershell -NoProfile -Command \"Test-Path 'L:\\Capital-Glass-Intelligence-Hub\\00-master-index'; net use L:\"; wsl test -d /mnt/l/Capital-Glass-Intelligence-Hub/00-master-index",
+      "host": "CG-RYZEN9DESK-01",
+      "provesGate": "L_DRIVE_FULLY_OPERATIONAL",
+      "expectedPassSignal": "Windows hub index True; WSL mount directory present",
+      "blockers": [],
+      "projectFile": "work-progress/projects/2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md",
+      "ownerIndexingStatus": "indexed",
+      "nextAction": "Re-run after vault refresh to confirm vault path",
+      "commitRefs": [
+        "CapitalGlass-Cross-Agent@0194365ab357ab935ab430734eecc8c7a5103cb9"
+      ],
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Claim L operational without both Windows and WSL probe"
+      ]
+    },
+    {
+      "packetKind": "command",
+      "packetId": "cmd-wsl-mount-authority",
+      "packetTitle": "Prove WSL /mnt/l Intelligence Hub mount",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "evidenceRefs": [
+        "TE-009"
+      ],
+      "command": "test -d /mnt/l/Capital-Glass-Intelligence-Hub/00-master-index && echo WSL_L_MOUNT_OK",
+      "host": "REMOTE_WSL",
+      "provesGate": "WSL_L_MOUNT_AUTHORITY",
+      "expectedPassSignal": "WSL_L_MOUNT_OK",
+      "blockers": [],
+      "projectFile": "work-progress/projects/2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md",
+      "ownerIndexingStatus": "indexed",
+      "nextAction": "Include in drive mount health task output",
+      "commitRefs": [
+        "CapitalGlass-Cross-Agent@0194365ab357ab935ab430734eecc8c7a5103cb9"
+      ],
+      "advancementGate": "not-required",
+      "doNotAdvance": []
+    },
+    {
+      "packetKind": "evidence",
+      "packetId": "ev-hub-seeds-published",
+      "packetTitle": "Intelligence Hub seeds IH-RYZEN9DESK-L-* published",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "evidenceRefs": [
+        "TE-008"
+      ],
+      "type": "hub-receipt",
+      "pathOrSha": "artifacts/agent-runs/harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1/hub-publication-receipt.json",
+      "provesWhat": "Credential authority and elevated staging seeds live on L hub",
+      "blockers": [],
+      "projectFile": "work-progress/projects/2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md",
+      "ownerIndexingStatus": "indexed",
+      "nextAction": "Operator: index:publish + index:freshness-gate",
+      "commitRefs": [
+        "CapitalGlass-Cross-Agent@0194365ab357ab935ab430734eecc8c7a5103cb9"
+      ],
+      "advancementGate": "index:freshness-gate PASS",
+      "doNotAdvance": [
+        "Claim index current without freshness gate"
+      ]
+    },
+    {
+      "packetKind": "protocol_upgrade",
+      "packetId": "pu-ryzen9desk-l-remap-v1",
+      "packetTitle": "RYZEN9DESK L drive remap future-agent procedure",
+      "state": "COMPLETE",
+      "packetVerdict": "CANDIDATE",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "evidenceRefs": [
+        "TE-001",
+        "TE-005",
+        "TE-006",
+        "TE-008"
+      ],
+      "seedAs": "IH-RYZEN9DESK-L-CREDENTIAL-AUTHORITY-001",
+      "promotionClass": "POLICY_GATED",
+      "futureAgentInstructions": {
+        "whenThisAppears": "CG-RYZEN9DESK L: missing; ERROR_86; elevated remap failures",
+        "startAt": [
+          "Test-Path L hub index",
+          "cat /etc/capital-glass/smb-l.credentials (names only)",
+          "office.get_drive_connectivity_matrix"
+        ],
+        "runPreflight": [
+          "test -d /mnt/l/Capital-Glass-Intelligence-Hub/00-master-index",
+          "cmdkey list wesleydesk"
+        ],
+        "doNot": [
+          "Vault bootstrap when WSL smb-l valid",
+          "net use from WSL UNC cwd",
+          "Stage creds only on WSL paths for admin context"
+        ],
+        "proveBeforeClaiming": [
+          "cmd-ryzen9desk-l-probe PASS",
+          "CapitalGlass-WesleyWork-DriveMount-* Ready"
+        ]
+      },
+      "blockers": [],
+      "projectFile": "work-progress/projects/2026-08-12_cg-ryzen9desk-l-drive-credential-authority-v1.md",
+      "ownerIndexingStatus": "indexed",
+      "nextAction": "harvest:blind-retrieval benchmark",
+      "commitRefs": [
+        "CapitalGlass-Cross-Agent@0194365ab357ab935ab430734eecc8c7a5103cb9"
+      ],
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Skip credential authority ladder"
+      ]
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": "a769d1b134bf21e49ae22cfa3badabed36ea8eaef4315c60ff4e64362f138fa5",
+    "ledgerContentHashAfter": "a769d1b134bf21e49ae22cfa3badabed36ea8eaef4315c60ff4e64362f138fa5"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 10,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 10,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-2299328b0ec8",
+      "prompt-candidate-a8c0a35c816d",
+      "prompt-candidate-245b4dbe4c8f",
+      "prompt-candidate-efe8048a08c1",
+      "prompt-candidate-fe9dc1c24c90",
+      "prompt-candidate-2b4e1cd814c5",
+      "prompt-candidate-9c15d862a436",
+      "prompt-candidate-5a3120a00881",
+      "prompt-candidate-967b5e066bd6",
+      "prompt-candidate-73318a6ea6e6"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  },
+  "updatedAt": "2026-08-12T17:30:00.000Z"
+}

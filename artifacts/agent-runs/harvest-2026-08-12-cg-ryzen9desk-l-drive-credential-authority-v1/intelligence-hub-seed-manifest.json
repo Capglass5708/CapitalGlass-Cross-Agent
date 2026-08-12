@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "cross-agent-harvest-seed-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-cg-ryzen9desk-l-drive-credential-authority-v1",
+  "subject": "CG-RYZEN9DESK-01 L: drive remapped with persistence tasks",
+  "tier": "T2",
+  "seedRecordCount": 2,
+  "retrievalQuestions": [
+    {
+      "retrievalId": "RQ01",
+      "seedId": "IH-RYZEN9DESK-L-CREDENTIAL-AUTHORITY-001",
+      "query": "Why does RYZEN9DESK Windows L: fail with ERROR_86 or 1326 after vault bootstrap?"
+    },
+    {
+      "retrievalId": "RQ02",
+      "seedId": "IH-RYZEN9DESK-L-CREDENTIAL-AUTHORITY-001",
+      "query": "CG-RYZEN9DESK-01 L drive remap keeps failing — what credential source is authoritative?"
+    },
+    {
+      "retrievalId": "RQ03",
+      "seedId": "IH-RYZEN9DESK-L-CREDENTIAL-AUTHORITY-001",
+      "query": "How do I persist L: on Ryzen9 desk without breaking Intelligence Hub retrieval?"
+    },
+    {
+      "retrievalId": "RQ11",
+      "seedId": "IH-RYZEN9DESK-L-ELEVATED-CRED-STAGING-001",
+      "query": "Why does elevated drive sync fail with WSL credential files unreadable?"
+    },
+    {
+      "retrievalId": "RQ12",
+      "seedId": "IH-RYZEN9DESK-L-ELEVATED-CRED-STAGING-001",
+      "query": "ryzen9thumb-drive-sync FATAL no credential source — how to stage creds for admin?"
+    }
+  ],
+  "roiTop3": [
+    {
+      "rank": 1,
+      "title": "Refresh wesleydesk-smb-wesley.vault on IT Vault USB",
+      "seedId": "IH-RYZEN9DESK-L-CREDENTIAL-AUTHORITY-001"
+    },
+    {
+      "rank": 2,
+      "title": "Populate OFFICE_SMB_* in Doppler capital-glass-agent-ops/prd",
+      "seedId": "IH-RYZEN9DESK-L-ELEVATED-CRED-STAGING-001"
+    },
+    {
+      "rank": 3,
+      "title": "Gate Import-DriveCredentialsFromVaultBootstrap on live probe",
+      "seedId": null
+    }
+  ],
+  "byKindSlice": "00-master-index/BY-KIND/thread-autopsy-index.json",
+  "catalogRoot": "02-catalog/knowledge-objects/cross-agent-harvest"
+}
