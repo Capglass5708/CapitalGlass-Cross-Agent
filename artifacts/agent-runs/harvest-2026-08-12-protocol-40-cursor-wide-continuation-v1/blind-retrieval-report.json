@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "cross-agent-harvest-blind-retrieval-benchmark-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1",
+  "testedAt": "2026-08-12T17:51:58.575Z",
+  "blindQueryOnly": true,
+  "seedCount": 2,
+  "fixtureCount": 4,
+  "results": [
+    {
+      "query": "What command proves cursor-wide continuation rollout?",
+      "returnedId": "IH-CONTINUATION-ESTATE-PROOF-001",
+      "expectedSeedId": "IH-CONTINUATION-ESTATE-PROOF-001",
+      "topK": [
+        {
+          "seedId": "IH-CONTINUATION-ESTATE-PROOF-001",
+          "score": 7
+        },
+        {
+          "seedId": "IH-PROTOCOL-40-MAIN-AUTHORITY-001",
+          "score": 5
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "What terminal verdict confirms Protocol 4.0 estate enforcement?",
+      "returnedId": "IH-CONTINUATION-ESTATE-PROOF-001",
+      "expectedSeedId": "IH-CONTINUATION-ESTATE-PROOF-001",
+      "topK": [
+        {
+          "seedId": "IH-CONTINUATION-ESTATE-PROOF-001",
+          "score": 7
+        },
+        {
+          "seedId": "IH-PROTOCOL-40-MAIN-AUTHORITY-001",
+          "score": 3
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "Which branch is Protocol 4.0 authority after promotion?",
+      "returnedId": "IH-PROTOCOL-40-MAIN-AUTHORITY-001",
+      "expectedSeedId": "IH-PROTOCOL-40-MAIN-AUTHORITY-001",
+      "topK": [
+        {
+          "seedId": "IH-PROTOCOL-40-MAIN-AUTHORITY-001",
+          "score": 6
+        },
+        {
+          "seedId": "IH-CONTINUATION-ESTATE-PROOF-001",
+          "score": 2
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "What work package owns measured ROI without routing changes?",
+      "returnedId": "IH-PROTOCOL-40-MAIN-AUTHORITY-001",
+      "expectedSeedId": "IH-PROTOCOL-40-MAIN-AUTHORITY-001",
+      "topK": [
+        {
+          "seedId": "IH-PROTOCOL-40-MAIN-AUTHORITY-001",
+          "score": 8
+        },
+        {
+          "seedId": "IH-CONTINUATION-ESTATE-PROOF-001",
+          "score": 2
+        }
+      ],
+      "pass": true
+    }
+  ],
+  "verdict": "BLIND_RETRIEVAL_PASS"
+}

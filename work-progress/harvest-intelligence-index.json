@@ -1,6 +1,6 @@
 {
   "schemaVersion": "harvest-intelligence-index-v1",
-  "updatedAt": "2026-08-10T05:27:40.583Z",
+  "updatedAt": "2026-08-12T17:50:13.449Z",
   "entities": [
     {
       "entityId": "intel:4a8c45cc3e5eaa4d0907e65ffb95c85a1c97dca3",
@@ -5124,6 +5124,572 @@
             "effectiveness": "REFERENCED"
           },
           "sourceExcerptHash": "267282ee61051ee935d8a4b69a077fc74b5893289401aa3f0e3357ca8dc3b52a"
+        }
+      ]
+    },
+    {
+      "entityId": "intel:450028f0117395c3b1ba04060c452f98c66145d5",
+      "identity": {
+        "conceptKey": "protocol-40-architecture-frozen-main-v1",
+        "candidateDigestRef": null,
+        "packetId": "protocol-40-architecture-frozen-main-v1"
+      },
+      "firstSeenAt": "2026-08-12T17:50:00.000Z",
+      "lifecycleState": "active",
+      "supersededBy": null,
+      "core": {
+        "signalClass": "PASS",
+        "summary": "Exercise continuation-first model; collect measured ROI only",
+        "evidenceRefs": [
+          "TE-006",
+          "TE-007",
+          "640eef259b3db3672c3f10d11c98e24212e13f03"
+        ]
+      },
+      "dimensions": {
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "affectedRepos": [],
+        "lifecycleState": "COMPLETE",
+        "implementationState": "COMPLETE",
+        "effectiveness": "PASS",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1.md"
+      },
+      "extensions": {},
+      "classification": "KNOWN_CORE",
+      "relationships": [
+        {
+          "type": "observedIn",
+          "target": "harvest:harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1"
+        }
+      ],
+      "observations": [
+        {
+          "observationId": "obs:69f773b325cb55af5278785705cb0dffa78eff9f",
+          "harvestId": "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1",
+          "workPackageId": "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1",
+          "observedAt": "2026-08-12T17:50:00.000Z",
+          "source": {
+            "lane": "CURSOR",
+            "rawRef": "artifacts/agent-runs/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1/compact-records/protocol-40-architecture-frozen-main-v1.json",
+            "packetId": "protocol-40-architecture-frozen-main-v1",
+            "ordinalRef": "protocol-40-architecture-frozen-main-v1"
+          },
+          "provenance": {
+            "sourceCommitSha": "cea6cda6875f53fcd52084bbdf6e0b2c644bda60",
+            "protocolVersion": null,
+            "gitPublicationReceipt": null
+          },
+          "snapshot": {
+            "signalClass": "PASS",
+            "lifecycleState": "COMPLETE",
+            "implementationState": "COMPLETE",
+            "effectiveness": "PASS",
+            "evidenceStrength": "indexed"
+          },
+          "sourceExcerptHash": "351bf423f606a856695955ab95fe40d78cabe5a296cd0845e0170fbf361a63a2"
+        }
+      ]
+    },
+    {
+      "entityId": "intel:c5a83d5192dbd28f11e178e8f2098b74db6b71f1",
+      "identity": {
+        "conceptKey": "estate-rollout-proof-pass-v1",
+        "candidateDigestRef": null,
+        "packetId": "estate-rollout-proof-pass-v1"
+      },
+      "firstSeenAt": "2026-08-12T17:50:00.000Z",
+      "lifecycleState": "active",
+      "supersededBy": null,
+      "core": {
+        "signalClass": "PROVEN_EFFECTIVE",
+        "summary": "Run real work; track CONTINUATION_PASS_THROUGH_RATE",
+        "evidenceRefs": [
+          "TE-004",
+          "protocol-40-estate-rollout-proof-v1.json"
+        ]
+      },
+      "dimensions": {
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "affectedRepos": [],
+        "lifecycleState": "COMPLETE",
+        "implementationState": "COMPLETE",
+        "effectiveness": "PROVEN_EFFECTIVE",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1.md"
+      },
+      "extensions": {},
+      "classification": "KNOWN_CORE",
+      "relationships": [
+        {
+          "type": "observedIn",
+          "target": "harvest:harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1"
+        }
+      ],
+      "observations": [
+        {
+          "observationId": "obs:c642664c72ae5c0c8fc72c8e91028ade9e2a722b",
+          "harvestId": "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1",
+          "workPackageId": "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1",
+          "observedAt": "2026-08-12T17:50:00.000Z",
+          "source": {
+            "lane": "CURSOR",
+            "rawRef": "artifacts/agent-runs/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1/compact-records/estate-rollout-proof-pass-v1.json",
+            "packetId": "estate-rollout-proof-pass-v1",
+            "ordinalRef": "estate-rollout-proof-pass-v1"
+          },
+          "provenance": {
+            "sourceCommitSha": "cea6cda6875f53fcd52084bbdf6e0b2c644bda60",
+            "protocolVersion": null,
+            "gitPublicationReceipt": null
+          },
+          "snapshot": {
+            "signalClass": "PROVEN_EFFECTIVE",
+            "lifecycleState": "COMPLETE",
+            "implementationState": "COMPLETE",
+            "effectiveness": "PROVEN_EFFECTIVE",
+            "evidenceStrength": "indexed"
+          },
+          "sourceExcerptHash": "20cadd59e4b72e03599b324c0bc0065f5bc095cb63dd816da2f8c4b83ad3f5b4"
+        }
+      ]
+    },
+    {
+      "entityId": "intel:eb16cb3946415e2b31c87e53cd9ff53a28b7e72c",
+      "identity": {
+        "conceptKey": "measured-roi-awaiting-pairs-v1",
+        "candidateDigestRef": null,
+        "packetId": "measured-roi-awaiting-pairs-v1"
+      },
+      "firstSeenAt": "2026-08-12T17:50:00.000Z",
+      "lifecycleState": "active",
+      "supersededBy": null,
+      "core": {
+        "signalClass": "HOLD",
+        "summary": "Collect pairs across AppBuilder, Office Admin, CE/BC/VAE cohorts",
+        "evidenceRefs": [
+          "OG-001",
+          "follow-on-billing-experiment-v1.json"
+        ]
+      },
+      "dimensions": {
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "affectedRepos": [],
+        "lifecycleState": "ACTIVE",
+        "implementationState": "ACTIVE",
+        "effectiveness": "HOLD",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1.md"
+      },
+      "extensions": {},
+      "classification": "KNOWN_CORE",
+      "relationships": [
+        {
+          "type": "observedIn",
+          "target": "harvest:harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1"
+        }
+      ],
+      "observations": [
+        {
+          "observationId": "obs:194922868de03704b8841e69bc0f39da02b7f9da",
+          "harvestId": "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1",
+          "workPackageId": "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1",
+          "observedAt": "2026-08-12T17:50:00.000Z",
+          "source": {
+            "lane": "CURSOR",
+            "rawRef": "artifacts/agent-runs/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1/compact-records/measured-roi-awaiting-pairs-v1.json",
+            "packetId": "measured-roi-awaiting-pairs-v1",
+            "ordinalRef": "measured-roi-awaiting-pairs-v1"
+          },
+          "provenance": {
+            "sourceCommitSha": "cea6cda6875f53fcd52084bbdf6e0b2c644bda60",
+            "protocolVersion": null,
+            "gitPublicationReceipt": null
+          },
+          "snapshot": {
+            "signalClass": "HOLD",
+            "lifecycleState": "ACTIVE",
+            "implementationState": "ACTIVE",
+            "effectiveness": "HOLD",
+            "evidenceStrength": "indexed"
+          },
+          "sourceExcerptHash": "3f298fb20cd86a19d6d71530eac9edc1a48d18356bed18eb30bd82898bda630f"
+        }
+      ]
+    },
+    {
+      "entityId": "intel:f7e9f85ae2e8ed8db8607d95761532cc8744d2c0",
+      "identity": {
+        "conceptKey": "nearly-duplicate-pr-362-v1",
+        "candidateDigestRef": null,
+        "packetId": "nearly-duplicate-pr-362-v1"
+      },
+      "firstSeenAt": "2026-08-12T17:50:00.000Z",
+      "lifecycleState": "active",
+      "supersededBy": null,
+      "core": {
+        "signalClass": "CORRECTED",
+        "summary": "gh pr list --head before gh pr create",
+        "evidenceRefs": [
+          "TE-005",
+          "WM-001"
+        ]
+      },
+      "dimensions": {
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "affectedRepos": [],
+        "lifecycleState": "COMPLETE",
+        "implementationState": "COMPLETE",
+        "effectiveness": "CORRECTED",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1.md"
+      },
+      "extensions": {},
+      "classification": "KNOWN_CORE",
+      "relationships": [
+        {
+          "type": "observedIn",
+          "target": "harvest:harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1"
+        }
+      ],
+      "observations": [
+        {
+          "observationId": "obs:5804ec56bab490a4db37c910d9563d7674f6e40c",
+          "harvestId": "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1",
+          "workPackageId": "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1",
+          "observedAt": "2026-08-12T17:50:00.000Z",
+          "source": {
+            "lane": "CURSOR",
+            "rawRef": "artifacts/agent-runs/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1/compact-records/nearly-duplicate-pr-362-v1.json",
+            "packetId": "nearly-duplicate-pr-362-v1",
+            "ordinalRef": "nearly-duplicate-pr-362-v1"
+          },
+          "provenance": {
+            "sourceCommitSha": "cea6cda6875f53fcd52084bbdf6e0b2c644bda60",
+            "protocolVersion": null,
+            "gitPublicationReceipt": null
+          },
+          "snapshot": {
+            "signalClass": "CORRECTED",
+            "lifecycleState": "COMPLETE",
+            "implementationState": "COMPLETE",
+            "effectiveness": "CORRECTED",
+            "evidenceStrength": "indexed"
+          },
+          "sourceExcerptHash": "57f5b0ae3b9518a44bb9b7e0c56eab771154f7c7cf0e9c5157470444e815e8c2"
+        }
+      ]
+    },
+    {
+      "entityId": "intel:a9f55dbb2e8aec26c65c8469fd7419cc136bf725",
+      "identity": {
+        "conceptKey": "merge-existing-pr-not-new-v1",
+        "candidateDigestRef": null,
+        "packetId": "merge-existing-pr-not-new-v1"
+      },
+      "firstSeenAt": "2026-08-12T17:50:00.000Z",
+      "lifecycleState": "active",
+      "supersededBy": null,
+      "core": {
+        "signalClass": "PASS",
+        "summary": "Apply to all estate promotion PRs",
+        "evidenceRefs": [
+          "ED-001",
+          "TE-005"
+        ]
+      },
+      "dimensions": {
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "affectedRepos": [],
+        "lifecycleState": "COMPLETE",
+        "implementationState": "COMPLETE",
+        "effectiveness": "PASS",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1.md"
+      },
+      "extensions": {},
+      "classification": "KNOWN_CORE",
+      "relationships": [
+        {
+          "type": "observedIn",
+          "target": "harvest:harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1"
+        }
+      ],
+      "observations": [
+        {
+          "observationId": "obs:e794bc0dc44d3cac0106220172b6e1955797e128",
+          "harvestId": "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1",
+          "workPackageId": "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1",
+          "observedAt": "2026-08-12T17:50:00.000Z",
+          "source": {
+            "lane": "CURSOR",
+            "rawRef": "artifacts/agent-runs/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1/compact-records/merge-existing-pr-not-new-v1.json",
+            "packetId": "merge-existing-pr-not-new-v1",
+            "ordinalRef": "merge-existing-pr-not-new-v1"
+          },
+          "provenance": {
+            "sourceCommitSha": "cea6cda6875f53fcd52084bbdf6e0b2c644bda60",
+            "protocolVersion": null,
+            "gitPublicationReceipt": null
+          },
+          "snapshot": {
+            "signalClass": "PASS",
+            "lifecycleState": "COMPLETE",
+            "implementationState": "COMPLETE",
+            "effectiveness": "PASS",
+            "evidenceStrength": "indexed"
+          },
+          "sourceExcerptHash": "88e925bea6d231ca0f6beb85e784086864cb8c2c58a684de5b3499add295b413"
+        }
+      ]
+    },
+    {
+      "entityId": "intel:40d54464805cc638fc2f2cd5b0f62772c084bace",
+      "identity": {
+        "conceptKey": "protocol-40-estate-rollout-proof-cmd-v1",
+        "candidateDigestRef": null,
+        "packetId": "protocol-40-estate-rollout-proof-cmd-v1"
+      },
+      "firstSeenAt": "2026-08-12T17:50:00.000Z",
+      "lifecycleState": "active",
+      "supersededBy": null,
+      "core": {
+        "signalClass": "PASS",
+        "summary": "Re-run after scout hook changes only",
+        "evidenceRefs": [
+          "TE-004"
+        ]
+      },
+      "dimensions": {
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "affectedRepos": [],
+        "lifecycleState": "COMPLETE",
+        "implementationState": "COMPLETE",
+        "effectiveness": "PASS",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1.md"
+      },
+      "extensions": {},
+      "classification": "KNOWN_CORE",
+      "relationships": [
+        {
+          "type": "observedIn",
+          "target": "harvest:harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1"
+        }
+      ],
+      "observations": [
+        {
+          "observationId": "obs:2f22ff53da0e913cadc0cdd737d8c42303c60692",
+          "harvestId": "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1",
+          "workPackageId": "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1",
+          "observedAt": "2026-08-12T17:50:00.000Z",
+          "source": {
+            "lane": "CURSOR",
+            "rawRef": "artifacts/agent-runs/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1/compact-records/protocol-40-estate-rollout-proof-cmd-v1.json",
+            "packetId": "protocol-40-estate-rollout-proof-cmd-v1",
+            "ordinalRef": "protocol-40-estate-rollout-proof-cmd-v1"
+          },
+          "provenance": {
+            "sourceCommitSha": "cea6cda6875f53fcd52084bbdf6e0b2c644bda60",
+            "protocolVersion": null,
+            "gitPublicationReceipt": null
+          },
+          "snapshot": {
+            "signalClass": "PASS",
+            "lifecycleState": "COMPLETE",
+            "implementationState": "COMPLETE",
+            "effectiveness": "PASS",
+            "evidenceStrength": "indexed"
+          },
+          "sourceExcerptHash": "cd67e2c2d23884eaeb50ca2d0732c73ca7a6c3dc99bad4e877e8e01417d02634"
+        }
+      ]
+    },
+    {
+      "entityId": "intel:a6f63ca2f47b0e9224c9a78200f5310828fa38c9",
+      "identity": {
+        "conceptKey": "estate-rollout-receipt-evidence-v1",
+        "candidateDigestRef": null,
+        "packetId": "estate-rollout-receipt-evidence-v1"
+      },
+      "firstSeenAt": "2026-08-12T17:50:00.000Z",
+      "lifecycleState": "active",
+      "supersededBy": null,
+      "core": {
+        "signalClass": "PASS",
+        "summary": "Reference for future continuation disputes",
+        "evidenceRefs": [
+          "protocol-40-estate-rollout-proof-v1.json"
+        ]
+      },
+      "dimensions": {
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "affectedRepos": [],
+        "lifecycleState": "COMPLETE",
+        "implementationState": "COMPLETE",
+        "effectiveness": "PASS",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1.md"
+      },
+      "extensions": {},
+      "classification": "KNOWN_CORE",
+      "relationships": [
+        {
+          "type": "observedIn",
+          "target": "harvest:harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1"
+        }
+      ],
+      "observations": [
+        {
+          "observationId": "obs:6137c17a8b914589ea463e467e396d2084242a8f",
+          "harvestId": "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1",
+          "workPackageId": "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1",
+          "observedAt": "2026-08-12T17:50:00.000Z",
+          "source": {
+            "lane": "CURSOR",
+            "rawRef": "artifacts/agent-runs/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1/compact-records/estate-rollout-receipt-evidence-v1.json",
+            "packetId": "estate-rollout-receipt-evidence-v1",
+            "ordinalRef": "estate-rollout-receipt-evidence-v1"
+          },
+          "provenance": {
+            "sourceCommitSha": "cea6cda6875f53fcd52084bbdf6e0b2c644bda60",
+            "protocolVersion": null,
+            "gitPublicationReceipt": null
+          },
+          "snapshot": {
+            "signalClass": "PASS",
+            "lifecycleState": "COMPLETE",
+            "implementationState": "COMPLETE",
+            "effectiveness": "PASS",
+            "evidenceStrength": "indexed"
+          },
+          "sourceExcerptHash": "95ca09d73e113d0bce86f82abbe003ef2e026508fe673e2f1833ba98cd73a0ad"
+        }
+      ]
+    },
+    {
+      "entityId": "intel:8797cf62117c0eca22f0167e1240d03ed111e944",
+      "identity": {
+        "conceptKey": "main-authority-not-feature-branch-v1",
+        "candidateDigestRef": null,
+        "packetId": "main-authority-not-feature-branch-v1"
+      },
+      "firstSeenAt": "2026-08-12T17:50:00.000Z",
+      "lifecycleState": "active",
+      "supersededBy": null,
+      "core": {
+        "signalClass": "PASS",
+        "summary": "Enforce in agent prompts and scout brief",
+        "evidenceRefs": [
+          "TE-006",
+          "TE-007"
+        ]
+      },
+      "dimensions": {
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "affectedRepos": [],
+        "lifecycleState": "COMPLETE",
+        "implementationState": "COMPLETE",
+        "effectiveness": "PASS",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1.md"
+      },
+      "extensions": {},
+      "classification": "KNOWN_CORE",
+      "relationships": [
+        {
+          "type": "observedIn",
+          "target": "harvest:harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1"
+        }
+      ],
+      "observations": [
+        {
+          "observationId": "obs:dad74c4f940d32700041e52974f96baa77d496bf",
+          "harvestId": "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1",
+          "workPackageId": "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1",
+          "observedAt": "2026-08-12T17:50:00.000Z",
+          "source": {
+            "lane": "CURSOR",
+            "rawRef": "artifacts/agent-runs/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1/compact-records/main-authority-not-feature-branch-v1.json",
+            "packetId": "main-authority-not-feature-branch-v1",
+            "ordinalRef": "main-authority-not-feature-branch-v1"
+          },
+          "provenance": {
+            "sourceCommitSha": "cea6cda6875f53fcd52084bbdf6e0b2c644bda60",
+            "protocolVersion": null,
+            "gitPublicationReceipt": null
+          },
+          "snapshot": {
+            "signalClass": "PASS",
+            "lifecycleState": "COMPLETE",
+            "implementationState": "COMPLETE",
+            "effectiveness": "PASS",
+            "evidenceStrength": "indexed"
+          },
+          "sourceExcerptHash": "c369d941fece346d6ddefb3b55504d725d916d92d34275efdb6182f905095d80"
+        }
+      ]
+    },
+    {
+      "entityId": "intel:c721450eb741058e0a76217b41a5b9d68908e67e",
+      "identity": {
+        "conceptKey": "pr-362-merged-outcome-v1",
+        "candidateDigestRef": null,
+        "packetId": "pr-362-merged-outcome-v1"
+      },
+      "firstSeenAt": "2026-08-12T17:50:00.000Z",
+      "lifecycleState": "active",
+      "supersededBy": null,
+      "core": {
+        "signalClass": "PROVEN_EFFECTIVE",
+        "summary": "git pull main on all admin machines",
+        "evidenceRefs": [
+          "TE-006",
+          "640eef259b3db3672c3f10d11c98e24212e13f03"
+        ]
+      },
+      "dimensions": {
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "affectedRepos": [],
+        "lifecycleState": "COMPLETE",
+        "implementationState": "COMPLETE",
+        "effectiveness": "PROVEN_EFFECTIVE",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1.md"
+      },
+      "extensions": {},
+      "classification": "KNOWN_CORE",
+      "relationships": [
+        {
+          "type": "observedIn",
+          "target": "harvest:harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1"
+        }
+      ],
+      "observations": [
+        {
+          "observationId": "obs:aa56ec6d726c7ebe279443a58b73c8426fdc7ea3",
+          "harvestId": "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1",
+          "workPackageId": "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1",
+          "observedAt": "2026-08-12T17:50:00.000Z",
+          "source": {
+            "lane": "CURSOR",
+            "rawRef": "artifacts/agent-runs/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1/compact-records/pr-362-merged-outcome-v1.json",
+            "packetId": "pr-362-merged-outcome-v1",
+            "ordinalRef": "pr-362-merged-outcome-v1"
+          },
+          "provenance": {
+            "sourceCommitSha": "cea6cda6875f53fcd52084bbdf6e0b2c644bda60",
+            "protocolVersion": null,
+            "gitPublicationReceipt": null
+          },
+          "snapshot": {
+            "signalClass": "PROVEN_EFFECTIVE",
+            "lifecycleState": "COMPLETE",
+            "implementationState": "COMPLETE",
+            "effectiveness": "PROVEN_EFFECTIVE",
+            "evidenceStrength": "indexed"
+          },
+          "sourceExcerptHash": "140a45dbf3ed28b58077f7414cf974279d774f2ff80cd5d019a3ecca03569242"
         }
       ]
     }

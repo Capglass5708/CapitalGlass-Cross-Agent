@@ -1,0 +1,133 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "context",
+      "description": "Early conversation explored Cursor 86% meter and compile-token proxies before settling on measured Cursor billing as ROI gate",
+      "evidenceRefs": ["TE-001", "follow-on-reuse-roi-investigation-v1"],
+      "estimatedImpact": "medium",
+      "savedBy": "Declare FOLLOW_ON_ROI = warm_Cursor_billed / cold_Cursor_billed upfront in measured-ROI milestone",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "rework",
+      "description": "Rollout proof required fingerprint/repoSha alignment and cross-repo lineage fixes after first BLOCKED run",
+      "evidenceRefs": ["TE-003", "TE-004", "protocol-40-estate-rollout-proof-v1.json"],
+      "estimatedImpact": "medium",
+      "savedBy": "Run protocol-40:estate-rollout-proof before claiming architecture complete",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "operator_attention",
+      "description": "Agent nearly proposed opening a new PR instead of updating existing PR #362",
+      "evidenceRefs": ["TE-005"],
+      "estimatedImpact": "low",
+      "savedBy": "gh pr view before proposing new PR when feature branch already has open PR",
+      "roiRank": 3
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Had to correct agent to use existing PR #362 not open another",
+      "operatorCost": "low",
+      "systemFix": "Check gh pr list --head <branch> before PR creation suggestions",
+      "evidenceRefs": ["TE-005"],
+      "linkedWasteIds": ["TW-003"]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Protocol 4.0 promoted to main after estate proof",
+      "actualExecution": {
+        "steps": [
+          "Agent suggested opening a new PR after push to feature branch",
+          "Operator corrected: PR #362 already exists at same head"
+        ],
+        "outcome": "Corrected before duplicate PR",
+        "evidenceRefs": ["TE-005"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "gh pr view 362 or gh pr list --head feat/roi-compounding-auto-publish-v1",
+          "Update title/body on existing PR",
+          "Merge when CI green"
+        ],
+        "outcome": "Single PR lane preserved",
+        "requiredPreflight": ["gh pr view before gh pr create"]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Nearly proposed new PR instead of updating #362",
+      "whyItWasWrong": "Duplicate PR would split review lane; PR #362 already open at same head",
+      "correctFirstMove": "gh pr view 362 — update title/body — merge",
+      "preventiveControl": "gh pr list --head <branch> before gh pr create",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Mandatory protocol-40:estate-rollout-proof before architecture freeze claims",
+      "whyItPays": "Catches fingerprint and cross-repo lineage defects before merge",
+      "effort": "low",
+      "savedWasteIds": ["TW-002"],
+      "seedAs": "command"
+    },
+    {
+      "rank": 2,
+      "title": "Track main not feature branch after Protocol 4.0 promotion",
+      "whyItPays": "Prevents agents from continuing on stale feat/* authority",
+      "effort": "low",
+      "savedWasteIds": ["TW-001"],
+      "seedAs": "rule"
+    },
+    {
+      "rank": 3,
+      "title": "gh pr view before suggesting new PR on existing feature branch",
+      "whyItPays": "Avoids operator correction and duplicate PR noise",
+      "effort": "low",
+      "savedWasteIds": ["TW-003"],
+      "seedAs": "runbook"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "Protocol 4.0 measured ROI proven",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "≥3 cold/warm Cursor billing pairs across cohorts",
+        "CONTINUATION_PASS_THROUGH_RATE >90% on legitimate continuations (week-one target)"
+      ],
+      "lastKnownEvidence": ["protocol-40-cursor-wide-measured-roi-v1 verdict AWAITING_MEASURED_PAIRS"]
+    },
+    {
+      "awardOrVerdict": "Protocol 4.0 routing changes",
+      "currentStatus": "CLOSED",
+      "doNotClaimUntil": ["Measurement exposes routing defect with repair WP"],
+      "lastKnownEvidence": ["TE-007 architecture frozen", "ESTATE_ROLLOUT_PROOF_PASS"]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": ["active-work-blockers.json", "thread-autopsy-index.json"],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-12T17:50:00.000Z"
+  }
+}

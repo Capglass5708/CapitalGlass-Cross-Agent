@@ -1,0 +1,75 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-protocol-40-main-authority-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "6097c3a9779034e47b257a4e8ce7aa7f82bfbd3e",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1",
+      "seedId": "IH-PROTOCOL-40-MAIN-AUTHORITY-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-12T17:51:58.472Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "d48a1dc96d7a90d7a4f0298cd2bca24c016abbf0a7834ddb65d54933cf7b947c"
+  },
+  "body": {
+    "seedId": "IH-PROTOCOL-40-MAIN-AUTHORITY-001",
+    "kind": "architecture",
+    "title": "Protocol 4.0 authority is main — not feature branch",
+    "summary": "After PR #362, agents must track CG-AppBuilder-MCP main for continuation routing; measured ROI is protocol-40-cursor-wide-measured-roi-v1.",
+    "canonicalQuestion": "Which branch is Protocol 4.0 authority after promotion?",
+    "alternateQuestions": [
+      "What work package owns measured ROI without routing changes?"
+    ],
+    "shortAnswer": "After PR #362, agents must track CG-AppBuilder-MCP main for continuation routing; measured ROI is protocol-40-cursor-wide-measured-roi-v1.",
+    "detailedAnswer": "Protocol 4.0 authority is main — not feature branch",
+    "retrievalQuestions": [
+      "Which branch is Protocol 4.0 authority after promotion?",
+      "What work package owns measured ROI without routing changes?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Protocol 4.0 continuation or ROI question post Aug 2026",
+      "startAt": [
+        "CG-AppBuilder-MCP main",
+        "PROTOCOL_40_MEASURED_ROI_MILESTONE_V1.md"
+      ],
+      "runPreflight": [
+        "npm run protocol-40:measured-roi-milestone -- --json"
+      ],
+      "doNot": [
+        "Checkout feat/roi-compounding-auto-publish-v1",
+        "Patch routing during measurement milestone"
+      ],
+      "proveBeforeClaiming": [
+        "CONTINUATION_PASS_THROUGH_RATE from MEASURED pairs"
+      ]
+    },
+    "evidenceRefs": [
+      "640eef259b3db3672c3f10d11c98e24212e13f03",
+      "protocol-40-estate-rollout-proof-v1.json"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1/seed-packets/IH-PROTOCOL-40-MAIN-AUTHORITY-001.json"
+    ],
+    "harvestId": "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1"
+  }
+}

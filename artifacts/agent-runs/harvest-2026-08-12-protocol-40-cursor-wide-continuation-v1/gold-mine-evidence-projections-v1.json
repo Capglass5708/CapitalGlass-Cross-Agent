@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "gold-mine-evidence-projections-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1",
+  "generatedAt": "2026-08-12T17:50:00.000Z",
+  "projections": [
+    {
+      "signalClass": "ADOPTION_SIGNAL",
+      "lifecycleHint": "RESOLVED_OBSERVED",
+      "rootCauseKey": "protocol-40-continuation-estate-default",
+      "workPackageId": "protocol-40-estate-rollout-proof-v1",
+      "evidenceStrength": "high",
+      "operatorImpact": "Ordinary continuations should PASS_THROUGH without material preflight rerun",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-12T17:38:58.074Z",
+      "sourceWorkPackageId": "protocol-40-estate-rollout-proof-v1",
+      "sourceCommitSha": "134588f34ee187ac2973d06717af6a3b3da3d699",
+      "novelty": "NEW",
+      "implementationState": "ADOPTED",
+      "evidenceRefs": ["estate-rollout-proof-pass-v1"]
+    },
+    {
+      "signalClass": "OBSERVABILITY_GAP",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "cursor-billing-unpaired",
+      "workPackageId": "protocol-40-cursor-wide-measured-roi-v1",
+      "evidenceStrength": "high",
+      "operatorImpact": "Cannot prove token ROI until Cursor export paired",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-12T17:50:00.000Z",
+      "sourceWorkPackageId": "protocol-40-cursor-wide-measured-roi-v1",
+      "sourceCommitSha": "cea6cda6875f53fcd52084bbdf6e0b2c644bda60",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "evidenceRefs": ["OG-001", "measured-roi-awaiting-pairs-v1"]
+    },
+    {
+      "signalClass": "SUCCESS_PATTERN",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "continuation-pass-through-estate-proof",
+      "workPackageId": "protocol-40-estate-rollout-proof-v1",
+      "evidenceStrength": "high",
+      "operatorImpact": "Minimum court on legitimate continuations",
+      "businessImpact": "OPERATOR_PRODUCTIVITY",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-12T17:38:58.074Z",
+      "sourceCommitSha": "134588f34ee187ac2973d06717af6a3b3da3d699",
+      "novelty": "NEW",
+      "implementationState": "ADOPTED",
+      "evidenceRefs": ["SP-001"]
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-CONTINUATION-ESTATE-PROOF-001",
+      "questionId": "IHCONTINUATI",
+      "canonicalQuestion": "What command proves cursor-wide continuation rollout?",
+      "alternateQuestions": [
+        "What terminal verdict confirms Protocol 4.0 estate enforcement?"
+      ],
+      "shortAnswer": "Run protocol-40:estate-rollout-proof for ESTATE_ROLLOUT_PROOF_PASS before freezing routing or merging promotion PRs.",
+      "detailedAnswer": "Prove Protocol 4.0 continuation before architecture claims",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-12T17:51:58.472Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1/seed-packets/IH-CONTINUATION-ESTATE-PROOF-001.json"
+      ],
+      "authorityCommit": [
+        "6097c3a"
+      ],
+      "evidenceUrls": [
+        "artifacts/agent-runs/protocol-40-estate-rollout-proof-v1/protocol-40-estate-rollout-proof-v1.json",
+        "134588f34ee187ac2973d06717af6a3b3da3d699"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "command",
+        "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Claiming Protocol 4.0 cursor-wide is operational",
+        "startAt": [
+          "protocol-40-estate-rollout-proof-v1.json"
+        ],
+        "runPreflight": [
+          "npm run protocol-40:estate-rollout-proof"
+        ],
+        "doNot": [
+          "Claim PASS from compile-token proxies alone"
+        ],
+        "proveBeforeClaiming": [
+          "verdict: ESTATE_ROLLOUT_PROOF_PASS"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "command"
+    },
+    {
+      "ihPfspId": "IH-PROTOCOL-40-MAIN-AUTHORITY-001",
+      "questionId": "IHPROTOCOL40",
+      "canonicalQuestion": "Which branch is Protocol 4.0 authority after promotion?",
+      "alternateQuestions": [
+        "What work package owns measured ROI without routing changes?"
+      ],
+      "shortAnswer": "After PR #362, agents must track CG-AppBuilder-MCP main for continuation routing; measured ROI is protocol-40-cursor-wide-measured-roi-v1.",
+      "detailedAnswer": "Protocol 4.0 authority is main — not feature branch",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-12T17:51:58.472Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1/seed-packets/IH-PROTOCOL-40-MAIN-AUTHORITY-001.json"
+      ],
+      "authorityCommit": [
+        "6097c3a"
+      ],
+      "evidenceUrls": [
+        "640eef259b3db3672c3f10d11c98e24212e13f03",
+        "protocol-40-estate-rollout-proof-v1.json"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "architecture",
+        "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Protocol 4.0 continuation or ROI question post Aug 2026",
+        "startAt": [
+          "CG-AppBuilder-MCP main",
+          "PROTOCOL_40_MEASURED_ROI_MILESTONE_V1.md"
+        ],
+        "runPreflight": [
+          "npm run protocol-40:measured-roi-milestone -- --json"
+        ],
+        "doNot": [
+          "Checkout feat/roi-compounding-auto-publish-v1",
+          "Patch routing during measurement milestone"
+        ],
+        "proveBeforeClaiming": [
+          "CONTINUATION_PASS_THROUGH_RATE from MEASURED pairs"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "architecture"
+    }
+  ]
+}

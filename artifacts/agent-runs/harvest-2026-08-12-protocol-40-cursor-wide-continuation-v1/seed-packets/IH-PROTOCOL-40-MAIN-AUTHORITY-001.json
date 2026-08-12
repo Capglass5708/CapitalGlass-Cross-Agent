@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-PROTOCOL-40-MAIN-AUTHORITY-001",
+  "kind": "architecture",
+  "title": "Protocol 4.0 authority is main — not feature branch",
+  "summary": "After PR #362, agents must track CG-AppBuilder-MCP main for continuation routing; measured ROI is protocol-40-cursor-wide-measured-roi-v1.",
+  "retrievalQuestions": [
+    "Which branch is Protocol 4.0 authority after promotion?",
+    "What work package owns measured ROI without routing changes?"
+  ],
+  "evidenceRefs": [
+    "640eef259b3db3672c3f10d11c98e24212e13f03",
+    "protocol-40-estate-rollout-proof-v1.json"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Protocol 4.0 continuation or ROI question post Aug 2026",
+    "startAt": ["CG-AppBuilder-MCP main", "PROTOCOL_40_MEASURED_ROI_MILESTONE_V1.md"],
+    "runPreflight": ["npm run protocol-40:measured-roi-milestone -- --json"],
+    "doNot": ["Checkout feat/roi-compounding-auto-publish-v1", "Patch routing during measurement milestone"],
+    "proveBeforeClaiming": ["CONTINUATION_PASS_THROUGH_RATE from MEASURED pairs"]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

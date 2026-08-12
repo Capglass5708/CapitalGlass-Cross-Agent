@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-CONTINUATION-ESTATE-PROOF-001",
+  "kind": "command",
+  "title": "Prove Protocol 4.0 continuation before architecture claims",
+  "summary": "Run protocol-40:estate-rollout-proof for ESTATE_ROLLOUT_PROOF_PASS before freezing routing or merging promotion PRs.",
+  "retrievalQuestions": [
+    "What command proves cursor-wide continuation rollout?",
+    "What terminal verdict confirms Protocol 4.0 estate enforcement?"
+  ],
+  "evidenceRefs": [
+    "artifacts/agent-runs/protocol-40-estate-rollout-proof-v1/protocol-40-estate-rollout-proof-v1.json",
+    "134588f34ee187ac2973d06717af6a3b3da3d699"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Claiming Protocol 4.0 cursor-wide is operational",
+    "startAt": ["protocol-40-estate-rollout-proof-v1.json"],
+    "runPreflight": ["npm run protocol-40:estate-rollout-proof"],
+    "doNot": ["Claim PASS from compile-token proxies alone"],
+    "proveBeforeClaiming": ["verdict: ESTATE_ROLLOUT_PROOF_PASS"]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}

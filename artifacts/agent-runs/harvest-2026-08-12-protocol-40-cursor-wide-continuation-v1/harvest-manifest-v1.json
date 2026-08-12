@@ -1,0 +1,353 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "cea6cda6875f53fcd52084bbdf6e0b2c644bda60",
+  "sourceBranch": "main",
+  "sourceRepo": "CG-AppBuilder-MCP",
+  "createdAt": "2026-08-12T17:50:00.000Z",
+  "updatedAt": "2026-08-12T17:50:00.000Z",
+  "retrievalResult": "INDEX_HIT",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "Re-open Protocol 4.0 routing without measured defect",
+    "Point agents at feat/roi-compounding-auto-publish-v1 — main is authority",
+    "Claim measured ROI before ≥3 cold/warm Cursor pairs",
+    "Run index:publish or harvest:publish-hub-seed from Cursor"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 3,
+      "seeds": 2,
+      "roiItems": 3,
+      "operatorFriction": 1,
+      "executionDeltas": 1
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Operator runs harvest:publish-hub-seed + index:publish — NOT_RUN_BY_CURSOR"
+  },
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "1.2.0",
+    "eligibleCandidates": 0,
+    "rejectedUnrelatedCandidates": 0,
+    "exportStatus": "not-run",
+    "dataExtractionStatus": "not-run",
+    "catalogPublishStatus": "not-run",
+    "retrievalStatus": "not-run",
+    "targetCatalog": "L:\\02-catalog\\Harvest\\Harvest Protocol Self Learning",
+    "authorityStatus": "PROPOSAL",
+    "automaticProtocolMutation": false
+  },
+  "relatedRepos": [
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "branch": "main",
+      "commitSha": "cea6cda6875f53fcd52084bbdf6e0b2c644bda60",
+      "role": "Protocol 4.0 implementation and rollout proof"
+    },
+    {
+      "repo": "CapitalGlass-Office-Admin",
+      "branch": "feat/fred-user-profile-on-wesleydesk-v1",
+      "role": "Scout hook consumer + continuation proof lane"
+    }
+  ],
+  "packets": [
+    {
+      "packetKind": "decision",
+      "packetId": "protocol-40-architecture-frozen-main-v1",
+      "packetTitle": "Protocol 4.0 routing frozen on main after PR #362",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1.md",
+      "nextAction": "Exercise continuation-first model; collect measured ROI only",
+      "advancementGate": "protocol-40-cursor-wide-measured-roi-v1 cohort pairs",
+      "doNotAdvance": [
+        "Routing changes without measurement defect"
+      ],
+      "evidenceRefs": [
+        "TE-006",
+        "TE-007",
+        "640eef259b3db3672c3f10d11c98e24212e13f03"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@cea6cda6875f53fcd52084bbdf6e0b2c644bda60"
+      ],
+      "blockers": [],
+      "decision": "main is Protocol 4.0 authority; architecture frozen; measured ROI is separate milestone",
+      "alternativesRejected": [
+        "Continue engineering on feat/roi-compounding-auto-publish-v1",
+        "Block merge until live Cursor billing"
+      ]
+    },
+    {
+      "packetKind": "outcome",
+      "packetId": "estate-rollout-proof-pass-v1",
+      "packetTitle": "ESTATE_ROLLOUT_PROOF_PASS — 33 governed repos continuation-first",
+      "state": "COMPLETE",
+      "packetVerdict": "PROVEN_EFFECTIVE",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1.md",
+      "nextAction": "Run real work; track CONTINUATION_PASS_THROUGH_RATE",
+      "advancementGate": "Week-one scorecard",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-004",
+        "protocol-40-estate-rollout-proof-v1.json"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@134588f34ee187ac2973d06717af6a3b3da3d699"
+      ],
+      "blockers": [],
+      "changeImplemented": "CONTINUATION_FRONT_DOOR mandatory cursor-wide via scout injection",
+      "beforeState": "Protocol 4.0 design phase; compile candidate proxies only",
+      "afterState": "Mechanical estate proof PASS; scout sync 33/34; main promoted",
+      "measurement": "npm run protocol-40:estate-rollout-proof → ESTATE_ROLLOUT_PROOF_PASS",
+      "expectedEffect": "Ordinary continuations → PASS_THROUGH → minimum court",
+      "observedEffect": "All terminal flags PASS in automated proof",
+      "residuals": [
+        "Live Cursor billing unmeasured",
+        "Week-one pass-through rate TBD"
+      ],
+      "regressions": [],
+      "effectiveness": "PROVEN_EFFECTIVE",
+      "goldMineSignalClass": "ADOPTION_SIGNAL"
+    },
+    {
+      "packetKind": "blocker",
+      "packetId": "measured-roi-awaiting-pairs-v1",
+      "packetTitle": "Measured Cursor ROI — awaiting ≥3 cold/warm pairs",
+      "state": "ACTIVE",
+      "packetVerdict": "HOLD",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1.md",
+      "nextAction": "Collect pairs across AppBuilder, Office Admin, CE/BC/VAE cohorts",
+      "advancementGate": "measurementQuality=MEASURED on follow-on-performance-receipt-v1",
+      "doNotAdvance": [
+        "Claim FOLLOW_ON_ROI proven from compile proxy"
+      ],
+      "evidenceRefs": [
+        "OG-001",
+        "follow-on-billing-experiment-v1.json"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@cea6cda6875f53fcd52084bbdf6e0b2c644bda60"
+      ],
+      "blockers": [
+        "cursorBillingCaptured: false"
+      ],
+      "blockerId": "MEASURED_ROI_UNPAIRED",
+      "status": "ACTIVE",
+      "proofCommandRef": "protocol-40-estate-rollout-proof-cmd-v1",
+      "goldMineSignalClass": "OBSERVABILITY_GAP"
+    },
+    {
+      "packetKind": "mistake",
+      "packetId": "nearly-duplicate-pr-362-v1",
+      "packetTitle": "Nearly proposed new PR instead of updating #362",
+      "state": "COMPLETE",
+      "packetVerdict": "CORRECTED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1.md",
+      "nextAction": "gh pr list --head before gh pr create",
+      "advancementGate": "none",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-005",
+        "WM-001"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "wrongMoveId": "WM-001",
+      "actualExecution": "Suggested opening new PR after feature branch push",
+      "optimalExecution": "Update PR #362 title/body; merge existing PR",
+      "preventiveControl": "gh pr view 362 or gh pr list --head <branch>",
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL"
+    },
+    {
+      "packetKind": "faster_path",
+      "packetId": "merge-existing-pr-not-new-v1",
+      "packetTitle": "When feature branch has open PR — update and merge it",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1.md",
+      "nextAction": "Apply to all estate promotion PRs",
+      "advancementGate": "none",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "ED-001",
+        "TE-005"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "situation": "Branch already has open mergeable PR at same head",
+      "whatHappened": "Agent proposed new PR",
+      "rightFirstMove": "gh pr view <n> — update title/body — merge",
+      "requiredGuard": "Check existing PR before gh pr create"
+    },
+    {
+      "packetKind": "command",
+      "packetId": "protocol-40-estate-rollout-proof-cmd-v1",
+      "packetTitle": "Estate rollout terminal proof command",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1.md",
+      "nextAction": "Re-run after scout hook changes only",
+      "advancementGate": "ESTATE_ROLLOUT_PROOF_PASS",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-004"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@134588f34ee187ac2973d06717af6a3b3da3d699"
+      ],
+      "blockers": [],
+      "command": "npm run protocol-40:estate-rollout-proof",
+      "host": "WSL ext4 CG-AppBuilder-MCP",
+      "provesGate": "Protocol 4.0 cursor-wide continuation architecture",
+      "expectedPassSignal": "verdict: ESTATE_ROLLOUT_PROOF_PASS"
+    },
+    {
+      "packetKind": "evidence",
+      "packetId": "estate-rollout-receipt-evidence-v1",
+      "packetTitle": "Terminal estate rollout proof receipt",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1.md",
+      "nextAction": "Reference for future continuation disputes",
+      "advancementGate": "none",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "protocol-40-estate-rollout-proof-v1.json"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@134588f34ee187ac2973d06717af6a3b3da3d699"
+      ],
+      "blockers": [],
+      "type": "receipt",
+      "pathOrSha": "artifacts/agent-runs/protocol-40-estate-rollout-proof-v1/protocol-40-estate-rollout-proof-v1.json",
+      "provesWhat": "All terminal Protocol 4.0 continuation flags PASS"
+    },
+    {
+      "packetKind": "protocol_upgrade",
+      "packetId": "main-authority-not-feature-branch-v1",
+      "packetTitle": "After promotion — main is Protocol 4.0 authority",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1.md",
+      "nextAction": "Enforce in agent prompts and scout brief",
+      "advancementGate": "none",
+      "doNotAdvance": [
+        "feat/roi-compounding-auto-publish-v1 as agent target"
+      ],
+      "evidenceRefs": [
+        "TE-006",
+        "TE-007"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@640eef259b3db3672c3f10d11c98e24212e13f03"
+      ],
+      "blockers": [],
+      "seedAs": "scout-brief guard",
+      "promotionClass": "POLICY_GATED",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Protocol 4.0 or continuation routing question after Aug 2026 promotion",
+        "startAt": [
+          "main branch CG-AppBuilder-MCP",
+          "protocol-40-estate-rollout-proof-v1.json"
+        ],
+        "runPreflight": [
+          "npm run protocol-40:measured-roi-milestone"
+        ],
+        "doNot": [
+          "Track feat/roi-compounding-auto-publish-v1",
+          "Change routing during measured-ROI milestone"
+        ],
+        "proveBeforeClaiming": [
+          "CONTINUATION_PASS_THROUGH_RATE from measured pairs"
+        ]
+      }
+    },
+    {
+      "packetKind": "outcome",
+      "packetId": "pr-362-merged-outcome-v1",
+      "packetTitle": "PR #362 merged — cursor-wide continuation + compounding reuse",
+      "state": "COMPLETE",
+      "packetVerdict": "PROVEN_EFFECTIVE",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-12-protocol-40-cursor-wide-continuation-v1.md",
+      "nextAction": "git pull main on all admin machines",
+      "advancementGate": "none",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-006",
+        "640eef259b3db3672c3f10d11c98e24212e13f03"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@640eef259b3db3672c3f10d11c98e24212e13f03"
+      ],
+      "blockers": [],
+      "changeImplemented": "Merged feat/roi-compounding-auto-publish-v1 via PR #362",
+      "beforeState": "Feature branch only",
+      "afterState": "main @ 640eef25 + measured-ROI scaffold cea6cda6",
+      "measurement": "gh pr merge 362; CI all green",
+      "expectedEffect": "Estate tracks main for Protocol 4.0",
+      "observedEffect": "Merge succeeded; scout sync unchanged (already wired)",
+      "residuals": [],
+      "regressions": [],
+      "effectiveness": "PROVEN_EFFECTIVE"
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": null,
+    "ledgerContentHashAfter": "451bc045f5563fae26fd2d1fb63ae12337db97c6fe3409273e189bcbb7cc6f1c"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 9,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 9,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-96d40fe5855a",
+      "prompt-candidate-cc067d429903",
+      "prompt-candidate-1aab998e8d91",
+      "prompt-candidate-b7a68e7cbc0b",
+      "prompt-candidate-b6b36d382900",
+      "prompt-candidate-f367a16f299a",
+      "prompt-candidate-1ca196db2b69",
+      "prompt-candidate-2a5c4feb32e7",
+      "prompt-candidate-e10b9161ac86"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}
