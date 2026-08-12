@@ -14,7 +14,7 @@ Make RYZEN9DESK a **persistent managed execution node** so WESLEY_WORK submits a
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Authority repo | CapitalGlass-Office-Admin (network/Tailscale), CG-Platform-Governance-MCP (ledger) |
 | Execution repo | CG-AppBuilder-MCP (runner install, workflows, allowlists) |
-| Status | **FULL_ACCEPTANCE_READONLY_PASS** (Direct Connect); runner bootstrap coordination continues |
+| Status | **MANAGED_EXECUTOR_ONLINE** — PARTIAL_REMOTE_PASS (estimating-spine-ryzen9-activation-v1 harvest 2026-08-12) |
 | Product name | **Direct Connect** — WESLEY_WORK → GitHub Actions → RYZEN9DESK WSL runner (not "No SSH" except historical) |
 | Canonical kit parent | `Z:\Office\Wes\Direct Connect\` |
 | RYZEN kit | `Z:\Office\Wes\Direct Connect\Ryzen Direct Connect` |
@@ -26,8 +26,8 @@ Make RYZEN9DESK a **persistent managed execution node** so WESLEY_WORK submits a
 | Verdict | Meaning | Gate |
 | --- | --- | --- |
 | `CODE_READY_FOR_RUNNER_BOOTSTRAP` | Phase 0 code on `main`; PR merged | **Met** — PR #268 merged `8fe7cf05` |
-| `RUNNER_BOOTSTRAP_CHECKPOINT_STARTED` | Bootstrap scoped to CG-AppBuilder-MCP mission | **Current** — runner install + smoke pending on RYZEN9DESK |
-| `MANAGED_EXECUTOR_ONLINE` | Persistent runner proven on RYZEN9DESK | `executor-smoke` receipt from RYZEN9DESK only |
+| `RUNNER_BOOTSTRAP_CHECKPOINT_STARTED` | Bootstrap scoped to CG-AppBuilder-MCP mission | **Met** — runner online idle |
+| `MANAGED_EXECUTOR_ONLINE` | Persistent runner proven on RYZEN9DESK | **Current** — remote proof chain from WESLEY_WORK (GHA 31560060271–31560208328) |
 | `PARTIAL_REMOTE_PASS` | Remote acceptance without GUI | After full readonly profile chain |
 | `PASS` | Operator GUI acceptance recorded | Cursor Remote-WSL confirmed on RYZEN9DESK |
 

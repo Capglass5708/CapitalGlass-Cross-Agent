@@ -1,8 +1,8 @@
 {
   "schemaVersion": "intelligence-hub-commands-slice-v1@1.0.0",
   "sourceCommitSha": "38b69383f214e6d180c565626d2df1e817f29d3f",
-  "updatedAt": "2026-08-04T23:22:50.268Z",
-  "commandCount": 20,
+  "updatedAt": "2026-08-12T03:14:29.730Z",
+  "commandCount": 40,
   "commands": [
     {
       "id": "harvest-sync-derived",
@@ -10,6 +10,26 @@
       "repo": "CapitalGlass-Cross-Agent",
       "phase": "harvest-record",
       "provesGate": null,
+      "gateId": null,
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "harvest-sync-z-mirror",
+      "command": "npm run harvest:sync-z-mirror",
+      "repo": "CapitalGlass-Cross-Agent",
+      "phase": "harvest-record",
+      "provesGate": null,
+      "gateId": null,
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "test-harvest-prompt-extraction",
+      "command": "npm run test:harvest:prompt-extraction",
+      "repo": "CapitalGlass-Cross-Agent",
+      "phase": "harvest-record",
+      "provesGate": "HARVEST_PROMPT_EXTRACTION_INDEX_SUPABASE_PASS",
       "gateId": null,
       "host": null,
       "executable": true
@@ -203,6 +223,186 @@
       "gateId": null,
       "host": null,
       "executable": false
+    },
+    {
+      "id": "git-estate-compile-index",
+      "command": "npm run git-estate:compile-index",
+      "repo": "CG-AppBuilder-MCP",
+      "phase": "hot-cache-platform",
+      "provesGate": "GIT_ESTATE_COMPILE_PASS",
+      "gateId": "git-estate-compile",
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "git-estate-publish-hot-cache",
+      "command": "npm run git-estate:publish-hot-cache",
+      "repo": "CG-AppBuilder-MCP",
+      "phase": "hot-cache-platform",
+      "provesGate": "GIT_ESTATE_HOT_CACHE_PUBLISH_PASS",
+      "gateId": "git-estate-hot-cache-publish",
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "git-estate-bulk-pull-dry-run",
+      "command": "npm run git-estate:bulk-pull:dry-run",
+      "repo": "CG-AppBuilder-MCP",
+      "phase": "hot-cache-platform",
+      "provesGate": "BULK_PULL_DRY_RUN_PASS",
+      "gateId": "bulk-pull-dry-run",
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "hot-cache-verify-l-hash-alignment",
+      "command": "npm run hot-cache:verify-l-hash-alignment",
+      "repo": "CG-AppBuilder-MCP",
+      "phase": "hot-cache-platform",
+      "provesGate": "LOCAL_L_HASH_ALIGNMENT_PASS",
+      "gateId": "l-hash-alignment",
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "hot-cache-publish-l-by-kind-dry-run",
+      "command": "npm run hot-cache:publish-l-by-kind:dry-run",
+      "repo": "CG-AppBuilder-MCP",
+      "phase": "hot-cache-platform",
+      "provesGate": "L_BY_KIND_PUBLICATION_DRY_RUN_PASS",
+      "gateId": null,
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "active-ledger-compile-index",
+      "command": "npm run active-ledger:compile-index",
+      "repo": "CG-AppBuilder-MCP",
+      "phase": "hot-cache-platform",
+      "provesGate": "ACTIVE_LEDGER_COMPILE_PASS",
+      "gateId": null,
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "active-ledger-publish-hot-cache",
+      "command": "npm run active-ledger:publish-hot-cache",
+      "repo": "CG-AppBuilder-MCP",
+      "phase": "hot-cache-platform",
+      "provesGate": "ACTIVE_LEDGER_HOT_CACHE_PUBLISH_PASS",
+      "gateId": null,
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "closeout-index-compile-index",
+      "command": "npm run closeout-index:compile-index",
+      "repo": "CG-AppBuilder-MCP",
+      "phase": "hot-cache-platform",
+      "provesGate": "CLOSEOUT_INDEX_COMPILE_PASS",
+      "gateId": null,
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "closeout-index-publish-hot-cache",
+      "command": "npm run closeout-index:publish-hot-cache",
+      "repo": "CG-AppBuilder-MCP",
+      "phase": "hot-cache-platform",
+      "provesGate": "CLOSEOUT_INDEX_HOT_CACHE_PUBLISH_PASS",
+      "gateId": null,
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "intelligence-hub-publish-hot-routing-index",
+      "command": "npm run intelligence-hub:publish-hot-routing-index",
+      "repo": "CG-AppBuilder-MCP",
+      "phase": "hot-cache-platform",
+      "provesGate": "HOT_ROUTING_INDEX_PUBLISH_PASS",
+      "gateId": null,
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "hot-cache-compile-dataset",
+      "command": "npm run hot-cache:compile -- --dataset=<datasetId>",
+      "repo": "CG-AppBuilder-MCP",
+      "phase": "hot-cache-platform",
+      "provesGate": null,
+      "gateId": null,
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "command-estate-compile-index",
+      "command": "npm run command-estate:compile-index",
+      "repo": "CG-AppBuilder-MCP",
+      "phase": "hot-cache-platform",
+      "provesGate": "COMMAND_ESTATE_COMPILE_PASS",
+      "gateId": null,
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "command-estate-publish-hot-cache",
+      "command": "npm run command-estate:publish-hot-cache",
+      "repo": "CG-AppBuilder-MCP",
+      "phase": "hot-cache-platform",
+      "provesGate": "COMMAND_ESTATE_HOT_CACHE_PUBLISH_PASS",
+      "gateId": null,
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "workflow-estate-compile-index",
+      "command": "npm run workflow-estate:compile-index",
+      "repo": "CG-AppBuilder-MCP",
+      "phase": "hot-cache-platform",
+      "provesGate": "WORKFLOW_ESTATE_COMPILE_PASS",
+      "gateId": null,
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "prompt-catalog-compile-index",
+      "command": "npm run prompt-catalog:compile-index",
+      "repo": "CG-AppBuilder-MCP",
+      "phase": "hot-cache-platform",
+      "provesGate": "PROMPT_CATALOG_COMPILE_PASS",
+      "gateId": null,
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "prompt-catalog-publish-hot-cache",
+      "command": "npm run prompt-catalog:publish-hot-cache",
+      "repo": "CG-AppBuilder-MCP",
+      "phase": "hot-cache-platform",
+      "provesGate": "PROMPT_CATALOG_HOT_CACHE_PUBLISH_PASS",
+      "gateId": null,
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "promptops-project-harvest-prompts",
+      "command": "npm run promptops:project-harvest-prompts",
+      "repo": "CG-AppBuilder-MCP",
+      "phase": "harvest-record",
+      "provesGate": "PROMPT_PROJECTION_PASS",
+      "gateId": null,
+      "host": null,
+      "executable": true
+    },
+    {
+      "id": "auto-v3-session-closeout",
+      "command": "npm run auto:v3:session-closeout -- --work-package=<id> --payload=./closeout.json --json",
+      "repo": "CG-AppBuilder-MCP",
+      "phase": "closeout",
+      "provesGate": null,
+      "gateId": null,
+      "host": null,
+      "executable": true
     }
   ]
 }

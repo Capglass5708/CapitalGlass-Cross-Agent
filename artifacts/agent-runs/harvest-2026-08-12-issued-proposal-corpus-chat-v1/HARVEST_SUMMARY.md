@@ -1,9 +1,9 @@
 # Harvest summary — derived view
 
-**Authority:** `harvest-manifest-v1.json` (`987dc7ebf152…`)
+**Authority:** `harvest-manifest-v1.json` (`312719adf393…`)
 **Work package:** `harvest-2026-08-12-issued-proposal-corpus-chat-v1`
 **Mission class:** `chat-thread-closeout-autopsy-harvest-v1`
-**Verdict:** `HARVEST_VALIDATED`
+**Verdict:** `HARVEST_GIT_DURABLE`
 **Retrieval:** `INDEX_HIT_AI_CACHE`
 
 > This file is a generated view. Do not edit independently — update the manifest.
