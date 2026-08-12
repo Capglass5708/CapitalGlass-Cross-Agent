@@ -1,0 +1,182 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "dec32e5ac68564b498279e2fe5a4b26f71f21f04",
+  "sourceBranch": "work/active-ledger-currentness-ingestion-and-harvest-v1",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-12T22:30:00.000Z",
+  "updatedAt": "2026-08-12T22:30:00.000Z",
+  "retrievalResult": "INDEX_MISS",
+  "cacheResult": "CACHE_MISS",
+  "rawScanRequired": false,
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "subject": "PO Wave 2 WP-21 receipt ledger — implementation, API proof, RYZEN handoff; browser proof pending",
+  "doNotAdvance": [
+    "PO_WAVE2_PROCUREMENT_MONEY_CONTROL_V1_COMPLETE before WP-21 browser proof and PR merge",
+    "WP-22 three-way match before WP-21 milestone closeout",
+    "Claim production receipt ledger without operator browser proof on Command Center"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 2,
+      "seeds": 2,
+      "roiItems": 3,
+      "operatorFriction": 1
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": null
+  },
+  "ledgerLineage": {
+    "ledgerPath": "work-progress/ACTIVE_WORK.md",
+    "ledgerContentHashBefore": "2f81b0c9d610dac8dfc1bc8e380c342ccdfad191b266ab9223b14bc66fa203c0",
+    "ledgerContentHashAfter": "2f81b0c9d610dac8dfc1bc8e380c342ccdfad191b266ab9223b14bc66fa203c0"
+  },
+  "supersededClaims": [],
+  "packets": [
+    {
+      "packetId": "po-wave2-receipt-ledger-impl-v1",
+      "packetTitle": "WP-21 receipt ledger implementation shipped on feature branch",
+      "packetKind": "outcome",
+      "state": "CODE_COMPLETE",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "WP21_CODE_COMPLETE",
+      "ownerRepo": "capital-glass-po-app",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/po-wave2-receipt-ledger-v1.md",
+      "nextAction": "Operator browser proof on PO Command Center; then open/merge PR",
+      "advancementGate": "operator-browser-proof",
+      "doNotAdvance": [
+        "WP-22",
+        "WP-23",
+        "WP-24"
+      ],
+      "blockers": [],
+      "evidenceRefs": [
+        "capital-glass-po-app/2ad9600",
+        "artifacts/agent-runs/po-wave2-receipt-ledger-v1/closeout-manifest.json",
+        "TE-1201"
+      ],
+      "commitRefs": [
+        {
+          "repo": "capital-glass-po-app",
+          "sha": "2ad9600",
+          "role": "wp21-receipt-ledger"
+        }
+      ]
+    },
+    {
+      "packetId": "po-receipt-ledger-api-smoke-v1",
+      "packetTitle": "Live receipt ledger API smoke PASS (shared-dev)",
+      "packetKind": "command",
+      "state": "PASS",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "API_SMOKE_PASS",
+      "ownerRepo": "capital-glass-po-app",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/po-wave2-receipt-ledger-v1.md",
+      "nextAction": "Re-run after server deploy: doppler run -p cg-po -c prd -- node scripts/smoke-receipt-ledger-api.mjs",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "blockers": [],
+      "evidenceRefs": [
+        "SMOKE_RECEIPT_LEDGER_API_PASS",
+        "scripts/smoke-receipt-ledger-api.mjs",
+        "TE-1202"
+      ],
+      "commitRefs": [
+        {
+          "repo": "capital-glass-po-app",
+          "sha": "2ad9600",
+          "role": "api-smoke-script"
+        }
+      ]
+    },
+    {
+      "packetId": "po-wave2-wp21-browser-gate-v1",
+      "packetTitle": "WP-21 operator browser proof — OPEN",
+      "packetKind": "blocker",
+      "state": "OPEN",
+      "packetVerdict": "HOLD",
+      "harvestVerdictContribution": "BROWSER_PROOF_PENDING",
+      "ownerRepo": "capital-glass-po-app",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/po-wave2-receipt-ledger-v1.md",
+      "nextAction": "Record receipt, short/backorder/damage, reload persistence, reversal audit in browser",
+      "advancementGate": "operator-browser-proof",
+      "doNotAdvance": [
+        "WP-22",
+        "merge feat/po-wave2-receipt-ledger-v1 without proof artifact"
+      ],
+      "blockers": [
+        "operator-browser-proof-not-recorded"
+      ],
+      "evidenceRefs": [
+        "TE-1203",
+        "artifacts/agent-runs/po-wave2-receipt-ledger-v1/closeout-manifest.json"
+      ],
+      "commitRefs": []
+    },
+    {
+      "packetId": "po-wave2-ryzen-git-handoff-v1",
+      "packetTitle": "Feature branch pushed + Direct Connect hop packet refreshed",
+      "packetKind": "evidence",
+      "state": "PASS",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "CROSS_DESK_HANDOFF_RECORDED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/po-wave2-receipt-ledger-v1.md",
+      "nextAction": "RYZEN9DESK: git fetch && checkout feat/po-wave2-receipt-ledger-v1 && restart PO API",
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "SSH/Tailscale as first transport"
+      ],
+      "blockers": [],
+      "evidenceRefs": [
+        "origin/feat/po-wave2-receipt-ledger-v1",
+        "Z:/Office/Wes/Direct Connect/handoffs hop-packet-latest.json",
+        "TE-1204"
+      ],
+      "commitRefs": [
+        {
+          "repo": "capital-glass-po-app",
+          "sha": "2ad9600",
+          "role": "pushed-feature-branch"
+        }
+      ]
+    }
+  ],
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 8,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 8,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-c05df0637e54",
+      "prompt-candidate-d0e03b53f18e",
+      "prompt-candidate-ad765fdd3601",
+      "prompt-candidate-cc594bcf0542",
+      "prompt-candidate-9978981f52cd",
+      "prompt-candidate-9c15d862a436",
+      "prompt-candidate-90aa2bacfd8b",
+      "prompt-candidate-4ccd821c8898"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

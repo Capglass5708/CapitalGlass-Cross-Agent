@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-PO-WAVE2-BROWSER-GATE-001",
+  "kind": "blocker",
+  "title": "PO Wave 2 WP-21 browser proof gate before WP-22",
+  "summary": "Receipt ledger API proof does not substitute for Command Center browser proof. WP-22 must not start until WP-21 operator proof is recorded.",
+  "retrievalQuestions": [
+    "What blocks PO Wave 2 WP-22 start?",
+    "What operator steps complete WP-21 receipt ledger?"
+  ],
+  "evidenceRefs": [
+    "TE-1203",
+    "po-wave2-wp21-browser-gate-v1",
+    "artifacts/agent-runs/po-wave2-receipt-ledger-v1/closeout-manifest.json"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "PO Wave 2 receipt ledger code and API smoke PASS but wave advance requested",
+    "startAt": [
+      "work-progress/projects/po-wave2-receipt-ledger-v1.md",
+      "capital-glass-po-app/src/components/PoReceiptLedgerPanel.tsx"
+    ],
+    "runPreflight": [
+      "Check closeout-manifest for browser proof artifact path"
+    ],
+    "doNot": [
+      "Start WP-22 three-way match",
+      "Merge WP-21 PR without operator browser proof or waiver"
+    ],
+    "proveBeforeClaiming": [
+      "Browser proof artifact or explicit operator waiver",
+      "Receipt history + reversal visible after reload"
+    ]
+  },
+  "ownerRepo": "capital-glass-po-app",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

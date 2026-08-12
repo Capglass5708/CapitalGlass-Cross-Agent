@@ -1,0 +1,356 @@
+{
+  "packetKind": "graph-extraction",
+  "schemaVersion": "cg-master-graph-extraction-v1",
+  "extractionId": "extraction:harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1",
+  "harvestId": "harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1",
+  "workPackageId": "harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1",
+  "producer": {
+    "repositoryId": "repo:capitalglass-cross-agent",
+    "capability": "harvest-graph-extraction",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "id": "harvest:harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1",
+      "nodeType": "Harvest",
+      "displayName": "harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1",
+      "lifecycleState": "lifecycle:canonical",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+        "sourceCommitSha": "dec32e5ac68564b498279e2fe5a4b26f71f21f04",
+        "retrievalResult": "INDEX_MISS"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:po-wave2-receipt-ledger-impl-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "WP-21 receipt ledger implementation shipped on feature branch",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "CODE_COMPLETE",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "capital-glass-po-app",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/po-wave2-receipt-ledger-v1.md",
+        "advancementGate": "operator-browser-proof"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/compact-records/po-wave2-receipt-ledger-impl-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/compact-records/po-wave2-receipt-ledger-impl-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:po-receipt-ledger-api-smoke-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Live receipt ledger API smoke PASS (shared-dev)",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "PASS",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "capital-glass-po-app",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/po-wave2-receipt-ledger-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/compact-records/po-receipt-ledger-api-smoke-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/compact-records/po-receipt-ledger-api-smoke-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:po-wave2-wp21-browser-gate-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "WP-21 operator browser proof — OPEN",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "OPEN",
+      "metadata": {
+        "packetVerdict": "HOLD",
+        "ownerRepo": "capital-glass-po-app",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/po-wave2-receipt-ledger-v1.md",
+        "advancementGate": "operator-browser-proof"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/compact-records/po-wave2-wp21-browser-gate-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/compact-records/po-wave2-wp21-browser-gate-v1.json"
+        }
+      }
+    },
+    {
+      "id": "entity:blocker-blocker-po-wave2-wp21-browser-gate-v1",
+      "nodeType": "Entity",
+      "displayName": "blocker-po-wave2-wp21-browser-gate-v1",
+      "metadata": {
+        "entityKind": "harvest-blocker",
+        "blockerOwner": null
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/compact-records/po-wave2-wp21-browser-gate-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/compact-records/po-wave2-wp21-browser-gate-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:po-wave2-ryzen-git-handoff-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Feature branch pushed + Direct Connect hop packet refreshed",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "PASS",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/po-wave2-receipt-ledger-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/compact-records/po-wave2-ryzen-git-handoff-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/compact-records/po-wave2-ryzen-git-handoff-v1.json"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:harvest-harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1-contains-workpackage-po-wave2-receipt-ledger-impl-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1",
+      "targetId": "workpackage:po-wave2-receipt-ledger-impl-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capital-glass-po-app-owns-workpackage-po-wave2-receipt-ledger-impl-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capital-glass-po-app",
+      "targetId": "workpackage:po-wave2-receipt-ledger-impl-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/compact-records/po-wave2-receipt-ledger-impl-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/compact-records/po-wave2-receipt-ledger-impl-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1-contains-workpackage-po-receipt-ledger-api-smoke-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1",
+      "targetId": "workpackage:po-receipt-ledger-api-smoke-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capital-glass-po-app-owns-workpackage-po-receipt-ledger-api-smoke-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capital-glass-po-app",
+      "targetId": "workpackage:po-receipt-ledger-api-smoke-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/compact-records/po-receipt-ledger-api-smoke-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/compact-records/po-receipt-ledger-api-smoke-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1-contains-workpackage-po-wave2-wp21-browser-gate-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1",
+      "targetId": "workpackage:po-wave2-wp21-browser-gate-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capital-glass-po-app-owns-workpackage-po-wave2-wp21-browser-gate-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capital-glass-po-app",
+      "targetId": "workpackage:po-wave2-wp21-browser-gate-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/compact-records/po-wave2-wp21-browser-gate-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/compact-records/po-wave2-wp21-browser-gate-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-po-wave2-wp21-browser-gate-v1-blocked-by-entity-blocker-blocker-po-wave2-wp21-browser-gate-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:po-wave2-wp21-browser-gate-v1",
+      "targetId": "entity:blocker-blocker-po-wave2-wp21-browser-gate-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/compact-records/po-wave2-wp21-browser-gate-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/compact-records/po-wave2-wp21-browser-gate-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1-contains-workpackage-po-wave2-ryzen-git-handoff-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1",
+      "targetId": "workpackage:po-wave2-ryzen-git-handoff-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-po-wave2-ryzen-git-handoff-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:po-wave2-ryzen-git-handoff-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/compact-records/po-wave2-ryzen-git-handoff-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/compact-records/po-wave2-ryzen-git-handoff-v1.json"
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "provenance": {
+    "producerRepositoryId": "repo:capitalglass-cross-agent",
+    "producerCapability": "harvest-graph-extraction",
+    "sourceAuthority": "authority:cross-agent-harvest",
+    "classification": "observed",
+    "verificationState": "verified",
+    "recordedAt": "2026-08-12T22:30:00.000Z",
+    "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/harvest-manifest-v1.json",
+    "sourceAnchorDetail": {
+      "anchorType": "file-path",
+      "locator": "artifacts/agent-runs/harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1/harvest-manifest-v1.json"
+    }
+  }
+}

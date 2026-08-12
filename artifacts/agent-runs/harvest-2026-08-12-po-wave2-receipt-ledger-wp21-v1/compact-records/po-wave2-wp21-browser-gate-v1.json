@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1",
+  "packetId": "po-wave2-wp21-browser-gate-v1",
+  "state": "OPEN",
+  "packetVerdict": "HOLD",
+  "ownerRepo": "capital-glass-po-app",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Record receipt, short/backorder/damage, reload persistence, reversal audit in browser",
+  "evidenceRefs": [
+    "TE-1203",
+    "artifacts/agent-runs/po-wave2-receipt-ledger-v1/closeout-manifest.json"
+  ],
+  "doNotAdvance": [
+    "WP-22",
+    "merge feat/po-wave2-receipt-ledger-v1 without proof artifact"
+  ],
+  "advancementGate": "operator-browser-proof",
+  "contentHash": "0b0ba363e5cf28f19cfb7460d73a5419b8670c5eaacd8497221f8a5cc435e397"
+}

@@ -1,0 +1,205 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "commandIndexConsulted": true,
+    "hubSlicesConsulted": [
+      "work-progress/harvest-packet-registry.json",
+      "work-progress/command-index.json",
+      "BY-KIND/active-work-blockers.json"
+    ],
+    "checkedAt": "2026-08-12T22:30:00.000Z",
+    "preflightReceiptHash": "INDEX_MISS_REPO_DIRECTED"
+  },
+  "waste": [
+    {
+      "wasteId": "TW-1201",
+      "type": "verification",
+      "description": "Receipt ledger API routes returned 404 until PO API server was restarted after server build",
+      "evidenceRefs": [
+        "TE-1202",
+        "smoke-receipt-ledger-api.mjs"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Restart PO API on port 3001 after npm run build --prefix server before live API smoke",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-1202",
+      "type": "rework",
+      "description": "Server tsc failed on missing glassPricingPublisher import before WP-21 routes could ship",
+      "evidenceRefs": [
+        "TE-1201",
+        "2ad9600"
+      ],
+      "estimatedImpact": "low",
+      "savedBy": "Run npm run build --prefix server in PO pre-push gate chain",
+      "roiRank": 2
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-1201",
+      "trigger": "WP-21 code/API proof complete but browser proof still required before wave advance",
+      "operatorCost": "medium",
+      "systemFix": "IH-PO-WAVE2-BROWSER-GATE-001",
+      "evidenceRefs": [
+        "TE-1203"
+      ],
+      "linkedWasteIds": []
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-1201",
+      "situation": "Validate receipt ledger API after server implementation",
+      "actualExecution": {
+        "steps": [
+          "Ran smoke against localhost:3001",
+          "Received 404 on new routes",
+          "Restarted API server",
+          "Re-ran smoke → PASS"
+        ],
+        "outcome": "PASS after restart",
+        "evidenceRefs": [
+          "TE-1202",
+          "SMOKE_RECEIPT_LEDGER_API_PASS"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "npm run build --prefix server",
+          "Restart PO API process",
+          "doppler run -- node scripts/smoke-receipt-ledger-api.mjs"
+        ],
+        "outcome": "Single-pass smoke",
+        "requiredPreflight": [
+          "Confirm API PID restarted after build"
+        ]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    },
+    {
+      "executionDeltaId": "ED-1202",
+      "situation": "Cross-desk sync for RYZEN9DESK PO testing",
+      "actualExecution": {
+        "steps": [
+          "git push origin feat/po-wave2-receipt-ledger-v1",
+          "npm run dual-machine:write-hop-packet from CG-AppBuilder-MCP"
+        ],
+        "outcome": "PASS",
+        "evidenceRefs": [
+          "TE-1204",
+          "hop-packet-latest.json"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Push mutation branch",
+          "Write hop packet with dual-machine:write-hop-packet",
+          "Document checkout + API restart commands for RYZEN"
+        ],
+        "outcome": "Desk pull without SSH",
+        "requiredPreflight": [
+          "office.get_direct_connect_auto_connect_profile"
+        ]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-1201",
+      "summary": "API smoke before restarting PO server after build",
+      "whyItWasWrong": "Stale Node process did not register new receipt-ledger routes",
+      "correctFirstMove": "Restart PO API after server build; then run smoke-receipt-ledger-api.mjs",
+      "preventiveControl": "IH-PO-RECEIPT-API-RESTART-001",
+      "executionDeltaId": "ED-1201",
+      "actualExecution": {
+        "steps": [
+          "Smoke → 404",
+          "Restart",
+          "Smoke → PASS"
+        ],
+        "outcome": "Extra verification cycle"
+      },
+      "optimalExecution": {
+        "steps": [
+          "Build + restart + smoke in one sequence"
+        ],
+        "outcome": "No false 404"
+      }
+    }
+  ],
+  "duplicateWork": [],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "PO API restart step in receipt-ledger smoke runbook",
+      "whyItPays": "Avoids false 404 on new routes after server build",
+      "effort": "low",
+      "seedAs": "runbook",
+      "savedWasteIds": [
+        "TW-1201"
+      ],
+      "ownerRepo": "capital-glass-po-app"
+    },
+    {
+      "rank": 2,
+      "title": "WP-21 browser proof checklist artifact",
+      "whyItPays": "Blocks premature WP-22 start and documents operator sign-off",
+      "effort": "low",
+      "seedAs": "rule",
+      "savedWasteIds": [],
+      "ownerRepo": "capital-glass-po-app"
+    },
+    {
+      "rank": 3,
+      "title": "Server build in PO material preflight chain",
+      "whyItPays": "Catches missing imports before push",
+      "effort": "low",
+      "seedAs": "hook",
+      "savedWasteIds": [
+        "TW-1202"
+      ],
+      "ownerRepo": "capital-glass-po-app"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "PO_WAVE2_WP21_COMPLETE",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "operator-browser-proof-recorded",
+        "PR merged or explicit operator waiver"
+      ],
+      "lastKnownEvidence": [
+        "API smoke PASS",
+        "2ad9600 pushed",
+        "browser proof OPEN"
+      ]
+    },
+    {
+      "awardOrVerdict": "PO_WAVE2_PROCUREMENT_MONEY_CONTROL_V1_COMPLETE",
+      "currentStatus": "CLOSED",
+      "doNotClaimUntil": [
+        "WP-21 through WP-24 all proven"
+      ],
+      "lastKnownEvidence": [
+        "Wave 1 complete only",
+        "WP-21 in flight"
+      ]
+    }
+  ]
+}

@@ -217,6 +217,10 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `pkt-repeated-001` | — | COMPLETE | PASS | CapitalGlass-Documents | `harvest-2026-08-04-document-center-adaptive-details-w17-v1` | see harvest-2026-08-04-document-center-adaptive-details-w17-v1.md |
 | `plan-processing-proof-commands-v1` | — | RECORDED | COMMAND_INDEXED | CapitalGlass-Documents | `harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1` | see harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1.md |
 | `platform-health-read-model-slice-7-v1` | — | DEFERRED | HOLD | CapitalGlass-Cross-Agent | `harvest-2026-08-04-three-way-improvement-slice6-thread-v1` | see 2026-08-03_platform-health-read-model-slice-7-v1.md |
+| `po-receipt-ledger-api-smoke-v1` | — | PASS | PASS | capital-glass-po-app | `harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1` | see po-wave2-receipt-ledger-v1.md |
+| `po-wave2-receipt-ledger-impl-v1` | — | CODE_COMPLETE | PASS | capital-glass-po-app | `harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1` | see po-wave2-receipt-ledger-v1.md |
+| `po-wave2-ryzen-git-handoff-v1` | — | PASS | PASS | CG-AppBuilder-MCP | `harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1` | see po-wave2-receipt-ledger-v1.md |
+| `po-wave2-wp21-browser-gate-v1` | — | OPEN | HOLD | capital-glass-po-app | `harvest-2026-08-12-po-wave2-receipt-ledger-wp21-v1` | see po-wave2-receipt-ledger-v1.md |
 | `post-merge-live-reproof-v1` | — | COMPLETE | REQUIRED_NOT_DUPLICATE | CapitalGlass-Office-Admin | `harvest-2026-08-07-direct-connect-three-controller-closeout-v1` | see harvest-2026-08-07-direct-connect-three-controller-closeout-v1.md |
 | `preflight-duplicate-de-handoff-step-v1` | — | FIXED | PASS | CG-AppBuilder-MCP | `harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1` | see 2026-08-02_z-drive-disconnect-recurrence-v1.md |
 | `preflight-stale-cross-agent-sha-v1` | — | RESOLVED | CORRECTED | CapitalGlass-Cross-Agent | `harvest-2026-08-07-cross-agent-drained-intelligence-pi-refresh-v1` | see harvest-2026-08-07-cross-agent-drained-intelligence-pi-refresh-v1.md |
@@ -303,7 +307,7 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `z-drive-force-remap-wsl-cwd-v1` | — | RECORDED | PASS | CapitalGlass-Office-Admin | `harvest-2026-08-04-z-l-drive-offlan-session-v1` | see 2026-08-02_z-drive-disconnect-recurrence-v1.md |
 | `z-l-drive-offlan-partial-availability-v1` | — | PARTIAL_DRIVE_AVAILABILITY | Z_OK_L_BLOCKED_OFF_LAN | CapitalGlass-Office-Admin | `harvest-2026-08-04-z-l-drive-offlan-session-v1` | see 2026-08-02_z-drive-disconnect-recurrence-v1.md |
 
-_263 registry packets · 122 intelligence entities_
+_267 registry packets · 122 intelligence entities_
 
 <!-- HARVEST-PACKET-INDEX:END -->
 

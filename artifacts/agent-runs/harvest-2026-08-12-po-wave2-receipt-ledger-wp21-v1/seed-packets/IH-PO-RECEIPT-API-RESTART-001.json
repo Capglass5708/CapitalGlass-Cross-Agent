@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-PO-RECEIPT-API-RESTART-001",
+  "kind": "failure-pattern",
+  "title": "PO receipt ledger API smoke requires server restart after build",
+  "summary": "New po.ts receipt routes return 404 if the PO API Node process was not restarted after server build.",
+  "retrievalQuestions": [
+    "Why did smoke-receipt-ledger-api return 404?",
+    "What is the correct order for PO server build and API smoke?"
+  ],
+  "evidenceRefs": [
+    "TE-1202",
+    "SMOKE_RECEIPT_LEDGER_API_PASS",
+    "TW-1201"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "PO server route added or changed; live API smoke fails with 404",
+    "startAt": [
+      "capital-glass-po-app/server/",
+      "capital-glass-po-app/scripts/smoke-receipt-ledger-api.mjs"
+    ],
+    "runPreflight": [
+      "npm run build --prefix server",
+      "Restart PO API on port 3001"
+    ],
+    "doNot": [
+      "Claim API smoke PASS on stale server process",
+      "Skip restart after server tsc build"
+    ],
+    "proveBeforeClaiming": [
+      "SMOKE_RECEIPT_LEDGER_API_PASS",
+      "GET /:poListItemId/receipt-ledger returns 200"
+    ]
+  },
+  "ownerRepo": "capital-glass-po-app",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}
