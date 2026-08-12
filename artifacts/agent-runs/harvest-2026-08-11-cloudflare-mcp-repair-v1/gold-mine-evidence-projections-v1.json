@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "gold-mine-evidence-projections-v1@1.0.0",
+  "harvestId": "harvest-2026-08-11-cloudflare-mcp-repair-v1",
+  "projections": [
+    {
+      "packetRef": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+      "signalClass": "PROBLEM_SIGNAL",
+      "lifecycleHint": "RESOLVED_OBSERVED",
+      "rootCauseKey": "cloudflare-mcp-oauth-lock-15170-or-bearer-insufficient-scope",
+      "evidenceStrength": "high",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "novelty": "NEW",
+      "implementationState": "FIX_SHIPPED",
+      "workPackageId": "cloudflare-mcp-health-layer-v1"
+    },
+    {
+      "packetRef": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+      "signalClass": "RESOLUTION_SIGNAL",
+      "lifecycleHint": "ADOPTED",
+      "rootCauseKey": "cloudflare-health-dns-vs-mcp-conflation",
+      "evidenceStrength": "high",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "novelty": "NEW",
+      "implementationState": "FIX_SHIPPED",
+      "workPackageId": "cloudflare-mcp-health-layer-v1"
+    },
+    {
+      "packetRef": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+      "signalClass": "PROBLEM_SIGNAL",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "wrangler-login-required-before-mcp-token-provision",
+      "evidenceStrength": "medium",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "PRE_IMPLEMENTATION",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "workPackageId": "cloudflare-mcp-health-layer-v1"
+    }
+  ]
+}

@@ -1,32 +1,108 @@
 {
   "schemaVersion": "cross-agent-harvest-seed-manifest-v1@1.0.0",
   "harvestId": "harvest-2026-08-11-cloudflare-mcp-repair-v1",
-  "subject": "Cloudflare MCP OAuth lock 15170 or bearer insufficient_scope",
+  "subject": "Cloudflare MCP OAuth lock 15170 or scope failure",
   "tier": "T2",
-  "seedRecordCount": 1,
+  "seedRecordCount": 4,
   "retrievalQuestions": [
     {
       "retrievalId": "RQ01",
-      "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
-      "query": "Why is Cloudflare MCP red in Cursor?"
+      "seedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+      "query": "cloudflareState.overall green but Cloudflare MCP tools missing"
     },
     {
       "retrievalId": "RQ02",
+      "seedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+      "query": "Why does integrations health say Cloudflare is fine but MCP tools are red?"
+    },
+    {
+      "retrievalId": "RQ03",
+      "seedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+      "query": "cloudflare MCP health layer vs DNS overall contract"
+    },
+    {
+      "retrievalId": "RQ04",
+      "seedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+      "query": "evaluateCloudflareMcpHealth probe-runner mcp.overall"
+    },
+    {
+      "retrievalId": "RQ11",
+      "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+      "query": "Why is Cloudflare MCP red in Cursor OAuth lock port 15170"
+    },
+    {
+      "retrievalId": "RQ12",
       "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
       "query": "Another instance is handling authentication on port 15170"
     },
     {
-      "retrievalId": "RQ03",
+      "retrievalId": "RQ13",
       "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
-      "query": "Cloudflare MCP insufficient_scope 403"
+      "query": "Cloudflare MCP insufficient_scope 403 on mcp.cloudflare.com"
     },
     {
-      "retrievalId": "RQ04",
+      "retrievalId": "RQ14",
       "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
-      "query": "cloudflareState.overall green but MCP tools missing"
+      "query": "mcp-remote OAuth lock port 15170 Cursor Cloudflare"
+    },
+    {
+      "retrievalId": "RQ21",
+      "seedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+      "query": "How do I fix Cloudflare MCP in Cursor operator sequence doppler restart verify"
+    },
+    {
+      "retrievalId": "RQ22",
+      "seedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+      "query": "Cloudflare MCP repair commands operator sequence"
+    },
+    {
+      "retrievalId": "RQ23",
+      "seedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+      "query": "mcp:cloudflare:heal then mcp:repair:cursor steps"
+    },
+    {
+      "retrievalId": "RQ24",
+      "seedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+      "query": "Operator repair lane heal repair cursor restart verify"
+    },
+    {
+      "retrievalId": "RQ31",
+      "seedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+      "query": "CLOUDFLARE_API_TOKEN insufficient_scope MCP stdio"
+    },
+    {
+      "retrievalId": "RQ32",
+      "seedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+      "query": "integrations provision cloudflare mcp Invalid access token wrangler"
+    },
+    {
+      "retrievalId": "RQ33",
+      "seedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+      "query": "wrangler login required before cloudflare mcp credential provision"
+    },
+    {
+      "retrievalId": "RQ34",
+      "seedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+      "query": "How to get Cloudflare MCP credential with user read scope"
     }
   ],
-  "roiTop3": [],
+  "roiTop3": [
+    {
+      "rank": 1,
+      "title": "Auto-run mcp:cloudflare:heal in mcp:repair:cursor chain",
+      "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001"
+    },
+    {
+      "rank": 2,
+      "title": "Wrangler session preflight in provision-cloudflare-mcp-token",
+      "seedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001"
+    },
+    {
+      "rank": 3,
+      "title": "T2 autopsy gate before harvest:publish-hub-seed",
+      "seedId": null
+    }
+  ],
   "byKindSlice": "00-master-index/BY-KIND/thread-autopsy-index.json",
   "catalogRoot": "02-catalog/knowledge-objects/cross-agent-harvest"
 }

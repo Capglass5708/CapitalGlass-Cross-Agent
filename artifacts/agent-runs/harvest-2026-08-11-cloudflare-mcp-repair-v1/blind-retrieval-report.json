@@ -1,0 +1,383 @@
+{
+  "schemaVersion": "cross-agent-harvest-blind-retrieval-benchmark-v1@1.0.0",
+  "harvestId": "harvest-2026-08-11-cloudflare-mcp-repair-v1",
+  "testedAt": "2026-08-12T04:31:28.554Z",
+  "blindQueryOnly": true,
+  "seedCount": 4,
+  "fixtureCount": 16,
+  "results": [
+    {
+      "query": "cloudflareState.overall green but Cloudflare MCP tools missing",
+      "returnedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+      "expectedSeedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+      "topK": [
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+          "score": 6
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+          "score": 3
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+          "score": 1
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+          "score": 1
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "Why does integrations health say Cloudflare is fine but MCP tools are red?",
+      "returnedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+      "expectedSeedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+      "topK": [
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+          "score": 6
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+          "score": 3
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+          "score": 3
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+          "score": 2
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "cloudflare MCP health layer vs DNS overall contract",
+      "returnedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+      "expectedSeedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+      "topK": [
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+          "score": 5
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+          "score": 4
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+          "score": 2
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+          "score": 1
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "evaluateCloudflareMcpHealth probe-runner mcp.overall",
+      "returnedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+      "expectedSeedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+      "topK": [
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+          "score": 4
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+          "score": 1
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+          "score": 1
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "Why is Cloudflare MCP red in Cursor OAuth lock port 15170",
+      "returnedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+      "expectedSeedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+      "topK": [
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+          "score": 6
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+          "score": 4
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+          "score": 4
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+          "score": 2
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "Another instance is handling authentication on port 15170",
+      "returnedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+      "expectedSeedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+      "topK": [
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+          "score": 6
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+          "score": 1
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "Cloudflare MCP insufficient_scope 403 on mcp.cloudflare.com",
+      "returnedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+      "expectedSeedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+      "topK": [
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+          "score": 4
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+          "score": 4
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+          "score": 2
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+          "score": 2
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "mcp-remote OAuth lock port 15170 Cursor Cloudflare",
+      "returnedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+      "expectedSeedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+      "topK": [
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+          "score": 7
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+          "score": 4
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+          "score": 4
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+          "score": 2
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "How do I fix Cloudflare MCP in Cursor operator sequence doppler restart verify",
+      "returnedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+      "expectedSeedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+      "topK": [
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+          "score": 7
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+          "score": 3
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+          "score": 3
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+          "score": 2
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "Cloudflare MCP repair commands operator sequence",
+      "returnedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+      "expectedSeedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+      "topK": [
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+          "score": 5
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+          "score": 2
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+          "score": 2
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+          "score": 2
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "mcp:cloudflare:heal then mcp:repair:cursor steps",
+      "returnedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+      "expectedSeedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+      "topK": [
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+          "score": 6
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+          "score": 5
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+          "score": 3
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+          "score": 2
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "Operator repair lane heal repair cursor restart verify",
+      "returnedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+      "expectedSeedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+      "topK": [
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+          "score": 8
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+          "score": 5
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+          "score": 3
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+          "score": 2
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "CLOUDFLARE_API_TOKEN insufficient_scope MCP stdio",
+      "returnedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+      "expectedSeedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+      "topK": [
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+          "score": 5
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+          "score": 4
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+          "score": 2
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+          "score": 1
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "integrations provision cloudflare mcp Invalid access token wrangler",
+      "returnedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+      "expectedSeedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+      "topK": [
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+          "score": 7
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+          "score": 5
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+          "score": 3
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+          "score": 2
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "wrangler login required before cloudflare mcp credential provision",
+      "returnedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+      "expectedSeedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+      "topK": [
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+          "score": 7
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+          "score": 5
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+          "score": 2
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+          "score": 2
+        }
+      ],
+      "pass": true
+    },
+    {
+      "query": "How to get Cloudflare MCP credential with user read scope",
+      "returnedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+      "expectedSeedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+      "topK": [
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+          "score": 6
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+          "score": 3
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
+          "score": 3
+        },
+        {
+          "seedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+          "score": 2
+        }
+      ],
+      "pass": true
+    }
+  ],
+  "verdict": "BLIND_RETRIEVAL_PASS"
+}

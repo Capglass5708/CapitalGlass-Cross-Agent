@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-11-cloudflare-mcp-repair-v1",
+  "packetId": "cloudflare-mcp-wrangler-auth-v1",
+  "state": "OPEN_OPERATOR",
+  "packetVerdict": "HOLD",
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "wrangler login; run integrations provision script",
+  "evidenceRefs": [
+    "EVT-402",
+    "EVT-403",
+    "docs/runbooks/cloudflare-mcp-repair.md"
+  ],
+  "doNotAdvance": [
+    "CLOUDFLARE_MCP_PRODUCTION_READY"
+  ],
+  "advancementGate": "wrangler-login-and-mcp-check",
+  "contentHash": "80c1e1c5f2e5c352a3d08a2db33ec8071a2149b5369064f2f7d5bde76cdbc41d"
+}

@@ -8,39 +8,39 @@
     "authoritySource": {
       "system": "github",
       "repository": "CapitalGlass-Cross-Agent",
-      "commit": "6a09f1ee6a3c4ebd4975df45d5cb0bc6e212eb93",
+      "commit": "e5dcbf8f09e415d8615eb5f02ce10ac6203743e6",
       "branch": "main",
       "harvestId": "harvest-2026-08-11-cloudflare-mcp-repair-v1",
       "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001"
     },
     "cacheEligibility": "retrieval_eligible",
-    "createdAt": "2026-08-12T03:26:56.131Z",
+    "createdAt": "2026-08-12T04:33:56.287Z",
     "verificationState": "PARTIALLY_VERIFIED",
     "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
     "defaultRetrievalEligible": true,
     "supersessionState": "current",
     "supersededByObjectId": null,
     "retrievalTier": "critical",
-    "contentHash": "e469c5c195e5e475330e0a57910f58574ee94288fd6ba084122bdc6a68dacb72"
+    "contentHash": "a825bc81e3d27691ce9565751c74966c994a03c019d3a9b4caaebe8ccc9b6a21"
   },
   "body": {
     "seedId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
     "kind": "failure-pattern",
-    "title": "Cloudflare MCP — OAuth port 15170 lock or bearer insufficient_scope",
-    "summary": "Cursor Cloudflare MCP fails when mcp-remote holds 127.0.0.1:15170 or CLOUDFLARE_API_TOKEN lacks user:read+account:read. Heal: mcp:cloudflare:heal → mcp:repair:cursor → restart MCP. Read cloudflareState.mcp not DNS overall.",
-    "canonicalQuestion": "Why is Cloudflare MCP red in Cursor?",
+    "title": "Cloudflare MCP — OAuth port 15170 lock or bearer scope failure",
+    "summary": "Why is Cloudflare MCP red in Cursor: port 15170 OAuth lock or bearer scope failure on mcp.cloudflare.com. Run mcp:cloudflare:heal.",
+    "canonicalQuestion": "Why is Cloudflare MCP red in Cursor OAuth lock port 15170",
     "alternateQuestions": [
       "Another instance is handling authentication on port 15170",
-      "Cloudflare MCP insufficient_scope 403",
-      "cloudflareState.overall green but MCP tools missing"
+      "Cloudflare MCP insufficient_scope 403 on mcp.cloudflare.com",
+      "mcp-remote OAuth lock port 15170 Cursor Cloudflare"
     ],
-    "shortAnswer": "Cursor Cloudflare MCP fails when mcp-remote holds 127.0.0.1:15170 or CLOUDFLARE_API_TOKEN lacks user:read+account:read. Heal: mcp:cloudflare:heal → mcp:repair:cursor → restart MCP. Read cloudflareState.mcp not DNS overall.",
-    "detailedAnswer": "Cloudflare MCP — OAuth port 15170 lock or bearer insufficient_scope",
+    "shortAnswer": "Why is Cloudflare MCP red in Cursor: port 15170 OAuth lock or bearer scope failure on mcp.cloudflare.com. Run mcp:cloudflare:heal.",
+    "detailedAnswer": "Cloudflare MCP — OAuth port 15170 lock or bearer scope failure",
     "retrievalQuestions": [
-      "Why is Cloudflare MCP red in Cursor?",
+      "Why is Cloudflare MCP red in Cursor OAuth lock port 15170",
       "Another instance is handling authentication on port 15170",
-      "Cloudflare MCP insufficient_scope 403",
-      "cloudflareState.overall green but MCP tools missing"
+      "Cloudflare MCP insufficient_scope 403 on mcp.cloudflare.com",
+      "mcp-remote OAuth lock port 15170 Cursor Cloudflare"
     ],
     "futureAgentInstructions": {
       "whenThisAppears": "Cloudflare MCP error, OAuth hang, or 403 on mcp.cloudflare.com",
@@ -57,12 +57,12 @@
       "doNot": [
         "Use cloudflareState.overall (DNS) as MCP readiness",
         "Skip OAuth lock clear when port 15170 conflict logged",
-        "Assume DNS-only CLOUDFLARE_API_TOKEN works for stdio MCP"
+        "Assume DNS-only CLOUDFLARE_API_TOKEN works for remote MCP"
       ],
       "proveBeforeClaiming": [
         "mcp:cloudflare:check shows bearer or HTTP fallback path",
         "cloudflareState.mcp.overall not red after heal + Cursor MCP restart",
-        "Operator restarted Cursor MCP after mcp.json changes"
+        "Cursor MCP restart confirmed after mcp.json changes"
       ]
     },
     "evidenceRefs": [

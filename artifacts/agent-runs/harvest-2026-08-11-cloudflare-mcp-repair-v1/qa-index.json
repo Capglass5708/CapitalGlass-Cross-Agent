@@ -1,28 +1,92 @@
 {
   "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
   "harvestId": "harvest-2026-08-11-cloudflare-mcp-repair-v1",
-  "chatTranscriptCoverage": "PARTIAL",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
   "records": [
+    {
+      "ihPfspId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+      "questionId": "IHCLOUDFLARE",
+      "canonicalQuestion": "cloudflareState.overall green but Cloudflare MCP tools missing",
+      "alternateQuestions": [
+        "Why does integrations health say Cloudflare is fine but MCP tools are red?",
+        "cloudflare MCP health layer vs DNS overall contract",
+        "evaluateCloudflareMcpHealth probe-runner mcp.overall"
+      ],
+      "shortAnswer": "DNS cloudflareState.overall vs MCP cloudflareState.mcp split — integrations health must not use DNS overall as MCP readiness.",
+      "detailedAnswer": "Cloudflare integrations health — read cloudflareState.mcp not DNS overall",
+      "currentStatus": "current",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-12T04:33:56.285Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/seed-packets/IH-CLOUDFLARE-MCP-HEALTH-LAYER-001.json"
+      ],
+      "authorityCommit": [
+        "e5dcbf8"
+      ],
+      "evidenceUrls": [
+        "CG-AppBuilder-MCP/scripts/lib/cloudflare-mcp-health.mjs",
+        "CG-AppBuilder-MCP/scripts/lib/cloudflare-health.mjs",
+        "CG-AppBuilder-MCP/scripts/lib/mcp-health/probe-runner.mjs",
+        "CG-AppBuilder-MCP/scripts/lib/integrations-health-snapshot.mjs",
+        "CG-AppBuilder-MCP/health-manager.cursor-mcp-contract.json"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "architecture",
+        "harvest-2026-08-11-cloudflare-mcp-repair-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Cloudflare DNS checks pass but Cursor Cloudflare MCP fails",
+        "startAt": [
+          "runtime/integrations-health.json → cloudflareState.mcp",
+          "CG-AppBuilder-MCP/scripts/lib/cloudflare-mcp-health.mjs"
+        ],
+        "runPreflight": [
+          "cd CG-AppBuilder-MCP && npm run mcp:cloudflare:check",
+          "cd CG-AppBuilder-MCP && npm run smoke:cloudflare-health"
+        ],
+        "doNot": [
+          "Report cloudflareState.overall as MCP readiness",
+          "Clear Cloudflare blocker from ACTIVE_WORK when only DNS layer is green"
+        ],
+        "proveBeforeClaiming": [
+          "cloudflareState.mcp.overall is green or has documented yellow with operator action",
+          "probe-runner uses mcp.overall for connector verdict"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "architecture"
+    },
     {
       "ihPfspId": "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001",
       "questionId": "IHCLOUDFLARE",
-      "canonicalQuestion": "Why is Cloudflare MCP red in Cursor?",
+      "canonicalQuestion": "Why is Cloudflare MCP red in Cursor OAuth lock port 15170",
       "alternateQuestions": [
         "Another instance is handling authentication on port 15170",
-        "Cloudflare MCP insufficient_scope 403",
-        "cloudflareState.overall green but MCP tools missing"
+        "Cloudflare MCP insufficient_scope 403 on mcp.cloudflare.com",
+        "mcp-remote OAuth lock port 15170 Cursor Cloudflare"
       ],
-      "shortAnswer": "Cursor Cloudflare MCP fails when mcp-remote holds 127.0.0.1:15170 or CLOUDFLARE_API_TOKEN lacks user:read+account:read. Heal: mcp:cloudflare:heal → mcp:repair:cursor → restart MCP. Read cloudflareState.mcp not DNS overall.",
-      "detailedAnswer": "Cloudflare MCP — OAuth port 15170 lock or bearer insufficient_scope",
+      "shortAnswer": "Why is Cloudflare MCP red in Cursor: port 15170 OAuth lock or bearer scope failure on mcp.cloudflare.com. Run mcp:cloudflare:heal.",
+      "detailedAnswer": "Cloudflare MCP — OAuth port 15170 lock or bearer scope failure",
       "currentStatus": "current",
       "answerScope": "thread-autopsy",
-      "asOf": "2026-08-12T03:26:56.130Z",
+      "asOf": "2026-08-12T04:33:56.285Z",
       "authorityRepo": "CG-AppBuilder-MCP",
       "authorityPath": [
         "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/seed-packets/IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001.json"
       ],
       "authorityCommit": [
-        "6a09f1e"
+        "e5dcbf8"
       ],
       "evidenceUrls": [
         "CG-AppBuilder-MCP/docs/incident-memory/workspace-cloudflare-mcp-oauth-lock-bearer-scope.md",
@@ -59,16 +123,143 @@
         "doNot": [
           "Use cloudflareState.overall (DNS) as MCP readiness",
           "Skip OAuth lock clear when port 15170 conflict logged",
-          "Assume DNS-only CLOUDFLARE_API_TOKEN works for stdio MCP"
+          "Assume DNS-only CLOUDFLARE_API_TOKEN works for remote MCP"
         ],
         "proveBeforeClaiming": [
           "mcp:cloudflare:check shows bearer or HTTP fallback path",
           "cloudflareState.mcp.overall not red after heal + Cursor MCP restart",
-          "Operator restarted Cursor MCP after mcp.json changes"
+          "Cursor MCP restart confirmed after mcp.json changes"
         ]
       },
       "promotionClass": "AUTOMATIC",
       "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+      "questionId": "IHCLOUDFLARE",
+      "canonicalQuestion": "How do I fix Cloudflare MCP in Cursor operator sequence doppler restart verify",
+      "alternateQuestions": [
+        "Cloudflare MCP repair commands operator sequence",
+        "mcp:cloudflare:heal then mcp:repair:cursor steps",
+        "Operator repair lane heal repair cursor restart verify"
+      ],
+      "shortAnswer": "How do I fix Cloudflare MCP in Cursor: heal, repair cursor, sync doppler, restart MCP, verify with mcp:cloudflare:check.",
+      "detailedAnswer": "Cloudflare MCP operator repair sequence (heal → repair cursor → restart → verify)",
+      "currentStatus": "current",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-12T04:33:56.285Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/seed-packets/IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001.json"
+      ],
+      "authorityCommit": [
+        "e5dcbf8"
+      ],
+      "evidenceUrls": [
+        "CG-AppBuilder-MCP/docs/runbooks/cloudflare-mcp-repair.md",
+        "CG-AppBuilder-MCP/scripts/mcp-cloudflare-heal.mjs",
+        "CG-AppBuilder-MCP/scripts/mcp-cloudflare-check.mjs",
+        "CG-AppBuilder-MCP/scripts/wsl/lib/wsl-mcp-config.mjs"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-11-cloudflare-mcp-repair-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Operator or agent needs to restore Cloudflare MCP after incident",
+        "startAt": [
+          "CG-AppBuilder-MCP/docs/runbooks/cloudflare-mcp-repair.md"
+        ],
+        "runPreflight": [
+          "cd CG-AppBuilder-MCP && npm run mcp:cloudflare:heal",
+          "cd CG-AppBuilder-MCP && npm run mcp:repair:cursor",
+          "cd CG-AppBuilder-MCP && npm run integrations:sync-doppler",
+          "cd CG-AppBuilder-MCP && npm run mcp:cloudflare:check",
+          "cd CG-AppBuilder-MCP && npm run mcp:health:once"
+        ],
+        "doNot": [
+          "Skip Cursor Settings → MCP → Restart after mcp.json changes",
+          "Run integrations:provision-cloudflare-mcp-token without wrangler login on Windows"
+        ],
+        "proveBeforeClaiming": [
+          "mcp:cloudflare:check shows oauthLocks cleared or bearer path documented",
+          "Operator confirmed Cursor MCP restart"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "runbook"
+    },
+    {
+      "ihPfspId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+      "questionId": "IHCLOUDFLARE",
+      "canonicalQuestion": "CLOUDFLARE_API_TOKEN insufficient_scope MCP stdio",
+      "alternateQuestions": [
+        "integrations provision cloudflare mcp Invalid access token wrangler",
+        "wrangler login required before cloudflare mcp credential provision",
+        "How to get Cloudflare MCP credential with user read scope"
+      ],
+      "shortAnswer": "CLOUDFLARE_API_TOKEN insufficient_scope MCP stdio: wrangler login provision integrations provision-cloudflare-mcp-token before Doppler sync.",
+      "detailedAnswer": "Cloudflare MCP stdio wrangler login provision credential",
+      "currentStatus": "current",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-12T04:33:56.285Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/seed-packets/IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001.json"
+      ],
+      "authorityCommit": [
+        "e5dcbf8"
+      ],
+      "evidenceUrls": [
+        "CG-AppBuilder-MCP/scripts/provision-cloudflare-mcp-read-token.mjs",
+        "CG-AppBuilder-MCP/scripts/lib/cloudflare-mcp-bearer-preflight.mjs",
+        "CG-AppBuilder-MCP/docs/runbooks/cloudflare-mcp-repair.md"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "blocker",
+        "harvest-2026-08-11-cloudflare-mcp-repair-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Bearer probe 403 insufficient_scope or provision script auth failure",
+        "startAt": [
+          "CG-AppBuilder-MCP/docs/runbooks/cloudflare-mcp-repair.md § MCP-scoped token provision"
+        ],
+        "runPreflight": [
+          "wrangler login",
+          "cd CG-AppBuilder-MCP && npm run integrations:provision-cloudflare-mcp-token",
+          "cd CG-AppBuilder-MCP && npm run integrations:sync-doppler",
+          "cd CG-AppBuilder-MCP && npm run mcp:cloudflare:check"
+        ],
+        "doNot": [
+          "Assume DNS-only CLOUDFLARE_API_TOKEN from Doppler cg-shared works for stdio MCP",
+          "Provision token from WSL-only without Windows Wrangler session when script requires it"
+        ],
+        "proveBeforeClaiming": [
+          "cloudflare-mcp-bearer-preflight returns ok or documents HTTP fallback active"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "blocker"
     }
   ]
 }

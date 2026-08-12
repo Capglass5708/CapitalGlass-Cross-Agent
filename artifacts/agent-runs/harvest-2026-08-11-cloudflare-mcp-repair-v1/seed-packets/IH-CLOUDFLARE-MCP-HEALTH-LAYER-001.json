@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+  "kind": "architecture",
+  "title": "Cloudflare integrations health — read cloudflareState.mcp not DNS overall",
+  "summary": "DNS cloudflareState.overall vs MCP cloudflareState.mcp split — integrations health must not use DNS overall as MCP readiness.",
+  "retrievalQuestions": [
+    "cloudflareState.overall green but Cloudflare MCP tools missing",
+    "Why does integrations health say Cloudflare is fine but MCP tools are red?",
+    "cloudflare MCP health layer vs DNS overall contract",
+    "evaluateCloudflareMcpHealth probe-runner mcp.overall"
+  ],
+  "evidenceRefs": [
+    "CG-AppBuilder-MCP/scripts/lib/cloudflare-mcp-health.mjs",
+    "CG-AppBuilder-MCP/scripts/lib/cloudflare-health.mjs",
+    "CG-AppBuilder-MCP/scripts/lib/mcp-health/probe-runner.mjs",
+    "CG-AppBuilder-MCP/scripts/lib/integrations-health-snapshot.mjs",
+    "CG-AppBuilder-MCP/health-manager.cursor-mcp-contract.json"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Cloudflare DNS checks pass but Cursor Cloudflare MCP fails",
+    "startAt": [
+      "runtime/integrations-health.json → cloudflareState.mcp",
+      "CG-AppBuilder-MCP/scripts/lib/cloudflare-mcp-health.mjs"
+    ],
+    "runPreflight": [
+      "cd CG-AppBuilder-MCP && npm run mcp:cloudflare:check",
+      "cd CG-AppBuilder-MCP && npm run smoke:cloudflare-health"
+    ],
+    "doNot": [
+      "Report cloudflareState.overall as MCP readiness",
+      "Clear Cloudflare blocker from ACTIVE_WORK when only DNS layer is green"
+    ],
+    "proveBeforeClaiming": [
+      "cloudflareState.mcp.overall is green or has documented yellow with operator action",
+      "probe-runner uses mcp.overall for connector verdict"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/mcp-servers.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "APPROVED",
+  "roiRank": 2
+}

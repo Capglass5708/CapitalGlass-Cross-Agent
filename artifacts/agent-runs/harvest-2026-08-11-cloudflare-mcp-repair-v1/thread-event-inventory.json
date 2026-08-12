@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-11-cloudflare-mcp-repair-v1",
+  "generatedAt": "2026-08-12T04:30:00.000Z",
+  "sourceCommitSha": "51afc0c9f555a9c12b55ae7639500eaf66865b75",
+  "events": [
+    {
+      "id": "EVT-401",
+      "turn": "~1",
+      "actor": "user",
+      "summary": "Fix Cloudflare MCP in Cursor — OAuth lock, bearer scope, health layer",
+      "evidenceRefs": ["chat-thread"]
+    },
+    {
+      "id": "EVT-402",
+      "turn": "~2",
+      "actor": "agent",
+      "summary": "Diagnosed port 15170 OAuth lock and DNS-only bearer token insufficient_scope on mcp.cloudflare.com",
+      "evidenceRefs": [
+        "CG-AppBuilder-MCP/docs/incident-memory/workspace-cloudflare-mcp-oauth-lock-bearer-scope.md"
+      ]
+    },
+    {
+      "id": "EVT-403",
+      "turn": "~3",
+      "actor": "agent",
+      "summary": "Implemented mcp:cloudflare:heal, bearer preflight, health layer cloudflareState.mcp separation",
+      "evidenceRefs": ["CG-AppBuilder-MCP@51946c4b5"]
+    },
+    {
+      "id": "EVT-404",
+      "turn": "~4",
+      "actor": "user",
+      "summary": "Populate Intelligence Hub with useful chat data; commit and push",
+      "evidenceRefs": ["harvest-2026-08-11-cloudflare-mcp-repair-v1"]
+    },
+    {
+      "id": "EVT-405",
+      "turn": "~5",
+      "actor": "agent",
+      "summary": "Compiled 4 seed packets; harvest:publish-hub-seed PUBLISH_PASS (3 inserted, 1 updated)",
+      "evidenceRefs": [
+        "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/hub-publication-receipt.json"
+      ]
+    },
+    {
+      "id": "EVT-406",
+      "turn": "~6",
+      "actor": "user",
+      "summary": "Asked whether content was in AI Cache; approved hot-routing + index-freshness publish",
+      "evidenceRefs": []
+    },
+    {
+      "id": "EVT-407",
+      "turn": "~7",
+      "actor": "agent",
+      "summary": "intelligence-hub:publish-hot-routing-index PASS; index-freshness:publish PASS",
+      "evidenceRefs": ["/mnt/d/AI Cursur Cache/objects/intelligence-hub-index/current-hot-routing-index.v1.json"]
+    },
+    {
+      "id": "EVT-408",
+      "turn": "~8",
+      "actor": "user",
+      "summary": "RUN CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1 protocol",
+      "evidenceRefs": [
+        "CapitalGlass-Cross-Agent/harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"
+      ]
+    },
+    {
+      "id": "EVT-409",
+      "turn": "~9",
+      "actor": "agent",
+      "summary": "provision-cloudflare-mcp-token blocked until wrangler login on Windows",
+      "evidenceRefs": ["IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001"]
+    },
+    {
+      "id": "EVT-410",
+      "turn": "~10",
+      "actor": "agent",
+      "summary": "cross-agent-ledger:ingest --apply BLOCKED_OPERATOR_APPROVAL",
+      "evidenceRefs": []
+    }
+  ]
+}

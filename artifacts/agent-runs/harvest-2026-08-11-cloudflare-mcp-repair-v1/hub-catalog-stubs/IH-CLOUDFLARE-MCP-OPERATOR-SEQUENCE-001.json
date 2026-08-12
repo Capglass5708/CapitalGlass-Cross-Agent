@@ -1,0 +1,85 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-cloudflare-mcp-operator-sequence-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "e5dcbf8f09e415d8615eb5f02ce10ac6203743e6",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-11-cloudflare-mcp-repair-v1",
+      "seedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-12T04:33:56.287Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "critical",
+    "contentHash": "f3b720e440d541d8de1edf7de521b73db1d8b861d9c376b8b342a0faef334c84"
+  },
+  "body": {
+    "seedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+    "kind": "runbook",
+    "title": "Cloudflare MCP operator repair sequence (heal → repair cursor → restart → verify)",
+    "summary": "How do I fix Cloudflare MCP in Cursor: heal, repair cursor, sync doppler, restart MCP, verify with mcp:cloudflare:check.",
+    "canonicalQuestion": "How do I fix Cloudflare MCP in Cursor operator sequence doppler restart verify",
+    "alternateQuestions": [
+      "Cloudflare MCP repair commands operator sequence",
+      "mcp:cloudflare:heal then mcp:repair:cursor steps",
+      "Operator repair lane heal repair cursor restart verify"
+    ],
+    "shortAnswer": "How do I fix Cloudflare MCP in Cursor: heal, repair cursor, sync doppler, restart MCP, verify with mcp:cloudflare:check.",
+    "detailedAnswer": "Cloudflare MCP operator repair sequence (heal → repair cursor → restart → verify)",
+    "retrievalQuestions": [
+      "How do I fix Cloudflare MCP in Cursor operator sequence doppler restart verify",
+      "Cloudflare MCP repair commands operator sequence",
+      "mcp:cloudflare:heal then mcp:repair:cursor steps",
+      "Operator repair lane heal repair cursor restart verify"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Operator or agent needs to restore Cloudflare MCP after incident",
+      "startAt": [
+        "CG-AppBuilder-MCP/docs/runbooks/cloudflare-mcp-repair.md"
+      ],
+      "runPreflight": [
+        "cd CG-AppBuilder-MCP && npm run mcp:cloudflare:heal",
+        "cd CG-AppBuilder-MCP && npm run mcp:repair:cursor",
+        "cd CG-AppBuilder-MCP && npm run integrations:sync-doppler",
+        "cd CG-AppBuilder-MCP && npm run mcp:cloudflare:check",
+        "cd CG-AppBuilder-MCP && npm run mcp:health:once"
+      ],
+      "doNot": [
+        "Skip Cursor Settings → MCP → Restart after mcp.json changes",
+        "Run integrations:provision-cloudflare-mcp-token without wrangler login on Windows"
+      ],
+      "proveBeforeClaiming": [
+        "mcp:cloudflare:check shows oauthLocks cleared or bearer path documented",
+        "Operator confirmed Cursor MCP restart"
+      ]
+    },
+    "evidenceRefs": [
+      "CG-AppBuilder-MCP/docs/runbooks/cloudflare-mcp-repair.md",
+      "CG-AppBuilder-MCP/scripts/mcp-cloudflare-heal.mjs",
+      "CG-AppBuilder-MCP/scripts/mcp-cloudflare-check.mjs",
+      "CG-AppBuilder-MCP/scripts/wsl/lib/wsl-mcp-config.mjs"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": 1,
+    "doNotAdvance": [],
+    "promotionClass": "AUTOMATIC",
+    "status": "APPROVED",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/seed-packets/IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001.json"
+    ],
+    "harvestId": "harvest-2026-08-11-cloudflare-mcp-repair-v1"
+  }
+}

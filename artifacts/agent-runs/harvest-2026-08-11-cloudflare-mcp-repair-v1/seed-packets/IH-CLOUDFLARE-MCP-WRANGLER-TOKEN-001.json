@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001",
+  "kind": "blocker",
+  "title": "Cloudflare MCP stdio wrangler login provision credential",
+  "summary": "CLOUDFLARE_API_TOKEN insufficient_scope MCP stdio: wrangler login provision integrations provision-cloudflare-mcp-token before Doppler sync.",
+  "retrievalQuestions": [
+    "CLOUDFLARE_API_TOKEN insufficient_scope MCP stdio",
+    "integrations provision cloudflare mcp Invalid access token wrangler",
+    "wrangler login required before cloudflare mcp credential provision",
+    "How to get Cloudflare MCP credential with user read scope"
+  ],
+  "evidenceRefs": [
+    "CG-AppBuilder-MCP/scripts/provision-cloudflare-mcp-read-token.mjs",
+    "CG-AppBuilder-MCP/scripts/lib/cloudflare-mcp-bearer-preflight.mjs",
+    "CG-AppBuilder-MCP/docs/runbooks/cloudflare-mcp-repair.md"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Bearer probe 403 insufficient_scope or provision script auth failure",
+    "startAt": [
+      "CG-AppBuilder-MCP/docs/runbooks/cloudflare-mcp-repair.md § MCP-scoped token provision"
+    ],
+    "runPreflight": [
+      "wrangler login",
+      "cd CG-AppBuilder-MCP && npm run integrations:provision-cloudflare-mcp-token",
+      "cd CG-AppBuilder-MCP && npm run integrations:sync-doppler",
+      "cd CG-AppBuilder-MCP && npm run mcp:cloudflare:check"
+    ],
+    "doNot": [
+      "Assume DNS-only CLOUDFLARE_API_TOKEN from Doppler cg-shared works for stdio MCP",
+      "Provision token from WSL-only without Windows Wrangler session when script requires it"
+    ],
+    "proveBeforeClaiming": [
+      "cloudflare-mcp-bearer-preflight returns ok or documents HTTP fallback active"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/mcp-servers.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "APPROVED",
+  "roiRank": 2
+}

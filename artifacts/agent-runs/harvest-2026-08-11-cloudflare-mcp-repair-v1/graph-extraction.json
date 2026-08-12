@@ -1,0 +1,356 @@
+{
+  "packetKind": "graph-extraction",
+  "schemaVersion": "cg-master-graph-extraction-v1",
+  "extractionId": "extraction:harvest-2026-08-11-cloudflare-mcp-repair-v1",
+  "harvestId": "harvest-2026-08-11-cloudflare-mcp-repair-v1",
+  "workPackageId": "harvest-2026-08-11-cloudflare-mcp-repair-v1",
+  "producer": {
+    "repositoryId": "repo:capitalglass-cross-agent",
+    "capability": "harvest-graph-extraction",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "id": "harvest:harvest-2026-08-11-cloudflare-mcp-repair-v1",
+      "nodeType": "Harvest",
+      "displayName": "harvest-2026-08-11-cloudflare-mcp-repair-v1",
+      "lifecycleState": "lifecycle:canonical",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "missionClass": "platform-ops-incident-closeout-harvest-v1",
+        "sourceCommitSha": "51afc0c9f555a9c12b55ae7639500eaf66865b75",
+        "retrievalResult": "INDEX_HIT"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T04:28:50.373Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:cloudflare-mcp-oauth-lock-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Cloudflare MCP OAuth lock 15170 or scope failure",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RESOLVED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/HARVEST_SUMMARY.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T04:28:50.373Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/compact-records/cloudflare-mcp-oauth-lock-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/compact-records/cloudflare-mcp-oauth-lock-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:cloudflare-mcp-health-layer-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Read cloudflareState.mcp not DNS overall",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RESOLVED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/HARVEST_SUMMARY.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T04:28:50.373Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/compact-records/cloudflare-mcp-health-layer-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/compact-records/cloudflare-mcp-health-layer-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:cloudflare-mcp-operator-sequence-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Heal → repair cursor → restart → verify",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RESOLVED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/HARVEST_SUMMARY.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T04:28:50.373Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/compact-records/cloudflare-mcp-operator-sequence-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/compact-records/cloudflare-mcp-operator-sequence-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:cloudflare-mcp-wrangler-auth-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "wrangler login before Cloudflare MCP provision",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "OPEN_OPERATOR",
+      "metadata": {
+        "packetVerdict": "HOLD",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/HARVEST_SUMMARY.md",
+        "advancementGate": "wrangler-login-and-mcp-check"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T04:28:50.373Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/compact-records/cloudflare-mcp-wrangler-auth-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/compact-records/cloudflare-mcp-wrangler-auth-v1.json"
+        }
+      }
+    },
+    {
+      "id": "entity:blocker-blocker-cloudflare-mcp-wrangler-auth-v1",
+      "nodeType": "Entity",
+      "displayName": "blocker-cloudflare-mcp-wrangler-auth-v1",
+      "metadata": {
+        "entityKind": "harvest-blocker",
+        "blockerOwner": null
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T04:28:50.373Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/compact-records/cloudflare-mcp-wrangler-auth-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/compact-records/cloudflare-mcp-wrangler-auth-v1.json"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:harvest-harvest-2026-08-11-cloudflare-mcp-repair-v1-contains-workpackage-cloudflare-mcp-oauth-lock-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-11-cloudflare-mcp-repair-v1",
+      "targetId": "workpackage:cloudflare-mcp-oauth-lock-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T04:28:50.373Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-cloudflare-mcp-oauth-lock-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:cloudflare-mcp-oauth-lock-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T04:28:50.373Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/compact-records/cloudflare-mcp-oauth-lock-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/compact-records/cloudflare-mcp-oauth-lock-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-11-cloudflare-mcp-repair-v1-contains-workpackage-cloudflare-mcp-health-layer-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-11-cloudflare-mcp-repair-v1",
+      "targetId": "workpackage:cloudflare-mcp-health-layer-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T04:28:50.373Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-cloudflare-mcp-health-layer-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:cloudflare-mcp-health-layer-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T04:28:50.373Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/compact-records/cloudflare-mcp-health-layer-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/compact-records/cloudflare-mcp-health-layer-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-11-cloudflare-mcp-repair-v1-contains-workpackage-cloudflare-mcp-operator-sequence-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-11-cloudflare-mcp-repair-v1",
+      "targetId": "workpackage:cloudflare-mcp-operator-sequence-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T04:28:50.373Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-cloudflare-mcp-operator-sequence-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:cloudflare-mcp-operator-sequence-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T04:28:50.373Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/compact-records/cloudflare-mcp-operator-sequence-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/compact-records/cloudflare-mcp-operator-sequence-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-11-cloudflare-mcp-repair-v1-contains-workpackage-cloudflare-mcp-wrangler-auth-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-11-cloudflare-mcp-repair-v1",
+      "targetId": "workpackage:cloudflare-mcp-wrangler-auth-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T04:28:50.373Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-cloudflare-mcp-wrangler-auth-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:cloudflare-mcp-wrangler-auth-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T04:28:50.373Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/compact-records/cloudflare-mcp-wrangler-auth-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/compact-records/cloudflare-mcp-wrangler-auth-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-cloudflare-mcp-wrangler-auth-v1-blocked-by-entity-blocker-blocker-cloudflare-mcp-wrangler-auth-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:cloudflare-mcp-wrangler-auth-v1",
+      "targetId": "entity:blocker-blocker-cloudflare-mcp-wrangler-auth-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T04:28:50.373Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/compact-records/cloudflare-mcp-wrangler-auth-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/compact-records/cloudflare-mcp-wrangler-auth-v1.json"
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "provenance": {
+    "producerRepositoryId": "repo:capitalglass-cross-agent",
+    "producerCapability": "harvest-graph-extraction",
+    "sourceAuthority": "authority:cross-agent-harvest",
+    "classification": "observed",
+    "verificationState": "verified",
+    "recordedAt": "2026-08-12T04:28:50.373Z",
+    "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/harvest-manifest-v1.json",
+    "sourceAnchorDetail": {
+      "anchorType": "file-path",
+      "locator": "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/harvest-manifest-v1.json"
+    }
+  }
+}

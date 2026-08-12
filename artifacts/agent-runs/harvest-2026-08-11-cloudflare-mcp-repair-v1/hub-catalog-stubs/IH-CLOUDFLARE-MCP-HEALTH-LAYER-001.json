@@ -1,0 +1,84 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-cloudflare-mcp-health-layer-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "e5dcbf8f09e415d8615eb5f02ce10ac6203743e6",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-11-cloudflare-mcp-repair-v1",
+      "seedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-12T04:33:56.286Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "486132b124c61f232370a943e043956bad92b021b3309e4d122cefb1ff4752b9"
+  },
+  "body": {
+    "seedId": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+    "kind": "architecture",
+    "title": "Cloudflare integrations health — read cloudflareState.mcp not DNS overall",
+    "summary": "DNS cloudflareState.overall vs MCP cloudflareState.mcp split — integrations health must not use DNS overall as MCP readiness.",
+    "canonicalQuestion": "cloudflareState.overall green but Cloudflare MCP tools missing",
+    "alternateQuestions": [
+      "Why does integrations health say Cloudflare is fine but MCP tools are red?",
+      "cloudflare MCP health layer vs DNS overall contract",
+      "evaluateCloudflareMcpHealth probe-runner mcp.overall"
+    ],
+    "shortAnswer": "DNS cloudflareState.overall vs MCP cloudflareState.mcp split — integrations health must not use DNS overall as MCP readiness.",
+    "detailedAnswer": "Cloudflare integrations health — read cloudflareState.mcp not DNS overall",
+    "retrievalQuestions": [
+      "cloudflareState.overall green but Cloudflare MCP tools missing",
+      "Why does integrations health say Cloudflare is fine but MCP tools are red?",
+      "cloudflare MCP health layer vs DNS overall contract",
+      "evaluateCloudflareMcpHealth probe-runner mcp.overall"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Cloudflare DNS checks pass but Cursor Cloudflare MCP fails",
+      "startAt": [
+        "runtime/integrations-health.json → cloudflareState.mcp",
+        "CG-AppBuilder-MCP/scripts/lib/cloudflare-mcp-health.mjs"
+      ],
+      "runPreflight": [
+        "cd CG-AppBuilder-MCP && npm run mcp:cloudflare:check",
+        "cd CG-AppBuilder-MCP && npm run smoke:cloudflare-health"
+      ],
+      "doNot": [
+        "Report cloudflareState.overall as MCP readiness",
+        "Clear Cloudflare blocker from ACTIVE_WORK when only DNS layer is green"
+      ],
+      "proveBeforeClaiming": [
+        "cloudflareState.mcp.overall is green or has documented yellow with operator action",
+        "probe-runner uses mcp.overall for connector verdict"
+      ]
+    },
+    "evidenceRefs": [
+      "CG-AppBuilder-MCP/scripts/lib/cloudflare-mcp-health.mjs",
+      "CG-AppBuilder-MCP/scripts/lib/cloudflare-health.mjs",
+      "CG-AppBuilder-MCP/scripts/lib/mcp-health/probe-runner.mjs",
+      "CG-AppBuilder-MCP/scripts/lib/integrations-health-snapshot.mjs",
+      "CG-AppBuilder-MCP/health-manager.cursor-mcp-contract.json"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": 2,
+    "doNotAdvance": [],
+    "promotionClass": "AUTOMATIC",
+    "status": "APPROVED",
+    "authorityRepo": "CG-AppBuilder-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-11-cloudflare-mcp-repair-v1/seed-packets/IH-CLOUDFLARE-MCP-HEALTH-LAYER-001.json"
+    ],
+    "harvestId": "harvest-2026-08-11-cloudflare-mcp-repair-v1"
+  }
+}

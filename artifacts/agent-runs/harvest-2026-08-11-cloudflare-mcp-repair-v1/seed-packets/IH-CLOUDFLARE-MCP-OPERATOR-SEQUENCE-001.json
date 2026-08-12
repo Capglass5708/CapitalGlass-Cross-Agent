@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-CLOUDFLARE-MCP-OPERATOR-SEQUENCE-001",
+  "kind": "runbook",
+  "title": "Cloudflare MCP operator repair sequence (heal → repair cursor → restart → verify)",
+  "summary": "How do I fix Cloudflare MCP in Cursor: heal, repair cursor, sync doppler, restart MCP, verify with mcp:cloudflare:check.",
+  "retrievalQuestions": [
+    "How do I fix Cloudflare MCP in Cursor operator sequence doppler restart verify",
+    "Cloudflare MCP repair commands operator sequence",
+    "mcp:cloudflare:heal then mcp:repair:cursor steps",
+    "Operator repair lane heal repair cursor restart verify"
+  ],
+  "evidenceRefs": [
+    "CG-AppBuilder-MCP/docs/runbooks/cloudflare-mcp-repair.md",
+    "CG-AppBuilder-MCP/scripts/mcp-cloudflare-heal.mjs",
+    "CG-AppBuilder-MCP/scripts/mcp-cloudflare-check.mjs",
+    "CG-AppBuilder-MCP/scripts/wsl/lib/wsl-mcp-config.mjs"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Operator or agent needs to restore Cloudflare MCP after incident",
+    "startAt": [
+      "CG-AppBuilder-MCP/docs/runbooks/cloudflare-mcp-repair.md"
+    ],
+    "runPreflight": [
+      "cd CG-AppBuilder-MCP && npm run mcp:cloudflare:heal",
+      "cd CG-AppBuilder-MCP && npm run mcp:repair:cursor",
+      "cd CG-AppBuilder-MCP && npm run integrations:sync-doppler",
+      "cd CG-AppBuilder-MCP && npm run mcp:cloudflare:check",
+      "cd CG-AppBuilder-MCP && npm run mcp:health:once"
+    ],
+    "doNot": [
+      "Skip Cursor Settings → MCP → Restart after mcp.json changes",
+      "Run integrations:provision-cloudflare-mcp-token without wrangler login on Windows"
+    ],
+    "proveBeforeClaiming": [
+      "mcp:cloudflare:check shows oauthLocks cleared or bearer path documented",
+      "Operator confirmed Cursor MCP restart"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/mcp-servers.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "APPROVED",
+  "roiRank": 1
+}

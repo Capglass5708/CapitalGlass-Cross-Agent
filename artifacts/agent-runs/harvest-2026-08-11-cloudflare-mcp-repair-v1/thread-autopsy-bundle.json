@@ -1,0 +1,217 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-11-cloudflare-mcp-repair-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-401",
+      "type": "rework",
+      "description": "Health checks used cloudflareState.overall (DNS) instead of cloudflareState.mcp — false green/red confusion",
+      "evidenceRefs": [
+        "EVT-402",
+        "EVT-403",
+        "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Read cloudflareState.mcp.overall in integrations health and repair runbooks",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-402",
+      "type": "operator_attention",
+      "description": "OAuth port 15170 lock required manual kill before mcp-remote could re-auth",
+      "evidenceRefs": [
+        "EVT-402",
+        "IH-CLOUDFLARE-MCP-OAUTH-LOCK-BEARER-SCOPE-001"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "npm run mcp:cloudflare:heal clears lock + preflight",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-403",
+      "type": "tool",
+      "description": "provision-cloudflare-mcp-token failed until wrangler login on Windows host",
+      "evidenceRefs": [
+        "EVT-409",
+        "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Preflight wrangler session before token provision; document HTTP OAuth alternative",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-404",
+      "type": "verification",
+      "description": "T2 autopsy bundle and event inventory deferred until explicit protocol RUN",
+      "evidenceRefs": [
+        "EVT-408"
+      ],
+      "estimatedImpact": "low",
+      "savedBy": "Run CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1 in same session as hub seed publish",
+      "roiRank": 4
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-401",
+      "trigger": "Cloudflare MCP shows connected but tools fail with insufficient_scope",
+      "operatorCost": "high",
+      "systemFix": "integrations:provision-cloudflare-mcp-token after wrangler login; sync Doppler; restart Cursor MCP",
+      "evidenceRefs": [
+        "EVT-402",
+        "EVT-409"
+      ],
+      "linkedWasteIds": [
+        "TW-402",
+        "TW-403"
+      ]
+    },
+    {
+      "frictionId": "OF-402",
+      "trigger": "Scout shows layerAlignment DRIFT while hot-routing index is CURRENT",
+      "operatorCost": "low",
+      "systemFix": "Distinguish lazy dataset staleness from authority drift in closeout summary",
+      "evidenceRefs": [
+        "EVT-407"
+      ],
+      "linkedWasteIds": []
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-401",
+      "situation": "User asked to fix Cloudflare MCP OAuth and health",
+      "actualExecution": {
+        "steps": [
+          "Diagnose 15170 lock and bearer scope",
+          "Ship heal scripts + health layer in AppBuilder",
+          "Harvest seeds + hub publish",
+          "Defer full T2 autopsy until protocol RUN"
+        ],
+        "outcome": "RESOLVED code path; operator token provision still OPEN",
+        "evidenceRefs": [
+          "EVT-403",
+          "EVT-405",
+          "EVT-408"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "mcp:cloudflare:heal first",
+          "Verify cloudflareState.mcp",
+          "wrangler login before provision",
+          "Complete T2 autopsy bundle before hub publish"
+        ],
+        "outcome": "HARVEST_COMPLETE in one pass",
+        "requiredPreflight": [
+          "mcp:cloudflare:heal",
+          "harvest:validate"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-401",
+      "summary": "Treating DNS cloudflareState.overall as MCP readiness",
+      "whyItWasWrong": "DNS token can pass while MCP bearer lacks user:read/account:read",
+      "correctFirstMove": "Inspect cloudflareState.mcp.overall and bearer preflight",
+      "preventiveControl": "IH-CLOUDFLARE-MCP-HEALTH-LAYER-001",
+      "executionDeltaId": "ED-401"
+    },
+    {
+      "wrongMoveId": "WM-402",
+      "summary": "Conflating spawn EINVAL with OAuth lock failures",
+      "whyItWasWrong": "Different root causes and repair sequences",
+      "correctFirstMove": "Classify error signature before heal",
+      "preventiveControl": "harvest-manifest doNotAdvance list",
+      "executionDeltaId": "ED-401"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-401",
+      "subject": "MCP OAuth lock on localhost callback port",
+      "whyRepeated": "Pattern similar to other mcp-remote servers but Cloudflare-specific scope",
+      "firstKnownInstance": "workspace-cloudflare-mcp-oauth-lock-bearer-scope incident memory",
+      "priorIndexSlice": "CG-AppBuilder-MCP/docs/incident-memory/",
+      "whyMissed": "First Cloudflare-specific harvest packet",
+      "avoidableBy": "Incident memory first-read before new harvest seeds",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Auto-run mcp:cloudflare:heal in mcp:repair:cursor chain",
+      "whyItPays": "Clears 15170 lock before operator restart",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-402"
+      ],
+      "seedAs": "command"
+    },
+    {
+      "rank": 2,
+      "title": "Wrangler session preflight in provision-cloudflare-mcp-token",
+      "whyItPays": "Fail fast with actionable message",
+      "effort": "low",
+      "savedWasteIds": [
+        "TW-403"
+      ],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 3,
+      "title": "T2 autopsy gate before harvest:publish-hub-seed",
+      "whyItPays": "Avoids protocol RUN rework",
+      "effort": "medium",
+      "savedWasteIds": [
+        "TW-404"
+      ],
+      "seedAs": "runbook"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "CLOUDFLARE_MCP_PRODUCTION_READY",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "mcp:cloudflare:check PASS after wrangler login + token provision",
+        "Cursor MCP restart verified"
+      ],
+      "lastKnownEvidence": [
+        "IH-CLOUDFLARE-MCP-WRANGLER-TOKEN-001 OPEN_OPERATOR"
+      ]
+    },
+    {
+      "awardOrVerdict": "FULLY_SEEDED",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "index:freshness-gate PASS at current HEAD",
+        "harvest:blind-retrieval PASS"
+      ],
+      "lastKnownEvidence": [
+        "hub-publication-receipt.json PUBLISH_PASS"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "commandIndexConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "mcp-servers.json",
+      "thread-autopsy-index.json"
+    ],
+    "checkedAt": "2026-08-12T04:30:00.000Z",
+    "preflightReceiptHash": null
+  }
+}
