@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "estimator-decision-event-v1@1.0.0",
+  "title": "Estimator Decision Event",
+  "description": "Atomic estimator decision preserved with evidence for proposal learning compounding.",
+  "type": "object",
+  "required": [
+    "schema",
+    "eventId",
+    "eventType",
+    "projectId",
+    "proposalId",
+    "decision",
+    "sourceEvidence",
+    "confidence",
+    "authorityClass"
+  ],
+  "properties": {
+    "schema": { "const": "estimator-decision-event-v1@1.0.0" },
+    "eventId": { "type": "string", "pattern": "^plde:" },
+    "eventType": {
+      "type": "string",
+      "enum": [
+        "SYSTEM_SELECTION",
+        "GLASS_SELECTION",
+        "HARDWARE_SELECTION",
+        "SCOPE_INCLUDED",
+        "SCOPE_EXCLUDED",
+        "DETAIL_TRIGGERED_SCOPE",
+        "OWNER_FURNISHED",
+        "GC_FURNISHED",
+        "SUBSTITUTION",
+        "ALTERNATE_CREATED",
+        "BASE_SCOPE_DEFINED",
+        "ASSUMPTION_MADE",
+        "UNCERTAINTY_RECORDED",
+        "CONFLICT_DETECTED",
+        "DEMOLITION_INCLUDED",
+        "REUSE_INCLUDED",
+        "REINFORCEMENT_INCLUDED",
+        "BRAKE_METAL_INCLUDED",
+        "FINISH_SELECTED",
+        "SPEC_INTERPRETATION",
+        "RESPONSIBILITY_ASSIGNED",
+        "PRODUCT_SUBSTITUTION"
+      ]
+    },
+    "trigger": { "type": ["object", "null"] },
+    "decision": { "type": "object" },
+    "reason": { "type": ["string", "null"] },
+    "projectId": { "type": "string", "minLength": 1 },
+    "proposalId": { "type": "string", "minLength": 1 },
+    "estimator": { "type": ["string", "null"] },
+    "sourceEvidence": {
+      "type": "array",
+      "items": { "$ref": "provenance-atom-v1.schema.json" },
+      "minItems": 1
+    },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "authorityClass": {
+      "enum": [
+        "SOURCE_FACT",
+        "ESTIMATOR_ASSUMPTION",
+        "NORMALIZATION_INFERENCE",
+        "MODEL_INFERENCE",
+        "DERIVED_METRIC"
+      ]
+    },
+    "humanReviewRequired": { "type": "boolean", "default": false }
+  },
+  "additionalProperties": false
+}

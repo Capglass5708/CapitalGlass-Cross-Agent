@@ -1,6 +1,6 @@
 # Work package: capital-glass-proposal-learning-compounding-spine-v1
 
-**Status:** WAVE_1_CORPUS_BATCH_COMPLETE  
+**Status:** WAVE_2_STRUCTURAL_EXTRACTION_COMPLETE  
 **Parent program:** `capital-glass-experience-graph-compounding-v1`  
 **Mission class:** fix (material)  
 **Owner coordination:** CapitalGlass-Cross-Agent  
@@ -25,11 +25,11 @@ Convert historical Capital Glass **issued proposal PDFs** into provenance-backed
 | --- | --- | --- |
 | 0 | Discovery + reuse matrix | **COMPLETE** |
 | 1 | Raw admission + identity + parser record shell | **COMPLETE** — 23/23 Z: corpus batch |
-| 2 | Structural extraction (systems/frames/glass/doors/hardware/scope) | PLANNED |
+| 2 | Structural extraction (systems/frames/glass/doors/hardware/scope) | **COMPLETE** — Wave 2 frame layouts (23/23 with frames) |
 | 3 | Decision events + special conditions | PLANNED |
 | 4 | Validation / contradiction engine | PLANNED |
 | 5 | Boilerplate reduction | PLANNED |
-| 6 | Graph + precedent retrieval | PLANNED |
+| 6 | Graph + precedent retrieval | **FOUNDATION_EMITTED** — experience graph + spine projection bundle |
 | 7 | Human review loop | PLANNED |
 | 8 | Corpus backfill | **BATCH_EXTRACTED** — `ce-issued-proposal-corpus-v1` (23 PDFs); harvest `harvest-2026-08-12-proposal-learning-corpus-extract-v1` |
 | 9 | Cross-source join readiness | PLANNED |
@@ -77,3 +77,6 @@ Convert historical Capital Glass **issued proposal PDFs** into provenance-backed
 ## Evidence
 
 - Wave 0: `artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/wave0-discovery.json`
+- Wave 1/2 corpus batch: `artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/corpus-batch-receipt.json` (23/23 extracted, 0 zero-frame after Wave 2)
+- Wave 6 graph emission: `Data-Extraction/artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/experience-graph/proposal-learning-graph-emission-manifest.json`
+- BidComposer issued lane: `Data-Extraction/artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/bidcomposer-issued-batch-receipt.json`

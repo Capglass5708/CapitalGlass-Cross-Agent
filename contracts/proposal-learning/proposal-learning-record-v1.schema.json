@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "proposal-learning-record-v1@1.0.0",
+  "title": "Proposal Learning Record",
+  "description": "Canonical structured intelligence extracted from a historical Capital Glass proposal PDF.",
+  "type": "object",
+  "required": [
+    "schema",
+    "proposalId",
+    "projectId",
+    "projectName",
+    "sourceDocument",
+    "quality",
+    "provenance"
+  ],
+  "properties": {
+    "schema": { "const": "proposal-learning-record-v1@1.0.0" },
+    "proposalId": { "type": "string", "pattern": "^plr:" },
+    "projectId": { "type": "string", "minLength": 1 },
+    "projectName": { "type": "string" },
+    "gc": { "type": ["string", "null"] },
+    "location": { "type": "object" },
+    "proposalDate": { "type": ["string", "null"] },
+    "expirationDate": { "type": ["string", "null"] },
+    "drawingIssueDate": { "type": ["string", "null"] },
+    "addenda": { "type": "array", "items": { "type": "object" } },
+    "estimator": { "type": ["string", "null"] },
+    "sourceDocument": {
+      "type": "object",
+      "required": ["sourceDocumentId", "sourceDocumentHash", "contentType"],
+      "properties": {
+        "sourceDocumentId": { "type": "string" },
+        "sourceDocumentHash": { "type": "string", "pattern": "^sha256:" },
+        "contentType": { "type": "string" },
+        "originalPath": { "type": ["string", "null"] },
+        "archivePath": { "type": ["string", "null"] },
+        "pageCount": { "type": ["integer", "null"] }
+      }
+    },
+    "templateVersion": { "type": ["string", "null"] },
+    "scopeSystems": { "type": "array", "items": { "type": "object" } },
+    "frameTypes": { "type": "array", "items": { "type": "object" } },
+    "glassSystems": { "type": "array", "items": { "type": "object" } },
+    "doors": { "type": "array", "items": { "type": "object" } },
+    "hardwareSets": { "type": "array", "items": { "type": "object" } },
+    "specialConditions": { "type": "array", "items": { "type": "object" } },
+    "inclusions": { "type": "array", "items": { "type": "object" } },
+    "exclusions": { "type": "array", "items": { "type": "object" } },
+    "alternates": { "type": "array", "items": { "type": "object" } },
+    "substitutions": { "type": "array", "items": { "type": "object" } },
+    "assumptions": { "type": "array", "items": { "type": "object" } },
+    "uncertainties": { "type": "array", "items": { "type": "object" } },
+    "conflicts": { "type": "array", "items": { "type": "object" } },
+    "commercial": { "type": "object" },
+    "derivedFeatures": { "type": "object" },
+    "decisionEvents": {
+      "type": "array",
+      "items": { "$ref": "estimator-decision-event-v1.schema.json" }
+    },
+    "graphEdges": { "type": "array", "items": { "type": "object" } },
+    "quality": {
+      "type": "object",
+      "required": ["extractionVersion", "recordedAt"],
+      "properties": {
+        "extractionVersion": { "type": "string" },
+        "recordedAt": { "type": "string", "format": "date-time" },
+        "fieldCoverage": { "type": ["object", "null"] },
+        "provenanceCoverage": { "type": ["number", "null"] },
+        "lowConfidenceRate": { "type": ["number", "null"] },
+        "conflictCount": { "type": ["integer", "null"] },
+        "decisionEventCount": { "type": ["integer", "null"] }
+      }
+    },
+    "provenance": {
+      "type": "array",
+      "items": { "$ref": "provenance-atom-v1.schema.json" }
+    },
+    "joinContracts": {
+      "type": "object",
+      "properties": {
+        "bidSheetJoinKeys": { "type": "array", "items": { "type": "string" } },
+        "planEvidenceJoinKeys": { "type": "array", "items": { "type": "string" } },
+        "outcomeJoinKeys": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "additionalProperties": false
+}

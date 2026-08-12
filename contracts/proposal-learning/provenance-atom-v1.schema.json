@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "provenance-atom-v1@1.0.0",
+  "title": "Proposal Learning Provenance Atom",
+  "description": "Minimum provenance for an extracted atomic fact in the proposal learning spine.",
+  "type": "object",
+  "required": [
+    "sourceDocumentId",
+    "sourceDocumentHash",
+    "extractionMethod",
+    "confidence",
+    "humanVerified",
+    "conflictStatus",
+    "authorityClass"
+  ],
+  "properties": {
+    "sourceDocumentId": { "type": "string", "minLength": 1 },
+    "sourceDocumentHash": { "type": "string", "pattern": "^sha256:" },
+    "sourcePage": { "type": ["integer", "null"], "minimum": 0 },
+    "sourceSection": { "type": ["string", "null"] },
+    "sourceText": { "type": ["string", "null"] },
+    "sourceLocator": { "type": ["object", "null"] },
+    "extractionMethod": { "type": "string", "minLength": 1 },
+    "extractorVersion": { "type": ["string", "null"] },
+    "modelVersion": { "type": ["string", "null"] },
+    "normalizedValue": {},
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "humanVerified": { "type": "boolean" },
+    "conflictStatus": {
+      "enum": ["NONE", "DETECTED", "RESOLVED", "REVIEW_REQUIRED"]
+    },
+    "authorityClass": {
+      "enum": [
+        "SOURCE_FACT",
+        "ESTIMATOR_ASSUMPTION",
+        "NORMALIZATION_INFERENCE",
+        "MODEL_INFERENCE",
+        "DERIVED_METRIC"
+      ]
+    },
+    "extractedAt": { "type": ["string", "null"], "format": "date-time" }
+  },
+  "additionalProperties": false
+}
