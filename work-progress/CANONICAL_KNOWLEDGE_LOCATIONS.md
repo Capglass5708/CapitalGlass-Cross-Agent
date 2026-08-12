@@ -59,6 +59,16 @@ Git source of truth: `CapitalGlass-Cross-Agent/work-progress/2026-08-02_MASTER_W
 | `cross-agent-master-work/INDEX.json` | Machine-readable document index |
 | `BY-KIND/cross-agent-master-work.json` | Kind slice for agent discovery |
 
+### Cross-desk desk sync (WESLEY_WORK ↔ RYZEN9DESK)
+
+Git source of truth: `CapitalGlass-Cross-Agent/work-progress/knowledge/dual-machine-desk-sync-system-v1.md`
+
+| L: path | Purpose |
+| --- | --- |
+| `03-domains/office-infrastructure/knowledge/dual-machine-desk-sync-system-v1.md` | Full desk-sync system articulation (agent + operator) |
+| `03-domains/office-infrastructure/manifests/dual-machine-desk-sync-v1.json` | Hub manifest pointer |
+| `BY-KIND/cross-desk-routing.json` | Compact slice — read first; escalate to full doc when needed |
+
 ### Agent use pattern
 
 1. Open `L:\Capital-Glass-Intelligence-Hub\00-master-index\AGENT_START_HERE.md`.
