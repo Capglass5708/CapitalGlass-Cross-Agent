@@ -1,0 +1,75 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-proposal-pdf-fallback-004",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "51afc0c9f555a9c12b55ae7639500eaf66865b75",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-12-proposal-learning-corpus-extract-v1",
+      "seedId": "IH-PROPOSAL-PDF-FALLBACK-004"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-12T04:27:43.556Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "544815bb9f73b618c4e5274241ec6f938dfe2ad99dcdaf07ba9f1e1a57d44a32"
+  },
+  "body": {
+    "seedId": "IH-PROPOSAL-PDF-FALLBACK-004",
+    "kind": "lesson",
+    "title": "WSL PDF ingest: pdftotext fallback when PyMuPDF unavailable",
+    "summary": "proposal_learning_record tries pdf_ingest.ingest_pdf when fitz installed; else pdftotext -layout. WSL PEP 668 blocks system pip — batch still works with /usr/bin/pdftotext.",
+    "canonicalQuestion": "Why does proposal learning batch fail with ModuleNotFoundError fitz?",
+    "alternateQuestions": [
+      "How does PDF text extraction work without pymupdf on WSL?"
+    ],
+    "shortAnswer": "proposal_learning_record tries pdf_ingest.ingest_pdf when fitz installed; else pdftotext -layout. WSL PEP 668 blocks system pip — batch still works with /usr/bin/pdftotext.",
+    "detailedAnswer": "WSL PDF ingest: pdftotext fallback when PyMuPDF unavailable",
+    "retrievalQuestions": [
+      "Why does proposal learning batch fail with ModuleNotFoundError fitz?",
+      "How does PDF text extraction work without pymupdf on WSL?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "PDF batch fails on import fitz or pymupdf in WSL",
+      "startAt": [
+        "capital-glass-estimating-parser/src/estimating_parser/proposal_learning_record.py"
+      ],
+      "runPreflight": [
+        "which pdftotext",
+        "PYTHONPATH=src python3 -c 'from estimating_parser.proposal_learning_record import build_proposal_learning_record_v1'"
+      ],
+      "doNot": [
+        "pip install --break-system-packages without operator approval",
+        "Claim PDF extract failed if pdftotext is on PATH"
+      ],
+      "proveBeforeClaiming": [
+        "corpus-batch-receipt.json totals.extracted equals documentsDiscovered"
+      ]
+    },
+    "evidenceRefs": [
+      "capital-glass-estimating-parser/src/estimating_parser/proposal_learning_record.py",
+      "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/thread-event-inventory.json EVT-005"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "HUMAN_REVIEW",
+    "status": "CANDIDATE",
+    "authorityRepo": "capital-glass-estimating-parser",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/seed-packets/IH-PROPOSAL-PDF-FALLBACK-004.json"
+    ],
+    "harvestId": "harvest-2026-08-12-proposal-learning-corpus-extract-v1"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "cross-agent-thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-proposal-learning-corpus-extract-v1",
+  "workPackageId": "capital-glass-proposal-learning-compounding-spine-v1",
+  "parentProgram": "capital-glass-experience-graph-compounding-v1",
+  "events": [
+    {
+      "eventId": "EVT-001",
+      "phase": "mission",
+      "summary": "User requested extraction from Z:\\Capital-Glass-Dev\\Computer Estimator Sample Documents\\Proposals",
+      "outcome": "Scoped to historical issued proposal PDF lane"
+    },
+    {
+      "eventId": "EVT-002",
+      "phase": "wave0",
+      "summary": "Wave 0 discovery: plan sets under full-plan-sets are NOT issued proposals; reuse matrix completed",
+      "outcome": "PROCEED_NO_DUPLICATE_ARCHITECTURE",
+      "evidenceRef": "artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/wave0-discovery.json"
+    },
+    {
+      "eventId": "EVT-003",
+      "phase": "wave1",
+      "summary": "Contracts published: proposal-learning-record-v1, estimator-decision-event-v1, provenance-atom-v1",
+      "outcome": "PASS",
+      "evidenceRef": "contracts/proposal-learning/"
+    },
+    {
+      "eventId": "EVT-004",
+      "phase": "wave1",
+      "summary": "Parser build_proposal_learning_record_v1 + Data-Extraction admit-proposal CLI proven on crunch text fixture",
+      "outcome": "PASS"
+    },
+    {
+      "eventId": "EVT-005",
+      "phase": "blocker",
+      "summary": "PyMuPDF (fitz) missing in WSL system Python; batch would fail without fallback",
+      "outcome": "FIXED",
+      "fix": "pdftotext fallback in proposal_learning_record._load_pdf_pages"
+    },
+    {
+      "eventId": "EVT-006",
+      "phase": "batch",
+      "summary": "Corpus batch 23/23 PDFs admitted and extracted to PROPOSAL_LEARNING_RECORD_V1",
+      "outcome": "PASS",
+      "evidenceRef": "Data-Extraction/artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/corpus-batch-receipt.json"
+    },
+    {
+      "eventId": "EVT-007",
+      "phase": "discovery",
+      "summary": "L: CapitalGlass-BidComposer/issued contains Bid Composer issued snapshots (UUID paths)",
+      "outcome": "DOCUMENTED",
+      "note": "Separate lane from Z: historical corpus"
+    },
+    {
+      "eventId": "EVT-008",
+      "phase": "discovery",
+      "summary": "Broad find /mnt/l /mnt/z scans aborted after 15-19 min (network drive latency)",
+      "outcome": "ABORTED",
+      "lesson": "Use scoped paths not estate-wide find"
+    },
+    {
+      "eventId": "EVT-009",
+      "phase": "coverage",
+      "summary": "7 of 23 proposals extracted 0 frame types; 16 with frames; 3 with scope systems",
+      "outcome": "WAVE_2_FOLLOW_ON"
+    },
+    {
+      "eventId": "EVT-010",
+      "phase": "harvest",
+      "summary": "User requested full chat intelligence extract for Intelligence Hub",
+      "outcome": "IN_PROGRESS"
+    }
+  ]
+}

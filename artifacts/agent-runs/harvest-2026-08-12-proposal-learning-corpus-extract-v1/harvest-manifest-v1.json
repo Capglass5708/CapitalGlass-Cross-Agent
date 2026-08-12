@@ -1,0 +1,110 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-proposal-learning-corpus-extract-v1",
+  "missionClass": "harvest",
+  "sourceCommitSha": "dde727aa6a58e0aaaa1914b34ff63a1734c434d2",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "retrievalResult": "INDEX_HIT",
+  "doNotAdvance": [
+    "FULLY_SEEDED",
+    "HUB_PUBLISH_COMPLETE",
+    "EXPERIENCE_GRAPH_PROJECTED"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 3,
+      "seeds": 6,
+      "roiItems": 3,
+      "operatorFriction": 2
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run"
+  },
+  "packets": [
+    {
+      "packetId": "proposal-learning-corpus-extract-v1",
+      "packetTitle": "Cursor session: Z: issued proposal corpus batch extract + PROPOSAL_LEARNING_RECORD_V1",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/capital-glass-proposal-learning-compounding-spine-v1.md",
+      "nextAction": "Operator: harvest:publish-intelligence-full; Wave 2 parser gaps on 7 zero-frame PDFs",
+      "advancementGate": "operational-publication-receipt.json",
+      "doNotAdvance": [
+        "FULLY_SEEDED",
+        "WAVE_2_COMPLETE"
+      ],
+      "evidenceRefs": [
+        "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/",
+        "artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/corpus-batch-receipt.json",
+        "Data-Extraction/artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/",
+        "contracts/proposal-learning/proposal-learning-record-v1.schema.json"
+      ],
+      "commitRefs": [
+        "dde727aa6a58e0aaaa1914b34ff63a1734c434d2",
+        "1f054e6333a3c2069768eecf9371c6475fcd0641",
+        "6601bec7e304fa62e0113c7c3e3dd5ee1f867154"
+      ],
+      "blockers": []
+    }
+  ],
+  "relatedRepos": [
+    {
+      "repo": "Data-Extraction",
+      "commitSha": "1f054e6333a3c2069768eecf9371c6475fcd0641",
+      "role": "admission + corpus batch orchestration"
+    },
+    {
+      "repo": "capital-glass-estimating-parser",
+      "commitSha": "6601bec7e304fa62e0113c7c3e3dd5ee1f867154",
+      "role": "PROPOSAL_LEARNING_RECORD_V1 builder + PDF ingest"
+    }
+  ],
+  "updatedAt": "2026-08-12T04:15:00.000Z",
+  "ledgerLineage": {
+    "ledgerContentHashBefore": "e7ad85e5f0b80b53185a90e5086f0a8c68948a21949f1fb81655c6d026a27c7c",
+    "ledgerContentHashAfter": "2f81b0c9d610dac8dfc1bc8e380c342ccdfad191b266ab9223b14bc66fa203c0"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 16,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 16,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-bd216b17d399",
+      "prompt-candidate-000d32296d6f",
+      "prompt-candidate-53bb7cad2e5e",
+      "prompt-candidate-f6f50fff7ca1",
+      "prompt-candidate-5a61ad467d6b",
+      "prompt-candidate-04eaec2a5254",
+      "prompt-candidate-e38b4d9f73f7",
+      "prompt-candidate-ef2d1af5f2b0",
+      "prompt-candidate-266d12409f24",
+      "prompt-candidate-e081daf6f7ec",
+      "prompt-candidate-d4eeeaaa8812",
+      "prompt-candidate-17ac6fa0c0b8",
+      "prompt-candidate-adf085154fa6",
+      "prompt-candidate-4ee7626a6446",
+      "prompt-candidate-3ad6320af964",
+      "prompt-candidate-967b5e066bd6"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

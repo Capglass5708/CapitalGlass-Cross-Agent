@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-PROPOSAL-PDF-FALLBACK-004",
+  "kind": "lesson",
+  "title": "WSL PDF ingest: pdftotext fallback when PyMuPDF unavailable",
+  "summary": "proposal_learning_record tries pdf_ingest.ingest_pdf when fitz installed; else pdftotext -layout. WSL PEP 668 blocks system pip — batch still works with /usr/bin/pdftotext.",
+  "retrievalQuestions": [
+    "Why does proposal learning batch fail with ModuleNotFoundError fitz?",
+    "How does PDF text extraction work without pymupdf on WSL?"
+  ],
+  "evidenceRefs": [
+    "capital-glass-estimating-parser/src/estimating_parser/proposal_learning_record.py",
+    "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/thread-event-inventory.json EVT-005"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "PDF batch fails on import fitz or pymupdf in WSL",
+    "startAt": [
+      "capital-glass-estimating-parser/src/estimating_parser/proposal_learning_record.py"
+    ],
+    "runPreflight": [
+      "which pdftotext",
+      "PYTHONPATH=src python3 -c 'from estimating_parser.proposal_learning_record import build_proposal_learning_record_v1'"
+    ],
+    "doNot": [
+      "pip install --break-system-packages without operator approval",
+      "Claim PDF extract failed if pdftotext is on PATH"
+    ],
+    "proveBeforeClaiming": [
+      "corpus-batch-receipt.json totals.extracted equals documentsDiscovered"
+    ]
+  },
+  "ownerRepo": "capital-glass-estimating-parser",
+  "targetSlice": "BY-KIND/parser-runtime-notes.json",
+  "promotionClass": "HUMAN_REVIEW",
+  "status": "CANDIDATE"
+}

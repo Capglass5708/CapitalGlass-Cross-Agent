@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-PROPOSAL-CORPUS-Z-PATH-001",
+  "kind": "lesson",
+  "title": "Canonical historical issued proposal PDF corpus on Z:",
+  "summary": "23 issued glazing proposals at Z:\\Capital-Glass-Dev\\Computer Estimator Sample Documents\\Proposals (manifest ce-issued-proposal-corpus-v1). Sibling full-plan-sets/ holds construction drawings — not proposals.",
+  "retrievalQuestions": [
+    "Where are historical Capital Glass issued proposal PDFs on Z drive?",
+    "What is the difference between Proposals and full-plan-sets under Computer Estimator Sample Documents?"
+  ],
+  "evidenceRefs": [
+    "Data-Extraction/artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/corpus-batch-receipt.json",
+    "Data-Extraction/artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/ce-issued-proposal-corpus-v1.json"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Proposal learning Wave 8 backfill or historical corpus questions",
+    "startAt": [
+      "Data-Extraction/scripts/proposal-learning/lib/corpus-paths.mjs",
+      "Data-Extraction/artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/ce-issued-proposal-corpus-v1.json"
+    ],
+    "runPreflight": [
+      "test -d '/mnt/z/Capital-Glass-Dev/Computer Estimator Sample Documents/Proposals'"
+    ],
+    "doNot": [
+      "Treat full-plan-sets PDFs as issued proposals",
+      "Run estate-wide find on L:/Z: as first step"
+    ],
+    "proveBeforeClaiming": [
+      "corpus-batch-receipt.json totals.documentsDiscovered equals 23"
+    ]
+  },
+  "ownerRepo": "Data-Extraction",
+  "targetSlice": "BY-KIND/proposal-learning-corpus.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}

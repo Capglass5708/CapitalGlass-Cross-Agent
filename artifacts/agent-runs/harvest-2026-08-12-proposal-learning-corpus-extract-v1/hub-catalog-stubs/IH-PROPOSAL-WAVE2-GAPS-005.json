@@ -1,0 +1,73 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-proposal-wave2-gaps-005",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "51afc0c9f555a9c12b55ae7639500eaf66865b75",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-12-proposal-learning-corpus-extract-v1",
+      "seedId": "IH-PROPOSAL-WAVE2-GAPS-005"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-12T04:27:43.556Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "critical",
+    "contentHash": "483307849005acdae5ccaa63c4e4217da6ac3f7eb451b4afc7dcb51bbb7c60d9"
+  },
+  "body": {
+    "seedId": "IH-PROPOSAL-WAVE2-GAPS-005",
+    "kind": "roi",
+    "title": "Wave 2 follow-on: 7 proposals with zero frame types",
+    "summary": "First-pass extract missed frame types on 7/23 Z: PDFs (Bellaire, Bubba 33, Bubble Bath, College Station, Covenant, Crash Champions, Lookout). Crunch Fitness plr:69902176851dd531 is richest reference (8 frames, 4 systems).",
+    "canonicalQuestion": "Which historical proposals have zero frame types after extract?",
+    "alternateQuestions": [
+      "What is Wave 2 scope for proposal learning spine?"
+    ],
+    "shortAnswer": "First-pass extract missed frame types on 7/23 Z: PDFs (Bellaire, Bubba 33, Bubble Bath, College Station, Covenant, Crash Champions, Lookout). Crunch Fitness plr:69902176851dd531 is richest reference (8 frames, 4 systems).",
+    "detailedAnswer": "Wave 2 follow-on: 7 proposals with zero frame types",
+    "retrievalQuestions": [
+      "Which historical proposals have zero frame types after extract?",
+      "What is Wave 2 scope for proposal learning spine?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Improving proposal parser coverage or Wave 2 planning",
+      "startAt": [
+        "Data-Extraction/artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/corpus-batch-receipt.json",
+        "capital-glass-estimating-parser/src/estimating_parser/proposal_extract.py"
+      ],
+      "runPreflight": [
+        "grep frameTypes corpus-batch-receipt.json"
+      ],
+      "doNot": [
+        "Hardcode Submersive or single-project fixes without generic parser improvement"
+      ],
+      "proveBeforeClaiming": [
+        "Re-batch shows frameTypes greater than 0 for previously zero-frame files"
+      ]
+    },
+    "evidenceRefs": [
+      "Data-Extraction/artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/corpus-batch-receipt.json"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": 1,
+    "doNotAdvance": [],
+    "promotionClass": "HUMAN_REVIEW",
+    "status": "CANDIDATE",
+    "authorityRepo": "capital-glass-estimating-parser",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/seed-packets/IH-PROPOSAL-WAVE2-GAPS-005.json"
+    ],
+    "harvestId": "harvest-2026-08-12-proposal-learning-corpus-extract-v1"
+  }
+}

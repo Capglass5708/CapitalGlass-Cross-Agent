@@ -1,0 +1,120 @@
+{
+  "packetKind": "graph-extraction",
+  "schemaVersion": "cg-master-graph-extraction-v1",
+  "extractionId": "extraction:harvest-2026-08-12-proposal-learning-corpus-extract-v1",
+  "harvestId": "harvest-2026-08-12-proposal-learning-corpus-extract-v1",
+  "workPackageId": "harvest-2026-08-12-proposal-learning-corpus-extract-v1",
+  "producer": {
+    "repositoryId": "repo:capitalglass-cross-agent",
+    "capability": "harvest-graph-extraction",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "id": "harvest:harvest-2026-08-12-proposal-learning-corpus-extract-v1",
+      "nodeType": "Harvest",
+      "displayName": "harvest-2026-08-12-proposal-learning-corpus-extract-v1",
+      "lifecycleState": "lifecycle:canonical",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "missionClass": "harvest",
+        "sourceCommitSha": "dde727aa6a58e0aaaa1914b34ff63a1734c434d2",
+        "retrievalResult": "INDEX_HIT"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T04:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:proposal-learning-corpus-extract-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Cursor session: Z: issued proposal corpus batch extract + PROPOSAL_LEARNING_RECORD_V1",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/capital-glass-proposal-learning-compounding-spine-v1.md",
+        "advancementGate": "operational-publication-receipt.json"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T04:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/compact-records/proposal-learning-corpus-extract-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/compact-records/proposal-learning-corpus-extract-v1.json"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:harvest-harvest-2026-08-12-proposal-learning-corpus-extract-v1-contains-workpackage-proposal-learning-corpus-extract-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-12-proposal-learning-corpus-extract-v1",
+      "targetId": "workpackage:proposal-learning-corpus-extract-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T04:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-proposal-learning-corpus-extract-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:proposal-learning-corpus-extract-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-12T04:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/compact-records/proposal-learning-corpus-extract-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/compact-records/proposal-learning-corpus-extract-v1.json"
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "provenance": {
+    "producerRepositoryId": "repo:capitalglass-cross-agent",
+    "producerCapability": "harvest-graph-extraction",
+    "sourceAuthority": "authority:cross-agent-harvest",
+    "classification": "observed",
+    "verificationState": "verified",
+    "recordedAt": "2026-08-12T04:15:00.000Z",
+    "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/harvest-manifest-v1.json",
+    "sourceAnchorDetail": {
+      "anchorType": "file-path",
+      "locator": "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/harvest-manifest-v1.json"
+    }
+  }
+}

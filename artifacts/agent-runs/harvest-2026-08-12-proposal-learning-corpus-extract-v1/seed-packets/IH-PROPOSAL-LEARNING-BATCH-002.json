@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-PROPOSAL-LEARNING-BATCH-002",
+  "kind": "runbook",
+  "title": "Batch extract Z: issued proposals to PROPOSAL_LEARNING_RECORD_V1",
+  "summary": "Data-Extraction npm run proposal-learning:corpus-batch admits PDFs hash-idempotently and runs build-proposal-learning-record-v1. Receipt and plr:* records under artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/.",
+  "retrievalQuestions": [
+    "How do I batch extract historical proposal PDFs into proposal learning records?",
+    "Where is corpus-batch-receipt.json after a proposal learning batch?"
+  ],
+  "evidenceRefs": [
+    "Data-Extraction/scripts/proposal-learning/run-corpus-batch.mjs",
+    "capital-glass-estimating-parser/scripts/build-proposal-learning-record-v1.py"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Re-run corpus or add PDFs to Z: Proposals folder",
+    "startAt": [
+      "Data-Extraction/scripts/proposal-learning/run-corpus-batch.mjs",
+      "Data-Extraction/package.json proposal-learning:corpus-batch script"
+    ],
+    "runPreflight": [
+      "cd Data-Extraction && npm run proposal-learning:corpus-batch -- --json"
+    ],
+    "doNot": [
+      "Write into bid_* tables from this lane",
+      "Treat proposal commercial totals as cost truth"
+    ],
+    "proveBeforeClaiming": [
+      "corpus-batch-receipt.json totals.failed equals 0",
+      "records/plr:*.json exists per PDF"
+    ]
+  },
+  "ownerRepo": "Data-Extraction",
+  "targetSlice": "BY-KIND/proposal-learning-runbooks.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

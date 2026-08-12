@@ -1,0 +1,111 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-proposal-learning-corpus-extract-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "retrieval",
+      "description": "Estate-wide find across /mnt/l and /mnt/z aborted after 15-19 minutes with no useful output",
+      "evidenceRefs": ["EVT-008"],
+      "estimatedImpact": "medium",
+      "savedBy": "Scoped corpus-paths.mjs + ce-issued-proposal-corpus-v1 manifest",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "context",
+      "description": "Wave 0 initially conflated Z: full-plan-sets drawings with issued proposal PDFs",
+      "evidenceRefs": ["EVT-002"],
+      "estimatedImpact": "high",
+      "savedBy": "IH-PROPOSAL-CORPUS-Z-PATH-001 and IH-PROPOSAL-CORPUS-LANES-003 seed packets",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "host",
+      "description": "PyMuPDF missing in WSL system Python blocked PDF module import until pdftotext fallback added",
+      "evidenceRefs": ["EVT-005"],
+      "estimatedImpact": "medium",
+      "savedBy": "pdftotext fallback in proposal_learning_record.py",
+      "roiRank": 3
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Unclear which Z: folder holds issued proposals vs plan sets",
+      "operatorCost": "medium",
+      "systemFix": "Document Proposals/ subfolder as ce-issued-proposal-corpus-v1",
+      "evidenceRefs": ["EVT-002", "EVT-006"],
+      "linkedWasteIds": ["TW-002"]
+    },
+    {
+      "frictionId": "OF-002",
+      "trigger": "L: project folder scans timeout on SMB",
+      "operatorCost": "low",
+      "systemFix": "Use known roots: BidComposer/issued or scoped project paths",
+      "evidenceRefs": ["EVT-008"],
+      "linkedWasteIds": ["TW-001"]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Locate historical issued proposal corpus",
+      "actualExecution": { "steps": ["Search full-plan-sets", "Broad L/Z find"], "outcome": "MISCLASSIFIED_OR_SLOW" },
+      "optimalExecution": { "steps": ["Open Z: .../Proposals directly"], "outcome": "23 PDFs batch extracted" },
+      "deltaCost": { "time": "high", "tokens": "medium", "operatorFrustration": "low" },
+      "preventiveControl": "ce-issued-proposal-corpus-v1.json"
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Treated Computer Estimator full-plan-sets as issued proposal corpus",
+      "whyItWasWrong": "Plan sets are drawings for CE intake, not estimator learning from issued bids",
+      "correctFirstMove": "Use Z: Computer Estimator Sample Documents/Proposals",
+      "preventiveControl": "IH-PROPOSAL-CORPUS-LANES-003",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "Multiple aborted L:/Z: find scans for same corpus",
+      "whyRepeated": "Broad discovery after corpus path already known from operator",
+      "firstKnownInstance": "EVT-008",
+      "priorIndexSlice": "none — first harvest of this WP",
+      "whyMissed": "No indexed ce-issued-proposal-corpus-v1 before this session",
+      "avoidableBy": "Operator path in first message",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    { "rank": 1, "title": "Wave 2 parser for 7 zero-frame layouts", "whyItPays": "Unlocks frame/glass intelligence on 30% of corpus", "effort": "medium", "savedWasteIds": [], "seedAs": "runbook" },
+    { "rank": 2, "title": "Ingest L: BidComposer issued lane", "whyItPays": "Connects live bid issuance to learning spine", "effort": "medium", "savedWasteIds": [], "seedAs": "index-slice" },
+    { "rank": 3, "title": "Wave 6 experience graph projection", "whyItPays": "Compounding retrieval across historical bids", "effort": "high", "savedWasteIds": [], "seedAs": "owner-artifact" }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "FULLY_SEEDED",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": ["operational-publication-receipt.json"],
+      "lastKnownEvidence": ["projection.hubPublishStatus not-run"]
+    },
+    {
+      "awardOrVerdict": "WAVE_2_COMPLETE",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": ["7 zero-frame PDFs re-extracted with frames"],
+      "lastKnownEvidence": ["corpus-batch-receipt.json"]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": ["active-work-blockers.json", "mcp-servers.json"],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-12T04:15:00.000Z",
+    "preflightReceiptHash": null
+  }
+}

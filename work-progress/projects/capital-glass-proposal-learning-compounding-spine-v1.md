@@ -1,6 +1,6 @@
 # Work package: capital-glass-proposal-learning-compounding-spine-v1
 
-**Status:** WAVE_0_COMPLETE_WAVE_1_IN_PROGRESS  
+**Status:** WAVE_1_CORPUS_BATCH_COMPLETE  
 **Parent program:** `capital-glass-experience-graph-compounding-v1`  
 **Mission class:** fix (material)  
 **Owner coordination:** CapitalGlass-Cross-Agent  
@@ -24,14 +24,14 @@ Convert historical Capital Glass **issued proposal PDFs** into provenance-backed
 | Wave | Scope | Status |
 | --- | --- | --- |
 | 0 | Discovery + reuse matrix | **COMPLETE** |
-| 1 | Raw admission + identity + parser record shell | **IN_PROGRESS** |
+| 1 | Raw admission + identity + parser record shell | **COMPLETE** — 23/23 Z: corpus batch |
 | 2 | Structural extraction (systems/frames/glass/doors/hardware/scope) | PLANNED |
 | 3 | Decision events + special conditions | PLANNED |
 | 4 | Validation / contradiction engine | PLANNED |
 | 5 | Boilerplate reduction | PLANNED |
 | 6 | Graph + precedent retrieval | PLANNED |
 | 7 | Human review loop | PLANNED |
-| 8 | Corpus backfill | **CORPUS_ADMITTED** — see `ce-issued-proposal-corpus-v1` (23 issued PDFs on Z:) |
+| 8 | Corpus backfill | **BATCH_EXTRACTED** — `ce-issued-proposal-corpus-v1` (23 PDFs); harvest `harvest-2026-08-12-proposal-learning-corpus-extract-v1` |
 | 9 | Cross-source join readiness | PLANNED |
 
 ## Contracts (B1 extension)

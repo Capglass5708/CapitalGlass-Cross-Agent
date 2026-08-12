@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-PROPOSAL-CORPUS-LANES-003",
+  "kind": "architecture",
+  "title": "Three proposal document lanes — do not conflate",
+  "summary": "Distinct lanes: Z historical issued corpus (Proposals/), L BidComposer issued UUID snapshots, L project 04-Proposal folders, and Z full-plan-sets (drawings only). Each lane has different owner and learning use.",
+  "retrievalQuestions": [
+    "What is the difference between Z Proposals and L CapitalGlass-BidComposer issued?",
+    "Are full-plan-sets the same as issued proposals?"
+  ],
+  "evidenceRefs": [
+    "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/thread-event-inventory.json",
+    "work-progress/projects/capital-glass-proposal-learning-compounding-spine-v1.md"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Cross-lane proposal PDF discovery or ingestion design",
+    "startAt": [
+      "work-progress/projects/capital-glass-proposal-learning-compounding-spine-v1.md",
+      "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/thread-autopsy-bundle.json"
+    ],
+    "runPreflight": [
+      "npm run agent:index:scout -- --json"
+    ],
+    "doNot": [
+      "Import plan sets into proposal-learning batch",
+      "Use broad find /mnt/l /mnt/z as first retrieval"
+    ],
+    "proveBeforeClaiming": [
+      "Lane path documented in seed summary matches corpus-batch-receipt corpusDir"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/proposal-document-lanes.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-PROPOSAL-CONTRACTS-006",
+  "kind": "decision",
+  "title": "PROPOSAL_LEARNING_RECORD_V1 contracts and ownership",
+  "summary": "Cross-Agent owns schemas under contracts/proposal-learning/. Data-Extraction owns admission. Parser owns extract. CG-MASTER-GRAPH owns graph projection. Bid Composer consumes bid_* only — not general extraction.",
+  "retrievalQuestions": [
+    "What schema defines proposal learning records?",
+    "Which repo owns historical proposal PDF admission?"
+  ],
+  "evidenceRefs": [
+    "contracts/proposal-learning/proposal-learning-record-v1.schema.json",
+    "artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/wave0-discovery.json"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Cross-repo proposal learning or ownership boundary questions",
+    "startAt": [
+      "work-progress/projects/capital-glass-proposal-learning-compounding-spine-v1.md",
+      "contracts/proposal-learning/"
+    ],
+    "runPreflight": [
+      "npm run agent:index:preflight -- --query=proposal learning ownership --json"
+    ],
+    "doNot": [
+      "Implement extraction in Bid Composer",
+      "Create parallel document graph or second ingestion pipeline"
+    ],
+    "proveBeforeClaiming": [
+      "check_table_ownership confirms bid_* consumer boundary when touching DB"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/proposal-learning-contracts.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

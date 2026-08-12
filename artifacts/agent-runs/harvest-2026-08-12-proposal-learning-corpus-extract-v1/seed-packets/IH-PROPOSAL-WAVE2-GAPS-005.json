@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-PROPOSAL-WAVE2-GAPS-005",
+  "kind": "roi",
+  "title": "Wave 2 follow-on: 7 proposals with zero frame types",
+  "summary": "First-pass extract missed frame types on 7/23 Z: PDFs (Bellaire, Bubba 33, Bubble Bath, College Station, Covenant, Crash Champions, Lookout). Crunch Fitness plr:69902176851dd531 is richest reference (8 frames, 4 systems).",
+  "retrievalQuestions": [
+    "Which historical proposals have zero frame types after extract?",
+    "What is Wave 2 scope for proposal learning spine?"
+  ],
+  "evidenceRefs": [
+    "Data-Extraction/artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/corpus-batch-receipt.json"
+  ],
+  "roiRank": 1,
+  "futureAgentInstructions": {
+    "whenThisAppears": "Improving proposal parser coverage or Wave 2 planning",
+    "startAt": [
+      "Data-Extraction/artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/corpus-batch-receipt.json",
+      "capital-glass-estimating-parser/src/estimating_parser/proposal_extract.py"
+    ],
+    "runPreflight": [
+      "grep frameTypes corpus-batch-receipt.json"
+    ],
+    "doNot": [
+      "Hardcode Submersive or single-project fixes without generic parser improvement"
+    ],
+    "proveBeforeClaiming": [
+      "Re-batch shows frameTypes greater than 0 for previously zero-frame files"
+    ]
+  },
+  "ownerRepo": "capital-glass-estimating-parser",
+  "targetSlice": "BY-KIND/proposal-learning-coverage.json",
+  "promotionClass": "HUMAN_REVIEW",
+  "status": "CANDIDATE"
+}

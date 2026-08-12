@@ -1,0 +1,76 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-proposal-learning-batch-002",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "51afc0c9f555a9c12b55ae7639500eaf66865b75",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-12-proposal-learning-corpus-extract-v1",
+      "seedId": "IH-PROPOSAL-LEARNING-BATCH-002"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-12T04:27:43.556Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "0609b8f172c2436be15a9de1edf4574c2d9cef916658b75ea87c6071009e2c97"
+  },
+  "body": {
+    "seedId": "IH-PROPOSAL-LEARNING-BATCH-002",
+    "kind": "runbook",
+    "title": "Batch extract Z: issued proposals to PROPOSAL_LEARNING_RECORD_V1",
+    "summary": "Data-Extraction npm run proposal-learning:corpus-batch admits PDFs hash-idempotently and runs build-proposal-learning-record-v1. Receipt and plr:* records under artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/.",
+    "canonicalQuestion": "How do I batch extract historical proposal PDFs into proposal learning records?",
+    "alternateQuestions": [
+      "Where is corpus-batch-receipt.json after a proposal learning batch?"
+    ],
+    "shortAnswer": "Data-Extraction npm run proposal-learning:corpus-batch admits PDFs hash-idempotently and runs build-proposal-learning-record-v1. Receipt and plr:* records under artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/.",
+    "detailedAnswer": "Batch extract Z: issued proposals to PROPOSAL_LEARNING_RECORD_V1",
+    "retrievalQuestions": [
+      "How do I batch extract historical proposal PDFs into proposal learning records?",
+      "Where is corpus-batch-receipt.json after a proposal learning batch?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Re-run corpus or add PDFs to Z: Proposals folder",
+      "startAt": [
+        "Data-Extraction/scripts/proposal-learning/run-corpus-batch.mjs",
+        "Data-Extraction/package.json proposal-learning:corpus-batch script"
+      ],
+      "runPreflight": [
+        "cd Data-Extraction && npm run proposal-learning:corpus-batch -- --json"
+      ],
+      "doNot": [
+        "Write into bid_* tables from this lane",
+        "Treat proposal commercial totals as cost truth"
+      ],
+      "proveBeforeClaiming": [
+        "corpus-batch-receipt.json totals.failed equals 0",
+        "records/plr:*.json exists per PDF"
+      ]
+    },
+    "evidenceRefs": [
+      "Data-Extraction/scripts/proposal-learning/run-corpus-batch.mjs",
+      "capital-glass-estimating-parser/scripts/build-proposal-learning-record-v1.py"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "Data-Extraction",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/seed-packets/IH-PROPOSAL-LEARNING-BATCH-002.json"
+    ],
+    "harvestId": "harvest-2026-08-12-proposal-learning-corpus-extract-v1"
+  }
+}

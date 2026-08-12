@@ -1,0 +1,348 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-proposal-learning-corpus-extract-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-PROPOSAL-CONTRACTS-006",
+      "questionId": "IHPROPOSALCO",
+      "canonicalQuestion": "What schema defines proposal learning records?",
+      "alternateQuestions": [
+        "Which repo owns historical proposal PDF admission?"
+      ],
+      "shortAnswer": "Cross-Agent owns schemas under contracts/proposal-learning/. Data-Extraction owns admission. Parser owns extract. CG-MASTER-GRAPH owns graph projection. Bid Composer consumes bid_* only — not general extraction.",
+      "detailedAnswer": "PROPOSAL_LEARNING_RECORD_V1 contracts and ownership",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-12T04:27:43.553Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/seed-packets/IH-PROPOSAL-CONTRACTS-006.json"
+      ],
+      "authorityCommit": [
+        "51afc0c"
+      ],
+      "evidenceUrls": [
+        "contracts/proposal-learning/proposal-learning-record-v1.schema.json",
+        "artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/wave0-discovery.json"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "decision",
+        "harvest-2026-08-12-proposal-learning-corpus-extract-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Cross-repo proposal learning or ownership boundary questions",
+        "startAt": [
+          "work-progress/projects/capital-glass-proposal-learning-compounding-spine-v1.md",
+          "contracts/proposal-learning/"
+        ],
+        "runPreflight": [
+          "npm run agent:index:preflight -- --query=proposal learning ownership --json"
+        ],
+        "doNot": [
+          "Implement extraction in Bid Composer",
+          "Create parallel document graph or second ingestion pipeline"
+        ],
+        "proveBeforeClaiming": [
+          "check_table_ownership confirms bid_* consumer boundary when touching DB"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "decision"
+    },
+    {
+      "ihPfspId": "IH-PROPOSAL-CORPUS-LANES-003",
+      "questionId": "IHPROPOSALCO",
+      "canonicalQuestion": "What is the difference between Z Proposals and L CapitalGlass-BidComposer issued?",
+      "alternateQuestions": [
+        "Are full-plan-sets the same as issued proposals?"
+      ],
+      "shortAnswer": "Distinct lanes: Z historical issued corpus (Proposals/), L BidComposer issued UUID snapshots, L project 04-Proposal folders, and Z full-plan-sets (drawings only). Each lane has different owner and learning use.",
+      "detailedAnswer": "Three proposal document lanes — do not conflate",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-12T04:27:43.553Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/seed-packets/IH-PROPOSAL-CORPUS-LANES-003.json"
+      ],
+      "authorityCommit": [
+        "51afc0c"
+      ],
+      "evidenceUrls": [
+        "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/thread-event-inventory.json",
+        "work-progress/projects/capital-glass-proposal-learning-compounding-spine-v1.md"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "architecture",
+        "harvest-2026-08-12-proposal-learning-corpus-extract-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Cross-lane proposal PDF discovery or ingestion design",
+        "startAt": [
+          "work-progress/projects/capital-glass-proposal-learning-compounding-spine-v1.md",
+          "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/thread-autopsy-bundle.json"
+        ],
+        "runPreflight": [
+          "npm run agent:index:scout -- --json"
+        ],
+        "doNot": [
+          "Import plan sets into proposal-learning batch",
+          "Use broad find /mnt/l /mnt/z as first retrieval"
+        ],
+        "proveBeforeClaiming": [
+          "Lane path documented in seed summary matches corpus-batch-receipt corpusDir"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "architecture"
+    },
+    {
+      "ihPfspId": "IH-PROPOSAL-CORPUS-Z-PATH-001",
+      "questionId": "IHPROPOSALCO",
+      "canonicalQuestion": "Where are historical Capital Glass issued proposal PDFs on Z drive?",
+      "alternateQuestions": [
+        "What is the difference between Proposals and full-plan-sets under Computer Estimator Sample Documents?"
+      ],
+      "shortAnswer": "23 issued glazing proposals at Z:\\Capital-Glass-Dev\\Computer Estimator Sample Documents\\Proposals (manifest ce-issued-proposal-corpus-v1). Sibling full-plan-sets/ holds construction drawings — not proposals.",
+      "detailedAnswer": "Canonical historical issued proposal PDF corpus on Z:",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-12T04:27:43.553Z",
+      "authorityRepo": "Data-Extraction",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/seed-packets/IH-PROPOSAL-CORPUS-Z-PATH-001.json"
+      ],
+      "authorityCommit": [
+        "51afc0c"
+      ],
+      "evidenceUrls": [
+        "Data-Extraction/artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/corpus-batch-receipt.json",
+        "Data-Extraction/artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/ce-issued-proposal-corpus-v1.json"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-12-proposal-learning-corpus-extract-v1"
+      ],
+      "entities": [
+        "Data-Extraction"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Proposal learning Wave 8 backfill or historical corpus questions",
+        "startAt": [
+          "Data-Extraction/scripts/proposal-learning/lib/corpus-paths.mjs",
+          "Data-Extraction/artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/ce-issued-proposal-corpus-v1.json"
+        ],
+        "runPreflight": [
+          "test -d '/mnt/z/Capital-Glass-Dev/Computer Estimator Sample Documents/Proposals'"
+        ],
+        "doNot": [
+          "Treat full-plan-sets PDFs as issued proposals",
+          "Run estate-wide find on L:/Z: as first step"
+        ],
+        "proveBeforeClaiming": [
+          "corpus-batch-receipt.json totals.documentsDiscovered equals 23"
+        ]
+      },
+      "promotionClass": "AUTOMATIC",
+      "kind": "lesson"
+    },
+    {
+      "ihPfspId": "IH-PROPOSAL-LEARNING-BATCH-002",
+      "questionId": "IHPROPOSALLE",
+      "canonicalQuestion": "How do I batch extract historical proposal PDFs into proposal learning records?",
+      "alternateQuestions": [
+        "Where is corpus-batch-receipt.json after a proposal learning batch?"
+      ],
+      "shortAnswer": "Data-Extraction npm run proposal-learning:corpus-batch admits PDFs hash-idempotently and runs build-proposal-learning-record-v1. Receipt and plr:* records under artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/.",
+      "detailedAnswer": "Batch extract Z: issued proposals to PROPOSAL_LEARNING_RECORD_V1",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-12T04:27:43.553Z",
+      "authorityRepo": "Data-Extraction",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/seed-packets/IH-PROPOSAL-LEARNING-BATCH-002.json"
+      ],
+      "authorityCommit": [
+        "51afc0c"
+      ],
+      "evidenceUrls": [
+        "Data-Extraction/scripts/proposal-learning/run-corpus-batch.mjs",
+        "capital-glass-estimating-parser/scripts/build-proposal-learning-record-v1.py"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "runbook",
+        "harvest-2026-08-12-proposal-learning-corpus-extract-v1"
+      ],
+      "entities": [
+        "Data-Extraction"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Re-run corpus or add PDFs to Z: Proposals folder",
+        "startAt": [
+          "Data-Extraction/scripts/proposal-learning/run-corpus-batch.mjs",
+          "Data-Extraction/package.json proposal-learning:corpus-batch script"
+        ],
+        "runPreflight": [
+          "cd Data-Extraction && npm run proposal-learning:corpus-batch -- --json"
+        ],
+        "doNot": [
+          "Write into bid_* tables from this lane",
+          "Treat proposal commercial totals as cost truth"
+        ],
+        "proveBeforeClaiming": [
+          "corpus-batch-receipt.json totals.failed equals 0",
+          "records/plr:*.json exists per PDF"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "runbook"
+    },
+    {
+      "ihPfspId": "IH-PROPOSAL-PDF-FALLBACK-004",
+      "questionId": "IHPROPOSALPD",
+      "canonicalQuestion": "Why does proposal learning batch fail with ModuleNotFoundError fitz?",
+      "alternateQuestions": [
+        "How does PDF text extraction work without pymupdf on WSL?"
+      ],
+      "shortAnswer": "proposal_learning_record tries pdf_ingest.ingest_pdf when fitz installed; else pdftotext -layout. WSL PEP 668 blocks system pip — batch still works with /usr/bin/pdftotext.",
+      "detailedAnswer": "WSL PDF ingest: pdftotext fallback when PyMuPDF unavailable",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-12T04:27:43.553Z",
+      "authorityRepo": "capital-glass-estimating-parser",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/seed-packets/IH-PROPOSAL-PDF-FALLBACK-004.json"
+      ],
+      "authorityCommit": [
+        "51afc0c"
+      ],
+      "evidenceUrls": [
+        "capital-glass-estimating-parser/src/estimating_parser/proposal_learning_record.py",
+        "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/thread-event-inventory.json EVT-005"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "harvest-2026-08-12-proposal-learning-corpus-extract-v1"
+      ],
+      "entities": [
+        "capital-glass-estimating-parser"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "PDF batch fails on import fitz or pymupdf in WSL",
+        "startAt": [
+          "capital-glass-estimating-parser/src/estimating_parser/proposal_learning_record.py"
+        ],
+        "runPreflight": [
+          "which pdftotext",
+          "PYTHONPATH=src python3 -c 'from estimating_parser.proposal_learning_record import build_proposal_learning_record_v1'"
+        ],
+        "doNot": [
+          "pip install --break-system-packages without operator approval",
+          "Claim PDF extract failed if pdftotext is on PATH"
+        ],
+        "proveBeforeClaiming": [
+          "corpus-batch-receipt.json totals.extracted equals documentsDiscovered"
+        ]
+      },
+      "promotionClass": "HUMAN_REVIEW",
+      "kind": "lesson"
+    },
+    {
+      "ihPfspId": "IH-PROPOSAL-WAVE2-GAPS-005",
+      "questionId": "IHPROPOSALWA",
+      "canonicalQuestion": "Which historical proposals have zero frame types after extract?",
+      "alternateQuestions": [
+        "What is Wave 2 scope for proposal learning spine?"
+      ],
+      "shortAnswer": "First-pass extract missed frame types on 7/23 Z: PDFs (Bellaire, Bubba 33, Bubble Bath, College Station, Covenant, Crash Champions, Lookout). Crunch Fitness plr:69902176851dd531 is richest reference (8 frames, 4 systems).",
+      "detailedAnswer": "Wave 2 follow-on: 7 proposals with zero frame types",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-12T04:27:43.553Z",
+      "authorityRepo": "capital-glass-estimating-parser",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-12-proposal-learning-corpus-extract-v1/seed-packets/IH-PROPOSAL-WAVE2-GAPS-005.json"
+      ],
+      "authorityCommit": [
+        "51afc0c"
+      ],
+      "evidenceUrls": [
+        "Data-Extraction/artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/corpus-batch-receipt.json"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "roi",
+        "harvest-2026-08-12-proposal-learning-corpus-extract-v1"
+      ],
+      "entities": [
+        "capital-glass-estimating-parser"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Improving proposal parser coverage or Wave 2 planning",
+        "startAt": [
+          "Data-Extraction/artifacts/agent-runs/capital-glass-proposal-learning-compounding-spine-v1/corpus-batch-receipt.json",
+          "capital-glass-estimating-parser/src/estimating_parser/proposal_extract.py"
+        ],
+        "runPreflight": [
+          "grep frameTypes corpus-batch-receipt.json"
+        ],
+        "doNot": [
+          "Hardcode Submersive or single-project fixes without generic parser improvement"
+        ],
+        "proveBeforeClaiming": [
+          "Re-batch shows frameTypes greater than 0 for previously zero-frame files"
+        ]
+      },
+      "promotionClass": "HUMAN_REVIEW",
+      "kind": "roi"
+    }
+  ]
+}
