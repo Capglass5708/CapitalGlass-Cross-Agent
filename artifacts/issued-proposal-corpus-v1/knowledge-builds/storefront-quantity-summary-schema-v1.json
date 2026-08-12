@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "storefront-quantity-summary-schema-v1@1.0.0",
+  "corpusId": "ce-sample-issued-proposals-v1",
+  "workPackageId": "ce-issued-proposal-corpus-v1",
+  "description": "Executive summary block present on issued Capital Glass storefront proposals (pages 1–2).",
+  "fields": [
+    { "key": "bidId", "type": "string", "pattern": "CG-{####}-26", "required": true },
+    { "key": "preparedFor", "type": "string", "required": false },
+    { "key": "projectName", "type": "string", "required": true },
+    { "key": "projectAddress", "type": "string", "required": false },
+    { "key": "proposalDate", "type": "date", "required": false },
+    { "key": "bidDueDate", "type": "date", "required": false },
+    { "key": "frameAreaSf", "type": "number", "unit": "SF", "required": true },
+    { "key": "glassAreaSf", "type": "number", "unit": "SF", "required": false },
+    { "key": "glassOpenings", "type": "integer", "required": true },
+    { "key": "perimeterLf", "type": "number", "unit": "LF", "required": false },
+    { "key": "frameUnits", "type": "integer", "required": false },
+    { "key": "systemManufacturer", "type": "string", "enum": ["Tubelite"], "required": true },
+    { "key": "systemModel", "type": "string", "example": "T14000 Thermal 2x4.5", "required": true },
+    { "key": "systemVariant", "type": "string", "enum": ["center_set", "screw_spline"], "required": false },
+    { "key": "finish", "type": "string", "required": true },
+    { "key": "frameTypeCodes", "type": "array", "items": "string", "required": false },
+    { "key": "doorLeafCount", "type": "integer", "required": false },
+    { "key": "doorIds", "type": "array", "items": "string", "required": false },
+    { "key": "glassMakeup", "type": "string", "required": false },
+    { "key": "basePriceUsd", "type": "number", "required": true },
+    { "key": "alternatePricesUsd", "type": "array", "items": "number", "required": false }
+  ],
+  "bidComposerMapping": {
+    "pricingGroups": "executiveSummary.basePriceUsd + alternates",
+    "scopeClaims": "narrative sections only after estimator review",
+    "proposalCompiler": "executive block → cover + section 01 summary panel"
+  }
+}

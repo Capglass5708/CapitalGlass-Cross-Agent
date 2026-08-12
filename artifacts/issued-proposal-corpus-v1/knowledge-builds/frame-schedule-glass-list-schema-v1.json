@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "frame-schedule-glass-list-schema-v1@1.0.0",
+  "corpusId": "ce-sample-issued-proposals-v1",
+  "workPackageId": "ce-issued-proposal-corpus-v1",
+  "description": "Deep appendix tables in issued proposals — targets Bid Composer window_schedule_row / frame schedule import gap.",
+  "frameSummaryRow": {
+    "fields": [
+      "frameCode",
+      "quantity",
+      "widthIn",
+      "heightIn",
+      "areaSf",
+      "perimeterLf",
+      "panelCount",
+      "rowCount",
+      "glassOpenings",
+      "finish"
+    ],
+    "exampleCodes": ["SF1", "SF2", "W1", "W2", "D111A", "A", "B"]
+  },
+  "frameScheduleDetail": {
+    "fields": [
+      "frameSetName",
+      "frameName",
+      "metalGroup",
+      "designPressureDs",
+      "frameType",
+      "requiredQty",
+      "panelCount",
+      "rowCount",
+      "frameWidthIn",
+      "frameHeightIn",
+      "backMemberColor",
+      "faceMemberColor"
+    ]
+  },
+  "glassListRow": {
+    "fields": [
+      "glassType",
+      "width",
+      "height",
+      "panel",
+      "row",
+      "quantity"
+    ],
+    "exampleGlassType": "1 CLEAR INS TE",
+    "notes": "Fractional inches in width x height; maps to parser evidence opening candidates — not approved quantities until estimator review."
+  },
+  "indexedBlockerRelief": "bid-composer-weak-on-window-schedule-row",
+  "computerEstimatorBridge": "parserEvidencePackage opening + schedule evidence types"
+}

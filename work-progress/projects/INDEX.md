@@ -2,7 +2,7 @@
 
 Master index of all project files in `work-progress/projects/`.
 
-**Last updated:** 2026-08-10 (`active-ledger-currentness-ingestion-and-harvest-v1` ledger catch-up)
+**Last updated:** 2026-08-12 (`harvest-2026-08-12-estimating-spine-ryzen9-activation-v1`)
 
 Read `AGENT_START_HERE.md` and `work-progress/ACTIVE_WORK.md` before working on any project listed here.
 
@@ -47,7 +47,7 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `app-builder-preflight-downstream-blockers-v1` | — | ACTIVE | BLOCKED | CG-AppBuilder-MCP | `harvest-2026-08-07-cursor-healthkeeper-preflight-dedupe-v1` | see harvest-2026-08-07-cursor-healthkeeper-preflight-dedupe-v1.md |
 | `appbuilder-pr284-ci-merge-gate-v1` | — | HARVEST_COMPLETE | PASS | CG-AppBuilder-MCP | `harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1` | see thread-event-inventory.json |
 | `appbuilder-pr290-merge-evidence-v1` | — | COMPLETE | VERIFIED | CG-AppBuilder-MCP | `harvest-2026-08-07-direct-connect-three-controller-closeout-v1` | see harvest-2026-08-07-direct-connect-three-controller-closeout-v1.md |
-| `asg-closed-immutable-v1` | — | CLOSED | PASS | CG-AppBuilder-MCP | `harvest-2026-08-04-three-lane-suite-closeout-v1` | see ultimate-sdlc-runner-hardening-and-ai-cache-v1.md |
+| `asg-closed-immutable-v1` | `intel:3f11a4feab66cc…` | CLOSED | PASS | CG-AppBuilder-MCP | `harvest-2026-08-04-three-lane-suite-closeout-v1` | see ultimate-sdlc-runner-hardening-and-ai-cache-v1.md |
 | `asg-converge-all-blocked-v1` | — | ACTIVE | EXPECTED_BLOCK | CG-AppBuilder-MCP | `harvest-2026-08-07-asg-ge-wave-closeout-v1` | see harvest-2026-08-07-asg-ge-wave-closeout-v1.md |
 | `asg-ge-acceptance-commands-v1` | — | COMPLETE | PASS | CG-AppBuilder-MCP | `harvest-2026-08-07-asg-ge-wave-closeout-v1` | see harvest-2026-08-07-asg-ge-wave-closeout-v1.md |
 | `asg-ge-formal-proof-outcome-v1` | — | COMPLETE | PROVEN_EFFECTIVE | CG-AppBuilder-MCP | `harvest-2026-08-07-asg-ge-wave-closeout-v1` | see harvest-2026-08-07-asg-ge-wave-closeout-v1.md |
@@ -116,7 +116,7 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `gold-mine-full-open-population-complete-v1` | — | COMPLETE | PASS | Data-Extraction | `harvest-2026-08-07-gold-mine-compounding-reference-v1` | see INDEX.md |
 | `gold-mine-product-estate-proof-launched-v1` | — | IN_PROGRESS | PASS_WITH_WARN | Data-Extraction | `harvest-2026-08-07-gold-mine-compounding-reference-v1` | see INDEX.md |
 | `gold-mine-receipt-field-authority-v1` | — | COMPLETE | SHIPPED | Data-Extraction | `harvest-2026-08-07-gold-mine-compounding-reference-v1` | see INDEX.md |
-| `governance-preflight-linkage-v1` | — | CLOSED | PASS | CG-Platform-Governance-MCP | `harvest-2026-08-04-three-lane-suite-closeout-v1` | see governance-material-preflight-linkage-v1.md |
+| `governance-preflight-linkage-v1` | `intel:c744444136849e…` | CLOSED | PASS | CG-Platform-Governance-MCP | `harvest-2026-08-04-three-lane-suite-closeout-v1` | see governance-material-preflight-linkage-v1.md |
 | `governance-wsl-path-normalization-v1` | — | MERGED_COMPLETE | PASS | CG-Platform-Governance-MCP | `harvest-2026-08-04-three-way-improvement-slice6-thread-v1` | see 2026-08-03_governance-wsl-path-normalization-v1.md |
 | `guided-scope-review-closeout-runbook-v1` | — | COMPLETE | DOCUMENTED | CapitalGlass-Cross-Agent | `harvest-2026-08-07-guided-scope-review-milestone-closeout-v1` | see CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md |
 | `guided-scope-review-milestone-closed-v1` | — | COMPLETE | MILESTONE_CLOSED | CapitalGlass-BidComposer | `harvest-2026-08-07-guided-scope-review-milestone-closeout-v1` | see harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md |
@@ -175,7 +175,7 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `mistake-premature-pass-git-durability-v1` | — | FIXED | PASS | Data-Extraction | `harvest-2026-08-07-gold-mine-compounding-reference-v1` | see INDEX.md |
 | `mount-authority-ext4-repos-root-v1` | — | FIXED | PASS | CG-AppBuilder-MCP | `harvest-2026-08-04-wesleywork-l-windows-closeout-v1` | see 2026-08-02_z-drive-disconnect-recurrence-v1.md |
 | `no-fabricated-visual-pass-guard-v1` | — | COMPLETE | DOCUMENTED | CapitalGlass-BidComposer | `harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1` | see harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1.md |
-| `north-star-observe-cli-repair-v1` | — | CLOSED | PASS | CG-AppBuilder-MCP | `harvest-2026-08-04-three-lane-suite-closeout-v1` | see north-star-observe-cli-repair-v1.md |
+| `north-star-observe-cli-repair-v1` | `intel:ca5bd45039204d…` | CLOSED | PASS | CG-AppBuilder-MCP | `harvest-2026-08-04-three-lane-suite-closeout-v1` | see north-star-observe-cli-repair-v1.md |
 | `office-admin-ci-manifest-drift-v1` | — | RESOLVED | CORRECTED | CapitalGlass-Office-Admin | `harvest-2026-08-07-direct-connect-three-controller-closeout-v1` | see harvest-2026-08-07-direct-connect-three-controller-closeout-v1.md |
 | `office-admin-deploy-gate-windows-v1` | — | COMPLETE | PASS | CapitalGlass-Office-Admin | `harvest-2026-08-07-direct-connect-three-controller-closeout-v1` | see harvest-2026-08-07-direct-connect-three-controller-closeout-v1.md |
 | `office-admin-pr57-merge-evidence-v1` | — | COMPLETE | VERIFIED | CapitalGlass-Office-Admin | `harvest-2026-08-07-direct-connect-three-controller-closeout-v1` | see harvest-2026-08-07-direct-connect-three-controller-closeout-v1.md |
@@ -277,7 +277,7 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `z-drive-force-remap-wsl-cwd-v1` | — | RECORDED | PASS | CapitalGlass-Office-Admin | `harvest-2026-08-04-z-l-drive-offlan-session-v1` | see 2026-08-02_z-drive-disconnect-recurrence-v1.md |
 | `z-l-drive-offlan-partial-availability-v1` | — | PARTIAL_DRIVE_AVAILABILITY | Z_OK_L_BLOCKED_OFF_LAN | CapitalGlass-Office-Admin | `harvest-2026-08-04-z-l-drive-offlan-session-v1` | see 2026-08-02_z-drive-disconnect-recurrence-v1.md |
 
-_237 registry packets · 105 intelligence entities_
+_237 registry packets · 108 intelligence entities_
 
 <!-- HARVEST-PACKET-INDEX:END -->
 
@@ -286,7 +286,8 @@ _237 registry packets · 105 intelligence entities_
 | Project ID | File | Status | Owner repo(s) | Last commit | Next action |
 | --- | --- | --- | --- | --- | --- |
 | `harvest-2026-08-03-cross-thread-platform-state-v1` | [2026-08-03_harvest-2026-08-03-cross-thread-platform-state-v1.md](./2026-08-03_harvest-2026-08-03-cross-thread-platform-state-v1.md) | **COMPLETE** — `HARVEST_COMPLETE` | CapitalGlass-Cross-Agent | Harvest commit pending | Recurring ingest + L: publish when operator approves |
-| `ryzen9desk-managed-executor-v1` | [2026-08-03_ryzen9desk-managed-executor-v1.md](./2026-08-03_ryzen9desk-managed-executor-v1.md) | **RUNNER_BOOTSTRAP_CHECKPOINT_STARTED** — PR #268 merged | `CG-AppBuilder-MCP` | `8fe7cf05` on AppBuilder `main` | CG-AppBuilder-MCP mission: RYZEN9DESK install + `executor-smoke` → `MANAGED_EXECUTOR_ONLINE` |
+| `estimating-spine-ryzen9-activation-v1` | [2026-08-12_estimating-spine-ryzen9-activation-v1.md](./2026-08-12_estimating-spine-ryzen9-activation-v1.md) | **WSL_EXECUTOR_READY_ESTIMATING_PARTIAL** | `CG-AppBuilder-MCP` | GHA proofs `31560060271`–`31560208328` | RYZEN9 desk: CE opening stack + Revu Windows handoff |
+| `ryzen9desk-managed-executor-v1` | [2026-08-03_ryzen9desk-managed-executor-v1.md](./2026-08-03_ryzen9desk-managed-executor-v1.md) | **MANAGED_EXECUTOR_ONLINE** — PARTIAL_REMOTE_PASS | `CG-AppBuilder-MCP` | `51946c4b` AppBuilder at harvest | Maintain runner; CE opening stack + Revu Windows interactive |
 | `active-ledger-ci-path-and-hash-stability-v1` | [2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md](./2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md) | **PASS** | `CG-AppBuilder-MCP` | `2cd8eba9`, `3fb8c9bb` | None — close unless CI regresses |
 | `office-admin-ryzen9desk-managed-executor-bootstrap-v1` | [2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md](./2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md) | **NEEDS_OFFICE_ADMIN_INDEXING** | CapitalGlass-Office-Admin | — | Index runbook in Office Admin when ready |
 | `wsl2-native-repo-library-migration-v1` | [2026-08-03_wsl2-native-repo-library-migration-v1.md](./2026-08-03_wsl2-native-repo-library-migration-v1.md) | **PARTIAL** — filesystem PASS | `CG-AppBuilder-MCP` | — | Per-repo ext4 verification; RYZEN9DESK alignment separate |
@@ -308,6 +309,8 @@ _237 registry packets · 105 intelligence entities_
 | `ephemeral-unstructured-github-scrape-v1` | [2026-08-01_ephemeral-unstructured-github-scrape-v1.md](./2026-08-01_ephemeral-unstructured-github-scrape-v1.md) | Scrape complete — corpus publish pending | `Scraper` (capture), `Data-Extraction` (publish) | Cross-Agent `1ff3908`, `5abae0f`, `78bbdde` | Implement shared `build-github-markdown-articles.mjs`; publish Unstructured corpus; run `knowledge:build` |
 | `bid-composer-upgrade-roadmap-v1` | [2026-08-01_bid-composer-upgrade-roadmap-v1.md](./2026-08-01_bid-composer-upgrade-roadmap-v1.md) | Phase 1 implemented; shared-dev migration pending | `CapitalGlass-BidComposer` | Cross-Agent `ed1fbea`; migration `20260801120000_bid_revision_control_and_pipeline.sql` | Apply shared DB migration or start `bid-composer-phase2-document-authority-v1` |
 | `revu-opening-detection-top10-v1` | [2026-08-01_revu-opening-detection-top10-v1.md](./2026-08-01_revu-opening-detection-top10-v1.md) | Pilot 8/10 operational; Rosewood lane status corrected | `Computer Estimator` (detection), `CapitalGlassRevu` (markup), `Data-Extraction`, `Scraper`, `Bid Composer` | `Data-Extraction 38e5c58`; `Scraper 36cd354`; Cross-Agent `ad12b11`, `531fd9b` | Do not treat Rosewood as proposal-ready; Revu markup controlled, CE parse stalled, real BC bid not started |
+| `ce-issued-proposal-corpus-v1` | [2026-08-11_ce-issued-proposal-corpus-v1.md](./2026-08-11_ce-issued-proposal-corpus-v1.md) | **FOUNDATION_COMPLETE** | `CapitalGlass-Cross-Agent`, `CapitalGlass-BidComposer`, `capital-glass-estimating-parser` | Harvest 2026-08-12 | Successor: `issued-proposal-structured-estimator-learning-v1`; L: publish operator |
+| `issued-proposal-structured-estimator-learning-v1` | [2026-08-12_issued-proposal-structured-estimator-learning-v1.md](./2026-08-12_issued-proposal-structured-estimator-learning-v1.md) | **ACTIVE** | parser, Cross-Agent, Bid Composer, Data-Extraction, CG-MASTER-GRAPH | Opens on foundation commit | Frame/glass extract + parity + PLR + decision events; blocks premature program closeout |
 
 ---
 
@@ -381,6 +384,8 @@ Recommended follow-on work packages (not yet project files):
 
 | Project ID | Status | Next action |
 | --- | --- | --- |
+| `ce-issued-proposal-corpus-v1` | FOUNDATION_COMPLETE | Successor WP owns learning extract |
+| `issued-proposal-structured-estimator-learning-v1` | ACTIVE | Frame/glass extract + `test:issued-proposal-corpus-parity` + PLR/decision events |
 | `bid-composer-upgrade-roadmap-v1` | Phase 1 implemented | Apply shared DB migration; choose Phase 2 document authority or Phase 3 parser normalization |
 
 ### Computer Estimator / CapitalGlassRevu
@@ -388,6 +393,7 @@ Recommended follow-on work packages (not yet project files):
 | Project ID | Status | Next action |
 | --- | --- | --- |
 | `revu-production-plan-markup-readiness-v1` | ACTIVE — operator-led | Phase 0–1 on WESLEYDESK: Max seat + Gate 1 controlled fixture; see `2026-08-11_revu-production-plan-markup-readiness-v1.md` |
+| `ce-issued-proposal-corpus-v1` | INDEXED — git authority | Regenerate via `npm run harvest:issued-proposal-corpus`; L: publish merges `agent-build-catalog-patch-v1.json` |
 | `revu-opening-detection-top10-v1` | Rosewood lane status corrected | Build `cg-opening-locator-v1`; if marking Rosewood in Revu, start with controlled sheet choice and do not assume CE parse or BC bid exists |
 
 ---
@@ -401,7 +407,7 @@ Indexed for agent preflight (`active-work-blockers.json`). Domain blockers are g
 | Missing shared GitHub → articles builder | `docling-github-ingest-v1`, `ephemeral-unstructured-github-scrape-v1` | `Scraper` | Implement `build-github-markdown-articles.mjs` — gated under owner WPs |
 | Rank-9 Arch FP YOLO benchmark repo URL unknown | `revu-opening-detection-top10-v1` | Research | Pin URL before capture — gated under `revu-opening-detection-top10-v1` |
 | DE opening-detection KB is shallow | `revu-opening-detection-top10-v1`, `cg-opening-locator-v1` | `Data-Extraction` | Finish vendor interpretation; fix `unsupported_vendor` — gated under opening-detection WPs |
-| Bid Composer weak on `window_schedule_row` | CE parser ROI / Bid Composer review lane | `Bid Composer` | Add window schedule import and review lane — gated under Bid Composer roadmap |
+| Bid Composer weak on `window_schedule_row` | CE parser ROI / Bid Composer review lane | `Bid Composer` | Partial relief: `ce-issued-proposal-corpus-v1` frame/glass schema + 23 examples; full import lane still gated under Bid Composer roadmap |
 | Revu MCP production workflow locked | `revu-production-takeoff-pilot-v1` | `CapitalGlassRevu`, `Bid Composer` | Policy lock until plan → approval → export → BC review pilot passes |
 
 ---

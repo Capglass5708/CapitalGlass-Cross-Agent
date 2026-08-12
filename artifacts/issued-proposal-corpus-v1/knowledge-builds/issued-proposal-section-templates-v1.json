@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "issued-proposal-section-templates-v1@1.0.0",
+  "corpusId": "ce-sample-issued-proposals-v1",
+  "workPackageId": "ce-issued-proposal-corpus-v1",
+  "generatedAt": "2026-08-12T03:32:39.343763Z",
+  "mcpReadiness": {
+    "targetLayer": "Human Estimator Knowledge Layer",
+    "consumer": "Bid Composer proposal compiler",
+    "persistenceGuidance": "Reusable templates → estimating concepts; project facts → bid_* only after review"
+  },
+  "sectionOrder": [
+    "executive_summary",
+    "framing_systems",
+    "entrances_and_doors",
+    "glass_and_openings",
+    "glazing",
+    "exclusions",
+    "frame_summary_table",
+    "frame_schedule_detail"
+  ],
+  "templates": [
+    {
+      "sectionKey": "framing_systems",
+      "headingPatterns": ["Framing Systems"],
+      "requiredElements": [
+        "approximate_sf",
+        "system_manufacturer_model",
+        "finish",
+        "shop_fabrication",
+        "field_installation",
+        "aama_astm_standards"
+      ],
+      "boilerplateAnchor": "Capital Glass will furnish and install approximately {frameAreaSf} square feet of {systemDescription}."
+    },
+    {
+      "sectionKey": "entrances_and_doors",
+      "headingPatterns": ["Entrances and Door", "Entrances and Doors"],
+      "requiredElements": ["door_count", "hardware_sets", "tempered_igu", "coordination_with_framing"]
+    },
+    {
+      "sectionKey": "glass_and_openings",
+      "headingPatterns": ["Glass & Openings"],
+      "requiredElements": ["glass_sf", "igu_count", "makeup_string", "basis_contract_docs_and_shop_drawings"]
+    },
+    {
+      "sectionKey": "glazing",
+      "headingPatterns": ["Glazing", "Glazing – Scope Summary"],
+      "requiredElements": ["gaskets_sealants_weeps", "weather_tight_installation"]
+    },
+    {
+      "sectionKey": "exclusions",
+      "headingPatterns": ["Exclusions"],
+      "standardPhrases": [
+        "waterproofing_beyond_storefront",
+        "field_testing_and_bonding",
+        "adjacent_trades_coordination"
+      ]
+    }
+  ]
+}

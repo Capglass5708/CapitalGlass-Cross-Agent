@@ -12,14 +12,56 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-08-11 |
-| Current focus | Revu plan-markup readiness critical path (`revu-production-plan-markup-readiness-v1`); Gate 1 + Rosewood pilot coordination; active ledger currentness (08-10 catch-up) |
+| Last updated | 2026-08-12 |
+| Current focus | Issued proposal structured learning (`issued-proposal-structured-estimator-learning-v1`); foundation corpus shipped; L: publication pending; estimating spine RYZEN9 activation |
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Project index | `work-progress/projects/INDEX.md` |
 
 ## Current saved work
+
+### 2026-08-12 CT — issued-proposal-structured-estimator-learning-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `issued-proposal-structured-estimator-learning-v1` |
+| Verdict | **ACTIVE — foundation shipped; learning not proven** |
+| Foundation | `ce-issued-proposal-corpus-v1` (23 PDFs, manifest, hub slice) |
+| Hard exit | Frame/glass/door extract + parity test + PLR + decision events + contradictions + boilerplate + graph precedents + L: publish |
+| Project file | `work-progress/projects/2026-08-12_issued-proposal-structured-estimator-learning-v1.md` |
+| Next | Slice 1 L: publish (operator); Slice 2 frame/glass extractor |
+
+### 2026-08-12 CT — ce-issued-proposal-corpus-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `ce-issued-proposal-corpus-v1` |
+| Verdict | **FOUNDATION_COMPLETE — not DURABLE_COMPLETE** |
+| Corpus | 23 issued proposal PDFs on `Z:\...\Proposals` |
+| Manifest | `artifacts/issued-proposal-corpus-v1/manifest.json` |
+| Hub slice | `work-progress/intelligence-hub-slices/issued-proposal-corpus-v1.json` |
+| Project file | `work-progress/projects/2026-08-11_ce-issued-proposal-corpus-v1.md` |
+| Next | Parser frame-schedule extract; Bid Composer compiler parity on smoke tier; merge catalog patch on hub publication |
+
+### 2026-08-12 CT — estimating-spine-ryzen9-activation-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `estimating-spine-ryzen9-activation-v1` |
+| Verdict | **WSL_EXECUTOR_READY_ESTIMATING_PARTIAL** |
+| Control host | WESLEY_WORK (`CG-WESLEYWORK-01`) |
+| Execution host | RYZEN9DESK (`CG-RYZEN9DESK-01`) |
+| Transport | Direct Connect + GHA runner `ryzen9desk-wsl2-CG-RYZEN9DESK-01` |
+| Remote proofs | Z continuity `31560060271`; full acceptance `31560093006` (PARTIAL_REMOTE_PASS); GPU `31560113697`; repo library `31560137506`; remote status `31560208328` |
+| Handoff bus | `Z:\Office\Wes\Direct Connect\handoffs\estimating-spine-ryzen9-activation-v1\` |
+| Harvest | `harvest-2026-08-12-estimating-spine-ryzen9-activation-v1` |
+| Hub slice | `work-progress/intelligence-hub-slices/estimating-spine-ryzen9-activation.json` |
+| Project file | `work-progress/projects/2026-08-12_estimating-spine-ryzen9-activation-v1.md` |
+| Related advance | `ryzen9desk-managed-executor-v1` → **MANAGED_EXECUTOR_ONLINE** / PARTIAL_REMOTE_PASS |
+| Blockers | CE opening stack (desk install); Revu Windows interactive (`revu-remote-ryzen-terminal-proof-v1`); suite `revu-mcp-production-workflow-locked` |
+| Evidence | `CG-AppBuilder-MCP/artifacts/agent-runs/estimating-spine-ryzen9-activation-v1/activation-manifest.json` |
+| Next | RYZEN9 desk: CE `install_opening_stack_ryzen9desk.sh`; Windows: Revu handoff; hub publish + ledger ingest |
 
 ### 2026-08-11 CT — revu-production-plan-markup-readiness-v1
 
