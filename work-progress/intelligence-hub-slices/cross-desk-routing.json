@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "intelligence-hub-cross-desk-routing-v1@1.0.0",
+  "kind": "cross_desk_routing",
+  "updatedAt": "2026-08-12T20:40:00.000Z",
+  "workPackageId": "direct-connect-hop-lessons-hub-v1",
+  "sourceRepository": "CapitalGlass-Office-Admin",
+  "sourcePath": "mcp/knowledge-index/cg-direct-connect-auto-connect.v1.json",
+  "frontDoorTool": "office.get_direct_connect_auto_connect_profile",
+  "defaultToolSequence": [
+    "office.get_direct_connect_auto_connect_profile",
+    "office.get_ryzen9desk_connection_status",
+    "office.list_direct_connect_handoffs",
+    "office.get_direct_connect_handoff",
+    "office.evaluate_ryzen9desk_dispatch_eligibility",
+    "office.request_ryzen9desk_dispatch"
+  ],
+  "defaultHandoffRootWsl": "/mnt/z/Office/Wes/Direct Connect/handoffs",
+  "buses": {
+    "code": "GitHub origin/main — same SHA on both unify worktrees",
+    "handoff": "Z: dated folder — packets, hop file, receipts",
+    "epoch": "npm run dual-machine:write-hop-packet + session-start --cheap",
+    "sshBreakGlass": "ssh-admin-tailscale after hop — not the hop",
+    "ghaRunner": "Ryzen-only. WesleyWork dispatches to Ryzen, not the reverse."
+  },
+  "unifyWorktree": "CG-AppBuilder-MCP-worktrees/protocol-40-estate-unify-v1",
+  "squashLand": "After squash-merge, reset unify worktree to origin/main. Do not ff-only from PR SHA. Rewrite hop packet to live HEAD.",
+  "sshBreakGlass": {
+    "user": "wesle",
+    "notUser": "Wesley",
+    "target": "wesle@100.76.10.91",
+    "adminKeys": "C:\\ProgramData\\ssh\\administrators_authorized_keys",
+    "tailscaleSshWindows": "unsupported"
+  },
+  "doNotMergeWith": "office-admin-direct-connect-persistence-compact-v1",
+  "retrievalCodes": [
+    "DIRECT_CONNECT_HIT",
+    "DIRECT_CONNECT_BLOCKED",
+    "DIRECT_CONNECT_FAILOVER_LOCAL",
+    "DIRECT_CONNECT_NOT_APPLICABLE"
+  ],
+  "pointers": {
+    "officeAdminKnowledge": "CapitalGlass-Office-Admin/mcp/knowledge-index/cg-direct-connect-auto-connect.v1.json",
+    "sshInbound": "CapitalGlass-Office-Admin/mcp/knowledge-index/cg-wesleywork-01-ssh-inbound-v1.json",
+    "deviceDoc": "CapitalGlass-Office-Admin/docs/devices/CG-WESLEYWORK-01/INBOUND-SSH-BREAK-GLASS.md",
+    "preflight": "CG-AppBuilder-MCP npm run direct-connect:preflight -- --json"
+  }
+}
