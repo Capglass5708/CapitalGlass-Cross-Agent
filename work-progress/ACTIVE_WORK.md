@@ -31,6 +31,7 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Hard exit | Frame/glass/door extract + parity test + PLR + decision events + contradictions + boilerplate + graph precedents + L: publish |
 | Project file | `work-progress/projects/2026-08-12_issued-proposal-structured-estimator-learning-v1.md` |
 | Next | Slice 1 L: publish (operator); Slice 2 frame/glass extractor |
+| Chat harvest | `artifacts/agent-runs/harvest-2026-08-12-issued-proposal-corpus-chat-v1/` → hub slice `issued-proposal-learning-program-v1.json` |
 
 ### 2026-08-12 CT — ce-issued-proposal-corpus-v1
 
