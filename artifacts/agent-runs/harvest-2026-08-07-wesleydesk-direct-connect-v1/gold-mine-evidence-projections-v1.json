@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "gold-mine-evidence-projections-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-wesleydesk-direct-connect-v1",
+  "projections": [
+    {
+      "projectionId": "gmp-wesleydesk-uac-friction",
+      "signalClass": "OPERATOR_FRICTION_SIGNAL",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "windows-uac-persistence-gate",
+      "workPackageId": "wesleydesk-full-control-v1",
+      "evidenceStrength": "high",
+      "operatorImpact": "Manual UAC on WESLEYDESK blocks full-control finish wave",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "PRE_IMPLEMENTATION",
+      "observedAt": "2026-08-07T23:40:48Z",
+      "sourceWorkPackageId": "wesleydesk-full-control-v1",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "evidenceRefs": ["OF-001", "register-pending.json"]
+    },
+    {
+      "projectionId": "gmp-wesleydesk-z-probe-degraded",
+      "signalClass": "OBSERVABILITY_GAP",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "directConnectZ-einval-probe",
+      "workPackageId": "wesleydesk-direct-connect-v1",
+      "evidenceStrength": "medium",
+      "operatorImpact": "Heartbeat shows DEGRADED while Z: usable",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "PRE_IMPLEMENTATION",
+      "observedAt": "2026-08-07T23:57:51Z",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "evidenceRefs": ["OG-001", "05-HEARTBEAT/wesleydesk-status.json"]
+    },
+    {
+      "projectionId": "gmp-wesleydesk-governed-channel-success",
+      "signalClass": "SUCCESS_PATTERN",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "file-based-governed-task-channel",
+      "workPackageId": "wesleydesk-direct-connect-v1",
+      "evidenceStrength": "high",
+      "operatorImpact": "RYZEN9DESK controls; WESLEYDESK executes with receipts",
+      "businessImpact": "OPERATOR_PRODUCTIVITY",
+      "evidenceEra": "PRE_IMPLEMENTATION",
+      "observedAt": "2026-08-07T18:00:00Z",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "evidenceRefs": ["SP-001", "beacon-hill-wave0 PASS"]
+    }
+  ]
+}

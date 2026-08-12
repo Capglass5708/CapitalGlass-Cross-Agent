@@ -1,0 +1,370 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "a082553e210c4606d8efca321bdbead847c8ab62",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-07T20:50:00.000Z",
+  "updatedAt": "2026-08-07T20:50:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "supersededClaims": [
+    {
+      "claim": "Wave B packet hash 9fdd59d7828476465146068553343f2fc82684b8ce05909c71833c4496d85f2f",
+      "supersededBy": "f8c3fcf659dd96296ebbd49aa5ba7c6202282b1e44a6d28c35e5c73a00dde705",
+      "reason": "Post-publication rebaseline after Wave A merged to canonical main"
+    },
+    {
+      "claim": "BLOCK_GOVERNANCE_EXECUTION_RECEIPT_LIB_MISSING",
+      "supersededBy": "Governance main@773e51b0600f342ee46194b67b1e7a50f5bd5e8e",
+      "reason": "execution-receipt lib published PR #19"
+    }
+  ],
+  "doNotAdvance": [
+    "Use superseded Wave B packet 9fdd59d7828476465146068553343f2fc82684b8ce05909c71833c4496d85f2f",
+    "Reopen Wave A implementation or mutate cg-markup-report-v1 without new wave approval",
+    "Run index:publish or harvest:publish-hub-seed from Cursor",
+    "Claim FULLY_SEEDED without index:freshness-gate receipt",
+    "Implement Wave B terminal consumers without GO_WAVE_B_IMPLEMENTATION EXECUTE prompt"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 4,
+      "seeds": 2,
+      "roiItems": 3,
+      "operatorFriction": 1,
+      "executionDeltas": 2
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Operator runs harvest:publish-hub-seed + index:publish — NOT_RUN_BY_CURSOR"
+  },
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "1.1.0",
+    "eligibleCandidates": 0,
+    "rejectedUnrelatedCandidates": 0,
+    "exportStatus": "not-run",
+    "dataExtractionStatus": "not-run",
+    "catalogPublishStatus": "not-run",
+    "retrievalStatus": "not-run",
+    "targetCatalog": "L:\\02-catalog\\Harvest\\Harvest Protocol Self Learning",
+    "authorityStatus": "PROPOSAL",
+    "automaticProtocolMutation": false
+  },
+  "relatedRepos": [
+    {
+      "repo": "CG-Platform-Governance-MCP",
+      "branch": "main",
+      "commitSha": "773e51b0600f342ee46194b67b1e7a50f5bd5e8e",
+      "role": "constitutional schemas + execution-receipt authority"
+    },
+    {
+      "repo": "Computer Estimator",
+      "branch": "main",
+      "commitSha": "ac05d530658d09927722b9c7d92e2a2b450a8752",
+      "role": "markup_report spine service"
+    },
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "branch": "main",
+      "commitSha": "347e392cc305d2d8eb0d0e523c16bacdf20a8672",
+      "role": "bridge registry + SDLC prepare"
+    },
+    {
+      "repo": "CapitalGlassRevu",
+      "branch": "main",
+      "commitSha": "606547afe2ed44c8c652a8019ba8304b5d38d2ac",
+      "role": "markup-report export contract"
+    },
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "main",
+      "commitSha": "a082553e210c4606d8efca321bdbead847c8ab62",
+      "role": "harvest recording authority"
+    }
+  ],
+  "packets": [
+    {
+      "packetKind": "decision",
+      "packetId": "wave-a-spine-foundation-closed-v1",
+      "packetTitle": "bluebeam-markup-report-bridge-v1 Wave A CLOSED on canonical main",
+      "state": "COMPLETE",
+      "packetVerdict": "MILESTONE_CLOSED",
+      "ownerRepo": "Computer Estimator",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1.md",
+      "nextAction": "Execute Wave B with authoritative packet f8c3fcf6",
+      "advancementGate": "GO_WAVE_B_IMPLEMENTATION",
+      "doNotAdvance": [
+        "Reopen Wave A contracts"
+      ],
+      "evidenceRefs": [
+        "TE-002",
+        "TE-004",
+        "TE-005"
+      ],
+      "commitRefs": [
+        "Computer Estimator@ac05d530658d09927722b9c7d92e2a2b450a8752"
+      ],
+      "blockers": [],
+      "decision": "Wave A shared spine published; commercialWriteAuthorized remains false",
+      "alternativesRejected": [
+        "BC/PG-specific markup-report clones",
+        "Revu-embedded workflow routing"
+      ]
+    },
+    {
+      "packetKind": "outcome",
+      "packetId": "governance-execution-receipt-published-v1",
+      "packetTitle": "cg-execution-receipt authority published to Governance main",
+      "state": "COMPLETE",
+      "packetVerdict": "VERIFIED",
+      "ownerRepo": "CG-Platform-Governance-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1.md",
+      "nextAction": "None for infra patch",
+      "advancementGate": "contract:cg-execution-receipt PASS",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-007",
+        "TE-008"
+      ],
+      "commitRefs": [
+        "CG-Platform-Governance-MCP@773e51b0600f342ee46194b67b1e7a50f5bd5e8e"
+      ],
+      "blockers": [],
+      "changeImplemented": "Cherry-picked execution-receipt lib commits 1e8103a–9edcbe9 to main via PR #19",
+      "beforeState": "normalize.mjs missing on main; Wave B BLOCKED",
+      "afterState": "loadExecutionReceiptLib resolves; sdlc:cursor:prepare READY",
+      "measurement": "contract:cg-execution-receipt PASS",
+      "expectedEffect": "Wave B preparation unblocked",
+      "observedEffect": "packetHash f8c3fcf6 READY",
+      "residuals": [
+        "Full closeout:gate still fails on unrelated auto-v32 tests"
+      ],
+      "regressions": [],
+      "effectiveness": "PROVEN_EFFECTIVE"
+    },
+    {
+      "packetKind": "blocker",
+      "packetId": "execution-receipt-lib-missing-cleared-v1",
+      "packetTitle": "BLOCK_GOVERNANCE_EXECUTION_RECEIPT_LIB_MISSING — CLEARED",
+      "state": "RESOLVED",
+      "packetVerdict": "CLEARED",
+      "ownerRepo": "CG-Platform-Governance-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1.md",
+      "nextAction": "None",
+      "advancementGate": "Governance main@773e51b0",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-006",
+        "TE-007",
+        "wave-b-preparation-blocked-receipt.json"
+      ],
+      "commitRefs": [
+        "CG-Platform-Governance-MCP@773e51b0600f342ee46194b67b1e7a50f5bd5e8e"
+      ],
+      "blockers": [],
+      "blockerId": "BLOCK_GOVERNANCE_EXECUTION_RECEIPT_LIB_MISSING",
+      "status": "CLEARED",
+      "proofCommandId": "npm run contract:cg-execution-receipt"
+    },
+    {
+      "packetKind": "mistake",
+      "packetId": "unpublished-receipt-branch-v1",
+      "packetTitle": "execution-receipt existed on feature branch but not main at publication",
+      "state": "RESOLVED",
+      "packetVerdict": "CORRECTED",
+      "ownerRepo": "CG-Platform-Governance-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1.md",
+      "nextAction": "Add consumer-lib check to publication checklist",
+      "advancementGate": "PR #19 merged",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "WM-001",
+        "ED-002"
+      ],
+      "commitRefs": [
+        "feat/cg-estimating-evidence-envelope-authority-v1@1e8103a"
+      ],
+      "blockers": [],
+      "wrongMoveId": "WM-001",
+      "actualExecution": "Wave B prep before receipt lib on main",
+      "optimalExecution": "Merge receipt lib with envelope authority or verify consumer deps at publication",
+      "preventiveControl": "contract:cg-execution-receipt in publication gate"
+    },
+    {
+      "packetKind": "repeated_work",
+      "packetId": "wave-b-sdlc-prepare-twice-v1",
+      "packetTitle": "Wave B SDLC prepare run twice — pre- and post-publication baselines",
+      "state": "COMPLETE",
+      "packetVerdict": "EXPECTED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1.md",
+      "nextAction": "Use only post-publication packet hash f8c3fcf6",
+      "advancementGate": "SUPERSEDED prior packet 9fdd59d",
+      "doNotAdvance": [
+        "Execute with superseded hashes"
+      ],
+      "evidenceRefs": [
+        "DW-001",
+        "TE-008"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "duplicateId": "DW-001",
+      "firstKnownInstance": "packetHash 9fdd59d7828476465146068553343f2fc82684b8ce05909c71833c4496d85f2f",
+      "priorIndexSlice": "sdlc-cursor-prepare-receipt.json",
+      "whyMissed": "Publication wave superseded pre-publication baseline"
+    },
+    {
+      "packetKind": "faster_path",
+      "packetId": "git-history-receipt-recovery-v1",
+      "packetTitle": "Recover unpublished Governance lib via git log before inventing contract",
+      "state": "COMPLETE",
+      "packetVerdict": "CLASSIFIED",
+      "ownerRepo": "CG-Platform-Governance-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1.md",
+      "nextAction": "Document in publication checklist",
+      "advancementGate": "cherry-pick from approved branch",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "ED-002",
+        "SP-002"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "situation": "Consumer lib missing on main",
+      "whatHappened": "git log found 1e8103a on feat/cg-estimating-evidence-envelope-authority-v1",
+      "rightFirstMove": "git log --all -S normalizeExecutionReceipt before BLOCK",
+      "requiredGuard": "Publication includes AppBuilder consumer dependency verification"
+    },
+    {
+      "packetKind": "command",
+      "packetId": "wave-b-sdlc-prepare-command-v1",
+      "packetTitle": "Canonical Wave B SDLC prepare after governance publication",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1.md",
+      "nextAction": "Run only when baselines invalidate",
+      "advancementGate": "verdict READY",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-008"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "command": "CG_PLATFORM_GOVERNANCE_ROOT=<gov-main> npm run sdlc:cursor:prepare -- --work-package=bluebeam-markup-report-bridge-v1 --repo=<CE-main> --scope=wave-b-dual-terminal-consumers --multi-repo --shared-contract --producer-consumer --json",
+      "host": "wsl2",
+      "provesGate": "Wave B preparation READY",
+      "expectedPassSignal": "verdict READY + packetHash f8c3fcf659dd96296ebbd49aa5ba7c6202282b1e44a6d28c35e5c73a00dde705"
+    },
+    {
+      "packetKind": "evidence",
+      "packetId": "post-publication-spine-proof-v1",
+      "packetTitle": "Dual workflow spine proof on CE main",
+      "state": "COMPLETE",
+      "packetVerdict": "VERIFIED",
+      "ownerRepo": "Computer Estimator",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1.md",
+      "nextAction": "Wave B consumers must preserve provenance",
+      "advancementGate": "commercialWriteAuthorized false",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-005",
+        "wave-a-post-publication-spine-proof.json"
+      ],
+      "commitRefs": [
+        "Computer Estimator@ac05d530658d09927722b9c7d92e2a2b450a8752"
+      ],
+      "blockers": [],
+      "type": "receipt",
+      "pathOrSha": "CG-AppBuilder-MCP/artifacts/agent-runs/bluebeam-markup-report-bridge-v1/wave-a-post-publication-spine-proof.json",
+      "provesWhat": "remodel→bid_composer, new_construction→proposal_generator, writes=0"
+    },
+    {
+      "packetKind": "protocol_upgrade",
+      "packetId": "multi-repo-publication-order-v1",
+      "packetTitle": "Wave A publication order: Governance → Revu → CE → AppBuilder → Cross-Agent",
+      "state": "COMPLETE",
+      "packetVerdict": "DOCUMENTED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1.md",
+      "nextAction": "Reuse for similar estimating-spine waves",
+      "advancementGate": "all five PRs merged",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-004"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "seedAs": "runbook",
+      "ownerRepoPromotion": "CapitalGlass-Cross-Agent",
+      "promotionClass": "POLICY_GATED",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Multi-repo milestone publication wave",
+        "startAt": [
+          "wave-a-publication-closeout.json",
+          "dependency order in SDLC prompt"
+        ],
+        "runPreflight": [
+          "Verify each feature SHA matches closeout before PR"
+        ],
+        "doNot": [
+          "Merge AppBuilder before Governance schemas on main",
+          "Force-push main"
+        ],
+        "proveBeforeClaiming": [
+          "Post-merge schema parity",
+          "Spine proof on main"
+        ]
+      }
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096",
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 8,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 8,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-91fc2c703ab0",
+      "prompt-candidate-e9c64a5241b0",
+      "prompt-candidate-cbe6185d6f1c",
+      "prompt-candidate-2e4efb053cd8",
+      "prompt-candidate-90aa2bacfd8b",
+      "prompt-candidate-9c15d862a436",
+      "prompt-candidate-ec63e89f8fc1",
+      "prompt-candidate-e824f58020a6"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

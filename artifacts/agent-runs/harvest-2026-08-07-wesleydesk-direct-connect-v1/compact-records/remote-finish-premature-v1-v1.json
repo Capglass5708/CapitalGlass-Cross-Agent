@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-wesleydesk-direct-connect-v1",
+  "packetId": "remote-finish-premature-v1-v1",
+  "state": "RESOLVED",
+  "packetVerdict": "PASS",
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Hold remote-finish-v2 until receipt REGISTERED; use v2 task only",
+  "evidenceRefs": [
+    "EVT-005",
+    "03-OUTBOX/wesleydesk-full-control-v1-remote-finish-v1-response.json"
+  ],
+  "doNotAdvance": [
+    "Re-queue remote-finish-v1"
+  ],
+  "advancementGate": "register-receipt.json REGISTERED",
+  "contentHash": "9716292aa0cf411048675ef0be2bd47f0d703930f858ed465a0f37f2770755d2"
+}

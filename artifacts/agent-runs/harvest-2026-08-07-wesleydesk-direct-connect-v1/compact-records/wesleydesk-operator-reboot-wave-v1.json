@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-wesleydesk-direct-connect-v1",
+  "packetId": "wesleydesk-operator-reboot-wave-v1",
+  "state": "COMPLETE",
+  "packetVerdict": "PASS",
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Gate 6 formal reboot-persistence proof remains HOLD until authorized",
+  "evidenceRefs": [
+    "EVT-006",
+    "EVT-007",
+    "03-OUTBOX/wesleydesk-post-reboot-health-v1-response.json"
+  ],
+  "doNotAdvance": [
+    "Claim Gate 6 PASS from operator reboot alone"
+  ],
+  "advancementGate": "wesleydesk-post-reboot-health-v1-response.json exists",
+  "contentHash": "fa467d6214255c6d36a5a00a7c2267672fbe210e40f3bd54f17732931f62699e"
+}

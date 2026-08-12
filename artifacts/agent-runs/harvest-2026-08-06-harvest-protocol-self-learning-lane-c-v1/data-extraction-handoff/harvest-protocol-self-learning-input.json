@@ -1,0 +1,162 @@
+{
+  "schema": "harvest-protocol-self-learning-input-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1",
+  "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceProtocolVersion": "1.0.0",
+  "sourceProtocolHash": "a27cfd468f8d2e24945ccdf3d7c77ec643ac1754dbcddd69fe0086148146f3ee",
+  "sourceReceipt": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/validation-result.json",
+  "observedAt": "2026-08-06T23:37:54.258Z",
+  "protocolImprovementCandidates": [
+    {
+      "candidateId": "HPC-Z-MIRROR-RUNBOOK-SYNC-001",
+      "category": "HARVEST_AUTHORITY_BOUNDARY",
+      "title": "Sync docs/runbooks from harvest/protocol before z-mirror when Lane C present",
+      "protocolProblem": "z-harvest-mirror copies docs/runbooks to harvest/protocol; when runbooks lag Git canonical Lane C sections are stripped during test:harvest",
+      "currentProtocolBehavior": "Z_HARVEST_PROTOCOL_SOURCES uses docs/runbooks as upstream; harvest/protocol edits can be overwritten",
+      "desiredProtocolBehavior": "Single canonical direction: harvest/protocol → docs/runbooks → mirror, or fail closed when runbooks lack sections present in harvest/protocol",
+      "proposedProtocolChange": "Add pre-mirror hash guard comparing Lane C markers in runbooks vs harvest/protocol; block overwrite on mismatch",
+      "targetProtocolFiles": [
+        "scripts/harvest/lib/z-harvest-mirror-lib.mjs",
+        "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md",
+        "docs/runbooks/chat-thread-closeout-autopsy-harvest-v1.md"
+      ],
+      "targetSchemas": [],
+      "targetValidators": [
+        "scripts/tests/run-harvest-z-mirror-sync.test.mjs"
+      ],
+      "targetCommands": [
+        "npm run harvest:sync-z-mirror",
+        "npm run test:harvest"
+      ],
+      "evidenceRefs": [
+        "EVT-009",
+        "lane-c-z-mirror-authority-drift-v1",
+        "harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1",
+        "harvest/z-mirror-sync-receipt.json"
+      ],
+      "crossCheckCommands": [],
+      "risk": "UNKNOWN",
+      "confidence": "LOW",
+      "authorityStatus": "PROPOSAL",
+      "reviewStatus": "PENDING",
+      "automaticImplementationEligible": false,
+      "requiredGates": [
+        "test:harvest",
+        "harvest:validate"
+      ],
+      "rollbackPlan": "Revert mirror guard; restore harvest/protocol from Git"
+    },
+    {
+      "candidateId": "HPC-002",
+      "category": "CLOSEOUT_HANDOFF",
+      "title": "Lane C contains only evidence-backed harvest-protocol improvements",
+      "protocolProblem": "Use strict classifier on every export handoff",
+      "currentProtocolBehavior": "NEEDS_VERIFICATION",
+      "desiredProtocolBehavior": "Use strict classifier on every export handoff",
+      "proposedProtocolChange": "Use strict classifier on every export handoff",
+      "targetProtocolFiles": [
+        "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"
+      ],
+      "targetSchemas": [],
+      "targetValidators": [],
+      "targetCommands": [],
+      "evidenceRefs": [
+        "EVT-004",
+        "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md Lane C exclusions",
+        "Data-Extraction/scripts/harvest-protocol-self-learning/lib/classify-harvest-protocol-relevance.mjs"
+      ],
+      "crossCheckCommands": [],
+      "risk": "UNKNOWN",
+      "confidence": "LOW",
+      "authorityStatus": "PROPOSAL",
+      "reviewStatus": "PENDING",
+      "automaticImplementationEligible": false,
+      "requiredGates": [
+        "harvest:validate",
+        "test:harvest"
+      ],
+      "rollbackPlan": "Revert feature branch; preserve L package hash"
+    },
+    {
+      "candidateId": "HPC-003",
+      "category": "RETRIEVAL_PREFLIGHT",
+      "title": "Lane C publication truth tracked separately from hub publish",
+      "protocolProblem": "Report exportStatus, catalogPublishStatus, retrievalStatus independently at closeout",
+      "currentProtocolBehavior": "NEEDS_VERIFICATION",
+      "desiredProtocolBehavior": "Report exportStatus, catalogPublishStatus, retrievalStatus independently at closeout",
+      "proposedProtocolChange": "Report exportStatus, catalogPublishStatus, retrievalStatus independently at closeout",
+      "targetProtocolFiles": [
+        "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"
+      ],
+      "targetSchemas": [],
+      "targetValidators": [],
+      "targetCommands": [],
+      "evidenceRefs": [
+        "EVT-006",
+        "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md protocolSelfLearning block",
+        "harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1"
+      ],
+      "crossCheckCommands": [],
+      "risk": "UNKNOWN",
+      "confidence": "LOW",
+      "authorityStatus": "PROPOSAL",
+      "reviewStatus": "PENDING",
+      "automaticImplementationEligible": false,
+      "requiredGates": [
+        "harvest:validate",
+        "test:harvest"
+      ],
+      "rollbackPlan": "Revert feature branch; preserve L package hash"
+    }
+  ],
+  "evidence": [
+    "EVT-004",
+    "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md Lane C exclusions",
+    "Data-Extraction/scripts/harvest-protocol-self-learning/lib/classify-harvest-protocol-relevance.mjs",
+    "EVT-002",
+    "EVT-005",
+    "artifacts/agent-runs/harvest-protocol-self-learning-all-spokes-verification-v1/verification-closeout.json",
+    "harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1",
+    "EVT-005",
+    "Data-Extraction@a161534f113b0cbb885a287986ebca1217401dde",
+    "scripts/harvest-protocol-self-learning/lib/classify-harvest-protocol-relevance.mjs",
+    "EVT-006",
+    "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md protocolSelfLearning block",
+    "harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1",
+    "EVT-009",
+    "TE-010",
+    "harvest/z-mirror-sync-receipt.json",
+    "missing source: Data-Extraction/docs/platform/CURSOR_HARVEST_INGEST_CLOSEOUT_WAVE_SDLC_V1.md",
+    "harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1",
+    "EVT-002",
+    "HP-006",
+    "harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1",
+    "EVT-007",
+    "artifacts/agent-runs/harvest-protocol-self-learning-all-spokes-verification-v1/verification-closeout.json",
+    "EVT-009",
+    "harvest-z-mirror-source-repair-v1",
+    "scripts/harvest/lib/z-harvest-mirror-lib.mjs Z_HARVEST_EXTERNAL_PROTOCOL_SOURCES",
+    "scripts/harvest/export-protocol-self-learning.mjs",
+    "CapitalGlass-Cross-Agent@57652017edb5b4c6166cd1888488213e7414b06c",
+    "PR #20 merged",
+    "Data-Extraction@a161534f113b0cbb885a287986ebca1217401dde",
+    "scripts/harvest-protocol-self-learning/verify.mjs",
+    "PR #31 merged"
+  ],
+  "crossCheckCommands": [
+    "npm run harvest:validate -- harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1",
+    "npm run harvest:export:protocol-self-learning -- --harvest-id=harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1 --json"
+  ],
+  "invalidationTriggers": [
+    "harvest_manifest_hash_changes",
+    "validation_receipt_missing",
+    "governance_rejection"
+  ],
+  "authority": {
+    "sourceOwner": "CapitalGlass-Cross-Agent",
+    "processingOwner": "Data-Extraction",
+    "approvalOwner": "CG-Platform-Governance-MCP",
+    "catalogRole": "RETRIEVAL_ONLY"
+  },
+  "contentHash": "sha256:60edaca8524d067f6a3ec369c241dee50664b5fc103027ce43ff5b187b8a9944"
+}

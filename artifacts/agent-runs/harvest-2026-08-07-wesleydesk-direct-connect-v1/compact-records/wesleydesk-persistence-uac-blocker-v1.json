@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-wesleydesk-direct-connect-v1",
+  "packetId": "wesleydesk-persistence-uac-blocker-v1",
+  "state": "OPEN",
+  "packetVerdict": "HOLD",
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "WESLEYDESK: RUN-PERSISTENCE.cmd + UAC → register-receipt.json REGISTERED",
+  "evidenceRefs": [
+    "EVT-005",
+    "EVT-007",
+    "register-pending.json"
+  ],
+  "doNotAdvance": [
+    "Queue remote-finish-v2",
+    "Claim NON_REBOOT_ROLLOUT_COMPLETE"
+  ],
+  "advancementGate": "04-ARTIFACTS/service-persistence/register-receipt.json status REGISTERED",
+  "contentHash": "1b3ccdf171317b9d098fcb254f9bbdbcc411a1061a49ac7e097bfe75a5586032"
+}

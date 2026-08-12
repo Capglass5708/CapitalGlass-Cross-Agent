@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "gold-mine-evidence-projections-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1",
+  "projections": [
+    {
+      "projectionId": "GM-001",
+      "signalClass": "RESOLUTION_SIGNAL",
+      "lifecycleHint": "RESOLVED_OBSERVED",
+      "rootCauseKey": "governance-execution-receipt-unpublished-on-main",
+      "workPackageId": "bluebeam-markup-report-bridge-v1",
+      "evidenceStrength": "high",
+      "operatorImpact": "Unblocked Wave B SDLC preparation",
+      "businessImpact": "ESTIMATING",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-07T20:31:21.000Z",
+      "sourceWorkPackageId": "bluebeam-markup-report-bridge-v1",
+      "sourceCommitSha": "773e51b0600f342ee46194b67b1e7a50f5bd5e8e",
+      "novelty": "NEW",
+      "implementationState": "ADOPTED",
+      "resolves": ["BLOCK_GOVERNANCE_EXECUTION_RECEIPT_LIB_MISSING"],
+      "evidenceRefs": ["TE-007", "TE-008"]
+    },
+    {
+      "projectionId": "GM-002",
+      "signalClass": "PROBLEM_SIGNAL",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "governance-feature-branch-not-merged-with-dependent-consumer",
+      "workPackageId": "bluebeam-markup-report-bridge-v1",
+      "evidenceStrength": "high",
+      "operatorImpact": "Required extra controlled patch wave",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "PRE_IMPLEMENTATION",
+      "observedAt": "2026-08-07T20:06:00.000Z",
+      "sourceWorkPackageId": "bluebeam-markup-report-bridge-v1",
+      "novelty": "NEW",
+      "implementationState": "RESOLVED_OBSERVED",
+      "validatesExisting": ["publication-dependency-order"],
+      "evidenceRefs": ["TE-006", "WM-001"]
+    },
+    {
+      "projectionId": "GM-003",
+      "signalClass": "SUCCESS_PATTERN",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "shared-spine-wave-a-canonical-main",
+      "workPackageId": "bluebeam-markup-report-bridge-v1",
+      "evidenceStrength": "high",
+      "businessImpact": "ESTIMATING",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-07T20:15:00.000Z",
+      "sourceCommitSha": "ac05d530658d09927722b9c7d92e2a2b450a8752",
+      "novelty": "NEW",
+      "implementationState": "ADOPTED",
+      "evidenceRefs": ["TE-005", "wave-a-post-publication-spine-proof.json"]
+    },
+    {
+      "projectionId": "GM-004",
+      "signalClass": "OPERATOR_FRICTION_SIGNAL",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "five-repo-coordinated-publication",
+      "workPackageId": "bluebeam-markup-report-bridge-v1",
+      "evidenceStrength": "medium",
+      "businessImpact": "OPERATOR_PRODUCTIVITY",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-07T20:13:00.000Z",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "evidenceRefs": ["OF-001", "TE-004"]
+    }
+  ]
+}

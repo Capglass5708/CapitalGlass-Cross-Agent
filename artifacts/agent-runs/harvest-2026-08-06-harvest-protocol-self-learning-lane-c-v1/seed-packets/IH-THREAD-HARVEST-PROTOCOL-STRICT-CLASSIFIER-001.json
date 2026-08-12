@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-HARVEST-PROTOCOL-STRICT-CLASSIFIER-001",
+    "kind": "runbook",
+  "title": "Protocol self-learning rejects general build intelligence",
+  "summary": "Lane C accepts only evidence-backed harvest-protocol changes via classifyHarvestProtocolRelevance.",
+  "retrievalQuestions": [
+    "What belongs in Lane C?",
+    "Why was a build finding rejected?"
+  ],
+  "evidenceRefs": [
+    "Data-Extraction/scripts/harvest-protocol-self-learning/lib/classify-harvest-protocol-relevance.mjs",
+    "EVT-005",
+    "lane-c-strict-classifier-shipped-v1"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Mixed harvest findings",
+    "startAt": [
+      "protocolImprovementCandidates[]",
+      "classify-harvest-protocol-relevance.mjs"
+    ],
+    "runPreflight": [
+      "test:protocol-self-learning-export",
+      "test:harvest-protocol-self-learning"
+    ],
+    "doNot": [
+      "Copy raw closeouts",
+      "Bypass relevance with generic OTHER"
+    ],
+    "proveBeforeClaiming": [
+      "accepted protocol count",
+      "rejected unrelated count"
+    ]
+  },
+  "ownerRepo": "Data-Extraction",
+  "targetSlice": "BY-KIND/harvest-protocol-self-learning-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

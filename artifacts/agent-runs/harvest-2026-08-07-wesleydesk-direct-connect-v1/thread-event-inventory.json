@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "cross-agent-thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-wesleydesk-direct-connect-v1",
+  "events": [
+    {
+      "eventId": "EVT-001",
+      "description": "User defined WESLEYDESK Direct Connect Agent Communications folder contract (INBOX/OUTBOX/heartbeat/poller)",
+      "actor": "user",
+      "evidenceRefs": ["transcript turn 1", "process/direct-connect/wesleydesk-agent-communications/"],
+      "stateChange": "Scope defined"
+    },
+    {
+      "eventId": "EVT-002",
+      "description": "Built runner v1, schemas, publish script, beacon-hill proof tasks; published to Z:",
+      "actor": "cursor",
+      "evidenceRefs": ["Z:/Agent Communications/00-README/AGENT-INSTRUCTIONS.md", "npm run publish:wesleydesk-agent-communications"],
+      "stateChange": "IMPLEMENTED"
+    },
+    {
+      "eventId": "EVT-003",
+      "description": "User required automatic Cursor startup contract when only folder path pasted",
+      "actor": "user",
+      "evidenceRefs": ["transcript", "AGENT-INSTRUCTIONS.md CURSOR STARTUP CONTRACT"],
+      "stateChange": "Contract hardened"
+    },
+    {
+      "eventId": "EVT-004",
+      "description": "wesleydesk-full-control-v1 rollout waves v1–v6; runner upgraded to v1.2.0; UTF-8 PS, heartbeat, privileged broker",
+      "actor": "cursor",
+      "evidenceRefs": ["03-OUTBOX/wesleydesk-full-control-v1-rollout-v6-response.json"],
+      "stateChange": "PARTIAL_PASS"
+    },
+    {
+      "eventId": "EVT-005",
+      "description": "Persistence registration stuck PENDING_ELEVATION; remote-finish-v1 FAILED before REGISTERED",
+      "actor": "system",
+      "evidenceRefs": ["04-ARTIFACTS/service-persistence/register-pending.json", "03-OUTBOX/wesleydesk-full-control-v1-remote-finish-v1-response.json"],
+      "stateChange": "BLOCKED_OPERATOR_UAC"
+    },
+    {
+      "eventId": "EVT-006",
+      "description": "Operator leaving — reboot scripts, WESLEYDESK-AGENT-NOW.md, dispatch/ INBOX tasks published",
+      "actor": "cursor",
+      "evidenceRefs": ["windows/Invoke-WesleyDeskOperatorReboot.ps1", "WESLEYDESK-AGENT-NOW.md"],
+      "stateChange": "OPERATOR_REBOOT_WAVE"
+    },
+    {
+      "eventId": "EVT-007",
+      "description": "WESLEYDESK rebooted; post-reboot health ran; persistence still PENDING_ELEVATION",
+      "actor": "operator",
+      "evidenceRefs": ["03-OUTBOX/wesleydesk-post-reboot-health-v1-response.json", "05-HEARTBEAT/wesleydesk-status.json"],
+      "stateChange": "POST_REBOOT_POLLING"
+    },
+    {
+      "eventId": "EVT-008",
+      "description": "User invoked CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1 run file",
+      "actor": "user",
+      "evidenceRefs": ["L:/02-catalog/Harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"],
+      "stateChange": "T2 harvest recording"
+    }
+  ]
+}

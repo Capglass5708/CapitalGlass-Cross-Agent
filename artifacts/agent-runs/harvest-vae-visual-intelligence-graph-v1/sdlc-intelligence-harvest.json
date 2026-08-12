@@ -1,0 +1,169 @@
+{
+  "schema": "sdlc-cursor-intelligence-harvest-v2@1.0.0",
+  "milestoneId": "vae-visual-intelligence-graph-v1",
+  "waveId": "vae-visual-intelligence-graph-v1",
+  "provenance": {
+    "ruleId": "capital-glass-sdlc-milestone-wave-agent-rule",
+    "releaseId": "AI-CACHE-RELEASE-20260806-2012d9645b9e",
+    "sourceHash": "b3569def1203d672f726f9d45d73d7c4133661c822e3c92c533d71039ff6ca6d",
+    "headSha": "e6ec6c76112bdc68916aa088bd9169690bc612a7",
+    "branch": "work/vae-visual-intelligence-graph-v1",
+    "preparedAt": "2026-08-11T03:56:24.022Z"
+  },
+  "verifiedTruths": [
+    "VAE visual intelligence graph ontology, projection, MG publication, and retrieval proofs passed milestone terminal gate.",
+    "Origin branches for Visual-Asset-Engine, CG-MASTER-GRAPH, and AppBuilder binding are in remote parity."
+  ],
+  "derivedConclusions": [],
+  "decisions": [],
+  "changes": [],
+  "commands": [],
+  "gateResults": [
+    {
+      "gateId": "graph:milestone",
+      "command": "node scripts/graph/run-visual-intelligence-graph-milestone.mjs",
+      "status": "PASS"
+    },
+    {
+      "gateId": "vae-visual:retrieval:proof",
+      "command": "npm run vae-visual:retrieval:proof",
+      "status": "PASS"
+    }
+  ],
+  "evidence": [
+    "/home/wesley/repos/Visual-Asset-Engine-worktrees/vae-visual-intelligence-graph-v1/artifacts/runs/vae-visual-intelligence-graph-v1/milestone-terminal-receipt.json",
+    "/home/wesley/repos/CG-MASTER-GRAPH-worktrees/vae-visual-intelligence-graph-v1/artifacts/runs/vae-visual-intelligence-graph-v1/master-graph-retrieval-proof.json",
+    "/home/wesley/repos/CG-AppBuilder-MCP/runtime/waverunner/product-milestone-bindings/vae-visual-intelligence-graph-v1.json"
+  ],
+  "risks": [],
+  "blockers": [],
+  "unknowns": [],
+  "crossCheckInstructions": [
+    "git -C /home/wesley/repos/Visual-Asset-Engine-worktrees/vae-visual-intelligence-graph-v1 rev-parse HEAD",
+    "npm run sdlc:cursor:drift-check -- --work-package=vae-visual-intelligence-graph-v1",
+    "test -f artifacts/agent-runs/vae-visual-intelligence-graph-v1/sdlc-cursor-prepare-receipt.json"
+  ],
+  "futureCreationOpportunities": [],
+  "recommendedNextWave": "",
+  "universalHarvest": {
+    "harvestVersion": "universal-harvest-envelope-v1@1.0.0",
+    "milestoneId": "vae-visual-intelligence-graph-v1",
+    "waveId": "vae-visual-intelligence-graph-v1",
+    "executionMode": "FORMAL_CLOSEOUT",
+    "source": {
+      "repository": "/home/wesley/repos/Visual-Asset-Engine-worktrees/vae-visual-intelligence-graph-v1",
+      "sha": "e6ec6c76112bdc68916aa088bd9169690bc612a7",
+      "environment": "unknown",
+      "machine": "ryzen9desk",
+      "observedAt": "2026-08-11T03:56:24.034Z",
+      "receiptRefs": []
+    },
+    "surfacesTouched": {
+      "repositories": [],
+      "applications": [],
+      "businessWorkflows": [],
+      "operatorInteractions": [],
+      "crossAppHandoffs": [],
+      "runtimeServices": [],
+      "documentsOrData": [],
+      "externalIntegrations": [],
+      "machinesOrEnvironments": []
+    },
+    "findings": [
+      {
+        "findingId": "verified-2be2f1a1dbb4",
+        "stableIdentity": "VAE visual intelligence graph ontology, projection, MG publication, and retrieval proofs passed milestone terminal gate.",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "VAE visual intelligence graph ontology, projection, MG publication, and retrieval proofs passed milestone terminal gate.",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-526adb633c24",
+        "stableIdentity": "Origin branches for Visual-Asset-Engine, CG-MASTER-GRAPH, and AppBuilder binding are in remote parity.",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Origin branches for Visual-Asset-Engine, CG-MASTER-GRAPH, and AppBuilder binding are in remote parity.",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      }
+    ],
+    "coverage": {
+      "touchedSurfaceCount": 0,
+      "harvestedSurfaceCount": 2,
+      "unharvestedTouchedSurfaces": [],
+      "coverageVerdict": "COVERAGE_OK",
+      "harvestedSurfaceKeys": [
+        "lane:AUTONOMOUS_AGENT_SDLC",
+        "lane:DOCUMENTATION_KNOWLEDGE",
+        "type:verified_truth"
+      ]
+    },
+    "accounting": {
+      "sourceObservations": 2,
+      "findingsPreserved": 2,
+      "distinctValidSuppressed": 0,
+      "unknownUsefulPreserved": 0
+    },
+    "canonicalLanes": [
+      "AUTONOMOUS_AGENT_SDLC",
+      "PRODUCT_FUNCTIONALITY",
+      "PRODUCT_WORKFLOW",
+      "OPERATOR_FRICTION",
+      "INTEGRATION_HANDOFF",
+      "DATA_EXTRACTION_QUALITY",
+      "PERFORMANCE_RELIABILITY",
+      "BUSINESS_PROCESS",
+      "OBSERVABILITY_GAP",
+      "SUCCESS_PATTERN",
+      "SECURITY_GOVERNANCE",
+      "DOCUMENTATION_KNOWLEDGE",
+      "INFRASTRUCTURE_ENVIRONMENT",
+      "COST_EFFICIENCY",
+      "FUTURE_OPPORTUNITY",
+      "UNMODELED_INTELLIGENCE"
+    ],
+    "envelopeHash": "9d7dc5f30d98de7663b4b95175acf8a531e48c417f1cacae9cf37a1db28d5d33"
+  },
+  "universalHarvestEnvelopeSchema": "universal-harvest-envelope-v1@1.0.0",
+  "harvestHash": "8ec83fb1cd3f8d26e6d389456df94e1485fc690963959f3305edf33657ce38cc",
+  "sdlcCursorBridge": {
+    "schema": "sdlc-cursor-waverunner-handoff-bridge-receipt-v1@1.0.0",
+    "workPackageId": "vae-visual-intelligence-graph-v1",
+    "harvestId": "harvest-vae-visual-intelligence-graph-v1",
+    "packetHash": "b8cae0c0f63073dcf99cfa7e9df62ca1bdb837902e84f887a58f9cbcdbc26e41",
+    "promptHash": "dd5db52c712ccbc0d0d78f3fe134a405d09d951d873d0975eea0f9195dd2e67b",
+    "prepareReceiptPath": "/home/wesley/repos/CG-AppBuilder-MCP/artifacts/agent-runs/vae-visual-intelligence-graph-v1/sdlc-cursor-prepare-receipt.json",
+    "authorityStatus": "PROPOSAL",
+    "catalogRole": "RETRIEVAL_ONLY",
+    "processingOwner": "Data-Extraction",
+    "sourceOwner": "CapitalGlass-Cross-Agent"
+  }
+}

@@ -1,0 +1,431 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-chatgpt-v1",
+  "sourceCommitSha": "57652017edb5b4c6166cd1888488213e7414b06c",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "chatgptSourceCommitSha": "eba039d2f18e494d5564e0e2903295de1b8370c2",
+  "chatgptSourceBranch": "chat-gpt-harvest",
+  "createdAt": "2026-08-06T23:45:00.000Z",
+  "updatedAt": "2026-08-06T23:45:00.000Z",
+  "retrievalResult": "INDEX_HIT",
+  "cacheResult": "CACHE_MISS",
+  "rawScanRequired": false,
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "Treat Lane C L output as approved protocol authority",
+    "Auto-merge or auto-publish harvested protocol candidates",
+    "Route raw closeouts, transcripts, app defects, or build lessons into Lane C",
+    "Fan Lane C into application repos",
+    "Reopen Lane C architecture because of separate z-mirror warning",
+    "Claim HARVEST_COMPLETE from ChatGPT draft without Cursor validation"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 3,
+      "seeds": 3,
+      "roiItems": 5,
+      "operatorFriction": 2,
+      "executionDeltas": 3
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Operator runs harvest:publish-hub-seed + index:publish — NOT_RUN_BY_CURSOR",
+    "note": "ChatGPT draft evaluated and canonicalized by Cursor — hub publish deferred"
+  },
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "1.0.0",
+    "eligibleCandidates": 1,
+    "rejectedUnrelatedCandidates": 0,
+    "exportStatus": "pending-evaluation-export",
+    "dataExtractionStatus": "not-run",
+    "catalogPublishStatus": "not-run",
+    "retrievalStatus": "not-run",
+    "targetCatalog": "L:\\02-catalog\\Harvest\\Harvest Protocol Self Learning",
+    "authorityStatus": "PROPOSAL",
+    "automaticProtocolMutation": false,
+    "note": "Cursor evaluation harvest — export after validate PASS"
+  },
+  "ledgerLineage": {
+    "ledgerPath": "work-progress/ACTIVE_WORK.md",
+    "note": "ChatGPT lane-c-v1 draft evaluation — see evaluation artifacts folder",
+    "ledgerContentHashBefore": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096",
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  },
+  "relatedRepos": [
+    {
+      "repo": "Data-Extraction",
+      "branch": "main",
+      "commitSha": "a161534f113b0cbb885a287986ebca1217401dde",
+      "role": "Lane C processing"
+    },
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "chat-gpt-harvest",
+      "commitSha": "eba039d2f18e494d5564e0e2903295de1b8370c2",
+      "role": "ChatGPT draft source"
+    }
+  ],
+  "supersededClaims": [
+    {
+      "claimId": "chatgpt-draft-lane-c-operational",
+      "supersededBy": "lane-c-all-spokes-go-with-warn-v1",
+      "reason": "ChatGPT draft recorded thread events; operational state verified in lane-closeout harvest"
+    }
+  ],
+  "protocolImprovementCandidates": [
+    {
+      "candidateId": "HPC-Z-MIRROR-RUNBOOK-SYNC-001",
+      "category": "HARVEST_AUTHORITY_BOUNDARY",
+      "title": "Sync docs/runbooks from harvest/protocol before z-mirror when Lane C present",
+      "protocolProblem": "z-harvest-mirror copies docs/runbooks to harvest/protocol; when runbooks lag Git canonical Lane C sections are stripped during test:harvest",
+      "currentProtocolBehavior": "Z_HARVEST_PROTOCOL_SOURCES uses docs/runbooks as upstream; harvest/protocol edits can be overwritten",
+      "desiredProtocolBehavior": "Single canonical direction: harvest/protocol → docs/runbooks → mirror, or fail closed when runbooks lack sections present in harvest/protocol",
+      "proposedProtocolChange": "Add pre-mirror hash guard comparing Lane C markers in runbooks vs harvest/protocol; block overwrite on mismatch",
+      "targetProtocolFiles": [
+        "scripts/harvest/lib/z-harvest-mirror-lib.mjs",
+        "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md",
+        "docs/runbooks/chat-thread-closeout-autopsy-harvest-v1.md"
+      ],
+      "targetValidators": [
+        "scripts/tests/run-harvest-z-mirror-sync.test.mjs"
+      ],
+      "targetCommands": [
+        "npm run harvest:sync-z-mirror",
+        "npm run test:harvest"
+      ],
+      "evidenceRefs": [
+        "EVT-009",
+        "lane-c-z-mirror-authority-drift-v1",
+        "harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1",
+        "harvest/z-mirror-sync-receipt.json"
+      ],
+      "authorityStatus": "PROPOSAL",
+      "reviewStatus": "PENDING",
+      "automaticImplementationEligible": false,
+      "requiredGates": [
+        "test:harvest",
+        "harvest:validate"
+      ],
+      "rollbackPlan": "Revert mirror guard; restore harvest/protocol from Git"
+    }
+  ],
+  "packets": [
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "projectFile": "work-progress/projects/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1.md",
+      "nextAction": "Use strict classifier on every export handoff",
+      "advancementGate": "classifyHarvestProtocolRelevance returns ELIGIBLE only for protocol targets",
+      "doNotAdvance": [],
+      "packetKind": "decision",
+      "packetId": "lane-c-protocol-only-scope-v1",
+      "packetTitle": "Lane C contains only evidence-backed harvest-protocol improvements",
+      "state": "RECORDED",
+      "packetVerdict": "POLICY_RECORDED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "evidenceRefs": [
+        "EVT-004",
+        "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md Lane C exclusions",
+        "Data-Extraction/scripts/harvest-protocol-self-learning/lib/classify-harvest-protocol-relevance.mjs"
+      ],
+      "decision": "Lane C excludes build findings, raw closeouts, WaveRunner lane, and automatic mutation",
+      "alternativesRejected": [
+        "All build findings",
+        "Raw closeouts or transcripts",
+        "WaveRunner improvements",
+        "Automatic protocol mutation"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "projectFile": "work-progress/projects/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1.md",
+      "nextAction": "Do not treat L catalog as approval authority",
+      "advancementGate": "authority.catalogRole RETRIEVAL_ONLY in export handoff",
+      "doNotAdvance": [],
+      "packetKind": "decision",
+      "packetId": "lane-c-ownership-routing-v1",
+      "packetTitle": "Cross-Agent records/export; Data-Extraction filters/publishes; Governance approves",
+      "state": "RECORDED",
+      "packetVerdict": "OWNERSHIP_RECORDED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "evidenceRefs": [
+        "EVT-002",
+        "EVT-005",
+        "artifacts/agent-runs/harvest-protocol-self-learning-all-spokes-verification-v1/verification-closeout.json",
+        "harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [
+        "Data-Extraction@a161534f113b0cbb885a287986ebca1217401dde"
+      ],
+      "blockers": [],
+      "relatedPackets": [],
+      "projectFile": "work-progress/projects/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1.md",
+      "nextAction": "None — document in protocol only if gap found",
+      "advancementGate": "npm run test:harvest-protocol-self-learning exit 0",
+      "doNotAdvance": [
+        "Re-export classifier as new Lane C candidate without protocol doc gap"
+      ],
+      "packetKind": "protocol_upgrade",
+      "packetId": "lane-c-strict-classifier-shipped-v1",
+      "packetTitle": "Strict Lane C relevance classifier shipped in Data-Extraction",
+      "state": "COMPLETE",
+      "packetVerdict": "ALREADY_IMPLEMENTED",
+      "ownerRepo": "Data-Extraction",
+      "evidenceRefs": [
+        "EVT-005",
+        "Data-Extraction@a161534f113b0cbb885a287986ebca1217401dde",
+        "scripts/harvest-protocol-self-learning/lib/classify-harvest-protocol-relevance.mjs"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "projectFile": "work-progress/projects/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1.md",
+      "nextAction": "Report exportStatus, catalogPublishStatus, retrievalStatus independently at closeout",
+      "advancementGate": "protocolSelfLearning fields present in manifest when Lane C used",
+      "doNotAdvance": [],
+      "packetKind": "protocol_upgrade",
+      "packetId": "lane-c-publication-truth-chain-v1",
+      "packetTitle": "Lane C publication truth tracked separately from hub publish",
+      "state": "COMPLETE",
+      "packetVerdict": "DOCUMENTED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "evidenceRefs": [
+        "EVT-006",
+        "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md protocolSelfLearning block",
+        "harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "projectFile": "work-progress/projects/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1.md",
+      "nextAction": "harvest-z-mirror-source-repair-v1 — sync docs/runbooks from harvest/protocol before mirror",
+      "advancementGate": "npm run test:harvest exit 0 without Z_HARVEST_MIRROR_SYNC_PARTIAL",
+      "doNotAdvance": [
+        "Treat as Lane C regression",
+        "Overwrite harvest/protocol from stale runbooks"
+      ],
+      "packetKind": "protocol_upgrade",
+      "packetId": "lane-c-z-mirror-authority-drift-v1",
+      "packetTitle": "Z-mirror can overwrite harvest/protocol when docs/runbooks lag Git canonical",
+      "state": "OPEN",
+      "packetVerdict": "WARN",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "evidenceRefs": [
+        "EVT-009",
+        "TE-010",
+        "harvest/z-mirror-sync-receipt.json",
+        "missing source: Data-Extraction/docs/platform/CURSOR_HARVEST_INGEST_CLOSEOUT_WAVE_SDLC_V1.md",
+        "harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "projectFile": "work-progress/projects/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1.md",
+      "nextAction": "Consult ownership registry at lane design start",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "packetKind": "repeated_work",
+      "packetId": "lane-c-repeated-ownership-friction-v1",
+      "packetTitle": "Ownership boundaries restated across spokes",
+      "state": "DOCUMENTED",
+      "packetVerdict": "DUPLICATE_AWARE",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "duplicateId": "DUP-LANE-OWNERSHIP-001",
+      "firstKnownInstance": "harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1",
+      "priorIndexSlice": "work-progress/harvest-packet-registry.json",
+      "whyMissed": "Spoke matrix not built before implementation waves",
+      "evidenceRefs": [
+        "EVT-002",
+        "HP-006",
+        "harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [],
+      "relatedPackets": [],
+      "projectFile": "work-progress/projects/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1.md",
+      "nextAction": "Route to generic harvest process docs — not Lane C protocol patch unless schema gap",
+      "advancementGate": "not-required",
+      "doNotAdvance": [],
+      "packetKind": "faster_path",
+      "packetId": "lane-c-spoke-matrix-lesson-v1",
+      "packetTitle": "Classified lanes need required/optional/N/A spoke matrix early",
+      "state": "RECORDED",
+      "packetVerdict": "LESSON_RECORDED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "situation": "Designing classified cross-repo Lane C",
+      "whatHappened": "AppBuilder/Governance optional spokes resolved late in verification wave",
+      "rightFirstMove": "Build spoke matrix with strict eligibility before implementation",
+      "requiredGuard": "No application fanout without confirmed gap",
+      "evidenceRefs": [
+        "EVT-007",
+        "artifacts/agent-runs/harvest-protocol-self-learning-all-spokes-verification-v1/verification-closeout.json"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [],
+      "blockers": [
+        "Data-Extraction/docs/platform/CURSOR_HARVEST_INGEST_CLOSEOUT_WAVE_SDLC_V1.md missing"
+      ],
+      "relatedPackets": [],
+      "projectFile": "work-progress/projects/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1.md",
+      "nextAction": "Restore wave SDLC doc or remove from mirror source list until present",
+      "advancementGate": "syncZHarvestMirror errors.length === 0 with requireZPublication false",
+      "doNotAdvance": [],
+      "packetKind": "blocker",
+      "packetId": "blocker-z-mirror-wave-sdlc-source-v1",
+      "packetTitle": "Z-mirror missing Data-Extraction wave SDLC source — separate maintenance",
+      "state": "OPEN",
+      "packetVerdict": "DEFERRED",
+      "ownerRepo": "Data-Extraction",
+      "blockerId": "BLOCK-Z-MIRROR-SOURCE-MISSING",
+      "status": "OPEN_SEPARATE_MAINTENANCE",
+      "proofCommandId": "test:harvest",
+      "evidenceRefs": [
+        "EVT-009",
+        "harvest-z-mirror-source-repair-v1",
+        "scripts/harvest/lib/z-harvest-mirror-lib.mjs Z_HARVEST_EXTERNAL_PROTOCOL_SOURCES"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [
+        "CapitalGlass-Cross-Agent@57652017edb5b4c6166cd1888488213e7414b06c"
+      ],
+      "blockers": [],
+      "relatedPackets": [],
+      "projectFile": "work-progress/projects/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1.md",
+      "nextAction": "Run only after harvest:validate PASS",
+      "advancementGate": "npm run test:protocol-self-learning-export exit 0",
+      "doNotAdvance": [],
+      "packetKind": "command",
+      "packetId": "lane-c-export-command-v1",
+      "packetTitle": "Cross-Agent protocol-only export command",
+      "state": "COMPLETE",
+      "packetVerdict": "SHIPPED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "command": "npm run harvest:export:protocol-self-learning -- --harvest-id=<id> --json",
+      "host": "Cross-Agent",
+      "provesGate": "Protocol-only handoff export",
+      "expectedPassSignal": "protocolImprovementCandidates only in handoff JSON",
+      "evidenceRefs": [
+        "scripts/harvest/export-protocol-self-learning.mjs",
+        "CapitalGlass-Cross-Agent@57652017edb5b4c6166cd1888488213e7414b06c",
+        "PR #20 merged"
+      ]
+    },
+    {
+      "harvestVerdictContribution": "RECORDED",
+      "ownerMcp": "user-cg-app-mcp",
+      "ownerIndexingStatus": "indexed",
+      "requiredOwnerArtifact": null,
+      "commitRefs": [
+        "Data-Extraction@a161534f113b0cbb885a287986ebca1217401dde"
+      ],
+      "blockers": [],
+      "relatedPackets": [],
+      "projectFile": "work-progress/projects/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1.md",
+      "nextAction": "HARVEST_PROTOCOL_CATALOG_ROOT=/mnt/l for live verify",
+      "advancementGate": "harvest-protocol:self-learning:verify read-only — no republish",
+      "doNotAdvance": [],
+      "packetKind": "command",
+      "packetId": "lane-c-verify-command-v1",
+      "packetTitle": "Data-Extraction Lane C verify command",
+      "state": "COMPLETE",
+      "packetVerdict": "SHIPPED",
+      "ownerRepo": "Data-Extraction",
+      "command": "npm run harvest-protocol:self-learning:verify -- --harvest-id=<id> --json",
+      "host": "Data-Extraction",
+      "provesGate": "Package/index/retrieval validation",
+      "expectedPassSignal": "RETRIEVAL_PASS; rawScanRequired=false",
+      "evidenceRefs": [
+        "Data-Extraction@a161534f113b0cbb885a287986ebca1217401dde",
+        "scripts/harvest-protocol-self-learning/verify.mjs",
+        "PR #31 merged"
+      ]
+    }
+  ],
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 10,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 10,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-bee6d666bd6a",
+      "prompt-candidate-44f92d88ddb7",
+      "prompt-candidate-01e21e1773c4",
+      "prompt-candidate-67f37751710c",
+      "prompt-candidate-5e0ef2214906",
+      "prompt-candidate-d2c2783e86df",
+      "prompt-candidate-25876c23480a",
+      "prompt-candidate-169111656ce0",
+      "prompt-candidate-9c15d862a436",
+      "prompt-candidate-6bbd193afdbc"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

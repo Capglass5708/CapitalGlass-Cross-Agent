@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-HARVEST-Z-MIRROR-GIT-GUARD-001",
+  "kind": "failure-pattern",
+  "title": "Stale Z-mirror and lagging runbooks can overwrite Git harvest protocols",
+  "summary": "Mirror sync must verify all external sources exist; align docs/runbooks with harvest/protocol before repo mirror when Lane C sections present.",
+  "retrievalQuestions": [
+    "Why did test:harvest warn on z-mirror?",
+    "How should Git authority be protected?"
+  ],
+  "evidenceRefs": [
+    "harvest/z-mirror-sync-receipt.json",
+    "lane-c-z-mirror-authority-drift-v1",
+    "EVT-009",
+    "harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Mirror sync touches tracked protocol docs",
+    "startAt": [
+      "scripts/tests/run-harvest-z-mirror-sync.test.mjs",
+      "harvest/z-mirror-sync-receipt.json"
+    ],
+    "runPreflight": [
+      "git status --short harvest/protocol",
+      "grep -c 'Lane C' docs/runbooks vs harvest/protocol"
+    ],
+    "doNot": [
+      "Overwrite from incomplete Z source list",
+      "Commit mirror-induced Lane C regression"
+    ],
+    "proveBeforeClaiming": [
+      "syncZHarvestMirror errors empty or explicitly deferred",
+      "tracked protocol files match canonical"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

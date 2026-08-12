@@ -1,0 +1,207 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-wesleydesk-direct-connect-v1",
+  "missionClass": "harvest",
+  "updatedAt": "2026-08-08T00:15:00.000Z",
+  "sourceCommitSha": "a082553e210c4606d8efca321bdbead847c8ab62",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "retrievalResult": "INDEX_HIT",
+  "retrievalNote": "L protocol read from /mnt/l/02-catalog/Harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md; hub BY-KIND/active-work-blockers.json consulted; scout CLI failed UNC path — used hub slices directly",
+  "supersededClaims": [
+    "WESLEYDESK_DIRECT_CONNECT_NOT_BUILT",
+    "remote-finish-v1_COMPLETE"
+  ],
+  "doNotAdvance": [
+    "WESLEYDESK_FULL_GOVERNED_ADMIN_CONTROL_PASS",
+    "GO_FOR_GATE_6",
+    "NON_REBOOT_ROLLOUT_COMPLETE"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 4,
+      "seeds": 4,
+      "roiItems": 4,
+      "operatorFriction": 2
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run"
+  },
+  "packets": [
+    {
+      "packetId": "wesleydesk-agent-communications-online-v1",
+      "packetTitle": "WESLEYDESK Agent Communications runner v1.2.0 ONLINE/POLLING",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-wesleydesk-direct-connect-v1.md",
+      "nextAction": "Maintain poller; process INBOX tasks from RYZEN9DESK",
+      "advancementGate": "05-HEARTBEAT runnerStatus POLLING",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "EVT-002",
+        "EVT-007",
+        "Z:/05-HEARTBEAT/wesleydesk-status.json"
+      ],
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetId": "wesleydesk-persistence-uac-blocker-v1",
+      "packetTitle": "Windows persistence registration blocked on operator UAC",
+      "state": "OPEN",
+      "packetVerdict": "HOLD",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-wesleydesk-direct-connect-v1.md",
+      "nextAction": "WESLEYDESK: RUN-PERSISTENCE.cmd + UAC → register-receipt.json REGISTERED",
+      "advancementGate": "04-ARTIFACTS/service-persistence/register-receipt.json status REGISTERED",
+      "doNotAdvance": [
+        "Queue remote-finish-v2",
+        "Claim NON_REBOOT_ROLLOUT_COMPLETE"
+      ],
+      "evidenceRefs": [
+        "EVT-005",
+        "EVT-007",
+        "register-pending.json"
+      ],
+      "commitRefs": [],
+      "blockers": [
+        "BLOCKED_OPERATOR_UAC"
+      ]
+    },
+    {
+      "packetId": "remote-finish-premature-v1-v1",
+      "packetTitle": "remote-finish-v1 dispatched before persistence REGISTERED",
+      "state": "RESOLVED",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-wesleydesk-direct-connect-v1.md",
+      "nextAction": "Hold remote-finish-v2 until receipt REGISTERED; use v2 task only",
+      "advancementGate": "register-receipt.json REGISTERED",
+      "doNotAdvance": [
+        "Re-queue remote-finish-v1"
+      ],
+      "evidenceRefs": [
+        "EVT-005",
+        "03-OUTBOX/wesleydesk-full-control-v1-remote-finish-v1-response.json"
+      ],
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetId": "wesleydesk-publish-rsync-excludes-v1",
+      "packetTitle": "Publish rsync excludes live INBOX/ARTIFACTS — operator tasks need Z: copy",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-wesleydesk-direct-connect-v1.md",
+      "nextAction": "After publish, copy dispatch/*.json to 01-INBOX on Z: when queuing tasks",
+      "advancementGate": "dispatch/README.md documents post-publish INBOX copy",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "EVT-006",
+        "scripts/direct-connect/publish-wesleydesk-agent-communications.sh"
+      ],
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetId": "wesleydesk-operator-reboot-wave-v1",
+      "packetTitle": "Operator-initiated reboot wave (not Gate 6 formal proof)",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-wesleydesk-direct-connect-v1.md",
+      "nextAction": "Gate 6 formal reboot-persistence proof remains HOLD until authorized",
+      "advancementGate": "wesleydesk-post-reboot-health-v1-response.json exists",
+      "doNotAdvance": [
+        "Claim Gate 6 PASS from operator reboot alone"
+      ],
+      "evidenceRefs": [
+        "EVT-006",
+        "EVT-007",
+        "03-OUTBOX/wesleydesk-post-reboot-health-v1-response.json"
+      ],
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetId": "wesleydesk-full-control-rollout-v6-partial-v1",
+      "packetTitle": "full-control rollout v6 partial — gates 2–7 evidence; gate1/systemd flaky",
+      "state": "OPEN",
+      "packetVerdict": "HOLD",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-07-wesleydesk-direct-connect-v1.md",
+      "nextAction": "Complete remote-finish-v2 after persistence REGISTERED",
+      "advancementGate": "remote-finish-v2 PASS + register-receipt REGISTERED",
+      "doNotAdvance": [
+        "WESLEYDESK_FULL_GOVERNED_ADMIN_CONTROL_PASS",
+        "GO_FOR_GATE_6"
+      ],
+      "evidenceRefs": [
+        "EVT-004",
+        "03-OUTBOX/wesleydesk-full-control-v1-rollout-v6-response.json"
+      ],
+      "commitRefs": [],
+      "blockers": [
+        "persistence-not-registered",
+        "remote-finish-v2-pending"
+      ]
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096",
+    "ledgerContentHashAfter": "caba16575b981bf551e9c29a365d43c60c610f7f42961145c0a7d7afbee04096"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 21,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 21,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-d283bc8b4036",
+      "prompt-candidate-3bc38e80692e",
+      "prompt-candidate-fa16bac01616",
+      "prompt-candidate-af40b100fe44",
+      "prompt-candidate-c480cca38756",
+      "prompt-candidate-5c095fbcdd01",
+      "prompt-candidate-bf9102d98c64",
+      "prompt-candidate-85d3f6e8b883",
+      "prompt-candidate-90aa2bacfd8b",
+      "prompt-candidate-af4214526a02",
+      "prompt-candidate-4ee7b66f2176",
+      "prompt-candidate-e7fe18e7f109",
+      "prompt-candidate-1f6338426911",
+      "prompt-candidate-2da0b38cf74c",
+      "prompt-candidate-c7c6f708c94a",
+      "prompt-candidate-41ff9d83e81a",
+      "prompt-candidate-bc52bd8bb9f8",
+      "prompt-candidate-14e287fac7c2",
+      "prompt-candidate-33b24c24467c",
+      "prompt-candidate-50bfa907bf1a",
+      "prompt-candidate-9978981f52cd"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

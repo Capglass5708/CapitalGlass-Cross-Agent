@@ -1,0 +1,546 @@
+{
+  "packetKind": "graph-extraction",
+  "schemaVersion": "cg-master-graph-extraction-v1",
+  "extractionId": "extraction:harvest-2026-08-07-wesleydesk-direct-connect-v1",
+  "harvestId": "harvest-2026-08-07-wesleydesk-direct-connect-v1",
+  "workPackageId": "harvest-2026-08-07-wesleydesk-direct-connect-v1",
+  "producer": {
+    "repositoryId": "repo:capitalglass-cross-agent",
+    "capability": "harvest-graph-extraction",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "id": "harvest:harvest-2026-08-07-wesleydesk-direct-connect-v1",
+      "nodeType": "Harvest",
+      "displayName": "harvest-2026-08-07-wesleydesk-direct-connect-v1",
+      "lifecycleState": "lifecycle:canonical",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "missionClass": "harvest",
+        "sourceCommitSha": "a082553e210c4606d8efca321bdbead847c8ab62",
+        "retrievalResult": "INDEX_HIT"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T00:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:wesleydesk-agent-communications-online-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "WESLEYDESK Agent Communications runner v1.2.0 ONLINE/POLLING",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-07-wesleydesk-direct-connect-v1.md",
+        "advancementGate": "05-HEARTBEAT runnerStatus POLLING"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T00:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-agent-communications-online-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-agent-communications-online-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:wesleydesk-persistence-uac-blocker-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Windows persistence registration blocked on operator UAC",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "OPEN",
+      "metadata": {
+        "packetVerdict": "HOLD",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-07-wesleydesk-direct-connect-v1.md",
+        "advancementGate": "04-ARTIFACTS/service-persistence/register-receipt.json status REGISTERED"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T00:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-persistence-uac-blocker-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-persistence-uac-blocker-v1.json"
+        }
+      }
+    },
+    {
+      "id": "entity:blocker-blocker-wesleydesk-persistence-uac-blocker-v1",
+      "nodeType": "Entity",
+      "displayName": "blocker-wesleydesk-persistence-uac-blocker-v1",
+      "metadata": {
+        "entityKind": "harvest-blocker",
+        "blockerOwner": null
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T00:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-persistence-uac-blocker-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-persistence-uac-blocker-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:remote-finish-premature-v1-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "remote-finish-v1 dispatched before persistence REGISTERED",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RESOLVED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-07-wesleydesk-direct-connect-v1.md",
+        "advancementGate": "register-receipt.json REGISTERED"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T00:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/remote-finish-premature-v1-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/remote-finish-premature-v1-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:wesleydesk-publish-rsync-excludes-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Publish rsync excludes live INBOX/ARTIFACTS — operator tasks need Z: copy",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-07-wesleydesk-direct-connect-v1.md",
+        "advancementGate": "dispatch/README.md documents post-publish INBOX copy"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T00:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-publish-rsync-excludes-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-publish-rsync-excludes-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:wesleydesk-operator-reboot-wave-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Operator-initiated reboot wave (not Gate 6 formal proof)",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-07-wesleydesk-direct-connect-v1.md",
+        "advancementGate": "wesleydesk-post-reboot-health-v1-response.json exists"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T00:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-operator-reboot-wave-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-operator-reboot-wave-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:wesleydesk-full-control-rollout-v6-partial-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "full-control rollout v6 partial — gates 2–7 evidence; gate1/systemd flaky",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "OPEN",
+      "metadata": {
+        "packetVerdict": "HOLD",
+        "ownerRepo": "CapitalGlass-Office-Admin",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-07-wesleydesk-direct-connect-v1.md",
+        "advancementGate": "remote-finish-v2 PASS + register-receipt REGISTERED"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T00:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-full-control-rollout-v6-partial-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-full-control-rollout-v6-partial-v1.json"
+        }
+      }
+    },
+    {
+      "id": "entity:blocker-blocker-wesleydesk-full-control-rollout-v6-partial-v1",
+      "nodeType": "Entity",
+      "displayName": "blocker-wesleydesk-full-control-rollout-v6-partial-v1",
+      "metadata": {
+        "entityKind": "harvest-blocker",
+        "blockerOwner": null
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T00:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-full-control-rollout-v6-partial-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-full-control-rollout-v6-partial-v1.json"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:harvest-harvest-2026-08-07-wesleydesk-direct-connect-v1-contains-workpackage-wesleydesk-agent-communications-online-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-07-wesleydesk-direct-connect-v1",
+      "targetId": "workpackage:wesleydesk-agent-communications-online-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T00:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-wesleydesk-agent-communications-online-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:wesleydesk-agent-communications-online-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T00:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-agent-communications-online-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-agent-communications-online-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-07-wesleydesk-direct-connect-v1-contains-workpackage-wesleydesk-persistence-uac-blocker-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-07-wesleydesk-direct-connect-v1",
+      "targetId": "workpackage:wesleydesk-persistence-uac-blocker-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T00:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-wesleydesk-persistence-uac-blocker-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:wesleydesk-persistence-uac-blocker-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T00:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-persistence-uac-blocker-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-persistence-uac-blocker-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-wesleydesk-persistence-uac-blocker-v1-blocked-by-entity-blocker-blocker-wesleydesk-persistence-uac-blocker-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:wesleydesk-persistence-uac-blocker-v1",
+      "targetId": "entity:blocker-blocker-wesleydesk-persistence-uac-blocker-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T00:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-persistence-uac-blocker-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-persistence-uac-blocker-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-07-wesleydesk-direct-connect-v1-contains-workpackage-remote-finish-premature-v1-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-07-wesleydesk-direct-connect-v1",
+      "targetId": "workpackage:remote-finish-premature-v1-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T00:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-remote-finish-premature-v1-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:remote-finish-premature-v1-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T00:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/remote-finish-premature-v1-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/remote-finish-premature-v1-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-07-wesleydesk-direct-connect-v1-contains-workpackage-wesleydesk-publish-rsync-excludes-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-07-wesleydesk-direct-connect-v1",
+      "targetId": "workpackage:wesleydesk-publish-rsync-excludes-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T00:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-wesleydesk-publish-rsync-excludes-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:wesleydesk-publish-rsync-excludes-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T00:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-publish-rsync-excludes-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-publish-rsync-excludes-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-07-wesleydesk-direct-connect-v1-contains-workpackage-wesleydesk-operator-reboot-wave-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-07-wesleydesk-direct-connect-v1",
+      "targetId": "workpackage:wesleydesk-operator-reboot-wave-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T00:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-wesleydesk-operator-reboot-wave-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:wesleydesk-operator-reboot-wave-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T00:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-operator-reboot-wave-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-operator-reboot-wave-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-07-wesleydesk-direct-connect-v1-contains-workpackage-wesleydesk-full-control-rollout-v6-partial-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-07-wesleydesk-direct-connect-v1",
+      "targetId": "workpackage:wesleydesk-full-control-rollout-v6-partial-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T00:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-office-admin-owns-workpackage-wesleydesk-full-control-rollout-v6-partial-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-office-admin",
+      "targetId": "workpackage:wesleydesk-full-control-rollout-v6-partial-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T00:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-full-control-rollout-v6-partial-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-full-control-rollout-v6-partial-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-wesleydesk-full-control-rollout-v6-partial-v1-blocked-by-entity-blocker-blocker-wesleydesk-full-control-rollout-v6-partial-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:wesleydesk-full-control-rollout-v6-partial-v1",
+      "targetId": "entity:blocker-blocker-wesleydesk-full-control-rollout-v6-partial-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T00:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-full-control-rollout-v6-partial-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-full-control-rollout-v6-partial-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-wesleydesk-full-control-rollout-v6-partial-v1-blocked-by-entity-blocker-blocker-wesleydesk-full-control-rollout-v6-partial-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:wesleydesk-full-control-rollout-v6-partial-v1",
+      "targetId": "entity:blocker-blocker-wesleydesk-full-control-rollout-v6-partial-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-08T00:15:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-full-control-rollout-v6-partial-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/compact-records/wesleydesk-full-control-rollout-v6-partial-v1.json"
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "provenance": {
+    "producerRepositoryId": "repo:capitalglass-cross-agent",
+    "producerCapability": "harvest-graph-extraction",
+    "sourceAuthority": "authority:cross-agent-harvest",
+    "classification": "observed",
+    "verificationState": "verified",
+    "recordedAt": "2026-08-08T00:15:00.000Z",
+    "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/harvest-manifest-v1.json",
+    "sourceAnchorDetail": {
+      "anchorType": "file-path",
+      "locator": "artifacts/agent-runs/harvest-2026-08-07-wesleydesk-direct-connect-v1/harvest-manifest-v1.json"
+    }
+  }
+}

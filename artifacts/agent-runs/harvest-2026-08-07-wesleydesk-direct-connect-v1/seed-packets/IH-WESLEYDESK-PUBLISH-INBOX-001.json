@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-WESLEYDESK-PUBLISH-INBOX-001",
+  "kind": "runbook",
+  "title": "Publish excludes live INBOX — copy dispatch tasks after rsync",
+  "summary": "publish-wesleydesk-agent-communications.sh excludes 01-INBOX/*.json; queue tasks via dispatch/ copy.",
+  "retrievalQuestions": [
+    "Why did INBOX reboot task disappear after publish?",
+    "How to queue tasks to WESLEYDESK after publishing Agent Communications?"
+  ],
+  "evidenceRefs": ["publish-wesleydesk-agent-communications.sh", "dispatch/README.md", "EVT-006"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "After npm run publish:wesleydesk-agent-communications",
+    "startAt": ["dispatch/", "01-INBOX/"],
+    "runPreflight": ["ls dispatch/", "ls 01-INBOX/"],
+    "doNot": ["Assume git INBOX copies to Z:", "Delete operator task state on publish"],
+    "proveBeforeClaiming": ["Target task JSON present in 01-INBOX on Z:"]
+  },
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "targetSlice": "BY-KIND/command-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

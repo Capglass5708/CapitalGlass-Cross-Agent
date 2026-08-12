@@ -1,0 +1,166 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "rework",
+      "description": "Wave B SDLC prepare attempted before governance execution-receipt published to main",
+      "evidenceRefs": ["TE-006", "wave-b-preparation-blocked-receipt.json"],
+      "estimatedImpact": "medium",
+      "savedBy": "Verify CG_PLATFORM_GOVERNANCE_ROOT resolves normalize.mjs before Wave B prep",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "host",
+      "description": "Git commit failed without GIT_AUTHOR_NAME on worktree branches",
+      "evidenceRefs": ["Wave A publication session — fatal empty ident"],
+      "estimatedImpact": "low",
+      "savedBy": "Export GIT_AUTHOR_* env for agent commits or use operator identity",
+      "roiRank": 4
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "verification",
+      "description": "Revu primary checkout dirty/behind blocked local markup-report:validate until isolated worktree used",
+      "evidenceRefs": ["TE-005", "post-publication gate notes"],
+      "estimatedImpact": "low",
+      "savedBy": "git worktree add for validation on dirty primaries",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "context",
+      "description": "Conversation context summarized mid-thread — re-verification required at publication closeout",
+      "evidenceRefs": ["conversation summary boundary"],
+      "estimatedImpact": "medium",
+      "savedBy": "Re-fetch origin/main and re-run spine proof after summary",
+      "roiRank": 2
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Multi-repo Wave A required manual PR merge sequence across five repositories",
+      "operatorCost": "medium",
+      "systemFix": "Document publication order in Cross-Agent work package; optional batch PR script",
+      "evidenceRefs": ["TE-004"],
+      "linkedWasteIds": ["TW-004"],
+      "frequency": "observed"
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Wave B preparation after Wave A publication",
+      "actualExecution": {
+        "steps": ["Ran sdlc:cursor:prepare without execution-receipt on main", "BLOCK_GOVERNANCE_EXECUTION_RECEIPT_LIB_MISSING"],
+        "outcome": "BLOCKED",
+        "evidenceRefs": ["TE-006"]
+      },
+      "optimalExecution": {
+        "steps": ["Confirm scripts/suite-governance/execution-receipt/lib/normalize.mjs on Governance main", "Or cherry-pick unpublished branch before prep"],
+        "outcome": "READY on first prepare after publication",
+        "requiredPreflight": ["loadExecutionReceiptLib() smoke test"]
+      },
+      "deltaCost": { "time": "medium", "tokens": "low", "operatorFrustration": "low" }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Governance execution-receipt missing on main",
+      "actualExecution": {
+        "steps": ["Assumed missing implementation", "Searched git history", "Found on feat/cg-estimating-evidence-envelope-authority-v1", "Cherry-picked 3 commits", "PR #19"],
+        "outcome": "PASS",
+        "evidenceRefs": ["TE-007", "commits 1e8103a 3f5124b 9edcbe9"]
+      },
+      "optimalExecution": {
+        "steps": ["Merge execution-receipt with estimating-envelope PR #17 or track as publication dependency"],
+        "outcome": "No Wave B infra patch needed",
+        "requiredPreflight": ["git log --all --oneline -- '*execution-receipt*'"]
+      },
+      "deltaCost": { "time": "high", "tokens": "medium", "operatorFrustration": "low" }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Treated execution-receipt as net-new invention candidate",
+      "whyItWasWrong": "Canonical implementation already committed on approved Governance feature branch",
+      "correctFirstMove": "git log --all on CG-Platform-Governance-MCP for execution-receipt before designing new schema",
+      "preventiveControl": "Publication checklist: verify AppBuilder consumer libs exist on Governance main",
+      "executionDeltaId": "ED-002"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "Wave B SDLC prepare runs",
+      "whyRepeated": "Pre-publication packet superseded; re-run required after main convergence + receipt lib",
+      "firstKnownInstance": "packetHash 9fdd59d7828476465146068553343f2fc82684b8ce05909c71833c4496d85f2f",
+      "priorIndexSlice": "sdlc-cursor-prepare-receipt.json",
+      "whyMissed": "Publication and receipt publication were separate waves",
+      "avoidableBy": "Single publication wave including governance consumer dependencies",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Governance consumer-lib publication gate before milestone closeout",
+      "whyItPays": "Prevents Wave B BLOCK_GOVERNANCE_EXECUTION_RECEIPT_LIB_MISSING",
+      "effort": "low",
+      "savedWasteIds": ["TW-001"],
+      "seedAs": "rule"
+    },
+    {
+      "rank": 2,
+      "title": "Isolated worktree validation pattern for dirty primaries",
+      "whyItPays": "Avoids false gate failures on Revu/AppBuilder dirty checkouts",
+      "effort": "low",
+      "savedWasteIds": ["TW-003"],
+      "seedAs": "command"
+    },
+    {
+      "rank": 3,
+      "title": "Multi-repo publication receipt in Cross-Agent",
+      "whyItPays": "Single artifact records 5 PR SHAs and merge order",
+      "effort": "medium",
+      "savedWasteIds": ["TW-004", "OF-001"],
+      "seedAs": "runbook"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "GO_WAVE_B_IMPLEMENTATION",
+      "currentStatus": "OPEN",
+      "doNotClaimUntil": [
+        "Wave B EXECUTE prompt with packet hash f8c3fcf659dd96296ebbd49aa5ba7c6202282b1e44a6d28c35e5c73a00dde705",
+        "HE verification gate implemented before terminal consumer writes"
+      ],
+      "lastKnownEvidence": [
+        "sdlc-cursor-prepare-receipt.json verdict READY",
+        "Governance main@773e51b0",
+        "commercialWriteAuthorized false on spine proof"
+      ],
+      "proofCommandId": "npm run sdlc:cursor:prepare -- --work-package=bluebeam-markup-report-bridge-v1 --json"
+    },
+    {
+      "awardOrVerdict": "FULLY_SEEDED_HUB",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": ["harvest:publish-hub-seed", "index:freshness-gate"],
+      "lastKnownEvidence": ["projection.hubPublishStatus not-run"]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "BY-KIND/active-work-blockers.json",
+      "BY-KIND/thread-autopsy-index.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-07T20:50:00.000Z"
+  }
+}

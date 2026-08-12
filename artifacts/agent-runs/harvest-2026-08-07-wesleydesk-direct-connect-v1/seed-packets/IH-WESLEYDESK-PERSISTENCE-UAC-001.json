@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-WESLEYDESK-PERSISTENCE-UAC-001",
+  "kind": "failure-pattern",
+  "title": "WESLEYDESK Direct Connect persistence blocked until operator UAC",
+  "summary": "Register-WesleyDeskDirectConnectPersistence.ps1 leaves register-pending.json until UAC approved; poller alone cannot clear.",
+  "retrievalQuestions": [
+    "Why is wesleydesk-full-control blocked on PENDING_ELEVATION?",
+    "What must operator run on WESLEYDESK before remote-finish-v2?"
+  ],
+  "evidenceRefs": ["EVT-005", "register-pending.json", "WESLEYDESK-AGENT-NOW.md Step B"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "register-receipt.json missing or PENDING_ELEVATION",
+    "startAt": ["04-ARTIFACTS/service-persistence/", "WESLEYDESK-AGENT-NOW.md"],
+    "runPreflight": ["cat register-pending.json", "cat register-receipt.json if exists"],
+    "doNot": ["Queue remote-finish-v2", "Claim NON_REBOOT_ROLLOUT_COMPLETE"],
+    "proveBeforeClaiming": ["register-receipt.json status REGISTERED"]
+  },
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

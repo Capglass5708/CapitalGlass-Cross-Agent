@@ -1,0 +1,78 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-bluebeam-shared-spine-wave-a-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "a082553e210c4606d8efca321bdbead847c8ab62",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1",
+      "seedId": "IH-BLUEBEAM-SHARED-SPINE-WAVE-A-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-07T20:51:47.604Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "f5b8ad99b2f1a54859db4282b83d468d39da59fe0237937787d367bc90ff285e"
+  },
+  "body": {
+    "seedId": "IH-BLUEBEAM-SHARED-SPINE-WAVE-A-001",
+    "kind": "architecture",
+    "title": "bluebeam-markup-report-bridge-v1 Wave A shared spine on canonical main",
+    "summary": "cg-markup-report-v1 flows Revu CSV through CE to envelope with dual workflow routing; commercialWriteAuthorized false; BC/PG writes zero.",
+    "canonicalQuestion": "What is the canonical shared markup report artifact for Bluebeam/Revu estimating?",
+    "alternateQuestions": [
+      "How does remodel vs new construction routing work on the estimating envelope?"
+    ],
+    "shortAnswer": "cg-markup-report-v1 flows Revu CSV through CE to envelope with dual workflow routing; commercialWriteAuthorized false; BC/PG writes zero.",
+    "detailedAnswer": "bluebeam-markup-report-bridge-v1 Wave A shared spine on canonical main",
+    "retrievalQuestions": [
+      "What is the canonical shared markup report artifact for Bluebeam/Revu estimating?",
+      "How does remodel vs new construction routing work on the estimating envelope?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Wave B consumer implementation for Scope Markup Report",
+      "startAt": [
+        "CG-AppBuilder-MCP registry/commercial-workflow-routing-v1.json",
+        "CE src/computer_estimator/markup_report/"
+      ],
+      "runPreflight": [
+        "pytest tests/unit/test_markup_report_*.py -q",
+        "npm run markup-report:validate on Revu main worktree"
+      ],
+      "doNot": [
+        "Parse Bluebeam CSV in Bid Composer or Proposal Generator",
+        "Embed commercialWorkflow in Revu export"
+      ],
+      "proveBeforeClaiming": [
+        "commercialWriteAuthorized false until Wave B explicitly authorizes",
+        "Provenance chain intact"
+      ]
+    },
+    "evidenceRefs": [
+      "Computer Estimator@ac05d530658d09927722b9c7d92e2a2b450a8752",
+      "wave-a-post-publication-spine-proof.json",
+      "schema hash 71ad755fe5c985ad32cf6156fbbd1fd14ab44812f5138b6c7ab13225649714de"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "Computer Estimator",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1/seed-packets/IH-BLUEBEAM-SHARED-SPINE-WAVE-A-001.json"
+    ],
+    "harvestId": "harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1"
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-wesleydesk-direct-connect-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "rework",
+      "description": "Multiple rollout iterations v3–v6 before persistence UAC gate enforced",
+      "evidenceRefs": ["EVT-004", "03-OUTBOX/wesleydesk-full-control-v1-rollout-v6-response.json"],
+      "estimatedImpact": "high",
+      "savedBy": "Hard gate: do not queue remote-finish-v2 until register-receipt REGISTERED",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "operator_attention",
+      "description": "Operator asked what WESLEYDESK should run — instructions scattered across multiple MD files",
+      "evidenceRefs": ["EVT-007", "user: what did you need wesleydesk to run"],
+      "estimatedImpact": "medium",
+      "savedBy": "WESLEYDESK-AGENT-NOW.md single front door + RUN-PERSISTENCE.cmd",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "verification",
+      "description": "remote-finish-v1 FAILED because persistence not REGISTERED — predictable",
+      "evidenceRefs": ["EVT-005"],
+      "estimatedImpact": "medium",
+      "savedBy": "Check register-receipt.json before dispatching finish tasks",
+      "roiRank": 3
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "rework",
+      "description": "Publish rsync excludes INBOX JSON — reboot task re-copied after publish",
+      "evidenceRefs": ["EVT-006", "publish-wesleydesk-agent-communications.sh"],
+      "estimatedImpact": "low",
+      "savedBy": "dispatch/ folder + post-publish cp to 01-INBOX documented",
+      "roiRank": 4
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Persistence requires manual UAC on WESLEYDESK — cannot be automated via poller alone",
+      "operatorCost": "high",
+      "systemFix": "RUN-PERSISTENCE.cmd + WESLEYDESK-AGENT-NOW.md Step B paste",
+      "evidenceRefs": ["EVT-005", "EVT-007"],
+      "linkedWasteIds": ["TW-001", "TW-003"],
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL",
+      "avoidable": false,
+      "automationCandidate": false
+    },
+    {
+      "frictionId": "OF-002",
+      "trigger": "User requested consolidated folder contents — agent had to republish and reorganize",
+      "operatorCost": "medium",
+      "systemFix": "Ship WESLEYDESK-AGENT-NOW.md + dispatch/ in first publish wave",
+      "evidenceRefs": ["EVT-006", "user: place all this in the agent communication folder"],
+      "linkedWasteIds": ["TW-002"],
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL",
+      "avoidable": true,
+      "automationCandidate": true
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Dispatch remote-finish before persistence REGISTERED",
+      "actualExecution": {
+        "steps": ["Queued remote-finish-v1 while register-pending.json PENDING_ELEVATION"],
+        "outcome": "FAILED",
+        "evidenceRefs": ["EVT-005"]
+      },
+      "optimalExecution": {
+        "steps": ["Verify register-receipt.json REGISTERED", "Then queue remote-finish-v2 once"],
+        "outcome": "Would avoid failed finish task",
+        "requiredPreflight": ["04-ARTIFACTS/service-persistence/register-receipt.json"]
+      },
+      "deltaCost": { "time": "medium", "tokens": "medium", "operatorFrustration": "medium" }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Operator leaving — reboot instructions",
+      "actualExecution": {
+        "steps": ["Multiple separate MD files", "INBOX task + script created in separate turns"],
+        "outcome": "Operator asked to consolidate",
+        "evidenceRefs": ["EVT-006"]
+      },
+      "optimalExecution": {
+        "steps": ["Single WESLEYDESK-AGENT-NOW.md + dispatch/ + windows scripts in one publish"],
+        "outcome": "One paste for WESLEYDESK agent",
+        "requiredPreflight": ["WESLEYDESK-AGENT-NOW.md"]
+      },
+      "deltaCost": { "time": "low", "tokens": "low", "operatorFrustration": "low" }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Queued remote-finish-v1 before persistence REGISTERED",
+      "whyItWasWrong": "Finish wave assumes startup persistence; UAC gate was known open",
+      "correctFirstMove": "BLOCKED_OPERATOR_UAC until register-receipt.json",
+      "preventiveControl": "doNotAdvance on remote-finish-v2 in WESLEYDESK-AGENT-NOW.md",
+      "executionDeltaId": "ED-001",
+      "actualExecution": { "steps": ["remote-finish-v1 to INBOX"], "outcome": "FAILED" },
+      "optimalExecution": { "steps": ["UAC persistence first"], "outcome": "PASS path" }
+    }
+  ],
+  "duplicateWork": [],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Persistence UAC gate before any remote-finish dispatch",
+      "whyItPays": "Eliminates predictable FAILED finish tasks",
+      "effort": "low",
+      "savedWasteIds": ["TW-001", "TW-003"],
+      "seedAs": "rule"
+    },
+    {
+      "rank": 2,
+      "title": "WESLEYDESK-AGENT-NOW.md operator front door",
+      "whyItPays": "Single paste for leave/return/reboot/persistence",
+      "effort": "low",
+      "savedWasteIds": ["TW-002"],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 3,
+      "title": "dispatch/ + post-publish INBOX copy documented",
+      "whyItPays": "rsync excludes live INBOX state",
+      "effort": "low",
+      "savedWasteIds": ["TW-004"],
+      "seedAs": "command"
+    },
+    {
+      "rank": 4,
+      "title": "systemd active vs activating probe tolerance in health task",
+      "whyItPays": "Post-reboot health FAILED while poller was POLLING",
+      "effort": "medium",
+      "savedWasteIds": [],
+      "seedAs": "runbook"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "WESLEYDESK_FULL_GOVERNED_ADMIN_CONTROL_PASS",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "register-receipt.json REGISTERED",
+        "remote-finish-v2 PASS"
+      ],
+      "lastKnownEvidence": ["register-pending.json PENDING_ELEVATION", "post-reboot-health FAILED step1"]
+    },
+    {
+      "awardOrVerdict": "GO_FOR_GATE_6",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": ["Operator authorizes formal Gate 6 reboot-persistence proof"],
+      "lastKnownEvidence": ["Operator reboot was not Gate 6 proof"]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "BY-KIND/active-work-blockers.json",
+      "BY-KIND/thread-autopsy-index.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-08T00:15:00.000Z",
+    "duplicatesFound": 0
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-bluebeam-wave-b-sdlc-prep-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "a082553e210c4606d8efca321bdbead847c8ab62",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1",
+      "seedId": "IH-BLUEBEAM-WAVE-B-SDLC-PREP-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-07T20:51:47.604Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "d66b21f6313d5b15e6d9b8542c407806c835733023fbf8cd0bffdcf071460c42"
+  },
+  "body": {
+    "seedId": "IH-BLUEBEAM-WAVE-B-SDLC-PREP-001",
+    "kind": "failure-pattern",
+    "title": "Wave B SDLC prepare blocked when Governance execution-receipt lib missing on main",
+    "summary": "npm run sdlc:cursor:prepare fails with BLOCK_GOVERNANCE_EXECUTION_RECEIPT_LIB_MISSING until scripts/suite-governance/execution-receipt/lib/normalize.mjs exists on Governance main.",
+    "canonicalQuestion": "Why does sdlc:cursor:prepare fail with execution-receipt lib not found?",
+    "alternateQuestions": [
+      "What clears BLOCK_GOVERNANCE_EXECUTION_RECEIPT_LIB_MISSING for bluebeam-markup-report-bridge-v1?"
+    ],
+    "shortAnswer": "npm run sdlc:cursor:prepare fails with BLOCK_GOVERNANCE_EXECUTION_RECEIPT_LIB_MISSING until scripts/suite-governance/execution-receipt/lib/normalize.mjs exists on Governance main.",
+    "detailedAnswer": "Wave B SDLC prepare blocked when Governance execution-receipt lib missing on main",
+    "retrievalQuestions": [
+      "Why does sdlc:cursor:prepare fail with execution-receipt lib not found?",
+      "What clears BLOCK_GOVERNANCE_EXECUTION_RECEIPT_LIB_MISSING for bluebeam-markup-report-bridge-v1?"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "SDLC prepare returns BLOCK or throws execution-receipt lib not found",
+      "startAt": [
+        "CG-Platform-Governance-MCP scripts/suite-governance/execution-receipt/",
+        "git log --all --oneline -- '*execution-receipt*'"
+      ],
+      "runPreflight": [
+        "loadExecutionReceiptLib() with CG_PLATFORM_GOVERNANCE_ROOT set"
+      ],
+      "doNot": [
+        "Invent a new receipt schema",
+        "Use superseded Wave B packet hashes after publication"
+      ],
+      "proveBeforeClaiming": [
+        "npm run contract:cg-execution-receipt PASS",
+        "sdlc:cursor:prepare verdict READY"
+      ]
+    },
+    "evidenceRefs": [
+      "CG-Platform-Governance-MCP@773e51b0600f342ee46194b67b1e7a50f5bd5e8e",
+      "wave-b-preparation-blocked-receipt.json"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CG-Platform-Governance-MCP",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1/seed-packets/IH-BLUEBEAM-WAVE-B-SDLC-PREP-001.json"
+    ],
+    "harvestId": "harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1"
+  }
+}

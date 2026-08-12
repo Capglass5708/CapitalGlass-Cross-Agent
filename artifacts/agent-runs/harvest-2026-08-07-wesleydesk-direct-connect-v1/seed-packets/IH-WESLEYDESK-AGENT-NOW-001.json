@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-WESLEYDESK-AGENT-NOW-001",
+  "kind": "runbook",
+  "title": "WESLEYDESK Agent Communications operator front door",
+  "summary": "Single paste doc for reboot, return, persistence UAC, and INBOX dispatch on Z:.",
+  "retrievalQuestions": [
+    "What should WESLEYDESK Cursor agent run when operator points at Agent Communications folder?",
+    "Where are reboot and persistence scripts on WESLEYDESK?"
+  ],
+  "evidenceRefs": ["WESLEYDESK-AGENT-NOW.md", "EVT-006", "EVT-007"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Operator pastes Agent Communications folder path only",
+    "startAt": ["WESLEYDESK-AGENT-NOW.md", "00-README/AGENT-INSTRUCTIONS.md"],
+    "runPreflight": ["bash wsl/RUN_AGENT_COMMUNICATIONS.sh status"],
+    "doNot": ["Ask operator to re-explain architecture", "Stop polling after one task"],
+    "proveBeforeClaiming": ["05-HEARTBEAT runnerStatus POLLING"]
+  },
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE"
+}

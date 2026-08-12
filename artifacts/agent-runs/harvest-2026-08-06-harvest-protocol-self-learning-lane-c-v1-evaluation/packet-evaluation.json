@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "lane-c-packet-evaluation-v1@1.0.0",
+  "packets": [
+    {
+      "packetId": "HP-001",
+      "kind": "decision",
+      "schemaValid": true,
+      "evidenceStatus": "VERIFIED",
+      "laneCEligible": false,
+      "duplicateStatus": "NEW",
+      "recommendedAction": "ACCEPT",
+      "notes": [
+        "Policy packet — not Lane C export candidate"
+      ]
+    },
+    {
+      "packetId": "HP-002",
+      "kind": "decision",
+      "schemaValid": true,
+      "evidenceStatus": "VERIFIED",
+      "laneCEligible": false,
+      "duplicateStatus": "DUPLICATE_SEMANTIC",
+      "recommendedAction": "MERGE_WITH_EXISTING",
+      "notes": [
+        "Recorded in lane-closeout harvest"
+      ]
+    },
+    {
+      "packetId": "HP-003",
+      "kind": "protocol_upgrade",
+      "schemaValid": false,
+      "evidenceStatus": "VERIFIED",
+      "laneCEligible": false,
+      "duplicateStatus": "ALREADY_IMPLEMENTED",
+      "recommendedAction": "REJECT",
+      "notes": [
+        "classify-harvest-protocol-relevance.mjs shipped PR31"
+      ]
+    },
+    {
+      "packetId": "HP-004",
+      "kind": "protocol_upgrade",
+      "schemaValid": false,
+      "evidenceStatus": "PARTIAL",
+      "laneCEligible": false,
+      "duplicateStatus": "ALREADY_IMPLEMENTED",
+      "recommendedAction": "REJECT",
+      "notes": [
+        "protocolSelfLearning block already in CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"
+      ]
+    },
+    {
+      "packetId": "HP-005",
+      "kind": "protocol_upgrade",
+      "schemaValid": false,
+      "evidenceStatus": "VERIFIED",
+      "laneCEligible": true,
+      "duplicateStatus": "NEW",
+      "recommendedAction": "ACCEPT",
+      "notes": [
+        "Exported as HPC-Z-MIRROR-RUNBOOK-SYNC-001"
+      ]
+    },
+    {
+      "packetId": "HP-006",
+      "kind": "repeated_work",
+      "schemaValid": true,
+      "evidenceStatus": "VERIFIED",
+      "laneCEligible": false,
+      "duplicateStatus": "DUPLICATE_SEMANTIC",
+      "recommendedAction": "ACCEPT",
+      "notes": [
+        "Generic harvest packet"
+      ]
+    },
+    {
+      "packetId": "HP-007",
+      "kind": "faster_path",
+      "schemaValid": true,
+      "evidenceStatus": "VERIFIED",
+      "laneCEligible": false,
+      "duplicateStatus": "NEW",
+      "recommendedAction": "ROUTE_TO_GENERIC_HARVEST",
+      "notes": [
+        "Spoke matrix is process lesson"
+      ]
+    },
+    {
+      "packetId": "HP-008",
+      "kind": "blocker",
+      "schemaValid": true,
+      "evidenceStatus": "VERIFIED",
+      "laneCEligible": false,
+      "duplicateStatus": "NEW",
+      "recommendedAction": "ACCEPT",
+      "notes": [
+        "Separate maintenance"
+      ]
+    },
+    {
+      "packetId": "HP-009",
+      "kind": "command",
+      "schemaValid": true,
+      "evidenceStatus": "VERIFIED",
+      "laneCEligible": false,
+      "duplicateStatus": "ALREADY_IMPLEMENTED",
+      "recommendedAction": "ACCEPT",
+      "notes": [
+        "Command on main"
+      ]
+    },
+    {
+      "packetId": "HP-010",
+      "kind": "command",
+      "schemaValid": true,
+      "evidenceStatus": "VERIFIED",
+      "laneCEligible": false,
+      "duplicateStatus": "ALREADY_IMPLEMENTED",
+      "recommendedAction": "ACCEPT",
+      "notes": [
+        "Command on Data-Extraction main"
+      ]
+    }
+  ]
+}

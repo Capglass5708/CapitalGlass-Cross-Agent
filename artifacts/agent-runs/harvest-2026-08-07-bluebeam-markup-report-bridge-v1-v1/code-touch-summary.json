@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "code-touch-summary-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1",
+  "repos": [
+    {
+      "repo": "CG-Platform-Governance-MCP",
+      "role": "constitutional schemas + execution-receipt authority",
+      "commits": ["5174c6619c773171a9a2cd050263e742a33da29b", "773e51b0600f342ee46194b67b1e7a50f5bd5e8e"],
+      "mainSha": "773e51b0600f342ee46194b67b1e7a50f5bd5e8e",
+      "touchedSurfaces": ["schemas/cg-markup-report-v1.schema.json", "scripts/suite-governance/execution-receipt/"]
+    },
+    {
+      "repo": "CapitalGlassRevu",
+      "role": "markup-report export contract",
+      "commits": ["43ed4f58c1b18ebbdfd5d70ad6930a7a985728ec"],
+      "mainSha": "606547afe2ed44c8c652a8019ba8304b5d38d2ac",
+      "touchedSurfaces": ["schemas/markup-report-export-v1.schema.json", "scripts/validate-markup-report-export-schema.mjs"]
+    },
+    {
+      "repo": "Computer Estimator",
+      "role": "markup_report spine service",
+      "commits": ["411691838b8b0d1003ecd52fdc3155a9e51214d9"],
+      "mainSha": "ac05d530658d09927722b9c7d92e2a2b450a8752",
+      "touchedSurfaces": ["src/computer_estimator/markup_report/", "contracts/generated/"]
+    },
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "role": "bridge registry + SDLC receipts",
+      "commits": ["347e392cc305d2d8eb0d0e523c16bacdf20a8672"],
+      "mainSha": "347e392cc305d2d8eb0d0e523c16bacdf20a8672",
+      "touchedSurfaces": ["registry/commercial-workflow-routing-v1.json", "artifacts/agent-runs/bluebeam-markup-report-bridge-v1/"]
+    },
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "role": "coordination only",
+      "commits": ["ebb90276b3eca17b614b877e4a642c945fd3af80"],
+      "mainSha": "a082553e210c4606d8efca321bdbead847c8ab62",
+      "touchedSurfaces": ["work-progress/projects/bluebeam-markup-report-bridge-v1.md"]
+    }
+  ]
+}

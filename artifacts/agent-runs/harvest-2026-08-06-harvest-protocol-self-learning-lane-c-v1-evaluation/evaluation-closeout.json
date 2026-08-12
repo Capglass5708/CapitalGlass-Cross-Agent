@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "lane-c-evaluation-closeout-v1@1.0.0",
+  "milestone": "harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1-evaluation",
+  "executionMode": "FORMAL_CLOSEOUT",
+  "finalVerdict": "DRAFT_ACCEPTED_WITH_REPAIRS",
+  "draftScoreOverall": 6.5,
+  "qualityScores": {
+    "threadCoverage": { "score": 8, "rationale": "All major Lane C thread events captured in EVT-001..009" },
+    "protocolOnlyScope": { "score": 9, "rationale": "Scope correction and exclusions well preserved" },
+    "evidenceQuality": { "score": 4, "rationale": "Most evidenceRefs descriptive not verifiable" },
+    "structuralCompliance": { "score": 7, "rationale": "Sections present; seed kind and ROI enums invalid" },
+    "duplicationAwareness": { "score": 5, "rationale": "DUP-001 deferred to registry lookup" },
+    "candidateUsefulness": { "score": 6, "rationale": "One strong z-mirror candidate; two redundant shipped items" },
+    "authoritySafety": { "score": 9, "rationale": "Publication truth and PROPOSAL authority correct" },
+    "tokenEfficiency": { "score": 7, "rationale": "Compact draft without transcript dump" },
+    "ingestReadiness": { "score": 5, "rationale": "Required Cursor repairs before validate PASS" },
+    "overallDraftQuality": { "score": 6.5, "rationale": "Good structure; weak evidence and duplicate awareness" }
+  },
+  "canonicalHarvest": {
+    "harvestId": "harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1",
+    "validationVerdict": "PASS",
+    "autopsyVerdict": "PASS",
+    "packetCount": 10,
+    "seedCount": 3
+  },
+  "laneC": {
+    "published": true,
+    "primaryNewCandidate": "HPC-Z-MIRROR-RUNBOOK-SYNC-001",
+    "redundantCandidatesPublished": 2,
+    "packageHash": "sha256:50025ab649ed40dda0cd9086dfe6aaba3ac313dae453d409226e0f3d50d7bf0e"
+  },
+  "authority": {
+    "catalogRole": "RETRIEVAL_ONLY",
+    "automaticMutation": false,
+    "governanceApprovalRequired": true
+  },
+  "gates": {
+    "crossAgentValidate": "PASS",
+    "dataExtractionTests": "PASS",
+    "testProtocolSelfLearningExport": "FAIL — z-mirror stripped Lane C (pre-existing)",
+    "productionOfficeAdminPackage": "VERIFIED"
+  }
+}

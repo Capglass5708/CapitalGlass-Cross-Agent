@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-BLUEBEAM-SHARED-SPINE-WAVE-A-001",
+  "kind": "architecture",
+  "title": "bluebeam-markup-report-bridge-v1 Wave A shared spine on canonical main",
+  "summary": "cg-markup-report-v1 flows Revu CSV through CE to envelope with dual workflow routing; commercialWriteAuthorized false; BC/PG writes zero.",
+  "retrievalQuestions": [
+    "What is the canonical shared markup report artifact for Bluebeam/Revu estimating?",
+    "How does remodel vs new construction routing work on the estimating envelope?"
+  ],
+  "evidenceRefs": [
+    "Computer Estimator@ac05d530658d09927722b9c7d92e2a2b450a8752",
+    "wave-a-post-publication-spine-proof.json",
+    "schema hash 71ad755fe5c985ad32cf6156fbbd1fd14ab44812f5138b6c7ab13225649714de"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Wave B consumer implementation for Scope Markup Report",
+    "startAt": ["CG-AppBuilder-MCP registry/commercial-workflow-routing-v1.json", "CE src/computer_estimator/markup_report/"],
+    "runPreflight": ["pytest tests/unit/test_markup_report_*.py -q", "npm run markup-report:validate on Revu main worktree"],
+    "doNot": ["Parse Bluebeam CSV in Bid Composer or Proposal Generator", "Embed commercialWorkflow in Revu export"],
+    "proveBeforeClaiming": ["commercialWriteAuthorized false until Wave B explicitly authorizes", "Provenance chain intact"]
+  },
+  "ownerRepo": "Computer Estimator",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

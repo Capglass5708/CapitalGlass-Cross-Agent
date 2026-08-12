@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-THREAD-CLASSIFIED-LANE-SPOKE-MATRIX-001",
+  "kind": "lesson",
+  "title": "Classified lanes require a spoke matrix before implementation",
+  "summary": "Mark every spoke required, optional, N/A, or blocked before cross-repo lane work.",
+  "retrievalQuestions": [
+    "Does AppBuilder need a bridge?",
+    "Which repos must change?"
+  ],
+  "evidenceRefs": [
+    "EVT-007",
+    "artifacts/agent-runs/harvest-protocol-self-learning-all-spokes-verification-v1/verification-closeout.json",
+    "lane-c-spoke-matrix-lesson-v1"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "A lane spans multiple control/data layers",
+    "startAt": [
+      "ownership registry",
+      "all-spokes verification template"
+    ],
+    "runPreflight": [
+      "build spoke matrix",
+      "verify commands per spoke"
+    ],
+    "doNot": [
+      "Fan out by default",
+      "Create parallel schemas"
+    ],
+    "proveBeforeClaiming": [
+      "evidence for every required spoke"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "HUMAN_REVIEW",
+  "status": "CANDIDATE"
+}

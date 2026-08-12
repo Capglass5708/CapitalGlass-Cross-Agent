@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1",
+  "packetId": "lane-c-z-mirror-authority-drift-v1",
+  "state": "OPEN",
+  "packetVerdict": "WARN",
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "harvest-z-mirror-source-repair-v1 — sync docs/runbooks from harvest/protocol before mirror",
+  "evidenceRefs": [
+    "EVT-009",
+    "TE-010",
+    "harvest/z-mirror-sync-receipt.json",
+    "missing source: Data-Extraction/docs/platform/CURSOR_HARVEST_INGEST_CLOSEOUT_WAVE_SDLC_V1.md",
+    "harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1"
+  ],
+  "doNotAdvance": [
+    "Treat as Lane C regression",
+    "Overwrite harvest/protocol from stale runbooks"
+  ],
+  "advancementGate": "npm run test:harvest exit 0 without Z_HARVEST_MIRROR_SYNC_PARTIAL",
+  "contentHash": "384a82266710ad7f907497815c44833f63846ff72d5817c46fff67696a2512b1"
+}

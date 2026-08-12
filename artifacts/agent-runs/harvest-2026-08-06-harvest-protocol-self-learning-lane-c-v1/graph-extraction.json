@@ -1,0 +1,746 @@
+{
+  "packetKind": "graph-extraction",
+  "schemaVersion": "cg-master-graph-extraction-v1",
+  "extractionId": "extraction:harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1",
+  "harvestId": "harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1",
+  "workPackageId": "harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1",
+  "producer": {
+    "repositoryId": "repo:capitalglass-cross-agent",
+    "capability": "harvest-graph-extraction",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "id": "harvest:harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1",
+      "nodeType": "Harvest",
+      "displayName": "harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1",
+      "lifecycleState": "lifecycle:canonical",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "missionClass": "chat-thread-closeout-autopsy-harvest-chatgpt-v1",
+        "sourceCommitSha": "57652017edb5b4c6166cd1888488213e7414b06c",
+        "retrievalResult": "INDEX_HIT"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:lane-c-protocol-only-scope-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Lane C contains only evidence-backed harvest-protocol improvements",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RECORDED",
+      "metadata": {
+        "packetVerdict": "POLICY_RECORDED",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1.md",
+        "advancementGate": "classifyHarvestProtocolRelevance returns ELIGIBLE only for protocol targets"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-protocol-only-scope-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-protocol-only-scope-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:lane-c-ownership-routing-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Cross-Agent records/export; Data-Extraction filters/publishes; Governance approves",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RECORDED",
+      "metadata": {
+        "packetVerdict": "OWNERSHIP_RECORDED",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1.md",
+        "advancementGate": "authority.catalogRole RETRIEVAL_ONLY in export handoff"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-ownership-routing-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-ownership-routing-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:lane-c-strict-classifier-shipped-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Strict Lane C relevance classifier shipped in Data-Extraction",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "ALREADY_IMPLEMENTED",
+        "ownerRepo": "Data-Extraction",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1.md",
+        "advancementGate": "npm run test:harvest-protocol-self-learning exit 0"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-strict-classifier-shipped-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-strict-classifier-shipped-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:lane-c-publication-truth-chain-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Lane C publication truth tracked separately from hub publish",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "DOCUMENTED",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1.md",
+        "advancementGate": "protocolSelfLearning fields present in manifest when Lane C used"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-publication-truth-chain-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-publication-truth-chain-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:lane-c-z-mirror-authority-drift-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Z-mirror can overwrite harvest/protocol when docs/runbooks lag Git canonical",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "OPEN",
+      "metadata": {
+        "packetVerdict": "WARN",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1.md",
+        "advancementGate": "npm run test:harvest exit 0 without Z_HARVEST_MIRROR_SYNC_PARTIAL"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-z-mirror-authority-drift-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-z-mirror-authority-drift-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:lane-c-repeated-ownership-friction-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Ownership boundaries restated across spokes",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "DOCUMENTED",
+      "metadata": {
+        "packetVerdict": "DUPLICATE_AWARE",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-repeated-ownership-friction-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-repeated-ownership-friction-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:lane-c-spoke-matrix-lesson-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Classified lanes need required/optional/N/A spoke matrix early",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RECORDED",
+      "metadata": {
+        "packetVerdict": "LESSON_RECORDED",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1.md",
+        "advancementGate": "not-required"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-spoke-matrix-lesson-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-spoke-matrix-lesson-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:blocker-z-mirror-wave-sdlc-source-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Z-mirror missing Data-Extraction wave SDLC source — separate maintenance",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "OPEN",
+      "metadata": {
+        "packetVerdict": "DEFERRED",
+        "ownerRepo": "Data-Extraction",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1.md",
+        "advancementGate": "syncZHarvestMirror errors.length === 0 with requireZPublication false"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/blocker-z-mirror-wave-sdlc-source-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/blocker-z-mirror-wave-sdlc-source-v1.json"
+        }
+      }
+    },
+    {
+      "id": "entity:blocker-blocker-blocker-z-mirror-wave-sdlc-source-v1",
+      "nodeType": "Entity",
+      "displayName": "blocker-blocker-z-mirror-wave-sdlc-source-v1",
+      "metadata": {
+        "entityKind": "harvest-blocker",
+        "blockerOwner": null
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/blocker-z-mirror-wave-sdlc-source-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/blocker-z-mirror-wave-sdlc-source-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:lane-c-export-command-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Cross-Agent protocol-only export command",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "SHIPPED",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1.md",
+        "advancementGate": "npm run test:protocol-self-learning-export exit 0"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-export-command-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-export-command-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:lane-c-verify-command-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Data-Extraction Lane C verify command",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COMPLETE",
+      "metadata": {
+        "packetVerdict": "SHIPPED",
+        "ownerRepo": "Data-Extraction",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1.md",
+        "advancementGate": "harvest-protocol:self-learning:verify read-only — no republish"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-verify-command-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-verify-command-v1.json"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:harvest-harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1-contains-workpackage-lane-c-protocol-only-scope-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1",
+      "targetId": "workpackage:lane-c-protocol-only-scope-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-lane-c-protocol-only-scope-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:lane-c-protocol-only-scope-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-protocol-only-scope-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-protocol-only-scope-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1-contains-workpackage-lane-c-ownership-routing-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1",
+      "targetId": "workpackage:lane-c-ownership-routing-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-lane-c-ownership-routing-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:lane-c-ownership-routing-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-ownership-routing-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-ownership-routing-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1-contains-workpackage-lane-c-strict-classifier-shipped-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1",
+      "targetId": "workpackage:lane-c-strict-classifier-shipped-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-data-extraction-owns-workpackage-lane-c-strict-classifier-shipped-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:data-extraction",
+      "targetId": "workpackage:lane-c-strict-classifier-shipped-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-strict-classifier-shipped-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-strict-classifier-shipped-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1-contains-workpackage-lane-c-publication-truth-chain-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1",
+      "targetId": "workpackage:lane-c-publication-truth-chain-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-lane-c-publication-truth-chain-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:lane-c-publication-truth-chain-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-publication-truth-chain-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-publication-truth-chain-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1-contains-workpackage-lane-c-z-mirror-authority-drift-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1",
+      "targetId": "workpackage:lane-c-z-mirror-authority-drift-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-lane-c-z-mirror-authority-drift-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:lane-c-z-mirror-authority-drift-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-z-mirror-authority-drift-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-z-mirror-authority-drift-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1-contains-workpackage-lane-c-repeated-ownership-friction-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1",
+      "targetId": "workpackage:lane-c-repeated-ownership-friction-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-lane-c-repeated-ownership-friction-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:lane-c-repeated-ownership-friction-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-repeated-ownership-friction-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-repeated-ownership-friction-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1-contains-workpackage-lane-c-spoke-matrix-lesson-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1",
+      "targetId": "workpackage:lane-c-spoke-matrix-lesson-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-lane-c-spoke-matrix-lesson-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:lane-c-spoke-matrix-lesson-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-spoke-matrix-lesson-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-spoke-matrix-lesson-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1-contains-workpackage-blocker-z-mirror-wave-sdlc-source-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1",
+      "targetId": "workpackage:blocker-z-mirror-wave-sdlc-source-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-data-extraction-owns-workpackage-blocker-z-mirror-wave-sdlc-source-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:data-extraction",
+      "targetId": "workpackage:blocker-z-mirror-wave-sdlc-source-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/blocker-z-mirror-wave-sdlc-source-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/blocker-z-mirror-wave-sdlc-source-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-blocker-z-mirror-wave-sdlc-source-v1-blocked-by-entity-blocker-blocker-blocker-z-mirror-wave-sdlc-source-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:blocker-z-mirror-wave-sdlc-source-v1",
+      "targetId": "entity:blocker-blocker-blocker-z-mirror-wave-sdlc-source-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/blocker-z-mirror-wave-sdlc-source-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/blocker-z-mirror-wave-sdlc-source-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1-contains-workpackage-lane-c-export-command-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1",
+      "targetId": "workpackage:lane-c-export-command-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-capitalglass-cross-agent-owns-workpackage-lane-c-export-command-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:capitalglass-cross-agent",
+      "targetId": "workpackage:lane-c-export-command-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-export-command-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-export-command-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1-contains-workpackage-lane-c-verify-command-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1",
+      "targetId": "workpackage:lane-c-verify-command-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-data-extraction-owns-workpackage-lane-c-verify-command-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:data-extraction",
+      "targetId": "workpackage:lane-c-verify-command-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-06T23:45:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-verify-command-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/compact-records/lane-c-verify-command-v1.json"
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "provenance": {
+    "producerRepositoryId": "repo:capitalglass-cross-agent",
+    "producerCapability": "harvest-graph-extraction",
+    "sourceAuthority": "authority:cross-agent-harvest",
+    "classification": "observed",
+    "verificationState": "verified",
+    "recordedAt": "2026-08-06T23:45:00.000Z",
+    "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/harvest-manifest-v1.json",
+    "sourceAnchorDetail": {
+      "anchorType": "file-path",
+      "locator": "artifacts/agent-runs/harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1/harvest-manifest-v1.json"
+    }
+  }
+}

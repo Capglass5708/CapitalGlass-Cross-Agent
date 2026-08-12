@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-BLUEBEAM-SHARED-SPINE-WAVE-A-001",
+      "questionId": "IHBLUEBEAMSH",
+      "canonicalQuestion": "What is the canonical shared markup report artifact for Bluebeam/Revu estimating?",
+      "alternateQuestions": [
+        "How does remodel vs new construction routing work on the estimating envelope?"
+      ],
+      "shortAnswer": "cg-markup-report-v1 flows Revu CSV through CE to envelope with dual workflow routing; commercialWriteAuthorized false; BC/PG writes zero.",
+      "detailedAnswer": "bluebeam-markup-report-bridge-v1 Wave A shared spine on canonical main",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-07T20:51:47.603Z",
+      "authorityRepo": "Computer Estimator",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1/seed-packets/IH-BLUEBEAM-SHARED-SPINE-WAVE-A-001.json"
+      ],
+      "authorityCommit": [
+        "a082553"
+      ],
+      "evidenceUrls": [
+        "Computer Estimator@ac05d530658d09927722b9c7d92e2a2b450a8752",
+        "wave-a-post-publication-spine-proof.json",
+        "schema hash 71ad755fe5c985ad32cf6156fbbd1fd14ab44812f5138b6c7ab13225649714de"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "architecture",
+        "harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1"
+      ],
+      "entities": [
+        "Computer Estimator"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Wave B consumer implementation for Scope Markup Report",
+        "startAt": [
+          "CG-AppBuilder-MCP registry/commercial-workflow-routing-v1.json",
+          "CE src/computer_estimator/markup_report/"
+        ],
+        "runPreflight": [
+          "pytest tests/unit/test_markup_report_*.py -q",
+          "npm run markup-report:validate on Revu main worktree"
+        ],
+        "doNot": [
+          "Parse Bluebeam CSV in Bid Composer or Proposal Generator",
+          "Embed commercialWorkflow in Revu export"
+        ],
+        "proveBeforeClaiming": [
+          "commercialWriteAuthorized false until Wave B explicitly authorizes",
+          "Provenance chain intact"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "architecture"
+    },
+    {
+      "ihPfspId": "IH-BLUEBEAM-WAVE-B-SDLC-PREP-001",
+      "questionId": "IHBLUEBEAMWA",
+      "canonicalQuestion": "Why does sdlc:cursor:prepare fail with execution-receipt lib not found?",
+      "alternateQuestions": [
+        "What clears BLOCK_GOVERNANCE_EXECUTION_RECEIPT_LIB_MISSING for bluebeam-markup-report-bridge-v1?"
+      ],
+      "shortAnswer": "npm run sdlc:cursor:prepare fails with BLOCK_GOVERNANCE_EXECUTION_RECEIPT_LIB_MISSING until scripts/suite-governance/execution-receipt/lib/normalize.mjs exists on Governance main.",
+      "detailedAnswer": "Wave B SDLC prepare blocked when Governance execution-receipt lib missing on main",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-07T20:51:47.604Z",
+      "authorityRepo": "CG-Platform-Governance-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1/seed-packets/IH-BLUEBEAM-WAVE-B-SDLC-PREP-001.json"
+      ],
+      "authorityCommit": [
+        "a082553"
+      ],
+      "evidenceUrls": [
+        "CG-Platform-Governance-MCP@773e51b0600f342ee46194b67b1e7a50f5bd5e8e",
+        "wave-b-preparation-blocked-receipt.json"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1"
+      ],
+      "entities": [
+        "CG-Platform-Governance-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "SDLC prepare returns BLOCK or throws execution-receipt lib not found",
+        "startAt": [
+          "CG-Platform-Governance-MCP scripts/suite-governance/execution-receipt/",
+          "git log --all --oneline -- '*execution-receipt*'"
+        ],
+        "runPreflight": [
+          "loadExecutionReceiptLib() with CG_PLATFORM_GOVERNANCE_ROOT set"
+        ],
+        "doNot": [
+          "Invent a new receipt schema",
+          "Use superseded Wave B packet hashes after publication"
+        ],
+        "proveBeforeClaiming": [
+          "npm run contract:cg-execution-receipt PASS",
+          "sdlc:cursor:prepare verdict READY"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "lane-c-claim-verification-v1@1.0.0",
+  "gitClaims": {
+    "crossAgentPr20": {
+      "state": "MERGED",
+      "mergeCommit": "57652017edb5b4c6166cd1888488213e7414b06c",
+      "verified": true
+    },
+    "dataExtractionPr31": {
+      "state": "MERGED",
+      "mergeCommit": "a161534f113b0cbb885a287986ebca1217401dde",
+      "verified": true
+    },
+    "crossAgentMainSha": {
+      "claimed": "57652017edb5b4c6166cd1888488213e7414b06c",
+      "actual": "57652017edb5b4c6166cd1888488213e7414b06c",
+      "verified": true
+    }
+  },
+  "laneCImplementation": {
+    "crossAgentExport": {
+      "path": "scripts/harvest/export-protocol-self-learning.mjs",
+      "verified": true
+    },
+    "dataExtractionCommands": {
+      "ingest": true,
+      "publishL": true,
+      "verify": true,
+      "verified": true
+    },
+    "strictClassifier": {
+      "path": "Data-Extraction/scripts/harvest-protocol-self-learning/lib/classify-harvest-protocol-relevance.mjs",
+      "verified": true
+    },
+    "buildExclusion": {
+      "verified": true,
+      "note": "OUT_OF_SCOPE_PATTERNS in classifier"
+    },
+    "deterministicPackage": {
+      "verified": true,
+      "test": "test:harvest-protocol-self-learning pass"
+    },
+    "indexWriter": {
+      "verified": true,
+      "path": "BY-KIND/harvest-protocol-self-learning-index.json"
+    },
+    "retrievalVerifier": {
+      "verified": true,
+      "verdict": "RETRIEVAL_PASS"
+    },
+    "automaticMutation": {
+      "value": false,
+      "verified": true
+    }
+  },
+  "productionPackageOfficeAdmin": {
+    "harvestId": "harvest-2026-08-06-office-admin-pr29-github-health-v1",
+    "folderExists": true,
+    "packageHash": "sha256:0111d8227cddb9946ca12fc5097d346fbeb6e90e92cf70a187a59e63d43463d5",
+    "manifestExists": true,
+    "ingestionCompleteExists": true,
+    "candidateCount": 2,
+    "excludesRawCloseout": true,
+    "excludesTranscript": true,
+    "protocolOnlyCandidates": true,
+    "indexPointerResolves": true,
+    "retrievalPass": true,
+    "rawScanRequired": false,
+    "authority": "PROPOSAL / RETRIEVAL_ONLY",
+    "automaticMutation": false
+  },
+  "zMirrorWarning": {
+    "missingSourcePath": "Data-Extraction/docs/platform/CURSOR_HARVEST_INGEST_CLOSEOUT_WAVE_SDLC_V1.md",
+    "stillExists": true,
+    "testBehavior": "syncZHarvestMirror Z_HARVEST_MIRROR_SYNC_PARTIAL; test:protocol-self-learning-export fails after sync-derived overwrites harvest/protocol from stale docs/runbooks",
+    "gitProtocolLaneCCount": 17,
+    "runbooksLaneCCount": 0,
+    "overwriteRisk": "VERIFIED — sync-derived z-mirror copied runbook without Lane C into harvest/protocol",
+    "separateFromLaneC": true,
+    "fixed": false
+  },
+  "rejectedClaims": [
+    "ChatGPT sourceCommitSha UNKNOWN — actual eba039d on chat-gpt-harvest",
+    "Lane C strict classifier as new protocol patch — ALREADY_IMPLEMENTED in Data-Extraction"
+  ]
+}

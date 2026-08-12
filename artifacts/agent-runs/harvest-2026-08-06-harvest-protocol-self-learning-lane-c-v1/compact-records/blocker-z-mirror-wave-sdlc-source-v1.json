@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1",
+  "packetId": "blocker-z-mirror-wave-sdlc-source-v1",
+  "state": "OPEN",
+  "packetVerdict": "DEFERRED",
+  "ownerRepo": "Data-Extraction",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Restore wave SDLC doc or remove from mirror source list until present",
+  "evidenceRefs": [
+    "EVT-009",
+    "harvest-z-mirror-source-repair-v1",
+    "scripts/harvest/lib/z-harvest-mirror-lib.mjs Z_HARVEST_EXTERNAL_PROTOCOL_SOURCES"
+  ],
+  "doNotAdvance": [],
+  "advancementGate": "syncZHarvestMirror errors.length === 0 with requireZPublication false",
+  "contentHash": "56712979b485675e69580129fd9fd95ddcc7c8b1281762ebaf890a12f1b2aecd"
+}

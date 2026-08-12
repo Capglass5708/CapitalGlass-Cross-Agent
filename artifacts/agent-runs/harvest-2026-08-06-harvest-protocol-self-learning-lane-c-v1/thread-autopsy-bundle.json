@@ -1,0 +1,267 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "operator_attention",
+      "description": "Operator corrected Lane C to protocol-only scope",
+      "evidenceRefs": [
+        "EVT-004",
+        "chatgpt-findings-source.md"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Mandatory selfLearningObject and exclusion list in lane templates",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "context",
+      "description": "Ownership boundaries repeated across spokes",
+      "evidenceRefs": [
+        "EVT-002",
+        "lane-c-repeated-ownership-friction-v1"
+      ],
+      "estimatedImpact": "medium",
+      "savedBy": "Owner-role table and spoke matrix at lane start",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "verification",
+      "description": "Z-mirror partial sync with missing external source and runbook lag risk",
+      "evidenceRefs": [
+        "EVT-009",
+        "lane-c-z-mirror-authority-drift-v1"
+      ],
+      "estimatedImpact": "high",
+      "savedBy": "Source completeness check + runbook sync before mirror",
+      "roiRank": 3
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Ambiguous meaning of self-learning in early thread",
+      "operatorCost": "medium",
+      "systemFix": "Require selfLearningObject field in lane templates",
+      "evidenceRefs": [
+        "EVT-004",
+        "chatgpt-findings-source.md OF-001"
+      ],
+      "linkedWasteIds": [
+        "TW-001"
+      ]
+    },
+    {
+      "frictionId": "OF-002",
+      "trigger": "Repeated closure confirmation despite separate z-mirror warning",
+      "operatorCost": "low",
+      "systemFix": "Closeout states whether GO_WITH_WARN reopens architecture",
+      "evidenceRefs": [
+        "EVT-008",
+        "EVT-009"
+      ],
+      "linkedWasteIds": [
+        "TW-003"
+      ]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Lane ownership design",
+      "actualExecution": {
+        "steps": [
+          "Processing owner ambiguous across waves"
+        ],
+        "outcome": "Eventually separated record/processor/catalog/approval roles",
+        "evidenceRefs": [
+          "EVT-002",
+          "harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Declare owner-role table before implementation"
+        ],
+        "outcome": "Fewer repeated ownership discussions",
+        "evidenceRefs": [
+          "lane-c-ownership-routing-v1"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "medium",
+        "operatorFrustration": "low"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Self-learning object definition",
+      "actualExecution": {
+        "steps": [
+          "Broad self-learning scope initially"
+        ],
+        "outcome": "Operator narrowed to harvest-protocol only",
+        "evidenceRefs": [
+          "EVT-004"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Declare exact self-learning object and exclusions in mission prompt"
+        ],
+        "outcome": "No scope correction mid-thread",
+        "evidenceRefs": [
+          "lane-c-protocol-only-scope-v1"
+        ]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "medium",
+        "operatorFrustration": "medium"
+      }
+    },
+    {
+      "executionDeltaId": "ED-003",
+      "situation": "Spoke verification",
+      "actualExecution": {
+        "steps": [
+          "Optional spokes resolved in late verification wave"
+        ],
+        "outcome": "GO_WITH_WARN with deferred z-mirror maintenance",
+        "evidenceRefs": [
+          "EVT-007",
+          "EVT-008"
+        ]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Spoke matrix with required/optional/N/A before code"
+        ],
+        "outcome": "Faster closure with same warnings isolated",
+        "evidenceRefs": [
+          "lane-c-spoke-matrix-lesson-v1"
+        ]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [],
+  "duplicateWork": [
+    {
+      "duplicateId": "DUP-001",
+      "subject": "Ownership-boundary discussions",
+      "firstKnownInstance": "harvest-2026-08-06-harvest-protocol-self-learning-lane-closeout-v1",
+      "priorIndexSlice": "work-progress/harvest-packet-registry.json",
+      "whyRepeated": "No spoke matrix at lane start",
+      "avoidableBy": "Registry lookup + owner-role table first",
+      "recommendedAction": "index"
+    },
+    {
+      "duplicateId": "DUP-002",
+      "subject": "Publication versus authority distinction",
+      "firstKnownInstance": "harvest-2026-08-06-office-admin-pr29-github-health-v1",
+      "priorIndexSlice": "BY-KIND/harvest-protocol-self-learning-index.json",
+      "whyRepeated": "Lane C and hub publish tracked separately but restated often",
+      "avoidableBy": "L proposal ≠ approved Git change ≠ Z CURRENT",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Repair Z-mirror sources and runbook sync",
+      "whyItPays": "Prevents protocol authority drift",
+      "effort": "medium",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "savedWasteIds": [
+        "TW-003"
+      ],
+      "seedAs": "command"
+    },
+    {
+      "rank": 2,
+      "title": "selfLearningObject in lane templates",
+      "whyItPays": "Prevents scope correction",
+      "effort": "low",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "savedWasteIds": [
+        "TW-001"
+      ],
+      "seedAs": "rule"
+    },
+    {
+      "rank": 3,
+      "title": "Spoke matrix before cross-repo lanes",
+      "whyItPays": "Reduces verification churn",
+      "effort": "low",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "savedWasteIds": [
+        "TW-002"
+      ],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 4,
+      "title": "Independent Lane C publication truth block",
+      "whyItPays": "Clearer closeouts",
+      "effort": "low",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "savedWasteIds": [],
+      "seedAs": "rule"
+    },
+    {
+      "rank": 5,
+      "title": "Registry lookup before duplication claims",
+      "whyItPays": "Accurate DUP status",
+      "effort": "low",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "savedWasteIds": [],
+      "seedAs": "command"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "LANE_C_PUBLISHED",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "harvest-protocol:self-learning:verify RETRIEVAL_PASS",
+        "INGESTION_COMPLETE.json"
+      ],
+      "lastKnownEvidence": [
+        "protocolSelfLearning.catalogPublishStatus not-run for this harvest"
+      ]
+    },
+    {
+      "awardOrVerdict": "PROTOCOL_MERGED_TO_GIT",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "Governance approval",
+        "feature branch merge"
+      ],
+      "lastKnownEvidence": [
+        "authorityStatus PROPOSAL",
+        "automaticProtocolMutation false"
+      ]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "thread-autopsy-index.json",
+      "work-progress/harvest-packet-registry.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-06T23:37:19.816Z",
+    "preflightReceiptHash": "9a29f5771e13f13f559be7b0a4cafd4bc78077c5983c24cdc794d95575ffafed"
+  }
+}

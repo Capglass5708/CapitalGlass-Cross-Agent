@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-07-bluebeam-markup-report-bridge-v1-v1",
+  "threadScope": "bluebeam-markup-report-bridge-v1 — Wave A spine, publication convergence, governance execution-receipt unblock, Wave B READY",
+  "generatedAt": "2026-08-07T20:50:00.000Z",
+  "events": [
+    {
+      "eventId": "TE-001",
+      "phase": "operator",
+      "summary": "GO_WAVE_A_IMPLEMENTATION — execute bluebeam-markup-report-bridge-v1 Wave A shared spine",
+      "evidenceRefs": ["wave-a-execution-prompt.md packet hash 14ec66bea4d5bb6cf715aa9943dec239a69744c08da306c6092425d02d2893d4"]
+    },
+    {
+      "eventId": "TE-002",
+      "phase": "implementation",
+      "summary": "Wave A implemented across 5 repos via isolated worktrees; feature branch feat/bluebeam-markup-report-bridge-v1-wave-a",
+      "evidenceRefs": [
+        "CG-Platform-Governance-MCP@5174c66",
+        "CapitalGlassRevu@43ed4f5",
+        "Computer Estimator@4116918",
+        "CG-AppBuilder-MCP@e70684ed",
+        "CapitalGlass-Cross-Agent@ebb9027"
+      ]
+    },
+    {
+      "eventId": "TE-003",
+      "phase": "closeout",
+      "summary": "Wave A closeout PASS_WAVE_A_SPINE_FOUNDATION; pre-publication Wave B packet READY (superseded later)",
+      "evidenceRefs": ["wave-a-closeout.json", "wave-a-spine-proof.json"]
+    },
+    {
+      "eventId": "TE-004",
+      "phase": "publication",
+      "summary": "Five PRs merged to canonical main in dependency order (#18 Governance through #25 Cross-Agent)",
+      "evidenceRefs": [
+        "https://github.com/Capglass5708/CG-Platform-Governance-MCP/pull/18",
+        "https://github.com/Capglass5708/CapitalGlassRevu/pull/8",
+        "https://github.com/Capglass5708/Computer-Estimator-/pull/24",
+        "https://github.com/Capglass5708/CG-AppBuilder-MCP/pull/291",
+        "https://github.com/Capglass5708/CapitalGlass-Cross-Agent/pull/25"
+      ]
+    },
+    {
+      "eventId": "TE-005",
+      "phase": "verification",
+      "summary": "Post-publication spine proof PASS on main; schema parity 71ad755f; CE tests 8/8 + envelope 9/9",
+      "evidenceRefs": ["wave-a-post-publication-spine-proof.json"]
+    },
+    {
+      "eventId": "TE-006",
+      "phase": "blocker",
+      "summary": "Wave B SDLC prepare BLOCKED — BLOCK_GOVERNANCE_EXECUTION_RECEIPT_LIB_MISSING",
+      "evidenceRefs": ["wave-b-preparation-blocked-receipt.json"]
+    },
+    {
+      "eventId": "TE-007",
+      "phase": "implementation",
+      "summary": "Controlled patch: cherry-pick execution-receipt lib from feat/cg-estimating-evidence-envelope-authority-v1; Governance PR #19 merged",
+      "evidenceRefs": [
+        "CG-Platform-Governance-MCP@773e51b0600f342ee46194b67b1e7a50f5bd5e8e",
+        "https://github.com/Capglass5708/CG-Platform-Governance-MCP/pull/19"
+      ]
+    },
+    {
+      "eventId": "TE-008",
+      "phase": "closeout",
+      "summary": "Wave B SDLC prepare READY with new packet/prompt hashes after governance publication",
+      "evidenceRefs": [
+        "sdlc-cursor-prepare-receipt.json",
+        "packetHash f8c3fcf659dd96296ebbd49aa5ba7c6202282b1e44a6d28c35e5c73a00dde705"
+      ]
+    },
+    {
+      "eventId": "TE-009",
+      "phase": "operator",
+      "summary": "GO_WAVE_B_IMPLEMENTATION recorded; Wave A not reopened",
+      "evidenceRefs": ["operator state confirmation message"]
+    }
+  ]
+}

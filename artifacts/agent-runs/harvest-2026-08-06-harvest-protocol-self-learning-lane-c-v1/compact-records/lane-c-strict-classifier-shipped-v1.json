@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1",
+  "packetId": "lane-c-strict-classifier-shipped-v1",
+  "state": "COMPLETE",
+  "packetVerdict": "ALREADY_IMPLEMENTED",
+  "ownerRepo": "Data-Extraction",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "None — document in protocol only if gap found",
+  "evidenceRefs": [
+    "EVT-005",
+    "Data-Extraction@a161534f113b0cbb885a287986ebca1217401dde",
+    "scripts/harvest-protocol-self-learning/lib/classify-harvest-protocol-relevance.mjs"
+  ],
+  "doNotAdvance": [
+    "Re-export classifier as new Lane C candidate without protocol doc gap"
+  ],
+  "advancementGate": "npm run test:harvest-protocol-self-learning exit 0",
+  "contentHash": "e8f373196850231ae8d9573dad6cf5c14d0e1c78d6aeb9576d06d3c53d9a9acb"
+}

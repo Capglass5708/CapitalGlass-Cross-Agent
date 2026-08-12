@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "lane-c-draft-repair-report-v1@1.0.0",
+  "repairs": [
+    {
+      "repairId": "R-001",
+      "location": "HP packets evidenceRefs",
+      "before": "Operator scope correction",
+      "after": "EVT-004 + protocol paths + classifier path",
+      "reason": "Exact evidence required",
+      "evidence": [
+        "claim-verification-report.json"
+      ]
+    },
+    {
+      "repairId": "R-002",
+      "location": "seed strict classifier kind",
+      "before": "protocol-upgrade",
+      "after": "runbook",
+      "reason": "Schema enum",
+      "evidence": [
+        "harvest-seed-packet-v1.schema.json"
+      ]
+    },
+    {
+      "repairId": "R-003",
+      "location": "roiBacklog seedAs",
+      "before": "protocol/lesson",
+      "after": "rule/runbook",
+      "reason": "Schema enum",
+      "evidence": [
+        "thread-autopsy-bundle-v1.schema.json"
+      ]
+    },
+    {
+      "repairId": "R-004",
+      "location": "protocolImprovementCandidates",
+      "before": "missing targets in draft",
+      "after": "HPC-Z-MIRROR-RUNBOOK-SYNC-001",
+      "reason": "Export gate",
+      "evidence": [
+        "protocol-self-learning-export-lib.mjs"
+      ]
+    },
+    {
+      "repairId": "R-005",
+      "location": "DUP-001",
+      "before": "NEEDS_REGISTRY_LOOKUP_FIRST",
+      "after": "registry consulted PASS",
+      "reason": "Duplication preflight",
+      "evidence": [
+        "duplication-preflight-receipt.json"
+      ]
+    }
+  ]
+}

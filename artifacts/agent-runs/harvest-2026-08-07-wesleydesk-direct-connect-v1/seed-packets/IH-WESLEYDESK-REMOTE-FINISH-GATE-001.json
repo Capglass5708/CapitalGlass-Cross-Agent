@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-WESLEYDESK-REMOTE-FINISH-GATE-001",
+  "kind": "runbook",
+  "title": "Hold remote-finish until persistence REGISTERED",
+  "summary": "remote-finish-v1 FAILED when dispatched before register-receipt; use v2 only after UAC.",
+  "retrievalQuestions": [
+    "Why did remote-finish-v1 fail on WESLEYDESK?",
+    "When can RYZEN9DESK queue remote-finish-v2?"
+  ],
+  "evidenceRefs": ["EVT-005", "03-OUTBOX/wesleydesk-full-control-v1-remote-finish-v1-response.json"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Operator says step 1 done or asks to finish full-control wave",
+    "startAt": ["04-ARTIFACTS/service-persistence/register-receipt.json", "dispatch/"],
+    "runPreflight": ["Verify REGISTERED status in receipt"],
+    "doNot": ["Re-queue remote-finish-v1", "Dispatch finish without receipt"],
+    "proveBeforeClaiming": ["register-receipt.json REGISTERED", "Copy remote-finish-v2 to 01-INBOX once"]
+  },
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}
