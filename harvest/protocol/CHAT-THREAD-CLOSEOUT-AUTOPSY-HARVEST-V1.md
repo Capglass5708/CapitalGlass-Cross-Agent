@@ -1,9 +1,10 @@
-# Chat Thread Closeout Autopsy, Harvest, and Intelligence Hub Seed Protocol v1.1
+# Chat Thread Closeout Autopsy, Harvest, and Intelligence Hub Seed Protocol v1.2
 
 **Work package pattern:** `chat-thread-closeout-autopsy-harvest-v1` or `harvest-YYYY-MM-DD-<slug>-v1`  
 **Authority repo:** CapitalGlass-Cross-Agent  
-**Companion:** [Intelligence Hub accommodation](../intelligence-hub/thread-autopsy-hub-accommodation-v1.md)  
+**Companion:** [Intelligence Hub accommodation](./thread-autopsy-hub-accommodation-v1.md)  
 **Base harvest runbook:** [harvest-record-validate-sync.md](./harvest-record-validate-sync.md)  
+**Lifecycle proof (agent-owned):** `npm run harvest:proof:thread-autopsy-lifecycle`  
 **Compounding context:** `L:\02-catalog\Harvest\GOLD-MINE-NORTH-STAR-CHARTER.md` (harvest → Hub → Gold Mine → implementation → remeasure)
 
 ---
@@ -26,6 +27,8 @@ This is **not** a chat summary. It is a **thread autopsy and intelligence extrac
 
 **v1.1 compounding rule:** Harvest deliberately generates high-quality evidence for Gold Mine classification — problems, resolutions, adoption, performance, friction, observability gaps, and product opportunities — not narrative alone.
 
+**v1.2 Git durability rule:** After validation + tests PASS, Cursor agents MUST commit and push harvest-owned Cross-Agent artifacts (scoped) before claiming HARVEST_COMPLETE. Hub/index publication remains operator-owned.
+
 Cross-Agent records coordination, receipts, ledger updates, and seed manifests only. Implementation code belongs in owner repos. **Data-Extraction** owns Gold Mine discovery, candidate digests, and §10 remeasurement; harvest supplies semantic evidence upstream.
 
 ---
@@ -42,12 +45,21 @@ Target tier: T1 (default) | T2 (full autopsy) | T3 (publication intent)
 
 | Verdict | Meaning |
 | --- | --- |
-| `HARVEST_COMPLETE` | Structured packets + autopsy bundle validate; recording done |
 | `HARVEST_PARTIAL` | Prose-heavy or missing evidence; not ship-ready |
 | `HARVEST_BLOCKED` | Missing authority, repo access, or index state |
 | `NO_HARVEST_NEEDED` | No durable operational, code, architecture, or decision value |
+| `HARVEST_VALIDATED` | `harvest:validate` + required tests PASS; artifacts recorded locally |
+| `HARVEST_GIT_DURABLE` | Validated harvest committed and pushed in CapitalGlass-Cross-Agent |
+| `HARVEST_COMPLETE` | **Git-durable** harvest (`HARVEST_GIT_DURABLE`) — ready for operator publication |
+| `READY_FOR_OPERATOR_PUBLICATION` | Git-durable; operator may run hub seed + index publish |
 
-Publication is **separate** from recording (`projection.hubPublishStatus`: `not-run` | `published` | `drift` | `blocked`).
+Lifecycle:
+
+```text
+HARVEST_VALIDATED → HARVEST_GIT_DURABLE → HARVEST_COMPLETE / READY_FOR_OPERATOR_PUBLICATION
+```
+
+Hub/index publication remains **separate** from Git durability (`projection.hubPublishStatus`: `not-run` | `published` | `drift` | `blocked`).
 
 Do not claim hub publication or `FULLY_SEEDED` without `index:freshness-gate` receipt.
 
@@ -72,10 +84,68 @@ Do not claim hub publication or `FULLY_SEEDED` without `index:freshness-gate` re
 4. Do not advance operational awards without receipts.
 5. Do not mark a blocker closed because a prompt says so — verify artifact, command, or commit.
 6. Wrong moves must be structured records, not buried prose.
-7. Cursor agents **record only** — operator runs `index:publish` and hub seed publish.
+7. Cursor agents may **record, validate, commit, and push** harvest-owned CapitalGlass-Cross-Agent artifacts after all required harvest gates PASS. Operator remains responsible for `harvest:publish-hub-seed`, `index:publish`, and `index:freshness-gate`.
 8. **Stable identity invariant:** ordinals (`HP-###`, `GOLD-####`, packet sequence) are presentation only. Cross-run correlation must use content hashes, `candidateDigest`, `packetId`, `workPackageId`, `sourceCommitSha`, or other stable semantic identifiers.
 9. **No distinct-signal suppression:** low-value, deferred, uncertain, or currently infeasible observations remain eligible Gold Mine evidence. Harvest may deduplicate true duplicates but must not discard valid improvement signals because they appear unimportant.
 10. **Resolved-but-visible:** findings with `lifecycleState: RESOLVED_OBSERVED` (or equivalent resolution hint) must remain retrievable — resolution is not deletion.
+
+
+---
+
+## HARVEST_GIT_DURABILITY_RULE (v1.2)
+
+After harvest validation and required tests PASS:
+
+**Agent MUST:**
+
+1. Review `git status`
+2. Stage only harvest-owned artifacts for the active `harvest-id`
+3. Stage required derived harvest registry/index files produced by canonical harvest commands (`harvest:sync-derived`, `harvest:render-index`)
+4. Commit the validated harvest
+5. Push the authorized Cross-Agent branch (not `main` unless separately authorized)
+6. Verify local `HEAD == remote HEAD`
+7. Record final 40-char Git SHA in `receipt.json` (`sourceCommitSha`, `gitDurability` block)
+8. Continue to the next permitted closeout step
+
+**No additional operator approval** is required for this Git durability step when the active harvest was already authorized.
+
+**Scope — ALLOWED only:**
+
+- `CapitalGlass-Cross-Agent` harvest-owned records for the active `harvest-id`
+- Derived registry/index updates from canonical harvest commands for that harvest
+
+**NOT ALLOWED by harvest Git durability:**
+
+- Implementation changes in owner repositories
+- Merge to protected branches (`main`) unless separately authorized
+- Deployments
+- Hub publication (`harvest:publish-hub-seed`)
+- `index:publish` / `index:freshness-gate`
+- Z publication / authority promotion
+- Destructive Git operations
+- Unrelated working-tree files
+
+Existing helper (optional): `npm run harvest:closeout-git -- --harvest-id=<id> --apply` — agents may also perform equivalent scoped `git add` / `commit` / `push` when the helper does not yet cover harvest-run artifact paths.
+
+---
+
+## HARVEST_GIT_DURABILITY_GATE
+
+**PASS** only when all are true:
+
+| Check | Requirement |
+| --- | --- |
+| Validate | `harvest:validate` = PASS |
+| Tests | `test:harvest` = PASS (and `test:harvest:prompt-extraction` when prompt harvest ran) |
+| Scope | Harvest-owned staged files verified; no unrelated paths |
+| Commit | Commit created on authorized branch |
+| Push | Push succeeded |
+| Parity | Remote `HEAD` == local `HEAD` |
+| SHA | `sourceCommitSha` = pushed 40-char SHA in manifest + receipt |
+| Clean | Uncommitted harvest-owned files for this `harvest-id` = 0 |
+
+Validation success alone is **insufficient** for terminal harvest closeout if harvest-owned artifacts remain uncommitted.
+
 
 ---
 
@@ -273,7 +343,8 @@ Packets: `harvest-manifest-v1.json` → `packets[]` + `compact-records/<packet-i
 | **6b. Product coverage & corpus bias** | `productWorkflowCoverage`, `corpusBias` in autopsy bundle | OBSERVED/NOT_OBSERVED matrix; `underObservedDomains[]` |
 | **6c. Operational telemetry** | `operationalMeasurements[]` when execution occurred | Durations, retries, warnings, cache, fallbacks, interventions |
 | **7. Do-not-advance sync** | Global + `work-progress/do-not-advance-registry.json` | No PASS without `lastKnownEvidence` |
-| **8. Validate & handoff** | `validation-result.json` | `harvest:validate` PASS |
+| **8. Validate** | `validation-result.json` | `harvest:validate` PASS |
+| **8b. Git durability** | `receipt.json` + `gitDurability` fields | `HARVEST_GIT_DURABILITY_GATE` PASS |
 | **9. Protocol self-learning (Lane C, optional)** | `data-extraction-handoff/harvest-protocol-self-learning-input.json` + L catalog package | Only when `protocolImprovementCandidates[]` exist; unrelated build/app packets excluded |
 
 **Lane C flow (separate classified projection — does not replace Hub publication):**
@@ -555,20 +626,34 @@ Manifest optional extension:
 
 ## Command chain
 
+### Agent-owned (through Git durability)
+
 | Step | Command | Who |
 | --- | --- | --- |
 | 1 | Edit manifest + autopsy bundle + seed packets | Agent |
-| 2 | `npm run harvest:sync-derived` | Agent |
+| 2 | `npm run harvest:sync-derived -- --harvest-id=<id>` | Agent |
 | 3 | `npm run harvest:render-index` | Agent |
-| 4 | `npm run harvest:validate` | Agent |
+| 4 | `npm run harvest:validate -- --harvest-id=<id>` | Agent |
 | 5 | `npm run test:harvest` | Agent |
 | 6 | `npm run harvest:compile-seed-packets -- --harvest-id=<id>` | Agent (when seeds exist) |
 | 7 | `npm run harvest:blind-retrieval -- --harvest-id=<id>` | Agent (T2+) |
-| 8 | `npm run harvest:publish-hub-seed -- --harvest-id=<id>` | **Operator** (L: mounted) |
-| 9 | `npm run index:publish` | **Operator** (WESLEYDESK GHA or break-glass) |
-| 10 | `npm run index:freshness-gate` | **Operator** |
+| 8 | Curate Git scope (harvest-owned + derived registry/index only) | Agent |
+| 9 | Commit harvest (`chore(harvest): <harvest-id>`) | Agent |
+| 10 | Push authorized Cross-Agent branch | Agent |
+| 11 | Verify `HEAD == origin/<branch>` | Agent |
+| 12 | Record `sourceCommitSha` + `gitDurability` in `receipt.json` | Agent |
 
-Steps 8–10 are **not** Cursor-closeout actions.
+**Verdict after step 12:** `HARVEST_GIT_DURABLE` → `HARVEST_COMPLETE` / `READY_FOR_OPERATOR_PUBLICATION`
+
+### Operator-owned (publication — unchanged)
+
+| Step | Command | Who |
+| --- | --- | --- |
+| 13 | `npm run harvest:publish-hub-seed -- --harvest-id=<id>` | **Operator** (L: mounted) |
+| 14 | `npm run index:publish` | **Operator** (WESLEYDESK GHA or break-glass) |
+| 15 | `npm run index:freshness-gate` | **Operator** |
+
+Steps 13–15 are **not** Cursor-closeout actions. Do not claim hub publication or `FULLY_SEEDED` without step 15 receipt.
 
 ### Lane C — protocol self-learning command chain
 
@@ -610,13 +695,13 @@ Cross-Agent export receipt (`protocol-self-learning-export-receipt.json`) record
 
 ## Intelligence Hub publication
 
-After Git harvest validates:
+After harvest is **Git-durable** (`HARVEST_GIT_DURABILITY_GATE` PASS):
 
 1. `harvest:compile-seed-packets` — bundle → `qa-index.json` + catalog stubs
 2. `harvest:publish-hub-seed` — writes `02-catalog/knowledge-objects/cross-agent-harvest/` + `BY-KIND/thread-autopsy-index.json`
 3. Operator runs ledger publish + `index:freshness-gate`
 
-See [thread-autopsy-hub-accommodation-v1.md](../intelligence-hub/thread-autopsy-hub-accommodation-v1.md) for hub paths and schemas.
+See [thread-autopsy-hub-accommodation-v1.md](./thread-autopsy-hub-accommodation-v1.md) for hub paths and schemas.
 
 ### Lane C publication truth (`protocolSelfLearning`)
 
@@ -694,7 +779,8 @@ Do-not-advance:
 Future agent (#1 lesson):
 When <situation> → start at <index> → run <preflight> → do not <forbidden>
 
-Publication: Git <sha> | Hub <not-run|published> | Freshness <PASS|NOT_RUN_BY_CURSOR>
+Git durability: commit=<sha> | pushed=true | remoteVerified=true | harvestOwnedDirtyFiles=0
+Publication: Hub <not-run|published> | Freshness <PASS|NOT_RUN_BY_CURSOR>
 
 Protocol self-learning (Lane C):
 Eligible: <n> | Rejected unrelated: <n> | Duplicates: <n>
@@ -703,7 +789,7 @@ Retrieval: <PASS|FAIL|NOT_RUN>
 Authority: PROPOSAL / RETRIEVAL_ONLY
 Automatic protocol mutation: false
 
-Next operator action: <one sentence>
+Next operator action: harvest:publish-hub-seed → index:publish → index:freshness-gate (when publication intended)
 ```
 
 ---
@@ -720,6 +806,12 @@ Next operator action: <one sentence>
 - [ ] Do-not-advance map + registry updated when reusable
 - [ ] Seed packets atomic with retrieval questions (T2+)
 - [ ] `harvest:validate` PASS or gaps labeled `HARVEST_PARTIAL`
+- [ ] `test:harvest` PASS
+- [ ] `HARVEST_GIT_DURABILITY_GATE` PASS (commit + push + HEAD parity)
+- [ ] `receipt.json` records pushed `sourceCommitSha`
+- [ ] `test:harvest` PASS
+- [ ] `HARVEST_GIT_DURABILITY_GATE` PASS (commit + push + HEAD parity)
+- [ ] `receipt.json` records pushed `sourceCommitSha`
 - [ ] Publication truthfully labeled; no false FULLY_SEEDED
 - [ ] **Gold Mine:** `goldMineSignalClass` assigned where applicable
 - [ ] **Gold Mine:** problem vs resolution/adoption evidence distinguished
@@ -794,10 +886,11 @@ After harvest:validate passes, confirm that Data-Extraction classifies the
 directory under protocol cursor-cross-agent-harvest-v1 and reports
 READY_FOR_INGEST.
 
-Validate: harvest:sync-derived, harvest:validate, test:harvest.
+Validate: harvest:sync-derived, harvest:render-index, harvest:validate, test:harvest.
+Then Git durability (steps 8–12): curate scope → commit → push → verify HEAD == remote → update receipt.
 Do NOT run index:publish or harvest:publish-hub-seed from Cursor.
 
-Final answer: verdict, tier, retrieval code, packet/waste/seed counts, ROI top-3, do-not-advance guards, future-agent #1 lesson, next operator action.
+Final answer: verdict (`HARVEST_COMPLETE` only if Git-durable), tier, retrieval code, packet/waste/seed counts, ROI top-3, do-not-advance guards, Git SHA + push proof, future-agent #1 lesson, operator publication next steps.
 ```
 
 ---
@@ -828,7 +921,22 @@ THREAD CLOSEOUT
 | Approved prompt authority | PromptOps manifests + suite prompt index |
 | Hot-cache routing envelope | Compact metadata only — **no** full chat transcripts or prompt bodies |
 | Supabase runtime retrieval | Approved projections only during seed/publish |
-| Mutation authority (merge/push/deploy/delete) | **Never** granted by harvest |
+| Git durability (harvest-owned Cross-Agent artifacts) | Agent after `HARVEST_GIT_DURABILITY_GATE` |
+| Mutation authority — owner repos / protected branches / deploy / delete / Z promotion | **Not** granted by harvest |
+| Hub + index publication | Operator only |
+
+**Mutation authority:**
+
+**ALLOWED:**
+- commit/push validated harvest-owned artifacts to the authorized CapitalGlass-Cross-Agent harvest branch (after `HARVEST_GIT_DURABILITY_GATE`)
+
+**NOT ALLOWED BY HARVEST:**
+- owner-repo implementation mutation
+- merge to protected branches
+- deployments
+- deletion/destructive Git
+- Z authority promotion
+- production publication (`harvest:publish-hub-seed`, `index:publish`, `index:freshness-gate`)
 
 ### Classification
 

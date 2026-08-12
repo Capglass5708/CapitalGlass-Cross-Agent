@@ -2,7 +2,7 @@
 
 **Work package pattern:** `chat-thread-closeout-autopsy-harvest-v1` or `harvest-YYYY-MM-DD-<slug>-v1`  
 **Authority repo:** CapitalGlass-Cross-Agent  
-**Companion:** [Intelligence Hub accommodation](../intelligence-hub/thread-autopsy-hub-accommodation-v1.md)  
+**Companion:** [Intelligence Hub accommodation](../../harvest/protocol/thread-autopsy-hub-accommodation-v1.md)  
 **Base harvest runbook:** [harvest-record-validate-sync.md](./harvest-record-validate-sync.md)
 
 ---
@@ -356,7 +356,7 @@ After Git harvest validates:
 2. `harvest:publish-hub-seed` — writes `02-catalog/knowledge-objects/cross-agent-harvest/` + `BY-KIND/thread-autopsy-index.json`
 3. Operator runs ledger publish + `index:freshness-gate`
 
-See [thread-autopsy-hub-accommodation-v1.md](../intelligence-hub/thread-autopsy-hub-accommodation-v1.md) for hub paths and schemas.
+See [thread-autopsy-hub-accommodation-v1.md](../../harvest/protocol/thread-autopsy-hub-accommodation-v1.md) for hub paths and schemas.
 
 **Promotion classes** (CG-AppBuilder-MCP harvest pipeline):
 
