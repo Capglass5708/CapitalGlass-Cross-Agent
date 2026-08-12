@@ -1,9 +1,9 @@
 # Harvest summary — derived view
 
-**Authority:** `harvest-manifest-v1.json` (`e19a2e565ef3…`)
+**Authority:** `harvest-manifest-v1.json` (`1cfc7284990c…`)
 **Work package:** `harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1`
 **Mission class:** `chat-thread-closeout-autopsy-harvest-v1`
-**Verdict:** `HARVEST_VALIDATED`
+**Verdict:** `HARVEST_COMPLETE`
 **Retrieval:** `INDEX_HIT_AI_CACHE`
 
 > This file is a generated view. Do not edit independently — update the manifest.
