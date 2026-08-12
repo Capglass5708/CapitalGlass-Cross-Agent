@@ -1,6 +1,12 @@
 {
   "schemaVersion": "intelligence-hub-host-authority-slice-v1@1.0.0",
-  "updatedAt": "2026-08-04T23:22:50.270Z",
+  "updatedAt": "2026-08-12T03:14:29.735Z",
+  "directConnect": {
+    "primaryTransport": "direct-connect",
+    "frontDoorTool": "office.get_direct_connect_auto_connect_profile",
+    "handoffRootWsl": "/mnt/z/Office/Wes/Direct Connect/handoffs",
+    "slicePath": "00-master-index/BY-KIND/cross-desk-routing.json"
+  },
   "hosts": [
     {
       "hostId": "WESLEYDESK",
@@ -12,18 +18,22 @@
     },
     {
       "hostId": "WESLEY_WORK",
-      "role": "WSL dev, cross-agent ledger ingest",
+      "role": "WSL dev, cross-agent ledger ingest, Direct Connect coordination",
       "paths": {
         "intelligenceHub": "/mnt/l/Capital-Glass-Intelligence-Hub",
         "aiCache": "/mnt/d/AI Cursur Cache"
-      }
+      },
+      "crossDeskRole": "integrationCaptain",
+      "directConnectHandoffRootWsl": "/mnt/z/Office/Wes/Direct Connect/handoffs"
     },
     {
       "hostId": "RYZEN9DESK",
       "role": "managed executor, Direct Connect endpoint",
       "paths": {
         "aiCache": "C:/AI Cursur Cache"
-      }
+      },
+      "crossDeskRole": "executionEngine",
+      "tailscaleHost": "cg-ryzen9desk-01.tail49f063.ts.net"
     }
   ]
 }

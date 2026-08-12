@@ -143,10 +143,70 @@ function buildCurrentState(pointer, gitHead) {
   };
 }
 
+function resolveOfficeAdminKnowledgePath() {
+  const reposRoot =
+    process.env.CG_REPOS_ROOT ??
+    path.resolve(REPO_ROOT, "..");
+  const candidates = [
+    path.join(reposRoot, "CapitalGlass-Office-Admin/mcp/knowledge-index/cg-direct-connect-auto-connect.v1.json"),
+    path.join(REPO_ROOT, "../CapitalGlass-Office-Admin/mcp/knowledge-index/cg-direct-connect-auto-connect.v1.json"),
+  ];
+  for (const candidate of candidates) {
+    if (fs.existsSync(candidate)) return candidate;
+  }
+  return candidates[0];
+}
+
+function buildCrossDeskRouting() {
+  const knowledgePath = resolveOfficeAdminKnowledgePath();
+  const knowledge = fs.existsSync(knowledgePath)
+    ? JSON.parse(fs.readFileSync(knowledgePath, "utf8"))
+    : null;
+
+  return {
+    schemaVersion: "intelligence-hub-cross-desk-routing-slice-v1@1.0.0",
+    updatedAt: new Date().toISOString(),
+    workPackageId: "direct-connect-first-read-enforcement-v1",
+    primaryTransport: "direct-connect",
+    forbiddenFirstTransport: ["ssh", "tailscale-ssh", "scp"],
+    integrationCaptain: "WESLEY_WORK",
+    executionEngine: "RYZEN9DESK",
+    frontDoorTool: knowledge?.frontDoorTool ?? "office.get_direct_connect_auto_connect_profile",
+    defaultHandoffRootWsl:
+      knowledge?.defaultHandoffRootWsl ?? "/mnt/z/Office/Wes/Direct Connect/handoffs",
+    defaultToolSequence: knowledge?.defaultToolSequence ?? [
+      "office.get_direct_connect_auto_connect_profile",
+      "office.observe_ryzen9desk_runner",
+      "office.get_ryzen9desk_connection_status",
+      "office.list_direct_connect_handoffs",
+      "office.get_direct_connect_handoff",
+      "office.evaluate_ryzen9desk_dispatch_eligibility",
+      "office.request_ryzen9desk_dispatch",
+    ],
+    preflightCommand: "npm run direct-connect:preflight -- --json",
+    rulePath: "CG-AppBuilder-MCP/agent-packs/three-way-agent/rules/direct-connect-first-read.mdc",
+    knowledgeIndexPath: knowledgePath,
+    runbook: "CapitalGlass-Office-Admin/docs/runbooks/ryzen9desk-office-admin-mcp-connection.md",
+    retrievalCodes: [
+      "DIRECT_CONNECT_HIT",
+      "DIRECT_CONNECT_BLOCKED",
+      "DIRECT_CONNECT_FAILOVER_LOCAL",
+      "DIRECT_CONNECT_NOT_APPLICABLE",
+    ],
+  };
+}
+
 function buildHostAuthority() {
+  const crossDesk = buildCrossDeskRouting();
   return {
     schemaVersion: "intelligence-hub-host-authority-slice-v1@1.0.0",
     updatedAt: new Date().toISOString(),
+    directConnect: {
+      primaryTransport: crossDesk.primaryTransport,
+      frontDoorTool: crossDesk.frontDoorTool,
+      handoffRootWsl: crossDesk.defaultHandoffRootWsl,
+      slicePath: "00-master-index/BY-KIND/cross-desk-routing.json",
+    },
     hosts: [
       {
         hostId: "WESLEYDESK",
@@ -155,13 +215,17 @@ function buildHostAuthority() {
       },
       {
         hostId: "WESLEY_WORK",
-        role: "WSL dev, cross-agent ledger ingest",
+        role: "WSL dev, cross-agent ledger ingest, Direct Connect coordination",
         paths: { intelligenceHub: "/mnt/l/Capital-Glass-Intelligence-Hub", aiCache: "/mnt/d/AI Cursur Cache" },
+        crossDeskRole: "integrationCaptain",
+        directConnectHandoffRootWsl: crossDesk.defaultHandoffRootWsl,
       },
       {
         hostId: "RYZEN9DESK",
         role: "managed executor, Direct Connect endpoint",
         paths: { aiCache: "C:/AI Cursur Cache" },
+        crossDeskRole: "executionEngine",
+        tailscaleHost: "cg-ryzen9desk-01.tail49f063.ts.net",
       },
     ],
   };
@@ -270,6 +334,7 @@ function main() {
     "owner-boundaries.json": compactOwnerBoundaries(boundaryIndex),
     "do-not-advance.json": compactDoNotAdvance(doNotAdvance),
     "host-authority.json": buildHostAuthority(),
+    "cross-desk-routing.json": buildCrossDeskRouting(),
     "work-package-registry.json": compactWorkPackageRegistry(harvestRegistry),
     "freshness-dashboard.json": buildFreshnessDashboard(gitHead),
   };
@@ -312,6 +377,7 @@ function main() {
       "00-master-index/BY-KIND/owner-boundaries.json",
       "00-master-index/BY-KIND/receipts.json",
       "00-master-index/BY-KIND/host-authority.json",
+      "00-master-index/BY-KIND/cross-desk-routing.json",
       "00-master-index/BY-KIND/work-package-registry.json",
       "00-master-index/BY-KIND/current-state.json",
       "00-master-index/BY-KIND/freshness-dashboard.json",

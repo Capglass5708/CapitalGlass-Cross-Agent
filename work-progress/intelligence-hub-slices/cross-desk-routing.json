@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "intelligence-hub-cross-desk-routing-slice-v1@1.0.0",
+  "updatedAt": "2026-08-12T03:14:29.736Z",
+  "workPackageId": "direct-connect-first-read-enforcement-v1",
+  "primaryTransport": "direct-connect",
+  "forbiddenFirstTransport": [
+    "ssh",
+    "tailscale-ssh",
+    "scp"
+  ],
+  "integrationCaptain": "WESLEY_WORK",
+  "executionEngine": "RYZEN9DESK",
+  "frontDoorTool": "office.get_direct_connect_auto_connect_profile",
+  "defaultHandoffRootWsl": "/mnt/z/Office/Wes/Direct Connect/handoffs",
+  "defaultToolSequence": [
+    "office.get_direct_connect_auto_connect_profile",
+    "office.observe_ryzen9desk_runner",
+    "office.get_ryzen9desk_connection_status",
+    "office.list_direct_connect_handoffs",
+    "office.get_direct_connect_handoff",
+    "office.evaluate_ryzen9desk_dispatch_eligibility",
+    "office.request_ryzen9desk_dispatch"
+  ],
+  "preflightCommand": "npm run direct-connect:preflight -- --json",
+  "rulePath": "CG-AppBuilder-MCP/agent-packs/three-way-agent/rules/direct-connect-first-read.mdc",
+  "knowledgeIndexPath": "/home/wesle/repos/CapitalGlass-Office-Admin/mcp/knowledge-index/cg-direct-connect-auto-connect.v1.json",
+  "runbook": "CapitalGlass-Office-Admin/docs/runbooks/ryzen9desk-office-admin-mcp-connection.md",
+  "retrievalCodes": [
+    "DIRECT_CONNECT_HIT",
+    "DIRECT_CONNECT_BLOCKED",
+    "DIRECT_CONNECT_FAILOVER_LOCAL",
+    "DIRECT_CONNECT_NOT_APPLICABLE"
+  ]
+}
