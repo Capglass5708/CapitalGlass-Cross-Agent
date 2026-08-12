@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-estimating-spine-wp2-parallel-lane-closeout-v1",
+  "threadScope": "Post-CE estimating spine parallel lane — catalog, BC export, Revu repair, WP2 logic proof, live DB pending, Smith Ranch frozen",
+  "generatedAt": "2026-08-12T22:45:00.000Z",
+  "events": [
+    {
+      "eventId": "TE-001",
+      "phase": "design",
+      "summary": "Parallel lane scoped: estimating-spine-revu-bc-parallel-v1 without Smith Ranch live execution",
+      "evidenceRefs": ["estimating-spine-revu-bc-parallel-v1", "conversation scope lock"]
+    },
+    {
+      "eventId": "TE-002",
+      "phase": "implement",
+      "summary": "CG-AppBuilder-MCP PR #365 merged — est catalog migration + human scope corpus + ingest scripts",
+      "evidenceRefs": ["d5971e1e51c9ac2bed8180aad278e316e5650075", "20260812130000_estimating_spine_catalog_v1.sql"]
+    },
+    {
+      "eventId": "TE-003",
+      "phase": "implement",
+      "summary": "CapitalGlass-BidComposer PR #60 merged — approved-entity export validator",
+      "evidenceRefs": ["eed776a4e315acfba4338dc7371ac4251c296cf1", "validate-approved-entity-export.ts"]
+    },
+    {
+      "eventId": "TE-004",
+      "phase": "ship",
+      "summary": "CapitalGlassRevu PR #10 taxonomy + PR #11 Gate1 baseline repair merged",
+      "evidenceRefs": ["ea0f2e0723c99301041f3d87d8d5b668f144fadf", "foundation-controlled-page.pdf"]
+    },
+    {
+      "eventId": "TE-005",
+      "phase": "verify",
+      "summary": "Gate1 CI failure root-caused to PDF LF vs CRLF oracle SHA drift; repaired with canonical bytes + .gitattributes",
+      "evidenceRefs": ["revu-control-plane-baseline-repair-v1", "test-gate1-oracle-fixture-integrity.mjs"]
+    },
+    {
+      "eventId": "TE-006",
+      "phase": "implement",
+      "summary": "WP2 isolated catalog proof PR #367 — golden path, lineage view, 8/8 logic tests PASS, CI green",
+      "evidenceRefs": ["16c0a3ed3005dd2ea13cf52e643ce705dc4c968c", "golden-path-v1.json"]
+    },
+    {
+      "eventId": "TE-007",
+      "phase": "verify",
+      "summary": "Live DB proof blocked — supabase container down, CLI parse mismatch, no psql",
+      "evidenceRefs": ["estimating-spine:wp2:proof:live", "WP2-ISOLATED-CATALOG-PROOF-V1.md"]
+    },
+    {
+      "eventId": "TE-008",
+      "phase": "closeout",
+      "summary": "Classification locked: WP2_LOGIC_PROOF_PASS / LIVE_DB_PROOF_PENDING; Smith Ranch frozen",
+      "evidenceRefs": ["conversation freeze instructions"]
+    },
+    {
+      "eventId": "TE-009",
+      "phase": "closeout",
+      "summary": "Operator invoked CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1 commit/push",
+      "evidenceRefs": ["L:/02-catalog/Harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"]
+    }
+  ]
+}

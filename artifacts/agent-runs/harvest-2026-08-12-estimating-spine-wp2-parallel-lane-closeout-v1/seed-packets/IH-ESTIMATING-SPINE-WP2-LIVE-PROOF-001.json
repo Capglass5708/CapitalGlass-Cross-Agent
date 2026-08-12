@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-ESTIMATING-SPINE-WP2-LIVE-PROOF-001",
+  "kind": "runbook",
+  "title": "WP2 isolated catalog proof — logic then live DB receipt before merge",
+  "summary": "Run logic proof first (8/8). Live proof requires isolated Supabase substrate. Do not merge PR #367 or claim WP2_COMPLETE without durable live receipt.",
+  "retrievalQuestions": [
+    "What is required before merging WP2 PR #367?",
+    "How is WP2 classified when logic tests pass but live DB is blocked?"
+  ],
+  "evidenceRefs": [
+    "16c0a3ed3005dd2ea13cf52e643ce705dc4c968c",
+    "WP2-ISOLATED-CATALOG-PROOF-V1.md",
+    "wp2-live-db-proof-pending-v1"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "estimating-spine-wp2-isolated-catalog-proof-v1 or PR #367 merge question",
+    "startAt": [
+      "docs/estimating-data-spine/WP2-ISOLATED-CATALOG-PROOF-V1.md",
+      "fixtures/estimating-spine-wp2/golden-path-v1.json"
+    ],
+    "runPreflight": [
+      "npm run test:estimating-spine-wp2-isolated-catalog-proof",
+      "supabase status (isolated substrate only)"
+    ],
+    "doNot": [
+      "Merge #367 before live receipt",
+      "Apply production est_* migrations",
+      "Fix broad Docker/CLI inside WP2 PR"
+    ],
+    "proveBeforeClaiming": [
+      "WP2_LOGIC_PROOF_PASS from 8/8 logic tests",
+      "Durable live receipt from estimating-spine:wp2:proof:live"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

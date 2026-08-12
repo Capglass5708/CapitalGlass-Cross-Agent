@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-estimating-spine-wp2-parallel-lane-closeout-v1",
+  "packetId": "wp2-live-db-proof-pending-v1",
+  "state": "ACTIVE",
+  "packetVerdict": "HOLD",
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Repair isolated Supabase substrate OR separate tiny substrate WP; run estimating-spine:wp2:proof:live",
+  "evidenceRefs": [
+    "TE-007",
+    "WP2-ISOLATED-CATALOG-PROOF-V1.md"
+  ],
+  "doNotAdvance": [
+    "Claim WP2_ISOLATED_CATALOG_PROOF_COMPLETE",
+    "Apply shared-dev or production est_* migrations"
+  ],
+  "advancementGate": "Durable live receipt with migration applied + lineage query + export gate",
+  "contentHash": "c0e44361654870811af8cc25ebb87837dbb8e0d5887788870304199db0ebedad"
+}

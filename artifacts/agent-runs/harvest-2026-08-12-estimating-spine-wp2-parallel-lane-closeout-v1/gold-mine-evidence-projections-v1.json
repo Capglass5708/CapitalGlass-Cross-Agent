@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "gold-mine-evidence-projections-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-estimating-spine-wp2-parallel-lane-closeout-v1",
+  "generatedAt": "2026-08-12T22:45:00.000Z",
+  "projections": [
+    {
+      "signalClass": "ADOPTION_SIGNAL",
+      "lifecycleHint": "RESOLVED_OBSERVED",
+      "rootCauseKey": "parallel-lane-published-without-smith-ranch",
+      "workPackageId": "estimating-spine-revu-bc-parallel-v1",
+      "evidenceStrength": "high",
+      "operatorImpact": "Spine catalog work proceeds in isolation from live project execution",
+      "businessImpact": "ESTIMATING_WORKFLOW",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-12T22:45:00.000Z",
+      "sourceCommitSha": "d5971e1e51c9ac2bed8180aad278e316e5650075",
+      "novelty": "NEW",
+      "implementationState": "ADOPTED",
+      "evidenceRefs": ["parallel-lane-published-complete-v1"]
+    },
+    {
+      "signalClass": "OBSERVABILITY_GAP",
+      "lifecycleHint": "OPEN",
+      "rootCauseKey": "wp2-live-db-substrate-missing",
+      "workPackageId": "estimating-spine-wp2-isolated-catalog-proof-v1",
+      "evidenceStrength": "high",
+      "operatorImpact": "Cannot close WP2 without isolated Supabase live receipt",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-12T22:45:00.000Z",
+      "sourceCommitSha": "16c0a3ed3005dd2ea13cf52e643ce705dc4c968c",
+      "novelty": "NEW",
+      "implementationState": "OBSERVED_OPEN",
+      "evidenceRefs": ["OG-001", "wp2-live-db-proof-pending-v1"]
+    },
+    {
+      "signalClass": "SUCCESS_PATTERN",
+      "lifecycleHint": "RESOLVED_OBSERVED",
+      "rootCauseKey": "revu-gate1-crlf-oracle-repair",
+      "workPackageId": "revu-control-plane-baseline-repair-v1",
+      "evidenceStrength": "high",
+      "operatorImpact": "Clean-checkout CI stable for Gate1 PDF fixtures",
+      "businessImpact": "PLATFORM_INTERNAL",
+      "evidenceEra": "POST_IMPLEMENTATION",
+      "observedAt": "2026-08-12T22:45:00.000Z",
+      "sourceCommitSha": "ea0f2e0723c99301041f3d87d8d5b668f144fadf",
+      "novelty": "NEW",
+      "implementationState": "ADOPTED",
+      "evidenceRefs": ["SP-001", "revu-gate1-baseline-repair-v1"]
+    }
+  ]
+}

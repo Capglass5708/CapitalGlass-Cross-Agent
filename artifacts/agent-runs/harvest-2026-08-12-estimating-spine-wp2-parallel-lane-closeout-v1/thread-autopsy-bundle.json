@@ -1,0 +1,148 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-estimating-spine-wp2-parallel-lane-closeout-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "rework",
+      "description": "Revu Gate1 CI failed on clean checkout due to PDF line-ending SHA drift; required baseline repair PR #11 before PR #10 merge",
+      "evidenceRefs": ["TE-005", "revu-gate1-baseline-repair-v1"],
+      "estimatedImpact": "medium",
+      "savedBy": "Run test:gate1-oracle-fixture before claiming Revu CI green; commit CRLF-canonical PDF fixtures",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "context",
+      "description": "Live WP2 proof attempted when isolated Supabase substrate was not running",
+      "evidenceRefs": ["TE-007", "wp2-live-db-proof-pending-v1"],
+      "estimatedImpact": "low",
+      "savedBy": "Preflight supabase status + container before estimating-spine:wp2:proof:live",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "operator_attention",
+      "description": "Thread spanned multiple repos; agent had to re-anchor on freeze guards for Smith Ranch",
+      "evidenceRefs": ["TE-008", "smith-ranch-execution-frozen-v1"],
+      "estimatedImpact": "low",
+      "savedBy": "Declare do-not-advance map at thread open for parallel lane vs Smith Ranch",
+      "roiRank": 3
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Live DB proof blocked by missing Supabase container and CLI version mismatch",
+      "operatorCost": "medium",
+      "systemFix": "Separate tiny substrate WP for Docker/CLI repair; do not fold into WP2 PR",
+      "evidenceRefs": ["TE-007"],
+      "linkedWasteIds": ["TW-002"]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "WP2 logic proof completed; live DB proof attempted in same session",
+      "actualExecution": {
+        "steps": [
+          "Ran test:estimating-spine-wp2-isolated-catalog-proof — 8/8 PASS",
+          "Attempted estimating-spine:wp2:proof:live without substrate preflight",
+          "Blocked by supabase status failure and missing psql"
+        ],
+        "outcome": "Correctly classified LIVE_DB_PROOF_PENDING without merging #367",
+        "evidenceRefs": ["TE-006", "TE-007"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Run logic proof and record WP2_LOGIC_PROOF_PASS",
+          "Preflight isolated Supabase container + CLI version",
+          "Run estimating-spine:wp2:proof:live only when substrate ready",
+          "Capture durable receipt artifact before merge #367"
+        ],
+        "outcome": "Clean WP2_COMPLETE transition with live receipt",
+        "requiredPreflight": ["supabase status", "npx supabase@latest --version"]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Attempted live DB proof without isolated Supabase preflight",
+      "whyItWasWrong": "Substrate repair is out of scope for WP2 PR; wastes operator time diagnosing env",
+      "correctFirstMove": "Classify WP2_LOGIC_PROOF_PASS / LIVE_DB_PROOF_PENDING; open substrate WP if needed",
+      "preventiveControl": "Check supabase status before live proof commands",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "commandIndexConsulted": true,
+    "hubSlicesConsulted": [
+      "BY-KIND/active-work-blockers.json",
+      "BY-KIND/mcp-servers.json",
+      "BY-KIND/host-authority.json"
+    ],
+    "priorHarvestRefs": [
+      "harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1"
+    ],
+    "duplicatePacketsRejected": 0,
+    "notes": "Prior harvest covered operator pilot signoff; this thread is parallel lane + WP2 proof"
+  },
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Gate1 oracle fixture integrity test on every Revu PR touching PDF fixtures",
+      "whyItPays": "Prevents CRLF/LF drift causing clean-checkout CI failures",
+      "effort": "low",
+      "savedWasteIds": ["TW-001"],
+      "seedAs": "command"
+    },
+    {
+      "rank": 2,
+      "title": "Isolated Supabase substrate preflight before WP2 live proof",
+      "whyItPays": "Avoids env-debugging inside catalog proof PR",
+      "effort": "low",
+      "savedWasteIds": ["TW-002"],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 3,
+      "title": "Explicit Smith Ranch freeze in thread opener for parallel lane work",
+      "whyItPays": "Reduces re-anchoring and scope creep toward live execution",
+      "effort": "low",
+      "savedWasteIds": ["TW-003"],
+      "seedAs": "rule"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "WP2_ISOLATED_CATALOG_PROOF_COMPLETE",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "Isolated Supabase migration applied",
+        "Durable live receipt with lineage query + export gate PASS",
+        "PR #367 merged after receipt"
+      ],
+      "lastKnownEvidence": ["wp2-logic-proof-pass-v1", "wp2-live-db-proof-pending-v1"]
+    },
+    {
+      "awardOrVerdict": "smith-ranch-ce-revu-controlled-pilot-v1",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "WP2_ISOLATED_CATALOG_PROOF_COMPLETE",
+        "Live CE handoff available",
+        "Smith Ranch blind corpus unsealed"
+      ],
+      "lastKnownEvidence": ["smith-ranch-execution-frozen-v1", "AWAITING_FILES"]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-SMITH-RANCH-EXECUTION-FREEZE-001",
+  "kind": "architecture",
+  "title": "Smith Ranch CE/Revu execution frozen during parallel spine lane",
+  "summary": "Parallel synthetic lane (catalog, WP2) must not touch Smith Ranch live CE, Revu, or production est_* apply. Next pilot is smith-ranch-ce-revu-controlled-pilot-v1 after WP2 + CE handoff.",
+  "retrievalQuestions": [
+    "Can I run CE on Smith Ranch PDFs during WP2?",
+    "What work package follows WP2 isolated catalog proof?"
+  ],
+  "evidenceRefs": [
+    "smith-ranch-execution-frozen-v1",
+    "fixtures/human-estimator-scope/",
+    "TE-008"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Smith Ranch, blind validation, or live Revu on production PDFs during spine work",
+    "startAt": [
+      "fixtures/human-estimator-scope/",
+      "estimating-spine-revu-bc-parallel-v1 freeze guards"
+    ],
+    "runPreflight": [],
+    "doNot": [
+      "Run CE on Smith Ranch",
+      "Open Smith Ranch blind corpus (AWAITING_FILES)",
+      "Apply production est_* migrations"
+    ],
+    "proveBeforeClaiming": [
+      "WP2_ISOLATED_CATALOG_PROOF_COMPLETE receipt",
+      "Live CE handoff artifact exists"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/active-work-blockers.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

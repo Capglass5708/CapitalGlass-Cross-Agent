@@ -185,6 +185,7 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `operator-signoff-receipt-scaffold-v1` | — | COMPLETE | SCAFFOLD_READY | CapitalGlass-BidComposer | `harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1` | see harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1.md |
 | `operator-signoff-validate-command-v1` | — | COMPLETE | PASS | CapitalGlass-BidComposer | `harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1` | see harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1.md |
 | `operator-visual-evidence-blocked-v1` | — | ACTIVE | BLOCK_OPERATOR_AUTHENTICATION | CapitalGlass-BidComposer | `harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1` | see harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1.md |
+| `parallel-lane-published-complete-v1` | `intel:bcfffd5d5ed31e…` | COMPLETE | PROVEN_EFFECTIVE | CG-AppBuilder-MCP | `harvest-2026-08-12-estimating-spine-wp2-parallel-lane-closeout-v1` | see harvest-2026-08-12-estimating-spine-wp2-parallel-lane-closeout-v1.md |
 | `parser-from-ocr-default-v1` | — | ADOPTED | PROVEN_SHORTCUT | CapitalGlass-Documents | `harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1` | see harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1.md |
 | `pg-estimator-trust-closure-v1` | — | ESTIMATOR_TRUST_BLOCKED | FAIL | Cursor-ProposalGenerator-1 | `harvest-2026-08-03-pg-estimator-trust-closure-v1` | see 2026-08-03_pg-estimator-trust-closure-v1.md |
 | `pg-pricing-editable-workspace-persist-v1` | — | PRODUCT_FIX_REQUIRED | BLOCKED | Cursor-ProposalGenerator-1 | `harvest-2026-08-03-pg-estimator-trust-closure-v1` | see 2026-08-03_pg-pricing-editable-workspace-persist-v1.md |
@@ -216,6 +217,7 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `real-human-disposition-ops-gate-v1` | — | ACTIVE | EXPECTED_BLOCK | CapitalGlass-BidComposer | `harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1` | see experience-estimator-bid-composer-loop-v1.md |
 | `receipt-lineage-warn-to-go-v1` | — | RECORDED | PASS | CG-AppBuilder-MCP | `harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1` | see receipt-lineage-warn-to-go-v1.md |
 | `remote-wesleydesk-worker-proof-v1` | — | RESOLVED | RECORDED_WRONG_MOVE | CapitalGlass-Documents | `harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1` | see harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1.md |
+| `revu-gate1-baseline-repair-v1` | `intel:048c873ace1189…` | COMPLETE | PASS | CapitalGlassRevu | `harvest-2026-08-12-estimating-spine-wp2-parallel-lane-closeout-v1` | see harvest-2026-08-12-estimating-spine-wp2-parallel-lane-closeout-v1.md |
 | `roi-convergence-baseline-verified-v1` | — | COMPLETE | VERIFIED | CapitalGlass-BidComposer | `harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1` | see harvest-2026-08-07-estimating-spine-operator-pilot-signoff-v1.md |
 | `rosewood-bid-composer-loop-durable-complete-v1` | — | COMPLETE | DURABLE_COMPLETE | CapitalGlass-BidComposer | `harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1` | see experience-estimator-bid-composer-loop-v1.md |
 | `rosewood-freeze-beacon-hill-next-v1` | — | COMPLETE | PASS | CapitalGlass-Cross-Agent | `harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1` | see experience-beacon-hill-proposal-generator-loop-v1.md |
@@ -235,7 +237,9 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `shared-db-investigate-first-v1` | — | RECONCILIATION_COMPLETE | PASS | CG-AppBuilder-MCP | `harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1` | see shared-db-investigate-first-v1.md |
 | `shared-db-reconciliation-v1` | — | RECONCILIATION_COMPLETE | PASS | CG-AppBuilder-MCP | `harvest-2026-08-04-asg-go-shared-db-closeout-v1` | see shared-db-reconciliation-v1.md |
 | `simulated-vs-real-human-disposition-v1` | — | COMPLETE | DOCUMENTED | CapitalGlass-Cross-Agent | `harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1` | see experience-estimator-bid-composer-loop-v1.md |
+| `smith-ranch-execution-frozen-v1` | `intel:9d355ec853a051…` | ACTIVE | HOLD | CG-AppBuilder-MCP | `harvest-2026-08-12-estimating-spine-wp2-parallel-lane-closeout-v1` | see harvest-2026-08-12-estimating-spine-wp2-parallel-lane-closeout-v1.md |
 | `sso-ui-proof-admin-lane-v1` | — | COMPLETE | CLASSIFIED | CapitalGlass-BidComposer | `harvest-2026-08-07-guided-scope-review-milestone-closeout-v1` | see harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md |
+| `supabase-substrate-not-preflighted-v1` | `intel:1f219bbf64fdd3…` | COMPLETE | DOCUMENTED | CG-AppBuilder-MCP | `harvest-2026-08-12-estimating-spine-wp2-parallel-lane-closeout-v1` | see harvest-2026-08-12-estimating-spine-wp2-parallel-lane-closeout-v1.md |
 | `synology-primary-foundation-prior-harvest-v1` | — | INDEXED_NOT_DUPLICATE | BOUNDARY_RECORDED | CapitalGlass-Cross-Agent | `harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1` | see harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1.md |
 | `three-way-agent-improvement-intelligence-v1` | — | OPERATIONAL_CLOSEOUT_COMPLETE | THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL | CG-AppBuilder-MCP | `harvest-2026-08-04-three-way-improvement-slice6-thread-v1` | see 2026-08-03_three-way-agent-improvement-intelligence-v1.md |
 | `uh-async-test-miss-v1` | — | RESOLVED | FIXED | CG-AppBuilder-MCP | `harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1` | see harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md |
@@ -270,6 +274,8 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `wesleywork-terminal-flash-recurring-v1` | — | RESOLVED | CONVERTED_AND_VERIFIED | CapitalGlass-Office-Admin | `harvest-2026-08-06-wesleywork-terminal-flash-closeout-v1` | see 2026-08-06_wesleywork-terminal-flash-closeout-v1.md |
 | `wesleywork-wscript-hidden-task-registrar-v1` | — | ACTIVE | PASS | CapitalGlass-Office-Admin | `harvest-2026-08-06-wesleywork-terminal-flash-closeout-v1` | see 2026-08-06_wesleywork-terminal-flash-closeout-v1.md |
 | `windows-l-unmapped-explorer-v1` | — | RESOLVED_SESSION | L_REMAPPED_VIA_TAILSCALE_HOSTNAME | CapitalGlass-Office-Admin | `harvest-2026-08-04-wesleywork-l-windows-closeout-v1` | see 2026-08-02_z-drive-disconnect-recurrence-v1.md |
+| `wp2-live-db-proof-pending-v1` | `intel:f02ddfeacd6b4f…` | ACTIVE | HOLD | CG-AppBuilder-MCP | `harvest-2026-08-12-estimating-spine-wp2-parallel-lane-closeout-v1` | see harvest-2026-08-12-estimating-spine-wp2-parallel-lane-closeout-v1.md |
+| `wp2-logic-proof-pass-v1` | `intel:9dc485afed52aa…` | ACTIVE | PASS | CG-AppBuilder-MCP | `harvest-2026-08-12-estimating-spine-wp2-parallel-lane-closeout-v1` | see harvest-2026-08-12-estimating-spine-wp2-parallel-lane-closeout-v1.md |
 | `wsl-drvfs-ghost-mount-v1` | — | DOCUMENTED | PASS | CG-AppBuilder-MCP | `harvest-2026-08-04-z-l-drive-offlan-session-v1` | see 2026-08-02_z-drive-disconnect-recurrence-v1.md |
 | `wsl-estate-git-pull-run` | — | PARTIAL_PASS | PASS_WITH_GAPS | CapitalGlass-Office-Admin | `harvest-2026-08-04-wsl-estate-git-pull-v1` | see harvest-2026-08-04-wsl-estate-git-pull-v1.md |
 | `wsl-supabase-cli-spawn-v1` | — | SHIPPED | PASS | CG-AppBuilder-MCP | `harvest-2026-08-04-asg-go-shared-db-closeout-v1` | see wsl-supabase-cli-spawn-v1.md |
@@ -277,7 +283,7 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `z-drive-force-remap-wsl-cwd-v1` | — | RECORDED | PASS | CapitalGlass-Office-Admin | `harvest-2026-08-04-z-l-drive-offlan-session-v1` | see 2026-08-02_z-drive-disconnect-recurrence-v1.md |
 | `z-l-drive-offlan-partial-availability-v1` | — | PARTIAL_DRIVE_AVAILABILITY | Z_OK_L_BLOCKED_OFF_LAN | CapitalGlass-Office-Admin | `harvest-2026-08-04-z-l-drive-offlan-session-v1` | see 2026-08-02_z-drive-disconnect-recurrence-v1.md |
 
-_237 registry packets · 105 intelligence entities_
+_243 registry packets · 111 intelligence entities_
 
 <!-- HARVEST-PACKET-INDEX:END -->
 

@@ -1,0 +1,286 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-estimating-spine-wp2-parallel-lane-closeout-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "d5971e1e51c9ac2bed8180aad278e316e5650075",
+  "sourceBranch": "main",
+  "sourceRepo": "CG-AppBuilder-MCP",
+  "createdAt": "2026-08-12T22:45:00.000Z",
+  "updatedAt": "2026-08-12T22:45:00.000Z",
+  "retrievalResult": "INDEX_HIT",
+  "cacheResult": "CACHE_MISS",
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "doNotAdvance": [
+    "Apply production est_* migrations or Smith Ranch live CE/Revu execution",
+    "Merge PR #367 before isolated Supabase live DB receipt",
+    "Claim WP2_ISOLATED_CATALOG_PROOF_COMPLETE from logic tests alone",
+    "Start smith-ranch-ce-revu-controlled-pilot-v1 before live CE handoff",
+    "Run index:publish or harvest:publish-hub-seed from Cursor"
+  ],
+  "supersededClaims": [
+    "PARALLEL_LANE_IN_PROGRESS — superseded by PARALLEL_LANE_PUBLISHED_COMPLETE"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-12-estimating-spine-wp2-parallel-lane-closeout-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-12-estimating-spine-wp2-parallel-lane-closeout-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 3,
+      "seeds": 2,
+      "roiItems": 3,
+      "operatorFriction": 1,
+      "executionDeltas": 1
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "hubPublishBlocker": "Operator runs harvest:publish-hub-seed + index:publish — NOT_RUN_BY_CURSOR"
+  },
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "1.2.0",
+    "eligibleCandidates": 0,
+    "rejectedUnrelatedCandidates": 0,
+    "exportStatus": "not-run",
+    "dataExtractionStatus": "not-run",
+    "catalogPublishStatus": "not-run",
+    "retrievalStatus": "not-run",
+    "targetCatalog": "L:\\02-catalog\\Harvest\\Harvest Protocol Self Learning",
+    "authorityStatus": "PROPOSAL",
+    "automaticProtocolMutation": false
+  },
+  "relatedRepos": [
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "branch": "main",
+      "commitSha": "d5971e1e51c9ac2bed8180aad278e316e5650075",
+      "role": "Spine catalog PR #365 merged; WP2 proof on feat branch"
+    },
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "branch": "feat/estimating-spine-wp2-isolated-catalog-proof-v1",
+      "commitSha": "16c0a3ed3005dd2ea13cf52e643ce705dc4c968c",
+      "role": "WP2 logic proof PR #367"
+    },
+    {
+      "repo": "CapitalGlass-BidComposer",
+      "branch": "main",
+      "commitSha": "eed776a4e315acfba4338dc7371ac4251c296cf1",
+      "role": "Approved-entity export validator PR #60"
+    },
+    {
+      "repo": "CapitalGlassRevu",
+      "branch": "main",
+      "commitSha": "ea0f2e0723c99301041f3d87d8d5b668f144fadf",
+      "role": "Gate1 baseline repair PR #11; taxonomy PR #10"
+    }
+  ],
+  "packets": [
+    {
+      "packetKind": "outcome",
+      "packetId": "parallel-lane-published-complete-v1",
+      "packetTitle": "PARALLEL_LANE_PUBLISHED_COMPLETE — spine schemas + BC + Revu without Smith Ranch touch",
+      "state": "COMPLETE",
+      "packetVerdict": "PROVEN_EFFECTIVE",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-12-estimating-spine-wp2-parallel-lane-closeout-v1.md",
+      "nextAction": "Complete WP2 live DB proof; hold Smith Ranch until CE handoff",
+      "advancementGate": "wp2-live-db-proof-pending-v1 receipt",
+      "doNotAdvance": [
+        "Touch Smith Ranch CE/Revu or production est_* apply"
+      ],
+      "evidenceRefs": [
+        "TE-001",
+        "TE-002",
+        "TE-003",
+        "TE-004"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@d5971e1e51c9ac2bed8180aad278e316e5650075",
+        "CapitalGlass-BidComposer@eed776a4e315acfba4338dc7371ac4251c296cf1",
+        "CapitalGlassRevu@ea0f2e0723c99301041f3d87d8d5b668f144fadf"
+      ],
+      "blockers": [],
+      "changeImplemented": "Isolated parallel lane: catalog migration, export validator, Revu taxonomy + Gate1 repair",
+      "beforeState": "estimating-spine-roadmap design-only; Revu CI flaky on PDF line endings",
+      "afterState": "PRs #365 #60 #10 #11 merged; WP2 logic proof on #367",
+      "measurement": "Multi-repo merge receipts + WP2 logic test 8/8",
+      "expectedEffect": "Synthetic spine work proceeds without Smith Ranch execution",
+      "observedEffect": "Parallel lane closed; WP2 logic PASS; live DB pending",
+      "residuals": [
+        "WP2 live Supabase receipt",
+        "Smith Ranch blind corpus AWAITING_FILES"
+      ],
+      "regressions": [],
+      "effectiveness": "PROVEN_EFFECTIVE",
+      "goldMineSignalClass": "ADOPTION_SIGNAL"
+    },
+    {
+      "packetKind": "outcome",
+      "packetId": "revu-gate1-baseline-repair-v1",
+      "packetTitle": "Revu Gate1 PDF CRLF oracle drift repaired on main",
+      "state": "COMPLETE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CapitalGlassRevu",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-12-estimating-spine-wp2-parallel-lane-closeout-v1.md",
+      "nextAction": "None — baseline stable; use test:gate1-oracle-fixture in CI",
+      "advancementGate": "none",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-005",
+        "foundation-controlled-page.pdf",
+        "test:gate1-oracle-fixture"
+      ],
+      "commitRefs": [
+        "CapitalGlassRevu@ea0f2e0723c99301041f3d87d8d5b668f144fadf"
+      ],
+      "blockers": [],
+      "changeImplemented": "Canonical CRLF PDF + .gitattributes + gate1 oracle integrity test",
+      "beforeState": "Clean checkout CI failed; drifted local trees could pass",
+      "afterState": "PR #11 merged; Gate1 oracle stable",
+      "goldMineSignalClass": "SUCCESS_PATTERN"
+    },
+    {
+      "packetKind": "outcome",
+      "packetId": "wp2-logic-proof-pass-v1",
+      "packetTitle": "WP2 isolated catalog logic proof — 8/8 tests PASS on PR #367",
+      "state": "ACTIVE",
+      "packetVerdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-12-estimating-spine-wp2-parallel-lane-closeout-v1.md",
+      "nextAction": "Run estimating-spine:wp2:proof:live on isolated Supabase",
+      "advancementGate": "wp2-live-db-proof-pending-v1",
+      "doNotAdvance": [
+        "Merge #367 before live receipt"
+      ],
+      "evidenceRefs": [
+        "TE-006",
+        "golden-path-v1.json",
+        "run-estimating-spine-wp2-isolated-catalog-proof.test.mjs"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@16c0a3ed3005dd2ea13cf52e643ce705dc4c968c"
+      ],
+      "blockers": [],
+      "changeImplemented": "Golden path fixture, entity lineage view migration, export gates, quantity-layer guard",
+      "measurement": "npm run test:estimating-spine-wp2-isolated-catalog-proof → 8/8",
+      "goldMineSignalClass": "ADOPTION_SIGNAL"
+    },
+    {
+      "packetKind": "blocker",
+      "packetId": "wp2-live-db-proof-pending-v1",
+      "packetTitle": "WP2 live DB proof — isolated Supabase substrate required",
+      "state": "ACTIVE",
+      "packetVerdict": "HOLD",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-12-estimating-spine-wp2-parallel-lane-closeout-v1.md",
+      "nextAction": "Repair isolated Supabase substrate OR separate tiny substrate WP; run estimating-spine:wp2:proof:live",
+      "advancementGate": "Durable live receipt with migration applied + lineage query + export gate",
+      "doNotAdvance": [
+        "Claim WP2_ISOLATED_CATALOG_PROOF_COMPLETE",
+        "Apply shared-dev or production est_* migrations"
+      ],
+      "evidenceRefs": [
+        "TE-007",
+        "WP2-ISOLATED-CATALOG-PROOF-V1.md"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@16c0a3ed3005dd2ea13cf52e643ce705dc4c968c"
+      ],
+      "blockers": [
+        "supabase_db_App-Building-MCP container not running",
+        "local supabase CLI config parse mismatch on v2.20.12",
+        "psql not available in WSL session"
+      ],
+      "blockerId": "WP2_LIVE_DB_PROOF_PENDING",
+      "goldMineSignalClass": "OBSERVABILITY_GAP"
+    },
+    {
+      "packetKind": "decision",
+      "packetId": "smith-ranch-execution-frozen-v1",
+      "packetTitle": "Smith Ranch CE/Revu execution frozen until live CE handoff",
+      "state": "ACTIVE",
+      "packetVerdict": "HOLD",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-12-estimating-spine-wp2-parallel-lane-closeout-v1.md",
+      "nextAction": "Wait for live CE handoff; then smith-ranch-ce-revu-controlled-pilot-v1 one sheet",
+      "advancementGate": "smith-ranch-ce-revu-controlled-pilot-v1 after WP2 complete",
+      "doNotAdvance": [
+        "Run CE on Smith Ranch PDFs",
+        "Open Smith Ranch blind corpus — AWAITING_FILES"
+      ],
+      "evidenceRefs": [
+        "TE-008",
+        "fixtures/human-estimator-scope/"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@d5971e1e51c9ac2bed8180aad278e316e5650075"
+      ],
+      "blockers": [
+        "Smith Ranch blind validation corpus SEALED AWAITING_FILES"
+      ],
+      "decision": "Parallel synthetic lane only; Smith Ranch is next controlled pilot after WP2 + CE handoff",
+      "goldMineSignalClass": "POLICY_GUARD"
+    },
+    {
+      "packetKind": "mistake",
+      "packetId": "supabase-substrate-not-preflighted-v1",
+      "packetTitle": "WP2 live proof attempted without isolated Supabase preflight",
+      "state": "COMPLETE",
+      "packetVerdict": "DOCUMENTED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/harvest-2026-08-12-estimating-spine-wp2-parallel-lane-closeout-v1.md",
+      "nextAction": "Preflight isolated Supabase before live proof attempts",
+      "advancementGate": "substrate WP or operator repair",
+      "doNotAdvance": [
+        "Fix broad Docker/CLI in WP2 PR #367"
+      ],
+      "evidenceRefs": [
+        "TE-007",
+        "TW-002"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "mistake": "Agent attempted live proof when local supabase status failed",
+      "correctMove": "Classify WP2_LOGIC_PROOF_PASS / LIVE_DB_PROOF_PENDING; substrate repair is separate WP",
+      "goldMineSignalClass": "OPERATOR_FRICTION"
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": null,
+    "ledgerContentHashAfter": "451bc045f5563fae26fd2d1fb63ae12337db97c6fe3409273e189bcbb7cc6f1c"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 8,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 8,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-921fda0bece4",
+      "prompt-candidate-229b7e650e8a",
+      "prompt-candidate-d0ea005fa6e3",
+      "prompt-candidate-88bd0b5c3401",
+      "prompt-candidate-e9f85b2a8611",
+      "prompt-candidate-9978981f52cd",
+      "prompt-candidate-1ca196db2b69",
+      "prompt-candidate-4d7624f546bc"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}
