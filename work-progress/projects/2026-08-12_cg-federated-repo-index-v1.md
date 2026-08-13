@@ -95,26 +95,23 @@ Wave A close requires the RYZEN9 generate receipt to prove:
 
 | Priority | Action | Owner repo | Status |
 | --- | --- | --- | --- |
-| 1 | At RYZEN9DESK, from ext4 `$HOME/repos`, run captured `npm run repo-index:ryzen9desk-wave-a-generate` | CG-AppBuilder-MCP | OPEN |
-| 2 | Commit **only** generate receipt (+ harvested ext4 estate routing if `localRepoRoot` is `/home/wesley/repos/Computer Estimator`) to `work/cg-federated-repo-index-v1` and push | CG-AppBuilder-MCP | BLOCKED on 1 |
-| 3 | Do **not** use `WAVE_A_COMPLETE` until RYZEN9 generate receipt verifies close criteria | this WP | BLOCKED on 2 |
+| 1 | On RYZEN9DESK Remote-WSL, bind the WaveRunner continuation and execute the **complete remaining Wave A** through terminal acceptance | CG-AppBuilder-MCP | OPEN |
+| 2 | Commit/push **only** proof artifacts (receipt + harvested ext4 estate routing if `localRepoRoot` is `/home/wesley/repos/Computer Estimator`) to `work/cg-federated-repo-index-v1` | CG-AppBuilder-MCP | part of 1 |
+| 3 | CLOSE Wave A only if the RYZEN9 receipt verifies close criteria. **STOP before Wave B.** | this WP | BLOCKED on 1 |
 | 4 | After Wave A close: open `ryzen9desk-executor-transport-repair-v1` (GHA allowlist + SSH break-glass) | CG-AppBuilder-MCP | DEFERRED |
 
-## Cheapest path (operator at RYZEN9DESK)
+## Operator prompt (RYZEN9DESK Remote-WSL)
 
-From ext4 `$HOME/repos`, not `/mnt/c`:
-
-```bash
-cd "$HOME/repos/CG-AppBuilder-MCP"
-git fetch origin
-git checkout work/cg-federated-repo-index-v1
-git pull --ff-only origin work/cg-federated-repo-index-v1
-export CG_WSL_MACHINE_ROLE=ryzen9desk
-export CG_REPOS_ROOT="$HOME/repos"
-export CG_CE_REPO_ROOT="$HOME/repos/Computer Estimator"
-export CG_APPBUILDER_MCP_ROOT="$HOME/repos/CG-AppBuilder-MCP"
-npm run repo-index:ryzen9desk-wave-a-generate
+```text
+PROCEED — execute the complete cg-federated-repo-index-v1 Wave A continuation through terminal acceptance.
 ```
+
+Packet: `work-progress/intelligence-hub-slices/cg-federated-repo-index-v1-waverunner-continuation.json`  
+Z: `/mnt/z/Office/Wes/Direct Connect/handoffs/cg-federated-repo-index-v1/`
+
+The RYZEN9 agent binds that packet and autonomously: validate host/ext4 → sync authorized branches → generate full CE index → harvest routing → dogfood Vision Plane → resolve/compound `admit_structure` if needed → regenerate → verify negative fallback → run tests → generate receipts → commit/push proof artifacts → evaluate Wave A → CLOSE if PASS → STOP before Wave B.
+
+`npm run repo-index:ryzen9desk-wave-a-generate` is one step inside that mission, not the mission. Do not return after each command unless fail-closed.
 
 ## Reusable lessons
 
@@ -123,6 +120,12 @@ npm run repo-index:ryzen9desk-wave-a-generate
 - WSL runner online is not Windows-interactive Revu proof and is not a substitute for this generate receipt.
 
 ## Update log
+
+### 2026-08-12 CT — WaveRunner complete-packet hold
+
+- WesleyWork holds the complete Wave A WaveRunner continuation. This desk cannot become the RYZEN9 process.
+- RYZEN9 instruction is the full continuation, not a single generate command.
+- Packet class: `WAVERUNNER_COMPLETE_WAVE_A`.
 
 ### 2026-08-12 CT — SHA correction
 

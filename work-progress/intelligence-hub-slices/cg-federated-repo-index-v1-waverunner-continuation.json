@@ -1,0 +1,117 @@
+{
+  "schemaVersion": "mission-continuation-packet-v1@1.0.0",
+  "packetClass": "WAVERUNNER_COMPLETE_WAVE_A",
+  "workPackageId": "cg-federated-repo-index-v1",
+  "missionFamilyId": "cg-federated-repo-index",
+  "sessionClass": "CONTINUATION",
+  "disposition": "CACHE_BIND",
+  "materialGatesRequired": false,
+  "recordedAt": "2026-08-13T04:15:00.000Z",
+  "authorHost": "WESLEY_WORK",
+  "executionHost": "RYZEN9DESK",
+  "executionPlane": "LOCAL_SAME_DESK",
+  "currentObjective": "Execute the complete cg-federated-repo-index-v1 Wave A continuation through terminal acceptance on RYZEN9DESK ext4.",
+  "operatorPrompt": "PROCEED — execute the complete cg-federated-repo-index-v1 Wave A continuation through terminal acceptance.",
+  "deskSplit": {
+    "wesleyWork": "Prepare and hold this complete WaveRunner continuation packet. This Cursor process cannot become the RYZEN9 execution process.",
+    "ryzen9desk": "Bind this same packet and WaveRun the entire remaining Wave A through terminal acceptance."
+  },
+  "programLedger": {
+    "programState": "CG_FEDERATED_REPO_INDEX_WAVE_A_IMPLEMENTED_PUSHED",
+    "acceptanceState": "LIVE_RYZEN9_PROOF_PENDING",
+    "blocker": "BLOCKED_GHA_WP_NOT_ALLOWLISTED",
+    "operationalFailover": "DIRECT_CONNECT_FAILOVER_LOCAL",
+    "waveAComplete": false
+  },
+  "authoritySha": "94c2caae0abe064bfe561ef9ca7e7a79a7ba3d3f",
+  "canonicalShas": {
+    "appBuilder": "94c2caae0abe064bfe561ef9ca7e7a79a7ba3d3f",
+    "computerEstimator": "acc4e2b6f90bd3096168d6c735e98486277d8d5f",
+    "discardedInvalidAppBuilderSha": "94c2caae0c8e4f0f000000000000000000000000"
+  },
+  "branches": {
+    "appBuilder": "work/cg-federated-repo-index-v1",
+    "computerEstimator": "work/cg-federated-repo-index-v1"
+  },
+  "canonicalRoot": "$HOME/repos",
+  "forbiddenRoot": "/mnt/c",
+  "autonomy": {
+    "mode": "COMPLETE_WAVE_A_NO_PER_COMMAND_RETURN",
+    "returnToWesleyWorkOnlyOn": "FAIL_CLOSED",
+    "doNotTreatGenerateAsTheMission": true,
+    "generateCliIsOneStepInsideWaveA": "npm run repo-index:ryzen9desk-wave-a-generate"
+  },
+  "autonomousSequence": [
+    "bind continuation packet (this file + Z: START_HERE.md)",
+    "validate host is RYZEN9DESK and checkouts are ext4 under $HOME/repos (not /mnt/c)",
+    "sync authorized branches: checkout/ff-only pull work/cg-federated-repo-index-v1 in AppBuilder and overlay authorized CE seed without resetting Vision Plane bytes",
+    "generate full Computer Estimator local index",
+    "harvest estate routing (AppBuilder routing summaries only)",
+    "dogfood Vision Plane identity route",
+    "resolve/compound admit_structure if LOCAL_INDEX_MISS (bounded discovery → repo-index:compound → regenerate)",
+    "regenerate local index and re-harvest after any compound",
+    "verify negative fallback: githubFallbackAttempted=false when pointer is UNCOMMITTED_LOCAL; lunaWriteSideEffect=false; rawScanRequired=false",
+    "run npm run test:federated-repo-index",
+    "generate receipts at artifacts/federated-repo-index/ryzen9desk-wave-a-generate-receipt.json",
+    "commit/push proof artifacts only to work/cg-federated-repo-index-v1 (receipt + harvested ext4 estate routing if localRepoRoot is /home/wesley/repos/Computer Estimator). THREE_WAY_PUSH_APPROVED=YES for that proof push only",
+    "evaluate Wave A close criteria from the receipt",
+    "CLOSE if PASS (then and only then may WAVE_A_COMPLETE be used)",
+    "STOP before Wave B"
+  ],
+  "waveACloseCriteria": {
+    "visionPlane": ["ESTATE_ROUTE_HIT", "LOCAL_INDEX_HIT"],
+    "admitStructure": ["ESTATE_ROUTE_HIT", "LOCAL_INDEX_HIT"],
+    "realResolvedCePath": true,
+    "pathAwareGitStatus": true,
+    "githubFallbackAttempted": false,
+    "lunaWriteSideEffect": false,
+    "rawScanRequired": false
+  },
+  "failClosed": [
+    "host is not RYZEN9DESK",
+    "checkout is /mnt/c or not ext4",
+    "authorized branch missing or cannot ff-only",
+    "Vision Plane bytes missing so generate cannot produce a real path",
+    "admit_structure remains LOCAL_INDEX_MISS after bounded compound",
+    "receipt waveACloseEligible is false",
+    "tests fail",
+    "proof commit would absorb unrelated CE dirty-tree work"
+  ],
+  "forbidden": [
+    "return to WesleyWork after each individual command",
+    "treat npm run repo-index:ryzen9desk-wave-a-generate as the whole mission",
+    "use /mnt/c",
+    "publish Hub replicas to L:",
+    "enter Wave B",
+    "repair GHA/SSH or expand executor allowlist in this WP",
+    "compound a fake admit_structure path",
+    "merge/push main without operator authorization",
+    "use WAVE_A_COMPLETE before a verified passing RYZEN9 receipt"
+  ],
+  "env": {
+    "CG_WSL_MACHINE_ROLE": "ryzen9desk",
+    "CG_REPOS_ROOT": "$HOME/repos",
+    "CG_CE_REPO_ROOT": "$HOME/repos/Computer Estimator",
+    "CG_APPBUILDER_MCP_ROOT": "$HOME/repos/CG-AppBuilder-MCP",
+    "CG_AUTO_V32_WORK_PACKAGE": "cg-federated-repo-index-v1"
+  },
+  "completedWork": [
+    "Wave A implementation pushed on AppBuilder 94c2caae0abe064bfe561ef9ca7e7a79a7ba3d3f",
+    "CE seed/scripts pushed on acc4e2b6f90bd3096168d6c735e98486277d8d5f",
+    "WesleyWork Luna dogfood is not RYZEN9 proof",
+    "GHA 422 and SSH break-glass deferred to ryzen9desk-executor-transport-repair-v1"
+  ],
+  "openDecisions": [],
+  "blockers": [
+    "BLOCKED_GHA_WP_NOT_ALLOWLISTED",
+    "LIVE_RYZEN9_PROOF_PENDING"
+  ],
+  "relevantArtifacts": [
+    "/mnt/z/Office/Wes/Direct Connect/handoffs/cg-federated-repo-index-v1/START_HERE.md",
+    "/mnt/z/Office/Wes/Direct Connect/handoffs/cg-federated-repo-index-v1/mission-handoff.json",
+    "CapitalGlass-Cross-Agent/work-progress/intelligence-hub-slices/cg-federated-repo-index-v1-waverunner-continuation.json",
+    "artifacts/federated-repo-index/ryzen9desk-wave-a-generate-receipt.json"
+  ],
+  "receiptPath": "artifacts/federated-repo-index/ryzen9desk-wave-a-generate-receipt.json",
+  "deferredAfterWaveAClose": "ryzen9desk-executor-transport-repair-v1"
+}

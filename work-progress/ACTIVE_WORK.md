@@ -35,7 +35,7 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | AppBuilder SHA | `94c2caae0abe064bfe561ef9ca7e7a79a7ba3d3f` on `work/cg-federated-repo-index-v1` |
 | CE SHA | `acc4e2b6` on `work/cg-federated-repo-index-v1` |
 | Project file | `work-progress/projects/2026-08-12_cg-federated-repo-index-v1.md` |
-| Next | At RYZEN9DESK: `npm run repo-index:ryzen9desk-wave-a-generate`; commit only the generate receipt |
+| Next | RYZEN9DESK Remote-WSL: `PROCEED — execute the complete cg-federated-repo-index-v1 Wave A continuation through terminal acceptance.` Bind packet; WaveRun remaining Wave A; CLOSE if PASS; STOP before Wave B |
 | Deferred | `ryzen9desk-executor-transport-repair-v1` (GHA allowlist + SSH) **after** Wave A closes |
 
 ### 2026-08-12 CT — issued-proposal-structured-estimator-learning-v1
