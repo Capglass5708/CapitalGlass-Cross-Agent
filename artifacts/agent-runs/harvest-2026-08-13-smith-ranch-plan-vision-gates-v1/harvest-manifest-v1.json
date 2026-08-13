@@ -1,0 +1,215 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-13-smith-ranch-plan-vision-gates-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "sourceCommitSha": "eee390e7004cae6c44ee7920c904cd912e34fc7b",
+  "sourceBranch": "work/wesleywork-storage-protocol-contradiction-remediation-v1",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-13T22:40:00.000Z",
+  "updatedAt": "2026-08-13T22:40:00.000Z",
+  "retrievalResult": "INDEX_HIT_AI_CACHE",
+  "cacheResult": "CACHE_HIT",
+  "overallHarvestVerdict": "HARVEST_VALIDATED",
+  "workPackageId": "smith-ranch-plan-vision-admit-v1",
+  "doNotAdvance": [
+    "Claim plan_vision production unlock without operator calibration review",
+    "Merge Computer-Estimator- PR #26 without operator approval",
+    "Treat WSL runner online as Revu WINDOWS_INTERACTIVE proof",
+    "Re-harvest smith-ranch-ce-revu-full-set-v1 — reference harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1 only"
+  ],
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-13-smith-ranch-plan-vision-gates-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-13-smith-ranch-plan-vision-gates-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 3,
+      "seeds": 2,
+      "roiItems": 2,
+      "operatorFriction": 1,
+      "executionDeltas": 2,
+      "wrongMoves": 2
+    }
+  },
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run"
+  },
+  "protocolSelfLearning": {
+    "sourceProtocolId": "chat-thread-closeout-autopsy-harvest-v1",
+    "sourceProtocolVersion": "1.2.0",
+    "eligibleCandidates": 0,
+    "exportStatus": "not-run",
+    "automaticProtocolMutation": false
+  },
+  "relatedRepos": [
+    {
+      "repo": "Computer-Estimator-",
+      "branch": "feat/rtx5080-vision-plane-w7-product-lane-v1",
+      "role": "plan vision admit + L publish"
+    },
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "branch": "main",
+      "role": "Ryzen executor CAS sync"
+    }
+  ],
+  "supersededClaims": [
+    {
+      "claim": "Smith Ranch admit fails only due to inference logic — CAS rasters were missing on Ryzen",
+      "supersededBy": "ce-cas-shard-sync-executor-v1",
+      "evidenceRefs": [
+        "TE-003",
+        "WM-002"
+      ]
+    }
+  ],
+  "packets": [
+    {
+      "packetKind": "outcome",
+      "packetId": "ce-plan-vision-smb-publish-v1",
+      "packetTitle": "SMB-safe L publish + CAS resolve + partial admit verdict",
+      "state": "COMPLETE",
+      "packetVerdict": "SHIPPED_FEATURE_BRANCH",
+      "ownerRepo": "Computer-Estimator-",
+      "ownerIndexingStatus": "pointer-only",
+      "projectFile": "work-progress/projects/2026-08-13_smith-ranch-plan-vision-gates-v1.md",
+      "nextAction": "Operator review PR #26; Ryzen sync feature branch before harvest",
+      "advancementGate": "PR #26 merge + Ryzen checkout at c3965d7",
+      "doNotAdvance": [
+        "Merge without operator"
+      ],
+      "evidenceRefs": [
+        "TE-004",
+        "TE-005"
+      ],
+      "commitRefs": [
+        "Computer-Estimator-@c3965d71a2ace6ad7d21268b945439850d947371"
+      ],
+      "changeImplemented": "shutil.copyfile L publish, CAS path resolve, PASS_ADMIT_WAVE_PARTIAL, fail-open harvest publish",
+      "beforeState": "PermissionError copystat on L:; PARTIAL_ADMIT missing data/cas/sha256 rasters",
+      "afterState": "Feature branch c3965d7 with SMB-safe publish and CAS resolution",
+      "effectiveness": "PROVEN_EFFECTIVE",
+      "blockers": []
+    },
+    {
+      "packetKind": "outcome",
+      "packetId": "appbuilder-cas-shard-sync-v1",
+      "packetTitle": "Ryzen executor syncs CAS shards before admit/harvest",
+      "state": "COMPLETE",
+      "packetVerdict": "MERGED_MAIN",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "pointer-only",
+      "projectFile": "work-progress/projects/2026-08-13_smith-ranch-plan-vision-gates-v1.md",
+      "nextAction": "Verify admit GHA receipt after CAS sync on Ryzen",
+      "advancementGate": "vision-plane-smith-ranch-admit GHA PASS or PARTIAL with sheets_admitted>0",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-003",
+        "TE-006"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@a031d062e8e370b6ffeaa6c5bd3cb9adf98d552b"
+      ],
+      "changeImplemented": "syncCasShardsToCeRepo in admit + harvest profiles",
+      "beforeState": "Admit profile lacked Z/L CAS staging to CE data/cas",
+      "afterState": "PR #374 merged to main a031d062",
+      "effectiveness": "PROVEN_EFFECTIVE",
+      "blockers": []
+    },
+    {
+      "packetKind": "command",
+      "packetId": "ryzen-admit-dispatch-v1",
+      "packetTitle": "Smith Ranch admit dispatched on main executor",
+      "state": "IN_PROGRESS",
+      "packetVerdict": "DISPATCHED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "pointer-only",
+      "projectFile": "work-progress/projects/2026-08-13_smith-ranch-plan-vision-gates-v1.md",
+      "nextAction": "Monitor GHA 31748183973; dispatch vision-plane-w7-smith-ranch-harvest on PASS/partial",
+      "advancementGate": "GHA workflow conclusion + receipt artifact",
+      "doNotAdvance": [
+        "Dispatch harvest before admit receipt reviewed"
+      ],
+      "evidenceRefs": [
+        "TE-006"
+      ],
+      "commitRefs": [
+        "CG-AppBuilder-MCP@a031d062e8e370b6ffeaa6c5bd3cb9adf98d552b"
+      ],
+      "blockers": []
+    },
+    {
+      "packetKind": "mistake",
+      "packetId": "harvest-hard-fail-on-l-publish-v1",
+      "packetTitle": "Harvest hard-failed when L: Hub publish hit SMB copystat",
+      "state": "RESOLVED",
+      "packetVerdict": "ROOT_CAUSE_FIXED",
+      "ownerRepo": "Computer-Estimator-",
+      "ownerIndexingStatus": "pointer-only",
+      "projectFile": "work-progress/projects/2026-08-13_smith-ranch-plan-vision-gates-v1.md",
+      "nextAction": "None — fail-open wrapper shipped on feature branch",
+      "advancementGate": "not-required",
+      "doNotAdvance": [
+        "Treat Hub publish failure as harvest hard stop"
+      ],
+      "evidenceRefs": [
+        "TE-001",
+        "WM-001"
+      ],
+      "commitRefs": [
+        "Computer-Estimator-@c3965d71a2ace6ad7d21268b945439850d947371"
+      ],
+      "blockers": []
+    },
+    {
+      "packetKind": "protocol_upgrade",
+      "packetId": "harvest-git-durability-v1-2-run",
+      "packetTitle": "Harvest v1.2 Git durability executed for this thread",
+      "state": "COMPLETE",
+      "packetVerdict": "RECORDED",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/2026-08-13_smith-ranch-plan-vision-gates-v1.md",
+      "nextAction": "Operator hub seed when ready",
+      "advancementGate": "HARVEST_GIT_DURABILITY_GATE PASS",
+      "doNotAdvance": [],
+      "evidenceRefs": [
+        "TE-007"
+      ],
+      "commitRefs": [
+        "CapitalGlass-Cross-Agent@eee390e7004cae6c44ee7920c904cd912e34fc7b"
+      ],
+      "blockers": []
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": "bf6ba36ab27337aaa86ec9f81c43f56b8b4f23991660b07b6bbad78e7201c9d3",
+    "ledgerContentHashAfter": "e218305795abacef5e8f6ca0d6aad98786a7762dd54e37125380e6e4f464358c"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 8,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 8,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-6a556a504acf",
+      "prompt-candidate-fab1e2c04538",
+      "prompt-candidate-fcac3eaf9861",
+      "prompt-candidate-5db986c0122a",
+      "prompt-candidate-90aa2bacfd8b",
+      "prompt-candidate-4f7bb2ea727f",
+      "prompt-candidate-e25dcdde2611",
+      "prompt-candidate-eb9338713473"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

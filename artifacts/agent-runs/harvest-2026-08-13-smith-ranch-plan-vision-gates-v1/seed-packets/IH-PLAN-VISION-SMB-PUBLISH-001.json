@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-PLAN-VISION-SMB-PUBLISH-001",
+  "kind": "lesson",
+  "title": "Use copyfile not copy2 for L: Hub publication from CE",
+  "summary": "SMB/L: mounts reject copystat; use shutil.copyfile and per-file error ledger.",
+  "retrievalQuestions": [
+    "PermissionError copystat on L: harvest",
+    "How to publish plan vision artifacts to Intelligence Hub?"
+  ],
+  "evidenceRefs": ["TE-001", "WM-001"],
+  "sourcePacketIds": ["ce-plan-vision-smb-publish-v1"],
+  "executionDeltaRefs": ["ED-002"],
+  "wasteIds": ["TW-002"],
+  "roiRank": 2,
+  "futureAgentInstructions": {
+    "whenThisAppears": "CE publication to L:/Capital-Glass-Intelligence-Hub from WSL or Ryzen",
+    "startAt": ["Computer-Estimator-/src/computer_estimator/plan_vision/plan_vision_publication.py"],
+    "runPreflight": ["test -d /mnt/l/Capital-Glass-Intelligence-Hub/00-master-index"],
+    "doNot": [
+      "Use shutil.copy2 to Hub paths",
+      "Hard-fail entire harvest on single file publish error"
+    ],
+    "proveBeforeClaiming": [
+      "lPublishErrors empty or logged only",
+      "Harvest completes with Hub partial publish acceptable"
+    ]
+  },
+  "ownerRepo": "Computer-Estimator-",
+  "targetSlice": "BY-KIND/mcp-servers.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

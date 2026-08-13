@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-13-smith-ranch-plan-vision-gates-v1",
+  "events": [
+    {
+      "eventId": "TE-001",
+      "phase": "failure",
+      "summary": "vision-plane-w7-smith-ranch-harvest failed PermissionError on shutil.copystat to L:",
+      "evidenceRefs": ["GHA-31742698714"]
+    },
+    {
+      "eventId": "TE-002",
+      "phase": "failure",
+      "summary": "vision-plane-smith-ranch-admit PARTIAL_ADMIT — missing data/cas/sha256 PNG rasters on Ryzen",
+      "evidenceRefs": ["GHA-31742973883", "GHA-31743506032"]
+    },
+    {
+      "eventId": "TE-003",
+      "phase": "analysis",
+      "summary": "Root cause: CAS shards not synced to CE repo before admit on Ryzen",
+      "evidenceRefs": ["executor receipt"]
+    },
+    {
+      "eventId": "TE-004",
+      "phase": "implementation",
+      "summary": "CE c3965d7 SMB-safe publish, CAS resolve, partial admit verdict, fail-open harvest",
+      "evidenceRefs": ["PR-26"]
+    },
+    {
+      "eventId": "TE-005",
+      "phase": "implementation",
+      "summary": "AppBuilder PR #374 syncCasShardsToCeRepo on main a031d062",
+      "evidenceRefs": ["PR-374"]
+    },
+    {
+      "eventId": "TE-006",
+      "phase": "dispatch",
+      "summary": "Admit re-dispatched GHA 31748183973 on main after merge",
+      "evidenceRefs": ["GHA-31748183973"]
+    },
+    {
+      "eventId": "TE-007",
+      "phase": "closeout",
+      "summary": "T2 harvest + Git durability per CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1 v1.2",
+      "evidenceRefs": ["harvest-2026-08-13-smith-ranch-plan-vision-gates-v1"]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-PLAN-VISION-CAS-SYNC-001",
+  "kind": "runbook",
+  "title": "Sync CAS shards to CE repo before Smith Ranch admit on Ryzen",
+  "summary": "Executor must stage Z/L CAS into Computer-Estimator-/data/cas before admit CLI.",
+  "retrievalQuestions": [
+    "Why did Smith Ranch admit fail with missing sha256 PNG?",
+    "What runs before vision-plane-smith-ranch-admit?"
+  ],
+  "evidenceRefs": ["TE-002", "TE-003", "WM-002"],
+  "sourcePacketIds": ["appbuilder-cas-shard-sync-v1"],
+  "executionDeltaRefs": ["ED-001"],
+  "wasteIds": ["TW-001"],
+  "roiRank": 1,
+  "futureAgentInstructions": {
+    "whenThisAppears": "PARTIAL_ADMIT or missing data/cas/sha256 on Ryzen vision plane",
+    "startAt": ["CG-AppBuilder-MCP/scripts/executor/ryzen9desk-vision-plane-smith-ranch-admit.mjs"],
+    "runPreflight": ["Check receipt casSync block", "Verify CE data/cas/sha256 exists on Ryzen"],
+    "doNot": [
+      "Lower admit thresholds before CAS files exist",
+      "Assume Z staging alone suffices without CE repo copy"
+    ],
+    "proveBeforeClaiming": [
+      "casSync.status=PASS in executor receipt",
+      "sheets_admitted>0 or explicit PARTIAL with CAS paths present"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/mcp-servers.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

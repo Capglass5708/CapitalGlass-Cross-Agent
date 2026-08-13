@@ -1,0 +1,197 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-13-smith-ranch-plan-vision-gates-v1",
+  "tier": "T2",
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "rework",
+      "description": "Multiple admit GHA failures before CAS sync fix",
+      "evidenceRefs": ["TE-002"],
+      "estimatedImpact": "high",
+      "savedBy": "syncCasShardsToCeRepo",
+      "roiRank": 1,
+      "goldMineSignalClass": "AGENT_FRICTION_SIGNAL"
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "context",
+      "description": "Investigated gating overrides before identifying missing CAS binaries",
+      "evidenceRefs": ["TE-003"],
+      "estimatedImpact": "medium",
+      "savedBy": "Executor receipt casSync block",
+      "roiRank": 2,
+      "goldMineSignalClass": "OBSERVABILITY_GAP"
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "operator_attention",
+      "description": "STOP/PROCEED cycle delayed push and Ryzen dispatch",
+      "evidenceRefs": ["TE-006"],
+      "estimatedImpact": "low",
+      "savedBy": "Clear handoff Z: receipt",
+      "roiRank": 3,
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL"
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "Operator requested commit/push per harvest protocol after gate-fix thread",
+      "operatorCost": "low",
+      "systemFix": "Agent-owned Git durability v1.2",
+      "evidenceRefs": ["TE-007"],
+      "linkedWasteIds": ["TW-003"],
+      "goldMineSignalClass": "OPERATOR_FRICTION_SIGNAL",
+      "manualStep": "Explicit RUN COMMIT AND PUSH",
+      "frequency": "once",
+      "avoidable": true,
+      "automationCandidate": true,
+      "businessWorkflow": "plan-vision-admit",
+      "operatorRole": "operator",
+      "rootCause": "Harvest artifacts not auto-committed mid-thread"
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Smith Ranch admit on Ryzen without local CAS rasters",
+      "actualExecution": {
+        "steps": ["Dispatch admit on main", "PARTIAL_ADMIT missing PNG paths"],
+        "outcome": "BLOCKED",
+        "evidenceRefs": ["TE-002"]
+      },
+      "optimalExecution": {
+        "steps": ["syncCasShardsToCeRepo before admit CLI", "Verify casSync in receipt"],
+        "outcome": "PASS or PASS_ADMIT_WAVE_PARTIAL",
+        "requiredPreflight": ["Z/L CAS staging"]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "medium",
+        "operatorFrustration": "medium"
+      },
+      "preventiveControl": "vision-plane-w7-product-sync-lib.mjs syncCasShardsToCeRepo"
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "L: Intelligence Hub harvest publication from Ryzen",
+      "actualExecution": {
+        "steps": ["shutil.copy2 to L: path"],
+        "outcome": "PermissionError copystat",
+        "evidenceRefs": ["TE-001"]
+      },
+      "optimalExecution": {
+        "steps": ["shutil.copyfile without copystat", "Per-file try/except + lPublishErrors"],
+        "outcome": "Publish succeeds or degrades without hard-fail",
+        "requiredPreflight": ["L: mount writable"]
+      },
+      "deltaCost": {
+        "time": "medium",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      },
+      "preventiveControl": "plan_vision_publication._safe_copy_file"
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Let Hub publish copystat failure hard-stop harvest",
+      "whyItWasWrong": "Single SMB metadata failure aborted entire labeling wave",
+      "correctFirstMove": "Use copyfile + per-file error ledger with fail-open wrapper",
+      "preventiveControl": "labeling_candidate_harvest try/except",
+      "executionDeltaId": "ED-002"
+    },
+    {
+      "wrongMoveId": "WM-002",
+      "summary": "Tune admit thresholds before verifying CAS files on Ryzen disk",
+      "whyItWasWrong": "Missing PNG paths were filesystem sync not inference tuning",
+      "correctFirstMove": "Run syncCasShardsToCeRepo and verify casSync receipt",
+      "preventiveControl": "syncCasShardsToCeRepo in executor profile",
+      "executionDeltaId": "ED-001"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DW-001",
+      "subject": "Smith Ranch CE/Revu full-set harvest",
+      "whyRepeated": "Same project corpus",
+      "firstKnownInstance": "harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1",
+      "priorIndexSlice": "cross-desk-routing.json",
+      "whyMissed": "Different thread scope (plan vision gates vs CE batch)",
+      "avoidableBy": "Reference upstream harvest only",
+      "recommendedAction": "index"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "CAS sync receipt gate on Ryzen executor",
+      "whyItPays": "Prevents repeat PARTIAL_ADMIT",
+      "effort": "low",
+      "operatorValue": "high",
+      "businessValue": "medium",
+      "platformValue": "high",
+      "agentValue": "high",
+      "reliabilityValue": "high",
+      "automationLeverage": "high",
+      "estimatedComplexity": "low",
+      "blastRadius": "vision-plane-ryzen",
+      "confidence": "high",
+      "evidenceDiversity": "GHA failures + fix",
+      "rootCauseLeverage": "CAS missing",
+      "goldMineSignalClass": "SUCCESS_PATTERN",
+      "novelty": "NEW",
+      "savedWasteIds": ["TW-001"],
+      "seedAs": "runbook"
+    },
+    {
+      "rank": 2,
+      "title": "SMB-safe Hub publish standard for CE L writers",
+      "whyItPays": "Eliminates copystat class on L:/SMB",
+      "effort": "medium",
+      "operatorValue": "medium",
+      "businessValue": "low",
+      "platformValue": "high",
+      "agentValue": "medium",
+      "reliabilityValue": "high",
+      "automationLeverage": "medium",
+      "estimatedComplexity": "medium",
+      "blastRadius": "Computer-Estimator-",
+      "confidence": "high",
+      "evidenceDiversity": "GHA harvest failure",
+      "rootCauseLeverage": "copystat",
+      "goldMineSignalClass": "SUCCESS_PATTERN",
+      "novelty": "NEW",
+      "savedWasteIds": ["TW-002"],
+      "seedAs": "rule"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "plan_vision production unlock",
+      "currentStatus": "BLOCKED",
+      "doNotClaimUntil": ["Operator calibration", "Harvest wave PASS"],
+      "lastKnownEvidence": ["revu-mcp-production-workflow-locked"]
+    },
+    {
+      "awardOrVerdict": "vision-plane-w7-smith-ranch-harvest",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": ["Admit GHA receipt reviewed", "CE feature branch on Ryzen"],
+      "lastKnownEvidence": ["TE-006"]
+    }
+  ],
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "hubSlicesConsulted": [
+      "active-work-blockers.json",
+      "mcp-servers.json",
+      "host-authority.json"
+    ],
+    "commandIndexConsulted": true,
+    "checkedAt": "2026-08-13T22:40:00.000Z",
+    "notes": "Referenced harvest-2026-08-12-smith-ranch-ce-revu-full-set-v1; no duplicate packets"
+  }
+}

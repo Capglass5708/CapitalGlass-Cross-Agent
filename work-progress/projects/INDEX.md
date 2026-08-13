@@ -45,6 +45,7 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `ai-cache-milestone-blocked-pending-estate-proof-v1` | — | ACTIVE | BLOCKED | CG-AppBuilder-MCP | `harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1` | see harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1.md |
 | `ai-cached-sdlc-cursor-integration-go-v1` | — | WARN | PASS | CG-AppBuilder-MCP | `harvest-ai-cached-sdlc-protocol-cursor-integration-v1` | see ai-cached-sdlc-cursor-integration-go-v1.md |
 | `app-builder-preflight-downstream-blockers-v1` | — | ACTIVE | BLOCKED | CG-AppBuilder-MCP | `harvest-2026-08-07-cursor-healthkeeper-preflight-dedupe-v1` | see harvest-2026-08-07-cursor-healthkeeper-preflight-dedupe-v1.md |
+| `appbuilder-cas-shard-sync-v1` | — | COMPLETE | MERGED_MAIN | CG-AppBuilder-MCP | `harvest-2026-08-13-smith-ranch-plan-vision-gates-v1` | see 2026-08-13_smith-ranch-plan-vision-gates-v1.md |
 | `appbuilder-pr284-ci-merge-gate-v1` | — | HARVEST_COMPLETE | PASS | CG-AppBuilder-MCP | `harvest-2026-08-04-hot-cache-wave-a-estate-ship-v1` | see thread-event-inventory.json |
 | `appbuilder-pr290-merge-evidence-v1` | — | COMPLETE | VERIFIED | CG-AppBuilder-MCP | `harvest-2026-08-07-direct-connect-three-controller-closeout-v1` | see harvest-2026-08-07-direct-connect-three-controller-closeout-v1.md |
 | `asg-closed-immutable-v1` | — | CLOSED | PASS | CG-AppBuilder-MCP | `harvest-2026-08-04-three-lane-suite-closeout-v1` | see ultimate-sdlc-runner-hardening-and-ai-cache-v1.md |
@@ -67,6 +68,7 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `blocker-z-mirror-wave-sdlc-source-v1` | — | OPEN | DEFERRED | Data-Extraction | `harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1` | see harvest-2026-08-06-harvest-protocol-self-learning-lane-c-v1.md |
 | `bounded-command-closeout-v1` | — | RECORDED | PASS | CG-AppBuilder-MCP | `harvest-2026-08-04-ultimate-sdlc-runner-dark-package-v1` | see bounded-command-closeout-v1.md |
 | `bulk-hub-provenance-chain-pass-v1` | — | COMPLETE | VERIFIED | Data-Extraction | `harvest-2026-08-07-cross-agent-drained-intelligence-pi-refresh-v1` | see harvest-2026-08-07-cross-agent-drained-intelligence-pi-refresh-v1.md |
+| `ce-plan-vision-smb-publish-v1` | — | COMPLETE | SHIPPED_FEATURE_BRANCH | Computer-Estimator- | `harvest-2026-08-13-smith-ranch-plan-vision-gates-v1` | see 2026-08-13_smith-ranch-plan-vision-gates-v1.md |
 | `chat-improvement-extract-chatgpt-v1` | — | ACTIVE | PASS | CapitalGlass-Cross-Agent | `harvest-2026-08-04-harvest-storage-chatgpt-lane-v1` | see 2026-08-04_chat-improvement-extract-chatgpt-v1.md |
 | `chatgpt-harvest-git-gate-v2-v1` | — | COMPLETE | PASS | CapitalGlass-Cross-Agent | `harvest-2026-08-07-chatgpt-git-publication-restoration-v1` | see CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md |
 | `chatgpt-harvest-protocol-promotion-drift-v1` | — | RESOLVED | PASS | CapitalGlass-Cross-Agent | `harvest-2026-08-07-chatgpt-git-publication-restoration-v1` | see CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md |
@@ -127,6 +129,8 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `harvest-2026-08-04-m2-plans-intake-closeout-v1` | — | HARVEST_COMPLETE | HARVEST_COMPLETE | CapitalGlass-Cross-Agent | `harvest-2026-08-04-m2-plans-intake-closeout-v1` | see harvest-2026-08-04-m2-plans-intake-closeout-v1.md |
 | `harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1` | — | HARVEST_COMPLETE | HARVEST_COMPLETE | CapitalGlass-Cross-Agent | `harvest-2026-08-04-platform-ops-pg-staging-auto-v32-v1` | see harvest-manifest-v1.json |
 | `harvest-2026-08-04-three-lane-suite-closeout-v1` | — | HARVEST_COMPLETE | HARVEST_COMPLETE | CapitalGlass-Cross-Agent | `harvest-2026-08-04-three-lane-suite-closeout-v1` | see harvest-2026-08-04-three-lane-suite-closeout-v1.md |
+| `harvest-git-durability-v1-2-run` | — | COMPLETE | RECORDED | CapitalGlass-Cross-Agent | `harvest-2026-08-13-smith-ranch-plan-vision-gates-v1` | see 2026-08-13_smith-ranch-plan-vision-gates-v1.md |
+| `harvest-hard-fail-on-l-publish-v1` | — | RESOLVED | ROOT_CAUSE_FIXED | Computer-Estimator- | `harvest-2026-08-13-smith-ranch-plan-vision-gates-v1` | see 2026-08-13_smith-ranch-plan-vision-gates-v1.md |
 | `harvest-project-folder-synology-primary-chat-v1` | — | HARVEST_COMPLETE | HARVEST_COMPLETE | CapitalGlass-Cross-Agent | `harvest-project-folder-synology-primary-chat-v1` | see harvest-project-folder-synology-primary-chat-v1.md |
 | `harvest-protocol-second-pass-v1` | — | COMPLETE | DUPLICATE_AVOIDED | CapitalGlass-Cross-Agent | `harvest-2026-08-08-asg-thread-continuation-v1` | see harvest-2026-08-08-asg-thread-continuation-v1.md |
 | `harvest-protocol-v1-1-gold-mine-compounding-v1` | — | COMPLETE | DOCUMENTED | CapitalGlass-Cross-Agent | `harvest-2026-08-07-gold-mine-compounding-reference-v1` | see INDEX.md |
@@ -224,6 +228,7 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `rosewood-scope-seed-idempotency-v1` | — | COMPLETE | PASS | CapitalGlass-BidComposer | `harvest-2026-08-07-guided-scope-review-milestone-closeout-v1` | see harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md |
 | `rosewood-smoke-bid-duplicate-v1` | — | COMPLETE | DUPLICATE_AVOIDED | CapitalGlass-BidComposer | `harvest-2026-08-07-guided-scope-review-milestone-closeout-v1` | see harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md |
 | `run-estate-consumer-proof-v3-v1` | — | COMPLETE | READY | CG-AppBuilder-MCP | `harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1` | see harvest-2026-08-07-ai-cache-preflight-evidence-reuse-closeout-v1.md |
+| `ryzen-admit-dispatch-v1` | — | IN_PROGRESS | DISPATCHED | CG-AppBuilder-MCP | `harvest-2026-08-13-smith-ranch-plan-vision-gates-v1` | see 2026-08-13_smith-ranch-plan-vision-gates-v1.md |
 | `ryzen9desk-managed-executor-v1` | `intel:4a8c45cc3e5eaa…` | RUNNER_BOOTSTRAP_CHECKPOINT_STARTED | CODE_READY_FOR_RUNNER_BOOTSTRAP | CG-AppBuilder-MCP | `harvest-2026-08-03-cross-thread-platform-state-v1` | see 2026-08-03_ryzen9desk-managed-executor-v1.md |
 | `scope-review-issue-gate-active-v1` | — | ACTIVE | EXPECTED_BLOCK | CapitalGlass-BidComposer | `harvest-2026-08-07-guided-scope-review-milestone-closeout-v1` | see harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md |
 | `scope-review-production-deploy-evidence-v1` | — | COMPLETE | VERIFIED | CapitalGlass-BidComposer | `harvest-2026-08-07-guided-scope-review-milestone-closeout-v1` | see harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md |
@@ -277,7 +282,7 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `z-drive-force-remap-wsl-cwd-v1` | — | RECORDED | PASS | CapitalGlass-Office-Admin | `harvest-2026-08-04-z-l-drive-offlan-session-v1` | see 2026-08-02_z-drive-disconnect-recurrence-v1.md |
 | `z-l-drive-offlan-partial-availability-v1` | — | PARTIAL_DRIVE_AVAILABILITY | Z_OK_L_BLOCKED_OFF_LAN | CapitalGlass-Office-Admin | `harvest-2026-08-04-z-l-drive-offlan-session-v1` | see 2026-08-02_z-drive-disconnect-recurrence-v1.md |
 
-_237 registry packets · 105 intelligence entities_
+_242 registry packets · 105 intelligence entities_
 
 <!-- HARVEST-PACKET-INDEX:END -->
 
