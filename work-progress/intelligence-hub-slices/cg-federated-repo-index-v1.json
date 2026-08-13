@@ -1,11 +1,11 @@
 {
   "schemaVersion": "intelligence-hub-cg-federated-repo-index-slice-v1@1.0.0",
-  "updatedAt": "2026-08-13T06:15:00.000Z",
+  "updatedAt": "2026-08-13T06:12:00.000Z",
   "workPackageId": "cg-federated-repo-index-v1",
   "programState": "CG_FEDERATED_REPO_INDEX_WAVE_A_CLOSED",
   "acceptanceState": "LIVE_RYZEN9_PROOF_PASS",
   "waveAComplete": true,
-  "canonicalAppBuilderSha": "120cde1d7",
+  "canonicalAppBuilderSha": "c87ee2420",
   "canonicalComputerEstimatorSha": "acc4e2b6f90bd3096168d6c735e98486277d8d5f",
   "waveACloseEligible": true,
   "waveBEntered": true,
@@ -19,12 +19,13 @@
   "canonicalRoot": "$HOME/repos",
   "forbiddenRoot": "/mnt/c",
   "packetClass": "WAVE_A_CLOSED_LUNA_ESTATE_CONTINUATION",
-  "operatorPrompt": "Wave A CLOSED. Continue luna-estate-retrieval-index-v1 (director + owner indexes). Hub L: publish only with operator authorization.",
-  "nextAction": "Use npm run luna:retrieve -- --query=... (director default). Enforce material entry via luna:enforce:material-entry.",
+  "operatorPrompt": "Wave A CLOSED and bound to AppBuilder main c87ee2420. Hub L: publish only after operator authorization.",
+  "nextAction": "Operator-authorized Hub/L: replica publish only. Do not expand indexing scope.",
   "umbrellaWorkPackage": "luna-estate-retrieval-index-v1",
   "deferredPackage": "hub-replica-publish-operator-gate",
   "projectFile": "work-progress/projects/2026-08-12_cg-federated-repo-index-v1.md",
   "programLedger": "CG-AppBuilder-MCP/artifacts/federated-repo-index/wave-a-program-ledger.json",
-  "note": "Wave A CLOSED. Bind canonicalAppBuilderSha to merged main after AppBuilder Luna PR merges. Hub L: publish last.",
-  "pendingMergedMainBind": true
+  "note": "Wave A CLOSED. Bound to AppBuilder merged main after PR #372. Hub L: publish only with operator authorization (replicas last).",
+  "pendingMergedMainBind": false,
+  "canonicalAppBuilderShaFull": "c87ee2420243bb0f5da7c869ea52f0d3cab6b0b0"
 }

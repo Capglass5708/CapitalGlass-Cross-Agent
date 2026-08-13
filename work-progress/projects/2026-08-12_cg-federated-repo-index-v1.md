@@ -34,9 +34,12 @@ AppBuilder owns estate routing. Computer Estimator owns its local index. Intelli
 
 ```text
 CG_FEDERATED_REPO_INDEX_WAVE_A_CLOSED / LIVE_RYZEN9_PROOF_PASS
+canonicalAppBuilderSha: c87ee2420 (c87ee2420243bb0f5da7c869ea52f0d3cab6b0b0 on main; PR #372)
 blocker: null (cleared)
 operational failover: DIRECT_CONNECT_FAILOVER_LOCAL
 ```
+
+**2026-08-13 bind:** Cross-Agent ledger bound to AppBuilder merged main after post-merge Luna acceptance PASS. Hub/L: replicas still deferred.
 
 Do **not** close Wave A, enter Wave B, publish Hub replicas to L:, or widen this WP to repair GitHub Actions / SSH.
 

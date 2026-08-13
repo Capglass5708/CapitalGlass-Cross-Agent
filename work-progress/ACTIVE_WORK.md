@@ -47,10 +47,10 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Blocker | `null` (prior `BLOCKED_GHA_WP_NOT_ALLOWLISTED` cleared by allowlist + live proof) |
 | Failover | `DIRECT_CONNECT_HIT` |
 | Compiler host | RYZEN9DESK ext4 `$HOME/repos` (not `/mnt/c`) |
-| AppBuilder SHA | `120cde1d7` on `work/luna-estate-retrieval-index-v1` (bind to merged `main` SHA after AppBuilder PR merges) |
+| AppBuilder SHA | **`c87ee2420`** (`c87ee2420243bb0f5da7c869ea52f0d3cab6b0b0`) on **`main`** — PR #372 merged; post-merge Luna acceptance PASS |
 | CE SHA | `acc4e2b6` on `work/cg-federated-repo-index-v1` |
 | Project file | `work-progress/projects/2026-08-12_cg-federated-repo-index-v1.md` |
-| Next | Merge AppBuilder Luna PR → post-merge acceptance → bind this ledger to merged main SHA → Hub L: publish only after both PRs aligned |
+| Next | Hub L: replica publish only after operator authorization (replicas last). Do not expand indexing scope. |
 | Recorded failure | `AGENT_RETRIEVAL_FRONT_DOOR_SKIPPED` — addressed by Luna director mandatory entry |
 | Deferred | Hub replica publish to L:; `ryzen9desk-executor-transport-repair-v1` hardening |
 
