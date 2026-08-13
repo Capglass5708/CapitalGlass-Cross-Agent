@@ -21,6 +21,23 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 ## Current saved work
 
+### 2026-08-12 CT — cg-federated-repo-index-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `cg-federated-repo-index-v1` |
+| Program state | **CG_FEDERATED_REPO_INDEX_WAVE_A_IMPLEMENTED_PUSHED** |
+| Acceptance | **LIVE_RYZEN9_PROOF_PENDING** |
+| Wave A close | **false** — do not enter Wave B; do not publish Hub replicas |
+| Blocker | `BLOCKED_GHA_WP_NOT_ALLOWLISTED` |
+| Failover | `DIRECT_CONNECT_FAILOVER_LOCAL` |
+| Compiler host | RYZEN9DESK ext4 `$HOME/repos` (not `/mnt/c`) |
+| AppBuilder SHA | `0be26419c` on `work/cg-federated-repo-index-v1` |
+| CE SHA | `acc4e2b6` on `work/cg-federated-repo-index-v1` |
+| Project file | `work-progress/projects/2026-08-12_cg-federated-repo-index-v1.md` |
+| Next | At RYZEN9DESK: `npm run repo-index:ryzen9desk-wave-a-generate`; commit only the generate receipt |
+| Deferred | `ryzen9desk-executor-transport-repair-v1` (GHA allowlist + SSH) **after** Wave A closes |
+
 ### 2026-08-12 CT — issued-proposal-structured-estimator-learning-v1
 
 | Field | Value |

@@ -2,7 +2,7 @@
 
 Master index of all project files in `work-progress/projects/`.
 
-**Last updated:** 2026-08-12 (`harvest-2026-08-12-estimating-spine-ryzen9-activation-v1`)
+**Last updated:** 2026-08-12 (`cg-federated-repo-index-v1` Wave A ledger: IMPLEMENTED_PUSHED / LIVE_RYZEN9_PROOF_PENDING)
 
 Read `AGENT_START_HERE.md` and `work-progress/ACTIVE_WORK.md` before working on any project listed here.
 
@@ -315,6 +315,7 @@ _267 registry packets · 122 intelligence entities_
 
 | Project ID | File | Status | Owner repo(s) | Last commit | Next action |
 | --- | --- | --- | --- | --- | --- |
+| `cg-federated-repo-index-v1` | [2026-08-12_cg-federated-repo-index-v1.md](./2026-08-12_cg-federated-repo-index-v1.md) | **CG_FEDERATED_REPO_INDEX_WAVE_A_IMPLEMENTED_PUSHED / LIVE_RYZEN9_PROOF_PENDING** — blocker `BLOCKED_GHA_WP_NOT_ALLOWLISTED`; failover `DIRECT_CONNECT_FAILOVER_LOCAL` | `CG-AppBuilder-MCP`, `Computer Estimator` | AppBuilder `0be26419c`; CE `acc4e2b6` | RYZEN9DESK ext4: `npm run repo-index:ryzen9desk-wave-a-generate`; commit only generate receipt. Do not close Wave A / enter Wave B / publish Hub / repair GHA-SSH in this WP |
 | `harvest-2026-08-03-cross-thread-platform-state-v1` | [2026-08-03_harvest-2026-08-03-cross-thread-platform-state-v1.md](./2026-08-03_harvest-2026-08-03-cross-thread-platform-state-v1.md) | **COMPLETE** — `HARVEST_COMPLETE` | CapitalGlass-Cross-Agent | Harvest commit pending | Recurring ingest + L: publish when operator approves |
 | `estimating-spine-ryzen9-activation-v1` | [2026-08-12_estimating-spine-ryzen9-activation-v1.md](./2026-08-12_estimating-spine-ryzen9-activation-v1.md) | **WSL_EXECUTOR_READY_ESTIMATING_PARTIAL** | `CG-AppBuilder-MCP` | GHA proofs `31560060271`–`31560208328` | RYZEN9 desk: CE opening stack + Revu Windows handoff |
 | `smith-ranch-ce-revu-full-set-v1` | [2026-08-12_smith-ranch-ce-revu-full-set-v1.md](./2026-08-12_smith-ranch-ce-revu-full-set-v1.md) | **PHASE_A_READY_FOR_REMOTE_DISPATCH** | `CG-AppBuilder-MCP` | commit `cd807ac8f` (local) | Merge main → dispatch `smith-ranch-ce-batch`; Phase B Revu queued |
@@ -385,6 +386,7 @@ Recommended follow-on work packages (not yet project files):
 
 | Project ID | Status | Next action |
 | --- | --- | --- |
+| `cg-federated-repo-index-v1` | **IMPLEMENTED_PUSHED / LIVE_RYZEN9_PROOF_PENDING** | RYZEN9DESK generate receipt; defer GHA/SSH to `ryzen9desk-executor-transport-repair-v1` |
 | `suite-ci-healing-v1` | Partial PASS | After Document Center SHA alignment, inspect stale AppBuilder PRs #254, #252, #228, #227, #216 |
 | `north-star-compounding-proof-v1` | Pushed | Restart MCP; clear Auto v3.2 env vars; rerun `closeout:gate` |
 | `cross-agent-registry-onboard-v1` | Complete — pushed | Recurring maintenance |
@@ -423,6 +425,7 @@ Recommended follow-on work packages (not yet project files):
 
 | Project ID | Status | Next action |
 | --- | --- | --- |
+| `cg-federated-repo-index-v1` | **LIVE_RYZEN9_PROOF_PENDING** | Generate local index on RYZEN9DESK Vision Plane bytes; do not compound fake paths on WesleyWork |
 | `revu-production-plan-markup-readiness-v1` | ACTIVE — operator-led | Phase 0–1 on WESLEYDESK: Max seat + Gate 1 controlled fixture; see `2026-08-11_revu-production-plan-markup-readiness-v1.md` |
 | `ce-issued-proposal-corpus-v1` | INDEXED — git authority | Regenerate via `npm run harvest:issued-proposal-corpus`; L: publish merges `agent-build-catalog-patch-v1.json` |
 | `revu-opening-detection-top10-v1` | Rosewood lane status corrected | Build `cg-opening-locator-v1`; if marking Rosewood in Revu, start with controlled sheet choice and do not assume CE parse or BC bid exists |
