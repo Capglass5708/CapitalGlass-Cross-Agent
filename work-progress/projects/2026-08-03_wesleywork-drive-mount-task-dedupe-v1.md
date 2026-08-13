@@ -1,10 +1,12 @@
 # Work package: wesleywork-drive-mount-task-dedupe-v1
 
-**Verdict:** `IMPLEMENTED` / `READY FOR LIVE DEPLOY`  
-**Protocol:** Office Admin Protocol v1.5  
+**Verdict:** **SUPERSEDED** 2026-08-13 by `wesleywork-storage-services-v1`  
+**Protocol:** Office Admin Protocol v1.5 (historical)  
 **Owner repo:** CapitalGlass-Office-Admin  
 **Endpoint:** CG-WESLEYWORK-01 (WESLEY_WORK)  
-**Last updated:** 2026-08-03
+**Last updated:** 2026-08-13
+
+Do **not** deploy `Install-CgWesleyWorkDriveMountPersistence.ps1`. That installer re-enables PreCursor ForceRemap and LAN-first Health. Use Storage Keeper.
 
 ---
 
@@ -52,12 +54,15 @@ Three scheduled tasks ran `Ensure-CgWesleyWorkDriveMounts.ps1 -Mode Health` ever
 
 ---
 
-## Deploy (elevated on WESLEY_WORK)
+## Deploy (DO NOT RUN — retired)
+
+The installer below is retired and hard-fails `RETIRED_USE_STORAGE_KEEPER`.
 
 ```powershell
-cd C:\Developer\repos\CapitalGlass-Office-Admin\scripts\devices\CG-WESLEYWORK-01
-.\Install-CgWesleyWorkDriveMountPersistence.ps1
-.\Test-CgWesleyWorkDriveMountTaskRegistration.ps1 -ExpectRegistered
+# RETIRED — do not run
+# .\Install-CgWesleyWorkDriveMountPersistence.ps1
+cd C:\
+& "$env:LOCALAPPDATA\CapitalGlass\Storage\Invoke-CgStorageKeeper.ps1" -Mode Health
 ```
 
 ---
@@ -67,10 +72,10 @@ cd C:\Developer\repos\CapitalGlass-Office-Admin\scripts\devices\CG-WESLEYWORK-01
 | Check | Status |
 |-------|--------|
 | Unit tests | **PASS** 7/7 |
-| Live probe after elevated deploy on WESLEY_WORK | **PENDING** |
+| Live probe after elevated deploy on WESLEY_WORK | **SUPERSEDED** — Storage Keeper live proof 2026-08-13 |
 
 ---
 
 ## Next action
 
-Run elevated deploy + verifier on WESLEY_WORK; confirm no flashing health windows over one 15-minute Health cycle.
+Do not re-enable PreCursor or LAN-first `DriveMount-Health`. Keep Storage Keeper Health every 3 minutes.

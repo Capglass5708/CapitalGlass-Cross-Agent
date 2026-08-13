@@ -13,25 +13,28 @@ Recurring Z: drive disconnect on WESLEY_WORK off-LAN sessions wastes agent token
 | Date opened | 2026-08-02 |
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Owner repo(s) | CapitalGlass-Office-Admin |
-| Status | Active |
+| Status | **SUPERSEDED** 2026-08-13 by `wesleywork-storage-services-v1` |
 
 ## Agent Fast Path
 
 **Failure code:** `Z_DRIVE_NOT_MOUNTED_IN_DAILY_SESSION`  
 **FI record:** `FI-20260802-z-drive-unmapped-in-wesle-session-net-use-z-retu`  
 **Owner route:** `office-admin` / CapitalGlass-Office-Admin  
-**Shortcut:** `PSC-Z-DRIVE-WESLEYWORK-FORCE-REMAP`  
-**Rejected approach:** `RA-004` (do not grep repos or improvise `net use` loops)
+**Shortcut:** Storage Keeper Health (ForceRemap shortcut retired)  
+**Rejected approach:** `RA-004` (do not grep repos or improvise `net use` loops). Also reject ForceRemap / LAN-first Ensure.
 
 **Canonical repair (WESLEY_WORK):**
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File "C:\ProgramData\CapitalGlass\OfficeAdmin\PRIVATE\Ensure-CgWesleyWorkDriveMounts.ps1" -Mode ForceRemap
+cd C:\
+& "$env:LOCALAPPDATA\CapitalGlass\Storage\Invoke-CgStorageKeeper.ps1" -Mode Health
 ```
 
-**Verify probe:** `Z:\Capital-Glass-Dev` must exist before material agent work continues.
+If Health reports `GHOST_LETTER` / `GHOST_LETTER_REQUIRES_LOGOFF`: **STOP**. Do not ForceRemap. Log off Windows.
 
-**Do not:** patch consumer apps for Z: mapping; rediscover UNC paths via repo search; create a second FI repair record.
+**Verify probe:** `Z:\Capital-Glass-Dev` must exist before material agent work that needs Z. Cursor/ext4 work does not require Windows Z/L.
+
+**Do not:** run `Ensure-CgWesleyWorkDriveMounts.ps1 -Mode ForceRemap`; re-enable PreCursor; patch consumer apps for Z: mapping; rediscover UNC paths via repo search.
 
 ## Evidence
 
@@ -77,4 +80,10 @@ If a path 404s in Cross-Agent, resolve from the **owner repo** at the commit cit
 - Architecture: `CapitalGlass-Office-Admin/docs/devices/CG-WESLEYWORK-01/STORAGE-SERVICES.md`
 - L remains desk-hosted (`wesleydesk`) until always-on NAS migration; `L_ENDPOINT_OFFLINE` is the honest code.
 - **2026-08-13 post-reboot:** `WESLEYWORK_STORAGE_SERVICES_V1_LIVE_PROOF_PASS` — Z/L MagicDNS HEALTHY; ghost `192.168.1.208` gone; LAN-first tasks disabled.
+
+### 2026-08-13 — Protocol contradiction remediation
+
+- This project is **SUPERSEDED**. Agent Fast Path no longer ForceRemaps.
+- Successor: `wesleywork-storage-services-v1` + `wesleywork-storage-protocol-contradiction-remediation-v1`.
+- Retired scripts hard-fail `RETIRED_USE_STORAGE_KEEPER`.
 

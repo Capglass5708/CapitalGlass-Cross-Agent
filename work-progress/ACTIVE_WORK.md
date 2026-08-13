@@ -12,7 +12,7 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-08-12 |
+| Last updated | 2026-08-13 |
 | Current focus | Issued proposal structured learning (`issued-proposal-structured-estimator-learning-v1`); foundation corpus shipped; L: publication pending; estimating spine RYZEN9 activation |
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
@@ -33,8 +33,20 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Canonical Z | `\\cg-server\Capital Glass` |
 | Canonical L | `\\wesleydesk\CapitalGlass-L` (desk-hosted transitional; `L_ENDPOINT_OFFLINE` when desk off) |
 | Incident | `CapitalGlass-Office-Admin/docs/incidents/2026-08-13-wesleywork-z-phantom-lanmanredirector-ghost.md` |
-| Next | Optional `wsl --shutdown` for mirrored networking only. Do not re-enable PreCursor ForceRemap tasks. |
-| Related | `2026-08-02_z-drive-disconnect-recurrence-v1.md` |
+| Next | Do not re-enable PreCursor. Hub republish is WESLEYDESK GHA after INDEX lands. Do not write L: from Cursor. |
+| Related | `wesleywork-storage-protocol-contradiction-remediation-v1`; `2026-08-02_z-drive-disconnect-recurrence-v1.md` SUPERSEDED |
+
+### 2026-08-13 CT — wesleywork-storage-protocol-contradiction-remediation-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `wesleywork-storage-protocol-contradiction-remediation-v1` |
+| Host | WESLEY_WORK (`CG-WESLEYWORK-01`) |
+| Owner | `CapitalGlass-Office-Admin` + Cross-Agent INDEX |
+| Status | **IN PROGRESS** — tombstone retired WESLEYWORK ForceRemap/LAN-first scripts; close stale INDEX fast paths |
+| Front door | `%LOCALAPPDATA%\CapitalGlass\Storage\Invoke-CgStorageKeeper.ps1 -Mode Health` |
+| Forbidden | ForceRemap; re-enable PreCursor; implement offlan cmdkey WP; Cursor Hub write |
+| Next | Operator/CI Hub republish after both repos land |
 
 ### 2026-08-12 CT — cg-federated-repo-index-v1
 
@@ -291,7 +303,7 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 | Priority | Action | Owner repo | Status |
 | --- | --- | --- | --- |
 | 1 | **Synology-primary dev lane** — child WP `project-folder-synology-primary-v1-dev-hosted-environment` (**HOLD**: Vercel BLOCKED + Supabase I2) | CapitalGlass-Documents / WESLEYDESK | **HOLD** — contract `d8826e8` PASS; hosted dev blocked |
-| 2 | Elevated deploy: `Install-CgWesleyWorkDriveMountPersistence.ps1` + verifier on WESLEY_WORK (`wesleywork-drive-mount-task-dedupe-v1`) | CapitalGlass-Office-Admin | Ready — code implemented; live probe pending |
+| 2 | Do **not** deploy `Install-CgWesleyWorkDriveMountPersistence.ps1`. Keep Storage Keeper. Hub republish after INDEX (`wesleywork-storage-protocol-contradiction-remediation-v1`) | CapitalGlass-Office-Admin | SUPERSEDED installer — live proof already passed |
 | 3 | Rerun Document Center production smokes after SHA pin (`suite-ci-healing-v1`) | CapitalGlass-Documents | **Ready** — Doppler + GitHub `EXPECTED_DOCUMENT_CENTER_GIT_SHA` synced 2026-08-04 |
 | 2 | Use Windows Desktop `Capital Glass Cursor (WSL Suite).lnk`; close any Cursor windows opened from `/mnt/c` / `C:\Developer\repos` | Cursor / operator | Ongoing operating rule — WSL default verify PASS |
 | 2 | L: hub readable at `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index` | WESLEYDESK / WSL | Complete for seed report |

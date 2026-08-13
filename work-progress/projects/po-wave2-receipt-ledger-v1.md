@@ -17,15 +17,16 @@ Append-only `purchase_order_receipt_events` ledger integrated into PO Command Ce
 | Client `PoReceiptLedgerPanel` | Wired in `PurchaseOrderWorkspace` |
 | Contract smoke + typecheck/build | PASS |
 | Live API smoke (`smoke-receipt-ledger-api.mjs`) | PASS after API restart |
-| Operator browser proof | **Pending** |
-| PR merge | Pending browser proof |
+| Browser proof (`run-browser-proof.mjs`) | **PASS** — `PO_WAVE2_WP21_RECEIPT_LEDGER_BROWSER_PROOF_PASS` |
+| PR merge | Pending operator authorization |
 
 ## Do not advance
 
-- WP-22 (3-way match), WP-23 (exceptions), WP-24 (vendor performance) until WP-21 browser proof recorded
+- WP-22 (3-way match), WP-23 (exceptions), WP-24 (vendor performance) until WP-21 PR merge
 - `PO_WAVE2_PROCUREMENT_MONEY_CONTROL_V1_COMPLETE` until full wave closes
 
 ## Evidence
 
 - `capital-glass-po-app/artifacts/agent-runs/po-wave2-receipt-ledger-v1/closeout-manifest.json`
+- `capital-glass-po-app/artifacts/agent-runs/po-wave2-receipt-ledger-v1/browser-proof.json`
 - Branch: `feat/po-wave2-receipt-ledger-v1` @ `2ad9600`

@@ -2,7 +2,7 @@
 
 Master index of all project files in `work-progress/projects/`.
 
-**Last updated:** 2026-08-12 (`cg-federated-repo-index-v1` Wave A ledger: IMPLEMENTED_PUSHED / LIVE_RYZEN9_PROOF_PASS)
+**Last updated:** 2026-08-13 (`wesleywork-storage-protocol-contradiction-remediation-v1` tombstones + INDEX ForceRemap close)
 
 Read `AGENT_START_HERE.md` and `work-progress/ACTIVE_WORK.md` before working on any project listed here.
 
@@ -321,10 +321,12 @@ _267 registry packets · 122 intelligence entities_
 | `smith-ranch-ce-revu-full-set-v1` | [2026-08-12_smith-ranch-ce-revu-full-set-v1.md](./2026-08-12_smith-ranch-ce-revu-full-set-v1.md) | **PHASE_A_READY_FOR_REMOTE_DISPATCH** | `CG-AppBuilder-MCP` | commit `cd807ac8f` (local) | Merge main → dispatch `smith-ranch-ce-batch`; Phase B Revu queued |
 | `ryzen9desk-managed-executor-v1` | [2026-08-03_ryzen9desk-managed-executor-v1.md](./2026-08-03_ryzen9desk-managed-executor-v1.md) | **MANAGED_EXECUTOR_ONLINE** — PARTIAL_REMOTE_PASS | `CG-AppBuilder-MCP` | `51946c4b` AppBuilder at harvest | Maintain runner; CE opening stack + Revu Windows interactive |
 | `active-ledger-ci-path-and-hash-stability-v1` | [2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md](./2026-08-03_active-ledger-ci-path-and-hash-stability-v1.md) | **PASS** | `CG-AppBuilder-MCP` | `2cd8eba9`, `3fb8c9bb` | None — close unless CI regresses |
+| `wesleywork-storage-protocol-contradiction-remediation-v1` | [2026-08-13_wesleywork-storage-protocol-contradiction-remediation-v1.md](./2026-08-13_wesleywork-storage-protocol-contradiction-remediation-v1.md) | **IN PROGRESS** — tombstones + INDEX close | CapitalGlass-Office-Admin, CapitalGlass-Cross-Agent | — | Hub republish via WESLEYDESK GHA after both repos land. Do not write L: from Cursor. |
+| `wesleywork-storage-services-v1` | [2026-08-13_wesleywork-storage-services-v1.md](./2026-08-13_wesleywork-storage-services-v1.md) | **`WESLEYWORK_STORAGE_SERVICES_V1_LIVE_PROOF_PASS`** | CapitalGlass-Office-Admin | Office Admin `20e3199` | Keep Storage Keeper. Do not re-enable PreCursor. |
 | `office-admin-ryzen9desk-managed-executor-bootstrap-v1` | [2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md](./2026-08-03_office-admin-ryzen9desk-managed-executor-bootstrap-v1.md) | **NEEDS_OFFICE_ADMIN_INDEXING** | CapitalGlass-Office-Admin | — | Index runbook in Office Admin when ready |
 | `wsl2-native-repo-library-migration-v1` | [2026-08-03_wsl2-native-repo-library-migration-v1.md](./2026-08-03_wsl2-native-repo-library-migration-v1.md) | **PARTIAL** — filesystem PASS | `CG-AppBuilder-MCP` | — | Per-repo ext4 verification; RYZEN9DESK alignment separate |
 | `ryzen9desk-wsl2-canonical-workspace-v1` | [2026-08-03_ryzen9desk-wsl2-canonical-workspace-v1.md](./2026-08-03_ryzen9desk-wsl2-canonical-workspace-v1.md) | **BLOCKED — use managed executor** | `CG-AppBuilder-MCP`, RYZEN9DESK operator | Tooling prepared on WESLEY_WORK | Dispatch via `ryzen9desk-managed-executor-v1` (`job_profile: wsl2-canonical-setup`) |
-| `wesleywork-drive-mount-task-dedupe-v1` | [2026-08-03_wesleywork-drive-mount-task-dedupe-v1.md](./2026-08-03_wesleywork-drive-mount-task-dedupe-v1.md) | **IMPLEMENTED — ready for live deploy** | CapitalGlass-Office-Admin | Code in owner repo | Elevated deploy on WESLEY_WORK: `Install-CgWesleyWorkDriveMountPersistence.ps1` + verifier; live probe pending |
+| `wesleywork-drive-mount-task-dedupe-v1` | [2026-08-03_wesleywork-drive-mount-task-dedupe-v1.md](./2026-08-03_wesleywork-drive-mount-task-dedupe-v1.md) | **SUPERSEDED** by `wesleywork-storage-services-v1` | CapitalGlass-Office-Admin | Live proof 2026-08-13 | Do **not** deploy `Install-CgWesleyWorkDriveMountPersistence.ps1`. Use Storage Keeper. |
 | `project-folder-synology-primary-v1-dev-hosted-environment` | [project-folder-synology-primary-v1-dev-hosted-environment.md](./project-folder-synology-primary-v1-dev-hosted-environment.md) | **HOLD** — step #3 hosted dev | CapitalGlass-Documents, WESLEYDESK | Contract `d8826e8`; partial Doppler dev | Fix Vercel BLOCKED deploy; separate Supabase dev; alias `documents-dev`; gates G1–G10 |
 | `project-folder-synology-primary-v1-dev-environment` | [project-folder-synology-primary-v1-dev-environment.md](./project-folder-synology-primary-v1-dev-environment.md) | **ACTIVE** — dev lane before production | CapitalGlass-Documents, Dashboard, Office Admin | Slice 0–3 on `main`; prod flag **off** | Child WP step #3; then Dashboard dev + worker |
 | `project-folder-synology-primary-v1` | [project-folder-synology-primary-v1.md](./project-folder-synology-primary-v1.md) | **HALTED** — integration PASS; productionization halted | CapitalGlass-Documents | `440ce33` | No production work until dev-environment gates pass |
@@ -333,7 +335,7 @@ _267 registry packets · 122 intelligence entities_
 | `cross-agent-structured-ledger-projection-v1` | [2026-08-02_cross-agent-structured-ledger-projection-v1.md](./2026-08-02_cross-agent-structured-ledger-projection-v1.md) | **MILESTONE PASS** — Phases 0–3 operational | `CG-Platform-Governance-MCP`, `CG-AppBuilder-MCP` | AppBuilder `63dbeb8c`; Governance `a5ce4c3` | Recurring ingest + drift probe after ledger updates |
 | `wsl-mcp-cursor-doppler-promptops-hardening-v1` | [2026-08-02_wsl-mcp-cursor-doppler-promptops-hardening-v1.md](./2026-08-02_wsl-mcp-cursor-doppler-promptops-hardening-v1.md) | **PASS — Cursor WSL default active; `mcp:repair:cursor` PASS** | `CG-AppBuilder-MCP`, `Cursor-MCP-Kit`, Cursor MCP, Doppler | WSL default verify PASS; `mcp:repair:cursor` PASS | Use WSL Suite shortcut; optionally commit/push ext4 changes; handle Vercel / Cloudflare / `mcp:attest` separately |
 | `z-ai-cache-single-canonical-authority-v1` | [2026-08-02_z-ai-cache-single-canonical-authority-v1.md](./2026-08-02_z-ai-cache-single-canonical-authority-v1.md) | **Complete — three-host aligned** | `CG-AppBuilder-MCP` | `b3ae65d2` | Recurring `ai-cache-z-master:three-host-status` probe only |
-| `z-drive-disconnect-recurrence-v1` | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | **Active — pre-session gate** | CapitalGlass-Office-Admin | FI + Office Admin script | ForceRemap Z: before material sessions on WESLEY_WORK |
+| `z-drive-disconnect-recurrence-v1` | [2026-08-02_z-drive-disconnect-recurrence-v1.md](./2026-08-02_z-drive-disconnect-recurrence-v1.md) | **SUPERSEDED** by `wesleywork-storage-services-v1` | CapitalGlass-Office-Admin | `WESLEYWORK_STORAGE_SERVICES_V1_LIVE_PROOF_PASS` | Storage Keeper Health only. Do **not** ForceRemap Z: before sessions. |
 | `active-ledger-drain-and-intelligence-hub-sync-v1` | [2026-08-02_active-ledger-drain-and-intelligence-hub-sync-v1.md](./2026-08-02_active-ledger-drain-and-intelligence-hub-sync-v1.md) | **Complete — closeout PASS** | Multi-repo | AppBuilder `cd4a9005` | Recurring L: publish only |
 | `north-star-compounding-proof-v1` | [2026-08-01_north-star-compounding-proof-v1.md](./2026-08-01_north-star-compounding-proof-v1.md) | Pushed — evidence receipts on `origin/main` | `CG-Platform-Governance-MCP` (authority), `CG-AppBuilder-MCP` (execution) | Governance `8ebcdf4`; AppBuilder `3772d491` | Restart MCP; clear Auto v3.2 env vars and rerun `closeout:gate`; begin `north-star-compounding-vertical-pilot-v1` |
 | `agent-research-library-layout-v1` | [2026-08-01_agent-research-library-layout-v1.md](./2026-08-01_agent-research-library-layout-v1.md) | Pilot 9/10 operational | `Data-Extraction`, `Scraper` | `Data-Extraction 2190944`; `Scraper 0111837`; layout `b1d2e42`, `3e09e4c` | Optional bounded n8n capture; agent review before any `10-approved-for-use/` promotion |
@@ -379,8 +381,8 @@ Recommended follow-on work packages (not yet project files):
 
 | Project ID | Status | Next action |
 | --- | --- | --- |
-| `wesleywork-drive-mount-task-dedupe-v1` | IMPLEMENTED — live deploy pending | Elevated deploy + verifier on WESLEY_WORK |
-| `z-drive-disconnect-recurrence-v1` | Active — pre-session gate | ForceRemap Z: before material sessions |
+| `wesleywork-drive-mount-task-dedupe-v1` | SUPERSEDED | Do not deploy old persistence installer |
+| `z-drive-disconnect-recurrence-v1` | SUPERSEDED | Storage Keeper Health; never ForceRemap |
 
 ### CG-AppBuilder-MCP
 

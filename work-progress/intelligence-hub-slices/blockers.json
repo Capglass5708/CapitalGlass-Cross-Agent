@@ -1,7 +1,7 @@
 {
   "schemaVersion": "intelligence-hub-blockers-slice-v1@1.0.0",
-  "updatedAt": "2026-08-04T01:08:00.000Z",
-  "openCount": 4,
+  "updatedAt": "2026-08-12T20:45:00.000-05:00",
+  "openCount": 5,
   "blockers": [
     {
       "blockerId": "slice6-post-merge-publication",
@@ -17,6 +17,28 @@
         "index-blind-retrieval"
       ],
       "doNotAdvance": []
+    },
+    {
+      "blockerId": "wesleywork-z-l-mobility-recurrence",
+      "severity": "high",
+      "title": "WESLEY_WORK Z:/L: break every office ↔ home move",
+      "state": "OPEN",
+      "ownerRepo": "CapitalGlass-Office-Admin",
+      "hostAuthority": "WESLEY_WORK",
+      "nextAction": "Ship cg-wesleywork-offlan-smb-credential-persistence-v1 — auto cmdkey cg-server on map; operator uses Test-CgWesleyWorkDrivePreflight.ps1 after travel",
+      "commandIds": [
+        "test-cg-wesleywork-drive-preflight",
+        "ensure-cg-wesleywork-drive-mounts-force-remap"
+      ],
+      "doNotAdvance": [
+        "INDEX_HIT_WITHOUT_DRIVE_PROBE",
+        "MATERIAL_AGENT_WORK_OFFLAN_WITHOUT_Z_L"
+      ],
+      "pointers": {
+        "incident": "CapitalGlass-Office-Admin/docs/incidents/2026-08-12-wesleywork-z-l-drive-office-home-mobility.md",
+        "hubSlice": "work-progress/intelligence-hub-slices/wesleywork-drive-mobility.json",
+        "mobilityRunbook": "CapitalGlass-Office-Admin/docs/devices/CG-WESLEYWORK-01/WESLEYWORK-Z-L-MOBILITY.md"
+      }
     },
     {
       "blockerId": "direct-connect-cold-reboot-persistence",
