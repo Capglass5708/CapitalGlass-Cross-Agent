@@ -88,7 +88,7 @@ Wave A close requires the RYZEN9 generate receipt to prove:
 
 | Repo | Commit / PR | Status |
 | --- | --- | --- |
-| CG-AppBuilder-MCP | `0be26419c484846dbdcbe1ae6a42920ed469084c` on `work/cg-federated-repo-index-v1` | pushed (dispatch-block tip; implementation `365ea80e`) |
+| CG-AppBuilder-MCP | `94c2caae0abe064bfe561ef9ca7e7a79a7ba3d3f` on `work/cg-federated-repo-index-v1` | pushed (canonical tip). Discarded invalid placeholder `94c2caae0c8e4f0f000000000000000000000000` |
 | Computer-Estimator- | `acc4e2b6f90bd3096168d6c735e98486277d8d5f` on `work/cg-federated-repo-index-v1` | pushed |
 
 ## Next actions
@@ -97,7 +97,7 @@ Wave A close requires the RYZEN9 generate receipt to prove:
 | --- | --- | --- | --- |
 | 1 | At RYZEN9DESK, from ext4 `$HOME/repos`, run captured `npm run repo-index:ryzen9desk-wave-a-generate` | CG-AppBuilder-MCP | OPEN |
 | 2 | Commit **only** generate receipt (+ harvested ext4 estate routing if `localRepoRoot` is `/home/wesley/repos/Computer Estimator`) to `work/cg-federated-repo-index-v1` and push | CG-AppBuilder-MCP | BLOCKED on 1 |
-| 3 | Declare Wave A complete only after receipt matches close criteria | this WP | BLOCKED on 2 |
+| 3 | Do **not** use `WAVE_A_COMPLETE` until RYZEN9 generate receipt verifies close criteria | this WP | BLOCKED on 2 |
 | 4 | After Wave A close: open `ryzen9desk-executor-transport-repair-v1` (GHA allowlist + SSH break-glass) | CG-AppBuilder-MCP | DEFERRED |
 
 ## Cheapest path (operator at RYZEN9DESK)
@@ -123,6 +123,13 @@ npm run repo-index:ryzen9desk-wave-a-generate
 - WSL runner online is not Windows-interactive Revu proof and is not a substitute for this generate receipt.
 
 ## Update log
+
+### 2026-08-12 CT — SHA correction
+
+- Canonical AppBuilder SHA locked: `94c2caae0abe064bfe561ef9ca7e7a79a7ba3d3f`.
+- Discarded invalid placeholder `94c2caae0c8e4f0f000000000000000000000000` (never a git object).
+- Do not use `WAVE_A_COMPLETE` until RYZEN9 generate receipt verifies.
+- No Wave B, no Hub/L: publication, no GHA/SSH retries.
 
 ### 2026-08-12 CT — Cursor
 

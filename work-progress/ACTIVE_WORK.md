@@ -32,7 +32,7 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Blocker | `BLOCKED_GHA_WP_NOT_ALLOWLISTED` |
 | Failover | `DIRECT_CONNECT_FAILOVER_LOCAL` |
 | Compiler host | RYZEN9DESK ext4 `$HOME/repos` (not `/mnt/c`) |
-| AppBuilder SHA | `0be26419c` on `work/cg-federated-repo-index-v1` |
+| AppBuilder SHA | `94c2caae0abe064bfe561ef9ca7e7a79a7ba3d3f` on `work/cg-federated-repo-index-v1` |
 | CE SHA | `acc4e2b6` on `work/cg-federated-repo-index-v1` |
 | Project file | `work-progress/projects/2026-08-12_cg-federated-repo-index-v1.md` |
 | Next | At RYZEN9DESK: `npm run repo-index:ryzen9desk-wave-a-generate`; commit only the generate receipt |
