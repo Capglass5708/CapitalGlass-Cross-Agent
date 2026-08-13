@@ -13,23 +13,24 @@ Recurring Z: drive disconnect on WESLEY_WORK off-LAN sessions wastes agent token
 | Date opened | 2026-08-02 |
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Owner repo(s) | CapitalGlass-Office-Admin |
-| Status | Active |
+| Status | **SUPERSEDED** 2026-08-13 by `wesleywork-storage-services-v1` |
 
 ## Agent Fast Path
 
 **Failure code:** `Z_DRIVE_NOT_MOUNTED_IN_DAILY_SESSION`  
 **FI record:** `FI-20260802-z-drive-unmapped-in-wesle-session-net-use-z-retu`  
 **Owner route:** `office-admin` / CapitalGlass-Office-Admin  
-**Shortcut:** `PSC-Z-DRIVE-WESLEYWORK-FORCE-REMAP`  
-**Rejected approach:** `RA-004` (do not grep repos or improvise `net use` loops)
+**Shortcut:** Storage Keeper Health (ForceRemap retired)  
+**Rejected approach:** `RA-004` (do not grep repos or improvise `net use` loops). Also reject ForceRemap and any `192.168.*` UNC.
 
 **Canonical repair (WESLEY_WORK):**
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File "C:\ProgramData\CapitalGlass\OfficeAdmin\PRIVATE\Ensure-CgWesleyWorkDriveMounts.ps1" -Mode ForceRemap
+cd C:\
+& "$env:LOCALAPPDATA\CapitalGlass\Storage\Invoke-CgStorageKeeper.ps1" -Mode Health
 ```
 
-**Verify probe:** `Z:\Capital-Glass-Dev` must exist before material agent work continues.
+**Verify:** Storage Keeper `overall=HEALTHY`; Z `\\cg-server\Capital Glass`; L `\\wesleydesk\CapitalGlass-L`. WSL mounts independently.
 
 **Do not:** patch consumer apps for Z: mapping; rediscover UNC paths via repo search; create a second FI repair record.
 

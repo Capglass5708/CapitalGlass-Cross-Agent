@@ -12,14 +12,29 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-08-11
-| Current focus | TWO_DESK_OPERATING + active-ledger exporter fix ratified on AppBuilder main (`251e96fb` / PR #353; Option C via PR #357); L: BY-KIND `two-desk-operating` published; next optional ChatGPT write-guard
+| Last updated | 2026-08-13
+| Current focus | WESLEYWORK Storage Keeper sole repair front door (`wesleywork-storage-protocol-contradiction-remediation-v1`); TWO_DESK_OPERATING + federated index Wave A closed
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Project index | `work-progress/projects/INDEX.md` |
 
 ## Current saved work
+
+### 2026-08-13 CT — wesleywork-storage-protocol-contradiction-remediation-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `wesleywork-storage-protocol-contradiction-remediation-v1` |
+| Host | WESLEY_WORK (`CG-WESLEYWORK-01`) |
+| Owner | `CapitalGlass-Office-Admin` + Cross-Agent INDEX |
+| Status | **LIVE_MACHINE_PROOF_PASS** — ProgramData tombstone verified; retired scripts cannot remap |
+| Front door | `%LOCALAPPDATA%\CapitalGlass\Storage\Invoke-CgStorageKeeper.ps1 -Mode Health` |
+| Forbidden | ForceRemap; re-enable PreCursor; implement offlan cmdkey WP; Cursor Hub write |
+| Windows Z | `\\cg-server\Capital Glass` |
+| Windows L | `\\wesleydesk\CapitalGlass-L` |
+| WSL | Independent CIFS `/mnt/z` → `//cg-server/Capital Glass`; `/mnt/l` → `//wesleydesk/CapitalGlass-L` |
+| Next | WESLEYDESK GHA Hub republish after both remotes land. Do not write L: from Cursor. |
 
 ### 2026-08-11 CT — active-ledger-saved-work-exporter-fix + unauthorized-merge-353-ratify-cleanup-v1
 
@@ -251,7 +266,7 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 | Priority | Action | Owner repo | Status |
 | --- | --- | --- | --- |
 | 1 | **Synology-primary dev lane** — child WP `project-folder-synology-primary-v1-dev-hosted-environment` (**HOLD**: Vercel BLOCKED + Supabase I2) | CapitalGlass-Documents / WESLEYDESK | **HOLD** — contract `d8826e8` PASS; hosted dev blocked |
-| 2 | Elevated deploy: `Install-CgWesleyWorkDriveMountPersistence.ps1` + verifier on WESLEY_WORK (`wesleywork-drive-mount-task-dedupe-v1`) | CapitalGlass-Office-Admin | Ready — code implemented; live probe pending |
+| 2 | Do **not** deploy `Install-CgWesleyWorkDriveMountPersistence.ps1`. Keep Storage Keeper. Hub republish after INDEX (`wesleywork-storage-protocol-contradiction-remediation-v1`) | CapitalGlass-Office-Admin | SUPERSEDED installer — live ProgramData tombstone 2026-08-13 |
 | 3 | Rerun Document Center production smokes after SHA pin (`suite-ci-healing-v1`) | CapitalGlass-Documents | **Ready** — Doppler + GitHub `EXPECTED_DOCUMENT_CENTER_GIT_SHA` synced 2026-08-04 |
 | 2 | Use Windows Desktop `Capital Glass Cursor (WSL Suite).lnk`; close any Cursor windows opened from `/mnt/c` / `C:\Developer\repos` | Cursor / operator | Ongoing operating rule — WSL default verify PASS |
 | 2 | L: hub readable at `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index` | WESLEYDESK / WSL | Complete for seed report |
@@ -307,15 +322,15 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 | Field | Value |
 | --- | --- |
 | Work package | `wesleywork-drive-mount-task-dedupe-v1` |
-| Verdict | **IMPLEMENTED / READY FOR LIVE DEPLOY** |
+| Verdict | **SUPERSEDED** 2026-08-13 — do not deploy; Storage Keeper is the front door |
 | Protocol | Office Admin Protocol v1.5 |
 | Owner repo | CapitalGlass-Office-Admin |
 | Root cause | Three 15m Health tasks without `IgnoreNew`/`Hidden` — duplicate flashing PowerShell windows |
 | Fix | Keep `DriveMount-Health` only; remove `LanRecheck` + `User-Health`; hidden XML tasks + `-Quiet` |
 | Unit tests | 7/7 PASS |
 | Receipt | `artifacts/agent-runs/wesleywork-drive-mount-task-dedupe-v1/receipt.json` |
-| Deploy | Elevated on WESLEY_WORK: `Install-CgWesleyWorkDriveMountPersistence.ps1` + `Test-CgWesleyWorkDriveMountTaskRegistration.ps1 -ExpectRegistered` |
-| Live probe | Pending after deploy |
+| Deploy | **DO NOT RUN** retired installer. Use Storage Keeper Health. |
+| Live probe | **SUPERSEDED** — Storage Keeper + ProgramData tombstone 2026-08-13 |
 
 ### 2026-08-03 CT — WESLEY_WORK WSL default layout PASS
 
