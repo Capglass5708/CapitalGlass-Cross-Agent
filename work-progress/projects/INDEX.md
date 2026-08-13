@@ -2,7 +2,7 @@
 
 Master index of all project files in `work-progress/projects/`.
 
-**Last updated:** 2026-08-11 (`two-desk-operating-v1` + exporter/ratify cleanup COMPLETE)
+**Last updated:** 2026-08-13 (`cg-federated-repo-index-v1` Wave A CLOSED / LIVE_RYZEN9_PROOF_PASS; Luna estate PR open)
 
 Read `AGENT_START_HERE.md` and `work-progress/ACTIVE_WORK.md` before working on any project listed here.
 
@@ -285,6 +285,7 @@ _237 registry packets · 105 intelligence entities_
 
 | Project ID | File | Status | Owner repo(s) | Last commit | Next action |
 | --- | --- | --- | --- | --- | --- |
+| `cg-federated-repo-index-v1` | [2026-08-12_cg-federated-repo-index-v1.md](./2026-08-12_cg-federated-repo-index-v1.md) | **CG_FEDERATED_REPO_INDEX_WAVE_A_CLOSED / LIVE_RYZEN9_PROOF_PASS** — GHA `31669015141`; umbrella `luna-estate-retrieval-index-v1` | `CG-AppBuilder-MCP`, `Computer Estimator` | AppBuilder `120cde1d7` (bind merged main after AppBuilder PR) | Merge AppBuilder Luna PR → post-merge acceptance → Hub L: publish only after Cross-Agent bind |
 | `two-desk-operating-v1` | [2026-08-11_two-desk-operating-v1.md](./2026-08-11_two-desk-operating-v1.md) | **COMPLETE** — `TWO_DESK_OPERATING_BOTH_READY` + L: BY-KIND published | `CG-AppBuilder-MCP` | AppBuilder tip `9385539c` (PR #350/#353/#357) | Optional OA MCP reconnect; optional ChatGPT write-guard |
 | `unauthorized-merge-353-ratify-cleanup-v1` | _(ledger entry in ACTIVE_WORK; incident on AppBuilder)_ | **COMPLETE** — Option C retain PR #353 | `CG-AppBuilder-MCP` | `251e96fb` + `11bce54c` | Optional ChatGPT write-guard |
 | `harvest-2026-08-03-cross-thread-platform-state-v1` | [2026-08-03_harvest-2026-08-03-cross-thread-platform-state-v1.md](./2026-08-03_harvest-2026-08-03-cross-thread-platform-state-v1.md) | **COMPLETE** — `HARVEST_COMPLETE` | CapitalGlass-Cross-Agent | Harvest commit pending | Recurring ingest + L: publish when operator approves |
@@ -353,6 +354,7 @@ Recommended follow-on work packages (not yet project files):
 
 | Project ID | Status | Next action |
 | --- | --- | --- |
+| `cg-federated-repo-index-v1` | **WAVE_A_CLOSED / LIVE_RYZEN9_PROOF_PASS** | Bind ledger to merged AppBuilder `main` SHA after Luna PR; Hub L: publish last |
 | `suite-ci-healing-v1` | Partial PASS | After Document Center SHA alignment, inspect stale AppBuilder PRs #254, #252, #228, #227, #216 |
 | `north-star-compounding-proof-v1` | Pushed | Restart MCP; clear Auto v3.2 env vars; rerun `closeout:gate` |
 | `cross-agent-registry-onboard-v1` | Complete — pushed | Recurring maintenance |
@@ -389,6 +391,7 @@ Recommended follow-on work packages (not yet project files):
 
 | Project ID | Status | Next action |
 | --- | --- | --- |
+| `cg-federated-repo-index-v1` | **LIVE_RYZEN9_PROOF_PASS / WAVE_A_CLOSED** | Bind to merged AppBuilder main; Hub L: publish after Cross-Agent reconcile |
 | `revu-opening-detection-top10-v1` | Rosewood lane status corrected | Build `cg-opening-locator-v1`; if marking Rosewood in Revu, start with controlled sheet choice and do not assume CE parse or BC bid exists |
 
 ---
