@@ -26,17 +26,19 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Field | Value |
 | --- | --- |
 | Work package | `cg-federated-repo-index-v1` |
-| Program state | **CG_FEDERATED_REPO_INDEX_WAVE_A_IMPLEMENTED_PUSHED** |
-| Acceptance | **LIVE_RYZEN9_PROOF_PENDING** |
-| Wave A close | **false** — do not enter Wave B; do not publish Hub replicas |
-| Blocker | `BLOCKED_GHA_WP_NOT_ALLOWLISTED` |
-| Failover | `DIRECT_CONNECT_FAILOVER_LOCAL` |
+| Program state | **CG_FEDERATED_REPO_INDEX_WAVE_A_CLOSED** |
+| Acceptance | **LIVE_RYZEN9_PROOF_PASS** |
+| Wave A close | **true** — GHA `31669015141` on CG-RYZEN9DESK-01 |
+| Wave B | Entered via umbrella `luna-estate-retrieval-index-v1` (owner indexes + estate harvest) |
+| Blocker | `null` (prior `BLOCKED_GHA_WP_NOT_ALLOWLISTED` cleared by allowlist + live proof) |
+| Failover | `DIRECT_CONNECT_HIT` |
 | Compiler host | RYZEN9DESK ext4 `$HOME/repos` (not `/mnt/c`) |
-| AppBuilder SHA | `94c2caae0abe064bfe561ef9ca7e7a79a7ba3d3f` on `work/cg-federated-repo-index-v1` |
+| AppBuilder SHA | tip on `work/luna-estate-retrieval-index-v1` (foundation `515d107cd` Wave A receipts) |
 | CE SHA | `acc4e2b6` on `work/cg-federated-repo-index-v1` |
 | Project file | `work-progress/projects/2026-08-12_cg-federated-repo-index-v1.md` |
-| Next | RYZEN9DESK Remote-WSL: `PROCEED — execute the complete cg-federated-repo-index-v1 Wave A continuation through terminal acceptance.` Bind packet; WaveRun remaining Wave A; CLOSE if PASS; STOP before Wave B |
-| Deferred | `ryzen9desk-executor-transport-repair-v1` (GHA allowlist + SSH) **after** Wave A closes |
+| Next | Continue `luna-estate-retrieval-index-v1` enforce/publish; Hub L: publish when operator authorizes |
+| Recorded failure | `AGENT_RETRIEVAL_FRONT_DOOR_SKIPPED` — addressed by Luna director mandatory entry |
+| Deferred | Hub replica publish to L:; `ryzen9desk-executor-transport-repair-v1` hardening |
 
 ### 2026-08-12 CT — issued-proposal-structured-estimator-learning-v1
 

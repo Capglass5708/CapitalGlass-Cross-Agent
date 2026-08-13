@@ -4,24 +4,24 @@
   "workPackageId": "cg-federated-repo-index-v1",
   "missionFamilyId": "cg-federated-repo-index",
   "sessionClass": "CONTINUATION",
-  "disposition": "CACHE_BIND",
+  "disposition": "SUPERSEDED_BY_LUNA_ESTATE_RETRIEVAL_INDEX_V1",
   "materialGatesRequired": false,
   "recordedAt": "2026-08-13T04:15:00.000Z",
   "authorHost": "WESLEY_WORK",
   "executionHost": "RYZEN9DESK",
   "executionPlane": "LOCAL_SAME_DESK",
-  "currentObjective": "Execute the complete cg-federated-repo-index-v1 Wave A continuation through terminal acceptance on RYZEN9DESK ext4.",
-  "operatorPrompt": "PROCEED — execute the complete cg-federated-repo-index-v1 Wave A continuation through terminal acceptance.",
+  "currentObjective": "Wave A closed; continue luna-estate-retrieval-index-v1",
+  "operatorPrompt": "PROCEED \u2014 execute the complete cg-federated-repo-index-v1 Wave A continuation through terminal acceptance.",
   "deskSplit": {
     "wesleyWork": "Prepare and hold this complete WaveRunner continuation packet. This Cursor process cannot become the RYZEN9 execution process.",
     "ryzen9desk": "Bind this same packet and WaveRun the entire remaining Wave A through terminal acceptance."
   },
   "programLedger": {
-    "programState": "CG_FEDERATED_REPO_INDEX_WAVE_A_IMPLEMENTED_PUSHED",
-    "acceptanceState": "LIVE_RYZEN9_PROOF_PENDING",
-    "blocker": "BLOCKED_GHA_WP_NOT_ALLOWLISTED",
+    "programState": "CG_FEDERATED_REPO_INDEX_WAVE_A_CLOSED",
+    "acceptanceState": "LIVE_RYZEN9_PROOF_PASS",
+    "blocker": null,
     "operationalFailover": "DIRECT_CONNECT_FAILOVER_LOCAL",
-    "waveAComplete": false
+    "waveAComplete": true
   },
   "authoritySha": "94c2caae0abe064bfe561ef9ca7e7a79a7ba3d3f",
   "canonicalShas": {
@@ -48,7 +48,7 @@
     "generate full Computer Estimator local index",
     "harvest estate routing (AppBuilder routing summaries only)",
     "dogfood Vision Plane identity route",
-    "resolve/compound admit_structure if LOCAL_INDEX_MISS (bounded discovery → repo-index:compound → regenerate)",
+    "resolve/compound admit_structure if LOCAL_INDEX_MISS (bounded discovery \u2192 repo-index:compound \u2192 regenerate)",
     "regenerate local index and re-harvest after any compound",
     "verify negative fallback: githubFallbackAttempted=false when pointer is UNCOMMITTED_LOCAL; lunaWriteSideEffect=false; rawScanRequired=false",
     "run npm run test:federated-repo-index",
@@ -59,8 +59,14 @@
     "STOP before Wave B"
   ],
   "waveACloseCriteria": {
-    "visionPlane": ["ESTATE_ROUTE_HIT", "LOCAL_INDEX_HIT"],
-    "admitStructure": ["ESTATE_ROUTE_HIT", "LOCAL_INDEX_HIT"],
+    "visionPlane": [
+      "ESTATE_ROUTE_HIT",
+      "LOCAL_INDEX_HIT"
+    ],
+    "admitStructure": [
+      "ESTATE_ROUTE_HIT",
+      "LOCAL_INDEX_HIT"
+    ],
     "realResolvedCePath": true,
     "pathAwareGitStatus": true,
     "githubFallbackAttempted": false,
@@ -86,8 +92,13 @@
     "repair GHA/SSH or expand executor allowlist in this WP",
     "compound a fake admit_structure path",
     "merge/push main without operator authorization",
-    "use WAVE_A_COMPLETE before a verified passing RYZEN9 receipt"
+    "use WAVE_A_COMPLETE before a verified passing RYZEN9 receipt",
+    "block Wave A on luna-connectivity-route-surface-v1 \u2014 that WP is separate control-plane remediation; execute this packet now"
   ],
+  "laneSeparation": {
+    "waveAExecution": "UNCHANGED \u2014 proceed on RYZEN9DESK with this packet",
+    "controlPlaneRemediation": "luna-connectivity-route-surface-v1 \u2014 must not delay Wave A proof"
+  },
   "env": {
     "CG_WSL_MACHINE_ROLE": "ryzen9desk",
     "CG_REPOS_ROOT": "$HOME/repos",
@@ -110,7 +121,17 @@
     "/mnt/z/Office/Wes/Direct Connect/handoffs/cg-federated-repo-index-v1/START_HERE.md",
     "/mnt/z/Office/Wes/Direct Connect/handoffs/cg-federated-repo-index-v1/mission-handoff.json",
     "CapitalGlass-Cross-Agent/work-progress/intelligence-hub-slices/cg-federated-repo-index-v1-waverunner-continuation.json",
-    "artifacts/federated-repo-index/ryzen9desk-wave-a-generate-receipt.json"
+    "CapitalGlass-Cross-Agent/work-progress/intelligence-hub-slices/cg-federated-repo-index-v1-retrieval-front-door-failure.json",
+    "artifacts/federated-repo-index/ryzen9desk-wave-a-generate-receipt.json",
+    "artifacts/agent-runs/cg-federated-repo-index-v1/agent-retrieval-front-door-failure-v1.json"
+  ],
+  "recordedFailures": [
+    {
+      "failureCode": "AGENT_RETRIEVAL_FRONT_DOOR_SKIPPED",
+      "recordedAt": "2026-08-13T04:32:25.000Z",
+      "host": "WESLEY_WORK",
+      "artifact": "artifacts/agent-runs/cg-federated-repo-index-v1/agent-retrieval-front-door-failure-v1.json"
+    }
   ],
   "receiptPath": "artifacts/federated-repo-index/ryzen9desk-wave-a-generate-receipt.json",
   "deferredAfterWaveAClose": "ryzen9desk-executor-transport-repair-v1"
