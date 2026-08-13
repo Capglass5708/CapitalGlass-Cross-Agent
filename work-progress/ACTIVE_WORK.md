@@ -36,6 +36,23 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Closeout receipt | `CG-AppBuilder-MCP/artifacts/agent-runs/unauthorized-merge-353-ratify-cleanup-v1/session-closeout-v3.2.json` |
 | Next | Optional ChatGPT read-only / write-guard enforcement; hop packet refresh on AppBuilder tip |
 
+### 2026-08-12 CT — cg-federated-repo-index-v1 / luna-estate-retrieval-index-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `cg-federated-repo-index-v1` (umbrella `luna-estate-retrieval-index-v1`) |
+| Program state | **CG_FEDERATED_REPO_INDEX_WAVE_A_CLOSED** |
+| Acceptance | **LIVE_RYZEN9_PROOF_PASS** |
+| Wave A close | **true** — GHA `31669015141` on CG-RYZEN9DESK-01 |
+| Blocker | `null` (prior `BLOCKED_GHA_WP_NOT_ALLOWLISTED` cleared by allowlist + live proof) |
+| Failover | `DIRECT_CONNECT_HIT` |
+| Compiler host | RYZEN9DESK ext4 `$HOME/repos` (not `/mnt/c`) |
+| AppBuilder SHA | **`c87ee2420`** (`c87ee2420243bb0f5da7c869ea52f0d3cab6b0b0`) on **`main`** — PR #372 merged; post-merge Luna acceptance PASS |
+| CE SHA | `acc4e2b6` on `work/cg-federated-repo-index-v1` |
+| Project file | `work-progress/projects/2026-08-12_cg-federated-repo-index-v1.md` |
+| Next | Hub L: replica publish only after operator authorization (replicas last). Do not expand indexing scope. |
+| Recorded failure | `AGENT_RETRIEVAL_FRONT_DOOR_SKIPPED` — addressed by Luna director mandatory entry |
+| Deferred | Hub replica publish to L:; `ryzen9desk-executor-transport-repair-v1` hardening |
 
 ### 2026-08-11 CT — two-desk-operating-v1
 
