@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-13-structural-index-publication-currentness-v1",
+  "threadRef": "agent-transcripts/55251b3b-d254-4507-a9f1-41dde2f1bb9f.jsonl",
+  "generatedAt": "2026-08-13T23:50:00.000Z",
+  "tier": "T2",
+  "events": [
+    {
+      "eventId": "TE-001",
+      "phase": "scaffold",
+      "summary": "Work package structural-index-publication-currentness-v1 scoped; cohort audit + manual publication lane",
+      "hosts": ["WESLEY_WORK"],
+      "evidenceRefs": ["docs/work-packages/structural-index-publication-currentness-v1.md"]
+    },
+    {
+      "eventId": "TE-002",
+      "phase": "trigger-audit",
+      "summary": "Phase-0 trigger audit classified MANUAL_OPERATOR_PUBLICATION_LANE",
+      "evidenceRefs": ["artifacts/agent-runs/structural-index-publication-currentness-v1/trigger-audit.json"]
+    },
+    {
+      "eventId": "TE-003",
+      "phase": "implementation",
+      "summary": "Cohort refresh scripts + derived-intel profiles; PR #375 pushed with THREE_WAY_PUSH_APPROVED",
+      "evidenceRefs": ["CG-AppBuilder-MCP ffda4c1e3", "github PR 375"]
+    },
+    {
+      "eventId": "TE-004",
+      "phase": "publication",
+      "summary": "Office-Admin and Cross-Agent structural publications VERIFIED via v1e-live",
+      "evidenceRefs": [
+        "CapitalGlass-Office-Admin 20e31990048fe5d2aae67324eb62a14dcd8fd86f",
+        "capital-glass-cross-agent 9b8c661ab1e7af2ad4b803b197387d6687b95184"
+      ]
+    },
+    {
+      "eventId": "TE-005",
+      "phase": "handoff",
+      "summary": "Ryzen Direct Connect handoff written; hop packet; user asked unified-tree + harvest commit push",
+      "evidenceRefs": [
+        "artifacts/agent-runs/structural-index-publication-currentness-v1/direct-connect-handoff.json",
+        "Z:/Office/Wes/Direct Connect/handoffs/"
+      ]
+    },
+    {
+      "eventId": "TE-006",
+      "phase": "operator",
+      "summary": "User STOP mid Office-Admin run; later resumed; Cross-Agent stash before branch checkout",
+      "evidenceRefs": ["transcript", "git stash structural-index-publication-currentness-v1 pre-checkout"]
+    }
+  ]
+}

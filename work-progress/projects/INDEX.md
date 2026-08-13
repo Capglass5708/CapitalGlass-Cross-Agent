@@ -241,6 +241,8 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `shared-db-reconciliation-v1` | — | RECONCILIATION_COMPLETE | PASS | CG-AppBuilder-MCP | `harvest-2026-08-04-asg-go-shared-db-closeout-v1` | see shared-db-reconciliation-v1.md |
 | `simulated-vs-real-human-disposition-v1` | — | COMPLETE | DOCUMENTED | CapitalGlass-Cross-Agent | `harvest-2026-08-10-experience-rosewood-bid-composer-closeout-v1` | see experience-estimator-bid-composer-loop-v1.md |
 | `sso-ui-proof-admin-lane-v1` | — | COMPLETE | CLASSIFIED | CapitalGlass-BidComposer | `harvest-2026-08-07-guided-scope-review-milestone-closeout-v1` | see harvest-2026-08-07-guided-scope-review-milestone-closeout-v1.md |
+| `structural-index-cohort-tooling-v1` | — | PR_OPEN | PASS | CG-AppBuilder-MCP | `harvest-2026-08-13-structural-index-publication-currentness-v1` | see 2026-08-13_structural-index-publication-currentness-v1.md |
+| `structural-index-manual-publication-lane-v1` | — | COHORT_PARTIAL | HOLD | CG-AppBuilder-MCP | `harvest-2026-08-13-structural-index-publication-currentness-v1` | see 2026-08-13_structural-index-publication-currentness-v1.md |
 | `synology-primary-foundation-prior-harvest-v1` | — | INDEXED_NOT_DUPLICATE | BOUNDARY_RECORDED | CapitalGlass-Cross-Agent | `harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1` | see harvest-2026-08-07-m4pds-plan-processing-engine-closeout-v1.md |
 | `three-way-agent-improvement-intelligence-v1` | — | OPERATIONAL_CLOSEOUT_COMPLETE | THREE_WAY_IMPROVEMENT_INTELLIGENCE_OPERATIONAL | CG-AppBuilder-MCP | `harvest-2026-08-04-three-way-improvement-slice6-thread-v1` | see 2026-08-03_three-way-agent-improvement-intelligence-v1.md |
 | `uh-async-test-miss-v1` | — | RESOLVED | FIXED | CG-AppBuilder-MCP | `harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1` | see harvest-2026-08-07-universal-harvest-aperture-durable-closeout-v1.md |
@@ -282,7 +284,7 @@ _Source: `work-progress/harvest-intelligence-index.json` + `harvest-packet-regis
 | `z-drive-force-remap-wsl-cwd-v1` | — | RECORDED | PASS | CapitalGlass-Office-Admin | `harvest-2026-08-04-z-l-drive-offlan-session-v1` | see 2026-08-02_z-drive-disconnect-recurrence-v1.md |
 | `z-l-drive-offlan-partial-availability-v1` | — | PARTIAL_DRIVE_AVAILABILITY | Z_OK_L_BLOCKED_OFF_LAN | CapitalGlass-Office-Admin | `harvest-2026-08-04-z-l-drive-offlan-session-v1` | see 2026-08-02_z-drive-disconnect-recurrence-v1.md |
 
-_242 registry packets · 105 intelligence entities_
+_244 registry packets · 105 intelligence entities_
 
 <!-- HARVEST-PACKET-INDEX:END -->
 

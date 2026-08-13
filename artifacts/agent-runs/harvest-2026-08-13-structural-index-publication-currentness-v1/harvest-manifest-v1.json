@@ -1,0 +1,120 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-13-structural-index-publication-currentness-v1",
+  "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+  "generatedAt": "2026-08-13T23:50:00.000Z",
+  "sourceCommitSha": "e8b12ca178219183faa303ca36645ed5859375dc",
+  "sourceBranch": "work/wesleywork-storage-protocol-contradiction-remediation-v1",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "overallHarvestVerdict": "HOLD",
+  "retrievalResult": "INDEX_HIT",
+  "cacheResult": "CACHE_MISS",
+  "doNotAdvance": [
+    "STRUCTURAL_INDEX_COHORT_CURRENT",
+    "PI_AUTHORITY_MISMATCH_RESOLVED"
+  ],
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run"
+  },
+  "threadAutopsy": {
+    "tier": "T2",
+    "bundlePath": "artifacts/agent-runs/harvest-2026-08-13-structural-index-publication-currentness-v1/thread-autopsy-bundle.json",
+    "seedPacketIndexPath": "artifacts/agent-runs/harvest-2026-08-13-structural-index-publication-currentness-v1/seed-packet-index.json",
+    "counts": {
+      "waste": 4,
+      "operatorFriction": 2,
+      "executionDeltas": 2,
+      "wrongMoves": 2,
+      "duplicateWork": 1,
+      "roiItems": 3,
+      "doNotAdvance": 2,
+      "seeds": 1
+    }
+  },
+  "supersededClaims": [
+    {
+      "claim": "Automatic structural reindex follows every main push",
+      "supersededBy": "MANUAL_OPERATOR_PUBLICATION_LANE per trigger-audit receipt",
+      "evidenceRef": "CG-AppBuilder-MCP artifacts/agent-runs/structural-index-publication-currentness-v1/trigger-audit.json"
+    }
+  ],
+  "packets": [
+    {
+      "packetId": "structural-index-cohort-tooling-v1",
+      "packetTitle": "Structural index cohort audit + refresh tooling (CG-AppBuilder-MCP PR #375)",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "state": "PR_OPEN",
+      "packetVerdict": "PASS",
+      "nextAction": "Merge PR #375; Ryzen checkout feat branch or main after merge",
+      "projectFile": "work-progress/projects/2026-08-13_structural-index-publication-currentness-v1.md",
+      "ownerIndexingStatus": "indexed",
+      "advancementGate": "PR #375 merged to main",
+      "blockers": [],
+      "evidenceRefs": [
+        "https://github.com/Capglass5708/CG-AppBuilder-MCP/pull/375",
+        "CG-AppBuilder-MCP commit ffda4c1e358e48d565d9caa6fbbd2415454cc6ca",
+        "docs/work-packages/structural-index-publication-currentness-v1.md"
+      ],
+      "commitRefs": [
+        "ffda4c1e358e48d565d9caa6fbbd2415454cc6ca"
+      ],
+      "doNotAdvance": []
+    },
+    {
+      "packetId": "structural-index-manual-publication-lane-v1",
+      "packetTitle": "Manual operator v1e-live publication lane — partial cohort refresh",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "state": "COHORT_PARTIAL",
+      "packetVerdict": "HOLD",
+      "nextAction": "Continue v1e-live refresh on RYZEN9DESK for VAE + INDEX_BEHIND_REMOTE cohort",
+      "projectFile": "work-progress/projects/2026-08-13_structural-index-publication-currentness-v1.md",
+      "ownerIndexingStatus": "indexed",
+      "advancementGate": "trigger audit inSyncCount improvement",
+      "blockers": [
+        "~20 INDEX_BEHIND_REMOTE repos remain",
+        "Visual-Asset-Engine never published"
+      ],
+      "evidenceRefs": [
+        "CapitalGlass-Office-Admin indexRunId 64e07beb-8c2d-4cb8-8aa2-a1f2e31c8440",
+        "capital-glass-cross-agent indexRunId a490e9df-388c-4b73-9af5-1762ed817467",
+        "artifacts/agent-runs/structural-index-publication-currentness-v1/ryzen9desk-handoff.md"
+      ],
+      "commitRefs": [
+        "e8b12ca178219183faa303ca36645ed5859375dc"
+      ],
+      "doNotAdvance": [
+        "STRUCTURAL_INDEX_COHORT_CURRENT"
+      ]
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": "e218305795abacef5e8f6ca0d6aad98786a7762dd54e37125380e6e4f464358c",
+    "ledgerContentHashAfter": "e218305795abacef5e8f6ca0d6aad98786a7762dd54e37125380e6e4f464358c"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 7,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 7,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-9fb772214746",
+      "prompt-candidate-190b40f6b9af",
+      "prompt-candidate-c0762e693a20",
+      "prompt-candidate-ed1c66605221",
+      "prompt-candidate-330e9217d3e0",
+      "prompt-candidate-06aa83c1ec58",
+      "prompt-candidate-ba7128555e84"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "schemaVersion": "cross-agent-thread-autopsy-bundle-v1@1.0.0",
+  "harvestId": "harvest-2026-08-13-structural-index-publication-currentness-v1",
+  "tier": "T2",
+  "duplicationCheck": {
+    "registryConsulted": true,
+    "registryPath": "work-progress/harvest-packet-registry.json",
+    "commandIndexConsulted": true,
+    "commandIndexPath": "work-progress/command-index.json",
+    "hubSlicesConsulted": [
+      "BY-KIND/active-work-blockers.json",
+      "BY-KIND/mcp-servers.json",
+      "BY-KIND/host-authority.json"
+    ],
+    "checkedAt": "2026-08-13T23:50:00.000Z"
+  },
+  "wasteLedgerStatus": "POPULATED",
+  "waste": [
+    {
+      "wasteId": "TW-001",
+      "type": "rework",
+      "description": "Office-Admin v1e-live publication aborted mid-chunk; full re-run required",
+      "evidenceRefs": ["transcript user STOP", "chunk 41/48 abort"],
+      "estimatedImpact": "high",
+      "savedBy": "Resume-safe checkpoint receipts; operator confirm before long Doppler publish",
+      "roiRank": 1
+    },
+    {
+      "wasteId": "TW-002",
+      "type": "tool",
+      "description": "Missing derived-intel repository profiles blocked first cohort refresh attempts",
+      "evidenceRefs": ["Unknown repository profile: CapitalGlass-Office-Admin"],
+      "estimatedImpact": "medium",
+      "savedBy": "Preflight profile registry check before --apply",
+      "roiRank": 2
+    },
+    {
+      "wasteId": "TW-003",
+      "type": "operator_attention",
+      "description": "Git push blocked until THREE_WAY_PUSH_APPROVED env set",
+      "evidenceRefs": ["3-way push sentinel"],
+      "estimatedImpact": "low",
+      "savedBy": "Document push env in ryzen handoff + harvest seed",
+      "roiRank": 4
+    },
+    {
+      "wasteId": "TW-004",
+      "type": "verification",
+      "description": "inSyncCount still zero after publish because audit compares to moving origin/main HEAD",
+      "evidenceRefs": ["trigger-audit INDEX_BEHIND_REMOTE semantics"],
+      "estimatedImpact": "medium",
+      "savedBy": "Publish receipt binds target SHA; audit documents moving-head policy",
+      "roiRank": 3
+    }
+  ],
+  "operatorFriction": [
+    {
+      "frictionId": "OF-001",
+      "trigger": "User asked if work is on unified tree / main",
+      "operatorCost": "medium",
+      "frequency": "per cross-desk handoff",
+      "systemFix": "Handoff must state branch + PR + merge state explicitly",
+      "evidenceRefs": ["transcript unified tree question"],
+      "linkedWasteIds": ["TW-003"]
+    },
+    {
+      "frictionId": "OF-002",
+      "trigger": "Cross-Agent dirty tree blocked checkout; stash required",
+      "operatorCost": "medium",
+      "systemFix": "Harvest closeout on dedicated branch without unrelated smith-ranch dirty files",
+      "evidenceRefs": ["git stash structural-index-publication-currentness-v1 pre-checkout"],
+      "linkedWasteIds": ["TW-001"]
+    }
+  ],
+  "executionDeltas": [
+    {
+      "executionDeltaId": "ED-001",
+      "situation": "Ship cohort tooling to GitHub",
+      "actualExecution": {
+        "steps": [
+          "Implemented on mixed branch context",
+          "Push failed on 3-way sentinel",
+          "Retried with THREE_WAY_PUSH_APPROVED=YES"
+        ],
+        "outcome": "PASS after env",
+        "evidenceRefs": ["PR 375", "ffda4c1e3"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "Create feat branch from origin/main first",
+          "Set CG_AUTO_V32_WORK_PACKAGE + THREE_WAY_PUSH_APPROVED before push attempt"
+        ],
+        "outcome": "Single push attempt",
+        "requiredPreflight": ["git fetch origin main", "npm run dual-machine:session-start -- --cheap"]
+      },
+      "deltaCost": {
+        "time": "low",
+        "tokens": "low",
+        "operatorFrustration": "low"
+      }
+    },
+    {
+      "executionDeltaId": "ED-002",
+      "situation": "Structural cohort refresh",
+      "actualExecution": {
+        "steps": [
+          "Ran cohort refresh without all repository profiles",
+          "Added profiles + rebuild derived-intel-core",
+          "Published 2/21 repos (~15-20 min each)"
+        ],
+        "outcome": "PARTIAL",
+        "evidenceRefs": ["Office-Admin", "capital-glass-cross-agent indexRunIds"]
+      },
+      "optimalExecution": {
+        "steps": [
+          "npm --prefix packages/derived-intel-core run build",
+          "platform-intelligence:structural-index-trigger-audit --dry-run",
+          "platform-intelligence:structural-cohort-refresh --apply --repo=<one>"
+        ],
+        "outcome": "Fewer failed starts",
+        "requiredPreflight": ["derived-intel profile registry complete"]
+      },
+      "deltaCost": {
+        "time": "high",
+        "tokens": "medium",
+        "operatorFrustration": "medium"
+      }
+    }
+  ],
+  "wrongMoves": [
+    {
+      "wrongMoveId": "WM-001",
+      "summary": "Started long v1e-live publish before derived-intel profiles existed",
+      "whereItHappened": "WESLEY_WORK cohort refresh",
+      "whyItWasWrong": "Unknown repository profile hard-fails extract pipeline",
+      "correctFirstMove": "Add profiles + build derived-intel-core before --apply",
+      "preventiveControl": "structural-cohort-refresh dry-run gate",
+      "executionDeltaId": "ED-002",
+      "seedTarget": "IH-STRUCTURAL-INDEX-MANUAL-LANE-001"
+    },
+    {
+      "wrongMoveId": "WM-002",
+      "summary": "Interpreted post-publish audit inSyncCount=0 as failed publication",
+      "whereItHappened": "Trigger audit after Office-Admin publish",
+      "whyItWasWrong": "Audit compares published SHA to latest origin/main which advances during long runs",
+      "correctFirstMove": "Record publish receipt SHA + indexRunId; re-audit after cohort batch",
+      "preventiveControl": "Document moving-head comparison in work package",
+      "executionDeltaId": "ED-002",
+      "seedTarget": "IH-STRUCTURAL-INDEX-MANUAL-LANE-001"
+    }
+  ],
+  "duplicateWork": [
+    {
+      "duplicateId": "DUP-001",
+      "subject": "Platform intelligence structural index currentness investigation",
+      "firstKnownInstance": "structural-index-currentness-root-cause-v1",
+      "priorIndexSlice": "CG-AppBuilder-MCP artifacts/agent-runs/structural-index-currentness-root-cause-v1/",
+      "whyRepeated": "This thread extended root-cause with tooling + publications rather than re-reading prior receipt",
+      "avoidableBy": "Load prior root-cause-report.json before scaffold",
+      "recommendedAction": "canonicalize"
+    }
+  ],
+  "roiBacklog": [
+    {
+      "rank": 1,
+      "title": "Automated post-merge structural reindex hook (or scheduled cohort sweep)",
+      "whyItPays": "Eliminates MANUAL_OPERATOR_PUBLICATION_LANE drift for 20+ repos",
+      "effort": "high",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "savedWasteIds": ["TW-001", "TW-004"],
+      "seedAs": "hook",
+      "suggestedWorkPackageId": "structural-index-post-merge-trigger-v1"
+    },
+    {
+      "rank": 2,
+      "title": "derived-intel profile preflight before cohort --apply",
+      "whyItPays": "Blocks TW-002 class failures at dry-run",
+      "effort": "low",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "savedWasteIds": ["TW-002"],
+      "seedAs": "command",
+      "suggestedWorkPackageId": "structural-index-publication-currentness-v1"
+    },
+    {
+      "rank": 3,
+      "title": "Ryzen handoff template: branch/PR/main + push env block",
+      "whyItPays": "Reduces unified-tree confusion and push retries",
+      "effort": "low",
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "savedWasteIds": ["TW-003"],
+      "seedAs": "runbook",
+      "suggestedWorkPackageId": "direct-connect-handoff-template-v1"
+    }
+  ],
+  "doNotAdvanceMap": [
+    {
+      "awardOrVerdict": "STRUCTURAL_INDEX_COHORT_CURRENT",
+      "currentStatus": "HOLD",
+      "doNotClaimUntil": [
+        "trigger audit shows material inSyncCount improvement",
+        "Visual-Asset-Engine first publication complete",
+        "remaining INDEX_BEHIND_REMOTE cohort refreshed or explicitly deferred"
+      ],
+      "lastKnownEvidence": [
+        "2/21 publications VERIFIED on 2026-08-13",
+        "PR 375 not merged to main"
+      ]
+    },
+    {
+      "awardOrVerdict": "PI_AUTHORITY_MISMATCH_RESOLVED",
+      "currentStatus": "OPEN",
+      "doNotClaimUntil": [
+        "AUTHORITY_MISMATCH comparison policy documented and verified on merged main"
+      ],
+      "lastKnownEvidence": [
+        "structural-index-publication-currentness-v1 work package charter"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,245 @@
+{
+  "packetKind": "graph-extraction",
+  "schemaVersion": "cg-master-graph-extraction-v1",
+  "extractionId": "extraction:harvest-2026-08-13-structural-index-publication-currentness-v1",
+  "harvestId": "harvest-2026-08-13-structural-index-publication-currentness-v1",
+  "workPackageId": "harvest-2026-08-13-structural-index-publication-currentness-v1",
+  "producer": {
+    "repositoryId": "repo:capitalglass-cross-agent",
+    "capability": "harvest-graph-extraction",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "id": "harvest:harvest-2026-08-13-structural-index-publication-currentness-v1",
+      "nodeType": "Harvest",
+      "displayName": "harvest-2026-08-13-structural-index-publication-currentness-v1",
+      "lifecycleState": "lifecycle:canonical",
+      "operationalState": "HOLD",
+      "metadata": {
+        "missionClass": "chat-thread-closeout-autopsy-harvest-v1",
+        "sourceCommitSha": "e8b12ca178219183faa303ca36645ed5859375dc",
+        "retrievalResult": "INDEX_HIT"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-13T22:50:02.349Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-13-structural-index-publication-currentness-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-13-structural-index-publication-currentness-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:structural-index-cohort-tooling-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Structural index cohort audit + refresh tooling (CG-AppBuilder-MCP PR #375)",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "PR_OPEN",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/2026-08-13_structural-index-publication-currentness-v1.md",
+        "advancementGate": "PR #375 merged to main"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-13T22:50:02.349Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-13-structural-index-publication-currentness-v1/compact-records/structural-index-cohort-tooling-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-13-structural-index-publication-currentness-v1/compact-records/structural-index-cohort-tooling-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:structural-index-manual-publication-lane-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Manual operator v1e-live publication lane — partial cohort refresh",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "COHORT_PARTIAL",
+      "metadata": {
+        "packetVerdict": "HOLD",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/2026-08-13_structural-index-publication-currentness-v1.md",
+        "advancementGate": "trigger audit inSyncCount improvement"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-13T22:50:02.350Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-13-structural-index-publication-currentness-v1/compact-records/structural-index-manual-publication-lane-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-13-structural-index-publication-currentness-v1/compact-records/structural-index-manual-publication-lane-v1.json"
+        }
+      }
+    },
+    {
+      "id": "entity:blocker-blocker-structural-index-manual-publication-lane-v1",
+      "nodeType": "Entity",
+      "displayName": "blocker-structural-index-manual-publication-lane-v1",
+      "metadata": {
+        "entityKind": "harvest-blocker",
+        "blockerOwner": null
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-13T22:50:02.350Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-13-structural-index-publication-currentness-v1/compact-records/structural-index-manual-publication-lane-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-13-structural-index-publication-currentness-v1/compact-records/structural-index-manual-publication-lane-v1.json"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:harvest-harvest-2026-08-13-structural-index-publication-currentness-v1-contains-workpackage-structural-index-cohort-tooling-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-13-structural-index-publication-currentness-v1",
+      "targetId": "workpackage:structural-index-cohort-tooling-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-13T22:50:02.350Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-13-structural-index-publication-currentness-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-13-structural-index-publication-currentness-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-structural-index-cohort-tooling-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:structural-index-cohort-tooling-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-13T22:50:02.350Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-13-structural-index-publication-currentness-v1/compact-records/structural-index-cohort-tooling-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-13-structural-index-publication-currentness-v1/compact-records/structural-index-cohort-tooling-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-13-structural-index-publication-currentness-v1-contains-workpackage-structural-index-manual-publication-lane-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-13-structural-index-publication-currentness-v1",
+      "targetId": "workpackage:structural-index-manual-publication-lane-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-13T22:50:02.350Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-13-structural-index-publication-currentness-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-13-structural-index-publication-currentness-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-structural-index-manual-publication-lane-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:structural-index-manual-publication-lane-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-13T22:50:02.350Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-13-structural-index-publication-currentness-v1/compact-records/structural-index-manual-publication-lane-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-13-structural-index-publication-currentness-v1/compact-records/structural-index-manual-publication-lane-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-structural-index-manual-publication-lane-v1-blocked-by-entity-blocker-blocker-structural-index-manual-publication-lane-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:structural-index-manual-publication-lane-v1",
+      "targetId": "entity:blocker-blocker-structural-index-manual-publication-lane-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-13T22:50:02.350Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-13-structural-index-publication-currentness-v1/compact-records/structural-index-manual-publication-lane-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-13-structural-index-publication-currentness-v1/compact-records/structural-index-manual-publication-lane-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-structural-index-manual-publication-lane-v1-blocked-by-entity-blocker-blocker-structural-index-manual-publication-lane-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:structural-index-manual-publication-lane-v1",
+      "targetId": "entity:blocker-blocker-structural-index-manual-publication-lane-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-13T22:50:02.350Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-13-structural-index-publication-currentness-v1/compact-records/structural-index-manual-publication-lane-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-13-structural-index-publication-currentness-v1/compact-records/structural-index-manual-publication-lane-v1.json"
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "provenance": {
+    "producerRepositoryId": "repo:capitalglass-cross-agent",
+    "producerCapability": "harvest-graph-extraction",
+    "sourceAuthority": "authority:cross-agent-harvest",
+    "classification": "observed",
+    "verificationState": "verified",
+    "recordedAt": "2026-08-13T22:50:02.350Z",
+    "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-13-structural-index-publication-currentness-v1/harvest-manifest-v1.json",
+    "sourceAnchorDetail": {
+      "anchorType": "file-path",
+      "locator": "artifacts/agent-runs/harvest-2026-08-13-structural-index-publication-currentness-v1/harvest-manifest-v1.json"
+    }
+  }
+}

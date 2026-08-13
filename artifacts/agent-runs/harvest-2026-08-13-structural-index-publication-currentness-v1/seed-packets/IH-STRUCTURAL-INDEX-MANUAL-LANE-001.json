@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-STRUCTURAL-INDEX-MANUAL-LANE-001",
+  "kind": "runbook",
+  "title": "Structural index cohort refresh uses manual operator publication lane",
+  "summary": "After main advances, structural index may lag until operator runs platform-intelligence:structural-cohort-refresh --apply; audit inSyncCount compares to latest origin/main.",
+  "retrievalQuestions": [
+    "Why is structural index INDEX_BEHIND_REMOTE after a successful publish?",
+    "What commands refresh the PI structural index cohort on Ryzen?"
+  ],
+  "evidenceRefs": [
+    "CG-AppBuilder-MCP docs/work-packages/structural-index-publication-currentness-v1.md",
+    "artifacts/agent-runs/structural-index-publication-currentness-v1/ryzen9desk-handoff.md",
+    "MANUAL_OPERATOR_PUBLICATION_LANE trigger audit"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Suite indexing health shows BEHIND_REMOTE or inSyncCount zero after publication",
+    "startAt": [
+      "CG-AppBuilder-MCP artifacts/agent-runs/structural-index-publication-currentness-v1/trigger-audit.json",
+      "work-progress/projects/2026-08-13_structural-index-publication-currentness-v1.md"
+    ],
+    "runPreflight": [
+      "npm --prefix packages/derived-intel-core run build",
+      "doppler run -- npm run platform-intelligence:structural-index-trigger-audit -- --json"
+    ],
+    "doNot": [
+      "Claim cohort current from a single-repo publish receipt alone",
+      "Treat inSyncCount zero during long runs as publish failure without checking target SHA"
+    ],
+    "proveBeforeClaiming": [
+      "indexRunId VERIFIED for target repo SHA",
+      "trigger audit after batch with documented moving-head policy"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/platform-intelligence.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}
