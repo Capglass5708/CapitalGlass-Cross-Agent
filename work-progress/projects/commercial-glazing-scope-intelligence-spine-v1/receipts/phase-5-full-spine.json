@@ -1,0 +1,100 @@
+{
+  "milestoneId": "commercial-glazing-scope-intelligence-spine-v1",
+  "phase": "PHASE_5_FULL_SPINE",
+  "verdict": "R5_REVU_FULL_SPINE_BLOCKED_HOST_DEPENDENCY",
+  "gate": "R5_REVU_FULL_SPINE_BLOCKED_HOST_DEPENDENCY",
+  "observedAt": "2026-08-09T14:52:25.901Z",
+  "runId": "p5-274d9b28115238c6",
+  "canonicalPhaseSequence": {
+    "phase1": "R1_CE_LIVE_CANDIDATES_PASS",
+    "phase2": "R2_REAL_PLAN_VISION_PASS_WITH_MEASURED_LIMITATIONS",
+    "phase3": "R3_DRAWING_RELATIONSHIP_PASS",
+    "phase4": "R4_ASSEMBLY_INTELLIGENCE_PASS_WITH_MEASURED_LIMITATIONS",
+    "phase5FullSpine": "R5_REVU_FULL_SPINE_BLOCKED_HOST_DEPENDENCY",
+    "phase5PlanOnly": "PASS",
+    "phase5ParallelFixture": "PHASE_5_FIXTURE_PROOF_BLOCKED_PARALLEL",
+    "phase6OmissionCoverage": "NOT_ADVANCED"
+  },
+  "sourceCommits": {
+    "ce": "fabfb987ed12258b3be0183fcbe9ec4fd61bd705",
+    "revu": "da9c8d6"
+  },
+  "windowsHostRecovery": {
+    "host": {
+      "platform": "win32",
+      "computerName": "Wesley_Work"
+    },
+    "branchRecovered": "feat/revu-window-door-markup-validation-v1",
+    "revuUiLaunched": true,
+    "gate1": {
+      "launcherPresent": true,
+      "revuExePresent": true,
+      "revuUiProcessRunning": true,
+      "stdioProbe": "FAIL",
+      "openFileError": "MCP not allowed",
+      "classification": "REVU_MCP_ENTITLEMENT_OR_HOST_AUTHORIZATION_BLOCKED",
+      "runtimeDefect": {
+        "code": "REVU_MCP_ENTITLEMENT_OR_HOST_AUTHORIZATION_BLOCKED",
+        "detail": "MCP not allowed",
+        "primarySuspect": "COMPLETE_PLAN_NOT_MAX"
+      }
+    },
+    "liveExecutionAttempted": true,
+    "liveExecutionPerformed": false
+  },
+  "handoff": {
+    "runId": "p5-274d9b28115238c6",
+    "handoffCount": 9,
+    "unchanged": true,
+    "ceHandoffPath": "Computer-Estimator-glazing-spine/artifacts/agent-runs/commercial-glazing-scope-intelligence-spine-v1/phase-5-full-spine/p5-274d9b28115238c6/ce-revu-handoff.json"
+  },
+  "planOnlyIntegration": {
+    "passed": true,
+    "planReadyCount": 9,
+    "identityAgreementRate": 1
+  },
+  "liveProof": {
+    "performed": false,
+    "blockedReason": "REVU_MCP_ENTITLEMENT_OR_HOST_AUTHORIZATION_BLOCKED",
+    "operatorRemediation": [
+      "Assign Bluebeam Revu Max seat (not Complete) to active BBID",
+      "Revu > Preferences > Admin > MCP: enable MCP and authorize supported host",
+      "Restart Revu; re-run npm run gate1:diagnose-mcp until stdioProbe=PASS",
+      "Set CG_MORTON_RANCH_AUTHORIZED_PDF to Morton Ranch CAS PDF path (70ee1da7...db3b.pdf)",
+      "Re-run: node scripts/run-phase5-ce-full-spine.mjs --handoff <dir> --execute"
+    ]
+  },
+  "mortonRanchPdf": {
+    "documentId": "c2464d55-70c0-481c-8c6c-caed82cb0f0d",
+    "casPath": "data/cas/sha256/70ee1da7ba6b645cd6a64163b520406fa7d29123a48f3eb4a9ed9eb015b3db3b.pdf",
+    "resolvedOnHost": false,
+    "note": "Resolve via CE CAS metadata authority; do not rescan entire Z: dev share"
+  },
+  "metrics": {
+    "planned": 9,
+    "created": 0,
+    "verified": 0,
+    "identityAgreementRate": null,
+    "geometryAgreementRate": null,
+    "assemblyMetadataAgreementRate": null,
+    "duplicateMarkupCount": 0,
+    "rollbackSuccessRate": null,
+    "verifiedMarkupUuids": []
+  },
+  "phase4LimitationsPreserved": [
+    "128/172 candidates currently ungrouped",
+    "11 single-observation visual assemblies",
+    "low average assembly confidence",
+    "G01 role diversity incomplete",
+    "schedule cluster still coarse"
+  ],
+  "safety": {
+    "productionUnlocked": false,
+    "commercialWriteAuthorized": false,
+    "controlledRevuFixtureWriteAuthorized": false,
+    "mainMergeAuthorized": false
+  },
+  "interpretation": "Windows host recovered (Revu UI running, launcher present). Live MCP blocked with MCP not allowed — entitlement/host authorization defect, not missing launcher. Phase 5 plan-only remains valid; live CREATE→READBACK→IDEMPOTENCY→ROLLBACK awaits Max/MCP admin unblock and Morton Ranch authorized PDF path.",
+  "nextCanonicalPhase": "PHASE_5_FULL_SPINE_LIVE_EXECUTION_THEN_PHASE_6_OMISSION_COVERAGE",
+  "valuesPrinted": false
+}

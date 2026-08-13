@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "intelligence-hub-slice-retrieval-failure-v1@1.0.0",
+  "sliceKind": "agent-failure",
+  "workPackageId": "cg-federated-repo-index-v1",
+  "recordedAt": "2026-08-13T04:32:25.000Z",
+  "failureCode": "AGENT_RETRIEVAL_FRONT_DOOR_SKIPPED",
+  "failureClass": "AGENT_RETRIEVAL_ROUTING",
+  "host": "WESLEY_WORK",
+  "verdict": "PROVEN",
+  "oneLine": "Cross-desk agent skipped Luna + Direct Connect first-read; misread GHA allowlist as connectivity failure; rediscovered SSH ~4m; SSH is glass-break only.",
+  "retrievalCodes": {
+    "scout": "INDEX_HIT_AI_CACHE",
+    "agentCompliance": "INDEX_MISS",
+    "directConnect": "DIRECT_CONNECT_NOT_APPLICABLE"
+  },
+  "programLedger": {
+    "programState": "CG_FEDERATED_REPO_INDEX_WAVE_A_IMPLEMENTED_PUSHED",
+    "acceptanceState": "LIVE_RYZEN9_PROOF_PENDING",
+    "blocker": "BLOCKED_GHA_WP_NOT_ALLOWLISTED",
+    "operationalFailover": "DIRECT_CONNECT_FAILOVER_LOCAL"
+  },
+  "requiredSequence": [
+    "Luna retrieve (routing only)",
+    "Direct Connect front door",
+    "Z handoff bind",
+    "DIRECT_CONNECT_FAILOVER_LOCAL at target desk",
+    "SSH only on DIRECT_CONNECT_BLOCKED"
+  ],
+  "authorityPointers": [
+    "CapitalGlass-Cross-Agent/work-progress/intelligence-hub-slices/cross-desk-routing.json",
+    "CapitalGlass-Office-Admin/artifacts/contracts/wesleywork-ryzen9desk-inbound-ssh.latest.json",
+    "CapitalGlass-Cross-Agent/work-progress/intelligence-hub-slices/cg-federated-repo-index-v1-waverunner-continuation.json"
+  ],
+  "durableRecords": {
+    "appBuilderAgentRun": "CG-AppBuilder-MCP/artifacts/agent-runs/cg-federated-repo-index-v1/agent-retrieval-front-door-failure-v1.json",
+    "appBuilderProgramReceipt": "CG-AppBuilder-MCP/artifacts/federated-repo-index/agent-retrieval-front-door-failure-v1.json",
+    "fiOutbox": "CG-AppBuilder-MCP/artifacts/failure-intelligence/outbox/app-builder-AGENT_RETRIEVAL_FRONT_DOOR_SKIPPED-cg-federated-repo-index-v1-2026-08-13T043225Z.json",
+    "projectLog": "CapitalGlass-Cross-Agent/work-progress/projects/2026-08-12_cg-federated-repo-index-v1.md"
+  },
+  "followUpWorkPackageCandidate": "luna-connectivity-route-surface-v1",
+  "followUpWorkPackageDoc": "CG-AppBuilder-MCP/docs/work-packages/luna-connectivity-route-surface-v1.md",
+  "mandatoryRegression": "CG-AppBuilder-MCP/artifacts/federated-repo-index/regression-agent-retrieval-front-door-v1.json",
+  "lunaConnectivityRouteFixture": "CG-AppBuilder-MCP/scripts/tests/fixtures/luna-retrieval/connectivity-route-wesleywork-ryzen9desk-v1.json",
+  "authorityChain": [
+    "Luna",
+    "Direct Connect",
+    "Z handoff",
+    "DIRECT_CONNECT_FAILOVER_LOCAL",
+    "SSH only if DIRECT_CONNECT_BLOCKED"
+  ],
+  "umbrellaProgram": {
+    "id": "luna-estate-retrieval-index-v1",
+    "systemSpec": "CG-AppBuilder-MCP/docs/luna/LUNA_INDEX_SYSTEM_V1.md",
+    "workPackageDoc": "CG-AppBuilder-MCP/docs/work-packages/luna-estate-retrieval-index-v1.md",
+    "firstComponent": "luna-connectivity-route-surface-v1",
+    "indexDelivered": "connectivity",
+    "progression": "Identity → Repo → Machine → Connectivity → Continuation → Currentness → Failure Intelligence → Compounding",
+    "estateStandard": "Every material agent mission starts with Luna — resolves package before Builder/Critic/Verifier spend tokens"
+  },
+  "targetLunaRetrievalHitFixture": "CG-AppBuilder-MCP/scripts/tests/fixtures/luna-retrieval/luna-retrieval-hit-vision-plane-wave-a-v1.json",
+  "waveAUnchanged": true,
+  "blockerSemantics": {
+    "BLOCKED_GHA_WP_NOT_ALLOWLISTED": "TRANSPORT_PROFILE_BLOCK_ONLY — not machine-unreachable"
+  }
+}

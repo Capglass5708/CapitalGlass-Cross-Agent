@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "estate-flow-authority-normalization-v1",
+  "chatTranscriptCoverage": "THREAD_AUTOPSY",
+  "records": [
+    {
+      "ihPfspId": "IH-ESTATE-FLOW-AUTHORITY-NORMALIZATION-001",
+      "questionId": "IHESTATEFLOW",
+      "canonicalQuestion": "Why does estate-flow shadow probe return CANNOT_DETERMINE for commercial-glazing or mcp-health?",
+      "alternateQuestions": [
+        "What authority inputs must exist for ESTATE_WORK_QUEUE_SHADOW_PROBE_V1 DETERMINISTIC_PASS?"
+      ],
+      "shortAnswer": "ESTATE_WORK_QUEUE_SHADOW_PROBE_V1 fails with CANNOT_DETERMINE when commercial-glazing phase receipts, mcp-health harvest compacts, or mcp-health worktree branch authority are missing. Restore from canonical Git branches and verify worktree headEqualsOrigin before claiming DETERMINISTIC_PASS.",
+      "detailedAnswer": "Estate-flow shadow probe requires live Cross-Agent phase receipts and harvest compact records",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-10T00:11:34.237Z",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "authorityPath": [
+        "artifacts/agent-runs/estate-flow-authority-normalization-v1/seed-packets/IH-ESTATE-FLOW-AUTHORITY-NORMALIZATION-001.json"
+      ],
+      "authorityCommit": [
+        "e9f87d9"
+      ],
+      "evidenceUrls": [
+        "artifacts/agent-runs/estate-flow-authority-normalization-v1/shadow-probe-pass.json",
+        "artifacts/agent-runs/estate-flow-authority-normalization-v1/thread-autopsy-bundle.json",
+        "runtime/estate-flow-authority/shadow-probe-latest.json"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "lesson",
+        "estate-flow-authority-normalization-v1"
+      ],
+      "entities": [
+        "CG-AppBuilder-MCP"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "critical",
+      "futureAgentInstructions": {
+        "whenThisAppears": "estate-flow shadow probe regression or harvest closeout for authority normalization",
+        "startAt": [
+          "runtime/estate-flow-authority/shadow-probe-latest.json",
+          "artifacts/agent-runs/estate-flow-authority-normalization-v1/thread-autopsy-bundle.json"
+        ],
+        "runPreflight": [
+          "npm run estate-flow:shadow-probe -- --no-chat --mcp-root=/home/wesle/repos/CG-AppBuilder-MCP",
+          "verify Cross-Agent work-progress phase receipts on canonical branch",
+          "verify mcp-health worktree branch matches feature milestone"
+        ],
+        "doNot": [
+          "Hardcode prior golden classifications when live estate legitimately changed",
+          "Fabricate phase receipts or harvest compact records"
+        ],
+        "proveBeforeClaiming": [
+          "verdict=DETERMINISTIC_PASS with NO_CHAT=true",
+          "authorityConflicts=0 and unclassifiedFocusCandidates=0"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "lesson"
+    }
+  ]
+}

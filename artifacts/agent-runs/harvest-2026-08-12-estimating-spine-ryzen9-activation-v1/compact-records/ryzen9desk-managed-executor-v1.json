@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-12-estimating-spine-ryzen9-activation-v1",
+  "packetId": "ryzen9desk-managed-executor-v1",
+  "state": "MANAGED_EXECUTOR_ONLINE",
+  "packetVerdict": "PARTIAL_REMOTE_PASS",
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Maintain runner; use gpu-smoke + remote-status for regression; CE opening stack desk install",
+  "evidenceRefs": [
+    "CG-AppBuilder-MCP/.github/workflows/ryzen9desk-executor-dispatch.yml",
+    "CG-AppBuilder-MCP/scripts/executor/ryzen9desk-executor-allowlist.json",
+    "artifacts/agent-runs/harvest-2026-08-12-estimating-spine-ryzen9-activation-v1/compact-records/estimating-spine-ryzen9-activation-v1.json"
+  ],
+  "doNotAdvance": [
+    "PASS_WITHOUT_OPERATOR_GUI_ACCEPTANCE",
+    "SSH_AS_PRIMARY_TRANSPORT"
+  ],
+  "advancementGate": "Operator GUI acceptance on RYZEN9 optional; WSL remote proofs sufficient for estimating executor lane",
+  "supersedes": {
+    "priorState": "RUNNER_BOOTSTRAP_CHECKPOINT_STARTED",
+    "priorVerdict": "CODE_READY_FOR_RUNNER_BOOTSTRAP",
+    "reason": "estimating-spine-ryzen9-activation-v1 remote GHA proof chain PASS from WESLEY_WORK"
+  }
+}

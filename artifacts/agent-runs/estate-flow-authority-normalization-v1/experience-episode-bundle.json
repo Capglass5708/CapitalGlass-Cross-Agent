@@ -1,0 +1,85 @@
+{
+  "schema": "experience-episodes-v1@1.0.0",
+  "harvestId": "estate-flow-authority-normalization-v1",
+  "sourceRawRef": "artifacts/agent-runs/estate-flow-authority-normalization-v1/thread-autopsy-bundle.json",
+  "sourceExcerptHash": "sha256:ea4a9fd84a81b49c38198891c2d8da03a57a05ae745be123c1cb7da8390e5909",
+  "observations": [
+    {
+      "schema": "experience-observation-v1@1.0.0",
+      "observationId": "xobs:dd6c0019996b5843",
+      "sourceRefs": [
+        "artifacts/agent-runs/estate-flow-authority-normalization-v1/thread-autopsy-bundle.json"
+      ],
+      "eventClass": "HARVEST_AUTOPSY",
+      "measurementClass": "DERIVED",
+      "provenance": {
+        "sourceLane": "harvest",
+        "emitter": "correlate-episode-from-harvest",
+        "harvestId": "estate-flow-authority-normalization-v1"
+      },
+      "context": {
+        "tier": "T2",
+        "harvestId": "estate-flow-authority-normalization-v1"
+      },
+      "evidence": {
+        "summary": "Assumed Cross-Agent work-progress phase receipts were live without verifying branch checkout"
+      },
+      "sourceRawRef": "artifacts/agent-runs/estate-flow-authority-normalization-v1/thread-autopsy-bundle.json",
+      "sourceExcerptHash": "sha256:7c320d77a4f0fc5502ce9e33d6abcf4d0b64156f4562919ff4e1dafc997e37fd",
+      "observedAt": "2026-08-09T23:00:24.401Z"
+    }
+  ],
+  "episodes": [
+    {
+      "schema": "experience-episode-v1@1.0.0",
+      "episodeId": "episode:bf2e73c1289c1631",
+      "lifecycle": "RESOLVED_OBSERVED",
+      "problem": "Assumed Cross-Agent work-progress phase receipts were live without verifying branch checkout",
+      "actionsAttempted": [
+        {
+          "action": "Assumed Cross-Agent work-progress phase receipts were live without verifying branch checkout",
+          "result": "FAILED",
+          "evidenceRefs": []
+        },
+        {
+          "action": "Ran material preflight before committing restored discovery artifacts",
+          "result": "FAILED",
+          "evidenceRefs": []
+        }
+      ],
+      "operatorIntervention": {
+        "intervention": "mcp-health worktree was on main instead of feature branch; required checkout to origin/mcp-health-and-vercel-deployment-authority-hardening-v1",
+        "reasonClass": "UNKNOWN",
+        "evidenceRefs": [
+          "artifacts/agent-runs/estate-flow-authority-normalization-v1/thread-autopsy-bundle.json"
+        ]
+      },
+      "outcome": {
+        "status": "UNKNOWN",
+        "summary": "Assumed Cross-Agent work-progress phase receipts were live without verifying branch checkout",
+        "evidenceRefs": [
+          "artifacts/agent-runs/estate-flow-authority-normalization-v1/thread-autopsy-bundle.json"
+        ]
+      },
+      "applicability": {
+        "repos": [],
+        "workflows": [
+          "fix"
+        ],
+        "missionClasses": [
+          "fix"
+        ],
+        "counterexamples": []
+      },
+      "rootCauseKey": "wrong-move:assumed-cross-agent-work-progress-phase-receipts",
+      "triggerFingerprint": "trigger:8710ee5db43b",
+      "contextCompatibilityDigest": "sha256:4a6fa8f135700c485c88f8c18a960d78899cbb82ce78b2b9df4d4c8816adce6e",
+      "sourceRawRef": "artifacts/agent-runs/estate-flow-authority-normalization-v1/thread-autopsy-bundle.json",
+      "sourceExcerptHash": "sha256:ea4a9fd84a81b49c38198891c2d8da03a57a05ae745be123c1cb7da8390e5909",
+      "observationRefs": [
+        "xobs:dd6c0019996b5843"
+      ]
+    }
+  ],
+  "suppressedCount": 0
+}

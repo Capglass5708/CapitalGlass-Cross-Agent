@@ -1,0 +1,358 @@
+{
+  "schema": "sdlc-cursor-intelligence-harvest-v2@1.0.0",
+  "milestoneId": "document-center-mcp-first-class-v1",
+  "waveId": "document-center-mcp-first-class-v1",
+  "provenance": {
+    "ruleId": "capital-glass-sdlc-milestone-wave-agent-rule",
+    "releaseId": "AI-CACHE-RELEASE-20260806-2012d9645b9e",
+    "sourceHash": "b3569def1203d672f726f9d45d73d7c4133661c822e3c92c533d71039ff6ca6d",
+    "headSha": "bae14aa26d35fb0b3cc52dd543d74cfeedbde9fd",
+    "branch": "work/document-center-mcp-first-class-v1",
+    "preparedAt": "2026-08-13T02:33:59.938Z"
+  },
+  "verifiedTruths": [
+    "Nine implemented facade capabilities are registered as Cursor MCP tools in mcp/operational-tools.mjs.",
+    "createUploadSession and completeUpload policy is implemented and wires existing producer-safe cores.",
+    "document.search_content wraps handleDocumentContentSearch (B5); extraction list/review wrap Data-tab handlers with actor/reason.",
+    "document.get_intake_queue wraps handleListStagedIntake; document.get_processing_status wraps handleDocumentProcessingStatus.",
+    "document_center_capabilities is empirical (catalog + READ/STAGE/APPLY + health).",
+    "APPLY/STAGE tools remain gated while APP_MCP_MODE=read-only unless APP_MCP_APPLY_ENABLED=true.",
+    "check:mcp-tool-policy PASS (16 capabilities); registration + preflight + upload-boundary tests PASS.",
+    "Implementation is uncommitted on work/document-center-mcp-first-class-v1 above bae14aa."
+  ],
+  "derivedConclusions": [
+    "Highest ROI was registering the existing facade, not designing a new MCP engine.",
+    "MCP is the agent front door; Dashboard/PO remain HTTP Document Layer."
+  ],
+  "decisions": [
+    "Keep default Cursor launch fail-closed (read-only) until live APPLY smoke.",
+    "Defer Bible regen and get_knowledge_app 404 to wave-02."
+  ],
+  "changes": [
+    "mcp/lib/registered-tools.mjs",
+    "mcp/lib/adapter-runtime.mjs",
+    "mcp/lib/product-surface-runtime.mjs",
+    "mcp/operational-tools.mjs",
+    "mcp/run-app-mcp.mjs",
+    "src/security/mcp-tool-policy.ts",
+    "scripts/check-mcp-tool-policy.mjs",
+    "tests/operational-mcp-tool-registration.test.ts",
+    "tests/document-center-mcp-preflight.test.ts",
+    "tests/ci-unit-test-manifest.json"
+  ],
+  "commands": [
+    "npm run check:mcp-tool-policy",
+    "npm run check:mcp-launcher-auth-adapter"
+  ],
+  "gateResults": [
+    {
+      "gate": "check:mcp-tool-policy",
+      "result": "PASS"
+    },
+    {
+      "gate": "check:mcp-launcher-auth-adapter",
+      "result": "PASS"
+    },
+    {
+      "gate": "operational-mcp-tool-registration",
+      "result": "PASS"
+    },
+    {
+      "gate": "document-center-mcp-preflight",
+      "result": "PASS"
+    },
+    {
+      "gate": "create-upload-session-boundary",
+      "result": "PASS"
+    },
+    {
+      "gate": "complete-upload-boundary",
+      "result": "PASS"
+    }
+  ],
+  "evidence": [
+    {
+      "kind": "closeout-manifest",
+      "path": "artifacts/agent-runs/document-center-mcp-first-class-v1/closeout-manifest.json"
+    },
+    {
+      "kind": "wave-closeout",
+      "path": "artifacts/agent-runs/document-center-mcp-first-class-v1/wave-closeout.json"
+    },
+    {
+      "kind": "wave-closeout-md",
+      "path": "artifacts/agent-runs/document-center-mcp-first-class-v1/WAVE-CLOSEOUT.md"
+    }
+  ],
+  "risks": [
+    "Cursor MCP will not list new tools until operator restarts document-center-app-mcp.",
+    "Live apply remains disabled by default."
+  ],
+  "blockers": [],
+  "unknowns": [
+    "Live Cursor search + extraction-evidence proof not yet run in this session."
+  ],
+  "crossCheckInstructions": [
+    "git -C /home/wesle/repos/CapitalGlass-Documents rev-parse HEAD",
+    "git -C /home/wesle/repos/CapitalGlass-Documents status --short",
+    "test -f /home/wesle/repos/CapitalGlass-Documents/artifacts/agent-runs/document-center-mcp-first-class-v1/closeout-manifest.json",
+    "npm --prefix /home/wesle/repos/CapitalGlass-Documents run check:mcp-tool-policy"
+  ],
+  "futureCreationOpportunities": [
+    "document-center/wave-02-mcp-hygiene-bible-knowledge"
+  ],
+  "recommendedNextWave": "document-center/wave-02-mcp-hygiene-bible-knowledge",
+  "universalHarvest": {
+    "harvestVersion": "universal-harvest-envelope-v1@1.0.0",
+    "milestoneId": "document-center-mcp-first-class-v1",
+    "waveId": "document-center-mcp-first-class-v1",
+    "executionMode": null,
+    "source": {
+      "repository": "/home/wesle/repos/CapitalGlass-Documents",
+      "sha": "bae14aa26d35fb0b3cc52dd543d74cfeedbde9fd",
+      "environment": "wesley_work",
+      "machine": "wesley_work",
+      "observedAt": "2026-08-13T02:34:05.447Z",
+      "receiptRefs": []
+    },
+    "surfacesTouched": {
+      "repositories": [],
+      "applications": [],
+      "businessWorkflows": [],
+      "operatorInteractions": [],
+      "crossAppHandoffs": [],
+      "runtimeServices": [],
+      "documentsOrData": [],
+      "externalIntegrations": [],
+      "machinesOrEnvironments": []
+    },
+    "findings": [
+      {
+        "findingId": "verified-b7c690878291",
+        "stableIdentity": "Nine implemented facade capabilities are registered as Cursor MCP tools in mcp/operational-tools.mjs.",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Nine implemented facade capabilities are registered as Cursor MCP tools in mcp/operational-tools.mjs.",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-f09c4b841ff9",
+        "stableIdentity": "createUploadSession and completeUpload policy is implemented and wires existing producer-safe cores.",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "createUploadSession and completeUpload policy is implemented and wires existing producer-safe cores.",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-1a2ae489b3be",
+        "stableIdentity": "document.search_content wraps handleDocumentContentSearch (B5); extraction list/review wrap Data-tab handlers with actor",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "document.search_content wraps handleDocumentContentSearch (B5); extraction list/review wrap Data-tab handlers with actor/reason.",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-32a3b02b0c30",
+        "stableIdentity": "document.get_intake_queue wraps handleListStagedIntake; document.get_processing_status wraps handleDocumentProcessingSta",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "document.get_intake_queue wraps handleListStagedIntake; document.get_processing_status wraps handleDocumentProcessingStatus.",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-ffb3429e3440",
+        "stableIdentity": "document_center_capabilities is empirical (catalog + READ/STAGE/APPLY + health).",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "document_center_capabilities is empirical (catalog + READ/STAGE/APPLY + health).",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-38c64de6fd54",
+        "stableIdentity": "APPLY/STAGE tools remain gated while APP_MCP_MODE=read-only unless APP_MCP_APPLY_ENABLED=true.",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "APPLY/STAGE tools remain gated while APP_MCP_MODE=read-only unless APP_MCP_APPLY_ENABLED=true.",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-71393c7aaa66",
+        "stableIdentity": "check:mcp-tool-policy PASS (16 capabilities); registration + preflight + upload-boundary tests PASS.",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "check:mcp-tool-policy PASS (16 capabilities); registration + preflight + upload-boundary tests PASS.",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-51f2c6d1d3ea",
+        "stableIdentity": "Implementation is uncommitted on work/document-center-mcp-first-class-v1 above bae14aa.",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Implementation is uncommitted on work/document-center-mcp-first-class-v1 above bae14aa.",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      }
+    ],
+    "coverage": {
+      "touchedSurfaceCount": 0,
+      "harvestedSurfaceCount": 8,
+      "unharvestedTouchedSurfaces": [],
+      "coverageVerdict": "COVERAGE_OK",
+      "harvestedSurfaceKeys": [
+        "lane:AUTONOMOUS_AGENT_SDLC",
+        "lane:DOCUMENTATION_KNOWLEDGE",
+        "type:verified_truth"
+      ]
+    },
+    "accounting": {
+      "sourceObservations": 8,
+      "findingsPreserved": 8,
+      "distinctValidSuppressed": 0,
+      "unknownUsefulPreserved": 0
+    },
+    "canonicalLanes": [
+      "AUTONOMOUS_AGENT_SDLC",
+      "PRODUCT_FUNCTIONALITY",
+      "PRODUCT_WORKFLOW",
+      "OPERATOR_FRICTION",
+      "INTEGRATION_HANDOFF",
+      "DATA_EXTRACTION_QUALITY",
+      "PERFORMANCE_RELIABILITY",
+      "BUSINESS_PROCESS",
+      "OBSERVABILITY_GAP",
+      "SUCCESS_PATTERN",
+      "SECURITY_GOVERNANCE",
+      "DOCUMENTATION_KNOWLEDGE",
+      "INFRASTRUCTURE_ENVIRONMENT",
+      "COST_EFFICIENCY",
+      "FUTURE_OPPORTUNITY",
+      "UNMODELED_INTELLIGENCE"
+    ],
+    "envelopeHash": "fbc8a180a218672780d6e34cbcf5cfaeeba9e6bf6c0e2c85ad61990d5922073d"
+  },
+  "universalHarvestEnvelopeSchema": "universal-harvest-envelope-v1@1.0.0",
+  "harvestHash": "7a6e8e2584934b5836fd974a47ae0aa01de22382f32da6960527a23001c545f6",
+  "sdlcCursorBridge": {
+    "schema": "sdlc-cursor-waverunner-handoff-bridge-receipt-v1@1.0.0",
+    "workPackageId": "document-center-mcp-first-class-v1",
+    "harvestId": "harvest-document-center-mcp-first-class-v1",
+    "packetHash": "95d98b2c47d9d4859ab273907daea7c50a1ba3ab9a4156e94b77df1a26944e70",
+    "promptHash": "3ae4866d62ffcafc7c7655af2117ae855f547a951699d56d1facd50c8c7bfe85",
+    "prepareReceiptPath": "/home/wesle/repos/CG-AppBuilder-MCP/artifacts/agent-runs/document-center-mcp-first-class-v1/sdlc-cursor-prepare-receipt.json",
+    "authorityStatus": "PROPOSAL",
+    "catalogRole": "RETRIEVAL_ONLY",
+    "processingOwner": "Data-Extraction",
+    "sourceOwner": "CapitalGlass-Cross-Agent"
+  }
+}

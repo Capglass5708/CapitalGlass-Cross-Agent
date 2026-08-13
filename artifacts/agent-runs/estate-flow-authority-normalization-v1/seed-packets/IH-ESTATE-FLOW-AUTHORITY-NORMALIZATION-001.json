@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-ESTATE-FLOW-AUTHORITY-NORMALIZATION-001",
+  "kind": "lesson",
+  "title": "Estate-flow shadow probe requires live Cross-Agent phase receipts and harvest compact records",
+  "summary": "ESTATE_WORK_QUEUE_SHADOW_PROBE_V1 fails with CANNOT_DETERMINE when commercial-glazing phase receipts, mcp-health harvest compacts, or mcp-health worktree branch authority are missing. Restore from canonical Git branches and verify worktree headEqualsOrigin before claiming DETERMINISTIC_PASS.",
+  "retrievalQuestions": [
+    "Why does estate-flow shadow probe return CANNOT_DETERMINE for commercial-glazing or mcp-health?",
+    "What authority inputs must exist for ESTATE_WORK_QUEUE_SHADOW_PROBE_V1 DETERMINISTIC_PASS?"
+  ],
+  "evidenceRefs": [
+    "artifacts/agent-runs/estate-flow-authority-normalization-v1/shadow-probe-pass.json",
+    "artifacts/agent-runs/estate-flow-authority-normalization-v1/thread-autopsy-bundle.json",
+    "runtime/estate-flow-authority/shadow-probe-latest.json"
+  ],
+  "sourcePacketIds": ["estate-flow-authority-normalization-v1"],
+  "executionDeltaRefs": [],
+  "wasteIds": [],
+  "roiRank": 1,
+  "futureAgentInstructions": {
+    "whenThisAppears": "estate-flow shadow probe regression or harvest closeout for authority normalization",
+    "startAt": [
+      "runtime/estate-flow-authority/shadow-probe-latest.json",
+      "artifacts/agent-runs/estate-flow-authority-normalization-v1/thread-autopsy-bundle.json"
+    ],
+    "runPreflight": [
+      "npm run estate-flow:shadow-probe -- --no-chat --mcp-root=/home/wesle/repos/CG-AppBuilder-MCP",
+      "verify Cross-Agent work-progress phase receipts on canonical branch",
+      "verify mcp-health worktree branch matches feature milestone"
+    ],
+    "doNot": [
+      "Hardcode prior golden classifications when live estate legitimately changed",
+      "Fabricate phase receipts or harvest compact records"
+    ],
+    "proveBeforeClaiming": [
+      "verdict=DETERMINISTIC_PASS with NO_CHAT=true",
+      "authorityConflicts=0 and unclassifiedFocusCandidates=0"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "00-master-index/BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}

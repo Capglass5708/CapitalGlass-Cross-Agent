@@ -1,0 +1,133 @@
+{
+  "schema": "capital-glass-wave0-discovery-v1@1.0.0",
+  "workPackageId": "capital-glass-proposal-learning-compounding-spine-v1",
+  "recordedAt": "2026-08-12T03:45:00.000Z",
+  "missionClass": "fix",
+  "preflight": {
+    "indexResult": "INDEX_HIT_AI_CACHE",
+    "scoutVerdict": "PUBLICATION_PASS",
+    "rawScanRequired": false,
+    "sourceCommitSha": "4932f1b65c805ce78209e5ed7cfd51f6d9726b89"
+  },
+  "verdict": "PROCEED_NO_DUPLICATE_ARCHITECTURE",
+  "reuseMatrix": [
+    {
+      "capability": "Synology / historical proposal PDF ingest",
+      "classification": "MISSING",
+      "anchor": "synology-proposal-report-trust-spine-v1 (PG report trust, not historical bid corpus)",
+      "action": "Implement proposal-learning admission lane in Data-Extraction"
+    },
+    {
+      "capability": "Raw-before-parse + document hashes",
+      "classification": "REUSE",
+      "anchor": "Data-Extraction scripts/lib/deterministic-intake.mjs",
+      "action": "Extend with PROPOSAL_LEARNING_INTAKE profile"
+    },
+    {
+      "capability": "Page/text provenance",
+      "classification": "REUSE",
+      "anchor": "capital-glass-estimating-parser page_text + DE plan-evidence envelopes",
+      "action": "Bind provenance atoms to page spans"
+    },
+    {
+      "capability": "Proposal structural extraction",
+      "classification": "ADAPT",
+      "anchor": "capital-glass-estimating-parser/proposal_extract.py",
+      "action": "Extend to PROPOSAL_LEARNING_RECORD_V1 builder"
+    },
+    {
+      "capability": "PROPOSAL_LEARNING_RECORD schema",
+      "classification": "EXTEND",
+      "anchor": "Cross-Agent contracts/proposal-learning/*.schema.json",
+      "action": "Published in Wave 0"
+    },
+    {
+      "capability": "Decision events",
+      "classification": "EXTEND",
+      "anchor": "Bid Composer bid_estimator_scope_decisions (live bids only)",
+      "action": "Historical replay via ESTIMATOR_DECISION_EVENT_V1"
+    },
+    {
+      "capability": "Experience graph publication",
+      "classification": "REUSE",
+      "anchor": "Data-Extraction emit-experience-graph-contribution.mjs",
+      "action": "Map graphEdges in Wave 6"
+    },
+    {
+      "capability": "Estimating spine graph",
+      "classification": "REUSE",
+      "anchor": "CG-MASTER-GRAPH registry/estimating-spine-graph-schema.v1.json",
+      "action": "Add proposal-learning projection events"
+    },
+    {
+      "capability": "Gold Mine",
+      "classification": "REUSE",
+      "anchor": "Data-Extraction scripts/gold-mine/",
+      "action": "Publish review candidates from low-confidence/conflicts"
+    },
+    {
+      "capability": "Bid Composer bid_* persistence",
+      "classification": "REUSE",
+      "anchor": "bid_issued_proposals, bid_remodel_memory_index",
+      "action": "Consumer only — import bridge in later wave"
+    },
+    {
+      "capability": "Boilerplate fingerprinting",
+      "classification": "MISSING",
+      "anchor": "PG approved_proposal_fingerprint_json (suite schema reference only)",
+      "action": "Wave 5 implementation"
+    },
+    {
+      "capability": "Document Control project identity",
+      "classification": "REUSE",
+      "anchor": "CapitalGlass-Documents project_documents",
+      "action": "Join keys via CG-####-## proposal numbers"
+    }
+  ],
+  "ownershipMap": {
+    "rawAdmission": "Data-Extraction",
+    "structuralExtraction": "capital-glass-estimating-parser",
+    "contracts": "CapitalGlass-Cross-Agent",
+    "graphPublication": "CG-MASTER-GRAPH",
+    "liveBidConsumer": "CapitalGlass-BidComposer",
+    "coordinationLedger": "CapitalGlass-Cross-Agent",
+    "orchestration": "CG-AppBuilder-MCP"
+  },
+  "corpusDiscovery": {
+    "namedSamplesFoundAsPlanSets": [
+      "Bubba's 33",
+      "Bandera Hospital",
+      "Bellmead Duggar Field Operations Building",
+      "Belltec Expansion",
+      "Carmen Commercial Center",
+      "Anderson County Agrilife Facility",
+      "College Station Self Storage"
+    ],
+    "namedSamplesMissing": ["Caliber Collision Terrell", "Classic Collision Austin"],
+    "namedSamplesOrphanReference": ["Bubble Bath Tomball"],
+    "issuedProposalLane": "L:/CapitalGlass-BidComposer/issued/{bidId}/",
+    "goldenFixture": "capital-glass-estimating-parser/tests/fixtures/crunch-proposal-excerpt.txt",
+    "wave8Blocker": "OPERATOR_CORPUS_PATH_FOR_HISTORICAL_ISSUED_PROPOSALS"
+  },
+  "implementationPlan": {
+    "wave1": [
+      "Cross-Agent contracts",
+      "Parser build_proposal_learning_record_v1",
+      "DE admit-proposal-source CLI with hash idempotency"
+    ],
+    "wave2": "Extend extractors for glass decomposition, doors, hardware schedules",
+    "wave3": "Decision event generator from scope/system/conflict signals",
+    "wave4": "Cross-section validation without silent resolution",
+    "wave5": "Template boilerplate fingerprints",
+    "wave6": "Experience graph + precedent retrieval API",
+    "wave7": "Human review queue integration with Gold Mine",
+    "wave8": "Batch backfill when corpus path confirmed"
+  },
+  "forbiddenDuplicates": [
+    "second document graph",
+    "second AI-cache authority",
+    "second project identity system",
+    "Bid Composer as general extraction engine",
+    "competing proposal ingestion pipeline outside DE lane"
+  ]
+}

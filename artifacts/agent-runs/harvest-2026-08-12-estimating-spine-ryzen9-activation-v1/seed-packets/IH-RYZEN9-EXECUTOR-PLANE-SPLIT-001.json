@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-RYZEN9-EXECUTOR-PLANE-SPLIT-001",
+  "kind": "policy",
+  "title": "RYZEN9 execution planes: WSL_GHA_EXECUTOR vs WINDOWS_INTERACTIVE",
+  "summary": "Remote GHA on RYZEN9 WSL proves storage, GPU, and repo preflight only; Revu MCP and CE opening stack require WINDOWS_INTERACTIVE at the desk.",
+  "retrievalQuestions": [
+    "Can WSL runner online prove Revu MCP on RYZEN9?",
+    "What runs on WSL_GHA_EXECUTOR vs WINDOWS_INTERACTIVE on RYZEN9DESK?"
+  ],
+  "evidenceRefs": [
+    "artifacts/agent-runs/harvest-2026-08-12-estimating-spine-ryzen9-activation-v1/compact-records/estimating-spine-ryzen9-activation-v1.json",
+    "CG-AppBuilder-MCP/scripts/executor/ryzen9desk-executor-allowlist.json"
+  ],
+  "sourcePacketIds": ["estimating-spine-ryzen9-activation-v1", "ryzen9desk-managed-executor-v1"],
+  "executionDeltaRefs": [],
+  "roiRank": 2,
+  "futureAgentInstructions": {
+    "whenThisAppears": "Agent conflates RYZEN9 WSL runner health with Revu or CE opening readiness",
+    "startAt": [
+      "BY-KIND/host-authority.json",
+      "CapitalGlass-Office-Admin/mcp/knowledge-index/cg-direct-connect-auto-connect.v1.json"
+    ],
+    "runPreflight": ["office.evaluate_ryzen9desk_dispatch_eligibility"],
+    "doNot": [
+      "Use SSH/Tailscale as first transport for cross-desk Revu proof",
+      "Clear revu-mcp-production-workflow-locked without live Gate 1 provenance"
+    ],
+    "proveBeforeClaiming": [
+      "WINDOWS_INTERACTIVE handoff receipt for Revu",
+      "CE opening stack install receipt on desk for opening detection"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE"
+}
