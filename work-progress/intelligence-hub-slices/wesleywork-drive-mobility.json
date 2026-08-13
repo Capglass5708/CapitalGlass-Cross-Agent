@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "intelligence-hub-wesleywork-drive-mobility-slice-v1@1.0.0",
+  "updatedAt": "2026-08-13T16:53:37.000-05:00",
+  "liveProof": "WESLEYWORK_STORAGE_SERVICES_V1_LIVE_PROOF_PASS",
+  "workPackageId": "wesleywork-storage-services-v1",
+  "endpoint": "CG-WESLEYWORK-01",
+  "hostName": "WESLEY_WORK",
+  "severity": "major-recurring",
+  "operatorConfirmed": "2026-08-12 — breaks every office ↔ home move",
+  "failureCodes": [
+    "Z_DRIVE_NOT_MOUNTED_IN_DAILY_SESSION",
+    "Z_AUTHORITY_OR_MAPPING_FAILURE",
+    "L_DRIVE_NOT_MOUNTED_IN_WSL"
+  ],
+  "canonicalMappings": {
+    "z": {
+      "letter": "Z:",
+      "uncCanonical": "\\\\cg-server\\Capital Glass",
+      "uncLanForbidden": "\\\\192.168.1.208\\Capital Glass",
+      "probePath": "Z:\\Capital-Glass-Dev",
+      "cmdkeyTargets": ["cg-server"]
+    },
+    "l": {
+      "letter": "L:",
+      "uncCanonical": "\\\\wesleydesk\\CapitalGlass-L",
+      "uncLanForbidden": "\\\\192.168.1.109\\CapitalGlass-L",
+      "probePath": "L:\\Capital-Glass-Intelligence-Hub\\00-master-index",
+      "cmdkeyTargets": ["wesleydesk"]
+    }
+  },
+  "credentialAuthority": {
+    "secretsLayer": "C:\\ProgramData\\CapitalGlass\\OfficeAdmin\\PRIVATE\\drive-mapping.protected",
+    "deliveryScript": "C:\\ProgramData\\CapitalGlass\\OfficeAdmin\\PRIVATE\\Get-OfficeDriveMappingCredentialBundle.ps1",
+    "vaultBootstrap": "D:\\Capital-Glass-IT-Vault\\02-Secrets\\02-Network-Storage\\smb-z-cg-server-admin.vault",
+    "forbiddenStores": [
+      "Intelligence Hub JSON",
+      "git repos",
+      "MCP knowledge plaintext"
+    ]
+  },
+  "operatorRepair": {
+    "preflight": "C:\\ProgramData\\CapitalGlass\\OfficeAdmin\\PRIVATE\\Test-CgWesleyWorkDrivePreflight.ps1",
+    "health": "%LOCALAPPDATA%\\CapitalGlass\\Storage\\Invoke-CgStorageKeeper.ps1 -Mode Health",
+    "forceRemapForbiddenFirst": true,
+    "workingDirectory": "C:\\Windows\\System32",
+    "forbiddenWorkingDirectory": "WSL UNC paths (\\\\wsl.localhost\\...)"
+  },
+  "wslRefresh": "sudo cg-storage-healer",
+  "ownerRepo": "CapitalGlass-Office-Admin",
+  "incidentDoc": "CapitalGlass-Office-Admin/docs/incidents/2026-08-12-wesleywork-z-l-drive-office-home-mobility.md",
+  "mobilityRunbook": "CapitalGlass-Office-Admin/docs/devices/CG-WESLEYWORK-01/WESLEYWORK-Z-L-MOBILITY.md",
+  "crossAgentProject": "CapitalGlass-Cross-Agent/work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
+  "officeAdminMcp": "office.search_knowledge query=wesleywork drive mobility",
+  "mustFixIssues": [
+    {
+      "id": "wesleywork-z-phantom-lanmanredirector-ghost",
+      "priority": 1,
+      "status": "cleared",
+      "updatedAt": "2026-08-13T16:53:37.000-05:00",
+      "blocker": "WESLEYWORK Z: phantom LanmanRedirector ghost letter blocks remap",
+      "workPackageId": "wesleywork-storage-services-v1",
+      "requiredAction": "Keep Storage Keeper; do not re-enable PreCursor ForceRemap or LAN-first Health"
+    }
+  ],
+  "canonicalUncPolicy": "tailscale-magicdns-only",
+  "storageServicesDoc": "CapitalGlass-Office-Admin/docs/devices/CG-WESLEYWORK-01/STORAGE-SERVICES.md",
+  "retrievalHint": "INDEX_HIT when L: mounted; use this slice on FAILOVER_GIT_LEDGER when hub compact slices lack mobility detail"
+}

@@ -60,7 +60,21 @@ If a path 404s in Cross-Agent, resolve from the **owner repo** at the commit cit
 - Windows L: remapped via Tailscale wesleydesk; ext4 repos root fix in mount gate.
 - Seeds: IH-WESLEYWORK-L-TAILSCALE-REMAP-001, IH-MOUNT-AUTHORITY-EXT4-REPOS-001, IH-WINDOWS-L-VS-WSL-L-001.
 
-### 2026-08-06 — Thread harvest harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1
+### 2026-08-12 — Major recurring issue recorded (office ↔ home)
 
-- DE handoff bootstrap shipped CG-AppBuilder-MCP d6ad9624; preflight PASS.
-- Seeds: IH-WESLEY-WORK-L-RESEARCH-BOOTSTRAP-001, IH-DE-HANDOFF-PIPE-EXIT-001, IH-MCP-BUILD-STAMP-WINDOWS-PM2-001, IH-WSL2-DRVF-9P-FSTYPE-001.
+- Operator: **Z and L break every laptop move** between office and home.
+- Root cause class: SMB session drop + **missing `cg-server` Credential Manager entries** off-LAN; `drive-mapping.protected` in ProgramData is the working credential layer (not Hub, not git).
+- Incident: `CapitalGlass-Office-Admin/docs/incidents/2026-08-12-wesleywork-z-l-drive-office-home-mobility.md`
+- Hub slice: `work-progress/intelligence-hub-slices/wesleywork-drive-mobility.json`
+- AppBuilder incident memory: `CG-AppBuilder-MCP/docs/incident-memory/workspace-wesleywork-z-l-office-home-mobility.md`
+- Automation WP: `cg-wesleywork-offlan-smb-credential-persistence-v1` (Office Admin owner)
+
+### 2026-08-13 — Phantom Z: LanmanRedirector + storage services architecture
+
+- Ghost: `QueryDosDevice(Z:)` → `\Device\LanmanRedirector\;Z:...\192.168.1.208\Capital Glass`; ERROR 85; no `net use` row.
+- Must-fix WP: `wesleywork-storage-services-v1` — Tailscale-only UNC, Storage Keeper, independent WSL CIFS.
+- Incident: `CapitalGlass-Office-Admin/docs/incidents/2026-08-13-wesleywork-z-phantom-lanmanredirector-ghost.md`
+- Architecture: `CapitalGlass-Office-Admin/docs/devices/CG-WESLEYWORK-01/STORAGE-SERVICES.md`
+- L remains desk-hosted (`wesleydesk`) until always-on NAS migration; `L_ENDPOINT_OFFLINE` is the honest code.
+- **2026-08-13 post-reboot:** `WESLEYWORK_STORAGE_SERVICES_V1_LIVE_PROOF_PASS` — Z/L MagicDNS HEALTHY; ghost `192.168.1.208` gone; LAN-first tasks disabled.
+

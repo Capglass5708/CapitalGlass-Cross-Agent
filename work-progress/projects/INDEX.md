@@ -438,6 +438,7 @@ Indexed for agent preflight (`active-work-blockers.json`). Domain blockers are g
 
 | Blocker | Affects | Owner | Required action |
 | --- | --- | --- | --- |
+| WESLEYWORK Z: phantom LanmanRedirector ghost letter blocks remap | CLEARED 2026-08-13 — `WESLEYWORK_STORAGE_SERVICES_V1_LIVE_PROOF_PASS` | `CapitalGlass-Office-Admin` | Keep Storage Keeper; do not re-enable PreCursor ForceRemap / LAN-first Health |
 | Missing shared GitHub → articles builder | `docling-github-ingest-v1`, `ephemeral-unstructured-github-scrape-v1` | `Scraper` | Implement `build-github-markdown-articles.mjs` — gated under owner WPs |
 | Rank-9 Arch FP YOLO benchmark repo URL unknown | `revu-opening-detection-top10-v1` | Research | Pin URL before capture — gated under `revu-opening-detection-top10-v1` |
 | DE opening-detection KB is shallow | `revu-opening-detection-top10-v1`, `cg-opening-locator-v1` | `Data-Extraction` | Finish vendor interpretation; fix `unsupported_vendor` — gated under opening-detection WPs |

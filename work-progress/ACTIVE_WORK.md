@@ -21,6 +21,21 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 ## Current saved work
 
+### 2026-08-13 CT — wesleywork-storage-services-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `wesleywork-storage-services-v1` |
+| Host | WESLEY_WORK (`CG-WESLEYWORK-01`) |
+| Owner | `CapitalGlass-Office-Admin` |
+| Status | **`WESLEYWORK_STORAGE_SERVICES_V1_LIVE_PROOF_PASS`** — Windows Z/L MagicDNS HEALTHY after reboot; LAN-first tasks disabled; WSL CIFS independent |
+| Architecture | Tailscale MagicDNS-only UNC; Windows and WSL mount independently |
+| Canonical Z | `\\cg-server\Capital Glass` |
+| Canonical L | `\\wesleydesk\CapitalGlass-L` (desk-hosted transitional; `L_ENDPOINT_OFFLINE` when desk off) |
+| Incident | `CapitalGlass-Office-Admin/docs/incidents/2026-08-13-wesleywork-z-phantom-lanmanredirector-ghost.md` |
+| Next | Optional `wsl --shutdown` for mirrored networking only. Do not re-enable PreCursor ForceRemap tasks. |
+| Related | `2026-08-02_z-drive-disconnect-recurrence-v1.md` |
+
 ### 2026-08-12 CT — cg-federated-repo-index-v1
 
 | Field | Value |
