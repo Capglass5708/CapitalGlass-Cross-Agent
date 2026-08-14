@@ -1,0 +1,310 @@
+{
+  "schema": "sdlc-cursor-intelligence-harvest-v2@1.0.0",
+  "milestoneId": "waverunner-2-mission-execution-contract-v1",
+  "waveId": "waverunner-2-mcp-cursor-live-proof-ingest-v1",
+  "provenance": {
+    "ruleId": "capital-glass-sdlc-milestone-wave-agent-rule",
+    "releaseId": "pr-379-wr2-bind",
+    "sourceHash": "bf40b499ae96b7c6b3721ba6b9c1e4a6f153bcd3",
+    "headSha": "6ef7ed96775545399bbd5b33e2434631c8a6e6ba",
+    "branch": "main",
+    "preparedAt": "2026-08-14T05:14:58.015Z"
+  },
+  "verifiedTruths": [
+    "PR #379 Protocol 4.0 x WR2 bind is on canonical main (merge bf40b499; proof SHA 6ef7ed967)",
+    "Cursor MCP waverunner_admit_mission reAdmit=true returned ADMITTED then CACHE_BIND CONTINUATION with AUTH CG-AppBuilder-MCP main WESLEY_WORK_WSL wr2-v1 fingerprint 2414043df88b758686ef8db431c0c41e302d543d2c3abd66aee6d922a6c03b05",
+    "Cursor MCP waverunner_next_node execute=false dryRun=true returned DISPATCH_DRY_RUN closer sdlc:waverunner with no product mutation",
+    "Bound WR2 scout addon is 8 lines, STOP none, PACKET_HIT lockSource wr2; hot-cache PACKET_MISS is independent",
+    "Scout hook still defaults WP to intelligence-hub-hot-cache-scout-optimization-v1 so first-turn can append the old P4 essay unless env or prompt sets the WR2 WP"
+  ],
+  "derivedConclusions": [
+    "MCP_CURSOR_LIVE is proven on canonical main at 6ef7ed967 for WP waverunner-2-mission-execution-contract-v1",
+    "First-turn scout essay is a default work-package miss, not a WR2 packet bind defect",
+    "Canonical HEAD later moved to 381054d5c; record both proof SHA and later HEAD",
+    "Cursor must not write L:; Hub ingest is Git-canonical harvest plus WESLEYDESK GHA publication"
+  ],
+  "decisions": [
+    "AUTH rebound from feat/waverunner-2-mission-execution-contract-v1 to live main/WESLEY_WORK_WSL because checkout was main",
+    "Hot-cache executionPacket PACKET_MISS is independent of WR2 lock PACKET_HIT",
+    "L: Hub publication does not gate MCP_CURSOR_LIVE",
+    "Do not patch PR #379 for the scout default-WP essay"
+  ],
+  "changes": [],
+  "commands": [
+    "Cursor MCP waverunner_admit_mission reAdmit=true AUTH=CG-AppBuilder-MCP/main/WESLEY_WORK_WSL/wr2-v1",
+    "Cursor MCP waverunner_next_node execute=false dryRun=true",
+    "npm run waverunner2:check-skill -- --json"
+  ],
+  "gateResults": [
+    {
+      "gate": "SCOUT_BIND_LIVE",
+      "verdict": "PASS"
+    },
+    {
+      "gate": "MCP_ADMIT_LIVE",
+      "verdict": "PASS"
+    },
+    {
+      "gate": "MCP_NEXT_LIVE",
+      "verdict": "PASS"
+    },
+    {
+      "gate": "MCP_CURSOR_LIVE",
+      "verdict": "PASS"
+    },
+    {
+      "gate": "L_HUB_PUBLISHED",
+      "verdict": "PENDING_DOWNSTREAM"
+    }
+  ],
+  "evidence": [
+    "artifacts/agent-runs/waverunner-2-mission-execution-contract-v1/live-mcp-binding-receipt-v1.json",
+    "artifacts/agent-runs/waverunner-2-mission-execution-contract-v1/tiny-packet-v1.json",
+    "artifacts/agent-runs/waverunner-2-mission-execution-contract-v1/protocol-40-continuation-front-door-v1.json",
+    "agent-packs/three-way-agent/hooks/intelligence-hub-scout-inject.mjs"
+  ],
+  "risks": [
+    "Operators may treat first-turn P4 essay as WR2 failure and reopen #379",
+    "Canonical HEAD drift after proof (6ef7ed967 vs later 381054d5c) can confuse AUTH replay"
+  ],
+  "blockers": [
+    {
+      "id": "scout-default-wp-misses-wr2-lock",
+      "status": "OPEN_STRENGTHEN",
+      "text": "Scout hook defaults workPackageId to intelligence-hub-hot-cache-scout-optimization-v1 (intelligence-hub-scout-inject.mjs ~69). That WP has no WR2 lock, so first-turn scout still appends the Protocol 4.0 essay even when waverunner-2-mission-execution-contract-v1 is bound. This is not WR2 continuation failure and must not roll back MCP_CURSOR_LIVE."
+    }
+  ],
+  "unknowns": [
+    "Whether WESLEYDESK GHA will pick up this harvest without a Cross-Agent main commit"
+  ],
+  "crossCheckInstructions": [
+    "git -C /home/wesle/repos/CG-AppBuilder-MCP rev-parse HEAD",
+    "test -f artifacts/agent-runs/waverunner-2-mission-execution-contract-v1/live-mcp-binding-receipt-v1.json",
+    "Do not treat first-turn P4 essay as WR2 bind failure when bound WP lock is PACKET_HIT",
+    "Do not write L:; Git Hub source is canonical"
+  ],
+  "futureCreationOpportunities": [
+    "Resolve scout WP from live WR2 lock / last admit / CG_AUTO_V32_WORK_PACKAGE instead of hardcoded hot-cache default",
+    "Add a regression that fails if default WP scout addon exceeds 12 lines when any WR2 lock exists on the machine",
+    "WESLEYDESK GHA index publication after harvest lands on Cross-Agent main"
+  ],
+  "recommendedNextWave": "scout-default-wp-resolves-wr2-lock-v1: resolve first-turn scout work-package from WR2 execution lock or last admit, not intelligence-hub-hot-cache-scout-optimization-v1",
+  "universalHarvest": {
+    "harvestVersion": "universal-harvest-envelope-v1@1.0.0",
+    "milestoneId": "waverunner-2-mission-execution-contract-v1",
+    "waveId": "waverunner-2-mcp-cursor-live-proof-ingest-v1",
+    "executionMode": null,
+    "source": {
+      "repository": "/home/wesle/repos/CG-AppBuilder-MCP",
+      "sha": "6ef7ed96775545399bbd5b33e2434631c8a6e6ba",
+      "environment": "wsl-ext4",
+      "machine": null,
+      "observedAt": "2026-08-14T05:17:09.841Z",
+      "receiptRefs": [
+        "live-mcp-binding-receipt-v1.json",
+        "tiny-packet-v1.json",
+        "protocol-40-continuation-front-door-v1.json"
+      ]
+    },
+    "surfacesTouched": {
+      "repositories": [
+        "CG-AppBuilder-MCP"
+      ],
+      "applications": [
+        "cg-app-builder-mcp"
+      ],
+      "businessWorkflows": [],
+      "operatorInteractions": [
+        "cursor-mcp-admit",
+        "cursor-mcp-next-dry-run",
+        "scout-hook-first-turn"
+      ],
+      "crossAppHandoffs": [],
+      "runtimeServices": [
+        "user-cg-app-mcp",
+        "intelligence-hub-scout-hook"
+      ],
+      "documentsOrData": [],
+      "externalIntegrations": [],
+      "machinesOrEnvironments": [
+        "WESLEY_WORK_WSL"
+      ]
+    },
+    "findings": [
+      {
+        "findingId": "surface-wr2-cursor-mcp-live",
+        "stableIdentity": "surface-wr2-cursor-mcp-live",
+        "findingType": "success_pattern",
+        "laneMembership": [
+          "SUCCESS_PATTERN",
+          "OPERATOR_FRICTION",
+          "AUTONOMOUS_AGENT_SDLC"
+        ],
+        "primaryLane": "SUCCESS_PATTERN",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "user-cg-app-mcp on cg-app-builder-mcp completed cursor-mcp-admit then cursor-mcp-next-dry-run with no product mutation; intelligence-hub-scout-hook scout-hook-first-turn still defaulted WP",
+        "expectedBehavior": "scout-hook-first-turn should resolve WR2 lock without requiring the prompt to name the work package",
+        "impact": "Operators can misread the first-turn Protocol 4.0 essay as a WR2 bind failure",
+        "operatorImpact": "Need CG_AUTO_V32_WORK_PACKAGE or work-package= in the prompt for the 8-line WR2 addon on first turn",
+        "businessImpact": "",
+        "automationImpact": "Next wave should bind scout WP from live WR2 lock or last admit",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-08f74231ecd4",
+        "stableIdentity": "PR #379 Protocol 4.0 x WR2 bind is on canonical main (merge bf40b499; proof SHA 6ef7ed967)",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "PR #379 Protocol 4.0 x WR2 bind is on canonical main (merge bf40b499; proof SHA 6ef7ed967)",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-34236c0b959e",
+        "stableIdentity": "Cursor MCP waverunner_admit_mission reAdmit=true returned ADMITTED then CACHE_BIND CONTINUATION with AUTH CG-AppBuilder-",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Cursor MCP waverunner_admit_mission reAdmit=true returned ADMITTED then CACHE_BIND CONTINUATION with AUTH CG-AppBuilder-MCP main WESLEY_WORK_WSL wr2-v1 fingerprint 2414043df88b758686ef8db431c0c41e302d543d2c3abd66aee6d922a6c03b05",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-1d798a40ab67",
+        "stableIdentity": "Cursor MCP waverunner_next_node execute=false dryRun=true returned DISPATCH_DRY_RUN closer sdlc:waverunner with no produ",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Cursor MCP waverunner_next_node execute=false dryRun=true returned DISPATCH_DRY_RUN closer sdlc:waverunner with no product mutation",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-0934d13e03e8",
+        "stableIdentity": "Bound WR2 scout addon is 8 lines, STOP none, PACKET_HIT lockSource wr2; hot-cache PACKET_MISS is independent",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Bound WR2 scout addon is 8 lines, STOP none, PACKET_HIT lockSource wr2; hot-cache PACKET_MISS is independent",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-f90a4fff30e3",
+        "stableIdentity": "Scout hook still defaults WP to intelligence-hub-hot-cache-scout-optimization-v1 so first-turn can append the old P4 ess",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Scout hook still defaults WP to intelligence-hub-hot-cache-scout-optimization-v1 so first-turn can append the old P4 essay unless env or prompt sets the WR2 WP",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      }
+    ],
+    "coverage": {
+      "touchedSurfaceCount": 8,
+      "harvestedSurfaceCount": 6,
+      "unharvestedTouchedSurfaces": [],
+      "coverageVerdict": "COVERAGE_OK",
+      "harvestedSurfaceKeys": [
+        "lane:SUCCESS_PATTERN",
+        "lane:OPERATOR_FRICTION",
+        "lane:AUTONOMOUS_AGENT_SDLC",
+        "type:success_pattern",
+        "lane:DOCUMENTATION_KNOWLEDGE",
+        "type:verified_truth"
+      ]
+    },
+    "accounting": {
+      "sourceObservations": 6,
+      "findingsPreserved": 6,
+      "distinctValidSuppressed": 0,
+      "unknownUsefulPreserved": 0
+    },
+    "canonicalLanes": [
+      "AUTONOMOUS_AGENT_SDLC",
+      "PRODUCT_FUNCTIONALITY",
+      "PRODUCT_WORKFLOW",
+      "OPERATOR_FRICTION",
+      "INTEGRATION_HANDOFF",
+      "DATA_EXTRACTION_QUALITY",
+      "PERFORMANCE_RELIABILITY",
+      "BUSINESS_PROCESS",
+      "OBSERVABILITY_GAP",
+      "SUCCESS_PATTERN",
+      "SECURITY_GOVERNANCE",
+      "DOCUMENTATION_KNOWLEDGE",
+      "INFRASTRUCTURE_ENVIRONMENT",
+      "COST_EFFICIENCY",
+      "FUTURE_OPPORTUNITY",
+      "UNMODELED_INTELLIGENCE"
+    ],
+    "envelopeHash": "86e005e23e986dd975248be15969fbb2a8a03495d57c7bb85a6d9e12b6ac241d"
+  },
+  "universalHarvestEnvelopeSchema": "universal-harvest-envelope-v1@1.0.0",
+  "harvestHash": "f10c7b1e03de42b914843c3e3047336f0c786e20375effcb9cda9a4391ec7f39"
+}
