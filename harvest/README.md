@@ -49,5 +49,5 @@ Updates this tree and `Z:\\Capital-Glass-Dev\\Harvest` when the Z: drive is moun
 
 **Do not hand-edit mirrored protocol files** — edit git sources under `docs/runbooks/`, `docs/harvest-z-mirror/`, or `Data-Extraction/docs/platform/` (wave SDLC), then re-sync.
 
-Generated: 2026-08-13T22:43:15.432Z
-Source commit: 03022bc40dac60aa19221d90ecdc965df33d75a7
+Generated: 2026-08-13T22:50:03.557Z
+Source commit: e8b12ca178219183faa303ca36645ed5859375dc
