@@ -1,0 +1,366 @@
+{
+  "schema": "sdlc-cursor-intelligence-harvest-v2@1.0.0",
+  "milestoneId": "vae-creative-direction-v1",
+  "waveId": "vae-creative-direction-v1",
+  "provenance": {
+    "ruleId": "capital-glass-sdlc-milestone-wave-agent-rule",
+    "releaseId": "AI-CACHE-RELEASE-20260806-2012d9645b9e",
+    "sourceHash": "b3569def1203d672f726f9d45d73d7c4133661c822e3c92c533d71039ff6ca6d",
+    "headSha": "1c4a9767445d5901cfab60f9c8792ea932b9ae09",
+    "branch": "main",
+    "preparedAt": "2026-08-14T12:37:44.865Z"
+  },
+  "verifiedTruths": [
+    "VAE PR #48 merged to origin/main at fc193a5; terminal closeout PR #49 at 1c4a9767445d5901cfab60f9c8792ea932b9ae09",
+    "CG-AppBuilder-MCP PR #382 merged WR2 product milestone binding runtime/waverunner/product-milestone-bindings/vae-creative-direction-v1.json at 31f82a1d",
+    "npm run test:creative-direction — 11/11 PASS on post-merge worktree @ fc193a5",
+    "npm run test:creation-kernel — 9/9 PASS (kernel regression)",
+    "npm run vae:creative-direction:showcase — PASS with VAE_CANONICAL_POST_MERGE_REPROOF=1; all terminal gates true including VAE_CREATIVE_DIRECTOR_LIVE",
+    "Architecture: intent → CreativeDirection (primitive composition) → CreationSpec → runCreationPipeline → presentation layer; kernel unchanged",
+    "Showcase: 9 outputs (web×3, document×3, advertising×3) with fixed content and variable creative direction"
+  ],
+  "derivedConclusions": [],
+  "decisions": [],
+  "changes": [
+    "Visual-Asset-Engine: creative-direction package + showcase (merged PR #48)",
+    "CG-AppBuilder-MCP: WR2 product milestone binding VAE_CREATIVE_DIRECTOR_LIVE (merged PR #382)"
+  ],
+  "commands": [
+    "npm run test:creative-direction",
+    "npm run test:creation-kernel",
+    "VAE_CANONICAL_POST_MERGE_REPROOF=1 npm run vae:creative-direction:showcase",
+    "DOPPLER_CURSOR_CONFIG=dev npm run sdlc:waverunner -- --work-package=vae-creative-direction-v1 --repo=/home/wesle/repos/worktrees/Visual-Asset-Engine/vae-creative-direction-v1 --closeout=artifacts/agent-runs/vae-creative-direction-v1/closeout.json --material --mutation-required --json"
+  ],
+  "gateResults": [
+    {
+      "gate": "test:creative-direction",
+      "result": "PASS",
+      "detail": "11/11"
+    },
+    {
+      "gate": "test:creation-kernel",
+      "result": "PASS",
+      "detail": "9/9"
+    },
+    {
+      "gate": "vae:creative-direction:showcase",
+      "result": "PASS"
+    },
+    {
+      "gate": "CANONICAL_POST_MERGE_REPROOF_PASS",
+      "result": "PASS"
+    },
+    {
+      "gate": "VAE_CREATIVE_DIRECTOR_LIVE",
+      "result": "PASS"
+    }
+  ],
+  "evidence": [
+    "artifacts/runs/vae-creative-direction-v1/creative-direction-showcase-receipt.json",
+    "artifacts/runs/vae-creative-direction-v1/terminal-closeout-receipt.json",
+    "artifacts/runs/vae-creative-direction-v1/capability-map.json",
+    "artifacts/vae-showcase/creative-direction-v1/",
+    "generation-core/packages/creative-direction/",
+    "runtime/waverunner/product-milestone-bindings/vae-creative-direction-v1.json"
+  ],
+  "risks": [],
+  "blockers": [],
+  "unknowns": [],
+  "crossCheckInstructions": [
+    "git -C /home/wesle/repos/worktrees/Visual-Asset-Engine/vae-creative-direction-v1 rev-parse HEAD",
+    "npm run sdlc:cursor:drift-check -- --work-package=vae-creative-direction-v1",
+    "test -f artifacts/agent-runs/vae-creative-direction-v1/sdlc-cursor-prepare-receipt.json"
+  ],
+  "futureCreationOpportunities": [],
+  "recommendedNextWave": "",
+  "universalHarvest": {
+    "harvestVersion": "universal-harvest-envelope-v1@1.0.0",
+    "milestoneId": "vae-creative-direction-v1",
+    "waveId": "vae-creative-direction-v1",
+    "executionMode": null,
+    "source": {
+      "repository": "/home/wesle/repos/worktrees/Visual-Asset-Engine/vae-creative-direction-v1",
+      "sha": "1c4a9767445d5901cfab60f9c8792ea932b9ae09",
+      "environment": "wesley_work",
+      "machine": "wesley_work",
+      "observedAt": "2026-08-14T12:37:44.893Z",
+      "receiptRefs": []
+    },
+    "surfacesTouched": {
+      "repositories": [
+        "Visual-Asset-Engine",
+        "CG-AppBuilder-MCP"
+      ],
+      "applications": [
+        "Visual-Asset-Engine"
+      ],
+      "businessWorkflows": [
+        "vae-creative-direction"
+      ],
+      "operatorInteractions": [],
+      "crossAppHandoffs": [],
+      "runtimeServices": [
+        "creative-direction",
+        "creation-kernel",
+        "waverunner-2"
+      ],
+      "documentsOrData": [],
+      "externalIntegrations": [],
+      "machinesOrEnvironments": [
+        "WESLEY_WORK_WSL"
+      ]
+    },
+    "findings": [
+      {
+        "findingId": "vae-creative-director-live",
+        "stableIdentity": "vae-creative-director-live",
+        "findingType": "success_pattern",
+        "laneMembership": [
+          "SUCCESS_PATTERN",
+          "PRODUCT_WORKFLOW"
+        ],
+        "primaryLane": "SUCCESS_PATTERN",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Natural-language intent composes CreativeDirection primitives into CreationSpec and produces materially differentiated web/document/advertising artifacts via existing creation kernel without profile-table lookup",
+        "expectedBehavior": "",
+        "impact": "VAE_CREATIVE_DIRECTOR_LIVE capability milestone satisfied for Wave 4",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "WR2 formal closeout with primitive composition gates and same-content visual delta evidence",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-da0a3e1906db",
+        "stableIdentity": "VAE PR #48 merged to origin/main at fc193a5; terminal closeout PR #49 at 1c4a9767445d5901cfab60f9c8792ea932b9ae09",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "VAE PR #48 merged to origin/main at fc193a5; terminal closeout PR #49 at 1c4a9767445d5901cfab60f9c8792ea932b9ae09",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-30fbf9fab45a",
+        "stableIdentity": "CG-AppBuilder-MCP PR #382 merged WR2 product milestone binding runtime/waverunner/product-milestone-bindings/vae-creativ",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "CG-AppBuilder-MCP PR #382 merged WR2 product milestone binding runtime/waverunner/product-milestone-bindings/vae-creative-direction-v1.json at 31f82a1d",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-1e3227a66280",
+        "stableIdentity": "npm run test:creative-direction — 11/11 PASS on post-merge worktree @ fc193a5",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "npm run test:creative-direction — 11/11 PASS on post-merge worktree @ fc193a5",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-c7ad85f82dab",
+        "stableIdentity": "npm run test:creation-kernel — 9/9 PASS (kernel regression)",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "npm run test:creation-kernel — 9/9 PASS (kernel regression)",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-59b982381a64",
+        "stableIdentity": "npm run vae:creative-direction:showcase — PASS with VAE_CANONICAL_POST_MERGE_REPROOF=1; all terminal gates true includin",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "npm run vae:creative-direction:showcase — PASS with VAE_CANONICAL_POST_MERGE_REPROOF=1; all terminal gates true including VAE_CREATIVE_DIRECTOR_LIVE",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-b987c533375a",
+        "stableIdentity": "Architecture: intent → CreativeDirection (primitive composition) → CreationSpec → runCreationPipeline → presentation lay",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Architecture: intent → CreativeDirection (primitive composition) → CreationSpec → runCreationPipeline → presentation layer; kernel unchanged",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-02ef508ce252",
+        "stableIdentity": "Showcase: 9 outputs (web×3, document×3, advertising×3) with fixed content and variable creative direction",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Showcase: 9 outputs (web×3, document×3, advertising×3) with fixed content and variable creative direction",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      }
+    ],
+    "coverage": {
+      "touchedSurfaceCount": 8,
+      "harvestedSurfaceCount": 8,
+      "unharvestedTouchedSurfaces": [
+        {
+          "category": "repositories",
+          "surface": "Visual-Asset-Engine",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "applications",
+          "surface": "Visual-Asset-Engine",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "runtimeServices",
+          "surface": "waverunner-2",
+          "reason": "no_finding_references_surface"
+        },
+        {
+          "category": "machinesOrEnvironments",
+          "surface": "WESLEY_WORK_WSL",
+          "reason": "no_finding_references_surface"
+        }
+      ],
+      "coverageVerdict": "COVERAGE_OK",
+      "harvestedSurfaceKeys": [
+        "lane:SUCCESS_PATTERN",
+        "lane:PRODUCT_WORKFLOW",
+        "type:success_pattern",
+        "lane:AUTONOMOUS_AGENT_SDLC",
+        "lane:DOCUMENTATION_KNOWLEDGE",
+        "type:verified_truth"
+      ]
+    },
+    "accounting": {
+      "sourceObservations": 8,
+      "findingsPreserved": 8,
+      "distinctValidSuppressed": 0,
+      "unknownUsefulPreserved": 0
+    },
+    "canonicalLanes": [
+      "AUTONOMOUS_AGENT_SDLC",
+      "PRODUCT_FUNCTIONALITY",
+      "PRODUCT_WORKFLOW",
+      "OPERATOR_FRICTION",
+      "INTEGRATION_HANDOFF",
+      "DATA_EXTRACTION_QUALITY",
+      "PERFORMANCE_RELIABILITY",
+      "BUSINESS_PROCESS",
+      "OBSERVABILITY_GAP",
+      "SUCCESS_PATTERN",
+      "SECURITY_GOVERNANCE",
+      "DOCUMENTATION_KNOWLEDGE",
+      "INFRASTRUCTURE_ENVIRONMENT",
+      "COST_EFFICIENCY",
+      "FUTURE_OPPORTUNITY",
+      "UNMODELED_INTELLIGENCE"
+    ],
+    "envelopeHash": "af5f24ccb20611606fbb5fc80ef748ee7a40aeea53a315cffb42653f60b7efd1"
+  },
+  "universalHarvestEnvelopeSchema": "universal-harvest-envelope-v1@1.0.0",
+  "harvestHash": "35c16cefc595a0d52cab72bbb503fcf3a806bebb6b2b6f6222950be47bade5b6",
+  "sdlcCursorBridge": {
+    "schema": "sdlc-cursor-waverunner-handoff-bridge-receipt-v1@1.0.0",
+    "workPackageId": "vae-creative-direction-v1",
+    "harvestId": "harvest-vae-creative-direction-v1",
+    "packetHash": "da622644abd3a312308e6d2b97d8f495be70b4f256b8fcd0ab01682800325fd9",
+    "promptHash": "fcf0638fcd9ffb08603a877b7a779efefcb1efee8b8f0f115865781b403a1ba7",
+    "prepareReceiptPath": "/home/wesle/repos/CG-AppBuilder-MCP/artifacts/agent-runs/vae-creative-direction-v1/sdlc-cursor-prepare-receipt.json",
+    "authorityStatus": "PROPOSAL",
+    "catalogRole": "RETRIEVAL_ONLY",
+    "processingOwner": "Data-Extraction",
+    "sourceOwner": "CapitalGlass-Cross-Agent"
+  }
+}
