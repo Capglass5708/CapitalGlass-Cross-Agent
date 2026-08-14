@@ -1,0 +1,378 @@
+{
+  "schema": "sdlc-cursor-intelligence-harvest-v2@1.0.0",
+  "milestoneId": "vae-visual-creation-kernel-v1",
+  "waveId": "vae-visual-creation-kernel-v1",
+  "provenance": {
+    "ruleId": "capital-glass-sdlc-milestone-wave-agent-rule",
+    "releaseId": "AI-CACHE-RELEASE-20260806-2012d9645b9e",
+    "sourceHash": "b3569def1203d672f726f9d45d73d7c4133661c822e3c92c533d71039ff6ca6d",
+    "headSha": "088c64db3ff3576e386ac099e87647c9b61cbc37",
+    "branch": "main",
+    "preparedAt": "2026-08-14T07:29:02.524Z"
+  },
+  "verifiedTruths": [
+    "VAE PR #47 merged to origin/main at a8abbd796fcad382e80badd528c22496eed24d06; terminal closeout receipt at 088c64d",
+    "CG-AppBuilder-MCP PR #380 merged WR2 product milestone binding runtime/waverunner/product-milestone-bindings/vae-visual-creation-kernel-v1.json",
+    "npm run test:creation-kernel — 9/9 PASS on canonical main worktree",
+    "npm run test:vae-critical-path — PASS on canonical main worktree",
+    "npm run vae:creation-kernel:showcase — PASS; receipt at artifacts/runs/vae-visual-creation-kernel-v1/creation-kernel-showcase-receipt.json",
+    "MCP health MCP_100_PERCENT_HEALTHY when DOPPLER_CURSOR_CONFIG=dev (prd Cloudflare token insufficient_scope is infra follow-up only)",
+    "WR2 admit ADMITTED; mcp_spoke_receipt_enforcement GO on latest E2E prepare"
+  ],
+  "derivedConclusions": [],
+  "decisions": [],
+  "changes": [
+    "Visual-Asset-Engine: creation-kernel package (merged PR #47)",
+    "CG-AppBuilder-MCP: WR2 product milestone binding VAE_CREATION_KERNEL_LIVE (merged PR #380)"
+  ],
+  "commands": [
+    "npm run test:creation-kernel",
+    "npm run test:vae-critical-path",
+    "npm run vae:creation-kernel:showcase",
+    "DOPPLER_CURSOR_CONFIG=dev npm run mcp:health",
+    "npm run sdlc:waverunner:resolve -- --work-package=vae-visual-creation-kernel-v1 --json"
+  ],
+  "gateResults": [
+    {
+      "gate": "test:creation-kernel",
+      "result": "PASS",
+      "detail": "9/9"
+    },
+    {
+      "gate": "test:vae-critical-path",
+      "result": "PASS"
+    },
+    {
+      "gate": "vae:creation-kernel:showcase",
+      "result": "PASS"
+    },
+    {
+      "gate": "sdlc:waverunner:resolve",
+      "result": "READY"
+    },
+    {
+      "gate": "waverunner2:check-skill",
+      "result": "PASS"
+    },
+    {
+      "gate": "mcp:health (DOPPLER_CURSOR_CONFIG=dev)",
+      "result": "MCP_100_PERCENT_HEALTHY"
+    },
+    {
+      "gate": "mcp_spoke_receipt_enforcement",
+      "result": "GO"
+    }
+  ],
+  "evidence": [
+    "artifacts/runs/vae-visual-creation-kernel-v1/creation-kernel-showcase-receipt.json",
+    "artifacts/runs/vae-visual-creation-kernel-v1/terminal-closeout-receipt.json",
+    "artifacts/runs/vae-visual-creation-kernel-v1/CURRENT_VAE_CAPABILITY_MAP.json",
+    "runtime/waverunner/product-milestone-bindings/vae-visual-creation-kernel-v1.json",
+    "artifacts/agent-runs/vae-visual-creation-kernel-v1/waverunner-milestone-context.json",
+    "artifacts/agent-runs/vae-visual-creation-kernel-v1/waverunner-execution-receipt.json",
+    "runtime/mcp-health-receipt/latest.json"
+  ],
+  "risks": [],
+  "blockers": [],
+  "unknowns": [],
+  "crossCheckInstructions": [
+    "git -C /home/wesle/repos/worktrees/Visual-Asset-Engine/vae-visual-creation-kernel-v1 rev-parse HEAD",
+    "npm run sdlc:cursor:drift-check -- --work-package=vae-visual-creation-kernel-v1",
+    "test -f artifacts/agent-runs/vae-visual-creation-kernel-v1/sdlc-cursor-prepare-receipt.json"
+  ],
+  "futureCreationOpportunities": [],
+  "recommendedNextWave": "vae-creative-direction-v1",
+  "universalHarvest": {
+    "harvestVersion": "universal-harvest-envelope-v1@1.0.0",
+    "milestoneId": "vae-visual-creation-kernel-v1",
+    "waveId": "vae-visual-creation-kernel-v1",
+    "executionMode": null,
+    "source": {
+      "repository": "/home/wesle/repos/worktrees/Visual-Asset-Engine/vae-visual-creation-kernel-v1",
+      "sha": "088c64db3ff3576e386ac099e87647c9b61cbc37",
+      "environment": "wesley_work",
+      "machine": "wesley_work",
+      "observedAt": "2026-08-14T07:29:02.561Z",
+      "receiptRefs": []
+    },
+    "surfacesTouched": {
+      "repositories": [
+        "Visual-Asset-Engine",
+        "CG-AppBuilder-MCP"
+      ],
+      "applications": [
+        "Visual-Asset-Engine"
+      ],
+      "businessWorkflows": [
+        "vae-visual-creation-kernel"
+      ],
+      "operatorInteractions": [],
+      "crossAppHandoffs": [],
+      "runtimeServices": [
+        "creation-kernel",
+        "waverunner-2"
+      ],
+      "documentsOrData": [],
+      "externalIntegrations": [],
+      "machinesOrEnvironments": [
+        "WESLEY_WORK_WSL"
+      ]
+    },
+    "findings": [
+      {
+        "findingId": "vae-creation-kernel-live",
+        "stableIdentity": "vae-creation-kernel-live",
+        "findingType": "success_pattern",
+        "laneMembership": [
+          "SUCCESS_PATTERN",
+          "PRODUCT_WORKFLOW"
+        ],
+        "primaryLane": "SUCCESS_PATTERN",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Visual-Asset-Engine creation kernel produces verified multi-surface outputs (web, app, document, advertising, presentation) with dual design systems on canonical main",
+        "expectedBehavior": "",
+        "impact": "Enables vae-creative-direction-v1 successor wave on proven Visual-Asset-Engine kernel substrate",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "waverunner-2 FORMAL_CLOSEOUT execute validated on WESLEY_WORK_WSL with CG-AppBuilder-MCP milestone binding",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "doppler-prd-cloudflare-token-scope",
+        "stableIdentity": "doppler-prd-cloudflare-token-scope",
+        "findingType": "infrastructure_observation",
+        "laneMembership": [
+          "INFRASTRUCTURE_ENVIRONMENT",
+          "OPERATOR_FRICTION"
+        ],
+        "primaryLane": "INFRASTRUCTURE_ENVIRONMENT",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "integrations-health-worker defaults DOPPLER_CURSOR_CONFIG=prd; prd CLOUDFLARE_API_TOKEN returns insufficient_scope until Doppler prd token is updated",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "Use DOPPLER_CURSOR_CONFIG=dev for WR2/MCP health until prd token fixed",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-70ef1c41e82c",
+        "stableIdentity": "VAE PR #47 merged to origin/main at a8abbd796fcad382e80badd528c22496eed24d06; terminal closeout receipt at 088c64d",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "VAE PR #47 merged to origin/main at a8abbd796fcad382e80badd528c22496eed24d06; terminal closeout receipt at 088c64d",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-4bebfe67dad8",
+        "stableIdentity": "CG-AppBuilder-MCP PR #380 merged WR2 product milestone binding runtime/waverunner/product-milestone-bindings/vae-visual-",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "CG-AppBuilder-MCP PR #380 merged WR2 product milestone binding runtime/waverunner/product-milestone-bindings/vae-visual-creation-kernel-v1.json",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-5605951d02e6",
+        "stableIdentity": "npm run test:creation-kernel — 9/9 PASS on canonical main worktree",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "npm run test:creation-kernel — 9/9 PASS on canonical main worktree",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-96dc4bbbd513",
+        "stableIdentity": "npm run test:vae-critical-path — PASS on canonical main worktree",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "npm run test:vae-critical-path — PASS on canonical main worktree",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-08acc1eba3c8",
+        "stableIdentity": "npm run vae:creation-kernel:showcase — PASS; receipt at artifacts/runs/vae-visual-creation-kernel-v1/creation-kernel-sho",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "npm run vae:creation-kernel:showcase — PASS; receipt at artifacts/runs/vae-visual-creation-kernel-v1/creation-kernel-showcase-receipt.json",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-a26e7322c59d",
+        "stableIdentity": "MCP health MCP_100_PERCENT_HEALTHY when DOPPLER_CURSOR_CONFIG=dev (prd Cloudflare token insufficient_scope is infra foll",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "MCP health MCP_100_PERCENT_HEALTHY when DOPPLER_CURSOR_CONFIG=dev (prd Cloudflare token insufficient_scope is infra follow-up only)",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-5fedd2f293f6",
+        "stableIdentity": "WR2 admit ADMITTED; mcp_spoke_receipt_enforcement GO on latest E2E prepare",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "WR2 admit ADMITTED; mcp_spoke_receipt_enforcement GO on latest E2E prepare",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      }
+    ],
+    "coverage": {
+      "touchedSurfaceCount": 7,
+      "harvestedSurfaceCount": 9,
+      "unharvestedTouchedSurfaces": [],
+      "coverageVerdict": "COVERAGE_OK",
+      "harvestedSurfaceKeys": [
+        "lane:SUCCESS_PATTERN",
+        "lane:PRODUCT_WORKFLOW",
+        "type:success_pattern",
+        "lane:INFRASTRUCTURE_ENVIRONMENT",
+        "lane:OPERATOR_FRICTION",
+        "type:infrastructure_observation",
+        "lane:AUTONOMOUS_AGENT_SDLC",
+        "lane:DOCUMENTATION_KNOWLEDGE",
+        "type:verified_truth"
+      ]
+    },
+    "accounting": {
+      "sourceObservations": 9,
+      "findingsPreserved": 9,
+      "distinctValidSuppressed": 0,
+      "unknownUsefulPreserved": 0
+    },
+    "canonicalLanes": [
+      "AUTONOMOUS_AGENT_SDLC",
+      "PRODUCT_FUNCTIONALITY",
+      "PRODUCT_WORKFLOW",
+      "OPERATOR_FRICTION",
+      "INTEGRATION_HANDOFF",
+      "DATA_EXTRACTION_QUALITY",
+      "PERFORMANCE_RELIABILITY",
+      "BUSINESS_PROCESS",
+      "OBSERVABILITY_GAP",
+      "SUCCESS_PATTERN",
+      "SECURITY_GOVERNANCE",
+      "DOCUMENTATION_KNOWLEDGE",
+      "INFRASTRUCTURE_ENVIRONMENT",
+      "COST_EFFICIENCY",
+      "FUTURE_OPPORTUNITY",
+      "UNMODELED_INTELLIGENCE"
+    ],
+    "envelopeHash": "c5c70d99106edd893dfbb06ed1025de9199e36857c598cc867a74260be60d6b2"
+  },
+  "universalHarvestEnvelopeSchema": "universal-harvest-envelope-v1@1.0.0",
+  "harvestHash": "990ea3c7124473f8426b8530fd326155ab852bd7b8dcbf027e291d1cfeb323da",
+  "sdlcCursorBridge": {
+    "schema": "sdlc-cursor-waverunner-handoff-bridge-receipt-v1@1.0.0",
+    "workPackageId": "vae-visual-creation-kernel-v1",
+    "harvestId": "harvest-vae-visual-creation-kernel-v1",
+    "packetHash": "d7f806225aa675404b6452c70ae3826959ec943bede80c4e14de563363e84a31",
+    "promptHash": "38abf497f76437b00de0d9144283da7b1a8b35178014b5f422a1e06bf533de00",
+    "prepareReceiptPath": "/home/wesle/repos/CG-AppBuilder-MCP/artifacts/agent-runs/vae-visual-creation-kernel-v1/sdlc-cursor-prepare-receipt.json",
+    "authorityStatus": "PROPOSAL",
+    "catalogRole": "RETRIEVAL_ONLY",
+    "processingOwner": "Data-Extraction",
+    "sourceOwner": "CapitalGlass-Cross-Agent"
+  }
+}
