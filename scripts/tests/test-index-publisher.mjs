@@ -27,7 +27,12 @@ assert(fs.existsSync(publisherPath), 'run-index-publisher.mjs exists');
 const workflowPath = path.join(REPO_ROOT, '.github/workflows/index-publication.yml');
 assert(fs.existsSync(workflowPath), 'index-publication workflow exists');
 const workflow = fs.readFileSync(workflowPath, 'utf8');
-assert(workflow.includes('workflow_dispatch'), 'v1 dispatch trigger');
+assert(workflow.includes('workflow_dispatch'), 'workflow_dispatch trigger');
+assert(workflow.includes('push:'), 'push trigger on main');
+assert(workflow.includes('work-progress/**'), 'push path filter work-progress');
+assert(workflow.includes('handoffs/**'), 'push path filter handoffs');
+assert(workflow.includes('registry/**'), 'push path filter registry');
+assert(workflow.includes('verify-publication-sha-alignment.mjs'), 'SHA alignment verification step');
 assert(workflow.includes('concurrency:'), 'concurrency lock present');
 assert(workflow.includes('run-index-publisher.mjs'), 'publisher step wired');
 

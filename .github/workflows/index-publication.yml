@@ -1,6 +1,6 @@
 name: Cross-Agent index publication
 
-# v1: workflow_dispatch only. v1.1 enables push on WESLEYDESK self-hosted runner.
+# Push to main (path-filtered) on WESLEYDESK self-hosted WSL2, plus manual workflow_dispatch.
 
 on:
   workflow_dispatch:
@@ -9,6 +9,13 @@ on:
         description: Operator reason for manual publication
         required: false
         type: string
+  push:
+    branches:
+      - main
+    paths:
+      - 'work-progress/**'
+      - 'handoffs/**'
+      - 'registry/**'
 
 permissions:
   contents: read
@@ -23,7 +30,7 @@ jobs:
     timeout-minutes: 45
     env:
       INTELLIGENCE_HUB_ROOT: /mnt/l/Capital-Glass-Intelligence-Hub
-      CG_APPBUILDER_MCP_ROOT: /home/wesley/repos/CG-AppBuilder-MCP
+      CG_APPBUILDER_MCP_ROOT: /home/wesle/repos/CG-AppBuilder-MCP
       CAPITALGLASS_CROSS_AGENT_ROOT: ${{ github.workspace }}
     steps:
       - name: Checkout pinned ref
@@ -43,6 +50,9 @@ jobs:
 
       - name: Run index publisher
         run: node scripts/index/run-index-publisher.mjs
+
+      - name: Verify L BY-KIND sourceCommitSha alignment
+        run: node scripts/index/verify-publication-sha-alignment.mjs
 
       - name: Upload publication receipt
         if: always()

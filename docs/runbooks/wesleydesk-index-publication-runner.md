@@ -7,6 +7,8 @@
 
 Cross-Agent index publication to L:/Supabase **must** execute on **CG-WESLEYDESK-01** WSL2 because that host owns the canonical L: Intelligence Hub mount. WESLEY_WORK is a control host only.
 
+**Triggers:** `workflow_dispatch` (manual) and **push to `main`** when `work-progress/**`, `handoffs/**`, or `registry/**` change.
+
 ## Symptom
 
 `index-publication.yml` jobs stay **queued** with zero repo runners online:
