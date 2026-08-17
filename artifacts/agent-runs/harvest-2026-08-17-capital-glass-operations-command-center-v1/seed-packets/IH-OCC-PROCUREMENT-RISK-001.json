@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-OCC-PROCUREMENT-RISK-001",
+  "kind": "domain-rule",
+  "title": "Six-week procurement horizon uses UNKNOWN_LEAD_TIME instead of invented dates",
+  "summary": "OCC six-week procurement view classifies ON_TRACK, ORDER_NOW, AT_RISK, LATE, and UNKNOWN_LEAD_TIME — unknown lead times remain UNKNOWN rather than fabricated.",
+  "retrievalQuestions": [
+    "What procurement risk states does Operations Command Center expose?",
+    "How does OCC handle unknown vendor lead times?"
+  ],
+  "evidenceRefs": [
+    "/home/wesle/repos/.worktrees/CapitalGlass-CalendarDashBoard/capital-glass-operations-command-center-v1/components/dashboard/command-center/SixWeekProcurementView.tsx",
+    "/home/wesle/repos/.worktrees/CapitalGlass-CalendarDashBoard/capital-glass-operations-command-center-v1/artifacts/current/CALENDAR_OPERATIONS_COMMAND_CENTER_V1_CODE_COMPLETE.json"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "Six-week procurement horizon uses UNKNOWN_LEAD_TIME instead of invented dates",
+    "startAt": [
+      "L:/Capital-Glass-Intelligence-Hub/02-catalog/knowledge-objects/cross-agent-harvest/ih-occ-procurement-risk-001.json"
+    ],
+    "runPreflight": [
+      "npm run agent:index:scout -- --json"
+    ],
+    "doNot": [
+      "Treat repo-local compounding-reuse-receipt as Hub authority when L: is mountable"
+    ],
+    "proveBeforeClaiming": [
+      "INDEX_HIT from L: catalog seed, not Calendar artifact grep"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-CalendarDashBoard",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "RETRIEVAL_ONLY",
+  "status": "CANDIDATE",
+  "harvestId": "harvest-2026-08-17-capital-glass-operations-command-center-v1",
+  "workPackageId": "capital-glass-operations-command-center-v1"
+}

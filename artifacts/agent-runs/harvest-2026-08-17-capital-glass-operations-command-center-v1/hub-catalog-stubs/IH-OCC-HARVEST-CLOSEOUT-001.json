@@ -1,0 +1,76 @@
+{
+  "envelope": {
+    "knowledgeDomain": "cross-agent-harvest",
+    "knowledgeObjectType": "harvest-thread-autopsy-seed",
+    "knowledgeObjectId": "ih-occ-harvest-closeout-001",
+    "schemaVersion": "1.0.0",
+    "provenanceClass": "HARVEST_AUTHORITY",
+    "authoritySource": {
+      "system": "github",
+      "repository": "CapitalGlass-Cross-Agent",
+      "commit": "42d5ec811a265d2eabb9b62f92f7a377cd34544a",
+      "branch": "main",
+      "harvestId": "harvest-2026-08-17-capital-glass-operations-command-center-v1",
+      "seedId": "IH-OCC-HARVEST-CLOSEOUT-001"
+    },
+    "cacheEligibility": "retrieval_eligible",
+    "createdAt": "2026-08-17T14:29:15.881Z",
+    "verificationState": "PARTIALLY_VERIFIED",
+    "bindingRule": "GIT_HARVEST_THREAD_AUTOPSY",
+    "defaultRetrievalEligible": true,
+    "supersessionState": "current",
+    "supersededByObjectId": null,
+    "retrievalTier": "standard",
+    "contentHash": "9c6653cc751f27e70e58d85c4331f8bdf8f8b379180bbbaf321ab78f09f6874c"
+  },
+  "body": {
+    "seedId": "IH-OCC-HARVEST-CLOSEOUT-001",
+    "kind": "failure-pattern",
+    "title": "Wave 15 empty harvest — wrong closeout schema bypassed SDLC findings lift",
+    "summary": "WaveRunner Wave 15 accepted HARVEST_TRANSPORT with zero findings because occ-closeout-manifest-v1 was passed instead of SDLC closeout with verifiedTruths, gateResults, and evidence. Repair requires exportWaverunnerHandoff + Cross-Agent harvest:validate + Hub publication.",
+    "canonicalQuestion": "Why did Wave 15 OCC harvest have empty coverage?",
+    "alternateQuestions": [
+      "What closeout schema does exportWaverunnerHandoff require?",
+      "HARVEST_TRANSPORT_ACCEPTED vs COMPOUNDING_COVERAGE_VALID"
+    ],
+    "shortAnswer": "WaveRunner Wave 15 accepted HARVEST_TRANSPORT with zero findings because occ-closeout-manifest-v1 was passed instead of SDLC closeout with verifiedTruths, gateResults, and evidence. Repair requires exportWaverunnerHandoff + Cross-Agent harvest:validate + Hub publication.",
+    "detailedAnswer": "Wave 15 empty harvest — wrong closeout schema bypassed SDLC findings lift",
+    "retrievalQuestions": [
+      "Why did Wave 15 OCC harvest have empty coverage?",
+      "What closeout schema does exportWaverunnerHandoff require?",
+      "HARVEST_TRANSPORT_ACCEPTED vs COMPOUNDING_COVERAGE_VALID"
+    ],
+    "futureAgentInstructions": {
+      "whenThisAppears": "Wave 15 empty harvest — wrong closeout schema bypassed SDLC findings lift",
+      "startAt": [
+        "L:/Capital-Glass-Intelligence-Hub/02-catalog/knowledge-objects/cross-agent-harvest/ih-occ-harvest-closeout-001.json"
+      ],
+      "runPreflight": [
+        "npm run agent:index:scout -- --json"
+      ],
+      "doNot": [
+        "Treat repo-local compounding-reuse-receipt as Hub authority when L: is mountable"
+      ],
+      "proveBeforeClaiming": [
+        "INDEX_HIT from L: catalog seed, not Calendar artifact grep"
+      ]
+    },
+    "evidenceRefs": [
+      "/home/wesle/repos/.worktrees/CapitalGlass-CalendarDashBoard/capital-glass-operations-command-center-v1/artifacts/agent-runs/capital-glass-operations-command-center-v1/wave-15-intelligence-harvest.json",
+      "/home/wesle/repos/CG-AppBuilder-MCP/scripts/sdlc-protocol-cursor/lib/export-waverunner-handoff.mjs",
+      "/home/wesle/repos/.worktrees/CapitalGlass-CalendarDashBoard/capital-glass-operations-command-center-v1/artifacts/agent-runs/occ-operational-publication-hub-gap-investigation-v1/investigation-report-v1.json"
+    ],
+    "executionDeltaRefs": [],
+    "wasteIds": [],
+    "operatorFrictionIds": [],
+    "roiRank": null,
+    "doNotAdvance": [],
+    "promotionClass": "POLICY_GATED",
+    "status": "CANDIDATE",
+    "authorityRepo": "CapitalGlass-Cross-Agent",
+    "authorityPath": [
+      "artifacts/agent-runs/harvest-2026-08-17-capital-glass-operations-command-center-v1/seed-packets/IH-OCC-HARVEST-CLOSEOUT-001.json"
+    ],
+    "harvestId": "harvest-2026-08-17-capital-glass-operations-command-center-v1"
+  }
+}

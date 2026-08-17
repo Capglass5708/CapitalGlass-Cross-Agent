@@ -1,0 +1,163 @@
+{
+  "packetKind": "graph-extraction",
+  "schemaVersion": "cg-master-graph-extraction-v1",
+  "extractionId": "extraction:harvest-2026-08-17-capital-glass-operations-command-center-v1",
+  "harvestId": "harvest-2026-08-17-capital-glass-operations-command-center-v1",
+  "workPackageId": "harvest-2026-08-17-capital-glass-operations-command-center-v1",
+  "producer": {
+    "repositoryId": "repo:capitalglass-cross-agent",
+    "capability": "harvest-graph-extraction",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "id": "harvest:harvest-2026-08-17-capital-glass-operations-command-center-v1",
+      "nodeType": "Harvest",
+      "displayName": "harvest-2026-08-17-capital-glass-operations-command-center-v1",
+      "lifecycleState": "lifecycle:canonical",
+      "operationalState": "HARVEST_COMPLETE",
+      "metadata": {
+        "missionClass": "occ-sdlc-harvest-bridge-v1",
+        "sourceCommitSha": "42d5ec811a265d2eabb9b62f92f7a377cd34544a",
+        "retrievalResult": "INDEX_HIT"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-17T14:29:08.267Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-17-capital-glass-operations-command-center-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-17-capital-glass-operations-command-center-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:capital-glass-operations-command-center-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Capital Glass Operations Command Center v1 — CODE_COMPLETE harvest bridge",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "WARN",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CapitalGlass-CalendarDashBoard",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "work-progress/projects/capital-glass-operations-command-center-v1.md",
+        "advancementGate": "operator-merge-and-browser-proof"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-17T14:29:08.267Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-17-capital-glass-operations-command-center-v1/compact-records/capital-glass-operations-command-center-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-17-capital-glass-operations-command-center-v1/compact-records/capital-glass-operations-command-center-v1.json"
+        }
+      }
+    },
+    {
+      "id": "entity:blocker-blocker-capital-glass-operations-command-center-v1",
+      "nodeType": "Entity",
+      "displayName": "blocker-capital-glass-operations-command-center-v1",
+      "metadata": {
+        "entityKind": "harvest-blocker",
+        "blockerOwner": null
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-17T14:29:08.267Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-17-capital-glass-operations-command-center-v1/compact-records/capital-glass-operations-command-center-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-17-capital-glass-operations-command-center-v1/compact-records/capital-glass-operations-command-center-v1.json"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:harvest-harvest-2026-08-17-capital-glass-operations-command-center-v1-contains-workpackage-capital-glass-operations-command-center-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-17-capital-glass-operations-command-center-v1",
+      "targetId": "workpackage:capital-glass-operations-command-center-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-17T14:29:08.267Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-17-capital-glass-operations-command-center-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-17-capital-glass-operations-command-center-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-capital-glass-operations-command-center-v1-blocked-by-entity-blocker-blocker-capital-glass-operations-command-center-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:capital-glass-operations-command-center-v1",
+      "targetId": "entity:blocker-blocker-capital-glass-operations-command-center-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-17T14:29:08.267Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-17-capital-glass-operations-command-center-v1/compact-records/capital-glass-operations-command-center-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-17-capital-glass-operations-command-center-v1/compact-records/capital-glass-operations-command-center-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-capital-glass-operations-command-center-v1-blocked-by-entity-blocker-blocker-capital-glass-operations-command-center-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:capital-glass-operations-command-center-v1",
+      "targetId": "entity:blocker-blocker-capital-glass-operations-command-center-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-17T14:29:08.267Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-17-capital-glass-operations-command-center-v1/compact-records/capital-glass-operations-command-center-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-17-capital-glass-operations-command-center-v1/compact-records/capital-glass-operations-command-center-v1.json"
+        }
+      }
+    }
+  ],
+  "warnings": [
+    "unmapped ownerRepo CapitalGlass-CalendarDashBoard for packet capital-glass-operations-command-center-v1"
+  ],
+  "provenance": {
+    "producerRepositoryId": "repo:capitalglass-cross-agent",
+    "producerCapability": "harvest-graph-extraction",
+    "sourceAuthority": "authority:cross-agent-harvest",
+    "classification": "observed",
+    "verificationState": "verified",
+    "recordedAt": "2026-08-17T14:29:08.267Z",
+    "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-17-capital-glass-operations-command-center-v1/harvest-manifest-v1.json",
+    "sourceAnchorDetail": {
+      "anchorType": "file-path",
+      "locator": "artifacts/agent-runs/harvest-2026-08-17-capital-glass-operations-command-center-v1/harvest-manifest-v1.json"
+    }
+  }
+}

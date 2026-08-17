@@ -1,0 +1,339 @@
+{
+  "schema": "sdlc-cursor-intelligence-harvest-v2@1.0.0",
+  "milestoneId": "capital-glass-operations-command-center-v1",
+  "waveId": "capital-glass-operations-command-center-v1",
+  "provenance": {
+    "ruleId": "capital-glass-sdlc-milestone-wave-agent-rule",
+    "releaseId": "AI-CACHE-RELEASE-20260806-2012d9645b9e",
+    "sourceHash": "b3569def1203d672f726f9d45d73d7c4133661c822e3c92c533d71039ff6ca6d",
+    "headSha": "5fe2c3e602f7a67c685df65582e36119e37b7117",
+    "branch": "work/capital-glass-operations-command-center-v1",
+    "preparedAt": "2026-08-17T15:00:00.000Z"
+  },
+  "verifiedTruths": [
+    "Calendar Operations Command Center v1 operator surfaces are CODE_COMPLETE on the existing Program A/B projection spine (attention today, three-week lookahead, six-week procurement, project risk, drawer provenance)",
+    "CALENDAR_OPERATIONS_COMMAND_CENTER_V1_CODE_COMPLETE stamp exists with authoritySha 0d4c96b23d2ae592cce69ca7025c17f701ddf863",
+    "Acceptance lanes A–F and deterministic continuation PASS per closeout-manifest.json; browserE2eLive BLOCKED and hubLivePublication was INCOMPLETE before occ-sdlc-harvest-bridge-v1",
+    "WaveRunner evidence reuse avoided rerunning smoke:situation-engine-v1, smoke:event-contract-v2, and smoke:temporal-model-v1 during gap investigation",
+    "Wave 15 harvest transport accepted zero findings because closeout used occ-closeout-manifest-v1 instead of SDLC verifiedTruths/gateResults/evidence — root cause for missing Cross-Agent harvest dir",
+    "PR #26 (CapitalGlass-CalendarDashBoard) GHA validate PASS; merge requires operator authorization; Vercel preview blocked"
+  ],
+  "derivedConclusions": [],
+  "decisions": [],
+  "changes": [],
+  "commands": [],
+  "gateResults": [
+    {
+      "gate": "CALENDAR_OPERATIONS_COMMAND_CENTER_V1_CODE_COMPLETE",
+      "result": "PASS"
+    },
+    {
+      "gate": "occ-closeout-manifest acceptance A-F",
+      "result": "PASS"
+    },
+    {
+      "gate": "compounding-reuse.test.ts",
+      "result": "PASS"
+    },
+    {
+      "gate": "wave-12 failure recovery",
+      "result": "PASS"
+    },
+    {
+      "gate": "browserE2eLive",
+      "result": "BLOCKED"
+    },
+    {
+      "gate": "mainMerge",
+      "result": "BLOCKED"
+    },
+    {
+      "gate": "hubLivePublication",
+      "result": "REPAIR_IN_PROGRESS",
+      "repairMission": "occ-sdlc-harvest-bridge-v1"
+    }
+  ],
+  "evidence": [
+    "CapitalGlass-CalendarDashBoard/artifacts/agent-runs/capital-glass-operations-command-center-v1/closeout-manifest.json",
+    "CapitalGlass-CalendarDashBoard/artifacts/current/CALENDAR_OPERATIONS_COMMAND_CENTER_V1_CODE_COMPLETE.json",
+    "CapitalGlass-CalendarDashBoard/artifacts/agent-runs/capital-glass-operations-command-center-v1/wave-15-intelligence-harvest.json",
+    "CapitalGlass-CalendarDashBoard/artifacts/agent-runs/occ-operational-publication-hub-gap-investigation-v1/investigation-report-v1.json",
+    "https://github.com/Capglass5708/CapitalGlass-CalendarDashBoard/pull/26"
+  ],
+  "risks": [],
+  "blockers": [
+    "Authenticated live browser proof deferred until PR #26 merge and production deploy",
+    "Operator merge authorization required for PR #26"
+  ],
+  "unknowns": [],
+  "crossCheckInstructions": [
+    "git -C /home/wesle/repos/.worktrees/CapitalGlass-CalendarDashBoard/capital-glass-operations-command-center-v1 rev-parse HEAD",
+    "test -f artifacts/agent-runs/capital-glass-operations-command-center-v1/closeout-manifest.json",
+    "npm run sdlc:cursor:export-waverunner-handoff -- --work-package=capital-glass-operations-command-center-v1 --json"
+  ],
+  "futureCreationOpportunities": [
+    "occ-live-browser-proof-v1 after PR #26 merge/deploy",
+    "WaveRunner gate hardening for empty harvest coverage"
+  ],
+  "recommendedNextWave": "occ-live-browser-proof-v1",
+  "universalHarvest": {
+    "harvestVersion": "universal-harvest-envelope-v1@1.0.0",
+    "milestoneId": "capital-glass-operations-command-center-v1",
+    "waveId": "capital-glass-operations-command-center-v1",
+    "executionMode": null,
+    "source": {
+      "repository": "/home/wesle/repos/.worktrees/CapitalGlass-CalendarDashBoard/capital-glass-operations-command-center-v1",
+      "sha": "5fe2c3e602f7a67c685df65582e36119e37b7117",
+      "environment": "WESLEY_WORK_WSL",
+      "machine": null,
+      "observedAt": "2026-08-17T14:29:09.661Z",
+      "receiptRefs": []
+    },
+    "surfacesTouched": {
+      "0": "CapitalGlass-CalendarDashBoard/lib/command-center/operator-command",
+      "1": "CapitalGlass-CalendarDashBoard/components/dashboard/command-center",
+      "2": "CapitalGlass-Cross-Agent/artifacts/agent-runs/harvest-capital-glass-operations-command-center-v1",
+      "repositories": [],
+      "applications": [],
+      "businessWorkflows": [],
+      "operatorInteractions": [],
+      "crossAppHandoffs": [],
+      "runtimeServices": [],
+      "documentsOrData": [],
+      "externalIntegrations": [],
+      "machinesOrEnvironments": []
+    },
+    "findings": [
+      {
+        "findingId": "verified-cbbf4c3a6109",
+        "stableIdentity": "Calendar Operations Command Center v1 operator surfaces are CODE_COMPLETE on the existing Program A/B projection spine (",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Calendar Operations Command Center v1 operator surfaces are CODE_COMPLETE on the existing Program A/B projection spine (attention today, three-week lookahead, six-week procurement, project risk, drawer provenance)",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-4e3b4bedf1d6",
+        "stableIdentity": "CALENDAR_OPERATIONS_COMMAND_CENTER_V1_CODE_COMPLETE stamp exists with authoritySha 0d4c96b23d2ae592cce69ca7025c17f701ddf",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "CALENDAR_OPERATIONS_COMMAND_CENTER_V1_CODE_COMPLETE stamp exists with authoritySha 0d4c96b23d2ae592cce69ca7025c17f701ddf863",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-40b213813d23",
+        "stableIdentity": "Acceptance lanes A–F and deterministic continuation PASS per closeout-manifest.json; browserE2eLive BLOCKED and hubLiveP",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Acceptance lanes A–F and deterministic continuation PASS per closeout-manifest.json; browserE2eLive BLOCKED and hubLivePublication was INCOMPLETE before occ-sdlc-harvest-bridge-v1",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-6a34e321e923",
+        "stableIdentity": "WaveRunner evidence reuse avoided rerunning smoke:situation-engine-v1, smoke:event-contract-v2, and smoke:temporal-model",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "WaveRunner evidence reuse avoided rerunning smoke:situation-engine-v1, smoke:event-contract-v2, and smoke:temporal-model-v1 during gap investigation",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-69d7958f3af6",
+        "stableIdentity": "Wave 15 harvest transport accepted zero findings because closeout used occ-closeout-manifest-v1 instead of SDLC verified",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Wave 15 harvest transport accepted zero findings because closeout used occ-closeout-manifest-v1 instead of SDLC verifiedTruths/gateResults/evidence — root cause for missing Cross-Agent harvest dir",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "verified-221bab73185c",
+        "stableIdentity": "PR #26 (CapitalGlass-CalendarDashBoard) GHA validate PASS; merge requires operator authorization; Vercel preview blocked",
+        "findingType": "verified_truth",
+        "laneMembership": [
+          "AUTONOMOUS_AGENT_SDLC",
+          "DOCUMENTATION_KNOWLEDGE"
+        ],
+        "primaryLane": "AUTONOMOUS_AGENT_SDLC",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "PR #26 (CapitalGlass-CalendarDashBoard) GHA validate PASS; merge requires operator authorization; Vercel preview blocked",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "success-3c52e4c65d38",
+        "stableIdentity": "success-3c52e4c65d38",
+        "findingType": "success_pattern",
+        "laneMembership": [
+          "SUCCESS_PATTERN"
+        ],
+        "primaryLane": "SUCCESS_PATTERN",
+        "claimClass": "verified",
+        "confidence": "high",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "Evidence reuse during hub-gap investigation — reprobed only uncertain surfaces without rerunning full OCC test matrix",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      },
+      {
+        "findingId": "product-424e3dd30310",
+        "stableIdentity": "product-424e3dd30310",
+        "findingType": "product_observation",
+        "laneMembership": [
+          "PRODUCT_FUNCTIONALITY",
+          "PRODUCT_WORKFLOW"
+        ],
+        "primaryLane": "PRODUCT_FUNCTIONALITY",
+        "claimClass": "derived",
+        "confidence": "medium",
+        "evidenceRefs": [],
+        "rawRefs": [],
+        "observedBehavior": "WaveRunner should distinguish HARVEST_TRANSPORT_ACCEPTED from COMPOUNDING_COVERAGE_VALID and require harvestedSurfaceCount > 0 for compounding missions",
+        "expectedBehavior": "",
+        "impact": "",
+        "operatorImpact": "",
+        "businessImpact": "",
+        "automationImpact": "",
+        "implementationAuthority": false,
+        "unmodeledFields": {}
+      }
+    ],
+    "coverage": {
+      "touchedSurfaceCount": 0,
+      "harvestedSurfaceCount": 8,
+      "unharvestedTouchedSurfaces": [],
+      "coverageVerdict": "COVERAGE_OK",
+      "harvestedSurfaceKeys": [
+        "lane:AUTONOMOUS_AGENT_SDLC",
+        "lane:DOCUMENTATION_KNOWLEDGE",
+        "type:verified_truth",
+        "lane:SUCCESS_PATTERN",
+        "type:success_pattern",
+        "lane:PRODUCT_FUNCTIONALITY",
+        "lane:PRODUCT_WORKFLOW",
+        "type:product_observation"
+      ]
+    },
+    "accounting": {
+      "sourceObservations": 8,
+      "findingsPreserved": 8,
+      "distinctValidSuppressed": 0,
+      "unknownUsefulPreserved": 0
+    },
+    "canonicalLanes": [
+      "AUTONOMOUS_AGENT_SDLC",
+      "PRODUCT_FUNCTIONALITY",
+      "PRODUCT_WORKFLOW",
+      "OPERATOR_FRICTION",
+      "INTEGRATION_HANDOFF",
+      "DATA_EXTRACTION_QUALITY",
+      "PERFORMANCE_RELIABILITY",
+      "BUSINESS_PROCESS",
+      "OBSERVABILITY_GAP",
+      "SUCCESS_PATTERN",
+      "SECURITY_GOVERNANCE",
+      "DOCUMENTATION_KNOWLEDGE",
+      "INFRASTRUCTURE_ENVIRONMENT",
+      "COST_EFFICIENCY",
+      "FUTURE_OPPORTUNITY",
+      "UNMODELED_INTELLIGENCE"
+    ],
+    "envelopeHash": "baeb8087f49bcb4636e4d615661938eaf2559fd69acd730b93e07781f836225a"
+  },
+  "universalHarvestEnvelopeSchema": "universal-harvest-envelope-v1@1.0.0",
+  "harvestHash": "97a02560884854fdfe8fd1b11aa003ae0333be201f94b2cbd272faefabdfa9c3",
+  "sdlcCursorBridge": {
+    "schema": "sdlc-cursor-waverunner-handoff-bridge-receipt-v1@1.0.0",
+    "workPackageId": "capital-glass-operations-command-center-v1",
+    "harvestId": "harvest-2026-08-17-capital-glass-operations-command-center-v1",
+    "packetHash": "occ-capital-glass-operations-command-center-v1-bridge-packet",
+    "promptHash": "occ-capital-glass-operations-command-center-v1-bridge-prompt",
+    "prepareReceiptPath": "/home/wesle/repos/CG-AppBuilder-MCP/artifacts/agent-runs/capital-glass-operations-command-center-v1/sdlc-cursor-prepare-receipt.json",
+    "authorityStatus": "PROPOSAL",
+    "catalogRole": "RETRIEVAL_ONLY",
+    "processingOwner": "Data-Extraction",
+    "sourceOwner": "CapitalGlass-Cross-Agent"
+  }
+}
