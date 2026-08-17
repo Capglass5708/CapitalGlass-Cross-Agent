@@ -1,0 +1,73 @@
+{
+  "schema": "operational-intelligence-envelope-v1@1.0.0",
+  "identity": {
+    "objectId": "oi:ranking-calibration:superseded-002",
+    "kind": "RANKING_CALIBRATION_SIGNAL",
+    "schema": "operational-intelligence-envelope-v1@1.0.0",
+    "contentHash": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
+    "derivationVersion": "operational-intelligence-v1@1.0.1"
+  },
+  "authority": {
+    "authorityClass": "DERIVED_INTELLIGENCE",
+    "progressionAuthority": false,
+    "rawTelemetryDuplicated": false
+  },
+  "temporal": {
+    "observedAt": "2026-08-17T03:10:00.000Z",
+    "validFrom": "2026-08-17T03:10:00.000Z",
+    "validThrough": null,
+    "measurementWindowStart": "2026-08-17T02:00:00.000Z",
+    "measurementWindowEnd": "2026-08-17T03:10:00.000Z",
+    "lastRevalidatedAt": "2026-08-17T03:10:00.000Z"
+  },
+  "lifecycle": {
+    "lifecycleStage": "SUPERSEDED",
+    "supersedes": ["oi:ranking-calibration:superseded-001"],
+    "supersededBy": null,
+    "invalidated": false,
+    "invalidationReason": null
+  },
+  "evidenceState": {
+    "supportingEvidenceRefs": [
+      {
+        "ref": "artifacts/agent-runs/operational-intelligence-envelope-v1/intelligence-dry-run/ranking-calibration-v2.json",
+        "refKind": "ARTIFACT",
+        "contentHash": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+      }
+    ],
+    "contradictingEvidenceRefs": [],
+    "rejectedEvidenceRefs": []
+  },
+  "confidence": {
+    "score": 0.9,
+    "basis": ["supersession-chain-intact"],
+    "calculationVersion": "confidence-v1@1.0.0"
+  },
+  "derivation": {
+    "derivedFrom": [
+      {
+        "objectId": "oi:ranking-calibration:superseded-001",
+        "relationship": "SUPERSEDES",
+        "contribution": "material-change-new-content-hash",
+        "evidenceWeight": 1
+      }
+    ]
+  },
+  "futureUse": {
+    "retrievalEligible": true,
+    "startupContextEligible": true,
+    "synthesisEligible": true,
+    "agentExplorationEligible": true,
+    "opportunityMiningEligible": true
+  },
+  "measurement": {
+    "measurementQuality": "PAIRED_MEASURED",
+    "metrics": {
+      "rankingDelta": 0.14
+    }
+  },
+  "evidenceReality": "REAL",
+  "extensions": {
+    "derivedObjectCanBeSuperseded": true
+  }
+}

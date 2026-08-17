@@ -1,0 +1,77 @@
+{
+  "schema": "operational-intelligence-envelope-v1@1.0.0",
+  "identity": {
+    "objectId": "oi:intelligence-value:contradict-001",
+    "kind": "INTELLIGENCE_VALUE_SIGNAL",
+    "schema": "operational-intelligence-envelope-v1@1.0.0",
+    "contentHash": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
+    "derivationVersion": "operational-intelligence-v1@1.0.0"
+  },
+  "authority": {
+    "authorityClass": "DERIVED_INTELLIGENCE",
+    "progressionAuthority": false,
+    "rawTelemetryDuplicated": false
+  },
+  "temporal": {
+    "observedAt": "2026-08-17T03:20:00.000Z",
+    "validFrom": "2026-08-17T03:20:00.000Z",
+    "validThrough": null
+  },
+  "lifecycle": {
+    "lifecycleStage": "ACTIVE",
+    "supersedes": [],
+    "supersededBy": null,
+    "invalidated": false,
+    "invalidationReason": null
+  },
+  "evidenceState": {
+    "supportingEvidenceRefs": [
+      {
+        "ref": "artifacts/agent-runs/ephemeral-intelligence-contract-fixture-v1/session-closeout-v3.2.json",
+        "refKind": "CLOSEOUT",
+        "contentHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+      }
+    ],
+    "contradictingEvidenceRefs": [
+      {
+        "ref": "artifacts/agent-runs/ephemeral-intelligence-contract-fixture-v1/prior-closeout-v3.2.json",
+        "refKind": "CLOSEOUT",
+        "contentHash": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+        "note": "Conflicting token savings claim"
+      }
+    ],
+    "rejectedEvidenceRefs": [
+      {
+        "ref": "artifacts/agent-runs/ephemeral-intelligence-contract-fixture-v1/chat-summary-only.json",
+        "refKind": "ARTIFACT",
+        "note": "Rejected: chat-only prose without structured closeout"
+      }
+    ]
+  },
+  "confidence": {
+    "score": 0.55,
+    "basis": ["contradicting-closeout-present", "rejected-chat-only-evidence"],
+    "calculationVersion": "confidence-v1@1.0.0"
+  },
+  "derivation": {
+    "derivedFrom": []
+  },
+  "futureUse": {
+    "retrievalEligible": true,
+    "startupContextEligible": false,
+    "synthesisEligible": true,
+    "agentExplorationEligible": true,
+    "opportunityMiningEligible": false
+  },
+  "measurement": {
+    "measurementQuality": "INFERRED",
+    "metrics": {
+      "estimatedTokenSavings": 4200
+    }
+  },
+  "evidenceReality": "REAL",
+  "extensions": {
+    "contradictingEvidencePreserved": true,
+    "rejectedEvidencePreserved": true
+  }
+}

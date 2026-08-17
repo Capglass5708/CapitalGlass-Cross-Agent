@@ -86,7 +86,13 @@
     "master-graph:publish-hub": "node scripts/master-graph/run-hub-publication.mjs",
     "index:compile-control-slices": "node scripts/index/compile-control-slices.mjs",
     "test:index-control-slices": "node scripts/tests/test-index-control-slices.mjs",
-    "test:experience-graph-foundation": "node scripts/tests/run-experience-graph-foundation-contracts.test.mjs"
+    "test:experience-graph-foundation": "node scripts/tests/run-experience-graph-foundation-contracts.test.mjs",
+    "test:intelligence-contracts": "node scripts/tests/run-intelligence-contracts.test.mjs",
+    "intelligence:ingest": "node scripts/intelligence/ingest.mjs",
+    "test:intelligence-ingest": "node scripts/tests/run-intelligence-ingest.test.mjs",
+    "test:intelligence-first-real-mission": "node scripts/tests/run-intelligence-first-real-mission.harness.test.mjs",
+    "test:intelligence-verification": "node scripts/tests/run-intelligence-verification-checklist.test.mjs",
+    "test:intelligence": "npm run test:intelligence-contracts && npm run test:intelligence-ingest && npm run test:intelligence-first-real-mission && npm run test:intelligence-verification"
   },
   "devDependencies": {
     "ajv": "^8.20.0",

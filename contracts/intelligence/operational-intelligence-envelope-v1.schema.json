@@ -1,0 +1,218 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "operational-intelligence-envelope-v1@1.0.0",
+  "title": "Operational Intelligence Envelope v1 (OP-00A)",
+  "description": "Closed-core derived intelligence envelope with open extensions bag. Unknown future kinds validate when the closed core is satisfied.",
+  "type": "object",
+  "required": [
+    "schema",
+    "identity",
+    "authority",
+    "temporal",
+    "lifecycle",
+    "evidenceState",
+    "confidence",
+    "derivation",
+    "futureUse",
+    "measurement",
+    "evidenceReality",
+    "extensions"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "operational-intelligence-envelope-v1@1.0.0" },
+    "identity": { "$ref": "#/$defs/identity" },
+    "authority": { "$ref": "#/$defs/authority" },
+    "temporal": { "$ref": "#/$defs/temporal" },
+    "lifecycle": { "$ref": "#/$defs/lifecycle" },
+    "evidenceState": { "$ref": "#/$defs/evidenceState" },
+    "confidence": { "$ref": "#/$defs/confidence" },
+    "derivation": { "$ref": "#/$defs/derivation" },
+    "futureUse": { "$ref": "#/$defs/futureUse" },
+    "measurement": { "$ref": "#/$defs/measurement" },
+    "evidenceReality": { "$ref": "#/$defs/evidenceReality" },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "objectId": {
+      "type": "string",
+      "pattern": "^oi:"
+    },
+    "identity": {
+      "type": "object",
+      "required": ["objectId", "kind", "schema", "contentHash", "derivationVersion"],
+      "additionalProperties": false,
+      "properties": {
+        "objectId": { "$ref": "#/$defs/objectId" },
+        "kind": { "type": "string", "minLength": 1 },
+        "schema": { "const": "operational-intelligence-envelope-v1@1.0.0" },
+        "contentHash": { "$ref": "#/$defs/sha256" },
+        "derivationVersion": { "type": "string", "minLength": 1 }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "required": ["authorityClass", "progressionAuthority", "rawTelemetryDuplicated"],
+      "additionalProperties": false,
+      "properties": {
+        "authorityClass": { "const": "DERIVED_INTELLIGENCE" },
+        "progressionAuthority": { "const": false },
+        "rawTelemetryDuplicated": { "const": false }
+      }
+    },
+    "temporal": {
+      "type": "object",
+      "required": ["observedAt", "validFrom"],
+      "additionalProperties": false,
+      "properties": {
+        "observedAt": { "type": "string", "format": "date-time" },
+        "validFrom": { "type": "string", "format": "date-time" },
+        "validThrough": { "type": ["string", "null"], "format": "date-time" },
+        "measurementWindowStart": { "type": "string", "format": "date-time" },
+        "measurementWindowEnd": { "type": "string", "format": "date-time" },
+        "lastRevalidatedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "lifecycle": {
+      "type": "object",
+      "required": ["lifecycleStage", "supersedes", "invalidated"],
+      "additionalProperties": false,
+      "properties": {
+        "lifecycleStage": {
+          "type": "string",
+          "enum": ["ACTIVE", "EXPIRED", "SUPERSEDED", "INVALIDATED", "ARCHIVED"]
+        },
+        "supersedes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/objectId" }
+        },
+        "supersededBy": { "oneOf": [{ "$ref": "#/$defs/objectId" }, { "type": "null" }] },
+        "invalidated": { "type": "boolean" },
+        "invalidationReason": { "type": ["string", "null"] }
+      }
+    },
+    "evidenceRef": {
+      "type": "object",
+      "required": ["ref", "refKind"],
+      "additionalProperties": false,
+      "properties": {
+        "ref": { "type": "string", "minLength": 1 },
+        "refKind": {
+          "type": "string",
+          "enum": ["CLOSEOUT", "HANDOFF", "LEDGER", "ARTIFACT", "HUB_OBJECT", "OTHER"]
+        },
+        "contentHash": { "$ref": "#/$defs/sha256" },
+        "note": { "type": "string" }
+      }
+    },
+    "evidenceState": {
+      "type": "object",
+      "required": ["supportingEvidenceRefs", "contradictingEvidenceRefs", "rejectedEvidenceRefs"],
+      "additionalProperties": false,
+      "properties": {
+        "supportingEvidenceRefs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/evidenceRef" }
+        },
+        "contradictingEvidenceRefs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/evidenceRef" }
+        },
+        "rejectedEvidenceRefs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/evidenceRef" }
+        }
+      }
+    },
+    "confidence": {
+      "type": "object",
+      "required": ["score", "basis", "calculationVersion"],
+      "additionalProperties": false,
+      "properties": {
+        "score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "basis": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "calculationVersion": { "type": "string", "minLength": 1 }
+      }
+    },
+    "derivationEdge": {
+      "type": "object",
+      "required": ["objectId", "relationship", "contribution", "evidenceWeight"],
+      "additionalProperties": false,
+      "properties": {
+        "objectId": { "$ref": "#/$defs/objectId" },
+        "relationship": { "type": "string", "minLength": 1 },
+        "contribution": { "type": "string", "minLength": 1 },
+        "evidenceWeight": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "derivation": {
+      "type": "object",
+      "required": ["derivedFrom"],
+      "additionalProperties": false,
+      "properties": {
+        "derivedFrom": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/derivationEdge" }
+        }
+      }
+    },
+    "futureUse": {
+      "type": "object",
+      "required": [
+        "retrievalEligible",
+        "startupContextEligible",
+        "synthesisEligible",
+        "agentExplorationEligible",
+        "opportunityMiningEligible"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "retrievalEligible": { "type": "boolean" },
+        "startupContextEligible": { "type": "boolean" },
+        "synthesisEligible": { "type": "boolean" },
+        "agentExplorationEligible": { "type": "boolean" },
+        "opportunityMiningEligible": { "type": "boolean" }
+      }
+    },
+    "measurementQuality": {
+      "type": "string",
+      "enum": [
+        "DIRECT_MEASURED",
+        "PAIRED_MEASURED",
+        "PROVIDER_VERIFIED",
+        "CACHE_VERIFIED",
+        "ESTIMATED",
+        "INFERRED",
+        "SYNTHETIC"
+      ]
+    },
+    "measurement": {
+      "type": "object",
+      "required": ["measurementQuality"],
+      "additionalProperties": false,
+      "properties": {
+        "measurementQuality": { "$ref": "#/$defs/measurementQuality" },
+        "metrics": {
+          "type": "object",
+          "additionalProperties": {
+            "oneOf": [{ "type": "number" }, { "type": "string" }, { "type": "boolean" }]
+          }
+        }
+      }
+    },
+    "evidenceReality": {
+      "type": "string",
+      "enum": ["REAL", "FIXTURE", "SYNTHETIC"]
+    }
+  }
+}

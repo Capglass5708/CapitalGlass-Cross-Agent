@@ -1,0 +1,66 @@
+{
+  "schema": "operational-intelligence-envelope-v1@1.0.0",
+  "identity": {
+    "objectId": "oi:epoch-summary:expired-001",
+    "kind": "COMPOUNDING_EPOCH_SUMMARY",
+    "schema": "operational-intelligence-envelope-v1@1.0.0",
+    "contentHash": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+    "derivationVersion": "operational-intelligence-v1@1.0.0"
+  },
+  "authority": {
+    "authorityClass": "DERIVED_INTELLIGENCE",
+    "progressionAuthority": false,
+    "rawTelemetryDuplicated": false
+  },
+  "temporal": {
+    "observedAt": "2026-07-01T00:00:00.000Z",
+    "validFrom": "2026-07-01T00:00:00.000Z",
+    "validThrough": "2026-08-01T00:00:00.000Z",
+    "measurementWindowStart": "2026-07-01T00:00:00.000Z",
+    "measurementWindowEnd": "2026-08-01T00:00:00.000Z",
+    "lastRevalidatedAt": "2026-08-01T00:00:00.000Z"
+  },
+  "lifecycle": {
+    "lifecycleStage": "EXPIRED",
+    "supersedes": [],
+    "supersededBy": null,
+    "invalidated": false,
+    "invalidationReason": null
+  },
+  "evidenceState": {
+    "supportingEvidenceRefs": [
+      {
+        "ref": "artifacts/agent-runs/operational-intelligence-envelope-v1/intelligence-dry-run/epoch-summary.json",
+        "refKind": "ARTIFACT",
+        "contentHash": "sha256:5555555555555555555555555555555555555555555555555555555555555555"
+      }
+    ],
+    "contradictingEvidenceRefs": [],
+    "rejectedEvidenceRefs": []
+  },
+  "confidence": {
+    "score": 0.71,
+    "basis": ["epoch-window-closed"],
+    "calculationVersion": "confidence-v1@1.0.0"
+  },
+  "derivation": {
+    "derivedFrom": []
+  },
+  "futureUse": {
+    "retrievalEligible": true,
+    "startupContextEligible": false,
+    "synthesisEligible": true,
+    "agentExplorationEligible": false,
+    "opportunityMiningEligible": false
+  },
+  "measurement": {
+    "measurementQuality": "ESTIMATED",
+    "metrics": {
+      "missionCount": 12
+    }
+  },
+  "evidenceReality": "FIXTURE",
+  "extensions": {
+    "historicalTruthCanExpire": true
+  }
+}

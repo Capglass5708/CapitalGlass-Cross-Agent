@@ -1,0 +1,90 @@
+{
+  "schema": "operational-intelligence-envelope-v1@1.0.0",
+  "identity": {
+    "objectId": "oi:concept-candidate:graph-001",
+    "kind": "EMERGENT_CONCEPT_CANDIDATE",
+    "schema": "operational-intelligence-envelope-v1@1.0.0",
+    "contentHash": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "derivationVersion": "operational-intelligence-v1@1.0.0"
+  },
+  "authority": {
+    "authorityClass": "DERIVED_INTELLIGENCE",
+    "progressionAuthority": false,
+    "rawTelemetryDuplicated": false
+  },
+  "temporal": {
+    "observedAt": "2026-08-17T03:40:00.000Z",
+    "validFrom": "2026-08-17T03:40:00.000Z",
+    "validThrough": null
+  },
+  "lifecycle": {
+    "lifecycleStage": "ACTIVE",
+    "supersedes": [],
+    "supersededBy": null,
+    "invalidated": false,
+    "invalidationReason": null
+  },
+  "evidenceState": {
+    "supportingEvidenceRefs": [
+      {
+        "ref": "oi:missed-reuse:repo-a-001",
+        "refKind": "HUB_OBJECT"
+      },
+      {
+        "ref": "oi:missed-reuse:repo-b-001",
+        "refKind": "HUB_OBJECT"
+      },
+      {
+        "ref": "oi:missed-reuse:repo-c-001",
+        "refKind": "HUB_OBJECT"
+      }
+    ],
+    "contradictingEvidenceRefs": [],
+    "rejectedEvidenceRefs": []
+  },
+  "confidence": {
+    "score": 0.67,
+    "basis": ["cross-repo-pattern-representation-only"],
+    "calculationVersion": "confidence-v1@1.0.0"
+  },
+  "derivation": {
+    "derivedFrom": [
+      {
+        "objectId": "oi:missed-reuse:repo-a-001",
+        "relationship": "EVIDENCE_FOR",
+        "contribution": "same-pattern-key",
+        "evidenceWeight": 0.34
+      },
+      {
+        "objectId": "oi:missed-reuse:repo-b-001",
+        "relationship": "EVIDENCE_FOR",
+        "contribution": "same-pattern-key",
+        "evidenceWeight": 0.33
+      },
+      {
+        "objectId": "oi:missed-reuse:repo-c-001",
+        "relationship": "EVIDENCE_FOR",
+        "contribution": "same-pattern-key",
+        "evidenceWeight": 0.33
+      }
+    ]
+  },
+  "futureUse": {
+    "retrievalEligible": true,
+    "startupContextEligible": false,
+    "synthesisEligible": true,
+    "agentExplorationEligible": true,
+    "opportunityMiningEligible": true
+  },
+  "measurement": {
+    "measurementQuality": "PROVIDER_VERIFIED",
+    "metrics": {
+      "repoCount": 3
+    }
+  },
+  "evidenceReality": "FIXTURE",
+  "extensions": {
+    "derivationCanBeReconstructed": true,
+    "proofBRepresentationOnly": true
+  }
+}

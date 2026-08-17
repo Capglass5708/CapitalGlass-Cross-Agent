@@ -21,6 +21,10 @@ const SUITES = [
   { id: "QUERY_ROUTING", cmd: ["npm", "run", "test:query-routing"] },
   { id: "PROTOCOL_SELF_LEARNING", cmd: ["npm", "run", "test:protocol-self-learning-export"] },
   { id: "EXPERIENCE_GRAPH", cmd: ["npm", "run", "test:experience-graph-foundation"] },
+  { id: "INTELLIGENCE_CONTRACTS", cmd: ["npm", "run", "test:intelligence-contracts"] },
+  { id: "INTELLIGENCE_INGEST", cmd: ["npm", "run", "test:intelligence-ingest"] },
+  { id: "INTELLIGENCE_FIRST_REAL_MISSION", cmd: ["npm", "run", "test:intelligence-first-real-mission"] },
+  { id: "INTELLIGENCE_VERIFICATION", cmd: ["npm", "run", "test:intelligence-verification"] },
   { id: "PHASE_B", cmd: ["npm", "run", "test:harvest:phase-b"] },
 ];
 

@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "intelligence-handoff-v1@1.0.0",
+  "title": "Operational Intelligence Handoff v1",
+  "description": "Minimal evidence handoff from execution producer to Cross-Agent intelligence ingest. No derived objects.",
+  "type": "object",
+  "required": [
+    "schema",
+    "workPackageId",
+    "closeoutRef",
+    "closeoutHash",
+    "authorityFingerprint",
+    "source",
+    "mission",
+    "producer",
+    "consumer",
+    "observedAt"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "intelligence-handoff-v1@1.0.0" },
+    "workPackageId": { "type": "string", "minLength": 1 },
+    "closeoutRef": { "type": "string", "minLength": 1 },
+    "closeoutHash": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "authorityFingerprint": { "type": "string", "minLength": 8 },
+    "source": { "$ref": "#/$defs/source" },
+    "mission": { "$ref": "#/$defs/mission" },
+    "producer": { "$ref": "#/$defs/producer" },
+    "consumer": { "$ref": "#/$defs/consumer" },
+    "observedAt": { "type": "string", "format": "date-time" }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "required": ["repo", "closeoutPath", "closeoutHash", "authorityFingerprint", "commitSha"],
+      "additionalProperties": false,
+      "properties": {
+        "repo": { "type": "string", "minLength": 1 },
+        "closeoutPath": { "type": "string", "minLength": 1 },
+        "closeoutHash": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+        "authorityFingerprint": { "type": "string", "minLength": 8 },
+        "commitSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" }
+      }
+    },
+    "mission": {
+      "type": "object",
+      "required": ["missionClass", "material", "closedAt"],
+      "additionalProperties": false,
+      "properties": {
+        "missionClass": {
+          "type": "string",
+          "enum": ["investigate", "fix", "closeout", "ownership", "deploy", "docs"]
+        },
+        "material": { "type": "boolean" },
+        "startedAt": { "type": "string", "format": "date-time" },
+        "closedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "producer": {
+      "type": "object",
+      "required": ["system", "role"],
+      "additionalProperties": false,
+      "properties": {
+        "system": { "const": "CG-AppBuilder-MCP" },
+        "role": { "const": "EVIDENCE_PRODUCER" }
+      }
+    },
+    "consumer": {
+      "type": "object",
+      "required": ["system", "role"],
+      "additionalProperties": false,
+      "properties": {
+        "system": { "const": "CapitalGlass-Cross-Agent" },
+        "role": { "const": "INTELLIGENCE_PROCESSOR" }
+      }
+    }
+  }
+}

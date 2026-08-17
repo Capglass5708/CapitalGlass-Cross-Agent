@@ -1,0 +1,75 @@
+{
+  "schema": "operational-intelligence-envelope-v1@1.0.0",
+  "identity": {
+    "objectId": "oi:missed-reuse:fixture-001",
+    "kind": "MISSED_REUSE_PATTERN",
+    "schema": "operational-intelligence-envelope-v1@1.0.0",
+    "contentHash": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+    "derivationVersion": "operational-intelligence-v1@1.0.0"
+  },
+  "authority": {
+    "authorityClass": "DERIVED_INTELLIGENCE",
+    "progressionAuthority": false,
+    "rawTelemetryDuplicated": false
+  },
+  "temporal": {
+    "observedAt": "2026-08-17T03:00:00.000Z",
+    "validFrom": "2026-08-17T03:00:00.000Z",
+    "validThrough": null,
+    "measurementWindowStart": "2026-08-17T02:00:00.000Z",
+    "measurementWindowEnd": "2026-08-17T03:00:00.000Z",
+    "lastRevalidatedAt": "2026-08-17T03:00:00.000Z"
+  },
+  "lifecycle": {
+    "lifecycleStage": "ACTIVE",
+    "supersedes": [],
+    "supersededBy": null,
+    "invalidated": false,
+    "invalidationReason": null
+  },
+  "evidenceState": {
+    "supportingEvidenceRefs": [
+      {
+        "ref": "artifacts/agent-runs/ephemeral-intelligence-contract-fixture-v1/session-closeout-v3.2.json",
+        "refKind": "CLOSEOUT",
+        "contentHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+      }
+    ],
+    "contradictingEvidenceRefs": [],
+    "rejectedEvidenceRefs": []
+  },
+  "confidence": {
+    "score": 0.82,
+    "basis": ["closeout-hash-verified", "repeat-pattern-across-repos"],
+    "calculationVersion": "confidence-v1@1.0.0"
+  },
+  "derivation": {
+    "derivedFrom": [
+      {
+        "objectId": "oi:ledger:fixture-001",
+        "relationship": "PROJECTED_FROM",
+        "contribution": "mission-ledger-projection",
+        "evidenceWeight": 1
+      }
+    ]
+  },
+  "futureUse": {
+    "retrievalEligible": true,
+    "startupContextEligible": true,
+    "synthesisEligible": true,
+    "agentExplorationEligible": false,
+    "opportunityMiningEligible": true
+  },
+  "measurement": {
+    "measurementQuality": "DIRECT_MEASURED",
+    "metrics": {
+      "avoidedRediscoveryMinutes": 18,
+      "cacheHit": true
+    }
+  },
+  "evidenceReality": "REAL",
+  "extensions": {
+    "patternKey": "compiled-context-reuse-missed",
+    "repos": ["CG-AppBuilder-MCP", "CapitalGlass-BidComposer"]
+  }
+}
