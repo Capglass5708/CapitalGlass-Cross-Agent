@@ -92,7 +92,10 @@
     "test:intelligence-ingest": "node scripts/tests/run-intelligence-ingest.test.mjs",
     "test:intelligence-first-real-mission": "node scripts/tests/run-intelligence-first-real-mission.harness.test.mjs",
     "test:intelligence-verification": "node scripts/tests/run-intelligence-verification-checklist.test.mjs",
-    "test:intelligence": "npm run test:intelligence-contracts && npm run test:intelligence-ingest && npm run test:intelligence-first-real-mission && npm run test:intelligence-verification"
+    "test:intelligence-correlation-markers": "node scripts/tests/run-intelligence-correlation-markers.test.mjs",
+    "test:intelligence-correlate": "node scripts/tests/run-intelligence-correlate.test.mjs",
+    "intelligence:correlate": "node scripts/intelligence/correlate.mjs",
+    "test:intelligence": "npm run test:intelligence-contracts && npm run test:intelligence-ingest && npm run test:intelligence-first-real-mission && npm run test:intelligence-verification && npm run test:intelligence-correlation-markers && npm run test:intelligence-correlate"
   },
   "devDependencies": {
     "ajv": "^8.20.0",

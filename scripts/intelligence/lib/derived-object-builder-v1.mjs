@@ -1,4 +1,5 @@
 import { buildOperationalEnvelope } from './envelope-builder-v1.mjs';
+import { projectCorrelationMarkersForEnvelope } from './correlation-markers-v1.mjs';
 
 export function buildDerivedObjects({
   ledger,
@@ -9,6 +10,8 @@ export function buildDerivedObjects({
   generatedAt = new Date().toISOString(),
 }) {
   const objects = [];
+
+  const correlationProjection = projectCorrelationMarkersForEnvelope(closeout?.correlation);
 
   const missionMeasurement = buildOperationalEnvelope({
     kind: 'MISSION_MEASUREMENT',
@@ -28,6 +31,7 @@ export function buildDerivedObjects({
         outcome: closeout?.outcome ?? null,
         hostMode: closeout?.hostMode ?? null,
       },
+      ...(correlationProjection ? { correlationMarkers: correlationProjection } : {}),
     },
   });
   objects.push(missionMeasurement);
@@ -47,6 +51,7 @@ export function buildDerivedObjects({
       },
       extensions: {
         reuseDecision: closeout?.bibleCache?.reuseDecision ?? null,
+        ...(correlationProjection ? { correlationMarkers: correlationProjection } : {}),
       },
     });
     objects.push(receiptLeverage);

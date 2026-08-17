@@ -15,6 +15,7 @@ const FIXTURE_DIR = path.join(CONTRACT_DIR, 'fixtures');
 
 const HANDOFF_SCHEMA = 'intelligence-handoff-v1.schema.json';
 const ENVELOPE_SCHEMA = 'operational-intelligence-envelope-v1.schema.json';
+const CORRELATION_SCHEMA = 'correlation-markers-v1.schema.json';
 
 const ENVELOPE_FIXTURES = [
   'envelope-missed-reuse-real-v1.json',
@@ -46,9 +47,11 @@ function compileValidators() {
   addFormats(ajv);
   const handoffSchema = loadJson(path.join(CONTRACT_DIR, HANDOFF_SCHEMA));
   const envelopeSchema = loadJson(path.join(CONTRACT_DIR, ENVELOPE_SCHEMA));
+  const correlationSchema = loadJson(path.join(CONTRACT_DIR, CORRELATION_SCHEMA));
   return {
     validateHandoff: ajv.compile(handoffSchema),
     validateEnvelope: ajv.compile(envelopeSchema),
+    validateCorrelation: ajv.compile(correlationSchema),
   };
 }
 
@@ -63,9 +66,23 @@ function assertInvalid(validate, doc, label) {
 }
 
 function testSchemasCompile() {
-  const { validateHandoff, validateEnvelope } = compileValidators();
+  const { validateHandoff, validateEnvelope, validateCorrelation } = compileValidators();
   assert.equal(typeof validateHandoff, 'function');
   assert.equal(typeof validateEnvelope, 'function');
+  assert.equal(typeof validateCorrelation, 'function');
+}
+
+function testCorrelationFixtureValid() {
+  const { validateCorrelation } = compileValidators();
+  const fixturePath = path.join(FIXTURE_DIR, 'correlation-valid-v1.json');
+  if (!fs.existsSync(fixturePath)) {
+    return;
+  }
+  const block = loadJson(fixturePath);
+  assertValid(validateCorrelation, block, 'correlation-valid-v1');
+  assert.equal(block.registryVersion, 'correlation-registries-v1@1.0.0');
+  assert.equal(block.markerBudget.max, 48);
+  assert.match(block.markerSetHash, /^sha256:[0-9a-f]{64}$/);
 }
 
 function testHandoffFixtureValid() {
@@ -205,6 +222,7 @@ function testLockedPlanReferencesContracts() {
 
 const tests = [
   ['schemas compile', testSchemasCompile],
+  ['correlation fixture valid', testCorrelationFixtureValid],
   ['handoff fixture valid', testHandoffFixtureValid],
   ['handoff rejects derived payload from producer', testHandoffRejectsDerivedPayloadFromProducer],
   ['envelope fixtures valid', testEnvelopeFixturesValid],

@@ -1,0 +1,99 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "correlation-markers-v1@1.0.0",
+  "title": "Capital Glass Intelligence Correlation Markers v1",
+  "description": "Typed, namespaced correlation markers for machine intersection without document bodies. Fail-closed on unknown types/ids and marker budget overflow.",
+  "type": "object",
+  "required": [
+    "schema",
+    "registryVersion",
+    "correlationId",
+    "missionId",
+    "workPackageId",
+    "markerSetHash",
+    "markerCount",
+    "markerBudget",
+    "markers"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "correlation-markers-v1@1.0.0" },
+    "registryVersion": {
+      "type": "string",
+      "pattern": "^correlation-registries-v1@"
+    },
+    "correlationId": {
+      "type": "string",
+      "pattern": "^corr:[0-9a-f]{32}$"
+    },
+    "missionId": {
+      "type": "string",
+      "pattern": "^mission:"
+    },
+    "programId": {
+      "type": ["string", "null"],
+      "pattern": "^program:"
+    },
+    "workPackageId": {
+      "type": "string",
+      "pattern": "^wp:"
+    },
+    "markerSetHash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "markerCount": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "markerBudget": {
+      "type": "object",
+      "required": ["max"],
+      "additionalProperties": false,
+      "properties": {
+        "max": { "type": "integer", "minimum": 1, "maximum": 64 }
+      }
+    },
+    "markers": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/marker" }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(artifact:sha256:[0-9a-f]{64}|oi:.+)$"
+      }
+    },
+    "relatedObjects": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^oi:"
+      }
+    }
+  },
+  "$defs": {
+    "markerSource": {
+      "type": "string",
+      "enum": ["AUTO", "DECLARED"]
+    },
+    "marker": {
+      "type": "object",
+      "required": ["type", "id", "source"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": { "$ref": "#/$defs/markerSource" }
+      }
+    }
+  }
+}

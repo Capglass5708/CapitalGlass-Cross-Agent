@@ -20,7 +20,10 @@ function testCrossAgentContractSurface() {
   mustExist('contracts/intelligence/OWNERSHIP.md');
   mustExist('contracts/intelligence/intelligence-handoff-v1.schema.json');
   mustExist('contracts/intelligence/operational-intelligence-envelope-v1.schema.json');
+  mustExist('contracts/intelligence/correlation-markers-v1.schema.json');
   mustExist('scripts/intelligence/ingest.mjs');
+  mustExist('scripts/intelligence/correlate.mjs');
+  mustExist('scripts/intelligence/lib/correlation-markers-v1.mjs');
   mustExist('scripts/intelligence/lib/ingest-pipeline-v1.mjs');
   mustExist('scripts/intelligence/lib/first-real-mission-harness-v1.mjs');
   mustExist('scripts/intelligence/lib/hub-operational-intelligence-publish-v1.mjs');
@@ -29,12 +32,26 @@ function testCrossAgentContractSurface() {
 
 function testAppBuilderEmitOnlySurface() {
   mustExist('scripts/auto-protocol-v3/emit-intelligence-handoff.mjs', APPBUILDER_ROOT);
+  mustExist('scripts/auto-protocol-v3/emit-correlation-markers.mjs', APPBUILDER_ROOT);
   const emitText = fs.readFileSync(
     path.join(APPBUILDER_ROOT, 'scripts/auto-protocol-v3/emit-intelligence-handoff.mjs'),
     'utf8',
   );
   assert.equal(/derivedObjects\s*:/.test(emitText), false);
   assert.match(emitText, /closeout-verify\.mjs/);
+}
+
+function testWaverunnerCorrelationRegistryPromoted() {
+  const registryPath = path.join(
+    APPBUILDER_ROOT,
+    'scripts/sdlc-protocol-cursor/waverunner-capability-registry-v1.json',
+  );
+  const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
+  const cap = registry.capabilities.find((entry) => entry.id === 'INTELLIGENCE_CORRELATION_MARKERS');
+  assert.ok(cap, 'INTELLIGENCE_CORRELATION_MARKERS missing from waverunner registry');
+  assert.equal(cap.classification, 'IMPLEMENTED_AND_PROVEN');
+  assert.equal(cap.delegatedPipelineOwner, 'CapitalGlass-Cross-Agent');
+  assert.ok(Array.isArray(cap.tests) && cap.tests.length >= 3);
 }
 
 function testWaverunnerRegistryPromoted() {
@@ -57,8 +74,13 @@ function testNpmScriptsWired() {
   assert.ok(crossAgentPkg.scripts['test:intelligence-ingest']);
   assert.ok(crossAgentPkg.scripts['test:intelligence-first-real-mission']);
 
+  assert.ok(crossAgentPkg.scripts['intelligence:correlate']);
+  assert.ok(crossAgentPkg.scripts['test:intelligence-correlation-markers']);
+  assert.ok(crossAgentPkg.scripts['test:intelligence-correlate']);
+
   const appBuilderPkg = JSON.parse(fs.readFileSync(path.join(APPBUILDER_ROOT, 'package.json'), 'utf8'));
   assert.ok(appBuilderPkg.scripts['test:intelligence-handoff-emit']);
+  assert.ok(appBuilderPkg.scripts['test:correlation-markers-emit']);
   assert.ok(appBuilderPkg.scripts['test:intelligence-handoff-ownership']);
 }
 
@@ -75,6 +97,7 @@ const tests = [
   ['Cross-Agent contract + pipeline surface', testCrossAgentContractSurface],
   ['AppBuilder emit-only surface', testAppBuilderEmitOnlySurface],
   ['WaveRunner INTELLIGENCE_HANDOFF promoted', testWaverunnerRegistryPromoted],
+  ['WaveRunner INTELLIGENCE_CORRELATION_MARKERS promoted', testWaverunnerCorrelationRegistryPromoted],
   ['npm scripts wired', testNpmScriptsWired],
   ['plan documents shared-dev-only gate', testPlanDocumentsSharedDevOnly],
 ];

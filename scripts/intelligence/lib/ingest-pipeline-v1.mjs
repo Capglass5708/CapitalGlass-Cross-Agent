@@ -123,6 +123,23 @@ export async function runIntelligenceIngest({
   }
 
   const closeout = loadCloseoutJson(closeoutPath);
+  if (handoff.mission.material === true && closeout.correlation) {
+    const { validateCorrelationBlock, loadCorrelationRegistries, resolveAppBuilderRoot } = await import(
+      './correlation-markers-v1.mjs',
+    );
+    const registries = loadCorrelationRegistries({ appBuilderRoot: resolveAppBuilderRoot() });
+    const correlationValidation = validateCorrelationBlock(closeout.correlation, registries);
+    pushStep('validate_correlation_markers', correlationValidation.ok, { errors: correlationValidation.errors });
+    if (!correlationValidation.ok) {
+      throw fail(
+        'CORRELATION_VALIDATION',
+        'CORRELATION_MARKERS_INVALID',
+        'Correlation block failed validation',
+        correlationValidation,
+      );
+    }
+  }
+
   const authorityResult = verifyAuthorityFingerprint({ handoff, closeout });
   pushStep('verify_authority_fingerprint', authorityResult.ok, {
     expected: authorityResult.expected,
@@ -185,7 +202,7 @@ export async function runIntelligenceIngest({
     objectIds: derivedObjects.map((object) => object.identity.objectId),
   });
 
-  const relationships = buildRelationshipEdges({ ledger, derivedObjects });
+  const relationships = buildRelationshipEdges({ ledger, derivedObjects, closeout });
   pushStep('build_relationship_edges', true, {
     count: relationships.length,
     relationshipIds: relationships.map((edge) => edge.relationshipId),

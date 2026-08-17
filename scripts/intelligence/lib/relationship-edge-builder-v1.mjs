@@ -1,6 +1,7 @@
 import { buildRelationshipId } from './ids.mjs';
+import { buildCorrelationRelationshipEdges } from './correlation-markers-v1.mjs';
 
-export function buildRelationshipEdges({ ledger, derivedObjects }) {
+export function buildRelationshipEdges({ ledger, derivedObjects, closeout = null }) {
   const edges = [];
   for (const object of derivedObjects) {
     edges.push({
@@ -27,5 +28,12 @@ export function buildRelationshipEdges({ ledger, derivedObjects }) {
       });
     }
   }
+  edges.push(
+    ...buildCorrelationRelationshipEdges({
+      ledger,
+      correlationBlock: closeout?.correlation ?? null,
+      derivedObjects,
+    }),
+  );
   return edges;
 }

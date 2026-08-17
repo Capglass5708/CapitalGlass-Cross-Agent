@@ -56,6 +56,7 @@ export function mapKnowledgeObjectRow({ ledger, object }) {
       measurementQuality: object.measurement?.measurementQuality ?? null,
       progressionAuthority: false,
       authorityClass: 'DERIVED_INTELLIGENCE',
+      correlationMarkers: object.extensions?.correlationMarkers ?? null,
     },
   };
 }

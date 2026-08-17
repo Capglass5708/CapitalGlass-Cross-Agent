@@ -5,6 +5,7 @@ import {
   buildAuthorityFingerprintV1,
   sha256FileHash,
 } from './closeout-verify.mjs';
+import { buildCorrelationBlock, computeMarkerSetHash } from './correlation-markers-v1.mjs';
 import { HANDOFF_SCHEMA } from './constants.mjs';
 
 export function buildMaterialCloseout({
@@ -45,6 +46,18 @@ export function writeAuthoritativeHandoffFixture(tempRoot, options = {}) {
   const closeoutRel = `artifacts/agent-runs/${workPackageId}/session-closeout-v3.2.json`;
   const closeoutPath = path.join(tempRoot, closeoutRel);
   fs.mkdirSync(path.dirname(closeoutPath), { recursive: true });
+
+  if (options.material !== false) {
+    closeout.workPackageId = workPackageId;
+    closeout.primaryRepo = 'CG-AppBuilder-MCP';
+    closeout.correlation = buildCorrelationBlock({
+      closeout,
+      producerRepo: 'CG-AppBuilder-MCP',
+      capabilityIds: closeout.aiCacheHit === true ? ['CACHE'] : [],
+    });
+    closeout.correlation.markerSetHash = computeMarkerSetHash(closeout.correlation.markers);
+  }
+
   fs.writeFileSync(closeoutPath, `${JSON.stringify(closeout, null, 2)}\n`);
 
   const closeoutHash = sha256FileHash(closeoutPath);

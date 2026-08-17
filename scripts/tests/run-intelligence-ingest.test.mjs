@@ -328,6 +328,29 @@ async function testIdempotentReingestPassFlag() {
   });
 }
 
+async function testCorrelationProjectionOnHubCompact() {
+  await withTempFixture(async (tempRoot) => {
+    const fixture = writeAuthoritativeHandoffFixture(tempRoot);
+    const receipt = await runIntelligenceIngest({
+      handoff: fixture.handoff,
+      handoffPath: fixture.handoffPath,
+      mode: 'dry-run',
+      repoRoot: tempRoot,
+      outputRoot: path.join(tempRoot, 'dry-run-out'),
+      generatedAt: '2026-08-17T03:00:02.000Z',
+    });
+    const hubObject = receipt.artifacts.hubCompact.objects[0];
+    assert.ok(hubObject.correlation);
+    assert.match(hubObject.correlation.markerSetHash, /^sha256:[0-9a-f]{64}$/);
+    assert.ok(hubObject.correlation.markers.includes('capability:CACHE'));
+    assert.ok(hubObject.correlation.markers.includes('repo:CG-AppBuilder-MCP'));
+    assert.ok(
+      receipt.artifacts.relationships.some((edge) => edge.relationship === 'USED_CAPABILITY'),
+    );
+    assert.ok(receipt.artifacts.relationships.some((edge) => edge.relationship === 'CHAINED_BY'));
+  });
+}
+
 const tests = [
   ['dry-run happy path real mission', testDryRunHappyPathRealMission],
   ['deterministic identity parity', testDeterministicIdentityParity],
@@ -342,6 +365,7 @@ const tests = [
   ['shared-dev hub memory store readback pass', testSharedDevHubMemoryStoreReadbackPass],
   ['provenance reconstruction pass', testProvenanceReconstructionPass],
   ['idempotent re-ingest identity parity', testIdempotentReingestPassFlag],
+  ['correlation projection on hub compact', testCorrelationProjectionOnHubCompact],
 ];
 
 let passed = 0;

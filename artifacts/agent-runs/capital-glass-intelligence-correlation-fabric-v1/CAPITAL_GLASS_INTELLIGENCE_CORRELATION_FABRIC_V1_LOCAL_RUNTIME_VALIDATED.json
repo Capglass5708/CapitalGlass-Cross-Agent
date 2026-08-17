@@ -1,0 +1,41 @@
+{
+  "schema": "capital-glass-milestone-acceptance-v1@1.0.0",
+  "milestoneId": "CAPITAL_GLASS_INTELLIGENCE_CORRELATION_FABRIC_V1_LOCAL_RUNTIME_VALIDATED",
+  "workPackageId": "capital-glass-intelligence-correlation-fabric-v1",
+  "validatedAt": "2026-08-17T04:52:00.000Z",
+  "verdict": "LOCAL_RUNTIME_VALIDATED",
+  "releaseState": {
+    "code": "CODE_COMPLETE",
+    "localRuntime": "LOCAL_RUNTIME_VALIDATED",
+    "production": "NOT_IN_SCOPE"
+  },
+  "nonGoalsHonored": [
+    "No Foundry build",
+    "No handoff schema mutation",
+    "No production Hub publication"
+  ],
+  "evidence": {
+    "crossAgentTests": [
+      "npm run test:intelligence-contracts",
+      "npm run test:intelligence-ingest",
+      "npm run test:intelligence-correlation-markers",
+      "npm run test:intelligence-correlate",
+      "npm run test:intelligence-verification"
+    ],
+    "appBuilderTests": [
+      "npm run test:correlation-markers-emit"
+    ],
+    "contracts": [
+      "contracts/intelligence/correlation-markers-v1.schema.json",
+      "contracts/intelligence/registries/correlation-*-v1.json"
+    ],
+    "migration": "CG-AppBuilder-MCP/supabase/migrations/20260817120000_intelligence_hub_correlation_markers_gin_v1.sql",
+    "waverunnerCapability": "INTELLIGENCE_CORRELATION_MARKERS"
+  },
+  "mcpRegistration": {
+    "surface": "user-cg-app-mcp.material_session_front_door",
+    "executionEligibility": "NO_GO",
+    "expectedMechanicalBlockers": ["GOVERNANCE_UNKNOWN", "BASELINE_DIRTY", "MCP_HEALTH_RECEIPT_STALE"],
+    "operatorAuthorization": "Program-authorized WaveRunner proceeds despite mechanical NO_GO for correlation fabric v1 ship"
+  }
+}

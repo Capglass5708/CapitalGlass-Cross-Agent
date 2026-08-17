@@ -44,6 +44,15 @@ export function validateEnvelopeSchema(envelope) {
   };
 }
 
+export function validateCorrelationMarkersSchema(block) {
+  const validate = compileSchema('correlation-markers-v1.schema.json');
+  const ok = validate(block);
+  return {
+    ok,
+    errors: ok ? [] : (validate.errors ?? []).map((err) => `${err.instancePath || '/'} ${err.message}`.trim()),
+  };
+}
+
 export function assertNoProducerIntelligencePayload(handoff) {
   const forbidden = ['derivedObjects', 'ledger', 'relationships', 'hubPayload', 'envelopes'];
   const found = forbidden.filter((key) => handoff[key] !== undefined);

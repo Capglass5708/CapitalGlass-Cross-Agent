@@ -23,6 +23,7 @@ export function compileHubCompactPayload({
       contentHash: object.identity.contentHash,
       evidenceReality: object.authority.evidenceReality,
       measurementQuality: object.authority.measurementQuality,
+      correlation: object.extensions?.correlationMarkers ?? null,
     })),
     relationships: relationships.map((edge) => ({
       relationshipId: edge.relationshipId,
