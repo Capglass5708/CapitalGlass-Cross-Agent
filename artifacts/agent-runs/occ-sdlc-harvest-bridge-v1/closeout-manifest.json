@@ -1,0 +1,71 @@
+{
+  "schema": "occ-sdlc-harvest-bridge-closeout-v1@1.0.0",
+  "workPackageId": "occ-sdlc-harvest-bridge-v1",
+  "parentWorkPackage": "capital-glass-operations-command-center-v1",
+  "missionClass": "fix",
+  "hostPlane": "WESLEY_WORK_WSL",
+  "closedAt": "2026-08-17T14:30:00.000Z",
+  "verdict": "HUB_BRIDGE_REPAIR_PASS",
+  "chain": [
+    {
+      "step": "OCC SDLC closeout",
+      "status": "PASS",
+      "artifact": "CG-AppBuilder-MCP/artifacts/agent-runs/capital-glass-operations-command-center-v1/sdlc-cursor-closeout.json"
+    },
+    {
+      "step": "exportWaverunnerHandoff",
+      "status": "PASS",
+      "artifact": "CG-AppBuilder-MCP/artifacts/agent-runs/capital-glass-operations-command-center-v1/sdlc-waverunner-handoff-bridge-receipt.json",
+      "harvestHash": "5a3fe9ce84901cf4f97dde371cdb8251a6528749b46a82a2020f0d26fe038afb"
+    },
+    {
+      "step": "Cross-Agent harvest directory",
+      "status": "PASS",
+      "artifact": "CapitalGlass-Cross-Agent/artifacts/agent-runs/harvest-2026-08-17-capital-glass-operations-command-center-v1/"
+    },
+    {
+      "step": "harvest:validate",
+      "status": "PASS",
+      "artifact": "CapitalGlass-Cross-Agent/artifacts/agent-runs/harvest-2026-08-17-capital-glass-operations-command-center-v1/validation-result.json"
+    },
+    {
+      "step": "compact Hub records + seeds",
+      "status": "PASS",
+      "artifact": "CapitalGlass-Cross-Agent/artifacts/agent-runs/harvest-2026-08-17-capital-glass-operations-command-center-v1/compact-records/capital-glass-operations-command-center-v1.json",
+      "seedCount": 4
+    },
+    {
+      "step": "L: Intelligence Hub publication",
+      "status": "PASS",
+      "artifact": "CapitalGlass-Cross-Agent/artifacts/agent-runs/harvest-2026-08-17-capital-glass-operations-command-center-v1/hub-publication-receipt.json",
+      "hubRoot": "/mnt/l/Capital-Glass-Intelligence-Hub",
+      "seedsPublished": 4
+    },
+    {
+      "step": "Hub-mediated reuse proof",
+      "status": "PASS",
+      "artifact": "CapitalGlass-Cross-Agent/artifacts/agent-runs/occ-sdlc-harvest-bridge-v1/hub-reuse-proof.json",
+      "retrievalCode": "INDEX_HIT",
+      "questionsPassed": "4/4"
+    }
+  ],
+  "rootCauseRepaired": "Wave 15 used occ-closeout-manifest-v1; mergeCloseoutIntoFindings produced zero findings; exportWaverunnerHandoff never ran; no Cross-Agent harvest or L: OCC intelligence.",
+  "harvestId": "harvest-2026-08-17-capital-glass-operations-command-center-v1",
+  "hubSeeds": [
+    "IH-OCC-LATEST-WINS-PO-001",
+    "IH-OCC-UNCONFIRMED-DOC-DATES-001",
+    "IH-OCC-PROCUREMENT-RISK-001",
+    "IH-OCC-HARVEST-CLOSEOUT-001"
+  ],
+  "notClaimed": [
+    "CAPITAL_GLASS_OPERATIONS_COMMAND_CENTER_V1_OPERATIONALLY_PROVEN",
+    "PR #26 merged",
+    "Authenticated production browser proof",
+    "WESLEYDESK index-publication.yml on Cross-Agent main push"
+  ],
+  "architecturalNoteRecorded": "WaveRunner should distinguish HARVEST_TRANSPORT_ACCEPTED from COMPOUNDING_COVERAGE_VALID; require harvestedSurfaceCount > 0 for compounding missions.",
+  "nextRecommendedMission": "occ-live-browser-proof-v1 after operator merge authorization and deploy",
+  "retrievalCode": "INDEX_HIT",
+  "cacheCode": "CACHE_MISS",
+  "directConnect": "DIRECT_CONNECT_NOT_APPLICABLE"
+}

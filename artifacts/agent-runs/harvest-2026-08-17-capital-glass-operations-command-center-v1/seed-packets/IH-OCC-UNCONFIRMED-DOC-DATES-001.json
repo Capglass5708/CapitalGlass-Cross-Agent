@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-OCC-UNCONFIRMED-DOC-DATES-001",
+  "kind": "policy",
+  "title": "OCC must not silently promote unconfirmed document OCR dates",
+  "summary": "Document confirmation lifecycle is reused from CapitalGlass-Documents; OCR-extracted dates stay unconfirmed until estimator approval — no silent promotion into operator command surfaces.",
+  "retrievalQuestions": [
+    "Does Operations Command Center auto-promote OCR document dates?",
+    "What is the human confirmation gate for OCC document dates?"
+  ],
+  "evidenceRefs": [
+    "/home/wesle/repos/.worktrees/CapitalGlass-CalendarDashBoard/capital-glass-operations-command-center-v1/artifacts/agent-runs/capital-glass-operations-command-center-v1/closeout-manifest.json",
+    "CapitalGlass-Documents confirmation lifecycle"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "OCC must not silently promote unconfirmed document OCR dates",
+    "startAt": [
+      "L:/Capital-Glass-Intelligence-Hub/02-catalog/knowledge-objects/cross-agent-harvest/ih-occ-unconfirmed-doc-dates-001.json"
+    ],
+    "runPreflight": [
+      "npm run agent:index:scout -- --json"
+    ],
+    "doNot": [
+      "Treat repo-local compounding-reuse-receipt as Hub authority when L: is mountable"
+    ],
+    "proveBeforeClaiming": [
+      "INDEX_HIT from L: catalog seed, not Calendar artifact grep"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-CalendarDashBoard",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "RETRIEVAL_ONLY",
+  "status": "CANDIDATE",
+  "harvestId": "harvest-2026-08-17-capital-glass-operations-command-center-v1",
+  "workPackageId": "capital-glass-operations-command-center-v1"
+}

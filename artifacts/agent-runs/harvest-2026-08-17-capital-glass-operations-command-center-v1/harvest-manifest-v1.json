@@ -1,0 +1,149 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-17-capital-glass-operations-command-center-v1",
+  "missionClass": "occ-sdlc-harvest-bridge-v1",
+  "sourceCommitSha": "42d5ec811a265d2eabb9b62f92f7a377cd34544a",
+  "sourceBranch": "main",
+  "sourceRepo": "CapitalGlass-Cross-Agent",
+  "createdAt": "2026-08-17T14:29:08.267Z",
+  "updatedAt": "2026-08-17T14:29:08.267Z",
+  "retrievalResult": "INDEX_HIT",
+  "cacheResult": "CACHE_MISS",
+  "rawScanRequired": false,
+  "overallHarvestVerdict": "HARVEST_COMPLETE",
+  "subject": "OCC SDLC harvest bridge — capital-glass-operations-command-center-v1 compounding intelligence",
+  "doNotAdvance": [
+    "Claim CAPITAL_GLASS_OPERATIONS_COMMAND_CENTER_V1_OPERATIONALLY_PROVEN",
+    "Treat Hub repair complete without L: indexed retrieval proof",
+    "Merge PR #26 without operator merge approval"
+  ],
+  "supersededClaims": [
+    {
+      "packetId": "capital-glass-operations-command-center-v1",
+      "claim": "wave-15-intelligence-harvest.json empty envelope was incorrectly treated as compounding success",
+      "supersededBy": "harvest-2026-08-17-capital-glass-operations-command-center-v1 SDLC-validated harvest",
+      "recordedAt": "2026-08-17T14:29:08.267Z"
+    }
+  ],
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "note": "occ-sdlc-harvest-bridge-v1 publishes seeds to L: via harvest:publish-hub-seed"
+  },
+  "waverunnerHandoff": {
+    "milestoneId": "capital-glass-operations-command-center-v1",
+    "waveId": "capital-glass-operations-command-center-v1",
+    "executionMode": "FORMAL_CLOSEOUT",
+    "sourceWorkPackage": "capital-glass-operations-command-center-v1",
+    "productionHarvest": true,
+    "syntheticFixture": false,
+    "closeoutPath": "artifacts/agent-runs/harvest-2026-08-17-capital-glass-operations-command-center-v1/sdlc-intelligence-harvest.json",
+    "sdlcCloseoutReceiptPath": "artifacts/agent-runs/capital-glass-operations-command-center-v1/sdlc-waverunner-handoff-bridge-receipt.json",
+    "startSha": "5fe2c3e602f7a67c685df65582e36119e37b7117",
+    "packetHash": "occ-capital-glass-operations-command-center-v1-bridge-packet",
+    "promptHash": "occ-capital-glass-operations-command-center-v1-bridge-prompt",
+    "bridgeReceiptPath": "artifacts/agent-runs/capital-glass-operations-command-center-v1/sdlc-waverunner-handoff-bridge-receipt.json"
+  },
+  "improvementCandidates": [
+    {
+      "candidateId": "WC-OCC-001-harvest-coverage-gate",
+      "category": "ROUTING",
+      "title": "Distinguish HARVEST_TRANSPORT_ACCEPTED from COMPOUNDING_COVERAGE_VALID",
+      "problem": "Wave 15 reported successful harvest with zero useful coverage",
+      "rootCause": "mergeCloseoutIntoFindings requires SDLC verifiedTruths; compact OCC manifest lifted nothing",
+      "proposedImprovement": "Require harvestedSurfaceCount > 0 before COMPOUNDING_COVERAGE_VALID",
+      "targetRepository": "CG-AppBuilder-MCP",
+      "targetComponent": "WaveRunner",
+      "expectedBenefit": "Prevent false compounding success on empty envelopes",
+      "risk": "May block legitimate no-op closeouts",
+      "confidence": "HIGH",
+      "evidenceRefs": [
+        "/home/wesle/repos/.worktrees/CapitalGlass-CalendarDashBoard/capital-glass-operations-command-center-v1/artifacts/agent-runs/capital-glass-operations-command-center-v1/wave-15-intelligence-harvest.json"
+      ],
+      "authorityStatus": "PROPOSAL",
+      "reviewStatus": "PENDING"
+    }
+  ],
+  "commitEvidence": [
+    {
+      "repo": "CapitalGlass-CalendarDashBoard",
+      "sha": "5fe2c3e602f7a67c685df65582e36119e37b7117",
+      "role": "occ-code-complete"
+    },
+    {
+      "repo": "CapitalGlass-Cross-Agent",
+      "sha": "42d5ec811a265d2eabb9b62f92f7a377cd34544a",
+      "role": "harvest-bridge"
+    }
+  ],
+  "packets": [
+    {
+      "packetId": "capital-glass-operations-command-center-v1",
+      "packetTitle": "Capital Glass Operations Command Center v1 — CODE_COMPLETE harvest bridge",
+      "packetKind": "milestone",
+      "state": "WARN",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "CURRENT_AUTHORITY",
+      "ownerRepo": "CapitalGlass-CalendarDashBoard",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "work-progress/projects/capital-glass-operations-command-center-v1.md",
+      "nextAction": "Operator merge PR #26; then occ-live-browser-proof-v1 authenticated Playwright",
+      "advancementGate": "operator-merge-and-browser-proof",
+      "doNotAdvance": [
+        "Claim CAPITAL_GLASS_OPERATIONS_COMMAND_CENTER_V1_OPERATIONALLY_PROVEN",
+        "Treat Hub repair complete without L: indexed retrieval proof",
+        "Merge PR #26 without operator merge approval"
+      ],
+      "evidenceRefs": [
+        "/home/wesle/repos/.worktrees/CapitalGlass-CalendarDashBoard/capital-glass-operations-command-center-v1/artifacts/agent-runs/capital-glass-operations-command-center-v1/closeout-manifest.json",
+        "/home/wesle/repos/.worktrees/CapitalGlass-CalendarDashBoard/capital-glass-operations-command-center-v1/artifacts/current/CALENDAR_OPERATIONS_COMMAND_CENTER_V1_CODE_COMPLETE.json",
+        "/home/wesle/repos/CG-AppBuilder-MCP/artifacts/agent-runs/capital-glass-operations-command-center-v1/sdlc-cursor-closeout.json",
+        "https://github.com/Capglass5708/CapitalGlass-CalendarDashBoard/pull/26"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-CalendarDashBoard",
+          "sha": "5fe2c3e6"
+        }
+      ],
+      "blockers": [
+        "browserE2eLive BLOCKED",
+        "mainMerge BLOCKED"
+      ]
+    }
+  ],
+  "publicationPolicy": {
+    "syntheticFixture": false,
+    "publicationEligibility": "PRODUCTION_WAVERUNNER_ROUTING",
+    "productionHarvest": true
+  },
+  "ledgerLineage": {
+    "ledgerContentHashBefore": "e218305795abacef5e8f6ca0d6aad98786a7762dd54e37125380e6e4f464358c",
+    "ledgerContentHashAfter": "e218305795abacef5e8f6ca0d6aad98786a7762dd54e37125380e6e4f464358c"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 7,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 7,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [
+      "prompt-candidate-0c2582af43a1",
+      "prompt-candidate-6cd4cca4c16d",
+      "prompt-candidate-eeef17e9c0a9",
+      "prompt-candidate-3af369eab0ae",
+      "prompt-candidate-00fcc0020ec6",
+      "prompt-candidate-2867cf3eeee9",
+      "prompt-candidate-3d9a4517e562"
+    ],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_PENDING_REVIEW"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "IH-OCC-LATEST-WINS-PO-001",
+  "kind": "success-pattern",
+  "title": "OCC latest-wins PO pairing prevents duplicate procurement rows",
+  "summary": "Operations Command Center uses idempotent PO pairing with latest-wins change propagation; duplicate procurement horizon rows must not appear when PO revisions arrive.",
+  "retrievalQuestions": [
+    "How does Operations Command Center handle PO revision propagation?",
+    "What is latest-wins pairing in Calendar command center?",
+    "Why must PO pairing be idempotent in OCC procurement horizon?"
+  ],
+  "evidenceRefs": [
+    "/home/wesle/repos/.worktrees/CapitalGlass-CalendarDashBoard/capital-glass-operations-command-center-v1/lib/command-center/operator-command/index.ts",
+    "/home/wesle/repos/.worktrees/CapitalGlass-CalendarDashBoard/capital-glass-operations-command-center-v1/artifacts/agent-runs/capital-glass-operations-command-center-v1/closeout-manifest.json"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "OCC latest-wins PO pairing prevents duplicate procurement rows",
+    "startAt": [
+      "L:/Capital-Glass-Intelligence-Hub/02-catalog/knowledge-objects/cross-agent-harvest/ih-occ-latest-wins-po-001.json"
+    ],
+    "runPreflight": [
+      "npm run agent:index:scout -- --json"
+    ],
+    "doNot": [
+      "Treat repo-local compounding-reuse-receipt as Hub authority when L: is mountable"
+    ],
+    "proveBeforeClaiming": [
+      "INDEX_HIT from L: catalog seed, not Calendar artifact grep"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-CalendarDashBoard",
+  "targetSlice": "BY-KIND/thread-autopsy-index.json",
+  "promotionClass": "RETRIEVAL_ONLY",
+  "status": "CANDIDATE",
+  "harvestId": "harvest-2026-08-17-capital-glass-operations-command-center-v1",
+  "workPackageId": "capital-glass-operations-command-center-v1"
+}

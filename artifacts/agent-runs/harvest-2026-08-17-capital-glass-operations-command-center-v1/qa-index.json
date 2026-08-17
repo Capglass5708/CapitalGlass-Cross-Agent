@@ -1,0 +1,230 @@
+{
+  "schemaVersion": "cross-agent-harvest-qa-index-v1@1.0.0",
+  "harvestId": "harvest-2026-08-17-capital-glass-operations-command-center-v1",
+  "chatTranscriptCoverage": "PARTIAL",
+  "records": [
+    {
+      "ihPfspId": "IH-OCC-HARVEST-CLOSEOUT-001",
+      "questionId": "IHOCCHARVEST",
+      "canonicalQuestion": "Why did Wave 15 OCC harvest have empty coverage?",
+      "alternateQuestions": [
+        "What closeout schema does exportWaverunnerHandoff require?",
+        "HARVEST_TRANSPORT_ACCEPTED vs COMPOUNDING_COVERAGE_VALID"
+      ],
+      "shortAnswer": "WaveRunner Wave 15 accepted HARVEST_TRANSPORT with zero findings because occ-closeout-manifest-v1 was passed instead of SDLC closeout with verifiedTruths, gateResults, and evidence. Repair requires exportWaverunnerHandoff + Cross-Agent harvest:validate + Hub publication.",
+      "detailedAnswer": "Wave 15 empty harvest — wrong closeout schema bypassed SDLC findings lift",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-17T14:29:15.880Z",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-17-capital-glass-operations-command-center-v1/seed-packets/IH-OCC-HARVEST-CLOSEOUT-001.json"
+      ],
+      "authorityCommit": [
+        "42d5ec8"
+      ],
+      "evidenceUrls": [
+        "/home/wesle/repos/.worktrees/CapitalGlass-CalendarDashBoard/capital-glass-operations-command-center-v1/artifacts/agent-runs/capital-glass-operations-command-center-v1/wave-15-intelligence-harvest.json",
+        "/home/wesle/repos/CG-AppBuilder-MCP/scripts/sdlc-protocol-cursor/lib/export-waverunner-handoff.mjs",
+        "/home/wesle/repos/.worktrees/CapitalGlass-CalendarDashBoard/capital-glass-operations-command-center-v1/artifacts/agent-runs/occ-operational-publication-hub-gap-investigation-v1/investigation-report-v1.json"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "failure-pattern",
+        "harvest-2026-08-17-capital-glass-operations-command-center-v1"
+      ],
+      "entities": [
+        "CapitalGlass-Cross-Agent"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Wave 15 empty harvest — wrong closeout schema bypassed SDLC findings lift",
+        "startAt": [
+          "L:/Capital-Glass-Intelligence-Hub/02-catalog/knowledge-objects/cross-agent-harvest/ih-occ-harvest-closeout-001.json"
+        ],
+        "runPreflight": [
+          "npm run agent:index:scout -- --json"
+        ],
+        "doNot": [
+          "Treat repo-local compounding-reuse-receipt as Hub authority when L: is mountable"
+        ],
+        "proveBeforeClaiming": [
+          "INDEX_HIT from L: catalog seed, not Calendar artifact grep"
+        ]
+      },
+      "promotionClass": "POLICY_GATED",
+      "kind": "failure-pattern"
+    },
+    {
+      "ihPfspId": "IH-OCC-LATEST-WINS-PO-001",
+      "questionId": "IHOCCLATESTW",
+      "canonicalQuestion": "How does Operations Command Center handle PO revision propagation?",
+      "alternateQuestions": [
+        "What is latest-wins pairing in Calendar command center?",
+        "Why must PO pairing be idempotent in OCC procurement horizon?"
+      ],
+      "shortAnswer": "Operations Command Center uses idempotent PO pairing with latest-wins change propagation; duplicate procurement horizon rows must not appear when PO revisions arrive.",
+      "detailedAnswer": "OCC latest-wins PO pairing prevents duplicate procurement rows",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-17T14:29:15.880Z",
+      "authorityRepo": "CapitalGlass-CalendarDashBoard",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-17-capital-glass-operations-command-center-v1/seed-packets/IH-OCC-LATEST-WINS-PO-001.json"
+      ],
+      "authorityCommit": [
+        "42d5ec8"
+      ],
+      "evidenceUrls": [
+        "/home/wesle/repos/.worktrees/CapitalGlass-CalendarDashBoard/capital-glass-operations-command-center-v1/lib/command-center/operator-command/index.ts",
+        "/home/wesle/repos/.worktrees/CapitalGlass-CalendarDashBoard/capital-glass-operations-command-center-v1/artifacts/agent-runs/capital-glass-operations-command-center-v1/closeout-manifest.json"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "success-pattern",
+        "harvest-2026-08-17-capital-glass-operations-command-center-v1"
+      ],
+      "entities": [
+        "CapitalGlass-CalendarDashBoard"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "OCC latest-wins PO pairing prevents duplicate procurement rows",
+        "startAt": [
+          "L:/Capital-Glass-Intelligence-Hub/02-catalog/knowledge-objects/cross-agent-harvest/ih-occ-latest-wins-po-001.json"
+        ],
+        "runPreflight": [
+          "npm run agent:index:scout -- --json"
+        ],
+        "doNot": [
+          "Treat repo-local compounding-reuse-receipt as Hub authority when L: is mountable"
+        ],
+        "proveBeforeClaiming": [
+          "INDEX_HIT from L: catalog seed, not Calendar artifact grep"
+        ]
+      },
+      "promotionClass": "RETRIEVAL_ONLY",
+      "kind": "success-pattern"
+    },
+    {
+      "ihPfspId": "IH-OCC-PROCUREMENT-RISK-001",
+      "questionId": "IHOCCPROCURE",
+      "canonicalQuestion": "What procurement risk states does Operations Command Center expose?",
+      "alternateQuestions": [
+        "How does OCC handle unknown vendor lead times?"
+      ],
+      "shortAnswer": "OCC six-week procurement view classifies ON_TRACK, ORDER_NOW, AT_RISK, LATE, and UNKNOWN_LEAD_TIME — unknown lead times remain UNKNOWN rather than fabricated.",
+      "detailedAnswer": "Six-week procurement horizon uses UNKNOWN_LEAD_TIME instead of invented dates",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-17T14:29:15.880Z",
+      "authorityRepo": "CapitalGlass-CalendarDashBoard",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-17-capital-glass-operations-command-center-v1/seed-packets/IH-OCC-PROCUREMENT-RISK-001.json"
+      ],
+      "authorityCommit": [
+        "42d5ec8"
+      ],
+      "evidenceUrls": [
+        "/home/wesle/repos/.worktrees/CapitalGlass-CalendarDashBoard/capital-glass-operations-command-center-v1/components/dashboard/command-center/SixWeekProcurementView.tsx",
+        "/home/wesle/repos/.worktrees/CapitalGlass-CalendarDashBoard/capital-glass-operations-command-center-v1/artifacts/current/CALENDAR_OPERATIONS_COMMAND_CENTER_V1_CODE_COMPLETE.json"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "domain-rule",
+        "harvest-2026-08-17-capital-glass-operations-command-center-v1"
+      ],
+      "entities": [
+        "CapitalGlass-CalendarDashBoard"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "Six-week procurement horizon uses UNKNOWN_LEAD_TIME instead of invented dates",
+        "startAt": [
+          "L:/Capital-Glass-Intelligence-Hub/02-catalog/knowledge-objects/cross-agent-harvest/ih-occ-procurement-risk-001.json"
+        ],
+        "runPreflight": [
+          "npm run agent:index:scout -- --json"
+        ],
+        "doNot": [
+          "Treat repo-local compounding-reuse-receipt as Hub authority when L: is mountable"
+        ],
+        "proveBeforeClaiming": [
+          "INDEX_HIT from L: catalog seed, not Calendar artifact grep"
+        ]
+      },
+      "promotionClass": "RETRIEVAL_ONLY",
+      "kind": "domain-rule"
+    },
+    {
+      "ihPfspId": "IH-OCC-UNCONFIRMED-DOC-DATES-001",
+      "questionId": "IHOCCUNCONFI",
+      "canonicalQuestion": "Does Operations Command Center auto-promote OCR document dates?",
+      "alternateQuestions": [
+        "What is the human confirmation gate for OCC document dates?"
+      ],
+      "shortAnswer": "Document confirmation lifecycle is reused from CapitalGlass-Documents; OCR-extracted dates stay unconfirmed until estimator approval — no silent promotion into operator command surfaces.",
+      "detailedAnswer": "OCC must not silently promote unconfirmed document OCR dates",
+      "currentStatus": "candidate",
+      "answerScope": "thread-autopsy",
+      "asOf": "2026-08-17T14:29:15.880Z",
+      "authorityRepo": "CapitalGlass-CalendarDashBoard",
+      "authorityPath": [
+        "artifacts/agent-runs/harvest-2026-08-17-capital-glass-operations-command-center-v1/seed-packets/IH-OCC-UNCONFIRMED-DOC-DATES-001.json"
+      ],
+      "authorityCommit": [
+        "42d5ec8"
+      ],
+      "evidenceUrls": [
+        "/home/wesle/repos/.worktrees/CapitalGlass-CalendarDashBoard/capital-glass-operations-command-center-v1/artifacts/agent-runs/capital-glass-operations-command-center-v1/closeout-manifest.json",
+        "CapitalGlass-Documents confirmation lifecycle"
+      ],
+      "confidence": "partially_verified",
+      "keywords": [
+        "policy",
+        "harvest-2026-08-17-capital-glass-operations-command-center-v1"
+      ],
+      "entities": [
+        "CapitalGlass-CalendarDashBoard"
+      ],
+      "relatedQuestionIds": [],
+      "supersedes": [],
+      "doNotAdvance": [],
+      "sensitiveFieldsRedacted": true,
+      "rawScanRequired": false,
+      "retrievalPriority": "standard",
+      "futureAgentInstructions": {
+        "whenThisAppears": "OCC must not silently promote unconfirmed document OCR dates",
+        "startAt": [
+          "L:/Capital-Glass-Intelligence-Hub/02-catalog/knowledge-objects/cross-agent-harvest/ih-occ-unconfirmed-doc-dates-001.json"
+        ],
+        "runPreflight": [
+          "npm run agent:index:scout -- --json"
+        ],
+        "doNot": [
+          "Treat repo-local compounding-reuse-receipt as Hub authority when L: is mountable"
+        ],
+        "proveBeforeClaiming": [
+          "INDEX_HIT from L: catalog seed, not Calendar artifact grep"
+        ]
+      },
+      "promotionClass": "RETRIEVAL_ONLY",
+      "kind": "policy"
+    }
+  ]
+}
