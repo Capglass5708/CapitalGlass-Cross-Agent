@@ -12,14 +12,45 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-08-13
-| Current focus | WESLEYWORK Storage Keeper sole repair front door (`wesleywork-storage-protocol-contradiction-remediation-v1`); TWO_DESK_OPERATING + federated index Wave A closed
+| Last updated | 2026-08-18
+| Current focus | Claude full auth+CLI pack on Z: — 8 uploads + Claude Code MCP wiring pending |
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Project index | `work-progress/projects/INDEX.md` |
 
 ## Current saved work
+
+### 2026-08-18 CT — claude-full-estate-platform-integration-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `claude-full-estate-platform-integration-v1` |
+| Owner | `CG-AppBuilder-MCP` (execution) + `CapitalGlass-Cross-Agent` (coordination) |
+| Status | **FULL_AUTH_CLI_PACK_PUBLISHED** — 8-file pack + MCP inventory mirror on Z:; live Claude Code wiring pending |
+| Published folder | `Z:\Capital-Glass-Dev\Claude Start Package` |
+| Required uploads | 8 files — see `CLAUDE_FULL_OPERATOR_INDEX.md` |
+| Auth + CLI | `CLAUDE_AUTH_AND_CREDENTIALS_GUIDE_V1.md`, `CLAUDE_CLI_OPERATOR_REFERENCE_V1.md`, `mcp-inventory.json` |
+| Custom instructions | `CLAUDE_CUSTOM_INSTRUCTIONS.txt` — includes auth/CLI preflight |
+| Charter | `CAPITAL_GLASS_CLAUDE_FULL_ESTATE_PLATFORM_INTEGRATION_V1.md` |
+| Matrix | `CLAUDE_INTEGRATION_COVERAGE_MATRIX_V1.json` — 0 PROVEN, 3 BLOCKED, 2 CONNECTED |
+| Git source | `CapitalGlass-Cross-Agent/agent-onboarding/claude/` |
+| Top blockers | Live MCP wiring in Claude Code; clientSurface not in platform receipts |
+| Next | Wesley: upload 8 files + paste instructions; wire Claude Code MCP; run daily preflight |
+
+### 2026-08-18 CT — claude-estate-awareness-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `claude-estate-awareness-v1` |
+| Host | WESLEY_WORK WSL |
+| Owner | `CapitalGlass-Cross-Agent` |
+| Status | **SUPERSEDED_BY_FULL_PACK** — awareness content included in 4-file required upload set on Z: |
+| Primary artifact | `Z:\Capital-Glass-Dev\Claude Start Package\CLAUDE_ESTATE_AWARENESS_PACK_v1.md` |
+| Handoff | `Z:\Capital-Glass-Dev\Claude Start Package\2026-08-18_claude-estate-awareness.md` |
+| Seed | `agent-notes-seeding/seeds/claude-estate-awareness-v1.json` (candidate) |
+| Sources | L: hub BY-KIND slices; ACTIVE_WORK; CURRENT_HANDOFF; Office Admin MCP preflight |
+| Next | Upload full 4-file set per `START_HERE.md`; optional `cross-agent-notes:seed` after Git commit |
 
 ### 2026-08-13 CT — wesleywork-storage-protocol-contradiction-remediation-v1
 

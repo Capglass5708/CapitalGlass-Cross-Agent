@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "claude-cli-command-index-v1@1.0.0",
+  "workPackageId": "claude-full-estate-platform-integration-v1",
+  "defaultCwd": "/home/wesley/repos/CG-AppBuilder-MCP",
+  "categories": {
+    "sessionOpen": [
+      {"id": "scout", "cmd": "npm run agent:index:scout -- --json", "repo": "CG-AppBuilder-MCP"},
+      {"id": "luna", "cmd": "npm run luna:retrieve -- --director --query=<q> --json", "repo": "CG-AppBuilder-MCP"},
+      {"id": "ledger", "cmd": "read ACTIVE_WORK.md + CURRENT_HANDOFF.md", "repo": "CapitalGlass-Cross-Agent"}
+    ],
+    "materialPreflight": [
+      {"id": "auto-v32", "cmd": "npm run agent:preflight:auto-v32 -- --run-compile --json", "env": ["CG_AUTO_V32_WORK_PACKAGE", "CG_AUTO_V32_MISSION_CLASS", "CG_AUTO_V32_MATERIAL=true"]},
+      {"id": "app-builder-preflight", "cmd": "npm run agent:preflight:app-builder-mcp"},
+      {"id": "execution-context", "cmd": "npm run execution-context:resolve -- --work-package=<id> --json"},
+      {"id": "context-compile", "cmd": "npm run agent:context:compile -- --work-package=<id>"}
+    ],
+    "sessionClose": [
+      {"id": "closeout", "cmd": "npm run auto:v3:session-closeout -- --work-package=<id> --payload=./closeout.json --json", "payloadField": "clientSurface: CLAUDE"}
+    ],
+    "waverunner": [
+      {"id": "resolve", "cmd": "npm run sdlc:waverunner:resolve -- --milestone=<id> --json"},
+      {"id": "execute", "cmd": "npm run sdlc:waverunner -- --milestone=<id> --json"}
+    ],
+    "hubLedger": [
+      {"id": "export", "cmd": "npm run active-ledger:export -- --repo=/home/wesley/repos/CapitalGlass-Cross-Agent", "env": ["INTELLIGENCE_HUB_ROOT=/mnt/l/Capital-Glass-Intelligence-Hub"]},
+      {"id": "ingest", "cmd": "npm run cross-agent-ledger:ingest -- --apply --repo=...", "requires": ["CROSS_AGENT_LEDGER_INGEST_APPROVED=1", "doppler run --project cg-mcp --config dev"]},
+      {"id": "sync-check", "cmd": "npm run active-ledger:sync:check -- --repo=/home/wesley/repos/CapitalGlass-Cross-Agent"}
+    ],
+    "mcpHealth": [
+      {"id": "doctor", "cmd": "npm run mcp:doctor"},
+      {"id": "wsl-verify", "cmd": "npm run wsl:mcp:verify -- --json"},
+      {"id": "wsl-repair", "cmd": "npm run wsl:mcp:repair -- --json"},
+      {"id": "integrations-preflight", "cmd": "doppler run --project cg-mcp --config dev -- npm run integrations:preflight"},
+      {"id": "railway-health", "cmd": "npm run mcp:railway-health:once:doctor"},
+      {"id": "cloudflare-heal", "cmd": "npm run mcp:cloudflare:heal"}
+    ],
+    "authCli": [
+      {"id": "doppler-login", "cmd": "doppler login"},
+      {"id": "doppler-check", "cmd": "doppler configure get token --plain >/dev/null && echo OK"},
+      {"id": "gh-status", "cmd": "gh auth status"},
+      {"id": "az-login", "cmd": "az login"},
+      {"id": "mcp-api-health", "cmd": "curl -fsS http://127.0.0.1:3001/health"}
+    ],
+    "gitGithub": [
+      {"id": "gh-pr-create", "cmd": "gh pr create --title ... --body ..."},
+      {"id": "gh-pr-checks", "cmd": "gh pr checks"},
+      {"id": "gh-run-list", "cmd": "gh run list --limit 5"}
+    ],
+    "directConnect": [
+      {"id": "preflight", "cmd": "npm run direct-connect:preflight -- --json"}
+    ],
+    "officeAdmin": [
+      {"id": "three-way-controller", "cmd": "npm run office-admin:controller -- --run-id=<id> --init --cursor-wiring", "repo": "CapitalGlass-Office-Admin"}
+    ],
+    "wslEstate": [
+      {"id": "verify-repo-library", "cmd": "npm run wsl:verify-repo-library"},
+      {"id": "mount-drives", "cmd": "npm run wsl:mount-authority-drives"}
+    ],
+    "autoProtocolV3": [
+      {"id": "binding", "cmd": "npm run auto:v3:binding"},
+      {"id": "closeout", "cmd": "npm run auto:v3:closeout -- --work-package=<id> --repo=<path>"}
+    ]
+  },
+  "mcpTier0Tools": [
+    "failure.preflight",
+    "failure.search_similar",
+    "office.get_agent_preflight",
+    "app.get_agent_preflight"
+  ],
+  "relatedDocs": [
+    "CLAUDE_CLI_OPERATOR_REFERENCE_V1.md",
+    "CLAUDE_AUTH_AND_CREDENTIALS_GUIDE_V1.md",
+    "CLAUDE_CODE_MCP_WIRING_V1.md",
+    "CLAUDE_OPERATOR_DAILY_PREFLIGHT_V1.md",
+    "mcp-inventory.json"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "machines-wsl-paths-v1@1.0.0",
+  "workPackageId": "claude-full-estate-platform-integration-v1",
+  "canonicalWslReposRoot": "/home/wesley/repos",
+  "forbiddenAgentRoots": [
+    "/mnt/c/Developer/repos",
+    "C:\\Developer\\repos"
+  ],
+  "adminMachines": {
+    "WESLEY_WORK": {
+      "endpointId": "CG-WESLEYWORK-01",
+      "wslReposRoot": "/home/wesley/repos",
+      "windowsReposRoot": "C:/Developer/repos",
+      "zShareWsl": "/mnt/z/Capital-Glass-Dev",
+      "lHubWsl": "/mnt/l/Capital-Glass-Intelligence-Hub",
+      "directConnectHandoffsWsl": "/mnt/z/Office/Wes/Direct Connect/handoffs"
+    },
+    "WESLEYDESK": {
+      "endpointId": "CG-WESLEYDESK-01",
+      "wslReposRoot": "/home/wesley/repos",
+      "windowsReposRoot": "C:/Developer/repos",
+      "zShareWsl": "/mnt/z/Capital-Glass-Dev",
+      "lHubWsl": "/mnt/l/Capital-Glass-Intelligence-Hub"
+    }
+  },
+  "platformRepos": [
+    {"key": "cgAppBuilderMcp", "wslPath": "/home/wesley/repos/CG-AppBuilder-MCP", "role": "execution_control_plane"},
+    {"key": "capitalGlassCrossAgent", "wslPath": "/home/wesley/repos/CapitalGlass-Cross-Agent", "role": "coordination_ledger"},
+    {"key": "cgPlatformGovernanceMcp", "wslPath": "/home/wesley/repos/CG-Platform-Governance-MCP", "role": "constitutional_authority"},
+    {"key": "capitalGlassOfficeAdmin", "wslPath": "/home/wesley/repos/CapitalGlass-Office-Admin", "role": "office_it_network"},
+    {"key": "cursorMcpKit", "wslPath": "/home/wesley/repos/Cursor-MCP-Kit", "role": "mcp_workstation_optimizer"},
+    {"key": "capitalGlassAgentOps", "wslPath": "/home/wesley/repos/capital-glass-agent-ops", "role": "agent_loop_runtime"},
+    {"key": "capitalGlassProcedures", "wslPath": "/home/wesley/repos/Capital-Glass-Procedures-", "role": "procedure_sidecars"},
+    {"key": "capitalGlassDocuments", "wslPath": "/home/wesley/repos/CapitalGlass-Documents", "role": "document_center"},
+    {"key": "cgFailureIntelligenceMcp", "wslPath": "/home/wesley/repos/CG-Failure-Intelligence-MCP", "role": "failure_playbooks"}
+  ],
+  "suiteApps": [
+    {"name": "Apps Hub", "wslPath": "/home/wesley/repos/CapitalGlass Apps Hub", "url": "https://capitalglasstxapps.com"},
+    {"name": "Project Dashboard", "wslPath": "/home/wesley/repos/CapitalGlass Project Dashboard", "url": "https://projects.capitalglasstxapps.com"},
+    {"name": "Purchase Orders", "wslPath": "/home/wesley/repos/Purchase Orders", "url": "https://po.capitalglasstxapps.com"},
+    {"name": "Proposal Generator", "wslPath": "/home/wesley/repos/Cursor-ProposalGenerator", "url": "https://proposal.capitalglasstxapps.com"},
+    {"name": "Document Center", "wslPath": "/home/wesley/repos/CapitalGlass-Documents", "url": "https://documents.capitalglasstxapps.com"},
+    {"name": "Computer Estimator", "wslPath": "/home/wesley/repos/Computer Estimator", "url": "local_integration"}
+  ],
+  "operatorScriptsWindows": {
+    "startMcp": "Z:/Capital-Glass-Dev/Cursor-MCP-Kit/Start-CgMcpForCursor.ps1",
+    "mcpReadiness": "Z:/Capital-Glass-Dev/Cursor-MCP-Kit/Get-McpKitReadiness.ps1",
+    "hardenMcpKit": "Z:/Capital-Glass-Dev/Cursor-MCP-Kit/Harden-Cursor-McpKit.ps1"
+  },
+  "sourceAuthority": "Z:/Capital-Glass-Dev/Cursor-MCP-Kit/machines.json"
+}

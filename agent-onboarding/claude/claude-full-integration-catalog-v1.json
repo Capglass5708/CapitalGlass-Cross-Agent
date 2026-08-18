@@ -1,0 +1,120 @@
+{
+  "schemaVersion": "claude-full-integration-catalog-v1@1.0.0",
+  "workPackageId": "claude-full-estate-platform-integration-v1",
+  "onboardingWorkPackage": "claude-estate-awareness-v1",
+  "publishedAt": "2026-08-18T22:30:00.000Z",
+  "overallStatus": "FULL_AUTH_CLI_PACK_PUBLISHED",
+  "terminalStamp": "CAPITAL_GLASS_CLAUDE_FULL_ESTATE_INTEGRATION_V1_PROVEN",
+  "terminalStampNote": "Stamp is mission target — not achieved until Phase 1 engineering receipts exist",
+  "publishedPath": {
+    "windows": "Z:\\Capital-Glass-Dev\\Claude Start Package",
+    "wsl": "/mnt/z/Capital-Glass-Dev/Claude Start Package"
+  },
+  "clientSurface": "CLAUDE",
+  "executionHost": {
+    "required": "WSL2 Ubuntu bash",
+    "repoRoot": "/home/wesley/repos",
+    "forbidden": ["C:\\Developer\\repos", "/mnt/c/Developer/repos"],
+    "blockedCode": "HOST_MODE_BLOCKED"
+  },
+  "requiredUploads": [
+    "CLAUDE_ESTATE_AWARENESS_PACK_v1.md",
+    "CLAUDE_WSL_EXECUTION_POLICY.md",
+    "CLAUDE_MCP_AND_PROTOCOL_GUIDE_V1.md",
+    "CLAUDE_PARALLEL_OPERATION_GUIDE_V1.md",
+    "CLAUDE_AUTH_AND_CREDENTIALS_GUIDE_V1.md",
+    "CLAUDE_CLI_OPERATOR_REFERENCE_V1.md",
+    "CLAUDE_CODE_MCP_WIRING_V1.md",
+    "CLAUDE_OPERATOR_DAILY_PREFLIGHT_V1.md"
+  ],
+  "requiredPaste": "CLAUDE_CUSTOM_INSTRUCTIONS.txt",
+  "parallelOperation": {
+    "principle": "One platform, multiple client surfaces — not multiple truths",
+    "defaultLanes": {
+      "CURSOR": ["implementation", "mcp_execution", "commits", "gates"],
+      "CLAUDE": ["investigate", "plan", "review", "ledger", "coordination"]
+    },
+    "hardRules": [
+      "one_active_writer_per_repo_branch",
+      "no_dual_material_closeout_same_work_package",
+      "no_waverunner_double_orchestrate_same_milestone",
+      "read_ledger_before_assuming_chat_is_current"
+    ],
+    "coordinationBus": [
+      "CapitalGlass-Cross-Agent/work-progress/ACTIVE_WORK.md",
+      "CapitalGlass-Cross-Agent/handoffs/CURRENT_HANDOFF.md",
+      "L:/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/*.json",
+      "Z:/Capital-Glass-Dev/Cursor-MCP-Kit/mcp-inventory.json"
+    ]
+  },
+  "sessionOpen": [
+    {"step": 1, "action": "host_check", "command": "test -d ~/repos/CG-AppBuilder-MCP"},
+    {"step": 2, "action": "declare_mission", "fields": ["workPackageId", "missionClass", "clientSurface"]},
+    {"step": 3, "action": "hub_scout", "command": "npm run agent:index:scout -- --json", "repo": "CG-AppBuilder-MCP"},
+    {"step": 4, "action": "read_ledger", "paths": ["ACTIVE_WORK.md", "CURRENT_HANDOFF.md"]},
+    {"step": 5, "action": "luna_director", "command": "npm run luna:retrieve -- --director --query=<mission> --json"}
+  ],
+  "materialWork": {
+    "env": ["CG_AUTO_V32_WORK_PACKAGE", "CG_AUTO_V32_MISSION_CLASS", "CG_AUTO_V32_MATERIAL=true"],
+    "commands": [
+      "npm run agent:preflight:auto-v32 -- --run-compile --json",
+      "npm run agent:preflight:app-builder-mcp",
+      "npm run execution-context:resolve -- --work-package=<id> --json"
+    ],
+    "closeout": "npm run auto:v3:session-closeout -- --work-package=<id> --payload=./closeout.json --json",
+    "closeoutPayloadField": "clientSurface: CLAUDE"
+  },
+  "mcpAuthorities": [
+    {"name": "Office Admin MCP", "cursorId": "user-office-admin-mcp", "owns": "machines, endpoints, network, vault policy"},
+    {"name": "Doppler MCP", "cursorId": "user-doppler", "owns": "secret names only — never values"},
+    {"name": "SharePoint MCP", "cursorId": "user-sharepoint", "owns": "M365 lists and drive ops"}
+  ],
+  "mcpTiers": {
+    "tier0": [
+      {"name": "Hub scout", "cli": "npm run agent:index:scout", "logCodes": ["INDEX_HIT", "INDEX_MISS"]},
+      {"name": "Luna retrieval", "cli": "npm run luna:retrieve -- --director", "logCodes": ["LUNA_RETRIEVAL_HIT"]},
+      {"name": "Failure Intelligence", "cursorId": "user-failure-intelligence-mcp", "tools": ["failure.preflight", "failure.search_similar"]},
+      {"name": "Cross-Agent ledger", "type": "git_read", "paths": ["ACTIVE_WORK.md", "CURRENT_HANDOFF.md"]}
+    ],
+    "tier1": [
+      {"name": "CG App Builder", "cursorId": "user-cg-app-mcp"},
+      {"name": "CG Platform Governance", "cursorId": "user-cg-platform-governance-mcp"},
+      {"name": "CG Diagnostic", "cursorId": "user-cg-diagnostic"},
+      {"name": "CG Suite Wiring", "cursorId": "user-cg-suite-wiring"},
+      {"name": "Agent Loop", "cursorId": "user-agent-loop"}
+    ],
+    "tier2": [
+      {"name": "Office Admin", "cursorId": "user-office-admin-mcp", "preflightSequence": [
+        "office.get_agent_preflight",
+        "office.get_security_rules",
+        "office.get_it_vault_policy",
+        "office.get_slice_roadmap"
+      ]}
+    ],
+    "tier3": ["user-github", "user-doppler", "user-supabase", "user-vercel", "user-railway", "user-sharepoint", "plugin-azure-azure", "plugin-resend-resend"],
+    "tier4": ["user-hub-app-mcp", "user-dashboard-app-mcp", "user-po-app-mcp", "user-contacts-app-mcp", "user-proposal-generator-app-mcp", "user-document-center-app-mcp", "user-calendar-app-mcp", "user-email-app-mcp"]
+  },
+  "mcpInventoryAuthority": {
+    "windows": "Z:\\Capital-Glass-Dev\\Cursor-MCP-Kit\\mcp-inventory.json",
+    "wsl": "/mnt/z/Capital-Glass-Dev/Cursor-MCP-Kit/mcp-inventory.json",
+    "hubMirror": "L:/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/mcp-servers.json"
+  },
+  "retrievalCodes": [
+    "INDEX_HIT", "INDEX_MISS", "CACHE_HIT", "CACHE_MISS",
+    "LUNA_RETRIEVAL_HIT", "DIRECT_CONNECT_HIT", "DIRECT_CONNECT_BLOCKED",
+    "HOST_MODE_BLOCKED", "FAILOVER_GIT_LEDGER", "FAILOVER_SUPABASE"
+  ],
+  "missionClasses": ["investigate", "fix", "closeout", "ownership", "deploy", "docs"],
+  "deferred": ["night_owl_protocol", "clientSurface_engineering_receipts"],
+  "authCliDocs": [
+    "CLAUDE_AUTH_AND_CREDENTIALS_GUIDE_V1.md",
+    "CLAUDE_CLI_OPERATOR_REFERENCE_V1.md",
+    "CLAUDE_CODE_MCP_WIRING_V1.md",
+    "CLAUDE_OPERATOR_DAILY_PREFLIGHT_V1.md",
+    "CLAUDE_FULL_OPERATOR_INDEX.md",
+    "claude-cli-command-index-v1.json",
+    "mcp-inventory.json",
+    "machines-wsl-paths-v1.json"
+  ],
+  "gitSource": "CapitalGlass-Cross-Agent/agent-onboarding/claude/"
+}
