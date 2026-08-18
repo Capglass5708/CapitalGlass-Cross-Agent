@@ -129,7 +129,7 @@ export function replayW1Corpus({
       generatedAt,
     });
     const preservation = measureSemanticPreservation(candidates, derivedObjects);
-    const relationships = buildRelationshipEdges({ ledger, derivedObjects, closeout, handoff });
+    const { edges: relationships, reconciliation } = buildRelationshipEdges({ ledger, derivedObjects, closeout, handoff });
     const attachment = countSemanticGraphAttachment(derivedObjects, relationships);
 
     const seenConcepts = new Set();
