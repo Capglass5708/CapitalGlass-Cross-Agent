@@ -202,7 +202,7 @@ export async function runIntelligenceIngest({
     objectIds: derivedObjects.map((object) => object.identity.objectId),
   });
 
-  const relationships = buildRelationshipEdges({ ledger, derivedObjects, closeout });
+  const relationships = buildRelationshipEdges({ ledger, derivedObjects, closeout, handoff });
   pushStep('build_relationship_edges', true, {
     count: relationships.length,
     relationshipIds: relationships.map((edge) => edge.relationshipId),
