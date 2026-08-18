@@ -1,5 +1,5 @@
 import { ENVELOPE_SCHEMA, DERIVATION_VERSION } from './constants.mjs';
-import { buildEnvelopeContentHash, buildObjectId } from './ids.mjs';
+import { buildEnvelopeContentHash, buildObjectId, buildSemanticObjectId } from './ids.mjs';
 
 export function buildOperationalEnvelope({
   kind,
@@ -13,8 +13,11 @@ export function buildOperationalEnvelope({
   measurementMetrics = {},
   futureUseOverrides = {},
   generatedAt = new Date().toISOString(),
+  conceptKey = null,
 }) {
-  const objectId = buildObjectId(kind, ledger.ledgerId, ledger.closeoutHash);
+  const objectId = conceptKey
+    ? buildSemanticObjectId(kind, ledger.ledgerId, ledger.closeoutHash, conceptKey)
+    : buildObjectId(kind, ledger.ledgerId, ledger.closeoutHash);
   const envelope = {
     schema: ENVELOPE_SCHEMA,
     identity: {

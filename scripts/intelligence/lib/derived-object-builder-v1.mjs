@@ -1,5 +1,57 @@
 import { buildOperationalEnvelope } from './envelope-builder-v1.mjs';
 import { projectCorrelationMarkersForEnvelope } from './correlation-markers-v1.mjs';
+import {
+  classifySemanticCandidates,
+  SEMANTIC_KINDS,
+} from './semantic-classifier-v1.mjs';
+
+const OPERATIONAL_KINDS = ['MISSION_MEASUREMENT', 'RECEIPT_LEVERAGE_SIGNAL'];
+
+export function buildSemanticDerivedObjects({
+  ledger,
+  handoff,
+  closeout,
+  evidenceReality,
+  measurementQuality,
+  generatedAt,
+  correlationProjection,
+}) {
+  const candidates = classifySemanticCandidates(closeout);
+  const objects = [];
+  for (const candidate of candidates) {
+    if (!SEMANTIC_KINDS.includes(candidate.kind)) continue;
+    if (candidate.verificationState === 'verified' && candidate.kind === 'VERIFIED_TRUTH' && !candidate.claim) {
+      continue;
+    }
+    const envelope = buildOperationalEnvelope({
+      kind: candidate.kind,
+      ledger,
+      handoff,
+      evidenceReality,
+      measurementQuality,
+      generatedAt,
+      conceptKey: candidate.conceptKey,
+      confidenceBasis: ['closeout-hash-verified', 'semantic-classifier-v1'],
+      confidenceScore: candidate.verificationState === 'verified' ? 0.85 : 0.6,
+      measurementMetrics: {
+        sourcePath: candidate.sourcePath,
+        conceptKey: candidate.conceptKey,
+      },
+      extensions: {
+        semantic: {
+          conceptKey: candidate.conceptKey,
+          sourcePath: candidate.sourcePath,
+          claim: candidate.claim,
+          verificationState: candidate.verificationState,
+          classificationVersion: 'semantic-classifier-v1@1.0.0',
+        },
+        ...(correlationProjection ? { correlationMarkers: correlationProjection } : {}),
+      },
+    });
+    objects.push(envelope);
+  }
+  return { objects, candidates };
+}
 
 export function buildDerivedObjects({
   ledger,
@@ -57,5 +109,34 @@ export function buildDerivedObjects({
     objects.push(receiptLeverage);
   }
 
+  const semantic = buildSemanticDerivedObjects({
+    ledger,
+    handoff,
+    closeout,
+    evidenceReality,
+    measurementQuality,
+    generatedAt,
+    correlationProjection,
+  });
+  objects.push(...semantic.objects);
+
   return objects;
+}
+
+export function measureSemanticPreservation(candidates, derivedObjects) {
+  const semanticObjects = derivedObjects.filter((o) => SEMANTIC_KINDS.includes(o.identity.kind));
+  const derivedKeys = new Set(
+    semanticObjects.map((o) => o.extensions?.semantic?.conceptKey).filter(Boolean),
+  );
+  const material = candidates.filter((c) => c.material);
+  const preserved = material.filter((c) => derivedKeys.has(c.conceptKey));
+  return {
+    materialCount: material.length,
+    preservedCount: preserved.length,
+    derivedSemanticCount: semanticObjects.length,
+    semanticPreservationRatio: material.length > 0 ? preserved.length / material.length : 1,
+    operationalKindsPreserved: OPERATIONAL_KINDS.every((kind) =>
+      derivedObjects.some((o) => o.identity.kind === kind),
+    ),
+  };
 }

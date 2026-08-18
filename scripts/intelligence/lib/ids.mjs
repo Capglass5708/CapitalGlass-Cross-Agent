@@ -15,6 +15,18 @@ export function buildObjectId(kind, ledgerId, closeoutHash) {
   return `oi:${kind.toLowerCase().replace(/_/g, '-')}:${digest.slice(0, 16)}`;
 }
 
+export function buildSemanticObjectId(kind, ledgerId, closeoutHash, conceptKey) {
+  const digest = hashCanonicalJson(
+    `${ledgerId}:${kind}:${conceptKey}:${normalizeHash(closeoutHash)}:${DERIVATION_VERSION}`,
+  );
+  return `oi:${kind.toLowerCase().replace(/_/g, '-')}:${digest.slice(0, 16)}`;
+}
+
+export function buildWorkPackageAnchorId(workPackageId) {
+  const digest = hashCanonicalJson(`workpackage:${workPackageId}:${DERIVATION_VERSION}`);
+  return `oi:workpackage:${digest.slice(0, 16)}`;
+}
+
 export function buildRelationshipId(fromId, toId, relationship) {
   const digest = hashCanonicalJson(`${fromId}:${toId}:${relationship}:${DERIVATION_VERSION}`);
   return `oi:rel:${digest.slice(0, 16)}`;

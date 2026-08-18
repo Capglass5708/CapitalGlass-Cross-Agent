@@ -1,7 +1,8 @@
 import { buildRelationshipId } from './ids.mjs';
 import { buildCorrelationRelationshipEdges } from './correlation-markers-v1.mjs';
+import { buildSemanticRelationshipEdges } from './semantic-relationship-builder-v1.mjs';
 
-export function buildRelationshipEdges({ ledger, derivedObjects, closeout = null }) {
+export function buildRelationshipEdges({ ledger, derivedObjects, closeout = null, handoff = null }) {
   const edges = [];
   for (const object of derivedObjects) {
     edges.push({
@@ -33,6 +34,14 @@ export function buildRelationshipEdges({ ledger, derivedObjects, closeout = null
       ledger,
       correlationBlock: closeout?.correlation ?? null,
       derivedObjects,
+    }),
+  );
+  edges.push(
+    ...buildSemanticRelationshipEdges({
+      ledger,
+      derivedObjects,
+      handoff,
+      closeout,
     }),
   );
   return edges;
