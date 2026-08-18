@@ -65,6 +65,41 @@ export function buildSemanticRelationshipEdges({ ledger, derivedObjects, handoff
     });
   }
 
+  const patterns = semanticObjects.filter((o) => o.identity.kind === 'SUCCESS_PATTERN');
+  const capabilities = semanticObjects.filter((o) => o.identity.kind === 'CAPABILITY_SIGNAL');
+  if (patterns.length > 0 && capabilities.length > 0) {
+    edges.push({
+      relationshipId: buildRelationshipId(patterns[0].identity.objectId, capabilities[0].identity.objectId, 'REINFORCES'),
+      from: patterns[0].identity.objectId,
+      to: capabilities[0].identity.objectId,
+      relationship: 'REINFORCES',
+      derivationVersion: ledger.derivationVersion,
+      verificationState: 'verified',
+    });
+    edges.push({
+      relationshipId: buildRelationshipId(capabilities[0].identity.objectId, patterns[0].identity.objectId, 'ENABLES'),
+      from: capabilities[0].identity.objectId,
+      to: patterns[0].identity.objectId,
+      relationship: 'ENABLES',
+      derivationVersion: ledger.derivationVersion,
+      verificationState: 'inferred',
+    });
+  }
+
+  const opportunities = semanticObjects.filter((o) => o.identity.kind === 'FUTURE_OPPORTUNITY');
+  for (const opportunity of opportunities) {
+    for (const capability of capabilities) {
+      edges.push({
+        relationshipId: buildRelationshipId(opportunity.identity.objectId, capability.identity.objectId, 'ENABLED_BY'),
+        from: opportunity.identity.objectId,
+        to: capability.identity.objectId,
+        relationship: 'ENABLED_BY',
+        derivationVersion: ledger.derivationVersion,
+        verificationState: 'inferred',
+      });
+    }
+  }
+
   return edges;
 }
 

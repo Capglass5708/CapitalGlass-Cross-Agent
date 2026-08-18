@@ -1,6 +1,7 @@
 import { buildRelationshipId } from './ids.mjs';
 import { buildCorrelationRelationshipEdges } from './correlation-markers-v1.mjs';
 import { buildSemanticRelationshipEdges } from './semantic-relationship-builder-v1.mjs';
+import { reconcileSemanticIdentities } from './identity-reconciliation-v1.mjs';
 
 export function buildRelationshipEdges({ ledger, derivedObjects, closeout = null, handoff = null }) {
   const edges = [];
@@ -44,5 +45,7 @@ export function buildRelationshipEdges({ ledger, derivedObjects, closeout = null
       closeout,
     }),
   );
-  return edges;
+  const reconciliation = reconcileSemanticIdentities({ derivedObjects, ledger });
+  edges.push(...reconciliation.edges);
+  return { edges, reconciliation };
 }

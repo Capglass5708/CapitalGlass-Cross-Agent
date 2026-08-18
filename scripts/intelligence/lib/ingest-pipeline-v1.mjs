@@ -18,6 +18,7 @@ import { projectMissionLedgerRecord } from './mission-ledger-projector-v1.mjs';
 import { dryRunLedgerDir, resolveCloseoutPath } from './paths.mjs';
 import { reconstructAllProvenance } from './provenance-reconstruct-v1.mjs';
 import { buildRelationshipEdges } from './relationship-edge-builder-v1.mjs';
+import { evaluateGraphDividendGate, buildGraphDeltaReceipt } from './graph-dividend-gate-v1.mjs';
 import {
   assertNoProducerIntelligencePayload,
   validateEnvelopeSchema,
@@ -202,10 +203,23 @@ export async function runIntelligenceIngest({
     objectIds: derivedObjects.map((object) => object.identity.objectId),
   });
 
-  const relationships = buildRelationshipEdges({ ledger, derivedObjects, closeout, handoff });
+  const { edges: relationships, reconciliation } = buildRelationshipEdges({ ledger, derivedObjects, closeout, handoff });
+  const graphDividend = evaluateGraphDividendGate({ handoff, derivedObjects, relationships });
+  if (graphDividend.required && !graphDividend.pass) {
+    throw fail('GRAPH_DIVIDEND', 'GRAPH_DIVIDEND_GATE_FAILED', 'Material mission missing graph dividend', graphDividend);
+  }
+  const graphDeltaReceipt = buildGraphDeltaReceipt({
+    missionId: handoff.workPackageId,
+    workPackageId: handoff.workPackageId,
+    derivedObjects,
+    relationships,
+    reconciliation,
+  });
   pushStep('build_relationship_edges', true, {
     count: relationships.length,
     relationshipIds: relationships.map((edge) => edge.relationshipId),
+    reconciliationAliasCount: reconciliation.aliasCount,
+    graphDividend,
   });
 
   const hubMode = mode === 'shared-dev-hub' ? 'shared-dev-hub' : 'dry-run';
@@ -266,6 +280,7 @@ export async function runIntelligenceIngest({
       LEDGER_PROJECTION_PASS: true,
       DERIVED_OBJECT_BUILD_PASS: true,
       RELATIONSHIP_EDGE_BUILD_PASS: true,
+      GRAPH_DIVIDEND_PASS: graphDividend.pass,
       HUB_COMPACT_COMPILE_PASS: true,
       PROVENANCE_RECONSTRUCTION_PASS: true,
       IDEMPOTENT_REINGEST_PASS: null,
@@ -282,6 +297,7 @@ export async function runIntelligenceIngest({
       relationships,
       hubCompact,
       provenance,
+      graphDeltaReceipt,
     },
     writes: {
       lDrive: false,
