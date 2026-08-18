@@ -18,8 +18,8 @@ test -d /mnt/l/Capital-Glass-Intelligence-Hub/00-master-index && echo INDEX_MOUN
 # 3. Z: operator mirror
 test -d /mnt/z/Capital-Glass-Dev && echo Z_OK || echo Z_NOT_MOUNTED
 
-# 4. Auth
-doppler configure get token --plain >/dev/null && echo DOPPLER_OK || echo DOPPLER_LOGIN_REQUIRED
+# 4. Auth (identity only — never retrieves a credential)
+doppler me >/dev/null 2>&1 && echo DOPPLER_OK || echo DOPPLER_LOGIN_REQUIRED
 gh auth status 2>&1 | head -3
 
 # 5. MCP API

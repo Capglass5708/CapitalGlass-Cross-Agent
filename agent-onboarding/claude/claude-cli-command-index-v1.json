@@ -36,7 +36,7 @@
     ],
     "authCli": [
       {"id": "doppler-login", "cmd": "doppler login"},
-      {"id": "doppler-check", "cmd": "doppler configure get token --plain >/dev/null && echo OK"},
+      {"id": "doppler-check", "cmd": "doppler me >/dev/null 2>&1 && echo OK"},
       {"id": "gh-status", "cmd": "gh auth status"},
       {"id": "az-login", "cmd": "az login"},
       {"id": "mcp-api-health", "cmd": "curl -fsS http://127.0.0.1:3001/health"}

@@ -35,7 +35,7 @@ Claude acts on Wesley's behalf using the **same credentials Cursor uses** — no
 **WSL Doppler CLI check:**
 
 ```bash
-doppler configure get token --plain >/dev/null && echo DOPPLER_OK || doppler login
+doppler me >/dev/null 2>&1 && echo DOPPLER_OK || doppler login
 ```
 
 **Run any command with secrets (WSL):**
@@ -88,7 +88,7 @@ Run from **WSL bash** unless noted.
 | --- | --- | --- |
 | **Git** | SSH key or HTTPS + credential helper | `ssh -T git@github.com` or `gh auth status` |
 | **GitHub CLI** | `gh auth login` | `gh auth status` |
-| **Doppler CLI** | `doppler login` | `doppler configure get token --plain >/dev/null && echo OK` |
+| **Doppler CLI** | `doppler login` | `doppler me >/dev/null 2>&1 && echo OK` |
 | **Azure CLI** | `az login` (Windows or WSL) | `az account show` |
 | **Railway CLI** | `railway login` | `railway whoami` |
 | **Vercel CLI** | `vercel login` or token in Doppler | `vercel whoami` |

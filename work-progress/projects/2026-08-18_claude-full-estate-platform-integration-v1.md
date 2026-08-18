@@ -4,7 +4,7 @@
 **Date:** 2026-08-18  
 **Owner repo:** `CG-AppBuilder-MCP` (execution) · `CapitalGlass-Cross-Agent` (coordination)  
 **Mission class:** investigate (Phase 0) → fix (phased)  
-**Status:** **DISCOVERY_PHASE_0_COMPLETE** — terminal stamp **not** achieved  
+**Status:** **MCP_CONNECTED_HYGIENE_VERIFIED** — terminal stamp **not** achieved
 **Published folder:** `Z:\Capital-Glass-Dev\Claude Start Package`
 
 ## Summary
@@ -19,7 +19,8 @@ Phase 0 traced Cursor capabilities to underlying authorities and produced covera
 CAPITAL_GLASS_CLAUDE_FULL_ESTATE_INTEGRATION_V1_PROVEN
 ```
 
-**Not achieved.** 0 capabilities at PROVEN in matrix v1.
+**Not achieved.** 0 capabilities at PROVEN in matrix v1; core MCP invocation
+is CONNECTED after bounded read-only proof.
 
 ## Published artifacts (Z:)
 
@@ -36,10 +37,10 @@ CAPITAL_GLASS_CLAUDE_FULL_ESTATE_INTEGRATION_V1_PROVEN
 | --- | --- |
 | Platform stack | Deep — WaveRunner, Luna, Auto v3.2, Hub, FI, registry exist |
 | Cursor coupling | MCP stdio wiring, scout hooks, subagent launchers, session env vars |
-| Claude today | Awareness pack CONNECTED; MCP parity BLOCKED |
+| Claude today | Awareness pack CONNECTED; core MCP parity CONNECTED; formal receipt proof pending |
 | Night Owl | Canonical protocol **not located** in estate index — BLOCKED |
 | Revu production | Domain blocker — not Claude-specific |
-| WSL | Policy CONNECTED; execution parity pending Claude Code/WSL bridge |
+| WSL | Policy CONNECTED; Claude Code MCP execution CONNECTED; formal receipt parity pending |
 
 ## Top coupling debts
 
@@ -71,7 +72,7 @@ CAPITAL_GLASS_CLAUDE_FULL_ESTATE_INTEGRATION_V1_PROVEN
 | Mission charter on Z: | PASS |
 | Coverage matrix JSON | PASS |
 | Cursor→authority tracing documented | PASS |
-| Full parity proven | FAIL (expected Phase 0) |
+| Full parity proven | FAIL (expected until clientSurface receipt exists) |
 
 ---
 

@@ -27,16 +27,32 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | --- | --- |
 | Work package | `claude-full-estate-platform-integration-v1` |
 | Owner | `CG-AppBuilder-MCP` (execution) + `CapitalGlass-Cross-Agent` (coordination) |
-| Status | **FULL_AUTH_CLI_PACK_PUBLISHED** — 8-file pack + MCP inventory mirror on Z:; live Claude Code wiring pending |
+| Status | **MCP_CONNECTED_HYGIENE_VERIFIED** — Claude Code has bounded live MCP parity; formal PROVEN receipt still pending |
 | Published folder | `Z:\Capital-Glass-Dev\Claude Start Package` |
 | Required uploads | 8 files — see `CLAUDE_FULL_OPERATOR_INDEX.md` |
 | Auth + CLI | `CLAUDE_AUTH_AND_CREDENTIALS_GUIDE_V1.md`, `CLAUDE_CLI_OPERATOR_REFERENCE_V1.md`, `mcp-inventory.json` |
 | Custom instructions | `CLAUDE_CUSTOM_INSTRUCTIONS.txt` — includes auth/CLI preflight |
 | Charter | `CAPITAL_GLASS_CLAUDE_FULL_ESTATE_PLATFORM_INTEGRATION_V1.md` |
-| Matrix | `CLAUDE_INTEGRATION_COVERAGE_MATRIX_V1.json` — 0 PROVEN, 3 BLOCKED, 2 CONNECTED |
+| Matrix | `CLAUDE_INTEGRATION_COVERAGE_MATRIX_V1.json` — 0 PROVEN, 2 BLOCKED, 3 CONNECTED |
 | Git source | `CapitalGlass-Cross-Agent/agent-onboarding/claude/` |
-| Top blockers | Live MCP wiring in Claude Code; clientSurface not in platform receipts |
-| Next | Wesley: upload 8 files + paste instructions; wire Claude Code MCP; run daily preflight |
+| Source | Claude |
+| Top blockers | clientSurface not in platform receipts; shared neutral MCP registry/dispatch unbuilt |
+| Hygiene | Five Doppler token probes replaced with `doppler me`; Git source and Z: recursively `MIRROR_IN_SYNC` |
+| Historical defects | Previously shipped credential-retrieving Doppler preflight; stale `CURRENT_HANDOFF.md` (including `/home/wesle/repos` path typo); Luna retrieval reports no write side effect while creating a commit-eligible capsule; Office Admin knowledge artifacts stale |
+| Next | Cursor: review/commit source + ledger; then clientSurface schema → Claude closeout receipt → PROVEN |
+
+### 2026-08-18 CT — claude-code-mcp-wiring-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `claude-code-mcp-wiring-v1` |
+| Owner | `CapitalGlass-Cross-Agent` (records) + `CG-AppBuilder-MCP` (MCP authority) |
+| Source | Claude |
+| Status | **CONNECTED** — 9 required MCP read-only probes returned live data |
+| Evidence | Claude Code config: 26 definitions; 19 stdio handshakes; 9 required probes PASS |
+| Hygiene | Five unsafe Doppler token checks replaced; recursive Git↔Z verification `CLEAN` / `MIRROR_IN_SYNC` |
+| Matrix | MCP invocation `BLOCKED` → `CONNECTED`; coupling risk `CRITICAL` → `MEDIUM` |
+| Next | Cursor review/commit; add `clientSurface: CLAUDE` to receipts before PROVEN claim |
 
 ### 2026-08-18 CT — claude-estate-awareness-v1
 

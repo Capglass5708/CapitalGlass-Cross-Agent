@@ -2,7 +2,7 @@
   "schemaVersion": "claude-integration-coverage-matrix-v1@1.0.0",
   "workPackageId": "claude-full-estate-platform-integration-v1",
   "terminalStamp": "CAPITAL_GLASS_CLAUDE_FULL_ESTATE_INTEGRATION_V1_PROVEN",
-  "updatedAt": "2026-08-18T21:00:00.000Z",
+  "updatedAt": "2026-08-18T23:30:00.000Z",
   "overallStatus": "DISCOVERY_PHASE_0",
   "overallVerdict": "NOT_PROVEN",
   "clientSurfaceIdentity": {
@@ -124,9 +124,9 @@
       "id": "mcp_discovery_invocation",
       "cursorPath": "Cursor ~/.cursor/mcp.json regenerated from Cursor-MCP-Kit machines.json",
       "platformAuthority": ["Cursor-MCP-Kit", "per-repo services/*/run.mjs stdio MCP servers"],
-      "claudeStatus": "BLOCKED",
-      "couplingRisk": "CRITICAL",
-      "note": "MCP today is Cursor-native stdio wiring; Claude needs platform MCP bridge or shared agent-ops dispatch"
+      "claudeStatus": "CONNECTED",
+      "couplingRisk": "MEDIUM",
+      "note": "Claude Code invokes the same 26 MCP definitions as Cursor; bounded read-only proof completed. Shared neutral registry/dispatch remains unbuilt."
     },
     {
       "id": "waverunner",
@@ -286,7 +286,7 @@
   "topCouplingDebts": [
     {
       "id": "cursor_mcp_stdio_wiring",
-      "severity": "CRITICAL",
+      "severity": "MEDIUM",
       "remediation": "Platform-neutral MCP dispatch (agent-ops or CLI spoke) consumable by Claude and Cursor"
     },
     {
@@ -312,9 +312,9 @@
   ],
   "phase0Summary": {
     "discovered": 30,
-    "connected": 2,
+    "connected": 3,
     "proven": 0,
-    "blocked": 3,
+    "blocked": 2,
     "notApplicable": 0
   }
 }
