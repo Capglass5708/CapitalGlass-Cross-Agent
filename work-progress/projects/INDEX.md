@@ -2,7 +2,7 @@
 
 Master index of all project files in `work-progress/projects/`.
 
-**Last updated:** 2026-08-13 (`wesleywork-storage-protocol-contradiction-remediation-v1` — ForceRemap/LAN-first INDEX closed; Storage Keeper sole WESLEYWORK repair front door)
+**Last updated:** 2026-08-18 (`claude-estate-awareness-v1` — Claude estate onboarding pack created)
 
 Read `AGENT_START_HERE.md` and `work-progress/ACTIVE_WORK.md` before working on any project listed here.
 
@@ -286,6 +286,9 @@ _238 registry packets · 106 intelligence entities_
 
 | Project ID | File | Status | Owner repo(s) | Last commit | Next action |
 | --- | --- | --- | --- | --- | --- |
+| `claude-full-estate-platform-integration-v1` | [2026-08-18_claude-full-estate-platform-integration-v1.md](./2026-08-18_claude-full-estate-platform-integration-v1.md) | **MCP_CONNECTED_HYGIENE_VERIFIED** — matrix 0 PROVEN, 3 CONNECTED | CG-AppBuilder-MCP, Cross-Agent | — | Add clientSurface to receipts; Claude-originated closeout |
+| `claude-code-mcp-wiring-v1` | [2026-08-18_claude-code-mcp-wiring-v1.md](./2026-08-18_claude-code-mcp-wiring-v1.md) | **CONNECTED** — 9 required read-only MCP probes PASS; hygiene mirror verified | CG-AppBuilder-MCP, Cross-Agent | — | Cursor review/commit; clientSurface receipt proof |
+| `claude-estate-awareness-v1` | [2026-08-18_claude-estate-awareness-v1.md](./2026-08-18_claude-estate-awareness-v1.md) | **PUBLISHED_TO_Z** — complete setup pack on `Z:\Capital-Glass-Dev\Claude Start Package` | CapitalGlass-Cross-Agent | — | Follow `CLAUDE_SETUP_CHECKLIST.md`; upload estate pack + WSL policy; paste custom instructions |
 | `cg-federated-repo-index-v1` | [2026-08-12_cg-federated-repo-index-v1.md](./2026-08-12_cg-federated-repo-index-v1.md) | **CG_FEDERATED_REPO_INDEX_WAVE_A_CLOSED / LIVE_RYZEN9_PROOF_PASS** — GHA `31669015141`; umbrella `luna-estate-retrieval-index-v1` | `CG-AppBuilder-MCP`, `Computer Estimator` | AppBuilder **`c87ee2420`** (`main`, PR #372) | Hub L: publish only after operator authorization |
 | `two-desk-operating-v1` | [2026-08-11_two-desk-operating-v1.md](./2026-08-11_two-desk-operating-v1.md) | **COMPLETE** — `TWO_DESK_OPERATING_BOTH_READY` + L: BY-KIND published | `CG-AppBuilder-MCP` | AppBuilder tip `9385539c` (PR #350/#353/#357) | Optional OA MCP reconnect; optional ChatGPT write-guard |
 | `unauthorized-merge-353-ratify-cleanup-v1` | _(ledger entry in ACTIVE_WORK; incident on AppBuilder)_ | **COMPLETE** — Option C retain PR #353 | `CG-AppBuilder-MCP` | `251e96fb` + `11bce54c` | Optional ChatGPT write-guard |

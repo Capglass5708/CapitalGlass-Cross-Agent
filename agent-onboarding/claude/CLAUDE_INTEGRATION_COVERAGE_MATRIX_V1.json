@@ -1,0 +1,320 @@
+{
+  "schemaVersion": "claude-integration-coverage-matrix-v1@1.0.0",
+  "workPackageId": "claude-full-estate-platform-integration-v1",
+  "terminalStamp": "CAPITAL_GLASS_CLAUDE_FULL_ESTATE_INTEGRATION_V1_PROVEN",
+  "updatedAt": "2026-08-18T23:30:00.000Z",
+  "overallStatus": "DISCOVERY_PHASE_0",
+  "overallVerdict": "NOT_PROVEN",
+  "clientSurfaceIdentity": {
+    "requiredField": "clientSurface",
+    "requiredValue": "CLAUDE",
+    "status": "BLOCKED",
+    "note": "No clientSurface field found in AppBuilder receipts/schemas as of Phase 0"
+  },
+  "statusLegend": {
+    "DISCOVERED": "Authority traced; Claude not yet connected",
+    "CONNECTED": "Claude can invoke interface in bounded test",
+    "PROVEN": "Receipt-backed parity with Cursor path",
+    "BLOCKED": "External dependency or missing platform artifact",
+    "NOT_APPLICABLE": "Out of scope for Claude client surface"
+  },
+  "capabilities": [
+    {
+      "id": "repository_discovery",
+      "cursorPath": "L: AGENT_BUILD_CATALOG + platform-health repository-registry.json + ~/repos ext4 library",
+      "platformAuthority": ["capital-glass-platform-health/platform/repository-registry.json", "Data-Extraction/config/agent-research-library/estate-manifest-v1.json", "L:/Capital-Glass-Intelligence-Hub/00-master-index"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "LOW",
+      "nextProof": "Claude invokes registry read via shared CLI or MCP without separate repo list"
+    },
+    {
+      "id": "repository_authorization",
+      "cursorPath": "Registry agentDiscoverable + target-repo admission + execution-context:resolve",
+      "platformAuthority": ["CG-AppBuilder-MCP/scripts/execution-context/resolve-execution-context.mjs", "capital-glass-platform-health registry fields"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "MEDIUM",
+      "nextProof": "execution-context:resolve with clientSurface=CLAUDE receipt"
+    },
+    {
+      "id": "workspace_worktree_selection",
+      "cursorPath": "WSL ext4 ~/repos; Cursor workspace + worktrees; hop-packet epoch",
+      "platformAuthority": ["CG-AppBuilder-MCP/scripts/dual-machine/lib/hop-packet-v1.mjs", "cursor:wsl-default:verify"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "HIGH",
+      "note": "Cursor workspace selection is IDE-coupled; needs platform-neutral worktree admission API"
+    },
+    {
+      "id": "git_branch_management",
+      "cursorPath": "Agent shell git + governed worktrees; WaveRunner progressive publication",
+      "platformAuthority": ["Git", "CG-AppBuilder-MCP WaveRunner program execution authority"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "MEDIUM",
+      "nextProof": "Bounded branch create in fixture repo with standard receipt"
+    },
+    {
+      "id": "github_operations",
+      "cursorPath": "gh CLI + user-github MCP",
+      "platformAuthority": ["user-github MCP", "GitHub branch protection"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "LOW",
+      "nextProof": "PR inspect via GitHub MCP or gh through WSL with admission gate"
+    },
+    {
+      "id": "agent_admission",
+      "cursorPath": "Auto v3.2 material front door + WaveRunner ADMIT_DAR + compounding startup packet",
+      "platformAuthority": ["CG-AppBuilder-MCP/scripts/auto-protocol-v3/run-auto-v32-preflight.mjs", "waverunner-capability-registry ADMIT_DAR"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "HIGH",
+      "note": "Admission assumes Cursor session env vars CG_AUTO_V32_*"
+    },
+    {
+      "id": "execution_context_admission",
+      "cursorPath": "npm run execution-context:resolve",
+      "platformAuthority": ["CG-AppBuilder-MCP/scripts/execution-context/"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "MEDIUM"
+    },
+    {
+      "id": "control_plane_preflight",
+      "cursorPath": "agent:preflight:auto-v32 + agent:preflight:app-builder-mcp + office.get_agent_preflight",
+      "platformAuthority": ["CG-AppBuilder-MCP", "Office Admin MCP", "CG-Platform-Governance-MCP north star"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "MEDIUM",
+      "note": "Office Admin MCP wired to Cursor MCP config today"
+    },
+    {
+      "id": "platform_intelligence",
+      "cursorPath": "Luna retrieve + federated repo index + PI graph compounding",
+      "platformAuthority": ["CG-AppBuilder-MCP/docs/luna/LUNA_INDEX_SYSTEM_V1.md", "npm run luna:retrieve", "cg-federated-repo-index-v1"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "LOW",
+      "nextProof": "Claude session runs luna:retrieve before builder spend"
+    },
+    {
+      "id": "application_bible_intelligence",
+      "cursorPath": "Bible sync/index via AppBuilder + app-local MCPs + compiled context packs",
+      "platformAuthority": ["CG-AppBuilder-MCP bible-db", "user-*-app-mcp servers", ".agent-context.config.json"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "MEDIUM"
+    },
+    {
+      "id": "ai_cache_retrieval",
+      "cursorPath": "Z: AI-Cache-Authority + cache read-through + WaveRunner CACHE capability",
+      "platformAuthority": ["Z:/Capital-Glass-Intelligence-Hub/AI-Cache-Authority", "auto v3.2 cache-readthrough-enforcement"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "MEDIUM"
+    },
+    {
+      "id": "intelligence_hub_read",
+      "cursorPath": "agent:index:scout + BY-KIND slices + scout Cursor hooks",
+      "platformAuthority": ["L:/Capital-Glass-Intelligence-Hub/00-master-index", "npm run agent:index:scout"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "HIGH",
+      "note": "Scout enforcement via Cursor hooks — IDE coupling"
+    },
+    {
+      "id": "intelligence_hub_publish",
+      "cursorPath": "active-ledger:export + cross-agent-ledger:ingest + cross-agent-notes:seed + harvest publish",
+      "platformAuthority": ["CG-AppBuilder-MCP", "Data-Extraction sync-master-index", "CapitalGlass-Cross-Agent ledger"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "MEDIUM",
+      "nextProof": "Governed publish receipt with clientSurface=CLAUDE"
+    },
+    {
+      "id": "mcp_discovery_invocation",
+      "cursorPath": "Cursor ~/.cursor/mcp.json regenerated from Cursor-MCP-Kit machines.json",
+      "platformAuthority": ["Cursor-MCP-Kit", "per-repo services/*/run.mjs stdio MCP servers"],
+      "claudeStatus": "CONNECTED",
+      "couplingRisk": "MEDIUM",
+      "note": "Claude Code invokes the same 26 MCP definitions as Cursor; bounded read-only proof completed. Shared neutral registry/dispatch remains unbuilt."
+    },
+    {
+      "id": "waverunner",
+      "cursorPath": "npm run sdlc:waverunner (+ prepare/resolve variants)",
+      "platformAuthority": ["CG-AppBuilder-MCP/scripts/sdlc-protocol-cursor/", "waverunner-capability-registry-v1.json"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "MEDIUM",
+      "note": "CLI is platform-neutral; folder name sdlc-protocol-cursor is legacy coupling only"
+    },
+    {
+      "id": "waverunner_2_primary_cache_tower",
+      "cursorPath": "PRIMARY_CACHE_TOWER_V2 in waverunner registry",
+      "platformAuthority": ["CG-AppBuilder-MCP primary-cache-tower-v2-v1"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "LOW"
+    },
+    {
+      "id": "night_owl",
+      "cursorPath": "NOT LOCATED in Git/L:/Z: Harvest search Phase 0",
+      "platformAuthority": ["Mission charter defines protocol; canonical artifact TBD"],
+      "claudeStatus": "BLOCKED",
+      "couplingRisk": "HIGH",
+      "note": "Operator mission references Night Owl lifecycle; estate canonical doc not found in repo index — must locate or author before PROVEN"
+    },
+    {
+      "id": "luna_agents",
+      "cursorPath": "npm run luna:retrieve --director; Luna-first material missions",
+      "platformAuthority": ["CG-AppBuilder-MCP/docs/luna/", "registry/luna-index-surfaces/"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "LOW"
+    },
+    {
+      "id": "multi_agent_dispatch",
+      "cursorPath": "3-way composer (builder/critic/verifier) + agent-loop MCP + office-admin network composer",
+      "platformAuthority": ["CG-AppBuilder-MCP agent-packs/three-way-agent", "capital-glass-agent-ops user-agent-loop MCP", "Office Admin 3-way"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "HIGH",
+      "note": "Cursor subagents (.cursor/agents/*.md) are IDE-coupled"
+    },
+    {
+      "id": "receipts_provenance",
+      "cursorPath": "session-closeout-v3.2.json + waverunner execution receipts + agent-runs artifacts",
+      "platformAuthority": ["CG-AppBuilder-MCP artifacts/agent-runs/", "artifacts/runs/"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "MEDIUM",
+      "nextProof": "Add clientSurface to closeout schema"
+    },
+    {
+      "id": "failure_intelligence",
+      "cursorPath": "user-failure-intelligence-mcp + cross-agent note seeds",
+      "platformAuthority": ["CG-Failure-Intelligence-MCP", "CapitalGlass-Cross-Agent agent-notes-seeding"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "LOW"
+    },
+    {
+      "id": "continuation_resume",
+      "cursorPath": "WaveRunner REPAIR_RESUME + execution context cache + hop packet + ACTIVE_WORK ledger",
+      "platformAuthority": ["waverunner-execution-context-cache-v1", "dual-machine-hop-packet-v1", "CapitalGlass-Cross-Agent ACTIVE_WORK.md"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "MEDIUM"
+    },
+    {
+      "id": "mechanism_performance_intelligence",
+      "cursorPath": "WaveRunner compounding scoreboard + mission performance in agent-loop",
+      "platformAuthority": ["ai-cache-waverunner-compounding-efficiency-v1 artifacts", "user-agent-loop publish_mission_performance"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "MEDIUM"
+    },
+    {
+      "id": "runtime_machine_discovery",
+      "cursorPath": "Office Admin MCP host authority + Direct Connect + RYZEN9 executor + execution-context",
+      "platformAuthority": ["Office Admin MCP", "CapitalGlass-Cross-Agent cross-desk-routing", "ryzen9desk-managed-executor-v1"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "MEDIUM"
+    },
+    {
+      "id": "wsl_linux_execution",
+      "cursorPath": "WSL Ubuntu ext4 ~/repos; cursor:wsl-default:verify; workspace rules",
+      "platformAuthority": ["CapitalGlass-Office-Admin cursor-wsl2 rules", "CLAUDE_WSL_EXECUTION_POLICY.md"],
+      "claudeStatus": "CONNECTED",
+      "couplingRisk": "LOW",
+      "note": "Policy documented for Claude; Claude Code on WSL would CONNECT execution"
+    },
+    {
+      "id": "windows_interactive_execution",
+      "cursorPath": "WINDOWS_ADMIN_POWERSHELL exceptions; Revu interactive; Storage Keeper",
+      "platformAuthority": ["CapitalGlass-Office-Admin scripts/devices", "CapitalGlassRevu"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "MEDIUM"
+    },
+    {
+      "id": "ryzen_remote_execution",
+      "cursorPath": "Direct Connect handoffs + managed executor GHA + request_ryzen9desk_dispatch",
+      "platformAuthority": ["Office Admin Direct Connect MCP", "CG-AppBuilder-MCP ryzen9desk-managed-executor-v1"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "MEDIUM"
+    },
+    {
+      "id": "secrets_auth",
+      "cursorPath": "Doppler MCP + Doppler CLI via doppler run; IT Vault policy (no MCP read)",
+      "platformAuthority": ["user-doppler MCP", "Doppler", "Office Admin IT vault policy"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "MEDIUM"
+    },
+    {
+      "id": "supabase",
+      "cursorPath": "user-supabase MCP + cross-agent-ledger projection",
+      "platformAuthority": ["plugin-supabase-supabase", "CG-AppBuilder-MCP cross-agent-ledger:ingest"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "LOW"
+    },
+    {
+      "id": "vercel_railway_deploy",
+      "cursorPath": "user-vercel + user-railway MCP",
+      "platformAuthority": ["Vercel MCP", "Railway MCP"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "LOW"
+    },
+    {
+      "id": "sharepoint_documents",
+      "cursorPath": "user-sharepoint MCP + Document Center bridges",
+      "platformAuthority": ["SharePoint MCP", "CapitalGlass-Documents"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "LOW"
+    },
+    {
+      "id": "bluebeam_revu",
+      "cursorPath": "user-bluebeam-revu MCP (when entitled); production workflow locked",
+      "platformAuthority": ["CapitalGlassRevu", "revu-mcp-production-workflow-locked blocker"],
+      "claudeStatus": "BLOCKED",
+      "couplingRisk": "HIGH",
+      "note": "Domain blocker — not Claude-specific"
+    },
+    {
+      "id": "stop_hold_human_review",
+      "cursorPath": "WaveRunner blocker codes + governance closeout + 3-way verifier PASS only",
+      "platformAuthority": ["CG-Platform-Governance-MCP", "office-admin-three-way verifier"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "LOW"
+    },
+    {
+      "id": "promotion_canonical_state",
+      "cursorPath": "closeout:gate + cross-agent-notes:seed + governance-check + human promotion",
+      "platformAuthority": ["CG-AppBuilder-MCP", "CG-Platform-Governance-MCP"],
+      "claudeStatus": "DISCOVERED",
+      "couplingRisk": "MEDIUM"
+    },
+    {
+      "id": "claude_onboarding_awareness",
+      "cursorPath": "Z: Claude Start Package (prior WP claude-estate-awareness-v1)",
+      "platformAuthority": ["CapitalGlass-Cross-Agent agent-onboarding/claude"],
+      "claudeStatus": "CONNECTED",
+      "couplingRisk": "LOW",
+      "note": "Awareness only — not full platform parity"
+    }
+  ],
+  "topCouplingDebts": [
+    {
+      "id": "cursor_mcp_stdio_wiring",
+      "severity": "MEDIUM",
+      "remediation": "Platform-neutral MCP dispatch (agent-ops or CLI spoke) consumable by Claude and Cursor"
+    },
+    {
+      "id": "cursor_scout_hooks",
+      "severity": "HIGH",
+      "remediation": "Extract scout brief injection to client-neutral preflight CLI invoked by any surface"
+    },
+    {
+      "id": "cursor_subagent_definitions",
+      "severity": "HIGH",
+      "remediation": "Move 3-way role contracts to agent-packs with client-neutral launcher"
+    },
+    {
+      "id": "missing_client_surface_field",
+      "severity": "HIGH",
+      "remediation": "Add clientSurface to Auto v3.2 closeout, WaveRunner receipts, execution context"
+    },
+    {
+      "id": "night_owl_canonical_missing",
+      "severity": "HIGH",
+      "remediation": "Locate or publish Night Owl protocol to Cross-Agent/Governance before Claude Night Owl PROVEN"
+    }
+  ],
+  "phase0Summary": {
+    "discovered": 30,
+    "connected": 3,
+    "proven": 0,
+    "blocked": 2,
+    "notApplicable": 0
+  }
+}

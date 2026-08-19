@@ -1,0 +1,131 @@
+{
+  "schema": "capital-glass-mcp-inventory/v1",
+  "description": "Known Capital Glass MCP servers — launcher wiring only, no secrets.",
+  "servers": [
+    {
+      "id": "cg-app-builder-mcp",
+      "aliases": ["cg-app-mcp"],
+      "owningRepo": "cgAppBuilderMcp",
+      "dopplerProject": "cg-mcp",
+      "dopplerEnv": "dev",
+      "requiredEnvKeys": ["MCP_API_URL", "MCP_API_TOKEN"],
+      "optionalEnvKeys": ["CG_APP_BUILDER_MCP_ROOT"],
+      "healthCommand": "http://127.0.0.1:3001/health",
+      "healthType": "http",
+      "launcherMarkers": ["services/cursor-mcp-server/run.mjs"],
+      "toolMarkers": ["full_build_preflight"],
+      "notes": "PM2 mcp-api backend required on port 3001. full_build_preflight returns applicationBible block from git canonical bibles."
+    },
+    {
+      "id": "cg-diagnostic",
+      "owningRepo": "cgAppBuilderMcp",
+      "optionalEnvKeys": ["CG_APP_BUILDER_MCP_ROOT"],
+      "launcherMarkers": ["services/cursor-diagnostic-mcp/run.mjs"],
+      "toolMarkers": ["get_application_bible_contract"],
+      "notes": "Deploy gate names + env key names (no secrets) from Application Bible JSON artifacts."
+    },
+    {
+      "id": "cg-suite-wiring",
+      "owningRepo": "cgAppBuilderMcp",
+      "optionalEnvKeys": ["CG_APP_BUILDER_MCP_ROOT", "SUITE_WIRING_REPO_ROOT"],
+      "launcherMarkers": ["services/cursor-suite-wiring-mcp/run.mjs"],
+      "toolMarkers": ["describe_bridge", "resolve_wiring_path", "list_suite_bridges"],
+      "notes": "Cross-app bridge discovery with applicationBible pointers; recommended on developer workstations."
+    },
+    {
+      "id": "github",
+      "owningRepo": "cgAppBuilderMcp",
+      "dopplerProject": "cg-shared",
+      "dopplerEnv": "dev",
+      "requiredEnvKeys": ["GITHUB_PERSONAL_ACCESS_TOKEN"],
+      "requiredDopplerSecrets": ["GITHUB_PERSONAL_ACCESS_TOKEN"],
+      "launcherMarkers": ["scripts/mcp-github-launch.mjs"]
+    },
+    {
+      "id": "cloudflare",
+      "owningRepo": "cgAppBuilderMcp",
+      "requiredEnvKeys": ["CLOUDFLARE_API_TOKEN"],
+      "launcherMarkers": ["scripts/mcp-cloudflare-launch.mjs"]
+    },
+    {
+      "id": "doppler",
+      "owningRepo": "cgAppBuilderMcp",
+      "requiredEnvKeys": ["DOPPLER_TOKEN"],
+      "launcherMarkers": ["scripts/mcp-doppler-launch.mjs"]
+    },
+    {
+      "id": "railway",
+      "owningRepo": "cgAppBuilderMcp",
+      "dopplerProject": "cg-shared",
+      "dopplerEnv": "dev",
+      "requiredEnvKeys": [],
+      "requiredDopplerSecrets": ["RAILWAY_MCP_PO_SERVER_CWD"],
+      "launcherMarkers": ["scripts/mcp-railway-launch.mjs"],
+      "notes": "Auth: active railway login session OR RAILWAY_API_TOKEN in Doppler cg-shared"
+    },
+    {
+      "id": "sharepoint",
+      "owningRepo": "capitalGlassDocuments",
+      "dopplerProject": "cg-documents",
+      "dopplerEnv": "dev",
+      "requiredDopplerSecrets": ["SHAREPOINT_MCP_URL", "SHAREPOINT_MCP_BEARER_TOKEN"],
+      "launcherMarkers": ["scripts/mcp-sharepoint-launch.mjs"]
+    },
+    {
+      "id": "agent-loop",
+      "owningRepo": "capitalGlassAgentOps",
+      "dopplerProject": "capital-glass-agent-ops",
+      "dopplerEnv": "dev",
+      "requiredDopplerSecrets": ["PROCEDURES_REPO_ROOT"],
+      "optionalEnvKeys": ["CG_APP_BUILDER_MCP_ROOT"],
+      "launcherMarkers": ["mcps/agent-loop-mcp/src/server.mjs"],
+      "toolMarkers": [
+        "mcps/agent-loop-mcp/src/procedure-sidecars.mjs",
+        "mcps/agent-loop-mcp/src/application-bible-local.mjs",
+        "glass_preflight",
+        "get_verification_playbook"
+      ],
+      "notes": "procedure_preflight + ingest_procedure_sidecars; glass_preflight and get_verification_playbook supplement Application Bible deploy gates and bridge ids."
+    },
+    {
+      "id": "supabase",
+      "owningRepo": "cgAppBuilderMcp",
+      "healthType": "http",
+      "requiredEnvKeys": [],
+      "notes": "Hosted Supabase MCP — shared app DB (wvidyxufvcrtezzkwwse); OAuth in Cursor"
+    },
+    {
+      "id": "supabase-mcp-control",
+      "owningRepo": "cgAppBuilderMcp",
+      "healthType": "http",
+      "notes": "Hosted Supabase MCP — MCP control plane (xjivcwcyyimjujbchwdf); OAuth in Cursor"
+    },
+    {
+      "id": "vercel",
+      "aliases": ["plugin-vercel-vercel"],
+      "owningRepo": "cgAppBuilderMcp",
+      "dopplerProject": "cg-shared",
+      "dopplerEnv": "dev",
+      "requiredEnvKeys": ["VERCEL_TOKEN"],
+      "notes": "Cursor marketplace Vercel MCP plugin; optional VERCEL_TOKEN via integrations:sync-doppler --with-optional"
+    },
+    {
+      "id": "azure",
+      "aliases": ["plugin-azure-azure"],
+      "owningRepo": "capitalGlassDocuments",
+      "dopplerProject": "cg-documents",
+      "dopplerEnv": "dev",
+      "requiredDopplerSecrets": ["AZURE_TENANT_ID", "AZURE_CLIENT_ID", "AZURE_CLIENT_SECRET"],
+      "notes": "Cursor marketplace Azure MCP plugin; auth via az login DefaultAzureCredential. Graph app secrets in cg-documents Doppler."
+    },
+    {
+      "id": "network-tools",
+      "aliases": ["network-mcp"],
+      "owningRepo": "pypi:network-mcp",
+      "optionalEnvKeys": ["NETWORK_MCP_BLOCK_PRIVATE"],
+      "launcherMarkers": ["network-mcp.exe"],
+      "toolMarkers": ["ping", "port_check", "dns_lookup", "traceroute"],
+      "notes": "PyPI network-mcp 0.1.2 (stdio). Install: pip install network-mcp==0.1.2. Set NETWORK_MCP_BLOCK_PRIVATE=false for Tailscale/LAN (WESLEYDESK 100.93.199.27, WESLEY_WORK 100.76.10.91). Preflight order: npm run test:wesleydesk-control-plane -> WESLEY-LINK Test-WesleyLink.ps1 -> daily-maintenance latest.json -> network-tools ad-hoc probes. Does not replace WESLEY-LINK, vault scripts, or WESLEYDESK daily maintenance tasks. Runbook: Z:\\Capital-Glass-Network-Admin\\04-DevOps-Cursor\\MCP\\Networking-MCP-network-tools.md"
+    }
+  ]
+}
