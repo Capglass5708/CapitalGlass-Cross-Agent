@@ -26,11 +26,11 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Field | Value |
 | --- | --- |
 | Work package | `intelligence-hub-compounding-intelligence-investigation-v1` |
-| Status | **COMPLETE** — investigation/documentation only, no code changes |
+| Status | **INVESTIGATION COMPLETE; V2 PROPOSAL DRAFTED** — no code changes, awaiting operator decisions |
 | Repos involved | CapitalGlass-Cross-Agent only |
-| Notes | Full map of the Intelligence Hub (retrieval plane) + the 3 Compounding Intelligence systems (OP-00A pipeline, Gold Mine loop, North Star Compounding Proof); verified directly against source docs |
-| Evidence | Project file `work-progress/projects/2026-08-24_intelligence-hub-compounding-intelligence-investigation-v1.md` + published Artifact: https://claude.ai/code/artifact/598390de-2537-492d-b3ba-34c665704fe1 (private) |
-| Next | None — reference doc. Optional operator decision on the `scripts/` vs. repo-charter tension noted in the project file |
+| Notes | Full map of the Intelligence Hub (retrieval plane) + the 3 Compounding Intelligence systems (OP-00A pipeline, Gold Mine loop, North Star Compounding Proof), verified directly against source docs. Expanded same day at Wesley's request into a 9-part proposal (charter fix, agent-independent retrieval preflight, closed freshness contract, harder two-agent compounding proof, graph-dividend-as-mutation, lifecycle status, naming, mission-context bundle, `/goldmine` command), each checked against the actual pipeline code. |
+| Evidence | Project file `work-progress/projects/2026-08-24_intelligence-hub-compounding-intelligence-investigation-v1.md` + plan `plans/2026-08-24_compounding-intelligence-v2-proposal.md` + published Artifact: https://claude.ai/code/artifact/598390de-2537-492d-b3ba-34c665704fe1 (private) |
+| Next | Operator decision on proposals 1 (charter wording), 2 (build `intelligence.preflight()`), and 4 (adopt the two-agent proof bar) — Wesley's stated priority order. Rest of the proposals sequence after. |
 
 ### 2026-08-13 CT — wesleywork-storage-protocol-contradiction-remediation-v1
 

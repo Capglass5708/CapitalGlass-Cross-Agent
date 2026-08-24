@@ -53,13 +53,15 @@ This file is descriptive only. It does not supersede or modify the `ARCHITECTURE
 - Full architecture map of the Intelligence Hub and the three Compounding Intelligence systems, verified directly against source docs (not just agent summaries).
 - Published Artifact with the same summary, shareable without repo access.
 - This project file, indexed in `work-progress/projects/INDEX.md`, as the durable reference for future sessions.
+- **2026-08-24, same day, expanded at Wesley's request:** a §10 "Proposed evolution" added to the Artifact — 9 concrete proposals (charter fix, agent-independent retrieval preflight, closed freshness contract, a harder two-agent compounding proof, graph-dividend-as-mutation, lifecycle status, naming, mission-context bundle, `/goldmine` command), each checked against the actual pipeline code where checkable. Full detail with line-level code citations in the companion plan `plans/2026-08-24_compounding-intelligence-v2-proposal.md`.
 
 ## Evidence / artifact paths
 
 | Artifact | Path / link | Status |
 | --- | --- | --- |
-| Published summary | https://claude.ai/code/artifact/598390de-2537-492d-b3ba-34c665704fe1 | Published (private — share from the artifact page when ready) |
+| Published summary + §10 proposed evolution | https://claude.ai/code/artifact/598390de-2537-492d-b3ba-34c665704fe1 | Published (private — share from the artifact page when ready) |
 | This project file | `work-progress/projects/2026-08-24_intelligence-hub-compounding-intelligence-investigation-v1.md` | Committed |
+| Companion proposal (full detail behind §10) | `plans/2026-08-24_compounding-intelligence-v2-proposal.md` | Committed |
 
 ## Verification
 
@@ -88,8 +90,10 @@ This file is descriptive only. It does not supersede or modify the `ARCHITECTURE
 
 | Priority | Action | Owner repo | Status |
 | --- | --- | --- | --- |
-| 1 | None required — reference-only doc | CapitalGlass-Cross-Agent | Complete |
-| 2 (optional) | Operator decision on the `scripts/` charter tension noted above | CapitalGlass-Cross-Agent | Open |
+| 1 | Operator decision: charter wording for the `scripts/` carve-out (proposal 1 in the companion plan) | CapitalGlass-Cross-Agent | Open |
+| 2 | Operator decision: build `intelligence.preflight()` (proposal 2) — the highest-leverage single change per Wesley | CapitalGlass-Cross-Agent | Open |
+| 3 | Operator decision: adopt the two-agent `COMPOUNDING_INTELLIGENCE_V1_PROVEN` bar (proposal 4) as the real milestone | CapitalGlass-Cross-Agent | Open |
+| 4 | Remaining proposals (3, 5–9 in the companion plan) — sequence after 1–3 | CapitalGlass-Cross-Agent | Open |
 
 ## Reusable lessons
 
@@ -104,3 +108,10 @@ This file is descriptive only. It does not supersede or modify the `ARCHITECTURE
 
 - Investigated Intelligence Hub and Compounding Intelligence via parallel codebase exploration plus direct verification of the primary source docs (README, AGENT_START_HERE, operational-intelligence-envelope-v1.md, OWNERSHIP.md, intelligence-hub-first-read.mdc).
 - Published findings as an Artifact and created this project file for durable reference.
+
+### 2026-08-24 CT (later same day) — Claude, at Wesley's request
+
+- Expanded the Artifact with a §10 "Proposed evolution": 9 concrete proposals to make the intelligence more useful to agents and harden what "compounding" means, each checked against the actual pipeline code (schema, `graph-dividend-gate-v1.mjs`, `identity-reconciliation-v1.mjs`, `ingest-pipeline-v1.mjs` call order) rather than taken at face value.
+- Key verified findings that sharpened the proposals beyond what was asked: the graph-dividend gate likely already tolerates pure-reinforcement missions (it reads pre-reconciliation object counts), but the delta receipt's `nodesCorrected`/`nodesSuperseded` fields are hardcoded to `0` — the mutation-tracking shape already exists, it's just not wired up. The handoff schema already carries `source.repo`/`source.commitSha` at ingest time, but nothing threads it into the published envelope for retrieval-time freshness comparison. `lifecycleStage` already has 4 of the 5 proposed statuses.
+- Independently confirmed (not just took on report) the specific staleness example Wesley cited: `0261f45` is genuinely this repo's current `main` HEAD (verified via `git log` and this session's own PR #43 base SHA) and `5f3de96` is a real commit 3 commits behind it — corroborates the freshness-contract gap is real, not illustrative. The broader 25-repo Platform Intelligence dashboard numbers are Wesley's reported findings, not independently checked from this container (same reachability limits as the L: Hub).
+- Wrote the full detailed version, with line-level code citations, to `plans/2026-08-24_compounding-intelligence-v2-proposal.md`.
