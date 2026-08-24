@@ -21,6 +21,17 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 ## Current saved work
 
+### 2026-08-24 CT — intelligence-hub-compounding-intelligence-investigation-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `intelligence-hub-compounding-intelligence-investigation-v1` |
+| Status | **COMPLETE** — investigation/documentation only, no code changes |
+| Repos involved | CapitalGlass-Cross-Agent only |
+| Notes | Full map of the Intelligence Hub (retrieval plane) + the 3 Compounding Intelligence systems (OP-00A pipeline, Gold Mine loop, North Star Compounding Proof); verified directly against source docs |
+| Evidence | Project file `work-progress/projects/2026-08-24_intelligence-hub-compounding-intelligence-investigation-v1.md` + published Artifact: https://claude.ai/code/artifact/598390de-2537-492d-b3ba-34c665704fe1 (private) |
+| Next | None — reference doc. Optional operator decision on the `scripts/` vs. repo-charter tension noted in the project file |
+
 ### 2026-08-13 CT — wesleywork-storage-protocol-contradiction-remediation-v1
 
 | Field | Value |
