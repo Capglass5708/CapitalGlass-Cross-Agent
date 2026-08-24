@@ -95,22 +95,25 @@ That last clause — retrieval measurably changing what Agent B does — is the 
 
 ---
 
-## 5. Graph dividend should mean mutation, not just growth
+## 5. The relationship graph isn't a record of compounding — it's the mechanism
 
-**Verified against `scripts/intelligence/lib/graph-dividend-gate-v1.mjs` and the call order in `scripts/intelligence/lib/ingest-pipeline-v1.mjs`:**
+Wesley's elevation of this item: the graph shouldn't be treated as bookkeeping for compounding that happens elsewhere. It's what turns "the Hub has 500 pieces of knowledge" into "the Hub knows how 500 things relate" — an agent that walks `WSL /mnt/l mount → ENABLES → Intelligence Hub retrieval → REQUIRED_BY → Agent preflight` understands *why* something matters, not just that it exists. Two sub-proposals: redefine what counts as dividend, and give the relationship vocabulary itself real governance.
 
-```js
-// graph-dividend-gate-v1.mjs
-const semanticObjects = derivedObjects.filter((o) => SEMANTIC_KINDS.includes(o.identity.kind));
-const attachment = countSemanticGraphAttachment(derivedObjects, relationships);
-const pass = semanticObjects.length > 0 && attachment.orphans === 0 && attachment.attached === attachment.total;
-```
+### 5a. What already exists — verified
 
-`ingest-pipeline-v1.mjs` calls `buildRelationshipEdges({ ledger, derivedObjects, ... })` (which runs `reconcileSemanticIdentities` internally, producing `SAME_AS` alias edges for duplicates) **before** `evaluateGraphDividendGate({ handoff, derivedObjects, relationships })` — but `derivedObjects` itself is never filtered or reassigned after `buildDerivedObjects()`; reconciliation only adds edges and a separate `reconciliation.uniqueSemanticObjects` list, it doesn't shrink the array the gate reads.
+`scripts/intelligence/lib/relationship-edge-builder-v1.mjs`: `PROJECTED_FROM`, `DERIVED_FROM`, `EVIDENCED_BY`.
+`scripts/intelligence/lib/semantic-relationship-builder-v1.mjs`: `OBSERVED_IN`, `PROVEN_BY`, `ABOUT`, `FAILED_BECAUSE_OF`, `CORRECTED_BY`, `REINFORCES`, `ENABLES`, `ENABLED_BY`.
+`scripts/intelligence/lib/identity-reconciliation-v1.mjs`: `SAME_AS`, `PROJECTS_TO`.
 
-**Conclusion:** the literal conflict Wesley described (a growth-only gate blocking a pure-reinforcement mission) does not appear to be live today — the gate counts *pre-reconciliation classified objects*, which exist whenever the classifier recognizes semantic content in the closeout, independent of whether that content turns out to be a duplicate. A repeat mission likely still passes.
+13 relationship types total, all real, all in production code today. Mapped against Wesley's example vocabulary: "strengthen" = `REINFORCES` (exists), "correct" = `CORRECTED_BY` (exists), "enable" = `ENABLES`/`ENABLED_BY` (exists), "support with evidence" = `PROVEN_BY`/`EVIDENCED_BY` (exists). Net-new for the predictive examples below: `PREDICTS`, `STRONGLY_PREDICTS`, `REQUIRES_EVIDENCE`, `SUPPORTED_BY`, `SIMILAR_TO`, `PREVENTS`.
 
-**The real gap, found in `buildGraphDeltaReceipt()`:**
+**The gap:** none of the 13 existing types are governed by a registry or enum — they're string literals scattered across three files with no `additionalProperties: false`-style closed-set check. This repo already has the *pattern* for exactly this kind of governance, just applied to a different, narrower vocabulary: `contracts/intelligence/registries/correlation-relationship-types-v1.json` is a closed 7-type registry (`USED_CAPABILITY`, `TOUCHED_REPO`, `ABOUT_SUBJECT`, `USED_MECHANISM`, `ADDRESSED_PROBLEM`, `PRODUCED_EFFECT`, `CHAINED_BY`) for harvest-side correlation tagging — a different purpose from the knowledge graph's own edges, and not currently reused for them. Without an equivalent registry for the graph's own relationship types, every new builder can invent ad hoc strings with no consistency check, which quietly undermines the "walk the graph and understand why it matters" goal.
+
+### 5b. Redefine graph dividend
+
+Not node count increased by 1. Proposed definition: **an evidence-backed increase in the graph's useful information, connectivity, confidence, correction, or explanatory power.** Concretely, any of the following should count: a new fact, a new relationship, a strengthened existing relationship, a weakened previously-believed relationship, a contradiction, a supersession, a connection between two previously disconnected areas, added evidence supporting an existing conclusion, a newly identified reusable pattern, or a newly identified exception to a pattern.
+
+This also resolves the mechanical question from the original framing: verified against `graph-dividend-gate-v1.mjs` and the call order in `ingest-pipeline-v1.mjs`, the gate's current `pass` condition (`semanticObjects.length > 0 && orphans === 0`) reads *pre-reconciliation* classified objects — `identity-reconciliation-v1.mjs` runs first and only adds `SAME_AS` alias edges, it never shrinks the array the gate reads — so a pure-reinforcement mission likely already passes today; the literal "growth gate blocks reinforcement" conflict doesn't appear to be live. The real, narrower gap is in `buildGraphDeltaReceipt()`:
 
 ```js
 nodesCreated: semanticObjects.length,
@@ -119,12 +122,21 @@ nodesCorrected: 0,        // hardcoded
 nodesSuperseded: 0,       // hardcoded
 ```
 
-The receipt schema already anticipated "dividend = mutation type" — the field names exist — but `nodesCorrected` and `nodesSuperseded` are literal zeros, never computed. `nodesReinforced` is wired to real data but doesn't feed the gate's pass/fail boolean at all.
+The receipt shape already anticipated "dividend = mutation type" — the field names exist — but `nodesCorrected`/`nodesSuperseded` are literal zeros, never computed, and `nodesReinforced` doesn't feed the gate's pass/fail boolean at all. Proposed fix: compute `nodesCorrected`/`nodesSuperseded` for real (from the lifecycle transitions in item 6), and make the gate's pass condition legible about *why* it passed: `(nodesCreated > 0 || nodesReinforced > 0 || nodesCorrected > 0 || nodesSuperseded > 0) && orphans === 0`. Add a fixture for "100% reinforcement, zero new nodes" — none of the existing fixtures (expired / superseded / contradictory / reconstructable / unknown-kind) cover it.
 
-**Proposed:**
-- Compute `nodesCorrected`/`nodesSuperseded` for real, once item 6's lifecycle transitions exist to detect them from.
-- Make the gate's pass condition explicit about *why* it passed: `(nodesCreated > 0 || nodesReinforced > 0 || nodesCorrected > 0 || nodesSuperseded > 0) && orphans === 0`, instead of a single opaque boolean.
-- Add a fixture for "100% reinforcement, zero new nodes" — the existing fixture set (`contracts/intelligence/fixtures/`) covers expired, superseded, contradictory/rejected evidence, reconstructable concept graph, and unknown-future-kind, but not this case.
+### 5c. Govern the relationship vocabulary
+
+Add `contracts/intelligence/registries/knowledge-relationship-types-v1.json`, mirroring the existing correlation-marker registry's schema/shape. Seed it with the 13 types already in code (5a); extend it with `PREDICTS`, `STRONGLY_PREDICTS`, `REQUIRES_EVIDENCE`, `SUPPORTED_BY`, `SIMILAR_TO`, `PREVENTS` for the predictive-pattern use case below. New, low-risk contract file — still worth explicit sign-off (see decisions list).
+
+### 5d. Worked example (illustrative, not from live data)
+
+Early graph (a handful of missions): `STOREFRONT → FOUND_ON → architectural plans`. One node pair, one edge.
+
+Later graph (~30 missions of real Revu/CE/plan-sheet/glazing evidence): `STOREFRONT → SUPPORTED_BY → elevations`, `STOREFRONT → SUPPORTED_BY → floor plans`, `STOREFRONT → REQUIRES_EVIDENCE → glass makeup`, and separately, a learned pattern: `WINDOW SCHEDULE HIT → STRONGLY_PREDICTS → high-value glazing sheet`. Not just a bigger graph — a graph that now contains a relationship *type* (`STRONGLY_PREDICTS`) the earlier one had no reason to need. That predictive edge is what could eventually feed Computer Estimator, Bid Composer, Revu search intent, and future agents' search priorities directly.
+
+### 5e. Why this is the highest-value piece
+
+The loop is recursive: previous missions grow the graph → the richer graph improves the next investigation's starting point → the better-informed investigation produces better evidence → that evidence grows the graph again. That feedback loop — not storage volume — is what "compounding" is supposed to mean. It's also why item 9's `/goldmine` receipt (below) needs to report graph effect explicitly, not just item counts.
 
 ---
 
@@ -179,14 +191,18 @@ No code citation needed — this is a documentation/naming decision, already par
 3. Publish/index through the governed path — never a stray markdown note.
 4. Return a receipt.
 
-Output shape matches this repo's existing receipt convention exactly (ingest receipts, publication receipts, freshness-gate receipts all follow this pattern already):
+Output shape matches this repo's existing receipt convention (ingest receipts, publication receipts, freshness-gate receipts all follow this pattern already), and per item 5's elevation, reports graph effect explicitly rather than just item counts:
 
 ```
 GOLD_MINE_COMPLETE
-7 evidence items harvested
-2 new intelligence objects
-3 existing objects reinforced
-1 blocker linked
+Evidence harvested: 12
+New knowledge nodes: 2
+Existing nodes reinforced: 4
+New relationships: 7
+Relationships reinforced: 3
+Supersessions: 1
+Contradictions requiring review: 0
+Graph dividend: PASS
 Hub publication: PASS
 Index refresh: PASS
 Provenance receipt: <id>
@@ -217,11 +233,14 @@ Agent
   → Closeout evidence (unchanged)
   → Intelligence compiler (existing ingest pipeline)
   → Qualification gate (Compounding Qualification Gate, unchanged)
-  → Graph mutation (5) + lifecycle (6)
+  → Graph mutation — new / reinforced / corrected (5) + lifecycle (6)
   → Hub publication
   → Index/freshness refresh
+  → Mission-specific graph traversal
   → Next agent
 ```
+
+The last two steps make this recursive rather than linear: a richer graph improves the next investigation's starting point, the better-informed investigation produces better evidence, and that evidence grows the graph again (item 5e).
 
 ## Target milestone
 
@@ -233,6 +252,7 @@ Agent
 2. Where the freshness/provenance fields (item 3) land first — `extensions` bag (non-breaking) vs. closed core (needs a superseding plan). This plan recommends starting in `extensions`.
 3. Adding `CONFLICTED` to `lifecycleStage` (item 6) — small, but the schema is locked, so the same superseding-plan process applies.
 4. Where `intelligence.preflight()` (item 2) physically lives — this plan recommends `scripts/intelligence/` in this repo, exposed as both a CLI and an importable function.
+5. Creating `contracts/intelligence/registries/knowledge-relationship-types-v1.json` (item 5c) — additive and low-risk, mirrors the existing correlation-marker registry pattern, but is still a new contract file worth explicit sign-off before agents write against it.
 
 ## Explicitly not addressed / out of scope
 
