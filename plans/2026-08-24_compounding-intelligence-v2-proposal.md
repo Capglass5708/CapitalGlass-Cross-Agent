@@ -7,6 +7,10 @@
 
 Wesley's stated priority order — resolve first: **#1 (charter), #2 (retrieval), #4 (proof)**.
 
+> **Architectural north star:** "The graph is not a storage format for intelligence; it is the mechanism by which evidence accumulates into reusable intelligence." Everything in item 5 follows from this — it's what stops a future implementer from simplifying the relationship graph into a reporting layer.
+
+**Ready-for-review gate (Wesley, 2026-08-24):** three items must be explicit before this PR leaves draft — 5c as a hard governance contract with enforcement, 9 as a canonical cross-agent command contract, and 3's acceptance criteria tightened so detection-only doesn't count as complete. All three are folded in below. Per Wesley: once explicit, the PR moves to review; the next phase after that is implementation (building the registry, the preflight function, `/goldmine`, freshness repair end to end) — not more documentation. That implementation work is intentionally out of scope for this PR.
+
 ---
 
 ## 1. Resolve the Cross-Agent charter contradiction
@@ -81,6 +85,14 @@ Every outcome should be a **real return value plus a written receipt**, matching
 
 **Implementation note:** start `sourceSha`/`indexedSha`/etc. inside the OP-00A envelope's already-open `extensions` bag (non-breaking, no superseding plan needed) rather than the closed core. Promoting to closed core is a schema change against an `ARCHITECTURE_LOCKED` file and needs the full process.
 
+**Acceptance criterion — tightened per Wesley, not just described:** detecting staleness does not satisfy this proposal. "Freshness contract closed" requires automatic propagation through every one of these stages, in order, on every `main` change:
+
+```
+Git authority → index refresh → graph/intelligence publication → L-drive Hub cache refresh → Supabase mirror → agent preflight verification
+```
+
+A system that reports `autoPublishEnabled: false` / `mode: DETECT_ONLY` — accurately telling you it's stale, without repairing it — has not met this bar, regardless of how good its detection is. Any data still in flight through this chain must be labeled stale at retrieval time, never silently served as current. This is a hard prerequisite for calling any part of V2 "operationally complete," not an aspiration.
+
 ---
 
 ## 4. Make the real-mission proof harder: a two-agent test
@@ -105,7 +117,7 @@ Wesley's elevation of this item: the graph shouldn't be treated as bookkeeping f
 `scripts/intelligence/lib/semantic-relationship-builder-v1.mjs`: `OBSERVED_IN`, `PROVEN_BY`, `ABOUT`, `FAILED_BECAUSE_OF`, `CORRECTED_BY`, `REINFORCES`, `ENABLES`, `ENABLED_BY`.
 `scripts/intelligence/lib/identity-reconciliation-v1.mjs`: `SAME_AS`, `PROJECTS_TO`.
 
-13 relationship types total, all real, all in production code today. Mapped against Wesley's example vocabulary: "strengthen" = `REINFORCES` (exists), "correct" = `CORRECTED_BY` (exists), "enable" = `ENABLES`/`ENABLED_BY` (exists), "support with evidence" = `PROVEN_BY`/`EVIDENCED_BY` (exists). Net-new for the predictive examples below: `PREDICTS`, `STRONGLY_PREDICTS`, `REQUIRES_EVIDENCE`, `SUPPORTED_BY`, `SIMILAR_TO`, `PREVENTS`.
+13 relationship types total, all real, all in production code today. Mapped against Wesley's example vocabulary: "strengthen" = `REINFORCES` (exists), "correct" = `CORRECTED_BY` (exists), "enable" = `ENABLES`/`ENABLED_BY` (exists), "support with evidence" = `PROVEN_BY`/`EVIDENCED_BY` (exists). Net-new for the predictive examples below: `PREDICTS` (see 5c on why this replaces a separate `STRONGLY_PREDICTS`), `REQUIRES_EVIDENCE`, `SUPPORTED_BY`, `SIMILAR_TO`, `PREVENTS`.
 
 **The gap:** none of the 13 existing types are governed by a registry or enum — they're string literals scattered across three files with no `additionalProperties: false`-style closed-set check. This repo already has the *pattern* for exactly this kind of governance, just applied to a different, narrower vocabulary: `contracts/intelligence/registries/correlation-relationship-types-v1.json` is a closed 7-type registry (`USED_CAPABILITY`, `TOUCHED_REPO`, `ABOUT_SUBJECT`, `USED_MECHANISM`, `ADDRESSED_PROBLEM`, `PRODUCED_EFFECT`, `CHAINED_BY`) for harvest-side correlation tagging — a different purpose from the knowledge graph's own edges, and not currently reused for them. Without an equivalent registry for the graph's own relationship types, every new builder can invent ad hoc strings with no consistency check, which quietly undermines the "walk the graph and understand why it matters" goal.
 
@@ -124,15 +136,46 @@ nodesSuperseded: 0,       // hardcoded
 
 The receipt shape already anticipated "dividend = mutation type" — the field names exist — but `nodesCorrected`/`nodesSuperseded` are literal zeros, never computed, and `nodesReinforced` doesn't feed the gate's pass/fail boolean at all. Proposed fix: compute `nodesCorrected`/`nodesSuperseded` for real (from the lifecycle transitions in item 6), and make the gate's pass condition legible about *why* it passed: `(nodesCreated > 0 || nodesReinforced > 0 || nodesCorrected > 0 || nodesSuperseded > 0) && orphans === 0`. Add a fixture for "100% reinforcement, zero new nodes" — none of the existing fixtures (expired / superseded / contradictory / reconstructable / unknown-kind) cover it.
 
-### 5c. Govern the relationship vocabulary
+### 5c. Govern the relationship vocabulary — a hard contract, not a suggestion
 
-Add `contracts/intelligence/registries/knowledge-relationship-types-v1.json`, mirroring the existing correlation-marker registry's schema/shape. Seed it with the 13 types already in code (5a); extend it with `PREDICTS`, `STRONGLY_PREDICTS`, `REQUIRES_EVIDENCE`, `SUPPORTED_BY`, `SIMILAR_TO`, `PREVENTS` for the predictive-pattern use case below. New, low-risk contract file — still worth explicit sign-off (see decisions list).
+Re-verified against `scripts/intelligence/lib/schema-validate.mjs`: it exports `validateHandoffSchema`, `validateEnvelopeSchema`, and `validateCorrelationMarkersSchema` — **there is no validator for relationship edges at all.** `ingest-pipeline-v1.mjs` never runs the `relationships` array through Ajv or any schema check. A registry with no enforcement hook is documentation, not governance. Four required parts:
+
+**The vocabulary** (add `contracts/intelligence/registries/knowledge-relationship-types-v1.json`; richer shape than the correlation-marker registry it's modeled on, since this one needs semantics/inverse/status per entry, not just a flat id list):
+
+| Type | Inverse / symmetry | Semantics | Status |
+| --- | --- | --- | --- |
+| `PROJECTED_FROM` | ↔ `DERIVED_FROM` | Object was projected from this mission-ledger entry — verified as a real inverse pair already in code (ledger→object vs. object→ledger) | Existing |
+| `DERIVED_FROM` | ↔ `PROJECTED_FROM` | Object's content derives from this ledger record | Existing |
+| `EVIDENCED_BY` | — | Supported by evidence that already exists | Existing |
+| `OBSERVED_IN` | — | Occurred within this mission / work package | Existing |
+| `PROVEN_BY` | — | Validated by this closeout | Existing |
+| `ABOUT` | — | Concerns this repo | Existing |
+| `FAILED_BECAUSE_OF` | — | Failure caused by this root cause | Existing |
+| `CORRECTED_BY` | — | Root cause addressed by this remediation | Existing |
+| `REINFORCES` | — | Pattern strengthens this capability. **Naming collision to resolve, not just document:** the ingest receipt's `nodesReinforced` metric measures something different — identity-reconciliation dedup (`reconciliation.duplicateNodesPrevented` in 5b), not this edge type. The registry entry must state this explicitly or the two "reinforcement" concepts will get conflated by whoever implements this next. | Existing |
+| `ENABLES` | ↔ `ENABLED_BY` | Capability makes this pattern/opportunity possible — verified as a real inverse pair already in code | Existing |
+| `ENABLED_BY` | ↔ `ENABLES` | Inverse direction of `ENABLES` | Existing |
+| `SAME_AS` | symmetric | Identity alias — same concept, different id | Existing |
+| `PROJECTS_TO` | — | Alias projects onto this canonical concept unit | Existing |
+| `SUPPORTED_BY` | reserved: `SUPPORTS` | Claim supported by this document/plan-sheet type | New |
+| `REQUIRES_EVIDENCE` | — | Claim has a gap — this evidence kind is needed but not yet present. Distinct from `EVIDENCED_BY` (evidence that already exists) | New |
+| `PREDICTS` | — | Pattern makes this outcome more likely. Carries edge-level `confidence` (0–1) — see below, replaces a separate `STRONGLY_PREDICTS` type | New |
+| `SIMILAR_TO` | symmetric | Related but not identical — weaker than `SAME_AS` | New |
+| `PREVENTS` | reserved: `PREVENTED_BY` | Lesson/remediation prevents this failure mode | New |
+
+**On `PREDICTS` vs. `STRONGLY_PREDICTS`:** the schema already has precedent for edge-level confidence — `derivation.derivedFrom[].evidenceWeight` (`0`–`1`) is a real field on provenance edges today, verified in `operational-intelligence-envelope-v1.schema.json`. Encoding confidence in the relationship-type *name* instead (two strings for one relationship at different strength) is inconsistent with that existing pattern, and leaves the actual numeric threshold between "predicts" and "strongly predicts" undefined — exactly the kind of ambiguity a hard governance contract shouldn't have. Recommend one type, `PREDICTS`, with an edge-level `confidence` field mirroring `evidenceWeight`, instead of Wesley's original two-string example. Small change, worth making before this ships.
+
+**Ownership:** the registry lives in `contracts/intelligence/`, owned by CapitalGlass-Cross-Agent — same authority as every other file there (`OWNERSHIP.md`).
+
+**Versioning:** adding a type is additive/non-breaking (minor version bump, same pattern as the existing `registryVersion` field on the correlation registries). Redefining an existing type's semantics in place is forbidden — a changed meaning requires a new type name, with the old one marked deprecated. Removing a type outright is forbidden, matching this repo's append-only posture everywhere else (Gold Mine's never-shrink index, OP-00A's never-delete history).
+
+**Enforcement:** add `validateRelationshipEdges()` to `schema-validate.mjs`, called from `ingest-pipeline-v1.mjs` immediately after `buildRelationshipEdges()` (line ~206) — the same point in the pipeline where `validateEnvelopeSchema` already runs per-object right after `buildDerivedObjects()`. An edge whose `relationship` value isn't in the registry hard-fails ingest with a new error code (e.g. `RELATIONSHIP_TYPE_NOT_REGISTERED`), matching the pipeline's existing fail-closed posture for hash and authority-fingerprint mismatches. Unknown types get rejected, not silently accepted — this is the actual ask, not a documentation update.
 
 ### 5d. Worked example (illustrative, not from live data)
 
 Early graph (a handful of missions): `STOREFRONT → FOUND_ON → architectural plans`. One node pair, one edge.
 
-Later graph (~30 missions of real Revu/CE/plan-sheet/glazing evidence): `STOREFRONT → SUPPORTED_BY → elevations`, `STOREFRONT → SUPPORTED_BY → floor plans`, `STOREFRONT → REQUIRES_EVIDENCE → glass makeup`, and separately, a learned pattern: `WINDOW SCHEDULE HIT → STRONGLY_PREDICTS → high-value glazing sheet`. Not just a bigger graph — a graph that now contains a relationship *type* (`STRONGLY_PREDICTS`) the earlier one had no reason to need. That predictive edge is what could eventually feed Computer Estimator, Bid Composer, Revu search intent, and future agents' search priorities directly.
+Later graph (~30 missions of real Revu/CE/plan-sheet/glazing evidence): `STOREFRONT → SUPPORTED_BY → elevations`, `STOREFRONT → SUPPORTED_BY → floor plans`, `STOREFRONT → REQUIRES_EVIDENCE → glass makeup`, and separately, a learned pattern: `WINDOW SCHEDULE HIT → PREDICTS (confidence 0.9) → high-value glazing sheet`. Not just a bigger graph — a graph that now contains a relationship *type* (`PREDICTS`) the earlier one had no reason to need. That predictive edge is what could eventually feed Computer Estimator, Bid Composer, Revu search intent, and future agents' search priorities directly.
 
 ### 5e. Why this is the highest-value piece
 
@@ -218,6 +261,13 @@ No intelligence was silently published
 ```
 
 **Agent-neutral:** one canonical implementation (recommended home: `scripts/harvest/`, consistent with existing Gold Mine code and `OWNERSHIP.md`) that Claude, Cursor, and WaveRunner all route to — never a per-host reinterpretation. `/goldmine preview` (dry-run — a pattern already pervasive in this codebase via `--dry-run` flags) and `/goldmine status` (read the last receipt — also an existing pattern, e.g. `runtime/index-publication/latest.json`) are natural, low-cost follow-ons once the base command exists.
+
+**Command contract, per Wesley — not a UX suggestion:** `/goldmine`, "send to gold mine," "gold mine this," and "harvest this to gold mine" are equivalent triggers that all resolve to **one governed protocol implementation with one standard receipt shape.** Every host (Claude, Cursor, WaveRunner, any future harness) implements a thin adapter calling the same underlying function; none re-derive harvest/classify/publish logic locally.
+
+**Forbidden** (mirrors the "Forbidden" section pattern already used in `contracts/intelligence/OWNERSHIP.md`):
+- A per-agent-host reimplementation of harvest, classification, or publication logic
+- Treating `/goldmine` as free-form chat summarization
+- Any host publishing outside the governed path, or returning a receipt shape other than the one above
 
 ---
 
