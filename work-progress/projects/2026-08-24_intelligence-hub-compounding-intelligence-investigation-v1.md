@@ -90,10 +90,8 @@ This file is descriptive only. It does not supersede or modify the `ARCHITECTURE
 
 | Priority | Action | Owner repo | Status |
 | --- | --- | --- | --- |
-| 1 | Operator decision: charter wording for the `scripts/` carve-out (proposal 1 in the companion plan) | CapitalGlass-Cross-Agent | Open |
-| 2 | Operator decision: build `intelligence.preflight()` (proposal 2) — the highest-leverage single change per Wesley | CapitalGlass-Cross-Agent | Open |
-| 3 | Operator decision: adopt the two-agent `COMPOUNDING_INTELLIGENCE_V1_PROVEN` bar (proposal 4) as the real milestone | CapitalGlass-Cross-Agent | Open |
-| 4 | Remaining proposals (3, 5–9 in the companion plan) — sequence after 1–3 | CapitalGlass-Cross-Agent | Open |
+| 1 | PR #43 marked ready for review — review and decide on the "needs an operator decision" list in the plan doc | CapitalGlass-Cross-Agent | Open |
+| 2 | Once approved: implementation phase — `intelligence.preflight()`, the relationship-type registry + enforcement, `/goldmine`, freshness repair, end to end (explicitly out of scope for this PR) | CapitalGlass-Cross-Agent | Not started |
 
 ## Reusable lessons
 
@@ -115,3 +113,10 @@ This file is descriptive only. It does not supersede or modify the `ARCHITECTURE
 - Key verified findings that sharpened the proposals beyond what was asked: the graph-dividend gate likely already tolerates pure-reinforcement missions (it reads pre-reconciliation object counts), but the delta receipt's `nodesCorrected`/`nodesSuperseded` fields are hardcoded to `0` — the mutation-tracking shape already exists, it's just not wired up. The handoff schema already carries `source.repo`/`source.commitSha` at ingest time, but nothing threads it into the published envelope for retrieval-time freshness comparison. `lifecycleStage` already has 4 of the 5 proposed statuses.
 - Independently confirmed (not just took on report) the specific staleness example Wesley cited: `0261f45` is genuinely this repo's current `main` HEAD (verified via `git log` and this session's own PR #43 base SHA) and `5f3de96` is a real commit 3 commits behind it — corroborates the freshness-contract gap is real, not illustrative. The broader 25-repo Platform Intelligence dashboard numbers are Wesley's reported findings, not independently checked from this container (same reachability limits as the L: Hub).
 - Wrote the full detailed version, with line-level code citations, to `plans/2026-08-24_compounding-intelligence-v2-proposal.md`.
+
+### 2026-08-24 CT (same day, third pass) — Claude, per Wesley's review
+
+- Wesley reviewed the V2 proposal and required three architecture-level tightenings before marking PR #43 ready for review: (1) the relationship-type registry as a hard governance contract with real enforcement, not a documented suggestion; (2) `/goldmine` as an explicit cross-agent command contract, not a UX idea; (3) freshness acceptance criteria that require actual repair, not just detection.
+- Delivered all three: an 18-type governed registry table (13 existing + 5 new, verified against the code, including a real naming collision found between the `REINFORCES` edge type and the receipt's `nodesReinforced` metric, and a recommendation to collapse `STRONGLY_PREDICTS` into `PREDICTS` + an edge-level `confidence` field mirroring the existing `evidenceWeight` precedent), an enforcement point (`validateRelationshipEdges()`, verified today there is none), a `/goldmine` Forbidden list mirroring `OWNERSHIP.md`'s own pattern, and a named freshness acceptance gate (the full Git → preflight propagation chain).
+- Added the requested architectural north star verbatim: "The graph is not a storage format for intelligence; it is the mechanism by which evidence accumulates into reusable intelligence."
+- Marked PR #43 ready for review per Wesley's stated criterion. Implementation (registry, preflight, `/goldmine`, freshness repair) is explicitly the next phase, not part of this PR.

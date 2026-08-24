@@ -26,11 +26,11 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Field | Value |
 | --- | --- |
 | Work package | `intelligence-hub-compounding-intelligence-investigation-v1` |
-| Status | **INVESTIGATION COMPLETE; V2 PROPOSAL DRAFTED** — no code changes, awaiting operator decisions |
+| Status | **INVESTIGATION COMPLETE; V2 PROPOSAL HARDENED, PR #43 READY FOR REVIEW** — no code changes; implementation is the next, separate phase |
 | Repos involved | CapitalGlass-Cross-Agent only |
 | Notes | Full map of the Intelligence Hub (retrieval plane) + the 3 Compounding Intelligence systems (OP-00A pipeline, Gold Mine loop, North Star Compounding Proof), verified directly against source docs. Expanded same day at Wesley's request into a 9-part proposal (charter fix, agent-independent retrieval preflight, closed freshness contract, harder two-agent compounding proof, graph-dividend-as-mutation, lifecycle status, naming, mission-context bundle, `/goldmine` command), each checked against the actual pipeline code. |
 | Evidence | Project file `work-progress/projects/2026-08-24_intelligence-hub-compounding-intelligence-investigation-v1.md` + plan `plans/2026-08-24_compounding-intelligence-v2-proposal.md` + published Artifact: https://claude.ai/code/artifact/598390de-2537-492d-b3ba-34c665704fe1 (private) |
-| Next | Operator decision on proposals 1 (charter wording), 2 (build `intelligence.preflight()`), and 4 (adopt the two-agent proof bar) — Wesley's stated priority order. Rest of the proposals sequence after. |
+| Next | PR #43 is ready for review — review and decide the "needs an operator decision" list in the plan doc, then start implementation (`intelligence.preflight()`, relationship-type registry + enforcement, `/goldmine`, freshness repair) as a separate follow-on. |
 
 ### 2026-08-13 CT — wesleywork-storage-protocol-contradiction-remediation-v1
 
