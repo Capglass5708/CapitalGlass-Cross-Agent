@@ -92,7 +92,7 @@ Stays inside `contracts/intelligence/OWNERSHIP.md`'s existing boundary. Does not
 
 | Repo | Commit / PR | Status |
 | --- | --- | --- |
-| CapitalGlass-Cross-Agent | New branch off `main` (post-PR #43 merge), branch `claude/intelligence-hub-compounding-4f208p` reset to latest main | Pending push/PR |
+| CapitalGlass-Cross-Agent | Commit `51a11e8`, branch `claude/intelligence-hub-compounding-4f208p` (reset to latest `main` post-PR-#43-merge), PR #45 | Pushed, draft PR open |
 
 ## Next actions
 
