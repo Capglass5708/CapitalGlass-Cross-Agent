@@ -21,6 +21,28 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 ## Current saved work
 
+### 2026-08-25 CT — compounding-intelligence-v2-implementation-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `compounding-intelligence-v2-implementation-v1` |
+| Status | **COMPLETE (in-scope pieces)** — registry+enforcement, freshness provenance, `intelligence.preflight()`, `/goldmine`, all implemented and tested |
+| Repos involved | CapitalGlass-Cross-Agent only |
+| Notes | Implemented the 4 Cross-Agent-scoped pieces of the V2 proposal: governed relationship-type registry with real ingest-time enforcement, freshness/provenance fields in the envelope's open `extensions` bag, the physical L:→Supabase→Git preflight ladder + mission-context bundle, and the canonical `/goldmine` protocol. Found and fixed 2 adjacent pre-existing bugs (a mis-pathed field in the Hub-compact compiler, an unguarded dynamic import that crashed outside a full estate checkout). **Follow-on same day:** found `/goldmine` and `intelligence.preflight()` weren't actually wired together — a goldmine run never regenerated the compact slice preflight reads, so nothing a mission harvested was ever retrievable. Closed the loop (wired the already-existing `writeHarvestIntelligenceRetrievalArtifacts()` compiler into the goldmine protocol) and proved it with a real in-repo two-agent test. Also applied the previously-only-proposed `harvest-risk-gates` CI fix (`npm ci` was missing; confirmed the only one of 4 workflows on an ephemeral runner). 38 tests passing total. |
+| Evidence | Project file `work-progress/projects/2026-08-25_compounding-intelligence-v2-implementation-v1.md` |
+| Next | Re-run `npm run test:intelligence` on a host with the full estate checked out (6 pre-existing tests need the sibling AppBuilder repo, unaffected by this work but unverifiable from this container); operator decision on charter wording + `CONFLICTED` lifecycle state; cross-repo adoption (Cursor, AppBuilder, WaveRunner) needs those repos in scope |
+
+### 2026-08-24 CT — intelligence-hub-compounding-intelligence-investigation-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `intelligence-hub-compounding-intelligence-investigation-v1` |
+| Status | **INVESTIGATION COMPLETE; V2 PROPOSAL HARDENED, PR #43 READY FOR REVIEW** — no code changes; implementation is the next, separate phase |
+| Repos involved | CapitalGlass-Cross-Agent only |
+| Notes | Full map of the Intelligence Hub (retrieval plane) + the 3 Compounding Intelligence systems (OP-00A pipeline, Gold Mine loop, North Star Compounding Proof), verified directly against source docs. Expanded same day at Wesley's request into a 9-part proposal (charter fix, agent-independent retrieval preflight, closed freshness contract, harder two-agent compounding proof, graph-dividend-as-mutation, lifecycle status, naming, mission-context bundle, `/goldmine` command), each checked against the actual pipeline code. |
+| Evidence | Project file `work-progress/projects/2026-08-24_intelligence-hub-compounding-intelligence-investigation-v1.md` + plan `plans/2026-08-24_compounding-intelligence-v2-proposal.md` + published Artifact: https://claude.ai/code/artifact/598390de-2537-492d-b3ba-34c665704fe1 (private) |
+| Next | PR #43 is ready for review — review and decide the "needs an operator decision" list in the plan doc, then start implementation (`intelligence.preflight()`, relationship-type registry + enforcement, `/goldmine`, freshness repair) as a separate follow-on. |
+
 ### 2026-08-13 CT — wesleywork-storage-protocol-contradiction-remediation-v1
 
 | Field | Value |

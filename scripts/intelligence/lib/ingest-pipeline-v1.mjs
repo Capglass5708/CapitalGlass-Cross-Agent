@@ -23,6 +23,7 @@ import {
   assertNoProducerIntelligencePayload,
   validateEnvelopeSchema,
   validateHandoffSchema,
+  validateRelationshipEdges,
 } from './schema-validate.mjs';
 import { INGEST_RECEIPT_SCHEMA } from './constants.mjs';
 
@@ -204,6 +205,18 @@ export async function runIntelligenceIngest({
   });
 
   const { edges: relationships, reconciliation } = buildRelationshipEdges({ ledger, derivedObjects, closeout, handoff });
+
+  const relationshipValidation = validateRelationshipEdges(relationships);
+  pushStep('validate_relationship_types', relationshipValidation.ok, { errors: relationshipValidation.errors });
+  if (!relationshipValidation.ok) {
+    throw fail(
+      'RELATIONSHIP_VALIDATION',
+      'RELATIONSHIP_TYPE_NOT_REGISTERED',
+      'Relationship edge uses an unregistered or non-active type',
+      relationshipValidation,
+    );
+  }
+
   const graphDividend = evaluateGraphDividendGate({ handoff, derivedObjects, relationships });
   if (graphDividend.required && !graphDividend.pass) {
     throw fail('GRAPH_DIVIDEND', 'GRAPH_DIVIDEND_GATE_FAILED', 'Material mission missing graph dividend', graphDividend);
@@ -280,6 +293,7 @@ export async function runIntelligenceIngest({
       LEDGER_PROJECTION_PASS: true,
       DERIVED_OBJECT_BUILD_PASS: true,
       RELATIONSHIP_EDGE_BUILD_PASS: true,
+      RELATIONSHIP_TYPES_VALIDATED: relationshipValidation.ok,
       GRAPH_DIVIDEND_PASS: graphDividend.pass,
       HUB_COMPACT_COMPILE_PASS: true,
       PROVENANCE_RECONSTRUCTION_PASS: true,

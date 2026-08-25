@@ -286,6 +286,8 @@ _238 registry packets · 106 intelligence entities_
 
 | Project ID | File | Status | Owner repo(s) | Last commit | Next action |
 | --- | --- | --- | --- | --- | --- |
+| `compounding-intelligence-v2-implementation-v1` | [2026-08-25_compounding-intelligence-v2-implementation-v1.md](./2026-08-25_compounding-intelligence-v2-implementation-v1.md) | **Complete (in-scope pieces)** — registry+enforcement, freshness provenance, preflight, /goldmine (now wired to actually regenerate what preflight reads, proven by an in-repo two-agent test), harvest-risk-gates CI fixed, all tested | CapitalGlass-Cross-Agent | This commit (branch `claude/intelligence-hub-compounding-4f208p`) | Re-run full suite on a host with the sibling estate checked out; operator decision on charter + CONFLICTED state |
+| `intelligence-hub-compounding-intelligence-investigation-v1` | [2026-08-24_intelligence-hub-compounding-intelligence-investigation-v1.md](./2026-08-24_intelligence-hub-compounding-intelligence-investigation-v1.md) | **Investigation complete; V2 proposal drafted** — see `plans/2026-08-24_compounding-intelligence-v2-proposal.md` | CapitalGlass-Cross-Agent | This commit (branch `claude/intelligence-hub-compounding-4f208p`) | Operator decision on proposal 1/2/4 (charter, retrieval preflight, harder proof) |
 | `cg-federated-repo-index-v1` | [2026-08-12_cg-federated-repo-index-v1.md](./2026-08-12_cg-federated-repo-index-v1.md) | **CG_FEDERATED_REPO_INDEX_WAVE_A_CLOSED / LIVE_RYZEN9_PROOF_PASS** — GHA `31669015141`; umbrella `luna-estate-retrieval-index-v1` | `CG-AppBuilder-MCP`, `Computer Estimator` | AppBuilder **`c87ee2420`** (`main`, PR #372) | Hub L: publish only after operator authorization |
 | `two-desk-operating-v1` | [2026-08-11_two-desk-operating-v1.md](./2026-08-11_two-desk-operating-v1.md) | **COMPLETE** — `TWO_DESK_OPERATING_BOTH_READY` + L: BY-KIND published | `CG-AppBuilder-MCP` | AppBuilder tip `9385539c` (PR #350/#353/#357) | Optional OA MCP reconnect; optional ChatGPT write-guard |
 | `unauthorized-merge-353-ratify-cleanup-v1` | _(ledger entry in ACTIVE_WORK; incident on AppBuilder)_ | **COMPLETE** — Option C retain PR #353 | `CG-AppBuilder-MCP` | `251e96fb` + `11bce54c` | Optional ChatGPT write-guard |
@@ -396,6 +398,13 @@ Recommended follow-on work packages (not yet project files):
 | --- | --- | --- |
 | `cg-federated-repo-index-v1` | **LIVE_RYZEN9_PROOF_PASS / WAVE_A_CLOSED** | Bound to AppBuilder `c87ee2420`; Hub L: publish after operator authorization |
 | `revu-opening-detection-top10-v1` | Rosewood lane status corrected | Build `cg-opening-locator-v1`; if marking Rosewood in Revu, start with controlled sheet choice and do not assume CE parse or BC bid exists |
+
+### CapitalGlass-Cross-Agent
+
+| Project ID | Status | Next action |
+| --- | --- | --- |
+| `intelligence-hub-compounding-intelligence-investigation-v1` | Investigation complete; V2 proposal drafted | Operator decision on proposal 1/2/4 (charter, retrieval preflight, harder proof) |
+| `compounding-intelligence-v2-implementation-v1` | Complete (in-scope pieces) | Re-run full suite with sibling estate checked out; operator decision on charter + CONFLICTED state |
 
 ---
 

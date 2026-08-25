@@ -21,9 +21,14 @@ export function compileHubCompactPayload({
       objectId: object.identity.objectId,
       kind: object.identity.kind,
       contentHash: object.identity.contentHash,
-      evidenceReality: object.authority.evidenceReality,
-      measurementQuality: object.authority.measurementQuality,
+      evidenceReality: object.evidenceReality,
+      measurementQuality: object.measurement?.measurementQuality,
       correlation: object.extensions?.correlationMarkers ?? null,
+      // proposal 3: freshness/provenance carried through to the Hub-facing compact payload
+      sourceRepo: object.extensions?.provenance?.sourceRepo ?? null,
+      sourceSha: object.extensions?.provenance?.sourceSha ?? null,
+      indexedSha: object.extensions?.provenance?.indexedSha ?? null,
+      publishedAt: generatedAt,
     })),
     relationships: relationships.map((edge) => ({
       relationshipId: edge.relationshipId,
