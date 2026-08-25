@@ -71,19 +71,23 @@ function testPreviewDoesNotMutateAnything() {
   });
 }
 
-async function testFullRunProducesCompleteOrPartialReceipt() {
+async function testFullRunProducesCompleteReceipt() {
   return withTempRepoRoot(async (repoRoot) => {
     const manifest = buildManifest();
     const receipt = await runGoldMineProtocol(manifest, { repoRoot });
-    assert.ok(['GOLD_MINE_COMPLETE', 'GOLD_MINE_PARTIAL'].includes(receipt.verdict));
+    // No contradiction packets in this manifest, so this must be COMPLETE —
+    // the verdict is tied to the real local-merge outcome, never to Hub
+    // reachability (see the "false Hub publication success" fix below).
+    assert.equal(receipt.verdict, 'GOLD_MINE_COMPLETE');
     assert.equal(receipt.evidenceItemsHarvested, 1);
     assert.equal(receipt.newKnowledgeNodes, 1, 'first run of a new concept should create one node');
     assert.equal(receipt.graphDividend, 'PASS');
-    assert.equal(receipt.indexRefresh, 'PASS');
-    assert.ok(['PASS', 'BLOCKED'].includes(receipt.hubPublication));
-    if (receipt.hubPublication === 'BLOCKED') {
-      assert.ok(receipt.note.includes('local intelligence index successfully'));
-    }
+    assert.equal(receipt.localIndexWrite, 'PASS');
+    // Hub publication must never claim PASS — no code path actually writes to
+    // a remote Hub plane yet, regardless of whether one is reachable.
+    assert.equal(receipt.hubPublication, 'NOT_IMPLEMENTED');
+    assert.equal(typeof receipt.hubPlaneReachable, 'boolean');
+    assert.ok(receipt.note.includes('Remote Hub publication is not implemented'));
     assert.ok(fs.existsSync(receipt.receiptPath), 'receipt must be written to disk');
     assert.ok(fs.existsSync(path.join(repoRoot, 'work-progress/harvest-intelligence-index.json')), 'real run must write the intelligence index');
   });
@@ -112,6 +116,7 @@ function testContradictionsRequiringReviewIsHonestlyTracked() {
     });
     const receipt = await runGoldMineProtocol(manifest, { repoRoot });
     assert.equal(receipt.contradictionsRequiringReview, 1);
+    assert.equal(receipt.verdict, 'GOLD_MINE_PARTIAL', 'an unresolved contradiction is what should make a run partial, not Hub reachability');
   });
 }
 
@@ -135,7 +140,7 @@ function testStatusReturnsNullWhenNoReceiptExists() {
 const tests = [
   ['evidence manifest validation', testEvidenceManifestValidation],
   ['preview does not mutate anything', testPreviewDoesNotMutateAnything],
-  ['full run produces a complete-or-partial receipt', testFullRunProducesCompleteOrPartialReceipt],
+  ['full run produces a complete receipt with no false Hub-publication claim', testFullRunProducesCompleteReceipt],
   ['repeat run reinforces instead of duplicating', testRepeatRunReinforcesInsteadOfDuplicating],
   ['contradictions requiring review is honestly tracked', testContradictionsRequiringReviewIsHonestlyTracked],
   ['status reads back the last receipt', testStatusReadsBackLastReceipt],

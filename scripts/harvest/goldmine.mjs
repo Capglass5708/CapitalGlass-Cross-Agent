@@ -38,8 +38,8 @@ function printReceipt(receipt, json) {
   process.stdout.write(`${receipt.supersessions} supersessions\n`);
   process.stdout.write(`${receipt.contradictionsRequiringReview} contradictions requiring review\n`);
   process.stdout.write(`Graph dividend: ${receipt.graphDividend}\n`);
-  process.stdout.write(`Index refresh: ${receipt.indexRefresh}\n`);
-  process.stdout.write(`Hub publication: ${receipt.hubPublication}\n`);
+  process.stdout.write(`Local index write: ${receipt.localIndexWrite}\n`);
+  process.stdout.write(`Hub publication: ${receipt.hubPublication} (plane reachable: ${receipt.hubPlaneReachable})\n`);
   if (receipt.note) process.stdout.write(`${receipt.note}\n`);
   process.stdout.write(`Provenance receipt: ${receipt.receiptPath}\n`);
 }

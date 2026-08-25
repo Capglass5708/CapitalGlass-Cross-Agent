@@ -68,6 +68,22 @@ function testPredictsRequiresConfidenceField() {
   assert.ok(!registry.types.some((t) => t.id === 'STRONGLY_PREDICTS'), 'STRONGLY_PREDICTS must not exist — confidence belongs on the edge');
 }
 
+function testAcceptsCorrelationMarkerEdgeTypes() {
+  // buildRelationshipEdges() also emits correlation-marker edges (USED_CAPABILITY,
+  // TOUCHED_REPO, CHAINED_BY, ...) from a separate, pre-existing registry — a real
+  // material mission with correlation markers must not hard-fail ingest just
+  // because those types aren't in *this* registry (Bugbot finding, verified real).
+  const correlationTypes = ['USED_CAPABILITY', 'TOUCHED_REPO', 'ABOUT_SUBJECT', 'USED_MECHANISM', 'ADDRESSED_PROBLEM', 'PRODUCED_EFFECT', 'CHAINED_BY'];
+  const edges = correlationTypes.map((relationship, i) => ({
+    relationshipId: `oi:rel:corr${i}`,
+    from: 'oi:a',
+    to: `marker:${i}`,
+    relationship,
+  }));
+  const result = validateRelationshipEdges(edges);
+  assert.equal(result.ok, true, JSON.stringify(result.errors));
+}
+
 function testRejectsUnregisteredType() {
   const result = validateRelationshipEdges([
     { relationshipId: 'oi:rel:test1', from: 'oi:a', to: 'oi:b', relationship: 'TOTALLY_MADE_UP' },
@@ -143,6 +159,7 @@ const tests = [
   ['known existing types present and ACTIVE', testKnownExistingTypesPresentAndActive],
   ['ENABLES/ENABLED_BY is a real inverse pair', testEnablesIsRealInversePair],
   ['PREDICTS requires confidence, no STRONGLY_PREDICTS', testPredictsRequiresConfidenceField],
+  ['accepts correlation-marker edge types from the separate registry', testAcceptsCorrelationMarkerEdgeTypes],
   ['rejects unregistered type', testRejectsUnregisteredType],
   ['rejects PREDICTS without confidence', testRejectsPredictsWithoutConfidence],
   ['accepts PREDICTS with confidence', testAcceptsPredictsWithConfidence],

@@ -40,11 +40,23 @@ function testGitLedgerPlaneAvailable() {
 
 function testMissionContextBundleShape() {
   const bundle = buildMissionContextBundle({ concepts: [], repos: [] });
+  assert.equal(bundle.bundleSource, 'GIT_LEDGER_MIRROR', 'bundle must honestly declare where it was actually sourced from');
   for (const key of ['activeBlockers', 'repoOwnership', 'knownFailures', 'successPatterns', 'relatedMissions', 'unresolvedContradictions']) {
     assert.ok(Array.isArray(bundle[key]), `${key} should be an array`);
   }
   assert.ok(bundle.currentState, 'currentState slice should load');
   assert.ok(bundle.sourceSlicesGeneratedAt.blockers, 'should surface when the blockers slice was last updated');
+}
+
+function testEmptyQueryIsConsistentlyUnfiltered() {
+  // Every bundle field must treat "no concepts/repos given" the same way:
+  // return everything (bounded), never silently drop a slice to empty just
+  // because it happens to come from the larger harvest-intelligence source.
+  const unfiltered = buildMissionContextBundle({ concepts: [], repos: [] });
+  assert.ok(
+    unfiltered.knownFailures.length > 0 || unfiltered.successPatterns.length > 0 || unfiltered.relatedMissions.length > 0,
+    'an unfiltered query should surface harvest-derived context too, not just blockers/ownership',
+  );
 }
 
 function testMissionContextBundleFiltersByConcept() {
@@ -54,6 +66,7 @@ function testMissionContextBundleFiltersByConcept() {
   assert.equal(filtered.successPatterns.length, 0);
   // an empty query returns everything; a concept that matches nothing returns nothing from the row-keyed slices
   assert.ok(unfiltered.activeBlockers.length >= filtered.activeBlockers.length);
+  assert.ok(unfiltered.knownFailures.length >= filtered.knownFailures.length);
 }
 
 async function testFullLadderReachesGitLedgerInThisEnvironment() {
@@ -93,6 +106,7 @@ const tests = [
   ['Supabase plane degrades gracefully without a sibling checkout', testSupabasePlaneDegradesGracefully],
   ['Git ledger plane is always available', testGitLedgerPlaneAvailable],
   ['mission-context bundle has the expected shape', testMissionContextBundleShape],
+  ['empty query is consistently unfiltered across all bundle fields', testEmptyQueryIsConsistentlyUnfiltered],
   ['mission-context bundle filters by concept', testMissionContextBundleFiltersByConcept],
   ['full ladder reaches the Git ledger in this environment', testFullLadderReachesGitLedgerInThisEnvironment],
   ['receipt is written to disk', testReceiptIsWritten],

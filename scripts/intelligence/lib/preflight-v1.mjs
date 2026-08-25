@@ -82,11 +82,16 @@ export function testGitLedgerPlane() {
 }
 
 /**
- * Assembles the mission-context bundle (proposal 8) from whichever plane's
- * local mirror is reachable. In this environment only the Git-ledger mirror
- * (work-progress/intelligence-hub-slices/) is actually testable end to end;
- * an L:/Supabase-backed bundle would draw from the live catalog instead, but
- * the shape returned to the caller is identical either way.
+ * Assembles the mission-context bundle (proposal 8). Always sources from the
+ * Git-tracked local mirror (work-progress/intelligence-hub-slices/) — this is
+ * the one plane fully testable and verifiable in every environment. It does
+ * NOT yet vary by which retrieval-ladder plane reported success: an
+ * L_HUB_READ_OK or L_HUB_UNAVAILABLE_USING_SUPABASE outcome still returns a
+ * Git-mirror-sourced bundle, not a live L:/Supabase-sourced one. Callers
+ * should treat `bundleSource` (below), not `outcome`, as the source of truth
+ * for where the bundle's content actually came from. Reading live L:/Supabase
+ * catalogs directly is real follow-up work this session couldn't build and
+ * verify without access to either plane.
  */
 export function buildMissionContextBundle({ concepts = [], repos = [] } = {}) {
   const needles = [...concepts, ...repos];
@@ -109,11 +114,13 @@ export function buildMissionContextBundle({ concepts = [], repos = [] } = {}) {
 
   const currentState = loadJsonSafe(path.join(SLICES_DIR, 'current-state.json'));
 
+  // Consistent with the fields above: an empty query returns everything
+  // (bounded), it does not silently drop this slice to empty.
   const harvestSlice = loadJsonSafe(path.join(SLICES_DIR, 'harvest-intelligence.json'));
   const rows = harvestSlice?.rows ?? [];
   const relevantRows = needles.length > 0
     ? rows.filter((r) => matchesQuery(`${r.conceptKey} ${r.application} ${r.workflow} ${r.ownerRepo}`, needles))
-    : [];
+    : rows;
   const knownFailures = relevantRows
     .filter((r) => Boolean(r.rootCauseKey))
     .slice(0, 15)
@@ -125,6 +132,7 @@ export function buildMissionContextBundle({ concepts = [], repos = [] } = {}) {
   const relatedMissions = [...new Set(relevantRows.map((r) => r.workPackageId).filter(Boolean))].slice(0, 15);
 
   return {
+    bundleSource: 'GIT_LEDGER_MIRROR',
     activeBlockers,
     repoOwnership,
     knownFailures,

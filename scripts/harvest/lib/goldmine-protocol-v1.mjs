@@ -30,12 +30,16 @@ function countContradictionsRequiringReview(manifest) {
   return (manifest.packets ?? []).filter((p) => p.contradictsExisting === true).length;
 }
 
-async function checkHubPublicationEligibility() {
+// Diagnostic only — reports whether a remote Hub plane is reachable, never a
+// claim that anything was published there. No code path in this function
+// writes to L: or Supabase; an actual Hub-publish implementation for Gold
+// Mine evidence is future work (see the V2 proposal's cross-repo items).
+async function checkHubPlaneReachability() {
   const lHub = testLHubPlane();
-  if (lHub.available) return { eligible: true, plane: 'L_DRIVE' };
+  if (lHub.available) return { reachable: true, plane: 'L_DRIVE' };
   const supabase = await testSupabasePlane();
-  if (supabase.available) return { eligible: true, plane: 'SUPABASE' };
-  return { eligible: false, plane: null, reason: 'ALL_HUB_PLANES_UNAVAILABLE' };
+  if (supabase.available) return { reachable: true, plane: 'SUPABASE' };
+  return { reachable: false, plane: null, reason: 'ALL_HUB_PLANES_UNAVAILABLE' };
 }
 
 function receiptRunDir(harvestId, repoRoot = REPO_ROOT) {
@@ -72,19 +76,26 @@ export function lastGoldMineReceipt(harvestId, repoRoot = REPO_ROOT) {
 export async function runGoldMineProtocol(manifest, { repoRoot = REPO_ROOT } = {}) {
   const { receipt: mergeReceipt } = mergeManifestIntoIntelligenceIndex(manifest, { repoRoot });
 
-  const hubEligibility = await checkHubPublicationEligibility();
+  const hubReachability = await checkHubPlaneReachability();
   const contradictionsRequiringReview = countContradictionsRequiringReview(manifest);
 
   const graphDividend =
     mergeReceipt.newEntities > 0 || mergeReceipt.enrichedEntities > 0 || mergeReceipt.relationshipAdds > 0;
 
+  // "Complete" means captured + merged into the governed local index — the
+  // real, working part of this implementation. Unresolved contradictions are
+  // the one condition that legitimately makes a run partial; Hub-plane
+  // reachability is diagnostic only (see checkHubPlaneReachability) and never
+  // by itself downgrades the verdict, because no code here actually writes to
+  // a remote Hub plane yet — claiming PASS/BLOCKED on that basis would be
+  // exactly the "false success" this protocol exists to prevent.
   const runDir = receiptRunDir(manifest.harvestId, repoRoot);
   const receiptPath = path.join(runDir, 'goldmine-receipt-v1.json');
 
   const result = {
     receiptPath,
     schema: 'goldmine-receipt-v1@1.0.0',
-    verdict: hubEligibility.eligible ? 'GOLD_MINE_COMPLETE' : 'GOLD_MINE_PARTIAL',
+    verdict: contradictionsRequiringReview > 0 ? 'GOLD_MINE_PARTIAL' : 'GOLD_MINE_COMPLETE',
     harvestId: manifest.harvestId,
     workPackageId: manifest.workPackageId ?? manifest.harvestId,
     generatedAt: new Date().toISOString(),
@@ -98,14 +109,16 @@ export async function runGoldMineProtocol(manifest, { repoRoot = REPO_ROOT } = {
     supersessions: mergeReceipt.supersededEntities,
     contradictionsRequiringReview,
     graphDividend: graphDividend ? 'PASS' : 'HOLD',
-    indexRefresh: 'PASS',
-    hubPublication: hubEligibility.eligible ? 'PASS' : 'BLOCKED',
-    hubPublicationPlane: hubEligibility.plane,
-    hubPublicationBlockedReason: hubEligibility.eligible ? null : hubEligibility.reason,
+    localIndexWrite: 'PASS',
+    hubPublication: 'NOT_IMPLEMENTED',
+    hubPlaneReachable: hubReachability.reachable,
+    hubPlaneReachabilityDetail: hubReachability,
     intelligenceMergeReceipt: mergeReceipt,
   };
-  if (!hubEligibility.eligible) {
-    result.note = 'Evidence harvested and merged into the local intelligence index successfully. Hub publication blocked — no intelligence was silently published beyond the governed local index.';
+  if (contradictionsRequiringReview > 0) {
+    result.note = `${contradictionsRequiringReview} packet(s) contradict existing intelligence and need review before this can be treated as fully resolved. Evidence was still harvested and merged into the local intelligence index.`;
+  } else {
+    result.note = 'Evidence harvested and merged into the governed local intelligence index. Remote Hub publication is not implemented by this protocol yet — nothing was silently published beyond the local index.';
   }
 
   fs.mkdirSync(runDir, { recursive: true });
