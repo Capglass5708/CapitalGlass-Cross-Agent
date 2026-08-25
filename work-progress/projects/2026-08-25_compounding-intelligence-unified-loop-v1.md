@@ -69,14 +69,24 @@ Stays inside `contracts/intelligence/OWNERSHIP.md`'s existing boundary. Does not
 | `npm run test:intelligence-contracts` | PASS 14/14 | Pre-existing, re-verified green |
 | `npm run test:intelligence-relationship-registry` | PASS 9/9 | Pre-existing, re-verified green |
 | `npm run test:intelligence-preflight` | PASS 9/9 | +1 lane in the ladder test, +1 new repoRoot-isolation test for the graph queries integration |
-| `npm run test:intelligence-hot-ai-cache` | PASS 5/5 | New — real SHA-freshness logic proven via env-injected fixtures (Z:-authority path); the physical per-host replica paths have no override and genuinely aren't present in this container, which is itself asserted, not worked around |
+| `npm run test:intelligence-hot-ai-cache` | PASS 7/7 | New (+2 after Bugbot fixes) — real SHA-freshness and scope-gating logic proven via env-injected fixtures (Z:-authority path); the physical per-host replica paths have no override and genuinely aren't present in this container, which is itself asserted, not worked around |
 | `npm run test:intelligence-mission-graph` | PASS 7/7 | New — includes a test against the real `decisions/DECISION_LOG.md`, not a fixture |
 | `npm run test:intelligence-goldmine` | PASS 8/8 | Pre-existing, re-verified green |
-| `npm run test:intelligence-unified-receipt` | PASS 5/5 | New — full schema validation against real (not mocked) preflight + goldmine output |
+| `npm run test:intelligence-unified-receipt` | PASS 6/6 | New (+1 after Bugbot fixes) — full schema validation against real (not mocked) preflight + goldmine output |
 | `npm run validate:query-routing`, `validate:hot-cache-dataset-registry` | Both PASS | Confirms the new registrations satisfy the real cross-repo-consumed schemas |
 | `npm run test:query-routing`, `test:hot-cache-dataset-registry` | PASS 9/9, 5/5 | Includes a dedicated test proving the new `mission-intelligence` route doesn't collide with the pre-existing `"preflight"` queryClass |
 | `run-harvest-hub-slice-retrieval.test.mjs`, `run-harvest-ranked-view-no-loss.test.mjs` | PASS (re-verified) | Adjacent pre-existing tests, confirmed no regression |
-| Total | **57 self-contained tests + 14 registry validation/tests = 71 checks, all passing** | |
+| Total | **60 self-contained tests + 14 registry validation/tests = 74 checks, all passing** | |
+
+### Cursor Bugbot findings (PR #45, first review pass)
+
+| Finding | Severity | Verified | Fix |
+| --- | --- | --- | --- |
+| Cache hit skips mission filtering | High | Real — a fresh hit returned `hotCache.bundle` unconditionally, ignoring caller `concepts`/`repos` filters | `testHotAiCachePlane()` now only reports `available: true` for a fresh hit when the query is unscoped; `cacheStatus` still honestly reports real freshness either way |
+| Cache root skips RYZEN9DESK | High | Real — host enumeration used `DEFAULT_SYNC_HOSTS` (a publish-fanout default), omitting a host with a real defined cache path | Now walks all 3 known host IDs (`ALL_KNOWN_CACHE_HOST_IDS`, exported and tested directly) |
+| Receipt falsifies plane reachability | Medium | Real — a short-circuited (never-probed) L:/Supabase lane was mapped to `UNAVAILABLE`, indistinguishable from probed-and-failed | Added `NOT_CHECKED` to the schema and builder, distinct from `UNAVAILABLE` |
+
+All 3 fixed with a dedicated regression test each; all 3 threads resolved.
 
 ## Blockers / warnings
 
@@ -92,7 +102,7 @@ Stays inside `contracts/intelligence/OWNERSHIP.md`'s existing boundary. Does not
 
 | Repo | Commit / PR | Status |
 | --- | --- | --- |
-| CapitalGlass-Cross-Agent | Commit `51a11e8`, branch `claude/intelligence-hub-compounding-4f208p` (reset to latest `main` post-PR-#43-merge), PR #45 | Pushed, draft PR open |
+| CapitalGlass-Cross-Agent | Commits `51a11e8`, `15909cf`, `c8998ec` on branch `claude/intelligence-hub-compounding-4f208p` (reset to latest `main` post-PR-#43-merge), PR #45 | Pushed, ready for review |
 
 ## Next actions
 
@@ -114,4 +124,5 @@ Stays inside `contracts/intelligence/OWNERSHIP.md`'s existing boundary. Does not
 
 ### 2026-08-25 CT — Claude
 
-- Registered `mission-intelligence` in the query-routing + hot-cache dataset registries, closing the gap Wesley found. Built the hot-ai-cache ladder rung with real SHA-based freshness, graph-aware mission-context queries, the unified end-to-end receipt contract, and the WaveRunner-preflight consumption contract. 34 new tests, all passing; 71 total checks across the affected suites, all green.
+- Registered `mission-intelligence` in the query-routing + hot-cache dataset registries, closing the gap Wesley found. Built the hot-ai-cache ladder rung with real SHA-based freshness, graph-aware mission-context queries, the unified end-to-end receipt contract, and the WaveRunner-preflight consumption contract. 34 new tests, all passing; 71 total checks across the affected suites, all green. Opened PR #45.
+- Cursor Bugbot's first review pass on PR #45 found 3 real issues (cache hits silently ignoring scoped queries, RYZEN9DESK never probed, short-circuited lanes falsely reported as `UNAVAILABLE`). All 3 verified and fixed with a dedicated regression test each; all 3 threads resolved. 60 self-contained tests + 14 registry checks, all green.
