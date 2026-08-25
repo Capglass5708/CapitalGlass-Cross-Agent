@@ -28,12 +28,18 @@ import path from 'node:path';
 import { resolveZCacheRoot } from '../../harvest/lib/z-cache-publication-adapter-lib.mjs';
 import {
   resolveHostHotCacheRoot,
-  DEFAULT_SYNC_HOSTS,
   normalizeSyncHostId,
 } from '../../harvest/lib/host-ai-cache-fanout-lib.mjs';
 import { getCrossAgentIndexedSha } from './repo-state-v1.mjs';
 
 export const CACHE_BUNDLE_REL = '00-master-index/BY-KIND/mission-intelligence.json';
+
+// Every host with a defined hot-cache path in host-ai-cache-fanout-lib.mjs,
+// not just that module's own DEFAULT_SYNC_HOSTS (["wesley_work", "wesleydesk"])
+// — that list is scoped to publish-side fanout defaults, not exhaustive
+// read-side host enumeration, and omits RYZEN9DESK even though it has a real
+// C: cache path there.
+export const ALL_KNOWN_CACHE_HOST_IDS = ['WESLEY_WORK', 'WESLEYDESK', 'RYZEN9DESK'];
 
 export const CACHE_STATUS = {
   CACHE_HIT_FRESH: 'CACHE_HIT_FRESH',
@@ -57,7 +63,7 @@ export function resolveMissionIntelligenceCacheRoot(env = process.env) {
     return { root: zRoot, source: 'Z_CACHE_AUTHORITY' };
   }
 
-  for (const rawHostId of DEFAULT_SYNC_HOSTS) {
+  for (const rawHostId of ALL_KNOWN_CACHE_HOST_IDS) {
     const hostId = normalizeSyncHostId(rawHostId);
     const hostRoot = hostId ? resolveHostHotCacheRoot(hostId) : null;
     if (hostRoot) {
@@ -73,11 +79,21 @@ export function resolveMissionIntelligenceCacheRoot(env = process.env) {
  * throws — degrades to CACHE_ROOT_UNAVAILABLE outside an environment with the
  * physical cache mounted (true of this container; real hosts have it at
  * S:/D:/C: \"AI Cursur Cache\" or the canonical Z: authority).
+ *
+ * `available` gates whether the ladder may short-circuit on this hit, which
+ * additionally requires the query to be unscoped (no concepts/repos). The
+ * cached bundle's own compilation scope isn't verifiable from this repo (no
+ * physical cache exists in any environment available to it), so a query with
+ * specific concepts/repos must not be silently satisfied by a payload that
+ * might not have been filtered the same way buildMissionContextBundle()
+ * would filter it — `cacheStatus` still reports the cache's real freshness
+ * either way, for honest diagnostics.
  */
-export function testHotAiCachePlane({ env = process.env } = {}) {
+export function testHotAiCachePlane({ env = process.env, concepts = [], repos = [] } = {}) {
+  const scopeApplicable = concepts.length === 0 && repos.length === 0;
   const resolved = resolveMissionIntelligenceCacheRoot(env);
   if (!resolved) {
-    return { plane: 'HOT_AI_CACHE', available: false, cacheStatus: CACHE_STATUS.CACHE_ROOT_UNAVAILABLE };
+    return { plane: 'HOT_AI_CACHE', available: false, cacheStatus: CACHE_STATUS.CACHE_ROOT_UNAVAILABLE, scopeApplicable };
   }
 
   const bundlePath = path.join(resolved.root, CACHE_BUNDLE_REL);
@@ -89,6 +105,7 @@ export function testHotAiCachePlane({ env = process.env } = {}) {
       cacheStatus: CACHE_STATUS.CACHE_MISS,
       root: resolved.root,
       rootSource: resolved.source,
+      scopeApplicable,
     };
   }
 
@@ -98,12 +115,13 @@ export function testHotAiCachePlane({ env = process.env } = {}) {
 
   return {
     plane: 'HOT_AI_CACHE',
-    available: fresh,
+    available: fresh && scopeApplicable,
     cacheStatus: fresh ? CACHE_STATUS.CACHE_HIT_FRESH : CACHE_STATUS.CACHE_HIT_STALE,
     root: resolved.root,
     rootSource: resolved.source,
     cachedSha,
     authoritySha,
+    scopeApplicable,
     bundle: fresh ? cached.bundle ?? cached : undefined,
   };
 }

@@ -32,10 +32,13 @@
       "enum": ["CACHE_HIT_FRESH", "CACHE_HIT_STALE", "CACHE_MISS", "CACHE_ROOT_UNAVAILABLE"],
       "description": "From the hot AI cache plane's SHA-verified freshness check, never TTL alone."
     },
-    "lHub": { "enum": ["VERIFIED", "UNAVAILABLE"] },
+    "lHub": {
+      "enum": ["VERIFIED", "UNAVAILABLE", "NOT_CHECKED"],
+      "description": "NOT_CHECKED (distinct from UNAVAILABLE) when the ladder short-circuited on an earlier lane -- e.g. a fresh hot-cache hit -- so this plane was never actually probed. UNAVAILABLE means it was probed and failed."
+    },
     "supabaseProjection": {
-      "enum": ["CURRENT", "UNAVAILABLE"],
-      "description": "Diagnostic reachability only -- this repo has no live Hub-publish path yet, so CURRENT means reachable, not that this mission's evidence was published there."
+      "enum": ["CURRENT", "UNAVAILABLE", "NOT_CHECKED"],
+      "description": "Diagnostic reachability only -- this repo has no live Hub-publish path yet, so CURRENT means reachable, not that this mission's evidence was published there. NOT_CHECKED when an earlier lane short-circuited the ladder before this one was probed."
     },
     "waverunner": {
       "enum": ["COMPLETE", "NOT_YET_INTEGRATED"],

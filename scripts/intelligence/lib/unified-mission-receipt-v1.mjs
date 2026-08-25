@@ -35,8 +35,11 @@ export function buildUnifiedMissionReceipt({
     mission: mission ?? preflightResult.mission ?? 'unspecified',
     preflight: preflightResult.outcome === 'ALL_HUB_PLANES_UNAVAILABLE' ? 'FAIL' : 'PASS',
     aiCache: cacheLane?.cacheStatus ?? 'CACHE_ROOT_UNAVAILABLE',
-    lHub: lHubLane?.available ? 'VERIFIED' : 'UNAVAILABLE',
-    supabaseProjection: supabaseLane?.available ? 'CURRENT' : 'UNAVAILABLE',
+    // A null lane means the ladder short-circuited before this plane was
+    // ever probed (e.g. a fresh hot-cache hit) -- that must read NOT_CHECKED,
+    // never UNAVAILABLE, which would falsely claim the plane was tried and failed.
+    lHub: !lHubLane ? 'NOT_CHECKED' : lHubLane.available ? 'VERIFIED' : 'UNAVAILABLE',
+    supabaseProjection: !supabaseLane ? 'NOT_CHECKED' : supabaseLane.available ? 'CURRENT' : 'UNAVAILABLE',
     waverunner: waverunner ?? 'NOT_YET_INTEGRATED',
     goldmine: goldmineReceipt?.verdict ?? 'NOT_RUN',
     graphDividend: goldmineReceipt?.graphDividend ?? 'NOT_RUN',

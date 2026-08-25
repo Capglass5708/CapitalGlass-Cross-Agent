@@ -101,6 +101,36 @@ function testWaverunnerAndCacheRefreshOnlySetByExplicitEvidence() {
   assert.equal(withEvidence.cacheRefresh, 'PASS');
 }
 
+function testShortCircuitedLanesReportNotCheckedNotUnavailable() {
+  // Bugbot finding: a cache-hit short-circuit leaves laneChecks with only a
+  // HOT_AI_CACHE entry -- L: and Supabase were never probed, so mapping their
+  // absence to UNAVAILABLE would falsely claim they were tried and failed.
+  const shortCircuitedResult = {
+    outcome: 'CACHE_HIT_FRESH',
+    mission: 'x',
+    laneChecks: [{ plane: 'HOT_AI_CACHE', available: true, cacheStatus: 'CACHE_HIT_FRESH' }],
+  };
+  const receipt = buildUnifiedMissionReceipt({ preflightResult: shortCircuitedResult });
+  assert.equal(receipt.lHub, 'NOT_CHECKED');
+  assert.equal(receipt.supabaseProjection, 'NOT_CHECKED');
+
+  // Contrast: when a lane genuinely was probed and failed, it must still say
+  // UNAVAILABLE, not NOT_CHECKED -- this isn't just "always say not-checked".
+  const probedAndFailedResult = {
+    outcome: 'L_HUB_UNAVAILABLE_USING_GIT_LEDGER',
+    mission: 'x',
+    laneChecks: [
+      { plane: 'HOT_AI_CACHE', available: false, cacheStatus: 'CACHE_ROOT_UNAVAILABLE' },
+      { plane: 'L_DRIVE', available: false },
+      { plane: 'SUPABASE', available: false },
+      { plane: 'GIT_LEDGER', available: true },
+    ],
+  };
+  const probedReceipt = buildUnifiedMissionReceipt({ preflightResult: probedAndFailedResult });
+  assert.equal(probedReceipt.lHub, 'UNAVAILABLE');
+  assert.equal(probedReceipt.supabaseProjection, 'UNAVAILABLE');
+}
+
 function testAllHubPlanesUnavailableMeansPreflightFail() {
   const failedPreflightResult = { outcome: 'ALL_HUB_PLANES_UNAVAILABLE', mission: 'x', laneChecks: [] };
   const receipt = buildUnifiedMissionReceipt({ preflightResult: failedPreflightResult });
@@ -128,6 +158,7 @@ const tests = [
   ['unified receipt composes real preflight + goldmine output and validates against schema', testUnifiedReceiptComposesRealPreflightAndGoldmineOutput],
   ['unified receipt requires a real preflightResult', testUnifiedReceiptRequiresARealPreflightResult],
   ['waverunner and cacheRefresh are only set by explicit caller evidence', testWaverunnerAndCacheRefreshOnlySetByExplicitEvidence],
+  ['short-circuited lanes report NOT_CHECKED, not UNAVAILABLE', testShortCircuitedLanesReportNotCheckedNotUnavailable],
   ['ALL_HUB_PLANES_UNAVAILABLE means preflight FAIL and goldmine NOT_RUN', testAllHubPlanesUnavailableMeansPreflightFail],
   ['writeUnifiedMissionReceipt writes to disk', testWriteUnifiedMissionReceiptWritesToDisk],
 ];

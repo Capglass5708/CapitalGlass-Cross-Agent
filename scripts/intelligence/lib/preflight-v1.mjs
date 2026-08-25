@@ -185,7 +185,7 @@ export function buildMissionContextBundle({ concepts = [], repos = [], repoRoot 
 export async function runIntelligencePreflight({ mission = null, repos = [], concepts = [], repoRoot = REPO_ROOT } = {}) {
   const laneChecks = [];
 
-  const hotCache = testHotAiCachePlane();
+  const hotCache = testHotAiCachePlane({ concepts, repos });
   laneChecks.push(hotCache);
   if (hotCache.available) {
     return finalizePreflight({
