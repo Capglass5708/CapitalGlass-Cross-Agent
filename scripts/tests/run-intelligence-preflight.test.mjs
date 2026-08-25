@@ -97,15 +97,18 @@ function testBuildMissionContextBundleRespectsRepoRootOverride() {
 }
 
 async function testFullLadderReachesGitLedgerInThisEnvironment() {
-  // This container has no /mnt/l mount and no sibling AppBuilder checkout, so
-  // the ladder must fall all the way to the Git ledger and still succeed —
-  // this is the one lane genuinely end-to-end testable outside the real dev host.
+  // This container has no hot AI cache mount, no /mnt/l mount, and no sibling
+  // AppBuilder checkout, so the ladder must fall all the way to the Git
+  // ledger and still succeed — this is the one lane genuinely end-to-end
+  // testable outside the real dev host.
   const result = await runIntelligencePreflight({ mission: 'test-mission', repos: ['CapitalGlass-Cross-Agent'], concepts: [] });
   assert.equal(result.outcome, OUTCOME.L_HUB_UNAVAILABLE_USING_GIT_LEDGER);
-  assert.equal(result.laneChecks.length, 3, 'should have physically tested L:, then Supabase, then Git ledger');
-  assert.equal(result.laneChecks[0].plane, 'L_DRIVE');
-  assert.equal(result.laneChecks[1].plane, 'SUPABASE');
-  assert.equal(result.laneChecks[2].plane, 'GIT_LEDGER');
+  assert.equal(result.laneChecks.length, 4, 'should have physically tested hot cache, then L:, then Supabase, then Git ledger');
+  assert.equal(result.laneChecks[0].plane, 'HOT_AI_CACHE');
+  assert.equal(result.laneChecks[0].available, false, 'no physical cache is mounted in this container');
+  assert.equal(result.laneChecks[1].plane, 'L_DRIVE');
+  assert.equal(result.laneChecks[2].plane, 'SUPABASE');
+  assert.equal(result.laneChecks[3].plane, 'GIT_LEDGER');
   assert.ok(result.bundle, 'a successful lane must return a mission-context bundle');
 }
 

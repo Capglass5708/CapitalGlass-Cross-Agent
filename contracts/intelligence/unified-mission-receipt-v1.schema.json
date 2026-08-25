@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "unified-mission-receipt-v1@1.0.0",
+  "title": "Unified Compounding-Intelligence Mission Receipt v1",
+  "description": "One end-to-end receipt covering the full loop: preflight retrieval, hot AI cache, L: Hub, Supabase projection, WaveRunner execution, Gold Mine publication, graph dividend, and cache refresh. Fields this repo (CapitalGlass-Cross-Agent) can populate from real, verified code are always real values. waverunner and cacheRefresh are owned by systems outside this repo's access (WaveRunner's own execution loop; the physical cache-refresh compiler in CG-AppBuilder-MCP) and stay NOT_YET_INTEGRATED until a caller supplies real evidence for them -- this contract forbids ever defaulting those two fields to a success value.",
+  "type": "object",
+  "required": [
+    "schema",
+    "generatedAt",
+    "mission",
+    "preflight",
+    "aiCache",
+    "lHub",
+    "supabaseProjection",
+    "waverunner",
+    "goldmine",
+    "graphDividend",
+    "newNodes",
+    "relationshipsReinforced",
+    "cacheRefresh"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "unified-mission-receipt-v1@1.0.0" },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "mission": { "type": "string", "minLength": 1 },
+    "preflight": {
+      "enum": ["PASS", "FAIL"],
+      "description": "PASS unless every retrieval plane (hot cache, L:, Supabase, Git ledger) was unavailable."
+    },
+    "aiCache": {
+      "enum": ["CACHE_HIT_FRESH", "CACHE_HIT_STALE", "CACHE_MISS", "CACHE_ROOT_UNAVAILABLE"],
+      "description": "From the hot AI cache plane's SHA-verified freshness check, never TTL alone."
+    },
+    "lHub": { "enum": ["VERIFIED", "UNAVAILABLE"] },
+    "supabaseProjection": {
+      "enum": ["CURRENT", "UNAVAILABLE"],
+      "description": "Diagnostic reachability only -- this repo has no live Hub-publish path yet, so CURRENT means reachable, not that this mission's evidence was published there."
+    },
+    "waverunner": {
+      "enum": ["COMPLETE", "NOT_YET_INTEGRATED"],
+      "description": "COMPLETE only when a caller supplies real evidence WaveRunner consumed this preflight receipt and closed a mission. Never inferred."
+    },
+    "goldmine": { "enum": ["GOLD_MINE_COMPLETE", "GOLD_MINE_PARTIAL", "NOT_RUN"] },
+    "graphDividend": { "enum": ["PASS", "HOLD", "NOT_RUN"] },
+    "newNodes": { "type": "integer", "minimum": 0 },
+    "relationshipsReinforced": { "type": "integer", "minimum": 0 },
+    "cacheRefresh": {
+      "enum": ["PASS", "NOT_YET_INTEGRATED"],
+      "description": "PASS only when a caller supplies real evidence the physical hot-cache bundle was recompiled after this mission. This repo does not write the physical cache itself (CG-AppBuilder-MCP does)."
+    },
+    "preflightReceiptPath": { "type": ["string", "null"] },
+    "goldmineReceiptPath": { "type": ["string", "null"] }
+  }
+}
