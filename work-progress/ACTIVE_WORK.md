@@ -21,6 +21,17 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 ## Current saved work
 
+### 2026-08-25 CT — compounding-intelligence-v2-implementation-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `compounding-intelligence-v2-implementation-v1` |
+| Status | **COMPLETE (in-scope pieces)** — registry+enforcement, freshness provenance, `intelligence.preflight()`, `/goldmine`, all implemented and tested |
+| Repos involved | CapitalGlass-Cross-Agent only |
+| Notes | Implemented the 4 Cross-Agent-scoped pieces of the V2 proposal: governed relationship-type registry with real ingest-time enforcement, freshness/provenance fields in the envelope's open `extensions` bag, the physical L:→Supabase→Git preflight ladder + mission-context bundle, and the canonical `/goldmine` protocol. Found and fixed 2 adjacent pre-existing bugs (a mis-pathed field in the Hub-compact compiler, an unguarded dynamic import that crashed outside a full estate checkout). 36 new/re-verified tests passing. |
+| Evidence | Project file `work-progress/projects/2026-08-25_compounding-intelligence-v2-implementation-v1.md` |
+| Next | Re-run `npm run test:intelligence` on a host with the full estate checked out (6 pre-existing tests need the sibling AppBuilder repo, unaffected by this work but unverifiable from this container); operator decision on charter wording + `CONFLICTED` lifecycle state; cross-repo adoption (Cursor, AppBuilder, WaveRunner) needs those repos in scope |
+
 ### 2026-08-24 CT — intelligence-hub-compounding-intelligence-investigation-v1
 
 | Field | Value |

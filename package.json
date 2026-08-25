@@ -97,7 +97,12 @@
     "intelligence:correlate": "node scripts/intelligence/correlate.mjs",
     "intelligence:run-w1-corpus-replay": "node scripts/intelligence/run-w1-corpus-replay-v1.mjs",
     "test:intelligence-semantic-w1": "node scripts/tests/run-intelligence-semantic-expansion-w1.test.mjs",
-    "test:intelligence": "npm run test:intelligence-contracts && npm run test:intelligence-ingest && npm run test:intelligence-first-real-mission && npm run test:intelligence-verification && npm run test:intelligence-correlation-markers && npm run test:intelligence-correlate && npm run test:intelligence-semantic-w1"
+    "test:intelligence-relationship-registry": "node scripts/tests/run-intelligence-relationship-registry.test.mjs",
+    "test:intelligence-preflight": "node scripts/tests/run-intelligence-preflight.test.mjs",
+    "test:intelligence-goldmine": "node scripts/tests/run-goldmine-protocol.test.mjs",
+    "test:intelligence": "npm run test:intelligence-contracts && npm run test:intelligence-ingest && npm run test:intelligence-first-real-mission && npm run test:intelligence-verification && npm run test:intelligence-correlation-markers && npm run test:intelligence-correlate && npm run test:intelligence-semantic-w1 && npm run test:intelligence-relationship-registry && npm run test:intelligence-preflight && npm run test:intelligence-goldmine",
+    "intelligence:preflight": "node scripts/intelligence/preflight.mjs",
+    "goldmine": "node scripts/harvest/goldmine.mjs"
   },
   "devDependencies": {
     "ajv": "^8.20.0",

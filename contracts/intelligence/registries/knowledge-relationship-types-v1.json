@@ -1,0 +1,177 @@
+{
+  "schema": "knowledge-relationship-types-v1@1.0.0",
+  "registryVersion": "knowledge-relationship-types-v1@1.0.0",
+  "registryKind": "relationship-types",
+  "owner": "CapitalGlass-Cross-Agent",
+  "note": "Governs the OP-00A relationship graph's own edge vocabulary (scripts/intelligence/lib/relationship-edge-builder-v1.mjs, semantic-relationship-builder-v1.mjs, identity-reconciliation-v1.mjs). Distinct from contracts/intelligence/registries/correlation-relationship-types-v1.json, which governs a separate, narrower vocabulary for harvest-side correlation tagging.",
+  "versioning": {
+    "additive": "New types are additive-only and bump registryVersion's minor segment. No superseding plan required.",
+    "redefinition": "Forbidden in place. A changed meaning gets a new type id; the old id is marked DEPRECATED, never edited.",
+    "removal": "Forbidden. Matches this repo's append-only posture (Gold Mine's never-shrink index, OP-00A's never-delete history). Use status: DEPRECATED instead."
+  },
+  "enforcement": "scripts/intelligence/lib/schema-validate.mjs#validateRelationshipEdges, called from ingest-pipeline-v1.mjs immediately after buildRelationshipEdges(). An edge whose relationship id is missing or not ACTIVE hard-fails ingest with RELATIONSHIP_TYPE_NOT_REGISTERED.",
+  "types": [
+    {
+      "id": "PROJECTED_FROM",
+      "status": "ACTIVE",
+      "inverse": "DERIVED_FROM",
+      "symmetric": false,
+      "confidenceField": false,
+      "semantics": "The target object was projected from this mission-ledger entry.",
+      "sourceExample": "relationship-edge-builder-v1.mjs"
+    },
+    {
+      "id": "DERIVED_FROM",
+      "status": "ACTIVE",
+      "inverse": "PROJECTED_FROM",
+      "symmetric": false,
+      "confidenceField": false,
+      "semantics": "The object's content derives from this mission-ledger record (inverse direction of PROJECTED_FROM).",
+      "sourceExample": "relationship-edge-builder-v1.mjs"
+    },
+    {
+      "id": "EVIDENCED_BY",
+      "status": "ACTIVE",
+      "inverse": null,
+      "symmetric": false,
+      "confidenceField": false,
+      "semantics": "Supported by evidence that already exists.",
+      "sourceExample": "relationship-edge-builder-v1.mjs"
+    },
+    {
+      "id": "OBSERVED_IN",
+      "status": "ACTIVE",
+      "inverse": null,
+      "symmetric": false,
+      "confidenceField": false,
+      "semantics": "Occurred within this mission / work package.",
+      "sourceExample": "semantic-relationship-builder-v1.mjs"
+    },
+    {
+      "id": "PROVEN_BY",
+      "status": "ACTIVE",
+      "inverse": null,
+      "symmetric": false,
+      "confidenceField": false,
+      "semantics": "Validated by this closeout.",
+      "sourceExample": "semantic-relationship-builder-v1.mjs"
+    },
+    {
+      "id": "ABOUT",
+      "status": "ACTIVE",
+      "inverse": null,
+      "symmetric": false,
+      "confidenceField": false,
+      "semantics": "Concerns this repo.",
+      "sourceExample": "semantic-relationship-builder-v1.mjs"
+    },
+    {
+      "id": "FAILED_BECAUSE_OF",
+      "status": "ACTIVE",
+      "inverse": null,
+      "symmetric": false,
+      "confidenceField": false,
+      "semantics": "Failure caused by this root cause.",
+      "sourceExample": "semantic-relationship-builder-v1.mjs"
+    },
+    {
+      "id": "CORRECTED_BY",
+      "status": "ACTIVE",
+      "inverse": null,
+      "symmetric": false,
+      "confidenceField": false,
+      "semantics": "Root cause addressed by this remediation.",
+      "sourceExample": "semantic-relationship-builder-v1.mjs"
+    },
+    {
+      "id": "REINFORCES",
+      "status": "ACTIVE",
+      "inverse": null,
+      "symmetric": false,
+      "confidenceField": false,
+      "semantics": "Pattern strengthens this capability.",
+      "note": "Not the same mechanism as the ingest receipt's nodesReinforced metric, which measures identity-reconciliation dedup (reconciliation.duplicateNodesPrevented). Do not conflate the two when reading a graph-delta receipt.",
+      "sourceExample": "semantic-relationship-builder-v1.mjs"
+    },
+    {
+      "id": "ENABLES",
+      "status": "ACTIVE",
+      "inverse": "ENABLED_BY",
+      "symmetric": false,
+      "confidenceField": false,
+      "semantics": "Capability makes this pattern/opportunity possible.",
+      "sourceExample": "semantic-relationship-builder-v1.mjs"
+    },
+    {
+      "id": "ENABLED_BY",
+      "status": "ACTIVE",
+      "inverse": "ENABLES",
+      "symmetric": false,
+      "confidenceField": false,
+      "semantics": "Inverse direction of ENABLES.",
+      "sourceExample": "semantic-relationship-builder-v1.mjs"
+    },
+    {
+      "id": "SAME_AS",
+      "status": "ACTIVE",
+      "inverse": null,
+      "symmetric": true,
+      "confidenceField": false,
+      "semantics": "Identity alias — same concept, different id.",
+      "sourceExample": "identity-reconciliation-v1.mjs"
+    },
+    {
+      "id": "PROJECTS_TO",
+      "status": "ACTIVE",
+      "inverse": null,
+      "symmetric": false,
+      "confidenceField": false,
+      "semantics": "Alias projects onto this canonical concept unit.",
+      "sourceExample": "identity-reconciliation-v1.mjs"
+    },
+    {
+      "id": "SUPPORTED_BY",
+      "status": "ACTIVE",
+      "inverse": "SUPPORTS",
+      "symmetric": false,
+      "confidenceField": false,
+      "semantics": "Claim is supported by this document/plan-sheet type.",
+      "note": "SUPPORTS (the inverse) is reserved but not yet emitted by any builder."
+    },
+    {
+      "id": "REQUIRES_EVIDENCE",
+      "status": "ACTIVE",
+      "inverse": null,
+      "symmetric": false,
+      "confidenceField": false,
+      "semantics": "Claim has a gap — this evidence kind is needed but not yet present.",
+      "note": "Distinct from EVIDENCED_BY, which records evidence that already exists. Do not conflate a requirement with a satisfied requirement."
+    },
+    {
+      "id": "PREDICTS",
+      "status": "ACTIVE",
+      "inverse": null,
+      "symmetric": false,
+      "confidenceField": true,
+      "semantics": "Pattern makes this outcome more likely. Carries an edge-level confidence (0-1) mirroring derivation.derivedFrom[].evidenceWeight, instead of a separate higher-confidence type name.",
+      "note": "No STRONGLY_PREDICTS type exists or should be added — encode strength as confidence on this type, not as a second type name."
+    },
+    {
+      "id": "SIMILAR_TO",
+      "status": "ACTIVE",
+      "inverse": null,
+      "symmetric": true,
+      "confidenceField": false,
+      "semantics": "Related but not identical — weaker than SAME_AS."
+    },
+    {
+      "id": "PREVENTS",
+      "status": "ACTIVE",
+      "inverse": "PREVENTED_BY",
+      "symmetric": false,
+      "confidenceField": false,
+      "semantics": "Lesson/remediation prevents this failure mode.",
+      "note": "PREVENTED_BY (the inverse) is reserved but not yet emitted by any builder."
+    }
+  ]
+}

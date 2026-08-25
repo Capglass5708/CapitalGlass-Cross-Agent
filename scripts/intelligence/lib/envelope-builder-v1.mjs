@@ -1,5 +1,15 @@
 import { ENVELOPE_SCHEMA, DERIVATION_VERSION } from './constants.mjs';
 import { buildEnvelopeContentHash, buildObjectId, buildSemanticObjectId } from './ids.mjs';
+import { getCrossAgentIndexedSha } from './repo-state-v1.mjs';
+
+function buildProvenance(handoff, generatedAt) {
+  return {
+    sourceRepo: handoff?.source?.repo ?? null,
+    sourceSha: handoff?.source?.commitSha ?? null,
+    indexedSha: getCrossAgentIndexedSha(),
+    capturedAt: generatedAt,
+  };
+}
 
 export function buildOperationalEnvelope({
   kind,
@@ -86,7 +96,10 @@ export function buildOperationalEnvelope({
       metrics: measurementMetrics,
     },
     evidenceReality,
-    extensions,
+    extensions: {
+      ...extensions,
+      provenance: buildProvenance(handoff, generatedAt),
+    },
   };
   envelope.identity.contentHash = buildEnvelopeContentHash(envelope);
   return envelope;

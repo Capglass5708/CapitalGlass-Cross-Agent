@@ -1,3 +1,4 @@
+import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -114,9 +115,15 @@ export function createMemoryIntelligenceHubStore() {
 
 async function loadLiveSupabaseClient() {
   const appBuilderRoot = resolveAppBuilderRoot(REPO_ROOT);
-  const mod = await import(
-    path.join(appBuilderRoot, 'scripts/intelligence-hub/lib/supabase-env.mjs')
-  );
+  const envModulePath = path.join(appBuilderRoot, 'scripts/intelligence-hub/lib/supabase-env.mjs');
+  // resolveAppBuilderRoot() always returns a path, even when no sibling
+  // checkout was found (it's a resolver, not an existence check) — verify
+  // before importing so a missing sibling repo degrades gracefully instead
+  // of crashing the whole process.
+  if (!fs.existsSync(envModulePath)) {
+    return { env: { hasCredentials: false, reason: 'CG_APPBUILDER_MCP_ROOT_NOT_FOUND' }, client: null };
+  }
+  const mod = await import(envModulePath);
   const env = mod.resolveSupabaseEnv();
   if (!env.hasCredentials) {
     return { env, client: null };

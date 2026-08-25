@@ -286,6 +286,7 @@ _238 registry packets · 106 intelligence entities_
 
 | Project ID | File | Status | Owner repo(s) | Last commit | Next action |
 | --- | --- | --- | --- | --- | --- |
+| `compounding-intelligence-v2-implementation-v1` | [2026-08-25_compounding-intelligence-v2-implementation-v1.md](./2026-08-25_compounding-intelligence-v2-implementation-v1.md) | **Complete (in-scope pieces)** — registry+enforcement, freshness provenance, preflight, /goldmine, all tested | CapitalGlass-Cross-Agent | This commit (branch `claude/intelligence-hub-compounding-4f208p`) | Re-run full suite on a host with the sibling estate checked out; operator decision on charter + CONFLICTED state |
 | `intelligence-hub-compounding-intelligence-investigation-v1` | [2026-08-24_intelligence-hub-compounding-intelligence-investigation-v1.md](./2026-08-24_intelligence-hub-compounding-intelligence-investigation-v1.md) | **Investigation complete; V2 proposal drafted** — see `plans/2026-08-24_compounding-intelligence-v2-proposal.md` | CapitalGlass-Cross-Agent | This commit (branch `claude/intelligence-hub-compounding-4f208p`) | Operator decision on proposal 1/2/4 (charter, retrieval preflight, harder proof) |
 | `cg-federated-repo-index-v1` | [2026-08-12_cg-federated-repo-index-v1.md](./2026-08-12_cg-federated-repo-index-v1.md) | **CG_FEDERATED_REPO_INDEX_WAVE_A_CLOSED / LIVE_RYZEN9_PROOF_PASS** — GHA `31669015141`; umbrella `luna-estate-retrieval-index-v1` | `CG-AppBuilder-MCP`, `Computer Estimator` | AppBuilder **`c87ee2420`** (`main`, PR #372) | Hub L: publish only after operator authorization |
 | `two-desk-operating-v1` | [2026-08-11_two-desk-operating-v1.md](./2026-08-11_two-desk-operating-v1.md) | **COMPLETE** — `TWO_DESK_OPERATING_BOTH_READY` + L: BY-KIND published | `CG-AppBuilder-MCP` | AppBuilder tip `9385539c` (PR #350/#353/#357) | Optional OA MCP reconnect; optional ChatGPT write-guard |
@@ -403,6 +404,7 @@ Recommended follow-on work packages (not yet project files):
 | Project ID | Status | Next action |
 | --- | --- | --- |
 | `intelligence-hub-compounding-intelligence-investigation-v1` | Investigation complete; V2 proposal drafted | Operator decision on proposal 1/2/4 (charter, retrieval preflight, harder proof) |
+| `compounding-intelligence-v2-implementation-v1` | Complete (in-scope pieces) | Re-run full suite with sibling estate checked out; operator decision on charter + CONFLICTED state |
 
 ---
 
