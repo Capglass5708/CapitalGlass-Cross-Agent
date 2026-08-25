@@ -19,8 +19,11 @@ export const OUTCOME = {
 };
 
 const DEFAULT_L_HUB_PATH = '/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index';
-const SLICES_DIR = path.join(REPO_ROOT, 'work-progress/intelligence-hub-slices');
 export const RECEIPT_ROOT = path.join(REPO_ROOT, 'artifacts/agent-runs/intelligence-preflight-v1');
+
+function slicesDir(repoRoot) {
+  return path.join(repoRoot, 'work-progress/intelligence-hub-slices');
+}
 
 function loadJsonSafe(filePath) {
   try {
@@ -75,10 +78,11 @@ export async function testSupabasePlane() {
 }
 
 /** Step 3 — the Git-tracked local mirror; the only plane guaranteed reachable from any checkout. */
-export function testGitLedgerPlane() {
-  const blockers = loadJsonSafe(path.join(SLICES_DIR, 'blockers.json'));
+export function testGitLedgerPlane(repoRoot = REPO_ROOT) {
+  const dir = slicesDir(repoRoot);
+  const blockers = loadJsonSafe(path.join(dir, 'blockers.json'));
   const available = blockers !== null;
-  return { plane: 'GIT_LEDGER', available, path: SLICES_DIR };
+  return { plane: 'GIT_LEDGER', available, path: dir };
 }
 
 /**
@@ -93,30 +97,31 @@ export function testGitLedgerPlane() {
  * catalogs directly is real follow-up work this session couldn't build and
  * verify without access to either plane.
  */
-export function buildMissionContextBundle({ concepts = [], repos = [] } = {}) {
+export function buildMissionContextBundle({ concepts = [], repos = [], repoRoot = REPO_ROOT } = {}) {
   const needles = [...concepts, ...repos];
+  const dir = slicesDir(repoRoot);
 
-  const blockersSlice = loadJsonSafe(path.join(SLICES_DIR, 'blockers.json'));
+  const blockersSlice = loadJsonSafe(path.join(dir, 'blockers.json'));
   const activeBlockers = (blockersSlice?.blockers ?? [])
     .filter((b) => b.state === 'OPEN')
     .filter((b) => needles.length === 0 || matchesQuery(b.title, needles) || repos.includes(b.ownerRepo))
     .map((b) => ({ blockerId: b.blockerId, severity: b.severity, title: b.title, ownerRepo: b.ownerRepo, nextAction: b.nextAction }));
 
-  const ownerSlice = loadJsonSafe(path.join(SLICES_DIR, 'owner-boundaries.json'));
+  const ownerSlice = loadJsonSafe(path.join(dir, 'owner-boundaries.json'));
   const repoOwnership = (ownerSlice?.packets ?? [])
     .filter((p) => repos.length === 0 || repos.includes(p.ownerRepo))
     .slice(0, 25)
     .map((p) => ({ packetId: p.packetId, ownerRepo: p.ownerRepo, ownerRepoRole: p.ownerRepoRole, currentGap: p.currentGap }));
 
-  const doNotAdvance = loadJsonSafe(path.join(SLICES_DIR, 'do-not-advance.json'));
+  const doNotAdvance = loadJsonSafe(path.join(dir, 'do-not-advance.json'));
   const unresolvedContradictions = (doNotAdvance?.entries ?? [])
     .filter((e) => needles.length === 0 || matchesQuery(e.claimId, needles) || repos.includes(e.ownerRepo));
 
-  const currentState = loadJsonSafe(path.join(SLICES_DIR, 'current-state.json'));
+  const currentState = loadJsonSafe(path.join(dir, 'current-state.json'));
 
   // Consistent with the fields above: an empty query returns everything
   // (bounded), it does not silently drop this slice to empty.
-  const harvestSlice = loadJsonSafe(path.join(SLICES_DIR, 'harvest-intelligence.json'));
+  const harvestSlice = loadJsonSafe(path.join(dir, 'harvest-intelligence.json'));
   const rows = harvestSlice?.rows ?? [];
   const relevantRows = needles.length > 0
     ? rows.filter((r) => matchesQuery(`${r.conceptKey} ${r.application} ${r.workflow} ${r.ownerRepo}`, needles))
@@ -153,7 +158,7 @@ export function buildMissionContextBundle({ concepts = [], repos = [] } = {}) {
  * use — physically tests each one, in order, and returns exactly one
  * outcome code plus the mission-context bundle.
  */
-export async function runIntelligencePreflight({ mission = null, repos = [], concepts = [] } = {}) {
+export async function runIntelligencePreflight({ mission = null, repos = [], concepts = [], repoRoot = REPO_ROOT } = {}) {
   const laneChecks = [];
 
   const lHub = testLHubPlane();
@@ -164,6 +169,7 @@ export async function runIntelligencePreflight({ mission = null, repos = [], con
       mission,
       repos,
       concepts,
+      repoRoot,
       laneChecks,
       indexVersion: lHub.indexVersion,
     });
@@ -177,11 +183,12 @@ export async function runIntelligencePreflight({ mission = null, repos = [], con
       mission,
       repos,
       concepts,
+      repoRoot,
       laneChecks,
     });
   }
 
-  const gitLedger = testGitLedgerPlane();
+  const gitLedger = testGitLedgerPlane(repoRoot);
   laneChecks.push(gitLedger);
   if (gitLedger.available) {
     return finalizePreflight({
@@ -189,6 +196,7 @@ export async function runIntelligencePreflight({ mission = null, repos = [], con
       mission,
       repos,
       concepts,
+      repoRoot,
       laneChecks,
     });
   }
@@ -198,14 +206,15 @@ export async function runIntelligencePreflight({ mission = null, repos = [], con
     mission,
     repos,
     concepts,
+    repoRoot,
     laneChecks,
   });
 }
 
-function finalizePreflight({ outcome, mission, repos, concepts, laneChecks, indexVersion = null }) {
+function finalizePreflight({ outcome, mission, repos, concepts, repoRoot, laneChecks, indexVersion = null }) {
   const bundle = outcome === OUTCOME.ALL_HUB_PLANES_UNAVAILABLE
     ? null
-    : buildMissionContextBundle({ concepts, repos });
+    : buildMissionContextBundle({ concepts, repos, repoRoot });
   return {
     schema: 'intelligence-preflight-receipt-v1@1.0.0',
     generatedAt: new Date().toISOString(),

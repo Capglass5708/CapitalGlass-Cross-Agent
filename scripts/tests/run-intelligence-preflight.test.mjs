@@ -69,6 +69,33 @@ function testMissionContextBundleFiltersByConcept() {
   assert.ok(unfiltered.knownFailures.length >= filtered.knownFailures.length);
 }
 
+function testBuildMissionContextBundleRespectsRepoRootOverride() {
+  // repoRoot must be a real override, not a cosmetic parameter — an isolated
+  // root with its own slice files must return that root's data, not silently
+  // fall back to this repo's real work-progress/intelligence-hub-slices/.
+  // This is what makes the goldmine <-> preflight retrieval loop testable
+  // without ever touching the real repo state (see the goldmine protocol
+  // test suite's two-agent proof, which depends on this).
+  const tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'preflight-reporoot-test-'));
+  try {
+    const slicesDir = path.join(tmpRoot, 'work-progress/intelligence-hub-slices');
+    fs.mkdirSync(slicesDir, { recursive: true });
+    fs.writeFileSync(
+      path.join(slicesDir, 'blockers.json'),
+      JSON.stringify({ updatedAt: '2020-01-01T00:00:00.000Z', blockers: [] }),
+    );
+
+    const isolated = buildMissionContextBundle({ concepts: [], repos: [], repoRoot: tmpRoot });
+    const real = buildMissionContextBundle({ concepts: [], repos: [] });
+
+    assert.equal(isolated.sourceSlicesGeneratedAt.blockers, '2020-01-01T00:00:00.000Z');
+    assert.notEqual(isolated.sourceSlicesGeneratedAt.blockers, real.sourceSlicesGeneratedAt.blockers);
+    assert.equal(isolated.knownFailures.length, 0, 'isolated root has no harvest-intelligence.json, so this must be empty, not fall through to the real repo');
+  } finally {
+    fs.rmSync(tmpRoot, { recursive: true, force: true });
+  }
+}
+
 async function testFullLadderReachesGitLedgerInThisEnvironment() {
   // This container has no /mnt/l mount and no sibling AppBuilder checkout, so
   // the ladder must fall all the way to the Git ledger and still succeed —
@@ -108,6 +135,7 @@ const tests = [
   ['mission-context bundle has the expected shape', testMissionContextBundleShape],
   ['empty query is consistently unfiltered across all bundle fields', testEmptyQueryIsConsistentlyUnfiltered],
   ['mission-context bundle filters by concept', testMissionContextBundleFiltersByConcept],
+  ['mission-context bundle respects a repoRoot override', testBuildMissionContextBundleRespectsRepoRootOverride],
   ['full ladder reaches the Git ledger in this environment', testFullLadderReachesGitLedgerInThisEnvironment],
   ['receipt is written to disk', testReceiptIsWritten],
 ];

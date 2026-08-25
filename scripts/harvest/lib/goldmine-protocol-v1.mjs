@@ -9,6 +9,7 @@ import path from 'node:path';
 
 import { REPO_ROOT } from './paths.mjs';
 import { mergeManifestIntoIntelligenceIndex } from './intelligence-index-lib.mjs';
+import { writeHarvestIntelligenceRetrievalArtifacts } from './harvest-intelligence-retrieval-lib.mjs';
 import { testLHubPlane, testSupabasePlane } from '../../intelligence/lib/preflight-v1.mjs';
 
 export function loadEvidenceManifest(evidencePath) {
@@ -76,6 +77,13 @@ export function lastGoldMineReceipt(harvestId, repoRoot = REPO_ROOT) {
 export async function runGoldMineProtocol(manifest, { repoRoot = REPO_ROOT } = {}) {
   const { receipt: mergeReceipt } = mergeManifestIntoIntelligenceIndex(manifest, { repoRoot });
 
+  // Close the retrieval loop: the local index write above is invisible to
+  // intelligence.preflight() until the compact Git-mirror slice it actually
+  // reads (work-progress/intelligence-hub-slices/harvest-intelligence.json)
+  // is regenerated from it. Without this, a fresh agent's preflight call
+  // would never see what this run just harvested.
+  const retrievalArtifacts = writeHarvestIntelligenceRetrievalArtifacts(repoRoot);
+
   const hubReachability = await checkHubPlaneReachability();
   const contradictionsRequiringReview = countContradictionsRequiringReview(manifest);
 
@@ -110,15 +118,18 @@ export async function runGoldMineProtocol(manifest, { repoRoot = REPO_ROOT } = {
     contradictionsRequiringReview,
     graphDividend: graphDividend ? 'PASS' : 'HOLD',
     localIndexWrite: 'PASS',
+    retrievalSliceRegenerated: 'PASS',
+    retrievalSlicePath: path.relative(repoRoot, retrievalArtifacts.slicePath),
+    retrievalSliceRowCount: retrievalArtifacts.slice.rowCount,
     hubPublication: 'NOT_IMPLEMENTED',
     hubPlaneReachable: hubReachability.reachable,
     hubPlaneReachabilityDetail: hubReachability,
     intelligenceMergeReceipt: mergeReceipt,
   };
   if (contradictionsRequiringReview > 0) {
-    result.note = `${contradictionsRequiringReview} packet(s) contradict existing intelligence and need review before this can be treated as fully resolved. Evidence was still harvested and merged into the local intelligence index.`;
+    result.note = `${contradictionsRequiringReview} packet(s) contradict existing intelligence and need review before this can be treated as fully resolved. Evidence was still harvested, merged into the local intelligence index, and the local retrieval slice was regenerated.`;
   } else {
-    result.note = 'Evidence harvested and merged into the governed local intelligence index. Remote Hub publication is not implemented by this protocol yet — nothing was silently published beyond the local index.';
+    result.note = "Evidence harvested, merged into the governed local intelligence index, and the local retrieval slice (work-progress/intelligence-hub-slices/harvest-intelligence.json) was regenerated so a fresh intelligence.preflight() call can retrieve it immediately. Remote Hub publication (L:/Supabase) is not implemented by this protocol yet — nothing was silently published beyond this repo's own Git-tracked mirror.";
   }
 
   fs.mkdirSync(runDir, { recursive: true });

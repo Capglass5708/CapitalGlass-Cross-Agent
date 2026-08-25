@@ -15,6 +15,7 @@ import {
   runGoldMineProtocol,
   lastGoldMineReceipt,
 } from '../harvest/lib/goldmine-protocol-v1.mjs';
+import { buildMissionContextBundle } from '../intelligence/lib/preflight-v1.mjs';
 
 async function withTempRepoRoot(fn) {
   const repoRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'goldmine-test-repo-'));
@@ -87,9 +88,51 @@ async function testFullRunProducesCompleteReceipt() {
     // a remote Hub plane yet, regardless of whether one is reachable.
     assert.equal(receipt.hubPublication, 'NOT_IMPLEMENTED');
     assert.equal(typeof receipt.hubPlaneReachable, 'boolean');
-    assert.ok(receipt.note.includes('Remote Hub publication is not implemented'));
+    assert.ok(receipt.note.includes('Remote Hub publication (L:/Supabase) is not implemented'));
     assert.ok(fs.existsSync(receipt.receiptPath), 'receipt must be written to disk');
     assert.ok(fs.existsSync(path.join(repoRoot, 'work-progress/harvest-intelligence-index.json')), 'real run must write the intelligence index');
+
+    // The retrieval loop: a run must also regenerate the compact slice that
+    // intelligence.preflight() actually reads, not just the raw index — a
+    // merge nobody can retrieve is not a dividend.
+    assert.equal(receipt.retrievalSliceRegenerated, 'PASS');
+    assert.equal(receipt.retrievalSliceRowCount, 1);
+    const slicePath = path.join(repoRoot, receipt.retrievalSlicePath);
+    assert.ok(fs.existsSync(slicePath), 'retrieval slice must be written to disk');
+    assert.equal(receipt.retrievalSlicePath, 'work-progress/intelligence-hub-slices/harvest-intelligence.json');
+  });
+}
+
+async function testGoldMineOutputIsRetrievableByFreshPreflight() {
+  // The actual proof behind proposal 4 (harder real-mission proof) and the
+  // V1 milestone, run fully in-repo: Mission A harvests a distinctive
+  // concept via /goldmine; a simulated brand-new Agent B — which never saw
+  // Mission A run — then calls the same mission-context bundle builder
+  // preflight() uses, scoped only to that concept, and must retrieve it.
+  return withTempRepoRoot(async (repoRoot) => {
+    const conceptKey = 'mission-a-distinctive-glazing-storefront-pattern-v1';
+    const manifest = buildManifest({
+      harvestId: 'mission-a-harvest-v1',
+      workPackageId: conceptKey,
+      packets: [
+        { packetId: conceptKey, packetVerdict: 'PASS', state: 'COMPLETE', ownerRepo: 'CapitalGlass-Cross-Agent', nextAction: 'none', evidenceRefs: [] },
+      ],
+    });
+    await runGoldMineProtocol(manifest, { repoRoot });
+
+    const agentBBundle = buildMissionContextBundle({ concepts: [conceptKey], repos: [], repoRoot });
+    assert.ok(
+      agentBBundle.relatedMissions.includes(conceptKey),
+      'a fresh preflight-style query for the concept must retrieve the mission Mission A produced',
+    );
+
+    // Negative control: an unrelated concept must not match — proves this is
+    // real retrieval, not "the bundle just returns everything."
+    const unrelatedBundle = buildMissionContextBundle({ concepts: ['totally-unrelated-concept-xyz'], repos: [], repoRoot });
+    assert.ok(
+      !unrelatedBundle.relatedMissions.includes(conceptKey),
+      'an unrelated concept query must not retrieve Mission A\'s output',
+    );
   });
 }
 
@@ -141,6 +184,7 @@ const tests = [
   ['evidence manifest validation', testEvidenceManifestValidation],
   ['preview does not mutate anything', testPreviewDoesNotMutateAnything],
   ['full run produces a complete receipt with no false Hub-publication claim', testFullRunProducesCompleteReceipt],
+  ['goldmine output is retrievable by a fresh preflight call (two-agent proof)', testGoldMineOutputIsRetrievableByFreshPreflight],
   ['repeat run reinforces instead of duplicating', testRepeatRunReinforcesInsteadOfDuplicating],
   ['contradictions requiring review is honestly tracked', testContradictionsRequiringReviewIsHonestlyTracked],
   ['status reads back the last receipt', testStatusReadsBackLastReceipt],
