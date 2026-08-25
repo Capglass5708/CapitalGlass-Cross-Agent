@@ -95,6 +95,36 @@ test("fallback uses intelligence-hub-index when no route matches", () => {
   assert.ok(routed.supportingDatasets.includes("active-ledger"));
 });
 
+test("mission-intelligence route resolves without colliding with the existing preflight route", () => {
+  const routing = loadJson("registry/query-routing/query-routing-manifest.v1.json");
+
+  const missionQuery = "what related missions and prior failures inform this intelligence preflight";
+  const missionRouted = routeQuery(missionQuery, routing);
+  assert.equal(missionRouted.queryClass, "mission-intelligence");
+  assert.equal(missionRouted.primaryDataset, "mission-intelligence");
+  assert.ok(missionRouted.routed);
+
+  // "preflight" alone is a different, pre-existing concept (infra readiness ->
+  // all-systems-go) from intelligence.preflight()'s mission-context retrieval.
+  // A bare "preflight" query must keep resolving to the original route.
+  const infraQuery = "are we all systems go, any blockers before I start";
+  const infraRouted = routeQuery(infraQuery, routing);
+  assert.equal(infraRouted.queryClass, "preflight");
+  assert.equal(infraRouted.primaryDataset, "all-systems-go");
+});
+
+test("mission-intelligence dataset is registered so the router never resolves an unknown dataset", () => {
+  const routing = loadJson("registry/query-routing/query-routing-manifest.v1.json");
+  const registry = loadJson("registry/datasets/hot-cache-dataset-registry.v1.json");
+  const registeredIds = new Set(registry.datasets.map((d) => d.datasetId));
+  const missionRoute = routing.routes.find((r) => r.queryClass === "mission-intelligence");
+  assert.ok(missionRoute, "mission-intelligence route must exist");
+  assert.ok(registeredIds.has(missionRoute.primaryDataset));
+  for (const id of missionRoute.supportingDatasets ?? []) {
+    assert.ok(registeredIds.has(id), `supporting dataset '${id}' must be registered`);
+  }
+});
+
 test("defaultRoute alias resolves in match-patterns fixture", () => {
   const routing = loadJson(
     "registry/query-routing/fixtures/query-routing-manifest.match-patterns.v1.fixture.json",

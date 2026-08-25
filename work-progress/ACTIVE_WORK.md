@@ -21,12 +21,23 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 ## Current saved work
 
+### 2026-08-25 CT — compounding-intelligence-unified-loop-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `compounding-intelligence-unified-loop-v1` |
+| Status | **COMPLETE (in-repo pieces)** — mission-intelligence registered in the real cross-repo-consumed routing/dataset registries, hot-ai-cache ladder rung with SHA-based freshness, graph-aware mission context, unified end-to-end receipt contract, WaveRunner-preflight consumption contract documented |
+| Repos involved | CapitalGlass-Cross-Agent only (WaveRunner, CG-AppBuilder-MCP referenced, not in scope) |
+| Notes | Follow-on to `compounding-intelligence-v2-implementation-v1` at Wesley's request — a full unified-loop architecture (hot-ai-cache → L: → Supabase → Git → mission context → WaveRunner → closeout → Gold Mine → publish → refresh cache/index), with an explicit instruction not to build the Supabase piece in isolation. Closed the concrete gap Wesley identified (preflight wasn't registered in the MCP/query-routing layer) plus everything else this repo's own boundary allows: real SHA-verified cache freshness (not TTL), real relationship-graph traversal answering "what failed/enables/governs/relates/is unresolved/was superseded," and a unified receipt that never fakes the WaveRunner/cache-refresh fields this repo doesn't own. 34 new tests; 71 total checks across affected suites, all passing. |
+| Evidence | Project file `work-progress/projects/2026-08-25_compounding-intelligence-unified-loop-v1.md`, plan `plans/2026-08-25_compounding-intelligence-unified-loop-v1.md`, PR #45 (draft) |
+| Next | Verify the hot-ai-cache plane against a real cache hit on the WSL host; add WaveRunner to a session's scope and wire the consumption contract into its capability registry; run the full acceptance test (real WaveRunner mission → new agent session → automatic retrieval) once that's wired |
+
 ### 2026-08-25 CT — compounding-intelligence-v2-implementation-v1
 
 | Field | Value |
 | --- | --- |
 | Work package | `compounding-intelligence-v2-implementation-v1` |
-| Status | **COMPLETE (in-scope pieces)** — registry+enforcement, freshness provenance, `intelligence.preflight()`, `/goldmine`, all implemented and tested |
+| Status | **COMPLETE (in-scope pieces) — PR #43 MERGED** — registry+enforcement, freshness provenance, `intelligence.preflight()`, `/goldmine`, all implemented and tested |
 | Repos involved | CapitalGlass-Cross-Agent only |
 | Notes | Implemented the 4 Cross-Agent-scoped pieces of the V2 proposal: governed relationship-type registry with real ingest-time enforcement, freshness/provenance fields in the envelope's open `extensions` bag, the physical L:→Supabase→Git preflight ladder + mission-context bundle, and the canonical `/goldmine` protocol. Found and fixed 2 adjacent pre-existing bugs (a mis-pathed field in the Hub-compact compiler, an unguarded dynamic import that crashed outside a full estate checkout). **Follow-on same day:** found `/goldmine` and `intelligence.preflight()` weren't actually wired together — a goldmine run never regenerated the compact slice preflight reads, so nothing a mission harvested was ever retrievable. Closed the loop (wired the already-existing `writeHarvestIntelligenceRetrievalArtifacts()` compiler into the goldmine protocol) and proved it with a real in-repo two-agent test. Also applied the previously-only-proposed `harvest-risk-gates` CI fix (`npm ci` was missing; confirmed the only one of 4 workflows on an ephemeral runner). 38 tests passing total. |
 | Evidence | Project file `work-progress/projects/2026-08-25_compounding-intelligence-v2-implementation-v1.md` |

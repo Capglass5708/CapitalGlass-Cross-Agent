@@ -1,17 +1,27 @@
 /**
- * Proposal 2 — intelligence.preflight(): one shared, agent-independent
- * retrieval mechanism. Physically tests the L: Hub, falls back to Supabase,
- * falls back to the Git ledger, and returns a real outcome code plus a
- * mission-context bundle (proposal 8) instead of an agent self-reporting
- * that it "checked the index."
+ * Unified retrieval ladder for intelligence.preflight(): one shared,
+ * agent-independent retrieval mechanism. Physically tests the hot AI cache,
+ * then the L: Hub, then Supabase, then falls back to the Git ledger, and
+ * returns a real outcome code plus a mission-context bundle (proposal 8)
+ * instead of an agent self-reporting that it "checked the index."
  */
 import fs from 'node:fs';
 import path from 'node:path';
 
 import { REPO_ROOT } from './paths.mjs';
 import { createLiveIntelligenceHubStore } from './supabase-intelligence-store-v1.mjs';
+import { testHotAiCachePlane } from './hot-ai-cache-plane-v1.mjs';
+import {
+  loadRawIntelligenceEntities,
+  queryRecentlyCorrectedOrSuperseded,
+  queryRelationshipGraph,
+  queryUnmodeledEvidence,
+  parseDecisionLog,
+  queryGoverningDecisions,
+} from './mission-graph-queries-v1.mjs';
 
 export const OUTCOME = {
+  CACHE_HIT_FRESH: 'CACHE_HIT_FRESH',
   L_HUB_READ_OK: 'L_HUB_READ_OK',
   L_HUB_UNAVAILABLE_USING_SUPABASE: 'L_HUB_UNAVAILABLE_USING_SUPABASE',
   L_HUB_UNAVAILABLE_USING_GIT_LEDGER: 'L_HUB_UNAVAILABLE_USING_GIT_LEDGER',
@@ -136,6 +146,16 @@ export function buildMissionContextBundle({ concepts = [], repos = [], repoRoot 
     .map((r) => ({ entityId: r.entityId, conceptKey: r.conceptKey, ownerRepo: r.ownerRepo }));
   const relatedMissions = [...new Set(relevantRows.map((r) => r.workPackageId).filter(Boolean))].slice(0, 15);
 
+  // Graph-aware queries (Wesley's unified-loop proposal, item 6) — real
+  // traversal over the raw entity/relationship authority and the human
+  // decision log, not just flat keyword matching against compact slices.
+  const rawEntities = loadRawIntelligenceEntities(repoRoot);
+  const recentlyCorrectedOrSuperseded = queryRecentlyCorrectedOrSuperseded(rawEntities, needles);
+  const relationshipGraph = queryRelationshipGraph(rawEntities, { concepts, repos });
+  const unmodeledEvidence = queryUnmodeledEvidence(rows, needles);
+  const decisionLog = parseDecisionLog(repoRoot);
+  const governingDecisions = queryGoverningDecisions(decisionLog, needles);
+
   return {
     bundleSource: 'GIT_LEDGER_MIRROR',
     activeBlockers,
@@ -144,6 +164,10 @@ export function buildMissionContextBundle({ concepts = [], repos = [], repoRoot 
     successPatterns,
     relatedMissions,
     unresolvedContradictions,
+    unmodeledEvidence,
+    recentlyCorrectedOrSuperseded,
+    relationshipGraph,
+    governingDecisions,
     currentState,
     sourceSlicesGeneratedAt: {
       blockers: blockersSlice?.updatedAt ?? null,
@@ -160,6 +184,20 @@ export function buildMissionContextBundle({ concepts = [], repos = [], repoRoot 
  */
 export async function runIntelligencePreflight({ mission = null, repos = [], concepts = [], repoRoot = REPO_ROOT } = {}) {
   const laneChecks = [];
+
+  const hotCache = testHotAiCachePlane({ concepts, repos });
+  laneChecks.push(hotCache);
+  if (hotCache.available) {
+    return finalizePreflight({
+      outcome: OUTCOME.CACHE_HIT_FRESH,
+      mission,
+      repos,
+      concepts,
+      repoRoot,
+      laneChecks,
+      bundleOverride: hotCache.bundle,
+    });
+  }
 
   const lHub = testLHubPlane();
   laneChecks.push(lHub);
@@ -211,10 +249,12 @@ export async function runIntelligencePreflight({ mission = null, repos = [], con
   });
 }
 
-function finalizePreflight({ outcome, mission, repos, concepts, repoRoot, laneChecks, indexVersion = null }) {
-  const bundle = outcome === OUTCOME.ALL_HUB_PLANES_UNAVAILABLE
-    ? null
-    : buildMissionContextBundle({ concepts, repos, repoRoot });
+function finalizePreflight({ outcome, mission, repos, concepts, repoRoot, laneChecks, indexVersion = null, bundleOverride = undefined }) {
+  const bundle = bundleOverride !== undefined
+    ? bundleOverride
+    : outcome === OUTCOME.ALL_HUB_PLANES_UNAVAILABLE
+      ? null
+      : buildMissionContextBundle({ concepts, repos, repoRoot });
   return {
     schema: 'intelligence-preflight-receipt-v1@1.0.0',
     generatedAt: new Date().toISOString(),
