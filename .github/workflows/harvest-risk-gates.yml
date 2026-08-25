@@ -25,6 +25,10 @@ jobs:
         with:
           node-version: "22"
       - run: npm ci
+      - name: Configure git identity for retention-test fixtures
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
       - name: Risk remediation guards
         run: npm run test:harvest:risk-remediation
       - name: Git retention
