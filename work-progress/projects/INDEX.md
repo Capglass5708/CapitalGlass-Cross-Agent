@@ -406,7 +406,7 @@ Recommended follow-on work packages (not yet project files):
 | Project ID | Status | Next action |
 | --- | --- | --- |
 | `intelligence-hub-compounding-intelligence-investigation-v1` | Investigation complete; V2 proposal drafted | Operator decision on proposal 1/2/4 (charter, retrieval preflight, harder proof) |
-| `compounding-intelligence-v2-live-integration-proof` | Planned, not started | Needs physical host access, live Supabase credentials, or WaveRunner repo access |
+| `compounding-intelligence-v2-live-integration-proof` | Planned, not started — Phase 0 (close automatic intelligence freshness) added ahead of the original 4 phases | Next session should be a host execution session (real `L:` mount, hot cache, live Supabase credentials, WaveRunner runtime), not further Cross-Agent planning; success = fresh agent auto-receives intelligence from a new commit, nothing manually refreshed |
 | `compounding-intelligence-unified-loop-v1` | Complete — PR #45 merged | Superseded by `compounding-intelligence-v2-live-integration-proof` |
 | `compounding-intelligence-v2-implementation-v1` | Complete (in-scope pieces) — PR #43 merged | Superseded by `compounding-intelligence-unified-loop-v1` |
 
