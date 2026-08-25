@@ -15,7 +15,7 @@ Follow-on to `compounding-intelligence-v2-implementation-v1` (PR #43, merged). W
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Authority repo | CapitalGlass-Cross-Agent (`contracts/intelligence/OWNERSHIP.md` names Cross-Agent `INTELLIGENCE_OWNER`) |
 | Execution repo | CapitalGlass-Cross-Agent only — WaveRunner and CG-AppBuilder-MCP not in this session's scope |
-| Status | Complete (in-repo pieces); WaveRunner wiring and live-cache verification remain open, documented |
+| Status | **COMPLETE — PR #45 MERGED** (`e5f2fea`); WaveRunner wiring and live-cache verification carried forward into `compounding-intelligence-v2-live-integration-proof` |
 
 ## Repositories involved
 
@@ -102,17 +102,19 @@ All 3 fixed with a dedicated regression test each; all 3 threads resolved.
 
 | Repo | Commit / PR | Status |
 | --- | --- | --- |
-| CapitalGlass-Cross-Agent | Commits `51a11e8`, `15909cf`, `c8998ec` on branch `claude/intelligence-hub-compounding-4f208p` (reset to latest `main` post-PR-#43-merge), PR #45 | Pushed, ready for review |
+| CapitalGlass-Cross-Agent | Commits `51a11e8`..`c8d11e9` on branch `claude/intelligence-hub-compounding-4f208p` (reset to latest `main` post-PR-#43-merge), PR #45 | **Merged** (`e5f2fea`) |
 
 ## Next actions
 
+All four items below were carried forward into `plans/2026-08-25_compounding-intelligence-v2-live-integration-proof.md` as the next mission's four ordered phases, per Wesley's explicit direction to freeze this layer and move to a real cross-system proof rather than expand this work package further.
+
 | Priority | Action | Owner repo | Status |
 | --- | --- | --- | --- |
-| 1 | Verify the hot-ai-cache plane against a real cache hit on the WSL host | CapitalGlass-Cross-Agent | Open |
-| 2 | Add WaveRunner's repo to a session's scope and wire `contracts/intelligence/waverunner-preflight-consumption-contract-v1.md`'s Rules 3–4 into its capability registry | WaveRunner, CG-AppBuilder-MCP | Open, needs repo access |
-| 3 | Run the full acceptance test once Rules 3–4 are wired | WaveRunner | Open, blocked on #2 |
-| 4 | Live Supabase publish path for `/goldmine` | CapitalGlass-Cross-Agent | Open |
-| 5 | Operator decision on charter wording + `CONFLICTED` lifecycle state | CapitalGlass-Cross-Agent | Open |
+| 1 | Verify the hot-ai-cache plane against a real cache hit on all three hosts (WESLEY_WORK, WESLEYDESK, RYZEN9DESK) | CapitalGlass-Cross-Agent | Open — see live-integration-proof plan, phase 1 |
+| 2 | Add WaveRunner's repo to a session's scope and wire `contracts/intelligence/waverunner-preflight-consumption-contract-v1.md`'s Rules 3–4 into its capability registry | WaveRunner, CG-AppBuilder-MCP | Open — phase 3 |
+| 3 | Run the full acceptance test once Rules 3–4 are wired | WaveRunner | Open — phase 4, blocked on #2 |
+| 4 | Live Supabase publish path for `/goldmine`, through the existing governed projection path (no second implementation) | CapitalGlass-Cross-Agent | Open — phase 2 |
+| 5 | Operator decision on charter wording + `CONFLICTED` lifecycle state | CapitalGlass-Cross-Agent | Open — parallel governance track, does not block the live-integration mission |
 
 ## Reusable lessons
 
@@ -126,3 +128,5 @@ All 3 fixed with a dedicated regression test each; all 3 threads resolved.
 
 - Registered `mission-intelligence` in the query-routing + hot-cache dataset registries, closing the gap Wesley found. Built the hot-ai-cache ladder rung with real SHA-based freshness, graph-aware mission-context queries, the unified end-to-end receipt contract, and the WaveRunner-preflight consumption contract. 34 new tests, all passing; 71 total checks across the affected suites, all green. Opened PR #45.
 - Cursor Bugbot's first review pass on PR #45 found 3 real issues (cache hits silently ignoring scoped queries, RYZEN9DESK never probed, short-circuited lanes falsely reported as `UNAVAILABLE`). All 3 verified and fixed with a dedicated regression test each; all 3 threads resolved. 60 self-contained tests + 14 registry checks, all green.
+- Bugbot's re-review of the first fix found one more real issue: the scope gate correctly blocked the ladder from *using* a fresh-but-scoped-out cache hit, but the raw bundle was still attached to the lane-check record, reachable through preflight receipts / `--json` output — the exact side channel the scope gate was meant to close. Fixed and tested; Bugbot's next pass returned 0 new findings (3 → 1 → 0 across three rounds). All 4 threads resolved. PR #45 merged as `e5f2fea`.
+- Per Wesley's explicit direction, froze further work on this layer and wrote `plans/2026-08-25_compounding-intelligence-v2-live-integration-proof.md`: the four-phase next mission (real hot-cache proof on all 3 hosts, Supabase publication+readback through the existing projection path, WaveRunner integration, full end-to-end compounding proof), plus a durable note on the deferred scope-aware-cache-keys design improvement. None of the four phases are executable from this container (need physical host access, live Supabase credentials, and WaveRunner repo access respectively) — documented precisely so starting any of them is mechanical once that access exists.
