@@ -102,11 +102,16 @@ function testScopedQueryDoesNotConsumeAFreshHit() {
     assert.equal(unscoped.available, true, 'an unscoped query may still use a fresh hit');
     assert.equal(unscoped.cacheStatus, CACHE_STATUS.CACHE_HIT_FRESH);
     assert.equal(unscoped.scopeApplicable, true);
+    assert.deepEqual(unscoped.bundle, bundle);
 
     const scoped = testHotAiCachePlane({ env: { CG_AI_CACHE_AUTHORITY_ROOT: root }, concepts: ['some-specific-concept'] });
     assert.equal(scoped.available, false, 'a scoped query must not be satisfied by an unfiltered cache hit');
     assert.equal(scoped.cacheStatus, CACHE_STATUS.CACHE_HIT_FRESH, 'the cache itself is still honestly reported as fresh');
     assert.equal(scoped.scopeApplicable, false);
+    // Bugbot follow-up finding: available:false alone isn't enough -- this
+    // whole object is serialized into laneChecks/preflight receipts, so the
+    // unscoped bundle must not be reachable through that side channel either.
+    assert.equal(scoped.bundle, undefined, 'a scoped miss must not leak the unfiltered bundle into the lane-check record');
   });
 }
 

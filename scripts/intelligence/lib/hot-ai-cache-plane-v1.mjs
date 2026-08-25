@@ -113,15 +113,21 @@ export function testHotAiCachePlane({ env = process.env, concepts = [], repos = 
   const authoritySha = getCrossAgentIndexedSha();
   const fresh = Boolean(cachedSha) && Boolean(authoritySha) && cachedSha === authoritySha;
 
+  const available = fresh && scopeApplicable;
   return {
     plane: 'HOT_AI_CACHE',
-    available: fresh && scopeApplicable,
+    available,
     cacheStatus: fresh ? CACHE_STATUS.CACHE_HIT_FRESH : CACHE_STATUS.CACHE_HIT_STALE,
     root: resolved.root,
     rootSource: resolved.source,
     cachedSha,
     authoritySha,
     scopeApplicable,
-    bundle: fresh ? cached.bundle ?? cached : undefined,
+    // Gated on `available`, not just `fresh` -- this object is pushed into
+    // laneChecks and serialized into preflight receipts/--json output, so a
+    // scoped query that can't use the cached bundle must not have it
+    // attached here either, or the scope gate above is just cosmetic: the
+    // unfiltered payload would still be reachable through the receipt.
+    bundle: available ? (cached.bundle ?? cached) : undefined,
   };
 }
