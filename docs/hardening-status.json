@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "hardening-status-v1",
+  "repository": "CapitalGlass-Cross-Agent",
+  "verifiedCommit": "0261f45cf7f5daa96b6c92d12784f4e26809f042",
+  "verifiedBranch": "main",
+  "verifiedAtUtc": "2026-08-25T00:20:00Z",
+  "status": "UNKNOWN",
+  "systemRole": "control-plane: Platform Intelligence, cross-repository intelligence, compounding intelligence, registry/index consumption",
+  "authorityState": "DRAFT_UNPUBLISHED",
+  "verificationState": "NOT_YET_VERIFIED",
+  "findings": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "note": "No findings recorded because no verification has been run. Zero here means UNMEASURED, not clean."
+  },
+  "evidence": {
+    "testsPassing": null,
+    "typecheckPassing": null,
+    "gatesRun": [],
+    "requiredVerification": [
+      "npm test",
+      "npm run typecheck",
+      "confirm index freshness against GitHub HEAD for indexed repositories"
+    ],
+    "note": "This is a baseline. Nothing in this repository has been verified by the hardening system yet."
+  },
+  "knownDefects": [],
+  "deferredHardening": [
+    "Run the required verification commands and replace this baseline with real evidence"
+  ],
+  "recoveryProcedure": "docs/HARDENING.md#recovery-procedure",
+  "nextHardeningPass": "First overnight verification wave: run the required commands at the then-current HEAD and update status from real evidence."
+}
