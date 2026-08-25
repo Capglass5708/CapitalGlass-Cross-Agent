@@ -20,6 +20,20 @@ Everything below serves one test. Wesley set it explicitly, after PR #45 merged,
 
 That single test forces Git freshness, Platform Intelligence, Supabase, the L-drive cache, the hot AI cache, preflight, graph traversal, and agent retrieval to operate as one system rather than a collection of good subsystems that happen to sit next to each other. Every phase below — including Phase 0 — exists to make that test pass for real, not to add another isolated proof.
 
+## The architectural rule for all five phases: no component reimplements another's responsibility
+
+Wesley set this explicitly, after reviewing the merged Phase 0 design, as a rule that governs *how* every phase below gets built, not just what it proves. It exists because the fastest way to fake this proof green is for one plane to quietly absorb another's job — a scoped agent could always make its own lane report success by reimplementing what it was supposed to be *reading from*. That is never an acceptable way to close a phase:
+
+- Cross-Agent does not become Platform Intelligence.
+- WaveRunner does not build another preflight.
+- Hot cache does not become authority.
+- Supabase does not become authority.
+- L: does not become authority.
+- Gold Mine does not bypass the graph.
+- Preflight does not silently tolerate stale provenance.
+
+Git `main` is the only authority. Every other plane (Platform Intelligence, the index, the L-drive Hub, Supabase, the hot AI cache) is a retrieval or projection surface that must faithfully reflect it, never a second source of truth for it. If a phase can only go green by having one component do another's job, the phase isn't done — the real integration gap it was supposed to prove is still open.
+
 ## The mission: Compounding Intelligence V2 — Live Integration Proof
 
 Everything built so far (registry registration, the hot-ai-cache ladder rung, graph-aware mission context, the unified receipt contract, the local `/goldmine` loop) is real and tested, but only ever proven against this container: no physical cache mount, no live Supabase credentials, no WaveRunner repo access. This mission proves the same loop works across real, separate systems — in this order, because each phase needs the one before it to mean anything:
@@ -54,18 +68,18 @@ What Cross-Agent *does* already own, and what this phase actually has to wire up
 **The proof, exactly as specified:**
 
 ```
-Git main advances
-  → detect new SHA
-  → incremental index
-  → publication
-  → graph/intelligence projection
-  → L-drive compact cache refresh
-  → hot-cache invalidation/rebuild
-  → Supabase projection confirmation
-  → preflight returns FRESH
+Git main changes
+  → freshness gate detects SHA mismatch
+  → correct repo is incrementally re-indexed
+  → new publication becomes authoritative-current
+  → L-drive compact Hub slices refresh
+  → Supabase projection refreshes
+  → hot AI cache is invalidated/rebuilt
+  → intelligence.preflight() reads the new generation
+  → receipt reports the source SHA it actually consumed
 ```
 
-without an operator manually kicking it off at any step.
+without an operator manually kicking it off at any step. Two details in that chain are load-bearing, not stylistic: "**correct** repo is incrementally re-indexed" — this repo tracks work across many sibling repos, so the proof has to show the gate identifies *which* repo drifted and re-indexes that one, not just Cross-Agent's own SHA; and "receipt reports the source SHA it actually consumed" — `FRESH` alone is not sufficient evidence, the receipt must name the exact SHA so the claim is independently checkable, not asserted.
 
 **Status vocabulary fix — a required deliverable of this phase, not a suggestion.** Nothing may report a combination of "current" and "behind" that an agent can misread as safe. Concretely: `currentPublication: true` co-occurring with `driftStatus: INDEX_BEHIND` is dangerously easy to interpret as *current with source*, when it actually only means *current generation of what was last published*. Two separate fields, stated as a hard requirement on every Cross-Agent-owned freshness/publication contract going forward (`contracts/intelligence/unified-mission-receipt-v1.schema.json`, `work-progress/intelligence-hub-slices/freshness-dashboard.json`, and any future Phase 0 receipt), replace that ambiguity:
 
