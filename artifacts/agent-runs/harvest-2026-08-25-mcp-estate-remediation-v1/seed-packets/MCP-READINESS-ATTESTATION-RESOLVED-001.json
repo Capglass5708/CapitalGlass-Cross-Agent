@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "MCP-READINESS-ATTESTATION-RESOLVED-001",
+  "kind": "lesson",
+  "title": "get_mcp_readiness_attestation is NOT broken -- resolved, full correction chain recorded",
+  "summary": "get_mcp_readiness_attestation's 'Token lookup failed' error was first attributed to a Supabase-level query error in requireAssistantToken.ts, ruling out wrong project/schema/table/column/RLS. That conclusion was superseded after a genuine restart revealed the local mcp-api backend service simply was not running (ps aux / pm2 list empty). Starting it and running npm run mcp:attest produced a clean passing attestation. Supersede any stale intelligence claiming readiness attestation is broken.",
+  "retrievalQuestions": [
+    "Is get_mcp_readiness_attestation currently broken, and what was the actual root cause of its Token lookup failed error?",
+    "Why did requireAssistantToken.ts appear to fail even though its Supabase query logic was correct?",
+    "How do you fix a Token lookup failed error from the MCP readiness attestation tool?"
+  ],
+  "evidenceRefs": [
+    "mcp-readiness-attestation-resolved-v1",
+    "EVT-409",
+    "services/mcp-api/src/middleware/requireAssistantToken.ts",
+    "runtime/mcp-readiness-attestation/latest.json"
+  ],
+  "sourcePacketIds": ["mcp-readiness-attestation-resolved-v1"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "A future agent sees get_mcp_readiness_attestation fail or finds stale intelligence claiming it is a known-broken tool",
+    "startAt": ["services/mcp-api (local backend service)", "npm run mcp:attest"],
+    "runPreflight": ["ps aux | grep mcp-api", "pm2 list"],
+    "doNot": [
+      "Leave or propagate stale intelligence stating readiness attestation is broken -- this finding supersedes it",
+      "Diagnose a Supabase/schema-level defect in requireAssistantToken.ts before confirming the local mcp-api service process is actually running"
+    ],
+    "proveBeforeClaiming": [
+      "ps aux or pm2 list shows the mcp-api service running before claiming the attestation tool is healthy or broken",
+      "npm run mcp:attest produces a fresh, passing runtime/mcp-readiness-attestation/latest.json"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-REPO/CG-AppBuilder-MCP.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE",
+  "roiRank": 1
+}

@@ -1,0 +1,298 @@
+{
+  "schemaVersion": "cross-agent-harvest-packet-index-v1@1.0.0",
+  "workPackageId": "harvest-2026-08-25-mcp-estate-remediation-v1",
+  "generatedAt": "2026-08-25T22:30:00.000Z",
+  "missionClass": "FULL_CLOSEOUT_INTELLIGENCE_HARVEST",
+  "runMode": "derived-from-manifest",
+  "retrievalOutcome": "PENDING",
+  "authority": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json",
+  "harvestManifestHash": "42d65de2435ee5b2bc3cb586fc524ea8232a5e77149864bbf489fa984d32da3f",
+  "packets": [
+    {
+      "id": "mcp-verification-methodology-v1",
+      "label": "mcp-verification-methodology-v1",
+      "state": "PROVEN",
+      "verdict": "PASS",
+      "ownerRepo": "estate-wide",
+      "ownerIndexingStatus": "not-required",
+      "crossAgentProject": "N/A -- operational methodology, not a project deliverable",
+      "doNotAdvance": [
+        "Declare an MCP 'operational' based on Level 1 (process starts) or Level 2 (initialize succeeds) alone"
+      ],
+      "commitRefs": []
+    },
+    {
+      "id": "claude-code-cwd-unsupported-v1",
+      "label": "claude-code-cwd-unsupported-v1",
+      "state": "PROVEN",
+      "verdict": "PASS",
+      "ownerRepo": "estate-wide",
+      "ownerIndexingStatus": "not-required",
+      "crossAgentProject": "N/A -- Claude Code client behavior, not a Capital Glass repo",
+      "doNotAdvance": [
+        "Assume a 'cwd' key in an MCP server's ~/.claude.json entry has any effect"
+      ],
+      "commitRefs": []
+    },
+    {
+      "id": "tsx-path-alias-resolution-failure-v1",
+      "label": "tsx-path-alias-resolution-failure-v1",
+      "state": "PROVEN",
+      "verdict": "PASS",
+      "ownerRepo": "estate-wide",
+      "ownerIndexingStatus": "not-required",
+      "crossAgentProject": "N/A -- tsx/tooling behavior",
+      "doNotAdvance": [
+        "Assume a tsx --import loader launch will resolve TS path aliases correctly regardless of working directory"
+      ],
+      "commitRefs": []
+    },
+    {
+      "id": "mcp-dotted-tool-names-superseded-v1",
+      "label": "mcp-dotted-tool-names-superseded-v1",
+      "state": "SUPERSEDED",
+      "verdict": "PASS",
+      "ownerRepo": "estate-wide",
+      "ownerIndexingStatus": "not-required",
+      "crossAgentProject": "N/A",
+      "doNotAdvance": [
+        "Rename any dotted MCP tool name based on a Claude-Code-exposure theory alone"
+      ],
+      "commitRefs": []
+    },
+    {
+      "id": "mcp-estate-final-status-v1",
+      "label": "mcp-estate-final-status-v1",
+      "state": "PROVEN",
+      "verdict": "PASS",
+      "ownerRepo": "estate-wide",
+      "ownerIndexingStatus": "not-required",
+      "crossAgentProject": "N/A",
+      "doNotAdvance": [
+        "Treat the recorded tool counts as a fixed contract future agents must match exactly"
+      ],
+      "commitRefs": []
+    },
+    {
+      "id": "github-mcp-credential-defect-v1",
+      "label": "github-mcp-credential-defect-v1",
+      "state": "CONFIRMED_CREDENTIAL_DEFECT",
+      "verdict": "OPEN",
+      "ownerRepo": "cg-shared",
+      "ownerIndexingStatus": "not-required",
+      "crossAgentProject": "N/A",
+      "doNotAdvance": [
+        "Claim the GitHub MCP works",
+        "Attempt to fix by re-syncing Doppler again -- already proven insufficient"
+      ],
+      "commitRefs": []
+    },
+    {
+      "id": "cloudflare-mcp-scope-defect-v1",
+      "label": "cloudflare-mcp-scope-defect-v1",
+      "state": "CONFIRMED_SCOPE_OR_AUTHORITY_DEFECT",
+      "verdict": "OPEN",
+      "ownerRepo": "cg-shared",
+      "ownerIndexingStatus": "not-required",
+      "crossAgentProject": "N/A",
+      "doNotAdvance": [
+        "Collapse the working docs MCP and the broken operational Workers API into one status -- they are genuinely separate capabilities on the same token",
+        "Run integrations:provision-cloudflare-mcp-token without first confirming it grants Workers-capable scope -- it does not, as currently written"
+      ],
+      "commitRefs": []
+    },
+    {
+      "id": "platform-intelligence-mcp-oauth-v1",
+      "label": "platform-intelligence-mcp-oauth-v1",
+      "state": "REGISTERED_AWAITING_AUTHORIZATION",
+      "verdict": "OPEN",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "crossAgentProject": "docs/platform-registry/mcp-authority-registry-v1.json",
+      "doNotAdvance": [
+        "Attempt to construct a static-bearer-token connection to platform-mcp.capitalglasstxapps.com/mcp -- the deployed service uses full OAuth2 + PKCE + dynamic client registration (docs/platform-registry/chatgpt-platform-intelligence-connector-v1.json: transport: 'remote_oauth'), confirmed via direct source read of the connector spec and the verify-platform-intelligence-remote-tools.mjs proof script",
+        "Treat this session's inability to authorize it as evidence the endpoint is broken -- it is a non-interactive-session limitation, not a service defect"
+      ],
+      "commitRefs": []
+    },
+    {
+      "id": "product-catalog-planned-spoke-v1",
+      "label": "product-catalog-planned-spoke-v1",
+      "state": "PLANNED_CORRECTLY_ABSENT",
+      "verdict": "PASS",
+      "ownerRepo": "capital-glass-product-catalog",
+      "ownerIndexingStatus": "not-required",
+      "crossAgentProject": "docs/platform-registry/mcp-authority-registry-v1.json",
+      "doNotAdvance": [
+        "Fabricate a product-catalog-app-mcp launcher merely to make a governed-surface coverage number look complete"
+      ],
+      "commitRefs": []
+    },
+    {
+      "id": "revu-mcp-authority-correction-v1",
+      "label": "revu-mcp-authority-correction-v1",
+      "state": "CORRECTED",
+      "verdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "crossAgentProject": "docs/platform-registry/mcp-authority-registry-v1.json",
+      "doNotAdvance": [
+        "See mcp-dotted-tool-names-superseded-v1's sibling entry -- full detail recorded under supersededClaims"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "0b389796"
+        }
+      ]
+    },
+    {
+      "id": "mcp-estate-remediation-commits-v1",
+      "label": "mcp-estate-remediation-commits-v1",
+      "state": "LOCAL_COMMIT_NOT_YET_MERGED",
+      "verdict": "OPEN",
+      "ownerRepo": "multiple",
+      "ownerIndexingStatus": "pointer-only",
+      "crossAgentProject": "N/A",
+      "doNotAdvance": [
+        "Claim any of these three commits are deployed, merged, or live in the shared checkout",
+        "Assume merging one requires merging the others -- they are independent fixes in independent repos"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "0b389796e7f2d0fe7b75393a8213135648f72a91"
+        },
+        {
+          "repo": "Computer-Estimator",
+          "sha": "049c439228acc2e8a1fd6de1e044e2b5bd874a2a"
+        },
+        {
+          "repo": "CapitalGlass-BidComposer",
+          "sha": "80a11671b5595ab579467e3630e8ad938932f107"
+        }
+      ]
+    },
+    {
+      "id": "human-estimator-knowledge-client-ownership-v1",
+      "label": "human-estimator-knowledge-client-ownership-v1",
+      "state": "PROVEN",
+      "verdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "crossAgentProject": "scripts/lib/estimating-knowledge/production-query.mjs",
+      "doNotAdvance": [
+        "Duplicate/copy production-query.mjs's logic into CapitalGlass-BidComposer or CG-Human-Estimator-MCP -- ownership stays in CG-AppBuilder-MCP",
+        "Assume this fix means the estimating-knowledge corpus is populated -- see the separate, legitimate 'compiled records not found' data-state below"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-BidComposer",
+          "sha": "80a11671b5595ab579467e3630e8ad938932f107"
+        }
+      ]
+    },
+    {
+      "id": "computer-estimator-dependency-governance-v1",
+      "label": "computer-estimator-dependency-governance-v1",
+      "state": "PROVEN",
+      "verdict": "PASS",
+      "ownerRepo": "Computer-Estimator",
+      "ownerIndexingStatus": "indexed",
+      "crossAgentProject": "requirements.txt / mcp/run.mjs",
+      "doNotAdvance": [
+        "Assume the ONLY fix needed was the venv-aware launcher -- the venv itself also lacked the dependency until bounded correctly and reinstalled"
+      ],
+      "commitRefs": [
+        {
+          "repo": "Computer-Estimator",
+          "sha": "049c439228acc2e8a1fd6de1e044e2b5bd874a2a"
+        }
+      ]
+    },
+    {
+      "id": "worktree-sibling-resolution-lesson-v1",
+      "label": "worktree-sibling-resolution-lesson-v1",
+      "state": "PROVEN",
+      "verdict": "PASS",
+      "ownerRepo": "estate-wide",
+      "ownerIndexingStatus": "not-required",
+      "crossAgentProject": "N/A",
+      "doNotAdvance": [
+        "Interpret a path failure observed only from an isolated worktree as an application defect without reproducing it under canonical /home/wesley/repos/<name> conditions or an explicit env override"
+      ],
+      "commitRefs": []
+    },
+    {
+      "id": "mcp-readiness-attestation-resolved-v1",
+      "label": "mcp-readiness-attestation-resolved-v1",
+      "state": "RESOLVED",
+      "verdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "not-required",
+      "crossAgentProject": "N/A",
+      "doNotAdvance": [
+        "Report readiness attestation as broken -- superseded, see top-level supersededClaims"
+      ],
+      "commitRefs": []
+    },
+    {
+      "id": "mcp-api-service-lifecycle-v1",
+      "label": "mcp-api-service-lifecycle-v1",
+      "state": "PROVEN",
+      "verdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "not-required",
+      "crossAgentProject": "services/mcp-api",
+      "doNotAdvance": [
+        "Record the transient PID (351959) or port-binding details as durable intelligence -- only the dependency relationship and diagnostic method are durable"
+      ],
+      "commitRefs": []
+    },
+    {
+      "id": "mcp-registry-authority-reconciliation-v1",
+      "label": "mcp-registry-authority-reconciliation-v1",
+      "state": "PROVEN",
+      "verdict": "PASS",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "crossAgentProject": "scripts/mcp-operational-workspaces/reconcile-registry-with-authority.mjs",
+      "doNotAdvance": [
+        "Treat any generated MCP registry artifact (mcp-estate-inventory.json, mcp-registry-validation.json) as authority in its own right -- docs/platform-registry/mcp-authority-registry-v1.json is the only authority; generated artifacts are derived views that can drift"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "0b389796e7f2d0fe7b75393a8213135648f72a91"
+        }
+      ]
+    },
+    {
+      "id": "wsl-validator-host-path-defect-v1",
+      "label": "wsl-validator-host-path-defect-v1",
+      "state": "WINDOWS_PATH_DEPENDENT_NOT_VALID_ON_WSL",
+      "verdict": "OPEN",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "not-required",
+      "crossAgentProject": "scripts/mcp-operational-workspaces/lib/workspace-standard.mjs",
+      "doNotAdvance": [
+        "Use any WSL-observed 0/20 (or any other) result from validate-mcp-workspaces.mjs as evidence of real Synology workspace-scaffold state",
+        "Silently mark this validator as fixed -- it is not; only recorded and NOT executed to completion in this mission"
+      ],
+      "commitRefs": []
+    },
+    {
+      "id": "ryzen9desk-host-constraints-v1",
+      "label": "ryzen9desk-host-constraints-v1",
+      "state": "PROVEN",
+      "verdict": "PASS",
+      "ownerRepo": "estate-wide",
+      "ownerIndexingStatus": "not-required",
+      "crossAgentProject": "N/A",
+      "doNotAdvance": [
+        "Classify an MCP tool correctly reporting a missing Windows-only desktop dependency (Illustrator, Bluebeam Revu) as an application failure on this host"
+      ],
+      "commitRefs": []
+    }
+  ]
+}

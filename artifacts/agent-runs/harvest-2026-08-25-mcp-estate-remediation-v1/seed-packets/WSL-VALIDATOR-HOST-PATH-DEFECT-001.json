@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "WSL-VALIDATOR-HOST-PATH-DEFECT-001",
+  "kind": "blocker",
+  "title": "validate-mcp-workspaces.mjs is Windows-path-dependent -- its WSL 0/20 result is invalid evidence, not real estate state",
+  "summary": "Running validate-mcp-workspaces.mjs from WSL2 on CG-RYZEN9DESK-01 produces a false 0/20 result because SYNOLOGY_OPS_ROOT is hardcoded to a Windows-style path with a literal backslash. The 6 modified artifact files were reverted via git checkout -- before committing anything. Never allow a future agent to treat that WSL 0/20 result as factual estate state; it invalidates that run's evidence, not the underlying MCP surfaces.",
+  "retrievalQuestions": [
+    "Why did validate-mcp-workspaces.mjs report 0 out of 20 workspaces valid when run from WSL2?",
+    "Is the WSL 0 out of 20 validate-mcp-workspaces result real evidence of a broken MCP estate?",
+    "What causes SYNOLOGY_OPS_ROOT to fail path resolution on WSL2?"
+  ],
+  "evidenceRefs": [
+    "wsl-validator-host-path-defect-v1",
+    "EVT-409",
+    "scripts/mcp-operational-workspaces/validate-mcp-workspaces.mjs",
+    "scripts/mcp-operational-workspaces/lib/workspace-standard.mjs"
+  ],
+  "sourcePacketIds": ["wsl-validator-host-path-defect-v1"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "A future agent runs validate-mcp-workspaces.mjs from a WSL2 host and sees a near-zero pass count",
+    "startAt": ["scripts/mcp-operational-workspaces/lib/workspace-standard.mjs SYNOLOGY_MCPS_ROOT / SYNOLOGY_OPS_ROOT"],
+    "runPreflight": ["echo $SYNOLOGY_OPS_ROOT", "uname -a"],
+    "doNot": [
+      "Treat a WSL2 validate-mcp-workspaces.mjs 0/20-style result as factual evidence that the MCP estate is broken",
+      "Commit artifact files modified by a run of this validator from WSL2 without first reverting them (git checkout --) if the run's own path resolution is known-broken"
+    ],
+    "proveBeforeClaiming": [
+      "SYNOLOGY_OPS_ROOT resolves to a real, existing path on the host the validator is actually run from before trusting its output",
+      "WC-MCP-001 (making this validator host/path-authority aware for WSL2) remains an open, not-yet-executed follow-up -- do not claim it is fixed"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-REPO/CG-AppBuilder-MCP.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 2
+}

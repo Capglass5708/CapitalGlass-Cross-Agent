@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-25-mcp-estate-remediation-v1",
+  "packetId": "mcp-registry-authority-reconciliation-v1",
+  "state": "PROVEN",
+  "packetVerdict": "PASS",
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Merge CG-AppBuilder-MCP commit 0b389796; consider wiring npm run mcp:workspaces:reconcile-authority into a CI gate",
+  "evidenceRefs": [
+    "scripts/mcp-operational-workspaces/reconcile-registry-with-authority.mjs full source, committed",
+    "Adversarial test transcript: injected drift -> DRIFT_DETECTED exit 1 with exact mismatch detail; restored -> RECONCILED exit 0"
+  ],
+  "doNotAdvance": [
+    "Treat any generated MCP registry artifact (mcp-estate-inventory.json, mcp-registry-validation.json) as authority in its own right -- docs/platform-registry/mcp-authority-registry-v1.json is the only authority; generated artifacts are derived views that can drift"
+  ],
+  "advancementGate": "operator-pr-review-and-merge",
+  "contentHash": "3f03f4feb72bf71faea4ba5e0b5127f060c62e6ec6b3692a548ac0ac0ccc6d70"
+}

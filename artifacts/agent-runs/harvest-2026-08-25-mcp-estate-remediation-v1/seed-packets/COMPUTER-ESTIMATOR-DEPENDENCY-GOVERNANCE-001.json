@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "COMPUTER-ESTIMATOR-DEPENDENCY-GOVERNANCE-001",
+  "kind": "failure-pattern",
+  "title": "Computer Estimator MCP: stacked venv-launcher plus unbounded mcp>=1.2 dependency defect",
+  "summary": "mcp/run.mjs launched with a bare 'python'/'python3' instead of the repo's .venv interpreter, and requirements.txt's unbounded mcp>=1.2 constraint had silently resolved to an incompatible mcp==2.0.0. Fixed by preferring .venv/{Scripts,bin}/python{.exe,3} when present, and pinning mcp>=1.2,<2.0. Committed 049c439228acc2e8a1fd6de1e044e2b5bd874a2a, not yet merged. The shared checkout's real .venv was separately repaired as environment state, not a git commit.",
+  "retrievalQuestions": [
+    "Why did the Computer Estimator MCP server fail to launch even though its dependencies appeared installed?",
+    "What version constraint bug caused mcp>=1.2 to resolve to an incompatible mcp==2.0.0?",
+    "How was the Computer Estimator MCP launcher fixed to use its virtualenv Python interpreter?"
+  ],
+  "evidenceRefs": [
+    "computer-estimator-dependency-governance-v1",
+    "049c439228acc2e8a1fd6de1e044e2b5bd874a2a",
+    "EVT-408"
+  ],
+  "sourcePacketIds": ["computer-estimator-dependency-governance-v1"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "A future agent sees the Computer Estimator MCP server fail to launch, or is registering a Python-based MCP server that has its own .venv",
+    "startAt": ["Computer Estimator/mcp/run.mjs", "Computer Estimator/requirements.txt", "commit 049c439228acc2e8a1fd6de1e044e2b5bd874a2a (work/mcp-launcher-venv-fix-v1, not yet merged)"],
+    "runPreflight": ["ls Computer Estimator/.venv/bin/python3", "pip show mcp"],
+    "doNot": [
+      "Leave a Python MCP dependency's version constraint unbounded (e.g. mcp>=1.2) without an upper bound -- a future major release can silently break the launcher",
+      "Assume a Python launcher uses the correct interpreter without checking whether it prefers the repo's own .venv over a bare system python/python3"
+    ],
+    "proveBeforeClaiming": [
+      "existsSync(venvPython) correctly resolves to the repo's own .venv interpreter on both Windows and WSL2/Linux path conventions",
+      "requirements.txt pins mcp>=1.2,<2.0 with an explanatory comment, and the shared checkout's real .venv actually has mcp==1.29.1 installed, not 2.0.0"
+    ]
+  },
+  "ownerRepo": "Computer-Estimator",
+  "targetSlice": "BY-REPO/Computer-Estimator.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 2
+}

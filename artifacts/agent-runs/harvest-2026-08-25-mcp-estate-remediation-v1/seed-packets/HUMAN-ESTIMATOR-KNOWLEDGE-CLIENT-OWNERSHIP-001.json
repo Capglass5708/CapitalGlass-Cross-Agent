@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "HUMAN-ESTIMATOR-KNOWLEDGE-CLIENT-OWNERSHIP-001",
+  "kind": "architecture",
+  "title": "Human Estimator's production-query implementation canonically lives in CG-AppBuilder-MCP, not a Human Estimator-local file",
+  "summary": "estimator_get_knowledge_service_health and its five sibling production-query tools previously pointed at a file that never existed in CG-Human-Estimator-MCP. Fixed to resolve CG-AppBuilder-MCP/scripts/lib/estimating-knowledge/production-query.mjs via the same CG_APPBUILDER_MCP_ROOT / nested / sibling resolution pattern used by this repo's PromptOps and Application Bible gates. Committed 80a11671b5595ab579467e3630e8ad938932f107, not yet merged.",
+  "retrievalQuestions": [
+    "Where does the real implementation of Human Estimator's production-query MCP tools actually live?",
+    "Why did estimator_get_knowledge_service_health fail with a module-not-found error before the fix?",
+    "What is the correct CG_APPBUILDER_MCP_ROOT resolution pattern for Human Estimator's knowledge client path?"
+  ],
+  "evidenceRefs": [
+    "human-estimator-knowledge-client-ownership-v1",
+    "80a11671b5595ab579467e3630e8ad938932f107",
+    "src/mcp/human-estimator/production-query-mcp-handlers.ts"
+  ],
+  "sourcePacketIds": ["human-estimator-knowledge-client-ownership-v1"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "A future agent sees a Human Estimator MCP production-query tool fail, or considers copying a knowledge-client module directly into CapitalGlass-BidComposer or CG-Human-Estimator-MCP",
+    "startAt": ["CapitalGlass-BidComposer/src/mcp/human-estimator/production-query-mcp-handlers.ts", "commit 80a11671b5595ab579467e3630e8ad938932f107 (fix/human-estimator-knowledge-client-path-v1, not yet merged)"],
+    "runPreflight": ["resolveHumanEstimatorClientPath() candidate resolution against the live repo layout"],
+    "doNot": [
+      "Copy CG-AppBuilder-MCP's production-query.mjs directly into Human Estimator or CapitalGlass-BidComposer to make a tool green -- this creates a divergent, un-owned duplicate",
+      "Assume the fix is deployed on the live shared checkout -- the commit is local and unmerged; the live server still runs the old broken code until it lands"
+    ],
+    "proveBeforeClaiming": [
+      "The fix is verified with CG_APPBUILDER_MCP_ROOT set explicitly when testing from an isolated worktree whose parent directory differs from the canonical /home/wesley/repos layout (see worktree-sibling-resolution-lesson-v1)",
+      "A real estimator_get_knowledge_service_health tools/call succeeds after the fix, not just a clean import"
+    ]
+  },
+  "ownerRepo": "CapitalGlass-BidComposer",
+  "targetSlice": "BY-REPO/CapitalGlass-BidComposer.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 2
+}

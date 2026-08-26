@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "MCP-CWD-UNSUPPORTED-001",
+  "kind": "failure-pattern",
+  "title": "Claude Code stdio MCP registration has no supported cwd field",
+  "summary": "A \"cwd\" key in ~/.claude.json's mcpServers entries is silently ignored by Claude Code (confirmed via claude mcp add --help and claude mcp get, which never expose it) -- this was the real root cause behind tsx path-alias and module-resolution failures previously misattributed to dotted tool names.",
+  "retrievalQuestions": [
+    "Does Claude Code support a cwd field for stdio MCP server registrations?",
+    "Why does an MCP server registered with a cwd key still resolve modules from the wrong directory?",
+    "What is the correct way to set a working directory for a Claude Code stdio MCP server?"
+  ],
+  "evidenceRefs": [
+    "claude-code-cwd-unsupported-v1",
+    "EVT-404",
+    "~/.claude.json"
+  ],
+  "sourcePacketIds": ["claude-code-cwd-unsupported-v1"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "A stdio MCP server needs to run with a specific working directory (e.g. to resolve tsconfig path aliases or relative imports)",
+    "startAt": ["~/.claude.json mcpServers entry for the server in question"],
+    "runPreflight": ["claude mcp get <server-name>", "claude mcp add --help"],
+    "doNot": [
+      "Add a \"cwd\" field to a Claude Code stdio MCP server entry and assume it takes effect",
+      "Assume module-resolution failures from a stdio MCP server are caused by tool-naming conventions before checking the working directory it actually launched from"
+    ],
+    "proveBeforeClaiming": [
+      "claude mcp get <server-name> output does not display a cwd field even if one was set",
+      "The server's command wraps in bash -c \"cd <repo> && exec node ...\" and the tool that previously failed now succeeds via a real tools/call"
+    ]
+  },
+  "ownerRepo": "estate-wide",
+  "targetSlice": "BY-KIND/mcp-operational-facts.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE",
+  "roiRank": 1
+}

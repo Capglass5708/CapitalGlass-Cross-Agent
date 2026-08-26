@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-25-mcp-estate-remediation-v1",
+  "packetId": "computer-estimator-dependency-governance-v1",
+  "state": "PROVEN",
+  "packetVerdict": "PASS",
+  "ownerRepo": "Computer-Estimator",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Merge Computer-Estimator commit 049c439",
+  "evidenceRefs": [
+    "pip show mcp before fix: Version 2.0.0, no mcp.server.fastmcp submodule present (confirmed via directory listing -- mcp/server/mcpserver exists, fastmcp does not)",
+    "pip install \"mcp>=1.2,<2.0\": resolved and installed mcp-1.29.1, import mcp.server.fastmcp then succeeded"
+  ],
+  "doNotAdvance": [
+    "Assume the ONLY fix needed was the venv-aware launcher -- the venv itself also lacked the dependency until bounded correctly and reinstalled"
+  ],
+  "advancementGate": "operator-pr-review-and-merge",
+  "contentHash": "861e0e4c42e9aebcd4f48881f893ad7033853470500f139e9441cd0460a93d65"
+}

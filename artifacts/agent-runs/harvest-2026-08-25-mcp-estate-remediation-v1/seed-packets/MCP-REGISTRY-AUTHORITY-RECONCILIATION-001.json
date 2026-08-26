@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "MCP-REGISTRY-AUTHORITY-RECONCILIATION-001",
+  "kind": "runbook",
+  "title": "New automated guard: generated MCP inventory must never silently diverge from the governed authority doc again",
+  "summary": "revu-mcp's lifecycleState was ACTIVE/REGISTERED in both the authority doc and a second hardcoded object in discover-mcp-estate.mjs, while no launcher actually exists in CapitalGlassRevu. Corrected both to PLANNED_SPOKE/PLANNED and added reconcile-registry-with-authority.mjs (npm run mcp:workspaces:reconcile-authority), which fails closed on drift. Adversarial self-testing found and fixed a bug comparing a nonexistent row.source field instead of row.repository.",
+  "retrievalQuestions": [
+    "How does the MCP registry authority reconciliation guard detect drift between the authority doc and the generated inventory?",
+    "What was the revu-mcp registry drift and where was it corrected?",
+    "What bug did adversarial self-testing find in the first version of reconcile-registry-with-authority.mjs?"
+  ],
+  "evidenceRefs": [
+    "mcp-registry-authority-reconciliation-v1",
+    "revu-mcp-authority-correction-v1",
+    "0b389796e7f2d0fe7b75393a8213135648f72a91",
+    "scripts/mcp-operational-workspaces/reconcile-registry-with-authority.mjs"
+  ],
+  "sourcePacketIds": ["mcp-registry-authority-reconciliation-v1", "revu-mcp-authority-correction-v1"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "A future agent needs to trust the MCP estate's lifecycleState for any surface, or is adding a new generated/derived MCP artifact",
+    "startAt": ["docs/platform-registry/mcp-authority-registry-v1.json (authority)", "scripts/mcp-operational-workspaces/reconcile-registry-with-authority.mjs"],
+    "runPreflight": ["npm run mcp:workspaces:reconcile-authority"],
+    "doNot": [
+      "Trust a generated/derived MCP inventory artifact (e.g. mcp-estate-inventory.json) as authority without cross-checking mcp-authority-registry-v1.json",
+      "Build a new reconciliation or drift guard without adversarially self-testing it (inject a known-bad state, confirm it actually fails closed) before trusting it"
+    ],
+    "proveBeforeClaiming": [
+      "npm run mcp:workspaces:reconcile-authority exits with DRIFT_DETECTED when a deliberately stale status is injected, and RECONCILED when the real state matches",
+      "The commit 0b389796e7f2d0fe7b75393a8213135648f72a91 is still local and unmerged on work/mcp-estate-remediation-v1"
+    ]
+  },
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "targetSlice": "BY-REPO/CG-AppBuilder-MCP.json",
+  "promotionClass": "POLICY_GATED",
+  "status": "CANDIDATE",
+  "roiRank": 2
+}
