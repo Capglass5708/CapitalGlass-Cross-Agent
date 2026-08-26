@@ -16,7 +16,7 @@
 
 **WaveRunner registration:** `CG-AppBuilder-MCP/scripts/sdlc-protocol-cursor/waverunner-capability-registry-v1.json` → `INTELLIGENCE_HANDOFF` (`IMPLEMENTED_AND_PROVEN`, `required: false` until operator promotes required gate).
 
-**Implementation status (2026-08-17):**
+**Implementation status (2026-08-25):**
 
 | Step | Status |
 | --- | --- |
@@ -24,7 +24,7 @@
 | 2 Ingest CLI dry-run | **COMPLETE** — `npm run test:intelligence-ingest` |
 | 3 Shared-dev Hub seam | **COMPLETE** — memory-store readback + gated live store (`CROSS_AGENT_INTELLIGENCE_HUB_PROJECTION_APPROVED=1`, `INTELLIGENCE_HUB_LIVE_WRITES=true`) |
 | 4 AppBuilder emit hook | **COMPLETE** — `npm run test:intelligence-handoff-emit` + ownership guard |
-| 5 First-real-mission harness | **COMPLETE (fail-closed)** — `npm run test:intelligence-first-real-mission`; live gate remains `WAITING_FOR_REAL_MISSION` until genuine REAL material mission |
+| 5 First-real-mission harness | **PROVEN LIVE (2026-08-25)** — `scripts/intelligence/prove-first-real-mission-v1.mjs`, evidence from the completed `mcp-estate-remediation-v1` mission (real commit `0b389796e7f2d0fe7b75393a8213135648f72a91`). `FIRST_REAL_MISSION_HUB_PROOF_PASS`, all 10 harness checks true, independently re-verified via a separate SQL query against `intelligence_hub.knowledge_objects`/`.relationships` (11 objects, real `ABOUT`/`OBSERVED_IN`/`PROVEN_BY` relationships, correct `authority_commit`). Getting here required two infra/code fixes, both landed: (a) the `intelligence_hub` Postgres schema was not in the project's PostgREST-exposed schema list (Supabase Data API config, not RLS); (b) `createSupabaseClient()` in `CG-AppBuilder-MCP/scripts/intelligence-hub/lib/supabase-env.mjs` silently re-resolved credentials with its own defaults, discarding a caller's `preferMcpControlPlane` choice and connecting to the wrong Supabase project (the one the harvest pipeline's own `assertControlPlaneTarget()` explicitly forbids) even when the caller's own env resolution was correct. |
 | 6 Verification checklist | **COMPLETE** — `npm run test:intelligence-verification` |
 
 **Downstream intelligence ownership (not an AppBuilder capability):**

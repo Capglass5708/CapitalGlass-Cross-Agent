@@ -124,11 +124,21 @@ async function loadLiveSupabaseClient() {
     return { env: { hasCredentials: false, reason: 'CG_APPBUILDER_MCP_ROOT_NOT_FOUND' }, client: null };
   }
   const mod = await import(envModulePath);
-  const env = mod.resolveSupabaseEnv();
+  // resolveSupabaseEnv() without options defaults to SUPABASE_URL before
+  // MCP_SUPABASE_URL -- under the cg-mcp/dev Doppler config those resolve to
+  // two different projects, and SUPABASE_URL points at the operational
+  // project the harvest control-plane guard explicitly forbids
+  // (assertControlPlaneTarget() in derived-intel/lib/live-db.mjs). The
+  // intelligence_hub schema lives on the MCP control-plane project
+  // (xjivcwcyyimjujbchwdf), so this store must prefer MCP_SUPABASE_URL.
+  const env = mod.resolveSupabaseEnv({ preferMcpControlPlane: true });
   if (!env.hasCredentials) {
     return { env, client: null };
   }
-  const client = await mod.createSupabaseClient();
+  // createSupabaseClient() previously re-resolved the env internally with its
+  // own defaults, silently discarding the preferMcpControlPlane choice above
+  // and reconnecting to the wrong project even though `env` looked correct.
+  const client = await mod.createSupabaseClient({ preferMcpControlPlane: true });
   return { env, client };
 }
 

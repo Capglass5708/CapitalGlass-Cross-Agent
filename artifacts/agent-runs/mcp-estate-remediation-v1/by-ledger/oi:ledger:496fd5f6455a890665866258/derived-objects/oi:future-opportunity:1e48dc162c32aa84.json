@@ -1,0 +1,101 @@
+{
+  "schema": "operational-intelligence-envelope-v1@1.0.0",
+  "identity": {
+    "objectId": "oi:future-opportunity:1e48dc162c32aa84",
+    "kind": "FUTURE_OPPORTUNITY",
+    "schema": "operational-intelligence-envelope-v1@1.0.0",
+    "contentHash": "sha256:eeb1408a422e3c58fbfd9a27c5833451e5df3f7ced610c813bc3a1253c1c3dd9",
+    "derivationVersion": "operational-intelligence-v1@1.0.0"
+  },
+  "authority": {
+    "authorityClass": "DERIVED_INTELLIGENCE",
+    "progressionAuthority": false,
+    "rawTelemetryDuplicated": false
+  },
+  "temporal": {
+    "observedAt": "2026-08-26T01:25:11.979Z",
+    "validFrom": "2026-08-25T22:27:48.000Z",
+    "validThrough": null,
+    "measurementWindowStart": "2026-08-25T20:58:19.000Z",
+    "measurementWindowEnd": "2026-08-25T22:27:48.000Z",
+    "lastRevalidatedAt": "2026-08-26T01:25:11.979Z"
+  },
+  "lifecycle": {
+    "lifecycleStage": "ACTIVE",
+    "supersedes": [],
+    "supersededBy": null,
+    "invalidated": false,
+    "invalidationReason": null
+  },
+  "evidenceState": {
+    "supportingEvidenceRefs": [
+      {
+        "ref": "artifacts/agent-runs/mcp-estate-remediation-v1/session-closeout-v3.2.json",
+        "refKind": "CLOSEOUT",
+        "contentHash": "sha256:92f12e409521c7572da0e701cac70b8e18340df7a75bfa4cfe1cdecabe043c73"
+      }
+    ],
+    "contradictingEvidenceRefs": [],
+    "rejectedEvidenceRefs": []
+  },
+  "confidence": {
+    "score": 0.85,
+    "basis": [
+      "closeout-hash-verified",
+      "semantic-classifier-v1"
+    ],
+    "calculationVersion": "confidence-v1@1.0.0"
+  },
+  "derivation": {
+    "derivedFrom": [
+      {
+        "objectId": "oi:ledger:496fd5f6455a890665866258",
+        "relationship": "PROJECTED_FROM",
+        "contribution": "mission-ledger-projection",
+        "evidenceWeight": 1
+      }
+    ]
+  },
+  "futureUse": {
+    "retrievalEligible": true,
+    "startupContextEligible": true,
+    "synthesisEligible": true,
+    "agentExplorationEligible": false,
+    "opportunityMiningEligible": true
+  },
+  "measurement": {
+    "measurementQuality": "DIRECT_MEASURED",
+    "metrics": {
+      "sourcePath": "nextAction",
+      "conceptKey": "future_opportunity:70534a178d4f2aacba20"
+    }
+  },
+  "evidenceReality": "REAL",
+  "extensions": {
+    "semantic": {
+      "conceptKey": "future_opportunity:70534a178d4f2aacba20",
+      "sourcePath": "nextAction",
+      "claim": "Rotate the GitHub MCP Doppler-sourced credential (WC-MCP-003) and determine/provision the correct Cloudflare Workers/D1/KV/R2 API token scope (WC-MCP-004); both require operator decision.",
+      "verificationState": "verified",
+      "classificationVersion": "semantic-classifier-v1@1.0.0"
+    },
+    "correlationMarkers": {
+      "schema": "correlation-markers-v1@1.0.0",
+      "registryVersion": "correlation-registries-v1@1.0.0",
+      "correlationId": "corr:fc46b2bb27acea4a6c3d34605fccd96f",
+      "markerSetHash": "sha256:a2888f4ed101d5c04a86b0d3f90010bc73d1181ce4f36ef448203e831a53d964",
+      "markerCount": 3,
+      "markers": [
+        "repo:CG-AppBuilder-MCP",
+        "work-package:mcp-estate-remediation-v1",
+        "mission:mcp-estate-remediation-v1"
+      ]
+    },
+    "provenance": {
+      "sourceRepo": "CG-AppBuilder-MCP",
+      "sourceSha": "0b389796e7f2d0fe7b75393a8213135648f72a91",
+      "indexedSha": "1bde43b30318be1291c4746223860b809fe72b52",
+      "capturedAt": "2026-08-26T01:25:11.979Z"
+    }
+  }
+}
