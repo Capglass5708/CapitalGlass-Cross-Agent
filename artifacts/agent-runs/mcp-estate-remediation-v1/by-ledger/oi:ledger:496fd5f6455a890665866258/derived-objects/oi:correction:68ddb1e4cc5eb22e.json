@@ -1,0 +1,101 @@
+{
+  "schema": "operational-intelligence-envelope-v1@1.0.0",
+  "identity": {
+    "objectId": "oi:correction:68ddb1e4cc5eb22e",
+    "kind": "CORRECTION",
+    "schema": "operational-intelligence-envelope-v1@1.0.0",
+    "contentHash": "sha256:94102b5edf5d5723d6510819d795584860aa68a95729a01e2869cfd6aaefae57",
+    "derivationVersion": "operational-intelligence-v1@1.0.0"
+  },
+  "authority": {
+    "authorityClass": "DERIVED_INTELLIGENCE",
+    "progressionAuthority": false,
+    "rawTelemetryDuplicated": false
+  },
+  "temporal": {
+    "observedAt": "2026-08-26T01:25:11.979Z",
+    "validFrom": "2026-08-25T22:27:48.000Z",
+    "validThrough": null,
+    "measurementWindowStart": "2026-08-25T20:58:19.000Z",
+    "measurementWindowEnd": "2026-08-25T22:27:48.000Z",
+    "lastRevalidatedAt": "2026-08-26T01:25:11.979Z"
+  },
+  "lifecycle": {
+    "lifecycleStage": "ACTIVE",
+    "supersedes": [],
+    "supersededBy": null,
+    "invalidated": false,
+    "invalidationReason": null
+  },
+  "evidenceState": {
+    "supportingEvidenceRefs": [
+      {
+        "ref": "artifacts/agent-runs/mcp-estate-remediation-v1/session-closeout-v3.2.json",
+        "refKind": "CLOSEOUT",
+        "contentHash": "sha256:92f12e409521c7572da0e701cac70b8e18340df7a75bfa4cfe1cdecabe043c73"
+      }
+    ],
+    "contradictingEvidenceRefs": [],
+    "rejectedEvidenceRefs": []
+  },
+  "confidence": {
+    "score": 0.85,
+    "basis": [
+      "closeout-hash-verified",
+      "semantic-classifier-v1"
+    ],
+    "calculationVersion": "confidence-v1@1.0.0"
+  },
+  "derivation": {
+    "derivedFrom": [
+      {
+        "objectId": "oi:ledger:496fd5f6455a890665866258",
+        "relationship": "PROJECTED_FROM",
+        "contribution": "mission-ledger-projection",
+        "evidenceWeight": 1
+      }
+    ]
+  },
+  "futureUse": {
+    "retrievalEligible": true,
+    "startupContextEligible": true,
+    "synthesisEligible": true,
+    "agentExplorationEligible": false,
+    "opportunityMiningEligible": true
+  },
+  "measurement": {
+    "measurementQuality": "DIRECT_MEASURED",
+    "metrics": {
+      "sourcePath": "correction",
+      "conceptKey": "correction:7750d70aaeda93e1078b"
+    }
+  },
+  "evidenceReality": "REAL",
+  "extensions": {
+    "semantic": {
+      "conceptKey": "correction:7750d70aaeda93e1078b",
+      "sourcePath": "correction",
+      "claim": "Corrected the false root-cause theory that Claude Code rejects dotted MCP tool names; the real defect was the unsupported cwd field.",
+      "verificationState": "verified",
+      "classificationVersion": "semantic-classifier-v1@1.0.0"
+    },
+    "correlationMarkers": {
+      "schema": "correlation-markers-v1@1.0.0",
+      "registryVersion": "correlation-registries-v1@1.0.0",
+      "correlationId": "corr:fc46b2bb27acea4a6c3d34605fccd96f",
+      "markerSetHash": "sha256:a2888f4ed101d5c04a86b0d3f90010bc73d1181ce4f36ef448203e831a53d964",
+      "markerCount": 3,
+      "markers": [
+        "repo:CG-AppBuilder-MCP",
+        "work-package:mcp-estate-remediation-v1",
+        "mission:mcp-estate-remediation-v1"
+      ]
+    },
+    "provenance": {
+      "sourceRepo": "CG-AppBuilder-MCP",
+      "sourceSha": "0b389796e7f2d0fe7b75393a8213135648f72a91",
+      "indexedSha": "1bde43b30318be1291c4746223860b809fe72b52",
+      "capturedAt": "2026-08-26T01:25:11.979Z"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "workPackageId": "mcp-estate-remediation-v1",
+  "primaryRepo": "CG-AppBuilder-MCP",
+  "task": "MCP estate remediation: diagnose and fix Claude Code MCP registration and runtime defects across five servers, register six previously-broken servers live, and correct a governed MCP registry authority drift for revu-mcp.",
+  "missionClass": "fix",
+  "outcome": "PASS",
+  "hostMode": "wsl",
+  "topology": "single",
+  "confidence": "HIGH",
+  "cheapSingleAgentOk": false,
+  "cheapestRedo": "Re-run the raw MCP protocol probe (initialize -> notifications/initialized -> tools/list -> tools/call) against any newly registered server before trusting `claude mcp list` alone.",
+  "deterministicFirst": true,
+  "mixedMissions": false,
+  "aiCacheHit": false,
+  "chatSummary": "Root cause of the Claude Code MCP registration failures was an unsupported cwd field in stdio server entries, not dotted tool names as first suspected -- disproven by a direct protocol probe after operator correction. Also root-caused a tsx path-alias resolution failure to a process.cwd() dependency, fixed the Human Estimator production-query client path to canonically reference CG-AppBuilder-MCP, fixed a Computer Estimator venv/dependency-version defect, and corrected a governed registry authority drift for revu-mcp with a new adversarially-tested reconciliation guard.",
+  "nextAction": "Rotate the GitHub MCP Doppler-sourced credential (WC-MCP-003) and determine/provision the correct Cloudflare Workers/D1/KV/R2 API token scope (WC-MCP-004); both require operator decision.",
+  "blockers": [
+    "GitHub MCP confirmed credential defect -- Bad credentials, gh CLI works independently, requires operator credential rotation",
+    "Cloudflare MCP confirmed scope/authority defect on the Workers/D1/KV/R2 operational path -- requires operator scope decision"
+  ],
+  "correction": "Corrected the false root-cause theory that Claude Code rejects dotted MCP tool names; the real defect was the unsupported cwd field.",
+  "correlation": {
+    "schema": "correlation-markers-v1@1.0.0",
+    "registryVersion": "correlation-registries-v1@1.0.0",
+    "correlationId": "corr:fc46b2bb27acea4a6c3d34605fccd96f",
+    "missionId": "mission:mcp-estate-remediation-v1",
+    "programId": null,
+    "workPackageId": "wp:mcp-estate-remediation-v1",
+    "markerSetHash": "sha256:a2888f4ed101d5c04a86b0d3f90010bc73d1181ce4f36ef448203e831a53d964",
+    "markerCount": 3,
+    "markerBudget": {
+      "max": 48
+    },
+    "markers": [
+      {
+        "type": "repo",
+        "id": "CG-AppBuilder-MCP",
+        "source": "AUTO"
+      },
+      {
+        "type": "work-package",
+        "id": "mcp-estate-remediation-v1",
+        "source": "AUTO"
+      },
+      {
+        "type": "mission",
+        "id": "mcp-estate-remediation-v1",
+        "source": "AUTO"
+      }
+    ],
+    "artifacts": [],
+    "relatedObjects": []
+  }
+}
