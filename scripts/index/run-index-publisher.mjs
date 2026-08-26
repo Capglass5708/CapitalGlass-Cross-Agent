@@ -163,6 +163,7 @@ async function main() {
     process.exit(1);
   }
 
+  let zAiCache;
   try {
     run(
       `CROSS_AGENT_LEDGER_INGEST_APPROVED=1 doppler run --project cg-mcp --config dev -- npm run cross-agent-ledger:ingest -- --apply --repo=${REPO_ROOT}`,
@@ -172,6 +173,9 @@ async function main() {
       `INTELLIGENCE_HUB_ROOT=${HUB_ROOT} CG_APPBUILDER_MCP_ROOT=${APP_BUILDER_ROOT} CAPITALGLASS_CROSS_AGENT_ROOT=${REPO_ROOT} npm run agent-research-library:publish-active-work-ledger -- --repo=${REPO_ROOT} --json`,
       DATA_EXTRACTION_ROOT,
     );
+    // Publish Z: hot cache BEFORE the freshness gate runs, so the gate's
+    // hotCache layer checks the just-published bundle, not the prior one.
+    zAiCache = await publishZAiCache(pinnedSha);
     run('npm run index:freshness-gate', REPO_ROOT, {
       CG_APPBUILDER_MCP_ROOT: APP_BUILDER_ROOT,
       INTELLIGENCE_HUB_ROOT: HUB_ROOT,
@@ -184,7 +188,7 @@ async function main() {
       pinnedSha,
       contentHash,
       verdict: 'PUBLICATION_HOLD',
-      layers: { intelligenceHub: { mounted: true, path: hubIndexRoot } },
+      layers: { intelligenceHub: { mounted: true, path: hubIndexRoot }, zAiCache: zAiCache ?? null },
       freshnessGate: null,
       durationMs: Date.now() - started,
       issues: [String(err.message ?? err)],
@@ -196,8 +200,6 @@ async function main() {
   const freshness = readJsonSafe(
     path.join(REPO_ROOT, 'artifacts/agent-runs/cross-agent-index-freshness-gate-v1/latest.json'),
   );
-
-  const zAiCache = await publishZAiCache(pinnedSha);
 
   const receipt = {
     schemaVersion: PUBLICATION_RECEIPT_SCHEMA,
