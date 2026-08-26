@@ -5,7 +5,7 @@
 import { execSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { resolveGitHead } from "./lib/git-head.mjs";
 import { resolveAppBuilderRoot } from "./lib/resolve-repo-roots.mjs";
 
@@ -44,11 +44,50 @@ function readHubSha() {
   return { available: true, sourceCommitSha: latest.sourceCommitSha, path: latestPath };
 }
 
-function main() {
+/**
+ * Honest hot-cache (Z: intelligence-hub-index bundle) freshness layer.
+ * FRESH = bundle present and aligned with git HEAD.
+ * STALE = bundle present but sourceCommitSha != git HEAD.
+ * NOT_CHECKED = bundle does not exist yet (never published).
+ * UNAVAILABLE = Z: mount/authority unreachable, or the resolver itself errored.
+ */
+async function readHotCacheLayer(gitHead) {
+  try {
+    const libDir = path.join(APP_BUILDER_ROOT, "scripts/intelligence-hub/index-freshness/lib");
+    const zMasterLib = path.join(APP_BUILDER_ROOT, "scripts/ai-cache-z-master/lib/ai-cache-z-paths.mjs");
+    const { resolveZAiCacheAuthorityState } = await import(pathToFileURL(zMasterLib).href);
+    const { resolveZIndexPaths } = await import(pathToFileURL(path.join(libDir, "paths.mjs")).href);
+
+    const authority = resolveZAiCacheAuthorityState(process.env);
+    if (!authority.ok) {
+      return { verdict: "UNAVAILABLE", reason: authority.reason ?? "Z_AUTHORITY_UNREACHABLE" };
+    }
+    const zPaths = resolveZIndexPaths(process.env, authority.zAiCacheRoot);
+    if (!fs.existsSync(zPaths.bundlePath)) {
+      return {
+        verdict: "NOT_CHECKED",
+        reason: "hot-cache index bundle has never been published for this repo",
+        bundlePath: zPaths.bundlePath,
+      };
+    }
+    const bundle = readJson(zPaths.bundlePath);
+    return {
+      verdict: bundle.sourceCommitSha === gitHead ? "FRESH" : "STALE",
+      sourceCommitSha: bundle.sourceCommitSha ?? null,
+      bundlePath: zPaths.bundlePath,
+      generatedAt: bundle.generatedAt ?? null,
+    };
+  } catch (err) {
+    return { verdict: "UNAVAILABLE", reason: String(err.message ?? err) };
+  }
+}
+
+async function main() {
   const gitHead = resolveGitHead(REPO_ROOT);
   const hub = readHubSha();
   const drift = probeSupabase();
   const supabaseSha = drift?.drift?.supabase?.sourceCommitSha ?? null;
+  const hotCache = await readHotCacheLayer(gitHead);
 
   const issues = [];
   if (!hub.available) issues.push(`L: LATEST missing: ${hub.path}`);
@@ -61,6 +100,9 @@ function main() {
   }
   if (drift.gitHead && drift.gitHead !== gitHead) {
     issues.push(`drift-probe gitHead ${drift.gitHead} !== local git ${gitHead}`);
+  }
+  if (hotCache.verdict === "STALE") {
+    issues.push(`hot cache (Z: intelligence-hub-index) sourceCommitSha ${hotCache.sourceCommitSha} !== git ${gitHead}`);
   }
 
   const receipt = {
@@ -81,6 +123,7 @@ function main() {
         inSync: hub.sourceCommitSha === gitHead,
         path: hub.path,
       },
+      hotCache,
     },
     issues,
   };
@@ -101,4 +144,7 @@ function main() {
   console.log(`  receipt: ${outPath}`);
 }
 
-main();
+main().catch((err) => {
+  console.error(`index:freshness-gate FAIL — ${err.message ?? err}`);
+  process.exit(1);
+});

@@ -7,7 +7,7 @@ import { createHash } from 'node:crypto';
 import { execSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { resolveGitHead } from './lib/git-head.mjs';
 import { resolveAppBuilderRoot, resolveDataExtractionRoot } from './lib/resolve-repo-roots.mjs';
 
@@ -89,7 +89,33 @@ function writeReceipt(receipt) {
   return runtimePath;
 }
 
-function main() {
+async function publishZAiCache(expectedSha) {
+  try {
+    const libDir = path.join(APP_BUILDER_ROOT, 'scripts/intelligence-hub/index-freshness/lib');
+    const { buildGitLedgerAnchor } = await import(
+      pathToFileURL(path.join(libDir, 'git-ledger-anchor.mjs')).href
+    );
+    const { publishAiCacheIndexBundle } = await import(
+      pathToFileURL(path.join(libDir, 'ai-cache-index-publisher.mjs')).href
+    );
+    const gitAnchor = buildGitLedgerAnchor({ crossAgentRoot: REPO_ROOT });
+    const result = publishAiCacheIndexBundle({ gitAnchor });
+    if (!result.ok) {
+      return { status: 'UNAVAILABLE', reason: result.message ?? result.code ?? 'Z_AI_CACHE_PUBLISH_FAILED' };
+    }
+    return {
+      status: result.sourceCommitSha === expectedSha ? 'CURRENT' : 'STALE',
+      zRoot: result.zRoot,
+      bundlePath: result.bundlePath,
+      sourceCommitSha: result.sourceCommitSha,
+      contentHash: result.contentHash,
+    };
+  } catch (err) {
+    return { status: 'UNAVAILABLE', reason: String(err.message ?? err) };
+  }
+}
+
+async function main() {
   const started = Date.now();
   const pinnedSha = process.env.GITHUB_SHA?.trim() || resolveGitHead(REPO_ROOT);
   const runId = process.env.GITHUB_RUN_ID ?? `local-${Date.now()}`;
@@ -137,6 +163,7 @@ function main() {
     process.exit(1);
   }
 
+  let zAiCache;
   try {
     run(
       `CROSS_AGENT_LEDGER_INGEST_APPROVED=1 doppler run --project cg-mcp --config dev -- npm run cross-agent-ledger:ingest -- --apply --repo=${REPO_ROOT}`,
@@ -146,6 +173,9 @@ function main() {
       `INTELLIGENCE_HUB_ROOT=${HUB_ROOT} CG_APPBUILDER_MCP_ROOT=${APP_BUILDER_ROOT} CAPITALGLASS_CROSS_AGENT_ROOT=${REPO_ROOT} npm run agent-research-library:publish-active-work-ledger -- --repo=${REPO_ROOT} --json`,
       DATA_EXTRACTION_ROOT,
     );
+    // Publish Z: hot cache BEFORE the freshness gate runs, so the gate's
+    // hotCache layer checks the just-published bundle, not the prior one.
+    zAiCache = await publishZAiCache(pinnedSha);
     run('npm run index:freshness-gate', REPO_ROOT, {
       CG_APPBUILDER_MCP_ROOT: APP_BUILDER_ROOT,
       INTELLIGENCE_HUB_ROOT: HUB_ROOT,
@@ -158,7 +188,7 @@ function main() {
       pinnedSha,
       contentHash,
       verdict: 'PUBLICATION_HOLD',
-      layers: { intelligenceHub: { mounted: true, path: hubIndexRoot } },
+      layers: { intelligenceHub: { mounted: true, path: hubIndexRoot }, zAiCache: zAiCache ?? null },
       freshnessGate: null,
       durationMs: Date.now() - started,
       issues: [String(err.message ?? err)],
@@ -182,6 +212,7 @@ function main() {
     layers: {
       git: { sourceCommitSha: pinnedSha },
       intelligenceHub: { mounted: true, path: hubIndexRoot },
+      zAiCache,
     },
     freshnessGate: freshness,
     durationMs: Date.now() - started,
@@ -192,4 +223,7 @@ function main() {
   console.log(`  receipt: ${receiptPath}`);
 }
 
-main();
+main().catch((err) => {
+  console.error(`index publisher FAIL — ${err.message ?? err}`);
+  process.exit(1);
+});
