@@ -17,7 +17,6 @@ export function resolveSiblingRepo(crossAgentRoot, dirName) {
   const candidates = [
     ...(envRoot && !isLegacyDrvfsRoot(envRoot) ? [envRoot] : []),
     path.join(crossAgentRoot, "..", dirName),
-    path.join("/home/wesle/repos", dirName),
     path.join("/home/wesley/repos", dirName),
     ...(envRoot && isLegacyDrvfsRoot(envRoot) ? [envRoot] : []),
   ].filter(Boolean);

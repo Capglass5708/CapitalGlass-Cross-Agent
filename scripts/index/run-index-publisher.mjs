@@ -7,7 +7,7 @@ import { createHash } from 'node:crypto';
 import { execSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { resolveGitHead } from './lib/git-head.mjs';
 import { resolveAppBuilderRoot, resolveDataExtractionRoot } from './lib/resolve-repo-roots.mjs';
 
@@ -89,7 +89,33 @@ function writeReceipt(receipt) {
   return runtimePath;
 }
 
-function main() {
+async function publishZAiCache(expectedSha) {
+  try {
+    const libDir = path.join(APP_BUILDER_ROOT, 'scripts/intelligence-hub/index-freshness/lib');
+    const { buildGitLedgerAnchor } = await import(
+      pathToFileURL(path.join(libDir, 'git-ledger-anchor.mjs')).href
+    );
+    const { publishAiCacheIndexBundle } = await import(
+      pathToFileURL(path.join(libDir, 'ai-cache-index-publisher.mjs')).href
+    );
+    const gitAnchor = buildGitLedgerAnchor({ crossAgentRoot: REPO_ROOT });
+    const result = publishAiCacheIndexBundle({ gitAnchor });
+    if (!result.ok) {
+      return { status: 'UNAVAILABLE', reason: result.message ?? result.code ?? 'Z_AI_CACHE_PUBLISH_FAILED' };
+    }
+    return {
+      status: result.sourceCommitSha === expectedSha ? 'CURRENT' : 'STALE',
+      zRoot: result.zRoot,
+      bundlePath: result.bundlePath,
+      sourceCommitSha: result.sourceCommitSha,
+      contentHash: result.contentHash,
+    };
+  } catch (err) {
+    return { status: 'UNAVAILABLE', reason: String(err.message ?? err) };
+  }
+}
+
+async function main() {
   const started = Date.now();
   const pinnedSha = process.env.GITHUB_SHA?.trim() || resolveGitHead(REPO_ROOT);
   const runId = process.env.GITHUB_RUN_ID ?? `local-${Date.now()}`;
@@ -171,6 +197,8 @@ function main() {
     path.join(REPO_ROOT, 'artifacts/agent-runs/cross-agent-index-freshness-gate-v1/latest.json'),
   );
 
+  const zAiCache = await publishZAiCache(pinnedSha);
+
   const receipt = {
     schemaVersion: PUBLICATION_RECEIPT_SCHEMA,
     generatedAt: new Date().toISOString(),
@@ -182,6 +210,7 @@ function main() {
     layers: {
       git: { sourceCommitSha: pinnedSha },
       intelligenceHub: { mounted: true, path: hubIndexRoot },
+      zAiCache,
     },
     freshnessGate: freshness,
     durationMs: Date.now() - started,
@@ -192,4 +221,7 @@ function main() {
   console.log(`  receipt: ${receiptPath}`);
 }
 
-main();
+main().catch((err) => {
+  console.error(`index publisher FAIL — ${err.message ?? err}`);
+  process.exit(1);
+});

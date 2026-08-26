@@ -1,23 +1,31 @@
 {
   "schemaVersion": "cross-agent-index-freshness-gate-v1@1.0.0",
-  "generatedAt": "2026-08-04T06:27:37.194Z",
-  "verdict": "PASS",
-  "gitHead": "8496611aa6864f264070752c10cdc07410b5d6f7",
+  "generatedAt": "2026-08-26T00:18:19.833Z",
+  "verdict": "FAIL",
+  "gitHead": "0b0ab64fd37a0491d627e040e5cf5878befba29a",
   "layers": {
     "git": {
-      "sourceCommitSha": "8496611aa6864f264070752c10cdc07410b5d6f7"
+      "sourceCommitSha": "0b0ab64fd37a0491d627e040e5cf5878befba29a"
     },
     "supabase": {
-      "sourceCommitSha": "8496611aa6864f264070752c10cdc07410b5d6f7",
+      "sourceCommitSha": "0b0ab64fd37a0491d627e040e5cf5878befba29a",
       "verdict": "IN_SYNC",
       "inSync": true
     },
     "intelligenceHub": {
-      "sourceCommitSha": "8496611aa6864f264070752c10cdc07410b5d6f7",
+      "sourceCommitSha": "0b0ab64fd37a0491d627e040e5cf5878befba29a",
       "available": true,
       "inSync": true,
       "path": "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/active-work-ledger/LATEST.json"
+    },
+    "hotCache": {
+      "verdict": "STALE",
+      "sourceCommitSha": "16761ee9aa0513f5000c960b4b645890c5121495",
+      "bundlePath": "/mnt/z/Capital-Glass-Intelligence-Hub/AI-Cache-Authority/objects/intelligence-hub-index/current-index-bundle.v1.json",
+      "generatedAt": "2026-08-14T20:18:37.244Z"
     }
   },
-  "issues": []
+  "issues": [
+    "hot cache (Z: intelligence-hub-index) sourceCommitSha 16761ee9aa0513f5000c960b4b645890c5121495 !== git 0b0ab64fd37a0491d627e040e5cf5878befba29a"
+  ]
 }
