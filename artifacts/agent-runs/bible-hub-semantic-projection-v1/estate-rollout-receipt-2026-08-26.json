@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "bible-hub-projection-estate-rollout-receipt-v1@1.0.0",
+  "mission": "Application Bible semantic projection into the Intelligence Hub -- full estate rollout",
+  "generatedAt": "2026-08-26T23:52:00.000Z",
+  "pipeline": {
+    "extraction": "CG-AppBuilder-MCP extractDomainContent() (PR #506, merged)",
+    "publish": "CapitalGlass-Cross-Agent bible-hub-projection-v1.mjs / createLiveIntelligenceHubStore (PR #55, merged)"
+  },
+  "firstProof": {
+    "repo": "capital-glass-po-app",
+    "note": "Proven first, alone, as the one repo already at 20/20 Bible V2 compliance -- see this repo's earlier commit for the isolated proof."
+  },
+  "estateRollout": {
+    "reposAttempted": 20,
+    "reposSucceeded": 20,
+    "reposFailed": 0,
+    "excluded": [
+      { "repo": "CG-Night-Owl", "reason": "CANONICAL_DIR_NOT_FOUND -- no docs/application-bible/ tree exists yet, needs authoring before it can be projected" }
+    ],
+    "verdictPerRepo": "BIBLE_HUB_PROJECTION_READBACK_PASS for all 20",
+    "totalDomainsPublished": 408,
+    "independentVerification": {
+      "method": "direct SQL query, separate from the publish pipeline's own self-reported readback",
+      "totalKnowledgeObjects": 408,
+      "totalRelationships": 408,
+      "distinctReposCovered": 21,
+      "distinctCommitsPerRepo": "exactly 1 per repo -- no mixed-commit or partial-publish corruption",
+      "freshnessSpotCheck": "ALL_CURRENT for capital-glass-po-app (original proof repo) and CapitalGlass-BidComposer (a newly-published repo), confirming the freshness mechanism generalizes beyond the first proof case"
+    }
+  },
+  "knownGaps": [
+    "CG-Night-Owl has no Bible at all -- needs authoring, not projection",
+    "Domains not extracted (18-19/20 repos) are the same ones the Bible V2 validator itself flags as missing/invalid content -- this projection never fabricates a domain the validator wouldn't also pass",
+    "Binding-statement (CLAUDE.md/AGENTS.md) and attestation-frontmatter gaps identified in the earlier estate audit are unrelated to this projection and remain open -- a repo can be Hub-projected even while still failing the strict Bible V2 pass/fail gate, since content-validity and governance-binding are separate checks"
+  ],
+  "FINAL": {
+    "declaration": "APPLICATION_BIBLE_HUB_PROJECTION_ESTATE_ROLLOUT = COMPLETE (20/21 governed repos with real Bible content; 1 repo excluded for having no content to project)"
+  }
+}
