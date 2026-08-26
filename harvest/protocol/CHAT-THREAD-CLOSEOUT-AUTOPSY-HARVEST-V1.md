@@ -1,4 +1,4 @@
-# Chat Thread Closeout Autopsy, Harvest, and Intelligence Hub Seed Protocol v1.2
+# Chat Thread Closeout Autopsy, Harvest, and Intelligence Hub Seed Protocol v1.3
 
 **Work package pattern:** `chat-thread-closeout-autopsy-harvest-v1` or `harvest-YYYY-MM-DD-<slug>-v1`  
 **Authority repo:** CapitalGlass-Cross-Agent  
@@ -28,6 +28,8 @@ This is **not** a chat summary. It is a **thread autopsy and intelligence extrac
 **v1.1 compounding rule:** Harvest deliberately generates high-quality evidence for Gold Mine classification — problems, resolutions, adoption, performance, friction, observability gaps, and product opportunities — not narrative alone.
 
 **v1.2 Git durability rule:** After validation + tests PASS, Cursor agents MUST commit and push harvest-owned Cross-Agent artifacts (scoped) before claiming HARVEST_COMPLETE. Hub/index publication remains operator-owned.
+
+**v1.3 AppBuilder-mission harvest rule:** This protocol's source is not limited to a literal chat thread — a completed AppBuilder mission closeout (evidence carrying a `sourceRepo`/`authoritySourceCommit` pointing at an execution repo, e.g. CG-AppBuilder-MCP, rather than a conversation) is an equally valid, equally required harvest source. Proven live: `harvest-2026-08-25-mcp-estate-remediation-v1` closed out AppBuilder mission `mcp-estate-remediation-v1` this way — `FULL_CLOSEOUT_WAVERUNNER = OPERATIONALLY_PROVEN`, L: durable + Z: cache + independently-verified Supabase snapshot. That same mission's OP-00A/Intelligence-Hub ingest (`intelligence:ingest`) is a **separate, parallel** closeout action — it proves the mission's evidence is durably captured and agent-retrievable, but it never sets `goldMineSignalClass` on anything, so it must never be assumed to have already covered Gold Mine eligibility. A harvest closeout of an AppBuilder mission MUST separately evaluate each packet against the Gold Mine evidence contract (§ below) — see `contracts/intelligence/appbuilder-mission-harvest-gold-mine-guidance-v1.md` for a reference signal-type mapping from common AppBuilder-mission evidence.
 
 Cross-Agent records coordination, receipts, ledger updates, and seed manifests only. Implementation code belongs in owner repos. **Data-Extraction** owns Gold Mine discovery, candidate digests, and §10 remeasurement; harvest supplies semantic evidence upstream.
 
