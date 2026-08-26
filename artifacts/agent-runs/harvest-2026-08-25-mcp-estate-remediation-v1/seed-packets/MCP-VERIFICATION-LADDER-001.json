@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "MCP-VERIFICATION-LADDER-001",
+  "kind": "runbook",
+  "title": "Reusable MCP verification ladder -- initialize alone is not sufficient proof",
+  "summary": "An 8-level ladder for verifying an MCP server is genuinely operational: CONFIGURATION_PRESENT, PROCESS_STARTS, INITIALIZE_SUCCEEDS, TOOLS_CAPABILITY_DECLARED, TOOLS_LIST_SUCCEEDS, EXPECTED_TOOL_CATALOG_APPEARS, REAL_READ_ONLY_TOOL_CALL_SUCCEEDS, CLAUDE_CLIENT_EXPOSES_AND_INVOKES. Proven across five MCP servers in this mission. Declaring a server 'operational' at Level 1 or 2 alone is a known failure pattern.",
+  "retrievalQuestions": [
+    "What is the correct sequence of steps to verify a Claude Code MCP server is actually operational?",
+    "Is it sufficient to prove an MCP server is working if its initialize call succeeds?",
+    "What are the 8 levels of the MCP verification ladder used in the estate remediation mission?"
+  ],
+  "evidenceRefs": [
+    "mcp-verification-methodology-v1",
+    "mcp-estate-final-status-v1"
+  ],
+  "sourcePacketIds": ["mcp-verification-methodology-v1"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "A future agent needs to confirm whether a Claude Code MCP server (governed or estate) is genuinely operational, not just configured",
+    "startAt": ["mcp-verification-methodology-v1 packet content.ladder"],
+    "runPreflight": ["claude mcp get <server-name>", "a raw initialize -> notifications/initialized -> tools/list -> tools/call probe"],
+    "doNot": [
+      "Declare an MCP server 'operational' based on Level 1 (process starts) or Level 2 (initialize succeeds) alone",
+      "Skip the real read-only tools/call step (Level 6) when claiming a server is verified live"
+    ],
+    "proveBeforeClaiming": [
+      "A real tools/call against a safe, read-only tool returned a successful, expected result",
+      "The tool catalog returned by tools/list matches what the server's own source code declares"
+    ]
+  },
+  "ownerRepo": "estate-wide",
+  "targetSlice": "BY-KIND/mcp-operational-facts.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE",
+  "roiRank": 1
+}

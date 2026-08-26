@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-25-mcp-estate-remediation-v1",
+  "packetId": "wsl-validator-host-path-defect-v1",
+  "state": "WINDOWS_PATH_DEPENDENT_NOT_VALID_ON_WSL",
+  "packetVerdict": "OPEN",
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "ownerIndexingStatus": "not-required",
+  "nextAction": "See improvementCandidates WC-MCP-001 -- bounded follow-up, not fixed in this mission",
+  "evidenceRefs": [
+    "Direct run + git diff showing the 0/20 result touched 6 artifact files, all reverted via git checkout before the remediation commit"
+  ],
+  "doNotAdvance": [
+    "Use any WSL-observed 0/20 (or any other) result from validate-mcp-workspaces.mjs as evidence of real Synology workspace-scaffold state",
+    "Silently mark this validator as fixed -- it is not; only recorded and NOT executed to completion in this mission"
+  ],
+  "advancementGate": "investigate-synology-wsl-reachability-then-fix",
+  "contentHash": "8da833bc538daadb5590874285fbd708009e12bb6ffc27b2a7b8293e387d2e2b"
+}

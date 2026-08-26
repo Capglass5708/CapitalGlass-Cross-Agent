@@ -1,7 +1,7 @@
 {
   "schemaVersion": "cross-agent-command-index-v1@1.1.0",
-  "updatedAt": "2026-08-04T00:25:00.000Z",
-  "sourceCommitSha": "38b69383f214e6d180c565626d2df1e817f29d3f",
+  "updatedAt": "2026-08-25T22:38:41.550Z",
+  "sourceCommitSha": "0b13f42d1f04f3e74b80495cae5fa06aa01c55a3",
   "authority": "docs/runbooks/harvest-record-validate-sync.md",
   "commands": [
     {
@@ -24,7 +24,9 @@
       "mutationClass": "mutation-approval-gated",
       "note": "Mirrors harvest protocol artifacts to Z: authority tree",
       "workflowId": "wf-harvest-z-mirror-sync-v1",
-      "env": ["CG_HARVEST_Z_MIRROR_ROOT"]
+      "env": [
+        "CG_HARVEST_Z_MIRROR_ROOT"
+      ]
     },
     {
       "id": "test-harvest-prompt-extraction",
@@ -247,7 +249,9 @@
       "provesGate": "GIT_ESTATE_COMPILE_PASS",
       "gateId": "git-estate-compile",
       "dryRunEquivalent": null,
-      "env": ["CROSS_AGENT_ROOT"]
+      "env": [
+        "CROSS_AGENT_ROOT"
+      ]
     },
     {
       "id": "git-estate-publish-hot-cache",
@@ -260,7 +264,10 @@
       "provesGate": "GIT_ESTATE_HOT_CACHE_PUBLISH_PASS",
       "gateId": "git-estate-hot-cache-publish",
       "dryRunEquivalent": null,
-      "env": ["CG_AUTHORITY_CACHE_ROOT", "CROSS_AGENT_ROOT"]
+      "env": [
+        "CG_AUTHORITY_CACHE_ROOT",
+        "CROSS_AGENT_ROOT"
+      ]
     },
     {
       "id": "git-estate-bulk-pull-dry-run",
@@ -283,7 +290,10 @@
       "mutationClass": "read-only",
       "provesGate": "LOCAL_L_HASH_ALIGNMENT_PASS",
       "gateId": "l-hash-alignment",
-      "env": ["CG_AUTHORITY_CACHE_ROOT", "CG_INTELLIGENCE_HUB_ROOT"]
+      "env": [
+        "CG_AUTHORITY_CACHE_ROOT",
+        "CG_INTELLIGENCE_HUB_ROOT"
+      ]
     },
     {
       "id": "hot-cache-publish-l-by-kind-dry-run",
@@ -312,7 +322,9 @@
       "phase": "hot-cache-platform",
       "mutationClass": "mutation-approval-gated",
       "provesGate": "ACTIVE_LEDGER_HOT_CACHE_PUBLISH_PASS",
-      "env": ["CG_AUTHORITY_CACHE_ROOT"]
+      "env": [
+        "CG_AUTHORITY_CACHE_ROOT"
+      ]
     },
     {
       "id": "closeout-index-compile-index",
@@ -331,7 +343,9 @@
       "phase": "hot-cache-platform",
       "mutationClass": "mutation-approval-gated",
       "provesGate": "CLOSEOUT_INDEX_HOT_CACHE_PUBLISH_PASS",
-      "env": ["CG_AUTHORITY_CACHE_ROOT"]
+      "env": [
+        "CG_AUTHORITY_CACHE_ROOT"
+      ]
     },
     {
       "id": "intelligence-hub-publish-hot-routing-index",
@@ -342,7 +356,10 @@
       "mutationClass": "mutation-approval-gated",
       "note": "Publishes hot routing index consumed by stripped scout hooks",
       "provesGate": "HOT_ROUTING_INDEX_PUBLISH_PASS",
-      "env": ["CG_AUTHORITY_CACHE_ROOT", "CROSS_AGENT_ROOT"],
+      "env": [
+        "CG_AUTHORITY_CACHE_ROOT",
+        "CROSS_AGENT_ROOT"
+      ],
       "workflowId": "wf-hot-cache-local-publication-v1"
     },
     {
@@ -354,7 +371,9 @@
       "mutationClass": "read-only",
       "note": "Compile one hot-cache dataset; substitute datasetId per registry entry",
       "workflowId": "wf-hot-cache-dataset-compile-v1",
-      "env": ["CROSS_AGENT_ROOT"]
+      "env": [
+        "CROSS_AGENT_ROOT"
+      ]
     },
     {
       "id": "command-estate-compile-index",
@@ -365,7 +384,9 @@
       "mutationClass": "read-only",
       "provesGate": "COMMAND_ESTATE_COMPILE_PASS",
       "workflowId": "wf-hot-cache-dataset-compile-v1",
-      "env": ["CROSS_AGENT_ROOT"]
+      "env": [
+        "CROSS_AGENT_ROOT"
+      ]
     },
     {
       "id": "command-estate-publish-hot-cache",
@@ -376,7 +397,10 @@
       "mutationClass": "mutation-approval-gated",
       "provesGate": "COMMAND_ESTATE_HOT_CACHE_PUBLISH_PASS",
       "workflowId": "wf-hot-cache-local-publication-v1",
-      "env": ["CG_AUTHORITY_CACHE_ROOT", "CROSS_AGENT_ROOT"]
+      "env": [
+        "CG_AUTHORITY_CACHE_ROOT",
+        "CROSS_AGENT_ROOT"
+      ]
     },
     {
       "id": "workflow-estate-compile-index",
@@ -387,7 +411,9 @@
       "mutationClass": "read-only",
       "provesGate": "WORKFLOW_ESTATE_COMPILE_PASS",
       "workflowId": "wf-hot-cache-dataset-compile-v1",
-      "env": ["CROSS_AGENT_ROOT"]
+      "env": [
+        "CROSS_AGENT_ROOT"
+      ]
     },
     {
       "id": "prompt-catalog-compile-index",
@@ -398,7 +424,9 @@
       "mutationClass": "read-only",
       "provesGate": "PROMPT_CATALOG_COMPILE_PASS",
       "workflowId": "wf-prompt-catalog-projection-v1",
-      "env": ["CROSS_AGENT_ROOT"]
+      "env": [
+        "CROSS_AGENT_ROOT"
+      ]
     },
     {
       "id": "prompt-catalog-publish-hot-cache",
@@ -409,7 +437,10 @@
       "mutationClass": "mutation-approval-gated",
       "provesGate": "PROMPT_CATALOG_HOT_CACHE_PUBLISH_PASS",
       "workflowId": "wf-prompt-catalog-projection-v1",
-      "env": ["CG_AUTHORITY_CACHE_ROOT", "CROSS_AGENT_ROOT"]
+      "env": [
+        "CG_AUTHORITY_CACHE_ROOT",
+        "CROSS_AGENT_ROOT"
+      ]
     },
     {
       "id": "promptops-project-harvest-prompts",
@@ -421,7 +452,9 @@
       "note": "Projects operator-approved harvest prompts to Supabase; skips candidate_only",
       "provesGate": "PROMPT_PROJECTION_PASS",
       "workflowId": "wf-prompt-catalog-projection-v1",
-      "env": ["CROSS_AGENT_ROOT"]
+      "env": [
+        "CROSS_AGENT_ROOT"
+      ]
     },
     {
       "id": "auto-v3-session-closeout",

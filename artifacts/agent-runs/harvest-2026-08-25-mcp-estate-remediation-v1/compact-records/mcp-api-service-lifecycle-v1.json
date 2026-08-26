@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-25-mcp-estate-remediation-v1",
+  "packetId": "mcp-api-service-lifecycle-v1",
+  "state": "PROVEN",
+  "packetVerdict": "PASS",
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "ownerIndexingStatus": "not-required",
+  "nextAction": "Consider whether services/mcp-api should run as a persistent PM2/systemd-managed service on RYZEN9DESK rather than an ad hoc foreground/background npm run dev, to survive Claude Code restarts",
+  "evidenceRefs": [
+    "mcp__cg-app-mcp__list_projects and get_mcp_readiness_attestation both failed identically with 'MCP API is unreachable at http://127.0.0.1:3001' before the service was started",
+    "npm run mcp:doctor confirmed read-only, informative only -- does not itself start the service"
+  ],
+  "doNotAdvance": [
+    "Record the transient PID (351959) or port-binding details as durable intelligence -- only the dependency relationship and diagnostic method are durable"
+  ],
+  "advancementGate": "none -- diagnostic, not a code fix",
+  "contentHash": "f2b1757991c0bbb8e970f2664d56afc48ab1a0c3229e3ed64deecf62afd059c5"
+}

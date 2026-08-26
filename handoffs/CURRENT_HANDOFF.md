@@ -1,7 +1,7 @@
 # Current Handoff
 
-**Last reconciled:** 2026-08-03
-**Ledger commit anchor:** `8e4fd40` (verify with `git rev-parse HEAD` in this repo)
+**Last reconciled:** 2026-08-25
+**Ledger commit anchor:** `0b13f42` (verify with `git rev-parse HEAD` in this repo)
 
 Read these files first, in order:
 

@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "MCP-ESTATE-FINAL-STATUS-001",
+  "kind": "architecture",
+  "title": "Final live status of the six directly-diagnosed MCP servers as of the 2026-08-25 remediation mission",
+  "summary": "Human Estimator, Bid Composer Command, Bid Composer App, Computer Estimator, and Visual Asset Engine all verified LIVE via real tool calls. GitHub is CONFIRMED_CREDENTIAL_DEFECT (never record the credential value). Cloudflare is CONFIRMED_SCOPE_OR_AUTHORITY_DEFECT on the Workers/D1/KV/R2 path. Platform Intelligence is remote_oauth, no bearer workaround. Product Catalog is correctly PLANNED_SPOKE. Revu was corrected to PLANNED_SPOKE/PLANNED.",
+  "retrievalQuestions": [
+    "What is the final live/broken status of every MCP server touched in the 2026-08-25 estate remediation mission?",
+    "Which Capital Glass MCP servers are confirmed live versus confirmed defective after the estate remediation mission?",
+    "Is the GitHub MCP server's failure a credential defect or a scope defect?"
+  ],
+  "evidenceRefs": [
+    "mcp-estate-final-status-v1",
+    "github-mcp-credential-defect-v1",
+    "cloudflare-mcp-scope-defect-v1",
+    "platform-intelligence-mcp-oauth-v1",
+    "product-catalog-planned-spoke-v1",
+    "revu-mcp-authority-correction-v1"
+  ],
+  "sourcePacketIds": [
+    "mcp-estate-final-status-v1",
+    "github-mcp-credential-defect-v1",
+    "cloudflare-mcp-scope-defect-v1"
+  ],
+  "futureAgentInstructions": {
+    "whenThisAppears": "A future agent needs the current, corrected status of the Capital Glass MCP estate without re-running the full diagnostic sweep",
+    "startAt": ["docs/platform-registry/mcp-authority-registry-v1.json", "~/.claude.json mcpServers"],
+    "runPreflight": ["claude mcp list"],
+    "doNot": [
+      "Record or print the GitHub MCP's actual credential value while investigating its failure",
+      "Attempt to fix the Cloudflare Workers/D1/KV/R2 scope defect by minting a new token without first determining the correct required scope"
+    ],
+    "proveBeforeClaiming": [
+      "Each LIVE server has a real, successful tools/call result recorded in this mission's evidence, not just a successful initialize",
+      "GitHub and Cloudflare failures are re-tested for currency before being reported as still broken, since credentials can be rotated independently by the operator"
+    ]
+  },
+  "ownerRepo": "estate-wide",
+  "targetSlice": "BY-KIND/mcp-operational-facts.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE",
+  "roiRank": 1
+}

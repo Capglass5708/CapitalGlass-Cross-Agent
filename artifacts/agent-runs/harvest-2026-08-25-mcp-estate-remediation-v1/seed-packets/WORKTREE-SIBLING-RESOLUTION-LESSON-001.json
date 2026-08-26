@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "WORKTREE-SIBLING-RESOLUTION-LESSON-001",
+  "kind": "lesson",
+  "title": "Isolated worktrees can produce false path-resolution failures when code assumes canonical sibling repo layout",
+  "summary": "Testing the Human Estimator knowledge-client fix from an isolated worktree (CapitalGlass-BidComposer-worktrees/human-estimator-knowledge-client-fix-v1) produced ERR_MODULE_NOT_FOUND because the worktree's parent directory differs from the canonical /home/wesley/repos layout the sibling-path arithmetic assumes. This is a testing artifact, not a fix defect -- re-verified correct via an explicit CG_APPBUILDER_MCP_ROOT env override, which produced clean results.",
+  "retrievalQuestions": [
+    "Why does a canonical sibling-repo path resolution fail when tested from an isolated git worktree?",
+    "Is an ERR_MODULE_NOT_FOUND error from an isolated worktree evidence of a real bug in the fix?",
+    "How do you correctly test a sibling-path-dependent fix from a worktree whose parent directory differs from the canonical repo layout?"
+  ],
+  "evidenceRefs": [
+    "worktree-sibling-resolution-lesson-v1",
+    "CG_APPBUILDER_MCP_ROOT",
+    "human-estimator-knowledge-client-ownership-v1"
+  ],
+  "sourcePacketIds": ["worktree-sibling-resolution-lesson-v1"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "A future agent tests sibling-repo-dependent code from an isolated <repo>-worktrees/<work-package-id> directory and sees a path-resolution failure",
+    "startAt": ["the env-override mechanism the code already exposes (e.g. CG_APPBUILDER_MCP_ROOT)"],
+    "runPreflight": ["compare the worktree's parent directory against the canonical /home/wesley/repos layout"],
+    "doNot": [
+      "Conclude a sibling-path-dependent fix is broken based solely on a failure observed from an isolated worktree whose parent directory differs from the canonical repo layout",
+      "Modify the fix's resolution logic to special-case worktree layouts instead of using the env-override it already supports"
+    ],
+    "proveBeforeClaiming": [
+      "The same fix, re-tested with the documented env-override (e.g. CG_APPBUILDER_MCP_ROOT) pointed at the real canonical sibling repo, produces a clean successful result"
+    ]
+  },
+  "ownerRepo": "estate-wide",
+  "targetSlice": "BY-KIND/operational-rules.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE",
+  "roiRank": 1
+}

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-25-mcp-estate-remediation-v1",
+  "packetId": "platform-intelligence-mcp-oauth-v1",
+  "state": "REGISTERED_AWAITING_AUTHORIZATION",
+  "packetVerdict": "OPEN",
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Operator completes the normal interactive claude mcp / /mcp OAuth authorization flow -- no other supported path",
+  "evidenceRefs": [],
+  "doNotAdvance": [
+    "Attempt to construct a static-bearer-token connection to platform-mcp.capitalglasstxapps.com/mcp -- the deployed service uses full OAuth2 + PKCE + dynamic client registration (docs/platform-registry/chatgpt-platform-intelligence-connector-v1.json: transport: 'remote_oauth'), confirmed via direct source read of the connector spec and the verify-platform-intelligence-remote-tools.mjs proof script",
+    "Treat this session's inability to authorize it as evidence the endpoint is broken -- it is a non-interactive-session limitation, not a service defect"
+  ],
+  "advancementGate": "operator-oauth-authorization",
+  "contentHash": "d6eadf52ba86f1374b1b869fb8f26ae23135b1eff4609831b68accbfd21252ad"
+}

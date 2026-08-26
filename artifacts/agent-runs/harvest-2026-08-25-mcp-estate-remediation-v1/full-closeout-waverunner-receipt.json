@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "full-closeout-waverunner-receipt-v1@1.0.0",
+  "MISSION": "FULL_CLOSEOUT_INTELLIGENCE_HARVEST",
+  "SOURCE_MISSION": "MCP_ESTATE_REMEDIATION_V1",
+  "HOST": "CG-RYZEN9DESK-01",
+  "harvestId": "harvest-2026-08-25-mcp-estate-remediation-v1",
+  "generatedAt": "2026-08-25T23:10:00.000Z",
+  "EVIDENCE": {
+    "sourceRepo": "CG-AppBuilder-MCP",
+    "authoritySourceCommit": "0b389796e7f2d0fe7b75393a8213135648f72a91",
+    "sourceBranch": "work/mcp-estate-remediation-v1",
+    "evidenceUniverse": ["conversation/agent evidence", "repository evidence (3 remediation commits)", "runtime evidence (live MCP tool calls)", "control-plane evidence (registry/authority docs)"],
+    "threadEventsInventoried": 10,
+    "threadEventsCovered": 10,
+    "threadCoverageRatio": 1
+  },
+  "INTELLIGENCE": {
+    "packetsClassified": 19,
+    "seedPacketsCompiled": 11,
+    "decisionsRecorded": 4,
+    "userCorrectionsRecorded": 4,
+    "durableClaimsRecorded": 11,
+    "durableClaimsVerifiedRatio": 1,
+    "mistakesRecorded": 2,
+    "contradictionsRecorded": 0,
+    "blindRetrievalFixtures": 11,
+    "blindRetrievalPassRatio": 1,
+    "knowledgeVerdict": "KNOWLEDGE_QUALITY_PASS",
+    "publicationEligibility": "DURABLE_PUBLICATION_READY",
+    "supersededClaims": [
+      "Claude Code rejects/is-incompatible-with dotted MCP tool names (disproven -- real cause was unsupported cwd field)",
+      "get_mcp_readiness_attestation Token lookup failed is a Supabase-level defect (superseded -- local mcp-api service was simply not running)",
+      "revu-mcp lifecycleState=ACTIVE/REGISTERED (corrected to PLANNED_SPOKE/PLANNED in two independent locations)",
+      "mcp-registry-validation.json can be trusted as current without cross-check (superseded by new adversarially-tested reconciliation guard)"
+    ]
+  },
+  "PUBLICATION": {
+    "payloadHash": "sha256:ec8572b24bfeb3735197d2eef37b4e6865eb11464537f44881b366121d85d8e6",
+    "manifestHash": "sha256:74a2461ff260295ed7c3a2498777ccd15f61c1f015f4c807818fe88bb4ad3a22",
+    "lDurable": {
+      "status": "PASS",
+      "publicationMethod": "DIRECTORY_RENAME",
+      "durablePath": "02-catalog/harvests/harvest-2026-08-25-mcp-estate-remediation-v1/ec8572b24bfeb3735197d2eef37b4e6865eb11464537f44881b366121d85d8e6",
+      "verifiedBy": "direct filesystem read of /mnt/l/Capital-Glass-Intelligence-Hub payload (19 compact-records + manifest + evidence + thread-inventory all present)"
+    },
+    "zCache": {
+      "status": "PASS",
+      "verdict": "Z_CACHE_PUBLISH_PASS"
+    },
+    "supabaseProjection": {
+      "status": "PASS",
+      "table": "coordination.cross_agent_harvest_snapshots",
+      "project": "xjivcwcyyimjujbchwdf (capital-glass-mcp, control-plane target)",
+      "rowCount": 1,
+      "duplicateRows": 0,
+      "verifiedBy": "independent SQL SELECT via Supabase MCP -- 1 row, snapshot_status=CURRENT, hashes/commit/path all match",
+      "note": "The phase-b-v2 CLI's default Supabase path (harvest:publish-intelligence-full --pipeline=phase-b-v2, no extra flags) silently writes to a local JSON file-store simulation (createFileProjectionStore), NOT real Postgres -- confirmed by tracing invokeAppBuilderProjector's default memoryStoreFile behavior. No CLI flag exists to opt into the real Supabase path; it required a direct one-off script calling runProjectHarvestSnapshot with store left null. Recorded as an open defect for follow-up (WC-MCP-005)."
+    },
+    "hotAiCache": {
+      "status": "NOT_APPLICABLE",
+      "reason": "harvestTier=T1 (missionClass does not include 'autopsy'); aiCacheEligible is hard-derived as [T2,T3].includes(tier) -- T1 harvests are not eligible for hot-cache promotion by design, not a failure",
+      "hotRoutingCliWiring": "phase-b-v2's CLI entrypoint never passes a hotRoutingPublisher to runPhaseBPublication at all -- SKIPPED_NOT_CONFIGURED is structurally guaranteed regardless of tier"
+    },
+    "gitPointerPhaseC": {
+      "status": "NOT_COMPLETED",
+      "reason": "materialize-publication-pointer.mjs's PHASE_C_POINTER_BUDGET check requires the run directory to contain only {manifest, pointer, HARVEST_SUMMARY.md} before it will commit -- this harvest's run directory (evidence, seeds, receipts, graph-extraction) was deliberately kept intact rather than pruned/archived to a side branch via the unrelated harvest:closeout-git tool (whose includedFiles logic does not even cover this run directory). Not pursued this pass to avoid an under-understood git branch/archive operation in a shared repo.",
+      "phaseBVerdict": "PHASE_B_COMPLETE (does not require gitPointer -- confirmed required:false in the real receipt)"
+    },
+    "harvestArtifactsGitCommit": {
+      "status": "STAGED_NOT_COMMITTED",
+      "branch": "harvest/mcp-estate-remediation-v1-2026-08-25 (new, off origin/main 0b13f42d, in the isolated worktree)",
+      "reason": "git commit failed: 'Author identity unknown' -- CapitalGlass-Cross-Agent has no local user.name/user.email configured, and global git config is also empty. Per hard operating constraint (never modify git config), this was not worked around. All 19 packets + evidence + derived-index updates are git-added and ready; the operator needs to set identity (locally in this repo or globally) before this can be committed, or commit it directly."
+    }
+  },
+  "RETRIEVAL_VERIFY": {
+    "method": "fresh, blind Agent-tool subagent given zero mission context, path, or harvest ID",
+    "question": "Does Claude Code support a cwd field for stdio MCP server registrations, and if not, what is the correct way to set a server's working directory?",
+    "result": "PASS -- agent correctly answered via a raw grep across /mnt/l/Capital-Glass-Intelligence-Hub, landed on compact-records/claude-code-cwd-unsupported-v1.json, quoted the correct nextAction and evidenceRefs, and cross-referenced EVT-405 in thread-event-inventory.json for the exact fix syntax",
+    "retrievalPlaneServed": "direct filesystem search over the L: Intelligence Hub mount",
+    "secondaryFinding": "the fresh agent independently tried intelligence_search_hub and office_search_knowledge (cg-app-mcp / office-admin-mcp) and got zero/irrelevant results from both -- corroborating this session's own finding that cg-app-mcp's intelligence_get_hub_status reports hubAccessible:false (L:\\Capital-Glass-Intelligence-Hub, a Windows-style path, unreachable from that MCP's binding). Recorded as an open, pre-existing host-binding defect (WC-MCP-006), not caused by this mission."
+  },
+  "SECURITY": {
+    "secretsPublished": 0,
+    "note": "No credential values, tokens, JWTs, or service-role keys were written to any packet, seed, receipt, or Supabase row -- GitHub/Cloudflare failures recorded as 'confirmed credential/scope defect', never with the credential itself."
+  },
+  "OPEN_WORK": {
+    "tier2Deferred": [
+      "WC-MCP-003: GitHub MCP credential rotation/repair -- requires operator decision",
+      "WC-MCP-004: Cloudflare Workers/D1/KV/R2 scope design and token provisioning -- requires operator decision",
+      "OAuth authorization still pending for platform-intelligence-mcp, supabase, supabase-mcp-control, cloudflare-bindings/builds/observability/platform (this session could not run the OAuth flow)"
+    ],
+    "followUps": [
+      "WC-MCP-001: make validate-mcp-workspaces.mjs / SYNOLOGY_OPS_ROOT host/path-authority aware for WSL2 (not executed, per original mission scope)",
+      "WC-MCP-002: require upper-bounded major-version constraints for Python MCP dependencies estate-wide (Computer Estimator was the one instance fixed)",
+      "WC-MCP-005 (new): phase-b-v2's Supabase projection silently defaults to a local file-store simulation with no CLI opt-in to the real path -- fix the CLI or its defaults",
+      "WC-MCP-006 (new, pre-existing): cg-app-mcp's intelligence_search_hub / intelligence_get_hub_status reports hubAccessible:false due to a Windows-style L:\\ path binding unreachable from this MCP server's runtime -- same class of host-binding gap as office-admin-mcp's stale binding",
+      "Complete Phase C git-pointer materialization once a documented prune/archive path for the run directory exists",
+      "Commit the staged harvest-artifacts branch (harvest/mcp-estate-remediation-v1-2026-08-25) once CapitalGlass-Cross-Agent has a configured git identity",
+      "Merge the 3 tracked remediation commits (0b389796, 049c439, 80a1167) via PR when convenient -- not a blocker, per standing instruction"
+    ]
+  },
+  "GRAPH": {
+    "graphExtractionNodes": 25,
+    "graphExtractionEdges": 31,
+    "graphDividend": {
+      "newKnowledgeObjectsCreated": 19,
+      "seedUnitsCreated": 11,
+      "correctionsSupersessionsRecorded": 4,
+      "contradictionsFoundAndResolved": 0,
+      "staleIntelligenceInvalidated": 1,
+      "staleIntelligenceInvalidatedDetail": "WSL validator 0/20 result explicitly marked invalid evidence (SYNOLOGY_OPS_ROOT host-path defect), not real estate state",
+      "reusableOperationalRulesCreated": 3,
+      "reusableOperationalRulesDetail": ["MCP verification ladder (8 levels)", "worktree sibling-resolution testing lesson", "mcp-api service-lifecycle dependency rule"]
+    }
+  },
+  "FINAL": {
+    "FULL_CLOSEOUT": "PASS",
+    "INTELLIGENCE_HUB_PUBLICATION": "PASS",
+    "COMPOUNDING_CAPTURE": "PASS",
+    "NEXT_AGENT_RETRIEVAL": "PASS",
+    "notes": "PASS is qualified, not unconditional: L: durable publication, real (independently-verified) Supabase projection, and blind fresh-agent retrieval are all genuinely proven. Two narrow items remain explicitly open rather than silently skipped: Phase C git-pointer commit (blocked on a run-directory prune gate not pursued) and the harvest-artifacts git commit itself (blocked on missing git identity config in CapitalGlass-Cross-Agent, which this session will not set per its own hard constraint). Hot-AI-cache is correctly NOT_APPLICABLE for this harvest's tier, not a failure.",
+    "declaration": "FULL_CLOSEOUT_WAVERUNNER = OPERATIONALLY_PROVEN"
+  }
+}

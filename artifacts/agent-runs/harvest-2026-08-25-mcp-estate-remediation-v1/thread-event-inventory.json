@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "thread-event-inventory-v1@1.0.0",
+  "harvestId": "harvest-2026-08-25-mcp-estate-remediation-v1",
+  "generatedAt": "2026-08-25T00:00:00.000Z",
+  "sourceCommitSha": "0b389796e7f2d0fe7b75393a8213135648f72a91",
+  "events": [
+    {
+      "id": "EVT-401",
+      "turn": "~1",
+      "actor": "user",
+      "summary": "LETS START LOOKING AT THE INTEL HUB RELATIONSHIP WITH AI CACHING AND THE PREFLIGHTS AND CLOSE OUT SPOKES -- authorized full MCP estate audit and remediation, elevated mode OFF",
+      "evidenceRefs": ["scripts/mcp-operational-workspaces/discover-mcp-estate.mjs"]
+    },
+    {
+      "id": "EVT-402",
+      "turn": "~2",
+      "actor": "agent",
+      "summary": "Floated dotted MCP tool names (e.g. estimator.get_project_knowledge) as the root cause of newly-registered server failures, based on surface correlation with working underscore-named servers",
+      "evidenceRefs": ["mcp-dotted-tool-names-superseded-v1"]
+    },
+    {
+      "id": "EVT-403",
+      "turn": "~3",
+      "actor": "user",
+      "summary": "Explicit correction: do not rename dotted tool names, the MCP spec allows '.' in tool names, only consider renaming after proving Claude rejects a specific valid dotted name in an otherwise valid tools/list -- test the raw protocol sequence instead",
+      "evidenceRefs": ["mcp-dotted-tool-names-superseded-v1"]
+    },
+    {
+      "id": "EVT-404",
+      "turn": "~4",
+      "actor": "agent",
+      "summary": "Built mcp-protocol-probe.mjs sending initialize -> notifications/initialized -> tools/list over stdio; proved the working baseline server (bid-composer-app-mcp) also uses dotted names, fully disproving the naming theory; traced the real root cause to Claude Code's stdio MCP registration having no supported cwd field",
+      "evidenceRefs": ["claude-code-cwd-unsupported-v1", "mcp-dotted-tool-names-superseded-v1"]
+    },
+    {
+      "id": "EVT-405",
+      "turn": "~5",
+      "actor": "agent",
+      "summary": "Fixed the resulting tsx path-alias (@/lib/...) resolution failures for bid-composer-command-mcp and human-estimator-mcp using a bash -c \"cd <repo> && exec node --import ./node_modules/tsx/dist/loader.mjs ...\" wrapper in ~/.claude.json, including the ./ prefix fix for --import",
+      "evidenceRefs": ["tsx-path-alias-resolution-failure-v1"]
+    },
+    {
+      "id": "EVT-406",
+      "turn": "~6",
+      "actor": "user",
+      "summary": "Chase that one bug now but keep it tightly bounded -- estimator_get_knowledge_service_health is the only known remaining application-level defect; trace estimating-knowledge-client.mjs, fix via canonical ownership, do not copy the module into Human Estimator",
+      "evidenceRefs": ["human-estimator-knowledge-client-ownership-v1"]
+    },
+    {
+      "id": "EVT-407",
+      "turn": "~7",
+      "actor": "agent",
+      "summary": "Traced and fixed Human Estimator's production-query client path resolution to canonically reference CG-AppBuilder-MCP's scripts/lib/estimating-knowledge/production-query.mjs instead of a nonexistent Human-Estimator-local file; committed 80a11671b5595ab579467e3630e8ad938932f107 on fix/human-estimator-knowledge-client-path-v1",
+      "evidenceRefs": ["human-estimator-knowledge-client-ownership-v1", "80a11671b5595ab579467e3630e8ad938932f107"]
+    },
+    {
+      "id": "EVT-408",
+      "turn": "~8",
+      "actor": "agent",
+      "summary": "Fixed Computer Estimator's stacked venv-python-launcher plus unbounded mcp>=1.2 dependency defect, committed 049c439228acc2e8a1fd6de1e044e2b5bd874a2a; corrected revu-mcp registry drift in two independent locations and built an adversarially-tested reconciliation guard, committed 0b389796e7f2d0fe7b75393a8213135648f72a91",
+      "evidenceRefs": ["computer-estimator-dependency-governance-v1", "mcp-registry-authority-reconciliation-v1", "049c439228acc2e8a1fd6de1e044e2b5bd874a2a", "0b389796e7f2d0fe7b75393a8213135648f72a91"]
+    },
+    {
+      "id": "EVT-409",
+      "turn": "~9",
+      "actor": "agent",
+      "summary": "Resolved get_mcp_readiness_attestation's 'Token lookup failed' error -- root cause was the local mcp-api backend service simply not running, not a Supabase/schema defect; separately discovered validate-mcp-workspaces.mjs's WSL 0/20 result is invalid evidence caused by a hardcoded Windows-style SYNOLOGY_OPS_ROOT path",
+      "evidenceRefs": ["mcp-readiness-attestation-resolved-v1", "wsl-validator-host-path-defect-v1"]
+    },
+    {
+      "id": "EVT-410",
+      "turn": "~10",
+      "actor": "user",
+      "summary": "Issued the FULL_CLOSEOUT_WAVERUNNER intelligence-harvest mission brief: harvest, classify, deduplicate, and publish all useful intelligence from the completed MCP estate remediation mission through the canonical Intelligence Hub pipeline",
+      "evidenceRefs": ["harvest-manifest-v1.json"]
+    }
+  ]
+}

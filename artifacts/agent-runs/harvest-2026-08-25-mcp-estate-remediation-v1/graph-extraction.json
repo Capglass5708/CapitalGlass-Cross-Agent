@@ -1,0 +1,1280 @@
+{
+  "packetKind": "graph-extraction",
+  "schemaVersion": "cg-master-graph-extraction-v1",
+  "extractionId": "extraction:harvest-2026-08-25-mcp-estate-remediation-v1",
+  "harvestId": "harvest-2026-08-25-mcp-estate-remediation-v1",
+  "workPackageId": "harvest-2026-08-25-mcp-estate-remediation-v1",
+  "producer": {
+    "repositoryId": "repo:capitalglass-cross-agent",
+    "capability": "harvest-graph-extraction",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "id": "harvest:harvest-2026-08-25-mcp-estate-remediation-v1",
+      "nodeType": "Harvest",
+      "displayName": "harvest-2026-08-25-mcp-estate-remediation-v1",
+      "lifecycleState": "lifecycle:canonical",
+      "operationalState": "PASS",
+      "metadata": {
+        "missionClass": "FULL_CLOSEOUT_INTELLIGENCE_HARVEST",
+        "sourceCommitSha": "0b389796e7f2d0fe7b75393a8213135648f72a91",
+        "retrievalResult": "PENDING"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:mcp-verification-methodology-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Reusable MCP verification ladder -- initialize alone is not sufficient proof",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "PROVEN",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "estate-wide",
+        "ownerIndexingStatus": "not-required",
+        "projectFile": "N/A -- operational methodology, not a project deliverable",
+        "advancementGate": "none -- already proven across 5 servers in this mission"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/mcp-verification-methodology-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/mcp-verification-methodology-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:claude-code-cwd-unsupported-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Claude Code stdio MCP registration has no supported cwd field (this version: 2.1.235)",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "PROVEN",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "estate-wide",
+        "ownerIndexingStatus": "not-required",
+        "projectFile": "N/A -- Claude Code client behavior, not a Capital Glass repo",
+        "advancementGate": "none -- directly reproduced and fixed twice in this mission"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/claude-code-cwd-unsupported-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/claude-code-cwd-unsupported-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:tsx-path-alias-resolution-failure-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "tsx TypeScript path-alias resolution (@/lib/...) depends on process.cwd() -- fails silently from the wrong directory",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "PROVEN",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "estate-wide",
+        "ownerIndexingStatus": "not-required",
+        "projectFile": "N/A -- tsx/tooling behavior",
+        "advancementGate": "none -- reproduced and fixed for human-estimator-mcp and bid-composer-command-mcp"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/tsx-path-alias-resolution-failure-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/tsx-path-alias-resolution-failure-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:mcp-dotted-tool-names-superseded-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "SUPERSEDED: 'Claude Code rejects dotted MCP tool names' -- disproven",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "SUPERSEDED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "estate-wide",
+        "ownerIndexingStatus": "not-required",
+        "projectFile": "N/A",
+        "advancementGate": "none -- fully disproven"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/mcp-dotted-tool-names-superseded-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/mcp-dotted-tool-names-superseded-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:mcp-estate-final-status-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Final live status of the six directly-diagnosed MCP servers",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "PROVEN",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "estate-wide",
+        "ownerIndexingStatus": "not-required",
+        "projectFile": "N/A",
+        "advancementGate": "none"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/mcp-estate-final-status-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/mcp-estate-final-status-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:github-mcp-credential-defect-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "GitHub MCP: confirmed credential defect, not a stale-process artifact",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "CONFIRMED_CREDENTIAL_DEFECT",
+      "metadata": {
+        "packetVerdict": "OPEN",
+        "ownerRepo": "cg-shared",
+        "ownerIndexingStatus": "not-required",
+        "projectFile": "N/A",
+        "advancementGate": "operator-credential-rotation"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/github-mcp-credential-defect-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/github-mcp-credential-defect-v1.json"
+        }
+      }
+    },
+    {
+      "id": "entity:blocker-blocker-github-mcp-credential-defect-v1",
+      "nodeType": "Entity",
+      "displayName": "blocker-github-mcp-credential-defect-v1",
+      "metadata": {
+        "entityKind": "harvest-blocker",
+        "blockerOwner": null
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/github-mcp-credential-defect-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/github-mcp-credential-defect-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:cloudflare-mcp-scope-defect-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Cloudflare MCP: docs path healthy, Workers/D1/KV/R2 operational path confirmed scope/authority defect",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "CONFIRMED_SCOPE_OR_AUTHORITY_DEFECT",
+      "metadata": {
+        "packetVerdict": "OPEN",
+        "ownerRepo": "cg-shared",
+        "ownerIndexingStatus": "not-required",
+        "projectFile": "N/A",
+        "advancementGate": "operator-scope-decision"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/cloudflare-mcp-scope-defect-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/cloudflare-mcp-scope-defect-v1.json"
+        }
+      }
+    },
+    {
+      "id": "entity:blocker-blocker-cloudflare-mcp-scope-defect-v1",
+      "nodeType": "Entity",
+      "displayName": "blocker-cloudflare-mcp-scope-defect-v1",
+      "metadata": {
+        "entityKind": "harvest-blocker",
+        "blockerOwner": null
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/cloudflare-mcp-scope-defect-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/cloudflare-mcp-scope-defect-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:platform-intelligence-mcp-oauth-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Platform Intelligence MCP transport is remote_oauth -- no bearer-token workaround exists",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "REGISTERED_AWAITING_AUTHORIZATION",
+      "metadata": {
+        "packetVerdict": "OPEN",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "docs/platform-registry/mcp-authority-registry-v1.json",
+        "advancementGate": "operator-oauth-authorization"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/platform-intelligence-mcp-oauth-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/platform-intelligence-mcp-oauth-v1.json"
+        }
+      }
+    },
+    {
+      "id": "entity:blocker-blocker-platform-intelligence-mcp-oauth-v1",
+      "nodeType": "Entity",
+      "displayName": "blocker-platform-intelligence-mcp-oauth-v1",
+      "metadata": {
+        "entityKind": "harvest-blocker",
+        "blockerOwner": null
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/platform-intelligence-mcp-oauth-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/platform-intelligence-mcp-oauth-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:product-catalog-planned-spoke-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "product-catalog-app-mcp is correctly PLANNED_SPOKE, not a missing deployment",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "PLANNED_CORRECTLY_ABSENT",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "capital-glass-product-catalog",
+        "ownerIndexingStatus": "not-required",
+        "projectFile": "docs/platform-registry/mcp-authority-registry-v1.json",
+        "advancementGate": "n/a"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/product-catalog-planned-spoke-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/product-catalog-planned-spoke-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:revu-mcp-authority-correction-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Revu MCP corrected reality: Windows/Bluebeam vendor dependency, not a native Linux standalone service",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "CORRECTED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "docs/platform-registry/mcp-authority-registry-v1.json",
+        "advancementGate": "n/a"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/revu-mcp-authority-correction-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/revu-mcp-authority-correction-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:mcp-estate-remediation-commits-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "The three remediation commits -- local, unmerged, separately reviewable",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "LOCAL_COMMIT_NOT_YET_MERGED",
+      "metadata": {
+        "packetVerdict": "OPEN",
+        "ownerRepo": "multiple",
+        "ownerIndexingStatus": "pointer-only",
+        "projectFile": "N/A",
+        "advancementGate": "operator-pr-review-and-merge"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/mcp-estate-remediation-commits-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/mcp-estate-remediation-commits-v1.json"
+        }
+      }
+    },
+    {
+      "id": "entity:blocker-blocker-mcp-estate-remediation-commits-v1",
+      "nodeType": "Entity",
+      "displayName": "blocker-mcp-estate-remediation-commits-v1",
+      "metadata": {
+        "entityKind": "harvest-blocker",
+        "blockerOwner": null
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/mcp-estate-remediation-commits-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/mcp-estate-remediation-commits-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:human-estimator-knowledge-client-ownership-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Human Estimator's production-query implementation canonically lives in CG-AppBuilder-MCP, not a Human Estimator-local file",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "PROVEN",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "scripts/lib/estimating-knowledge/production-query.mjs",
+        "advancementGate": "operator-pr-review-and-merge"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/human-estimator-knowledge-client-ownership-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/human-estimator-knowledge-client-ownership-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:computer-estimator-dependency-governance-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Unbounded MCP SDK dependency version + bare-python launcher, stacked defect",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "PROVEN",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "Computer-Estimator",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "requirements.txt / mcp/run.mjs",
+        "advancementGate": "operator-pr-review-and-merge"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/computer-estimator-dependency-governance-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/computer-estimator-dependency-governance-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:worktree-sibling-resolution-lesson-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Isolated worktrees can produce false path-resolution failures when code assumes canonical sibling repo layout",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "PROVEN",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "estate-wide",
+        "ownerIndexingStatus": "not-required",
+        "projectFile": "N/A",
+        "advancementGate": "none"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/worktree-sibling-resolution-lesson-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/worktree-sibling-resolution-lesson-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:mcp-readiness-attestation-resolved-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "MCP control-plane self-check is NOT broken -- resolved, full correction chain recorded",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "RESOLVED",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "not-required",
+        "projectFile": "N/A",
+        "advancementGate": "n/a"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/mcp-readiness-attestation-resolved-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/mcp-readiness-attestation-resolved-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:mcp-api-service-lifecycle-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "cg-app-mcp's entire tool surface depends on a local mcp-api backend service that does not auto-restart with Claude Code",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "PROVEN",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "not-required",
+        "projectFile": "services/mcp-api",
+        "advancementGate": "none -- diagnostic, not a code fix"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/mcp-api-service-lifecycle-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/mcp-api-service-lifecycle-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:mcp-registry-authority-reconciliation-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "New automated guard: generated MCP inventory must never silently diverge from the governed authority doc again",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "PROVEN",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "indexed",
+        "projectFile": "scripts/mcp-operational-workspaces/reconcile-registry-with-authority.mjs",
+        "advancementGate": "operator-pr-review-and-merge"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/mcp-registry-authority-reconciliation-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/mcp-registry-authority-reconciliation-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:wsl-validator-host-path-defect-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "validate-mcp-workspaces.mjs is Windows-path-dependent -- its WSL 0/20 result is invalid evidence, not real estate state",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "WINDOWS_PATH_DEPENDENT_NOT_VALID_ON_WSL",
+      "metadata": {
+        "packetVerdict": "OPEN",
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "ownerIndexingStatus": "not-required",
+        "projectFile": "scripts/mcp-operational-workspaces/lib/workspace-standard.mjs",
+        "advancementGate": "investigate-synology-wsl-reachability-then-fix"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/wsl-validator-host-path-defect-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/wsl-validator-host-path-defect-v1.json"
+        }
+      }
+    },
+    {
+      "id": "entity:blocker-blocker-wsl-validator-host-path-defect-v1",
+      "nodeType": "Entity",
+      "displayName": "blocker-wsl-validator-host-path-defect-v1",
+      "metadata": {
+        "entityKind": "harvest-blocker",
+        "blockerOwner": null
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/wsl-validator-host-path-defect-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/wsl-validator-host-path-defect-v1.json"
+        }
+      }
+    },
+    {
+      "id": "workpackage:ryzen9desk-host-constraints-v1",
+      "nodeType": "WorkPackage",
+      "displayName": "Host-specific runtime constraints confirmed for CG-RYZEN9DESK-01",
+      "lifecycleState": "lifecycle:proposed",
+      "operationalState": "PROVEN",
+      "metadata": {
+        "packetVerdict": "PASS",
+        "ownerRepo": "estate-wide",
+        "ownerIndexingStatus": "not-required",
+        "projectFile": "N/A",
+        "advancementGate": "n/a"
+      },
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/ryzen9desk-host-constraints-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/ryzen9desk-host-constraints-v1.json"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:harvest-harvest-2026-08-25-mcp-estate-remediation-v1-contains-workpackage-mcp-verification-methodology-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-25-mcp-estate-remediation-v1",
+      "targetId": "workpackage:mcp-verification-methodology-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-25-mcp-estate-remediation-v1-contains-workpackage-claude-code-cwd-unsupported-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-25-mcp-estate-remediation-v1",
+      "targetId": "workpackage:claude-code-cwd-unsupported-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-25-mcp-estate-remediation-v1-contains-workpackage-tsx-path-alias-resolution-failure-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-25-mcp-estate-remediation-v1",
+      "targetId": "workpackage:tsx-path-alias-resolution-failure-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-25-mcp-estate-remediation-v1-contains-workpackage-mcp-dotted-tool-names-superseded-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-25-mcp-estate-remediation-v1",
+      "targetId": "workpackage:mcp-dotted-tool-names-superseded-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-25-mcp-estate-remediation-v1-contains-workpackage-mcp-estate-final-status-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-25-mcp-estate-remediation-v1",
+      "targetId": "workpackage:mcp-estate-final-status-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-25-mcp-estate-remediation-v1-contains-workpackage-github-mcp-credential-defect-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-25-mcp-estate-remediation-v1",
+      "targetId": "workpackage:github-mcp-credential-defect-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-github-mcp-credential-defect-v1-blocked-by-entity-blocker-blocker-github-mcp-credential-defect-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:github-mcp-credential-defect-v1",
+      "targetId": "entity:blocker-blocker-github-mcp-credential-defect-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/github-mcp-credential-defect-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/github-mcp-credential-defect-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-25-mcp-estate-remediation-v1-contains-workpackage-cloudflare-mcp-scope-defect-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-25-mcp-estate-remediation-v1",
+      "targetId": "workpackage:cloudflare-mcp-scope-defect-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-cloudflare-mcp-scope-defect-v1-blocked-by-entity-blocker-blocker-cloudflare-mcp-scope-defect-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:cloudflare-mcp-scope-defect-v1",
+      "targetId": "entity:blocker-blocker-cloudflare-mcp-scope-defect-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/cloudflare-mcp-scope-defect-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/cloudflare-mcp-scope-defect-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-25-mcp-estate-remediation-v1-contains-workpackage-platform-intelligence-mcp-oauth-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-25-mcp-estate-remediation-v1",
+      "targetId": "workpackage:platform-intelligence-mcp-oauth-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-platform-intelligence-mcp-oauth-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:platform-intelligence-mcp-oauth-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/platform-intelligence-mcp-oauth-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/platform-intelligence-mcp-oauth-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-platform-intelligence-mcp-oauth-v1-blocked-by-entity-blocker-blocker-platform-intelligence-mcp-oauth-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:platform-intelligence-mcp-oauth-v1",
+      "targetId": "entity:blocker-blocker-platform-intelligence-mcp-oauth-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/platform-intelligence-mcp-oauth-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/platform-intelligence-mcp-oauth-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-25-mcp-estate-remediation-v1-contains-workpackage-product-catalog-planned-spoke-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-25-mcp-estate-remediation-v1",
+      "targetId": "workpackage:product-catalog-planned-spoke-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-25-mcp-estate-remediation-v1-contains-workpackage-revu-mcp-authority-correction-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-25-mcp-estate-remediation-v1",
+      "targetId": "workpackage:revu-mcp-authority-correction-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-revu-mcp-authority-correction-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:revu-mcp-authority-correction-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/revu-mcp-authority-correction-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/revu-mcp-authority-correction-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-25-mcp-estate-remediation-v1-contains-workpackage-mcp-estate-remediation-commits-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-25-mcp-estate-remediation-v1",
+      "targetId": "workpackage:mcp-estate-remediation-commits-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-mcp-estate-remediation-commits-v1-blocked-by-entity-blocker-blocker-mcp-estate-remediation-commits-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:mcp-estate-remediation-commits-v1",
+      "targetId": "entity:blocker-blocker-mcp-estate-remediation-commits-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/mcp-estate-remediation-commits-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/mcp-estate-remediation-commits-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-25-mcp-estate-remediation-v1-contains-workpackage-human-estimator-knowledge-client-ownership-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-25-mcp-estate-remediation-v1",
+      "targetId": "workpackage:human-estimator-knowledge-client-ownership-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-human-estimator-knowledge-client-ownership-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:human-estimator-knowledge-client-ownership-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/human-estimator-knowledge-client-ownership-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/human-estimator-knowledge-client-ownership-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-25-mcp-estate-remediation-v1-contains-workpackage-computer-estimator-dependency-governance-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-25-mcp-estate-remediation-v1",
+      "targetId": "workpackage:computer-estimator-dependency-governance-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-25-mcp-estate-remediation-v1-contains-workpackage-worktree-sibling-resolution-lesson-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-25-mcp-estate-remediation-v1",
+      "targetId": "workpackage:worktree-sibling-resolution-lesson-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-25-mcp-estate-remediation-v1-contains-workpackage-mcp-readiness-attestation-resolved-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-25-mcp-estate-remediation-v1",
+      "targetId": "workpackage:mcp-readiness-attestation-resolved-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-mcp-readiness-attestation-resolved-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:mcp-readiness-attestation-resolved-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/mcp-readiness-attestation-resolved-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/mcp-readiness-attestation-resolved-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-25-mcp-estate-remediation-v1-contains-workpackage-mcp-api-service-lifecycle-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-25-mcp-estate-remediation-v1",
+      "targetId": "workpackage:mcp-api-service-lifecycle-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-mcp-api-service-lifecycle-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:mcp-api-service-lifecycle-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/mcp-api-service-lifecycle-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/mcp-api-service-lifecycle-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-25-mcp-estate-remediation-v1-contains-workpackage-mcp-registry-authority-reconciliation-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-25-mcp-estate-remediation-v1",
+      "targetId": "workpackage:mcp-registry-authority-reconciliation-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-mcp-registry-authority-reconciliation-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:mcp-registry-authority-reconciliation-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/mcp-registry-authority-reconciliation-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/mcp-registry-authority-reconciliation-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-25-mcp-estate-remediation-v1-contains-workpackage-wsl-validator-host-path-defect-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-25-mcp-estate-remediation-v1",
+      "targetId": "workpackage:wsl-validator-host-path-defect-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:repo-cg-app-builder-mcp-owns-workpackage-wsl-validator-host-path-defect-v1",
+      "edgeType": "OWNS",
+      "sourceId": "repo:cg-app-builder-mcp",
+      "targetId": "workpackage:wsl-validator-host-path-defect-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/wsl-validator-host-path-defect-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/wsl-validator-host-path-defect-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:workpackage-wsl-validator-host-path-defect-v1-blocked-by-entity-blocker-blocker-wsl-validator-host-path-defect-v1",
+      "edgeType": "BLOCKED_BY",
+      "sourceId": "workpackage:wsl-validator-host-path-defect-v1",
+      "targetId": "entity:blocker-blocker-wsl-validator-host-path-defect-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "derived",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/wsl-validator-host-path-defect-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/compact-records/wsl-validator-host-path-defect-v1.json"
+        }
+      }
+    },
+    {
+      "id": "edge:harvest-harvest-2026-08-25-mcp-estate-remediation-v1-contains-workpackage-ryzen9desk-host-constraints-v1",
+      "edgeType": "CONTAINS",
+      "sourceId": "harvest:harvest-2026-08-25-mcp-estate-remediation-v1",
+      "targetId": "workpackage:ryzen9desk-host-constraints-v1",
+      "provenance": {
+        "producerRepositoryId": "repo:capitalglass-cross-agent",
+        "producerCapability": "harvest-graph-extraction",
+        "sourceAuthority": "authority:cross-agent-harvest",
+        "classification": "observed",
+        "verificationState": "verified",
+        "recordedAt": "2026-08-25T22:30:00.000Z",
+        "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json",
+        "sourceAnchorDetail": {
+          "anchorType": "file-path",
+          "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json"
+        }
+      }
+    }
+  ],
+  "warnings": [
+    "unmapped ownerRepo estate-wide for packet mcp-verification-methodology-v1",
+    "unmapped ownerRepo estate-wide for packet claude-code-cwd-unsupported-v1",
+    "unmapped ownerRepo estate-wide for packet tsx-path-alias-resolution-failure-v1",
+    "unmapped ownerRepo estate-wide for packet mcp-dotted-tool-names-superseded-v1",
+    "unmapped ownerRepo estate-wide for packet mcp-estate-final-status-v1",
+    "unmapped ownerRepo cg-shared for packet github-mcp-credential-defect-v1",
+    "unmapped ownerRepo cg-shared for packet cloudflare-mcp-scope-defect-v1",
+    "unmapped ownerRepo capital-glass-product-catalog for packet product-catalog-planned-spoke-v1",
+    "unmapped ownerRepo multiple for packet mcp-estate-remediation-commits-v1",
+    "unmapped ownerRepo Computer-Estimator for packet computer-estimator-dependency-governance-v1",
+    "unmapped ownerRepo estate-wide for packet worktree-sibling-resolution-lesson-v1",
+    "unmapped ownerRepo estate-wide for packet ryzen9desk-host-constraints-v1"
+  ],
+  "provenance": {
+    "producerRepositoryId": "repo:capitalglass-cross-agent",
+    "producerCapability": "harvest-graph-extraction",
+    "sourceAuthority": "authority:cross-agent-harvest",
+    "classification": "observed",
+    "verificationState": "verified",
+    "recordedAt": "2026-08-25T22:30:00.000Z",
+    "evidenceAnchor": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json",
+    "sourceAnchorDetail": {
+      "anchorType": "file-path",
+      "locator": "artifacts/agent-runs/harvest-2026-08-25-mcp-estate-remediation-v1/harvest-manifest-v1.json"
+    }
+  }
+}

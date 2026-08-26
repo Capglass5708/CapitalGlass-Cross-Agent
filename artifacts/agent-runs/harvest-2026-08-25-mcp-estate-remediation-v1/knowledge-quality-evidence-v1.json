@@ -1,0 +1,281 @@
+{
+  "schemaVersion": "harvest-knowledge-quality-evidence-v1@1.0.0",
+  "harvestId": "harvest-2026-08-25-mcp-estate-remediation-v1",
+  "generatedAt": "2026-08-25T00:00:00.000Z",
+  "materialEvents": [
+    {
+      "eventId": "EVT-401",
+      "material": true,
+      "representations": ["decision"],
+      "summary": "Operator authorized a full MCP estate audit and remediation mission, elevated mode OFF, narrowest-scope governed credential use only."
+    },
+    {
+      "eventId": "EVT-402",
+      "material": true,
+      "representations": ["mistake"],
+      "summary": "Agent floated dotted MCP tool names as the root-cause theory for registration failures, based on surface correlation rather than protocol-level proof."
+    },
+    {
+      "eventId": "EVT-403",
+      "material": true,
+      "representations": ["correction"],
+      "summary": "Operator explicitly corrected the dotted-tool-names theory, citing the MCP spec and demanding raw protocol-level proof before any renaming."
+    },
+    {
+      "eventId": "EVT-404",
+      "material": true,
+      "representations": ["evidence", "result"],
+      "summary": "Agent built a raw MCP protocol probe, proved the baseline server already used dotted names successfully, and traced the real root cause to Claude Code's unsupported stdio cwd field."
+    },
+    {
+      "eventId": "EVT-405",
+      "material": true,
+      "representations": ["result", "command"],
+      "summary": "Agent fixed the resulting tsx path-alias resolution failures with a bash -c cd-and-exec wrapper, including the leading ./ fix for --import."
+    },
+    {
+      "eventId": "EVT-406",
+      "material": true,
+      "representations": ["decision"],
+      "summary": "Operator scoped the remaining application-level defect narrowly: fix estimator_get_knowledge_service_health via canonical ownership, do not copy the module locally."
+    },
+    {
+      "eventId": "EVT-407",
+      "material": true,
+      "representations": ["result", "decision"],
+      "summary": "Agent fixed Human Estimator's production-query client path to canonically reference CG-AppBuilder-MCP and committed the fix, unmerged."
+    },
+    {
+      "eventId": "EVT-408",
+      "material": true,
+      "representations": ["result"],
+      "summary": "Agent fixed Computer Estimator's stacked venv/dependency defect and corrected revu-mcp registry drift with a new adversarially-tested reconciliation guard, both committed and unmerged."
+    },
+    {
+      "eventId": "EVT-409",
+      "material": true,
+      "representations": ["correction", "evidence"],
+      "summary": "Agent resolved the readiness-attestation 'Token lookup failed' error (a dead local service, not a Supabase defect) and discovered the WSL validator's host-path defect."
+    },
+    {
+      "eventId": "EVT-410",
+      "material": true,
+      "representations": ["decision"],
+      "summary": "Operator issued the FULL_CLOSEOUT_WAVERUNNER mission brief to harvest and publish this mission's intelligence through the canonical Intelligence Hub pipeline."
+    }
+  ],
+  "decisions": [
+    {
+      "id": "DEC-1",
+      "decision": "Do not rename dotted MCP tool names",
+      "reason": "The MCP specification explicitly allows '.' in tool names, and no protocol-level proof existed that Claude Code rejected a specific valid dotted name",
+      "alternativesRejected": ["Renaming all dotted tool names to underscore-separated names based on unproven correlation"],
+      "consequences": "Preserved correct tool naming across five MCP servers and forced discovery of the real root cause (unsupported cwd field) via direct protocol testing",
+      "authority": "explicit operator instruction (EVT-403)",
+      "evidenceRefs": ["mcp-dotted-tool-names-superseded-v1", "EVT-403", "EVT-404"]
+    },
+    {
+      "id": "DEC-2",
+      "decision": "Register bid-composer-command-mcp and human-estimator-mcp via a bash -c \"cd <repo> && exec node --import ./node_modules/tsx/dist/loader.mjs <script>\" wrapper instead of a cwd field",
+      "reason": "claude mcp add has no --cwd flag and claude mcp get never displays one, confirming the field is silently ignored by Claude Code",
+      "alternativesRejected": ["Continuing to rely on the cwd field", "Rewriting the servers to avoid tsconfig path aliases entirely"],
+      "consequences": "Both servers now boot from the correct working directory and resolve @/lib path aliases correctly",
+      "authority": "direct verification via claude mcp add --help and claude mcp get",
+      "evidenceRefs": ["claude-code-cwd-unsupported-v1", "tsx-path-alias-resolution-failure-v1", "EVT-405"]
+    },
+    {
+      "id": "DEC-3",
+      "decision": "Fix Human Estimator's knowledge-client path using the canonical CG-AppBuilder-MCP ownership model instead of copying the module locally",
+      "reason": "Operator explicitly instructed: fix the import/path using the canonical ownership model, do not copy the module into Human Estimator just to make the tool green",
+      "alternativesRejected": ["Copying production-query.mjs directly into CapitalGlass-BidComposer or CG-Human-Estimator-MCP"],
+      "consequences": "estimator_get_knowledge_service_health and its five sibling tools now resolve to a single canonical source of truth with no divergent duplicate",
+      "authority": "explicit operator instruction (EVT-406)",
+      "evidenceRefs": ["human-estimator-knowledge-client-ownership-v1", "80a11671b5595ab579467e3630e8ad938932f107"]
+    },
+    {
+      "id": "DEC-4",
+      "decision": "Correct revu-mcp's lifecycleState to PLANNED_SPOKE/PLANNED in both the authority doc and discover-mcp-estate.mjs, and add an automated reconciliation guard, rather than building a stub launcher",
+      "reason": "No discoverable MCP launcher exists in CapitalGlassRevu; asserting ACTIVE/REGISTERED misrepresented reality in two independent locations",
+      "alternativesRejected": ["Leaving the authority doc as-is", "Building a stub launcher to make the status appear ACTIVE without a real implementation"],
+      "consequences": "Authority doc and generated inventory now agree, and a new adversarially-tested reconciliation guard prevents future silent re-drift",
+      "authority": "direct repository inspection of CapitalGlassRevu, adversarial self-test of the new guard",
+      "evidenceRefs": ["revu-mcp-authority-correction-v1", "mcp-registry-authority-reconciliation-v1", "0b389796e7f2d0fe7b75393a8213135648f72a91"]
+    }
+  ],
+  "corrections": [
+    {
+      "id": "COR-1",
+      "material": true,
+      "incorrectAgentClaim": "Claude Code MCP registration failures are caused by dotted tool names (e.g. estimator.get_project_knowledge) being invalid or rejected",
+      "operatorCorrection": "Do not rename the dotted tool names. That root-cause theory is almost certainly wrong. The MCP specification explicitly allows '.' in tool names. Only consider renaming after proving Claude rejects a specific valid dotted name in an otherwise valid tools/list -- right now we do not have that proof.",
+      "correctedTruth": "The real root cause was Claude Code's stdio MCP registration having no supported cwd field; dotted tool names were valid all along and already working in the baseline server (bid-composer-app-mcp)",
+      "futureAgentRule": "Never assume a naming-convention theory is the root cause of an MCP failure without protocol-level proof; test the raw initialize/tools-list sequence directly before generalizing from correlation",
+      "affectedRecords": ["mcp-dotted-tool-names-superseded-v1", "claude-code-cwd-unsupported-v1"]
+    },
+    {
+      "id": "COR-2",
+      "material": true,
+      "incorrectAgentClaim": "get_mcp_readiness_attestation's 'Token lookup failed' error is a Supabase query-level defect inside requireAssistantToken.ts",
+      "operatorCorrection": "A genuine Claude Code restart during the mission surfaced that the local mcp-api backend service was not running at all (ps aux / pm2 list empty)",
+      "correctedTruth": "The local mcp-api service (Fastify, port 3001) simply was not running; starting it and running npm run mcp:attest produced a clean, passing attestation with no data/schema defect present",
+      "futureAgentRule": "Before diagnosing an MCP control-plane data or schema defect, verify the backing service process is actually running",
+      "affectedRecords": ["mcp-readiness-attestation-resolved-v1"]
+    },
+    {
+      "id": "COR-3",
+      "material": true,
+      "incorrectAgentClaim": "revu-mcp is ACTIVE/REGISTERED per docs/platform-registry/mcp-authority-registry-v1.json and discover-mcp-estate.mjs",
+      "operatorCorrection": "Direct repository inspection of CapitalGlassRevu found no discoverable MCP launcher matching the BidComposer pattern",
+      "correctedTruth": "revu-mcp should be PLANNED_SPOKE/PLANNED; both the authority doc and the second hardcoded copy in discover-mcp-estate.mjs were corrected to match reality",
+      "futureAgentRule": "Treat the authority doc as correctable, not infallible -- verify a claimed lifecycleState against real launcher files before trusting it",
+      "affectedRecords": ["revu-mcp-authority-correction-v1"]
+    },
+    {
+      "id": "COR-4",
+      "material": true,
+      "incorrectAgentClaim": "The first version of reconcile-registry-with-authority.mjs correctly detects drift by comparing a row.source field across duplicate generated-inventory rows",
+      "operatorCorrection": "Adversarial self-testing (inject a deliberately stale status, expect DRIFT_DETECTED) came back falsely RECONCILED",
+      "correctedTruth": "The generator's buildEntry() never actually preserves a raw source tag on generated rows; the guard was rewritten to compare row.repository instead, which genuinely varies per duplicate row, and re-verified correct in both directions",
+      "futureAgentRule": "Adversarially self-test any new drift/reconciliation guard by injecting a known-bad state before trusting it as a real safety net",
+      "affectedRecords": ["mcp-registry-authority-reconciliation-v1"]
+    }
+  ],
+  "durableClaims": [
+    {
+      "id": "CLAIM-cwd-unsupported",
+      "statement": "Claude Code's stdio MCP server registration has no supported cwd field as of this version (2.1.235)",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["claude-code-cwd-unsupported-v1", "EVT-404"]
+    },
+    {
+      "id": "CLAIM-tsx-alias-cwd-dependent",
+      "statement": "tsx's tsconfig path-alias resolution depends on process.cwd() at launch time, not the script's own file location",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["tsx-path-alias-resolution-failure-v1", "EVT-405"]
+    },
+    {
+      "id": "CLAIM-dotted-names-valid",
+      "statement": "Dotted MCP tool names are valid per the MCP spec and were never the cause of Claude Code registration failures",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["mcp-dotted-tool-names-superseded-v1", "EVT-404"]
+    },
+    {
+      "id": "CLAIM-estate-final-status",
+      "statement": "Human Estimator, Bid Composer Command, Bid Composer App, Computer Estimator, and Visual Asset Engine MCP servers are LIVE with real verified tool calls as of this mission",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["mcp-estate-final-status-v1"]
+    },
+    {
+      "id": "CLAIM-github-credential-defect",
+      "statement": "The GitHub MCP server's failure is a confirmed credential defect (Bad credentials), not a stale-process or configuration artifact -- gh CLI works independently",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["github-mcp-credential-defect-v1"]
+    },
+    {
+      "id": "CLAIM-cloudflare-scope-defect",
+      "statement": "The Cloudflare MCP's docs path is healthy but its Workers/D1/KV/R2 operational path is a confirmed scope or authority defect, distinct from the docs path",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["cloudflare-mcp-scope-defect-v1"]
+    },
+    {
+      "id": "CLAIM-human-estimator-ownership",
+      "statement": "Human Estimator's production-query implementation canonically lives in CG-AppBuilder-MCP's scripts/lib/estimating-knowledge/production-query.mjs, not a Human-Estimator-local file",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["human-estimator-knowledge-client-ownership-v1", "80a11671b5595ab579467e3630e8ad938932f107"]
+    },
+    {
+      "id": "CLAIM-readiness-attestation-resolved",
+      "statement": "get_mcp_readiness_attestation is not broken; its prior failure was a dead local mcp-api service, now resolved",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["mcp-readiness-attestation-resolved-v1", "EVT-409"]
+    },
+    {
+      "id": "CLAIM-wsl-validator-defect",
+      "statement": "validate-mcp-workspaces.mjs's WSL2 0/20 result is invalid evidence caused by a hardcoded Windows-style SYNOLOGY_OPS_ROOT path, not a real estate state finding",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["wsl-validator-host-path-defect-v1", "EVT-409"]
+    },
+    {
+      "id": "CLAIM-registry-reconciliation-guard",
+      "statement": "A new, adversarially-tested reconciliation guard (npm run mcp:workspaces:reconcile-authority) now fails closed if the generated MCP inventory diverges from the governed authority doc",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["mcp-registry-authority-reconciliation-v1", "0b389796e7f2d0fe7b75393a8213135648f72a91"]
+    },
+    {
+      "id": "CLAIM-three-commits-unmerged",
+      "statement": "All three remediation commits (0b389796, 049c439, 80a1167) are local and unmerged; none are deployed to their shared checkouts or production",
+      "confidence": "VERIFIED",
+      "evidenceRefs": ["mcp-estate-remediation-commits-v1", "0b389796e7f2d0fe7b75393a8213135648f72a91", "049c439228acc2e8a1fd6de1e044e2b5bd874a2a", "80a11671b5595ab579467e3630e8ad938932f107"]
+    }
+  ],
+  "mistakes": [
+    {
+      "id": "MIS-1",
+      "attemptedAction": "Concluded that dotted MCP tool names (e.g. estimator.get_project_knowledge) were the root cause of Claude Code registration failures and began forming a rename-based fix plan",
+      "whyItSeemedReasonable": "Several newly-registered servers with dotted names were failing while some legacy servers with underscore names worked, creating an apparent correlation",
+      "actualOutcome": "The operator explicitly corrected the theory, citing the MCP spec's explicit allowance of '.' in tool names and demanding raw protocol proof; a custom probe script proved the working baseline server also used dotted names, fully disproving the theory",
+      "rootCause": "Drew a root-cause conclusion from surface-level correlation across working and failing servers instead of testing the raw MCP protocol handshake directly",
+      "optimalFirstMove": "Build the initialize -> notifications/initialized -> tools/list probe script first, before forming any naming-convention theory",
+      "preventiveControl": "Never present a root-cause theory as a finding without protocol-level or first-principles proof; test the mechanism directly before generalizing from correlation"
+    },
+    {
+      "id": "MIS-2",
+      "attemptedAction": "Root-caused get_mcp_readiness_attestation's 'Token lookup failed' error purely to a Supabase query-level defect in requireAssistantToken.ts, ruling out wrong project/schema/table/column/RLS/client-config individually",
+      "whyItSeemedReasonable": "The error message and code path both pointed toward a Supabase-side query failure, and the code-level trace was internally consistent at every step examined",
+      "actualOutcome": "After a genuine restart, discovered the local mcp-api service was not running at all (ps aux / pm2 list empty) -- the entire code-level trace had been investigating a service that wasn't even executing",
+      "rootCause": "Did not verify the most basic precondition (is the backing process running) before investigating deeper application-code hypotheses",
+      "optimalFirstMove": "Run ps aux / pm2 list for the backing service before tracing application-level error-handling code",
+      "preventiveControl": "Always verify a dependent service's process is actually running before diagnosing its internal request-handling logic"
+    }
+  ],
+  "blindRetrieval": [
+    {
+      "question": "Does Claude Code support a cwd field for stdio MCP server registrations?",
+      "expectedSeedId": "MCP-CWD-UNSUPPORTED-001"
+    },
+    {
+      "question": "Why does a tsx-loaded MCP server fail to resolve @/lib path aliases even though the file exists?",
+      "expectedSeedId": "TSX-PATH-ALIAS-CWD-DEPENDENT-001"
+    },
+    {
+      "question": "Does the MCP protocol allow dots in tool names, and did Claude Code ever reject dotted tool names?",
+      "expectedSeedId": "MCP-DOTTED-NAMES-SUPERSEDED-001"
+    },
+    {
+      "question": "What is the correct sequence of steps to verify a Claude Code MCP server is actually operational?",
+      "expectedSeedId": "MCP-VERIFICATION-LADDER-001"
+    },
+    {
+      "question": "What is the final live/broken status of every MCP server touched in the 2026-08-25 estate remediation mission?",
+      "expectedSeedId": "MCP-ESTATE-FINAL-STATUS-001"
+    },
+    {
+      "question": "Where does the real implementation of Human Estimator's production-query MCP tools actually live?",
+      "expectedSeedId": "HUMAN-ESTIMATOR-KNOWLEDGE-CLIENT-OWNERSHIP-001"
+    },
+    {
+      "question": "How does the MCP registry authority reconciliation guard detect drift between the authority doc and the generated inventory?",
+      "expectedSeedId": "MCP-REGISTRY-AUTHORITY-RECONCILIATION-001"
+    },
+    {
+      "question": "Is get_mcp_readiness_attestation currently broken, and what was the actual root cause of its Token lookup failed error?",
+      "expectedSeedId": "MCP-READINESS-ATTESTATION-RESOLVED-001"
+    },
+    {
+      "question": "Why did validate-mcp-workspaces.mjs report 0 out of 20 workspaces valid when run from WSL2?",
+      "expectedSeedId": "WSL-VALIDATOR-HOST-PATH-DEFECT-001"
+    },
+    {
+      "question": "Why did the Computer Estimator MCP server fail to launch even though its dependencies appeared installed?",
+      "expectedSeedId": "COMPUTER-ESTIMATOR-DEPENDENCY-GOVERNANCE-001"
+    },
+    {
+      "question": "Why does a canonical sibling-repo path resolution fail when tested from an isolated git worktree?",
+      "expectedSeedId": "WORKTREE-SIBLING-RESOLUTION-LESSON-001"
+    }
+  ],
+  "humanReview": {
+    "required": false,
+    "reasons": []
+  }
+}

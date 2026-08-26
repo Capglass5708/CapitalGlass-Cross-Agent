@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-25-mcp-estate-remediation-v1",
+  "packetId": "human-estimator-knowledge-client-ownership-v1",
+  "state": "PROVEN",
+  "packetVerdict": "PASS",
+  "ownerRepo": "CG-AppBuilder-MCP",
+  "ownerIndexingStatus": "indexed",
+  "nextAction": "Merge CapitalGlass-BidComposer commit 80a1167 to make this ownership fix live in the shared checkout",
+  "evidenceRefs": [
+    "delegateHumanEstimatorQuery / callProductionQueryTool source read in CG-AppBuilder-MCP",
+    "post-fix tool call: isError:false, mcpIntegrationStatus HUMAN_ESTIMATOR_MCP_DELEGATION_ACTIVE, corpusProductionStatus NOT_YET_LIVE",
+    "scripts/tests/human-estimator-mcp-readonly-contract.test.mjs: 3/3 pass with the correct sibling path resolved"
+  ],
+  "doNotAdvance": [
+    "Duplicate/copy production-query.mjs's logic into CapitalGlass-BidComposer or CG-Human-Estimator-MCP -- ownership stays in CG-AppBuilder-MCP",
+    "Assume this fix means the estimating-knowledge corpus is populated -- see the separate, legitimate 'compiled records not found' data-state below"
+  ],
+  "advancementGate": "operator-pr-review-and-merge",
+  "contentHash": "c773fc5beffae278f624b308a5edb62f4eddeba209ddda5ba291c0444db01e59"
+}

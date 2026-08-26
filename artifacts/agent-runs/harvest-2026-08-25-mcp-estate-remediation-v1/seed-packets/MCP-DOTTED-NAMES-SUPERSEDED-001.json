@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "MCP-DOTTED-NAMES-SUPERSEDED-001",
+  "kind": "lesson",
+  "title": "SUPERSEDED: Claude Code rejects dotted MCP tool names -- disproven",
+  "summary": "An agent-proposed theory that dotted tool names (e.g. estimator.get_project_knowledge) caused Claude Code MCP registration failures was explicitly corrected by the operator and disproven by direct protocol testing: the MCP spec allows '.' in tool names, and the working baseline server (bid-composer-app-mcp) already used dotted names successfully. The real root cause was the unsupported cwd field (see MCP-CWD-UNSUPPORTED-001). Do not rename dotted tool names.",
+  "retrievalQuestions": [
+    "Does the MCP protocol allow dots in tool names, and did Claude Code ever reject dotted tool names?",
+    "Should dotted MCP tool names like estimator.get_project_knowledge be renamed to fix registration failures?",
+    "What proof disproved the dotted-tool-names root-cause theory for MCP server failures?"
+  ],
+  "evidenceRefs": [
+    "mcp-dotted-tool-names-superseded-v1",
+    "EVT-402",
+    "EVT-403",
+    "EVT-404"
+  ],
+  "sourcePacketIds": ["mcp-dotted-tool-names-superseded-v1"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "A future agent observes a Claude Code MCP server with dotted tool names failing and considers renaming the tools as a fix",
+    "startAt": ["MCP-CWD-UNSUPPORTED-001 seed packet -- the actual root cause"],
+    "runPreflight": ["a raw initialize -> notifications/initialized -> tools/list protocol probe against the failing server"],
+    "doNot": [
+      "Rename or alias dotted MCP tool names to fix a registration or tool-call failure",
+      "Treat a naming-convention correlation as proof of root cause without testing the raw protocol sequence"
+    ],
+    "proveBeforeClaiming": [
+      "A working, already-deployed server (bid-composer-app-mcp) uses dotted tool names successfully",
+      "The MCP specification explicitly permits '.' characters in tool names"
+    ]
+  },
+  "ownerRepo": "estate-wide",
+  "targetSlice": "BY-KIND/superseded-conclusions.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE",
+  "roiRank": 1
+}

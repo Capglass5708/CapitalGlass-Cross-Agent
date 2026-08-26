@@ -1,0 +1,1008 @@
+{
+  "schemaVersion": "cross-agent-harvest-manifest-v1@1.0.0",
+  "harvestId": "harvest-2026-08-25-mcp-estate-remediation-v1",
+  "missionClass": "FULL_CLOSEOUT_INTELLIGENCE_HARVEST",
+  "sourceMission": "MCP_ESTATE_REMEDIATION",
+  "sourceCommitSha": "0b389796e7f2d0fe7b75393a8213135648f72a91",
+  "sourceBranch": "work/mcp-estate-remediation-v1",
+  "sourceRepo": "CG-AppBuilder-MCP",
+  "createdAt": "2026-08-25T22:30:00.000Z",
+  "updatedAt": "2026-08-25T22:30:00.000Z",
+  "host": "CG-RYZEN9DESK-01",
+  "retrievalResult": "PENDING",
+  "cacheResult": "PENDING",
+  "rawScanRequired": false,
+  "overallHarvestVerdict": "PASS",
+  "subject": "Corrections, root causes, and reusable operational rules discovered while remediating the Capital Glass MCP estate on CG-RYZEN9DESK-01 -- registering missing governed MCP surfaces, fixing broken launchers, and resolving a false root-cause theory (dotted tool names) into the true one (unsupported cwd + tsx path-alias resolution).",
+  "doNotAdvance": [
+    "Claim MCP_ESTATE_REMEDIATION fully merged -- three commits (0b389796, 049c439, 80a1167) are local-only, NOT_YET_MERGED",
+    "Claim the dotted-tool-name hypothesis is true for any MCP server -- disproven with direct evidence, see packet mcp-dotted-tool-names-superseded-v1",
+    "Claim readiness attestation is broken -- resolved, see packet mcp-readiness-attestation-resolved-v1, supersedes prior belief",
+    "Claim GitHub or Cloudflare Workers MCP credentials are fixed -- both remain Tier 2, operator decision required",
+    "Treat validate-mcp-workspaces.mjs's WSL 0/20 result as real estate state -- invalidated by a proven host-path defect",
+    "Assume Human Estimator's knowledge corpus is populated -- module-path crash is fixed, but 'compiled records not found' is a separate, legitimate, unresolved data-state"
+  ],
+  "supersededClaims": [
+    {
+      "packetId": "mcp-dotted-tool-names-superseded-v1",
+      "claim": "Claude Code rejects/cannot expose MCP tools whose raw protocol names contain a literal '.' (dot) character -- proposed as the root cause for human-estimator-mcp, bid-composer-command-mcp, computer-estimator-mcp, and visual-asset-engine-mcp showing zero tools",
+      "supersededBy": "Direct raw-protocol proof: the known-working baseline bid-composer-app-mcp itself uses dotted names (app.get_summary, app.get_manifest, ...); all four flagged servers returned fully valid tools/list responses (real tool counts, zero errors) when probed with the raw MCP sequence outside Claude Code. True root cause was Claude Code's stdio MCP registration having no supported cwd field, causing tsx's path-alias (@/lib/...) resolution to fail when the process launched from the wrong working directory.",
+      "recordedAt": "2026-08-25T22:30:00.000Z",
+      "evidenceRefs": [
+        "raw MCP probe of bid-composer-app-mcp: initialize -> tools/list returned 19 tools with dotted names (app.get_summary, app.get_manifest, app.get_owned_tables, ...)",
+        "raw MCP probe of human-estimator-mcp: tools/list returned 33 tools cleanly, declaredToolsCapability:true, zero errors",
+        "raw MCP probe of bid-composer-command-mcp: tools/list returned 10 tools cleanly",
+        "raw MCP probe of computer-estimator-mcp: tools/list returned 6 tools cleanly, including both ce.inspect_scope_item_candidates and ce_inspect_scope_item_candidates side by side",
+        "raw MCP probe of visual-asset-engine-mcp: tools/list returned 2 tools cleanly"
+      ]
+    },
+    {
+      "packetId": "mcp-readiness-attestation-resolved-v1",
+      "claim": "get_mcp_readiness_attestation / the MCP control-plane self-check is broken (observed error: 'Token lookup failed')",
+      "supersededBy": "Root cause was that the local mcp-api service (http://127.0.0.1:3001) was not running at all after a Claude Code restart -- not a Supabase/RLS/schema/client-config defect (all four of those were individually ruled out by direct code/schema inspection before the real cause was found). Started the service via its documented 'npm run dev' in services/mcp-api, then ran the documented 'npm run mcp:attest'. Tool now returns a full structured attestation: blockingFindings: [], authenticatedSmokes.status: PASS.",
+      "recordedAt": "2026-08-25T22:30:00.000Z",
+      "evidenceRefs": [
+        "pre-fix call: {\"ok\":false,\"error\":\"Token lookup failed\"} -- traced via direct source read of requireAssistantToken.ts, ruled out wrong project/schema/table/column/RLS/client-config",
+        "post-restart call: {\"ok\":false,\"error\":\"MCP API is unreachable at http://127.0.0.1:3001 ... Original error: fetch failed\"} -- confirmed via `ps aux` and empty `pm2 list` that no mcp-api process was running on this host",
+        "post-service-start call: {\"ok\":false,\"error\":\"ATTESTATION_NOT_FOUND\"} -- the tool's own documented, correct behavior when no attestation has ever been generated",
+        "post-mcp:attest call: full structured attestation returned, blockingFindings: [], authenticatedSmokes.status: PASS, authenticatedSmokes.getPlatformContract/knowledgeSummary/operationalBridge/invalidTokenRejected/insufficientScope all PASS"
+      ]
+    },
+    {
+      "packetId": "revu-mcp-authority-correction-v1",
+      "claim": "revu-mcp lifecycleState=ACTIVE / registrationStatus=REGISTERED (as stated in docs/platform-registry/mcp-authority-registry-v1.json and independently hardcoded again inside scripts/mcp-operational-workspaces/discover-mcp-estate.mjs)",
+      "supersededBy": "Corrected to PLANNED_SPOKE/PLANNED in both locations. The live Platform Intelligence MCP registry reportedly returns MCP_SURFACE_NOT_FOUND for revu-mcp. CapitalGlassRevu/adapters/revu-mcp/index.mjs self-declares STATUS = 'INVENTORIED_UNVERIFIED_LIVE_CALLS_BLOCKED'. The actual runtime the estate registry pointed at is CapitalGlassRevu/cursor/mcp-launchers/bluebeam-revu.mjs, a Windows-only stdio launcher for Bluebeam Revu's own bundled 'Bluebeam MCP Server.exe' (a third-party vendor dependency requiring a licensed Windows desktop install with Revu UI running) -- not a Capital Glass-hosted service, and not runnable on a Linux/WSL2 host regardless of registration state.",
+      "recordedAt": "2026-08-25T22:30:00.000Z",
+      "evidenceRefs": [
+        "CapitalGlassRevu/adapters/revu-mcp/index.mjs: export const STATUS = 'INVENTORIED_UNVERIFIED_LIVE_CALLS_BLOCKED'",
+        "CapitalGlassRevu/cursor/mcp-launchers/bluebeam-revu.mjs: spawns 'C:\\\\Program Files\\\\Bluebeam Software\\\\Bluebeam Revu\\\\21\\\\Revu\\\\mcp\\\\Bluebeam MCP Server.exe'",
+        "docs/platform-registry/mcp-authority-registry-v1.json corrected: lifecycleState PLANNED_SPOKE, registrationStatus PLANNED, note added explaining the real state",
+        "scripts/mcp-operational-workspaces/discover-mcp-estate.mjs's independent hardcoded revu-mcp surface entry (source: estimating-lane) also corrected to match -- was a second, undetected drift point from the authority doc"
+      ]
+    },
+    {
+      "packetId": "mcp-registry-artifact-staleness-v1",
+      "claim": "artifacts/mcp-operational-workspaces/mcp-registry-validation.json (dated 2026-07-30, 21/21 PASS) reflects current governed MCP surface state",
+      "supersededBy": "The live governed authority doc (docs/platform-registry/mcp-authority-registry-v1.json, 22 surfaces on main) already disagreed with this artifact on product-catalog-app-mcp (added after the artifact was generated) and, independently, on revu-mcp (see revu-mcp-authority-correction-v1). Root cause traced: the artifact's generator (discover-mcp-estate.mjs) had a Windows-only hardcoded repo-root list (C:/Developer/repos, C:/Cursor Projects) causing repositoryRevision to resolve null for every surface on a WSL2 host, plus its own independent hardcoded revu-mcp drift. Both fixed. A new automated reconciliation check (reconcile-registry-with-authority.mjs) now fails closed if the generated inventory and the authority doc disagree again.",
+      "recordedAt": "2026-08-25T22:30:00.000Z",
+      "evidenceRefs": [
+        "commit 0b389796: cross-platform gitRevision() fix, verified real SHAs now resolve (e.g. contacts-app-mcp -> 2423647, matching its own app_get_summary gitSha)",
+        "commit 0b389796: new scripts/mcp-operational-workspaces/reconcile-registry-with-authority.mjs, adversarially proven (drift artificially reintroduced -> DRIFT_DETECTED exit 1; restored -> RECONCILED exit 0)"
+      ]
+    }
+  ],
+  "projection": {
+    "projectionSyncStatus": "not-run",
+    "hubPublishStatus": "not-run",
+    "note": "This harvest publishes via harvest:sync-derived + harvest:publish-hub-seed / harvest:publish-intelligence-full per docs/runbooks/harvest-record-validate-sync.md. Status updated after the publish pipeline actually runs -- do not mark synced/published preemptively."
+  },
+  "commitEvidence": [
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "sha": "0b389796e7f2d0fe7b75393a8213135648f72a91",
+      "branch": "work/mcp-estate-remediation-v1",
+      "worktree": "/home/wesley/repos/CG-AppBuilder-MCP-worktrees/mcp-estate-remediation-v1",
+      "role": "fix-primary",
+      "mergeState": "LOCAL_COMMIT_NOT_YET_MERGED"
+    },
+    {
+      "repo": "Computer-Estimator",
+      "sha": "049c439228acc2e8a1fd6de1e044e2b5bd874a2a",
+      "branch": "work/mcp-launcher-venv-fix-v1",
+      "worktree": "/home/wesley/repos/Computer-Estimator-worktrees/mcp-launcher-venv-fix-v1",
+      "role": "fix-dependency-and-launcher",
+      "mergeState": "LOCAL_COMMIT_NOT_YET_MERGED"
+    },
+    {
+      "repo": "CapitalGlass-BidComposer",
+      "sha": "80a11671b5595ab579467e3630e8ad938932f107",
+      "branch": "fix/human-estimator-knowledge-client-path-v1",
+      "worktree": "/home/wesley/repos/CapitalGlass-BidComposer-worktrees/human-estimator-knowledge-client-fix-v1",
+      "role": "fix-module-ownership",
+      "mergeState": "LOCAL_COMMIT_NOT_YET_MERGED"
+    }
+  ],
+  "improvementCandidates": [
+    {
+      "candidateId": "WC-MCP-001-validate-workspaces-host-aware",
+      "category": "PLATFORM_PORTABILITY",
+      "title": "Make validate-mcp-workspaces.mjs (and its SYNOLOGY_OPS_ROOT dependency chain) machine/path-authority aware",
+      "problem": "Running validate-mcp-workspaces.mjs from a WSL2 host produces a 0/20 workspace-validation result",
+      "rootCause": "SYNOLOGY_OPS_ROOT in scripts/mcp-operational-workspaces/lib/workspace-standard.mjs is a hardcoded Windows-style path (uses a literal backslash), so every existsSync() check against it silently fails to resolve under WSL -- not because the workspaces don't exist, but because the path format is unusable on this OS",
+      "proposedImprovement": "Extend the same env-override/sibling-resolution pattern already used successfully in discover-mcp-estate.mjs's gitRevision() fix to SYNOLOGY_OPS_ROOT and SUITE_REGISTRY_DIR, so the Synology workspace-folder checks can resolve correctly from a WSL2 host (e.g. via /mnt/z or a CG_SYNOLOGY_OPS_ROOT override)",
+      "targetRepository": "CG-AppBuilder-MCP",
+      "targetComponent": "scripts/mcp-operational-workspaces/lib/workspace-standard.mjs",
+      "expectedBenefit": "validate-mcp-workspaces.mjs and its mcp-registry-validation.json output become trustworthy from any host, not just genuine Windows/Cursor sessions",
+      "risk": "Unknown whether Synology workspace folders are even reachable/mounted identically from WSL2 vs Windows -- needs investigation before implementation, not a blind path-format fix",
+      "confidence": "MEDIUM",
+      "evidenceRefs": [
+        "direct run of validate-mcp-workspaces.mjs from this host returned passed:0, expected:20 -- reverted before committing, not persisted as a false artifact"
+      ],
+      "authorityStatus": "PROPOSAL",
+      "reviewStatus": "PENDING"
+    },
+    {
+      "candidateId": "WC-MCP-002-dependency-version-bounds",
+      "category": "DEPENDENCY_GOVERNANCE",
+      "title": "Require upper-bounded major-version constraints for SDK-shaped Python/Node dependencies that code binds to specific module structure",
+      "problem": "Computer Estimator's requirements.txt declared mcp>=1.2 with no upper bound; pip resolved mcp==2.0.0, which restructured/removed mcp.server.fastmcp, breaking python -m computer_estimator.mcp.server with ModuleNotFoundError",
+      "rootCause": "Unbounded minimum-version-only dependency constraint on a package whose major-version bump made a breaking, undocumented-at-the-constraint-level structural change",
+      "proposedImprovement": "For MCP-SDK-shaped dependencies specifically (mcp, @modelcontextprotocol/sdk, fastmcp-adjacent packages) across the estate, prefer bounded ranges (e.g. mcp>=1.2,<2.0) unless the code has been verified against the newer major version",
+      "targetRepository": "estate-wide",
+      "targetComponent": "dependency manifests (requirements.txt / package.json) for any repo hosting an MCP server",
+      "expectedBenefit": "Prevents silent, hard-to-diagnose MODULE_NOT_FOUND breakage on routine dependency installs",
+      "risk": "Low -- pinning below a known-incompatible major version is conservative, not restrictive of legitimate upgrades",
+      "confidence": "HIGH",
+      "evidenceRefs": [
+        "Computer-Estimator commit 049c439228acc2e8a1fd6de1e044e2b5bd874a2a: requirements.txt line 22 changed from mcp>=1.2 to mcp>=1.2,<2.0 with explanatory comment"
+      ],
+      "authorityStatus": "PROPOSAL",
+      "reviewStatus": "PENDING"
+    },
+    {
+      "candidateId": "WC-MCP-003-github-credential-rotation",
+      "category": "CREDENTIAL_REMEDIATION",
+      "title": "Rotate/repair the GitHub MCP's Doppler-sourced GITHUB_PERSONAL_ACCESS_TOKEN (cg-shared/dev)",
+      "problem": "mcp__github__* tools fail with 'Authentication Failed: Bad credentials' even after a genuine fresh process restart and a Doppler sync -- while the gh CLI, using a separately-configured auth path, works fine",
+      "rootCause": "The specific Doppler-sourced PAT used by scripts/mcp-github-launch.mjs is itself invalid/expired -- confirmed real, not a stale-process artifact, per the identical failure surviving a genuine restart",
+      "proposedImprovement": "Operator decision: rotate the GITHUB_PERSONAL_ACCESS_TOKEN secret in Doppler cg-shared/dev (and cg-shared/prd if shared), then re-sync via npm run integrations:sync-doppler",
+      "targetRepository": "cg-shared (Doppler project)",
+      "targetComponent": "GITHUB_PERSONAL_ACCESS_TOKEN",
+      "expectedBenefit": "Restores mcp__github__* tool functionality",
+      "risk": "Requires operator action -- not something this session can perform without generating a new PAT via an authorized GitHub account action",
+      "confidence": "HIGH",
+      "evidenceRefs": [
+        "mcp__github__search_repositories called twice, before and after a genuine Claude Code restart plus npm run integrations:sync-doppler -- identical 'Bad credentials' both times"
+      ],
+      "authorityStatus": "PROPOSAL",
+      "reviewStatus": "PENDING",
+      "tier": "TIER_2_OPERATOR_ACTION_REQUIRED"
+    },
+    {
+      "candidateId": "WC-MCP-004-cloudflare-scope-design",
+      "category": "CREDENTIAL_REMEDIATION",
+      "title": "Determine and provision the correct Cloudflare API token scope for the local cloudflare MCP's Workers/D1/KV/R2 operations",
+      "problem": "mcp__cloudflare__execute (proxying to mcp.cloudflare.com, the Workers-capable remote MCP) fails with 'Cloudflare API error: 10000: Authentication error' on any real Workers REST call, even though the same token passes both cg-diagnostic's health probe and the local launcher's own MCP-initialize bearer preflight",
+      "rootCause": "The existing known remediation script (npm run integrations:provision-cloudflare-mcp-token) only mints User Read + Account Read + Zone Read + DNS Read permission groups -- none of which cover Workers Scripts / D1 / KV / R2 access, so even running it may not fix the real problem",
+      "proposedImprovement": "Before minting anything: enumerate every current consumer of the shared CLOUDFLARE_API_TOKEN (cg-shared/dev+prd), determine the minimum Workers-capable permission groups actually required, and decide whether a dedicated, narrower MCP-only token is preferable to broadening the shared one",
+      "targetRepository": "cg-shared (Doppler project) / CG-AppBuilder-MCP scripts/provision-cloudflare-mcp-read-token.mjs",
+      "targetComponent": "CLOUDFLARE_API_TOKEN scope design",
+      "expectedBenefit": "Restores full mcp__cloudflare__execute functionality for Workers/D1/KV/R2 operations without over-broadening a shared production credential",
+      "risk": "provision-cloudflare-mcp-read-token.mjs as it stands mints AND overwrites the shared token in both dev and prd Doppler configs in one step -- a real blast-radius risk if run without first confirming scope adequacy and other consumers",
+      "confidence": "MEDIUM",
+      "evidenceRefs": [
+        "mcp__cloudflare__execute workers/scripts call: 'Cloudflare API error: 10000: Authentication error', re-confirmed identical after a genuine restart",
+        "cg-diagnostic health_status: cloudflare.mcp.bearerStatus green, bearerDetail 'Cloudflare token verify active; user:read and account:read confirmed' -- same token, different (narrower) check, passes",
+        "scripts/provision-cloudflare-mcp-read-token.mjs read directly: mints User Read + Account Read + Zone Read + DNS Read only via /user/tokens POST, then doppler secrets set CLOUDFLARE_API_TOKEN for both prd and dev"
+      ],
+      "authorityStatus": "PROPOSAL",
+      "reviewStatus": "PENDING",
+      "tier": "TIER_2_OPERATOR_ACTION_REQUIRED"
+    }
+  ],
+  "waverunnerHandoff": {
+    "milestoneId": "mcp-estate-remediation-v1",
+    "waveId": "mcp-estate-remediation-v1",
+    "executionMode": "FULL_CLOSEOUT_INTELLIGENCE_HARVEST",
+    "sourceWorkPackage": "mcp-estate-remediation-v1",
+    "productionHarvest": true,
+    "syntheticFixture": false,
+    "startSha": "0b389796e7f2d0fe7b75393a8213135648f72a91",
+    "packetHash": "mcp-estate-remediation-v1-closeout-packet",
+    "promptHash": "mcp-estate-remediation-v1-closeout-prompt"
+  },
+  "publicationPolicy": {
+    "syntheticFixture": false,
+    "publicationEligibility": "PRODUCTION_WAVERUNNER_ROUTING",
+    "productionHarvest": true
+  },
+  "packets": [
+    {
+      "packetId": "mcp-verification-methodology-v1",
+      "packetTitle": "Reusable MCP verification ladder -- initialize alone is not sufficient proof",
+      "packetKind": "operational-rule",
+      "classification": "VALIDATION_METHOD",
+      "state": "PROVEN",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "CURRENT_AUTHORITY",
+      "ownerRepo": "estate-wide",
+      "ownerIndexingStatus": "not-required",
+      "projectFile": "N/A -- operational methodology, not a project deliverable",
+      "nextAction": "Adopt this ladder as the default MCP health-check standard for future estate work",
+      "advancementGate": "none -- already proven across 5 servers in this mission",
+      "doNotAdvance": [
+        "Declare an MCP 'operational' based on Level 1 (process starts) or Level 2 (initialize succeeds) alone"
+      ],
+      "content": {
+        "ladder": [
+          {
+            "level": 0,
+            "name": "CONFIGURATION_PRESENT",
+            "description": "Entry exists in the MCP client config (e.g. ~/.claude.json)"
+          },
+          {
+            "level": 1,
+            "name": "PROCESS_STARTS",
+            "description": "The spawned command/process starts without immediately exiting"
+          },
+          {
+            "level": 2,
+            "name": "INITIALIZE_SUCCEEDS",
+            "description": "A valid jsonrpc initialize response is returned"
+          },
+          {
+            "level": 3,
+            "name": "TOOLS_CAPABILITY_DECLARED",
+            "description": "initialize's capabilities.tools is present (even if empty object)"
+          },
+          {
+            "level": 4,
+            "name": "TOOLS_LIST_SUCCEEDS",
+            "description": "A tools/list request (after the initialized notification) returns a result, not an error or timeout"
+          },
+          {
+            "level": 5,
+            "name": "EXPECTED_TOOL_CATALOG_APPEARS",
+            "description": "The returned tool list matches what the server's own source declares"
+          },
+          {
+            "level": 6,
+            "name": "REAL_READ_ONLY_TOOL_CALL_SUCCEEDS",
+            "description": "A real tools/call against a safe, read-only tool returns a coherent application-level result (success or a clean structured error -- not a crash)"
+          },
+          {
+            "level": 7,
+            "name": "CLIENT_EXPOSES_AND_CAN_INVOKE",
+            "description": "The actual MCP client (e.g. Claude Code) indexes and can call the tool -- this is the level that actually matters to an agent"
+          }
+        ],
+        "keyFinding": "Levels 1-2 passing does not imply levels 4-7 will pass. In this mission, four servers passed levels 1-3 for weeks but silently failed at level 7 (Claude Code showed zero tools) due to a client-side config defect (unsupported cwd), not a server defect -- proven by reaching level 6 via raw protocol probing outside the client entirely.",
+        "reusablePattern": "When an MCP shows as connected/zero-tools or fails ingestion in a specific client, test levels 0-6 with a raw stdio JSON-RPC probe independent of that client BEFORE assuming the server itself is broken. If levels 0-6 all pass cleanly, the defect is in that specific client's ingestion/configuration layer, not the server."
+      },
+      "evidenceRefs": [
+        "custom raw-protocol probe script sending initialize -> notifications/initialized -> tools/list -> tools/call sequentially over stdio, run against bid-composer-app-mcp (control) and all four flagged servers"
+      ],
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetId": "claude-code-cwd-unsupported-v1",
+      "packetTitle": "Claude Code stdio MCP registration has no supported cwd field (this version: 2.1.235)",
+      "packetKind": "tool-constraint",
+      "classification": "TOOL_CONSTRAINT",
+      "state": "PROVEN",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "CURRENT_AUTHORITY",
+      "ownerRepo": "estate-wide",
+      "ownerIndexingStatus": "not-required",
+      "projectFile": "N/A -- Claude Code client behavior, not a Capital Glass repo",
+      "nextAction": "Any future stdio MCP launcher that needs a specific working directory must establish it itself (a shell wrapper, or internal process.chdir before any cwd-sensitive resolution happens) -- never rely on a cwd config field",
+      "advancementGate": "none -- directly reproduced and fixed twice in this mission",
+      "doNotAdvance": [
+        "Assume a 'cwd' key in an MCP server's ~/.claude.json entry has any effect"
+      ],
+      "content": {
+        "evidence": [
+          "`claude mcp add --help` exposes no --cwd flag or equivalent (checked full help output)",
+          "`claude mcp get <name>` never displays a cwd field even when one is present in the raw JSON config",
+          "Direct reproduction: running the exact same command with an explicit cd into the target repo first succeeded; running it from an unrelated directory (matching what Claude Code would actually do, since it ignores the cwd field) reproduced the identical crash"
+        ],
+        "operationalRule": "Repo-dependent stdio MCP launchers must establish their own working directory (shell wrapper: bash -c \"cd <repo> && exec node ...\", or internal process.chdir at the very top before any cwd-sensitive resolution) rather than relying on a client-provided cwd."
+      },
+      "evidenceRefs": [
+        "claude mcp add --help output showing no --cwd option",
+        "claude mcp get human-estimator-mcp / bid-composer-command-mcp output before fix: no cwd field shown"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "relationships": [
+        {
+          "type": "CAUSES",
+          "target": "tsx-path-alias-resolution-failure-v1"
+        }
+      ]
+    },
+    {
+      "packetId": "tsx-path-alias-resolution-failure-v1",
+      "packetTitle": "tsx TypeScript path-alias resolution (@/lib/...) depends on process.cwd() -- fails silently from the wrong directory",
+      "packetKind": "root-cause-and-fix",
+      "classification": "ROOT_CAUSE",
+      "state": "PROVEN",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "CURRENT_AUTHORITY",
+      "ownerRepo": "estate-wide",
+      "ownerIndexingStatus": "not-required",
+      "projectFile": "N/A -- tsx/tooling behavior",
+      "nextAction": "Use the deterministic shell-wrapper launch pattern for any tsx-loaded MCP server with tsconfig path aliases",
+      "advancementGate": "none -- reproduced and fixed for human-estimator-mcp and bid-composer-command-mcp",
+      "doNotAdvance": [
+        "Assume a tsx --import loader launch will resolve TS path aliases correctly regardless of working directory"
+      ],
+      "content": {
+        "reproduction": "node --import <tsx-loader> <script-importing-@/lib/...> launched from the wrong cwd threw: Error: Cannot find module '@/lib/project-parse/door-schedule-review-repository', code: MODULE_NOT_FOUND, traced through tsx's resolveTsPaths",
+        "fix": "bash -c \"cd <canonical-repo> && exec node --import ./node_modules/tsx/dist/loader.mjs <script>\"",
+        "secondaryDefectCaughtDuringFix": "The first fix attempt used --import node_modules/tsx/dist/loader.mjs (no leading ./). Node's --import flag resolves a specifier without a leading ./ or / as a BARE MODULE SPECIFIER, not a relative file path -- this produced a different crash: Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'node_modules'. The leading ./ is required for --import to treat the argument as a relative file path.",
+        "classification_note": "This is TWO distinct, stacked defects, not one: (1) cwd not respected by the client -> tsx resolves aliases against the wrong directory, (2) a missing ./ prefix on the --import argument, discovered and fixed while correcting (1)."
+      },
+      "evidenceRefs": [
+        "Direct reproduction command and full stack trace captured during remediation",
+        "Second reproduction after the ./ bug: Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'node_modules' imported from <repo>/",
+        "Final verification: `bash -c \"cd /home/wesley/repos/CapitalGlass-BidComposer && exec node --import ./node_modules/tsx/dist/loader.mjs ...\"` -- claude mcp list showed Connected for both affected servers"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "relationships": [
+        {
+          "type": "RESOLVES",
+          "target": "claude-code-cwd-unsupported-v1"
+        }
+      ]
+    },
+    {
+      "packetId": "mcp-dotted-tool-names-superseded-v1",
+      "packetTitle": "SUPERSEDED: 'Claude Code rejects dotted MCP tool names' -- disproven",
+      "packetKind": "superseded-hypothesis",
+      "classification": "SUPERSEDED_CONCLUSION",
+      "state": "SUPERSEDED",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "CURRENT_AUTHORITY",
+      "ownerRepo": "estate-wide",
+      "ownerIndexingStatus": "not-required",
+      "projectFile": "N/A",
+      "nextAction": "Never propose renaming dotted MCP tool names as a fix for a zero-tools-in-Claude symptom without first running the raw-protocol verification ladder (see mcp-verification-methodology-v1)",
+      "advancementGate": "none -- fully disproven",
+      "doNotAdvance": [
+        "Rename any dotted MCP tool name based on a Claude-Code-exposure theory alone"
+      ],
+      "content": {
+        "initialHypothesis": "Claude Code cannot ingest/expose MCP tools whose raw protocol names contain a literal '.' character, because four servers using dotted names (estimator.*, bidcomposer.*, ce.*, vae.*) showed zero tools while one server using underscore names (app_*) worked",
+        "whyItSeemedPlausible": "Correlation: exactly the four dotted-name servers failed and exactly the one underscore-name server worked",
+        "disprovingEvidence": "Raw protocol probe of the WORKING baseline (bid-composer-app-mcp) showed its own actual tool names are ALSO dotted (app.get_summary, app.get_manifest, ...) -- Claude Code sanitizes dots to underscores for the exposed tool name (mcp__bid-composer-app-mcp__app_get_summary) but this happens identically for a server that works fine, ruling out dots as the differentiator. The true differentiator (proven separately) was the unsupported cwd field.",
+        "userCorrectionQuoted": "The MCP specification explicitly allows '.' in tool names and even uses admin.tools.list as a valid example."
+      },
+      "evidenceRefs": [
+        "bid-composer-app-mcp raw tools/list: 19 tools, all dotted names, e.g. app.get_summary",
+        "all four flagged servers' raw tools/list: also fully valid, dotted names, zero errors"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "relationships": [
+        {
+          "type": "SUPERSEDED_BY",
+          "target": "claude-code-cwd-unsupported-v1"
+        }
+      ]
+    },
+    {
+      "packetId": "mcp-estate-final-status-v1",
+      "packetTitle": "Final live status of the six directly-diagnosed MCP servers",
+      "packetKind": "machine-fact",
+      "classification": "MCP_FACT",
+      "state": "PROVEN",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "CURRENT_AUTHORITY",
+      "ownerRepo": "estate-wide",
+      "ownerIndexingStatus": "not-required",
+      "projectFile": "N/A",
+      "nextAction": "Treat tool counts below as evidence of a point-in-time state, not immutable architecture -- catalogs can grow",
+      "advancementGate": "none",
+      "doNotAdvance": [
+        "Treat the recorded tool counts as a fixed contract future agents must match exactly"
+      ],
+      "content": {
+        "servers": [
+          {
+            "name": "bid-composer-app-mcp",
+            "role": "working control/baseline used during diagnosis",
+            "toolCountObserved": 19,
+            "status": "LIVE",
+            "note": "Raw tool names are dotted too (app.*) -- see mcp-dotted-tool-names-superseded-v1"
+          },
+          {
+            "name": "human-estimator-mcp",
+            "toolCountObserved": 34,
+            "status": "LIVE",
+            "note": "Fixed via cwd shell wrapper; one tool (estimator.get_knowledge_service_health) had a separate, now-fixed module-path defect -- see human-estimator-knowledge-client-ownership-v1"
+          },
+          {
+            "name": "bid-composer-command-mcp",
+            "toolCountObserved": 10,
+            "status": "LIVE",
+            "note": "Write-capable (Wave 3); write tools remain safely gated behind BID_COMPOSER_LIVE_ESTIMATING_WRITES / BID_COMPOSER_MCP_ACTOR_ID, neither of which were set"
+          },
+          {
+            "name": "computer-estimator-mcp",
+            "toolCountObserved": 6,
+            "status": "LIVE",
+            "note": "Python/FastMCP server; fixed via venv-aware launcher + mcp<2.0 dependency pin -- see computer-estimator-dependency-governance-v1"
+          },
+          {
+            "name": "visual-asset-engine-mcp",
+            "toolCountObserved": 2,
+            "status": "LIVE",
+            "note": "Correctly reports Illustrator desktop not found on this Linux host -- expected, see ryzen9desk-host-constraints-v1"
+          }
+        ],
+        "verificationMethod": "Full ladder (levels 0-7): claude mcp list health check (levels 0-4) PLUS live in-session tools/list + real tools/call for each (levels 5-7)"
+      },
+      "evidenceRefs": [
+        "claude mcp list output showing all five as Connected",
+        "in-session ToolSearch + direct tool calls for each server post-restart"
+      ],
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetId": "github-mcp-credential-defect-v1",
+      "packetTitle": "GitHub MCP: confirmed credential defect, not a stale-process artifact",
+      "packetKind": "failure-mode",
+      "classification": "FAILURE_MODE",
+      "state": "CONFIRMED_CREDENTIAL_DEFECT",
+      "packetVerdict": "OPEN",
+      "harvestVerdictContribution": "OPEN_TIER2",
+      "ownerRepo": "cg-shared",
+      "ownerIndexingStatus": "not-required",
+      "projectFile": "N/A",
+      "nextAction": "Operator rotates GITHUB_PERSONAL_ACCESS_TOKEN in Doppler cg-shared -- see improvementCandidates WC-MCP-003",
+      "advancementGate": "operator-credential-rotation",
+      "doNotAdvance": [
+        "Claim the GitHub MCP works",
+        "Attempt to fix by re-syncing Doppler again -- already proven insufficient"
+      ],
+      "content": {
+        "state": "CONFIRMED_CREDENTIAL_DEFECT",
+        "evidenceChain": [
+          "Called before any fix: Authentication Failed: Bad credentials",
+          "Ran npm run integrations:sync-doppler (confirmed by direct source read: reads Doppler, writes local cache only, never mutates Doppler, never prints values) -- re-tested, same error (explainable as stale in-process credential)",
+          "Genuine Claude Code process restart occurred -- re-tested, IDENTICAL 'Bad credentials' error -- this rules out the stale-process explanation definitively",
+          "gh CLI, using a separately-configured auth path, works fine throughout -- confirms this is specific to the MCP launcher's credential, not GitHub access in general"
+        ],
+        "doNotRecord": "the credential value itself -- never captured or logged in this harvest"
+      },
+      "evidenceRefs": [],
+      "commitRefs": [],
+      "blockers": [
+        "operator credential rotation required"
+      ]
+    },
+    {
+      "packetId": "cloudflare-mcp-scope-defect-v1",
+      "packetTitle": "Cloudflare MCP: docs path healthy, Workers/D1/KV/R2 operational path confirmed scope/authority defect",
+      "packetKind": "failure-mode",
+      "classification": "FAILURE_MODE",
+      "state": "CONFIRMED_SCOPE_OR_AUTHORITY_DEFECT",
+      "packetVerdict": "OPEN",
+      "harvestVerdictContribution": "OPEN_TIER2",
+      "ownerRepo": "cg-shared",
+      "ownerIndexingStatus": "not-required",
+      "projectFile": "N/A",
+      "nextAction": "Operator scope-design decision before any token action -- see improvementCandidates WC-MCP-004",
+      "advancementGate": "operator-scope-decision",
+      "doNotAdvance": [
+        "Collapse the working docs MCP and the broken operational Workers API into one status -- they are genuinely separate capabilities on the same token",
+        "Run integrations:provision-cloudflare-mcp-token without first confirming it grants Workers-capable scope -- it does not, as currently written"
+      ],
+      "content": {
+        "state": "CONFIRMED_SCOPE_OR_AUTHORITY_DEFECT",
+        "workingCapability": "cloudflare-docs (documentation search, no real API auth needed) -- fully healthy throughout",
+        "brokenCapability": "local cloudflare MCP's execute tool, proxying to mcp.cloudflare.com for real Workers/D1/KV/R2 API operations -- 'Cloudflare API error: 10000: Authentication error'",
+        "evidenceChain": [
+          "The launcher's own MCP-initialize bearer preflight (checks only user:read/account:read against mcp.cloudflare.com) passes",
+          "cg-diagnostic's separate health probe reports the same-named token as green/valid via /user/tokens/verify",
+          "Yet a real Workers REST call (GET /accounts/{id}/workers/scripts) with the same token returns error 10000",
+          "Re-confirmed identical after a genuine restart -- rules out stale-process explanation",
+          "Direct read of the known remediation script confirmed it only mints User Read + Account Read + Zone Read + DNS Read -- none of which cover Workers/D1/KV/R2"
+        ]
+      },
+      "evidenceRefs": [],
+      "commitRefs": [],
+      "blockers": [
+        "operator scope-design decision required before any token mutation"
+      ]
+    },
+    {
+      "packetId": "platform-intelligence-mcp-oauth-v1",
+      "packetTitle": "Platform Intelligence MCP transport is remote_oauth -- no bearer-token workaround exists",
+      "packetKind": "authority",
+      "classification": "AUTHORITY",
+      "state": "REGISTERED_AWAITING_AUTHORIZATION",
+      "packetVerdict": "OPEN",
+      "harvestVerdictContribution": "OPEN_AUTHORIZATION_REQUIRED",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "docs/platform-registry/mcp-authority-registry-v1.json",
+      "nextAction": "Operator completes the normal interactive claude mcp / /mcp OAuth authorization flow -- no other supported path",
+      "advancementGate": "operator-oauth-authorization",
+      "doNotAdvance": [
+        "Attempt to construct a static-bearer-token connection to platform-mcp.capitalglasstxapps.com/mcp -- the deployed service uses full OAuth2 + PKCE + dynamic client registration (docs/platform-registry/chatgpt-platform-intelligence-connector-v1.json: transport: 'remote_oauth'), confirmed via direct source read of the connector spec and the verify-platform-intelligence-remote-tools.mjs proof script",
+        "Treat this session's inability to authorize it as evidence the endpoint is broken -- it is a non-interactive-session limitation, not a service defect"
+      ],
+      "content": {
+        "endpoint": "https://platform-mcp.capitalglasstxapps.com/mcp",
+        "registeredInClaudeJson": true,
+        "toolsExposedOnceAuthorized": [
+          "platform_status",
+          "repository_index_status",
+          "search_codeintel",
+          "get_file_context",
+          "check_repository_drift",
+          "get_application_authority",
+          "list_platform_components",
+          "get_protocol_evidence",
+          "list_application_bibles",
+          "get_application_bible_context"
+        ]
+      },
+      "evidenceRefs": [],
+      "commitRefs": [],
+      "blockers": [
+        "interactive OAuth authorization required, not available in this session type"
+      ]
+    },
+    {
+      "packetId": "product-catalog-planned-spoke-v1",
+      "packetTitle": "product-catalog-app-mcp is correctly PLANNED_SPOKE, not a missing deployment",
+      "packetKind": "authority",
+      "classification": "AUTHORITY",
+      "state": "PLANNED_CORRECTLY_ABSENT",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "CURRENT_AUTHORITY",
+      "ownerRepo": "capital-glass-product-catalog",
+      "ownerIndexingStatus": "not-required",
+      "projectFile": "docs/platform-registry/mcp-authority-registry-v1.json",
+      "nextAction": "None required -- registry truth and runtime truth agree",
+      "advancementGate": "n/a",
+      "doNotAdvance": [
+        "Fabricate a product-catalog-app-mcp launcher merely to make a governed-surface coverage number look complete"
+      ],
+      "content": {
+        "authorityState": "lifecycleState: PLANNED_SPOKE, registrationStatus: PLANNED",
+        "runtimeVerification": "No launcher (mcp/run-app-mcp.mjs-equivalent) found anywhere in capital-glass-product-catalog -- only governance docs and classification artifacts referencing the future spoke"
+      },
+      "evidenceRefs": [],
+      "commitRefs": [],
+      "blockers": []
+    },
+    {
+      "packetId": "revu-mcp-authority-correction-v1",
+      "packetTitle": "Revu MCP corrected reality: Windows/Bluebeam vendor dependency, not a native Linux standalone service",
+      "packetKind": "authority-correction",
+      "classification": "AUTHORITY",
+      "state": "CORRECTED",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "CURRENT_AUTHORITY",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "docs/platform-registry/mcp-authority-registry-v1.json",
+      "nextAction": "None required for this host -- Revu MCP is a Windows-desktop-only capability by design",
+      "advancementGate": "n/a",
+      "doNotAdvance": [
+        "See mcp-dotted-tool-names-superseded-v1's sibling entry -- full detail recorded under supersededClaims"
+      ],
+      "content": {
+        "seeSupersededClaims": "Full correction detail recorded once at top level under supersededClaims -- this packet exists so the corrected AUTHORITY fact is independently discoverable without needing to read the supersession list"
+      },
+      "evidenceRefs": [],
+      "commitRefs": [
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "0b389796"
+        }
+      ],
+      "blockers": [],
+      "relationships": [
+        {
+          "type": "CORRECTS",
+          "target": "mcp-registry-artifact-staleness-v1"
+        }
+      ]
+    },
+    {
+      "packetId": "mcp-estate-remediation-commits-v1",
+      "packetTitle": "The three remediation commits -- local, unmerged, separately reviewable",
+      "packetKind": "fix",
+      "classification": "FIX",
+      "state": "LOCAL_COMMIT_NOT_YET_MERGED",
+      "packetVerdict": "OPEN",
+      "harvestVerdictContribution": "OPEN_UNMERGED",
+      "ownerRepo": "multiple",
+      "ownerIndexingStatus": "pointer-only",
+      "projectFile": "N/A",
+      "nextAction": "Operator review + merge decision for each, independently -- no dependency between them",
+      "advancementGate": "operator-pr-review-and-merge",
+      "doNotAdvance": [
+        "Claim any of these three commits are deployed, merged, or live in the shared checkout",
+        "Assume merging one requires merging the others -- they are independent fixes in independent repos"
+      ],
+      "content": {
+        "commits": [
+          {
+            "repo": "CG-AppBuilder-MCP",
+            "sha": "0b389796e7f2d0fe7b75393a8213135648f72a91",
+            "branch": "work/mcp-estate-remediation-v1",
+            "purpose": "Revu authority correction (doc + generator hardcoded entry); cross-platform gitRevision() fix; new registry-authority reconciliation guard with adversarial drift-detection proof",
+            "state": "LOCAL_COMMIT_NOT_YET_MERGED"
+          },
+          {
+            "repo": "Computer-Estimator",
+            "sha": "049c439228acc2e8a1fd6de1e044e2b5bd874a2a",
+            "branch": "work/mcp-launcher-venv-fix-v1",
+            "purpose": "Launcher prefers canonical repo .venv over bare system python3; mcp dependency pinned <2.0; verified via real MCP initialize",
+            "state": "LOCAL_COMMIT_NOT_YET_MERGED"
+          },
+          {
+            "repo": "CapitalGlass-BidComposer",
+            "sha": "80a11671b5595ab579467e3630e8ad938932f107",
+            "branch": "fix/human-estimator-knowledge-client-path-v1",
+            "purpose": "estimator.get_knowledge_service_health and 5 sibling production-query tools repointed from a nonexistent local module to the canonical CG-AppBuilder-MCP implementation; direct tool call, neighboring tool, initialize/tools-list, and relevant repo tests all pass",
+            "state": "LOCAL_COMMIT_NOT_YET_MERGED",
+            "note": "The live shared CapitalGlass-BidComposer checkout still runs the old broken code until this branch lands -- the currently-registered human-estimator-mcp server in ~/.claude.json points at that shared checkout, not this fix branch"
+          }
+        ]
+      },
+      "evidenceRefs": [],
+      "commitRefs": [
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "0b389796e7f2d0fe7b75393a8213135648f72a91"
+        },
+        {
+          "repo": "Computer-Estimator",
+          "sha": "049c439228acc2e8a1fd6de1e044e2b5bd874a2a"
+        },
+        {
+          "repo": "CapitalGlass-BidComposer",
+          "sha": "80a11671b5595ab579467e3630e8ad938932f107"
+        }
+      ],
+      "blockers": [
+        "operator PR review and merge decision, x3, independent"
+      ]
+    },
+    {
+      "packetId": "human-estimator-knowledge-client-ownership-v1",
+      "packetTitle": "Human Estimator's production-query implementation canonically lives in CG-AppBuilder-MCP, not a Human Estimator-local file",
+      "packetKind": "architecture",
+      "classification": "ARCHITECTURE",
+      "state": "PROVEN",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "CURRENT_AUTHORITY",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "scripts/lib/estimating-knowledge/production-query.mjs",
+      "nextAction": "Merge CapitalGlass-BidComposer commit 80a1167 to make this ownership fix live in the shared checkout",
+      "advancementGate": "operator-pr-review-and-merge",
+      "doNotAdvance": [
+        "Duplicate/copy production-query.mjs's logic into CapitalGlass-BidComposer or CG-Human-Estimator-MCP -- ownership stays in CG-AppBuilder-MCP",
+        "Assume this fix means the estimating-knowledge corpus is populated -- see the separate, legitimate 'compiled records not found' data-state below"
+      ],
+      "content": {
+        "priorBrokenReference": "CapitalGlass-BidComposer/src/mcp/human-estimator/production-query-mcp-handlers.ts's resolveHumanEstimatorClientPath() looked for CG-Human-Estimator-MCP/lib/estimating-knowledge-client.mjs and called client.callEstimatorProductionQuery(...)",
+        "confirmedNeverExisted": "Direct filesystem search across the entire /home/wesley/repos tree, including an older extracted historical snapshot (.pi-extract/CapitalGlass-BidComposer), found zero matches for estimating-knowledge-client.mjs anywhere -- this was broken since the tool was first built, not a regression",
+        "canonicalOwner": "CG-AppBuilder-MCP",
+        "canonicalFile": "scripts/lib/estimating-knowledge/production-query.mjs",
+        "canonicalExport": "callProductionQueryTool(toolName, args, options) -- same signature, same 6 tool names (estimator.get_project_knowledge, estimator.get_schedule_review_guidance, estimator.get_verified_operator_procedure, estimator.get_estimate_conflicts, estimator.get_source_provenance, estimator.get_knowledge_service_health) the handler already declared",
+        "resolutionPatternUsed": "CG_APPBUILDER_MCP_ROOT env override -> nested -> sibling, matching the already-documented pattern in this repo's own AGENTS.md and resolve-promptops-mcp-root.mjs -- not a new resolution scheme",
+        "separateLegitimateDataState": "After the fix, estimator.get_knowledge_service_health correctly returns mcpIntegrationStatus: HUMAN_ESTIMATOR_MCP_DELEGATION_ACTIVE, but serviceHealth.serviceAvailable: false with error 'compiled records not found: .../artifacts/agent-runs/estimating-knowledge-service-v1/compiled/knowledge-records.json' -- this is an honest, correct report that the estimating-knowledge corpus has never been compiled for this project, NOT a code failure. Fixing the crash and populating the corpus are two separate, independent pieces of work."
+      },
+      "evidenceRefs": [
+        "delegateHumanEstimatorQuery / callProductionQueryTool source read in CG-AppBuilder-MCP",
+        "post-fix tool call: isError:false, mcpIntegrationStatus HUMAN_ESTIMATOR_MCP_DELEGATION_ACTIVE, corpusProductionStatus NOT_YET_LIVE",
+        "scripts/tests/human-estimator-mcp-readonly-contract.test.mjs: 3/3 pass with the correct sibling path resolved"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CapitalGlass-BidComposer",
+          "sha": "80a11671b5595ab579467e3630e8ad938932f107"
+        }
+      ],
+      "blockers": [],
+      "relationships": [
+        {
+          "type": "IMPLEMENTS",
+          "target": "mcp-estate-remediation-commits-v1"
+        },
+        {
+          "type": "RESOLVES",
+          "target": "mcp-estate-final-status-v1"
+        }
+      ]
+    },
+    {
+      "packetId": "computer-estimator-dependency-governance-v1",
+      "packetTitle": "Unbounded MCP SDK dependency version + bare-python launcher, stacked defect",
+      "packetKind": "fix",
+      "classification": "FIX",
+      "state": "PROVEN",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "CURRENT_AUTHORITY",
+      "ownerRepo": "Computer-Estimator",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "requirements.txt / mcp/run.mjs",
+      "nextAction": "Merge Computer-Estimator commit 049c439",
+      "advancementGate": "operator-pr-review-and-merge",
+      "doNotAdvance": [
+        "Assume the ONLY fix needed was the venv-aware launcher -- the venv itself also lacked the dependency until bounded correctly and reinstalled"
+      ],
+      "content": {
+        "rootCause": "requirements.txt declared mcp>=1.2 with no upper bound; the repo's own .venv had resolved mcp==2.0.0, an incompatible major version that removed mcp.server.fastmcp",
+        "secondaryDefect": "mcp/run.mjs's launcher hardcoded bare python3/python (process.platform === 'win32' ? 'python' : 'python3'), never using the repo's own canonical .venv -- so even a correctly-pinned venv would not have been used automatically",
+        "fix": "Launcher now checks for and prefers <repo>/.venv/bin/python3 (or Scripts/python.exe on Windows) via existsSync, falling back to system python only when no venv is present. requirements.txt pinned to mcp>=1.2,<2.0.",
+        "verification": "Full delegation chain (CG-Computer-Estimator-MCP/mcp/run.mjs -> Computer-Estimator/mcp/run.mjs -> python -m computer_estimator.mcp.server) produced a real MCP initialize response with serverInfo.name: computer-estimator, version 1.29.1"
+      },
+      "evidenceRefs": [
+        "pip show mcp before fix: Version 2.0.0, no mcp.server.fastmcp submodule present (confirmed via directory listing -- mcp/server/mcpserver exists, fastmcp does not)",
+        "pip install \"mcp>=1.2,<2.0\": resolved and installed mcp-1.29.1, import mcp.server.fastmcp then succeeded"
+      ],
+      "commitRefs": [
+        {
+          "repo": "Computer-Estimator",
+          "sha": "049c439228acc2e8a1fd6de1e044e2b5bd874a2a"
+        }
+      ],
+      "blockers": [],
+      "relationships": [
+        {
+          "type": "IMPLEMENTS",
+          "target": "mcp-estate-remediation-commits-v1"
+        }
+      ]
+    },
+    {
+      "packetId": "worktree-sibling-resolution-lesson-v1",
+      "packetTitle": "Isolated worktrees can produce false path-resolution failures when code assumes canonical sibling repo layout",
+      "packetKind": "lesson-learned",
+      "classification": "LESSON_LEARNED",
+      "state": "PROVEN",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "CURRENT_AUTHORITY",
+      "ownerRepo": "estate-wide",
+      "ownerIndexingStatus": "not-required",
+      "projectFile": "N/A",
+      "nextAction": "When verifying a sibling-repo-resolution fix from an isolated worktree, use an explicit env-var override to prove the resolution LOGIC is correct, then separately reason about (don't assume) correct behavior once merged into the canonical checkout location",
+      "advancementGate": "none",
+      "doNotAdvance": [
+        "Interpret a path failure observed only from an isolated worktree as an application defect without reproducing it under canonical /home/wesley/repos/<name> conditions or an explicit env override"
+      ],
+      "content": {
+        "observedPattern": "Testing human-estimator-mcp's fixed sibling-resolution logic from a worktree at /home/wesley/repos/CapitalGlass-BidComposer-worktrees/<name> failed, because path.join(repoRoot, '..', 'CG-AppBuilder-MCP') resolved to .../CapitalGlass-BidComposer-worktrees/CG-AppBuilder-MCP (wrong -- worktrees live in a differently-named parent directory) instead of the real /home/wesley/repos/CG-AppBuilder-MCP",
+        "resolution": "Re-tested with CG_APPBUILDER_MCP_ROOT explicitly set to the real path -- proved the resolution FUNCTION and delegated CALL were both correct; the failure was purely an artifact of the worktree's location on disk, not the fix logic",
+        "operationalRule": "Production code should prefer deterministic, explicit machine/repository authority (env var overrides, canonical repo-root registries) over incidental parent-directory layout, precisely because isolated worktrees (used throughout this estate's agent-work convention specifically to avoid stomping on other agents' in-progress work) do not share the canonical repos/ parent directory."
+      },
+      "evidenceRefs": [
+        "First test attempt (no env override) from the worktree: ERR_MODULE_NOT_FOUND with the worktree-relative wrong path visible in the error",
+        "Second test attempt (CG_APPBUILDER_MCP_ROOT=/home/wesley/repos/CG-AppBuilder-MCP) from the same worktree: isError:false, full correct delegation response"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "relationships": [
+        {
+          "type": "REINFORCES",
+          "target": "human-estimator-knowledge-client-ownership-v1"
+        }
+      ]
+    },
+    {
+      "packetId": "mcp-readiness-attestation-resolved-v1",
+      "packetTitle": "MCP control-plane self-check is NOT broken -- resolved, full correction chain recorded",
+      "packetKind": "resolution",
+      "classification": "OPERATIONAL_RULE",
+      "state": "RESOLVED",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "CURRENT_AUTHORITY",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "not-required",
+      "projectFile": "N/A",
+      "nextAction": "None -- resolved. Run npm run mcp:attest periodically to keep the attestation fresh.",
+      "advancementGate": "n/a",
+      "doNotAdvance": [
+        "Report readiness attestation as broken -- superseded, see top-level supersededClaims"
+      ],
+      "content": {
+        "operationalRule": "Before investigating token/schema/RLS internals for an apparent auth failure on a locally-hosted service, first confirm the local service is actually running (process list, port check) -- a completely-unavailable local backend can present as a confusing, specific-looking application-level error rather than an obvious connection failure.",
+        "diagnosticCommand": "curl -sS -m 3 http://127.0.0.1:3001/health",
+        "canonicalStartupCommand": "cd CG-AppBuilder-MCP/services/mcp-api && npm run dev (background)",
+        "canonicalAttestCommand": "npm run mcp:attest (from CG-AppBuilder-MCP root)"
+      },
+      "evidenceRefs": [
+        "See top-level supersededClaims entry mcp-readiness-attestation-resolved-v1 for the full evidence chain"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "relationships": [
+        {
+          "type": "SUPERSEDES",
+          "target": "prior belief: readiness attestation broken"
+        }
+      ]
+    },
+    {
+      "packetId": "mcp-api-service-lifecycle-v1",
+      "packetTitle": "cg-app-mcp's entire tool surface depends on a local mcp-api backend service that does not auto-restart with Claude Code",
+      "packetKind": "machine-fact",
+      "classification": "OPERATIONAL_RULE",
+      "state": "PROVEN",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "CURRENT_AUTHORITY",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "not-required",
+      "projectFile": "services/mcp-api",
+      "nextAction": "Consider whether services/mcp-api should run as a persistent PM2/systemd-managed service on RYZEN9DESK rather than an ad hoc foreground/background npm run dev, to survive Claude Code restarts",
+      "advancementGate": "none -- diagnostic, not a code fix",
+      "doNotAdvance": [
+        "Record the transient PID (351959) or port-binding details as durable intelligence -- only the dependency relationship and diagnostic method are durable"
+      ],
+      "content": {
+        "dependencyChain": "cg-app-mcp (Claude-facing MCP server) -> local mcp-api service (http://127.0.0.1:3001) -> downstream Supabase/control-plane calls",
+        "observedBehavior": "A Claude Code restart left the harness/UI functioning, but the local mcp-api backend process was not running at all -- confirmed via empty `pm2 list` and no matching `ps aux` process. Every cg-app-mcp tool (not just readiness attestation) failed identically with a clear 'MCP API is unreachable' message once this was discovered.",
+        "diagnosticMethod": "curl http://127.0.0.1:3001/health; pm2 list; ps aux | grep mcp-api",
+        "canonicalFix": "cd CG-AppBuilder-MCP/services/mcp-api && npm run dev (documented in the tool's own error message: 'Start CG-AppBuilder-MCP/services/mcp-api with npm run dev or run npm run mcp:doctor')"
+      },
+      "evidenceRefs": [
+        "mcp__cg-app-mcp__list_projects and get_mcp_readiness_attestation both failed identically with 'MCP API is unreachable at http://127.0.0.1:3001' before the service was started",
+        "npm run mcp:doctor confirmed read-only, informative only -- does not itself start the service"
+      ],
+      "commitRefs": [],
+      "blockers": [],
+      "relationships": [
+        {
+          "type": "CAUSES",
+          "target": "mcp-readiness-attestation-resolved-v1 (prior apparent failure)"
+        }
+      ]
+    },
+    {
+      "packetId": "mcp-registry-authority-reconciliation-v1",
+      "packetTitle": "New automated guard: generated MCP inventory must never silently diverge from the governed authority doc again",
+      "packetKind": "configuration-pattern",
+      "classification": "CONFIGURATION_PATTERN",
+      "state": "PROVEN",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "CURRENT_AUTHORITY",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "indexed",
+      "projectFile": "scripts/mcp-operational-workspaces/reconcile-registry-with-authority.mjs",
+      "nextAction": "Merge CG-AppBuilder-MCP commit 0b389796; consider wiring npm run mcp:workspaces:reconcile-authority into a CI gate",
+      "advancementGate": "operator-pr-review-and-merge",
+      "doNotAdvance": [
+        "Treat any generated MCP registry artifact (mcp-estate-inventory.json, mcp-registry-validation.json) as authority in its own right -- docs/platform-registry/mcp-authority-registry-v1.json is the only authority; generated artifacts are derived views that can drift"
+      ],
+      "content": {
+        "rule": "Canonical governed authority (the authority doc) must drive generated inventory, never the reverse. Duplicate hardcoded lifecycle state in more than one place (as discover-mcp-estate.mjs had for revu-mcp) is inherently dangerous because nothing notices when the copies disagree.",
+        "newMechanism": "npm run mcp:workspaces:reconcile-authority -- fails closed (DRIFT_DETECTED, exit 1) when the generated mcp-estate-inventory.json disagrees with the authority doc's PLANNED_SPOKE-ness for any surface, or when duplicate generated rows for the same mcpId disagree with each other",
+        "adversarialProof": "Manually re-injected the old stale ACTIVE_APPROVED status into a copy of the generated artifact -> check correctly reported DRIFT_DETECTED with the exact mismatch; restored the correct state -> check correctly reported RECONCILED",
+        "scopeLimitation": "This reconciles the authority doc against the generated artifact only -- it does NOT reach the live Platform Intelligence MCP registry, which requires interactive OAuth this session doesn't have. A second reconciliation layer (authority doc vs. live registry response) should be added once that connection exists."
+      },
+      "evidenceRefs": [
+        "scripts/mcp-operational-workspaces/reconcile-registry-with-authority.mjs full source, committed",
+        "Adversarial test transcript: injected drift -> DRIFT_DETECTED exit 1 with exact mismatch detail; restored -> RECONCILED exit 0"
+      ],
+      "commitRefs": [
+        {
+          "repo": "CG-AppBuilder-MCP",
+          "sha": "0b389796e7f2d0fe7b75393a8213135648f72a91"
+        }
+      ],
+      "blockers": [],
+      "relationships": [
+        {
+          "type": "RESOLVES",
+          "target": "mcp-registry-artifact-staleness-v1"
+        },
+        {
+          "type": "IMPLEMENTS",
+          "target": "mcp-estate-remediation-commits-v1"
+        }
+      ]
+    },
+    {
+      "packetId": "wsl-validator-host-path-defect-v1",
+      "packetTitle": "validate-mcp-workspaces.mjs is Windows-path-dependent -- its WSL 0/20 result is invalid evidence, not real estate state",
+      "packetKind": "open-defect",
+      "classification": "OPEN_DEFECT",
+      "state": "WINDOWS_PATH_DEPENDENT_NOT_VALID_ON_WSL",
+      "packetVerdict": "OPEN",
+      "harvestVerdictContribution": "OPEN_FOLLOW_UP",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "ownerIndexingStatus": "not-required",
+      "projectFile": "scripts/mcp-operational-workspaces/lib/workspace-standard.mjs",
+      "nextAction": "See improvementCandidates WC-MCP-001 -- bounded follow-up, not fixed in this mission",
+      "advancementGate": "investigate-synology-wsl-reachability-then-fix",
+      "doNotAdvance": [
+        "Use any WSL-observed 0/20 (or any other) result from validate-mcp-workspaces.mjs as evidence of real Synology workspace-scaffold state",
+        "Silently mark this validator as fixed -- it is not; only recorded and NOT executed to completion in this mission"
+      ],
+      "content": {
+        "rootCause": "SYNOLOGY_OPS_ROOT (in scripts/mcp-operational-workspaces/lib/workspace-standard.mjs) is a hardcoded Windows-style path using a literal backslash -- existsSync() checks against paths built from it cannot resolve correctly under WSL2, unrelated to whether the physical Synology workspace folders exist",
+        "observedInvalidResult": "Running node scripts/mcp-operational-workspaces/validate-mcp-workspaces.mjs from this WSL2 host produced passed:0, expected:20 -- every single workspace 'failed' purely due to path-format mismatch",
+        "actionTakenThisSession": "The invalid 0/20 output was generated once during diagnosis, then explicitly reverted via git checkout before committing anything -- it was never persisted as a false artifact in mcp-registry-validation.json or any sibling file"
+      },
+      "evidenceRefs": [
+        "Direct run + git diff showing the 0/20 result touched 6 artifact files, all reverted via git checkout before the remediation commit"
+      ],
+      "commitRefs": [],
+      "blockers": [
+        "needs investigation into whether Synology workspace folders are reachable/mounted from WSL2 at all before any path-format fix is attempted"
+      ],
+      "relationships": [
+        {
+          "type": "INVALIDATES_EVIDENCE",
+          "target": "any WSL-observed run of validate-mcp-workspaces.mjs"
+        }
+      ]
+    },
+    {
+      "packetId": "ryzen9desk-host-constraints-v1",
+      "packetTitle": "Host-specific runtime constraints confirmed for CG-RYZEN9DESK-01",
+      "packetKind": "host-constraint",
+      "classification": "HOST_CONSTRAINT",
+      "state": "PROVEN",
+      "packetVerdict": "PASS",
+      "harvestVerdictContribution": "CURRENT_AUTHORITY",
+      "ownerRepo": "estate-wide",
+      "ownerIndexingStatus": "not-required",
+      "projectFile": "N/A",
+      "nextAction": "None -- these are expected, correctly-reported absences, not defects",
+      "advancementGate": "n/a",
+      "doNotAdvance": [
+        "Classify an MCP tool correctly reporting a missing Windows-only desktop dependency (Illustrator, Bluebeam Revu) as an application failure on this host"
+      ],
+      "content": {
+        "host": "CG-RYZEN9DESK-01",
+        "confirmedCapabilities": [
+          "Active Claude Code / WSL2 (Ubuntu-24.04) development host",
+          "Real /mnt/l CIFS mount to WESLEYDESK's shared L: (Capital-Glass-Intelligence-Hub) -- confirmed readable",
+          "Real /mnt/z 9p mount (local Z: passthrough) -- AI-Cache-Authority reachable",
+          "Real local hot-cache root at /mnt/c/AI Cursur Cache, host identity RYZEN9DESK",
+          "NVIDIA RTX 5080 GPU present -- unrelated to the MCP issues in this mission, used by Computer Estimator's separate paddle/CUDA stack"
+        ],
+        "confirmedWindowsOnlyDependencies": [
+          {
+            "capability": "Adobe Illustrator desktop trace (visual-asset-engine-mcp)",
+            "expectedOnLinux": false,
+            "observedBehavior": "vae_get_illustrator_preflight correctly returns ILLUSTRATOR_DESKTOP_NOT_FOUND, ready:false -- this is the correct answer on this host"
+          },
+          {
+            "capability": "Bluebeam Revu desktop MCP server (revu-mcp)",
+            "expectedOnLinux": false,
+            "observedBehavior": "see revu-mcp-authority-correction-v1"
+          }
+        ]
+      },
+      "evidenceRefs": [],
+      "commitRefs": [],
+      "blockers": [],
+      "relationships": [
+        {
+          "type": "HOST_CONSTRAINT",
+          "target": "revu-mcp-authority-correction-v1"
+        },
+        {
+          "type": "HOST_CONSTRAINT",
+          "target": "mcp-estate-final-status-v1"
+        }
+      ]
+    }
+  ],
+  "ledgerLineage": {
+    "ledgerContentHashBefore": null,
+    "ledgerContentHashAfter": "d846191095572da68a4e2b474a6325082b70347cfb2287bf234fd5fb239b4622"
+  },
+  "promptHarvest": {
+    "reviewed": true,
+    "operatorApprovals": [],
+    "candidatesFound": 0,
+    "deduplicated": 0,
+    "approved": 0,
+    "rejected": 0,
+    "candidateOnly": 0,
+    "promptCatalogUpdated": false,
+    "executionPacketsUpdated": false,
+    "indexUpdated": false,
+    "supabaseSeeded": false,
+    "candidateIds": [],
+    "approvedPromptIds": [],
+    "projectionReceiptIds": [],
+    "verdict": "PROMPT_HARVEST_NO_CANDIDATES"
+  }
+}

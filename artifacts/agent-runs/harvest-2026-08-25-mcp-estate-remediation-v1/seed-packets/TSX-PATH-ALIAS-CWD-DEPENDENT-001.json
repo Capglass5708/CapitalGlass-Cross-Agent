@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "harvest-seed-packet-v1@1.0.0",
+  "seedId": "TSX-PATH-ALIAS-CWD-DEPENDENT-001",
+  "kind": "failure-pattern",
+  "title": "tsx path-alias resolution (@/lib/...) depends on process.cwd(), fails silently from the wrong directory",
+  "summary": "tsx's resolveTsPaths reads tsconfig.json path aliases relative to process.cwd() at launch, not the script's own location -- a Claude Code MCP server launched without the correct working directory fails alias imports like @/mcp/human-estimator/... even though the file exists. Fixed with a bash -c \"cd <repo> && exec node --import ./node_modules/tsx/dist/loader.mjs <script>\" wrapper (the leading ./ on --import matters: without it Node treats it as a bare specifier and throws ERR_MODULE_NOT_FOUND).",
+  "retrievalQuestions": [
+    "Why does a tsx-loaded MCP server fail to resolve @/lib path aliases even though the file exists on disk?",
+    "What is the exact shell wrapper pattern for launching a tsx-based Claude Code MCP server from the correct working directory?",
+    "Why does node --import node_modules/tsx/dist/loader.mjs fail with ERR_MODULE_NOT_FOUND while --import ./node_modules/tsx/dist/loader.mjs works?"
+  ],
+  "evidenceRefs": [
+    "tsx-path-alias-resolution-failure-v1",
+    "EVT-405",
+    "~/.claude.json"
+  ],
+  "sourcePacketIds": ["tsx-path-alias-resolution-failure-v1"],
+  "futureAgentInstructions": {
+    "whenThisAppears": "A Claude Code stdio MCP server built with TypeScript + tsx + tsconfig path aliases fails with module-not-found errors specifically on @/... imports",
+    "startAt": ["~/.claude.json mcpServers entry for the affected server", "the repo's tsconfig.json paths block"],
+    "runPreflight": ["claude mcp get <server-name>"],
+    "doNot": [
+      "Use --import node_modules/tsx/dist/loader.mjs without a leading ./ or / -- Node treats it as a bare module specifier and throws ERR_MODULE_NOT_FOUND: Cannot find package 'node_modules'",
+      "Assume a tsx alias-resolution failure is a code bug in the imported file before checking the launch working directory"
+    ],
+    "proveBeforeClaiming": [
+      "The fixed command is bash -c \"cd <repo> && exec node --import ./node_modules/tsx/dist/loader.mjs <script>\"",
+      "A real tools/call against the previously-failing tool succeeds after the wrapper is applied, verified via claude mcp list and a direct MCP protocol probe"
+    ]
+  },
+  "ownerRepo": "estate-wide",
+  "targetSlice": "BY-KIND/mcp-operational-facts.json",
+  "promotionClass": "AUTOMATIC",
+  "status": "CANDIDATE",
+  "roiRank": 1
+}

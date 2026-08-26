@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-25-mcp-estate-remediation-v1",
+  "packetId": "mcp-verification-methodology-v1",
+  "state": "PROVEN",
+  "packetVerdict": "PASS",
+  "ownerRepo": "estate-wide",
+  "ownerIndexingStatus": "not-required",
+  "nextAction": "Adopt this ladder as the default MCP health-check standard for future estate work",
+  "evidenceRefs": [
+    "custom raw-protocol probe script sending initialize -> notifications/initialized -> tools/list -> tools/call sequentially over stdio, run against bid-composer-app-mcp (control) and all four flagged servers"
+  ],
+  "doNotAdvance": [
+    "Declare an MCP 'operational' based on Level 1 (process starts) or Level 2 (initialize succeeds) alone"
+  ],
+  "advancementGate": "none -- already proven across 5 servers in this mission",
+  "contentHash": "7cb3cbe15238959168f81c7e616f28bf165edc1a50f46120c2897b0bfa43c48d"
+}

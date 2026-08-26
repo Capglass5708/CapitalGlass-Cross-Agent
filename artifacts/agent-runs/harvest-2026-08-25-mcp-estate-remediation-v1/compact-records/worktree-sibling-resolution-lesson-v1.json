@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-25-mcp-estate-remediation-v1",
+  "packetId": "worktree-sibling-resolution-lesson-v1",
+  "state": "PROVEN",
+  "packetVerdict": "PASS",
+  "ownerRepo": "estate-wide",
+  "ownerIndexingStatus": "not-required",
+  "nextAction": "When verifying a sibling-repo-resolution fix from an isolated worktree, use an explicit env-var override to prove the resolution LOGIC is correct, then separately reason about (don't assume) correct behavior once merged into the canonical checkout location",
+  "evidenceRefs": [
+    "First test attempt (no env override) from the worktree: ERR_MODULE_NOT_FOUND with the worktree-relative wrong path visible in the error",
+    "Second test attempt (CG_APPBUILDER_MCP_ROOT=/home/wesley/repos/CG-AppBuilder-MCP) from the same worktree: isError:false, full correct delegation response"
+  ],
+  "doNotAdvance": [
+    "Interpret a path failure observed only from an isolated worktree as an application defect without reproducing it under canonical /home/wesley/repos/<name> conditions or an explicit env override"
+  ],
+  "advancementGate": "none",
+  "contentHash": "b7f1668c04d9fcdb88364a9bb2d2612997cfcf345f66c513a9d03f3c0b114663"
+}

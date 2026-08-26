@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-25-mcp-estate-remediation-v1",
+  "packetId": "tsx-path-alias-resolution-failure-v1",
+  "state": "PROVEN",
+  "packetVerdict": "PASS",
+  "ownerRepo": "estate-wide",
+  "ownerIndexingStatus": "not-required",
+  "nextAction": "Use the deterministic shell-wrapper launch pattern for any tsx-loaded MCP server with tsconfig path aliases",
+  "evidenceRefs": [
+    "Direct reproduction command and full stack trace captured during remediation",
+    "Second reproduction after the ./ bug: Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'node_modules' imported from <repo>/",
+    "Final verification: `bash -c \"cd /home/wesley/repos/CapitalGlass-BidComposer && exec node --import ./node_modules/tsx/dist/loader.mjs ...\"` -- claude mcp list showed Connected for both affected servers"
+  ],
+  "doNotAdvance": [
+    "Assume a tsx --import loader launch will resolve TS path aliases correctly regardless of working directory"
+  ],
+  "advancementGate": "none -- reproduced and fixed for human-estimator-mcp and bid-composer-command-mcp",
+  "contentHash": "a5167b84307dfa922628b17b0920bbeae15c5cdd7a81a796c3cdb8d3fbdf4836"
+}

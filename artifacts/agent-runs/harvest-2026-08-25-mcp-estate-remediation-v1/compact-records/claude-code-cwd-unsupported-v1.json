@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "cross-agent-harvest-compact-record-v1@1.0.0",
+  "harvestId": "harvest-2026-08-25-mcp-estate-remediation-v1",
+  "packetId": "claude-code-cwd-unsupported-v1",
+  "state": "PROVEN",
+  "packetVerdict": "PASS",
+  "ownerRepo": "estate-wide",
+  "ownerIndexingStatus": "not-required",
+  "nextAction": "Any future stdio MCP launcher that needs a specific working directory must establish it itself (a shell wrapper, or internal process.chdir before any cwd-sensitive resolution happens) -- never rely on a cwd config field",
+  "evidenceRefs": [
+    "claude mcp add --help output showing no --cwd option",
+    "claude mcp get human-estimator-mcp / bid-composer-command-mcp output before fix: no cwd field shown"
+  ],
+  "doNotAdvance": [
+    "Assume a 'cwd' key in an MCP server's ~/.claude.json entry has any effect"
+  ],
+  "advancementGate": "none -- directly reproduced and fixed twice in this mission",
+  "contentHash": "6cb5309ad8d5b2438edd49b6a1928b5e93e0d04fd11d2660a658a21d9770594f"
+}
