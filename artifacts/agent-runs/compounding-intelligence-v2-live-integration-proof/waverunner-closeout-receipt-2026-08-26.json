@@ -1,0 +1,110 @@
+{
+  "schemaVersion": "waverunner-mission-closeout-receipt-v1@1.0.0",
+  "mission": "ULTRA_WAVERUNNER_PROTOCOL_EXECUTION -- compounding-intelligence-v2-live-integration-proof (Phase 0 + Phase 2) plus prior-session commit closeout",
+  "host": "CG-RYZEN9DESK-01",
+  "generatedAt": "2026-08-26T03:20:00.000Z",
+  "PHASES": {
+    "phase0": {
+      "status": "OPERATIONALLY_PROVEN",
+      "summary": "Automatic propagation chain (Git main -> self-hosted runner -> publisher -> L: -> Supabase -> Z: hot cache -> preflight) registered, converged, and confirmed by three independent real, unassisted main pushes.",
+      "prs": ["Capglass5708/CapitalGlass-Cross-Agent#48", "Capglass5708/CapitalGlass-Cross-Agent#49", "Capglass5708/CG-AppBuilder-MCP#496"]
+    },
+    "phase1": {
+      "status": "BLOCKED_NOT_ATTEMPTED",
+      "reason": "Requires physical access to WESLEY_WORK and WESLEYDESK hosts, not available to this session. Not worked around."
+    },
+    "phase2": {
+      "status": "OPERATIONALLY_PROVEN",
+      "summary": "Shared-dev Hub ingest pipeline's first-real-mission harness (stuck at WAITING_FOR_REAL_MISSION since inception) proven live using real evidence from the completed mcp-estate-remediation-v1 mission. FIRST_REAL_MISSION_HUB_PROOF_PASS, all 10 harness checks true, independently re-verified via a direct SQL query (11 real knowledge objects + relationships in intelligence_hub, correct authority_commit provenance).",
+      "prs": ["Capglass5708/CapitalGlass-Cross-Agent#50", "Capglass5708/CapitalGlass-Cross-Agent#51", "Capglass5708/CG-AppBuilder-MCP#497"],
+      "realBugsFixed": [
+        "createSupabaseClient() silently re-resolved credentials with its own defaults, discarding a caller's preferMcpControlPlane choice and connecting to a different Supabase project than the one explicitly forbidden by the harvest pipeline's own control-plane guard",
+        "intelligence_hub Postgres schema was missing from the project's PostgREST-exposed schema list (operator-approved live Data API config change, not a code fix)"
+      ]
+    },
+    "phase3": {
+      "status": "BLOCKED_NOT_ATTEMPTED",
+      "reason": "Requires WaveRunner's repo added to session scope, not available to this session. Not worked around."
+    },
+    "phase4": {
+      "status": "BLOCKED",
+      "reason": "Depends on phases 1 and 3."
+    }
+  },
+  "MERGED_PRS": [
+    { "repo": "CapitalGlass-Cross-Agent", "pr": 48, "sha": "ea9111d", "title": "Phase 0 automatic freshness -- runner, converged publisher, honest hot-cache layer" },
+    { "repo": "CapitalGlass-Cross-Agent", "pr": 49, "sha": "1bde43b", "title": "Phase 0 decisive-proof ledger note (the live unassisted main push)" },
+    { "repo": "CapitalGlass-Cross-Agent", "pr": 50, "sha": "c97e209", "title": "Phase 2 live proof -- first real mission published to intelligence_hub" },
+    { "repo": "CapitalGlass-Cross-Agent", "pr": 51, "sha": "f28174a", "title": "Phase 2 closeout ledger note" },
+    { "repo": "CapitalGlass-Cross-Agent", "pr": 52, "sha": "49e2ba2", "title": "MCP estate remediation intelligence harvest (FULL_CLOSEOUT_WAVERUNNER, previously blocked on git identity)" },
+    { "repo": "CG-AppBuilder-MCP", "pr": 496, "sha": "849fdcef", "title": "agent-index-preflight honors CAPITALGLASS_CROSS_AGENT_ROOT; run-auto-publisher.mjs marked superseded" },
+    { "repo": "CG-AppBuilder-MCP", "pr": 497, "sha": "ef030a91", "title": "createSupabaseClient() forwards its options instead of silently re-resolving with defaults" },
+    { "repo": "Computer-Estimator-", "pr": 40, "sha": "1dd52e9", "title": "prefer repo .venv Python and pin mcp<2.0" },
+    { "repo": "CapitalGlass-BidComposer", "pr": 63, "sha": "da97ea3", "title": "resolve Human Estimator production-query client to its real canonical location" }
+  ],
+  "DELIBERATELY_NOT_MERGED": [
+    {
+      "repo": "CG-AppBuilder-MCP",
+      "branch": "work/mcp-estate-remediation-v1",
+      "sha": "0b389796e7f2d0fe7b75393a8213135648f72a91",
+      "reason": "Superseded by a more thorough fix already on main (commit 859b3c56 fix(mcp): reconcile authority registry with its derived artifacts and the live registry), which covers both the revu-mcp drift and the cross-platform gitRevision() fix this commit also made, with a more precise root-cause finding. Verified via git diff origin/main before deciding not to merge -- merging would have fought or regressed already-landed work.",
+      "worktreeLeftInPlace": true
+    }
+  ],
+  "INFRASTRUCTURE_CHANGES": {
+    "newRunner": {
+      "name": "ryzen9desk-wsl2-CG-RYZEN9DESK-01",
+      "repo": "CapitalGlass-Cross-Agent",
+      "labels": ["self-hosted", "ryzen9desk", "wsl2"],
+      "installPath": "/home/wesley/actions-runner-cross-agent",
+      "systemdService": "actions.runner.Capglass5708-CapitalGlass-Cross-Agent.ryzen9desk-wsl2-CG-RYZEN9DESK-01.service",
+      "status": "online (verified in final check)"
+    },
+    "supabaseDataApiConfig": {
+      "project": "xjivcwcyyimjujbchwdf (capital-glass-mcp)",
+      "change": "added intelligence_hub to PostgREST db_schema exposed list",
+      "approvedBy": "operator (explicit chat approval)"
+    }
+  },
+  "FINAL_LIVE_VERIFICATION": {
+    "freshnessGate": { "verdict": "PASS", "gitHead": "49e2ba2c3484f916f305bed64cb6c97f5cd70740" },
+    "preflight": { "publicationStatus": "PUBLICATION_PASS", "indexTier": "z-ai-cache", "freshnessVerdict": "CURRENT", "resolvedSourceCommitSha": "49e2ba2c3484f916f305bed64cb6c97f5cd70740" },
+    "runnerOnline": true,
+    "supabaseIndependentlyVerified": true
+  },
+  "WORKTREES": {
+    "note": "Not deleted -- standing convention is not to delete worktrees/branches without explicit authorization.",
+    "clean": [
+      "CapitalGlass-Cross-Agent-worktrees/harvest-mcp-estate-remediation-v1 (merged, no uncommitted changes)",
+      "CapitalGlass-Cross-Agent-worktrees/phase0-live-integration-v1 (merged, no uncommitted changes)",
+      "CapitalGlass-Cross-Agent-worktrees/phase2-supabase-goldmine-v1 (merged, no uncommitted changes)",
+      "CG-AppBuilder-MCP-worktrees/fix-supabase-client-project-v1 (merged, no uncommitted changes)",
+      "Computer-Estimator-worktrees/mcp-launcher-venv-fix-v1 (merged, no uncommitted changes)",
+      "CapitalGlass-BidComposer-worktrees/human-estimator-knowledge-client-fix-v1 (merged, no uncommitted changes)"
+    ],
+    "unmergedOrUnused": [
+      "CG-AppBuilder-MCP-worktrees/mcp-estate-remediation-v1 (deliberately not merged -- superseded)",
+      "CG-AppBuilder-MCP-worktrees/phase0-live-integration-v1 (branch fix/hub-scan-wsl2-binding-v1 has zero commits -- created for the cg-app-mcp binding investigation, never used because the fix was found already merged upstream)"
+    ]
+  },
+  "OPEN_ITEMS_CARRIED_FORWARD": {
+    "tier2RequiresOperatorDecision": [
+      "WC-MCP-003: GitHub MCP credential rotation",
+      "WC-MCP-004: Cloudflare Workers/D1/KV/R2 API token scope"
+    ],
+    "blockedOnAccessNotResources": [
+      "Phase 1: physical access to WESLEY_WORK and WESLEYDESK hosts",
+      "Phase 3: WaveRunner's repo added to session scope"
+    ],
+    "unresolvedFindingFromEarlierMission": [
+      "WC-MCP-006: cg-app-mcp's intelligence_get_hub_status/intelligence_search_hub report hubAccessible:false because the live shared checkout (/home/wesley/repos/CG-AppBuilder-MCP, on branch work/ryzen9desk-full-health-v1) predates the real upstream fix (commit 0a48aa3d, merged to main) -- needs that checkout synced to main and the MCP connection restarted; not resolved this session, not forced given the shared/in-flight nature of that checkout's branch"
+    ]
+  },
+  "FINAL": {
+    "ALL_TRACKED_COMMITS_RESOLVED": true,
+    "NO_UNCOMMITTED_WORK_REMAINING": true,
+    "NO_ORPHANED_WORKTREES_REQUIRING_ACTION": true,
+    "LIVE_CHAIN_RECONFIRMED_AFTER_ALL_MERGES": true,
+    "declaration": "ULTRA_WAVERUNNER_PROTOCOL_EXECUTION = CLOSED"
+  }
+}
