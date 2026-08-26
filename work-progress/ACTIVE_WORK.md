@@ -21,6 +21,17 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 ## Current saved work
 
+### 2026-08-25 CT — appbuilder-closeout-to-gold-mine-projection-contract-v1 (proposed)
+
+| Field | Value |
+| --- | --- |
+| Work package | `appbuilder-closeout-to-gold-mine-projection-contract-v1` |
+| Status | **PROPOSED, doc-only** — not `ARCHITECTURE_LOCKED`; needs confirmation from whoever owns Data-Extraction's Gold Mine discovery logic before the mapping table is binding |
+| Repos involved | CapitalGlass-Cross-Agent only (this contract touches only schemas Cross-Agent already owns on both ends; no AppBuilder or Data-Extraction repo access used or needed) |
+| Notes | Wesley asked to connect AppBuilder's mission closeout to Data-Extraction. Investigation found two mature, previously-unconnected pipelines: AppBuilder closeout (`intelligence-handoff-v1` → OP-00A ingest → Intelligence Hub, a pure agent-retrieval plane) and harvest → Gold Mine (`gold-mine-evidence-projection-v1.json` → Data-Extraction discovery, an operator-facing opportunity-mining plane). Zero code or doc cross-references between them, confirmed by direct search (the Gold Mine schema's own title says "harvest → Data-Extraction", not AppBuilder). Wrote a bridge contract, same pattern as the WaveRunner-preflight contract: ownership table, forbidden list (AppBuilder stays evidence-only, Data-Extraction never needs OP-00A's envelope shape, the bridge translates vocabulary but never makes discovery decisions itself), a proposed OP-00A-kind → Gold-Mine-signalClass mapping split into high-confidence/needs-human-call/explicitly-excluded tiers, and named open questions (trigger cadence, materiality floor, confirmation loop) left for Data-Extraction's actual owner rather than guessed. Also flagged a real naming hazard: this repo's own `/goldmine` command (built earlier this session) is a *different* system from Data-Extraction's Gold Mine and must not be conflated with it. |
+| Evidence | Contract `contracts/intelligence/appbuilder-closeout-to-gold-mine-projection-contract-v1.md` |
+| Next | Confirm the mapping table and open questions with whoever owns Data-Extraction's Gold Mine discovery logic; only after that should the actual projection code be built (location proposed but not decided: `scripts/intelligence/` or `scripts/harvest/`, both Cross-Agent-owned). |
+
 ### 2026-08-25 CT — compounding-intelligence-v2-live-integration-proof (planning)
 
 | Field | Value |
