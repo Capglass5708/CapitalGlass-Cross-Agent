@@ -24,9 +24,67 @@ mapping stays useful to humans only.
 
 ---
 
+## Step 0 — Create the dedicated WriteOnce share (DO THIS FIRST, decisions are irreversible)
+
+**DSM WriteOnce is set at share creation and cannot be added to an existing share.** Three
+choices are made here that cannot be changed afterwards. Read all three before clicking.
+
+Control Panel → Shared Folder → Create → name it exactly:
+
+```
+Capital-Glass-AI-Evidence-Vault
+```
+
+on `volume_1` (Btrfs — required for WriteOnce; confirmed present).
+
+### Decision 1 — Compliance vs Enterprise mode
+
+| Mode | Who can delete locked files | Reversible |
+| --- | --- | --- |
+| **Enterprise** | admin can still delete files and the share | share can be removed |
+| **Compliance** | **nobody, including admin**, until retention expires | **share cannot be deleted, mode cannot be downgraded** |
+
+**Recommendation: Enterprise for this first vault.** Compliance is the stronger guarantee and
+is where an evidence vault eventually wants to be, but it is genuinely irreversible: a
+misconfigured retention in Compliance mode leaves data that literally cannot be removed for
+the full period, and the share itself cannot be deleted. We have not yet run a single object
+end to end. Prove the pipeline in Enterprise, then create the Compliance vault once retention
+is known to be right.
+
+### Decision 2 — Retention period
+
+Pick deliberately. In Compliance mode this is unrecoverable; in Enterprise it still governs
+when objects become mutable again. Evidence is meant to be permanent, so retention should be
+long — but do not set a decade on the first attempt before the pipeline is proven.
+
+### Decision 3 — What actually goes on the WriteOnce share
+
+**Only the content-addressed blob store belongs here.** Blobs are written once and never
+modified, which is exactly what WriteOnce expects.
+
+**Manifests and the hash-chained ledger must NOT live on a WriteOnce share** if auto-lock is
+enabled. They are appended to, and an auto-locked manifest becomes unwritable — the pipeline
+would wedge on its own immutability. Put them on a normal share, or write each manifest as a
+new immutable file rather than updating one in place.
+
+This is the single most likely way to have to start over, so decide it now:
+
+```
+Capital-Glass-AI-Evidence-Vault/     <- WriteOnce, blobs only
+    objects/sha256/{aa}/{hash}
+Capital-Glass-AI-Evidence-Vault-meta/  <- normal share: manifests, ledger, receipts
+```
+
+### Verify from here afterwards
+
+Once created, the share and its WORM state are readable over the API, so no further clicks are
+needed to confirm it.
+
+---
+
 ## Step 1 — Create the dedicated service account
 
-Create a DSM user **`cg-context-ledger`**.
+Create a DSM user **`cg-context-ledger`** — non-admin service user, NOT in the administrators group.
 
 - **Not** Wesley's general NAS identity.
 - Permitted **only** on `Capital Glass / Capital-Glass-AI-Evidence-Vault` (read/write).
