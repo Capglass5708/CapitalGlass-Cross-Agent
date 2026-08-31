@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "capital-glass-cross-agent/context-ledger/nas-governance-receipt-v1.schema.json",
+  "title": "NasGovernanceReceipt",
+  "description": "Explicit, operator-attested governance state of the Evidence Vault. Production capture MUST NOT start without this receipt. Every control is tri-state: a protection that does not exist is recorded NOT_AVAILABLE with a compensating control -- the implementation may never invent a PASS.",
+  "type": "object",
+  "required": [
+    "schemaVersion", "recordedAt", "attestedBy", "vaultRootId", "remoteHost",
+    "controls", "verdict"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "nas-governance-receipt-v1@1.0.0" },
+    "recordedAt": { "type": "string", "format": "date-time" },
+    "attestedBy": { "type": "string", "description": "Human operator who confirmed DSM-side facts. An agent may not self-attest DSM state it cannot observe." },
+    "vaultRootId": { "type": "string" },
+    "remoteHost": { "type": "string" },
+
+    "controls": {
+      "type": "object",
+      "required": [
+        "serviceAccount", "acl", "encryptionAtRest", "snapshotPolicy", "backupReplication",
+        "retentionPolicy", "wormImmutability", "recoveryProcedure", "capacityAlerts",
+        "integrityAuditSchedule"
+      ],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^(serviceAccount|acl|encryptionAtRest|snapshotPolicy|backupReplication|retentionPolicy|wormImmutability|recoveryProcedure|capacityAlerts|integrityAuditSchedule)$": {
+          "type": "object",
+          "required": ["state"],
+          "properties": {
+            "state": {
+              "type": "string",
+              "enum": ["CONFIRMED", "NOT_AVAILABLE", "NOT_APPLICABLE", "UNKNOWN"],
+              "description": "UNKNOWN is a failing state. It may not be treated as CONFIRMED."
+            },
+            "detail": { "type": "string", "description": "What was actually configured or why it is unavailable. Never a credential value." },
+            "evidence": { "type": ["string", "null"], "description": "Where this was observed -- DSM screen, CLI output path, ticket." },
+            "compensatingControl": {
+              "type": ["string", "null"],
+              "description": "REQUIRED when state is NOT_AVAILABLE. What mitigates the absence."
+            },
+            "verifiedAt": { "type": ["string", "null"], "format": "date-time" }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+
+    "accessBoundary": {
+      "type": "object",
+      "description": "The service identity must not hold general NAS access.",
+      "properties": {
+        "identity": { "type": "string", "description": "e.g. cg-context-ledger" },
+        "scopedToPaths": { "type": "array", "items": { "type": "string" } },
+        "usesDedicatedKey": { "type": "boolean" },
+        "sharesWesleyIdentity": { "type": "boolean", "description": "MUST be false." },
+        "keyPassphraseProtected": { "type": "boolean" },
+        "commandRestricted": { "type": "boolean", "description": "Whether the authorized_keys entry restricts the key to the replication command." },
+        "networkRestricted": { "type": ["string", "null"], "description": "e.g. Tailscale-only ACL." }
+      },
+      "additionalProperties": false
+    },
+
+    "verdict": {
+      "type": "string",
+      "enum": ["NAS_GOVERNANCE_ACCEPTED", "NAS_GOVERNANCE_INSUFFICIENT"],
+      "description": "ACCEPTED requires every control to be CONFIRMED, NOT_APPLICABLE, or NOT_AVAILABLE-with-a-compensatingControl. Any UNKNOWN forces INSUFFICIENT."
+    },
+    "notes": { "type": "string" }
+  },
+  "additionalProperties": false
+}

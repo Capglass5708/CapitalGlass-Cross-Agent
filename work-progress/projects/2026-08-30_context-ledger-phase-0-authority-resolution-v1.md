@@ -351,3 +351,83 @@ capacity thresholds, disaster-recovery procedure.
 
 `claude-code-transcripts` registration in AppBuilder remains outstanding; that repo's lease is
 still held by session `c94f6280` and **was not bypassed**.
+
+
+---
+
+# ADDENDUM 2 — Topology locked, transport chosen, exit criteria narrowed
+
+## Locked ingestion topology
+
+```
+source → Cross-Agent capture adapter → WSL ext4 spool → hash + canonical envelope
+       → batch replication over NATIVE network path → Synology Evidence Vault
+       → independent REMOTE hash verification → DURABLE / VERIFIED
+       → ledger metadata → Intelligence Hub derived intelligence
+```
+
+**The Context Ledger must never write through `/mnt/z`.** The Windows `Z:` mapping remains
+useful to humans but is excluded from the machine ingestion path. `replication-batch-v1`
+enforces this in contract: `remoteRoot` is a registered storage-root id, explicitly *"NEVER a
+/mnt/z drvfs path."*
+
+## Transport decision: SSH + rsync (primary), CIFS (fallback)
+
+Chosen because the architecture wants a **batch replication worker**, not a permanently
+mounted filesystem: no long-lived mount, no reusable SMB password in user config, clean
+staging and verification, straightforward retry/resume, a tightly restricted NAS service
+account, and local capture that stays fully independent of NAS availability.
+
+Prepared on `CG-NIMO-01`:
+
+| Item | Value |
+| --- | --- |
+| Service identity | `cg-context-ledger` (**not** Wesley's general NAS identity) |
+| Key | `~/.ssh/cg-context-ledger_ed25519`, ed25519, mode `600` |
+| Fingerprint | `SHA256:Cf2lFNe83DVh7izV8yljX3Z8nwxbKL1WCgEZjByy50o` |
+| SSH alias | `cg-vault` → `cg-server`, `IdentitiesOnly yes`, `BatchMode yes` |
+| Current state | `Permission denied (publickey,password)` — account/key not yet installed on the NAS |
+
+The key is passphrase-less because replication is unattended; that is compensated at the NAS
+end by a forced rsync command in `authorized_keys` plus Tailscale-only reachability. Steps in
+`runbooks/CONTEXT_LEDGER_NAS_PROVISIONING_RUNBOOK.md`.
+
+## Immutability is not a file mode
+
+`0400 == immutable` is **false** on this transport and must never be claimed. Immutability is
+the combination of content addressing, **collision refusal**, the hash-chained ledger,
+independent remote re-hash before `VERIFIED`, and NAS-side snapshot/WORM/retention controls.
+
+After `VERIFIED`, a periodic sample-and-re-hash job is an independent integrity monitor.
+`replication-batch-v1.integrityEvent` carries `severity: CRITICAL` — **a mutated blob is a
+major integrity event, never a silent new truth.**
+
+## New contracts
+
+| Contract | Purpose |
+| --- | --- |
+| `contracts/context-ledger/replication-batch-v1.schema.json` | Makes a transfer auditable evidence rather than an invisible filesystem side effect. Carries `batchId`, `manifestHash`, counts, transport, timings, per-failure detail, `batchState`, `integrityEvent`, and spool age-out gating. `PARTIAL` is explicitly not success. |
+| `contracts/context-ledger/nas-governance-receipt-v1.schema.json` | Tri-state operator attestation of 10 DSM controls. `NOT_AVAILABLE` **requires** a `compensatingControl`; any `UNKNOWN` forces `NAS_GOVERNANCE_INSUFFICIENT`. An agent may not self-attest DSM state it cannot observe. |
+
+The batch object matters most when the NAS is offline overnight and a few hundred sessions
+accumulate in the spool — the queue stays explainable and resumable instead of becoming an
+opaque backlog.
+
+## AppBuilder registration — deliberately deferred
+
+`claude-code-transcripts` registration is now an execution dependency, not an architectural
+question. Session `c94f6280` legitimately holds that checkout lease; it is left alone. The
+endangered data is already preserved, so there is no justification for bypassing isolation.
+
+## Phase 0 exit criteria — all four required
+
+1. Native NAS transport proven with a real non-trivial batch (SSH/rsync preferred).
+2. DSM governance recorded and accepted → `NAS_GOVERNANCE_ACCEPTED`.
+3. `claude-code-transcripts` registered through a legitimate AppBuilder checkout.
+4. One synthetic, non-sensitive Evidence Envelope completes
+   `CAPTURED_LOCAL → HASHED → REPLICATING → DURABLE → VERIFIED` with independent
+   local/remote hash equality.
+
+Then `CG_CONTEXT_LEDGER_PHASE_0_AUTHORITY_V1_PASS`, and directly into Phase 2: one genuine
+Claude Code session captured automatically from source through verified NAS preservation and
+ledger reconstruction. **No graph expansion, no executive UI, no ROI engine.**
