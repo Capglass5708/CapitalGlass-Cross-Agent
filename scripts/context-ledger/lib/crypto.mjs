@@ -57,6 +57,39 @@ const INFO_NONCE = 'context-ledger/v1/nonce-derivation';
 const NONCE_DOMAIN = 'context-ledger:nonce:v2';
 export const DEFAULT_KEY_VERSION = 'v1';
 
+/**
+ * FROZEN crypto envelope version.
+ *
+ * Any future change to key derivation, nonce derivation, AAD handling or blob
+ * layout MUST introduce a new version rather than altering this one. Silently
+ * changing how existing evidence is interpreted is the one thing an immutable
+ * archive cannot survive: old ciphertext would still decrypt, or fail to, for
+ * reasons no receipt records.
+ */
+export const ENVELOPE_VERSION = 'context-ledger-crypto-v2';
+
+/** Explicit empty AAD. Never null/undefined -- absence must not be a distinct case. */
+export const EMPTY_AAD_BYTES = Buffer.alloc(0);
+
+/**
+ * Length-delimited encoding for HMAC input.
+ *
+ * Raw `a|b|c` concatenation is ambiguous: ("v1", "a|b") and ("v1|a", "b")
+ * produce identical bytes, so two different field splits could derive one
+ * nonce. Each part is prefixed with a 4-byte big-endian length, which makes the
+ * field boundaries unforgeable regardless of what the values contain.
+ */
+export function lengthDelimited(...parts) {
+  const chunks = [];
+  for (const part of parts) {
+    const b = Buffer.isBuffer(part) ? part : Buffer.from(String(part), 'utf8');
+    const len = Buffer.alloc(4);
+    len.writeUInt32BE(b.length, 0);
+    chunks.push(len, b);
+  }
+  return Buffer.concat(chunks);
+}
+
 /** Two independent subkeys. The master key is never used to encrypt or to MAC. */
 export function deriveSubkeys(masterKeyMaterial) {
   const master = resolveKey(masterKeyMaterial);
@@ -72,8 +105,17 @@ export function deriveSubkeys(masterKeyMaterial) {
  * Same canonicalizer as everything else -- two encodings of "the same" AAD would
  * produce two nonces for one logical object.
  */
-export function canonicalAad(aad = {}) { return canonicalJson(aad ?? {}); }
-export function aadHashOf(aad = {}) { return sha256Prefixed(Buffer.from(canonicalAad(aad), 'utf8')); }
+export function canonicalAad(aad = {}) {
+  // Explicit empty bytes when there is no AAD -- not null, not absent.
+  if (aad === null || aad === undefined) return '';
+  const c = canonicalJson(aad);
+  return c === '{}' ? '' : c;
+}
+export function aadBytes(aad = {}) {
+  const c = canonicalAad(aad);
+  return c === '' ? EMPTY_AAD_BYTES : Buffer.from(c, 'utf8');
+}
+export function aadHashOf(aad = {}) { return sha256Prefixed(aadBytes(aad)); }
 
 /**
  * nonce = Truncate96(HMAC(nonceKey, domain || keyVersion || plaintextHash || aadHash))
@@ -86,7 +128,7 @@ export function aadHashOf(aad = {}) { return sha256Prefixed(Buffer.from(canonica
  */
 function deriveNonce(nonceKey, { keyVersion, plaintextHash, aadHash }) {
   return createHmac('sha256', nonceKey)
-    .update(`${NONCE_DOMAIN}|${keyVersion}|${plaintextHash}|${aadHash}`)
+    .update(lengthDelimited(NONCE_DOMAIN, keyVersion, plaintextHash, aadHash))
     .digest()
     .subarray(0, 12);
 }
@@ -120,10 +162,11 @@ export function assertNoNonceCollision(entries) {
 export function encryptObject({ plaintext, key, plaintextHash, aad = {}, keyVersion = DEFAULT_KEY_VERSION }) {
   const { encKey, nonceKey } = deriveSubkeys(key);
   const aadCanonical = canonicalAad(aad);
+  const aadBuf = aadBytes(aad);
   const aadHash = aadHashOf(aad);
   const iv = deriveNonce(nonceKey, { keyVersion, plaintextHash, aadHash });
   const c = createCipheriv('aes-256-gcm', encKey, iv);
-  c.setAAD(Buffer.from(aadCanonical, 'utf8'));
+  c.setAAD(aadBuf);
   const body = Buffer.concat([c.update(plaintext), c.final()]);
   const tag = c.getAuthTag();
   // Stored layout: [12-byte nonce][16-byte tag][ciphertext]. Self-describing,
@@ -131,7 +174,7 @@ export function encryptObject({ plaintext, key, plaintextHash, aad = {}, keyVers
   const blob = Buffer.concat([iv, tag, body]);
   return {
     blob, ciphertextHash: sha256Prefixed(blob), nonce: iv.toString('hex'),
-    algorithm: ALGORITHM, keyVersion, aad: aadCanonical, aadHash,
+    algorithm: ALGORITHM, envelopeVersion: ENVELOPE_VERSION, keyVersion, aad: aadCanonical, aadHash,
   };
 }
 
@@ -142,7 +185,7 @@ export function decryptObject({ blob, key, aad = {} }) {
   const tag = blob.subarray(12, 28);
   const body = blob.subarray(28);
   const d = createDecipheriv('aes-256-gcm', encKey, iv);
-  d.setAAD(Buffer.from(canonicalAad(aad), 'utf8'));   // AAD mismatch fails authentication
+  d.setAAD(aadBytes(aad));   // AAD mismatch fails authentication
   d.setAuthTag(tag);
   // GCM throws here on any tampering -- authentication, not just decryption.
   return Buffer.concat([d.update(body), d.final()]);

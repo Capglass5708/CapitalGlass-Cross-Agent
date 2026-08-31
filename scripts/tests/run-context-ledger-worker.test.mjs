@@ -13,7 +13,7 @@ import os from 'node:os';
 import { randomBytes } from 'node:crypto';
 
 import { sha256Prefixed, canonicalJson, objectStorePath } from '../context-ledger/lib/canonical.mjs';
-import { encryptObject, decryptObject, deriveSubkeys, assertNoNonceCollision, aadHashOf, canonicalAad, DEFAULT_KEY_VERSION } from '../context-ledger/lib/crypto.mjs';
+import { encryptObject, decryptObject, deriveSubkeys, assertNoNonceCollision, aadHashOf, canonicalAad, aadBytes, lengthDelimited, DEFAULT_KEY_VERSION, ENVELOPE_VERSION, EMPTY_AAD_BYTES } from '../context-ledger/lib/crypto.mjs';
 import { appendEntry, readHead, reconstructHead, restoreHead, scanEntries, computeEntryHash, entryFileName, HEAD_FILE } from '../context-ledger/lib/ledger.mjs';
 import { LocalFixtureTransport, SshRsyncTransport } from '../context-ledger/lib/transport.mjs';
 import { scanEntries as scanAll } from '../context-ledger/lib/ledger.mjs';
@@ -322,7 +322,8 @@ test('registry invariant is (keyVersion, nonce) -> one (plaintextHash, aadHash)'
 });
 
 test('canonical AAD is empty-by-default and canonicalizer-stable', () => {
-  assert.equal(canonicalAad(), '{}');
+  // Explicit empty STRING, not '{}': absence and empty must not be distinct cases.
+  assert.equal(canonicalAad(), '');
   assert.equal(canonicalAad({ b: 1, a: 2 }), canonicalAad({ a: 2, b: 1 }));
   assert.equal(DEFAULT_KEY_VERSION, 'v1');
 });
@@ -333,6 +334,56 @@ test('ledger entries record keyVersion and aadHash for later scrubbing', () => {
     const r = run(e, Buffer.from('recorded binding'));
     assert.equal(r.ledgerEntry.encryption.keyVersion, 'v1');
     assert.equal(r.ledgerEntry.encryption.aadHash, aadHashOf({}));
-    assert.equal(r.ledgerEntry.encryption.aad, '{}');
+    assert.equal(r.ledgerEntry.encryption.aad, '');
   } finally { e.cleanup(); }
 });
+
+
+test('length-delimited encoding removes field-boundary ambiguity', () => {
+  // The exact collision raw `a|b|c` concatenation would produce:
+  //   ("v1", "a|b")  and  ("v1|a", "b")  ->  identical bytes
+  const a = lengthDelimited('v1', 'a|b');
+  const b = lengthDelimited('v1|a', 'b');
+  assert.notDeepEqual(a, b, 'different field splits must not encode identically');
+  // and the naive form really would have collided, which is why this matters
+  assert.equal(['v1', 'a|b'].join('|'), ['v1|a', 'b'].join('|'));
+  assert.deepEqual(lengthDelimited('x'), lengthDelimited('x'), 'encoding is deterministic');
+});
+
+test('a shifted field boundary yields a different nonce', () => {
+  const pt = Buffer.from('boundary shift');
+  const h = sha256Prefixed(pt);
+  const x = encryptObject({ plaintext: pt, key: KEY, plaintextHash: h, keyVersion: 'v1' });
+  const y = encryptObject({ plaintext: pt, key: KEY, plaintextHash: h, keyVersion: 'v1|extra' });
+  assert.notEqual(x.nonce, y.nonce);
+});
+
+test('empty AAD is explicit empty bytes, not absence', () => {
+  assert.equal(canonicalAad({}), '');
+  assert.equal(canonicalAad(null), '');
+  assert.equal(canonicalAad(undefined), '');
+  assert.deepEqual(aadBytes({}), EMPTY_AAD_BYTES);
+  assert.equal(aadBytes({}).length, 0);
+  // absence and explicit-empty must agree rather than being distinct cases
+  assert.equal(aadHashOf({}), aadHashOf(null));
+  assert.equal(aadHashOf({}), aadHashOf(undefined));
+});
+
+test('crypto envelope version is frozen and recorded on every object', () => {
+  assert.equal(ENVELOPE_VERSION, 'context-ledger-crypto-v2');
+  const pt = Buffer.from('versioned');
+  const e = encryptObject({ plaintext: pt, key: KEY, plaintextHash: sha256Prefixed(pt) });
+  assert.equal(e.envelopeVersion, ENVELOPE_VERSION);
+  const env = env2();
+  try {
+    const r = protectObject({
+      plaintext: Buffer.from('recorded version'), key: KEY, keyRef: KEYREF,
+      spoolRoot: env.spool, vaultRoot: env.vault, metaRoot: env.meta,
+      primary: env.primary, backup: env.backup,
+    });
+    assert.equal(r.ledgerEntry.encryption.envelopeVersion, ENVELOPE_VERSION,
+      'every ledger entry must record how its ciphertext is to be interpreted');
+  } finally { env.cleanup(); }
+});
+
+function env2() { return env(); }

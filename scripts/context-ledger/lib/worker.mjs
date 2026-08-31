@@ -12,7 +12,7 @@
 import { mkdirSync, writeFileSync, readFileSync, existsSync, rmSync } from 'node:fs';
 import path from 'node:path';
 import { sha256Prefixed, objectStorePath } from './canonical.mjs';
-import { encryptObject, decryptObject, ALGORITHM, DEFAULT_KEY_VERSION } from './crypto.mjs';
+import { encryptObject, decryptObject, ALGORITHM, DEFAULT_KEY_VERSION, ENVELOPE_VERSION } from './crypto.mjs';
 import { appendEntry } from './ledger.mjs';
 
 export const STATE = {
@@ -94,7 +94,10 @@ export function protectObject({
       sourceSystem, sourceNativeId, machineId,
       contentHash: plaintextHash,
       provenanceClass: 'DISCOVERED',
-      encryption: { algorithm: ALGORITHM, keyRef, keyVersion, plaintextHash, ciphertextHash, nonce, aad: aadCanonical, aadHash },
+      encryption: {
+        algorithm: ALGORITHM, envelopeVersion: ENVELOPE_VERSION, keyRef, keyVersion,
+        plaintextHash, ciphertextHash, nonce, aad: aadCanonical, aadHash,
+      },
       storageLocator: {
         spoolPath,
         primary: { rootId: primary.id, host: primary.host, path: legs.primary.put?.path ?? null, transport: primary.kind },
