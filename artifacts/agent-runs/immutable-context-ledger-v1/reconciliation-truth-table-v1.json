@@ -41,9 +41,9 @@
   "resolutions": [
     {
       "question": "17675 vs 17670",
-      "answer": "5 LEDGER_ONLY identities located and individually named (28c24299, 69ec3e57, a306c707, bedf6491, ff226534). Two are adhoc:replication-canary.txt. Three are real source files.",
-      "status": "LOCATED_NOT_EXPLAINED",
-      "note": "The accounting-exclusion RULE for the three real source files was never identified. Locating an object is not explaining it."
+      "status": "RESOLVED",
+      "answer": "The accounting list is built from classRecords, which holds exactly ONE SourceRecord per DISCOVERED file (estate-capture-v1.mjs:227, census.flatMap over classRecords). Two classes of ledger entry therefore can never appear in it: intermediate versions of files that mutated mid-run (the memory .md at 6,606 then 8,956 bytes; the cursor sync manifest), and adhoc sources under /tmp that discovery does not cover (the two replication canaries). This is a mechanism, not a restatement.",
+      "architecturalConsequence": "The accounting model is DISCOVERY-BOUNDED by design. It will under-count any source that mutates during a capture run. That is a real property worth knowing before the model is trusted for completeness claims."
     },
     {
       "question": "3665 apparent encryption gap",
@@ -53,8 +53,9 @@
     },
     {
       "question": "113 refused vs 118 quarantined",
-      "answer": "Delta of 5 remains unexplained. Set arithmetic was never produced.",
-      "status": "UNRESOLVED"
+      "status": "RESOLVED",
+      "answer": "118 register entries = 113 unique identities + 5 duplicates across exactly 3 sources (x2, x3, x3). Independently reverified by the integrator using the real fields (sourceRootId + relativePath); an earlier integrator check using sourceNativeId returned UNKNOWN for all 118 and proved nothing. Set arithmetic: |quarantined| = |refused| = |intersection| = 113; both differences 0.",
+      "cause": "Three Claude session files were re-scanned as they grew during capture. Every scan is recorded in the register; only the latest is counted in accounting -- the same discovery-bounded behaviour as the 5-delta, arrived at independently."
     },
     {
       "question": "true production population",
@@ -70,11 +71,18 @@
       "question": "e08ab247",
       "answer": "RESOLVED. 119-byte ciphertext object of the second replication canary at spool/objects/sha256/e0/e08ab247... Independently rehashed and matched. Never a git commit, which is why git search failed. plaintext contentHash a8f04151...",
       "status": "RESOLVED"
+    },
+    {
+      "question": "7 orphan spool objects",
+      "status": "CLASSIFIED_NOT_INDEPENDENTLY_VERIFIED",
+      "answer": "All 7 classified ABANDONED_WRITE: created inside a single 1-second window (17:14:19.295-.910), encrypted, referenced by no ledger entry and absent from the quarantine register. Consistent with spool-write-precedes-ledger-binding where binding failed.",
+      "integratorNote": "Plausible and internally consistent, but I did not independently reproduce the classification. Recorded at the confidence it actually has."
     }
   ],
   "correlatedGuessWarning": {
     "finding": "Both Haiku lanes independently speculated that the 5-delta relates to the quarantine mismatch. Neither tested it. They are separate deltas -- one is ledger-vs-accounting, the other quarantine-vs-refused.",
-    "lesson": "Two lanes converging on the same untested guess is a correlation to distrust, not corroboration. Independent lanes reading the same artifact inherit its framing."
+    "lesson": "Two lanes converging on the same untested guess is a correlation to distrust, not corroboration. Independent lanes reading the same artifact inherit its framing.",
+    "resolution": "The earlier cross-lane guess that the two 5-deltas were related turns out to have been WRONG IN REASONING BUT RIGHT IN SPIRIT: they are separate deltas, but they share one underlying cause -- discovery-bounded accounting. Distrusting the untested guess was still correct; it was accepted only once a mechanism was produced."
   },
   "laneAdjudication": {
     "laneA_countReconciliation": {
@@ -91,6 +99,11 @@
       "laneVerdict": "BLOCKED",
       "integratorVerdict": "BLOCKED",
       "reason": "Well cited. Note: this lane quoted the RETRACTED 4.7 MB/s from worktree docs as evidence -- the retraction had not reached that lane copy."
+    },
+    "laneB2_countOrphanQuarantine": {
+      "laneVerdict": "PASS",
+      "integratorVerdict": "PASS on counts and quarantine; orphans accepted as classified but not independently verified",
+      "reason": "Unlike the first count lane, this one identified the exclusion RULE with file and line rather than restating the observation. Quarantine set arithmetic reproduced exactly."
     }
   },
   "supersessionProposals": [
@@ -107,15 +120,15 @@
   ],
   "scoreboard": {
     "STEP_1_SUPERSESSION": "PASS (f41ac5e)",
-    "COUNT_RECONCILIATION": "FAIL",
-    "UNEXPLAINED_COUNT_DELTA": 5,
+    "COUNT_RECONCILIATION": "PASS",
+    "UNEXPLAINED_COUNT_DELTA": 0,
     "ENCRYPTION_POPULATION_IDENTIFIED": "PASS",
     "ENCRYPTION_POPULATION_COVERAGE": "PASS",
     "UNAUDITED_PRODUCTION_OBJECTS": 0,
     "PLAINTEXT_PRODUCTION_OBJECTS": 0,
-    "QUARANTINE_RECONCILIATION": "FAIL",
-    "REFUSED_RECONCILIATION": "FAIL",
-    "ORPHAN_RECONCILIATION": "FAIL",
+    "QUARANTINE_RECONCILIATION": "PASS",
+    "REFUSED_RECONCILIATION": "PASS",
+    "ORPHAN_RECONCILIATION": "CLASSIFIED_ABANDONED_WRITE",
     "QUANTITATIVE_PROSE_EMITTER_DEFECT": "CONFIRMED",
     "EMITTER_BINDING_REMEDIATION_SPEC": "READY",
     "EMITTER_REMEDIATION_IMPLEMENTED": "YES (committed locally, push blocked)",
@@ -123,14 +136,19 @@
     "PRIMARY_STORAGE_TARGET": "ABSENT",
     "FULL_REPLICATION": "BLOCKED",
     "E08AB247_REFERENCE": "RESOLVED",
-    "ESTATE_WIDE_CAPTURE_COMPLETENESS_V1": "BLOCKED"
+    "ESTATE_WIDE_CAPTURE_COMPLETENESS_V1": "BLOCKED",
+    "SECRET_FIXTURE_REGENERATION": "FAILING_AFTER_4_ATTEMPTS"
   },
   "firstConcreteRemainingBoundary": {
     "id": "GITHUB_PUSH_PROTECTION_ON_FROZEN_SUBSTRATE",
-    "statement": "The emitter remediation is complete and tested but cannot be pushed. GitHub secret scanning rejects any branch containing 546bd2c5, which carries five credential-shaped strings in scripts/tests/run-secret-detector.test.mjs lines 36-46 (Doppler, Supabase, Slack, Stripe, Twilio).",
-    "whyNotBypassed": "The file header asserts the values are synthetic. That is a comment asserting safety -- the same evidence class as a measuredFacts field asserting a measurement, which is the defect this entire block exists to close. Bypassing push protection on strings that cannot be independently proven fake is not a decision an agent should make silently.",
-    "consequence": "546bd2c5 now has three independent defects: a false top-level verdict, fabricated throughput values in generated receipts, and unpushable content.",
-    "durableFix": "Generate credential-shaped fixtures at test runtime rather than storing literals, so push protection cannot fire on them again.",
-    "decisionRequired": "Operator: confirm synthetic and allowlist, or treat as real and rotate."
+    "statement": "Steps 2 and 3 are exhausted -- every locally resolvable question is closed. The emitter remediation is complete and green (quantitative-prose-binding 6/6, estate-capture 33/33, estate-completeness 18/18, worker 29/29, completeness 14/14) but cannot be pushed: any branch containing 546bd2c5 is rejected by GitHub secret scanning over five credential-shaped literals in scripts/tests/run-secret-detector.test.mjs.",
+    "syntheticProof": "PROVEN_SYNTHETIC structurally: 21 of 26 values share 12+ character runs ACROSS DIFFERENT PROVIDERS (anthropic/bearer 44 chars, doppler/anthropic 35), 107 cross-provider collisions. Independent issuers cannot produce common runs of that length.",
+    "remediationStatus": "FAILING after 4 attempts. Generic alphabet destroyed charset structure; class-masking randomized issuer prefixes; the detector capture span covers the whole token including the prefix, so it gave no usable boundary. A correctly shaped generated token DOES trip its detector in isolation, so the generator is sound and the fault is per-provider prefix-boundary derivation.",
+    "decisionRequired": "Continue iterating on fixture regeneration, or hand off. Office Admin preflight is unblocked either way, per the operator execution order."
+  },
+  "revision": {
+    "revisedAt": "2026-08-31T23:40:05.773Z",
+    "supersedes": "7576277 (first integration pass)",
+    "reason": "A second reconciliation lane located the accounting-exclusion RULE and produced real quarantine set arithmetic. Both were independently reverified by the integrator. Two verdicts I recorded as FAIL are corrected to PASS. The earlier FAIL was correct at the time -- the evidence did not then exist -- and is preserved here rather than erased."
   }
 }
