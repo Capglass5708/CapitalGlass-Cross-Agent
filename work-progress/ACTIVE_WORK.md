@@ -21,6 +21,17 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 ## Current saved work
 
+### 2026-08-30 CT — shared-checkout-git-state-unprotected-v1 (governance defect)
+
+| Field | Value |
+| --- | --- |
+| Work package | `shared-checkout-git-state-unprotected-v1` |
+| Status | **OPEN — recorded, not remediated. Severity BLOCKING for concurrent-agent mutation.** Classified as a governance defect, not operator error. |
+| Repos involved | CG-AppBuilder-MCP (lease implementation, incident site); CapitalGlass-Cross-Agent (finding) |
+| Notes | A shared checkout has three mutable resources — working tree, Git index, and `HEAD`/refs — and the checkout mutation lease arbitrates only the first, and only via `Edit`/`Write`/`NotebookEdit` tool calls. `git checkout`, `git add` and `git commit` run through Bash ungated. Incident: five live Claude processes shared `/home/wesle/repos/CG-AppBuilder-MCP`; this agent ran `git checkout -b` at 20:12; three unrelated Proposal Generator commits (`7ff5ecfe`, `b6c3022f`, `cc6b267f`, one file, fully disjoint) then landed on the Context Ledger branch. No source corruption; the violation was branch ownership. Note the lease was `ABSENT` at the time, so even perfect lease enforcement would not have prevented it — arbitration alone is not the fix. A Bash command allowlist is rejected as the remedy: it must parse arbitrary shell forever and fails open on every unrecognised form. Recommended fix is isolation — canonical checkout becomes read-mostly, every mutating mission gets a dedicated worktree. **This is not new machinery:** `/home/wesle/worktrees/CG-AppBuilder-MCP/<mission-id>/` already holds three per-mission worktrees; the convention exists but is unenforced. |
+| Evidence | `work-progress/projects/2026-08-30_shared-checkout-git-state-unprotected-v1.md` |
+| Next | Adversarial acceptance, not a filter: agent B DENIED branch switch and `git add`/`commit` in agent A's checkout; ALLOWED its own worktree; both commit concurrently without touching each other's `HEAD`, index or working tree; crash/stale recovery still works. Containment meanwhile: shared checkout frozen, contaminated branch preserved, recovery deferred to a fresh worktree once sessions are quiescent. |
+
 ### 2026-08-30 CT — context-ledger-phase-0-authority-resolution-v1
 
 | Field | Value |
