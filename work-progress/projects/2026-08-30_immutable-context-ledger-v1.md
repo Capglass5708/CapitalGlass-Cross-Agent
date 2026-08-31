@@ -478,3 +478,79 @@ theft.
 An encrypted off-site third copy is the eventual answer. It is deliberately **not** a blocker
 for what is being built now, but it is recorded here so it is a decision rather than an
 oversight.
+
+
+---
+
+# CORRECTION — immutable proof, not just immutable blobs (2026-08-31)
+
+An earlier draft concluded that manifests and the hash-chained ledger should live on a normal
+share, because a monolithic append-to-one-file ledger conflicts with WORM auto-lock. That was
+the wrong trade: it solved a **persistence-shape** problem by weakening a **storage
+guarantee**, leaving every historical proof mutable.
+
+The corrected invariant:
+
+> **Historical evidence and historical proof are immutable. Only operational state is
+> mutable.**
+
+Strictly stronger than "blobs immutable, everything describing them mutable."
+
+## Persistence shape
+
+| Was | Is |
+| --- | --- |
+| `ledger.jsonl` appended forever | `ledger-entries/entry-000001.json`, one immutable file per event |
+| `manifest.json` reopened and extended | `manifests/{batchId}.json`, one immutable manifest per batch |
+
+Each entry still carries `prevHash` + `entryHash`, so the chain is unchanged — only the
+container changes. No file is ever reopened.
+
+The **mutable head pointer** lives on the normal metadata share and is an optimisation, not an
+authority: if it is lost, the head is rebuilt by scanning `ledger-entries/` and following the
+chain. A lost pointer costs time, never integrity.
+
+## Vault lifecycle
+
+The first Enterprise vault is explicitly a **PROVING / PRE-PRODUCTION VAULT**. Enterprise must
+not quietly become permanent production merely because it works. The Compliance-mode
+production vault is created fresh, later, and promoted into deliberately once the contract is
+stable.
+
+Retention on the proving vault is deliberately **bounded** — long enough to exercise locking,
+short enough that a mistake is not painful. Multi-year production retention is not hard-coded
+until the lifecycle is proven.
+
+## Byte-identical copies
+
+The encrypted object bytes must be identical at both destinations:
+
+```
+ciphertextHash(Synology) == ciphertextHash(L:)
+```
+
+while `plaintextHash` remains the canonical content identity and dedup key. Both destinations
+are written independently from the WSL spool; neither is derived from the other.
+
+## Required before creating the irreversible Compliance vault
+
+Eleven behaviours must be deliberately exercised on the proving vault first. We do not lock
+anything permanently until we know how it fails.
+
+| # | Test |
+| --- | --- |
+| 1 | duplicate object ingestion |
+| 2 | interrupted transfer |
+| 3 | corrupted remote object |
+| 4 | loss of Synology during replication |
+| 5 | loss of WESLEYDESK during replication |
+| 6 | ledger head recovery (pointer lost, chain rebuilt by scan) |
+| 7 | restoration **exclusively** from L: |
+| 8 | encryption/decryption recovery using the real key-management procedure |
+| 9 | retention expiry behaviour |
+| 10 | attempted deletion of a locked object |
+| 11 | attempted mutation of an existing object |
+
+Tests 7 and 8 are the ones most often skipped and most consequential: a backup is proven by
+reconstruction, and a key procedure is proven by recovering data with it — not by the
+existence of files or of a key.

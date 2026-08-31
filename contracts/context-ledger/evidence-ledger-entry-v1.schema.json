@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "capital-glass-cross-agent/context-ledger/evidence-ledger-entry-v1.schema.json",
   "title": "ContextLedgerEvidenceEntry",
-  "description": "One hash-chained ledger record describing ONE source observation of ONE content-addressed evidence blob. The payload itself is never embedded here -- the ledger records identity, provenance, chain position, and durability. Many observations may point at one blob (natural dedup across overlapping source corpora).",
+  "description": "One hash-chained ledger record describing ONE source observation of ONE content-addressed evidence blob. PERSISTENCE SHAPE IS PART OF THE CONTRACT: each entry is written as its own immutable file (ledger-entries/entry-NNNNNN.json) on the WriteOnce vault -- never appended into a shared file, which would be incompatible with WORM auto-lock and would leave historical proof mutable. The mutable head pointer lives on the normal metadata share and is an optimisation, not an authority: if lost, the head is rebuilt by scanning entries and following prevHash/entryHash. Invariant: historical evidence and historical proof are immutable; only operational state is mutable.",
   "type": "object",
   "required": [
     "schemaVersion",
@@ -328,6 +328,13 @@
           ],
           "format": "date-time",
           "description": "A backup is proven by RECONSTRUCTION, not by files existing. Records the last real restore from the backup copy."
+        },
+        "ciphertextHashesIdentical": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "ciphertextHash(primary) == ciphertextHash(backup). The encrypted bytes must be identical at both destinations."
         }
       },
       "additionalProperties": false
@@ -426,6 +433,34 @@
           "type": "boolean",
           "const": false,
           "description": "MUST be false. Objects are content-addressed and append-only."
+        }
+      },
+      "additionalProperties": false
+    },
+    "persistence": {
+      "type": "object",
+      "description": "Where and how this entry is stored. Enforces the immutable-per-entry shape.",
+      "properties": {
+        "entryFile": {
+          "type": "string",
+          "description": "Immutable path, e.g. immutable-metadata/ledger-entries/entry-000001.json. Written once, never reopened."
+        },
+        "storageClass": {
+          "type": "string",
+          "const": "WORM_IMMUTABLE",
+          "description": "Ledger entries live on the WriteOnce vault alongside blobs, manifests and receipts."
+        },
+        "batchManifest": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Immutable per-batch manifest, e.g. immutable-metadata/manifests/{batchId}.json. Never an extended file."
+        },
+        "headPointerIsAuthority": {
+          "type": "boolean",
+          "const": false,
+          "description": "MUST be false. The chain is the authority; the head pointer is a cache."
         }
       },
       "additionalProperties": false

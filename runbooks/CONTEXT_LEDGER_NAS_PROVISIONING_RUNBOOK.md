@@ -57,23 +57,55 @@ Pick deliberately. In Compliance mode this is unrecoverable; in Enterprise it st
 when objects become mutable again. Evidence is meant to be permanent, so retention should be
 long — but do not set a decade on the first attempt before the pipeline is proven.
 
-### Decision 3 — What actually goes on the WriteOnce share
+### Decision 3 — What goes on the WriteOnce share
 
-**Only the content-addressed blob store belongs here.** Blobs are written once and never
-modified, which is exactly what WriteOnce expects.
+**Corrected from an earlier draft.** That draft said manifests and the ledger belong on a
+normal share because a monolithic append-to-one-file ledger conflicts with auto-lock. That
+solved a persistence-shape problem by weakening a storage guarantee — it would have left all
+historical proof mutable.
 
-**Manifests and the hash-chained ledger must NOT live on a WriteOnce share** if auto-lock is
-enabled. They are appended to, and an auto-locked manifest becomes unwritable — the pipeline
-would wedge on its own immutability. Put them on a normal share, or write each manifest as a
-new immutable file rather than updating one in place.
+The right fix is to change the shape, not the storage class:
 
-This is the single most likely way to have to start over, so decide it now:
+> **Historical evidence and historical proof are immutable. Only operational state is mutable.**
+
+Instead of one ledger file appended forever, write **one immutable file per entry**, each
+carrying `prevHash` and `entryHash`. The chain is preserved; no file is ever reopened.
 
 ```
-Capital-Glass-AI-Evidence-Vault/     <- WriteOnce, blobs only
-    objects/sha256/{aa}/{hash}
-Capital-Glass-AI-Evidence-Vault-meta/  <- normal share: manifests, ledger, receipts
+Capital-Glass-AI-Evidence-Vault/            [WriteOnce - Enterprise]
+├── objects/sha256/{aa}/{hash}              encrypted immutable blobs
+└── immutable-metadata/
+    ├── manifests/{batchId}.json            one immutable manifest per batch
+    ├── ledger-entries/entry-000001.json    one immutable file per event
+    └── receipts/{id}.json                  immutable proof receipts
+
+Capital-Glass-AI-Evidence-Vault-meta/       [normal Btrfs share]
+├── current-head/                           mutable ledger head pointer
+├── replication-state/
+├── queues/
+├── retry-state/
+├── indexes/
+└── checkpoints/
 ```
+
+Two properties this buys:
+
+- **Head recovery is possible without the pointer.** If `current-head/` is lost or corrupted,
+  the head is rebuilt by scanning `ledger-entries/` and following `prevHash`/`entryHash`. The
+  mutable pointer is an optimisation, never the authority.
+- **Sequential numbering stays safe.** Entry numbers come from the head pointer in normal
+  operation and from a chain scan after loss, so a lost pointer degrades performance rather
+  than integrity.
+
+Note this produces many small files on the vault. That is fine over native SSH/rsync — it was
+only catastrophic over the 9p/drvfs path, which both legs now avoid.
+
+### Designate this vault explicitly as pre-production
+
+This first Enterprise vault is a **PROVING / PRE-PRODUCTION VAULT**, not production. Record
+that designation in the share description so it cannot quietly become permanent production
+just because it works. The Compliance-mode production vault is created later, deliberately,
+and promoted into.
 
 ### Verify from here afterwards
 
