@@ -153,3 +153,67 @@ Intended primary transport is FileStation HTTPS over Tailscale; SSH is
 diagnostic-only. The adapter to implement is therefore `FileStationTransport`,
 not `SshRsyncTransport`, against the same `put`/`verify`/`fetch` interface, with
 the same suite rerun unchanged.
+
+
+---
+
+# Reconciliation classification (storage-forensics lane)
+
+The outcome must land in exactly one bucket, with evidence:
+
+| Bucket | Meaning |
+| --- | --- |
+| `WRONG_ATTRIBUTION` | the WORM read-back belonged to a disposable/test share (e.g. `CG-WORM-ENT-PROOF1`) |
+| `DELETED_PRODUCTION_SHARE` | the real vault existed and was subsequently removed |
+| `WRONG_ENDPOINT` | a different DSM endpoint, session or state was being observed |
+| `RECEIPT_DEFECT` | the artifact recorded intended/expected values instead of binding a live read-back |
+
+## If the bucket is DELETED_PRODUCTION_SHARE, it escalates
+
+That outcome is **a Phase 0 governance finding, not a provisioning mistake**, and
+must answer:
+
+- who or what deleted it — 22 remediation tasks and several provisioning scripts exist
+- whether Enterprise WORM permits deletion of the **share itself** under the
+  conditions used (file-level immutability does not imply share-level protection)
+- whether a scheduled `CG-CTX-*` task performed it
+
+The third question matters most for the architecture: if a scheduled mutator can
+remove a WORM share, then WriteOnce is protecting objects while leaving their
+container deletable, and Compliance mode becomes materially more attractive than
+the Enterprise-first recommendation currently recorded.
+
+## Creation receipt is now contract-enforced
+
+`contracts/context-ledger/vault-creation-receipt-v1.schema.json` refuses a receipt
+that merely asserts "WORM vault verified". It requires `endpointIdentity`
+(hostname, tailscaleIp, model, serial, dsmVersion, volumeId), `shareIdentity`
+(exactName, internalShareId, creationTimestamp, configurationHash),
+`wormReadback` **as read from the device**, `proofBinding` (readbackTimestamp,
+rawResponseHash), and a **second independent read-back** that must agree.
+
+Two additions beyond the specified shape, both from this incident:
+
+- `internalShareId` (DSM uuid). A share identity that survives a rename; a name
+  alone does not, and rename/aliasing is one of the misattribution hypotheses.
+- `secondReadback.agreesWithFirst` must be `true` for a `VERIFIED` verdict. One
+  read-back proves what a single call returned; two agreeing read-backs
+  distinguish a real configuration from a transient or cached response.
+
+## Endpoint identity observed by this lane
+
+Captured under the new rule, so the forensics lane has a bound baseline to
+compare prior artifacts against.
+
+| Field | Value |
+| --- | --- |
+| hostname | `cg-server` |
+| tailscaleIp | `100.112.81.50` (`cg-server.tail49f063.ts.net`) |
+| model | `DS1525+` |
+| dsmVersion | `DSM 7.3.2-86009 Update 4` |
+| serial | `2540YJ***665` (masked) |
+| volumeId | `volume_1` (btrfs, 5,729,117,274,112 bytes) |
+| observedAt | 2026-08-31, this lane, authenticated DSM API |
+| shares observed | `Book Keeping`, `Capital Glass`, `Capital-Glass-AI-Evidence-meta`, `homes`, `surveillance` |
+
+`Capital-Glass-AI-Evidence-Vault` was **not** among them.

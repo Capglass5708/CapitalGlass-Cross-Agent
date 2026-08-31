@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "capital-glass-cross-agent/context-ledger/vault-creation-receipt-v1.schema.json",
+  "title": "VaultCreationReceipt",
+  "description": "Binds a storage-configuration claim to a physical endpoint, an exact share, and a timestamped raw read-back. Written because two lanes once formed incompatible beliefs about one supposed share without either lane stating anything it believed to be false: the receipt format simply did not carry enough identity to tell the beliefs apart. A receipt saying 'WORM vault verified' is insufficient and is refused by this schema.",
+  "type": "object",
+  "required": ["schemaVersion", "recordedAt", "endpointIdentity", "shareIdentity", "wormReadback", "proofBinding", "secondReadback", "verdict"],
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "vault-creation-receipt-v1@1.0.0" },
+    "recordedAt": { "type": "string", "format": "date-time" },
+
+    "endpointIdentity": {
+      "type": "object",
+      "description": "WHICH MACHINE. Without this, a claim cannot be distinguished from the same claim about a different NAS.",
+      "required": ["hostname", "tailscaleIp", "model", "dsmVersion", "volumeId"],
+      "properties": {
+        "hostname": { "type": "string" },
+        "tailscaleIp": { "type": "string" },
+        "model": { "type": "string" },
+        "serial": { "type": ["string", "null"], "description": "Masked is acceptable; absent must be explicit null, never omitted." },
+        "dsmVersion": { "type": "string" },
+        "volumeId": { "type": "string", "description": "Catches a different volume on the same NAS." }
+      },
+      "additionalProperties": false
+    },
+
+    "shareIdentity": {
+      "type": "object",
+      "description": "WHICH SHARE. exactName is what distinguishes a production vault from a disposable proof share such as CG-WORM-ENT-PROOF1.",
+      "required": ["exactName", "creationTimestamp", "configurationHash"],
+      "properties": {
+        "exactName": { "type": "string", "description": "Verbatim. No normalization, no aliasing -- normalization is itself a documented misattribution hypothesis." },
+        "internalShareId": { "type": ["string", "null"], "description": "DSM uuid where available. Survives a rename; a name alone does not." },
+        "creationTimestamp": { "type": "string", "format": "date-time" },
+        "configurationHash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$", "description": "Makes 'known-good state' comparable rather than narrative." }
+      },
+      "additionalProperties": false
+    },
+
+    "wormReadback": {
+      "type": "object",
+      "description": "The configuration as READ BACK from the live device -- never the configuration that was requested. Recording intent as if it were observation is a named defect class (RECEIPT_DEFECT).",
+      "required": ["subvolMode", "lockMode", "retentionSeconds", "lockWaitSeconds"],
+      "properties": {
+        "subvolMode": { "type": "string", "enum": ["enterprise", "compliance", "none"] },
+        "lockMode": { "type": "string" },
+        "retentionSeconds": { "type": "integer", "minimum": 0 },
+        "lockWaitSeconds": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+
+    "proofBinding": {
+      "type": "object",
+      "required": ["readbackTimestamp", "rawResponseHash"],
+      "properties": {
+        "readbackTimestamp": { "type": "string", "format": "date-time", "description": "Catches a share that existed at proof time and was later removed." },
+        "rawResponseHash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+        "rawResponsePath": { "type": ["string", "null"], "description": "Where the preserved raw API response lives. Never inside a Git repository." },
+        "api": { "type": "string", "description": "Exact API and method that produced the read-back." }
+      },
+      "additionalProperties": false
+    },
+
+    "secondReadback": {
+      "type": "object",
+      "description": "A SECOND, INDEPENDENT read-back taken immediately after the first. One read-back proves what a single call returned; two agreeing read-backs distinguish a real configuration from a transient or cached response, which is the failure this schema exists to catch.",
+      "required": ["readbackTimestamp", "rawResponseHash", "agreesWithFirst"],
+      "properties": {
+        "readbackTimestamp": { "type": "string", "format": "date-time" },
+        "rawResponseHash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+        "agreesWithFirst": { "type": "boolean", "description": "MUST be true for verdict VAULT_CREATION_VERIFIED." },
+        "divergence": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+
+    "verdict": {
+      "type": "string",
+      "enum": ["VAULT_CREATION_VERIFIED", "VAULT_CREATION_UNVERIFIED"],
+      "description": "VERIFIED requires complete endpointIdentity, exact shareIdentity, live wormReadback, both proofBindings, and secondReadback.agreesWithFirst === true."
+    },
+    "notes": { "type": "string" }
+  },
+  "additionalProperties": false
+}
