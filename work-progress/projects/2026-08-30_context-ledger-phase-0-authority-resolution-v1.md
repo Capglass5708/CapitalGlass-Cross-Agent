@@ -4,8 +4,8 @@
 | --- | --- |
 | Work package | `context-ledger-phase-0-authority-resolution-v1` |
 | Parent | `immutable-context-ledger-v1` |
-| Status | **BLOCKED — 5 of 7 items resolved; canonical object-storage target requires an operator authority decision** |
-| Verdict | `CG_CONTEXT_LEDGER_PHASE_0_AUTHORITY_V1_BLOCKED` |
+| Status | **STORAGE DECIDED + AUTHORITY REGISTERED — 1 blocker remains: NAS transport credentials** |
+| Verdict | `CG_CONTEXT_LEDGER_PHASE_0_AUTHORITY_V1_BLOCKED` (blocker narrowed — see Addendum) |
 | Date | 2026-08-30 |
 
 Emergency preservation completed **before** this phase and is independent of it —
@@ -235,3 +235,119 @@ whose checkout lease is held by another session.
 **Not blocked, and already done:** the corpus is preserved and hash-verified.
 
 **Next:** operator decision on Item 2, then `context-ledger-phase-2-claude-capture-proof-v1`.
+
+
+---
+
+# ADDENDUM — 2026-08-30, operator decision executed
+
+**DECISION: NAS-backed Evidence Vault.** Recorded and acted on.
+
+## Storage topology resolved from Windows, not assumed
+
+| Drive | Actual UNC | What it really is |
+| --- | --- | --- |
+| `Z:` | `\\cg-server\Capital Glass` | **The Synology.** 5.3 TB, 1.3 TB used, 4.0 TB free (24%). `#snapshot` and `#recycle` present — Btrfs snapshot protection is active. |
+| `L:` | `\\wesleydesk\CapitalGlass-L` | **A share on the `wesleydesk` desktop — not a NAS at all.** |
+
+**This corrects an assumption that has been carried through the estate's docs.** The
+"canonical intelligence store" on `L:` lives on a desktop workstation, not on protected
+storage. That independently reinforces the decision not to place durable raw evidence there.
+
+## Canonical path — resolved against the live registry
+
+`Z:\INDEX.json` (`schemaVersion: capital-glass-z-drive-index-v1`) declares `canonicalRoots[]`
+with hyphenated `Capital-Glass-*` naming and a `protectedPathsDoNotMove` list. Following that
+convention, the Evidence Vault is a **new top-level root**, not nested inside
+`Capital-Glass-Agent-Operations` or any cache directory:
+
+```
+Z:\Capital-Glass-AI-Evidence-Vault\      (= \\cg-server\Capital Glass\Capital-Glass-AI-Evidence-Vault)
+```
+
+Root created and marked with a `README.md` declaring it provisioned-but-not-in-production.
+It does not touch `AI-Cache-Authority`, so `CAD-20260802`'s single-writer rule is unaffected.
+
+## Measured transport characteristics — the 9p path is not viable
+
+| Test | Result |
+| --- | --- |
+| Sequential write, 32 MB | **4.7 MB/s** |
+| Many small files, 200 x 4 KB | **timed out at 180 s having written 1 file** |
+| `du` of L: object store (28 MB, 626 blobs) | **exceeded 120 s** |
+| Atomic `rename()` + hash round-trip | **PASS** |
+| `chmod 0400` | **FAILS — "Operation not permitted"; 0400 does not block append** |
+
+Two hard consequences:
+
+1. **Per-file writes over Windows drvfs/9p are unusable.** Replication to the vault must be
+   batched/packed, and should bypass drvfs entirely.
+2. **Write-once cannot be enforced by POSIX file mode on this mount.** Immutability must come
+   from Synology-side controls (WORM/immutable shares, snapshot retention) plus mandatory
+   hash verification — never from `chmod`.
+
+## A direct, fast path exists — blocked only on credentials
+
+`cg-server` resolves to **`100.112.81.50` / `cg-server.tail49f063.ts.net` — Tailscale.**
+From WSL: **SMB port 445 OPEN, SSH port 22 OPEN.** `cifs-utils`, `rsync` and `ssh` are all
+installed.
+
+A non-interactive SSH probe returned `Permission denied (publickey,password)`. There is no
+`~/.ssh` key for this host, no `~/.smbcredentials`, and no NAS entry in
+`~/.config/capital-glass/`. **No credentials were guessed, extracted, or created.**
+
+> **BLOCKER:** provide either an SSH key authorized on `cg-server` (for `rsync`) or CIFS
+> credentials (for a direct WSL mount of `//cg-server/Capital Glass`). Either removes the 9p
+> bottleneck entirely.
+
+## Schema authority — REGISTERED AND VERIFIED
+
+A gap was found first: **`CapitalGlass-Cross-Agent` did not exist in `registry.repositories`**,
+despite `OWNERSHIP.md` naming it `INTELLIGENCE_OWNER`. Registering the domain was impossible
+until that was closed.
+
+Three rows now written to `xjivcwcyyimjujbchwdf`:
+
+| Table | Key | Result |
+| --- | --- | --- |
+| `registry.repositories` | `CapitalGlass-Cross-Agent` | `verification_status = verified`, `classification = control_plane` |
+| `registry.domains` | `context_evidence` | `authority_status = verified`, `verification_status = verified` |
+| `registry.migration_authority` | `context_evidence` | `authority_status = verified` -> `canonical_repo_key = CG-AppBuilder-MCP` |
+
+Ownership split, as decided:
+
+| Concern | Owner |
+| --- | --- |
+| Contract / domain owner | CapitalGlass-Cross-Agent |
+| Migration executor | CG-AppBuilder-MCP |
+| Runtime / DML owner | CapitalGlass-Cross-Agent |
+
+`context_evidence` is the **first and only `authority_status = verified` row in
+`registry.migration_authority`** — every pre-existing domain is `inferred`, `transitional`,
+`unverified`, or `drift_detected`. The estate-wide `schemaAuthority = null` condition is
+closed for this domain and the mechanism to close it for others is now demonstrated.
+
+## Evidence / ledger separation — contract written
+
+`contracts/context-ledger/evidence-ledger-entry-v1.schema.json` implements the separation:
+the blob is addressed purely by `contentHash`, while the ledger entry records one
+**observation** (`sourceSystem`, `sourceNativeId`, `contentHash`, timestamps, machine,
+session, repo binding, `prevHash`/`entryHash`, `storageLocator`, `durabilityState`).
+
+Deduplication therefore falls out naturally: the overlapping WSL and Windows Claude corpora
+yield **two observations pointing at one canonical blob**, never two blobs.
+
+`durabilityState` enforces the state machine `CAPTURED_LOCAL -> HASHED -> REPLICATING ->
+DURABLE -> VERIFIED`, and nothing may claim `DURABLE` on local-only evidence. If the NAS is
+offline, capture continues into the spool and simply cannot advance past `HASHED`.
+
+## Remaining before production
+
+Governance still to be provisioned and proven — most require Synology DSM operator action and
+cannot be done from WSL: ACL/access policy, encryption-at-rest status, retention policy,
+replication/backup policy, immutable/WORM semantics, deletion/redaction process,
+secret-bearing classification, integrity-verification policy, storage-health monitoring,
+capacity thresholds, disaster-recovery procedure.
+
+`claude-code-transcripts` registration in AppBuilder remains outstanding; that repo's lease is
+still held by session `c94f6280` and **was not bypassed**.
