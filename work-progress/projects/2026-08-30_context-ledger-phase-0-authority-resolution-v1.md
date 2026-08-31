@@ -4,7 +4,7 @@
 | --- | --- |
 | Work package | `context-ledger-phase-0-authority-resolution-v1` |
 | Parent | `immutable-context-ledger-v1` |
-| Status | **STORAGE DECIDED + AUTHORITY REGISTERED — 1 blocker remains: NAS transport credentials** |
+| Status | **Criterion 3 PASS. Criteria 1, 2 blocked on operator; criterion 4 blocked only by criterion 1.** |
 | Verdict | `CG_CONTEXT_LEDGER_PHASE_0_AUTHORITY_V1_BLOCKED` (blocker narrowed — see Addendum) |
 | Date | 2026-08-30 |
 
@@ -431,3 +431,83 @@ endangered data is already preserved, so there is no justification for bypassing
 Then `CG_CONTEXT_LEDGER_PHASE_0_AUTHORITY_V1_PASS`, and directly into Phase 2: one genuine
 Claude Code session captured automatically from source through verified NAS preservation and
 ledger reconstruction. **No graph expansion, no executive UI, no ROI engine.**
+
+
+---
+
+# ADDENDUM 3 — Criterion 3 PASS, and a hook defect closed on the way
+
+## Phase 0 criteria
+
+| # | Criterion | State |
+| --- | --- | --- |
+| 1 | Native NAS transport proven with a real batch | **BLOCKED** — `cg-server` service credentials/key not installed |
+| 2 | DSM governance recorded and accepted | **BLOCKED** — operator attestation/configuration |
+| 3 | `claude-code-transcripts` registered | **PASS** |
+| 4 | Synthetic envelope `CAPTURED_LOCAL → VERIFIED` | Blocked only by criterion 1 |
+
+## Evidence — CG-AppBuilder-MCP, branch `work/context-ledger-phase-0-appbuilder-v1`
+
+Implementation lives in AppBuilder. Recorded here by reference, not duplicated.
+
+| SHA | Commit |
+| --- | --- |
+| `a3cb67b1` | `fix: make checkout lease stop hook imports safe` |
+| `32a3459c` | `feat: register Claude Code transcript ingestion source` |
+
+### `32a3459c` — criterion 3
+
+Source class `claude-code-transcripts` added to
+`intelligence-hub/buildout/ingestion-source-registry.json`. Narrow by construction:
+`accessMode: READ_ONLY`, `acquisition: DETERMINISTIC_SOURCE_NATIVE`,
+`initialProvenanceClass: DISCOVERED`, `secretScanRequired: true`,
+`cacheEligibility: ineligible`, `fastPathAllowed: false`, bounded to two enumerated
+`sourceRoots` and to session `*.jsonl` plus sibling `subagents/` and `tool-results/`.
+The description states outright that it is not a general filesystem crawler.
+
+This was required because `ingestion-policy.json` prohibits
+`uncontrolled-filesystem-crawl` — without a named authorized class, a sweep of
+`~/.claude/projects` is indistinguishable from the prohibited thing.
+
+Verified: `npm run hub:ingest:dry-run -- --source claude-code-transcripts` resolves the
+class and completes all ten policy steps with zero warnings and zero errors.
+`npm run intelligence:validate-registries` → `REGISTRY_VALIDATION_PASS` (6 registries).
+
+### `a3cb67b1` — the lease-release defect
+
+Not originally in scope; it surfaced because the broken hook fired on every turn of this
+mission. It mattered because it defeated the exact release path that prevents stranded
+leases — the condition that blocked this work earlier in the day.
+
+The Stop hook resolved the checkout root by `await import(session-admission-gate-v1.mjs)`.
+That gate ends in a bare top-level `main().catch(...)`, so importing it **ran** it: it read
+an already-consumed stdin, failed to parse, and called `process.exit(2)` — killing the Stop
+hook at the import, before `releaseCheckoutLease()`. The surrounding `try/catch` could not
+help, because `process.exit()` is not an exception.
+
+Fixed by moving `findOptedInRepoRoot` into a passive shared module both hooks import,
+rather than guarding the gate's entry point — this removes the bug class instead of the
+instance. Invariant recorded:
+
+> Anything imported by a hook must be import-safe and must never execute CLI behavior
+> merely because it was imported.
+
+A dependency worth noting: the Stop hook dereferences `lease.LEASE_STATE.WAITING`, which
+does not exist in `HEAD`. Shipping the hook without the lease-library challenge protocol
+would have thrown, been swallowed by the catch, exited 0, and **silently never released the
+lease** — reinstating the defect while appearing fixed. The two therefore ship together.
+
+New suite `scripts/tests/run-claude-40-hook-import-safety.test.mjs`
+(`npm run test:claude-40-hook-import-safety`) proves the shared resolver imports with zero
+output and exit 0; the Stop hook never triggers the gate and exits 0 on empty, malformed and
+valid payloads; a wrong-session Stop leaves another holder untouched; the correct holder
+releases; a Stop from a subdirectory still resolves the same lease key; and the gate still
+silently allows outside an opted-in repo, still fails closed with exit 2 on a Write with no
+receipt, and still invokes `main()`.
+
+Verification, all green: hook import safety 9/9, lease adversarial 21/21, lease lifecycle v2
+27/27, hot-cache lease CAS 10/10, claude-40 invariants 34/34 — **101 tests, 0 failures**.
+
+## Not started
+
+Phase 2 capture has not begun and must not begin until criteria 1, 2 and 4 close.
