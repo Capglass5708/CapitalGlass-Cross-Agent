@@ -515,7 +515,7 @@ Phase 2 capture has not begun and must not begin until criteria 1, 2 and 4 close
 
 ---
 
-# ADDENDUM 4 — Draft governance receipt, SSH correction, and a lease-protocol gap
+# ADDENDUM 4 — Draft governance receipt and SSH verification correction
 
 ## Draft governance receipt written (criterion 2 prepared, not closed)
 
@@ -564,27 +564,23 @@ ssh cg-vault "id"              # -> REFUSED: command not in allowlist, exit 1
 
 A passing probe **plus a refused arbitrary command** is the evidence criterion 1 needs.
 
-## Gap found: the checkout lease does not arbitrate branch state
+## Incident during commit — tracked separately, not part of Phase 0
 
-While committing the AppBuilder work, three unrelated proposal-generator commits
-(`7ff5ecfe`, `b6c3022f`, `cc6b267f`, all touching only
-`contracts/proposal-generator/PG_TERMINAL_ACCEPTANCE_CONTRACT_V1.json`) landed on
-`work/context-ledger-phase-0-appbuilder-v1`.
+Three unrelated Proposal Generator commits landed on
+`work/context-ledger-phase-0-appbuilder-v1` when this agent ran `git checkout -b` in a
+checkout shared by five live sessions. Files are fully disjoint from this mission and nothing
+was lost.
 
-Cause: this agent ran `git checkout -b` in a checkout shared by at least five live Claude
-sessions, which redirected their commits onto the new branch. Files are fully disjoint from
-the Context Ledger work and nothing was lost, but the commits are on the wrong branch.
+**This is deliberately NOT analysed here.** It is a control-plane governance defect with its
+own work package and its own remediation path:
 
-**The protocol gap is the durable finding.** The checkout mutation lease arbitrates
-`Edit|Write|NotebookEdit` *tool calls*. `git checkout`, `git commit` and `git branch` run
-through Bash and are **not gated at all**. So the lease — including the challenge protocol
-hardened in `a3cb67b1` — cannot prevent one session silently changing the branch under every
-other session in the same checkout. Branch state is arguably the more disruptive shared
-resource and is currently unprotected.
+> `SHARED_CHECKOUT_GIT_STATE_UNPROTECTED` —
+> `work-progress/projects/2026-08-30_shared-checkout-git-state-unprotected-v1.md`
 
-Operator decision: leave the branch as-is and separate at PR time; do not rewrite pushed
-history while sessions are live; do not switch the shared checkout back, because changing the
-working tree under an in-flight edit is worse than a recoverable branch mixup.
+It does not gate, alter, or appear in any Phase 0 criterion. Phase 0's remaining path is
+unchanged: NAS access, DSM attestation, then the synthetic envelope.
 
-Worth considering for a future work package, not this one: extend lease arbitration to
-branch-changing operations, or have the front door record and assert the expected branch.
+Containment relevant to this mission only: the shared checkout is frozen, the contaminated
+branch is preserved with both sets of commits reachable, and the Context Ledger commits
+(`a3cb67b1`, `32a3459c`, `d88c4b95`) will be cherry-picked into a fresh worktree from the
+pre-incident base once the checkout is quiescent. No history is rewritten.

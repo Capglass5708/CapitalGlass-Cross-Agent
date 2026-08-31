@@ -4,7 +4,7 @@
 | --- | --- |
 | Finding ID | `SHARED_CHECKOUT_GIT_STATE_UNPROTECTED` |
 | Work package | `shared-checkout-git-state-unprotected-v1` |
-| Status | **OPEN — recorded, not remediated** |
+| Status | **OPEN — recorded and FROZEN. Remediate as its own control-plane mission; do not fold into Context Ledger Phase 0.** |
 | Severity | **BLOCKING for concurrent-agent mutation** |
 | Class | Governance / concurrency defect. **Not operator error.** |
 | Discovered | 2026-08-30, during `context-ledger-phase-0-appbuilder-v1` |
@@ -28,10 +28,19 @@ agent's filesystem underneath it. A `git commit` advances whichever branch anoth
 happened to select. A `git add` can alter another agent's pending commit through the shared
 index.
 
-**Proposed invariant:**
+**Invariant:**
 
-> No process may mutate the working tree, Git index, `HEAD`, or repository refs of a shared
-> checkout without checkout-mutation authority.
+> **Mutating sessions do not share a Git checkout.**
+
+This is isolation-first, and it is deliberately stronger than the authority-first form it
+replaced (*"no process may mutate the working tree, index, HEAD or refs of a shared checkout
+without checkout-mutation authority"*). That earlier wording is retained only as a
+description of blast radius, because this incident disproves it as a remedy: **the lease was
+`ABSENT` when the branch was switched**, so there was no authority to check and no arbitration
+that could have fired. Authority cannot substitute for isolation.
+
+The lease remains useful for ownership and recovery *inside* a worktree. It is not a
+substitute for not sharing one.
 
 ---
 
@@ -112,9 +121,11 @@ pattern mandatory at the front door, not to invent one.
 
 ---
 
-## Acceptance — adversarial proof required
+## Acceptance — front-door worktree enforcement, proven adversarially
 
-A command allowlist alone must not be accepted as closure. Required behaviour:
+**The acceptance condition is front-door enforcement of per-mission worktrees, not a larger
+Bash/git command denylist.** A denylist must not be accepted as closure, however complete it
+looks. Required behaviour:
 
 1. Agent A owns and mutates mission A in its own worktree.
 2. Agent B attempts a branch switch in A's checkout → **DENIED**.
