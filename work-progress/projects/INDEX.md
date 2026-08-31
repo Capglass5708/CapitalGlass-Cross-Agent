@@ -2,7 +2,7 @@
 
 Master index of all project files in `work-progress/projects/`.
 
-**Last updated:** 2026-08-13 (`wesleywork-storage-protocol-contradiction-remediation-v1` — ForceRemap/LAN-first INDEX closed; Storage Keeper sole WESLEYWORK repair front door)
+**Last updated:** 2026-08-30 (`immutable-context-ledger-v1` — capture-first architecture defined; Cross-Agent doctrine changed to software-home-not-datastore)
 
 Read `AGENT_START_HERE.md` and `work-progress/ACTIVE_WORK.md` before working on any project listed here.
 
@@ -286,6 +286,7 @@ _238 registry packets · 106 intelligence entities_
 
 | Project ID | File | Status | Owner repo(s) | Last commit | Next action |
 | --- | --- | --- | --- | --- | --- |
+| `immutable-context-ledger-v1` | [2026-08-30_immutable-context-ledger-v1.md](./2026-08-30_immutable-context-ledger-v1.md) | **Planning — architecture defined, authority resolved, no implementation.** Capture-first architecture: Evidence plane (immutable raw context) separated from the existing Derived plane. Doctrine changed so Cross-Agent may host the software but never the data (`CAD-20260830-cross-agent-software-home-not-datastore`). | CapitalGlass-Cross-Agent (software); Intelligence Hub (data) | This commit | `context-ledger-phase-0-authority-resolution-v1` — resolve Evidence-plane schema authority (AppBuilder `schemaAuthority` is `null`), choose external object store, register `claude-code-transcripts` ingest source class |
 | `compounding-intelligence-v2-live-integration-proof` | Plan only: [2026-08-25_compounding-intelligence-v2-live-integration-proof.md](../../plans/2026-08-25_compounding-intelligence-v2-live-integration-proof.md) | **Planned, not started** — 4-phase next mission (real hot-cache proof on 3 hosts; Supabase publish+readback via the existing projection path; WaveRunner integration; full end-to-end compounding proof). No phase executable from this container. | CapitalGlass-Cross-Agent | This commit (branch `claude/intelligence-hub-compounding-4f208p`) | Needs physical host access (phase 1), live Supabase credentials (phase 2), or WaveRunner repo access (phase 3) — plan is ready the moment any one exists |
 | `compounding-intelligence-unified-loop-v1` | [2026-08-25_compounding-intelligence-unified-loop-v1.md](./2026-08-25_compounding-intelligence-unified-loop-v1.md) | **Complete — PR #45 MERGED** (`e5f2fea`) — mission-intelligence registered in the real routing/dataset registries, hot-ai-cache ladder rung with SHA freshness, graph-aware mission context, unified receipt contract, WaveRunner-preflight contract documented | CapitalGlass-Cross-Agent | PR #45 merged (`e5f2fea`) | Superseded by `compounding-intelligence-v2-live-integration-proof` |
 | `compounding-intelligence-v2-implementation-v1` | [2026-08-25_compounding-intelligence-v2-implementation-v1.md](./2026-08-25_compounding-intelligence-v2-implementation-v1.md) | **Complete (in-scope pieces) — PR #43 MERGED** — registry+enforcement, freshness provenance, preflight, /goldmine (now wired to actually regenerate what preflight reads, proven by an in-repo two-agent test), harvest-risk-gates CI fixed, all tested | CapitalGlass-Cross-Agent | PR #43 merged (`9eb8e7c`) | Superseded by `compounding-intelligence-unified-loop-v1` for further work |
@@ -405,6 +406,7 @@ Recommended follow-on work packages (not yet project files):
 
 | Project ID | Status | Next action |
 | --- | --- | --- |
+| `immutable-context-ledger-v1` | Planning — architecture defined | Run `context-ledger-phase-0-authority-resolution-v1` |
 | `intelligence-hub-compounding-intelligence-investigation-v1` | Investigation complete; V2 proposal drafted | Operator decision on proposal 1/2/4 (charter, retrieval preflight, harder proof) |
 | `compounding-intelligence-v2-live-integration-proof` | **Plan complete — PR #46 merged** (`f3ce532`); execution not started | Host execution session, starting from `plans/2026-08-25_compounding-intelligence-v2-phase0-execution-handoff.md` (real `L:` mount, hot cache, live Supabase credentials, WaveRunner runtime), not further Cross-Agent planning; success = fresh agent auto-receives intelligence from a new commit, nothing manually refreshed |
 | `compounding-intelligence-unified-loop-v1` | Complete — PR #45 merged | Superseded by `compounding-intelligence-v2-live-integration-proof` |

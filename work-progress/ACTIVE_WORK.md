@@ -12,14 +12,25 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-08-13
-| Current focus | WESLEYWORK Storage Keeper sole repair front door (`wesleywork-storage-protocol-contradiction-remediation-v1`); TWO_DESK_OPERATING + federated index Wave A closed
+| Last updated | 2026-08-30
+| Current focus | `immutable-context-ledger-v1` — capture-first architecture planning; Cross-Agent doctrine changed to software-home-not-datastore (`CAD-20260830-cross-agent-software-home-not-datastore`)
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Project index | `work-progress/projects/INDEX.md` |
 
 ## Current saved work
+
+### 2026-08-30 CT — immutable-context-ledger-v1 (planning)
+
+| Field | Value |
+| --- | --- |
+| Work package | `immutable-context-ledger-v1` |
+| Status | **PLANNING COMPLETE — architecture defined, authority resolved, zero implementation.** Establishes the Evidence plane (immutable raw context capture) as a new authority class alongside the existing, already-live Derived plane. Two governing findings drove the design. First, `contracts/intelligence/OWNERSHIP.md` is `ARCHITECTURE_LOCKED` and **already** names Cross-Agent `INTELLIGENCE_OWNER` for derived objects, the relationship graph, and provenance reconstruction, while explicitly forbidding AppBuilder from owning `DERIVED_INTELLIGENCE` semantics — so siting this here is compliance with an existing lock, not a new decision. Second, `intelligence_hub.knowledge_objects.authority_commit` is `NOT NULL CHECK (~ '^[a-f0-9]{7,40}$')` with `authority_system` defaulting to `github`, meaning the existing envelope **structurally cannot hold a conversation** — hence a separate Evidence plane keyed on `(sourceSystem, sourceNativeId, contentHash)` rather than a git SHA. The repo doctrine was changed accordingly: Cross-Agent may host the software, never the captured data. |
+| Repos involved | CapitalGlass-Cross-Agent (software home, this plan); CG-AppBuilder-MCP (evidence producer, migration-execution surface, existing hashing/CAS/transcript-reader libs); Intelligence Hub (durable data plane) |
+| Notes | Investigation found the entire derived-intelligence plane already exists and is proven live here — 282 script files, 30 modules under `scripts/intelligence/lib/` including `ingest-pipeline-v1.mjs`, `relationship-edge-builder-v1.mjs`, `provenance-reconstruct-v1.mjs`, `supabase-intelligence-store-v1.mjs` — plus a live L: object store (626 blobs, 691 catalog entries) and `FIRST_REAL_MISSION_HUB_PROOF_PASS`. What does **not** exist anywhere: raw conversation persistence. Zero of 82 AppBuilder migrations reference `transcript`, `conversation`, `raw_message`, or `message_text`; `agentops.ai_cache_session_summaries` keeps a summary per closeout and discards the original. Also absent: any Cursor `state.vscdb` reader, automatic ChatGPT capture, a git-commit event stream, and hash-chaining (no `prevHash` in ~20 append-only writers). **Urgency:** `~/.claude/projects/` holds 188 JSONL files / 42,370 records but the mtime range is only 2026-08-29 → 2026-08-30, and a `.last-cleanup` marker exists — retention is destroying the record now. Honest capture feasibility: Claude Code and Git are natively deterministic; Cursor is filesystem/SQLite only (WAL-aware, 499 MB store); **ChatGPT has no automatic path at all** and is export/import fallback only. |
+| Evidence | Project file `work-progress/projects/2026-08-30_immutable-context-ledger-v1.md`; doctrine change in `AGENT_START_HERE.md`, `repo-map/REPOSITORY_ROLES.md`, `decisions/DECISION_LOG.md` (`CAD-20260830-cross-agent-software-home-not-datastore`) |
+| Next | `context-ledger-phase-0-authority-resolution-v1` — resolve Evidence-plane schema authority before any migration is written (AppBuilder holds 82 migrations and the live project ref but its registered `schemaAuthority` is `null`); choose and prove reachability of the external object-store target; register a named `claude-code-transcripts` ingestion source class, since `ingestion-source-registry.json` prohibits `uncontrolled-filesystem-crawl`. **No capture code until Phase 0 closes.** Then `context-ledger-phase-2-claude-capture-proof-v1` — Claude Code only, one source end to end, no graph/dashboard/ROI. |
 
 ### 2026-08-25 CT — compounding-intelligence-v2-live-integration-proof (planning)
 
