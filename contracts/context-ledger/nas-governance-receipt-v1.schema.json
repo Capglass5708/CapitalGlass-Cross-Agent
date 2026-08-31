@@ -5,68 +5,235 @@
   "description": "Explicit, operator-attested governance state of the Evidence Vault. Production capture MUST NOT start without this receipt. Every control is tri-state: a protection that does not exist is recorded NOT_AVAILABLE with a compensating control -- the implementation may never invent a PASS.",
   "type": "object",
   "required": [
-    "schemaVersion", "recordedAt", "attestedBy", "vaultRootId", "remoteHost",
-    "controls", "verdict"
+    "schemaVersion",
+    "recordedAt",
+    "attestationState",
+    "vaultRootId",
+    "remoteHost",
+    "controls",
+    "verdict"
   ],
   "properties": {
-    "schemaVersion": { "type": "string", "const": "nas-governance-receipt-v1@1.0.0" },
-    "recordedAt": { "type": "string", "format": "date-time" },
-    "attestedBy": { "type": "string", "description": "Human operator who confirmed DSM-side facts. An agent may not self-attest DSM state it cannot observe." },
-    "vaultRootId": { "type": "string" },
-    "remoteHost": { "type": "string" },
-
+    "schemaVersion": {
+      "type": "string",
+      "const": "nas-governance-receipt-v1@1.0.0"
+    },
+    "recordedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "attestedBy": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Human operator who confirmed DSM-side facts. MUST be null while attestationState is DRAFT_UNATTESTED, and MUST be a person when ATTESTED. An agent may never name itself here."
+    },
+    "vaultRootId": {
+      "type": "string"
+    },
+    "remoteHost": {
+      "type": "string"
+    },
     "controls": {
       "type": "object",
       "required": [
-        "serviceAccount", "acl", "encryptionAtRest", "snapshotPolicy", "backupReplication",
-        "retentionPolicy", "wormImmutability", "recoveryProcedure", "capacityAlerts",
+        "serviceAccount",
+        "acl",
+        "encryptionAtRest",
+        "snapshotPolicy",
+        "backupReplication",
+        "retentionPolicy",
+        "wormImmutability",
+        "recoveryProcedure",
+        "capacityAlerts",
         "integrityAuditSchedule"
       ],
       "additionalProperties": false,
       "patternProperties": {
         "^(serviceAccount|acl|encryptionAtRest|snapshotPolicy|backupReplication|retentionPolicy|wormImmutability|recoveryProcedure|capacityAlerts|integrityAuditSchedule)$": {
           "type": "object",
-          "required": ["state"],
+          "required": [
+            "state"
+          ],
           "properties": {
             "state": {
               "type": "string",
-              "enum": ["CONFIRMED", "NOT_AVAILABLE", "NOT_APPLICABLE", "UNKNOWN"],
-              "description": "UNKNOWN is a failing state. It may not be treated as CONFIRMED."
+              "enum": [
+                "CONFIRMED",
+                "NOT_AVAILABLE",
+                "NOT_APPLICABLE",
+                "UNKNOWN"
+              ],
+              "description": "UNKNOWN is a failing state and means NOT YET CHECKED. It may not be treated as CONFIRMED. NOT_AVAILABLE means the control was actually checked and found unavailable -- never a prediction that it will be."
             },
-            "detail": { "type": "string", "description": "What was actually configured or why it is unavailable. Never a credential value." },
-            "evidence": { "type": ["string", "null"], "description": "Where this was observed -- DSM screen, CLI output path, ticket." },
+            "detail": {
+              "type": "string",
+              "description": "What was actually configured or why it is unavailable. Never a credential value."
+            },
+            "evidence": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Where this was observed -- DSM screen, CLI output path, ticket."
+            },
             "compensatingControl": {
-              "type": ["string", "null"],
+              "type": [
+                "string",
+                "null"
+              ],
               "description": "REQUIRED when state is NOT_AVAILABLE. What mitigates the absence."
             },
-            "verifiedAt": { "type": ["string", "null"], "format": "date-time" }
+            "verifiedAt": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date-time"
+            }
           },
           "additionalProperties": false
         }
       }
     },
-
     "accessBoundary": {
       "type": "object",
       "description": "The service identity must not hold general NAS access.",
       "properties": {
-        "identity": { "type": "string", "description": "e.g. cg-context-ledger" },
-        "scopedToPaths": { "type": "array", "items": { "type": "string" } },
-        "usesDedicatedKey": { "type": "boolean" },
-        "sharesWesleyIdentity": { "type": "boolean", "description": "MUST be false." },
-        "keyPassphraseProtected": { "type": "boolean" },
-        "commandRestricted": { "type": "boolean", "description": "Whether the authorized_keys entry restricts the key to the replication command." },
-        "networkRestricted": { "type": ["string", "null"], "description": "e.g. Tailscale-only ACL." }
+        "identity": {
+          "type": "string",
+          "description": "e.g. cg-context-ledger"
+        },
+        "scopedToPaths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "usesDedicatedKey": {
+          "type": "boolean"
+        },
+        "sharesWesleyIdentity": {
+          "type": "boolean",
+          "description": "MUST be false."
+        },
+        "keyPassphraseProtected": {
+          "type": "boolean"
+        },
+        "commandRestricted": {
+          "type": "boolean",
+          "description": "Whether the authorized_keys entry restricts the key to the replication command."
+        },
+        "networkRestricted": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "e.g. Tailscale-only ACL."
+        }
       },
       "additionalProperties": false
     },
-
     "verdict": {
       "type": "string",
-      "enum": ["NAS_GOVERNANCE_ACCEPTED", "NAS_GOVERNANCE_INSUFFICIENT"],
-      "description": "ACCEPTED requires every control to be CONFIRMED, NOT_APPLICABLE, or NOT_AVAILABLE-with-a-compensatingControl. Any UNKNOWN forces INSUFFICIENT."
+      "enum": [
+        "NAS_GOVERNANCE_ACCEPTED",
+        "NAS_GOVERNANCE_INSUFFICIENT"
+      ],
+      "description": "ACCEPTED requires attestationState=ATTESTED and every control CONFIRMED, NOT_APPLICABLE, or NOT_AVAILABLE-with-a-compensatingControl. Any UNKNOWN forces INSUFFICIENT. A DRAFT_UNATTESTED receipt is always INSUFFICIENT."
     },
-    "notes": { "type": "string" }
+    "notes": {
+      "type": "string"
+    },
+    "attestationState": {
+      "type": "string",
+      "enum": [
+        "DRAFT_UNATTESTED",
+        "ATTESTED"
+      ],
+      "description": "DRAFT_UNATTESTED means an agent pre-filled machine-observable facts only. It is NOT a partial pass and carries no governance weight. Only a human moves this to ATTESTED."
+    },
+    "measuredFacts": {
+      "type": "object",
+      "description": "Facts an agent observed directly, with the command or receipt that produced them. Kept separate from `controls` because measuring capacity is not the same act as attesting a governance control.",
+      "additionalProperties": false,
+      "properties": {
+        "topology": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "capacity": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "filesystemEvidence": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "transportPerformance": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "vaultPath": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "identity": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "observedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "observedBy": {
+          "type": "string",
+          "description": "Agent/session that measured these. Distinct from attestedBy."
+        }
+      }
+    }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "attestationState": {
+            "const": "ATTESTED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "attestedBy": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "attestedBy"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "attestationState": {
+            "const": "DRAFT_UNATTESTED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "attestedBy": {
+            "type": "null"
+          },
+          "verdict": {
+            "const": "NAS_GOVERNANCE_INSUFFICIENT"
+          }
+        }
+      }
+    }
+  ]
 }

@@ -1,0 +1,155 @@
+{
+  "schemaVersion": "nas-governance-receipt-v1@1.0.0",
+  "recordedAt": "2026-08-31T02:01:29.733Z",
+  "attestationState": "DRAFT_UNATTESTED",
+  "attestedBy": null,
+  "vaultRootId": "capital-glass-ai-evidence-vault",
+  "remoteHost": "cg-server",
+  "measuredFacts": {
+    "observedAt": "2026-08-31T02:01:29.733Z",
+    "observedBy": "claude-code session 6c6b0a9f-4509-4f92-a52b-395bb696db2c (context-ledger-phase-0-authority-resolution-v1)",
+    "topology": {
+      "zDrive": "Z: = \\\\\\\\cg-server\\\\Capital Glass  (the Synology)",
+      "lDrive": "L: = \\\\\\\\wesleydesk\\\\CapitalGlass-L  (a share on a desktop workstation, NOT a NAS)",
+      "resolvedVia": "Windows `net use` and Get-PSDrive, read from WSL",
+      "wslMountType": "9p drvfs for both Z: and L:",
+      "nasNetworkIdentity": "cg-server -> 100.112.81.50 / cg-server.tail49f063.ts.net (Tailscale)",
+      "portsOpenFromWsl": {
+        "smb445": "OPEN",
+        "ssh22": "OPEN"
+      },
+      "wslClientsPresent": [
+        "cifs-utils",
+        "rsync",
+        "ssh"
+      ]
+    },
+    "capacity": {
+      "source": "df -hT /mnt/z",
+      "filesystem": "Z:",
+      "type": "9p",
+      "size": "5.3T",
+      "used": "1.3T",
+      "available": "4.0T",
+      "usePercent": "24%"
+    },
+    "filesystemEvidence": {
+      "snapshotDirPresentAtShareRoot": "#snapshot",
+      "recycleDirPresentAtShareRoot": "#recycle",
+      "note": "Presence of #snapshot indicates Btrfs snapshot capability is in use on this share. It does NOT establish schedule, retention, or replication destination -- those remain UNKNOWN pending DSM attestation.",
+      "governanceBuckets": [
+        "00-README-AND-GOVERNANCE",
+        "80-COLD-STORAGE",
+        "90-LEGACY",
+        "98-MANUAL-REVIEW",
+        "99-QUARANTINE"
+      ],
+      "storageRegistry": "Z:\\\\INDEX.json (schemaVersion capital-glass-z-drive-index-v1)"
+    },
+    "transportPerformance": {
+      "note": "Measured over the Windows drvfs/9p path. This is why the machine ingestion path excludes /mnt/z.",
+      "sequentialWrite32MB": "4.7 MB/s",
+      "manySmallFiles": "200 x 4KB timed out at 180s having written 1 file",
+      "metadataScan": "du of the L: object store (28 MB, 626 blobs) exceeded 120s",
+      "atomicRenamePlusHashRoundTrip": "PASS",
+      "chmod0400": "FAILED - Operation not permitted; 0400 did not block append",
+      "immutabilityImplication": "POSIX file mode cannot enforce write-once on this transport. Immutability must come from content addressing + collision refusal + hash-chain ledger + independent remote re-hash + NAS-side controls."
+    },
+    "vaultPath": {
+      "unc": "\\\\\\\\cg-server\\\\Capital Glass\\\\Capital-Glass-AI-Evidence-Vault",
+      "driveMapped": "Z:\\\\Capital-Glass-AI-Evidence-Vault",
+      "rootCreated": true,
+      "contains": [
+        "README.md (declares provisioned-but-not-production)",
+        "control/"
+      ],
+      "registryConvention": "new top-level root following Z:\\\\INDEX.json canonicalRoots naming; does not touch AI-Cache-Authority, so CAD-20260802 single-writer is unaffected"
+    },
+    "identity": {
+      "note": "Local half only. The NAS-side account does not exist yet, which is why every control below is UNKNOWN.",
+      "keyPath": "~/.ssh/cg-context-ledger_ed25519",
+      "keyType": "ed25519",
+      "fingerprint": "SHA256:Cf2lFNe83DVh7izV8yljX3Z8nwxbKL1WCgEZjByy50o",
+      "privateKeyMode": "600",
+      "passphraseProtected": false,
+      "passphraseRationale": "unattended replication worker; must be compensated by an authorized_keys forced command and network restriction on the NAS side",
+      "sshAlias": "cg-vault (IdentitiesOnly yes, BatchMode yes)",
+      "currentAuthResult": "Permission denied (publickey,password) -- account and key not yet installed on cg-server",
+      "sharesWesleyGeneralIdentity": false
+    }
+  },
+  "controls": {
+    "serviceAccount": {
+      "state": "UNKNOWN",
+      "detail": "Local key prepared; dedicated cg-context-ledger account not yet created on cg-server. Not checked on the NAS.",
+      "evidence": null,
+      "compensatingControl": null,
+      "verifiedAt": null
+    },
+    "acl": {
+      "state": "UNKNOWN",
+      "detail": "Share-level read/write grants and explicit denies not yet inspected on DSM.",
+      "evidence": null,
+      "compensatingControl": null,
+      "verifiedAt": null
+    },
+    "encryptionAtRest": {
+      "state": "UNKNOWN",
+      "detail": "NOT CHECKED. Must be verified in DSM before any state is recorded -- do not assume.",
+      "evidence": null,
+      "compensatingControl": null,
+      "verifiedAt": null
+    },
+    "snapshotPolicy": {
+      "state": "UNKNOWN",
+      "detail": "#snapshot exists on the share (see measuredFacts.filesystemEvidence), but schedule and retention were not inspected.",
+      "evidence": null,
+      "compensatingControl": null,
+      "verifiedAt": null
+    },
+    "backupReplication": {
+      "state": "UNKNOWN",
+      "detail": "Hyper Backup / Snapshot Replication destination not inspected.",
+      "evidence": null,
+      "compensatingControl": null,
+      "verifiedAt": null
+    },
+    "retentionPolicy": {
+      "state": "UNKNOWN",
+      "detail": "Raw-evidence retention period and deletion/redaction process not yet defined.",
+      "evidence": null,
+      "compensatingControl": null,
+      "verifiedAt": null
+    },
+    "wormImmutability": {
+      "state": "UNKNOWN",
+      "detail": "NOT CHECKED. Whether this DSM version offers immutable/WORM shares, and whether it is enabled here, must be verified -- do not assume.",
+      "evidence": null,
+      "compensatingControl": null,
+      "verifiedAt": null
+    },
+    "recoveryProcedure": {
+      "state": "UNKNOWN",
+      "detail": "Vault restore procedure not yet documented or exercised.",
+      "evidence": null,
+      "compensatingControl": null,
+      "verifiedAt": null
+    },
+    "capacityAlerts": {
+      "state": "UNKNOWN",
+      "detail": "Capacity measured (4.0T free of 5.3T) but alert thresholds and notification targets not inspected.",
+      "evidence": null,
+      "compensatingControl": null,
+      "verifiedAt": null
+    },
+    "integrityAuditSchedule": {
+      "state": "UNKNOWN",
+      "detail": "Cadence for sampling and re-hashing vault objects not yet defined.",
+      "evidence": null,
+      "compensatingControl": null,
+      "verifiedAt": null
+    }
+  },
+  "verdict": "NAS_GOVERNANCE_INSUFFICIENT",
+  "notes": "DRAFT / NOT ATTESTED. Pre-filled by an agent with directly measured or independently observed facts ONLY. Every DSM-side control is UNKNOWN, which is a FAILING state meaning NOT YET CHECKED -- it is not a partial pass and carries no governance weight. NOT_AVAILABLE was deliberately NOT pre-filled anywhere: it must mean a control was actually checked and found unavailable, never that it was expected to be. A human must inspect DSM, complete the controls, set attestationState=ATTESTED and name themselves in attestedBy before Phase 0 criterion 2 can close."
+}

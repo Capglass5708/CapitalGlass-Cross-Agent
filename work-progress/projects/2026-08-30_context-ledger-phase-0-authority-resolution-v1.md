@@ -511,3 +511,80 @@ Verification, all green: hook import safety 9/9, lease adversarial 21/21, lease 
 ## Not started
 
 Phase 2 capture has not begun and must not begin until criteria 1, 2 and 4 close.
+
+
+---
+
+# ADDENDUM 4 — Draft governance receipt, SSH correction, and a lease-protocol gap
+
+## Draft governance receipt written (criterion 2 prepared, not closed)
+
+`artifacts/agent-runs/immutable-context-ledger-v1/nas-governance-receipt-v1.json`
+
+`attestationState: DRAFT_UNATTESTED` · `attestedBy: null` · `verdict: NAS_GOVERNANCE_INSUFFICIENT` ·
+**all ten controls `UNKNOWN`**.
+
+Pre-filled with directly measured facts only — topology, capacity, filesystem evidence,
+transport performance, vault path, and the local half of the service identity. **No control
+was pre-filled `NOT_AVAILABLE`**, including `encryptionAtRest` and `wormImmutability`:
+`NOT_AVAILABLE` must mean a control was actually checked and found unavailable, never that
+it was expected to be. `UNKNOWN` is a failing state meaning *not yet checked*.
+
+`accessBoundary` is deliberately **omitted** rather than partly filled, because the boundary
+is not deployed — the NAS account does not exist yet.
+
+The schema was extended to model this honestly rather than let a draft masquerade as partial
+progress. `attestationState` is now required; `attestedBy` must be `null` while
+`DRAFT_UNATTESTED` and a real name when `ATTESTED`; and a draft is forced to
+`NAS_GOVERNANCE_INSUFFICIENT`. New `measuredFacts` keeps agent-observed measurements separate
+from operator-attested controls — measuring capacity is not the same act as attesting a
+control. Verified against ajv: the draft validates, and all three abuse cases are refused —
+a draft naming an attester, a draft claiming `ACCEPTED`, and an `ATTESTED` receipt with no
+attester.
+
+## SSH verification was wrong and is corrected
+
+The earlier runbook told you to install an `authorized_keys` forced rsync command *and*
+verify with `ssh cg-vault "echo VAULT_SSH_OK"`. Those are mutually exclusive — a forced
+command **replaces** the requested command, so the `echo` would never run, and removing the
+forced command to make it work would hand an unrestricted shell to a passphrase-less key.
+
+Corrected to a small allowlist wrapper as the forced command, permitting exactly two things:
+the server-side rsync confined to the vault root, and one literal `VAULT_SSH_PROBE`.
+Everything else returns non-zero. Key restrictions
+`no-port-forwarding,no-agent-forwarding,no-X11-forwarding,no-pty` plus a `from=` source
+restriction on the Tailscale path.
+
+Verification becomes deterministic and actually proves the restriction:
+
+```bash
+ssh cg-vault VAULT_SSH_PROBE   # -> VAULT_SSH_OK
+ssh cg-vault "id"              # -> REFUSED: command not in allowlist, exit 1
+```
+
+A passing probe **plus a refused arbitrary command** is the evidence criterion 1 needs.
+
+## Gap found: the checkout lease does not arbitrate branch state
+
+While committing the AppBuilder work, three unrelated proposal-generator commits
+(`7ff5ecfe`, `b6c3022f`, `cc6b267f`, all touching only
+`contracts/proposal-generator/PG_TERMINAL_ACCEPTANCE_CONTRACT_V1.json`) landed on
+`work/context-ledger-phase-0-appbuilder-v1`.
+
+Cause: this agent ran `git checkout -b` in a checkout shared by at least five live Claude
+sessions, which redirected their commits onto the new branch. Files are fully disjoint from
+the Context Ledger work and nothing was lost, but the commits are on the wrong branch.
+
+**The protocol gap is the durable finding.** The checkout mutation lease arbitrates
+`Edit|Write|NotebookEdit` *tool calls*. `git checkout`, `git commit` and `git branch` run
+through Bash and are **not gated at all**. So the lease — including the challenge protocol
+hardened in `a3cb67b1` — cannot prevent one session silently changing the branch under every
+other session in the same checkout. Branch state is arguably the more disruptive shared
+resource and is currently unprotected.
+
+Operator decision: leave the branch as-is and separate at PR time; do not rewrite pushed
+history while sessions are live; do not switch the shared checkout back, because changing the
+working tree under an in-flight edit is worse than a recoverable branch mixup.
+
+Worth considering for a future work package, not this one: extend lease arbitration to
+branch-changing operations, or have the front door record and assert the expected branch.

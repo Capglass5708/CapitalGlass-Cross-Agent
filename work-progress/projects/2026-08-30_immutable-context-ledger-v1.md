@@ -25,7 +25,12 @@ The system must automatically preserve complete AI/work context so future intell
 always be **re-derived from original evidence** rather than permanently depending on today's
 extraction quality.
 
-**Governing invariant:**
+**Top-level invariant:**
+
+> **Raw evidence is permanent authority. Derived intelligence is replaceable interpretation.**
+
+This is the decision that makes the system compound rather than merely accumulate. Its
+operational corollary:
 
 > Nothing derived may become more authoritative than the immutable evidence it came from.
 
