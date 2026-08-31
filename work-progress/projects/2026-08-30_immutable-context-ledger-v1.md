@@ -362,3 +362,119 @@ external object-store target, register the `claude-code-transcripts` ingestion s
 Then: `context-ledger-phase-2-claude-capture-proof-v1` — first vertical slice, Claude Code
 only, one source → capture service → immutable external storage → hash/provenance → session
 record → retrieval → integrity verification. No graph, no dashboard, no ROI scoring.
+
+
+---
+
+# LOCKED — Context Ledger storage architecture (2026-08-31)
+
+Supersedes all earlier storage topology in this document.
+
+```
+                   AI WORK
+                     |
+                     v
+            WSL WRITE-AHEAD SPOOL          capture immediately / fast
+                     |
+        hash + ENCRYPT + manifest          encryption happens HERE, before
+                     |                     either drive receives anything
+             +-------+-------+
+             v               v
+    SYNOLOGY / cg-server    L: / wesleydesk
+    PRIMARY VAULT           BACKUP VAULT
+    canonical authority     independent recovery copy
+             |               |
+      independent hash  independent hash
+             +-------+-------+
+                     v
+              FULLY_PROTECTED
+                     |
+                     v
+             INTELLIGENCE HUB
+     indexes / graph / concepts / decisions /
+       relationships / provenance / ROI
+```
+
+## The load-bearing decision: independent fan-out
+
+**Both copies are written from the WSL spool, independently. The backup is NEVER derived
+from the primary.** If the Synology is failing, the backup path must not be a dependent of
+the thing that is failing. `storageLocator` splits `primary` and `backup` as sibling objects
+precisely so no implementation can quietly make one a function of the other.
+
+Both targets have native transports, verified 2026-08-31:
+
+| Target | Tailscale | SSH 22 | SMB 445 | Role |
+| --- | --- | --- | --- | --- |
+| `cg-server` (Synology) | `100.112.81.50` | OPEN | OPEN | primary / canonical authority |
+| `wesleydesk` | `100.93.199.27` | OPEN | OPEN | backup / independent recovery copy |
+
+Neither leg goes through `/mnt/z` or `/mnt/l`. The 9p/drvfs path measured 4.7 MB/s and
+~1 small file per 180 s and is excluded from both.
+
+## Encrypt before storage
+
+Captured context contains credentials, internal code, tool results and filesystem paths.
+**Cross-Agent encrypts the evidence object in WSL before either drive sees it.** Neither
+drive is trusted to provide confidentiality — and DSM share encryption is currently
+`DISABLED` on this NAS anyway, so relying on it would have been relying on nothing.
+
+Keys live in the approved secret system (Doppler), referenced by NAME only. Never on either
+drive, never in Git, never in a receipt. Authenticated encryption (AES-256-GCM) is required:
+a plain stream cipher would give confidentiality without tamper detection.
+
+Two hashes, deliberately distinct:
+
+- `plaintextHash` — identity and dedup. Two observations of identical plaintext converge on
+  one canonical object.
+- `ciphertextHash` — what the remote re-hash compares against, since the bytes at rest are
+  ciphertext.
+
+## The backup is a backup, not a mirror
+
+`propagationPolicy.deletesPropagate` and `modificationsPropagate` are both `const: false` in
+the contract — not defaults, constants. **A delete or corruption on the Synology must never be
+obediently reproduced on the backup.** Evidence objects are content-addressed and append-only.
+The backup keeps its own manifests and its own verification history rather than trusting the
+primary's.
+
+## Spool retention
+
+```
+CAPTURED_LOCAL -> HASHED_ENCRYPTED -> PRIMARY_VERIFIED -> BACKUP_VERIFIED -> FULLY_PROTECTED
+```
+
+`PRIMARY_VERIFIED` **never** authorises spool cleanup. Only `FULLY_PROTECTED` does, and it
+requires `plaintextHash == primary verified hash == backup verified hash`, each re-hashed at
+its own end rather than predicted locally. `INTEGRITY_INCIDENT` is terminal until a human
+resolves it.
+
+## Storage roles stay distinct
+
+| Plane | Role |
+| --- | --- |
+| Synology `cg-server` | canonical raw-evidence authority; Btrfs, snapshots, WORM as strongly as DSM allows |
+| `wesleydesk` L: | independent recovery copy. **Not** an authority. Does not run the Intelligence Hub |
+| Intelligence Hub | intelligence plane — concepts, decisions, dependencies, graph edges, project state, provenance pointers. **References** immutable evidence; never becomes the raw archive |
+| CapitalGlass-Cross-Agent | the software: capture, hashing, encryption, session reconstruction, replication, provenance, extraction, graph construction |
+
+## Built in from day one, not bolted on later
+
+**Integrity scrub.** Periodically sample and eventually traverse evidence objects verifying
+`ledger hash <-> primary hash <-> backup hash`. Any divergence raises an integrity incident
+immediately — a mutated blob is never silently accepted as the new truth.
+
+**Restore proof.** Periodically perform a real restore from the backup. `lastRestoreProofAt`
+exists because *a backup is not proven by files existing there; it is proven when evidence can
+be reconstructed from it.*
+
+## Known residual weakness — accepted, not hidden
+
+`cg-server` and `wesleydesk` appear to be in the same physical environment. This architecture
+protects strongly against drive failure, NAS failure, machine failure, corruption, ransomware
+and accidental deletion. **It does not protect against a building-level event** — fire, flood,
+theft.
+
+An encrypted off-site third copy is the eventual answer. It is deliberately **not** a blocker
+for what is being built now, but it is recorded here so it is a decision rather than an
+oversight.

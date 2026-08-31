@@ -5,16 +5,34 @@
   "description": "One hash-chained ledger record describing ONE source observation of ONE content-addressed evidence blob. The payload itself is never embedded here -- the ledger records identity, provenance, chain position, and durability. Many observations may point at one blob (natural dedup across overlapping source corpora).",
   "type": "object",
   "required": [
-    "schemaVersion", "seq", "evidenceId", "sourceSystem", "sourceNativeId",
-    "contentHash", "captureTimestamp", "machineId",
-    "prevHash", "entryHash", "storageLocator", "durabilityState"
+    "schemaVersion",
+    "seq",
+    "evidenceId",
+    "sourceSystem",
+    "sourceNativeId",
+    "contentHash",
+    "captureTimestamp",
+    "machineId",
+    "prevHash",
+    "entryHash",
+    "storageLocator",
+    "durabilityState"
   ],
   "properties": {
-    "schemaVersion": { "type": "string", "const": "evidence-ledger-entry-v1@1.0.0" },
-
-    "seq": { "type": "integer", "minimum": 0, "description": "Monotonic position in this ledger stream." },
+    "schemaVersion": {
+      "type": "string",
+      "const": "evidence-ledger-entry-v1@1.0.0"
+    },
+    "seq": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Monotonic position in this ledger stream."
+    },
     "prevHash": {
-      "type": ["string", "null"],
+      "type": [
+        "string",
+        "null"
+      ],
       "pattern": "^sha256:[a-f0-9]{64}$",
       "description": "entryHash of seq-1. Null only at seq 0 (genesis)."
     },
@@ -23,7 +41,6 @@
       "pattern": "^sha256:[a-f0-9]{64}$",
       "description": "sha256(canonicalJson(entry without entryHash) + prevHash). Makes the ledger tamper-evident."
     },
-
     "evidenceId": {
       "type": "string",
       "description": "Deterministic id derived from (sourceSystem, sourceNativeId, contentHash). Identifies THIS OBSERVATION, not the blob."
@@ -33,10 +50,17 @@
       "pattern": "^sha256:[a-f0-9]{64}$",
       "description": "Address of the immutable blob. Two observations of identical bytes share this value and MUST NOT produce two canonical blobs."
     },
-
     "sourceSystem": {
       "type": "string",
-      "enum": ["claude-code", "cursor", "chatgpt", "git", "waverunner", "documents", "human"]
+      "enum": [
+        "claude-code",
+        "cursor",
+        "chatgpt",
+        "git",
+        "waverunner",
+        "documents",
+        "human"
+      ]
     },
     "sourceNativeId": {
       "type": "string",
@@ -46,27 +70,76 @@
       "type": "object",
       "description": "Where this particular observation was seen. Distinguishes the WSL corpus from the Windows mirror when both contain identical bytes.",
       "properties": {
-        "sourceRootId": { "type": "string" },
-        "sourcePath": { "type": "string" },
-        "relativePath": { "type": "string" },
-        "byteSize": { "type": "integer", "minimum": 0 },
-        "sourceMtime": { "type": "string", "format": "date-time" }
+        "sourceRootId": {
+          "type": "string"
+        },
+        "sourcePath": {
+          "type": "string"
+        },
+        "relativePath": {
+          "type": "string"
+        },
+        "byteSize": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sourceMtime": {
+          "type": "string",
+          "format": "date-time"
+        }
       },
       "additionalProperties": false
     },
-
-    "captureTimestamp": { "type": "string", "format": "date-time", "description": "When WE captured it." },
-    "sourceTimestamp": { "type": ["string", "null"], "format": "date-time", "description": "When the original event happened. Null when the source does not expose it (Cursor WSL transcripts)." },
-
-    "machineId": { "type": "string", "description": "Canonical machine identity, e.g. CG-NIMO-01." },
+    "captureTimestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When WE captured it."
+    },
+    "sourceTimestamp": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "description": "When the original event happened. Null when the source does not expose it (Cursor WSL transcripts)."
+    },
+    "machineId": {
+      "type": "string",
+      "description": "Canonical machine identity, e.g. CG-NIMO-01."
+    },
     "sessionBinding": {
       "type": "object",
       "properties": {
-        "sessionId": { "type": ["string", "null"] },
-        "parentSessionId": { "type": ["string", "null"] },
-        "isSidechain": { "type": ["boolean", "null"] },
-        "agentIdentity": { "type": ["string", "null"] },
-        "modelIdentity": { "type": ["string", "null"] }
+        "sessionId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "parentSessionId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isSidechain": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "agentIdentity": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "modelIdentity": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
       },
       "additionalProperties": false
     },
@@ -74,55 +147,289 @@
       "type": "object",
       "description": "All nullable -- absent binding is MISSING, never guessed.",
       "properties": {
-        "repoKey": { "type": ["string", "null"] },
-        "worktreePath": { "type": ["string", "null"] },
-        "branch": { "type": ["string", "null"] },
-        "headSha": { "type": ["string", "null"] },
-        "workPackageId": { "type": ["string", "null"] }
+        "repoKey": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "worktreePath": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "branch": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "headSha": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "workPackageId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
       },
       "additionalProperties": false
     },
-
     "storageLocator": {
       "type": "object",
-      "required": ["spoolPath", "vaultPath", "vaultRootId"],
+      "description": "Fan-out is INDEPENDENT from the spool to each target. The backup leg must never be derived from, or depend on, the primary.",
+      "required": [
+        "spoolPath",
+        "primary",
+        "backup"
+      ],
       "properties": {
-        "spoolPath": { "type": ["string", "null"], "description": "Local WSL write-ahead spool path. Null once aged out." },
-        "vaultPath": { "type": ["string", "null"], "description": "Content-addressed path inside the NAS Evidence Vault. Null until REPLICATING completes." },
-        "vaultRootId": { "type": "string", "description": "Registered storage-root id from the live storage registry -- never a hard-coded path." }
+        "spoolPath": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "WSL ext4 write-ahead spool. Null only after FULLY_PROTECTED cleanup."
+        },
+        "primary": {
+          "type": "object",
+          "description": "Synology canonical authority.",
+          "properties": {
+            "rootId": {
+              "type": "string"
+            },
+            "host": {
+              "type": "string"
+            },
+            "path": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "transport": {
+              "type": "string",
+              "enum": [
+                "ssh-rsync",
+                "cifs-mount",
+                "OTHER"
+              ],
+              "description": "Never a /mnt/z drvfs path."
+            }
+          },
+          "additionalProperties": false
+        },
+        "backup": {
+          "type": "object",
+          "description": "Independent recovery copy. NOT an authority. Has its own manifests and verification history.",
+          "properties": {
+            "rootId": {
+              "type": "string"
+            },
+            "host": {
+              "type": "string"
+            },
+            "path": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "transport": {
+              "type": "string",
+              "enum": [
+                "ssh-rsync",
+                "cifs-mount",
+                "OTHER"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
       },
       "additionalProperties": false
     },
-
     "durabilityState": {
       "type": "string",
-      "enum": ["CAPTURED_LOCAL", "HASHED", "REPLICATING", "DURABLE", "VERIFIED"],
-      "description": "DURABLE requires the NAS copy to exist. VERIFIED requires an independent re-hash of the NAS copy equal to contentHash. Nothing may claim DURABLE on local-only evidence."
+      "enum": [
+        "CAPTURED_LOCAL",
+        "HASHED_ENCRYPTED",
+        "PRIMARY_VERIFIED",
+        "BACKUP_VERIFIED",
+        "FULLY_PROTECTED",
+        "INTEGRITY_INCIDENT"
+      ],
+      "description": "Fan-out durability. The spool copy is NOT eligible for cleanup until FULLY_PROTECTED, which requires plaintextHash == primary verified hash == backup verified hash. Reaching only PRIMARY_VERIFIED never authorises spool deletion -- that is the whole point of keeping the local copy. INTEGRITY_INCIDENT is terminal until a human resolves it."
     },
     "durabilityProof": {
       "type": "object",
+      "description": "Three independent hashes. Equality across all three is the only thing that authorises FULLY_PROTECTED.",
       "properties": {
-        "localHash": { "type": ["string", "null"], "pattern": "^sha256:[a-f0-9]{64}$" },
-        "vaultHash": { "type": ["string", "null"], "pattern": "^sha256:[a-f0-9]{64}$" },
-        "verifiedAt": { "type": ["string", "null"], "format": "date-time" },
-        "hashesMatch": { "type": ["boolean", "null"] }
+        "plaintextHash": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "primaryHash": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^sha256:[a-f0-9]{64}$",
+          "description": "Re-hashed ON the Synology, not predicted locally."
+        },
+        "backupHash": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^sha256:[a-f0-9]{64}$",
+          "description": "Re-hashed ON wesleydesk, independently of the primary leg."
+        },
+        "primaryVerifiedAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "backupVerifiedAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "allThreeMatch": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "lastScrubAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "Periodic integrity scrub: ledger hash vs primary vs backup."
+        },
+        "lastRestoreProofAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "A backup is proven by RECONSTRUCTION, not by files existing. Records the last real restore from the backup copy."
+        }
       },
       "additionalProperties": false
     },
-
-    "provenanceClass": { "type": "string", "const": "DISCOVERED", "description": "Raw capture is never promoted above DISCOVERED by the capture path." },
+    "provenanceClass": {
+      "type": "string",
+      "const": "DISCOVERED",
+      "description": "Raw capture is never promoted above DISCOVERED by the capture path."
+    },
     "captureCompleteness": {
       "type": "string",
-      "enum": ["COMPLETE", "PARTIAL", "LOWER_BOUND"],
+      "enum": [
+        "COMPLETE",
+        "PARTIAL",
+        "LOWER_BOUND"
+      ],
       "description": "Absent data is MISSING, never zero."
     },
     "redactionState": {
       "type": "string",
-      "enum": ["NONE", "QUARANTINED_SECRET", "REDACTED_LEGAL"],
+      "enum": [
+        "NONE",
+        "QUARANTINED_SECRET",
+        "REDACTED_LEGAL"
+      ],
       "default": "NONE"
     },
-    "supersededBy": { "type": ["string", "null"], "description": "evidenceId that supersedes this observation. Supersession is an edge, never a deletion." },
-    "continuationOf": { "type": ["string", "null"], "description": "Session stitching across restarts or hosts." }
+    "supersededBy": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "evidenceId that supersedes this observation. Supersession is an edge, never a deletion."
+    },
+    "continuationOf": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Session stitching across restarts or hosts."
+    },
+    "encryption": {
+      "type": "object",
+      "description": "Evidence is encrypted in WSL BEFORE either storage target receives it. Neither drive is trusted to provide confidentiality, and DSM share encryption is currently DISABLED anyway.",
+      "required": [
+        "algorithm",
+        "keyRef",
+        "plaintextHash",
+        "ciphertextHash"
+      ],
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "description": "e.g. AES-256-GCM. Authenticated encryption required -- a plain stream cipher gives no tamper detection."
+        },
+        "keyRef": {
+          "type": "string",
+          "description": "NAME of the key in the approved secret system (Doppler). NEVER the key material, and never a path on either drive."
+        },
+        "keyVersion": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Key rotation identity. Old evidence must stay decryptable after rotation."
+        },
+        "plaintextHash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$",
+          "description": "Identity and dedup hash. Two observations of identical plaintext share one canonical object."
+        },
+        "ciphertextHash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$",
+          "description": "What remote re-hash compares against. Encryption must be deterministic per object, or the stored bytes are re-hashed after write rather than predicted."
+        },
+        "nonce": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "propagationPolicy": {
+      "type": "object",
+      "description": "The backup is append-only and must never obediently reproduce a mistake made on the primary.",
+      "properties": {
+        "deletesPropagate": {
+          "type": "boolean",
+          "const": false,
+          "description": "MUST be false. A delete on the Synology is never mirrored to the backup."
+        },
+        "modificationsPropagate": {
+          "type": "boolean",
+          "const": false,
+          "description": "MUST be false. Objects are content-addressed and append-only."
+        }
+      },
+      "additionalProperties": false
+    }
   },
   "additionalProperties": false
 }
