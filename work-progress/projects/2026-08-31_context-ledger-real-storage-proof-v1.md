@@ -168,6 +168,30 @@ The outcome must land in exactly one bucket, with evidence:
 | `WRONG_ENDPOINT` | a different DSM endpoint, session or state was being observed |
 | `RECEIPT_DEFECT` | the artifact recorded intended/expected values instead of binding a live read-back |
 
+## Return criteria: explain the divergence, not just the current state
+
+**"Vault absent now" is NOT an acceptable reconciliation result.** Current state
+was already established by this lane and is not in dispute. What is in dispute is
+why earlier artifacts asserted something the current authoritative state
+contradicts.
+
+The reconciliation receipt must therefore answer both halves:
+
+| Half | Requirement |
+| --- | --- |
+| What is true now | Bound endpoint identity, exact share list, raw preserved response |
+| **Why the earlier artifacts said otherwise** | For each prior claim of `enterprise` / `immutable` / `7776000`, the exact share name, endpoint, timestamp, volume, machine identity and raw API response it was actually derived from |
+
+A result that reports only the first half classifies nothing: it restates the
+observation that opened the investigation. Provenance reconciliation between the
+earlier WORM claims and the present NAS state is the deliverable.
+
+If an earlier artifact **cannot** be traced to a bound endpoint and exact share,
+that is itself the finding — bucket `RECEIPT_DEFECT` — and it is a more valuable
+outcome than a repaired vault, because it identifies the format that permitted
+two lanes to hold incompatible beliefs without either stating anything it
+believed false.
+
 ## If the bucket is DELETED_PRODUCTION_SHARE, it escalates
 
 That outcome is **a Phase 0 governance finding, not a provisioning mistake**, and
