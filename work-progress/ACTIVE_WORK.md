@@ -13,13 +13,24 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-08-30
-| Current focus | `immutable-context-ledger-v1` — capture-first architecture planning; Cross-Agent doctrine changed to software-home-not-datastore (`CAD-20260830-cross-agent-software-home-not-datastore`)
+| Current focus | `context-ledger-phase-0-authority-resolution-v1` — **BLOCKED on operator decision for the canonical Evidence object-storage target.** Claude transcript corpus already preserved (`PRESERVATION_CHECKPOINT_PASS`, 502 files)
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Project index | `work-progress/projects/INDEX.md` |
 
 ## Current saved work
+
+### 2026-08-30 CT — context-ledger-phase-0-authority-resolution-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `context-ledger-phase-0-authority-resolution-v1` |
+| Status | **BLOCKED — `CG_CONTEXT_LEDGER_PHASE_0_AUTHORITY_V1_BLOCKED`.** 5 of 7 items resolved. Emergency preservation completed first and independently: `PRESERVATION_CHECKPOINT_PASS`, 502 files / 183,402,493 bytes, 0 sources changed, 0 copy failures. |
+| Repos involved | CapitalGlass-Cross-Agent (this work); CG-AppBuilder-MCP (read-only — ingestion source registry, lease held by another session); Intelligence Hub L:/Z: (read-only inspection) |
+| Notes | **Schema authority resolved.** Live `registry.migration_authority` holds 8 domains, none covering intelligence/evidence/context, and **not one row is `verified`** — every `verification_status` is `discovered`. That, not an AppBuilder defect, is why its registered `schemaAuthority` reads `null`. Cross-Agent verified to perform **zero DDL** (pure `.schema().from().select/upsert`), so the split is: schema *contract* → Cross-Agent (per `OWNERSHIP.md`), migration *execution* → AppBuilder (possesses `supabase/` + linked ref), evidence DML → Cross-Agent. **`authority_commit` resolved by design** — not weakened; conversations get their own identity `(sourceSystem, sourceNativeId, contentHash)` and derived Hub objects point back via the already-`ACTIVE` `DERIVED_FROM` edge. **Shared hash-chained append-ledger primitive assigned to Cross-Agent** and must exist before adapters proliferate, so a 499 MB Cursor SQLite/WAL acquisition stays at the edge. **BLOCKER:** no approved storage location is simultaneously durable/replicated, authorized to hold raw conversational payloads that may contain secrets, and governed by explicit storage/retention policy. L: `00-hub-control/` holds only 2 of its 10 required control files (no `storage-policy.json`, no `retention-policy.json`) and its live README restricts accepted artifacts to manifests/indexes/receipts; Z: is AI-Cache authority under `CAD-20260802` single-writer; WSL ext4 is host-local single-copy. |
+| Evidence | `work-progress/projects/2026-08-30_context-ledger-phase-0-authority-resolution-v1.md`; preservation receipt `artifacts/agent-runs/immutable-context-ledger-v1/preservation-checkpoint-v1.json`; producer `scripts/context-ledger/preserve-claude-transcripts-v1.mjs` |
+| Next | **Operator decision required** on the canonical immutable object-storage target (4 options documented). Then register `claude-code-transcripts` in AppBuilder's `ingestion-source-registry.json` (needs that repo's lease), then `context-ledger-phase-2-claude-capture-proof-v1`. |
 
 ### 2026-08-30 CT — immutable-context-ledger-v1 (planning)
 
