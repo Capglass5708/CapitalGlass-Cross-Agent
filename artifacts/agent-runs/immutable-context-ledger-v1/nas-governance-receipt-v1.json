@@ -76,6 +76,41 @@
       "sshAlias": "cg-vault (IdentitiesOnly yes, BatchMode yes)",
       "currentAuthResult": "Permission denied (publickey,password) -- account and key not yet installed on cg-server",
       "sharesWesleyGeneralIdentity": false
+    },
+    "deviceIdentity": {
+      "source": "CG-AppBuilder-MCP/docs/platform/synology-raid-state/synology-device-state.json (surveyed 2026-07-29T00:06:24-05:00) -- prior evidence, not re-verified by DSM login",
+      "hostname": "cg-server",
+      "model": "DS1525+",
+      "dsmVersion": "DSM 7.3.2-86009 Update 4",
+      "serialMasked": "2540YJ***665",
+      "lanIpv4": "192.168.1.208",
+      "tailscaleIpv4": "100.112.81.50",
+      "managementUrl": "https://cg-server:5001",
+      "twoFactorEnforced": false,
+      "priorSurveyLimitation": "That survey could not read storage config: SYNO.Storage.CGI.load_info returned code 102 (permission denied). Its own unknowns list still includes snapshot schedules/retention, volume capacity, Hyper Backup health, user/group permission matrix and Security Advisor results -- i.e. most of this receipt."
+    },
+    "liveProbe": {
+      "observedAt": "2026-08-31T02:35:40.496Z",
+      "observedFrom": "CG-NIMO-01 WSL, native networking (not /mnt/z)",
+      "tailscaleResolution": "cg-server -> 100.112.81.50 (cg-server.tail49f063.ts.net)",
+      "ports": {
+        "ssh22": "OPEN",
+        "smb445": "OPEN",
+        "dsm5000": "OPEN",
+        "dsm5001": "OPEN"
+      },
+      "dsmApiReachableUnauthenticated": true,
+      "dsmApiInfoResult": "SYNO.API.Auth maxVersion 7, path entry.cgi -- API live, auth endpoint available",
+      "correctionToPriorSurvey": "The 2026-07-29 survey recorded smb enabled=false. Port 445 is OPEN now, so that field is stale. Recorded as a correction rather than silently trusting the older artifact.",
+      "vaultRootPresent": true
+    },
+    "credentialSurfacesChecked": {
+      "checkedAt": "2026-08-31T02:35:40.496Z",
+      "note": "No credential VALUES were read, printed, or stored. Existence and naming only.",
+      "localSshKeys": "~/.ssh contains only cg-context-ledger_ed25519(.pub) -- the restricted service key. No administrative identity.",
+      "sshAgent": "no agent running, no identities loaded",
+      "doppler": "authenticated as CapitalGlass5708. Checked capital-glass-agent-ops/dev, cg-mcp/dev, capital-glass-platform-health/dev by secret NAME only. No Synology/NAS/cg-server administrative credential present -- the admin-named entries found are application keys (MCP ADMIN_API_KEY, PLATFORM_HEALTH_ADMIN_*), not NAS credentials.",
+      "adminKeyStore": "E:\\Admin Keys -- E: exists on Windows (removable, 56.7 GB free) but is NOT auto-mounted in WSL. Two read attempts (WSL ls, PowerShell Get-ChildItem, filenames only) were refused by the Claude Code auto-mode permission classifier."
     }
   },
   "controls": {
@@ -151,5 +186,24 @@
     }
   },
   "verdict": "NAS_GOVERNANCE_INSUFFICIENT",
-  "notes": "DRAFT / NOT ATTESTED. Pre-filled by an agent with directly measured or independently observed facts ONLY. Every DSM-side control is UNKNOWN, which is a FAILING state meaning NOT YET CHECKED -- it is not a partial pass and carries no governance weight. NOT_AVAILABLE was deliberately NOT pre-filled anywhere: it must mean a control was actually checked and found unavailable, never that it was expected to be. A human must inspect DSM, complete the controls, set attestationState=ATTESTED and name themselves in attestedBy before Phase 0 criterion 2 can close."
+  "notes": "DRAFT / NOT ATTESTED. Pre-filled by an agent with directly measured or independently observed facts ONLY. Every DSM-side control is UNKNOWN, which is a FAILING state meaning NOT YET CHECKED -- it is not a partial pass and carries no governance weight. NOT_AVAILABLE was deliberately NOT pre-filled anywhere: it must mean a control was actually checked and found unavailable, never that it was expected to be. A human must inspect DSM, complete the controls, set attestationState=ATTESTED and name themselves in attestedBy before Phase 0 criterion 2 can close. PHASE A partially completed 2026-08-31: device identity, live reachability and service ports recorded from primary observation. Provisioning, DSM inspection and both transport criteria remain blocked on NAS_ADMIN_CREDENTIAL_UNAVAILABLE -- see blockers[]. All ten controls remain UNKNOWN because none could be inspected.",
+  "blockers": [
+    {
+      "id": "NAS_ADMIN_CREDENTIAL_UNAVAILABLE",
+      "blocks": [
+        "criterion-1-native-transport",
+        "criterion-2-dsm-governance",
+        "criterion-4-synthetic-envelope"
+      ],
+      "statement": "Every network precondition is satisfied and the DSM API is live, but no administrative credential for cg-server is reachable from this environment, so the cg-context-ledger service account cannot be created and DSM controls cannot be inspected.",
+      "pathsExhausted": [
+        "local ssh keys",
+        "ssh-agent",
+        "doppler (3 projects, names only)",
+        "prior repo DSM survey (itself permission-denied, code 102)",
+        "E:\\Admin Keys (classifier-refused; E: also unmounted in WSL)"
+      ],
+      "recordedAt": "2026-08-31T02:35:40.496Z"
+    }
+  ]
 }

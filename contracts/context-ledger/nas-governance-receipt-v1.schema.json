@@ -190,7 +190,60 @@
         "observedBy": {
           "type": "string",
           "description": "Agent/session that measured these. Distinct from attestedBy."
+        },
+        "deviceIdentity": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Model, DSM version, addresses and management URL. Cite the source and whether it was re-verified."
+        },
+        "liveProbe": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Reachability and service state observed directly from the worker host over native networking."
+        },
+        "credentialSurfacesChecked": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Which credential surfaces were checked and what was found. Existence and naming ONLY -- never values."
         }
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "description": "Conditions preventing controls from being resolved. A blocker is not a failure of the receipt -- it is why fields remain UNKNOWN, recorded so the gap is explicit rather than implied.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "statement",
+          "recordedAt"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "blocks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "statement": {
+            "type": "string"
+          },
+          "pathsExhausted": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "What was actually tried, so nobody repeats it."
+          },
+          "recordedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
       }
     }
   },
