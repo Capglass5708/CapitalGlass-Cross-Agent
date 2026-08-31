@@ -26,7 +26,7 @@
     "seq": {
       "type": "integer",
       "minimum": 0,
-      "description": "Monotonic position in this ledger stream."
+      "description": "ORDERING ASSISTANCE ONLY -- never identity, never authority. The identity of an entry is entryHash; the truth of history is the prevHash/entryHash chain. seq exists so humans and queries can order entries cheaply. Never resolve an entry by seq, never assume seq is gap-free, and never treat a seq collision as meaningful -- resolve by entryHash and walk the chain."
     },
     "prevHash": {
       "type": [
@@ -443,7 +443,7 @@
       "properties": {
         "entryFile": {
           "type": "string",
-          "description": "Immutable path, e.g. immutable-metadata/ledger-entries/entry-000001.json. Written once, never reopened."
+          "description": "Immutable path, written once, never reopened. Prefer deriving the filename from entryHash rather than seq: a content-derived name cannot collide, whereas two writers independently computing seq+1 would collide and rely on the storage layer refusing an overwrite -- an accident of WORM rather than a designed guarantee."
         },
         "storageClass": {
           "type": "string",
@@ -461,6 +461,48 @@
           "type": "boolean",
           "const": false,
           "description": "MUST be false. The chain is the authority; the head pointer is a cache."
+        }
+      },
+      "additionalProperties": false
+    },
+    "chainIntegrity": {
+      "type": "object",
+      "description": "Concurrency contract for the append primitive. Locked before a second adapter exists, because two writers silently claiming the same predecessor forks history in a way that is only discoverable after the evidence needed to diagnose it is already wrong.",
+      "required": [
+        "headTransition"
+      ],
+      "properties": {
+        "headTransition": {
+          "type": "string",
+          "const": "COMPARE_AND_SWAP",
+          "description": "The head pointer MUST advance by compare-and-swap: the write succeeds only if the current head still equals expectedPrevHash. A losing writer re-reads the head and retries against the new predecessor. Appending without CAS is a contract violation even if it appears to work under a single worker."
+        },
+        "expectedPrevHash": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^sha256:[a-f0-9]{64}$",
+          "description": "The head this writer observed. The CAS compares against this. Null only for genesis."
+        },
+        "seqAssignedUnderCas": {
+          "type": "boolean",
+          "description": "True when seq was allocated by the winner inside the CAS, which is what keeps numbering unique without making it authoritative."
+        },
+        "forkDetected": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "Two entries claiming the same prevHash is a FORK. It is an INTEGRITY_INCIDENT, never auto-merged and never resolved by preferring a seq or a timestamp -- both branches are preserved for a human."
+        },
+        "casRetries": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "description": "Retries before winning the head. Non-zero is normal under concurrency; sustained growth indicates contention worth investigating."
         }
       },
       "additionalProperties": false

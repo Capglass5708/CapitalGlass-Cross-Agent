@@ -554,3 +554,38 @@ anything permanently until we know how it fails.
 Tests 7 and 8 are the ones most often skipped and most consequential: a backup is proven by
 reconstruction, and a key procedure is proven by recovering data with it — not by the
 existence of files or of a key.
+
+
+## Concurrency: the head transition is compare-and-swap
+
+Locked before a second adapter exists, because a forked chain is only discoverable after the
+evidence needed to diagnose it is already wrong.
+
+**`seq` is ordering assistance. It is never identity and never authority.** The identity of an
+entry is `entryHash`; the truth of history is the `prevHash`/`entryHash` chain. Never resolve
+an entry by `seq`, never assume it is gap-free, never treat a `seq` collision as meaningful.
+
+The append primitive MUST advance the head by **compare-and-swap**: the write succeeds only if
+the current head still equals `expectedPrevHash`. A losing writer re-reads the head and
+retries against the new predecessor. `seq` is allocated by the winner *inside* the CAS, which
+keeps numbering unique without making it authoritative.
+
+Appending without CAS is a contract violation even where it appears to work under a single
+worker — that is exactly the condition under which the bug hides.
+
+**Two entries claiming the same `prevHash` is a fork.** It raises `INTEGRITY_INCIDENT`. It is
+never auto-merged, and never resolved by preferring a lower `seq` or an earlier timestamp:
+both branches are preserved for a human. Silently choosing a winner would destroy the evidence
+that the fork happened.
+
+One implementation consequence: prefer deriving the entry filename from `entryHash` rather
+than `seq`. A content-derived name cannot collide. Two writers independently computing `seq+1`
+*would* collide, and would then be relying on the WORM layer refusing the overwrite — an
+accident of storage rather than a designed guarantee.
+
+---
+
+# ARCHITECTURE LOCKED
+
+No further architectural changes pending. The remaining work is implementation, gated on three
+DSM operations.
