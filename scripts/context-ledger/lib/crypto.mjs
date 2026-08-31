@@ -39,6 +39,7 @@
  * than silent plaintext disclosure.
  */
 import { createCipheriv, createDecipheriv, createHmac, hkdfSync, timingSafeEqual } from 'node:crypto';
+import { canonicalJson, sha256Prefixed as _sha } from './canonical.mjs';
 import { sha256Prefixed } from './canonical.mjs';
 
 export const ALGORITHM = 'AES-256-GCM';
@@ -53,6 +54,8 @@ export function resolveKey(keyMaterial) {
 const SALT = Buffer.from('capital-glass-context-ledger-v1');
 const INFO_ENC = 'context-ledger/v1/aes-256-gcm/enc';
 const INFO_NONCE = 'context-ledger/v1/nonce-derivation';
+const NONCE_DOMAIN = 'context-ledger:nonce:v2';
+export const DEFAULT_KEY_VERSION = 'v1';
 
 /** Two independent subkeys. The master key is never used to encrypt or to MAC. */
 export function deriveSubkeys(masterKeyMaterial) {
@@ -63,51 +66,83 @@ export function deriveSubkeys(masterKeyMaterial) {
   };
 }
 
-function deriveNonce(nonceKey, plaintextHash) {
-  return createHmac('sha256', nonceKey).update(plaintextHash).digest().subarray(0, 12);
+/**
+ * Canonical AAD. Currently empty, and that is the point: the shape is fixed now
+ * so that adding authenticated data later cannot silently change nonce identity.
+ * Same canonicalizer as everything else -- two encodings of "the same" AAD would
+ * produce two nonces for one logical object.
+ */
+export function canonicalAad(aad = {}) { return canonicalJson(aad ?? {}); }
+export function aadHashOf(aad = {}) { return sha256Prefixed(Buffer.from(canonicalAad(aad), 'utf8')); }
+
+/**
+ * nonce = Truncate96(HMAC(nonceKey, domain || keyVersion || plaintextHash || aadHash))
+ *
+ * AAD is bound into nonce identity. Without it, the same plaintext under
+ * different authenticated data would reuse one (key, nonce) pair -- a GCM
+ * misuse just as dangerous as reusing a nonce across different plaintexts, and
+ * one that a "same nonce implies same plaintext" check would not catch.
+ * keyVersion is bound so rotation cannot collide across generations.
+ */
+function deriveNonce(nonceKey, { keyVersion, plaintextHash, aadHash }) {
+  return createHmac('sha256', nonceKey)
+    .update(`${NONCE_DOMAIN}|${keyVersion}|${plaintextHash}|${aadHash}`)
+    .digest()
+    .subarray(0, 12);
 }
 
 /**
- * Detect the impossible-but-catastrophic case: one nonce serving two distinct
- * plaintexts under one key. Feed it ledger entries; it is cheap enough to run
- * in the periodic integrity scrub.
+ * Registry invariant: (keyVersion, nonce) -> exactly one (plaintextHash, aadHash).
+ *
+ * Strictly stronger than nonce -> plaintextHash, which would accept the same
+ * plaintext encrypted under differing AAD sharing one nonce.
  */
 export function assertNoNonceCollision(entries) {
   const seen = new Map();
   for (const e of entries) {
-    const n = e?.encryption?.nonce;
-    const ph = e?.encryption?.plaintextHash;
-    if (!n || !ph) continue;
-    const prior = seen.get(n);
-    if (prior && prior !== ph) {
+    const enc = e?.encryption;
+    if (!enc?.nonce || !enc?.plaintextHash) continue;
+    const kv = enc.keyVersion ?? DEFAULT_KEY_VERSION;
+    const ah = enc.aadHash ?? aadHashOf({});
+    const k = `${kv}|${enc.nonce}`;
+    const v = `${enc.plaintextHash}|${ah}`;
+    const prior = seen.get(k);
+    if (prior && prior !== v) {
       const err = new Error('NONCE_COLLISION');
-      err.nonce = n; err.plaintextHashes = [prior, ph];
+      err.keyVersion = kv; err.nonce = enc.nonce; err.bindings = [prior, v];
       throw err;
     }
-    seen.set(n, ph);
+    seen.set(k, v);
   }
   return { checked: seen.size, collisions: 0 };
 }
 
-export function encryptObject({ plaintext, key, plaintextHash }) {
+export function encryptObject({ plaintext, key, plaintextHash, aad = {}, keyVersion = DEFAULT_KEY_VERSION }) {
   const { encKey, nonceKey } = deriveSubkeys(key);
-  const iv = deriveNonce(nonceKey, plaintextHash);
+  const aadCanonical = canonicalAad(aad);
+  const aadHash = aadHashOf(aad);
+  const iv = deriveNonce(nonceKey, { keyVersion, plaintextHash, aadHash });
   const c = createCipheriv('aes-256-gcm', encKey, iv);
+  c.setAAD(Buffer.from(aadCanonical, 'utf8'));
   const body = Buffer.concat([c.update(plaintext), c.final()]);
   const tag = c.getAuthTag();
   // Stored layout: [12-byte nonce][16-byte tag][ciphertext]. Self-describing,
   // so a restore needs only the key -- not a side-channel of parameters.
   const blob = Buffer.concat([iv, tag, body]);
-  return { blob, ciphertextHash: sha256Prefixed(blob), nonce: iv.toString('hex'), algorithm: ALGORITHM };
+  return {
+    blob, ciphertextHash: sha256Prefixed(blob), nonce: iv.toString('hex'),
+    algorithm: ALGORITHM, keyVersion, aad: aadCanonical, aadHash,
+  };
 }
 
-export function decryptObject({ blob, key }) {
+export function decryptObject({ blob, key, aad = {} }) {
   const { encKey } = deriveSubkeys(key);
   if (blob.length < 28) throw new Error('blob too short to contain nonce+tag');
   const iv = blob.subarray(0, 12);
   const tag = blob.subarray(12, 28);
   const body = blob.subarray(28);
   const d = createDecipheriv('aes-256-gcm', encKey, iv);
+  d.setAAD(Buffer.from(canonicalAad(aad), 'utf8'));   // AAD mismatch fails authentication
   d.setAuthTag(tag);
   // GCM throws here on any tampering -- authentication, not just decryption.
   return Buffer.concat([d.update(body), d.final()]);

@@ -87,3 +87,69 @@ expensive once the vault holds anything** — which is why it was done now.
 3. Public key installed for the existing `cg-context-ledger` user behind the forced-command wrapper
 
 No Phase 2. No transcript capture.
+
+
+---
+
+# PERMANENT RULE — storage proofs must be endpoint-bound (2026-08-31)
+
+Adopted after two lanes produced mutually incompatible evidence about the same
+share. A receipt that says "WORM vault verified" is insufficient. It must say,
+effectively:
+
+```
+NAS identity X / volume1 / share <exact name> / timestamp Y / configuration hash Z
+```
+
+Required binding on every storage proof:
+
+| Field | Why |
+| --- | --- |
+| hostname + Tailscale IP | two lanes must be provably on the same machine |
+| DSM version + model | catches a different NAS entirely |
+| volume identity | catches a different volume on the same NAS |
+| machine/serial identity where available | strongest endpoint binding |
+| **exact** share name | catches a disposable proof share mistaken for production |
+| read-back timestamp | catches a share that existed and was later removed |
+| configuration hash | makes "known-good state" comparable rather than narrative |
+
+Without this, two agents working against different states — or different
+machines — can assemble a false unified story that neither of them is lying
+about.
+
+## Open reconciliation (other lane; do not mutate storage until resolved)
+
+Incompatible evidence: one lane reports `Capital-Glass-AI-Evidence-Vault`
+existed and read back as Enterprise WORM (`worm_subvol_mode=enterprise`,
+`worm_def_lock_mode=immutable`, `worm_def_lock_duration=7776000`). A live check
+from this lane at 2026-08-31 finds that share **absent** from `cg-server`.
+
+Confirmed present by this lane: `Capital-Glass-AI-Evidence-meta` (`/volume1`,
+desc "meta", **0 snapshots observed**) and the non-admin `cg-context-ledger`
+user.
+
+Questions to answer before creating or repairing anything:
+
+1. Are both lanes definitely on the same NAS? Compare hostname, Tailscale IP,
+   DSM version, model, volume identity, serial.
+2. What is the authoritative current share list from that exact NAS? Preserve
+   the raw response.
+3. Does the WORM proof artifact contain the exact NAS identity and exact share
+   name it read back? If not, the proof is insufficiently bound.
+4. Was the vault created and later deleted? Several scheduled mutators exist;
+   deletion must be ruled out rather than assumed impossible.
+5. Could a disposable proof share (e.g. `CG-WORM-ENT-PROOF1`) have been
+   mistaken for the production vault?
+
+Note one cheap hypothesis worth eliminating first: a `407` against a share that
+does not exist is consistent with **absence**, not with a permissions
+regression. The simpler explanation should be excluded before a security-state
+bug is hunted.
+
+## Transport contract change
+
+SSH forced-command installation is **no longer a production prerequisite**.
+Intended primary transport is FileStation HTTPS over Tailscale; SSH is
+diagnostic-only. The adapter to implement is therefore `FileStationTransport`,
+not `SshRsyncTransport`, against the same `put`/`verify`/`fetch` interface, with
+the same suite rerun unchanged.

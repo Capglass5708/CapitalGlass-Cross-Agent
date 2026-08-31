@@ -12,7 +12,7 @@
 import { mkdirSync, writeFileSync, readFileSync, existsSync, rmSync } from 'node:fs';
 import path from 'node:path';
 import { sha256Prefixed, objectStorePath } from './canonical.mjs';
-import { encryptObject, decryptObject, ALGORITHM } from './crypto.mjs';
+import { encryptObject, decryptObject, ALGORITHM, DEFAULT_KEY_VERSION } from './crypto.mjs';
 import { appendEntry } from './ledger.mjs';
 
 export const STATE = {
@@ -35,6 +35,7 @@ export function spoolWrite(spoolRoot, plaintext) {
 export function protectObject({
   plaintext, key, keyRef, spoolRoot, vaultRoot, metaRoot, primary, backup,
   sourceSystem = 'synthetic', sourceNativeId = null, machineId = 'CG-NIMO-01',
+  aad = {}, keyVersion = DEFAULT_KEY_VERSION,
 }) {
   const result = { state: STATE.CAPTURED_LOCAL, incidents: [], spoolEligibleForCleanup: false };
 
@@ -43,8 +44,9 @@ export function protectObject({
   Object.assign(result, { plaintextHash, spoolPath });
 
   // 2. encrypt BEFORE either destination sees anything
-  const { blob, ciphertextHash, nonce } = encryptObject({ plaintext, key, plaintextHash });
-  Object.assign(result, { ciphertextHash, algorithm: ALGORITHM, keyRef, nonce });
+  const { blob, ciphertextHash, nonce, aadHash, aad: aadCanonical } =
+    encryptObject({ plaintext, key, plaintextHash, aad, keyVersion });
+  Object.assign(result, { ciphertextHash, algorithm: ALGORITHM, keyRef, nonce, aadHash, keyVersion });
   result.state = STATE.HASHED_ENCRYPTED;
 
   // 3. INDEPENDENT fan-out. Each adapter receives the same spool-derived blob.
@@ -92,7 +94,7 @@ export function protectObject({
       sourceSystem, sourceNativeId, machineId,
       contentHash: plaintextHash,
       provenanceClass: 'DISCOVERED',
-      encryption: { algorithm: ALGORITHM, keyRef, plaintextHash, ciphertextHash, nonce },
+      encryption: { algorithm: ALGORITHM, keyRef, keyVersion, plaintextHash, ciphertextHash, nonce, aad: aadCanonical, aadHash },
       storageLocator: {
         spoolPath,
         primary: { rootId: primary.id, host: primary.host, path: legs.primary.put?.path ?? null, transport: primary.kind },
@@ -138,7 +140,7 @@ export function cleanupSpool(result) {
  * plaintext against the storage address always fails, and -- worse -- would
  * have made a correct restore look like corruption.
  */
-export function restoreFrom(target, { ciphertextHash, plaintextHash }, key) {
+export function restoreFrom(target, { ciphertextHash, plaintextHash, aad = {} }, key) {
   if (!ciphertextHash || !plaintextHash) {
     throw new TypeError('restoreFrom requires both ciphertextHash (address) and plaintextHash (identity)');
   }
@@ -147,7 +149,7 @@ export function restoreFrom(target, { ciphertextHash, plaintextHash }, key) {
   if (storedHash !== ciphertextHash) {
     const e = new Error('REMOTE_HASH_MISMATCH'); e.expected = ciphertextHash; e.observed = storedHash; throw e;
   }
-  const plaintext = decryptObject({ blob, key });   // GCM authenticates here
+  const plaintext = decryptObject({ blob, key, aad });   // GCM authenticates plaintext AND aad here
   const recoveredHash = sha256Prefixed(plaintext);
   return {
     plaintext, recoveredHash,

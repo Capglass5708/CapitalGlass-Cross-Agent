@@ -13,7 +13,7 @@ import os from 'node:os';
 import { randomBytes } from 'node:crypto';
 
 import { sha256Prefixed, canonicalJson, objectStorePath } from '../context-ledger/lib/canonical.mjs';
-import { encryptObject, decryptObject, deriveSubkeys, assertNoNonceCollision } from '../context-ledger/lib/crypto.mjs';
+import { encryptObject, decryptObject, deriveSubkeys, assertNoNonceCollision, aadHashOf, canonicalAad, DEFAULT_KEY_VERSION } from '../context-ledger/lib/crypto.mjs';
 import { appendEntry, readHead, reconstructHead, restoreHead, scanEntries, computeEntryHash, entryFileName, HEAD_FILE } from '../context-ledger/lib/ledger.mjs';
 import { LocalFixtureTransport, SshRsyncTransport } from '../context-ledger/lib/transport.mjs';
 import { scanEntries as scanAll } from '../context-ledger/lib/ledger.mjs';
@@ -275,5 +275,64 @@ test('real ledger entries carry no nonce collision', () => {
     for (const s of ['alpha', 'beta', 'gamma', 'delta']) run(e, Buffer.from(s));
     const r = assertNoNonceCollision(scanAll(e.vault));
     assert.equal(r.checked, 4, 'four distinct plaintexts must yield four distinct nonces');
+  } finally { e.cleanup(); }
+});
+
+
+test('AAD is bound into nonce identity: same plaintext, different AAD, different nonce', () => {
+  const pt = Buffer.from('same plaintext under differing authenticated data');
+  const h = sha256Prefixed(pt);
+  const a = encryptObject({ plaintext: pt, key: KEY, plaintextHash: h, aad: {} });
+  const b = encryptObject({ plaintext: pt, key: KEY, plaintextHash: h, aad: { scope: 'other' } });
+  assert.notEqual(a.nonce, b.nonce, 'differing AAD must not reuse a (key, nonce) pair');
+  assert.notEqual(a.aadHash, b.aadHash);
+  assert.notEqual(a.ciphertextHash, b.ciphertextHash);
+});
+
+test('keyVersion is bound into nonce identity: rotation cannot collide across generations', () => {
+  const pt = Buffer.from('rotation test');
+  const h = sha256Prefixed(pt);
+  const v1 = encryptObject({ plaintext: pt, key: KEY, plaintextHash: h, keyVersion: 'v1' });
+  const v2 = encryptObject({ plaintext: pt, key: KEY, plaintextHash: h, keyVersion: 'v2' });
+  assert.notEqual(v1.nonce, v2.nonce);
+});
+
+test('AAD is authenticated: decrypting with different AAD fails', () => {
+  const pt = Buffer.from('aad must be authenticated, not merely mixed in');
+  const h = sha256Prefixed(pt);
+  const e = encryptObject({ plaintext: pt, key: KEY, plaintextHash: h, aad: { scope: 'vault' } });
+  assert.deepEqual(decryptObject({ blob: e.blob, key: KEY, aad: { scope: 'vault' } }), pt);
+  assert.throws(() => decryptObject({ blob: e.blob, key: KEY, aad: { scope: 'WRONG' } }),
+    /unable to authenticate|bad decrypt|auth/i);
+});
+
+test('registry invariant is (keyVersion, nonce) -> one (plaintextHash, aadHash)', () => {
+  const ah = aadHashOf({});
+  // same nonce under a DIFFERENT keyVersion is not a collision
+  assert.equal(assertNoNonceCollision([
+    { encryption: { keyVersion: 'v1', nonce: 'aa', plaintextHash: 'sha256:1', aadHash: ah } },
+    { encryption: { keyVersion: 'v2', nonce: 'aa', plaintextHash: 'sha256:2', aadHash: ah } },
+  ]).checked, 2);
+  // same (keyVersion, nonce) with differing AAD IS a collision -- the case the
+  // old nonce->plaintextHash rule would have accepted
+  assert.throws(() => assertNoNonceCollision([
+    { encryption: { keyVersion: 'v1', nonce: 'aa', plaintextHash: 'sha256:1', aadHash: 'sha256:AAD_A' } },
+    { encryption: { keyVersion: 'v1', nonce: 'aa', plaintextHash: 'sha256:1', aadHash: 'sha256:AAD_B' } },
+  ]), (e) => e.message === 'NONCE_COLLISION');
+});
+
+test('canonical AAD is empty-by-default and canonicalizer-stable', () => {
+  assert.equal(canonicalAad(), '{}');
+  assert.equal(canonicalAad({ b: 1, a: 2 }), canonicalAad({ a: 2, b: 1 }));
+  assert.equal(DEFAULT_KEY_VERSION, 'v1');
+});
+
+test('ledger entries record keyVersion and aadHash for later scrubbing', () => {
+  const e = env();
+  try {
+    const r = run(e, Buffer.from('recorded binding'));
+    assert.equal(r.ledgerEntry.encryption.keyVersion, 'v1');
+    assert.equal(r.ledgerEntry.encryption.aadHash, aadHashOf({}));
+    assert.equal(r.ledgerEntry.encryption.aad, '{}');
   } finally { e.cleanup(); }
 });
