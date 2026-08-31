@@ -61,11 +61,13 @@
               "type": "string",
               "enum": [
                 "CONFIRMED",
+                "DISABLED",
+                "NOT_CONFIGURED",
                 "NOT_AVAILABLE",
                 "NOT_APPLICABLE",
                 "UNKNOWN"
               ],
-              "description": "UNKNOWN is a failing state and means NOT YET CHECKED. It may not be treated as CONFIRMED. NOT_AVAILABLE means the control was actually checked and found unavailable -- never a prediction that it will be."
+              "description": "CONFIRMED: present and enabled. DISABLED: the capability EXISTS on this platform but is switched off -- do not call an available-but-off capability NOT_AVAILABLE. NOT_CONFIGURED: the mechanism exists and may even have run once, but no active policy governs it. NOT_AVAILABLE: actually checked and genuinely not present on this platform. NOT_APPLICABLE: does not apply. UNKNOWN is a FAILING state meaning NOT YET CHECKED."
             },
             "detail": {
               "type": "string",

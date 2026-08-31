@@ -584,3 +584,105 @@ Containment relevant to this mission only: the shared checkout is frozen, the co
 branch is preserved with both sets of commits reachable, and the Context Ledger commits
 (`a3cb67b1`, `32a3459c`, `d88c4b95`) will be cherry-picked into a fresh worktree from the
 pre-incident base once the checkout is quiescent. No history is rewritten.
+
+
+---
+
+# ADDENDUM 5 — Storage durability architecture corrected before any evidence lands
+
+Live DSM inspection changed the plan. Recorded before production capture, which is the
+cheapest moment to change it.
+
+## The vault share currently has NO active protection of any class
+
+| Protection | State | Evidence |
+| --- | --- | --- |
+| Encryption at rest | **DISABLED** | share `Capital Glass` reports `encryption=0` |
+| WORM / WriteOnce | **DISABLED** | capability exists (`SYNO.FileStation.Worm`, `.Worm.Lock`) but not enabled |
+| Snapshot schedule | **NOT_CONFIGURED** | 4 snapshots, all 2025-12-02, **~9 months stale** |
+| Off-box second copy | **NOT_AVAILABLE** | Hyper Backup not installed; no replication task |
+
+### The snapshot finding is the one that mattered
+
+`#snapshot` exists at the share root, which made a filesystem glance look reassuring. The API
+tells the truth: `SYNO.Core.Share.Snapshot` v2 returns **exactly 4 snapshots, newest
+2025-12-02 16:00**. Nothing since. There is no schedule and no retention.
+
+This removes the compensating control previously leaned on for encryption and WORM. Directory
+presence is not evidence of policy — which is exactly the distinction the operator insisted on.
+
+## Two corrections to earlier claims in this document
+
+1. **`encryptionAtRest` and `wormImmutability` are `DISABLED`, not `NOT_AVAILABLE`.** The
+   platform supports both; they are switched off. Calling an available-but-off capability
+   "unavailable" would tell a later reader the platform cannot do it. The receipt schema now
+   distinguishes `DISABLED` / `NOT_CONFIGURED` / `NOT_AVAILABLE` so this cannot recur.
+2. **`ReplicationService` IS installed.** The earlier claim that no replication package was
+   present was inferred from API-surface absence and was wrong. 25 packages enumerated;
+   `ReplicationService`, `CloudSync` and `HybridShare` are present, `HyperBackup` is not.
+   ReplicationService still requires a second Synology as a target, so the conclusion —
+   no off-box copy today — stands, but the reasoning is now correct.
+
+## Topology decision: a dedicated production share
+
+`Z:\Capital-Glass-AI-Evidence-Vault` (a folder *inside* the `Capital Glass` share) is
+**demoted to provisioning/staging evidence only**. It must not become canonical production
+authority.
+
+Production becomes a **dedicated DSM shared folder** `Capital-Glass-AI-Evidence-Vault`,
+created with the share-level controls we actually want. The forcing reason: **DSM WriteOnce is
+set at share creation and cannot be applied to an existing share.** We are still early enough
+to choose correctly, and this is the last cheap moment to do so.
+
+```
+Primary copy    dedicated Synology shared folder -> Btrfs -> WriteOnce/WORM
+                -> restricted cg-context-ledger identity -> scheduled snapshots
+Second copy     independent failure domain, off-box
+```
+
+**Btrfs snapshots on the same NAS do not count as the second copy.** They address accidental
+deletion, ransomware and version recovery, but the NAS and volume remain one failure domain.
+Hashing and hash-chain verification remain mandatory and also do not count as replication:
+they detect corruption, they do not reproduce lost bytes.
+
+Second-copy preference order: another physically separate Synology/NAS; encrypted off-site
+object storage; dedicated removable/backup storage under Hyper Backup as an interim.
+
+## Phase 0 gates — replaced
+
+The original four are superseded by eight. Backup/replication is now a **blocking PASS
+requirement**, not something a compensating control can excuse.
+
+| # | Gate | State |
+| --- | --- | --- |
+| 1 | Dedicated production Evidence Vault share created | BLOCKED (tooling) |
+| 2 | WORM/WriteOnce explicitly configured or proven unavailable | DISABLED — must be set at creation of gate 1 |
+| 3 | `cg-context-ledger` restricted identity created | BLOCKED — classifier refused `SYNO.Core.User` create |
+| 4 | Native SSH/rsync transport proven | blocked by gate 3 |
+| 5 | Snapshot schedule + retention actually known | NOT_CONFIGURED — must be configured, not merely read |
+| 6 | Off-box backup destination configured + one restore/verification path proven | **NOT_AVAILABLE — hard blocker** |
+| 7 | DSM governance receipt attested | pending gates 1–6 |
+| 8 | Synthetic worker reaches VERIFIED | pending |
+
+**`CG_CONTEXT_LEDGER_PHASE_0_AUTHORITY_V1_PASS` must not be issued while canonical evidence
+has only one physical copy.** Criterion 3 (Claude source registration, `32a3459c`) remains
+PASS and is not reopened.
+
+## On the classifier block
+
+The refusal of `SYNO.Core.User` create is a Claude Code tooling boundary, not a DSM defect.
+It must not be worked around by weakening general permissions. If it cannot be authorized, the
+human action reduces to two DSM operations: create the dedicated WriteOnce share, and create
+the `cg-context-ledger` user. Everything else remains automatable.
+
+## Why this is a good outcome
+
+The original shape was `WSL → Synology → permanent`. Live evidence shows that would have
+placed the permanent record on a single unprotected share. The corrected shape is:
+
+```
+WSL spool -> primary Synology immutable vault -> independently verified second copy
+Cross-Agent -> ledger / index / provenance / intelligence
+```
+
+Learned before storing years of evidence rather than after.

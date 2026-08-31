@@ -143,7 +143,34 @@
         "Nash"
       ],
       "securityScan": "malware safe, network safe",
-      "resolvesPriorGap": "The 2026-07-29 survey failed SYNO.Storage.CGI.load_info with code 102 (permission denied). With the Doppler admin credential the same call now succeeds, so that gap was credential scope, not a DSM defect."
+      "resolvesPriorGap": "The 2026-07-29 survey failed SYNO.Storage.CGI.load_info with code 102 (permission denied). With the Doppler admin credential the same call now succeeds, so that gap was credential scope, not a DSM defect.",
+      "packages": {
+        "enumerated": 25,
+        "relevantInstalled": [
+          "ReplicationService",
+          "CloudSync",
+          "HybridShare",
+          "StorageManager",
+          "FileStation",
+          "Tailscale"
+        ],
+        "notInstalled": [
+          "HyperBackup"
+        ],
+        "note": "ReplicationService present corrects the earlier inference drawn from API-surface absence alone."
+      },
+      "snapshots": {
+        "share": "Capital Glass",
+        "total": 4,
+        "timestamps": [
+          "GMT-06-2025.12.02-13.09.59",
+          "GMT-06-2025.12.02-14.00.03",
+          "GMT-06-2025.12.02-15.00.02",
+          "GMT-06-2025.12.02-16.00.02"
+        ],
+        "ageAtInspection": "~9 months stale",
+        "activeSchedule": false
+      }
     }
   },
   "controls": {
@@ -162,25 +189,25 @@
       "verifiedAt": "2026-08-31T03:52:22.388Z"
     },
     "encryptionAtRest": {
-      "state": "NOT_AVAILABLE",
-      "detail": "Checked, not assumed: share \"Capital Glass\" reports encryption=0. Volume_1 exposes no volume-level encryption. Evidence at rest is therefore UNENCRYPTED on this NAS.",
-      "evidence": "SYNO.Core.Share v1 list with additional=[encryption]; SYNO.Storage.CGI.Storage load_info",
-      "compensatingControl": "Content-addressing + hash-chained ledger + independent remote re-hash detect tampering but do NOT provide confidentiality. Secret-bearing transcripts must be quarantined at capture and never replicated here until either share encryption is enabled or an application-layer encryption decision is made.",
-      "verifiedAt": "2026-08-31T03:52:22.388Z"
+      "state": "DISABLED",
+      "detail": "CORRECTED from NOT_AVAILABLE. Synology supports share-level encryption on this platform; it is simply switched off. Share \"Capital Glass\" reports encryption=0. Describing an available-but-off capability as unavailable would mislead a later reader into thinking the platform cannot do it.",
+      "evidence": "SYNO.Core.Share v1 list additional=[encryption] -> encryption=0",
+      "compensatingControl": "None yet. Unencrypted at rest is acceptable ONLY as a deliberate, recorded risk acceptance backed by physical and ACL controls -- not as an oversight.",
+      "verifiedAt": "2026-08-31T03:58:21.699Z"
     },
     "snapshotPolicy": {
-      "state": "UNKNOWN",
-      "detail": "Partially resolved. Volume_1 is btrfs and a #snapshot directory exists at the share root, so snapshots are being taken. Schedule and retention could NOT be read: SYNO.Core.Share.Snapshot v2 list returned 403, consistent with the Snapshot Replication package not being installed.",
-      "evidence": "SYNO.Storage.CGI.Storage load_info (fs_type=btrfs); share-root listing (#snapshot present); SYNO.Core.Share.Snapshot v2 -> 403",
-      "compensatingControl": null,
-      "verifiedAt": "2026-08-31T03:52:22.388Z"
+      "state": "NOT_CONFIGURED",
+      "detail": "DECISIVE FINDING. Snapshots are NOT protecting this data. SYNO.Core.Share.Snapshot v2 list for \"Capital Glass\" returns exactly 4 snapshots, ALL dated 2025-12-02 (13:09, 14:00, 15:00, 16:00 GMT-06). Nothing in roughly nine months. The #snapshot directory exists, which is why a filesystem-level glance looked reassuring, but there is no active schedule and no retention policy. This is precisely why directory presence is not evidence of policy.",
+      "evidence": "SYNO.Core.Share.Snapshot v2 list (name=Capital Glass) -> total=4, newest 2025-12-02; v1 list -> 0; get_snapshot_setting -> code 103 (method unavailable)",
+      "compensatingControl": "None. This removes the compensating control previously leaned on for encryption and WORM.",
+      "verifiedAt": "2026-08-31T03:58:21.699Z"
     },
     "backupReplication": {
       "state": "NOT_AVAILABLE",
-      "detail": "Checked, not assumed: the DSM API surface exposes ZERO backup APIs (no Hyper Backup) and no Snapshot Replication package -- the only replication API present is SYNO.Core.ISCSI.Replication, which is unrelated. There is no off-box copy of this vault.",
-      "evidence": "SYNO.API.Info query=all over 983 exposed APIs: /hyperbackup|Backup\\.Task|Backup\\.Repo/ -> 0 hits; /replicat/ -> SYNO.Core.ISCSI.Replication only",
-      "compensatingControl": "NONE YET. This is the single largest gap: a NAS-only vault is one-copy storage. Until Hyper Backup or Snapshot Replication is installed and targeted off-box, the Evidence Vault does not satisfy the durability premise Phase 0 exists to prove.",
-      "verifiedAt": "2026-08-31T03:52:22.388Z"
+      "detail": "No off-box copy exists. Hyper Backup is NOT installed. CORRECTION to the previous entry: ReplicationService IS installed (25 packages enumerated), so the earlier claim that no replication package was present was wrong -- but no replication task protects this share, and ReplicationService requires a second Synology as a target. CloudSync is also installed and is a possible off-box path to object storage.",
+      "evidence": "SYNO.Core.Package v2 list -> 25 packages; ReplicationService and CloudSync present, no HyperBackup; SYNO.API.Info -> zero Backup.Task/Repo APIs",
+      "compensatingControl": "NONE, and none is acceptable. Hash-chain verification detects corruption; it does not reproduce lost bytes.",
+      "verifiedAt": "2026-08-31T03:58:21.699Z"
     },
     "retentionPolicy": {
       "state": "UNKNOWN",
@@ -190,11 +217,11 @@
       "verifiedAt": null
     },
     "wormImmutability": {
-      "state": "NOT_AVAILABLE",
-      "detail": "Checked, not assumed: WORM capability EXISTS on this DSM (SYNO.FileStation.Worm and SYNO.FileStation.Worm.Lock are exposed), but it is NOT enabled -- the vault share returns no worm_state, and the share was not created as a WriteOnce share.",
-      "evidence": "SYNO.API.Info query=all -> SYNO.FileStation.Worm, SYNO.FileStation.Worm.Lock; SYNO.Core.Share v1 list additional=[worm_state] -> undefined for \"Capital Glass\"",
-      "compensatingControl": "Immutability currently rests on content addressing, collision refusal, the hash-chained ledger and remote re-verification. WORM is available and should be enabled on a dedicated vault share -- note DSM WriteOnce is set at share creation, so this likely requires a NEW share rather than converting \"Capital Glass\".",
-      "verifiedAt": "2026-08-31T03:52:22.388Z"
+      "state": "DISABLED",
+      "detail": "CORRECTED from NOT_AVAILABLE, same reasoning. WORM capability EXISTS (SYNO.FileStation.Worm and .Worm.Lock exposed) but is not enabled; the share returns no worm_state. DSM WriteOnce is set at SHARE CREATION, so enabling it requires creating the dedicated vault share as WriteOnce rather than converting \"Capital Glass\".",
+      "evidence": "SYNO.API.Info -> SYNO.FileStation.Worm, SYNO.FileStation.Worm.Lock; SYNO.Core.Share list additional=[worm_state] -> undefined",
+      "compensatingControl": null,
+      "verifiedAt": "2026-08-31T03:58:21.699Z"
     },
     "recoveryProcedure": {
       "state": "UNKNOWN",
@@ -219,30 +246,43 @@
     }
   },
   "verdict": "NAS_GOVERNANCE_INSUFFICIENT",
-  "notes": "DRAFT / NOT ATTESTED. Pre-filled by an agent with directly measured or independently observed facts ONLY. Every DSM-side control is UNKNOWN, which is a FAILING state meaning NOT YET CHECKED -- it is not a partial pass and carries no governance weight. NOT_AVAILABLE was deliberately NOT pre-filled anywhere: it must mean a control was actually checked and found unavailable, never that it was expected to be. A human must inspect DSM, complete the controls, set attestationState=ATTESTED and name themselves in attestedBy before Phase 0 criterion 2 can close. PHASE A partially completed 2026-08-31: device identity, live reachability and service ports recorded from primary observation. Provisioning, DSM inspection and both transport criteria remain blocked on NAS_ADMIN_CREDENTIAL_UNAVAILABLE -- see blockers[]. All ten controls remain UNKNOWN because none could be inspected. PHASE B/D 2026-08-31: DSM authenticated with the Doppler admin credential. Seven controls advanced from UNKNOWN on inspected evidence; encryptionAtRest, backupReplication and wormImmutability are now genuine NOT_AVAILABLE findings (each actually checked). Provisioning blocked by tooling, not by the NAS.",
+  "notes": "DRAFT / NOT ATTESTED. Pre-filled by an agent with directly measured or independently observed facts ONLY. Every DSM-side control is UNKNOWN, which is a FAILING state meaning NOT YET CHECKED -- it is not a partial pass and carries no governance weight. NOT_AVAILABLE was deliberately NOT pre-filled anywhere: it must mean a control was actually checked and found unavailable, never that it was expected to be. A human must inspect DSM, complete the controls, set attestationState=ATTESTED and name themselves in attestedBy before Phase 0 criterion 2 can close. PHASE A partially completed 2026-08-31: device identity, live reachability and service ports recorded from primary observation. Provisioning, DSM inspection and both transport criteria remain blocked on NAS_ADMIN_CREDENTIAL_UNAVAILABLE -- see blockers[]. All ten controls remain UNKNOWN because none could be inspected. PHASE B/D 2026-08-31: DSM authenticated with the Doppler admin credential. Seven controls advanced from UNKNOWN on inspected evidence; encryptionAtRest, backupReplication and wormImmutability are now genuine NOT_AVAILABLE findings (each actually checked). Provisioning blocked by tooling, not by the NAS. 2026-08-31 CORRECTIONS: encryptionAtRest and wormImmutability restated as DISABLED (capability exists, switched off) rather than NOT_AVAILABLE. snapshotPolicy resolved to NOT_CONFIGURED on live evidence -- 4 snapshots, all 2025-12-02, ~9 months stale. Net effect: the vault share currently has NO active protection of any class -- no encryption, no WORM, no live snapshot schedule, no off-box copy.",
   "blockers": [
+    {
+      "id": "NO_INDEPENDENT_SECOND_COPY",
+      "blocks": [
+        "criterion-2-dsm-governance",
+        "phase-0-pass"
+      ],
+      "statement": "Canonical evidence would have exactly one physical copy. Hyper Backup absent; no replication task; ReplicationService installed but needs a second Synology target. Phase 0 MUST NOT pass while the permanent record is single-copy.",
+      "pathsExhausted": [
+        "SYNO.Core.Package v2 list",
+        "SYNO.API.Info full enumeration"
+      ],
+      "recordedAt": "2026-08-31T03:58:21.699Z"
+    },
+    {
+      "id": "NO_ACTIVE_SNAPSHOT_POLICY",
+      "blocks": [
+        "criterion-2-dsm-governance"
+      ],
+      "statement": "Only 4 snapshots exist, all from 2025-12-02. No schedule, no retention. The local version-recovery protection class is effectively absent, not merely unread.",
+      "pathsExhausted": [
+        "SYNO.Core.Share.Snapshot v1 and v2"
+      ],
+      "recordedAt": "2026-08-31T03:58:21.699Z"
+    },
     {
       "id": "SERVICE_ACCOUNT_CREATION_BLOCKED_BY_TOOLING",
       "blocks": [
         "criterion-1-native-transport",
         "criterion-4-synthetic-envelope"
       ],
-      "statement": "DSM authenticates and SYNO.Core.User is exposed, but the cg-context-ledger creation call was refused by the Claude Code auto-mode permission classifier. NAS-side nothing prevents it.",
+      "statement": "SYNO.Core.User is exposed and DSM authenticates, but the create call was refused by the Claude Code auto-mode permission classifier. Not a DSM defect; must not be worked around by weakening general permissions.",
       "pathsExhausted": [
-        "SYNO.Core.User v1 create via authenticated DSM API (classifier-refused)"
+        "SYNO.Core.User v1 create (classifier-refused)"
       ],
-      "recordedAt": "2026-08-31T03:52:22.388Z"
-    },
-    {
-      "id": "NO_OFFBOX_BACKUP_OR_REPLICATION",
-      "blocks": [
-        "criterion-2-dsm-governance"
-      ],
-      "statement": "No Hyper Backup and no Snapshot Replication package are installed. The Evidence Vault would be single-copy storage on one NAS, which does not meet the durability premise of the Context Ledger.",
-      "pathsExhausted": [
-        "SYNO.API.Info full enumeration of 983 APIs"
-      ],
-      "recordedAt": "2026-08-31T03:52:22.388Z"
+      "recordedAt": "2026-08-31T03:58:21.699Z"
     }
   ]
 }
