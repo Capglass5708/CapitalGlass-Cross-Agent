@@ -128,7 +128,7 @@
     "PLAINTEXT_PRODUCTION_OBJECTS": 0,
     "QUARANTINE_RECONCILIATION": "PASS",
     "REFUSED_RECONCILIATION": "PASS",
-    "ORPHAN_RECONCILIATION": "CLASSIFIED_ABANDONED_WRITE",
+    "ORPHAN_RECONCILIATION": "PROVISIONAL",
     "QUANTITATIVE_PROSE_EMITTER_DEFECT": "CONFIRMED",
     "EMITTER_BINDING_REMEDIATION_SPEC": "READY",
     "EMITTER_REMEDIATION_IMPLEMENTED": "YES (committed locally, push blocked)",
@@ -137,7 +137,10 @@
     "FULL_REPLICATION": "BLOCKED",
     "E08AB247_REFERENCE": "RESOLVED",
     "ESTATE_WIDE_CAPTURE_COMPLETENESS_V1": "BLOCKED",
-    "SECRET_FIXTURE_REGENERATION": "FAILING_AFTER_4_ATTEMPTS"
+    "SECRET_FIXTURE_REGENERATION": "BLOCKED_HANDED_OFF",
+    "EMITTER_REMEDIATION": "FIXED",
+    "PUSH": "BLOCKED",
+    "ALLOWLIST": "NO"
   },
   "firstConcreteRemainingBoundary": {
     "id": "GITHUB_PUSH_PROTECTION_ON_FROZEN_SUBSTRATE",
@@ -150,5 +153,6 @@
     "revisedAt": "2026-08-31T23:40:05.773Z",
     "supersedes": "7576277 (first integration pass)",
     "reason": "A second reconciliation lane located the accounting-exclusion RULE and produced real quarantine set arithmetic. Both were independently reverified by the integrator. Two verdicts I recorded as FAIL are corrected to PASS. The earlier FAIL was correct at the time -- the evidence did not then exist -- and is preserved here rather than erased."
-  }
+  },
+  "orphanPromotionRule": "ORPHAN_RECONCILIATION is PROVISIONAL, not PASS. The ABANDONED_WRITE explanation is plausible and internally consistent but was not independently reproduced. It does not block the next lane, and it MUST NOT be promoted into the final storage receipt until independently verified."
 }
