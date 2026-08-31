@@ -13,9 +13,10 @@ import os from 'node:os';
 import { randomBytes } from 'node:crypto';
 
 import { sha256Prefixed, canonicalJson, objectStorePath } from '../context-ledger/lib/canonical.mjs';
-import { encryptObject, decryptObject } from '../context-ledger/lib/crypto.mjs';
+import { encryptObject, decryptObject, deriveSubkeys, assertNoNonceCollision } from '../context-ledger/lib/crypto.mjs';
 import { appendEntry, readHead, reconstructHead, restoreHead, scanEntries, computeEntryHash, entryFileName, HEAD_FILE } from '../context-ledger/lib/ledger.mjs';
 import { LocalFixtureTransport, SshRsyncTransport } from '../context-ledger/lib/transport.mjs';
+import { scanEntries as scanAll } from '../context-ledger/lib/ledger.mjs';
 import { protectObject, cleanupSpool, restoreFrom, STATE } from '../context-ledger/lib/worker.mjs';
 
 const KEY = randomBytes(32);
@@ -236,4 +237,43 @@ test('the real SSH/rsync transport refuses to pretend it works', () => {
   for (const m of ['put', 'verify', 'fetch']) {
     assert.throws(() => t[m](), /NOT_IMPLEMENTED_AWAITING_REAL_STORAGE/);
   }
+});
+
+
+test('key separation: encryption and nonce subkeys are independent and neither is the master', () => {
+  const master = randomBytes(32);
+  const { encKey, nonceKey } = deriveSubkeys(master);
+  assert.equal(encKey.length, 32);
+  assert.equal(nonceKey.length, 32);
+  assert.notDeepEqual(encKey, nonceKey, 'subkeys must differ');
+  assert.notDeepEqual(encKey, master, 'the master key must never be used to encrypt directly');
+  assert.notDeepEqual(nonceKey, master);
+  const again = deriveSubkeys(master);
+  assert.deepEqual(again.encKey, encKey, 'derivation must be deterministic');
+  assert.deepEqual(again.nonceKey, nonceKey);
+  const other = deriveSubkeys(randomBytes(32));
+  assert.notDeepEqual(other.encKey, encKey);
+});
+
+test('nonce collision guard: one nonce serving two plaintexts is a loud incident', () => {
+  const ok = [
+    { encryption: { nonce: 'aa', plaintextHash: 'sha256:1' } },
+    { encryption: { nonce: 'bb', plaintextHash: 'sha256:2' } },
+    { encryption: { nonce: 'aa', plaintextHash: 'sha256:1' } },   // same object twice is fine
+  ];
+  assert.equal(assertNoNonceCollision(ok).checked, 2);
+  const bad = [
+    { encryption: { nonce: 'aa', plaintextHash: 'sha256:1' } },
+    { encryption: { nonce: 'aa', plaintextHash: 'sha256:DIFFERENT' } },
+  ];
+  assert.throws(() => assertNoNonceCollision(bad), (e) => e.message === 'NONCE_COLLISION');
+});
+
+test('real ledger entries carry no nonce collision', () => {
+  const e = env();
+  try {
+    for (const s of ['alpha', 'beta', 'gamma', 'delta']) run(e, Buffer.from(s));
+    const r = assertNoNonceCollision(scanAll(e.vault));
+    assert.equal(r.checked, 4, 'four distinct plaintexts must yield four distinct nonces');
+  } finally { e.cleanup(); }
 });
