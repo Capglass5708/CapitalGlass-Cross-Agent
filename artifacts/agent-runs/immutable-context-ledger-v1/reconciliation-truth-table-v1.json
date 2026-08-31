@@ -1,0 +1,136 @@
+{
+  "schema": "capture-storage-reconciliation-truth-table-v1@1.0.0",
+  "recordedAt": "2026-08-31T23:32:05.919Z",
+  "mission": "CAPTURE_STORAGE_RECONCILIATION_STEPS_2_3_V1",
+  "lane": "OPUS_INTEGRATOR",
+  "method": "Both Haiku lanes returned; every load-bearing number was independently recomputed by the integrator before acceptance. Lane verdicts were NOT taken at face value.",
+  "reconciled": {
+    "ledgerEntries": {
+      "value": 17675,
+      "verifiedBy": "integrator recount: find vault/immutable-metadata/ledger-entries -name *.json | wc -l",
+      "agreesWithLanes": true
+    },
+    "uniqueCiphertextHash": {
+      "value": 13998,
+      "verifiedBy": "integrator parse of all 17675 entries",
+      "agreesWithLanes": true
+    },
+    "uniqueContentHash": {
+      "value": 13998,
+      "verifiedBy": "integrator parse",
+      "note": "1:1 with ciphertextHash confirms deterministic encryption is producing exactly one ciphertext per plaintext. Divergence here would mean dedup is broken."
+    },
+    "duplicateObservations": {
+      "value": 3677,
+      "derivation": "17675 - 13998"
+    },
+    "spoolObjects": {
+      "value": 14005,
+      "verifiedBy": "integrator: find spool/objects/sha256 -type f | wc -l"
+    },
+    "orphanObjects": {
+      "value": 7,
+      "derivation": "14005 - 13998",
+      "status": "UNEXPLAINED"
+    },
+    "entriesWithoutCiphertext": {
+      "value": 0,
+      "verifiedBy": "integrator parse"
+    }
+  },
+  "resolutions": [
+    {
+      "question": "17675 vs 17670",
+      "answer": "5 LEDGER_ONLY identities located and individually named (28c24299, 69ec3e57, a306c707, bedf6491, ff226534). Two are adhoc:replication-canary.txt. Three are real source files.",
+      "status": "LOCATED_NOT_EXPLAINED",
+      "note": "The accounting-exclusion RULE for the three real source files was never identified. Locating an object is not explaining it."
+    },
+    {
+      "question": "3665 apparent encryption gap",
+      "answer": "NOT A GAP. It is content deduplication: 17675 observations resolve to 13998 unique objects (1.26 observations per object). objectsAudited=14005 covered 100 percent of the spool.",
+      "status": "RESOLVED",
+      "independentlyVerified": true
+    },
+    {
+      "question": "113 refused vs 118 quarantined",
+      "answer": "Delta of 5 remains unexplained. Set arithmetic was never produced.",
+      "status": "UNRESOLVED"
+    },
+    {
+      "question": "true production population",
+      "answer": "13998 unique encrypted objects.",
+      "status": "RESOLVED"
+    },
+    {
+      "question": "does PLAINTEXT_AT_REST = NONE survive",
+      "answer": "YES. 14005 of 14005 spool objects audited, 0 plaintext suspects. The claim was over-broad only in appearance; the population arithmetic was misread, not the claim.",
+      "status": "SURVIVES"
+    },
+    {
+      "question": "e08ab247",
+      "answer": "RESOLVED. 119-byte ciphertext object of the second replication canary at spool/objects/sha256/e0/e08ab247... Independently rehashed and matched. Never a git commit, which is why git search failed. plaintext contentHash a8f04151...",
+      "status": "RESOLVED"
+    }
+  ],
+  "correlatedGuessWarning": {
+    "finding": "Both Haiku lanes independently speculated that the 5-delta relates to the quarantine mismatch. Neither tested it. They are separate deltas -- one is ledger-vs-accounting, the other quarantine-vs-refused.",
+    "lesson": "Two lanes converging on the same untested guess is a correlation to distrust, not corroboration. Independent lanes reading the same artifact inherit its framing."
+  },
+  "laneAdjudication": {
+    "laneA_countReconciliation": {
+      "laneVerdict": "PASS",
+      "integratorVerdict": "FAIL",
+      "reason": "Lane restated the observation (excluded from accounting) rather than naming the rule. Also dismissed the 118-vs-113 delta as likely duplicates without proof."
+    },
+    "laneB_encryptionCoverage": {
+      "laneVerdict": "PASS",
+      "integratorVerdict": "PASS",
+      "reason": "Every number independently recomputed and reproduced exactly."
+    },
+    "laneA2_destinationProvenance": {
+      "laneVerdict": "BLOCKED",
+      "integratorVerdict": "BLOCKED",
+      "reason": "Well cited. Note: this lane quoted the RETRACTED 4.7 MB/s from worktree docs as evidence -- the retraction had not reached that lane copy."
+    }
+  },
+  "supersessionProposals": [
+    {
+      "claim": "encryptAtRest.plaintextAtRest = NONE_FOR_PRODUCTION_CAPTURE",
+      "action": "NO SUPERSESSION REQUIRED",
+      "reason": "Independently verified as truthful. Coverage was 100 percent of spool; the apparent gap was deduplication."
+    },
+    {
+      "claim": "storageAuthority destination capital-glass-immutable-context",
+      "action": "SUPERSESSION RECOMMENDED",
+      "reason": "Classified CANARY_ONLY by provenance trace. It was never the canonical vault, and its use as a replication destination should not be read as production storage authority."
+    }
+  ],
+  "scoreboard": {
+    "STEP_1_SUPERSESSION": "PASS (f41ac5e)",
+    "COUNT_RECONCILIATION": "FAIL",
+    "UNEXPLAINED_COUNT_DELTA": 5,
+    "ENCRYPTION_POPULATION_IDENTIFIED": "PASS",
+    "ENCRYPTION_POPULATION_COVERAGE": "PASS",
+    "UNAUDITED_PRODUCTION_OBJECTS": 0,
+    "PLAINTEXT_PRODUCTION_OBJECTS": 0,
+    "QUARANTINE_RECONCILIATION": "FAIL",
+    "REFUSED_RECONCILIATION": "FAIL",
+    "ORPHAN_RECONCILIATION": "FAIL",
+    "QUANTITATIVE_PROSE_EMITTER_DEFECT": "CONFIRMED",
+    "EMITTER_BINDING_REMEDIATION_SPEC": "READY",
+    "EMITTER_REMEDIATION_IMPLEMENTED": "YES (committed locally, push blocked)",
+    "DESTINATION_PROVENANCE": "BLOCKED",
+    "PRIMARY_STORAGE_TARGET": "ABSENT",
+    "FULL_REPLICATION": "BLOCKED",
+    "E08AB247_REFERENCE": "RESOLVED",
+    "ESTATE_WIDE_CAPTURE_COMPLETENESS_V1": "BLOCKED"
+  },
+  "firstConcreteRemainingBoundary": {
+    "id": "GITHUB_PUSH_PROTECTION_ON_FROZEN_SUBSTRATE",
+    "statement": "The emitter remediation is complete and tested but cannot be pushed. GitHub secret scanning rejects any branch containing 546bd2c5, which carries five credential-shaped strings in scripts/tests/run-secret-detector.test.mjs lines 36-46 (Doppler, Supabase, Slack, Stripe, Twilio).",
+    "whyNotBypassed": "The file header asserts the values are synthetic. That is a comment asserting safety -- the same evidence class as a measuredFacts field asserting a measurement, which is the defect this entire block exists to close. Bypassing push protection on strings that cannot be independently proven fake is not a decision an agent should make silently.",
+    "consequence": "546bd2c5 now has three independent defects: a false top-level verdict, fabricated throughput values in generated receipts, and unpushable content.",
+    "durableFix": "Generate credential-shaped fixtures at test runtime rather than storing literals, so push protection cannot fire on them again.",
+    "decisionRequired": "Operator: confirm synthetic and allowlist, or treat as real and rotate."
+  }
+}
