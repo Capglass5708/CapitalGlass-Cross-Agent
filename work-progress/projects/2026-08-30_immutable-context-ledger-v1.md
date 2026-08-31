@@ -409,8 +409,8 @@ Both targets have native transports, verified 2026-08-31:
 | `cg-server` (Synology) | `100.112.81.50` | OPEN | OPEN | primary / canonical authority |
 | `wesleydesk` | `100.93.199.27` | OPEN | OPEN | backup / independent recovery copy |
 
-Neither leg goes through `/mnt/z` or `/mnt/l`. The 9p/drvfs path measured 4.7 MB/s and
-~1 small file per 180 s and is excluded from both.
+Neither leg goes through `/mnt/z` or `/mnt/l`. The 9p/drvfs path measured UNMEASURED (retracted - never measured) and
+UNMEASURED (retracted) and is excluded from both.
 
 ## Encrypt before storage
 

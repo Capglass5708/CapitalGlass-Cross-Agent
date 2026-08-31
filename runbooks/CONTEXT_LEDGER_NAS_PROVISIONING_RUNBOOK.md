@@ -19,7 +19,7 @@ source → Cross-Agent capture adapter → WSL ext4 spool → hash + canonical e
 ```
 
 **The machine ingestion path must never traverse `/mnt/z` (Windows drvfs/9p).** Measured
-there: 4.7 MB/s sequential, ~1 small file per 180 s, and `chmod` unsupported. The `Z:`
+there: UNMEASURED (retracted - never measured) sequential, UNMEASURED (retracted), and `chmod` unsupported. The `Z:`
 mapping stays useful to humans only.
 
 ---

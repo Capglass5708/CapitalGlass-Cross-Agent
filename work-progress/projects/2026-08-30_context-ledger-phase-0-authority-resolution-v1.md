@@ -272,7 +272,7 @@ It does not touch `AI-Cache-Authority`, so `CAD-20260802`'s single-writer rule i
 
 | Test | Result |
 | --- | --- |
-| Sequential write, 32 MB | **4.7 MB/s** |
+| Sequential write, 32 MB | **UNMEASURED (retracted - never measured)** |
 | Many small files, 200 x 4 KB | **timed out at 180 s having written 1 file** |
 | `du` of L: object store (28 MB, 626 blobs) | **exceeded 120 s** |
 | Atomic `rename()` + hash round-trip | **PASS** |

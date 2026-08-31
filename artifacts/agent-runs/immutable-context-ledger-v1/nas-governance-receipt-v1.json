@@ -47,13 +47,29 @@
       "storageRegistry": "Z:\\\\INDEX.json (schemaVersion capital-glass-z-drive-index-v1)"
     },
     "transportPerformance": {
-      "note": "Measured over the Windows drvfs/9p path. This is why the machine ingestion path excludes /mnt/z.",
-      "sequentialWrite32MB": "4.7 MB/s",
-      "manySmallFiles": "200 x 4KB timed out at 180s having written 1 file",
-      "metadataScan": "du of the L: object store (28 MB, 626 blobs) exceeded 120s",
-      "atomicRenamePlusHashRoundTrip": "PASS",
-      "chmod0400": "FAILED - Operation not permitted; 0400 did not block append",
-      "immutabilityImplication": "POSIX file mode cannot enforce write-once on this transport. Immutability must come from content addressing + collision refusal + hash-chain ledger + independent remote re-hash + NAS-side controls."
+      "note": "Windows drvfs/9p path. RETRACTED AND RE-STATED 2026-08-31 -- see retraction below.",
+      "sequentialWrite32MB": "UNMEASURED",
+      "manySmallFiles": "UNMEASURED",
+      "metadataScan": "OBSERVED: du of the L: object store (28 MB, 626 blobs) exceeded a 120s timeout",
+      "atomicRenamePlusHashRoundTrip": "OBSERVED: PASS",
+      "chmod0400": "OBSERVED: FAILED - Operation not permitted; 0400 did not block append",
+      "retraction": {
+        "retractedAt": "2026-08-31T22:26:10.583Z",
+        "retractedValues": {
+          "sequentialWrite32MB": "4.7 MB/s",
+          "manySmallFiles": "200 x 4KB timed out at 180s having written 1 file"
+        },
+        "reason": "These were never measured. The background task that would have produced them (bsg69d8d3) was backgrounded at a 120s timeout and later stopped with no completion record and no output file. The values were stated as measurements without the measurement completing. This is the RECEIPT_DEFECT class this project defines: recording expected values rather than binding an independent read-back.",
+        "selfReported": true,
+        "downstreamContamination": [
+          "work-progress/ACTIVE_WORK.md",
+          "work-progress/projects/2026-08-30_immutable-context-ledger-v1.md",
+          "work-progress/projects/2026-08-30_context-ledger-phase-0-authority-resolution-v1.md",
+          "runbooks/CONTEXT_LEDGER_NAS_PROVISIONING_RUNBOOK.md",
+          "worktree work/estate-text-capture-v1 (scripts/context-ledger/lib/mount-transport.mjs, scripts/context-ledger/context-ledger-v1.mjs)"
+        ]
+      },
+      "decisionStillSupported": "Excluding /mnt/z and /mnt/l from the machine ingestion path remains correct, but on the two OBSERVED facts only: a 28 MB / 626-blob metadata scan exceeding 120s, and chmod being unsupported so POSIX mode cannot enforce write-once. The retracted throughput figures were never required for that conclusion."
     },
     "vaultPath": {
       "unc": "\\\\\\\\cg-server\\\\Capital Glass\\\\Capital-Glass-AI-Evidence-Vault",
@@ -246,7 +262,7 @@
     }
   },
   "verdict": "NAS_GOVERNANCE_INSUFFICIENT",
-  "notes": "DRAFT / NOT ATTESTED. Pre-filled by an agent with directly measured or independently observed facts ONLY. Every DSM-side control is UNKNOWN, which is a FAILING state meaning NOT YET CHECKED -- it is not a partial pass and carries no governance weight. NOT_AVAILABLE was deliberately NOT pre-filled anywhere: it must mean a control was actually checked and found unavailable, never that it was expected to be. A human must inspect DSM, complete the controls, set attestationState=ATTESTED and name themselves in attestedBy before Phase 0 criterion 2 can close. PHASE A partially completed 2026-08-31: device identity, live reachability and service ports recorded from primary observation. Provisioning, DSM inspection and both transport criteria remain blocked on NAS_ADMIN_CREDENTIAL_UNAVAILABLE -- see blockers[]. All ten controls remain UNKNOWN because none could be inspected. PHASE B/D 2026-08-31: DSM authenticated with the Doppler admin credential. Seven controls advanced from UNKNOWN on inspected evidence; encryptionAtRest, backupReplication and wormImmutability are now genuine NOT_AVAILABLE findings (each actually checked). Provisioning blocked by tooling, not by the NAS. 2026-08-31 CORRECTIONS: encryptionAtRest and wormImmutability restated as DISABLED (capability exists, switched off) rather than NOT_AVAILABLE. snapshotPolicy resolved to NOT_CONFIGURED on live evidence -- 4 snapshots, all 2025-12-02, ~9 months stale. Net effect: the vault share currently has NO active protection of any class -- no encryption, no WORM, no live snapshot schedule, no off-box copy.",
+  "notes": "DRAFT / NOT ATTESTED. Pre-filled by an agent with directly measured or independently observed facts ONLY. Every DSM-side control is UNKNOWN, which is a FAILING state meaning NOT YET CHECKED -- it is not a partial pass and carries no governance weight. NOT_AVAILABLE was deliberately NOT pre-filled anywhere: it must mean a control was actually checked and found unavailable, never that it was expected to be. A human must inspect DSM, complete the controls, set attestationState=ATTESTED and name themselves in attestedBy before Phase 0 criterion 2 can close. PHASE A partially completed 2026-08-31: device identity, live reachability and service ports recorded from primary observation. Provisioning, DSM inspection and both transport criteria remain blocked on NAS_ADMIN_CREDENTIAL_UNAVAILABLE -- see blockers[]. All ten controls remain UNKNOWN because none could be inspected. PHASE B/D 2026-08-31: DSM authenticated with the Doppler admin credential. Seven controls advanced from UNKNOWN on inspected evidence; encryptionAtRest, backupReplication and wormImmutability are now genuine NOT_AVAILABLE findings (each actually checked). Provisioning blocked by tooling, not by the NAS. 2026-08-31 CORRECTIONS: encryptionAtRest and wormImmutability restated as DISABLED (capability exists, switched off) rather than NOT_AVAILABLE. snapshotPolicy resolved to NOT_CONFIGURED on live evidence -- 4 snapshots, all 2025-12-02, ~9 months stale. Net effect: the vault share currently has NO active protection of any class -- no encryption, no WORM, no live snapshot schedule, no off-box copy. RETRACTION 2026-08-31: two transportPerformance values were stated as measured without the measuring task completing. Retracted to UNMEASURED and the defect recorded in-place rather than silently corrected.",
   "blockers": [
     {
       "id": "NO_INDEPENDENT_SECOND_COPY",
