@@ -1,0 +1,235 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "capital-glass-cross-agent/context-ledger/capture-completeness-v1.schema.json",
+  "title": "Phase2CaptureCompletenessProof",
+  "description": "Phase 2 does not pass because 'the session was captured'. It passes only when expected == captured == verified-ledger, by COUNT and by SET, physically and per semantic class, with zero unaccounted records. No percentage threshold is permitted: 99.999% is FAIL. Scope is one genuine Claude Code session only.",
+  "type": "object",
+  "required": ["schemaVersion", "recordedAt", "scope", "sourceSet", "censusIndependence", "physical", "semantic", "dagIntegrity", "toolIntegrity", "artifacts", "ledgerReadback", "verdict"],
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "capture-completeness-v1@1.0.0" },
+    "recordedAt": { "type": "string", "format": "date-time" },
+
+    "scope": {
+      "type": "object",
+      "required": ["sourceSystem", "sessionId", "singleSessionOnly"],
+      "properties": {
+        "sourceSystem": { "type": "string", "const": "claude-code" },
+        "sessionId": { "type": "string" },
+        "singleSessionOnly": { "type": "boolean", "const": true, "description": "Do not generalize to Cursor, ChatGPT, executive UI or derived intelligence." }
+      },
+      "additionalProperties": false
+    },
+
+    "sourceSet": {
+      "type": "object",
+      "description": "The exact source set, identified BEFORE counting. If it changes between census and capture the proof fails rather than reconciling against a moved target.",
+      "required": ["files", "sourceSetHash", "censusTimestamp", "captureTimestamp", "hashAgreed"],
+      "properties": {
+        "files": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["path", "byteSize", "sha256"],
+            "properties": {
+              "path": { "type": "string" },
+              "byteSize": { "type": "integer", "minimum": 0 },
+              "sha256": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+              "role": { "type": "string", "enum": ["session", "subagent", "tool-result", "artifact", "other"] }
+            },
+            "additionalProperties": false
+          }
+        },
+        "sourceSetHash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+        "censusTimestamp": { "type": "string", "format": "date-time" },
+        "captureTimestamp": { "type": "string", "format": "date-time" },
+        "hashAgreed": { "type": "boolean", "description": "Census and capture MUST assert the same sourceSetHash. False forces SOURCE_CHANGED_DURING_CAPTURE." }
+      },
+      "additionalProperties": false
+    },
+
+    "censusIndependence": {
+      "type": "object",
+      "description": "The capture parser may not generate the expectation it is judged against. Shared low-level filesystem primitives are fine; shared record-classification logic is not, because it would make both lanes omit the same record identically.",
+      "required": ["censusModule", "captureModule", "sharesClassificationLogic"],
+      "properties": {
+        "censusModule": { "type": "string" },
+        "captureModule": { "type": "string" },
+        "sharesClassificationLogic": { "type": "boolean", "const": false, "description": "MUST be false. True makes the equation self-confirming and it proves nothing." },
+        "sharedPrimitives": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+
+    "physical": {
+      "type": "object",
+      "description": "Every obtainable source record gets a deterministic identity -- native where available, else derived from (source file identity + physical record position + record hash).",
+      "required": ["counts", "sets", "accounting", "unknownRecordTypes"],
+      "properties": {
+        "counts": {
+          "type": "object",
+          "required": ["expected", "captured", "ledger"],
+          "properties": {
+            "expected": { "type": "integer", "minimum": 0 },
+            "captured": { "type": "integer", "minimum": 0 },
+            "ledger": { "type": "integer", "minimum": 0 }
+          },
+          "additionalProperties": false
+        },
+        "sets": {
+          "type": "object",
+          "description": "Deterministic sorted ID/hash set digests. Counts alone are insufficient -- one missing plus one duplicate yields equal counts.",
+          "required": ["expectedSetHash", "capturedSetHash", "ledgerSetHash", "setsEqual"],
+          "properties": {
+            "expectedSetHash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+            "capturedSetHash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+            "ledgerSetHash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+            "setsEqual": { "type": "boolean" }
+          },
+          "additionalProperties": false
+        },
+        "accounting": {
+          "type": "object",
+          "description": "One-to-one accounting table. No silent filtering.",
+          "required": ["unaccountedSourceRecords", "missingCapturedRecords", "duplicateCapturedRecords", "missingLedgerObservations"],
+          "properties": {
+            "unaccountedSourceRecords": { "type": "integer", "const": 0 },
+            "missingCapturedRecords": { "type": "integer", "const": 0 },
+            "duplicateCapturedRecords": { "type": "integer", "const": 0 },
+            "missingLedgerObservations": { "type": "integer", "const": 0 },
+            "tablePath": { "type": ["string", "null"], "description": "expectedSourceRecordId -> capturedEvidenceId -> ledgerObservationId -> status. Never inside Git." }
+          },
+          "additionalProperties": false
+        },
+        "unknownRecordTypes": {
+          "type": "array",
+          "description": "Fail closed. An unrecognised source record type is preserved raw, classified UNKNOWN_SOURCE_RECORD, and FAILS the proof until accounted for. Never discarded for appearing irrelevant.",
+          "items": {
+            "type": "object",
+            "required": ["type", "count", "preservedRaw"],
+            "properties": {
+              "type": { "type": "string" },
+              "count": { "type": "integer", "minimum": 1 },
+              "preservedRaw": { "type": "boolean", "const": true }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "semantic": {
+      "type": "object",
+      "description": "Per-class equality. A surplus in one class may NEVER compensate for a deficit in another, which is exactly what a single aggregate count would allow.",
+      "required": ["classes", "allClassesEqual"],
+      "properties": {
+        "classes": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["className", "expected", "captured", "ledger", "expectedSetHash", "capturedSetHash", "ledgerSetHash", "equal"],
+            "properties": {
+              "className": {
+                "type": "string",
+                "enum": ["messageNodes", "uuidNodes", "dagEdges", "rootNodes", "orphanNodes", "toolCalls", "toolResults", "toolLinkages", "subagentReferences", "subagentSourceFiles", "timestamps", "cwd", "repository", "worktree", "branch", "commitSha", "sessionMetadata", "artifacts", "other"]
+              },
+              "expected": { "type": "integer", "minimum": 0 },
+              "captured": { "type": "integer", "minimum": 0 },
+              "ledger": { "type": "integer", "minimum": 0 },
+              "expectedSetHash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+              "capturedSetHash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+              "ledgerSetHash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+              "equal": { "type": "boolean" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "allClassesEqual": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+
+    "dagIntegrity": {
+      "type": "object",
+      "description": "The session graph is validated independently and must reproduce the same cardinality and relationships as the source census.",
+      "required": ["uuidsUnique", "allParentsAccounted", "roots", "orphans", "duplicateEdges", "cycles", "graphMatchesCensus"],
+      "properties": {
+        "uuidsUnique": { "type": "boolean" },
+        "allParentsAccounted": { "type": "boolean", "description": "Every non-null parentUuid resolves." },
+        "roots": { "type": "integer", "minimum": 0, "description": "Explicitly identified, never inferred by absence." },
+        "orphans": { "type": "integer", "minimum": 0, "description": "Explicitly reported. Non-zero does not silently pass." },
+        "duplicateEdges": { "type": "integer", "const": 0 },
+        "cycles": { "type": "integer", "const": 0 },
+        "graphMatchesCensus": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+
+    "toolIntegrity": {
+      "type": "object",
+      "description": "Tool calls and results are linked, not merely counted.",
+      "required": ["linked", "missingResults", "duplicateResults", "unmatchedResults", "ambiguousPairings"],
+      "properties": {
+        "linked": { "type": "integer", "minimum": 0, "description": "toolUseId -> toolResult pairs proven." },
+        "missingResults": { "type": "integer", "minimum": 0 },
+        "duplicateResults": { "type": "integer", "minimum": 0 },
+        "unmatchedResults": { "type": "integer", "minimum": 0 },
+        "ambiguousPairings": { "type": "integer", "minimum": 0 },
+        "subagentLinkage": {
+          "type": "object",
+          "properties": {
+            "invocations": { "type": "integer", "minimum": 0 },
+            "transcriptsLinked": { "type": "integer", "minimum": 0 },
+            "unlinked": { "type": "integer", "minimum": 0 }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "artifacts": {
+      "type": "object",
+      "description": "UNAVAILABLE is an honest source-state classification. Silently absent is not.",
+      "required": ["referenced", "discoverable", "acquired", "unavailable", "obtainableDefinition"],
+      "properties": {
+        "referenced": { "type": "integer", "minimum": 0 },
+        "discoverable": { "type": "integer", "minimum": 0 },
+        "acquired": { "type": "integer", "minimum": 0 },
+        "unavailable": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["ref", "reason"],
+            "properties": { "ref": { "type": "string" }, "reason": { "type": "string" } },
+            "additionalProperties": false
+          }
+        },
+        "obtainableDefinition": { "type": "string", "description": "What counts as obtainable for this single-session proof." }
+      },
+      "additionalProperties": false
+    },
+
+    "ledgerReadback": {
+      "type": "object",
+      "description": "The third side of the equation MUST be read back from the persisted ledger. Using the in-memory objects that were about to be written proves only that the writer agrees with itself.",
+      "required": ["readFromPersistedLayer", "ledgerRoot", "observationCount"],
+      "properties": {
+        "readFromPersistedLayer": { "type": "boolean", "const": true },
+        "ledgerRoot": { "type": "string" },
+        "observationCount": { "type": "integer", "minimum": 0 },
+        "chainVerified": { "type": "boolean", "description": "prevHash/entryHash chain walked during readback." }
+      },
+      "additionalProperties": false
+    },
+
+    "verdict": {
+      "type": "string",
+      "enum": ["CAPTURE_COMPLETE", "CAPTURE_INCOMPLETE", "SOURCE_CHANGED_DURING_CAPTURE", "SOURCE_CENSUS_UNRESOLVED"],
+      "description": "No degraded PASS. No percentage-based PASS. CAPTURE_COMPLETE requires every physical and semantic equality gate, zero unaccounted, zero unknown record types, and an independent ledger readback."
+    },
+    "discrepancyReportPath": { "type": ["string", "null"] },
+    "notes": { "type": "string" }
+  },
+  "additionalProperties": false
+}
