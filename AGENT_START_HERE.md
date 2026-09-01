@@ -2,15 +2,42 @@
 
 **Read this file before doing anything in this repo.**
 
-CapitalGlass-Cross-Agent is the **meeting / coordination repo** for Wesley, ChatGPT, Cursor, and other agents. It records what is happening across the Capital Glass build. It is **not** where implementation happens.
+CapitalGlass-Cross-Agent is the **cross-agent coordination and intelligence repo** for Wesley, ChatGPT, Cursor, Claude, and other agents. It records what is happening across the Capital Glass build, **and it hosts the software that understands work spanning agents, conversations, repositories, projects, machines, and engines.**
 
 ---
 
 ## The one rule
 
-> **This repo may describe work. This repo must not become the work.**
+> **CapitalGlass-Cross-Agent is the authority for cross-agent coordination, context lineage,
+> work-state intelligence, and cross-project reasoning. It may contain the executable software
+> required to provide those capabilities. Durable operational and context data must live in
+> approved external persistence and must never be committed to this repository. Domain
+> applications remain authoritative for their own business logic and data.**
 
-No implementation code, MCP servers, databases, Bible copies, app scaffolding, or secrets here.
+Superseded the former rule *"This repo may describe work. This repo must not become the work."*
+That rule contradicted `contracts/intelligence/OWNERSHIP.md` (`ARCHITECTURE_LOCKED`), which
+already names this repo `INTELLIGENCE_OWNER` for derived objects, the relationship graph, and
+provenance reconstruction — and contradicted the 282 script files already here.
+Decision ID: `CAD-20260830-cross-agent-software-home-not-datastore`.
+
+### The repo may contain the software. The repo may not become the database.
+
+| May live here (code) | Must NOT live here (data) |
+| --- | --- |
+| Domain models, contracts, schema definitions | Conversation transcripts, raw AI session payloads |
+| Capture / ingestion services and adapters | Terminal histories, captured tool results |
+| Session reconstruction, deterministic ID/hash/provenance logic | Attachments, user documents, generated evidence payloads |
+| Extraction pipelines, graph-building logic | Embeddings, continuously accumulated graph data |
+| Cross-project reasoning, North Star / project-state logic | Extracted project state, historical session records |
+| MCP/API surfaces, workers that write into the Intelligence Hub | Database dumps, copied Bible content |
+| Database migrations and schema **definitions** | The database **contents** |
+| Tests, runbooks, architecture documentation | Secrets, credentials |
+
+Durable data belongs in the **Intelligence Hub data plane** — object storage, database, cache —
+with this repo holding the code that manages it.
+
+**Still forbidden regardless:** secrets, credentials, database dumps, copied Bible content,
+long raw logs, build artifacts, `node_modules`, and large generated corpora.
 
 ---
 
@@ -56,13 +83,22 @@ If a project file exists for your work package, read it before touching any impl
 
 ## What this repo is not
 
-Do **not** add or implement here:
+This repo is **not a datastore** and **not a general monorepo**.
 
-- `src/`, `scripts/`, `tools/`, `mcp/`, `supabase/`, `database/`, `bibles/`, `apps/`, `packages/`
-- App source code, MCP server code, migrations, or build artifacts
+Do **not** add here:
+
+- **Captured or accumulated data of any kind** — conversation transcripts, raw AI session
+  payloads, terminal histories, captured tool results, attachments, user documents, embeddings,
+  accumulated graph data, extracted project state, historical session records
 - Secrets, credentials, database dumps, or copied Bible content
 - Long raw logs or full command output
 - **Build artifacts** (compiled bundles, `node_modules`, large generated corpora)
+- Business logic owned by a domain application — those repos stay authoritative for their own
+  logic and data
+
+Code that delivers cross-agent coordination, context lineage, work-state intelligence, or
+cross-project reasoning **is** allowed here (see The one rule). Code belonging to a domain
+application is not.
 
 **Approved exception — proof receipts:** Compact JSON verification receipts under `artifacts/agent-runs/<work-package-id>/` **may** be committed when they are durable closeout or gate evidence (not application build output). Always name the **owner repo** when citing receipts that live outside this repo. Decision ID: `CAD-20260803-cross-agent-proof-receipts-exception`.
 
@@ -75,6 +111,7 @@ Link to owning repos, commits, PRs, artifact paths, and verification files inste
 | Task type | Go here |
 | --- | --- |
 | Coordination, ledger, handoffs, runbooks | `CapitalGlass-Cross-Agent` |
+| Cross-agent intelligence: context capture, lineage, extraction, graph, cross-project reasoning | `CapitalGlass-Cross-Agent` |
 | Protocol authority, governance, closeout validation | `CG-Platform-Governance-MCP` |
 | App-building execution, Bible sync/index, cache, harvest | `CG-AppBuilder-MCP` |
 | Scraper capture, vendor-docs corpus | `Scraper` |
@@ -92,7 +129,9 @@ Link to owning repos, commits, PRs, artifact paths, and verification files inste
 ### Every agent
 
 1. Read context files (see table above) before acting.
-2. Work in the **correct owning repo** — never implement in this meeting repo.
+2. Work in the **correct owning repo**. Cross-agent coordination and intelligence software
+   belongs here; domain-application logic belongs in the owning application repo. Captured data
+   never belongs here.
 3. Update `work-progress/ACTIVE_WORK.md` when work starts, changes, blocks, commits, verifies, or completes.
 4. Create or update a project file in `work-progress/projects/` for distinct projects or work packages.
 5. Update `work-progress/projects/INDEX.md` when adding or materially changing a project file.
@@ -106,9 +145,9 @@ Link to owning repos, commits, PRs, artifact paths, and verification files inste
 
 ### Cursor
 
-- Implements in owning application repos.
+- Implements domain-application features in owning application repos.
 - Writes implementation reports to `cursor-reports/` when asked.
-- Does not treat this repo as a code or MCP host.
+- May implement cross-agent intelligence software here, but must never commit captured data.
 
 ---
 
@@ -221,7 +260,8 @@ CapitalGlass-Cross-Agent/
 - [ ] Read `work-progress/ACTIVE_WORK.md`
 - [ ] Check `work-progress/projects/INDEX.md` for an existing project file
 - [ ] Confirm which repo owns the work you are about to do
-- [ ] Confirm you are **not** about to write code in this repo
+- [ ] Confirm any code you write here is cross-agent intelligence, not domain-application logic
+- [ ] Confirm you are **not** about to commit captured or accumulated data to this repo
 - [ ] Plan to update the ledger when you finish or hit a blocker
 
 ---

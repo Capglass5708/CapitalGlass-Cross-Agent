@@ -1,0 +1,71 @@
+{
+  "schema": "claude-transcript-preservation-receipt-v1@1.0.0",
+  "kind": "EMERGENCY_PRESERVATION_CHECKPOINT",
+  "workPackageId": "immutable-context-ledger-v1",
+  "verdict": "PRESERVATION_CHECKPOINT_PASS",
+  "recordedAt": "2026-08-31T00:25:53.873Z",
+  "machineId": "DESKTOP-DQ67FAC",
+  "declarations": {
+    "isIngestion": false,
+    "isContextLedger": false,
+    "authorizesSchemaChange": false,
+    "authorizesHubMaterialIngest": false,
+    "authorizesDerivedIntelligence": false,
+    "authorizesGraphProjection": false,
+    "transcriptContentStoredInGit": false,
+    "transcriptParsingPerformed": false
+  },
+  "externalStorageReference": {
+    "storageClass": "WSL_EXT4_LOCAL_NON_GIT",
+    "root": "/home/wesle/.capital-glass/evidence-preservation/claude-code/2026-08-31T00-25-06-275Z",
+    "rationale": "Outside Git. Not L: (direct writes forbidden; Hub apply-ingest gated materialIngestApplyAuthorized=false). Not Z: (AI-Cache-Authority single-writer rule CAD-20260802-z-ai-cache-single-canonical-authority; wrong purpose). Operator-approved location for the raw evidence store.",
+    "permissions": "0700 dir, 0400 payload files and manifest",
+    "manifestPath": "/home/wesle/.capital-glass/evidence-preservation/claude-code/2026-08-31T00-25-06-275Z/manifest.json",
+    "manifestSha256": "sha256:7cf856c06e7305a9e143e6033f6da81024514595942734e92157a604366e998a"
+  },
+  "corpus": {
+    "fileCount": 502,
+    "totalBytes": 183402493,
+    "sourceRoots": [
+      {
+        "sourceId": "wsl",
+        "root": "/home/wesle/.claude/projects",
+        "present": true,
+        "fileCount": 427
+      },
+      {
+        "sourceId": "windows",
+        "root": "/mnt/c/Users/wesle/.claude/projects",
+        "present": true,
+        "fileCount": 75
+      }
+    ],
+    "bySourceRoot": {
+      "wsl": {
+        "files": 427,
+        "bytes": 137209517,
+        "jsonl": 197
+      },
+      "windows": {
+        "files": 75,
+        "bytes": 46192976,
+        "jsonl": 74
+      }
+    }
+  },
+  "integrity": {
+    "sourcesChangedDuringRun": 0,
+    "copyFailures": 0,
+    "entriesWithSourceUnchangedFalse": 0,
+    "entriesWithCopyVerifiedFalse": 0,
+    "perFileProof": "Every source file hashed before and after copy; preserved copy re-hashed and compared. All 502 matched.",
+    "independentSpotCheck": "6 randomly selected files re-hashed from live source and preserved copy after the run; all matched the manifest."
+  },
+  "sourceMutation": {
+    "sourceRootsModified": false,
+    "statement": "No file under any source root was created, modified, moved, or deleted. Access was read-only (stat, read, hash)."
+  },
+  "producer": "scripts/context-ledger/preserve-claude-transcripts-v1.mjs",
+  "secretHandling": "No transcript content parsed, printed, or logged. Destination is 0700/0400. Secret scanning is deliberately NOT performed here -- it belongs to Phase 2 ingestion, not to emergency preservation.",
+  "nextMission": "context-ledger-phase-0-authority-resolution-v1"
+}

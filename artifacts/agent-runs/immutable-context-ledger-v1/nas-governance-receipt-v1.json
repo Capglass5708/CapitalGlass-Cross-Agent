@@ -1,0 +1,304 @@
+{
+  "schemaVersion": "nas-governance-receipt-v1@1.0.0",
+  "recordedAt": "2026-08-31T02:01:29.733Z",
+  "attestationState": "DRAFT_UNATTESTED",
+  "attestedBy": null,
+  "vaultRootId": "capital-glass-ai-evidence-vault",
+  "remoteHost": "cg-server",
+  "measuredFacts": {
+    "observedAt": "2026-08-31T02:01:29.733Z",
+    "observedBy": "claude-code session 6c6b0a9f-4509-4f92-a52b-395bb696db2c (context-ledger-phase-0-authority-resolution-v1)",
+    "topology": {
+      "zDrive": "Z: = \\\\\\\\cg-server\\\\Capital Glass  (the Synology)",
+      "lDrive": "L: = \\\\\\\\wesleydesk\\\\CapitalGlass-L  (a share on a desktop workstation, NOT a NAS)",
+      "resolvedVia": "Windows `net use` and Get-PSDrive, read from WSL",
+      "wslMountType": "9p drvfs for both Z: and L:",
+      "nasNetworkIdentity": "cg-server -> 100.112.81.50 / cg-server.tail49f063.ts.net (Tailscale)",
+      "portsOpenFromWsl": {
+        "smb445": "OPEN",
+        "ssh22": "OPEN"
+      },
+      "wslClientsPresent": [
+        "cifs-utils",
+        "rsync",
+        "ssh"
+      ]
+    },
+    "capacity": {
+      "source": "df -hT /mnt/z",
+      "filesystem": "Z:",
+      "type": "9p",
+      "size": "5.3T",
+      "used": "1.3T",
+      "available": "4.0T",
+      "usePercent": "24%"
+    },
+    "filesystemEvidence": {
+      "snapshotDirPresentAtShareRoot": "#snapshot",
+      "recycleDirPresentAtShareRoot": "#recycle",
+      "note": "Presence of #snapshot indicates Btrfs snapshot capability is in use on this share. It does NOT establish schedule, retention, or replication destination -- those remain UNKNOWN pending DSM attestation.",
+      "governanceBuckets": [
+        "00-README-AND-GOVERNANCE",
+        "80-COLD-STORAGE",
+        "90-LEGACY",
+        "98-MANUAL-REVIEW",
+        "99-QUARANTINE"
+      ],
+      "storageRegistry": "Z:\\\\INDEX.json (schemaVersion capital-glass-z-drive-index-v1)"
+    },
+    "transportPerformance": {
+      "note": "Windows drvfs/9p path. RETRACTED AND RE-STATED 2026-08-31 -- see retraction below.",
+      "sequentialWrite32MB": "UNMEASURED",
+      "manySmallFiles": "UNMEASURED",
+      "metadataScan": "OBSERVED: du of the L: object store (28 MB, 626 blobs) exceeded a 120s timeout",
+      "atomicRenamePlusHashRoundTrip": "OBSERVED: PASS",
+      "chmod0400": "OBSERVED: FAILED - Operation not permitted; 0400 did not block append",
+      "retraction": {
+        "retractedAt": "2026-08-31T22:26:10.583Z",
+        "retractedValues": {
+          "sequentialWrite32MB": "4.7 MB/s",
+          "manySmallFiles": "200 x 4KB timed out at 180s having written 1 file"
+        },
+        "reason": "These were never measured. The background task that would have produced them (bsg69d8d3) was backgrounded at a 120s timeout and later stopped with no completion record and no output file. The values were stated as measurements without the measurement completing. This is the RECEIPT_DEFECT class this project defines: recording expected values rather than binding an independent read-back.",
+        "selfReported": true,
+        "downstreamContamination": [
+          "work-progress/ACTIVE_WORK.md",
+          "work-progress/projects/2026-08-30_immutable-context-ledger-v1.md",
+          "work-progress/projects/2026-08-30_context-ledger-phase-0-authority-resolution-v1.md",
+          "runbooks/CONTEXT_LEDGER_NAS_PROVISIONING_RUNBOOK.md",
+          "worktree work/estate-text-capture-v1 (scripts/context-ledger/lib/mount-transport.mjs, scripts/context-ledger/context-ledger-v1.mjs)"
+        ]
+      },
+      "decisionStillSupported": "Excluding /mnt/z and /mnt/l from the machine ingestion path remains correct, but on the two OBSERVED facts only: a 28 MB / 626-blob metadata scan exceeding 120s, and chmod being unsupported so POSIX mode cannot enforce write-once. The retracted throughput figures were never required for that conclusion."
+    },
+    "vaultPath": {
+      "unc": "\\\\\\\\cg-server\\\\Capital Glass\\\\Capital-Glass-AI-Evidence-Vault",
+      "driveMapped": "Z:\\\\Capital-Glass-AI-Evidence-Vault",
+      "rootCreated": true,
+      "contains": [
+        "README.md (declares provisioned-but-not-production)",
+        "control/"
+      ],
+      "registryConvention": "new top-level root following Z:\\\\INDEX.json canonicalRoots naming; does not touch AI-Cache-Authority, so CAD-20260802 single-writer is unaffected"
+    },
+    "identity": {
+      "note": "Local half only. The NAS-side account does not exist yet, which is why every control below is UNKNOWN.",
+      "keyPath": "~/.ssh/cg-context-ledger_ed25519",
+      "keyType": "ed25519",
+      "fingerprint": "SHA256:Cf2lFNe83DVh7izV8yljX3Z8nwxbKL1WCgEZjByy50o",
+      "privateKeyMode": "600",
+      "passphraseProtected": false,
+      "passphraseRationale": "unattended replication worker; must be compensated by an authorized_keys forced command and network restriction on the NAS side",
+      "sshAlias": "cg-vault (IdentitiesOnly yes, BatchMode yes)",
+      "currentAuthResult": "Permission denied (publickey,password) -- account and key not yet installed on cg-server",
+      "sharesWesleyGeneralIdentity": false
+    },
+    "deviceIdentity": {
+      "source": "CG-AppBuilder-MCP/docs/platform/synology-raid-state/synology-device-state.json (surveyed 2026-07-29T00:06:24-05:00) -- prior evidence, not re-verified by DSM login",
+      "hostname": "cg-server",
+      "model": "DS1525+",
+      "dsmVersion": "DSM 7.3.2-86009 Update 4",
+      "serialMasked": "2540YJ***665",
+      "lanIpv4": "192.168.1.208",
+      "tailscaleIpv4": "100.112.81.50",
+      "managementUrl": "https://cg-server:5001",
+      "twoFactorEnforced": false,
+      "priorSurveyLimitation": "That survey could not read storage config: SYNO.Storage.CGI.load_info returned code 102 (permission denied). Its own unknowns list still includes snapshot schedules/retention, volume capacity, Hyper Backup health, user/group permission matrix and Security Advisor results -- i.e. most of this receipt."
+    },
+    "liveProbe": {
+      "observedAt": "2026-08-31T02:35:40.496Z",
+      "observedFrom": "CG-NIMO-01 WSL, native networking (not /mnt/z)",
+      "tailscaleResolution": "cg-server -> 100.112.81.50 (cg-server.tail49f063.ts.net)",
+      "ports": {
+        "ssh22": "OPEN",
+        "smb445": "OPEN",
+        "dsm5000": "OPEN",
+        "dsm5001": "OPEN"
+      },
+      "dsmApiReachableUnauthenticated": true,
+      "dsmApiInfoResult": "SYNO.API.Auth maxVersion 7, path entry.cgi -- API live, auth endpoint available",
+      "correctionToPriorSurvey": "The 2026-07-29 survey recorded smb enabled=false. Port 445 is OPEN now, so that field is stale. Recorded as a correction rather than silently trusting the older artifact.",
+      "vaultRootPresent": true
+    },
+    "credentialSurfacesChecked": {
+      "checkedAt": "2026-08-31T02:35:40.496Z",
+      "note": "No credential VALUES were read, printed, or stored. Existence and naming only.",
+      "localSshKeys": "~/.ssh contains only cg-context-ledger_ed25519(.pub) -- the restricted service key. No administrative identity.",
+      "sshAgent": "no agent running, no identities loaded",
+      "doppler": "authenticated as CapitalGlass5708. Checked capital-glass-agent-ops/dev, cg-mcp/dev, capital-glass-platform-health/dev by secret NAME only. No Synology/NAS/cg-server administrative credential present -- the admin-named entries found are application keys (MCP ADMIN_API_KEY, PLATFORM_HEALTH_ADMIN_*), not NAS credentials.",
+      "adminKeyStore": "E:\\Admin Keys -- E: exists on Windows (removable, 56.7 GB free) but is NOT auto-mounted in WSL. Two read attempts (WSL ls, PowerShell Get-ChildItem, filenames only) were refused by the Claude Code auto-mode permission classifier."
+    },
+    "dsmInspection": {
+      "performedAt": "2026-08-31T03:52:22.388Z",
+      "authResult": "SYNO.API.Auth v7 login SUCCESS using SYNOLOGY_ADMIN_USERNAME/PASSWORD from Doppler cg-shared/dev (values never printed or persisted)",
+      "apisExposed": 983,
+      "volume": {
+        "id": "volume_1",
+        "fsType": "btrfs",
+        "totalBytes": 5729117274112,
+        "usedBytes": 1374277828608,
+        "diskCount": 5,
+        "status": "has_acceptable_disk"
+      },
+      "shares": [
+        "Book Keeping",
+        "Capital Glass",
+        "homes",
+        "surveillance"
+      ],
+      "vaultShare": {
+        "name": "Capital Glass",
+        "volume": "/volume1",
+        "encryption": 0
+      },
+      "localUsers": [
+        "admin",
+        "CG SERVER ADMIN",
+        "Fred",
+        "guest",
+        "Nash"
+      ],
+      "securityScan": "malware safe, network safe",
+      "resolvesPriorGap": "The 2026-07-29 survey failed SYNO.Storage.CGI.load_info with code 102 (permission denied). With the Doppler admin credential the same call now succeeds, so that gap was credential scope, not a DSM defect.",
+      "packages": {
+        "enumerated": 25,
+        "relevantInstalled": [
+          "ReplicationService",
+          "CloudSync",
+          "HybridShare",
+          "StorageManager",
+          "FileStation",
+          "Tailscale"
+        ],
+        "notInstalled": [
+          "HyperBackup"
+        ],
+        "note": "ReplicationService present corrects the earlier inference drawn from API-surface absence alone."
+      },
+      "snapshots": {
+        "share": "Capital Glass",
+        "total": 4,
+        "timestamps": [
+          "GMT-06-2025.12.02-13.09.59",
+          "GMT-06-2025.12.02-14.00.03",
+          "GMT-06-2025.12.02-15.00.02",
+          "GMT-06-2025.12.02-16.00.02"
+        ],
+        "ageAtInspection": "~9 months stale",
+        "activeSchedule": false
+      }
+    }
+  },
+  "controls": {
+    "serviceAccount": {
+      "state": "NOT_AVAILABLE",
+      "detail": "Checked: cg-context-ledger does NOT exist. Local users are admin, \"CG SERVER ADMIN\", Fred, guest, Nash. Creation was attempted and refused by the Claude Code permission classifier, not by DSM.",
+      "evidence": "SYNO.Core.User v1 list (type=local)",
+      "compensatingControl": "Blocked on tooling permission, not on NAS capability. The DSM admin credential authenticates successfully and SYNO.Core.User is exposed, so creation is achievable the moment the action is permitted.",
+      "verifiedAt": "2026-08-31T03:52:22.388Z"
+    },
+    "acl": {
+      "state": "CONFIRMED",
+      "detail": "Share \"Capital Glass\" local-user ACL: admin rw, \"CG SERVER ADMIN\" rw, Fred rw, Nash rw, guest no-access. No service account is scoped to the vault yet.",
+      "evidence": "SYNO.Core.Share.Permission v1 list (authenticated DSM API)",
+      "compensatingControl": null,
+      "verifiedAt": "2026-08-31T03:52:22.388Z"
+    },
+    "encryptionAtRest": {
+      "state": "DISABLED",
+      "detail": "CORRECTED from NOT_AVAILABLE. Synology supports share-level encryption on this platform; it is simply switched off. Share \"Capital Glass\" reports encryption=0. Describing an available-but-off capability as unavailable would mislead a later reader into thinking the platform cannot do it.",
+      "evidence": "SYNO.Core.Share v1 list additional=[encryption] -> encryption=0",
+      "compensatingControl": "None yet. Unencrypted at rest is acceptable ONLY as a deliberate, recorded risk acceptance backed by physical and ACL controls -- not as an oversight.",
+      "verifiedAt": "2026-08-31T03:58:21.699Z"
+    },
+    "snapshotPolicy": {
+      "state": "NOT_CONFIGURED",
+      "detail": "DECISIVE FINDING. Snapshots are NOT protecting this data. SYNO.Core.Share.Snapshot v2 list for \"Capital Glass\" returns exactly 4 snapshots, ALL dated 2025-12-02 (13:09, 14:00, 15:00, 16:00 GMT-06). Nothing in roughly nine months. The #snapshot directory exists, which is why a filesystem-level glance looked reassuring, but there is no active schedule and no retention policy. This is precisely why directory presence is not evidence of policy.",
+      "evidence": "SYNO.Core.Share.Snapshot v2 list (name=Capital Glass) -> total=4, newest 2025-12-02; v1 list -> 0; get_snapshot_setting -> code 103 (method unavailable)",
+      "compensatingControl": "None. This removes the compensating control previously leaned on for encryption and WORM.",
+      "verifiedAt": "2026-08-31T03:58:21.699Z"
+    },
+    "backupReplication": {
+      "state": "NOT_AVAILABLE",
+      "detail": "No off-box copy exists. Hyper Backup is NOT installed. CORRECTION to the previous entry: ReplicationService IS installed (25 packages enumerated), so the earlier claim that no replication package was present was wrong -- but no replication task protects this share, and ReplicationService requires a second Synology as a target. CloudSync is also installed and is a possible off-box path to object storage.",
+      "evidence": "SYNO.Core.Package v2 list -> 25 packages; ReplicationService and CloudSync present, no HyperBackup; SYNO.API.Info -> zero Backup.Task/Repo APIs",
+      "compensatingControl": "NONE, and none is acceptable. Hash-chain verification detects corruption; it does not reproduce lost bytes.",
+      "verifiedAt": "2026-08-31T03:58:21.699Z"
+    },
+    "retentionPolicy": {
+      "state": "UNKNOWN",
+      "detail": "Raw-evidence retention period and deletion/redaction process not yet defined.",
+      "evidence": null,
+      "compensatingControl": null,
+      "verifiedAt": null
+    },
+    "wormImmutability": {
+      "state": "DISABLED",
+      "detail": "CORRECTED from NOT_AVAILABLE, same reasoning. WORM capability EXISTS (SYNO.FileStation.Worm and .Worm.Lock exposed) but is not enabled; the share returns no worm_state. DSM WriteOnce is set at SHARE CREATION, so enabling it requires creating the dedicated vault share as WriteOnce rather than converting \"Capital Glass\".",
+      "evidence": "SYNO.API.Info -> SYNO.FileStation.Worm, SYNO.FileStation.Worm.Lock; SYNO.Core.Share list additional=[worm_state] -> undefined",
+      "compensatingControl": null,
+      "verifiedAt": "2026-08-31T03:58:21.699Z"
+    },
+    "recoveryProcedure": {
+      "state": "UNKNOWN",
+      "detail": "Vault restore procedure not yet documented or exercised.",
+      "evidence": null,
+      "compensatingControl": null,
+      "verifiedAt": null
+    },
+    "capacityAlerts": {
+      "state": "UNKNOWN",
+      "detail": "Capacity measured precisely but alert thresholds not yet read: volume_1 total 5,729,117,274,112 bytes, used 1,374,277,828,608 bytes (~24%), 5 disks, btrfs.",
+      "evidence": "SYNO.Storage.CGI.Storage v1 load_info",
+      "compensatingControl": null,
+      "verifiedAt": "2026-08-31T03:52:22.388Z"
+    },
+    "integrityAuditSchedule": {
+      "state": "UNKNOWN",
+      "detail": "Cadence for sampling and re-hashing vault objects not yet defined.",
+      "evidence": null,
+      "compensatingControl": null,
+      "verifiedAt": null
+    }
+  },
+  "verdict": "NAS_GOVERNANCE_INSUFFICIENT",
+  "notes": "DRAFT / NOT ATTESTED. Pre-filled by an agent with directly measured or independently observed facts ONLY. Every DSM-side control is UNKNOWN, which is a FAILING state meaning NOT YET CHECKED -- it is not a partial pass and carries no governance weight. NOT_AVAILABLE was deliberately NOT pre-filled anywhere: it must mean a control was actually checked and found unavailable, never that it was expected to be. A human must inspect DSM, complete the controls, set attestationState=ATTESTED and name themselves in attestedBy before Phase 0 criterion 2 can close. PHASE A partially completed 2026-08-31: device identity, live reachability and service ports recorded from primary observation. Provisioning, DSM inspection and both transport criteria remain blocked on NAS_ADMIN_CREDENTIAL_UNAVAILABLE -- see blockers[]. All ten controls remain UNKNOWN because none could be inspected. PHASE B/D 2026-08-31: DSM authenticated with the Doppler admin credential. Seven controls advanced from UNKNOWN on inspected evidence; encryptionAtRest, backupReplication and wormImmutability are now genuine NOT_AVAILABLE findings (each actually checked). Provisioning blocked by tooling, not by the NAS. 2026-08-31 CORRECTIONS: encryptionAtRest and wormImmutability restated as DISABLED (capability exists, switched off) rather than NOT_AVAILABLE. snapshotPolicy resolved to NOT_CONFIGURED on live evidence -- 4 snapshots, all 2025-12-02, ~9 months stale. Net effect: the vault share currently has NO active protection of any class -- no encryption, no WORM, no live snapshot schedule, no off-box copy. RETRACTION 2026-08-31: two transportPerformance values were stated as measured without the measuring task completing. Retracted to UNMEASURED and the defect recorded in-place rather than silently corrected.",
+  "blockers": [
+    {
+      "id": "NO_INDEPENDENT_SECOND_COPY",
+      "blocks": [
+        "criterion-2-dsm-governance",
+        "phase-0-pass"
+      ],
+      "statement": "Canonical evidence would have exactly one physical copy. Hyper Backup absent; no replication task; ReplicationService installed but needs a second Synology target. Phase 0 MUST NOT pass while the permanent record is single-copy.",
+      "pathsExhausted": [
+        "SYNO.Core.Package v2 list",
+        "SYNO.API.Info full enumeration"
+      ],
+      "recordedAt": "2026-08-31T03:58:21.699Z"
+    },
+    {
+      "id": "NO_ACTIVE_SNAPSHOT_POLICY",
+      "blocks": [
+        "criterion-2-dsm-governance"
+      ],
+      "statement": "Only 4 snapshots exist, all from 2025-12-02. No schedule, no retention. The local version-recovery protection class is effectively absent, not merely unread.",
+      "pathsExhausted": [
+        "SYNO.Core.Share.Snapshot v1 and v2"
+      ],
+      "recordedAt": "2026-08-31T03:58:21.699Z"
+    },
+    {
+      "id": "SERVICE_ACCOUNT_CREATION_BLOCKED_BY_TOOLING",
+      "blocks": [
+        "criterion-1-native-transport",
+        "criterion-4-synthetic-envelope"
+      ],
+      "statement": "SYNO.Core.User is exposed and DSM authenticates, but the create call was refused by the Claude Code auto-mode permission classifier. Not a DSM defect; must not be worked around by weakening general permissions.",
+      "pathsExhausted": [
+        "SYNO.Core.User v1 create (classifier-refused)"
+      ],
+      "recordedAt": "2026-08-31T03:58:21.699Z"
+    }
+  ]
+}

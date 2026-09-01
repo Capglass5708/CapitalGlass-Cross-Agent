@@ -1,6 +1,6 @@
 # Current Handoff
 
-**Last reconciled:** 2026-08-25
+**Last reconciled:** 2026-08-30
 **Ledger commit anchor:** `0b13f42` (verify with `git rev-parse HEAD` in this repo)
 
 Read these files first, in order:
@@ -57,6 +57,29 @@ Use this order for **suite status, blockers, and active work** — not for Revu/
 | Next gate | **`FRESH_CURSOR_INDEX_DOGFOOD_PASS`** — `sessionReceiptPath` + first-action index evidence + `rawScanRequired` honored (fresh session only) |
 
 Artifacts: `CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-index-preflight-estate-wide-v1/`
+
+---
+
+## Repo doctrine changed (2026-08-30) — read before writing anything here
+
+`AGENT_START_HERE.md`'s former rule *"This repo may describe work. This repo must not become
+the work"* is **superseded**. Decision `CAD-20260830-cross-agent-software-home-not-datastore`.
+
+> Cross-Agent is the authority for cross-agent coordination, context lineage, work-state
+> intelligence, and cross-project reasoning, and **may contain the executable software** for
+> them. Durable operational/context data must live in approved external persistence and must
+> **never** be committed here. Domain applications remain authoritative for their own logic
+> and data.
+
+The old rule contradicted `contracts/intelligence/OWNERSHIP.md` (`ARCHITECTURE_LOCKED`, which
+names this repo `INTELLIGENCE_OWNER`) and the 282 script files already present. **Do not refuse
+to implement cross-agent intelligence software here on the basis of the old doctrine.** Do
+refuse to commit captured data.
+
+Active initiative: `immutable-context-ledger-v1` —
+`work-progress/projects/2026-08-30_immutable-context-ledger-v1.md`.
+Next mission: `context-ledger-phase-0-authority-resolution-v1`. No capture code until Phase 0
+closes the Evidence-plane schema-authority gap.
 
 ---
 

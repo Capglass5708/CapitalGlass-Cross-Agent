@@ -1,0 +1,88 @@
+{
+  "receiptVersion": "clean-forward-promotion-v1",
+  "workPackageId": "immutable-context-ledger-v1",
+  "recordedAt": "2026-09-01T01:14:59Z",
+  "ruling": "PRESERVE HISTORY, PROMOTE CLEAN FORWARD STATE",
+
+  "architecturePrinciples": [
+    "PRESERVATION != DEVELOPMENT ANCESTRY",
+    "HASH_BINDING != OFFHOST_DURABILITY"
+  ],
+
+  "historicalPreservation": {
+    "contaminatedCommit": "546bd2c5ae2e6d7adcd96bf5005c0105191b71e7",
+    "lineageBranch": "work/estate-text-capture-v1",
+    "lineageTip": "e8a6191bfafbd0c5825ab723c4324017da5d04c2",
+    "lineageState": "HISTORICAL_SUPERSEDED_UNPUSHABLE",
+    "neverPushedToRemote": true,
+    "notRewritten": true,
+    "notAllowlisted": true,
+    "bundle": {
+      "path": "/home/wesle/.capital-glass/evidence-preservation/git-bundles/estate-text-capture-v1-546bd2c-20260901T010345Z.bundle",
+      "sha256": "94edee9e4373bc059365edd5f86dfb1a1aec0bfdf6c414c81b87217fb51246dd",
+      "byteLength": 3037383,
+      "commitsReachable": 435,
+      "bundleVerify": "The bundle records a complete history."
+    },
+    "restoreProof": {
+      "method": "git clone <bundle> into an empty directory, then resolve 546bd2c",
+      "resolvedCommit": "546bd2c5ae2e6d7adcd96bf5005c0105191b71e7",
+      "resolvedTree": "08255795bf1aa195ebfb84aa69bf33d3c89a8d8b",
+      "matchesLiveSourceRepo": true
+    },
+    "HISTORICAL_EVIDENCE_LOCAL_PRESERVATION": "PASS",
+    "HISTORICAL_EVIDENCE_OFFHOST_DURABILITY": "NOT_YET_PROVEN",
+    "offhostDurabilityNote": "The bundle exists on exactly one host filesystem. A verified hash binds CONTENT IDENTITY, not SURVIVAL. No independent off-host copy has been written or verified, so durability remains unproven by construction, not by omission."
+  },
+
+  "cleanForward": {
+    "branch": "work/context-ledger-clean-forward-v1",
+    "basedOn": "origin/main @ 69582666de182a34557dac65b64ae8cff988276b",
+    "contaminatedCommitIsAncestor": false,
+    "ancestryCheck": "git merge-base --is-ancestor 546bd2c HEAD -> non-zero (FALSE)",
+    "replayMethod": "legitimate forward changes applied as diffs; contaminated history not carried",
+    "pushMethod": "normal push",
+    "forcePushUsed": false,
+    "historyRewriteUsed": false,
+    "pushProtectionAllowlistUsed": false,
+    "secretScanningDisabled": false,
+    "githubPushProtectionVerdict": "ACCEPTED"
+  },
+
+  "remediationsCarriedForward": [
+    "quantitative-prose emitter binding implemented and enforced by test",
+    "mutation control: hash-chained ledger with O_EXCL compare-and-swap head transition",
+    "secret-detector fixture: all credential literals replaced by per-provider runtime constructors validated against the live detector registry at module load",
+    "obsolete fixture alphabet cleared from detector comments",
+    "corrected truth and receipt state including the in-place retraction of the fabricated throughput claim"
+  ],
+
+  "falseEvidenceHandling": {
+    "retractedClaim": "sequentialWrite32MB throughput and small-file timing in measuredFacts",
+    "retractionCommit": "7df52e6",
+    "method": "retracted in place with retractedValues, selfReported:true, and a downstream contamination list; never silently corrected",
+    "permittedResidence": "explicitly typed retraction or history metadata only",
+    "activeClaimOccurrences": 0
+  },
+
+  "verification": {
+    "suites": {
+      "run-secret-detector": "PASS",
+      "run-quantitative-prose-binding": "PASS",
+      "run-estate-capture": "PASS",
+      "run-context-ledger-worker": "PASS",
+      "run-capture-completeness": "PASS (14/14 post-commit)"
+    },
+    "flakinessProbe": "80 consecutive runs of run-secret-detector, 0 failures"
+  },
+
+  "scopeHeld": [
+    "encryption-population work not reopened",
+    "storage authority unchanged",
+    "no vault manufactured",
+    "Proposal Generator untouched",
+    "no unrelated Office Admin branches merged"
+  ],
+
+  "CLEAN_FORWARD_PROMOTION": "PASS"
+}
