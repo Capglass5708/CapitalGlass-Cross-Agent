@@ -30,6 +30,9 @@ import {
 import { CAPTURE_MODE, KEY_AUTHORITY } from './lib/capture.mjs';
 import { SshRsyncTransport } from './lib/transport.mjs';
 import {
+  selectTransport, TRANSPORT_ID, STORAGE_AUTHORITY_STATE,
+} from './lib/transport-selector.mjs';
+import {
   MountedRemoteTransport, resolveMountAuthority, MOUNT_AUTHORITY,
   DEFAULT_OBJECT_PREFIX, loadReplicationPolicy,
 } from './lib/mount-transport.mjs';
@@ -81,14 +84,40 @@ function mountLegs() {
   };
 }
 
-function realLegs() {
-  // The honest adapter for storage that does not exist yet: it refuses rather
-  // than pretending, so both legs stay unverified and nothing can reach
-  // FULLY_PROTECTED on the strength of a local write.
+/**
+ * The canonical storage authority, as currently adjudicated.
+ *
+ * It is CONFLICTED: a demoted staging folder and a claimed DSM WORM share
+ * carry the same name on the same host, and the claim has not been confirmed
+ * by live authenticated observation. Until that is settled the selector
+ * refuses to build a live adapter, which is what keeps production storage
+ * unmutated by construction rather than by intention.
+ *
+ * See artifacts/agent-runs/CG_IMMUTABLE_CONTEXT_STORAGE_AUTHORITY_V1/
+ *     integration-verdict-OPERATOR_ACTION_REQUIRED-v1.json
+ */
+function currentStorageAuthority(role) {
   return {
-    primary: new SshRsyncTransport({ id: 'synology-cg-context-ledger', host: 'cg-server' }),
-    backup: new SshRsyncTransport({ id: 'wesleydesk-backup', host: 'wesleydesk' }),
+    state: STORAGE_AUTHORITY_STATE.CONFLICTED,
+    authorityId: null,
+    host: role === 'backup' ? null : 'cg-server',
+    objectRoot: null,
+    role,
   };
+}
+
+/**
+ * Declared transport -> selector -> implemented adapter. The selector refuses
+ * an unimplemented, unknown, misconfigured or authority-less selection instead
+ * of falling back, so an unproven transport can never look like a success.
+ */
+function selectorLegs(transportId) {
+  const pick = (role) => selectTransport({
+    transportId, role,
+    storageAuthority: currentStorageAuthority(role),
+    requireNativeProduction: true,
+  }).adapter;
+  return { primary: pick('primary'), backup: pick('backup') };
 }
 
 async function main() {
@@ -121,7 +150,13 @@ async function main() {
     // --legs=mount replicates over the live mounted shares; the default
     // ssh-rsync adapter refuses, which yields the truthful lower durability
     // state rather than a fabricated one.
-    const { primary, backup } = arg('legs', 'ssh') === 'mount' ? mountLegs() : realLegs();
+    // --legs=mount keeps the live mounted route available for the lower,
+    // truthful durability state. Everything else goes through the selector,
+    // which refuses while storage authority is CONFLICTED.
+    const legs = arg('legs', null);
+    const { primary, backup } = legs === 'mount'
+      ? mountLegs()
+      : selectorLegs(legs ?? TRANSPORT_ID.FILESTATION_HTTPS);
     const r = await captureOneSource({
       absPath, vaultBase, key: k.key, keyRef: k.keyRef, keyVersion: k.keyVersion,
       keyAuthority: KEY_AUTHORITY.PRODUCTION, mode: CAPTURE_MODE.REAL,

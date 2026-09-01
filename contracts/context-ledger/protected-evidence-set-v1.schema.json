@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "protected-evidence-set-v1",
+  "title": "Protected evidence set",
+  "description": "The unit of durability is an EVIDENCE CLOSURE, not a directory of ciphertext blobs. A stored object's layout is [12-byte nonce][16-byte tag][ciphertext] and carries no key-version field, so an object replicated without its ledger entry is DURABLE_BUT_UNDECRYPTABLE, which is a FAIL. The ledger is therefore a member of this set rather than adjacent metadata. The production/provisional split is permanently explicit: all 14005 physical objects are preserved, but only the 13998 ledger-bound objects are certified production until the 7 orphans are resolved.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "expected", "counts", "members", "ledgerIsProtectedSetMember", "populationSplitIsExplicit", "provisionalPromotedToProduction", "manifestHash"],
+  "properties": {
+    "schema": { "const": "protected-evidence-set-v1@1.0.0" },
+    "expected": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["PRODUCTION_EXPECTED_COUNT", "PROVISIONAL_EXPECTED_COUNT", "PRESERVATION_EXPECTED_COUNT"],
+      "properties": {
+        "PRODUCTION_EXPECTED_COUNT": { "const": 13998, "description": "Ledger-bound unique ciphertext. The only certified production population." },
+        "PROVISIONAL_EXPECTED_COUNT": { "const": 7, "description": "Orphan ciphertext with no ledger association. Preserved, never certified." },
+        "PRESERVATION_EXPECTED_COUNT": { "const": 14005, "description": "Every physical object that must survive." }
+      }
+    },
+    "counts": {
+      "type": "object",
+      "required": ["PRODUCTION_ACTUAL_COUNT", "PROVISIONAL_ACTUAL_COUNT", "PRESERVATION_ACTUAL_COUNT", "LEDGER_ENTRY_COUNT"],
+      "properties": {
+        "PRODUCTION_ACTUAL_COUNT": { "type": "integer", "minimum": 0 },
+        "PROVISIONAL_ACTUAL_COUNT": { "type": "integer", "minimum": 0 },
+        "PRESERVATION_ACTUAL_COUNT": { "type": "integer", "minimum": 0 },
+        "LEDGER_ENTRY_COUNT": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "populationSplitIsExplicit": { "const": true, "description": "Separate manifests and separate receipt counts. Never collapsed into one total." },
+    "provisionalPromotedToProduction": { "const": false, "description": "Promotion is refused structurally. The orphans' missing ledger association is evidence and is never repaired by manufacturing an entry." },
+    "ledgerIsProtectedSetMember": { "const": true },
+    "rationale": { "type": "string" },
+    "members": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["productionObjects", "provisionalObjects", "ledgerEntries", "ledgerChainMetadata", "reconciliationManifest", "cryptoMetadata"],
+      "properties": {
+        "productionObjects": { "type": "array", "items": { "type": "string" } },
+        "provisionalObjects": { "type": "array", "items": { "type": "string" } },
+        "ledgerEntries": { "type": "array", "items": { "type": "string" }, "description": "Immutable hash-chained entries. Required to bind ciphertext to key version." },
+        "ledgerChainMetadata": { "type": ["object", "null"], "description": "Chain head and linkage sufficient to rebuild ordering from the immutable entries." },
+        "reconciliationManifest": { "type": ["object", "null"], "description": "The adjudicated accounting authority required to reconstruct identity." },
+        "cryptoMetadata": { "type": ["object", "null"], "description": "Envelope version and key-version binding. Never key material." }
+      }
+    },
+    "manifestHash": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" }
+  }
+}
