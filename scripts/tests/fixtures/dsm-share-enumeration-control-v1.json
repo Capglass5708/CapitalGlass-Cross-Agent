@@ -1,0 +1,19 @@
+{
+  "fixtureVersion": "dsm-share-enumeration-control-v1",
+  "observedAt": "2026-08-31",
+  "host": "cg-server (100.112.81.50), DS1525+, DSM 7.3.2-86009 Update 4",
+  "method": "READ-ONLY controlled comparison via SYNO.Core.Share get and list, admin session",
+  "purpose": "Regression control for the rule that Share.list is not an authoritative census of enterprise-WORM shares. If a future DSM upgrade changes this behaviour, this fixture is how we find out.",
+  "leaveUntouched": {
+    "share": "CG-WORM-ENT-PROOF1",
+    "reason": "Disposable enterprise-WORM proof share from phase0. It is the control that makes this rule falsifiable. Do not delete it until its retention state permits deliberate cleanup."
+  },
+  "observations": [
+    {"share": "CG-WORM-ENT-PROOF1",              "wormClass": "KNOWN_WORM",     "getSucceeds": true,  "presentInList": false},
+    {"share": "Capital-Glass-AI-Evidence-Vault", "wormClass": "CLAIMED_WORM",   "getSucceeds": true,  "presentInList": false},
+    {"share": "Capital-Glass-AI-Evidence-meta",  "wormClass": "KNOWN_NON_WORM", "getSucceeds": true,  "presentInList": true},
+    {"share": "Capital Glass",                   "wormClass": "KNOWN_NON_WORM", "getSucceeds": true,  "presentInList": true},
+    {"share": "Book Keeping",                    "wormClass": "KNOWN_NON_WORM", "getSucceeds": true,  "presentInList": true},
+    {"share": "ZZZ-control-not-real-99182",      "wormClass": "DOES_NOT_EXIST", "getSucceeds": false, "presentInList": false, "errorCode": 402}
+  ]
+}

@@ -465,3 +465,50 @@ test('verification detects a tampered recovery record', () => {
   assert.equal(verifyRecoveryAssociation(tampered).verified, false);
   rmSync(f.dir, { recursive: true, force: true });
 });
+
+/* ---------------- DSM share-behaviour regression control ---------------- */
+import { readFileSync as rfs } from 'node:fs';
+import {
+  SHARE_EXISTENCE, interpretShareExistence, listOmissionJustifiesMutation,
+} from '../context-ledger/lib/transport-selector.mjs';
+
+const DSM_CONTROL = JSON.parse(
+  rfs(new URL('./fixtures/dsm-share-enumeration-control-v1.json', import.meta.url), 'utf-8'),
+);
+
+test('DSM control fixture: every known-WORM share is omitted from Share.list', () => {
+  const worm = DSM_CONTROL.observations.filter((o) => o.wormClass === 'KNOWN_WORM');
+  assert.ok(worm.length >= 1, 'the fixture must retain at least one known-WORM control');
+  for (const o of worm) {
+    assert.equal(o.getSucceeds, true, `${o.share} must be addressable by get`);
+    assert.equal(o.presentInList, false, `${o.share} must be omitted from list`);
+  }
+});
+
+test('DSM control fixture: every known-non-WORM share IS present in Share.list', () => {
+  for (const o of DSM_CONTROL.observations.filter((x) => x.wormClass === 'KNOWN_NON_WORM')) {
+    assert.equal(o.presentInList, true, `${o.share} must appear in list`);
+  }
+});
+
+test('DSM control fixture: the negative control still fails with 402', () => {
+  const c = DSM_CONTROL.observations.find((o) => o.wormClass === 'DOES_NOT_EXIST');
+  assert.equal(c.getSucceeds, false);
+  assert.equal(c.errorCode, 402);
+});
+
+test('list omission never means absent, and never justifies a mutation', () => {
+  // the vault's exact situation: get succeeds, list omits
+  assert.equal(interpretShareExistence({
+    getSucceeds: true, presentInList: false, negativeControlHolds: true,
+  }), SHARE_EXISTENCE.EXISTS);
+  // a genuinely absent share
+  assert.equal(interpretShareExistence({
+    getSucceeds: false, presentInList: false, negativeControlHolds: true,
+  }), SHARE_EXISTENCE.ABSENT);
+  // without the fabricated-name control, a get success proves nothing
+  assert.equal(interpretShareExistence({
+    getSucceeds: true, presentInList: false, negativeControlHolds: false,
+  }), SHARE_EXISTENCE.INCONCLUSIVE);
+  assert.equal(listOmissionJustifiesMutation(), false);
+});

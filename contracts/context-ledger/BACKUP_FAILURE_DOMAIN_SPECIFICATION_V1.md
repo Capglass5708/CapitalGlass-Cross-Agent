@@ -118,3 +118,36 @@ CG_IMMUTABLE_CONTEXT_STORAGE_AUTHORITY_V1    BLOCKED
 
 Primary authority proof does not lift these. Proving the primary establishes one
 good copy; the estate needs two that cannot fail together.
+
+---
+
+## FROZEN MINIMUM PURCHASE GATE
+
+Operator-frozen. A candidate that cannot meet every REQUIRED line is rejected,
+regardless of capacity or price.
+
+```text
+INDEPENDENT_HOST                     REQUIRED
+INDEPENDENT_CHASSIS                  REQUIRED
+INDEPENDENT_STORAGE_DEVICE           REQUIRED
+DIFFERENT_FILESYSTEM_IDENTITY        REQUIRED
+
+WORM / IMMUTABLE STORAGE             REQUIRED
+DELETE REFUSAL PROOF                 REQUIRED
+OVERWRITE REFUSAL PROOF              REQUIRED
+
+INDEPENDENT AUTHENTICATION ROUTE     REQUIRED
+DESTINATION-SIDE HASHING             REQUIRED
+
+REMOTE / OFFSITE PLACEMENT           STRONGLY PREFERRED
+```
+
+**A high-capacity unit that cannot behaviourally prove immutable retention is
+rejected.** Capacity is not a substitute for the property being bought: the
+measured protected set is ~316 MB, so any modern unit clears the storage
+requirement, and the entire decision rests on failure-domain independence and
+provable immutability.
+
+The two refusal proofs are behavioural, not configuration checks — the same
+standard applied to the primary. A datasheet claim of WORM support is not the
+proof; an observed refusal of overwrite and delete is.

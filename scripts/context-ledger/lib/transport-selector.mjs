@@ -298,3 +298,26 @@ function notWired(kind, op) {
 
 /** Integration status. Not PROVEN until a real canary crosses the canonical path. */
 export const NATIVE_TRANSPORT_PIPELINE_INTEGRATION = 'IMPLEMENTED_UNPROVEN';
+
+/**
+ * DSM share-behaviour rules (contracts/context-ledger/DSM_SHARE_BEHAVIOR_V1.md).
+ *
+ * Encoded so the interpretation cannot drift back to the intuitive-but-wrong
+ * reading that a share missing from an enumeration call is absent.
+ */
+export const SHARE_EXISTENCE = {
+  EXISTS: 'EXISTS',
+  ABSENT: 'ABSENT',
+  INCONCLUSIVE: 'INCONCLUSIVE',
+};
+
+export function interpretShareExistence({ getSucceeds, presentInList, negativeControlHolds }) {
+  // Without the fabricated-name control, a get success proves nothing: the API
+  // might simply be echoing the requested name back.
+  if (!negativeControlHolds) return SHARE_EXISTENCE.INCONCLUSIVE;
+  if (getSucceeds) return SHARE_EXISTENCE.EXISTS;      // list omission is irrelevant here
+  return presentInList ? SHARE_EXISTENCE.INCONCLUSIVE : SHARE_EXISTENCE.ABSENT;
+}
+
+/** Share.list is not a census: omission alone never justifies a mutation. */
+export function listOmissionJustifiesMutation() { return false; }
