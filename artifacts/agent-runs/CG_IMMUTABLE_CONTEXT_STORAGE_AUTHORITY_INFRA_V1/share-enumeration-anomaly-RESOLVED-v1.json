@@ -1,0 +1,45 @@
+{
+  "receiptVersion": "share-enumeration-anomaly-resolution-v1",
+  "mission": "CG_IMMUTABLE_CONTEXT_STORAGE_AUTHORITY_INFRA_V1",
+  "SHARE_ENUMERATION_ANOMALY": "RESOLVED",
+  "classification": "WORM_SHARE_ENUMERATION_BEHAVIOR",
+  "mutationsPerformed": "NONE",
+  "method": "READ-ONLY. A controlled comparison across known-WORM, known-non-WORM, and non-existent shares.",
+
+  "hypothesisTested": "SYNO.Core.Share list omits enterprise-WORM shares, so the vault's absence is normal DSM behaviour rather than evidence of incomplete provisioning.",
+
+  "controlledComparison": [
+    {"share": "CG-WORM-ENT-PROOF1", "wormStatus": "KNOWN_WORM", "evidence": "created by dsm-enterprise-worm-create-proof-v1.json with subvol_mode=enterprise; desc reads 'Disposable Enterprise WriteOnce'", "get": "SUCCESS", "inList": false},
+    {"share": "Capital-Glass-AI-Evidence-Vault", "wormStatus": "CLAIMED_WORM", "get": "SUCCESS", "inList": false},
+    {"share": "Capital-Glass-AI-Evidence-meta", "wormStatus": "KNOWN_NON_WORM", "get": "SUCCESS", "inList": true},
+    {"share": "Capital Glass", "wormStatus": "NON_WORM", "get": "SUCCESS", "inList": true},
+    {"share": "Book Keeping", "wormStatus": "NON_WORM", "get": "SUCCESS", "inList": true},
+    {"share": "ZZZ-control-not-real-99182", "wormStatus": "DOES_NOT_EXIST", "get": "ERROR_402", "inList": false}
+  ],
+
+  "result": {
+    "everyKnownWormShareOmittedFromList": true,
+    "everyNonWormSharePresentInList": true,
+    "negativeControlStillFails": true,
+    "conclusion": "DSM's SYNO.Core.Share list excludes enterprise-WORM shares. The vault's omission is expected behaviour for a WORM share, NOT a provisioning defect."
+  },
+
+  "consequences": {
+    "removesEvidenceFor": "SHARE_PROVISIONING_INCOMPLETE. The enumeration omission was the main support for that hypothesis and it no longer supports it.",
+    "PROVISIONING_MUTATION_NECESSARY": "NOT_PROVEN",
+    "strengthened": "The vault behaves exactly like the known-WORM proof share and unlike every non-WORM share, which is positive circumstantial evidence that it IS a WORM share.",
+    "vindicatesTheRefusalToMutate": "Had the share been 'completed' on the strength of the enumeration anomaly, a correctly-provisioned WORM share would have been mutated to fix a defect that did not exist, spending the in-place UUID option for nothing."
+  },
+
+  "whatThisDoesNotProve": [
+    "It does NOT prove WORM is configured on the vault. Configuration remains NOT_OBSERVED because no available DSM API returns WORM fields to this credential.",
+    "It does NOT prove the share is reachable or writable by cg-context-ledger. That is still Step B/D, blocked on the service credential.",
+    "Circumstantial behavioural similarity is not the behavioural refusal proof. IMMUTABILITY_ENFORCEMENT stays NOT_OBSERVED until overwrite and delete are actually refused."
+  ],
+
+  "incidentalObservation": {
+    "share": "CG-WORM-ENT-PROOF1",
+    "note": "The phase0 disposable WORM proof share created at 2026-08-31T04:45Z still exists. If it carries an enterprise WORM lock it may not be removable until its retention expires. Flagged for the operator; not acted on.",
+    "actionTaken": "NONE"
+  }
+}
