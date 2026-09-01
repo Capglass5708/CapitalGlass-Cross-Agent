@@ -357,3 +357,103 @@ test('key version population counts by version and reports unknowns separately',
   assert.deepEqual(r.KEY_VERSION_POPULATION, { v1: 2, v2: 1 });
   assert.equal(r.UNKNOWN_KEY_VERSION_COUNT, 1);
 });
+
+/* ---------------- RULING 7: ledger recovery associations ---------------- */
+import { mkdtempSync, writeFileSync as wfs, rmSync } from 'node:fs';
+import os from 'node:os';
+import pathm from 'node:path';
+import {
+  buildRecoveryAssociation, verifyRecoveryAssociation, associationIdentity,
+  RECOVERY_REASON, RECOVERY_DEFECT,
+} from '../context-ledger/lib/ledger-recovery.mjs';
+
+function recoveryFixture({ corruptObject = false, entryPointsElsewhere = false } = {}) {
+  const dir = mkdtempSync(pathm.join(os.tmpdir(), 'recov-'));
+  const blob = Buffer.concat([randomBytes(12), randomBytes(16), randomBytes(64)]);
+  const ch = sha256Prefixed(blob);
+  const objPath = pathm.join(dir, 'object.bin');
+  wfs(objPath, corruptObject ? Buffer.concat([blob, Buffer.from('!')]) : blob);
+  const entry = {
+    seq: 1, recordedAt: '2026-08-31T21:29:09.830Z',
+    entryHash: 'sha256:' + 'a'.repeat(64),
+    evidenceId: 'git:x:y', sourceSystem: 'git', contentHash: 'sha256:' + 'b'.repeat(64),
+    encryption: {
+      algorithm: 'AES-256-GCM', envelopeVersion: 'context-ledger-crypto-v2',
+      keyRef: 'CONTEXT_LEDGER_EVIDENCE_KEY_V1', keyVersion: 'v1',
+      plaintextHash: 'sha256:' + 'b'.repeat(64),
+      ciphertextHash: entryPointsElsewhere ? 'sha256:' + 'c'.repeat(64) : ch,
+    },
+  };
+  const entryPath = pathm.join(dir, 'entry.json');
+  wfs(entryPath, JSON.stringify(entry));
+  return { dir, ch, objPath, entryPath };
+}
+
+test('a recovery association binds object to preserved entry and is typed as not-original', () => {
+  const f = recoveryFixture();
+  const r = buildRecoveryAssociation({
+    ciphertextHash: f.ch, currentSpoolObjectPath: f.objPath, supersededEntryPath: f.entryPath,
+    supersededLedgerAuthority: '/superseded', supersessionEvent: { supersededAt: 'x' },
+    recoverySoftwareSha: 'sha256:' + 'd'.repeat(64),
+  });
+  assert.equal(r.ok, true);
+  assert.equal(r.record.recoveryReason, RECOVERY_REASON);
+  assert.equal(r.record.notAnOriginalLedgerEntry, true);
+  assert.equal(r.record.representedAsCurrentLedgerEvent, false);
+  assert.equal(r.record.supersededEntryEdited, false);
+  // provenance is copied from evidence, never invented
+  assert.equal(r.record.provenFromPreservedEntry.encryption.keyVersion, 'v1');
+  assert.equal(verifyRecoveryAssociation(r.record).verified, true);
+  rmSync(f.dir, { recursive: true, force: true });
+});
+
+test('association identity is deterministic, so recovery is idempotent', () => {
+  const f = recoveryFixture();
+  const mk = () => buildRecoveryAssociation({
+    ciphertextHash: f.ch, currentSpoolObjectPath: f.objPath, supersededEntryPath: f.entryPath,
+    supersededLedgerAuthority: '/superseded', supersessionEvent: { supersededAt: 'x' },
+    recoverySoftwareSha: 'sha256:' + 'd'.repeat(64),
+  }).record;
+  const a = mk(); const b = mk();
+  // different recoveredAt timestamps must NOT produce a different association
+  assert.equal(a.recoveryRecordId, b.recoveryRecordId);
+  assert.equal(a.recoveryRecordId, associationIdentity({
+    ciphertextHash: a.ciphertextHash,
+    supersededLedgerEntryHash: a.supersededLedgerEntryHash,
+    supersededEntryFileSha256: a.supersededEntryFileSha256,
+  }));
+  rmSync(f.dir, { recursive: true, force: true });
+});
+
+test('recovery refuses when the object bytes do not match the claimed hash', () => {
+  const f = recoveryFixture({ corruptObject: true });
+  const r = buildRecoveryAssociation({
+    ciphertextHash: f.ch, currentSpoolObjectPath: f.objPath, supersededEntryPath: f.entryPath,
+    supersededLedgerAuthority: '/s', supersessionEvent: {}, recoverySoftwareSha: 'sha256:x',
+  });
+  assert.equal(r.ok, false);
+  assert.ok(r.defects.includes(RECOVERY_DEFECT.OBJECT_HASH_MISMATCH));
+  rmSync(f.dir, { recursive: true, force: true });
+});
+
+test('recovery refuses when the preserved entry does not reference the object', () => {
+  const f = recoveryFixture({ entryPointsElsewhere: true });
+  const r = buildRecoveryAssociation({
+    ciphertextHash: f.ch, currentSpoolObjectPath: f.objPath, supersededEntryPath: f.entryPath,
+    supersededLedgerAuthority: '/s', supersessionEvent: {}, recoverySoftwareSha: 'sha256:x',
+  });
+  assert.equal(r.ok, false);
+  assert.ok(r.defects.includes(RECOVERY_DEFECT.ENTRY_DOES_NOT_REFERENCE_OBJECT));
+  rmSync(f.dir, { recursive: true, force: true });
+});
+
+test('verification detects a tampered recovery record', () => {
+  const f = recoveryFixture();
+  const r = buildRecoveryAssociation({
+    ciphertextHash: f.ch, currentSpoolObjectPath: f.objPath, supersededEntryPath: f.entryPath,
+    supersededLedgerAuthority: '/s', supersessionEvent: {}, recoverySoftwareSha: 'sha256:x',
+  });
+  const tampered = { ...r.record, supersededEntryTimestamp: '1999-01-01T00:00:00Z' };
+  assert.equal(verifyRecoveryAssociation(tampered).verified, false);
+  rmSync(f.dir, { recursive: true, force: true });
+});
