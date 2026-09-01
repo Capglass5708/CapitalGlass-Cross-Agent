@@ -26,8 +26,8 @@ import {
   DESTINATION_HASH_CAPABILITY,
 } from '../context-ledger/lib/destination-exec.mjs';
 import {
-  EXPECTED_COUNTS, PROTECTED_SET_MEMBER, OBJECT_CLASS, CLOSURE_DEFECT,
-  PROVISIONAL_KEY_VERSION_STATE, verifyObjectClosure, describeProvisionalObject,
+  EXPECTED_COUNTS, ACCOUNTING_FROZEN, PROTECTED_SET_MEMBER, OBJECT_CLASS, CLOSURE_DEFECT,
+  RECOVERED_KEY_VERSION_STATE, verifyObjectClosure, describeRecoveredAssociation,
   keyVersionPopulation, buildProtectedSetManifest, assertManifestAccounting,
 } from '../context-ledger/lib/protected-set.mjs';
 
@@ -269,14 +269,18 @@ test('the ledger is a member of the protected set', () => {
   assert.equal(m.ledgerIsProtectedSetMember, true);
 });
 
-test('the population split is permanently explicit', () => {
-  assert.equal(EXPECTED_COUNTS.PRODUCTION_EXPECTED_COUNT, 13998);
-  assert.equal(EXPECTED_COUNTS.PROVISIONAL_EXPECTED_COUNT, 7);
-  assert.equal(EXPECTED_COUNTS.PRESERVATION_EXPECTED_COUNT, 14005);
+test('the frozen accounting keeps the historical figure separate from the total', () => {
+  assert.equal(EXPECTED_COUNTS.ORIGINAL_CURRENT_LEDGER_BOUND, 13998);
+  assert.equal(EXPECTED_COUNTS.RECOVERED_ASSOCIATIONS, 7);
+  assert.equal(EXPECTED_COUNTS.TOTAL_PROTECTED_OBJECTS, 14005);
   assert.equal(
-    EXPECTED_COUNTS.PRODUCTION_EXPECTED_COUNT + EXPECTED_COUNTS.PROVISIONAL_EXPECTED_COUNT,
-    EXPECTED_COUNTS.PRESERVATION_EXPECTED_COUNT,
+    EXPECTED_COUNTS.ORIGINAL_CURRENT_LEDGER_BOUND + EXPECTED_COUNTS.RECOVERED_ASSOCIATIONS,
+    EXPECTED_COUNTS.TOTAL_PROTECTED_OBJECTS,
   );
+  assert.equal(ACCOUNTING_FROZEN.frozen, true);
+  assert.equal(ACCOUNTING_FROZEN.RECOVERED_LEDGER_ASSOCIATIONS, 7);
+  assert.equal(ACCOUNTING_FROZEN.UNRESOLVED_PROVISIONAL_OBJECTS, 0);
+  assert.equal(ACCOUNTING_FROZEN.HISTORICAL_LEDGERS_REWRITTEN, 'NO');
 });
 
 test('a manifest whose counts disagree with the adjudication is refused', () => {
@@ -328,25 +332,29 @@ test('a resolvable key version with no custody pointer still fails', () => {
   assert.ok(c.defects.includes(CLOSURE_DEFECT.KEY_CUSTODY_POINTER_UNRESOLVABLE));
 });
 
-test('provisional orphans are preserved, not promoted, and never given a manufactured entry', () => {
-  const d = describeProvisionalObject({ ciphertextHash: 'sha256:orphan', objectPresent: true });
-  assert.equal(d.classification, OBJECT_CLASS.PROVISIONAL);
+test('an unrecovered object reports no current-ledger association and no manufactured entry', () => {
+  const d = describeRecoveredAssociation({ ciphertextHash: 'sha256:x', objectPresent: true });
+  assert.equal(d.classification, OBJECT_CLASS.RECOVERED_LEDGER_ASSOCIATION);
   assert.equal(d.objectPreserved, true);
-  assert.equal(d.ledgerAssociation, 'ABSENT');
-  assert.equal(d.ledgerAssociationIsEvidence, true);
+  assert.equal(d.currentLedgerAssociation, 'ABSENT');
   assert.equal(d.manufacturedLedgerEntry, false);
-  assert.equal(d.certifiedProduction, false);
-  assert.equal(d.keyVersionState, PROVISIONAL_KEY_VERSION_STATE.UNKNOWN);
+  assert.equal(d.historicalLedgersRewritten, false);
+  assert.equal(d.keyVersionState, RECOVERED_KEY_VERSION_STATE.UNKNOWN);
 });
 
-test('a provisional key version is reported only when other evidence supplies it', () => {
-  const d = describeProvisionalObject({
-    ciphertextHash: 'sha256:orphan', objectPresent: true,
-    keyVersionEvidence: { keyVersion: 'v1', source: 'capture-batch-manifest' },
+test('a recovered object points at the preserved entry and is never folded into the 13,998', () => {
+  const d = describeRecoveredAssociation({
+    ciphertextHash: 'sha256:x', objectPresent: true,
+    recoveryRecord: {
+      recoveryRecordId: 'sha256:rid', supersededLedgerEntryHash: 'sha256:eh',
+      provenFromPreservedEntry: { encryption: { keyVersion: 'v1' } },
+    },
   });
-  assert.equal(d.keyVersionState, PROVISIONAL_KEY_VERSION_STATE.KNOWN_FROM_OTHER_EVIDENCE);
-  assert.equal(d.keyVersion, 'v1');
-  assert.equal(d.keyVersionEvidenceSource, 'capture-batch-manifest');
+  assert.equal(d.currentLedgerAssociation, 'RECOVERED');
+  assert.equal(d.historicalAssociationRepresentedBy, 'PRESERVED_SUPERSEDED_LEDGER_ENTRY');
+  assert.equal(d.keyVersionState, RECOVERED_KEY_VERSION_STATE.KNOWN_FROM_PRESERVED_ENTRY);
+  assert.equal(d.countedInOriginalCurrentLedgerBound, false);
+  assert.equal(d.manufacturedLedgerEntry, false);
 });
 
 test('key version population counts by version and reports unknowns separately', () => {

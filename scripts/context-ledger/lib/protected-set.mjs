@@ -25,15 +25,39 @@
 import { sha256Prefixed, canonicalJson } from './canonical.mjs';
 
 export const OBJECT_CLASS = {
-  PRODUCTION: 'PRODUCTION',
-  PROVISIONAL: 'PROVISIONAL',
+  ORIGINAL_CURRENT_LEDGER_BOUND: 'ORIGINAL_CURRENT_LEDGER_BOUND',
+  RECOVERED_LEDGER_ASSOCIATION: 'RECOVERED_LEDGER_ASSOCIATION',
 };
 
-/** Bound from the adjudicated reconciliation. Never recomputed here. */
+/**
+ * FROZEN accounting. Bound from the adjudicated reconciliation and the completed
+ * recovery pass; never recomputed here.
+ *
+ * The seven are no longer called orphans. Their bytes were never orphaned -- the
+ * CURRENT-ledger association was missing, and it has been recovered by pointing
+ * at the preserved superseded entry. Their original historical relationship
+ * continues to be represented by that preserved entry, not by anything inserted
+ * into either ledger.
+ *
+ * 13,998 is a HISTORICAL figure: the population originally bound to the current
+ * ledger before recovery. It is never rewritten to 14,005.
+ */
 export const EXPECTED_COUNTS = Object.freeze({
-  PRODUCTION_EXPECTED_COUNT: 13998,
-  PROVISIONAL_EXPECTED_COUNT: 7,
-  PRESERVATION_EXPECTED_COUNT: 14005,
+  ORIGINAL_CURRENT_LEDGER_BOUND: 13998,
+  RECOVERED_ASSOCIATIONS: 7,
+  TOTAL_PROTECTED_OBJECTS: 14005,
+});
+
+/** Accounting is frozen; reopening requires new contradictory evidence. */
+export const ACCOUNTING_FROZEN = Object.freeze({
+  frozen: true,
+  RECOVERED_LEDGER_ASSOCIATIONS: 7,
+  UNRESOLVED_PROVISIONAL_OBJECTS: 0,
+  RECOVERY_IDEMPOTENCE: 'PASS',
+  HISTORICAL_LEDGERS_REWRITTEN: 'NO',
+  OBJECT_BYTES_MISSING: 0,
+  ORPHAN_RECONCILIATION: 'PASS',
+  reopenCondition: 'New contradictory evidence only. Not a tidier formulation.',
 });
 
 export const PROTECTED_SET_MEMBER = Object.freeze([
@@ -56,7 +80,8 @@ export const CLOSURE_DEFECT = {
   KEY_CUSTODY_POINTER_UNRESOLVABLE: 'KEY_CUSTODY_POINTER_UNRESOLVABLE',
 };
 
-export const PROVISIONAL_KEY_VERSION_STATE = {
+export const RECOVERED_KEY_VERSION_STATE = {
+  KNOWN_FROM_PRESERVED_ENTRY: 'KNOWN_FROM_PRESERVED_ENTRY',
   KNOWN_FROM_OTHER_EVIDENCE: 'KNOWN_FROM_OTHER_EVIDENCE',
   UNKNOWN: 'UNKNOWN',
 };
@@ -143,20 +168,25 @@ function closure(checks, defects, keyVersion, custodyPointer) {
  * what is not: the object is preserved, the association is absent, and the key
  * version is never inferred.
  */
-export function describeProvisionalObject({ ciphertextHash, objectPresent, keyVersionEvidence = null }) {
+export function describeRecoveredAssociation({ ciphertextHash, objectPresent, recoveryRecord = null }) {
+  const enc = recoveryRecord?.provenFromPreservedEntry?.encryption ?? null;
   return {
     ciphertextHash,
-    classification: OBJECT_CLASS.PROVISIONAL,
+    classification: OBJECT_CLASS.RECOVERED_LEDGER_ASSOCIATION,
     objectPreserved: Boolean(objectPresent),
-    ledgerAssociation: 'ABSENT',
-    ledgerAssociationIsEvidence: true,
+    currentLedgerAssociation: recoveryRecord ? 'RECOVERED' : 'ABSENT',
+    historicalAssociationRepresentedBy: recoveryRecord ? 'PRESERVED_SUPERSEDED_LEDGER_ENTRY' : null,
+    supersededLedgerEntryHash: recoveryRecord?.supersededLedgerEntryHash ?? null,
+    recoveryRecordId: recoveryRecord?.recoveryRecordId ?? null,
+    // Nothing was inserted into either historical ledger.
     manufacturedLedgerEntry: false,
-    keyVersionState: keyVersionEvidence
-      ? PROVISIONAL_KEY_VERSION_STATE.KNOWN_FROM_OTHER_EVIDENCE
-      : PROVISIONAL_KEY_VERSION_STATE.UNKNOWN,
-    keyVersion: keyVersionEvidence?.keyVersion ?? null,
-    keyVersionEvidenceSource: keyVersionEvidence?.source ?? null,
-    certifiedProduction: false,
+    historicalLedgersRewritten: false,
+    keyVersionState: enc?.keyVersion
+      ? RECOVERED_KEY_VERSION_STATE.KNOWN_FROM_PRESERVED_ENTRY
+      : RECOVERED_KEY_VERSION_STATE.UNKNOWN,
+    keyVersion: enc?.keyVersion ?? null,
+    // Recovered, not promoted: it is not counted in the historical 13,998.
+    countedInOriginalCurrentLedgerBound: false,
   };
 }
 
@@ -188,9 +218,9 @@ export function buildProtectedSetManifest({
   cryptoMetadata = null,
 } = {}) {
   const counts = {
-    PRODUCTION_ACTUAL_COUNT: productionObjects.length,
-    PROVISIONAL_ACTUAL_COUNT: provisionalObjects.length,
-    PRESERVATION_ACTUAL_COUNT: productionObjects.length + provisionalObjects.length,
+    ORIGINAL_CURRENT_LEDGER_BOUND_ACTUAL: productionObjects.length,
+    RECOVERED_ASSOCIATIONS_ACTUAL: provisionalObjects.length,
+    TOTAL_PROTECTED_OBJECTS_ACTUAL: productionObjects.length + provisionalObjects.length,
     LEDGER_ENTRY_COUNT: ledgerEntries.length,
   };
   const members = {
@@ -224,16 +254,17 @@ export function assertManifestAccounting(manifest) {
   const c = manifest.counts;
   const e = EXPECTED_COUNTS;
   const problems = [];
-  if (c.PRODUCTION_ACTUAL_COUNT !== e.PRODUCTION_EXPECTED_COUNT) {
-    problems.push(`PRODUCTION ${c.PRODUCTION_ACTUAL_COUNT} != expected ${e.PRODUCTION_EXPECTED_COUNT}`);
+  if (c.ORIGINAL_CURRENT_LEDGER_BOUND_ACTUAL !== e.ORIGINAL_CURRENT_LEDGER_BOUND) {
+    problems.push(`ORIGINAL_CURRENT_LEDGER_BOUND ${c.ORIGINAL_CURRENT_LEDGER_BOUND_ACTUAL} != frozen ${e.ORIGINAL_CURRENT_LEDGER_BOUND}`);
   }
-  if (c.PROVISIONAL_ACTUAL_COUNT !== e.PROVISIONAL_EXPECTED_COUNT) {
-    problems.push(`PROVISIONAL ${c.PROVISIONAL_ACTUAL_COUNT} != expected ${e.PROVISIONAL_EXPECTED_COUNT}`);
+  if (c.RECOVERED_ASSOCIATIONS_ACTUAL !== e.RECOVERED_ASSOCIATIONS) {
+    problems.push(`RECOVERED_ASSOCIATIONS ${c.RECOVERED_ASSOCIATIONS_ACTUAL} != frozen ${e.RECOVERED_ASSOCIATIONS}`);
   }
-  if (c.PRESERVATION_ACTUAL_COUNT !== e.PRESERVATION_EXPECTED_COUNT) {
-    problems.push(`PRESERVATION ${c.PRESERVATION_ACTUAL_COUNT} != expected ${e.PRESERVATION_EXPECTED_COUNT}`);
+  if (c.TOTAL_PROTECTED_OBJECTS_ACTUAL !== e.TOTAL_PROTECTED_OBJECTS) {
+    problems.push(`TOTAL_PROTECTED_OBJECTS ${c.TOTAL_PROTECTED_OBJECTS_ACTUAL} != frozen ${e.TOTAL_PROTECTED_OBJECTS}`);
   }
-  if (manifest.provisionalPromotedToProduction) problems.push('provisional objects promoted into production');
+  // The historical 13,998 must never be restated as 14,005.
+  if (manifest.provisionalPromotedToProduction) problems.push('recovered associations folded into the historical 13,998');
   if (problems.length) {
     const err = new Error('PROTECTED_SET_ACCOUNTING_REFUSED');
     err.problems = problems;
