@@ -1,0 +1,43 @@
+{
+  "receiptVersion": "lane-closure-v1",
+  "workPackageId": "immutable-context-ledger-v1",
+  "lane": "PRESERVE_HISTORY_PROMOTE_CLEAN_FORWARD_STATE",
+  "closedAt": "2026-09-01T01:48:16Z",
+  "closedBy": "operator ruling",
+  "branchHead": "f8bede4ccdc9968d4b1878f8535764751e3b7668",
+
+  "verdicts": {
+    "CLEAN_FORWARD_PROMOTION": "PASS",
+    "HISTORICAL_COMMIT_IMMUTABILITY": "PASS",
+    "HISTORICAL_LOCAL_RECOVERABILITY": "PASS",
+    "PUSH_PROTECTION_BYPASS": "NONE",
+    "QUANTITATIVE_PROSE_BINDING": "PASS",
+    "SECRET_FIXTURE_REMEDIATION": "PASS",
+    "OFFHOST_HISTORICAL_EVIDENCE_DURABILITY": "NOT_YET_PROVEN",
+    "PRIMARY_STORAGE_TARGET": "ABSENT",
+    "FULL_PRODUCTION_REPLICATION": "BLOCKED",
+    "ESTATE_WIDE_CAPTURE_COMPLETENESS_V1": "BLOCKED"
+  },
+
+  "settledDoNotReopen": [
+    "capture",
+    "crypto",
+    "deduplication",
+    "accounting",
+    "quantitative-prose emitter binding",
+    "historical Git lineage"
+  ],
+  "reopenCondition": "Only if new evidence actually invalidates one of the proofs above. Not for a better formulation, a tidier receipt, or an adjacent improvement.",
+
+  "nextMission": {
+    "id": "CG_IMMUTABLE_CONTEXT_STORAGE_AUTHORITY_V1",
+    "scope": "storage authority only",
+    "blockedItemsItResolves": [
+      "OFFHOST_HISTORICAL_EVIDENCE_DURABILITY",
+      "PRIMARY_STORAGE_TARGET",
+      "FULL_PRODUCTION_REPLICATION",
+      "ESTATE_WIDE_CAPTURE_COMPLETENESS_V1"
+    ],
+    "rationale": "One canonical storage system closes both the 17,668-object durability gap and the historical bundle durability gap, instead of creating another special-purpose exception."
+  }
+}
