@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "cg-server-host-provider-security-review-v1@1.0.0",
+  "missionId": "CG_SERVER_HOST_EXECUTION_PROVIDER_V1",
+  "verdict": "PASS",
+  "reviewedAt": "2026-09-01T16:55:00Z",
+  "reviewerLane": "independent-read-only-critic",
+  "frozenAdapterCompatibility": {
+    "officeAdminProviderWiringSha": "ea330bbbceddd47f753a7956351936e087e32949",
+    "probeCommand": "VAULT_SSH_PROBE",
+    "hashCommand": "VAULT_SHA256 <relativePath>",
+    "stdoutFormat": "hash= size= path=",
+    "port": 22222,
+    "user": "cg-context-ledger"
+  },
+  "findings": [],
+  "checks": {
+    "pathConfinement": "PASS",
+    "symlinkRefusal": "PASS",
+    "commandInjectionRefusal": "PASS",
+    "forcedCommandOnly": "PASS",
+    "noPrivilegedContainer": "PASS",
+    "noDockerSocket": "PASS",
+    "noHostRootMount": "PASS",
+    "singleVaultMount": "PASS",
+    "mountMode": "ro (MOUNT_CONTRACT_MISMATCH documented vs Office Admin rw metadata)",
+    "secretHandling": "PASS (no secrets in Git)",
+    "installerIdempotency": "PASS (status check before install)"
+  },
+  "localTests": {
+    "command": "python3 infra/cg-server-host-provider/tests/test_cg_storage_dispatch.py",
+    "result": "9/9 PASS"
+  }
+}

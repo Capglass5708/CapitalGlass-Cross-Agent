@@ -1,0 +1,18 @@
+# container-dispatch HostExecutionProvider — CG-SERVER port 22222
+services:
+  cg-server-host-provider:
+    build: .
+    image: cg-server-host-provider:1
+    container_name: cg-server-host-provider
+    restart: unless-stopped
+    ports:
+      - "22222:22"
+    volumes:
+      - "/volume1/Capital Glass/Capital-Glass-AI-Evidence-Vault:/vault:ro"
+      - "./authorized_keys:/config/authorized_keys:ro"
+    environment:
+      CG_VAULT_ROOT: /vault
+      CG_VAULT_UID: "1031"
+      CG_VAULT_GID: "100"
+    security_opt:
+      - no-new-privileges:true
