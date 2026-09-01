@@ -1,0 +1,692 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "capital-glass-cross-agent/context-ledger/estate-capture-completeness-v1.schema.json",
+  "title": "EstateCaptureCompletenessProof",
+  "description": "Multi-source estate capture accounting. SIBLING OF capture-completeness-v1, NOT a replacement and NOT a relaxation of it. capture-completeness-v1 pins scope.sourceSystem to the const 'claude-code' and scope.singleSessionOnly to the const true, and classifies records with a transcript-specific vocabulary (messageNodes, uuidNodes, dagEdges, toolCalls, subagentReferences). Those consts are scope locks, and loosening them in place would silently redefine a proof that has already been passed; forcing markdown or repository text into dagEdges would make the class vocabulary meaningless. This contract therefore adds a SECOND judge for the facts the first cannot express: many source systems in one accounting, and NON-CAPTURE TERMINAL STATES -- most importantly QUARANTINED_SECRET, where the correct outcome is that the bytes were never captured at all. What is inherited unchanged: equality by COUNT and by SET, per class, zero unaccounted, and no percentage threshold anywhere. 99.999% is FAIL here too.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "recordedAt",
+    "run",
+    "keyAuthority",
+    "censusIndependence",
+    "classes",
+    "archivedReconciliation",
+    "quarantine",
+    "ledgerReadback",
+    "storageAuthority",
+    "verdict",
+    "encryptAtRest"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "estate-capture-completeness-v1@1.0.0"
+    },
+    "recordedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "run": {
+      "type": "object",
+      "required": [
+        "runId",
+        "mode",
+        "machineId",
+        "workPackageId",
+        "startedAt",
+        "completedAt"
+      ],
+      "properties": {
+        "runId": {
+          "type": "string"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "REAL",
+            "FIXTURE"
+          ],
+          "description": "FIXTURE runs prove software behaviour only. A FIXTURE run may never be presented as production acceptance evidence, which is why the mode travels inside the proof rather than alongside it."
+        },
+        "machineId": {
+          "type": "string"
+        },
+        "workPackageId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "startedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "completedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "vaultRoot": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "spoolRoot": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "selectionPolicy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "How REQUIRED_CAPTURE was chosen from the census. Declared BEFORE capture so a sample cannot be reverse-fitted to whatever succeeded."
+        },
+        "productionRun": {
+          "type": "boolean",
+          "description": "False when a cap or class filter bounded the run. A sampled run may never be presented as estate-wide completeness."
+        }
+      },
+      "additionalProperties": false
+    },
+    "keyAuthority": {
+      "type": "object",
+      "description": "Which key encrypted this run's evidence. A test-only key proves software behaviour and NOTHING about production acceptance; the two must be distinguishable by a reader who was not present.",
+      "required": [
+        "authority",
+        "keyRef",
+        "keyVersion",
+        "sourcedFrom"
+      ],
+      "properties": {
+        "authority": {
+          "type": "string",
+          "enum": [
+            "PRODUCTION",
+            "TEST_ONLY"
+          ]
+        },
+        "keyRef": {
+          "type": "string",
+          "description": "NAME of the key in the approved secret system. NEVER key material."
+        },
+        "keyVersion": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sourcedFrom": {
+          "type": "string",
+          "enum": [
+            "DOPPLER_ENV_INJECTION",
+            "TEST_LOCAL_RANDOM",
+            "UNAVAILABLE"
+          ]
+        },
+        "materialEverWrittenToDisk": {
+          "type": "boolean",
+          "const": false
+        },
+        "materialEverLogged": {
+          "type": "boolean",
+          "const": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "censusIndependence": {
+      "type": "object",
+      "description": "The capture funnel may not generate the expectation it is judged against. Shared low-level filesystem primitives are fine; shared record-classification logic is not, because both lanes would then omit the same source identically and agree perfectly about nothing.",
+      "required": [
+        "censusModule",
+        "captureModule",
+        "sharesClassificationLogic"
+      ],
+      "properties": {
+        "censusModule": {
+          "type": "string"
+        },
+        "captureModule": {
+          "type": "string"
+        },
+        "sharesClassificationLogic": {
+          "type": "boolean",
+          "const": false
+        },
+        "sharedPrimitives": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "classes": {
+      "type": "array",
+      "minItems": 1,
+      "description": "One entry per declared source class. A class with no sources still appears: a measured zero and an unexamined class are different facts and must never collapse into the same row.",
+      "items": {
+        "type": "object",
+        "required": [
+          "sourceClass",
+          "sourceSystem",
+          "censusStatus",
+          "discovered",
+          "required",
+          "archived",
+          "quarantined",
+          "refused",
+          "unaccounted",
+          "byTerminal",
+          "byMilestone",
+          "classComplete"
+        ],
+        "properties": {
+          "sourceClass": {
+            "type": "string"
+          },
+          "sourceSystem": {
+            "type": "string",
+            "enum": [
+              "claude-code",
+              "cursor",
+              "chatgpt",
+              "git",
+              "waverunner",
+              "documents",
+              "human"
+            ]
+          },
+          "censusStatus": {
+            "type": "string",
+            "enum": [
+              "CENSUS_COMPLETE",
+              "CENSUS_FAILED",
+              "CENSUS_NOT_RUN"
+            ]
+          },
+          "censusNote": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "discovered": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0,
+            "description": "NULL means the census did not complete. It is never 0 in that case -- turning 'we did not look' into 'there was nothing' is the single most dangerous coercion in an accounting system, because every downstream sum then reconciles against a fiction."
+          },
+          "required": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "notRequired": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "archived": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0,
+            "description": "Reached RETRIEVABLE. Not 'written' -- reconstructed and re-hashed."
+          },
+          "quarantined": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "refused": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0,
+            "description": "All non-capture terminals for REQUIRED_CAPTURE sources, quarantine included."
+          },
+          "unaccounted": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0,
+            "description": "REQUIRED_CAPTURE sources with no terminal state. Any non-zero value FAILS the proof: this is the silent disappearance the whole contract exists to make impossible."
+          },
+          "unterminated": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "terminated": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "byTerminal": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "description": "Count per terminal state. Every discovered source lands in exactly one."
+          },
+          "byMilestone": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "description": "Count per achieved milestone: DISCOVERED, CAPTURE_ATTEMPTED, CAPTURED, HASHED, PROVENANCE_BOUND, RETRIEVABLE. Monotonically non-increasing down the ladder."
+          },
+          "requiredSetHash": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^sha256:[a-f0-9]{64}$"
+          },
+          "terminatedSetHash": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^sha256:[a-f0-9]{64}$",
+            "description": "MUST equal requiredSetHash. Counts alone would let one lost source and one duplicated source cancel out."
+          },
+          "archivedSetHash": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^sha256:[a-f0-9]{64}$"
+          },
+          "quarantinedSetHash": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^sha256:[a-f0-9]{64}$"
+          },
+          "duplicateSourceIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "classComplete": {
+            "type": "boolean"
+          },
+          "failures": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "byTerminalClass": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "description": "Count per FINAL terminal class: CAPTURED, QUARANTINED_SECRET, EXCLUDED_WITH_REASON, FAILED_WITH_REASON, NOT_APPLICABLE. Every discovered source lands in exactly one."
+          },
+          "capOnlyDeferrals": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0,
+            "description": "Sources excluded ONLY because a run cap said so. A cap is a way to bound a test, not a reason a source was left out of the archive. MUST be 0 in a production matrix."
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "archivedReconciliation": {
+      "type": "object",
+      "description": "Three-way equality over what SHOULD be in the archive: discovered REQUIRED_CAPTURE minus explicitly-refused. Expected is not 'everything discovered' -- that would count a correctly-quarantined credential as a loss and make the safe outcome look like a bug. The refusal list is part of the proof, so nothing can be quietly moved into it afterwards.",
+      "required": [
+        "counts",
+        "expectedSetHash",
+        "capturedSetHash",
+        "ledgerSetHash",
+        "equal",
+        "refusedCount"
+      ],
+      "properties": {
+        "counts": {
+          "type": "object",
+          "required": [
+            "expected",
+            "captured",
+            "ledger"
+          ],
+          "properties": {
+            "expected": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "captured": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "ledger": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "expectedSetHash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "capturedSetHash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "ledgerSetHash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "countsEqual": {
+          "type": "boolean"
+        },
+        "setsEqual": {
+          "type": "boolean"
+        },
+        "equal": {
+          "type": "boolean"
+        },
+        "countsMaskedADiscrepancy": {
+          "type": "boolean",
+          "description": "Equal counts with unequal sets: the offsetting-error signature."
+        },
+        "refusedCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "missingCapturedRecords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "duplicateCapturedRecords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "missingLedgerObservations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "quarantine": {
+      "type": "object",
+      "description": "The safety side of the accounting, checked against the PERSISTED registers rather than the pipeline's own bookkeeping. Asking the capture path whether it captured a quarantined source is asking the accused.",
+      "required": [
+        "registerVerified",
+        "registerCount",
+        "registerChainLength",
+        "ledgerCrossCheckClean",
+        "violations"
+      ],
+      "properties": {
+        "registerVerified": {
+          "type": "boolean"
+        },
+        "registerCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "registerChainLength": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "ledgerCrossCheckClean": {
+          "type": "boolean",
+          "description": "No quarantined source identity or path appears anywhere in the evidence ledger."
+        },
+        "detectorIdsObserved": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "violations": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "distinctRefusals": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "description": "Distinct refusals by refusalId. Equals registerCount unless a replay recorded the same refusal twice."
+        },
+        "duplicateRefusals": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "description": "Refusals recorded more than once. Non-zero means a replay manufactured evidence of a credential being found again, and fails register verification."
+        }
+      },
+      "additionalProperties": false
+    },
+    "ledgerReadback": {
+      "type": "object",
+      "description": "The third side of the equation is read back from the persisted ledger. Using the in-memory objects that were about to be written proves only that the writer agrees with itself.",
+      "required": [
+        "readFromPersistedLayer",
+        "ledgerRoot",
+        "observationCount",
+        "chainVerified"
+      ],
+      "properties": {
+        "readFromPersistedLayer": {
+          "type": "boolean",
+          "const": true
+        },
+        "ledgerRoot": {
+          "type": "string"
+        },
+        "observationCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "chainVerified": {
+          "type": "boolean"
+        },
+        "chainLength": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "entriesSchemaValid": {
+          "type": "boolean"
+        },
+        "schemaViolationCount": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "storageAuthority": {
+      "type": "object",
+      "description": "Durability is a SEPARATE claim from capture completeness and is kept in its own object so no reader can infer one from the other. Software capture being complete says nothing about whether anything is durably stored. status is PROVEN only when EVERY archived object reached FULLY_PROTECTED; a canary alone yields NOT_PROVEN with scope CANARY_ONLY_REPLICATION_PATH_PROVEN.",
+      "required": [
+        "status",
+        "primaryVerified",
+        "backupVerified",
+        "fullyProtectedCount",
+        "reason"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "PROVEN",
+            "NOT_PROVEN"
+          ]
+        },
+        "primaryVerified": {
+          "type": "boolean"
+        },
+        "backupVerified": {
+          "type": "boolean"
+        },
+        "fullyProtectedCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Entries at FULLY_PROTECTED. Requires plaintext, primary and backup hashes all equal AND both legs on real remote transports."
+        },
+        "highestObservedDurabilityState": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "CAPTURED_LOCAL",
+            "HASHED_ENCRYPTED",
+            "PRIMARY_VERIFIED",
+            "BACKUP_VERIFIED",
+            "FULLY_PROTECTED",
+            "INTEGRITY_INCIDENT",
+            null
+          ]
+        },
+        "retrievalScope": {
+          "type": "string",
+          "enum": [
+            "RETRIEVABLE_FROM_LOCAL_SPOOL",
+            "RETRIEVABLE_FROM_VERIFIED_REMOTE"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string",
+          "enum": [
+            "NO_OBJECT_REPLICATED",
+            "CANARY_ONLY_REPLICATION_PATH_PROVEN",
+            "ALL_ARCHIVED_OBJECTS_REPLICATED"
+          ],
+          "description": "Which claim the durability evidence actually supports. A proven replication PATH is not a replicated ARCHIVE, and one FULLY_PROTECTED canary must never read as durability for every object."
+        },
+        "archivedObjects": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "verdict": {
+      "type": "string",
+      "enum": [
+        "ESTATE_CAPTURE_COMPLETE",
+        "ESTATE_CAPTURE_INCOMPLETE",
+        "ESTATE_SOURCE_CENSUS_UNRESOLVED"
+      ],
+      "description": "No degraded PASS, no percentage PASS. ESTATE_CAPTURE_COMPLETE requires every class complete, zero unaccounted, set equality on the archived reconciliation, a verified quarantine register, a clean quarantine/ledger cross-check, and a persisted-layer ledger readback with a walked chain."
+    },
+    "failures": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "accountingTablePath": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Per-source accounting table. Never inside Git."
+    },
+    "notes": {
+      "type": "string"
+    },
+    "encryptAtRest": {
+      "type": "object",
+      "description": "Encrypt-first evidence. The write-ahead spool holds CIPHERTEXT only; admitted plaintext is never persisted. Transient plaintext during processing is unavoidable, durable plaintext is a choice, and this object records which one is true.",
+      "required": [
+        "spoolPayload",
+        "plaintextAtRest",
+        "objectsAudited"
+      ],
+      "properties": {
+        "spoolPayload": {
+          "type": "string",
+          "const": "CIPHERTEXT"
+        },
+        "plaintextAtRest": {
+          "type": "string",
+          "enum": [
+            "NONE_FOR_PRODUCTION_CAPTURE",
+            "PLAINTEXT_PRESENT"
+          ],
+          "description": "Determined by auditing the BYTES of every object at rest, not by trusting the writer: an AES-GCM blob is indistinguishable from random, so a predominantly printable object is plaintext whatever a receipt claims."
+        },
+        "objectsAudited": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "plaintextSuspects": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "legacyPlaintextFound": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "legacyPlaintextVerifiedReplaced": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "legacyPlaintextRemoved": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "legacyPlaintextRetained": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Legacy plaintext objects whose encrypted replacement could NOT be proven. These are deliberately kept: losing evidence to fix a safety defect is worse than the defect."
+        },
+        "removalEvidence": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "capital-glass-cross-agent/context-ledger/replication-batch-v1.schema.json",
+  "title": "ContextLedgerReplicationBatch",
+  "description": "An auditable unit of spool -> Evidence Vault replication. A transfer must never be an invisible filesystem side effect: every batch is durable evidence of what moved, when, and whether it verified. Sized so that a NAS outage leaves an explainable queue rather than an unbounded backlog.",
+  "type": "object",
+  "required": [
+    "schemaVersion", "batchId", "sourceMachine", "createdAt", "entryCount", "totalBytes",
+    "manifestHash", "localRoot", "remoteRoot", "batchState"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "replication-batch-v1@1.0.0" },
+
+    "batchId": {
+      "type": "string",
+      "description": "Deterministic and sortable, e.g. batch-<ISO8601>-<shortManifestHash>. Stable across retries of the SAME content."
+    },
+    "sourceMachine": { "type": "string", "description": "Canonical machine identity, e.g. CG-NIMO-01." },
+    "createdAt": { "type": "string", "format": "date-time" },
+
+    "entryCount": { "type": "integer", "minimum": 0, "description": "Number of evidence ledger entries in this batch." },
+    "totalBytes": { "type": "integer", "minimum": 0 },
+    "manifestHash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "sha256 over the canonical batch manifest (the ordered list of contentHash + relative path). Identifies the batch content independent of transport."
+    },
+
+    "localRoot": { "type": "string", "description": "WSL ext4 spool root this batch was drawn from." },
+    "remoteRoot": {
+      "type": "string",
+      "description": "Vault root on the NAS, expressed as a registered storage-root id plus path -- NEVER a /mnt/z drvfs path. Machine ingestion must not traverse the Windows mapping."
+    },
+
+    "transport": {
+      "type": "object",
+      "description": "How the bytes actually moved. Recorded so a slow or failed batch is diagnosable after the fact.",
+      "properties": {
+        "mechanism": { "type": "string", "enum": ["ssh-rsync", "cifs-mount", "OTHER"] },
+        "remoteHost": { "type": "string" },
+        "identity": { "type": "string", "description": "Service account used, e.g. cg-context-ledger. Never a credential value." },
+        "throughputBytesPerSecond": { "type": ["number", "null"] },
+        "attempt": { "type": "integer", "minimum": 1 },
+        "resumedFromBatchId": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+
+    "transferStartedAt": { "type": ["string", "null"], "format": "date-time" },
+    "transferCompletedAt": { "type": ["string", "null"], "format": "date-time" },
+    "verificationCompletedAt": { "type": ["string", "null"], "format": "date-time" },
+
+    "verifiedCount": {
+      "type": "integer", "minimum": 0,
+      "description": "Entries whose REMOTE re-hash equals the local contentHash. Only these may advance to VERIFIED."
+    },
+    "failedCount": { "type": "integer", "minimum": 0 },
+    "failures": {
+      "type": "array",
+      "description": "Never collapsed to a count alone -- a failure must name what did not land.",
+      "items": {
+        "type": "object",
+        "required": ["contentHash", "failureCode"],
+        "properties": {
+          "contentHash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+          "failureCode": {
+            "type": "string",
+            "enum": [
+              "TRANSFER_FAILED", "REMOTE_HASH_MISMATCH", "REMOTE_MISSING",
+              "REMOTE_UNREACHABLE", "PERMISSION_DENIED", "CAPACITY_EXCEEDED", "OTHER"
+            ]
+          },
+          "detail": { "type": ["string", "null"], "description": "Never contains evidence payload." }
+        },
+        "additionalProperties": false
+      }
+    },
+
+    "batchState": {
+      "type": "string",
+      "enum": ["PENDING", "TRANSFERRING", "TRANSFERRED", "VERIFYING", "VERIFIED", "PARTIAL", "FAILED", "ABANDONED"],
+      "description": "VERIFIED requires verifiedCount === entryCount AND failedCount === 0. PARTIAL is a real terminal-ish state and must not be reported as success."
+    },
+
+    "integrityEvent": {
+      "type": ["object", "null"],
+      "description": "Set when a previously VERIFIED object later fails re-hash. A mutated blob is a major integrity event, never a silent new truth.",
+      "properties": {
+        "detectedAt": { "type": "string", "format": "date-time" },
+        "contentHash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+        "observedHash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+        "severity": { "type": "string", "const": "CRITICAL" }
+      },
+      "additionalProperties": false
+    },
+
+    "spoolRetention": {
+      "type": "object",
+      "description": "The local spool copy may only be aged out after remote verification.",
+      "properties": {
+        "eligibleForAgeOut": { "type": "boolean" },
+        "agedOutAt": { "type": ["string", "null"], "format": "date-time" },
+        "policyRef": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

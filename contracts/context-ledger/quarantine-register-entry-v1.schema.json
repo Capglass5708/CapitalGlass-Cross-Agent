@@ -1,0 +1,210 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "capital-glass-cross-agent/context-ledger/quarantine-register-entry-v1.schema.json",
+  "title": "ContextLedgerQuarantineRegisterEntry",
+  "description": "One hash-chained record of a source REFUSED at pre-admission because it carried credential material. WHY THIS IS A SEPARATE CONTRACT RATHER THAN AN evidence-ledger-entry WITH redactionState=QUARANTINED_SECRET: that entry requires contentHash, encryption.plaintextHash, encryption.ciphertextHash and a storageLocator, and every one of those can only be produced by admitting the bytes. Representing a refusal there would force exactly the capture the refusal exists to prevent. This register therefore records METADATA ONLY -- never content, never a content hash, never a digest of a matched value, never the surrounding bytes. A digest of a secret is a confirmation oracle for anyone holding a candidate, so 'we only stored the hash' is not a defence and is refused here by contract. The register is appended with the SAME compare-and-swap hash chain as the evidence ledger, pointed at its own root, so a refusal is exactly as tamper-evident as a capture. Absence of a source from the evidence ledger plus presence here is the complete, auditable account of what happened to it.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "seq",
+    "prevHash",
+    "entryHash",
+    "recordedAt",
+    "refusalId",
+    "disposition",
+    "payloadCaptured",
+    "contentHashWithheld",
+    "sourceSystem",
+    "sourceClass",
+    "sourcePath",
+    "byteSize",
+    "detectedAt",
+    "machineId",
+    "scannerVersion",
+    "detection",
+    "remediation"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "quarantine-register-entry-v1@1.0.0"
+    },
+    "seq": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Ordering assistance only, exactly as in the evidence ledger. Identity is entryHash."
+    },
+    "prevHash": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "entryHash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "recordedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "refusalId": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "Stable identity of THIS refusal, derived from METADATA ONLY: source path, byte size, mtime, scanner version, and the offsets/lengths of the findings. Never from the file's bytes and never from a matched value, so it cannot serve as a confirmation oracle -- which is exactly why the obvious identity, a content hash, is refused here. It exists so re-scanning an unchanged source binds to the existing record instead of appending a second one; without it the register grows by the entire quarantine set on every run and reads as though the same credential were found again and again."
+    },
+    "disposition": {
+      "type": "string",
+      "const": "QUARANTINED_SECRET",
+      "description": "A terminal NON-CAPTURE state. Not a degraded capture, not a failure, and never counted toward captured totals."
+    },
+    "payloadCaptured": {
+      "type": "boolean",
+      "const": false,
+      "description": "MUST be false. Asserted rather than implied so that a verifier can refuse the record instead of inferring safety from the absence of other fields."
+    },
+    "contentHashWithheld": {
+      "type": "boolean",
+      "const": true,
+      "description": "MUST be true. No contentHash exists for this source anywhere in the archive, by design."
+    },
+    "sourceSystem": {
+      "type": "string",
+      "enum": [
+        "claude-code",
+        "cursor",
+        "chatgpt",
+        "git",
+        "waverunner",
+        "documents",
+        "human"
+      ]
+    },
+    "sourceClass": {
+      "type": "string",
+      "description": "Discovery class that owned this source, e.g. claude-code-preserved."
+    },
+    "sourceRootId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sourcePath": {
+      "type": "string",
+      "description": "Where the credential material lives NOW. This is remediation-critical: a refusal a human cannot act on is only half a control."
+    },
+    "relativePath": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "byteSize": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "sourceMtime": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "detectedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "machineId": {
+      "type": "string"
+    },
+    "scannerVersion": {
+      "type": "string",
+      "description": "Which detector version made this decision. A later version with different coverage must be distinguishable, or a re-scan cannot be reasoned about."
+    },
+    "detection": {
+      "type": "object",
+      "required": [
+        "findingCount",
+        "detectorIds",
+        "highestSeverity",
+        "findings"
+      ],
+      "properties": {
+        "findingCount": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "detectorIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "countsByDetector": {
+          "type": "object"
+        },
+        "highestSeverity": {
+          "type": "string",
+          "enum": [
+            "CRITICAL",
+            "HIGH",
+            "MEDIUM"
+          ]
+        },
+        "findings": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Location and shape only. additionalProperties:false is the enforcement point -- it is what makes it impossible to add a 'valueSample' or 'valueHash' field later without changing the contract in public.",
+          "items": {
+            "type": "object",
+            "required": [
+              "detectorId",
+              "severity",
+              "offset",
+              "length",
+              "redacted"
+            ],
+            "properties": {
+              "detectorId": {
+                "type": "string"
+              },
+              "severity": {
+                "type": "string",
+                "enum": [
+                  "CRITICAL",
+                  "HIGH",
+                  "MEDIUM"
+                ]
+              },
+              "offset": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "length": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "redacted": {
+                "type": "string",
+                "const": "[REDACTED]"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "remediation": {
+      "type": "string",
+      "description": "The required human action. Re-admission is never automatic: a detector that could clear its own finding would make quarantine advisory."
+    }
+  },
+  "additionalProperties": false
+}

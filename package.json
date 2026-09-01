@@ -2,7 +2,7 @@
   "name": "capital-glass-cross-agent",
   "private": true,
   "type": "module",
-  "description": "Capital Glass coordination repo \u2014 harvest authority tooling",
+  "description": "Capital Glass coordination repo — harvest authority tooling",
   "scripts": {
     "harvest:sync-derived": "node scripts/harvest/sync-derived.mjs",
     "harvest:sync-z-mirror": "node scripts/harvest/sync-z-harvest-mirror.mjs",
@@ -107,7 +107,13 @@
     "test:intelligence-unified-receipt": "node scripts/tests/run-unified-mission-receipt.test.mjs",
     "test:intelligence": "npm run test:intelligence-contracts && npm run test:intelligence-ingest && npm run test:intelligence-first-real-mission && npm run test:intelligence-verification && npm run test:intelligence-correlation-markers && npm run test:intelligence-correlate && npm run test:intelligence-semantic-w1 && npm run test:intelligence-relationship-registry && npm run test:intelligence-preflight && npm run test:intelligence-hot-ai-cache && npm run test:intelligence-mission-graph && npm run test:intelligence-goldmine && npm run test:intelligence-unified-receipt",
     "intelligence:preflight": "node scripts/intelligence/preflight.mjs",
-    "goldmine": "node scripts/harvest/goldmine.mjs"
+    "goldmine": "node scripts/harvest/goldmine.mjs",
+    "test:secret-detector": "node --test scripts/tests/run-secret-detector.test.mjs",
+    "test:quantitative-prose-binding": "node --test scripts/tests/run-quantitative-prose-binding.test.mjs",
+    "test:estate-capture": "node --test scripts/tests/run-estate-capture.test.mjs",
+    "test:estate-completeness": "node --test scripts/tests/run-estate-completeness.test.mjs",
+    "test:context-ledger-worker": "node --test scripts/tests/run-context-ledger-worker.test.mjs",
+    "test:capture-completeness": "node --test scripts/tests/run-capture-completeness.test.mjs"
   },
   "devDependencies": {
     "ajv": "^8.20.0",
