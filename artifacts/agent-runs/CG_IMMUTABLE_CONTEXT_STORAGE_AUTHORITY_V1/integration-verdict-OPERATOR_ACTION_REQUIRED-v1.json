@@ -1,0 +1,130 @@
+{
+  "receiptVersion": "storage-authority-integration-verdict-v1",
+  "mission": "CG_IMMUTABLE_CONTEXT_STORAGE_AUTHORITY_V1",
+  "lane": "OPUS_INTEGRATOR",
+  "verdict": "OPERATOR_ACTION_REQUIRED",
+  "mutationPerformed": "NONE",
+  "haltedBefore": "Phase 1",
+  "contractClause": "If either lane returns CONFLICTED, stop before Phase 1. Neither Haiku nor Opus may select the winner.",
+
+  "laneResults": {
+    "laneA_storageAuthority": {
+      "CANONICAL_PRIMARY_AUTHORITY": "CONFLICTED",
+      "CANONICAL_BACKUP_AUTHORITY": "ABSENT",
+      "coverageDefect": "Lane A did not search /home/wesle/worktrees/CapitalGlass-Cross-Agent/context-ledger-phase0-storage. That root was omitted from its dispatch prompt by the integrator. The conflicting evidence lives there, so Lane A's conclusion rests on pre-provisioning sources only.",
+      "defectOwner": "integrator prompt, not the lane"
+    },
+    "laneB_transport": {
+      "NATIVE_REPLICATION_TRANSPORT": "CONFLICTED"
+    }
+  },
+
+  "primaryAuthorityConflict": {
+    "sameNameTwoObjects": {
+      "objectA": {
+        "what": "a FOLDER inside the //cg-server/Capital Glass SMB share",
+        "observedPath": "/mnt/z/Capital-Glass-AI-Evidence-Vault",
+        "created": "2026-08-30 19:45",
+        "contents": "README.md + control/ only",
+        "selfDeclaredStatus": "PROVISIONED ROOT - NOT YET IN PRODUCTION USE",
+        "governanceStatus": "explicitly demoted to staging by ADDENDUM 5: 'must not become canonical production authority'",
+        "immutability": "DISABLED",
+        "verifiedByIntegrator": true
+      },
+      "objectB": {
+        "what": "a DSM SHARE at /volume1 on the same host",
+        "claimedBy": "phase0-provision-result-v1.json and phase0-storage-infra-and-transport-ready-v1.json on branch work/context-ledger-phase0-storage-infra (c1efb97, unmerged)",
+        "wormSubvolMode": "enterprise",
+        "wormDefLockMode": "immutable",
+        "wormDefLockDurationSeconds": 7776000,
+        "wormLockWaitTime": 0,
+        "wormVerificationPass": true,
+        "serviceUser": "cg-context-ledger uid 1031, isAdmin false, effective RW",
+        "verifiedByIntegrator": "ARTIFACT_READ_ONLY - not independently confirmed against the live NAS"
+      },
+      "criticListDefectMatched": "directory name mistaken for authority"
+    },
+
+    "hostIdentityResolved": {
+      "question": "were the ABSENT finding and the EXISTS finding about different machines?",
+      "answer": "NO - same machine",
+      "evidence": "cg-server resolves to 100.112.81.50 (cg-server.tail49f063.ts.net), reachable, 34ms RTT. The Synology DS1525+ in the phase0 artifacts is that same host.",
+      "integratorNote": "This disproves the integrator's own initial wrong-host hypothesis. The conflict is real, not an addressing error."
+    },
+
+    "timeline": [
+      {"at": "2026-08-31T02:01:29Z", "artifact": "nas-governance-receipt-v1.json", "says": "NAS_GOVERNANCE_INSUFFICIENT; service account creation BLOCKED_BY_TOOLING; SSH key not installed", "branch": "both (identical file)"},
+      {"at": "2026-08-31T04:45:00Z", "artifact": "dsm-enterprise-worm-create-proof-v1.json", "says": "DSM_ENTERPRISE_WORM_CREATE_PROOF_PASS on disposable share CG-WORM-ENT-PROOF1", "branch": "phase0"},
+      {"at": "2026-08-31T05:52:00Z", "artifact": "phase0-authority-pass-v1.json", "says": "CG_CONTEXT_LEDGER_PHASE_0_TECHNICAL_PASS_GOVERNANCE_PENDING", "branch": "phase0"},
+      {"at": "2026-08-31T06:34:33Z", "artifact": "phase0-provision-result-v1.json", "says": "vaultShare.state=EXISTS, wormVerified=true, serviceUser.state=EXISTS", "branch": "phase0"},
+      {"at": "2026-08-31T07:39:13Z", "artifact": "phase0-security-state-regression-forensics-v1.json", "says": "root cause found, investigationFrozen, noNasMutationsPerformed", "branch": "phase0"},
+      {"at": "2026-08-31T07:55:07Z", "artifact": "phase0-storage-infra-and-transport-ready-v1.json", "says": "shares.vault.exists=true, wormVerification.pass=true, READY_FOR_REAL_PROOF", "branch": "phase0"},
+      {"at": "2026-08-31T23:32:05Z", "artifact": "reconciliation-truth-table-v1.json", "says": "PRIMARY_STORAGE_TARGET = ABSENT", "branch": "main lineage"}
+    ],
+    "structuralReading": "The 23:32 ABSENT verdict, and Lane A today, both rest on the 02:01 governance receipt and the main-branch runbook, which predate the 04:45-07:55 provisioning recorded on an unmerged branch. This is consistent with a stale finding rather than a governance disagreement - but the integrator does not rule on it.",
+    "decisiveUnverifiedFact": "Whether the DSM share Capital-Glass-AI-Evidence-Vault exists RIGHT NOW with enterprise WORM. Confirming it requires authenticated DSM API access against the live NAS - an outward action against production infrastructure that the integrator will not take unprompted.",
+    "integratorDoesNotSelect": true
+  },
+
+  "backupAuthority": {
+    "state": "ABSENT",
+    "bothLanesAgree": true,
+    "blocker": "NO_INDEPENDENT_SECOND_COPY - Hyper Backup absent, no replication task, ReplicationService installed but requires a second Synology target",
+    "consequence": "BACKUP_FAILURE_DOMAIN_CLASS cannot be computed. Phase 2 cannot pass on current infrastructure regardless of how the primary conflict resolves."
+  },
+
+  "transportConflict": {
+    "declared": "Synology FileStation HTTPS over Tailscale (primary) + SCP to wesleydesk (backup), DECISION_LOCKED",
+    "provenInIsolation": "phase0-synthetic-proof-v1.json - ciphertext hashes matched at both destinations",
+    "selectableFromDeployablePipeline": "NO",
+    "verifiedByIntegrator": {
+      "transportSelector": "context-ledger-v1.mjs:124 -> arg('legs','ssh')==='mount' ? mountLegs() : realLegs()",
+      "defaultPath": "SshRsyncTransport, whose put/verify/fetch each throw SSH_RSYNC_TRANSPORT_NOT_IMPLEMENTED_AWAITING_REAL_STORAGE (transport.mjs:70-75)",
+      "alternatePath": "MountedRemoteTransport over drvfs, whose immutabilityAuthority() returns NOT_PROVEN with reason DRVFS_CHMOD_UNSUPPORTED_WRITE_ONCE_NOT_ENFORCEABLE_BY_FILE_MODE",
+      "conclusion": "The proven transport is not reachable from the production pipeline; the reachable transports are a throwing stub and a non-immutable mount."
+    },
+    "classification": "INTEGRATION_GAP_NOT_GOVERNANCE_CONFLICT",
+    "note": "This is a build task, not an operator decision. It does not require a ruling - it requires wiring the proven FileStation/SCP adapters into the selector."
+  },
+
+  "phase0E_destinationHashExecution": {
+    "PRIMARY_DESTINATION_HASH_EXECUTION": "NOT_AVAILABLE",
+    "BACKUP_DESTINATION_HASH_EXECUTION": "NOT_AVAILABLE",
+    "evidence": "Every current path hashes locally after download: FileStation downloads to /tmp then hashes; SCP downloads then hashes; mount transport hashes the WSL-side read. The restricted SSH proof allowlists rsync but not sha256sum.",
+    "consequence": "Phase 0E fails as written. Verifying 14,005 objects would mean streaming the whole population back, which is both slow and weaker proof - exactly what Phase 0E exists to prevent."
+  },
+
+  "newFinding_keyVersionNotSelfDescribing": {
+    "severity": "MATERIAL",
+    "statement": "A stored ciphertext object is NOT self-describing as to key version.",
+    "evidence": "Blob layout is [12-byte nonce][16-byte authTag][ciphertext] (crypto.mjs:172-174). There is no version field in the object. keyVersion is recorded only in the ledger entry's encryption metadata (worker.mjs:139) or inferred from the key env var name (estate-api.mjs:42-44).",
+    "consequence": "An object separated from its ledger entry has no recoverable key version. Replicating objects to a durable store WITHOUT also durably replicating the ledger produces bytes that survive and cannot be opened - the DURABLE_BUT_UNDECRYPTABLE failure state the key-custody invariant exists to prevent.",
+    "correctsIntegratorsOwnContract": "Phase 5F as written says to derive key version by parsing the envelope. That is not possible. Phase 5F must read the ledger entry, and the ledger must therefore be inside the replicated, WORM-protected set - not merely alongside it.",
+    "alsoNote": "No standalone envelope-parse function exists. Only decryptObject (crypto.mjs:181-192) validates structure, and it requires the key. Phase 5E needs a key-free structural validator that does not yet exist."
+  },
+
+  "operatorActionRequired": {
+    "decision1": {
+      "question": "Does the DSM share Capital-Glass-AI-Evidence-Vault with enterprise WORM exist on cg-server today?",
+      "why": "Two dated artifact sets on the same host disagree, and the newer set is on an unmerged branch. Confirming it live requires authenticated DSM access against production."
+    },
+    "decision2": {
+      "question": "If it exists, is the unmerged branch work/context-ledger-phase0-storage-infra (c1efb97) the canonical storage authority?",
+      "why": "It carries the provisioning evidence. Until it is adjudicated, two authorities stand."
+    },
+    "decision3": {
+      "question": "Where does the backup live?",
+      "why": "ABSENT on current infrastructure. No second Synology or off-site target is deployed. This blocks full durability PASS regardless of decisions 1 and 2."
+    }
+  },
+
+  "notBlocked_buildWorkAvailableNow": [
+    "Wire the proven FileStation HTTPS + SCP adapters into the context-ledger-v1.mjs transport selector, replacing the throwing default",
+    "Implement a key-free context-ledger-crypto-v2 structural validator for Phase 5E",
+    "Establish destination-side hash execution so Phase 0E can pass",
+    "Bring the ledger into the protected replicated set so key version survives with the objects"
+  ],
+
+  "missionState": "CG_IMMUTABLE_CONTEXT_STORAGE_AUTHORITY_V1 = OPERATOR_ACTION_REQUIRED",
+  "downstream": "ESTATE_WIDE_CAPTURE_COMPLETENESS_V1 = BLOCKED"
+}
