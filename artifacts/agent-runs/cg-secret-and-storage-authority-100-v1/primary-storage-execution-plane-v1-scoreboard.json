@@ -2,7 +2,7 @@
   "missionId": "CG_SECRET_AND_STORAGE_AUTHORITY_100_PERCENT_HEALTH_V1",
   "workPackageId": "primary-storage-execution-plane-v1",
   "branch": "work/primary-storage-execution-plane-v1",
-  "updatedAt": "2026-09-02T02:58:00Z",
+  "updatedAt": "2026-09-02T03:12:00Z",
   "retrieval": {
     "indexResult": "INDEX_HIT_AI_CACHE",
     "directConnect": "DIRECT_CONNECT_NOT_APPLICABLE"
@@ -24,8 +24,8 @@
       }
     },
     "CG_IMMUTABLE_CONTEXT_PRIMARY_AUTHORITY_V1": {
-      "status": "PARTIAL",
-      "blockers": ["VAULT_SHA256_VAULT_UID_ACL", "WORM_OVERWRITE_NOT_REFUSED"],
+      "status": "PARTIAL_WORM_ONLY",
+      "blockers": ["WORM_OVERWRITE_NOT_REFUSED"],
       "softwareComplete": true,
       "liveProof": {
         "CONTAINER_MANAGER_INSTALLED": "PASS",
@@ -33,15 +33,21 @@
         "CG_VAULT_SSHD_LISTENING": "PASS",
         "PUBKEY_AUTHENTICATION": "PASS",
         "VAULT_SSH_PROBE": "PASS",
+        "VAULT_RUNTIME_ACCESS": "PASS",
+        "DESTINATION_HASH_LIVE_PROOF": "PASS",
         "DISPATCHER_LOCAL_SUDO_PROOF": "PASS",
-        "DESTINATION_HASH_LIVE_PROOF": "FAIL",
-        "VAULT_ACL_VALID": "FAIL",
-        "IMMUTABILITY_ENFORCEMENT": "FAIL"
+        "CANARY_DELETE": "REFUSED",
+        "CANARY_OVERWRITE": "SUCCEEDED",
+        "IMMUTABILITY_ENFORCEMENT": "FAIL",
+        "PRIMARY_STORAGE_AUTHORITY": "UNPROVEN"
       },
       "closed": [
         "CONTAINER_MANAGER_NOT_INSTALLED",
-        "CG_VAULT_SSH_POST_AUTH_SYNO_GATE"
-      ]
+        "CG_VAULT_SSH_POST_AUTH_SYNO_GATE",
+        "VAULT_SHA256_VAULT_UID_ACL",
+        "WRONG_DOCKER_BIND_STAGING_TREE"
+      ],
+      "incidentNote": "Prior VAULT_RUNTIME_ACCESS PASS (pre-37bd0f2) exercised /volume1/Capital Glass/... staging tree, not canonical share. Corrected docker-compose bind to /volume1/Capital-Glass-AI-Evidence-Vault."
     },
     "BACKUP_STORAGE_AUTHORITY": {
       "status": "BLOCKED_BY_PROCUREMENT"
@@ -52,6 +58,8 @@
   },
   "cgVaultSsh": {
     "executionPlane": "docker-container-manager",
+    "canonicalVaultBind": "/volume1/Capital-Glass-AI-Evidence-Vault",
+    "stagingTreeDeprecated": "/volume1/Capital Glass/Capital-Glass-AI-Evidence-Vault",
     "port": 22222,
     "host": "100.112.81.50",
     "sshLoginUser": "vault",
@@ -59,7 +67,8 @@
     "dockerPreferred": true,
     "containerManagerInstalled": true,
     "containerManagerVersion": "24.0.2-1606",
-    "deployedAt": "2026-09-02T02:50:00Z",
+    "deployedAt": "2026-09-02T03:07:00Z",
+    "commits": ["87fc72d", "37bd0f2"],
     "nativeSshdOn22222": "disabled (rc.d cg-vault-ssh.sh.disabled)",
     "dopplerEnv": {
       "project": "cg-shared",
@@ -70,46 +79,64 @@
   },
   "prover": {
     "script": "scripts/context-ledger/prove-primary-authority-v1.py",
-    "lastRunAt": "2026-09-02T02:57:00Z",
-    "cgVaultSshProbe": "PASS",
-    "destinationHashLiveProof": "FAIL",
-    "primaryStorageAuthority": "UNPROVEN",
-    "blockers": ["VAULT_SHA256_COMMAND_FAILED", "MUTATION_OF_ARCHIVED_EVIDENCE_SUCCEEDED"]
+    "lastRunAt": "2026-09-02T03:11:00Z",
+    "dopplerProject": "cg-shared",
+    "dopplerConfig": "prd",
+    "cgVaultSshUser": "vault",
+    "results": {
+      "CG_VAULT_SSH_PROBE": "PASS",
+      "VAULT_RUNTIME_ACCESS": "PASS",
+      "DESTINATION_HASH_LIVE_PROOF": "PASS",
+      "IMMUTABILITY_ENFORCEMENT": "FAIL",
+      "CANARY_OVERWRITE": "SUCCEEDED",
+      "CANARY_DELETE": "REFUSED",
+      "PRIMARY_STORAGE_AUTHORITY": "UNPROVEN"
+    },
+    "blockers": ["MUTATION_OF_ARCHIVED_EVIDENCE_SUCCEEDED"],
+    "receiptPath": "artifacts/agent-runs/cg-secret-and-storage-authority-100-v1/prove-primary-authority-v1-2026-09-02T0311Z.json"
   },
   "operatorActionsRequired": [
     {
       "id": "INSTALL_CONTAINER_MANAGER",
-      "status": "CLOSED",
-      "detail": "Container Manager 24.0.2-1606 installed; docker share at /volume1/docker"
+      "status": "CLOSED"
     },
     {
       "id": "DEPLOY_CG_VAULT_SSH_DOCKER",
+      "status": "CLOSED"
+    },
+    {
+      "id": "CANONICAL_VAULT_DOCKER_BIND",
       "status": "CLOSED",
-      "detail": "cg-vault-ssh container running on 0.0.0.0:22222; VAULT_SSH_PROBE PASS"
+      "detail": "37bd0f2 — bind /volume1/Capital-Glass-AI-Evidence-Vault; DESTINATION_HASH_LIVE_PROOF PASS"
     },
     {
-      "id": "VAULT_UID_ACL_FOR_SHA256",
-      "detail": "UID 1031 (vault) needs read on Capital-Glass-AI-Evidence-Vault objects for VAULT_SHA256 / hash live proof"
-    },
-    {
-      "id": "WORM_OVERWRITE_POLICY",
-      "detail": "Canary overwrite succeeded via File Station API — immutability enforcement not yet proven"
+      "id": "WORM_WRITEONCE_MIGRATION",
+      "detail": "Overwrite via File Station still succeeds; delete refused. DSM WriteOnce share migration required — ACL cannot close this gap."
     },
     {
       "id": "VERCEL_TOKEN_MFA",
-      "status": "CLOSED",
-      "detail": "Rotated 2026-09-02 — cg-shared/prd+dev live-auth PASS"
+      "status": "CLOSED"
     },
     {
       "id": "GITHUB_READ_ORG",
-      "detail": "Complete gh auth refresh device flow only if workflows require read:org"
+      "detail": "Advisory only unless workflows require read:org"
     }
   ],
+  "siblingPathAudit": {
+    "corrected": [
+      "infra/cg-vault-ssh/docker-compose.yml",
+      "infra/cg-vault-ssh/cg-vault-run.sh"
+    ],
+    "pending": [
+      "runbooks/CONTEXT_LEDGER_NAS_PROVISIONING_RUNBOOK.md",
+      "infra/cg-vault-ssh/probe-nas-native.ps1"
+    ]
+  },
   "100_PERCENT_SOFTWARE_AND_SECRET_HEALTH": {
-    "status": "PASS_SECRET_AUTHORITY_PARTIAL_STORAGE",
+    "status": "PASS_SECRET_AUTHORITY_WORM_REMAINING",
     "except": [
       "GITHUB read:org advisory (optional)",
-      "VAULT_SHA256 ACL + WORM overwrite proof",
+      "WriteOnce / WORM overwrite enforcement",
       "backup hardware procurement"
     ]
   }

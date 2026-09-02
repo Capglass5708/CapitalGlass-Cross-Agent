@@ -12,7 +12,7 @@ $cmds = @(
     "echo '$ea' | sudo -S which sshd 2>&1",
     "echo '$ea' | sudo -S sshd -V 2>&1 | head -1",
     "echo '$ea' | sudo -S id cg-context-ledger 2>&1",
-    "echo '$ea' | sudo -S ls -la '/volume1/Capital Glass/Capital-Glass-AI-Evidence-Vault' 2>&1 | head -5",
+    "echo '$ea' | sudo -S ls -la '/volume1/Capital-Glass-AI-Evidence-Vault' 2>&1 | head -5",
     "echo '$ea' | sudo -S /usr/syno/bin/synopkg list 2>&1 | head -30"
 )
 foreach ($c in $cmds) {

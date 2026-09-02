@@ -1,4 +1,6 @@
 #Requires -Version 5.1
+# Windows admin context only — requires D:\Admin Keys\Capital-Glass-IT-Vault mounted.
+# Not runnable from WSL (/mnt/d is empty unless the drive is mounted in Windows first).
 $ErrorActionPreference = 'Stop'
 $SrcDir = if ($env:CG_VAULT_SSH_SRC) { $env:CG_VAULT_SSH_SRC } else { $PSScriptRoot }
 $VaultRoot = 'D:\Admin Keys\Capital-Glass-IT-Vault'

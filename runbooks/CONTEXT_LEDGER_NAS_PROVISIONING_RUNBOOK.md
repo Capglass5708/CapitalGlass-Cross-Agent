@@ -144,7 +144,7 @@ things and returns non-zero for everything else.
 ```sh
 #!/bin/sh
 # Forced command for the cg-context-ledger key. Allowlist only.
-VAULT="/volume1/Capital Glass/Capital-Glass-AI-Evidence-Vault"
+VAULT="/volume1/Capital-Glass-AI-Evidence-Vault"
 
 case "$SSH_ORIGINAL_COMMAND" in
   "VAULT_SSH_PROBE")

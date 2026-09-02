@@ -1,0 +1,144 @@
+{
+ "SERVICE_CREDENTIAL": "PASS",
+ "SERVICE_ACCOUNT_AUTH": "PASS",
+ "SERVICE_ACCOUNT_UID": null,
+ "SERVICE_ACCOUNT_ADMIN": false,
+ "FILESTATION_SERVICE_ACCESS": "PASS",
+ "SHARE_GET": "FAIL",
+ "SHARE_LIST": "OMITTED",
+ "SHARE_ENUMERATION_ANOMALY": "OPEN",
+ "PROVISIONING_MUTATION_NECESSARY": "NOT_PROVEN",
+ "FILESTATION_CANARY_WRITE": "PASS",
+ "CG_VAULT_SSH_PROBE": "PASS",
+ "VAULT_RUNTIME_ACCESS": "PASS",
+ "DESTINATION_HASH_LIVE_PROOF": "PASS",
+ "WORM_STATE_CONFIGURATION": "NOT_OBSERVED",
+ "CANARY_OVERWRITE": "SUCCEEDED",
+ "CANARY_DELETE": "REFUSED",
+ "IMMUTABILITY_ENFORCEMENT": "FAIL",
+ "PRIMARY_STORAGE_AUTHORITY": "UNPROVEN",
+ "mutationsPerformed": [
+  "wrote ONE control object at /Capital-Glass-AI-Evidence-Vault/control/worm-proof/worm-proof-d75174856cfd4c69943b3ad051e9b5c0.txt"
+ ],
+ "evidence": {
+  "identity": {
+   "fileStationInfo": {
+    "allow_heic_original": false,
+    "allow_normal_disable_html": false,
+    "enable_list_usergrp": false,
+    "enable_send_email_attachment": true,
+    "enable_view_google": true,
+    "enable_view_microsoft": true,
+    "hostname": "CG_server",
+    "is_manager": false,
+    "items": [
+     {
+      "gid": 100
+     },
+     {
+      "gid": 65536
+     }
+    ],
+    "support_file_request": false,
+    "support_sharing": true,
+    "support_vfs": false,
+    "support_virtual": {
+     "enable_iso_mount": false,
+     "enable_remote_mount": false
+    },
+    "support_virtual_protocol": [],
+    "system_codepage": "enu",
+    "uid": 1031
+   },
+   "userGetRefused": {
+    "code": 105
+   },
+   "uidNote": "The service account cannot read user records, which is itself consistent with least privilege. uid 1031 remains ADMIN-observed rather than self-confirmed."
+  },
+  "shareGet": {
+   "success": false,
+   "uuid": null,
+   "uuidMatchesExpected": false,
+   "error": {
+    "code": 105
+   }
+  },
+  "shareGetNegativeControl": {
+   "success": false,
+   "error": {
+    "code": 105
+   },
+   "controlHolds": true
+  },
+  "shareListNames": [],
+  "fileStationShares": [
+   "Capital-Glass-AI-Evidence-meta",
+   "Capital-Glass-AI-Evidence-Vault",
+   "home",
+   "homes"
+  ],
+  "controlObject": {
+   "controlObjectId": "worm-proof-d75174856cfd4c69943b3ad051e9b5c0",
+   "bytes": 207,
+   "sourceSha256": "sha256:d20efa0dc1ca237cb376af72cac36e742bd29279fce286ca78d94ae50a97ef69",
+   "namespace": "control/worm-proof",
+   "classification": "WORM_PROOF_CONTROL_OBJECT",
+   "excludedFromAccounting": [
+    "ORIGINAL_CURRENT_LEDGER_BOUND",
+    "RECOVERED_ASSOCIATIONS",
+    "TOTAL_PROTECTED_OBJECTS"
+   ]
+  },
+  "upload": {
+   "success": true,
+   "error": null
+  },
+  "destinationHash": {
+   "attemptedMechanism": "CG_VAULT_SSH_VAULT_SHA256",
+   "transportReadbackRefused": true,
+   "executionPlane": "CG_VAULT_SSH",
+   "port": "22222",
+   "destinationSha256": "sha256:d20efa0dc1ca237cb376af72cac36e742bd29279fce286ca78d94ae50a97ef69",
+   "sourceSha256": "sha256:d20efa0dc1ca237cb376af72cac36e742bd29279fce286ca78d94ae50a97ef69"
+  },
+  "cgVaultSshProbe": {
+   "exitCode": 0,
+   "stdoutPrefix": "VAULT_SSH_OK\n",
+   "stderrPrefix": "Warning: Permanently added '[100.112.81.50]:22222' (ED25519) to the list of known hosts.\n"
+  },
+  "destinationHashAttempt": {
+   "exitCode": 0,
+   "parsedFields": {
+    "size": "207",
+    "path": "control/worm-proof/worm-proof-d75174856cfd4c69943b3ad051e9b5c0.txt"
+   },
+   "stderrPrefix": ""
+  },
+  "overwriteAttempt": {
+   "success": true,
+   "error": null,
+   "actor": "cg-context-ledger",
+   "operation": "overwrite"
+  },
+  "deleteAttempt": {
+   "success": false,
+   "error": {
+    "code": 901,
+    "errors": [
+     {
+      "code": 901,
+      "path": "/Capital-Glass-AI-Evidence-Vault/control/worm-proof/worm-proof-d75174856cfd4c69943b3ad051e9b5c0.txt"
+     }
+    ]
+   },
+   "actor": "cg-context-ledger",
+   "operation": "delete"
+  }
+ },
+ "blockers": [
+  {
+   "id": "MUTATION_OF_ARCHIVED_EVIDENCE_SUCCEEDED",
+   "stopImmediately": true
+  }
+ ]
+}
