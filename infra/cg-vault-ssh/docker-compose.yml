@@ -9,7 +9,7 @@ services:
     ports:
       - "22222:22"
     volumes:
-      - /volume1/Capital Glass/Capital-Glass-AI-Evidence-Vault:/vault:rw
+      - /volume1/Capital-Glass-AI-Evidence-Vault:/vault:rw
       - ./authorized_keys:/config/authorized_keys:ro
     environment:
       CG_VAULT_ROOT: /vault
