@@ -23,7 +23,7 @@
  *     authority-less selection REFUSES. Silent fallback is how an unproven
  *     transport becomes an apparent success.
  */
-import { LocalFixtureTransport, SshRsyncTransport } from './transport.mjs';
+import { LocalFixtureTransport, SshRsyncTransport, CgVaultSshTransport } from './transport.mjs';
 import { MountedRemoteTransport } from './mount-transport.mjs';
 
 export const TRANSPORT_ID = {
@@ -31,6 +31,7 @@ export const TRANSPORT_ID = {
   SCP: 'SCP',
   DRVFS_MOUNT: 'DRVFS_MOUNT',
   SSH_RSYNC: 'SSH_RSYNC',
+  CG_VAULT_SSH: 'CG_VAULT_SSH',
   LOCAL_FIXTURE: 'LOCAL_FIXTURE',
 };
 
@@ -97,11 +98,20 @@ export const TRANSPORT_REGISTRY = Object.freeze({
   },
   [TRANSPORT_ID.SSH_RSYNC]: {
     id: TRANSPORT_ID.SSH_RSYNC,
-    description: 'Restricted ssh+rsync adapter',
-    implemented: false,                       // stub: every method throws
-    notImplementedReason: 'SSH_RSYNC_TRANSPORT_NOT_IMPLEMENTED_AWAITING_REAL_STORAGE',
+    description: 'Restricted ssh+rsync adapter (legacy id; use CG_VAULT_SSH)',
+    implemented: false,
+    notImplementedReason: 'SSH_RSYNC_TRANSPORT_SUPERSEDED_BY_CG_VAULT_SSH',
     nativeProduction: NATIVE_PRODUCTION.ELIGIBLE,
     requiredEnv: [],
+  },
+  [TRANSPORT_ID.CG_VAULT_SSH]: {
+    id: TRANSPORT_ID.CG_VAULT_SSH,
+    description: 'Constrained vault SSH execution plane (Docker sshd, dedicated port)',
+    implemented: true,
+    nativeProduction: NATIVE_PRODUCTION.ELIGIBLE,
+    requiredEnv: ['CG_VAULT_SSH_HOST', 'CG_VAULT_SSH_PORT', 'CG_VAULT_SSH_KEY'],
+    proofArtifact: 'prove-primary-authority-v1.json',
+    dsmNativeSshFallback: false,
   },
   [TRANSPORT_ID.LOCAL_FIXTURE]: {
     id: TRANSPORT_ID.LOCAL_FIXTURE,
@@ -246,6 +256,16 @@ const DEFAULT_ADAPTERS = {
 
   [TRANSPORT_ID.SSH_RSYNC]: ({ role, storageAuthority }) =>
     new SshRsyncTransport({ id: `ssh-rsync-${role ?? 'unspecified'}`, host: storageAuthority.host }),
+
+  [TRANSPORT_ID.CG_VAULT_SSH]: ({ role, storageAuthority, env }) =>
+    new CgVaultSshTransport({
+      id: `cg-vault-ssh-${role ?? 'unspecified'}`,
+      host: env.CG_VAULT_SSH_HOST ?? storageAuthority.host,
+      port: Number(env.CG_VAULT_SSH_PORT ?? 22222),
+      keyPath: env.CG_VAULT_SSH_KEY,
+      user: env.CG_VAULT_SSH_USER ?? 'vault',
+      objectRoot: storageAuthority.objectRoot,
+    }),
 
   [TRANSPORT_ID.FILESTATION_HTTPS]: ({ storageAuthority }) => new FileStationTransport({ storageAuthority }),
   [TRANSPORT_ID.SCP]: ({ storageAuthority }) => new ScpTransport({ storageAuthority }),

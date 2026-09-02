@@ -36,17 +36,21 @@ export const EXEC_REFUSAL = {
 };
 
 export const EXEC_MECHANISM = {
+  CG_VAULT_SSH_VAULT_SHA256: 'CG_VAULT_SSH_VAULT_SHA256',
   SSH_REMOTE_SHA256SUM: 'SSH_REMOTE_SHA256SUM',
   DSM_API_REMOTE_HASH: 'DSM_API_REMOTE_HASH',
-  TRANSPORT_READBACK: 'TRANSPORT_READBACK',      // registered ONLY so it can be refused
+  TRANSPORT_READBACK: 'TRANSPORT_READBACK',
 };
 
-/**
- * independentOfTransport is the property the whole module turns on. A
- * mechanism with false is registered so that a caller naming it gets an
- * explicit refusal rather than silently obtaining a weaker proof.
- */
 export const MECHANISM_REGISTRY = Object.freeze({
+  [EXEC_MECHANISM.CG_VAULT_SSH_VAULT_SHA256]: {
+    id: EXEC_MECHANISM.CG_VAULT_SSH_VAULT_SHA256,
+    independentOfTransport: true,
+    description: 'VAULT_SHA256 via constrained CG Vault SSH execution plane.',
+    requiredEnv: ['CG_VAULT_SSH_HOST', 'CG_VAULT_SSH_PORT', 'CG_VAULT_SSH_KEY'],
+    currentAllowlistState: 'ALLOWLISTED_VAULT_SHA256_DISPATCHER',
+    dsmNativeSsh: false,
+  },
   [EXEC_MECHANISM.SSH_REMOTE_SHA256SUM]: {
     id: EXEC_MECHANISM.SSH_REMOTE_SHA256SUM,
     independentOfTransport: true,
@@ -125,20 +129,41 @@ export class DestinationHashExecutor {
   }
 }
 
-export class SshDestinationHashExecutor extends DestinationHashExecutor {
-  constructor(opts) { super({ ...opts, mechanismId: EXEC_MECHANISM.SSH_REMOTE_SHA256SUM }); }
+export class CgVaultSshHashExecutor extends DestinationHashExecutor {
+  constructor(opts) { super({ ...opts, mechanismId: EXEC_MECHANISM.CG_VAULT_SSH_VAULT_SHA256 }); }
 
   async hashAt(remoteRelPath) {
-    const m = mechanismDescriptor(this.mechanismId);
-    // Fail closed. The command is not allowlisted on the restricted account,
-    // and widening that policy is an authority decision, not an implementation
-    // detail this executor may take on itself.
-    throw refuse(EXEC_REFUSAL.ALLOWLIST_EXPANSION_REQUIRED, {
-      mechanismId: this.mechanismId,
-      requiredCommand: m.requiresAllowlistedCommand,
-      currentAllowlistState: m.currentAllowlistState,
-      remoteRelPath,
-      detail: 'Restricted SSH policy allowlists rsync only. Not broadened here.',
+    const { execFile } = await import('node:child_process');
+    const { promisify } = await import('node:util');
+    const run = promisify(execFile);
+    const host = process.env.CG_VAULT_SSH_HOST ?? this.executionHost;
+    const port = process.env.CG_VAULT_SSH_PORT ?? '22222';
+    const key = process.env.CG_VAULT_SSH_KEY;
+    const user = process.env.CG_VAULT_SSH_USER ?? 'vault';
+    if (!key) throw refuse(EXEC_REFUSAL.DESTINATION_EXECUTION_NOT_AUTHORIZED, { detail: 'CG_VAULT_SSH_KEY missing' });
+    const { stdout, stderr } = await run('ssh', [
+      '-i', key, '-p', String(port), '-o', 'BatchMode=yes', '-o', 'IdentitiesOnly=yes',
+      `${user}@${host}`, `VAULT_SHA256 ${remoteRelPath}`,
+    ]);
+    const fields = {};
+    for (const line of String(stdout).split('\n')) {
+      if (line.includes('=')) {
+        const [k, v] = line.split('=', 2);
+        fields[k.trim()] = v.trim();
+      }
+    }
+    if (!fields.hash) {
+      throw refuse(EXEC_REFUSAL.DESTINATION_EXECUTION_NOT_AUTHORIZED, {
+        stderrPrefix: String(stderr).slice(0, 120),
+      });
+    }
+    return DestinationHashExecutor.record({
+      path: fields.path ?? remoteRelPath,
+      sha256: `sha256:${fields.hash}`,
+      bytes: Number(fields.size ?? 0),
+      executionHost: host,
+      executionMechanism: this.mechanismId,
+      exitStatus: 0,
     });
   }
 }
@@ -168,7 +193,13 @@ export function resolveDestinationHashExecutor({ role, storageAuthority, mechani
   }
   assertIndependentOfTransport(mechanismId);
   const common = { executionHost: storageAuthority.host, storageAuthority };
-  if (mechanismId === EXEC_MECHANISM.SSH_REMOTE_SHA256SUM) return new SshDestinationHashExecutor(common);
+  if (mechanismId === EXEC_MECHANISM.CG_VAULT_SSH_VAULT_SHA256) return new CgVaultSshHashExecutor(common);
+  if (mechanismId === EXEC_MECHANISM.SSH_REMOTE_SHA256SUM) {
+    throw refuse(EXEC_REFUSAL.ALLOWLIST_EXPANSION_REQUIRED, {
+      mechanismId,
+      detail: 'DSM native SSH sha256sum superseded by CG_VAULT_SSH_VAULT_SHA256.',
+    });
+  }
   if (mechanismId === EXEC_MECHANISM.DSM_API_REMOTE_HASH) return new DsmApiDestinationHashExecutor(common);
   throw refuse(EXEC_REFUSAL.MECHANISM_NOT_IN_REGISTRY, { mechanismId });
 }
@@ -179,8 +210,8 @@ export function destinationHashCapabilityStatus() {
     PRIMARY_DESTINATION_HASH_EXECUTION: DESTINATION_HASH_CAPABILITY.IMPLEMENTED_UNPROVEN,
     BACKUP_DESTINATION_HASH_EXECUTION: DESTINATION_HASH_CAPABILITY.IMPLEMENTED_UNPROVEN,
     blockers: [
-      'SSH_REMOTE_SHA256SUM: sha256sum not allowlisted on the restricted account; broadening is a separate authority decision',
-      'DSM_API_REMOTE_HASH: authenticating to production DSM is not authorized for this mission',
+      'CG_VAULT_SSH_VAULT_SHA256: requires constrained vault SSH service on dedicated port',
+      'DSM native SSH sha256sum: refused — use CG Vault SSH execution plane',
       'No canonical destination has been adjudicated, so nothing can be exercised',
     ],
   };

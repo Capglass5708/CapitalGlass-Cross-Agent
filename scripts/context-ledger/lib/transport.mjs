@@ -69,7 +69,43 @@ export class LocalFixtureTransport {
  */
 export class SshRsyncTransport {
   constructor(opts) { Object.assign(this, opts); this.kind = 'SSH_RSYNC'; this.isRealRemote = true; }
-  put() { throw new Error('SSH_RSYNC_TRANSPORT_NOT_IMPLEMENTED_AWAITING_REAL_STORAGE'); }
-  verify() { throw new Error('SSH_RSYNC_TRANSPORT_NOT_IMPLEMENTED_AWAITING_REAL_STORAGE'); }
-  fetch() { throw new Error('SSH_RSYNC_TRANSPORT_NOT_IMPLEMENTED_AWAITING_REAL_STORAGE'); }
+  put() { throw new Error('SSH_RSYNC_TRANSPORT_SUPERSEDED_BY_CG_VAULT_SSH'); }
+  verify() { throw new Error('SSH_RSYNC_TRANSPORT_SUPERSEDED_BY_CG_VAULT_SSH'); }
+  fetch() { throw new Error('SSH_RSYNC_TRANSPORT_SUPERSEDED_BY_CG_VAULT_SSH'); }
+}
+
+/**
+ * Constrained vault SSH transport — Docker execution plane on dedicated port.
+ * Does not use DSM native non-admin SSH.
+ */
+export class CgVaultSshTransport {
+  constructor({ id, host, port = 22222, keyPath, user = 'vault', objectRoot }) {
+    Object.assign(this, { id, host, port, keyPath, user, objectRoot });
+    this.kind = 'CG_VAULT_SSH';
+    this.isRealRemote = true;
+  }
+
+  _sshArgs(remoteCmd) {
+    return [
+      'ssh', '-i', this.keyPath, '-p', String(this.port),
+      '-o', 'BatchMode=yes', '-o', 'IdentitiesOnly=yes',
+      '-o', 'PasswordAuthentication=no',
+      `${this.user}@${this.host}`, remoteCmd,
+    ];
+  }
+
+  async probe() {
+    const { execFile } = await import('node:child_process');
+    const { promisify } = await import('node:util');
+    const run = promisify(execFile);
+    const { stdout } = await run('ssh', this._sshArgs('VAULT_SSH_PROBE').slice(1));
+    if (!String(stdout).includes('VAULT_SSH_OK')) {
+      throw new Error('CG_VAULT_SSH_PROBE_FAILED');
+    }
+    return true;
+  }
+
+  put() { throw new Error('CG_VAULT_SSH_PUT_NOT_WIRED'); }
+  verify() { throw new Error('CG_VAULT_SSH_VERIFY_USE_DESTINATION_EXEC'); }
+  fetch() { throw new Error('CG_VAULT_SSH_FETCH_FORBIDDEN'); }
 }

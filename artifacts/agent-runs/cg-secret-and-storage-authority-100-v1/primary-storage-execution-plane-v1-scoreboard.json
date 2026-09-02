@@ -83,6 +83,8 @@
     "dopplerProject": "cg-shared",
     "dopplerConfig": "prd",
     "cgVaultSshUser": "vault",
+    "immutabilityCheckRedesign": "non_destructive_sentinel_mode_landed",
+    "runbook": "docs/runbooks/cg-evidence-vault-writeonce-migration.md",
     "results": {
       "CG_VAULT_SSH_PROBE": "PASS",
       "VAULT_RUNTIME_ACCESS": "PASS",
@@ -111,7 +113,7 @@
     },
     {
       "id": "WORM_WRITEONCE_MIGRATION",
-      "detail": "Overwrite via File Station still succeeds; delete refused. DSM WriteOnce share migration required — ACL cannot close this gap."
+      "detail": "Operator runbook: docs/runbooks/cg-evidence-vault-writeonce-migration.md. Prover sentinel mode landed; execute gates (model + Btrfs) then Enterprise dry run before Compliance vault."
     },
     {
       "id": "VERCEL_TOKEN_MFA",

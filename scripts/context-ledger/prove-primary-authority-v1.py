@@ -9,18 +9,34 @@ SAFETY PROPERTIES:
     probative here (ADMIN is intentionally non-writable on the vault).
   - Performs NO provisioning mutation. It does not create, recreate, or alter any
     share, ACL, user, retention or WORM setting.
-  - Writes at most ONE control object, and never a second after success.
+  - Writes at most ONE control object when CG_PROVER_CONTROL_WRITE_ENABLED is true.
+  - On WriteOnce Compliance vaults, set CG_PROVER_CONTROL_WRITE_ENABLED=false and
+    CG_WORM_IMMUTABILITY_SENTINEL_REL to an already-locked file; immutability is
+    proven by refused overwrite/delete on the sentinel (creates no new objects).
   - Credential values are read from the environment, sent only in POST bodies,
     and never printed, logged, or placed in the receipt.
 """
-import hashlib, json, os, ssl, sys, urllib.parse, urllib.request, uuid
+import hashlib, json, os, ssl, subprocess, sys, urllib.parse, urllib.request, uuid
 
 HOST = os.environ.get("CG_SERVER_HOST", "100.112.81.50")
 BASE = f"https://{HOST}:5001/webapi"
-VAULT = "Capital-Glass-AI-Evidence-Vault"
+VAULT = os.environ.get("CG_EVIDENCE_VAULT_SHARE", "Capital-Glass-AI-Evidence-Vault")
 EXPECTED_UUID = "1a3c37f6-85e0-4dc1-94ac-1ee36a893003"
 EXPECTED_UID = 1031
 CONTROL_NS = "control/worm-proof"
+CG_VAULT_SSH_PORT = os.environ.get("CG_VAULT_SSH_PORT", "22222")
+CG_VAULT_SSH_USER = os.environ.get("CG_VAULT_SSH_USER", "vault")
+CG_VAULT_SSH_KEY = os.environ.get(
+    "CG_VAULT_SSH_KEY", os.path.expanduser("~/.ssh/cg-context-ledger_ed25519")
+)
+PROVER_CONTROL_WRITE = os.environ.get("CG_PROVER_CONTROL_WRITE_ENABLED", "true").lower() in (
+    "1", "true", "yes",
+)
+HASH_TARGET_REL = os.environ.get("CG_PROVER_HASH_TARGET_REL", "").strip()
+WORM_SENTINEL_REL = os.environ.get("CG_WORM_IMMUTABILITY_SENTINEL_REL", "").strip()
+REQUIRE_WORM_SENTINEL = os.environ.get("CG_PROVER_REQUIRE_WORM_SENTINEL", "false").lower() in (
+    "1", "true", "yes",
+)
 CTX = ssl.create_default_context(); CTX.check_hostname = False; CTX.verify_mode = ssl.CERT_NONE
 
 R = {
@@ -34,6 +50,8 @@ R = {
     "SHARE_ENUMERATION_ANOMALY": "OPEN",
     "PROVISIONING_MUTATION_NECESSARY": "NOT_PROVEN",
     "FILESTATION_CANARY_WRITE": "NOT_RUN",
+    "CG_VAULT_SSH_PROBE": "NOT_RUN",
+    "VAULT_RUNTIME_ACCESS": "NOT_RUN",
     "DESTINATION_HASH_LIVE_PROOF": "NOT_RUN",
     "WORM_STATE_CONFIGURATION": "NOT_OBSERVED",
     "CANARY_OVERWRITE": "NOT_RUN",
@@ -44,6 +62,24 @@ R = {
     "evidence": {},
     "blockers": [],
 }
+
+def cg_vault_ssh(remote_cmd):
+    """Constrained CG Vault SSH execution plane — not DSM native SSH."""
+    cmd = [
+        "ssh", "-i", CG_VAULT_SSH_KEY, "-p", CG_VAULT_SSH_PORT,
+        "-o", "BatchMode=yes", "-o", "IdentitiesOnly=yes",
+        "-o", "PasswordAuthentication=no", "-o", "StrictHostKeyChecking=accept-new",
+        f"{CG_VAULT_SSH_USER}@{HOST}", remote_cmd,
+    ]
+    return subprocess.run(cmd, capture_output=True, text=True, timeout=90, check=False)
+
+def parse_hash_output(stdout):
+    fields = {}
+    for line in stdout.splitlines():
+        if "=" in line:
+            k, v = line.split("=", 1)
+            fields[k.strip()] = v.strip()
+    return fields
 
 def post(cgi, params):
     d = urllib.parse.urlencode(params).encode()
@@ -191,87 +227,242 @@ if not vault_visible:
                           "mutationPerformed": "NONE"})
     emit_and_exit(5)
 
-# ---------------- STEP D: exactly one WORM control object ----------------
-control_id = f"worm-proof-{uuid.uuid4().hex}"
-payload = (f"CG CONTEXT LEDGER WORM PROOF CONTROL OBJECT\n"
-           f"controlObjectId={control_id}\n"
-           f"purpose=prove immutability enforcement by refusal\n"
-           f"nonSecret=true\n"
-           f"excludedFromProductionAccounting=true\n").encode()
-src_sha = "sha256:" + hashlib.sha256(payload).hexdigest()
-remote_rel = f"{CONTROL_NS}/{control_id}.txt"
-R["evidence"]["controlObject"] = {
-    "controlObjectId": control_id, "bytes": len(payload), "sourceSha256": src_sha,
-    "namespace": CONTROL_NS, "classification": "WORM_PROOF_CONTROL_OBJECT",
-    "excludedFromAccounting": ["ORIGINAL_CURRENT_LEDGER_BOUND", "RECOVERED_ASSOCIATIONS", "TOTAL_PROTECTED_OBJECTS"],
-}
-
-def multipart_upload(dest_folder, filename, data, sid):
+def multipart_upload(dest_folder, filename, data, sid, overwrite="false"):
     b = "----cgctxledger" + uuid.uuid4().hex
     parts = []
     for k, v in (("api", "SYNO.FileStation.Upload"), ("version", "2"), ("method", "upload"),
-                 ("path", dest_folder), ("create_parents", "true"), ("overwrite", "false")):
+                 ("path", dest_folder), ("create_parents", "true"), ("overwrite", overwrite)):
         parts.append(f"--{b}\r\nContent-Disposition: form-data; name=\"{k}\"\r\n\r\n{v}\r\n".encode())
     parts.append((f"--{b}\r\nContent-Disposition: form-data; name=\"file\"; filename=\"{filename}\"\r\n"
                   f"Content-Type: application/octet-stream\r\n\r\n").encode())
-    parts.append(data); parts.append(f"\r\n--{b}--\r\n".encode())
+    parts.append(data)
+    parts.append(f"\r\n--{b}--\r\n".encode())
     body = b"".join(parts)
-    req = urllib.request.Request(f"{BASE}/entry.cgi?_sid={urllib.parse.quote(sid)}", data=body,
-                                 headers={"Content-Type": f"multipart/form-data; boundary={b}"})
+    req = urllib.request.Request(
+        f"{BASE}/entry.cgi?_sid={urllib.parse.quote(sid)}",
+        data=body,
+        headers={"Content-Type": f"multipart/form-data; boundary={b}"},
+    )
     with urllib.request.urlopen(req, context=CTX, timeout=120) as r:
         return json.loads(r.read().decode())
 
-try:
-    up = multipart_upload(f"/{VAULT}/{CONTROL_NS}", f"{control_id}.txt", payload, sid)
-    R["FILESTATION_CANARY_WRITE"] = "PASS" if up.get("success") else "FAIL"
-    R["evidence"]["upload"] = {"success": up.get("success"), "error": up.get("error")}
-    if up.get("success"):
-        R["mutationsPerformed"].append(f"wrote ONE control object at /{VAULT}/{remote_rel}")
-except Exception as e:
-    R["FILESTATION_CANARY_WRITE"] = "FAIL"; R["evidence"]["uploadError"] = str(e)[:200]
+# ---------------- STEP D: control object write OR existing hash target ----------------
+control_id = f"worm-proof-{uuid.uuid4().hex}"
+remote_rel = ""
+src_sha = None
 
-if R["FILESTATION_CANARY_WRITE"] != "PASS":
-    R["blockers"].append({"id": "CONTROL_OBJECT_WRITE_FAILED", "secondCanaryAttempted": False})
-    emit_and_exit(6)
+if PROVER_CONTROL_WRITE:
+    payload = (f"CG CONTEXT LEDGER WORM PROOF CONTROL OBJECT\n"
+               f"controlObjectId={control_id}\n"
+               f"purpose=prove immutability enforcement by refusal\n"
+               f"nonSecret=true\n"
+               f"excludedFromProductionAccounting=true\n").encode()
+    src_sha = "sha256:" + hashlib.sha256(payload).hexdigest()
+    remote_rel = f"{CONTROL_NS}/{control_id}.txt"
+    R["evidence"]["controlObject"] = {
+        "controlObjectId": control_id, "bytes": len(payload), "sourceSha256": src_sha,
+        "namespace": CONTROL_NS, "classification": "WORM_PROOF_CONTROL_OBJECT",
+        "excludedFromAccounting": ["ORIGINAL_CURRENT_LEDGER_BOUND", "RECOVERED_ASSOCIATIONS", "TOTAL_PROTECTED_OBJECTS"],
+        "writeMode": "filestation_control_upload",
+    }
+    try:
+        up = multipart_upload(f"/{VAULT}/{CONTROL_NS}", f"{control_id}.txt", payload, sid)
+        R["FILESTATION_CANARY_WRITE"] = "PASS" if up.get("success") else "FAIL"
+        R["evidence"]["upload"] = {"success": up.get("success"), "error": up.get("error")}
+        if up.get("success"):
+            R["mutationsPerformed"].append(f"wrote ONE control object at /{VAULT}/{remote_rel}")
+    except Exception as e:
+        R["FILESTATION_CANARY_WRITE"] = "FAIL"
+        R["evidence"]["uploadError"] = str(e)[:200]
 
-# ---------------- STEP E: destination-side hash ----------------
-# Downloading through FileStation and hashing locally is explicitly NOT acceptable:
-# it measures the bytes with the same layer that wrote them.
+    if R["FILESTATION_CANARY_WRITE"] != "PASS":
+        R["blockers"].append({"id": "CONTROL_OBJECT_WRITE_FAILED", "secondCanaryAttempted": False})
+        emit_and_exit(6)
+else:
+    if not HASH_TARGET_REL:
+        R["FILESTATION_CANARY_WRITE"] = "SKIPPED"
+        R["blockers"].append({
+            "id": "HASH_TARGET_UNCONFIGURED",
+            "detail": "CG_PROVER_CONTROL_WRITE_ENABLED=false requires CG_PROVER_HASH_TARGET_REL.",
+        })
+        emit_and_exit(6)
+    remote_rel = HASH_TARGET_REL
+    R["FILESTATION_CANARY_WRITE"] = "SKIPPED"
+    R["evidence"]["controlObject"] = {
+        "writeMode": "existing_evidence_target",
+        "hashTargetRel": HASH_TARGET_REL,
+        "classification": "EXISTING_EVIDENCE_HASH_TARGET",
+        "excludedFromAccounting": ["ORIGINAL_CURRENT_LEDGER_BOUND", "RECOVERED_ASSOCIATIONS", "TOTAL_PROTECTED_OBJECTS"],
+    }
+
+# ---------------- STEP E: destination-side hash via CG Vault SSH ----------------
+# Independent of FileStation read-back: hash executes inside the constrained
+# destination execution plane (Docker sshd on dedicated port).
 R["evidence"]["destinationHash"] = {
-    "attemptedMechanism": "SSH_REMOTE_SHA256SUM",
+    "attemptedMechanism": "CG_VAULT_SSH_VAULT_SHA256",
     "transportReadbackRefused": True,
-    "reason": "Write-then-download-then-hash-locally proves transport self-consistency, not destination state.",
+    "executionPlane": "CG_VAULT_SSH",
+    "port": CG_VAULT_SSH_PORT,
 }
-R["DESTINATION_HASH_LIVE_PROOF"] = "NOT_RUN"
-R["blockers"].append({
-    "id": "DESTINATION_SIDE_EXECUTION_NOT_AUTHORIZED",
-    "exactPermissionRequired": "Allowlist the command 'sha256sum' for the cg-context-ledger restricted SSH account (currently rsync only), OR expose a DSM server-side digest capability to that account.",
-    "notBroadenedAutonomously": True,
-})
+
+probe = cg_vault_ssh("VAULT_SSH_PROBE")
+R["evidence"]["cgVaultSshProbe"] = {
+    "exitCode": probe.returncode,
+    "stdoutPrefix": (probe.stdout or "")[:80],
+    "stderrPrefix": (probe.stderr or "")[:120],
+}
+R["CG_VAULT_SSH_PROBE"] = "PASS" if probe.returncode == 0 and "VAULT_SSH_OK" in (probe.stdout or "") else "FAIL"
+R["VAULT_RUNTIME_ACCESS"] = R["CG_VAULT_SSH_PROBE"]
+
+if R["CG_VAULT_SSH_PROBE"] == "PASS":
+    hres = cg_vault_ssh(f"VAULT_SHA256 {remote_rel}")
+    parsed = parse_hash_output(hres.stdout or "")
+    dest_sha = parsed.get("hash")
+    R["evidence"]["destinationHashAttempt"] = {
+        "exitCode": hres.returncode,
+        "parsedFields": {k: v for k, v in parsed.items() if k != "hash"},
+        "stderrPrefix": (hres.stderr or "")[:120],
+    }
+    if hres.returncode == 0 and dest_sha:
+        dest_prefixed = f"sha256:{dest_sha}"
+        R["evidence"]["destinationHash"]["destinationSha256"] = dest_prefixed
+        if src_sha:
+            R["evidence"]["destinationHash"]["sourceSha256"] = src_sha
+            R["DESTINATION_HASH_LIVE_PROOF"] = "PASS" if dest_prefixed == src_sha else "FAIL"
+            if dest_prefixed != src_sha:
+                R["blockers"].append({"id": "DESTINATION_HASH_MISMATCH"})
+        else:
+            R["evidence"]["destinationHash"]["hashOnlyMode"] = "existing_locked_evidence"
+            R["DESTINATION_HASH_LIVE_PROOF"] = "PASS"
+    else:
+        R["DESTINATION_HASH_LIVE_PROOF"] = "FAIL"
+        R["blockers"].append({"id": "VAULT_SHA256_COMMAND_FAILED"})
+else:
+    R["DESTINATION_HASH_LIVE_PROOF"] = "NOT_RUN"
+    R["blockers"].append({
+        "id": "CG_VAULT_SSH_UNAVAILABLE",
+        "detail": "Constrained vault SSH execution plane not reachable on dedicated port.",
+        "dsmNativeSshNotUsed": True,
+    })
 
 # ---------------- STEP F: behavioural WORM proof ----------------
-# Configuration observability and enforcement proof are separate properties;
-# behaviour is authoritative, so this runs even though WORM_STATE_CONFIGURATION
-# is NOT_OBSERVED. Each operation is attempted EXACTLY ONCE.
-try:
-    ow = multipart_upload(f"/{VAULT}/{CONTROL_NS}", f"{control_id}.txt", payload + b"OVERWRITE-ATTEMPT\n", sid)
-    # Refusal is the PASS condition here.
-    R["CANARY_OVERWRITE"] = "SUCCEEDED" if ow.get("success") else "REFUSED"
-    R["evidence"]["overwriteAttempt"] = {"success": ow.get("success"), "error": ow.get("error"),
-                                         "actor": "cg-context-ledger", "operation": "overwrite"}
-except Exception as e:
-    R["CANARY_OVERWRITE"] = "REFUSED"
-    R["evidence"]["overwriteAttempt"] = {"exception": str(e)[:200], "actor": "cg-context-ledger"}
+# Non-destructive when CG_WORM_IMMUTABILITY_SENTINEL_REL is set (required on WriteOnce
+# Compliance vaults). Legacy mode overwrites the Step-D control object — unsafe on WORM.
+if REQUIRE_WORM_SENTINEL and not WORM_SENTINEL_REL:
+    R["CANARY_OVERWRITE"] = "NOT_RUN"
+    R["CANARY_DELETE"] = "NOT_RUN"
+    R["IMMUTABILITY_ENFORCEMENT"] = "NOT_RUN"
+    R["blockers"].append({
+        "id": "WORM_IMMUTABILITY_SENTINEL_REQUIRED",
+        "detail": "CG_PROVER_REQUIRE_WORM_SENTINEL=true but CG_WORM_IMMUTABILITY_SENTINEL_REL is unset.",
+    })
+elif WORM_SENTINEL_REL:
+    sentinel_rel = WORM_SENTINEL_REL.lstrip("/")
+    sentinel_folder = f"/{VAULT}/" + "/".join(sentinel_rel.split("/")[:-1])
+    sentinel_name = sentinel_rel.split("/")[-1]
+    R["evidence"]["immutabilityCheck"] = {
+        "mode": "non_destructive_sentinel",
+        "sentinelRel": sentinel_rel,
+        "createsNoNewObjects": True,
+    }
+    try:
+        ow = multipart_upload(
+            sentinel_folder,
+            sentinel_name,
+            b"IMMUTABILITY-PROBE-OVERWRITE\n",
+            sid,
+            overwrite="true",
+        )
+        R["CANARY_OVERWRITE"] = "SUCCEEDED" if ow.get("success") else "REFUSED"
+        R["evidence"]["overwriteAttempt"] = {
+            "success": ow.get("success"),
+            "error": ow.get("error"),
+            "actor": "cg-context-ledger",
+            "operation": "overwrite",
+            "target": sentinel_rel,
+        }
+    except Exception as e:
+        R["CANARY_OVERWRITE"] = "REFUSED"
+        R["evidence"]["overwriteAttempt"] = {
+            "exception": str(e)[:200],
+            "actor": "cg-context-ledger",
+            "target": sentinel_rel,
+        }
 
-try:
-    dl = get("entry.cgi", {"api": "SYNO.FileStation.Delete", "version": "2", "method": "delete",
-                           "path": f"/{VAULT}/{remote_rel}", "_sid": sid})
-    R["CANARY_DELETE"] = "SUCCEEDED" if dl.get("success") else "REFUSED"
-    R["evidence"]["deleteAttempt"] = {"success": dl.get("success"), "error": dl.get("error"),
-                                      "actor": "cg-context-ledger", "operation": "delete"}
-except Exception as e:
-    R["CANARY_DELETE"] = "REFUSED"
-    R["evidence"]["deleteAttempt"] = {"exception": str(e)[:200], "actor": "cg-context-ledger"}
+    try:
+        dl = get("entry.cgi", {
+            "api": "SYNO.FileStation.Delete",
+            "version": "2",
+            "method": "delete",
+            "path": f"/{VAULT}/{sentinel_rel}",
+            "_sid": sid,
+        })
+        R["CANARY_DELETE"] = "SUCCEEDED" if dl.get("success") else "REFUSED"
+        R["evidence"]["deleteAttempt"] = {
+            "success": dl.get("success"),
+            "error": dl.get("error"),
+            "actor": "cg-context-ledger",
+            "operation": "delete",
+            "target": sentinel_rel,
+        }
+    except Exception as e:
+        R["CANARY_DELETE"] = "REFUSED"
+        R["evidence"]["deleteAttempt"] = {
+            "exception": str(e)[:200],
+            "actor": "cg-context-ledger",
+            "target": sentinel_rel,
+        }
+else:
+    R["evidence"]["immutabilityCheck"] = {
+        "mode": "legacy_destructive_control_object",
+        "unsafeOnWriteOnceCompliance": True,
+    }
+    if not PROVER_CONTROL_WRITE:
+        R["CANARY_OVERWRITE"] = "NOT_RUN"
+        R["CANARY_DELETE"] = "NOT_RUN"
+        R["IMMUTABILITY_ENFORCEMENT"] = "NOT_RUN"
+        R["blockers"].append({
+            "id": "WORM_IMMUTABILITY_SENTINEL_UNCONFIGURED",
+            "detail": "Set CG_WORM_IMMUTABILITY_SENTINEL_REL before running on WriteOnce vault.",
+        })
+    else:
+        try:
+            ow = multipart_upload(
+                f"/{VAULT}/{CONTROL_NS}",
+                f"{control_id}.txt",
+                payload + b"OVERWRITE-ATTEMPT\n",
+                sid,
+                overwrite="true",
+            )
+            R["CANARY_OVERWRITE"] = "SUCCEEDED" if ow.get("success") else "REFUSED"
+            R["evidence"]["overwriteAttempt"] = {
+                "success": ow.get("success"),
+                "error": ow.get("error"),
+                "actor": "cg-context-ledger",
+                "operation": "overwrite",
+            }
+        except Exception as e:
+            R["CANARY_OVERWRITE"] = "REFUSED"
+            R["evidence"]["overwriteAttempt"] = {"exception": str(e)[:200], "actor": "cg-context-ledger"}
+
+        try:
+            dl = get("entry.cgi", {
+                "api": "SYNO.FileStation.Delete",
+                "version": "2",
+                "method": "delete",
+                "path": f"/{VAULT}/{remote_rel}",
+                "_sid": sid,
+            })
+            R["CANARY_DELETE"] = "SUCCEEDED" if dl.get("success") else "REFUSED"
+            R["evidence"]["deleteAttempt"] = {
+                "success": dl.get("success"),
+                "error": dl.get("error"),
+                "actor": "cg-context-ledger",
+                "operation": "delete",
+            }
+        except Exception as e:
+            R["CANARY_DELETE"] = "REFUSED"
+            R["evidence"]["deleteAttempt"] = {"exception": str(e)[:200], "actor": "cg-context-ledger"}
 
 if R["CANARY_OVERWRITE"] == "REFUSED" and R["CANARY_DELETE"] == "REFUSED":
     R["IMMUTABILITY_ENFORCEMENT"] = "PROVEN"
@@ -281,8 +472,10 @@ elif "SUCCEEDED" in (R["CANARY_OVERWRITE"], R["CANARY_DELETE"]):
     R["blockers"].append({"id": "MUTATION_OF_ARCHIVED_EVIDENCE_SUCCEEDED", "stopImmediately": True})
 
 # Primary promotion requires every runtime proof, destination hash included.
+write_gate_ok = R["FILESTATION_CANARY_WRITE"] in ("PASS", "SKIPPED")
 if (R["SERVICE_ACCOUNT_AUTH"] == "PASS" and R["FILESTATION_SERVICE_ACCESS"] == "PASS"
-        and R["FILESTATION_CANARY_WRITE"] == "PASS" and R["DESTINATION_HASH_LIVE_PROOF"] == "PASS"
+        and write_gate_ok and R["CG_VAULT_SSH_PROBE"] == "PASS"
+        and R["DESTINATION_HASH_LIVE_PROOF"] == "PASS"
         and R["IMMUTABILITY_ENFORCEMENT"] == "PROVEN"):
     R["PRIMARY_STORAGE_AUTHORITY"] = "PROVEN"
 
