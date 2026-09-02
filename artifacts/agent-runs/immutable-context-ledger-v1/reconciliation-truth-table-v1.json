@@ -1,0 +1,158 @@
+{
+  "schema": "capture-storage-reconciliation-truth-table-v1@1.0.0",
+  "recordedAt": "2026-08-31T23:32:05.919Z",
+  "mission": "CAPTURE_STORAGE_RECONCILIATION_STEPS_2_3_V1",
+  "lane": "OPUS_INTEGRATOR",
+  "method": "Both Haiku lanes returned; every load-bearing number was independently recomputed by the integrator before acceptance. Lane verdicts were NOT taken at face value.",
+  "reconciled": {
+    "ledgerEntries": {
+      "value": 17675,
+      "verifiedBy": "integrator recount: find vault/immutable-metadata/ledger-entries -name *.json | wc -l",
+      "agreesWithLanes": true
+    },
+    "uniqueCiphertextHash": {
+      "value": 13998,
+      "verifiedBy": "integrator parse of all 17675 entries",
+      "agreesWithLanes": true
+    },
+    "uniqueContentHash": {
+      "value": 13998,
+      "verifiedBy": "integrator parse",
+      "note": "1:1 with ciphertextHash confirms deterministic encryption is producing exactly one ciphertext per plaintext. Divergence here would mean dedup is broken."
+    },
+    "duplicateObservations": {
+      "value": 3677,
+      "derivation": "17675 - 13998"
+    },
+    "spoolObjects": {
+      "value": 14005,
+      "verifiedBy": "integrator: find spool/objects/sha256 -type f | wc -l"
+    },
+    "orphanObjects": {
+      "value": 7,
+      "derivation": "14005 - 13998",
+      "status": "UNEXPLAINED"
+    },
+    "entriesWithoutCiphertext": {
+      "value": 0,
+      "verifiedBy": "integrator parse"
+    }
+  },
+  "resolutions": [
+    {
+      "question": "17675 vs 17670",
+      "status": "RESOLVED",
+      "answer": "The accounting list is built from classRecords, which holds exactly ONE SourceRecord per DISCOVERED file (estate-capture-v1.mjs:227, census.flatMap over classRecords). Two classes of ledger entry therefore can never appear in it: intermediate versions of files that mutated mid-run (the memory .md at 6,606 then 8,956 bytes; the cursor sync manifest), and adhoc sources under /tmp that discovery does not cover (the two replication canaries). This is a mechanism, not a restatement.",
+      "architecturalConsequence": "The accounting model is DISCOVERY-BOUNDED by design. It will under-count any source that mutates during a capture run. That is a real property worth knowing before the model is trusted for completeness claims."
+    },
+    {
+      "question": "3665 apparent encryption gap",
+      "answer": "NOT A GAP. It is content deduplication: 17675 observations resolve to 13998 unique objects (1.26 observations per object). objectsAudited=14005 covered 100 percent of the spool.",
+      "status": "RESOLVED",
+      "independentlyVerified": true
+    },
+    {
+      "question": "113 refused vs 118 quarantined",
+      "status": "RESOLVED",
+      "answer": "118 register entries = 113 unique identities + 5 duplicates across exactly 3 sources (x2, x3, x3). Independently reverified by the integrator using the real fields (sourceRootId + relativePath); an earlier integrator check using sourceNativeId returned UNKNOWN for all 118 and proved nothing. Set arithmetic: |quarantined| = |refused| = |intersection| = 113; both differences 0.",
+      "cause": "Three Claude session files were re-scanned as they grew during capture. Every scan is recorded in the register; only the latest is counted in accounting -- the same discovery-bounded behaviour as the 5-delta, arrived at independently."
+    },
+    {
+      "question": "true production population",
+      "answer": "13998 unique encrypted objects.",
+      "status": "RESOLVED"
+    },
+    {
+      "question": "does PLAINTEXT_AT_REST = NONE survive",
+      "answer": "YES. 14005 of 14005 spool objects audited, 0 plaintext suspects. The claim was over-broad only in appearance; the population arithmetic was misread, not the claim.",
+      "status": "SURVIVES"
+    },
+    {
+      "question": "e08ab247",
+      "answer": "RESOLVED. 119-byte ciphertext object of the second replication canary at spool/objects/sha256/e0/e08ab247... Independently rehashed and matched. Never a git commit, which is why git search failed. plaintext contentHash a8f04151...",
+      "status": "RESOLVED"
+    },
+    {
+      "question": "7 orphan spool objects",
+      "status": "CLASSIFIED_NOT_INDEPENDENTLY_VERIFIED",
+      "answer": "All 7 classified ABANDONED_WRITE: created inside a single 1-second window (17:14:19.295-.910), encrypted, referenced by no ledger entry and absent from the quarantine register. Consistent with spool-write-precedes-ledger-binding where binding failed.",
+      "integratorNote": "Plausible and internally consistent, but I did not independently reproduce the classification. Recorded at the confidence it actually has."
+    }
+  ],
+  "correlatedGuessWarning": {
+    "finding": "Both Haiku lanes independently speculated that the 5-delta relates to the quarantine mismatch. Neither tested it. They are separate deltas -- one is ledger-vs-accounting, the other quarantine-vs-refused.",
+    "lesson": "Two lanes converging on the same untested guess is a correlation to distrust, not corroboration. Independent lanes reading the same artifact inherit its framing.",
+    "resolution": "The earlier cross-lane guess that the two 5-deltas were related turns out to have been WRONG IN REASONING BUT RIGHT IN SPIRIT: they are separate deltas, but they share one underlying cause -- discovery-bounded accounting. Distrusting the untested guess was still correct; it was accepted only once a mechanism was produced."
+  },
+  "laneAdjudication": {
+    "laneA_countReconciliation": {
+      "laneVerdict": "PASS",
+      "integratorVerdict": "FAIL",
+      "reason": "Lane restated the observation (excluded from accounting) rather than naming the rule. Also dismissed the 118-vs-113 delta as likely duplicates without proof."
+    },
+    "laneB_encryptionCoverage": {
+      "laneVerdict": "PASS",
+      "integratorVerdict": "PASS",
+      "reason": "Every number independently recomputed and reproduced exactly."
+    },
+    "laneA2_destinationProvenance": {
+      "laneVerdict": "BLOCKED",
+      "integratorVerdict": "BLOCKED",
+      "reason": "Well cited. Note: this lane quoted the RETRACTED 4.7 MB/s from worktree docs as evidence -- the retraction had not reached that lane copy."
+    },
+    "laneB2_countOrphanQuarantine": {
+      "laneVerdict": "PASS",
+      "integratorVerdict": "PASS on counts and quarantine; orphans accepted as classified but not independently verified",
+      "reason": "Unlike the first count lane, this one identified the exclusion RULE with file and line rather than restating the observation. Quarantine set arithmetic reproduced exactly."
+    }
+  },
+  "supersessionProposals": [
+    {
+      "claim": "encryptAtRest.plaintextAtRest = NONE_FOR_PRODUCTION_CAPTURE",
+      "action": "NO SUPERSESSION REQUIRED",
+      "reason": "Independently verified as truthful. Coverage was 100 percent of spool; the apparent gap was deduplication."
+    },
+    {
+      "claim": "storageAuthority destination capital-glass-immutable-context",
+      "action": "SUPERSESSION RECOMMENDED",
+      "reason": "Classified CANARY_ONLY by provenance trace. It was never the canonical vault, and its use as a replication destination should not be read as production storage authority."
+    }
+  ],
+  "scoreboard": {
+    "STEP_1_SUPERSESSION": "PASS (f41ac5e)",
+    "COUNT_RECONCILIATION": "PASS",
+    "UNEXPLAINED_COUNT_DELTA": 0,
+    "ENCRYPTION_POPULATION_IDENTIFIED": "PASS",
+    "ENCRYPTION_POPULATION_COVERAGE": "PASS",
+    "UNAUDITED_PRODUCTION_OBJECTS": 0,
+    "PLAINTEXT_PRODUCTION_OBJECTS": 0,
+    "QUARANTINE_RECONCILIATION": "PASS",
+    "REFUSED_RECONCILIATION": "PASS",
+    "ORPHAN_RECONCILIATION": "PROVISIONAL",
+    "QUANTITATIVE_PROSE_EMITTER_DEFECT": "CONFIRMED",
+    "EMITTER_BINDING_REMEDIATION_SPEC": "READY",
+    "EMITTER_REMEDIATION_IMPLEMENTED": "YES (committed locally, push blocked)",
+    "DESTINATION_PROVENANCE": "BLOCKED",
+    "PRIMARY_STORAGE_TARGET": "ABSENT",
+    "FULL_REPLICATION": "BLOCKED",
+    "E08AB247_REFERENCE": "RESOLVED",
+    "ESTATE_WIDE_CAPTURE_COMPLETENESS_V1": "BLOCKED",
+    "SECRET_FIXTURE_REGENERATION": "BLOCKED_HANDED_OFF",
+    "EMITTER_REMEDIATION": "FIXED",
+    "PUSH": "BLOCKED",
+    "ALLOWLIST": "NO"
+  },
+  "firstConcreteRemainingBoundary": {
+    "id": "GITHUB_PUSH_PROTECTION_ON_FROZEN_SUBSTRATE",
+    "statement": "Steps 2 and 3 are exhausted -- every locally resolvable question is closed. The emitter remediation is complete and green (quantitative-prose-binding 6/6, estate-capture 33/33, estate-completeness 18/18, worker 29/29, completeness 14/14) but cannot be pushed: any branch containing 546bd2c5 is rejected by GitHub secret scanning over five credential-shaped literals in scripts/tests/run-secret-detector.test.mjs.",
+    "syntheticProof": "PROVEN_SYNTHETIC structurally: 21 of 26 values share 12+ character runs ACROSS DIFFERENT PROVIDERS (anthropic/bearer 44 chars, doppler/anthropic 35), 107 cross-provider collisions. Independent issuers cannot produce common runs of that length.",
+    "remediationStatus": "FAILING after 4 attempts. Generic alphabet destroyed charset structure; class-masking randomized issuer prefixes; the detector capture span covers the whole token including the prefix, so it gave no usable boundary. A correctly shaped generated token DOES trip its detector in isolation, so the generator is sound and the fault is per-provider prefix-boundary derivation.",
+    "decisionRequired": "Continue iterating on fixture regeneration, or hand off. Office Admin preflight is unblocked either way, per the operator execution order."
+  },
+  "revision": {
+    "revisedAt": "2026-08-31T23:40:05.773Z",
+    "supersedes": "7576277 (first integration pass)",
+    "reason": "A second reconciliation lane located the accounting-exclusion RULE and produced real quarantine set arithmetic. Both were independently reverified by the integrator. Two verdicts I recorded as FAIL are corrected to PASS. The earlier FAIL was correct at the time -- the evidence did not then exist -- and is preserved here rather than erased."
+  },
+  "orphanPromotionRule": "ORPHAN_RECONCILIATION is PROVISIONAL, not PASS. The ABANDONED_WRITE explanation is plausible and internally consistent but was not independently reproduced. It does not block the next lane, and it MUST NOT be promoted into the final storage receipt until independently verified."
+}

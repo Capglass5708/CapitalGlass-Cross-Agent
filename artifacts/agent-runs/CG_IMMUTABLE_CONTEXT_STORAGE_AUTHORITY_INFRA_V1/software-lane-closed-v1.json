@@ -1,0 +1,79 @@
+{
+  "receiptVersion": "software-lane-closed-v1",
+  "mission": "CG_IMMUTABLE_CONTEXT_STORAGE_AUTHORITY_INFRA_V1",
+  "verdict": "SOFTWARE_LANE_CLOSED",
+  "operatorDirective": "Stop all primary-storage code changes. Bootstrap the service account, run the prover, and let actual DSM behaviour decide what else the primary needs.",
+
+  "governingState": {
+    "RECOVERED_LEDGER_ASSOCIATIONS": 7,
+    "RECOVERED_LEDGER_ASSOCIATIONS_STATE": "PASS",
+    "TOTAL_PROTECTED_OBJECTS": 14005,
+    "PROTECTED_SET_BYTES": 316079846,
+    "DSM_VAULT_EXISTS": "PASS",
+    "DSM_ENUMERATION_BEHAVIOR": "EXPLAINED",
+    "DSM_REPROVISIONING": "NOT_JUSTIFIED",
+    "SERVICE_CREDENTIAL": "BLOCKED",
+    "FILESTATION_SERVICE_PROOF": "NOT_RUN",
+    "DESTINATION_HASH_LIVE_PROOF": "NOT_RUN",
+    "WORM_REFUSAL_PROOF": "NOT_RUN",
+    "WORM_ENFORCEMENT": "NOT_OBSERVED",
+    "PRIMARY_STORAGE_AUTHORITY": "UNPROVEN",
+    "BACKUP_STORAGE_AUTHORITY": "ABSENT",
+    "FULL_REPLICATION": "BLOCKED",
+    "CG_IMMUTABLE_CONTEXT_STORAGE_AUTHORITY_V1": "BLOCKED"
+  },
+
+  "closingDeliverable": {
+    "id": "DSM_BEHAVIOR_CONTRACT_AND_CONTROL_FIXTURE",
+    "contract": "contracts/context-ledger/DSM_SHARE_BEHAVIOR_V1.md",
+    "fixture": "scripts/tests/fixtures/dsm-share-enumeration-control-v1.json",
+    "rulesEncoded": [
+      "Share.get establishes existence and is negatively controllable: a fabricated name returns 402, so a success is a real record rather than an echo.",
+      "Share.list is NOT an authoritative census: it omits enterprise-WORM shares, so omission alone supports no conclusion.",
+      "An ADMIN access result is not probative on a least-privilege share: FileStation returns 407 to ADMIN for the vault AND for the healthy -meta share, because both admin identities are deliberately non-writable."
+    ],
+    "enforcedInCode": {
+      "interpretShareExistence": "returns EXISTS when get succeeds under a holding negative control, regardless of list omission; INCONCLUSIVE when the control does not hold",
+      "listOmissionJustifiesMutation": "returns false, permanently"
+    },
+    "whyRecorded": "Each rule, misread, produces the same damage: mutating infrastructure to repair a defect that does not exist. Reading list omission as absence would have justified recreating a correctly-provisioned WORM share and discarding its UUID. Reading ADMIN 407 as unreachability would have justified changing an ACL that was already correct.",
+    "controlPreserved": {
+      "share": "CG-WORM-ENT-PROOF1",
+      "role": "the only known-WORM share whose WORM status does not depend on the claim under test, which is what makes Rule 1 falsifiable",
+      "instruction": "LEAVE UNTOUCHED until its retention state permits deliberate cleanup",
+      "actionTaken": "NONE"
+    }
+  },
+
+  "backupPurchaseGateFrozen": {
+    "document": "contracts/context-ledger/BACKUP_FAILURE_DOMAIN_SPECIFICATION_V1.md",
+    "required": ["INDEPENDENT_HOST","INDEPENDENT_CHASSIS","INDEPENDENT_STORAGE_DEVICE","DIFFERENT_FILESYSTEM_IDENTITY","WORM_IMMUTABLE_STORAGE","DELETE_REFUSAL_PROOF","OVERWRITE_REFUSAL_PROOF","INDEPENDENT_AUTHENTICATION_ROUTE","DESTINATION_SIDE_HASHING"],
+    "stronglyPreferred": ["REMOTE_OFFSITE_PLACEMENT"],
+    "rejectionRule": "A high-capacity unit that cannot behaviourally prove immutable retention is rejected. The measured protected set is ~316 MB, so capacity is not the property being bought.",
+    "proofStandard": "Behavioural refusal, not a datasheet claim -- the same standard applied to the primary.",
+    "lane": "procurement / infrastructure, not software"
+  },
+
+  "operatorActionOutstanding": {
+    "id": "SERVICE_CREDENTIAL_BOOTSTRAP",
+    "dsm": {"user": "cg-context-ledger", "uid": 1031, "admin": false, "operation": "set or rotate password only", "doNotAlter": ["groups", "ACL", "UID", "admin status"]},
+    "doppler": {"project": "cg-shared", "config": "prd", "names": ["SYNOLOGY_SERVICE_USERNAME", "SYNOLOGY_SERVICE_PASSWORD"], "value": "operator-managed", "doNotPlaceIn": ["dev", "stg"]},
+    "thenRun": "doppler run --project cg-shared --config prd -- python3 scripts/context-ledger/prove-primary-authority-v1.py",
+    "whyNotDoneHere": "No connected Synology or Doppler control surface can perform the DSM password operation from this session, and the automation credential's user-management boundary (error 105) is being preserved by design rather than worked around."
+  },
+
+  "stepEAnticipated": {
+    "expectedResult": "DESTINATION_SIDE_EXECUTION_NOT_AUTHORIZED",
+    "doNotPreBroaden": true,
+    "targetGrantShape": {
+      "allow": "cg-context-ledger may hash an object inside the canonical immutable-context root",
+      "deny": ["arbitrary shell", "arbitrary binaries", "traversal of unrelated shares", "system state modification", "WORM alteration", "ACL changes"],
+      "preferredImplementation": "a forced-command wrapper rooted at the vault, which is materially stronger than adding sha256sum to a generic command allowlist"
+    },
+    "authorityDecision": "The exact grant is decided when the prover returns its concrete requirement. Nothing is broadened in advance."
+  },
+
+  "testSurface": {"total": "136 PASS, 0 FAIL", "storagePipelineReadiness": "42/42", "regressions": "none"},
+  "primaryStorageCodeChanges": "STOPPED",
+  "mutationsToProductionStorage": "NONE"
+}

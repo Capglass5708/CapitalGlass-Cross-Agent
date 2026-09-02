@@ -1,0 +1,113 @@
+{
+  "receiptVersion": "phase0d-population-binding-v1",
+  "mission": "CG_IMMUTABLE_CONTEXT_STORAGE_AUTHORITY_V1",
+  "phase": "0D — capacity / population binding",
+  "lane": "OPUS_INTEGRATOR",
+  "verdict": "BLOCKED",
+  "blockingCondition": "POPULATION_AUTHORITY_DISAGREEMENT",
+  "contractClauseInvoked": "Phase 5A — 'A disagreement with the bound expected population blocks execution; it does not authorize silent recalculation.'",
+
+  "boundReconciliationArtifact": {
+    "path": "artifacts/agent-runs/immutable-context-ledger-v1/reconciliation-truth-table-v1.json",
+    "sha256": "5e3c75f1d516fdd2286ee0309a4c8afb37bacbcb969a2a05924df1185610d349",
+    "byteLength": 10314,
+    "schema": "capture-storage-reconciliation-truth-table-v1@1.0.0",
+    "recordedAt": "2026-08-31T23:32:05.919Z",
+    "revisedAt": "2026-08-31T23:40:05.773Z",
+    "supersedes": "7576277 (first integration pass)"
+  },
+
+  "adjudicatedFigures": {
+    "ledgerEntries": 17675,
+    "uniqueCiphertextHash": 13998,
+    "uniqueContentHash": 13998,
+    "duplicateObservations": 3677,
+    "duplicateDerivation": "17675 - 13998",
+    "spoolObjects": 14005,
+    "orphanObjects": 7,
+    "orphanDerivation": "14005 - 13998",
+    "orphanStatus": "PROVISIONAL / UNEXPLAINED",
+    "entriesWithoutCiphertext": 0
+  },
+
+  "rawStateVerification": {
+    "method": "independent enumeration by the integrator, not a re-derivation of the population",
+    "populationRoot": "/home/wesle/.capital-glass/context-ledger/estate-capture-v1/spool/objects/sha256",
+    "objectFiles": 14005,
+    "distinctContentAddressedNames": 14005,
+    "totalBytes": 244232376,
+    "agreesWithBoundArtifact": true,
+    "note": "Raw state matches reconciled.spoolObjects exactly. The bound artifact is current, not stale."
+  },
+
+  "missionContractFigures": {
+    "statedObjectPopulation": 17668,
+    "statedDeduplicationDelta": 3665,
+    "statedDiscoveryBoundedDelta": 5
+  },
+
+  "disagreement": [
+    {
+      "field": "expected object population",
+      "missionContract": 17668,
+      "boundArtifact": 13998,
+      "rawState": 14005,
+      "delta": "17668 vs 14005 = 3663",
+      "classification": "OBSERVATION_COUNT_SUBSTITUTED_FOR_OBJECT_COUNT",
+      "derivationOfContractValue": "17675 ledger entries - 7 orphans = 17668; this is a count of OBSERVATIONS, not of unique ciphertext objects",
+      "consequenceIfUnresolved": "Phase 5 would expect 17668 objects, enumerate 14005 at the destination, and report MISSING_PRIMARY = 3663 - a false failure against a correct replication. The mission's own Critic list names this exact defect: '17,675 ledger observations substituted for unique ciphertext population'."
+    },
+    {
+      "field": "deduplication delta",
+      "missionContract": 3665,
+      "boundArtifact": 3677,
+      "delta": 12,
+      "classification": "SUPERSEDED_FIGURE"
+    },
+    {
+      "field": "discovery-bounded delta",
+      "missionContract": 5,
+      "boundArtifact": 7,
+      "delta": 2,
+      "classification": "SUPERSEDED_FIGURE",
+      "boundArtifactStatus": "the 7-object orphan set is PROVISIONAL / UNEXPLAINED, downgraded at c943bc6 - it is not a closed finding"
+    }
+  ],
+
+  "likelyOriginOfContractFigures": {
+    "status": "HYPOTHESIS_NOT_PROVEN",
+    "statement": "The mission contract's figures appear to trace to the superseded capture run rather than the current one.",
+    "supportingObservation": "A superseded spool exists at /home/wesle/.capital-glass/context-ledger/estate-capture-v1.superseded-20260831T221019Z/spool/objects/sha256 holding 13993 objects. Current spool holds 14005. The 12-object difference equals the deduplication-delta disagreement (3677 - 3665), and 13998 - 13993 = 5 equals the stated discovery-bounded delta.",
+    "caveat": "Arithmetic coincidence is suggestive, not proof of provenance. The operator, not the integrator, resolves which figures are authoritative."
+  },
+
+  "whatIsNotBlocked": [
+    "Lane A storage authority provenance (read-only, population-independent)",
+    "Lane B transport / immutability / key-custody provenance (read-only, population-independent)",
+    "Phases 1-4: primary target, backup target, native canary, historical bundle - none depend on the production population count"
+  ],
+  "whatIsBlocked": [
+    "Phase 0D capacity precheck (EXPECTED_TOTAL_BYTES is unbound until the population is settled)",
+    "Phase 5 full production replication and every acceptance total derived from it"
+  ],
+
+  "capacityObservationSoFar": {
+    "status": "PARTIAL - source side only",
+    "sourcePopulationBytes": 244232376,
+    "sourceFilesystem": "/dev/sdd mounted at /, 1007G total, 940G available",
+    "destinationFreeBytes": "UNOBSERVED - no canonical destination established yet",
+    "note": "Destination capacity cannot be measured before Lane A returns a canonical target."
+  },
+
+  "operatorDecisionRequired": {
+    "question": "Which figure is the authoritative expected replication population?",
+    "options": [
+      "13998 - unique ciphertext objects bound to ledger entries",
+      "14005 - all spool objects, including the 7 PROVISIONAL orphans",
+      "17668 - the figure as written in the mission contract"
+    ],
+    "integratorObservation": "17668 counts observations and cannot be a replication target: only 14005 objects exist on disk. The real choice is between 13998 and 14005, which is the question of whether the 7 PROVISIONAL orphans are inside or outside the protected population.",
+    "integratorDoesNotSelect": true,
+    "reason": "Phase 5A forbids silent recalculation, and the orphan set is explicitly PROVISIONAL rather than closed."
+  }
+}

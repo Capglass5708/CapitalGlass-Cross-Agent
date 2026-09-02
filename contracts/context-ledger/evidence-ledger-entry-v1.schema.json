@@ -1,0 +1,612 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "capital-glass-cross-agent/context-ledger/evidence-ledger-entry-v1.schema.json",
+  "title": "ContextLedgerEvidenceEntry",
+  "description": "One hash-chained ledger record describing ONE source observation of ONE content-addressed evidence blob. PERSISTENCE SHAPE IS PART OF THE CONTRACT: each entry is written as its own immutable file (ledger-entries/entry-NNNNNN.json) on the WriteOnce vault -- never appended into a shared file, which would be incompatible with WORM auto-lock and would leave historical proof mutable. The mutable head pointer lives on the normal metadata share and is an optimisation, not an authority: if lost, the head is rebuilt by scanning entries and following prevHash/entryHash. Invariant: historical evidence and historical proof are immutable; only operational state is mutable. CONTRACT EXTENSION (additive, schemaVersion unchanged at 1.0.0 because no real evidence predates it and no entry is reinterpreted): recordedAt, transportRealRemote and provenanceResolution added; encryption gained envelopeVersion/aad/aadHash; sourceNativeId may be null; the transport enum now names the adapters actually in use. Every one of these existed in emitted entries already and was silently invalid under additionalProperties:false -- the schema had never been executed against a real record. Later additive change: encryption.ciphertextByteLength, and DRVFS_MOUNT added to the transport enum for replication over a live mounted remote surface.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "seq",
+    "evidenceId",
+    "sourceSystem",
+    "sourceNativeId",
+    "contentHash",
+    "captureTimestamp",
+    "machineId",
+    "prevHash",
+    "entryHash",
+    "storageLocator",
+    "durabilityState"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "evidence-ledger-entry-v1@1.0.0"
+    },
+    "seq": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "ORDERING ASSISTANCE ONLY -- never identity, never authority. The identity of an entry is entryHash; the truth of history is the prevHash/entryHash chain. seq exists so humans and queries can order entries cheaply. Never resolve an entry by seq, never assume seq is gap-free, and never treat a seq collision as meaningful -- resolve by entryHash and walk the chain."
+    },
+    "prevHash": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "entryHash of seq-1. Null only at seq 0 (genesis)."
+    },
+    "entryHash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "sha256(canonicalJson(entry without entryHash) + prevHash). Makes the ledger tamper-evident."
+    },
+    "evidenceId": {
+      "type": "string",
+      "description": "Deterministic id derived from (sourceSystem, sourceNativeId, contentHash). Identifies THIS OBSERVATION, not the blob."
+    },
+    "contentHash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "Address of the immutable blob. Two observations of identical bytes share this value and MUST NOT produce two canonical blobs."
+    },
+    "sourceSystem": {
+      "type": "string",
+      "enum": [
+        "claude-code",
+        "cursor",
+        "chatgpt",
+        "git",
+        "waverunner",
+        "documents",
+        "human"
+      ]
+    },
+    "sourceNativeId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The source's own identifier -- sessionId, message uuid, composerId, commit SHA. Never invented by us. NULL when the source genuinely exposes no native identifier -- an invented id would violate the sentence above it."
+    },
+    "sourceObservation": {
+      "type": "object",
+      "description": "Where this particular observation was seen. Distinguishes the WSL corpus from the Windows mirror when both contain identical bytes.",
+      "properties": {
+        "sourceRootId": {
+          "type": "string"
+        },
+        "sourcePath": {
+          "type": "string"
+        },
+        "relativePath": {
+          "type": "string"
+        },
+        "byteSize": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sourceMtime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false
+    },
+    "captureTimestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When WE captured it."
+    },
+    "sourceTimestamp": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "description": "When the original event happened. Null when the source does not expose it (Cursor WSL transcripts)."
+    },
+    "machineId": {
+      "type": "string",
+      "description": "Canonical machine identity, e.g. CG-NIMO-01."
+    },
+    "sessionBinding": {
+      "type": "object",
+      "properties": {
+        "sessionId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "parentSessionId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isSidechain": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "agentIdentity": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "modelIdentity": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "repoBinding": {
+      "type": "object",
+      "description": "All nullable -- absent binding is MISSING, never guessed.",
+      "properties": {
+        "repoKey": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "worktreePath": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "branch": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "headSha": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "workPackageId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "storageLocator": {
+      "type": "object",
+      "description": "Fan-out is INDEPENDENT from the spool to each target. The backup leg must never be derived from, or depend on, the primary.",
+      "required": [
+        "spoolPath",
+        "primary",
+        "backup"
+      ],
+      "properties": {
+        "spoolPath": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "WSL ext4 write-ahead spool. Null only after FULLY_PROTECTED cleanup."
+        },
+        "primary": {
+          "type": "object",
+          "description": "Synology canonical authority.",
+          "properties": {
+            "rootId": {
+              "type": "string"
+            },
+            "host": {
+              "type": "string"
+            },
+            "path": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "transport": {
+              "type": "string",
+              "enum": [
+                "ssh-rsync",
+                "cifs-mount",
+                "SSH_RSYNC",
+                "DRVFS_MOUNT",
+                "LOCAL_FIXTURE",
+                "OTHER"
+              ],
+              "description": "Transport adapter that handled this leg. Never a /mnt/z drvfs path. LOCAL_FIXTURE is NOT remote and must never be read as remote success -- cross-check transportRealRemote."
+            }
+          },
+          "additionalProperties": false
+        },
+        "backup": {
+          "type": "object",
+          "description": "Independent recovery copy. NOT an authority. Has its own manifests and verification history.",
+          "properties": {
+            "rootId": {
+              "type": "string"
+            },
+            "host": {
+              "type": "string"
+            },
+            "path": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "transport": {
+              "type": "string",
+              "enum": [
+                "ssh-rsync",
+                "cifs-mount",
+                "SSH_RSYNC",
+                "DRVFS_MOUNT",
+                "LOCAL_FIXTURE",
+                "OTHER"
+              ],
+              "description": "Transport adapter that handled this leg. Never a /mnt/z drvfs path. LOCAL_FIXTURE is NOT remote and must never be read as remote success -- cross-check transportRealRemote."
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "durabilityState": {
+      "type": "string",
+      "enum": [
+        "CAPTURED_LOCAL",
+        "HASHED_ENCRYPTED",
+        "PRIMARY_VERIFIED",
+        "BACKUP_VERIFIED",
+        "FULLY_PROTECTED",
+        "INTEGRITY_INCIDENT"
+      ],
+      "description": "Fan-out durability. The spool copy is NOT eligible for cleanup until FULLY_PROTECTED, which requires plaintextHash == primary verified hash == backup verified hash. Reaching only PRIMARY_VERIFIED never authorises spool deletion -- that is the whole point of keeping the local copy. INTEGRITY_INCIDENT is terminal until a human resolves it."
+    },
+    "durabilityProof": {
+      "type": "object",
+      "description": "Three independent hashes. Equality across all three is the only thing that authorises FULLY_PROTECTED.",
+      "properties": {
+        "plaintextHash": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "primaryHash": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^sha256:[a-f0-9]{64}$",
+          "description": "Re-hashed ON the Synology, not predicted locally."
+        },
+        "backupHash": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^sha256:[a-f0-9]{64}$",
+          "description": "Re-hashed ON wesleydesk, independently of the primary leg."
+        },
+        "primaryVerifiedAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "backupVerifiedAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "allThreeMatch": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "lastScrubAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "Periodic integrity scrub: ledger hash vs primary vs backup."
+        },
+        "lastRestoreProofAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "A backup is proven by RECONSTRUCTION, not by files existing. Records the last real restore from the backup copy."
+        },
+        "ciphertextHashesIdentical": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "ciphertextHash(primary) == ciphertextHash(backup). The encrypted bytes must be identical at both destinations."
+        }
+      },
+      "additionalProperties": false
+    },
+    "provenanceClass": {
+      "type": "string",
+      "const": "DISCOVERED",
+      "description": "Raw capture is never promoted above DISCOVERED by the capture path."
+    },
+    "captureCompleteness": {
+      "type": "string",
+      "enum": [
+        "COMPLETE",
+        "PARTIAL",
+        "LOWER_BOUND"
+      ],
+      "description": "Absent data is MISSING, never zero."
+    },
+    "redactionState": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "QUARANTINED_SECRET",
+        "REDACTED_LEGAL"
+      ],
+      "default": "NONE"
+    },
+    "supersededBy": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "evidenceId that supersedes this observation. Supersession is an edge, never a deletion."
+    },
+    "continuationOf": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Session stitching across restarts or hosts."
+    },
+    "encryption": {
+      "type": "object",
+      "description": "Evidence is encrypted in WSL BEFORE either storage target receives it. Neither drive is trusted to provide confidentiality, and DSM share encryption is currently DISABLED anyway. The write-ahead spool holds the CIPHERTEXT, addressed by ciphertextHash; admitted plaintext is never persisted.",
+      "required": [
+        "algorithm",
+        "keyRef",
+        "plaintextHash",
+        "ciphertextHash"
+      ],
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "description": "e.g. AES-256-GCM. Authenticated encryption required -- a plain stream cipher gives no tamper detection."
+        },
+        "keyRef": {
+          "type": "string",
+          "description": "NAME of the key in the approved secret system (Doppler). NEVER the key material, and never a path on either drive."
+        },
+        "keyVersion": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Key rotation identity. Old evidence must stay decryptable after rotation."
+        },
+        "plaintextHash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$",
+          "description": "Identity and dedup hash. Two observations of identical plaintext share one canonical object."
+        },
+        "ciphertextHash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$",
+          "description": "What remote re-hash compares against. Encryption must be deterministic per object, or the stored bytes are re-hashed after write rather than predicted."
+        },
+        "nonce": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "envelopeVersion": {
+          "type": "string",
+          "description": "FROZEN crypto envelope identity, e.g. context-ledger-crypto-v2. Any change to key derivation, nonce derivation, AAD handling or blob layout MUST introduce a new version rather than reinterpreting old ciphertext."
+        },
+        "aad": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Canonical additional authenticated data, empty string when there is none. Recorded because AAD is bound into nonce derivation: the same plaintext under different AAD is a different object."
+        },
+        "aadHash": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^sha256:[a-f0-9]{64}$",
+          "description": "Digest of the canonical AAD bytes. Makes the (keyVersion, nonce) -> (plaintextHash, aadHash) uniqueness invariant checkable from the ledger alone."
+        },
+        "ciphertextByteLength": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "description": "Byte length of the stored ciphertext blob. Recorded because a replication read-back must assert LENGTH as well as hash, and deriving the length from the plaintext size would require the verifier to assume the envelope layout -- exactly the assumption an independent verifier must not have to make."
+        }
+      },
+      "additionalProperties": false
+    },
+    "propagationPolicy": {
+      "type": "object",
+      "description": "The backup is append-only and must never obediently reproduce a mistake made on the primary.",
+      "properties": {
+        "deletesPropagate": {
+          "type": "boolean",
+          "const": false,
+          "description": "MUST be false. A delete on the Synology is never mirrored to the backup."
+        },
+        "modificationsPropagate": {
+          "type": "boolean",
+          "const": false,
+          "description": "MUST be false. Objects are content-addressed and append-only."
+        }
+      },
+      "additionalProperties": false
+    },
+    "persistence": {
+      "type": "object",
+      "description": "Where and how this entry is stored. Enforces the immutable-per-entry shape.",
+      "properties": {
+        "entryFile": {
+          "type": "string",
+          "description": "Immutable path, written once, never reopened. Prefer deriving the filename from entryHash rather than seq: a content-derived name cannot collide, whereas two writers independently computing seq+1 would collide and rely on the storage layer refusing an overwrite -- an accident of WORM rather than a designed guarantee."
+        },
+        "storageClass": {
+          "type": "string",
+          "const": "WORM_IMMUTABLE",
+          "description": "Ledger entries live on the WriteOnce vault alongside blobs, manifests and receipts."
+        },
+        "batchManifest": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Immutable per-batch manifest, e.g. immutable-metadata/manifests/{batchId}.json. Never an extended file."
+        },
+        "headPointerIsAuthority": {
+          "type": "boolean",
+          "const": false,
+          "description": "MUST be false. The chain is the authority; the head pointer is a cache."
+        }
+      },
+      "additionalProperties": false
+    },
+    "chainIntegrity": {
+      "type": "object",
+      "description": "Concurrency contract for the append primitive. Locked before a second adapter exists, because two writers silently claiming the same predecessor forks history in a way that is only discoverable after the evidence needed to diagnose it is already wrong.",
+      "required": [
+        "headTransition"
+      ],
+      "properties": {
+        "headTransition": {
+          "type": "string",
+          "const": "COMPARE_AND_SWAP",
+          "description": "The head pointer MUST advance by compare-and-swap: the write succeeds only if the current head still equals expectedPrevHash. A losing writer re-reads the head and retries against the new predecessor. Appending without CAS is a contract violation even if it appears to work under a single worker."
+        },
+        "expectedPrevHash": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^sha256:[a-f0-9]{64}$",
+          "description": "The head this writer observed. The CAS compares against this. Null only for genesis."
+        },
+        "seqAssignedUnderCas": {
+          "type": "boolean",
+          "description": "True when seq was allocated by the winner inside the CAS, which is what keeps numbering unique without making it authoritative."
+        },
+        "forkDetected": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "Two entries claiming the same prevHash is a FORK. It is an INTEGRITY_INCIDENT, never auto-merged and never resolved by preferring a seq or a timestamp -- both branches are preserved for a human."
+        },
+        "casRetries": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "description": "Retries before winning the head. Non-zero is normal under concurrency; sustained growth indicates contention worth investigating."
+        }
+      },
+      "additionalProperties": false
+    },
+    "recordedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the ledger primitive wrote this entry. Distinct from captureTimestamp (when the source was captured) and from sourceTimestamp (when the original event happened). All three are separate facts; collapsing any two would make replay indistinguishable from new evidence."
+    },
+    "transportRealRemote": {
+      "type": "object",
+      "description": "Whether each leg was a REAL remote transport. A LocalFixtureTransport verifies happily and would otherwise satisfy the FULLY_PROTECTED three-way match with nothing remote in the loop. Both false means durability is NOT proven no matter what durabilityProof says.",
+      "properties": {
+        "primary": {
+          "type": "boolean"
+        },
+        "backup": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "provenanceResolution": {
+      "type": "object",
+      "description": "How provenance was resolved and what could NOT be resolved. Nullable bindings alone cannot distinguish a field the source does not expose from a field the resolver failed on -- and only the second one is a defect. Never fabricate: an unresolved field stays null and is named here.",
+      "required": [
+        "completeness",
+        "resolver"
+      ],
+      "properties": {
+        "completeness": {
+          "type": "string",
+          "enum": [
+            "COMPLETE",
+            "PARTIAL",
+            "LOWER_BOUND"
+          ]
+        },
+        "unresolvedFields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "resolver": {
+          "type": "string"
+        },
+        "headerStatus": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Whether session identity came from the source itself, was derived from its filename, or could not be resolved."
+        }
+      },
+      "additionalProperties": false
+    },
+    "normalizationState": {
+      "type": "string",
+      "enum": [
+        "NORMALIZED",
+        "PARTIAL_NORMALIZATION",
+        "NORMALIZATION_FAILED",
+        "BINARY_TEXT_VARIANT"
+      ],
+      "description": "How far text normalization got. RAW BYTES ARE ALWAYS ADMITTED UNMODIFIED regardless of this value -- a parser failing to interpret a source is a fact about the parser, not a reason to discard evidence. Recorded so interpretability never has to be inferred from silence, and so a downstream reader knows which objects need a different reader rather than assuming they are damaged."
+    }
+  },
+  "additionalProperties": false
+}

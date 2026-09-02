@@ -1,0 +1,165 @@
+{
+  "missionId": "CG_SECRET_AND_STORAGE_AUTHORITY_100_PERCENT_HEALTH_V1",
+  "workPackageId": "primary-storage-execution-plane-v1",
+  "branch": "work/primary-storage-execution-plane-v1",
+  "updatedAt": "2026-09-02T03:36:00Z",
+  "retrieval": {
+    "indexResult": "INDEX_HIT_AI_CACHE",
+    "directConnect": "DIRECT_CONNECT_NOT_APPLICABLE"
+  },
+  "categories": {
+    "CG_SECRET_AUTHORITY_V1": {
+      "status": "PASS",
+      "blockers": [],
+      "advisory": ["GITHUB_READ_ORG_DEVICE_FLOW_INCOMPLETE"],
+      "closed": ["RAILWAY_API_TOKEN", "RESEND_API_KEY", "SYNOLOGY_SERVICE_DOPPLER_PRD", "VERCEL_TOKEN"],
+      "liveAuthVerifiedAt": "2026-09-02T00:17:00Z",
+      "rotationReceipt": {
+        "vercel": "Rotated cg-shared/prd+dev VERCEL_TOKEN and VERCEL_REFRESH_TOKEN from live Vercel CLI OAuth session; live-auth HTTP 200",
+        "adminKeysVault": [
+          "02-Secrets/04-Apps-Doppler/cursor-integrations-full.vault",
+          "02-Secrets/04-Apps-Doppler/vercel-token.vault"
+        ],
+        "dopplerCanonical": true
+      }
+    },
+    "CG_IMMUTABLE_CONTEXT_PRIMARY_AUTHORITY_V1": {
+      "status": "PROVEN",
+      "blockers": [],
+      "softwareComplete": true,
+      "writeOnceShare": {
+        "name": "Capital-Glass-AI-Evidence-Vault",
+        "mode": "enterprise",
+        "retentionDays": 90,
+        "complianceMigration": "DEFERRED_POLICY"
+      },
+      "liveProof": {
+        "CONTAINER_MANAGER_INSTALLED": "PASS",
+        "CG_VAULT_SSH_DOCKER_RUNNING": "PASS",
+        "CG_VAULT_SSHD_LISTENING": "PASS",
+        "PUBKEY_AUTHENTICATION": "PASS",
+        "VAULT_SSH_PROBE": "PASS",
+        "VAULT_RUNTIME_ACCESS": "PASS",
+        "DESTINATION_HASH_LIVE_PROOF": "PASS",
+        "DISPATCHER_LOCAL_SUDO_PROOF": "PASS",
+        "CANARY_DELETE": "REFUSED",
+        "CANARY_OVERWRITE": "REFUSED",
+        "IMMUTABILITY_ENFORCEMENT": "PROVEN",
+        "PRIMARY_STORAGE_AUTHORITY": "PROVEN"
+      },
+      "closed": [
+        "CONTAINER_MANAGER_NOT_INSTALLED",
+        "CG_VAULT_SSH_POST_AUTH_SYNO_GATE",
+        "VAULT_SHA256_VAULT_UID_ACL",
+        "WRONG_DOCKER_BIND_STAGING_TREE",
+        "WORM_OVERWRITE_NOT_REFUSED",
+        "MUTATION_OF_ARCHIVED_EVIDENCE_SUCCEEDED"
+      ],
+      "incidentNote": "Legacy destructive canary wrote a fresh control object then overwrote before lock — false negative. Non-destructive sentinel mode probes locked worm-proof files; Enterprise WORM already enforces immutability (File Station 1814/901)."
+    },
+    "BACKUP_STORAGE_AUTHORITY": {
+      "status": "BLOCKED_BY_PROCUREMENT"
+    },
+    "CG_IMMUTABLE_CONTEXT_STORAGE_AUTHORITY_V1": {
+      "status": "BLOCKED_BY_PROCUREMENT"
+    }
+  },
+  "cgVaultSsh": {
+    "executionPlane": "docker-container-manager",
+    "canonicalVaultBind": "/volume1/Capital-Glass-AI-Evidence-Vault",
+    "stagingTreeDeprecated": "/volume1/Capital Glass/Capital-Glass-AI-Evidence-Vault",
+    "port": 22222,
+    "host": "100.112.81.50",
+    "sshLoginUser": "vault",
+    "dsmServiceUser": "cg-context-ledger",
+    "dockerPreferred": true,
+    "containerManagerInstalled": true,
+    "containerManagerVersion": "24.0.2-1606",
+    "deployedAt": "2026-09-02T03:07:00Z",
+    "commits": ["87fc72d", "37bd0f2", "f0626cf", "40d6872"],
+    "nativeSshdOn22222": "disabled (rc.d cg-vault-ssh.sh.disabled)",
+    "dopplerEnv": {
+      "project": "cg-shared",
+      "configs": ["prd", "dev"],
+      "keys": [
+        "CG_VAULT_SSH_USER",
+        "CG_VAULT_SSH_HOST",
+        "CG_VAULT_SSH_PORT",
+        "SYNOLOGY_DSM_HOST",
+        "SYNOLOGY_DSM_ADMIN_USERNAME",
+        "SYNOLOGY_DSM_ADMIN_PASSWORD",
+        "CG_PROVER_CONTROL_WRITE_ENABLED",
+        "CG_PROVER_HASH_TARGET_REL",
+        "CG_WORM_IMMUTABILITY_SENTINEL_REL",
+        "CG_PROVER_REQUIRE_WORM_SENTINEL",
+        "CG_EVIDENCE_VAULT_SHARE"
+      ]
+    },
+    "artifacts": "CapitalGlass-Cross-Agent/infra/cg-vault-ssh/"
+  },
+  "prover": {
+    "script": "scripts/context-ledger/prove-primary-authority-v1.py",
+    "lastRunAt": "2026-09-02T03:35:00Z",
+    "dopplerProject": "cg-shared",
+    "dopplerConfig": "prd",
+    "cgVaultSshUser": "vault",
+    "immutabilityCheckRedesign": "non_destructive_sentinel_mode_landed",
+    "runbook": "docs/runbooks/cg-evidence-vault-writeonce-migration.md",
+    "sentinelRel": "control/worm-proof/worm-proof-e673af22589b4a6db057367fe32a582a.txt",
+    "results": {
+      "CG_VAULT_SSH_PROBE": "PASS",
+      "VAULT_RUNTIME_ACCESS": "PASS",
+      "DESTINATION_HASH_LIVE_PROOF": "PASS",
+      "IMMUTABILITY_ENFORCEMENT": "PROVEN",
+      "CANARY_OVERWRITE": "REFUSED",
+      "CANARY_DELETE": "REFUSED",
+      "PRIMARY_STORAGE_AUTHORITY": "PROVEN"
+    },
+    "blockers": [],
+    "receiptPath": "artifacts/agent-runs/cg-secret-and-storage-authority-100-v1/prove-primary-authority-v1-2026-09-02T0335Z-PROVEN.json",
+    "gatesReceipt": "artifacts/agent-runs/cg-secret-and-storage-authority-100-v1/writeonce-gates-receipt-2026-09-02.json"
+  },
+  "operatorActionsRequired": [
+    {
+      "id": "INSTALL_CONTAINER_MANAGER",
+      "status": "CLOSED"
+    },
+    {
+      "id": "DEPLOY_CG_VAULT_SSH_DOCKER",
+      "status": "CLOSED"
+    },
+    {
+      "id": "CANONICAL_VAULT_DOCKER_BIND",
+      "status": "CLOSED",
+      "detail": "37bd0f2 — bind /volume1/Capital-Glass-AI-Evidence-Vault; DESTINATION_HASH_LIVE_PROOF PASS"
+    },
+    {
+      "id": "WORM_WRITEONCE_MIGRATION",
+      "status": "PROVEN_ENTERPRISE_SENTINEL",
+      "detail": "Gates PASS (DS1525+, DSM 7.3.2, Btrfs). Vault already Enterprise WriteOnce 90d. Prover PROVEN via non-destructive sentinel. Compliance share creation deferred — requires DSM UI; synoshare --worm-set post-create ineffective."
+    },
+    {
+      "id": "VERCEL_TOKEN_MFA",
+      "status": "CLOSED"
+    },
+    {
+      "id": "GITHUB_READ_ORG",
+      "detail": "Advisory only unless workflows require read:org"
+    }
+  ],
+  "siblingPathAudit": {
+    "corrected": [
+      "infra/cg-vault-ssh/docker-compose.yml",
+      "infra/cg-vault-ssh/cg-vault-run.sh"
+    ],
+    "pending": []
+  },
+  "100_PERCENT_SOFTWARE_AND_SECRET_HEALTH": {
+    "status": "PASS_SOFTWARE_SECRET_PRIMARY_STORAGE",
+    "except": [
+      "GITHUB read:org advisory (optional)",
+      "Compliance-mode WriteOnce policy upgrade (optional; Enterprise WORM already PROVEN)",
+      "backup hardware procurement"
+    ]
+  }
+}

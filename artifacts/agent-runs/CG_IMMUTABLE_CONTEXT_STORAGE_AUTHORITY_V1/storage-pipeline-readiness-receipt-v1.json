@@ -1,0 +1,104 @@
+{
+  "receiptVersion": "storage-pipeline-readiness-v1",
+  "mission": "CG_IMMUTABLE_CONTEXT_STORAGE_AUTHORITY_V1",
+  "scope": "AUTHORIZED READINESS WORK ONLY - tasks 1-4",
+  "productionStorageMutation": "NONE",
+  "dsmAuthenticationPerformed": "NONE",
+  "sshAllowlistBroadened": false,
+  "primarySelected": false,
+  "backupSelected": false,
+  "backupTargetCreated": false,
+
+  "proofOutput": {
+    "FILESTATION_SELECTOR_INTEGRATION": "PASS",
+    "SCP_SELECTOR_INTEGRATION": "PASS",
+    "DRVFS_NATIVE_PRODUCTION_GUARD": "PASS",
+    "CRYPTO_V2_STRUCTURAL_VALIDATOR": "PASS",
+    "STRUCTURAL_NEGATIVE_TESTS": "PASS",
+    "DESTINATION_HASH_INTERFACE": "PASS",
+    "DESTINATION_HASH_LIVE_PROOF": "NOT_RUN",
+    "PROTECTED_SET_INCLUDES_LEDGER": "PASS",
+    "AUTHORITATIVE_PRODUCTION_OBJECTS": 13998,
+    "PROVISIONAL_OBJECTS": 7,
+    "PRESERVATION_OBJECTS": 14005,
+    "PRIMARY_STORAGE_AUTHORITY": "CONFLICTED",
+    "BACKUP_STORAGE_AUTHORITY": "ABSENT",
+    "CG_IMMUTABLE_CONTEXT_STORAGE_AUTHORITY_V1": "OPERATOR_ACTION_REQUIRED"
+  },
+
+  "task1_transportIntegration": {
+    "status": "NATIVE_TRANSPORT_PIPELINE_INTEGRATION = IMPLEMENTED_UNPROVEN",
+    "module": "scripts/context-ledger/lib/transport-selector.mjs",
+    "architecture": "DECLARED TRANSPORT -> selector -> implemented adapter -> runtime selected transport -> receipt-bound transport identity",
+    "defectRemoved": "context-ledger-v1.mjs chose its adapter with a ternary defaulting to SshRsyncTransport, an unimplemented stub whose every method throws.",
+    "registryIsData": true,
+    "separationEnforced": "A transport never names its own destination. objectRoot, host and share come from the storage authority contract passed in.",
+    "noFallback": "Unknown, unimplemented, misconfigured or authority-less selection REFUSES. The not-implemented check runs before configuration and authority so nothing downstream can rescue a stub into an apparent success.",
+    "authorityGate": "selectTransport refuses unless storageAuthority.state === PROVEN. Because live authority is CONFLICTED, the production path refuses by construction rather than by intention.",
+    "drvfsClass": "NATIVE_PRODUCTION_INELIGIBLE (DRVFS_CHMOD_UNSUPPORTED_WRITE_ONCE_NOT_ENFORCEABLE_BY_FILE_MODE)",
+    "credentialsHandling": "requiredEnv lists VARIABLE NAMES ONLY. No value is read, compared, logged, hashed or placed in a receipt."
+  },
+
+  "task2_structuralValidator": {
+    "module": "scripts/context-ledger/lib/crypto-structure.mjs",
+    "verdictName": "CONTEXT_LEDGER_CRYPTO_V2_STRUCTURE_VALID",
+    "provesDecryptable": false,
+    "provesKeyVersion": false,
+    "correction": "The physical blob is [12-byte nonce][16-byte tag][ciphertext] and contains NO key-version field. The module states this in its output rather than implying recoverability.",
+    "checks": ["minimum legal length", "nonce framing", "authentication-tag framing", "non-empty ciphertext payload", "ciphertext hash agreement when supplied"],
+    "negativeTests": ["truncated nonce", "truncated tag", "zero-length payload", "malformed framing", "ciphertext hash mismatch", "missing ledger association"],
+    "hashAgreementSemantics": "null when not asserted - never conflated with 'passed'"
+  },
+
+  "task3_destinationExecution": {
+    "module": "scripts/context-ledger/lib/destination-exec.mjs",
+    "status": "DESTINATION_SIDE_HASH_CAPABILITY = IMPLEMENTED_UNPROVEN",
+    "recordShape": ["path", "sha256", "bytes", "executionHost", "executionMechanism", "timestamp", "exitStatus"],
+    "guard": "TRANSPORT_READBACK is registered ONLY so it can be refused. assertIndependentOfTransport throws MECHANISM_READS_BACK_THROUGH_TRANSPORT.",
+    "whyReadbackIsRefused": "Write-then-download-then-hash-locally proves the transport is self-consistent, which a symmetric read/write fault also satisfies.",
+    "failClosed": {
+      "SSH_REMOTE_SHA256SUM": "ALLOWLIST_EXPANSION_REQUIRED - restricted policy allowlists rsync only; NOT broadened here",
+      "DSM_API_REMOTE_HASH": "DESTINATION_EXECUTION_NOT_AUTHORIZED - authenticating to production DSM is not authorized for this mission"
+    },
+    "genericWrtAuthority": "Takes whatever authority it is given and refuses while that authority is not PROVEN."
+  },
+
+  "task4_protectedSet": {
+    "module": "scripts/context-ledger/lib/protected-set.mjs",
+    "contract": "contracts/context-ledger/protected-evidence-set-v1.schema.json",
+    "members": ["productionObjects", "provisionalObjects", "ledgerEntries", "ledgerChainMetadata", "reconciliationManifest", "cryptoMetadata"],
+    "governingRule": "OBJECT_DURABILITY_WITHOUT_LEDGER_DURABILITY = DURABLE_BUT_UNDECRYPTABLE = FAIL",
+    "closureChain": ["ledger entry exists", "ciphertextHash exists", "ciphertext object exists", "ciphertext hash matches ledger", "content identity bound", "encryption metadata exists", "key version known from ledger", "key custody pointer resolvable"],
+    "keyVersionModel": "CIPHERTEXT OBJECT + LEDGER ENTRY -> keyVersion -> IT Vault custody pointer. Never envelope -> keyVersion.",
+    "orphanHandling": {
+      "objectPreserved": true,
+      "ledgerAssociation": "ABSENT",
+      "ledgerAssociationIsEvidence": true,
+      "manufacturedLedgerEntry": false,
+      "certifiedProduction": false,
+      "keyVersionState": "KNOWN_FROM_OTHER_EVIDENCE | UNKNOWN, never inferred"
+    },
+    "accountingRefusal": "assertManifestAccounting refuses counts that disagree with the adjudication, and refuses any manifest that folds provisional objects into production.",
+    "noSecretsEmitted": "Custody is a POINTER. No key material, tokens or passphrases enter any artifact."
+  },
+
+  "replicationPerformed": {
+    "productionObjects": "NONE",
+    "historicalBundle": "NONE",
+    "note": "Manifests and interfaces only, as authorized."
+  },
+
+  "testSurface": {
+    "run-storage-pipeline-readiness": "33/33 PASS",
+    "run-secret-detector": "12/12 PASS",
+    "run-quantitative-prose-binding": "6/6 PASS",
+    "run-estate-capture": "33/33 PASS",
+    "run-context-ledger-worker": "29/29 PASS",
+    "run-capture-completeness": "14/14 PASS",
+    "total": "127 PASS, 0 FAIL",
+    "regressions": "none"
+  },
+
+  "storageAuthorityPassEmitted": false,
+  "downstream": "ESTATE_WIDE_CAPTURE_COMPLETENESS_V1 = BLOCKED"
+}

@@ -1,0 +1,26 @@
+# CG Vault SSH — constrained storage execution plane (not DSM admin SSH)
+Port 22
+Protocol 2
+HostKey /etc/ssh/ssh_host_ed25519_key
+HostKey /etc/ssh/ssh_host_rsa_key
+
+PermitRootLogin no
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+ChallengeResponseAuthentication no
+UsePAM no
+PermitEmptyPasswords no
+PubkeyAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys
+
+AllowTcpForwarding no
+X11Forwarding no
+AllowAgentForwarding no
+PermitTTY no
+GatewayPorts no
+PermitUserEnvironment no
+MaxSessions 4
+LoginGraceTime 30
+
+Match all
+    AllowTcpForwarding no

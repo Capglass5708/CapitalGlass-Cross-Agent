@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "replication-namespace-policy-v1@1.0.0",
+  "title": "ImmutableContextReplicationNamespacePolicy",
+  "owner": "CapitalGlass-Cross-Agent",
+  "ownerNote": "The Cross-Agent repository owns the Context Ledger, so the policy that governs its replication lives here. It is DATA that the adapter reads and enforces, not documentation: a rule written only in a comment is a rule that stops existing the moment someone edits the code around it.",
+  "authority": {
+    "grant": "The validated Immutable Context replication worker may write ONLY encrypted, content-addressed Immutable Context objects and required safe metadata, into DEDICATED Immutable Context namespaces on the two destinations below, through the validated replication adapter.",
+    "generalRuleUnchanged": "Direct L: and Z: writes remain prohibited for every other purpose. This is a narrow exception to that rule, not a relaxation of it.",
+    "reproducibleWithoutOperatorMessage": true,
+    "reproducibilityNote": "This file is the authority. A future session reads it and gets the same enforcement without anyone re-stating the grant, which is the difference between an authorisation and a memory."
+  },
+  "destinations": [
+    {
+      "id": "wesleydesk-L",
+      "host": "wesleydesk",
+      "mountpoint": "/mnt/l",
+      "windowsUnc": "\\\\wesleydesk\\CapitalGlass-L",
+      "expectedMountSource": "L:",
+      "expectedFstype": [
+        "9p",
+        "cifs",
+        "smb3",
+        "drvfs"
+      ],
+      "namespace": "capital-glass-immutable-context",
+      "objectPrefix": "capital-glass-immutable-context",
+      "role": "backup"
+    },
+    {
+      "id": "cg-server-Z",
+      "host": "cg-server",
+      "mountpoint": "/mnt/z",
+      "windowsUnc": "\\\\cg-server\\Capital Glass",
+      "expectedMountSource": "Z:",
+      "expectedFstype": [
+        "9p",
+        "cifs",
+        "smb3",
+        "drvfs"
+      ],
+      "namespace": "capital-glass-immutable-context",
+      "objectPrefix": "capital-glass-immutable-context",
+      "role": "primary"
+    }
+  ],
+  "rules": {
+    "namespaceAllowlistOnly": {
+      "value": true,
+      "description": "Every written path MUST live under the destination's declared objectPrefix. Both shares are live business shares; the adapter must be incapable of touching anything that already exists on them."
+    },
+    "contentAddressedOnly": {
+      "value": true,
+      "description": "The path MUST be exactly objectPrefix + objects/sha256/{aa}/{hash} for the hash being written, AND sha256(bytes) MUST equal that hash. A write whose path does not derive from its own content is not a content-addressed store, and it is the shape that lets one object silently overwrite another. objectStorePath already contributes the objects/sha256/{aa}/ segments, so objectPrefix is the NAMESPACE root only; doubling it produced capital-glass-immutable-context/objects/objects/."
+    },
+    "encryptedOnly": {
+      "value": true,
+      "description": "Only ciphertext may leave this machine. Enforced mechanically rather than by trust: an AES-GCM blob is indistinguishable from random, so an object whose leading bytes are overwhelmingly printable UTF-8 is plaintext no matter what the caller claims, and is refused."
+    },
+    "minimumEnvelopeBytes": {
+      "value": 28,
+      "description": "12-byte nonce plus 16-byte GCM tag. Anything shorter cannot be a valid envelope."
+    },
+    "maxPrintableRatio": {
+      "value": 0.85,
+      "description": "Printable-byte ratio over the leading sample above which an object is treated as plaintext and refused."
+    },
+    "credentialBearingForbidden": {
+      "value": true,
+      "description": "A source that tripped the pre-admission detector never reaches replication at all: it has no content hash, no spool object and no ledger entry, so there is nothing for this adapter to be handed."
+    },
+    "deletesPropagate": {
+      "value": false
+    },
+    "modificationsPropagate": {
+      "value": false
+    }
+  },
+  "forbidden": [
+    "manual shell copying to L: or Z:",
+    "arbitrary agent writes to L: or Z:",
+    "Intelligence Hub data writes",
+    "unrelated project writes",
+    "plaintext context writes",
+    "credential-bearing objects",
+    "writes outside the dedicated Immutable Context namespace"
+  ],
+  "refusalCodes": {
+    "REPLICATION_DESTINATION_NOT_IN_POLICY": "The mountpoint is not one of the two authorised destinations.",
+    "REPLICATION_MOUNT_IDENTITY_MISMATCH": "The live mount does not present the backing source this policy expects for that destination.",
+    "REPLICATION_PATH_OUTSIDE_DEDICATED_NAMESPACE": "The target path is not under the destination's declared objectPrefix.",
+    "REPLICATION_PATH_NOT_CONTENT_ADDRESSED": "The target path is not the content address of the bytes being written.",
+    "REPLICATION_PAYLOAD_HASH_MISMATCH": "sha256(bytes) does not equal the address being written.",
+    "REPLICATION_PAYLOAD_TOO_SHORT_FOR_ENVELOPE": "Fewer bytes than a nonce plus a GCM tag.",
+    "REPLICATION_PAYLOAD_LOOKS_LIKE_PLAINTEXT": "The object decodes as predominantly printable text, so it is not ciphertext."
+  }
+}

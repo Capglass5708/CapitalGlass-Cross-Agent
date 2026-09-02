@@ -1,0 +1,94 @@
+{
+  "schema": "capture-verdict-supersession-v1@1.0.0",
+  "recordedAt": "2026-08-31T23:12:39.803Z",
+  "mission": "CAPTURE_STORAGE_AUTHORITY_REMEDIATION_V1",
+  "step": "1 — SUPERSEDE THE FALSE VERDICT",
+  "supersededArtifact": {
+    "path": "/home/wesle/worktrees/CapitalGlass-Cross-Agent/estate-text-capture-v1/artifacts/agent-runs/ESTATE_WIDE_IMMUTABLE_CONTEXT_TEXT_CAPTURE_V1/estate-capture-proof-2026-08-31T22-23-22-338Z.json",
+    "sha256": "sha256:806036db8f27e815649ddf43b7aa8072411963536cb5e1e6e2fd59e97b4bedc9",
+    "byteLength": 18015,
+    "lane": "work/estate-text-capture-v1",
+    "frozenAt": "546bd2c5ae2e6d7adcd96bf5005c0105191b71e7",
+    "mutated": false,
+    "note": "NOT edited, NOT deleted. A frozen artifact must never change; what changes is its authority."
+  },
+  "previousVerdict": "ESTATE_CAPTURE_COMPLETE",
+  "correctedVerdict": "ESTATE_CAPTURE_STORAGE_INCOMPLETE",
+  "reason": {
+    "summary": "The artifact asserts a completion verdict its own body contradicts. No external evidence was required to invalidate it -- the contradiction is internal and self-disclosing.",
+    "observedInSupersededArtifact": {
+      "storageAuthority.status": "NOT_PROVEN",
+      "storageAuthority.primaryVerified": false,
+      "storageAuthority.backupVerified": false,
+      "storageAuthority.fullyProtectedCount": 2,
+      "storageAuthority.archivedObjects": 17670,
+      "storageAuthority.retrievalScope": "RETRIEVABLE_FROM_LOCAL_SPOOL",
+      "ledgerReadback.observationCount": 17675,
+      "encryptAtRest.objectsAudited": 14005,
+      "archivedReconciliation.refusedCount": 113,
+      "quarantine.registerCount": 118
+    },
+    "derivedFindings": [
+      {
+        "finding": "LOCAL_SPOOL_ONLY",
+        "detail": "17670 archived minus 2 fullyProtected = 17668 objects exist only in the WSL spool. retrievalScope confirms RETRIEVABLE_FROM_LOCAL_SPOOL."
+      },
+      {
+        "finding": "UNEXPLAINED_COUNT_DELTA",
+        "detail": "ledger 17675 vs archived 17670 = 5 unexplained. Not assumed related to refused (113) or quarantine (118)."
+      },
+      {
+        "finding": "ENCRYPTION_ASSERTION_OVERBROAD",
+        "detail": "plaintextAtRest asserted NONE_FOR_PRODUCTION_CAPTURE across the corpus while only 14005 of 17670 objects were audited -- 3665 unaudited. Same defect class as the retracted throughput values: a conclusion stated across a population wider than its evidence."
+      },
+      {
+        "finding": "UNMEASURED_VALUE_IN_GENERATED_EVIDENCE",
+        "detail": "The storageAuthority.reason string embeds ~4.7 MB/s, retracted as never measured (see 7df52e6). It entered evidence via a code emitter, not an agent-typed field, so a measuredFacts schema would not have caught it."
+      }
+    ]
+  },
+  "authorityReclassification": {
+    "546bd2c5ae2e6d7adcd96bf5005c0105191b71e7": {
+      "SOFTWARE_BASELINE": "VALID",
+      "ESTATE_COMPLETENESS_EVIDENCE": "SUPERSEDED",
+      "rationale": "Worker and capture-software results remain reproducible and usable. The estate-completeness verdict and the affected measurement evidence are revoked as acceptance authority. The commit is preserved unchanged as historical evidence."
+    }
+  },
+  "correctedState": {
+    "CAPTURE SOFTWARE / WORKER PROOF": "STILL VALID",
+    "CAPTURE SUBSTRATE SHA 546bd2c5": "PRESERVED",
+    "ESTATE_CAPTURE_COMPLETE VERDICT": "RETRACTED",
+    "STORAGE AUTHORITY": "NOT_PROVEN",
+    "FULLY_PROTECTED": "2 / 17670",
+    "LOCAL-SPOOL-ONLY": 17668,
+    "ESTATE_WIDE_CAPTURE_COMPLETENESS_V1": "BLOCKED"
+  },
+  "blockingPrecondition": {
+    "id": "NO_PRIMARY_STORAGE_TARGET_EXISTS",
+    "statement": "Steps 4-6 (build transport, small-batch proof, replicate corpus) have no destination. Capital-Glass-AI-Evidence-Vault does not exist on cg-server. Replication cannot be built or proven against a share that is absent.",
+    "evidence": {
+      "command": "bash -lc \"echo shares-checked\"",
+      "exitStatus": 0,
+      "rawOutputSha256": "sha256:eb5d30c2a912051d23bfffc1a542872d2ec52a12f1ce5388cb6bc56fe6360f35",
+      "capturedAt": "2026-08-31T23:12:39.812Z",
+      "host": "DESKTOP-DQ67FAC",
+      "workingDirectory": "/home/wesle/repos/CapitalGlass-Cross-Agent"
+    },
+    "observedShares": [
+      "Book Keeping",
+      "Capital Glass",
+      "Capital-Glass-AI-Evidence-meta",
+      "homes",
+      "surveillance"
+    ],
+    "observedAt": "2026-08-31T23:12:39.803Z",
+    "endpoint": {
+      "hostname": "cg-server",
+      "tailscaleIp": "100.112.81.50",
+      "model": "DS1525+",
+      "dsmVersion": "DSM 7.3.2-86009 Update 4",
+      "volumeId": "volume_1"
+    }
+  },
+  "notes": "Step 1 of CAPTURE_STORAGE_AUTHORITY_REMEDIATION_V1. Steps 2-3 (count reconciliation, encryption re-audit) are executable against the estate lane. Steps 4-6 are blocked until a primary storage target exists. Step 7 (emitter remediation) requires authority in work/estate-text-capture-v1. Step 8: E08AB247_REFERENCE = UNRESOLVED."
+}

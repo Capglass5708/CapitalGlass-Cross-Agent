@@ -1,0 +1,105 @@
+{
+  "receiptVersion": "storage-authority-infra-checkpoint-v1",
+  "mission": "CG_IMMUTABLE_CONTEXT_STORAGE_AUTHORITY_INFRA_V1",
+
+  "checkpoint": {
+    "DSM_SHARE_PROVISIONING": "BLOCKED",
+    "SHARE_ENUMERATION": "FAIL",
+    "FILESTATION_SERVICE_ACCESS": "NOT_RUN",
+    "FILESTATION_CANARY_WRITE": "NOT_RUN",
+    "DESTINATION_HASH_LIVE_PROOF": "NOT_RUN",
+    "WORM_STATE_CONFIGURATION": "NOT_OBSERVED",
+    "CANARY_OVERWRITE": "NOT_RUN",
+    "CANARY_DELETE": "NOT_RUN",
+    "IMMUTABILITY_ENFORCEMENT": "NOT_OBSERVED",
+    "ORPHAN_RECONCILIATION": "PASS",
+    "RECOVERED_LEDGER_ASSOCIATIONS": 7,
+    "UNRESOLVED_PROVISIONAL_OBJECTS": 0,
+    "PRIMARY_STORAGE_AUTHORITY": "UNPROVEN",
+    "BACKUP_STORAGE_AUTHORITY": "ABSENT",
+    "FULL_REPLICATION": "BLOCKED",
+    "CG_IMMUTABLE_CONTEXT_STORAGE_AUTHORITY_V1": "BLOCKED"
+  },
+
+  "ruling1_serviceCredential": {
+    "verdict": "OPERATOR_ACTION_REQUIRED",
+    "SERVICE_ACCOUNT_NON_ADMIN": "PASS",
+    "SERVICE_ACCOUNT_RUNTIME_CREDENTIAL": "BLOCKED",
+    "ADMIN_RUNTIME_CREDENTIAL_REQUIRED": "NO",
+    "attempted": "Generate a credential in memory and set it on the existing non-admin identity via SYNO.Core.User set, POST body only.",
+    "blocker": {
+      "dsmErrorCode": 105,
+      "meaning": "insufficient permission",
+      "provedNotPasswordSpecific": "A no-op SYNO.Core.User set writing the account's EXISTING description back unchanged also returned 105. The session has read-only user management, not a password-specific restriction.",
+      "elevationAttempted": "SYNO.Core.User.PasswordConfirm v2 succeeded and returned a valid SynoConfirmPWToken. The subsequent set STILL returned 105 with the token attached.",
+      "conclusion": "The available admin credential cannot write user records. This is a hard DSM permission boundary."
+    },
+    "notDone": "No privilege was broadened. Group membership was not modified. No alternative escalation path was attempted.",
+    "operatorMustDoOneOf": [
+      "Set a password for cg-context-ledger in DSM directly, then place it in Doppler cg-shared/prd as SYNOLOGY_SERVICE_USERNAME and SYNOLOGY_SERVICE_PASSWORD",
+      "Grant the automation credential user-management rights, which is a privilege broadening and therefore an operator decision"
+    ],
+    "dopplerState": "cg-shared/prd contains no SYNOLOGY_SERVICE_* names. Nothing was written, because no working credential was produced to write.",
+    "secretsEmitted": "NONE"
+  },
+
+  "ruling2_shareProvisioning": {
+    "verdict": "NOT_ATTEMPTED",
+    "reason": "Ruling 2 permits only mutations NECESSARY to complete provisioning. Necessity is not yet established, and the evidence now suggests the share may need no change at all.",
+    "correctionToEarlierFinding": {
+      "earlierClaim": "FileStation cannot see the vault, so the declared production transport cannot reach it.",
+      "whyItWasWrong": "That was measured as ADMIN. FileStation returns error 407 for Capital-Glass-AI-Evidence-meta as well, and meta is a healthy, enumerable share with configured snapshots and used quota. Both admin identities are deliberately is_writable=false on the vault.",
+      "consequence": "The ADMIN measurement proves nothing about whether cg-context-ledger can reach the share. The decisive test is Ruling 4, executed AS the service account, which is blocked behind Ruling 1.",
+      "engineeringPosition": "Mutating the share before that test could 'fix' something that was never broken, and would burn the in-place UUID preservation option for no reason."
+    },
+    "remainingGenuineAnomaly": "The vault is absent from SYNO.Core.Share list under all 9 shareType values (all, dec, enc, local, usb, sdcard, cluster, shared_folder, volume) while meta is present. Unexplained. A competing hypothesis is that DSM excludes WORM subvolume shares from the standard list, which would mean the share is correctly configured and merely enumerated elsewhere. Not resolved either way.",
+    "shareUuidPreserved": "1a3c37f6-85e0-4dc1-94ac-1ee36a893003",
+    "PROVISIONING_REQUIRES_RECREATE": "NOT_DETERMINED"
+  },
+
+  "ruling7_orphanRecovery": {
+    "verdict": "COMPLETE",
+    "RECOVERED_LEDGER_ASSOCIATIONS": 7,
+    "UNRESOLVED_PROVISIONAL_OBJECTS": 0,
+    "tool": "scripts/context-ledger/recover-ledger-associations-v1.mjs",
+    "library": "scripts/context-ledger/lib/ledger-recovery.mjs",
+    "outputDirectory": "~/.capital-glass/context-ledger/estate-capture-v1/vault/immutable-metadata/recovery-associations",
+    "appendOnly": {
+      "writeFlag": "wx -- an existing record can never be overwritten",
+      "supersededLedgerEntriesEdited": false,
+      "currentLedgerEntriesModified": false,
+      "sourceCountsAfter": {"supersededEntries": 17923, "currentEntries": 17793, "spoolObjects": 14005},
+      "sourceCountsBefore": {"supersededEntries": 17923, "currentEntries": 17793, "spoolObjects": 14005}
+    },
+    "bindingProven": "CURRENT OBJECT -> ciphertextHash (RECOMPUTED from bytes on disk) -> RECOVERY ASSOCIATION -> supersededLedgerEntryHash -> PRESERVED SUPERSEDED LEDGER ENTRY (file sha256 bound)",
+    "independentVerification": "7/7 records verified end to end: object hash recomputed, preserved entry located and file-hashed, entry confirmed to reference the object, entryHash matched, keyVersion and plaintextHash confirmed COPIED rather than invented.",
+    "historySynthesis": "NONE. Each record is typed recordType=RECOVERY_ASSOCIATION with notAnOriginalLedgerEntry=true and representedAsCurrentLedgerEvent=false.",
+    "keyVersionsRecovered": {"v1": 7},
+    "multipleEntryHandling": "Where several preserved entries reference one object, the EARLIEST is recovered and the others are recorded in additionalPreservedEntriesReferencingThisObject, so the choice is auditable rather than silent.",
+    "defectFoundAndFixed": {
+      "defect": "The first implementation folded recoveredAt into the record hash, so a re-run produced new filenames and appended duplicates -- 14 records for 7 objects.",
+      "fix": "Association identity is now derived only from (ciphertextHash, supersededLedgerEntryHash, supersededEntryFileSha256), with a pre-scan of existing records by ciphertextHash. Integrity hash still covers the whole record.",
+      "cleanup": "All 14 records from the defective run were removed and regenerated cleanly. They were this tool's own output, minutes old, fully re-derivable, and no source was touched.",
+      "proof": "Re-run now writes 0 and skips 7."
+    },
+    "terminologyAdopted": "These objects are no longer called orphans. Their data was never orphaned; the current-ledger association was missing. They are RECOVERED_LEDGER_ASSOCIATION."
+  },
+
+  "populationModel": {
+    "AUTHORITATIVE_LEDGER_BOUND_OBJECTS": 13998,
+    "RECOVERED_LEDGER_ASSOCIATED_OBJECTS": 7,
+    "TOTAL_PROTECTED_CIPHERTEXT_OBJECTS": 14005,
+    "historicalFigurePreserved": "13,998 remains the population originally bound to the current ledger before recovery, and is not rewritten."
+  },
+
+  "wormProofControlObject": {
+    "created": false,
+    "reason": "The canary stage is blocked behind the service credential. No canary was written, so no 90-day retention obligation was incurred.",
+    "whenCreated": "It will be classified WORM_PROOF_CONTROL_OBJECT in control/worm-proof/, excluded from the 13,998 / 7 / 14,005 accounting, with creationTimestamp, expectedRetentionPeriod, earliestExpectedDeletionDate, content hash, shareUuid and proofReceipt bound."
+  },
+
+  "testSurface": {"total": "132 PASS, 0 FAIL", "storagePipelineReadiness": "38/38", "regressions": "none"},
+  "backupRemainsHardBlocked": true,
+  "fullReplicationStarted": false,
+  "finalStorageAuthorityPassIssued": false
+}

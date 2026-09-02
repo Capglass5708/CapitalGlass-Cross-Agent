@@ -1,0 +1,112 @@
+{
+  "receiptVersion": "service-bootstrap-checkpoint-v1",
+  "mission": "CG_IMMUTABLE_CONTEXT_STORAGE_AUTHORITY_INFRA_V1",
+  "pass": "service credential bootstrap and primary vault proof",
+
+  "checkpoint": {
+    "SERVICE_CREDENTIAL": "BLOCKED",
+    "SERVICE_ACCOUNT_AUTH": "NOT_RUN",
+    "FILESTATION_SERVICE_ACCESS": "NOT_RUN",
+    "SHARE_GET": "PASS",
+    "SHARE_LIST": "OMITTED",
+    "SHARE_ENUMERATION_ANOMALY": "OPEN",
+    "PROVISIONING_MUTATION_NECESSARY": "NOT_PROVEN",
+    "FILESTATION_CANARY_WRITE": "NOT_RUN",
+    "DESTINATION_HASH_LIVE_PROOF": "NOT_RUN",
+    "WORM_STATE_CONFIGURATION": "NOT_OBSERVED",
+    "CANARY_OVERWRITE": "NOT_RUN",
+    "CANARY_DELETE": "NOT_RUN",
+    "IMMUTABILITY_ENFORCEMENT": "NOT_OBSERVED",
+    "RECOVERED_LEDGER_ASSOCIATIONS": 7,
+    "UNRESOLVED_PROVISIONAL_OBJECTS": 0,
+    "PRIMARY_STORAGE_AUTHORITY": "UNPROVEN",
+    "BACKUP_STORAGE_AUTHORITY": "ABSENT",
+    "FULL_REPLICATION": "BLOCKED",
+    "CG_IMMUTABLE_CONTEXT_STORAGE_AUTHORITY_V1": "BLOCKED"
+  },
+
+  "credentialSeparationPreserved": {
+    "decision": "The automation/admin credential was NOT granted user-management privileges.",
+    "boundaryPreserved": "SYNO.Core.User set = 105 remains in force and is treated as architecture, not an obstacle.",
+    "architecture": "OPERATOR / DSM ADMIN --bootstrap only--> cg-context-ledger --> least-privilege production storage access",
+    "verifiedNoLeakage": {
+      "cg-shared/dev SYNOLOGY_SERVICE_*": 0,
+      "cg-shared/stg SYNOLOGY_SERVICE_*": 0,
+      "cg-shared/prd SYNOLOGY_SERVICE_*": 0,
+      "note": "prd is 0 because the credential does not exist yet, not because it was placed elsewhere."
+    }
+  },
+
+  "operatorActionRequired": {
+    "id": "SERVICE_CREDENTIAL_BOOTSTRAP",
+    "performOutsideThisSession": true,
+    "steps": [
+      "In DSM, set or rotate the password for the EXISTING account cg-context-ledger",
+      "Do not change its UID (1031)",
+      "Do not make it an administrator",
+      "Do not add it to privileged groups",
+      "Leave the vault ACL as-is; it is already correctly shaped",
+      "Store ONLY that credential in Doppler cg-shared/prd as SYNOLOGY_SERVICE_USERNAME=cg-context-ledger and SYNOLOGY_SERVICE_PASSWORD=<operator-managed>",
+      "Do not copy it into dev or stg"
+    ],
+    "noOtherTokenOrRotationNeeded": "Nothing else requires creation or rotation for this pass. CONTEXT_LEDGER_EVIDENCE_KEY_V1 is unchanged and untouched.",
+    "thenRun": "doppler run --project cg-shared --config prd -- python3 scripts/context-ledger/prove-primary-authority-v1.py"
+  },
+
+  "proverBuilt": {
+    "path": "scripts/context-ledger/prove-primary-authority-v1.py",
+    "coversSteps": "A through F in one pass, emitting the checkpoint block",
+    "safetyProperties": [
+      "Authenticates ONLY as cg-context-ledger and refuses to fall back to ADMIN, because an ADMIN result is not probative when ADMIN is intentionally non-writable",
+      "Performs NO provisioning mutation: no share created, recreated or altered, no ACL, user, retention or WORM change",
+      "Writes at most ONE control object and never a second after success",
+      "Credential values are read from the environment, sent only in POST bodies, never printed or receipted"
+    ],
+    "stepA": "Confirms identity INDEPENDENTLY via FileStation.Info is_manager rather than trusting the supplied username",
+    "stepB": "Reports CORE_SHARE_GET, CORE_SHARE_LIST and FILESTATION_VISIBILITY as three SEPARATE signals, with a fabricated-name negative control on get",
+    "stepC": "If unreachable, classifies the defect and sets PROVISIONING_MUTATION_NECESSARY from the SERVICE-IDENTITY result only, then stops without mutating",
+    "stepD": "One WORM_PROOF_CONTROL_OBJECT in control/worm-proof/, non-secret, excluded from all three accounting figures, recorded before write",
+    "stepE": "Refuses transport read-back by construction and reports the exact permission gap rather than broadening it",
+    "stepF": "Attempts overwrite and delete EXACTLY ONCE each; refusal is the pass condition and proves enforcement even while configuration stays NOT_OBSERVED",
+    "verifiedBehaviourWithoutCredential": "Refuses with SERVICE_CREDENTIAL_ABSENT, mutationsPerformed empty, no ADMIN fallback"
+  },
+
+  "accountingFrozen": {
+    "ORIGINAL_CURRENT_LEDGER_BOUND": 13998,
+    "RECOVERED_ASSOCIATIONS": 7,
+    "TOTAL_PROTECTED_OBJECTS": 14005,
+    "RECOVERED_LEDGER_ASSOCIATIONS": 7,
+    "UNRESOLVED_PROVISIONAL_OBJECTS": 0,
+    "RECOVERY_IDEMPOTENCE": "PASS",
+    "HISTORICAL_LEDGERS_REWRITTEN": "NO",
+    "OBJECT_BYTES_MISSING": 0,
+    "ORPHAN_RECONCILIATION": "PASS",
+    "enforcedInCode": "scripts/context-ledger/lib/protected-set.mjs EXPECTED_COUNTS and ACCOUNTING_FROZEN",
+    "terminologyRetired": "orphan",
+    "terminologyAdopted": "RECOVERED_LEDGER_ASSOCIATION",
+    "historicalFigureProtected": "13,998 is the population originally bound to the current ledger before recovery and is never restated as 14,005. assertManifestAccounting refuses a manifest that folds the seven into it.",
+    "reopenCondition": "New contradictory evidence only."
+  },
+
+  "shareEnumerationAnomaly": {
+    "state": "OPEN",
+    "known": [
+      "exact get returns the real vault UUID 1a3c37f6-85e0-4dc1-94ac-1ee36a893003",
+      "fabricated get returns 402, so get is authoritative",
+      "normal list omits the vault under all 9 shareType values",
+      "list still exposes Capital-Glass-AI-Evidence-meta",
+      "ADMIN FileStation results were non-probative because ADMIN lacks write access"
+    ],
+    "doesNotImply": ["SHARE_ABSENT", "SHARE_HEALTHY"],
+    "willBeDecidedBy": "the live service-account path, not the enumeration call",
+    "authorityBindsTo": "share identity/UUID, not an enumeration UI"
+  },
+
+  "notDone": [
+    "No provisioning mutation: necessity is NOT_PROVEN and the service-identity test has not run",
+    "No canary written, so no 90-day retention obligation incurred",
+    "No SSH allowlist broadened",
+    "No full replication, no historical bundle replication"
+  ],
+  "testSurface": {"total": "132 PASS, 0 FAIL", "regressions": "none"}
+}

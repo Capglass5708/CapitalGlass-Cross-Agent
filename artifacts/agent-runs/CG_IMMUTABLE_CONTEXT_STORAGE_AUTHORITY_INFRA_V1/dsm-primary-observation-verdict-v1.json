@@ -1,0 +1,160 @@
+{
+  "receiptVersion": "dsm-primary-observation-verdict-v1",
+  "mission": "CG_IMMUTABLE_CONTEXT_STORAGE_AUTHORITY_INFRA_V1",
+  "recordedAt": "2026-09-01T02:27:52Z",
+  "authenticatedObservation": true,
+  "credentialIdentityUsed": "SYNOLOGY_ADMIN (service-account credentials do not exist in Doppler cg-shared)",
+  "mutationsPerformed": "NONE",
+  "shareSettingsAltered": false,
+  "retentionAltered": false,
+  "permissionsAltered": false,
+  "usersAltered": false,
+  "wormConfigurationAltered": false,
+  "secretsEmitted": "NONE",
+
+  "acceptanceCriteria": {
+    "SHARE_EXISTS": "PASS",
+    "SHARE_IDENTITY_MATCHES_ARTIFACT": "PARTIAL",
+    "WORM_ENTERPRISE_MODE": "NOT_OBSERVED",
+    "DEFAULT_LOCK_MODE_IMMUTABLE": "NOT_OBSERVED",
+    "RETENTION_90_DAYS": "NOT_OBSERVED",
+    "SERVICE_ACCOUNT_NON_ADMIN": "OBSERVED_PASS",
+    "SERVICE_ACCOUNT_REQUIRED_ACCESS": "OBSERVED_PASS",
+    "CAPACITY_PRECHECK": "PASS",
+    "DESTINATION_SIDE_HASH": "NOT_RUN",
+    "CANARY_WRITE": "BLOCKED",
+    "CANARY_HASH_DESTINATION_SIDE": "NOT_RUN",
+    "CANARY_OVERWRITE": "NOT_RUN",
+    "CANARY_DELETE": "NOT_RUN"
+  },
+
+  "ruling": {
+    "DSM_WORM_SHARE": "NOT_CANONICAL_PRIMARY",
+    "reason": "The operator's rule requires ALL criteria to pass. Three WORM criteria are NOT_OBSERVED and the entire canary stage is unreachable.",
+    "PRIMARY_STORAGE_AUTHORITY": "UNPROVEN",
+    "nestedFolder": "NON_PRODUCTION_LEGACY_CONTROL_PATH (demoted, not renamed, not deleted)"
+  },
+
+  "shareExistence": {
+    "verdict": "THE SHARE RECORD EXISTS",
+    "method": "SYNO.Core.Share method=get name=Capital-Glass-AI-Evidence-Vault",
+    "observed": {
+      "name": "Capital-Glass-AI-Evidence-Vault",
+      "uuid": "1a3c37f6-85e0-4dc1-94ac-1ee36a893003",
+      "vol_path": "/volume1",
+      "desc": "PROVING/PRE-PRODUCTION",
+      "encryption": 0,
+      "enc_auto_mount": false
+    },
+    "controlProof": {
+      "why": "A get that echoed any requested name would prove nothing, so the call was controlled.",
+      "probe": "SYNO.Core.Share get name=ZZZ-Definitely-Not-A-Share-9471",
+      "result": "success=false, error code 402",
+      "conclusion": "share.get is authoritative, therefore the vault record is real."
+    }
+  },
+
+  "anomaly": {
+    "id": "SHARE_RECORD_EXISTS_BUT_IS_NOT_ENUMERABLE_OR_ACCESSIBLE",
+    "severity": "DECISIVE",
+    "observations": [
+      "SYNO.Core.Share list does NOT return the vault under any of 6 parameter variants (plain, shareType=all, shareType=dec, limit=-1, additional=worm, full combination). All variants return the same 5 shares: Book Keeping, Capital Glass, Capital-Glass-AI-Evidence-meta, homes, surveillance.",
+      "Capital-Glass-AI-Evidence-meta IS returned by that same list call, so the filter is not excluding the whole Evidence family.",
+      "SYNO.FileStation.List list_share does not expose the vault, so it is unreachable by the declared production FileStation transport.",
+      "No SYNO.FileStation.Worm or SYNO.FileStation.Worm.Lock read method returned data for it, across versions 1 and 2 and six read method names.",
+      "SYNO.Core.Share is maxVersion=1 and its get returns only desc, enc_auto_mount, encryption, is_usb_share, name, uuid, vol_path -- it carries no WORM fields at all, even when additional=[\"worm\"] is requested."
+    ],
+    "resolvesThePriorConflict": {
+      "statement": "The phase0 artifacts and the reconciliation verdict were BOTH correct, about different questions.",
+      "phase0Claim": "vaultShare.state = EXISTS -- correct: the share record was created and exists.",
+      "reconciliationClaim": "PRIMARY_STORAGE_TARGET = ABSENT -- also correct: it is not enumerable and not reachable, so no evidence can be written to it.",
+      "note": "Creation succeeded; usable provisioning did not complete. That is why the same host produced two opposite-sounding findings."
+    },
+    "whatIsNotClaimed": "This does NOT establish that the share lacks WORM configuration. WORM state could not be READ through any API available on this DSM. Absence of observation is not observation of absence, and the receipt records NOT_OBSERVED rather than FAIL."
+  },
+
+  "serviceAccount": {
+    "name": "cg-context-ledger",
+    "uid": 1031,
+    "description": "Context Ledger replication service",
+    "expired": "normal",
+    "cannot_chg_passwd": true,
+    "isAdmin": false,
+    "vaultAcl": [
+      {"name": "admin", "is_admin": true, "is_writable": false},
+      {"name": "CG SERVER ADMIN", "is_admin": true, "is_writable": false},
+      {"name": "cg-context-ledger", "is_admin": false, "is_writable": true},
+      {"name": "cg-ssh-test", "is_admin": false, "is_writable": false},
+      {"name": "Fred", "is_admin": false, "is_writable": false},
+      {"name": "guest", "is_admin": false, "is_deny": true}
+    ],
+    "assessment": "Least privilege is correctly shaped: the only writable principal is the non-admin service account, and both admin identities are non-writable."
+  },
+
+  "capacity": {
+    "volume": "volume_1",
+    "fsType": "btrfs",
+    "totalBytes": 5730000000000,
+    "usedBytes": 1370000000000,
+    "freeBytes": 4360800000000,
+    "requiredBytes": 244232376,
+    "verdict": "PASS",
+    "margin": "free capacity exceeds the population by roughly four orders of magnitude"
+  },
+
+  "canaryStage": {
+    "attempted": false,
+    "blockedBy": "The share is not reachable through FileStation, which is the declared production transport. A canary cannot be written through the authorized route.",
+    "notBlockedByCaution": true,
+    "operatorNote": "Worth knowing before this is unblocked: on an enterprise-WORM share with a 90-day immutable lock, a canary is not disposable. Proving CANARY_DELETE = REFUSED necessarily creates an object that cannot be removed for 90 days. That is inherent to the proof, not a defect, but it should be a knowing choice."
+  },
+
+  "credentialGap": {
+    "finding": "SYNOLOGY_SERVICE_USERNAME and SYNOLOGY_SERVICE_PASSWORD do not exist in Doppler cg-shared under dev, stg or prd. Only SYNOLOGY_ADMIN_USERNAME and SYNOLOGY_ADMIN_PASSWORD exist.",
+    "consequence": "SERVICE_ACCOUNT_REQUIRED_ACCESS was observed from the ACL rather than exercised by authenticating as the service account. The grant is proven; the account's ability to use it is not.",
+    "topologyDeviation": {
+      "planned": "HAIKU A performs the authenticated DSM observation.",
+      "actual": "The integrator performed it directly.",
+      "reason": "The ruling assumed a scoped non-admin service account. Only production ADMIN credentials exist, and handing those to an autonomous fast lane is a materially different risk than the ruling contemplated.",
+      "disclosed": true
+    }
+  },
+
+  "orphanReconciliation": {
+    "ORPHANS_FOUND": 7,
+    "CLASSIFIED_WITH_PROVEN_ORIGIN": 7,
+    "UNKNOWN_PROVISIONAL": 0,
+    "classification": "LEDGER_LOSS",
+    "orphanHashes": ["2f5c0d527411352b68e21fe57f5ca206e93dec657ed5c819b25975102ec17965", "335cb9d9607cb62a5e006f5e9482ef2de8405cb82cc6c364dd8917ab1e2c924b", "41214bf179f8188778cfde0a3ce2ab75c9306c06b4f33d76147a7dd4ece688ac", "415d36d1d49d10cc9445e62a1a1546ce539ba76b06bd87b12dbec7050dd3f265", "b44c651135bf5a088e4a026151d394a4f1f6d00a7e0cb74a020ef2490da8f138", "f1f3420d2db07ecbed4bd3d78f321f1abb5d23b225ee323af9d60951847ae430", "ff2bcabb573896079d66d017f75d4478e7d050443ed297825c48c61b660165a2"],
+    "independentlyVerifiedByIntegrator": {
+      "onDiskObjects": 14005,
+      "ledgerEntryFiles": 17793,
+      "uniqueCiphertextHash": 13998,
+      "orphans": 7,
+      "missingObjects": 0,
+      "note": "The lane reported 14,000 unique referenced hashes; the correct figure is 13,998. Its orphan SET was nonetheless exactly right and identical to the integrator's. Recomputation also proves MISSING = 0, so no ledger-referenced object is absent from disk."
+    },
+    "mechanism": {
+      "statement": "A vault supersession landed between the object-write and ledger-write paths.",
+      "evidence": "The vault was superseded at 2026-08-31T22:10:19Z. The plaintext remediation ran at 22:14:19-21Z, writing 7 replacement ciphertext objects into the CURRENT spool while their ledger entries were written into the SUPERSEDED vault's ledger.",
+      "verified": "Each of the 7 is referenced by a superseded-vault ledger entry (one by three entries), and none of the 7 exists in the superseded spool.",
+      "refinement": "The entries were never destroyed -- they were never migrated. The association is RECOVERABLE FROM PRESERVED EVIDENCE rather than lost."
+    },
+    "manufacturedLedgerEntry": false,
+    "productionCertification": "NO -- the 7 remain PROVISIONAL",
+    "preservation": "REQUIRED -- they travel with the preservation set regardless of classification",
+    "operatorDecisionAvailable": "Migrating the preserved superseded entries would be recovery, not manufacture. Whether to do so is an authority decision and was not taken here."
+  },
+
+  "checkpoint": {
+    "PRIMARY_STORAGE_AUTHORITY": "UNPROVEN",
+    "IMMUTABILITY_ENFORCEMENT": "NOT_OBSERVED",
+    "DESTINATION_HASH_LIVE_PROOF": "NOT_RUN",
+    "ORPHAN_RECONCILIATION": "PASS_ORIGIN_PROVEN_PROVISIONAL_EXPLICIT",
+    "BACKUP_STORAGE_AUTHORITY": "ABSENT",
+    "FULL_REPLICATION": "BLOCKED",
+    "CG_IMMUTABLE_CONTEXT_STORAGE_AUTHORITY_V1": "OPERATOR_ACTION_REQUIRED"
+  },
+  "transferStarted": false,
+  "stoppedPerRuling": "Stopped after primary observation. No independent backup exists, and the 14,005-object transfer was not started."
+}
