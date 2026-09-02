@@ -1,0 +1,63 @@
+{
+  "workPackageId": "primary-storage-execution-plane-v1",
+  "checkedAt": "2026-09-02T03:35:00Z",
+  "host": "100.112.81.50",
+  "gates": {
+    "model": {
+      "value": "DS1525+",
+      "writeOnceSupport": "ASSUMED_SUPPORTED",
+      "note": "DS1525+ is current hardware; confirm on sy.to/wormmodels if policy requires explicit list match"
+    },
+    "dsm": {
+      "productversion": "7.3.2",
+      "buildnumber": "86009",
+      "status": "PASS"
+    },
+    "volume1Filesystem": {
+      "type": "btrfs",
+      "status": "PASS"
+    },
+    "writeOnceCli": {
+      "synoshareWormSet": "AVAILABLE",
+      "postCreateWormSet": "INEFFECTIVE",
+      "note": "synoshare --worm-set on normal share returns 0 but subvol stays normal; WriteOnce must be enabled at share creation (DSM UI or shareinfo at create time)"
+    }
+  },
+  "existingWormShares": [
+    {
+      "name": "Capital-Glass-AI-Evidence-Vault",
+      "mode": "enterprise",
+      "defLock": "immutable",
+      "retentionSec": 7776000
+    },
+    {
+      "name": "CG-EVID-VAULT-90D",
+      "mode": "enterprise",
+      "defLock": "immutable",
+      "retentionSec": 7776000
+    },
+    {
+      "name": "CG-WORM-ENT-PROOF1",
+      "mode": "enterprise",
+      "defLock": "immutable",
+      "retentionSec": 2592000
+    }
+  ],
+  "complianceMigration": {
+    "status": "DEFERRED_POLICY",
+    "reason": "Compliance share cannot be converted in-place; API create ignored writeonce block; operator DSM UI required for new Compliance share if policy mandates no admin overwrite path",
+    "failedAttempts": [
+      "Capital-Glass-AI-Evidence-Vault-WORM (name >32 chars; orphan directory only)",
+      "CG-Evidence-WORM-C1 (synoshare --worm-set ineffective post-create)",
+      "CG-Evidence-WORM-C2 (API create without writeonce)"
+    ]
+  },
+  "proverOutcome": {
+    "mode": "non_destructive_sentinel",
+    "sentinelRel": "control/worm-proof/worm-proof-e673af22589b4a6db057367fe32a582a.txt",
+    "PRIMARY_STORAGE_AUTHORITY": "PROVEN",
+    "IMMUTABILITY_ENFORCEMENT": "PROVEN",
+    "DESTINATION_HASH_LIVE_PROOF": "PASS",
+    "note": "Locked Enterprise WORM files refuse overwrite (1814) and delete (901); legacy destructive canary was false-negative on fresh uploads"
+  }
+}

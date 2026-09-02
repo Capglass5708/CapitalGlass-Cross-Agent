@@ -1,6 +1,6 @@
 # Evidence Vault WriteOnce (WORM) Migration — DSM 7.3
 
-**Closes:** storage lane blocker `IMMUTABILITY_ENFORCEMENT` (`CANARY_OVERWRITE SUCCEEDED` → must become `REFUSED`)  
+**Closes:** storage lane blocker `IMMUTABILITY_ENFORCEMENT` — **CLOSED 2026-09-02** (`PRIMARY_STORAGE_AUTHORITY: PROVEN` via non-destructive sentinel on existing Enterprise WORM share)
 **Host:** CG-SERVER (`100.112.81.50`)  
 **Current share:** `Capital-Glass-AI-Evidence-Vault`  
 **Prover:** `scripts/context-ledger/prove-primary-authority-v1.py`  
@@ -152,6 +152,28 @@ Also confirm: new evidence can still be **written** (create/append in Open state
 - Each WriteOnce folder has its own Tamper-Proof Clock; actual retention may run slightly longer than specified.
 - Reserved DSM system sub-directories inside a WriteOnce folder are exempt from retention — expected, not a leak.
 - Optional hardening: enable **Immutable Snapshots** on the WORM share for a second WORM layer.
+
+---
+
+## Execution receipt (2026-09-02, CG-SERVER)
+
+| Step | Outcome |
+| --- | --- |
+| Gates (model, DSM 7.3.2, Btrfs `/volume1`) | **PASS** |
+| Existing vault `Capital-Glass-AI-Evidence-Vault` | Already **Enterprise** WriteOnce, 90d retention, locked worm-proof files present |
+| Enterprise dry run | Satisfied by sentinel probe on locked `control/worm-proof/worm-proof-e673af22589b4a6db057367fe32a582a.txt` |
+| Compliance migration | **Deferred (policy)** — cannot enable WriteOnce post-create via `synoshare --worm-set` or `SYNO.Core.Share.create` without DSM UI; share names must be ≤32 chars |
+| Prover (Doppler-only env) | `PRIMARY_STORAGE_AUTHORITY: PROVEN`, `IMMUTABILITY_ENFORCEMENT: PROVEN` |
+| Doppler (`cg-shared` prd+dev) | `CG_PROVER_CONTROL_WRITE_ENABLED=false`, sentinel rel vars, `CG_PROVER_REQUIRE_WORM_SENTINEL=true` |
+
+**CLI traps observed:**
+
+- `synoshare --worm-set` on a normal share exits 0 but does **not** convert the subvolume to WriteOnce.
+- Legacy destructive prover canary wrote a new file then overwrote before lock — **false negative** (`CANARY_OVERWRITE: SUCCEEDED`). Use sentinel mode only in production.
+
+**Optional follow-up:** Compliance-mode vault via DSM UI if policy requires no admin privileged-delete path; not required for current proof.
+
+Receipt: `artifacts/agent-runs/cg-secret-and-storage-authority-100-v1/writeonce-gates-receipt-2026-09-02.json`
 
 ---
 

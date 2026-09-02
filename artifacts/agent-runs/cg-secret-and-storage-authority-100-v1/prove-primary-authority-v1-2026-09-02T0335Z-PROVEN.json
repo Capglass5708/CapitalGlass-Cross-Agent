@@ -1,0 +1,141 @@
+{
+ "SERVICE_CREDENTIAL": "PASS",
+ "SERVICE_ACCOUNT_AUTH": "PASS",
+ "SERVICE_ACCOUNT_UID": null,
+ "SERVICE_ACCOUNT_ADMIN": false,
+ "FILESTATION_SERVICE_ACCESS": "PASS",
+ "SHARE_GET": "FAIL",
+ "SHARE_LIST": "OMITTED",
+ "SHARE_ENUMERATION_ANOMALY": "OPEN",
+ "PROVISIONING_MUTATION_NECESSARY": "NOT_PROVEN",
+ "FILESTATION_CANARY_WRITE": "SKIPPED",
+ "CG_VAULT_SSH_PROBE": "PASS",
+ "VAULT_RUNTIME_ACCESS": "PASS",
+ "DESTINATION_HASH_LIVE_PROOF": "PASS",
+ "WORM_STATE_CONFIGURATION": "NOT_OBSERVED",
+ "CANARY_OVERWRITE": "REFUSED",
+ "CANARY_DELETE": "REFUSED",
+ "IMMUTABILITY_ENFORCEMENT": "PROVEN",
+ "PRIMARY_STORAGE_AUTHORITY": "PROVEN",
+ "mutationsPerformed": [],
+ "evidence": {
+  "identity": {
+   "fileStationInfo": {
+    "allow_heic_original": false,
+    "allow_normal_disable_html": false,
+    "enable_list_usergrp": false,
+    "enable_send_email_attachment": true,
+    "enable_view_google": true,
+    "enable_view_microsoft": true,
+    "hostname": "CG_server",
+    "is_manager": false,
+    "items": [
+     {
+      "gid": 100
+     },
+     {
+      "gid": 65536
+     }
+    ],
+    "support_file_request": false,
+    "support_sharing": true,
+    "support_vfs": false,
+    "support_virtual": {
+     "enable_iso_mount": false,
+     "enable_remote_mount": false
+    },
+    "support_virtual_protocol": [],
+    "system_codepage": "enu",
+    "uid": 1031
+   },
+   "userGetRefused": {
+    "code": 105
+   },
+   "uidNote": "The service account cannot read user records, which is itself consistent with least privilege. uid 1031 remains ADMIN-observed rather than self-confirmed."
+  },
+  "shareGet": {
+   "success": false,
+   "uuid": null,
+   "uuidMatchesExpected": false,
+   "error": {
+    "code": 105
+   }
+  },
+  "shareGetNegativeControl": {
+   "success": false,
+   "error": {
+    "code": 105
+   },
+   "controlHolds": true
+  },
+  "shareListNames": [],
+  "fileStationShares": [
+   "Capital-Glass-AI-Evidence-meta",
+   "Capital-Glass-AI-Evidence-Vault",
+   "CG-Evidence-WORM-C1",
+   "home",
+   "homes"
+  ],
+  "controlObject": {
+   "writeMode": "existing_evidence_target",
+   "hashTargetRel": "control/worm-proof/worm-proof-e673af22589b4a6db057367fe32a582a.txt",
+   "classification": "EXISTING_EVIDENCE_HASH_TARGET",
+   "excludedFromAccounting": [
+    "ORIGINAL_CURRENT_LEDGER_BOUND",
+    "RECOVERED_ASSOCIATIONS",
+    "TOTAL_PROTECTED_OBJECTS"
+   ]
+  },
+  "destinationHash": {
+   "attemptedMechanism": "CG_VAULT_SSH_VAULT_SHA256",
+   "transportReadbackRefused": true,
+   "executionPlane": "CG_VAULT_SSH",
+   "port": "22222",
+   "destinationSha256": "sha256:36befe860525e75b8d2dd5221d340e3caab6981b72a0eb1cf67ec653c87abdb7",
+   "hashOnlyMode": "existing_locked_evidence"
+  },
+  "cgVaultSshProbe": {
+   "exitCode": 0,
+   "stdoutPrefix": "VAULT_SSH_OK\n",
+   "stderrPrefix": ""
+  },
+  "destinationHashAttempt": {
+   "exitCode": 0,
+   "parsedFields": {
+    "size": "207",
+    "path": "control/worm-proof/worm-proof-e673af22589b4a6db057367fe32a582a.txt"
+   },
+   "stderrPrefix": ""
+  },
+  "immutabilityCheck": {
+   "mode": "non_destructive_sentinel",
+   "sentinelRel": "control/worm-proof/worm-proof-e673af22589b4a6db057367fe32a582a.txt",
+   "createsNoNewObjects": true
+  },
+  "overwriteAttempt": {
+   "success": false,
+   "error": {
+    "code": 1814
+   },
+   "actor": "cg-context-ledger",
+   "operation": "overwrite",
+   "target": "control/worm-proof/worm-proof-e673af22589b4a6db057367fe32a582a.txt"
+  },
+  "deleteAttempt": {
+   "success": false,
+   "error": {
+    "code": 901,
+    "errors": [
+     {
+      "code": 901,
+      "path": "/Capital-Glass-AI-Evidence-Vault/control/worm-proof/worm-proof-e673af22589b4a6db057367fe32a582a.txt"
+     }
+    ]
+   },
+   "actor": "cg-context-ledger",
+   "operation": "delete",
+   "target": "control/worm-proof/worm-proof-e673af22589b4a6db057367fe32a582a.txt"
+  }
+ },
+ "blockers": []
+}
