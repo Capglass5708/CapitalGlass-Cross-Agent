@@ -1,0 +1,29 @@
+# CG Vault SSH native (second sshd instance) — NOT DSM administrative SSH on port 22.
+# UsePAM no avoids DSM non-admin PAM denial while keeping key-only forced-command dispatch.
+Port 22222
+# Bind all interfaces; restrict reachability via firewall/Tailscale (DSM sshd rejects some Tailscale bind addrs).
+Protocol 2
+
+HostKey /volume1/docker/cg-vault-ssh/ssh-keys/ssh_host_ed25519_key
+HostKey /volume1/docker/cg-vault-ssh/ssh-keys/ssh_host_rsa_key
+PidFile /volume1/docker/cg-vault-ssh/sshd.pid
+
+PermitRootLogin no
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+ChallengeResponseAuthentication no
+UsePAM no
+PermitEmptyPasswords no
+PubkeyAuthentication yes
+AuthorizedKeysFile /var/services/homes/cg-context-ledger/.ssh/authorized_keys
+StrictModes no
+
+AllowTcpForwarding no
+X11Forwarding no
+AllowAgentForwarding no
+PermitTTY no
+GatewayPorts no
+PermitUserEnvironment no
+MaxSessions 8
+LoginGraceTime 30
+AllowUsers cg-context-ledger

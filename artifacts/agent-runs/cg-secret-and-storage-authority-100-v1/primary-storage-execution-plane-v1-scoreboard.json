@@ -1,0 +1,116 @@
+{
+  "missionId": "CG_SECRET_AND_STORAGE_AUTHORITY_100_PERCENT_HEALTH_V1",
+  "workPackageId": "primary-storage-execution-plane-v1",
+  "branch": "work/primary-storage-execution-plane-v1",
+  "updatedAt": "2026-09-02T02:58:00Z",
+  "retrieval": {
+    "indexResult": "INDEX_HIT_AI_CACHE",
+    "directConnect": "DIRECT_CONNECT_NOT_APPLICABLE"
+  },
+  "categories": {
+    "CG_SECRET_AUTHORITY_V1": {
+      "status": "PASS",
+      "blockers": [],
+      "advisory": ["GITHUB_READ_ORG_DEVICE_FLOW_INCOMPLETE"],
+      "closed": ["RAILWAY_API_TOKEN", "RESEND_API_KEY", "SYNOLOGY_SERVICE_DOPPLER_PRD", "VERCEL_TOKEN"],
+      "liveAuthVerifiedAt": "2026-09-02T00:17:00Z",
+      "rotationReceipt": {
+        "vercel": "Rotated cg-shared/prd+dev VERCEL_TOKEN and VERCEL_REFRESH_TOKEN from live Vercel CLI OAuth session; live-auth HTTP 200",
+        "adminKeysVault": [
+          "02-Secrets/04-Apps-Doppler/cursor-integrations-full.vault",
+          "02-Secrets/04-Apps-Doppler/vercel-token.vault"
+        ],
+        "dopplerCanonical": true
+      }
+    },
+    "CG_IMMUTABLE_CONTEXT_PRIMARY_AUTHORITY_V1": {
+      "status": "PARTIAL",
+      "blockers": ["VAULT_SHA256_VAULT_UID_ACL", "WORM_OVERWRITE_NOT_REFUSED"],
+      "softwareComplete": true,
+      "liveProof": {
+        "CONTAINER_MANAGER_INSTALLED": "PASS",
+        "CG_VAULT_SSH_DOCKER_RUNNING": "PASS",
+        "CG_VAULT_SSHD_LISTENING": "PASS",
+        "PUBKEY_AUTHENTICATION": "PASS",
+        "VAULT_SSH_PROBE": "PASS",
+        "DISPATCHER_LOCAL_SUDO_PROOF": "PASS",
+        "DESTINATION_HASH_LIVE_PROOF": "FAIL",
+        "VAULT_ACL_VALID": "FAIL",
+        "IMMUTABILITY_ENFORCEMENT": "FAIL"
+      },
+      "closed": [
+        "CONTAINER_MANAGER_NOT_INSTALLED",
+        "CG_VAULT_SSH_POST_AUTH_SYNO_GATE"
+      ]
+    },
+    "BACKUP_STORAGE_AUTHORITY": {
+      "status": "BLOCKED_BY_PROCUREMENT"
+    },
+    "CG_IMMUTABLE_CONTEXT_STORAGE_AUTHORITY_V1": {
+      "status": "BLOCKED_BY_PROCUREMENT"
+    }
+  },
+  "cgVaultSsh": {
+    "executionPlane": "docker-container-manager",
+    "port": 22222,
+    "host": "100.112.81.50",
+    "sshLoginUser": "vault",
+    "dsmServiceUser": "cg-context-ledger",
+    "dockerPreferred": true,
+    "containerManagerInstalled": true,
+    "containerManagerVersion": "24.0.2-1606",
+    "deployedAt": "2026-09-02T02:50:00Z",
+    "nativeSshdOn22222": "disabled (rc.d cg-vault-ssh.sh.disabled)",
+    "dopplerEnv": {
+      "project": "cg-shared",
+      "configs": ["prd", "dev"],
+      "keys": ["CG_VAULT_SSH_USER", "CG_VAULT_SSH_HOST", "CG_VAULT_SSH_PORT", "SYNOLOGY_DSM_HOST", "SYNOLOGY_DSM_ADMIN_USERNAME", "SYNOLOGY_DSM_ADMIN_PASSWORD"]
+    },
+    "artifacts": "CapitalGlass-Cross-Agent/infra/cg-vault-ssh/"
+  },
+  "prover": {
+    "script": "scripts/context-ledger/prove-primary-authority-v1.py",
+    "lastRunAt": "2026-09-02T02:57:00Z",
+    "cgVaultSshProbe": "PASS",
+    "destinationHashLiveProof": "FAIL",
+    "primaryStorageAuthority": "UNPROVEN",
+    "blockers": ["VAULT_SHA256_COMMAND_FAILED", "MUTATION_OF_ARCHIVED_EVIDENCE_SUCCEEDED"]
+  },
+  "operatorActionsRequired": [
+    {
+      "id": "INSTALL_CONTAINER_MANAGER",
+      "status": "CLOSED",
+      "detail": "Container Manager 24.0.2-1606 installed; docker share at /volume1/docker"
+    },
+    {
+      "id": "DEPLOY_CG_VAULT_SSH_DOCKER",
+      "status": "CLOSED",
+      "detail": "cg-vault-ssh container running on 0.0.0.0:22222; VAULT_SSH_PROBE PASS"
+    },
+    {
+      "id": "VAULT_UID_ACL_FOR_SHA256",
+      "detail": "UID 1031 (vault) needs read on Capital-Glass-AI-Evidence-Vault objects for VAULT_SHA256 / hash live proof"
+    },
+    {
+      "id": "WORM_OVERWRITE_POLICY",
+      "detail": "Canary overwrite succeeded via File Station API — immutability enforcement not yet proven"
+    },
+    {
+      "id": "VERCEL_TOKEN_MFA",
+      "status": "CLOSED",
+      "detail": "Rotated 2026-09-02 — cg-shared/prd+dev live-auth PASS"
+    },
+    {
+      "id": "GITHUB_READ_ORG",
+      "detail": "Complete gh auth refresh device flow only if workflows require read:org"
+    }
+  ],
+  "100_PERCENT_SOFTWARE_AND_SECRET_HEALTH": {
+    "status": "PASS_SECRET_AUTHORITY_PARTIAL_STORAGE",
+    "except": [
+      "GITHUB read:org advisory (optional)",
+      "VAULT_SHA256 ACL + WORM overwrite proof",
+      "backup hardware procurement"
+    ]
+  }
+}

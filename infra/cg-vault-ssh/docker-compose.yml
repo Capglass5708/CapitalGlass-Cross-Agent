@@ -1,0 +1,19 @@
+# CG Vault SSH — deploy on cg-server via Container Manager / docker compose.
+# Binds dedicated port 22222 (not DSM administrative SSH on 22).
+services:
+  cg-vault-ssh:
+    build: .
+    image: cg-vault-ssh:1
+    container_name: cg-vault-ssh
+    restart: unless-stopped
+    ports:
+      - "22222:22"
+    volumes:
+      - /volume1/Capital Glass/Capital-Glass-AI-Evidence-Vault:/vault:rw
+      - ./authorized_keys:/config/authorized_keys:ro
+    environment:
+      CG_VAULT_ROOT: /vault
+      CG_VAULT_UID: "1031"
+      CG_VAULT_GID: "100"
+    security_opt:
+      - no-new-privileges:true
