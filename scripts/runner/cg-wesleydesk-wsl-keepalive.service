@@ -1,0 +1,12 @@
+[Unit]
+Description=Capital Glass WESLEYDESK WSL keepalive (prevents distro stop during publication)
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -c 'while true; do date -Iseconds >> /var/log/cg-wesleydesk-runner/keepalive.log; sleep 30; done'
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

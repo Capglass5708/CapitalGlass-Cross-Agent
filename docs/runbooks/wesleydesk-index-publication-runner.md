@@ -75,6 +75,46 @@ cd ~\repos\CapitalGlass-Cross-Agent   # or WSL path after git pull
 powershell -ExecutionPolicy Bypass -File scripts/runner/install-wesleydesk-runner-autostart.ps1
 ```
 
+### Pro-level WSL persistence (publication lane)
+
+Root cause of publication failures: **Ubuntu-24.04 stops** when no Windows-side `wsl.exe` client remains connected. Short ping tasks are not enough.
+
+**One-time install (elevated PowerShell on WESLEYDESK):**
+
+```powershell
+cd ~\repos\CapitalGlass-Cross-Agent
+powershell -ExecutionPolicy Bypass -File scripts\runner\install-wesleydesk-wsl-persistence.ps1
+```
+
+This installs:
+
+| Task | Purpose |
+| --- | --- |
+| `CapitalGlass-WESLEYDESK-WSL-Runner-Anchor-Process` | SYSTEM, unlimited: `wsl.exe … sleep infinity` (keeps distro **Running**) |
+| `CapitalGlass-WESLEYDESK-WSL-Runner-Anchor-Watchdog` | Every 1m: restart anchor if WSL stopped |
+| `CapitalGlass-WESLEYDESK-WSL-Runner-Watchdog` | Every 1m: `ensure-wesleydesk-runner-wsl.sh` (DNS + Runner.Listener) |
+| `CapitalGlass-WESLEYDESK-WSL-Runner-Keepalive` | Every 1m: lightweight WSL ping |
+| `.wslconfig` | `vmIdleTimeout=-1` (user + SYSTEM profiles) |
+
+Receipt: `runtime/runner/wesleydesk-wsl-persistence-receipt.json`  
+Ensure receipt: `/var/log/cg-wesleydesk-runner/latest-ensure.json`
+
+**Lane verify (read-only):**
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\runner\verify-wesleydesk-publication-lane.ps1
+```
+
+**Recovery order (do not spam workflow_dispatch):**
+
+1. Cancel stuck `index-publication` run if `in_progress` >10m with WSL **Stopped**
+2. Run persistence installer (or ensure script only if tasks already installed)
+3. Confirm `wsl.exe -l -v` shows **Running** for **≥3 minutes unattended**
+4. Confirm runner **online** and **busy=false**
+5. **One** `workflow_dispatch` for `index-publication.yml`
+
+Only set `CG_WSL_CONFIG_REFRESH=true` when changing `.wslconfig` (triggers one `wsl --shutdown`).
+
 **Manual recovery** (any time runner shows offline):
 
 ```bash

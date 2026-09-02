@@ -1,0 +1,53 @@
+{
+  "schema": "capital-glass-milestone-acceptance-v1@1.0.0",
+  "milestoneId": "CAPITAL_GLASS_INTELLIGENCE_CORRELATION_FABRIC_V1_PUBLISHED_COMPLETE",
+  "workPackageId": "capital-glass-intelligence-correlation-fabric-v1",
+  "completedAt": "2026-08-17T05:25:30.000Z",
+  "verdict": "PUBLISHED_COMPLETE",
+  "releaseState": {
+    "code": "CODE_COMPLETE",
+    "localRuntime": "LOCAL_RUNTIME_VALIDATED",
+    "gitPublication": "PUBLISHED",
+    "controlPlaneVisibility": "IN_SYNC",
+    "production": "NOT_IN_SCOPE"
+  },
+  "nonGoalsHonored": [
+    "No Foundry build",
+    "No handoff schema mutation"
+  ],
+  "publication": {
+    "crossAgent": {
+      "repo": "CapitalGlass-Cross-Agent",
+      "branch": "main",
+      "commitSha": "42d5ec811a265d2eabb9b62f92f7a377cd34544a",
+      "indexFreshnessGate": "PASS",
+      "supabaseProjection": "IN_SYNC",
+      "intelligenceHubL": "PUBLISH_PASS",
+      "receipt": "runtime/index-publication/latest.json"
+    },
+    "appBuilder": {
+      "repo": "CG-AppBuilder-MCP",
+      "branch": "main",
+      "mergeCommitSha": "17283e9035cf5f5158a",
+      "pullRequest": "https://github.com/Capglass5708/CG-AppBuilder-MCP/pull/417",
+      "rebasedCommitSha": "3d4e461400ca627fd57372b2ef8b71f84d3540c6",
+      "hotRoutingIndex": "42d5ec811a265d2eabb9b62f92f7a377cd34544a"
+    }
+  },
+  "evidence": {
+    "boundedTests": {
+      "appBuilder": ["npm run test:correlation-markers-emit"],
+      "crossAgent": [
+        "npm run test:intelligence-correlation-markers",
+        "npm run test:intelligence-correlate"
+      ]
+    },
+    "contracts": [
+      "contracts/intelligence/correlation-markers-v1.schema.json",
+      "contracts/intelligence/registries/correlation-*-v1.json"
+    ],
+    "capability": "INTELLIGENCE_CORRELATION_MARKERS",
+    "migration": "supabase/migrations/20260817120000_intelligence_hub_correlation_markers_gin_v1.sql"
+  },
+  "supersedes": "artifacts/agent-runs/capital-glass-intelligence-correlation-fabric-v1/CAPITAL_GLASS_INTELLIGENCE_CORRELATION_FABRIC_V1_LOCAL_RUNTIME_VALIDATED.json"
+}
