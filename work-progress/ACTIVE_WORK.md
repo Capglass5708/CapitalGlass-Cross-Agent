@@ -21,6 +21,17 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 ## Current saved work
 
+### 2026-08-25 CT — appbuilder-mission-harvest-gold-mine-guidance-v1 (corrected, protocol updated)
+
+| Field | Value |
+| --- | --- |
+| Work package | `appbuilder-mission-harvest-gold-mine-guidance-v1` (supersedes the same-day `appbuilder-closeout-to-gold-mine-projection-contract-v1`, which was built on a wrong premise) |
+| Status | **CORRECTED** — protocol rule added, reference guidance added, no code bridge (there is nothing to bridge) |
+| Repos involved | CapitalGlass-Cross-Agent only |
+| Notes | Wesley asked to connect AppBuilder's mission closeout to Data-Extraction. First pass wrongly concluded AppBuilder→OP-00A and harvest→Gold Mine were disconnected pipelines needing a new code-level mapping — a real search had found zero cross-references, but the right conclusion from that was "they connect via agent judgment, not code," not "build a bridge." Wesley caught this ("do you not see what the close out already is") and pointed at proof already sitting in the repo: `harvest-2026-08-25-mcp-estate-remediation-v1/full-closeout-waverunner-receipt.json` — the exact AppBuilder mission (`mcp-estate-remediation-v1`) that PR #50 fed into OP-00A/Intelligence Hub was *also* closed out, live, on the host, by simply running the existing `chat-thread-closeout-autopsy-harvest` protocol against its real evidence: `FULL_CLOSEOUT_WAVERUNNER = OPERATIONALLY_PROVEN`, L: durable + Z: cache + an independently-SQL-verified Supabase snapshot. No new bridge needed — the protocol already works on AppBuilder-mission evidence exactly as on a chat thread. The one real, narrower gap that receipt did expose: none of its 19 packets carried `goldMineSignalClass` — OP-00A ingest proves durability/retrievability but never sets Gold Mine tags, so nothing guarantees an agent harvesting an AppBuilder mission actually checks Gold Mine eligibility. Fixed at the actual governing layer: added a **v1.3 AppBuilder-mission harvest rule** to `chat-thread-closeout-autopsy-harvest-v1.2` (bumping it to v1.3, in both existing case-variant copies of the file, which are independent files, not a symlink — confirmed and kept in sync) making this explicit and citing the proven receipt, plus a new reference-guidance doc (not a contract, not code) for the signal-classification judgment call. Deleted the wrongly-premised original contract file rather than leave a wrong artifact standing. |
+| Evidence | `harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md` + `chat-thread-closeout-autopsy-harvest-v1.md` (both now v1.3), `contracts/intelligence/appbuilder-mission-harvest-gold-mine-guidance-v1.md` (new, replaces the deleted contract), PR #53 (corrected in place) |
+| Next | None — this closes the ask. `docs/runbooks/chat-thread-closeout-autopsy-harvest-v1.md` was noticed to be a separate, already-stale (pre-v1.1) copy of this protocol; left untouched since reconciling that drift wasn't part of this ask, but flagged here so it isn't mistaken for current. |
+
 ### 2026-08-25 CT — compounding-intelligence-v2-live-integration-proof (planning)
 
 | Field | Value |
