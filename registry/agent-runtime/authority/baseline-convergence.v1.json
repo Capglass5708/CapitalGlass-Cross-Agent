@@ -126,10 +126,18 @@
   },
   "evaluationFlow": [
     "AI_PLATFORM_BASELINE_CONVERGENCE",
-    "per-machine PASS on all authorized roles",
+    "per-machine HOST OBSERVATION (collector)",
+    "estate evaluator three-case compare (evaluate-baseline-convergence.v1.json)",
     "then PROFILE_DIFFERENCES",
     "then CAPABILITY_DIFFERENCES"
   ],
+  "estateEvaluator": "registry/agent-runtime/authority/evaluate-baseline-convergence.v1.json",
+  "comparisonCases": {
+    "SAME_AND_CURRENT": "PASS — counts toward P0",
+    "DIFFERENT": "DRIFT_BASELINE_GENERATION_MISMATCH → HOLD",
+    "MISSING_OR_UNCHECKED": "NOT_PASS — do not collapse into DIFFERENT"
+  },
+  "verdictStatesPreserved": ["PASS", "FAIL", "UNKNOWN", "NOT_CHECKED", "UNAVAILABLE"],
   "m8EstateExpectation": {
     "source": "CG-AppBuilder-MCP/scripts/m8/final-activation.mjs",
     "threeMachineMirrors": ["WESLEY_WORK", "CG_NIMO_01", "RYZEN9DESK"],
@@ -137,6 +145,7 @@
   },
   "driftCodesWhenBaselineFails": [
     "DRIFT_BASELINE_FOUNDATION_MISSING",
+    "DRIFT_BASELINE_GENERATION_MISMATCH",
     "DRIFT_MACHINE_REALIZATION_INCOMPLETE",
     "DRIFT_AUTHORITY_GENERATION",
     "DRIFT_SETTINGS_HASH",

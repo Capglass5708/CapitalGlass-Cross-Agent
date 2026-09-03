@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "cg-agent-runtime-estate-baseline-evaluator-v1",
+  "workPackageId": "agent-workstation-mcp-hub-index-v1",
+  "gateId": "AI_PLATFORM_BASELINE_CONVERGENCE",
+  "implementationOwner": "CG-AppBuilder-MCP",
+  "implementationTarget": "scripts/agent-runtime/evaluate-baseline-convergence.mjs",
+  "notImplementedInCrossAgent": true,
+  "inputs": {
+    "description": "Per-machine harvest / lane snapshots only — never a single-host collector decision",
+    "requiredMachines": ["cg_nimo_01", "wesley_work", "ryzen9desk"],
+    "perMachinePayload": [
+      "machineRole",
+      "authorityGeneration",
+      "observationGeneration.accepted",
+      "baseline.foundationGeneration",
+      "baseline.verdict",
+      "observedAt",
+      "freshness"
+    ]
+  },
+  "verdictStates": {
+    "preservedThroughP0": ["PASS", "FAIL", "UNKNOWN", "NOT_CHECKED", "UNAVAILABLE"],
+    "note": "Do not collapse verdict states. Hook missing (FAIL) ≠ never inspected (NOT_CHECKED) ≠ probe error (UNKNOWN) ≠ host unreachable (UNAVAILABLE)."
+  },
+  "comparisonCases": {
+    "SAME_AND_CURRENT": {
+      "condition": "All three machines report the same foundationGeneration digest for component AND each observation is accepted at current authorityGeneration AND freshness within policy",
+      "componentVerdict": "PASS",
+      "gateContribution": "counts_toward_P0_PASS"
+    },
+    "DIFFERENT": {
+      "condition": "Two or more machines report foundationGeneration digests that differ for the same component at the same authority generation",
+      "componentVerdict": "FAIL",
+      "driftCode": "DRIFT_BASELINE_GENERATION_MISMATCH",
+      "gateVerdict": "HOLD",
+      "executionImpact": "HOLD",
+      "note": "Ordinary cross-machine generation drift — not missing observation"
+    },
+    "MISSING_OR_UNCHECKED": {
+      "condition": "Any machine reports MISSING, UNAVAILABLE, NOT_CHECKED, or UNKNOWN for a required foundation component",
+      "componentVerdict": "preserve_input_verdict",
+      "gateVerdict": "NOT_PASS",
+      "executionImpact": "HOLD",
+      "forbiddenCollapse": "Do not map NOT_CHECKED or UNAVAILABLE into DRIFT_BASELINE_GENERATION_MISMATCH",
+      "examples": {
+        "hook_missing_on_ryzen": "FAIL + DRIFT_BASELINE_FOUNDATION_MISSING",
+        "ryzen_never_harvested": "NOT_CHECKED — gate NOT_PASS, not generation mismatch",
+        "harvest_probe_error": "UNKNOWN",
+        "host_unreachable": "UNAVAILABLE"
+      }
+    }
+  },
+  "estateTopology": {
+    "diagram": "NIMO \\ WESLEY_WORK → AI_PLATFORM_BASELINE_CONVERGENCE ← RYZEN9DESK",
+    "profileEvaluation": "ONLY_AFTER_P0_PASS"
+  },
+  "gateOutputs": {
+    "gateVerdict": "PASS | HOLD | NOT_PASS",
+    "p0MilestoneContribution": "AI_PLATFORM_BASELINE_CONVERGENCE",
+    "executionEligibilityMapping": "HOLD or NOT_PASS → executionEligibility NO_GO via worldview blockers until P0 PASS",
+    "machineStates": {
+      "exampleBeforeRepair": {
+        "ryzen9desk": "INCOMPLETE",
+        "p0": "HOLD"
+      }
+    }
+  },
+  "expectedFirstRun": {
+    "description": "Before Ryzen remediation, first three-machine evaluation MUST NOT pass P0",
+    "ifUnexpectedPass": "Treat as evaluator defect — not good news",
+    "proofSequence": [
+      "e545ab3 contract",
+      "AppBuilder implementation wave A–G",
+      "harvest NIMO / WESLEY_WORK / RYZEN",
+      "P0 expected HOLD",
+      "prove exact realization drift",
+      "authorized convergence repair (separate admitted operation)",
+      "re-harvest at same authority generation",
+      "P0 PASS",
+      "P1–P7",
+      "CG_AGENT_RUNTIME_DETERMINISM_V1_PASS"
+    ]
+  },
+  "forbiddenInWave1": [
+    "bootstrap_machines_in_evaluator",
+    "repair_drift_in_collector",
+    "collapse_NOT_CHECKED_into_generation_mismatch",
+    "single_host_decides_estate_convergence"
+  ]
+}

@@ -122,6 +122,15 @@
       "repairClass": "RESTORE_COMMON_FOUNDATION",
       "sessionFatal": false,
       "description": "Missing control-plane treated as profile difference — not acceptable"
+    },
+    {
+      "code": "DRIFT_BASELINE_GENERATION_MISMATCH",
+      "severity": "FAIL",
+      "scope": "BASELINE",
+      "enforcement": "HOLD_MUTATION",
+      "repairClass": "RECONVERGE_FOUNDATION_GENERATION",
+      "sessionFatal": false,
+      "description": "Cross-machine foundationGeneration digests differ at same authority generation — estate evaluator case DIFFERENT only"
     }
   ],
   "inventory": ["DRIFT_SERVER_MISSING", "DRIFT_SERVER_EXTRA"],
@@ -156,7 +165,8 @@
   "baselineParity": [
     "DRIFT_BASELINE_FOUNDATION_MISSING",
     "DRIFT_MACHINE_REALIZATION_INCOMPLETE",
-    "DRIFT_PROFILE_PARITY_VIOLATION"
+    "DRIFT_PROFILE_PARITY_VIOLATION",
+    "DRIFT_BASELINE_GENERATION_MISMATCH"
   ],
   "observation": ["OBSERVATION_UNAVAILABLE", "OBSERVATION_NOT_CHECKED"],
   "verdictStates": ["PASS", "FAIL", "UNKNOWN", "NOT_CHECKED", "UNAVAILABLE"]
