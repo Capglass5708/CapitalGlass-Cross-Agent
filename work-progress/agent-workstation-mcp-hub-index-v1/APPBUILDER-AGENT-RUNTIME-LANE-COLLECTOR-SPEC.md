@@ -247,19 +247,24 @@ Each `collectAgentRuntimeLane()` run on a governed host emits:
 
 ### Estate-wide P0 proof (separate evaluator)
 
-**Target:** `scripts/agent-runtime/evaluate-baseline-convergence.mjs` (milestone evidence — not the lane collector)
+**Target:** `scripts/agent-runtime/evaluate-baseline-convergence.mjs`  
+**Contract:** `registry/agent-runtime/authority/evaluate-baseline-convergence.v1.json`
 
-Compare harvest/lane snapshots from **all three** authorized machines:
+Compare harvest/lane snapshots from **all three** authorized machines. Same equality required for all eight foundation components in `baseline-convergence.v1.json`.
 
-```
-NIMO.foundationGeneration.agentProtocolKernel
-    ==
-WESLEY_WORK.foundationGeneration.agentProtocolKernel
-    ==
-RYZEN9DESK.foundationGeneration.agentProtocolKernel
-```
+### Estate evaluator — three cases (frozen)
 
-Same equality required for all eight foundation components listed in `baseline-convergence.v1.json`.
+| Case | Condition | Outcome |
+| --- | --- | --- |
+| **SAME + CURRENT** | Same digest on all machines; observation accepted at current authority generation; fresh | **PASS** |
+| **DIFFERENT** | Digests differ at same authority generation | `DRIFT_BASELINE_GENERATION_MISMATCH` → gate **HOLD** |
+| **MISSING / UNAVAILABLE / NOT CHECKED** | Required component not positively observed | **NOT PASS** — never collapse into DIFFERENT |
+
+Verdict states preserved through P0: `PASS`, `FAIL`, `UNKNOWN`, `NOT_CHECKED`, `UNAVAILABLE`.
+
+**Expected first run:** P0 **HOLD** before Ryzen remediation. Premature P0 PASS → evaluator defect.
+
+Wave A–G scope: `APPBUILDER-IMPLEMENTATION-WAVE-1.md`.
 
 **Then** evaluate profile separately:
 
