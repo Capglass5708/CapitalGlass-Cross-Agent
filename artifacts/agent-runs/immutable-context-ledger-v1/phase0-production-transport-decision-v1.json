@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "context-ledger-phase0-production-transport-decision-v1@1.0.0",
+  "recordedAt": "2026-08-31T05:52:00.906Z",
+  "decision": "SERVICE_ACCOUNT_SHARE_WRITE",
+  "production": {
+    "primary": {
+      "host": "100.112.81.50",
+      "share": "Capital-Glass-AI-Evidence-Vault",
+      "serviceAccount": "cg-context-ledger",
+      "mechanism": "synology-https-filestation-over-tailscale",
+      "implementation": "scripts/context-ledger/lib/synology-transport.py",
+      "notes": [
+        "Uses DSM FileStation API over Tailscale HTTPS — native networking, not drvfs/9p",
+        "Service account share ACLs are the authorization boundary",
+        "True kernel mount.cifs preferred when sudo is available on the worker host"
+      ]
+    },
+    "backup": {
+      "host": "100.93.199.27",
+      "share": "CapitalGlass-L",
+      "path": "L:/Capital-Glass-AI-Evidence-Vault-backup",
+      "mechanism": "wesleydesk-ssh-scp-over-tailscale",
+      "implementation": "scripts/context-ledger/lib/wesleydesk-transport.mjs",
+      "notes": [
+        "Independent fan-out from WSL spool — backup bytes are not derived from primary",
+        "SCP targets the Windows L: share path on wesleydesk via Tailscale"
+      ]
+    }
+  },
+  "diagnosticOnly": {
+    "sshAlias": "cg-vault",
+    "serviceUser": "cg-context-ledger",
+    "proofArtifact": "artifacts/agent-runs/immutable-context-ledger-v1/ssh-restricted-transport-proof-v1.json",
+    "shellPersistenceDurable": false,
+    "rejectedAsProductionDependency": {
+      "reason": "/sbin/nologin → /bin/sh passwd sed can revert silently on DSM reboot/update",
+      "acceptableFallback": "Explicit managed control with reboot-survival proof — not implemented"
+    }
+  },
+  "status": "CG_CONTEXT_LEDGER_PRODUCTION_TRANSPORT_DECISION_LOCKED"
+}

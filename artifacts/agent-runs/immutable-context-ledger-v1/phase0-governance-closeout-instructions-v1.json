@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "context-ledger-phase0-governance-closeout-instructions-v1@1.0.0",
+  "recordedAt": "2026-08-31T06:00:00.000Z",
+  "purpose": "Operator checklist to close Criterion 2 and unlock formal CG_CONTEXT_LEDGER_PHASE_0_AUTHORITY_V1_PASS",
+  "targetArtifact": "artifacts/agent-runs/immutable-context-ledger-v1/nas-governance-receipt-v1.json",
+  "currentState": {
+    "attestationState": "DRAFT_UNATTESTED",
+    "verdict": "NAS_GOVERNANCE_INSUFFICIENT",
+    "blocksFormalPhase0Pass": true
+  },
+  "technicalContextSinceDraft": {
+    "note": "Agent-observed facts since the DRAFT was written — operator must verify in DSM before attesting.",
+    "serviceAccount": "cg-context-ledger exists; non-admin; write on Capital-Glass-AI-Evidence-Vault and Capital-Glass-AI-Evidence-meta",
+    "vaultShare": "Capital-Glass-AI-Evidence-Vault — Enterprise WORM, 90-day retention (see dsm-enterprise-worm-create-proof-v1.json)",
+    "productionTransport": "Service-account FileStation HTTPS — not SSH shell (see phase0-production-transport-decision-v1.json)",
+    "syntheticProof": "phase0-synthetic-proof-v1.json — FULLY_PROTECTED, L:-recoverable"
+  },
+  "operatorSteps": [
+    "Open DSM on cg-server and inspect each control in nas-governance-receipt-v1.json controls{}",
+    "Update each control state, detail, evidence, compensatingControl (if NOT_AVAILABLE), and verifiedAt from direct observation",
+    "Set accessBoundary for cg-context-ledger (scoped paths, dedicated key, sharesWesleyIdentity=false)",
+    "Set attestationState=ATTESTED and attestedBy to the human operator name (never an agent)",
+    "Set verdict=NAS_GOVERNANCE_ACCEPTED only if every control is CONFIRMED, NOT_APPLICABLE, or NOT_AVAILABLE with compensatingControl — any UNKNOWN forces INSUFFICIENT",
+    "Reissue phase0-authority-pass-v1.json (or phase0-authority-pass-final-v1.json) with status CG_CONTEXT_LEDGER_PHASE_0_AUTHORITY_V1_PASS and criterion 2 state PASS"
+  ],
+  "doesNotBlockPhase2": [
+    "Five deferred proving-vault adversarial tests (fault injection, partition, retention expiry, WORM delete)"
+  ]
+}

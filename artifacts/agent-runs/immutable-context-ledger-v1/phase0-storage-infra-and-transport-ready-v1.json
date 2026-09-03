@@ -1,0 +1,1977 @@
+{
+  "schemaVersion": "context-ledger-phase0-storage-infra-and-transport-ready-v1@2.0.0",
+  "recordedAt": "2026-08-31T07:55:07.183709Z",
+  "machineId": "CG-NIMO-01",
+  "readOnlyProof": true,
+  "status": "PHASE0_STORAGE_INFRASTRUCTURE_AND_TRANSPORT_READY_FOR_REAL_PROOF",
+  "shares": {
+    "vault": {
+      "name": "Capital-Glass-AI-Evidence-Vault",
+      "exists": true,
+      "wormReadback": {
+        "name": "Capital-Glass-AI-Evidence-Vault",
+        "vol_path": "/volume1",
+        "worm_subvol_mode": "enterprise",
+        "worm_def_lock_mode": "immutable",
+        "worm_def_lock_duration": 7776000,
+        "worm_lock_wait_time": 0
+      },
+      "wormVerification": {
+        "checks": {
+          "worm_subvol_mode_enterprise": true,
+          "worm_def_lock_mode_immutable": true,
+          "worm_def_lock_duration_90d": true,
+          "worm_lock_wait_time_zero": true
+        },
+        "pass": true
+      },
+      "pass": true
+    },
+    "meta": {
+      "name": "Capital-Glass-AI-Evidence-meta",
+      "exists": true,
+      "wormReadback": {
+        "name": "Capital-Glass-AI-Evidence-meta",
+        "vol_path": "/volume1",
+        "worm_subvol_mode": "normal",
+        "worm_def_lock_mode": "not_a_worm_share",
+        "worm_def_lock_duration": -1,
+        "worm_lock_wait_time": -1
+      },
+      "nonWorm": true,
+      "snapshot": {
+        "scheduleReadback": {
+          "enable_snapshot_schedule": true,
+          "schedule": {
+            "date": "2026/8/31",
+            "date_type": 0,
+            "hour": 2,
+            "last_work_hour": 2,
+            "min": 0,
+            "monthly_week": [],
+            "next_trigger_time": "2026-09-01 02:00",
+            "repeat": 0,
+            "repeat_hour": 0,
+            "repeat_hour_store_config": null,
+            "repeat_min": 0,
+            "repeat_min_store_config": null,
+            "week_name": "0,1,2,3,4,5,6"
+          },
+          "task_id": 55
+        },
+        "retentionReadback": {
+          "advDaily": 7,
+          "advHourly": 24,
+          "advMinimum": 5,
+          "advMonthly": 1,
+          "advPolicyType": 95,
+          "advRetainDay": 1,
+          "advWeekly": 2,
+          "advYearly": 0,
+          "daily": 7,
+          "hourly": 24,
+          "monthly": 1,
+          "name": "Capital-Glass-AI-Evidence-meta",
+          "policyType": 20,
+          "prefix": "Share#",
+          "recently": 30,
+          "retainDay": 7,
+          "schedule": {
+            "date_type": 1,
+            "hour": 2,
+            "last_work_hour": 2,
+            "min": 0,
+            "repeat_hour": 0,
+            "repeat_min": 0,
+            "week_name": "0,1,2,3,4,5,6"
+          },
+          "tid": -1,
+          "weekly": 2,
+          "yearly": 0
+        },
+        "scheduleEnabled": true,
+        "retentionDays": 30,
+        "pass": true
+      },
+      "pass": true
+    }
+  },
+  "serviceIdentity": {
+    "name": "cg-context-ledger",
+    "securityEvaluation": {
+      "authoritativeShareAcls": {
+        "Capital-Glass-AI-Evidence-Vault": "RW",
+        "Capital-Glass-AI-Evidence-meta": "RW",
+        "Capital Glass": "DENY",
+        "Book Keeping": "DENY"
+      },
+      "fileStationPathListSuccess": {
+        "Capital-Glass-AI-Evidence-Vault": false,
+        "Capital-Glass-AI-Evidence-meta": false
+      },
+      "aclVsFileStation": {
+        "contradictions": [
+          {
+            "share": "Capital-Glass-AI-Evidence-Vault",
+            "kind": "ACL_ALLOWS_BUT_FILESTATION_LIST_FAILS",
+            "aclEffective": "RW",
+            "listShareVisible": false,
+            "pathProbe": {
+              "path": "/Capital-Glass-AI-Evidence-Vault",
+              "exception": "FileStationError: Operation not permitted",
+              "listSuccess": false,
+              "entryCount": 0,
+              "raw": null
+            }
+          },
+          {
+            "share": "Capital-Glass-AI-Evidence-meta",
+            "kind": "ACL_ALLOWS_BUT_FILESTATION_LIST_FAILS",
+            "aclEffective": "RW",
+            "listShareVisible": false,
+            "pathProbe": {
+              "path": "/Capital-Glass-AI-Evidence-meta",
+              "exception": "FileStationError: Operation not permitted",
+              "listSuccess": false,
+              "entryCount": 0,
+              "raw": null
+            }
+          },
+          {
+            "share": "Capital Glass",
+            "kind": "ACL_DENIES_BUT_FILESTATION_LIST_SUCCEEDS",
+            "aclEffective": "DENY",
+            "listShareVisible": true,
+            "pathProbe": {
+              "path": "/Capital Glass",
+              "exception": null,
+              "listSuccess": true,
+              "entryCount": 28,
+              "raw": {
+                "data": {
+                  "files": [
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1764715572,
+                          "crtime": 1764715572,
+                          "ctime": 1788136970,
+                          "mtime": 1788136970
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": true,
+                      "name": "#recycle",
+                      "path": "/Capital Glass/#recycle"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1764702538,
+                          "crtime": 1764702538,
+                          "ctime": 1783767794,
+                          "mtime": 1764712802
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": true,
+                      "name": "#snapshot",
+                      "path": "/Capital Glass/#snapshot"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1785362998,
+                          "crtime": 1785362998,
+                          "ctime": 1785363013,
+                          "mtime": 1785363013
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": true,
+                      "name": "00-README-AND-GOVERNANCE",
+                      "path": "/Capital Glass/00-README-AND-GOVERNANCE"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1785363185,
+                          "crtime": 1785363185,
+                          "ctime": 1785363185,
+                          "mtime": 1785363185
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": true,
+                      "name": "80-COLD-STORAGE",
+                      "path": "/Capital Glass/80-COLD-STORAGE"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1785363186,
+                          "crtime": 1785363186,
+                          "ctime": 1785363210,
+                          "mtime": 1785363210
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": true,
+                      "name": "90-LEGACY",
+                      "path": "/Capital Glass/90-LEGACY"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1785363187,
+                          "crtime": 1785363187,
+                          "ctime": 1785363187,
+                          "mtime": 1785363187
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": true,
+                      "name": "98-MANUAL-REVIEW",
+                      "path": "/Capital Glass/98-MANUAL-REVIEW"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1785363188,
+                          "crtime": 1785363188,
+                          "ctime": 1785363188,
+                          "mtime": 1785363188
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": true,
+                      "name": "99-QUARANTINE",
+                      "path": "/Capital Glass/99-QUARANTINE"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1785362225,
+                          "crtime": 1785362225,
+                          "ctime": 1785559512,
+                          "mtime": 1785559512
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": true,
+                      "name": "Capital-Glass-Agent-Operations",
+                      "path": "/Capital Glass/Capital-Glass-Agent-Operations"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1788136612,
+                          "crtime": 1788136612,
+                          "ctime": 1788137127,
+                          "mtime": 1788137127
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": true,
+                      "name": "Capital-Glass-AI-Evidence-Vault",
+                      "path": "/Capital Glass/Capital-Glass-AI-Evidence-Vault"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1785364132,
+                          "crtime": 1785364132,
+                          "ctime": 1785364133,
+                          "mtime": 1785364133
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": true,
+                      "name": "Capital-Glass-App-Data",
+                      "path": "/Capital Glass/Capital-Glass-App-Data"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1780088530,
+                          "crtime": 1780088530,
+                          "ctime": 1788015524,
+                          "mtime": 1788015524
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": true,
+                      "name": "Capital-Glass-Dev",
+                      "path": "/Capital Glass/Capital-Glass-Dev"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1785518522,
+                          "crtime": 1785518522,
+                          "ctime": 1785687762,
+                          "mtime": 1785687762
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": true,
+                      "name": "Capital-Glass-Intelligence-Hub",
+                      "path": "/Capital Glass/Capital-Glass-Intelligence-Hub"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1785363645,
+                          "crtime": 1785363645,
+                          "ctime": 1786155638,
+                          "mtime": 1786155638
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": true,
+                      "name": "Capital-Glass-Network-Admin",
+                      "path": "/Capital Glass/Capital-Glass-Network-Admin"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1785434284,
+                          "crtime": 1785434284,
+                          "ctime": 1785451752,
+                          "mtime": 1785451752
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": true,
+                      "name": "Capital-Glass-Office-Admin",
+                      "path": "/Capital Glass/Capital-Glass-Office-Admin"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1785372386,
+                          "crtime": 1785372386,
+                          "ctime": 1785420199,
+                          "mtime": 1785420199
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": true,
+                      "name": "Capital-Glass-Research",
+                      "path": "/Capital Glass/Capital-Glass-Research"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1783493530,
+                          "crtime": 1783493530,
+                          "ctime": 1783885558,
+                          "mtime": 1783885558
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": true,
+                      "name": "CapitalGlass-BidComposer",
+                      "path": "/Capital Glass/CapitalGlass-BidComposer"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1785346408,
+                          "crtime": 1785346408,
+                          "ctime": 1785359104,
+                          "mtime": 1785359104
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": true,
+                      "name": "Document Intake",
+                      "path": "/Capital Glass/Document Intake"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1785286366,
+                          "crtime": 1785286366,
+                          "ctime": 1785391819,
+                          "mtime": 1785286477
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": true,
+                      "name": "Estimating Suite Cold Cache.RETIRED-20260730",
+                      "path": "/Capital Glass/Estimating Suite Cold Cache.RETIRED-20260730"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1785425849,
+                          "crtime": 1785425849,
+                          "ctime": 1785443004,
+                          "mtime": 1785443004
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": true,
+                      "name": "Northstar",
+                      "path": "/Capital Glass/Northstar"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1764783025,
+                          "crtime": 1764783026,
+                          "ctime": 1785629136,
+                          "mtime": 1785629136
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": true,
+                      "name": "Office",
+                      "path": "/Capital Glass/Office"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1764715722,
+                          "crtime": 1764715722,
+                          "ctime": 1782776880,
+                          "mtime": 1782776880
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": true,
+                      "name": "SharePoint Mirror",
+                      "path": "/Capital Glass/SharePoint Mirror"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1785546721,
+                          "crtime": 1785546721,
+                          "ctime": 1785546721,
+                          "mtime": 1785546721
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": true,
+                      "name": "System Volume Information",
+                      "path": "/Capital Glass/System Volume Information"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1786975989,
+                          "crtime": 1786975989,
+                          "ctime": 1786975989,
+                          "mtime": 1786975989
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": true,
+                      "name": "WSL-Backups",
+                      "path": "/Capital Glass/WSL-Backups"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1787004106,
+                          "crtime": 1787004106,
+                          "ctime": 1787004112,
+                          "mtime": 1787004036
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": false,
+                      "name": "Capital Glass Proposal- Lincoln - Waller Beacon Hill.pdf",
+                      "path": "/Capital Glass/Capital Glass Proposal- Lincoln - Waller Beacon Hill.pdf"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1787006588,
+                          "crtime": 1787006588,
+                          "ctime": 1787006588,
+                          "mtime": 1786862088
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": false,
+                      "name": "chat-closeout-downloadable-md-closeout-2026-08-16.md",
+                      "path": "/Capital Glass/chat-closeout-downloadable-md-closeout-2026-08-16.md"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1785362998,
+                          "crtime": 1785362998,
+                          "ctime": 1785369931,
+                          "mtime": 1785369931
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": false,
+                      "name": "INDEX.json",
+                      "path": "/Capital Glass/INDEX.json"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1787101648,
+                          "crtime": 1787101648,
+                          "ctime": 1787101649,
+                          "mtime": 1787101649
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": false,
+                      "name": "Payment receipt.pdf",
+                      "path": "/Capital Glass/Payment receipt.pdf"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1785362995,
+                          "crtime": 1785362995,
+                          "ctime": 1785369931,
+                          "mtime": 1785369931
+                        }
+                      },
+                      "has_snapshot": true,
+                      "isdir": false,
+                      "name": "README.md",
+                      "path": "/Capital Glass/README.md"
+                    }
+                  ],
+                  "offset": 0,
+                  "total": 28
+                },
+                "success": true
+              }
+            }
+          },
+          {
+            "share": "Book Keeping",
+            "kind": "ACL_DENIES_BUT_FILESTATION_LIST_SUCCEEDS",
+            "aclEffective": "DENY",
+            "listShareVisible": true,
+            "pathProbe": {
+              "path": "/Book Keeping",
+              "exception": null,
+              "listSuccess": true,
+              "entryCount": 2,
+              "raw": {
+                "data": {
+                  "files": [
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1765839840,
+                          "crtime": 1765839840,
+                          "ctime": 1768418906,
+                          "mtime": 1768418906
+                        }
+                      },
+                      "isdir": true,
+                      "name": "#recycle",
+                      "path": "/Book Keeping/#recycle"
+                    },
+                    {
+                      "additional": {
+                        "time": {
+                          "atime": 1768418860,
+                          "crtime": 1768418860,
+                          "ctime": 1768419091,
+                          "mtime": 1768419091
+                        }
+                      },
+                      "isdir": true,
+                      "name": "2026 Tundra",
+                      "path": "/Book Keeping/2026 Tundra"
+                    }
+                  ],
+                  "offset": 0,
+                  "total": 2
+                },
+                "success": true
+              }
+            }
+          }
+        ],
+        "hasContradictions": true
+      },
+      "note": "Authoritative ACL posture is evaluated from SYNO.Core.Share.Permission read-back. FileStation path list probes are informational and may diverge without invalidating ACL config.",
+      "pass": true
+    }
+  },
+  "securityStateProof": {
+    "before": {
+      "serviceUser": "cg-context-ledger",
+      "userRecord": {
+        "description": "Context Ledger replication service",
+        "expired": "normal",
+        "name": "cg-context-ledger",
+        "uid": 1031
+      },
+      "groupMembership": {},
+      "shareAcls": {
+        "Capital-Glass-AI-Evidence-Vault": {
+          "synoshareListAclEquivalent": [
+            {
+              "inherit": "-",
+              "is_admin": false,
+              "is_custom": false,
+              "is_deny": false,
+              "is_readonly": false,
+              "is_writable": true,
+              "name": "cg-context-ledger"
+            }
+          ],
+          "interpretation": {
+            "present": true,
+            "effective": "RW",
+            "raw": {
+              "inherit": "-",
+              "is_admin": false,
+              "is_custom": false,
+              "is_deny": false,
+              "is_readonly": false,
+              "is_writable": true,
+              "name": "cg-context-ledger"
+            }
+          }
+        },
+        "Capital-Glass-AI-Evidence-meta": {
+          "synoshareListAclEquivalent": [
+            {
+              "inherit": "-",
+              "is_admin": false,
+              "is_custom": false,
+              "is_deny": false,
+              "is_readonly": false,
+              "is_writable": true,
+              "name": "cg-context-ledger"
+            }
+          ],
+          "interpretation": {
+            "present": true,
+            "effective": "RW",
+            "raw": {
+              "inherit": "-",
+              "is_admin": false,
+              "is_custom": false,
+              "is_deny": false,
+              "is_readonly": false,
+              "is_writable": true,
+              "name": "cg-context-ledger"
+            }
+          }
+        },
+        "Capital Glass": {
+          "synoshareListAclEquivalent": [
+            {
+              "inherit": "-",
+              "is_admin": false,
+              "is_custom": false,
+              "is_deny": true,
+              "is_readonly": false,
+              "is_writable": false,
+              "name": "cg-context-ledger"
+            }
+          ],
+          "interpretation": {
+            "present": true,
+            "effective": "DENY",
+            "raw": {
+              "inherit": "-",
+              "is_admin": false,
+              "is_custom": false,
+              "is_deny": true,
+              "is_readonly": false,
+              "is_writable": false,
+              "name": "cg-context-ledger"
+            }
+          }
+        },
+        "Book Keeping": {
+          "synoshareListAclEquivalent": [
+            {
+              "inherit": "-",
+              "is_admin": false,
+              "is_custom": false,
+              "is_deny": true,
+              "is_readonly": false,
+              "is_writable": false,
+              "name": "cg-context-ledger"
+            }
+          ],
+          "interpretation": {
+            "present": true,
+            "effective": "DENY",
+            "raw": {
+              "inherit": "-",
+              "is_admin": false,
+              "is_custom": false,
+              "is_deny": true,
+              "is_readonly": false,
+              "is_writable": false,
+              "name": "cg-context-ledger"
+            }
+          }
+        }
+      },
+      "fileStationObserved": {
+        "listShareRaw": {
+          "data": {
+            "offset": 0,
+            "shares": [
+              {
+                "isdir": true,
+                "name": "Book Keeping",
+                "path": "/Book Keeping"
+              },
+              {
+                "isdir": true,
+                "name": "Capital Glass",
+                "path": "/Capital Glass"
+              },
+              {
+                "isdir": true,
+                "name": "CG-EVID-VAULT-90D",
+                "path": "/CG-EVID-VAULT-90D"
+              },
+              {
+                "isdir": true,
+                "name": "CG-WORM-ENT-PROOF1",
+                "path": "/CG-WORM-ENT-PROOF1"
+              },
+              {
+                "isdir": true,
+                "name": "home",
+                "path": "/home"
+              },
+              {
+                "isdir": true,
+                "name": "homes",
+                "path": "/homes"
+              },
+              {
+                "isdir": true,
+                "name": "surveillance",
+                "path": "/surveillance"
+              }
+            ],
+            "total": 7
+          },
+          "success": true
+        },
+        "listShareNames": [
+          "Book Keeping",
+          "Capital Glass",
+          "CG-EVID-VAULT-90D",
+          "CG-WORM-ENT-PROOF1",
+          "home",
+          "homes",
+          "surveillance"
+        ],
+        "pathProbes": {
+          "Capital-Glass-AI-Evidence-Vault": {
+            "path": "/Capital-Glass-AI-Evidence-Vault",
+            "exception": "FileStationError: Operation not permitted",
+            "listSuccess": false,
+            "entryCount": 0,
+            "raw": null
+          },
+          "Capital-Glass-AI-Evidence-meta": {
+            "path": "/Capital-Glass-AI-Evidence-meta",
+            "exception": "FileStationError: Operation not permitted",
+            "listSuccess": false,
+            "entryCount": 0,
+            "raw": null
+          },
+          "Capital Glass": {
+            "path": "/Capital Glass",
+            "exception": null,
+            "listSuccess": true,
+            "entryCount": 28,
+            "raw": {
+              "data": {
+                "files": [
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1764715572,
+                        "crtime": 1764715572,
+                        "ctime": 1788136970,
+                        "mtime": 1788136970
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "#recycle",
+                    "path": "/Capital Glass/#recycle"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1764702538,
+                        "crtime": 1764702538,
+                        "ctime": 1783767794,
+                        "mtime": 1764712802
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "#snapshot",
+                    "path": "/Capital Glass/#snapshot"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785362998,
+                        "crtime": 1785362998,
+                        "ctime": 1785363013,
+                        "mtime": 1785363013
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "00-README-AND-GOVERNANCE",
+                    "path": "/Capital Glass/00-README-AND-GOVERNANCE"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785363185,
+                        "crtime": 1785363185,
+                        "ctime": 1785363185,
+                        "mtime": 1785363185
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "80-COLD-STORAGE",
+                    "path": "/Capital Glass/80-COLD-STORAGE"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785363186,
+                        "crtime": 1785363186,
+                        "ctime": 1785363210,
+                        "mtime": 1785363210
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "90-LEGACY",
+                    "path": "/Capital Glass/90-LEGACY"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785363187,
+                        "crtime": 1785363187,
+                        "ctime": 1785363187,
+                        "mtime": 1785363187
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "98-MANUAL-REVIEW",
+                    "path": "/Capital Glass/98-MANUAL-REVIEW"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785363188,
+                        "crtime": 1785363188,
+                        "ctime": 1785363188,
+                        "mtime": 1785363188
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "99-QUARANTINE",
+                    "path": "/Capital Glass/99-QUARANTINE"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785362225,
+                        "crtime": 1785362225,
+                        "ctime": 1785559512,
+                        "mtime": 1785559512
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "Capital-Glass-Agent-Operations",
+                    "path": "/Capital Glass/Capital-Glass-Agent-Operations"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1788136612,
+                        "crtime": 1788136612,
+                        "ctime": 1788137127,
+                        "mtime": 1788137127
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "Capital-Glass-AI-Evidence-Vault",
+                    "path": "/Capital Glass/Capital-Glass-AI-Evidence-Vault"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785364132,
+                        "crtime": 1785364132,
+                        "ctime": 1785364133,
+                        "mtime": 1785364133
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "Capital-Glass-App-Data",
+                    "path": "/Capital Glass/Capital-Glass-App-Data"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1780088530,
+                        "crtime": 1780088530,
+                        "ctime": 1788015524,
+                        "mtime": 1788015524
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "Capital-Glass-Dev",
+                    "path": "/Capital Glass/Capital-Glass-Dev"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785518522,
+                        "crtime": 1785518522,
+                        "ctime": 1785687762,
+                        "mtime": 1785687762
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "Capital-Glass-Intelligence-Hub",
+                    "path": "/Capital Glass/Capital-Glass-Intelligence-Hub"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785363645,
+                        "crtime": 1785363645,
+                        "ctime": 1786155638,
+                        "mtime": 1786155638
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "Capital-Glass-Network-Admin",
+                    "path": "/Capital Glass/Capital-Glass-Network-Admin"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785434284,
+                        "crtime": 1785434284,
+                        "ctime": 1785451752,
+                        "mtime": 1785451752
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "Capital-Glass-Office-Admin",
+                    "path": "/Capital Glass/Capital-Glass-Office-Admin"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785372386,
+                        "crtime": 1785372386,
+                        "ctime": 1785420199,
+                        "mtime": 1785420199
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "Capital-Glass-Research",
+                    "path": "/Capital Glass/Capital-Glass-Research"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1783493530,
+                        "crtime": 1783493530,
+                        "ctime": 1783885558,
+                        "mtime": 1783885558
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "CapitalGlass-BidComposer",
+                    "path": "/Capital Glass/CapitalGlass-BidComposer"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785346408,
+                        "crtime": 1785346408,
+                        "ctime": 1785359104,
+                        "mtime": 1785359104
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "Document Intake",
+                    "path": "/Capital Glass/Document Intake"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785286366,
+                        "crtime": 1785286366,
+                        "ctime": 1785391819,
+                        "mtime": 1785286477
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "Estimating Suite Cold Cache.RETIRED-20260730",
+                    "path": "/Capital Glass/Estimating Suite Cold Cache.RETIRED-20260730"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785425849,
+                        "crtime": 1785425849,
+                        "ctime": 1785443004,
+                        "mtime": 1785443004
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "Northstar",
+                    "path": "/Capital Glass/Northstar"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1764783025,
+                        "crtime": 1764783026,
+                        "ctime": 1785629136,
+                        "mtime": 1785629136
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "Office",
+                    "path": "/Capital Glass/Office"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1764715722,
+                        "crtime": 1764715722,
+                        "ctime": 1782776880,
+                        "mtime": 1782776880
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "SharePoint Mirror",
+                    "path": "/Capital Glass/SharePoint Mirror"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785546721,
+                        "crtime": 1785546721,
+                        "ctime": 1785546721,
+                        "mtime": 1785546721
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "System Volume Information",
+                    "path": "/Capital Glass/System Volume Information"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1786975989,
+                        "crtime": 1786975989,
+                        "ctime": 1786975989,
+                        "mtime": 1786975989
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "WSL-Backups",
+                    "path": "/Capital Glass/WSL-Backups"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1787004106,
+                        "crtime": 1787004106,
+                        "ctime": 1787004112,
+                        "mtime": 1787004036
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": false,
+                    "name": "Capital Glass Proposal- Lincoln - Waller Beacon Hill.pdf",
+                    "path": "/Capital Glass/Capital Glass Proposal- Lincoln - Waller Beacon Hill.pdf"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1787006588,
+                        "crtime": 1787006588,
+                        "ctime": 1787006588,
+                        "mtime": 1786862088
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": false,
+                    "name": "chat-closeout-downloadable-md-closeout-2026-08-16.md",
+                    "path": "/Capital Glass/chat-closeout-downloadable-md-closeout-2026-08-16.md"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785362998,
+                        "crtime": 1785362998,
+                        "ctime": 1785369931,
+                        "mtime": 1785369931
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": false,
+                    "name": "INDEX.json",
+                    "path": "/Capital Glass/INDEX.json"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1787101648,
+                        "crtime": 1787101648,
+                        "ctime": 1787101649,
+                        "mtime": 1787101649
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": false,
+                    "name": "Payment receipt.pdf",
+                    "path": "/Capital Glass/Payment receipt.pdf"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785362995,
+                        "crtime": 1785362995,
+                        "ctime": 1785369931,
+                        "mtime": 1785369931
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": false,
+                    "name": "README.md",
+                    "path": "/Capital Glass/README.md"
+                  }
+                ],
+                "offset": 0,
+                "total": 28
+              },
+              "success": true
+            }
+          },
+          "Book Keeping": {
+            "path": "/Book Keeping",
+            "exception": null,
+            "listSuccess": true,
+            "entryCount": 2,
+            "raw": {
+              "data": {
+                "files": [
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1765839840,
+                        "crtime": 1765839840,
+                        "ctime": 1768418906,
+                        "mtime": 1768418906
+                      }
+                    },
+                    "isdir": true,
+                    "name": "#recycle",
+                    "path": "/Book Keeping/#recycle"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1768418860,
+                        "crtime": 1768418860,
+                        "ctime": 1768419091,
+                        "mtime": 1768419091
+                      }
+                    },
+                    "isdir": true,
+                    "name": "2026 Tundra",
+                    "path": "/Book Keeping/2026 Tundra"
+                  }
+                ],
+                "offset": 0,
+                "total": 2
+              },
+              "success": true
+            }
+          },
+          "home": {
+            "path": "/home",
+            "exception": null,
+            "listSuccess": true,
+            "entryCount": 1,
+            "raw": {
+              "data": {
+                "files": [
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1764694194,
+                        "crtime": 1764694194,
+                        "ctime": 1765048041,
+                        "mtime": 1765048041
+                      }
+                    },
+                    "isdir": true,
+                    "name": "SynologyDrive",
+                    "path": "/home/SynologyDrive"
+                  }
+                ],
+                "offset": 0,
+                "total": 1
+              },
+              "success": true
+            }
+          }
+        }
+      },
+      "securityConfigHash": "sha256:a55c3f247a43db0f760c9f71cb63182edd20cf38dfa28f1d27857ffcdc59a0e6",
+      "securityStateHash": "sha256:a357c09d7ea5671c3f43ee05be7edf864b9d604d7701af20e46b2012a01523c9"
+    },
+    "beforeConfigHash": "sha256:a55c3f247a43db0f760c9f71cb63182edd20cf38dfa28f1d27857ffcdc59a0e6",
+    "beforeHash": "sha256:a357c09d7ea5671c3f43ee05be7edf864b9d604d7701af20e46b2012a01523c9",
+    "after": {
+      "serviceUser": "cg-context-ledger",
+      "userRecord": {
+        "description": "Context Ledger replication service",
+        "expired": "normal",
+        "name": "cg-context-ledger",
+        "uid": 1031
+      },
+      "groupMembership": {},
+      "shareAcls": {
+        "Capital-Glass-AI-Evidence-Vault": {
+          "synoshareListAclEquivalent": [
+            {
+              "inherit": "-",
+              "is_admin": false,
+              "is_custom": false,
+              "is_deny": false,
+              "is_readonly": false,
+              "is_writable": true,
+              "name": "cg-context-ledger"
+            }
+          ],
+          "interpretation": {
+            "present": true,
+            "effective": "RW",
+            "raw": {
+              "inherit": "-",
+              "is_admin": false,
+              "is_custom": false,
+              "is_deny": false,
+              "is_readonly": false,
+              "is_writable": true,
+              "name": "cg-context-ledger"
+            }
+          }
+        },
+        "Capital-Glass-AI-Evidence-meta": {
+          "synoshareListAclEquivalent": [
+            {
+              "inherit": "-",
+              "is_admin": false,
+              "is_custom": false,
+              "is_deny": false,
+              "is_readonly": false,
+              "is_writable": true,
+              "name": "cg-context-ledger"
+            }
+          ],
+          "interpretation": {
+            "present": true,
+            "effective": "RW",
+            "raw": {
+              "inherit": "-",
+              "is_admin": false,
+              "is_custom": false,
+              "is_deny": false,
+              "is_readonly": false,
+              "is_writable": true,
+              "name": "cg-context-ledger"
+            }
+          }
+        },
+        "Capital Glass": {
+          "synoshareListAclEquivalent": [
+            {
+              "inherit": "-",
+              "is_admin": false,
+              "is_custom": false,
+              "is_deny": true,
+              "is_readonly": false,
+              "is_writable": false,
+              "name": "cg-context-ledger"
+            }
+          ],
+          "interpretation": {
+            "present": true,
+            "effective": "DENY",
+            "raw": {
+              "inherit": "-",
+              "is_admin": false,
+              "is_custom": false,
+              "is_deny": true,
+              "is_readonly": false,
+              "is_writable": false,
+              "name": "cg-context-ledger"
+            }
+          }
+        },
+        "Book Keeping": {
+          "synoshareListAclEquivalent": [
+            {
+              "inherit": "-",
+              "is_admin": false,
+              "is_custom": false,
+              "is_deny": true,
+              "is_readonly": false,
+              "is_writable": false,
+              "name": "cg-context-ledger"
+            }
+          ],
+          "interpretation": {
+            "present": true,
+            "effective": "DENY",
+            "raw": {
+              "inherit": "-",
+              "is_admin": false,
+              "is_custom": false,
+              "is_deny": true,
+              "is_readonly": false,
+              "is_writable": false,
+              "name": "cg-context-ledger"
+            }
+          }
+        }
+      },
+      "fileStationObserved": {
+        "listShareRaw": {
+          "data": {
+            "offset": 0,
+            "shares": [
+              {
+                "isdir": true,
+                "name": "Book Keeping",
+                "path": "/Book Keeping"
+              },
+              {
+                "isdir": true,
+                "name": "Capital Glass",
+                "path": "/Capital Glass"
+              },
+              {
+                "isdir": true,
+                "name": "CG-EVID-VAULT-90D",
+                "path": "/CG-EVID-VAULT-90D"
+              },
+              {
+                "isdir": true,
+                "name": "CG-WORM-ENT-PROOF1",
+                "path": "/CG-WORM-ENT-PROOF1"
+              },
+              {
+                "isdir": true,
+                "name": "home",
+                "path": "/home"
+              },
+              {
+                "isdir": true,
+                "name": "homes",
+                "path": "/homes"
+              },
+              {
+                "isdir": true,
+                "name": "surveillance",
+                "path": "/surveillance"
+              }
+            ],
+            "total": 7
+          },
+          "success": true
+        },
+        "listShareNames": [
+          "Book Keeping",
+          "Capital Glass",
+          "CG-EVID-VAULT-90D",
+          "CG-WORM-ENT-PROOF1",
+          "home",
+          "homes",
+          "surveillance"
+        ],
+        "pathProbes": {
+          "Capital-Glass-AI-Evidence-Vault": {
+            "path": "/Capital-Glass-AI-Evidence-Vault",
+            "exception": "FileStationError: Operation not permitted",
+            "listSuccess": false,
+            "entryCount": 0,
+            "raw": null
+          },
+          "Capital-Glass-AI-Evidence-meta": {
+            "path": "/Capital-Glass-AI-Evidence-meta",
+            "exception": "FileStationError: Operation not permitted",
+            "listSuccess": false,
+            "entryCount": 0,
+            "raw": null
+          },
+          "Capital Glass": {
+            "path": "/Capital Glass",
+            "exception": null,
+            "listSuccess": true,
+            "entryCount": 28,
+            "raw": {
+              "data": {
+                "files": [
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1764715572,
+                        "crtime": 1764715572,
+                        "ctime": 1788136970,
+                        "mtime": 1788136970
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "#recycle",
+                    "path": "/Capital Glass/#recycle"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1764702538,
+                        "crtime": 1764702538,
+                        "ctime": 1783767794,
+                        "mtime": 1764712802
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "#snapshot",
+                    "path": "/Capital Glass/#snapshot"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785362998,
+                        "crtime": 1785362998,
+                        "ctime": 1785363013,
+                        "mtime": 1785363013
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "00-README-AND-GOVERNANCE",
+                    "path": "/Capital Glass/00-README-AND-GOVERNANCE"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785363185,
+                        "crtime": 1785363185,
+                        "ctime": 1785363185,
+                        "mtime": 1785363185
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "80-COLD-STORAGE",
+                    "path": "/Capital Glass/80-COLD-STORAGE"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785363186,
+                        "crtime": 1785363186,
+                        "ctime": 1785363210,
+                        "mtime": 1785363210
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "90-LEGACY",
+                    "path": "/Capital Glass/90-LEGACY"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785363187,
+                        "crtime": 1785363187,
+                        "ctime": 1785363187,
+                        "mtime": 1785363187
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "98-MANUAL-REVIEW",
+                    "path": "/Capital Glass/98-MANUAL-REVIEW"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785363188,
+                        "crtime": 1785363188,
+                        "ctime": 1785363188,
+                        "mtime": 1785363188
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "99-QUARANTINE",
+                    "path": "/Capital Glass/99-QUARANTINE"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785362225,
+                        "crtime": 1785362225,
+                        "ctime": 1785559512,
+                        "mtime": 1785559512
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "Capital-Glass-Agent-Operations",
+                    "path": "/Capital Glass/Capital-Glass-Agent-Operations"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1788136612,
+                        "crtime": 1788136612,
+                        "ctime": 1788137127,
+                        "mtime": 1788137127
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "Capital-Glass-AI-Evidence-Vault",
+                    "path": "/Capital Glass/Capital-Glass-AI-Evidence-Vault"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785364132,
+                        "crtime": 1785364132,
+                        "ctime": 1785364133,
+                        "mtime": 1785364133
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "Capital-Glass-App-Data",
+                    "path": "/Capital Glass/Capital-Glass-App-Data"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1780088530,
+                        "crtime": 1780088530,
+                        "ctime": 1788015524,
+                        "mtime": 1788015524
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "Capital-Glass-Dev",
+                    "path": "/Capital Glass/Capital-Glass-Dev"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785518522,
+                        "crtime": 1785518522,
+                        "ctime": 1785687762,
+                        "mtime": 1785687762
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "Capital-Glass-Intelligence-Hub",
+                    "path": "/Capital Glass/Capital-Glass-Intelligence-Hub"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785363645,
+                        "crtime": 1785363645,
+                        "ctime": 1786155638,
+                        "mtime": 1786155638
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "Capital-Glass-Network-Admin",
+                    "path": "/Capital Glass/Capital-Glass-Network-Admin"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785434284,
+                        "crtime": 1785434284,
+                        "ctime": 1785451752,
+                        "mtime": 1785451752
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "Capital-Glass-Office-Admin",
+                    "path": "/Capital Glass/Capital-Glass-Office-Admin"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785372386,
+                        "crtime": 1785372386,
+                        "ctime": 1785420199,
+                        "mtime": 1785420199
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "Capital-Glass-Research",
+                    "path": "/Capital Glass/Capital-Glass-Research"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1783493530,
+                        "crtime": 1783493530,
+                        "ctime": 1783885558,
+                        "mtime": 1783885558
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "CapitalGlass-BidComposer",
+                    "path": "/Capital Glass/CapitalGlass-BidComposer"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785346408,
+                        "crtime": 1785346408,
+                        "ctime": 1785359104,
+                        "mtime": 1785359104
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "Document Intake",
+                    "path": "/Capital Glass/Document Intake"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785286366,
+                        "crtime": 1785286366,
+                        "ctime": 1785391819,
+                        "mtime": 1785286477
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "Estimating Suite Cold Cache.RETIRED-20260730",
+                    "path": "/Capital Glass/Estimating Suite Cold Cache.RETIRED-20260730"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785425849,
+                        "crtime": 1785425849,
+                        "ctime": 1785443004,
+                        "mtime": 1785443004
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "Northstar",
+                    "path": "/Capital Glass/Northstar"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1764783025,
+                        "crtime": 1764783026,
+                        "ctime": 1785629136,
+                        "mtime": 1785629136
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "Office",
+                    "path": "/Capital Glass/Office"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1764715722,
+                        "crtime": 1764715722,
+                        "ctime": 1782776880,
+                        "mtime": 1782776880
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "SharePoint Mirror",
+                    "path": "/Capital Glass/SharePoint Mirror"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785546721,
+                        "crtime": 1785546721,
+                        "ctime": 1785546721,
+                        "mtime": 1785546721
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "System Volume Information",
+                    "path": "/Capital Glass/System Volume Information"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1786975989,
+                        "crtime": 1786975989,
+                        "ctime": 1786975989,
+                        "mtime": 1786975989
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": true,
+                    "name": "WSL-Backups",
+                    "path": "/Capital Glass/WSL-Backups"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1787004106,
+                        "crtime": 1787004106,
+                        "ctime": 1787004112,
+                        "mtime": 1787004036
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": false,
+                    "name": "Capital Glass Proposal- Lincoln - Waller Beacon Hill.pdf",
+                    "path": "/Capital Glass/Capital Glass Proposal- Lincoln - Waller Beacon Hill.pdf"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1787006588,
+                        "crtime": 1787006588,
+                        "ctime": 1787006588,
+                        "mtime": 1786862088
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": false,
+                    "name": "chat-closeout-downloadable-md-closeout-2026-08-16.md",
+                    "path": "/Capital Glass/chat-closeout-downloadable-md-closeout-2026-08-16.md"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785362998,
+                        "crtime": 1785362998,
+                        "ctime": 1785369931,
+                        "mtime": 1785369931
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": false,
+                    "name": "INDEX.json",
+                    "path": "/Capital Glass/INDEX.json"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1787101648,
+                        "crtime": 1787101648,
+                        "ctime": 1787101649,
+                        "mtime": 1787101649
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": false,
+                    "name": "Payment receipt.pdf",
+                    "path": "/Capital Glass/Payment receipt.pdf"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1785362995,
+                        "crtime": 1785362995,
+                        "ctime": 1785369931,
+                        "mtime": 1785369931
+                      }
+                    },
+                    "has_snapshot": true,
+                    "isdir": false,
+                    "name": "README.md",
+                    "path": "/Capital Glass/README.md"
+                  }
+                ],
+                "offset": 0,
+                "total": 28
+              },
+              "success": true
+            }
+          },
+          "Book Keeping": {
+            "path": "/Book Keeping",
+            "exception": null,
+            "listSuccess": true,
+            "entryCount": 2,
+            "raw": {
+              "data": {
+                "files": [
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1765839840,
+                        "crtime": 1765839840,
+                        "ctime": 1768418906,
+                        "mtime": 1768418906
+                      }
+                    },
+                    "isdir": true,
+                    "name": "#recycle",
+                    "path": "/Book Keeping/#recycle"
+                  },
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1768418860,
+                        "crtime": 1768418860,
+                        "ctime": 1768419091,
+                        "mtime": 1768419091
+                      }
+                    },
+                    "isdir": true,
+                    "name": "2026 Tundra",
+                    "path": "/Book Keeping/2026 Tundra"
+                  }
+                ],
+                "offset": 0,
+                "total": 2
+              },
+              "success": true
+            }
+          },
+          "home": {
+            "path": "/home",
+            "exception": null,
+            "listSuccess": true,
+            "entryCount": 1,
+            "raw": {
+              "data": {
+                "files": [
+                  {
+                    "additional": {
+                      "time": {
+                        "atime": 1764694194,
+                        "crtime": 1764694194,
+                        "ctime": 1765048041,
+                        "mtime": 1765048041
+                      }
+                    },
+                    "isdir": true,
+                    "name": "SynologyDrive",
+                    "path": "/home/SynologyDrive"
+                  }
+                ],
+                "offset": 0,
+                "total": 1
+              },
+              "success": true
+            }
+          }
+        }
+      },
+      "securityConfigHash": "sha256:a55c3f247a43db0f760c9f71cb63182edd20cf38dfa28f1d27857ffcdc59a0e6",
+      "securityStateHash": "sha256:a357c09d7ea5671c3f43ee05be7edf864b9d604d7701af20e46b2012a01523c9"
+    },
+    "afterConfigHash": "sha256:a55c3f247a43db0f760c9f71cb63182edd20cf38dfa28f1d27857ffcdc59a0e6",
+    "afterHash": "sha256:a357c09d7ea5671c3f43ee05be7edf864b9d604d7701af20e46b2012a01523c9",
+    "configUnchanged": true,
+    "unchanged": true
+  },
+  "transports": {
+    "primary": {
+      "mechanism": "synology-https-filestation-over-tailscale",
+      "serviceIdentity": "cg-context-ledger",
+      "remoteRel": "objects/sha256/75/75906d803aa8a87e47f9f24128543c2f299941de8a4c53f65272f27d66a2e527",
+      "localHash": "sha256:75906d803aa8a87e47f9f24128543c2f299941de8a4c53f65272f27d66a2e527",
+      "remoteHash": "sha256:75906d803aa8a87e47f9f24128543c2f299941de8a4c53f65272f27d66a2e527",
+      "byteEquality": true,
+      "usesDrvfs": false,
+      "pass": true
+    },
+    "backup": {
+      "mechanism": "wesleydesk-ssh-scp-to-L-share",
+      "path": "L:/Capital-Glass-AI-Evidence-Vault-backup",
+      "independentOfSynology": true,
+      "remoteRel": "control/infra-proof/cg-cl-wdesk-proof-103b2d656068d1db.bin",
+      "localHash": "sha256:b97e2fa570db7fe28132a3d831c9c0308dfd560b973308c9fb170c8c22080888",
+      "remoteHash": "sha256:b97e2fa570db7fe28132a3d831c9c0308dfd560b973308c9fb170c8c22080888",
+      "match": true,
+      "pass": true
+    }
+  },
+  "gates": {
+    "vaultWormVerified": true,
+    "metaShareNonWorm": true,
+    "metaSnapshotsConfigured": true,
+    "securityStateUnchangedByProof": true,
+    "serviceSecurityPosture": true,
+    "primaryNativeTransport": true,
+    "backupNativeTransport": true
+  },
+  "allRequiredGatesPass": true
+}

@@ -1,0 +1,3162 @@
+{
+  "schemaVersion": "context-ledger-phase0-security-state-forensics-v1@1.0.0",
+  "recordedAt": "2026-08-31T07:39:13.678303Z",
+  "status": "PHASE0_SECURITY_STATE_REGRESSION_ROOT_CAUSE_FOUND",
+  "investigationFrozen": true,
+  "noNasMutationsPerformed": true,
+  "securityState": {
+    "serviceUser": "cg-context-ledger",
+    "userRecord": {
+      "description": "Context Ledger replication service",
+      "expired": "normal",
+      "name": "cg-context-ledger",
+      "uid": 1031
+    },
+    "groupMembership": {},
+    "shareAcls": {
+      "Capital-Glass-AI-Evidence-Vault": {
+        "synoshareListAclEquivalent": [
+          {
+            "inherit": "-",
+            "is_admin": false,
+            "is_custom": false,
+            "is_deny": false,
+            "is_readonly": false,
+            "is_writable": true,
+            "name": "cg-context-ledger"
+          }
+        ],
+        "interpretation": {
+          "present": true,
+          "effective": "RW",
+          "raw": {
+            "inherit": "-",
+            "is_admin": false,
+            "is_custom": false,
+            "is_deny": false,
+            "is_readonly": false,
+            "is_writable": true,
+            "name": "cg-context-ledger"
+          }
+        }
+      },
+      "Capital-Glass-AI-Evidence-meta": {
+        "synoshareListAclEquivalent": [
+          {
+            "inherit": "-",
+            "is_admin": false,
+            "is_custom": false,
+            "is_deny": false,
+            "is_readonly": false,
+            "is_writable": true,
+            "name": "cg-context-ledger"
+          }
+        ],
+        "interpretation": {
+          "present": true,
+          "effective": "RW",
+          "raw": {
+            "inherit": "-",
+            "is_admin": false,
+            "is_custom": false,
+            "is_deny": false,
+            "is_readonly": false,
+            "is_writable": true,
+            "name": "cg-context-ledger"
+          }
+        }
+      },
+      "Capital Glass": {
+        "synoshareListAclEquivalent": [
+          {
+            "inherit": "-",
+            "is_admin": false,
+            "is_custom": false,
+            "is_deny": true,
+            "is_readonly": false,
+            "is_writable": false,
+            "name": "cg-context-ledger"
+          }
+        ],
+        "interpretation": {
+          "present": true,
+          "effective": "DENY",
+          "raw": {
+            "inherit": "-",
+            "is_admin": false,
+            "is_custom": false,
+            "is_deny": true,
+            "is_readonly": false,
+            "is_writable": false,
+            "name": "cg-context-ledger"
+          }
+        }
+      },
+      "Book Keeping": {
+        "synoshareListAclEquivalent": [
+          {
+            "inherit": "-",
+            "is_admin": false,
+            "is_custom": false,
+            "is_deny": true,
+            "is_readonly": false,
+            "is_writable": false,
+            "name": "cg-context-ledger"
+          }
+        ],
+        "interpretation": {
+          "present": true,
+          "effective": "DENY",
+          "raw": {
+            "inherit": "-",
+            "is_admin": false,
+            "is_custom": false,
+            "is_deny": true,
+            "is_readonly": false,
+            "is_writable": false,
+            "name": "cg-context-ledger"
+          }
+        }
+      }
+    },
+    "fileStationObserved": {
+      "listShareRaw": {
+        "data": {
+          "offset": 0,
+          "shares": [
+            {
+              "isdir": true,
+              "name": "Book Keeping",
+              "path": "/Book Keeping"
+            },
+            {
+              "isdir": true,
+              "name": "Capital Glass",
+              "path": "/Capital Glass"
+            },
+            {
+              "isdir": true,
+              "name": "CG-EVID-VAULT-90D",
+              "path": "/CG-EVID-VAULT-90D"
+            },
+            {
+              "isdir": true,
+              "name": "CG-WORM-ENT-PROOF1",
+              "path": "/CG-WORM-ENT-PROOF1"
+            },
+            {
+              "isdir": true,
+              "name": "home",
+              "path": "/home"
+            },
+            {
+              "isdir": true,
+              "name": "homes",
+              "path": "/homes"
+            },
+            {
+              "isdir": true,
+              "name": "surveillance",
+              "path": "/surveillance"
+            }
+          ],
+          "total": 7
+        },
+        "success": true
+      },
+      "listShareNames": [
+        "Book Keeping",
+        "Capital Glass",
+        "CG-EVID-VAULT-90D",
+        "CG-WORM-ENT-PROOF1",
+        "home",
+        "homes",
+        "surveillance"
+      ],
+      "pathProbes": {
+        "Capital-Glass-AI-Evidence-Vault": {
+          "path": "/Capital-Glass-AI-Evidence-Vault",
+          "exception": "FileStationError: Operation not permitted",
+          "listSuccess": false,
+          "entryCount": 0,
+          "raw": null
+        },
+        "Capital-Glass-AI-Evidence-meta": {
+          "path": "/Capital-Glass-AI-Evidence-meta",
+          "exception": "FileStationError: Operation not permitted",
+          "listSuccess": false,
+          "entryCount": 0,
+          "raw": null
+        },
+        "Capital Glass": {
+          "path": "/Capital Glass",
+          "exception": null,
+          "listSuccess": true,
+          "entryCount": 28,
+          "raw": {
+            "data": {
+              "files": [
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1764715572,
+                      "crtime": 1764715572,
+                      "ctime": 1788136970,
+                      "mtime": 1788136970
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "#recycle",
+                  "path": "/Capital Glass/#recycle"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1764702538,
+                      "crtime": 1764702538,
+                      "ctime": 1783767794,
+                      "mtime": 1764712802
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "#snapshot",
+                  "path": "/Capital Glass/#snapshot"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785362998,
+                      "crtime": 1785362998,
+                      "ctime": 1785363013,
+                      "mtime": 1785363013
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "00-README-AND-GOVERNANCE",
+                  "path": "/Capital Glass/00-README-AND-GOVERNANCE"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785363185,
+                      "crtime": 1785363185,
+                      "ctime": 1785363185,
+                      "mtime": 1785363185
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "80-COLD-STORAGE",
+                  "path": "/Capital Glass/80-COLD-STORAGE"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785363186,
+                      "crtime": 1785363186,
+                      "ctime": 1785363210,
+                      "mtime": 1785363210
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "90-LEGACY",
+                  "path": "/Capital Glass/90-LEGACY"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785363187,
+                      "crtime": 1785363187,
+                      "ctime": 1785363187,
+                      "mtime": 1785363187
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "98-MANUAL-REVIEW",
+                  "path": "/Capital Glass/98-MANUAL-REVIEW"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785363188,
+                      "crtime": 1785363188,
+                      "ctime": 1785363188,
+                      "mtime": 1785363188
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "99-QUARANTINE",
+                  "path": "/Capital Glass/99-QUARANTINE"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785362225,
+                      "crtime": 1785362225,
+                      "ctime": 1785559512,
+                      "mtime": 1785559512
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "Capital-Glass-Agent-Operations",
+                  "path": "/Capital Glass/Capital-Glass-Agent-Operations"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1788136612,
+                      "crtime": 1788136612,
+                      "ctime": 1788137127,
+                      "mtime": 1788137127
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "Capital-Glass-AI-Evidence-Vault",
+                  "path": "/Capital Glass/Capital-Glass-AI-Evidence-Vault"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785364132,
+                      "crtime": 1785364132,
+                      "ctime": 1785364133,
+                      "mtime": 1785364133
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "Capital-Glass-App-Data",
+                  "path": "/Capital Glass/Capital-Glass-App-Data"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1780088530,
+                      "crtime": 1780088530,
+                      "ctime": 1788015524,
+                      "mtime": 1788015524
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "Capital-Glass-Dev",
+                  "path": "/Capital Glass/Capital-Glass-Dev"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785518522,
+                      "crtime": 1785518522,
+                      "ctime": 1785687762,
+                      "mtime": 1785687762
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "Capital-Glass-Intelligence-Hub",
+                  "path": "/Capital Glass/Capital-Glass-Intelligence-Hub"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785363645,
+                      "crtime": 1785363645,
+                      "ctime": 1786155638,
+                      "mtime": 1786155638
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "Capital-Glass-Network-Admin",
+                  "path": "/Capital Glass/Capital-Glass-Network-Admin"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785434284,
+                      "crtime": 1785434284,
+                      "ctime": 1785451752,
+                      "mtime": 1785451752
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "Capital-Glass-Office-Admin",
+                  "path": "/Capital Glass/Capital-Glass-Office-Admin"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785372386,
+                      "crtime": 1785372386,
+                      "ctime": 1785420199,
+                      "mtime": 1785420199
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "Capital-Glass-Research",
+                  "path": "/Capital Glass/Capital-Glass-Research"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1783493530,
+                      "crtime": 1783493530,
+                      "ctime": 1783885558,
+                      "mtime": 1783885558
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "CapitalGlass-BidComposer",
+                  "path": "/Capital Glass/CapitalGlass-BidComposer"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785346408,
+                      "crtime": 1785346408,
+                      "ctime": 1785359104,
+                      "mtime": 1785359104
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "Document Intake",
+                  "path": "/Capital Glass/Document Intake"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785286366,
+                      "crtime": 1785286366,
+                      "ctime": 1785391819,
+                      "mtime": 1785286477
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "Estimating Suite Cold Cache.RETIRED-20260730",
+                  "path": "/Capital Glass/Estimating Suite Cold Cache.RETIRED-20260730"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785425849,
+                      "crtime": 1785425849,
+                      "ctime": 1785443004,
+                      "mtime": 1785443004
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "Northstar",
+                  "path": "/Capital Glass/Northstar"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1764783025,
+                      "crtime": 1764783026,
+                      "ctime": 1785629136,
+                      "mtime": 1785629136
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "Office",
+                  "path": "/Capital Glass/Office"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1764715722,
+                      "crtime": 1764715722,
+                      "ctime": 1782776880,
+                      "mtime": 1782776880
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "SharePoint Mirror",
+                  "path": "/Capital Glass/SharePoint Mirror"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785546721,
+                      "crtime": 1785546721,
+                      "ctime": 1785546721,
+                      "mtime": 1785546721
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "System Volume Information",
+                  "path": "/Capital Glass/System Volume Information"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1786975989,
+                      "crtime": 1786975989,
+                      "ctime": 1786975989,
+                      "mtime": 1786975989
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "WSL-Backups",
+                  "path": "/Capital Glass/WSL-Backups"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1787004106,
+                      "crtime": 1787004106,
+                      "ctime": 1787004112,
+                      "mtime": 1787004036
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": false,
+                  "name": "Capital Glass Proposal- Lincoln - Waller Beacon Hill.pdf",
+                  "path": "/Capital Glass/Capital Glass Proposal- Lincoln - Waller Beacon Hill.pdf"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1787006588,
+                      "crtime": 1787006588,
+                      "ctime": 1787006588,
+                      "mtime": 1786862088
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": false,
+                  "name": "chat-closeout-downloadable-md-closeout-2026-08-16.md",
+                  "path": "/Capital Glass/chat-closeout-downloadable-md-closeout-2026-08-16.md"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785362998,
+                      "crtime": 1785362998,
+                      "ctime": 1785369931,
+                      "mtime": 1785369931
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": false,
+                  "name": "INDEX.json",
+                  "path": "/Capital Glass/INDEX.json"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1787101648,
+                      "crtime": 1787101648,
+                      "ctime": 1787101649,
+                      "mtime": 1787101649
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": false,
+                  "name": "Payment receipt.pdf",
+                  "path": "/Capital Glass/Payment receipt.pdf"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785362995,
+                      "crtime": 1785362995,
+                      "ctime": 1785369931,
+                      "mtime": 1785369931
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": false,
+                  "name": "README.md",
+                  "path": "/Capital Glass/README.md"
+                }
+              ],
+              "offset": 0,
+              "total": 28
+            },
+            "success": true
+          }
+        },
+        "Book Keeping": {
+          "path": "/Book Keeping",
+          "exception": null,
+          "listSuccess": true,
+          "entryCount": 2,
+          "raw": {
+            "data": {
+              "files": [
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1765839840,
+                      "crtime": 1765839840,
+                      "ctime": 1768418906,
+                      "mtime": 1768418906
+                    }
+                  },
+                  "isdir": true,
+                  "name": "#recycle",
+                  "path": "/Book Keeping/#recycle"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1768418860,
+                      "crtime": 1768418860,
+                      "ctime": 1768419091,
+                      "mtime": 1768419091
+                    }
+                  },
+                  "isdir": true,
+                  "name": "2026 Tundra",
+                  "path": "/Book Keeping/2026 Tundra"
+                }
+              ],
+              "offset": 0,
+              "total": 2
+            },
+            "success": true
+          }
+        },
+        "home": {
+          "path": "/home",
+          "exception": null,
+          "listSuccess": true,
+          "entryCount": 1,
+          "raw": {
+            "data": {
+              "files": [
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1764694194,
+                      "crtime": 1764694194,
+                      "ctime": 1765048041,
+                      "mtime": 1765048041
+                    }
+                  },
+                  "isdir": true,
+                  "name": "SynologyDrive",
+                  "path": "/home/SynologyDrive"
+                }
+              ],
+              "offset": 0,
+              "total": 1
+            },
+            "success": true
+          }
+        }
+      }
+    },
+    "securityStateHash": "sha256:a357c09d7ea5671c3f43ee05be7edf864b9d604d7701af20e46b2012a01523c9"
+  },
+  "aclVsFileStationClassification": {
+    "contradictions": [
+      {
+        "share": "Capital-Glass-AI-Evidence-Vault",
+        "kind": "ACL_ALLOWS_BUT_FILESTATION_LIST_FAILS",
+        "aclEffective": "RW",
+        "listShareVisible": false,
+        "pathProbe": {
+          "path": "/Capital-Glass-AI-Evidence-Vault",
+          "exception": "FileStationError: Operation not permitted",
+          "listSuccess": false,
+          "entryCount": 0,
+          "raw": null
+        }
+      },
+      {
+        "share": "Capital-Glass-AI-Evidence-meta",
+        "kind": "ACL_ALLOWS_BUT_FILESTATION_LIST_FAILS",
+        "aclEffective": "RW",
+        "listShareVisible": false,
+        "pathProbe": {
+          "path": "/Capital-Glass-AI-Evidence-meta",
+          "exception": "FileStationError: Operation not permitted",
+          "listSuccess": false,
+          "entryCount": 0,
+          "raw": null
+        }
+      },
+      {
+        "share": "Capital Glass",
+        "kind": "ACL_DENIES_BUT_FILESTATION_LIST_SUCCEEDS",
+        "aclEffective": "DENY",
+        "listShareVisible": true,
+        "pathProbe": {
+          "path": "/Capital Glass",
+          "exception": null,
+          "listSuccess": true,
+          "entryCount": 28,
+          "raw": {
+            "data": {
+              "files": [
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1764715572,
+                      "crtime": 1764715572,
+                      "ctime": 1788136970,
+                      "mtime": 1788136970
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "#recycle",
+                  "path": "/Capital Glass/#recycle"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1764702538,
+                      "crtime": 1764702538,
+                      "ctime": 1783767794,
+                      "mtime": 1764712802
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "#snapshot",
+                  "path": "/Capital Glass/#snapshot"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785362998,
+                      "crtime": 1785362998,
+                      "ctime": 1785363013,
+                      "mtime": 1785363013
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "00-README-AND-GOVERNANCE",
+                  "path": "/Capital Glass/00-README-AND-GOVERNANCE"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785363185,
+                      "crtime": 1785363185,
+                      "ctime": 1785363185,
+                      "mtime": 1785363185
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "80-COLD-STORAGE",
+                  "path": "/Capital Glass/80-COLD-STORAGE"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785363186,
+                      "crtime": 1785363186,
+                      "ctime": 1785363210,
+                      "mtime": 1785363210
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "90-LEGACY",
+                  "path": "/Capital Glass/90-LEGACY"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785363187,
+                      "crtime": 1785363187,
+                      "ctime": 1785363187,
+                      "mtime": 1785363187
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "98-MANUAL-REVIEW",
+                  "path": "/Capital Glass/98-MANUAL-REVIEW"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785363188,
+                      "crtime": 1785363188,
+                      "ctime": 1785363188,
+                      "mtime": 1785363188
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "99-QUARANTINE",
+                  "path": "/Capital Glass/99-QUARANTINE"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785362225,
+                      "crtime": 1785362225,
+                      "ctime": 1785559512,
+                      "mtime": 1785559512
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "Capital-Glass-Agent-Operations",
+                  "path": "/Capital Glass/Capital-Glass-Agent-Operations"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1788136612,
+                      "crtime": 1788136612,
+                      "ctime": 1788137127,
+                      "mtime": 1788137127
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "Capital-Glass-AI-Evidence-Vault",
+                  "path": "/Capital Glass/Capital-Glass-AI-Evidence-Vault"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785364132,
+                      "crtime": 1785364132,
+                      "ctime": 1785364133,
+                      "mtime": 1785364133
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "Capital-Glass-App-Data",
+                  "path": "/Capital Glass/Capital-Glass-App-Data"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1780088530,
+                      "crtime": 1780088530,
+                      "ctime": 1788015524,
+                      "mtime": 1788015524
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "Capital-Glass-Dev",
+                  "path": "/Capital Glass/Capital-Glass-Dev"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785518522,
+                      "crtime": 1785518522,
+                      "ctime": 1785687762,
+                      "mtime": 1785687762
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "Capital-Glass-Intelligence-Hub",
+                  "path": "/Capital Glass/Capital-Glass-Intelligence-Hub"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785363645,
+                      "crtime": 1785363645,
+                      "ctime": 1786155638,
+                      "mtime": 1786155638
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "Capital-Glass-Network-Admin",
+                  "path": "/Capital Glass/Capital-Glass-Network-Admin"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785434284,
+                      "crtime": 1785434284,
+                      "ctime": 1785451752,
+                      "mtime": 1785451752
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "Capital-Glass-Office-Admin",
+                  "path": "/Capital Glass/Capital-Glass-Office-Admin"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785372386,
+                      "crtime": 1785372386,
+                      "ctime": 1785420199,
+                      "mtime": 1785420199
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "Capital-Glass-Research",
+                  "path": "/Capital Glass/Capital-Glass-Research"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1783493530,
+                      "crtime": 1783493530,
+                      "ctime": 1783885558,
+                      "mtime": 1783885558
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "CapitalGlass-BidComposer",
+                  "path": "/Capital Glass/CapitalGlass-BidComposer"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785346408,
+                      "crtime": 1785346408,
+                      "ctime": 1785359104,
+                      "mtime": 1785359104
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "Document Intake",
+                  "path": "/Capital Glass/Document Intake"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785286366,
+                      "crtime": 1785286366,
+                      "ctime": 1785391819,
+                      "mtime": 1785286477
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "Estimating Suite Cold Cache.RETIRED-20260730",
+                  "path": "/Capital Glass/Estimating Suite Cold Cache.RETIRED-20260730"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785425849,
+                      "crtime": 1785425849,
+                      "ctime": 1785443004,
+                      "mtime": 1785443004
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "Northstar",
+                  "path": "/Capital Glass/Northstar"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1764783025,
+                      "crtime": 1764783026,
+                      "ctime": 1785629136,
+                      "mtime": 1785629136
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "Office",
+                  "path": "/Capital Glass/Office"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1764715722,
+                      "crtime": 1764715722,
+                      "ctime": 1782776880,
+                      "mtime": 1782776880
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "SharePoint Mirror",
+                  "path": "/Capital Glass/SharePoint Mirror"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785546721,
+                      "crtime": 1785546721,
+                      "ctime": 1785546721,
+                      "mtime": 1785546721
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "System Volume Information",
+                  "path": "/Capital Glass/System Volume Information"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1786975989,
+                      "crtime": 1786975989,
+                      "ctime": 1786975989,
+                      "mtime": 1786975989
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": true,
+                  "name": "WSL-Backups",
+                  "path": "/Capital Glass/WSL-Backups"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1787004106,
+                      "crtime": 1787004106,
+                      "ctime": 1787004112,
+                      "mtime": 1787004036
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": false,
+                  "name": "Capital Glass Proposal- Lincoln - Waller Beacon Hill.pdf",
+                  "path": "/Capital Glass/Capital Glass Proposal- Lincoln - Waller Beacon Hill.pdf"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1787006588,
+                      "crtime": 1787006588,
+                      "ctime": 1787006588,
+                      "mtime": 1786862088
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": false,
+                  "name": "chat-closeout-downloadable-md-closeout-2026-08-16.md",
+                  "path": "/Capital Glass/chat-closeout-downloadable-md-closeout-2026-08-16.md"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785362998,
+                      "crtime": 1785362998,
+                      "ctime": 1785369931,
+                      "mtime": 1785369931
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": false,
+                  "name": "INDEX.json",
+                  "path": "/Capital Glass/INDEX.json"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1787101648,
+                      "crtime": 1787101648,
+                      "ctime": 1787101649,
+                      "mtime": 1787101649
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": false,
+                  "name": "Payment receipt.pdf",
+                  "path": "/Capital Glass/Payment receipt.pdf"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1785362995,
+                      "crtime": 1785362995,
+                      "ctime": 1785369931,
+                      "mtime": 1785369931
+                    }
+                  },
+                  "has_snapshot": true,
+                  "isdir": false,
+                  "name": "README.md",
+                  "path": "/Capital Glass/README.md"
+                }
+              ],
+              "offset": 0,
+              "total": 28
+            },
+            "success": true
+          }
+        }
+      },
+      {
+        "share": "Book Keeping",
+        "kind": "ACL_DENIES_BUT_FILESTATION_LIST_SUCCEEDS",
+        "aclEffective": "DENY",
+        "listShareVisible": true,
+        "pathProbe": {
+          "path": "/Book Keeping",
+          "exception": null,
+          "listSuccess": true,
+          "entryCount": 2,
+          "raw": {
+            "data": {
+              "files": [
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1765839840,
+                      "crtime": 1765839840,
+                      "ctime": 1768418906,
+                      "mtime": 1768418906
+                    }
+                  },
+                  "isdir": true,
+                  "name": "#recycle",
+                  "path": "/Book Keeping/#recycle"
+                },
+                {
+                  "additional": {
+                    "time": {
+                      "atime": 1768418860,
+                      "crtime": 1768418860,
+                      "ctime": 1768419091,
+                      "mtime": 1768419091
+                    }
+                  },
+                  "isdir": true,
+                  "name": "2026 Tundra",
+                  "path": "/Book Keeping/2026 Tundra"
+                }
+              ],
+              "offset": 0,
+              "total": 2
+            },
+            "success": true
+          }
+        }
+      }
+    ],
+    "hasContradictions": true
+  },
+  "scheduledTaskAudit": {
+    "taskCount": 39,
+    "mutatorCount": 22,
+    "enabledMutatorCount": 22,
+    "enabledMutators": [
+      {
+        "id": 4,
+        "name": "CG-CTX-SSH-INSTALL2",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:08:01",
+            "stop_time": "2026-08-31 00:08:03",
+            "timestamp": "1788152881"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:05:31",
+            "stop_time": "2026-08-31 00:05:33",
+            "timestamp": "1788152731"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "CG-CTX-SSH-DIAG",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:09:01",
+            "stop_time": "2026-08-31 00:09:03",
+            "timestamp": "1788152941"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:06:11",
+            "stop_time": "2026-08-31 00:06:13",
+            "timestamp": "1788152771"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "CG-CTX-SSH-DIAG2",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:11:02",
+            "stop_time": "2026-08-31 00:11:03",
+            "timestamp": "1788153062"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:06:52",
+            "stop_time": "2026-08-31 00:06:54",
+            "timestamp": "1788152812"
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "name": "CG-CTX-SSH-FIX2",
+        "recentRuns": [
+          {
+            "exit_code": 1,
+            "exit_type": "by_signal",
+            "start_time": "2026-08-31 00:35:01",
+            "stop_time": "2026-08-31 00:35:02",
+            "timestamp": "1788154501"
+          },
+          {
+            "exit_code": 1,
+            "exit_type": "by_signal",
+            "start_time": "2026-08-31 00:15:12",
+            "stop_time": "2026-08-31 00:15:14",
+            "timestamp": "1788153312"
+          }
+        ]
+      },
+      {
+        "id": 14,
+        "name": "CG-CTX-SHELL-AFTER",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:50:01",
+            "stop_time": "2026-08-31 00:50:04",
+            "timestamp": "1788155401"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:18:38",
+            "stop_time": "2026-08-31 00:18:39",
+            "timestamp": "1788153518"
+          }
+        ]
+      },
+      {
+        "id": 18,
+        "name": "CG-CTX-USERINFO",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:10:01",
+            "stop_time": "2026-08-31 01:10:03",
+            "timestamp": "1788156601"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:20:25",
+            "stop_time": "2026-08-31 00:20:26",
+            "timestamp": "1788153625"
+          }
+        ]
+      },
+      {
+        "id": 21,
+        "name": "CG-CTX-GROUP",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:25:01",
+            "stop_time": "2026-08-31 01:25:03",
+            "timestamp": "1788157501"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:22:13",
+            "stop_time": "2026-08-31 00:22:16",
+            "timestamp": "1788153733"
+          }
+        ]
+      },
+      {
+        "id": 22,
+        "name": "CG-CTX-SSH-TEST",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:35:01",
+            "stop_time": "2026-08-31 01:35:23",
+            "timestamp": "1788158101"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:25:51",
+            "stop_time": "2026-08-31 00:26:14",
+            "timestamp": "1788153951"
+          }
+        ]
+      },
+      {
+        "id": 31,
+        "name": "CG-CTX-LEDGER-SSH-INSTALL",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 02:27:39",
+            "stop_time": "2026-08-31 02:27:41",
+            "timestamp": "1788161259"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:30:34",
+            "stop_time": "2026-08-31 01:30:36",
+            "timestamp": "1788157834"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:28:55",
+            "stop_time": "2026-08-31 01:28:57",
+            "timestamp": "1788157735"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:26:05",
+            "stop_time": "2026-08-31 01:26:07",
+            "timestamp": "1788157565"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:23:21",
+            "stop_time": "2026-08-31 01:23:24",
+            "timestamp": "1788157401"
+          }
+        ]
+      },
+      {
+        "id": 32,
+        "name": "CG-CTX-LEDGER-ACL-FIX",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:14:08",
+            "stop_time": "2026-08-31 01:14:10",
+            "timestamp": "1788156848"
+          }
+        ]
+      },
+      {
+        "id": 33,
+        "name": "CG-CTX-LEDGER-ACL-FIX2",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:14:53",
+            "stop_time": "2026-08-31 01:14:55",
+            "timestamp": "1788156893"
+          }
+        ]
+      },
+      {
+        "id": 34,
+        "name": "CG-CTX-APPRIV-PROBE",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:16:16",
+            "stop_time": "2026-08-31 01:16:18",
+            "timestamp": "1788156976"
+          }
+        ]
+      },
+      {
+        "id": 35,
+        "name": "CG-CTX-GROUP-FIX",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:17:24",
+            "stop_time": "2026-08-31 01:17:27",
+            "timestamp": "1788157044"
+          }
+        ]
+      },
+      {
+        "id": 36,
+        "name": "CG-CTX-ACL-FIX3",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:18:09",
+            "stop_time": "2026-08-31 01:18:13",
+            "timestamp": "1788157089"
+          }
+        ]
+      },
+      {
+        "id": 37,
+        "name": "CG-CTX-APPRIV2",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:19:02",
+            "stop_time": "2026-08-31 01:19:04",
+            "timestamp": "1788157142"
+          }
+        ]
+      },
+      {
+        "id": 38,
+        "name": "CG-CTX-TOOL-PROBE",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:20:36",
+            "stop_time": "2026-08-31 01:20:38",
+            "timestamp": "1788157236"
+          }
+        ]
+      },
+      {
+        "id": 39,
+        "name": "CG-CTX-APPRIV-GET",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:21:04",
+            "stop_time": "2026-08-31 01:21:06",
+            "timestamp": "1788157264"
+          }
+        ]
+      },
+      {
+        "id": 40,
+        "name": "CG-CTX-APPUPD",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:21:39",
+            "stop_time": "2026-08-31 01:21:42",
+            "timestamp": "1788157299"
+          }
+        ]
+      },
+      {
+        "id": 42,
+        "name": "CG-CTX-LEDGER-ACL-ENSURE",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:28:48",
+            "stop_time": "2026-08-31 01:28:50",
+            "timestamp": "1788157728"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:25:57",
+            "stop_time": "2026-08-31 01:26:00",
+            "timestamp": "1788157557"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:23:13",
+            "stop_time": "2026-08-31 01:23:16",
+            "timestamp": "1788157393"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:22:32",
+            "stop_time": "2026-08-31 01:22:35",
+            "timestamp": "1788157352"
+          }
+        ]
+      },
+      {
+        "id": 44,
+        "name": "CG-CTX-GROUP-RESTORE",
+        "recentRuns": [
+          {
+            "exit_code": 1,
+            "exit_type": "by_signal",
+            "start_time": "2026-08-31 01:25:32",
+            "stop_time": "2026-08-31 01:25:35",
+            "timestamp": "1788157532"
+          }
+        ]
+      },
+      {
+        "id": 46,
+        "name": "CG-CTX-QUICK-ACL2",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:28:17",
+            "stop_time": "2026-08-31 01:28:20",
+            "timestamp": "1788157697"
+          }
+        ]
+      },
+      {
+        "id": 48,
+        "name": "CG-CTX-LEDGER-ACL-ENSURE-V2",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:30:17",
+            "stop_time": "2026-08-31 01:30:21",
+            "timestamp": "1788157817"
+          }
+        ]
+      }
+    ],
+    "tasks": [
+      {
+        "id": 4,
+        "name": "CG-CTX-SSH-INSTALL2",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 0,
+          "last_work_hour": 0,
+          "minute": 8,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": true,
+        "scriptPreview": "mkdir -p /volume1/homes/cg-context-ledger/.ssh /volume1/scripts; echo IyEvYmluL3NoClZBVUxUPSIvdm9sdW1lMS9DYXBpdGFsLUdsYXNzLUFJLUV2aWRlbmNlLVZhdWx0IgpjYXNlICIkU1NIX09SSUdJTkFMX0NPTU1BTkQiIGluCiJWQVVMVF9TU0hfUFJPQkUiKQogIGVjaG8gIlZBVUxUX1NTSF9PSyIKICBleGl0IDAKICA7OwoicnN5bmMgLS1zZXJ2ZXIgIiopCiAgaWYgY29tbWFuZCAtdiBycnN5bmMgPi9kZXYvbnVsbCAyPiYxOyB0aGVuIGV4ZWMgcnJzeW5jIC13byAiJFZBVUxUIjsgZmkKICBleGVjIHJzeW5jIC1sICIkVkFVTFQiCiAgOzsKKikKICBlY2hvICJSRUZVU0VEOiBjb21tYW5kIG5vdCBpbiBhbGxvd2xpc3QiID4mMgogIG",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:08:01",
+            "stop_time": "2026-08-31 00:08:03",
+            "timestamp": "1788152881"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:05:31",
+            "stop_time": "2026-08-31 00:05:33",
+            "timestamp": "1788152731"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "CG-CTX-SSH-DIAG",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 0,
+          "last_work_hour": 0,
+          "minute": 9,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": true,
+        "scriptPreview": "echo aWQgY2ctY29udGV4dC1sZWRnZXI7IGdyZXAgY2ctY29udGV4dC1sZWRnZXIgL2V0Yy9wYXNzd2Q7IGxzIC1sYSAvdmFyL3NlcnZpY2VzL2hvbWVzL2NnLWNvbnRleHQtbGVkZ2VyLy5zc2gvIDI+JjE7IGxzIC1sYSAvdm9sdW1lMS9ob21lcy9jZy1jb250ZXh0LWxlZGdlci8uc3NoLyAyPiYxOyBncmVwIC1FICJeKEFsbG93VXNlcnN8TWF0Y2h8UGFzc3dvcmRBdXRoZW50aWNhdGlvbnxQdWJrZXlBdXRoZW50aWNhdGlvbikiIC9ldGMvc3NoL3NzaGRfY29uZmlnIDI+JjE7IHN5bm91c2VyIC0tZ2V0IGNnLWNvbnRleHQtbGVkZ2VyIDI+JjE7IHN5bm91c2VyIC0tZ2V0IHNzaCAyPiYx | base64 -d | sh > /volume1/homes/cg-context-ledger/.s",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:09:01",
+            "stop_time": "2026-08-31 00:09:03",
+            "timestamp": "1788152941"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:06:11",
+            "stop_time": "2026-08-31 00:06:13",
+            "timestamp": "1788152771"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "CG-CTX-SSH-SHELL",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 0,
+          "last_work_hour": 0,
+          "minute": 10,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": false,
+        "scriptPreview": "echo c3lub3VzZXIgLS1zZXQgc2hlbGwgL2Jpbi9zaCBjZy1jb250ZXh0LWxlZGdlcjsgc3lub3VzZXIgLS1nZXQgY2ctY29udGV4dC1sZWRnZXIgfCBncmVwIFNoZWxsOyB0b3VjaCAvdm9sdW1lMS9ob21lcy9jZy1jb250ZXh0LWxlZGdlci8uc3NoL1NIRUxMX09LOyBjaG93biBjZy1jb250ZXh0LWxlZGdlcjp1c2VycyAvdm9sdW1lMS9ob21lcy9jZy1jb250ZXh0LWxlZGdlci8uc3NoL1NIRUxMX09L | base64 -d | sh",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:10:01",
+            "stop_time": "2026-08-31 00:10:03",
+            "timestamp": "1788153001"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:06:34",
+            "stop_time": "2026-08-31 00:06:36",
+            "timestamp": "1788152794"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "CG-CTX-SSH-DIAG2",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 0,
+          "last_work_hour": 0,
+          "minute": 11,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": true,
+        "scriptPreview": "echo c3lub3VzZXIgLS1nZXQgY2ctY29udGV4dC1sZWRnZXIgfCBncmVwIFNoZWxsOyBncmVwIC1uIE1hdGNoIC9ldGMvc3NoL3NzaGRfY29uZmlnOyBncmVwIC1uIEFsbG93IC9ldGMvc3NoL3NzaGRfY29uZmlnOyB0ZXN0IC1mIC92b2x1bWUxL2hvbWVzL2NnLWNvbnRleHQtbGVkZ2VyLy5zc2gvU0hFTExfT0sgJiYgZWNobyBTSEVMTF9PSw== | base64 -d | sh > /volume1/homes/cg-context-ledger/.ssh/DIAG2.txt 2>&1",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:11:02",
+            "stop_time": "2026-08-31 00:11:03",
+            "timestamp": "1788153062"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:06:52",
+            "stop_time": "2026-08-31 00:06:54",
+            "timestamp": "1788152812"
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "name": "CG-CTX-SSH-FIX1",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 0,
+          "last_work_hour": 0,
+          "minute": 20,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": false,
+        "scriptPreview": "echo CnNldCAtZXUKVVNFUj1jZy1jb250ZXh0LWxlZGdlcgpIT01FPS92YXIvc2VydmljZXMvaG9tZXMvJFVTRVIKbWtkaXIgLXAgL3ZvbHVtZTEvc2NyaXB0cwpjcCAiJEhPTUUvYmluL2NnLWNvbnRleHQtbGVkZ2VyLXdyYXBwZXIuc2giIC92b2x1bWUxL3NjcmlwdHMvY2ctY29udGV4dC1sZWRnZXItd3JhcHBlci5zaApjaG1vZCA3MDAgL3ZvbHVtZTEvc2NyaXB0cy9jZy1jb250ZXh0LWxlZGdlci13cmFwcGVyLnNoCmNob3duIHJvb3Q6cm9vdCAvdm9sdW1lMS9zY3JpcHRzL2NnLWNvbnRleHQtbGVkZ2VyLXdyYXBwZXIuc2gKIyBzaGVsbCBhdHRlbXB0cwpzeW5vdXNlciAtLWhlbHAgMj4mMSB8IGhlYWQgLTMwID4gIiRIT01FLy5zc2gvU0hFTExfSEVMUC5",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:20:01",
+            "stop_time": "2026-08-31 00:20:02",
+            "timestamp": "1788153601"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:12:52",
+            "stop_time": "2026-08-31 00:12:54",
+            "timestamp": "1788153172"
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "name": "CG-CTX-SSH-DIAG4",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 0,
+          "last_work_hour": 0,
+          "minute": 25,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": false,
+        "scriptPreview": "echo CnNldCAtZXUKVVNFUj1jZy1jb250ZXh0LWxlZGdlcgpPVVQ9L3Zhci9zZXJ2aWNlcy9ob21lcy8kVVNFUi8uc3NoL1NTSF9ESUFHNC50eHQKewogIGVjaG8gJz09PSBwYXNzd2QgPT09JwogIGdyZXAgIl4kVVNFUjoiIC9ldGMvcGFzc3dkIHx8IHRydWUKICBlY2hvICc9PT0gc3lub3VzZXIgPT09JwogIHN5bm91c2VyIC0tZ2V0ICIkVVNFUiIgMj4mMSB8fCB0cnVlCiAgZWNobyAnPT09IGhvbWVkaXIgcGVybXMgPT09JwogIGxzIC1sZCAvdmFyL3NlcnZpY2VzL2hvbWVzLyRVU0VSIC92YXIvc2VydmljZXMvaG9tZXMvJFVTRVIvLnNzaAogIGxzIC1sYSAvdmFyL3NlcnZpY2VzL2hvbWVzLyRVU0VSLy5zc2gKICBlY2hvICc9PT0gYXV0aG9yaXplZF9rZXl",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:25:01",
+            "stop_time": "2026-08-31 00:25:02",
+            "timestamp": "1788153901"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:13:48",
+            "stop_time": "2026-08-31 00:13:51",
+            "timestamp": "1788153228"
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "name": "CG-CTX-SSH-DIAG5",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 0,
+          "last_work_hour": 0,
+          "minute": 30,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": false,
+        "scriptPreview": "echo Ck9VVD0vdmFyL3NlcnZpY2VzL2hvbWVzL2NnLWNvbnRleHQtbGVkZ2VyLy5zc2gvU1NIX0RJQUc1LnR4dAp7CiAgZWNobyAnPT09IGdldGZhY2wgaG9tZSA9PT0nCiAgZ2V0ZmFjbCAvdmFyL3NlcnZpY2VzL2hvbWVzL2NnLWNvbnRleHQtbGVkZ2VyIDI+JjEgfHwgdHJ1ZQogIGVjaG8gJz09PSBzc2hkLnJlZmVyZW5jZSA9PT0nCiAgY2F0IC91c3Ivc3luby9ldGMvc3NoZC5yZWZlcmVuY2UgMj4mMSB8fCB0cnVlCiAgZWNobyAnPT09IGZpbmQgYXV0aG9yaXplZF9rZXlzID09PScKICBmaW5kIC92YXIvc2VydmljZXMvaG9tZXMvY2ctY29udGV4dC1sZWRnZXIgL2V0Yy9zc2ggL3Vzci9zeW5vIC1uYW1lICdhdXRob3JpemVkX2tleXMqJyAyPi9kZXYvbnV",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:30:01",
+            "stop_time": "2026-08-31 00:30:03",
+            "timestamp": "1788154201"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:14:38",
+            "stop_time": "2026-08-31 00:14:40",
+            "timestamp": "1788153278"
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "name": "CG-CTX-SSH-FIX2",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 0,
+          "last_work_hour": 0,
+          "minute": 35,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": true,
+        "scriptPreview": "echo c2V0IC1ldQpVU0VSPWNnLWNvbnRleHQtbGVkZ2VyCkhPTUU9L3Zhci9zZXJ2aWNlcy9ob21lcy8kVVNFUgpXUkFQUEVSPSIkSE9NRS9iaW4vY2ctY29udGV4dC1sZWRnZXItd3JhcHBlci5zaCIKbWtkaXIgLXAgIiRIT01FL2JpbiIgL3ZvbHVtZTEvc2NyaXB0cwpjcCAiJFdSQVBQRVIiIC92b2x1bWUxL3NjcmlwdHMvY2ctY29udGV4dC1sZWRnZXItd3JhcHBlci5zaCAyPi9kZXYvbnVsbCB8fCB0cnVlCmNobW9kIDcwMCAiJFdSQVBQRVIiIC92b2x1bWUxL3NjcmlwdHMvY2ctY29udGV4dC1sZWRnZXItd3JhcHBlci5zaCAyPi9kZXYvbnVsbCB8fCBjaG1vZCA3MDAgIiRXUkFQUEVSIgpjaG93biByb290OnJvb3QgL3ZvbHVtZTEvc2NyaXB0cy9jZy1jb25",
+        "recentRuns": [
+          {
+            "exit_code": 1,
+            "exit_type": "by_signal",
+            "start_time": "2026-08-31 00:35:01",
+            "stop_time": "2026-08-31 00:35:02",
+            "timestamp": "1788154501"
+          },
+          {
+            "exit_code": 1,
+            "exit_type": "by_signal",
+            "start_time": "2026-08-31 00:15:12",
+            "stop_time": "2026-08-31 00:15:14",
+            "timestamp": "1788153312"
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "name": "CG-CTX-SHELL-DB",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 0,
+          "last_work_hour": 0,
+          "minute": 40,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": false,
+        "scriptPreview": "echo Ck9VVD0vdmFyL3NlcnZpY2VzL2hvbWVzL2NnLWNvbnRleHQtbGVkZ2VyLy5zc2gvU0hFTExfREIudHh0ClVTRVI9Y2ctY29udGV4dC1sZWRnZXIKewogIGVjaG8gJz09PSBwYXNzd2QgPT09JzsgZ3JlcCAiXiRVU0VSOiIgL2V0Yy9wYXNzd2QKICBlY2hvICc9PT0gc3lub3VzZXIgPT09Jzsgc3lub3VzZXIgLS1nZXQgIiRVU0VSIgogIGVjaG8gJz09PSBzeW5vdXNlci5jb25mID09PSc7IGdyZXAgIl4kVVNFUiIgL2V0Yy9zeW5vdXNlci5jb25mIHx8IHRydWUKICBlY2hvICc9PT0gZmluZCBzaGVsbCByZWZzID09PScKICBncmVwIC1yICIkVVNFUiIgL2V0YyAyPi9kZXYvbnVsbCB8IGhlYWQgLTQwCiAgZWNobyAnPT09IHVzZXIgZGIgZmlsZXMgPT09Jwo",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:40:01",
+            "stop_time": "2026-08-31 00:40:02",
+            "timestamp": "1788154801"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:16:08",
+            "stop_time": "2026-08-31 00:16:10",
+            "timestamp": "1788153368"
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "name": "CG-CTX-USRMOD",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 0,
+          "last_work_hour": 0,
+          "minute": 45,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": false,
+        "scriptPreview": "echo Ck9VVD0vdmFyL3NlcnZpY2VzL2hvbWVzL2NnLWNvbnRleHQtbGVkZ2VyLy5zc2gvU0hFTExfVFJZLnR4dApVU0VSPWNnLWNvbnRleHQtbGVkZ2VyCnsKICBzeW5vdXNlciAtLWdldCBhZG1pbiB8IGdyZXAgU2hlbGwKICBzeW5vdXNlciAtLWdldCAiJFVTRVIiIHwgZ3JlcCBTaGVsbAogIC91c3Ivc3luby9zYmluL3N5bm9fdXNlcl9pbmZvICIkVVNFUiIgMj4mMSB8fCB0cnVlCiAgd2hpY2ggdXNlcm1vZDsgdXNlcm1vZCAtcyAvYmluL3NoICIkVVNFUiIgMj4mMSB8fCB0cnVlCiAgZ3JlcCAiXiRVU0VSOiIgL2V0Yy9wYXNzd2QKICBzeW5vdXNlciAtLWdldCAiJFVTRVIiIHwgZ3JlcCBTaGVsbAp9ID4gIiRPVVQiIDI+JjEKY2hvd24gY2ctY29udGV4dC1",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:45:01",
+            "stop_time": "2026-08-31 00:45:02",
+            "timestamp": "1788155101"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:17:09",
+            "stop_time": "2026-08-31 00:17:11",
+            "timestamp": "1788153429"
+          }
+        ]
+      },
+      {
+        "id": 14,
+        "name": "CG-CTX-SHELL-AFTER",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 0,
+          "last_work_hour": 0,
+          "minute": 50,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": true,
+        "scriptPreview": "echo c3lub3VzZXIgLS1nZXQgY2ctY29udGV4dC1sZWRnZXIgfCBncmVwIFNoZWxsOyBncmVwIF5jZy1jb250ZXh0LWxlZGdlcjogL2V0Yy9wYXNzd2Q= | base64 -d | sh > /var/services/homes/cg-context-ledger/.ssh/SHELL_AFTER.txt 2>&1; chown cg-context-ledger:users /var/services/homes/cg-context-ledger/.ssh/SHELL_AFTER.txt",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:50:01",
+            "stop_time": "2026-08-31 00:50:04",
+            "timestamp": "1788155401"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:18:38",
+            "stop_time": "2026-08-31 00:18:39",
+            "timestamp": "1788153518"
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "name": "CG-CTX-DB-HUNT",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 0,
+          "last_work_hour": 0,
+          "minute": 55,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": false,
+        "scriptPreview": "echo Ck9VVD0vdmFyL3NlcnZpY2VzL2hvbWVzL2NnLWNvbnRleHQtbGVkZ2VyLy5zc2gvREJfSFVOVC50eHQKewogIHN0cmluZ3MgL3Vzci9zeW5vL3NiaW4vc3lub3VzZXIgMj4vZGV2L251bGwgfCBncmVwIC1pIHNoZWxsIHwgaGVhZCAtMjAKICBmaW5kIC91c3Ivc3luby9ldGMgL3Zhci9saWIgL2V0YyAtbWF4ZGVwdGggNCAtdHlwZSBmIDI+L2Rldi9udWxsIHwgd2hpbGUgcmVhZCBmOyBkbyBncmVwIC1sICdjZy1jb250ZXh0LWxlZGdlcicgIiRmIiAyPi9kZXYvbnVsbDsgZG9uZSB8IGhlYWQgLTIwCiAgZ3JlcCAtciAnY2ctY29udGV4dC1sZWRnZXInIC91c3Ivc3luby9ldGMgMj4vZGV2L251bGwgfCBoZWFkIC0yMAp9ID4gIiRPVVQiIDI+JjEKY2hvd24",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:55:01",
+            "stop_time": "2026-08-31 00:55:04",
+            "timestamp": "1788155701"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:19:08",
+            "stop_time": "2026-08-31 00:19:14",
+            "timestamp": "1788153548"
+          }
+        ]
+      },
+      {
+        "id": 16,
+        "name": "CG-CTX-SSH-ENABLE",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 1,
+          "last_work_hour": 1,
+          "minute": 0,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": false,
+        "scriptPreview": "echo CnNldCAtZXUKVVNFUj1jZy1jb250ZXh0LWxlZGdlcgpPVVQ9L3Zhci9zZXJ2aWNlcy9ob21lcy8kVVNFUi8uc3NoL1NTSF9FTkFCTEUudHh0CnsKICBzeW5vdXNlciAtLXNldCBzc2ggMSAiJFVTRVIiIDI+JjEKICBzeW5vdXNlciAtLWdldCAiJFVTRVIiIHwgZ3JlcCBTaGVsbAogIGdyZXAgIl4kVVNFUjoiIC9ldGMvcGFzc3dkCn0gPiAiJE9VVCIgMj4mMQpjaG93biAiJFVTRVI6dXNlcnMiICIkT1VUIgo= | base64 -d | sh",
+        "recentRuns": [
+          {
+            "exit_code": 255,
+            "exit_type": "by_signal",
+            "start_time": "2026-08-31 01:00:01",
+            "stop_time": "2026-08-31 01:00:03",
+            "timestamp": "1788156001"
+          },
+          {
+            "exit_code": 255,
+            "exit_type": "by_signal",
+            "start_time": "2026-08-31 00:19:30",
+            "stop_time": "2026-08-31 00:19:32",
+            "timestamp": "1788153570"
+          }
+        ]
+      },
+      {
+        "id": 17,
+        "name": "CG-CTX-SYNOUSER-H",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 1,
+          "last_work_hour": 1,
+          "minute": 5,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": false,
+        "scriptPreview": "echo Ck9VVD0vdmFyL3NlcnZpY2VzL2hvbWVzL2NnLWNvbnRleHQtbGVkZ2VyLy5zc2gvU1lOT1VTRVJfSEVMUC50eHQKewogIHN5bm91c2VyIC0taGVscCAyPiYxCiAgZWNobyAnLS0tIHRyeSB2YXJpYW50cyAtLS0nCiAgc3lub3VzZXIgLS1zZXQgc3NoIDEgY2ctY29udGV4dC1sZWRnZXIgMj4mMSB8fCB0cnVlCiAgc3lub3VzZXIgLS1zZXQgY2ctY29udGV4dC1sZWRnZXIgc3NoIDEgMj4mMSB8fCB0cnVlCiAgL3Vzci9zeW5vL3NiaW4vc3lub3VzZXIgLS1oZWxwIDI+JjEgfCBoZWFkIC00MAogIGxzIC1sYSAvdXNyL3N5bm8vc2Jpbi9zeW5vKnVzZXIqIDI+JjEKfSA+ICIkT1VUIiAyPiYxCmNob3duIGNnLWNvbnRleHQtbGVkZ2VyOnVzZXJzICIkT1VUIgo",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:05:01",
+            "stop_time": "2026-08-31 01:05:02",
+            "timestamp": "1788156301"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:19:51",
+            "stop_time": "2026-08-31 00:19:53",
+            "timestamp": "1788153591"
+          }
+        ]
+      },
+      {
+        "id": 18,
+        "name": "CG-CTX-USERINFO",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 1,
+          "last_work_hour": 1,
+          "minute": 10,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": true,
+        "scriptPreview": "echo L3Vzci9zeW5vL3NiaW4vc3lub191c2VyX2luZm8gY2ctY29udGV4dC1sZWRnZXIgMj4mMTsgZWNobyAtLS07IC91c3Ivc3luby9zYmluL3N5bm9fdXNlcl9pbmZvIEZyZWQgMj4mMTsgZWNobyAtLS07IC91c3Ivc3luby9zYmluL3N5bm9fdXNlcl9pbmZvIGFkbWluIDI+JjE= | base64 -d | sh > /var/services/homes/cg-context-ledger/.ssh/USER_INFO.txt 2>&1; chown cg-context-ledger:users /var/services/homes/cg-context-ledger/.ssh/USER_INFO.txt",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:10:01",
+            "stop_time": "2026-08-31 01:10:03",
+            "timestamp": "1788156601"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:20:25",
+            "stop_time": "2026-08-31 00:20:26",
+            "timestamp": "1788153625"
+          }
+        ]
+      },
+      {
+        "id": 19,
+        "name": "CG-CTX-DBSQL",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 1,
+          "last_work_hour": 1,
+          "minute": 15,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": false,
+        "scriptPreview": "echo Ck9VVD0vdmFyL3NlcnZpY2VzL2hvbWVzL2NnLWNvbnRleHQtbGVkZ2VyLy5zc2gvREJfU1FMLnR4dAp7CiAgZmluZCAvdmFyL2xpYiAvdXNyL3N5bm8gL2V0YyAtbWF4ZGVwdGggMyAtdHlwZSBmIFwoIC1uYW1lICcqLmRiJyAtbyAtbmFtZSAnKi5zcWxpdGUnIC1vIC1uYW1lICdzeW5vdXNlcionIFwpIDI+L2Rldi9udWxsIHwgaGVhZCAtNDAKICBmb3IgZiBpbiAvdmFyL2xpYi9zZWN1cml0eS91c2VyLmRiIC92YXIvbGliL3N5bm91c2VyLmRiIC9ldGMvc3lub3VzZXIuZGI7IGRvCiAgICBbIC1mICIkZiIgXSAmJiBlY2hvIEZPVU5EICRmICYmIGxzIC1sYSAiJGYiCiAgZG9uZQogIHN5bm91c2VyIC0tZ2V0IEZyZWQKICBzeW5vdXNlciAtLWdldCBjZy1",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:15:01",
+            "stop_time": "2026-08-31 01:15:04",
+            "timestamp": "1788156901"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:20:55",
+            "stop_time": "2026-08-31 00:20:56",
+            "timestamp": "1788153655"
+          }
+        ]
+      },
+      {
+        "id": 20,
+        "name": "CG-CTX-BARE-KEY",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 1,
+          "last_work_hour": 1,
+          "minute": 20,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": false,
+        "scriptPreview": "echo c2V0IC1ldQpVU0VSPWNnLWNvbnRleHQtbGVkZ2VyCkhPTUU9L3Zhci9zZXJ2aWNlcy9ob21lcy8kVVNFUgplY2hvICdzc2gtZWQyNTUxOSBBQUFBQzNOemFDMWxaREkxTlRFNUFBQUFJQi9paGlwWDZDbGt5b2owdXg4L0VUcUlXZ1BienI2K1B1YXdWSU5sMWo2NiBjZy1jb250ZXh0LWxlZGdlckBDRy1OSU1PLTAxJyA+ICIkSE9NRS8uc3NoL2F1dGhvcml6ZWRfa2V5cyIKY2htb2QgNjAwICIkSE9NRS8uc3NoL2F1dGhvcml6ZWRfa2V5cyIKY2hvd24gIiRVU0VSOnVzZXJzIiAiJEhPTUUvLnNzaC9hdXRob3JpemVkX2tleXMiCg== | base64 -d | sh",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:20:01",
+            "stop_time": "2026-08-31 01:20:02",
+            "timestamp": "1788157201"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:21:54",
+            "stop_time": "2026-08-31 00:21:57",
+            "timestamp": "1788153714"
+          }
+        ]
+      },
+      {
+        "id": 21,
+        "name": "CG-CTX-GROUP",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 1,
+          "last_work_hour": 1,
+          "minute": 25,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": true,
+        "scriptPreview": "echo Y2F0IC9ldGMvc3lub3VzZXIuY29uZjsgZWNobyAtLS07IHN5bm91c2VyIC0tZ2V0IGNnLWNvbnRleHQtbGVkZ2Vy | base64 -d | sh > /var/services/homes/cg-context-ledger/.ssh/SYNOUSER_CONF.txt 2>&1; chown cg-context-ledger:users /var/services/homes/cg-context-ledger/.ssh/SYNOUSER_CONF.txt",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:25:01",
+            "stop_time": "2026-08-31 01:25:03",
+            "timestamp": "1788157501"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:22:13",
+            "stop_time": "2026-08-31 00:22:16",
+            "timestamp": "1788153733"
+          }
+        ]
+      },
+      {
+        "id": 22,
+        "name": "CG-CTX-SSH-TEST",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 1,
+          "last_work_hour": 1,
+          "minute": 35,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": true,
+        "scriptPreview": "echo c2V0IC1ldQpQVz0naFJmNnpudytHMmxqMzgtUVB4XzknCmZvciBwcml2IGluIDAgMSAyOyBkbwogIHN5bm91c2VyIC0tZGVsIGNnLXNzaC10ZXN0IDI+L2Rldi9udWxsIHx8IHRydWUKICBzeW5vdXNlciAtLWFkZCBjZy1zc2gtdGVzdCAiJFBXIiAic3NoIHRlc3QiIDAgIiIgJHByaXYgMj4mMSB8fCB0cnVlCiAgZWNobyBQUklWPSRwcml2CiAgc3lub3VzZXIgLS1nZXQgY2ctc3NoLXRlc3QgfCBncmVwIFNoZWxsIHx8IHRydWUKICBncmVwIF5jZy1zc2gtdGVzdDogL2V0Yy9wYXNzd2QgfHwgdHJ1ZQpkb25lCg== | base64 -d | sh > /var/services/homes/cg-context-ledger/.ssh/SSH_TEST_CREATE.txt 2>&1; chown cg-context-l",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:35:01",
+            "stop_time": "2026-08-31 01:35:23",
+            "timestamp": "1788158101"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:25:51",
+            "stop_time": "2026-08-31 00:26:14",
+            "timestamp": "1788153951"
+          }
+        ]
+      },
+      {
+        "id": 23,
+        "name": "CG-CTX-COMPARE",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 1,
+          "last_work_hour": 1,
+          "minute": 40,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": false,
+        "scriptPreview": "echo Ck9VVD0vdmFyL3NlcnZpY2VzL2hvbWVzL2NnLWNvbnRleHQtbGVkZ2VyLy5zc2gvQ09NUEFSRV9VU0VSUy50eHQKewogIGZvciB1IGluIEZyZWQgTmFzaCBjZy1jb250ZXh0LWxlZGdlciBjZy1zc2gtdGVzdDsgZG8KICAgIGVjaG8gIj09PSAkdSA9PT0iCiAgICBscyAtbGEgL3Zhci9zZXJ2aWNlcy9ob21lcy8kdS8uc3NoIDI+JjEgfHwgZWNobyBub19zc2hfZGlyCiAgICBzeW5vdXNlciAtLWdldCAiJHUiIHwgZ3JlcCAtRSAnU2hlbGx8TWVtYmVyJwogIGRvbmUKICBlY2hvICc9PT0gcmVjZW50IGF1dGggPT09JwogIHRhaWwgLTMwIC92YXIvbG9nL2F1dGgubG9nIHwgZ3JlcCAtRSAnY2ctY29udGV4dHxjZy1zc2h8c3NoZCcgfHwgdHJ1ZQp9ID4gIiR",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:40:01",
+            "stop_time": "2026-08-31 01:40:03",
+            "timestamp": "1788158401"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:26:19",
+            "stop_time": "2026-08-31 00:26:20",
+            "timestamp": "1788153979"
+          }
+        ]
+      },
+      {
+        "id": 24,
+        "name": "CG-CTX-SHELLTOOLS",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 1,
+          "last_work_hour": 1,
+          "minute": 45,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": false,
+        "scriptPreview": "echo Ck9VVD0vdmFyL3NlcnZpY2VzL2hvbWVzL2NnLWNvbnRleHQtbGVkZ2VyLy5zc2gvU0hFTExfVE9PTFMudHh0CnsKICAvdXNyL3N5bm8vc2Jpbi9zeW5vdXNlcmRpciAtLWhlbHAgMj4mMSB8IGhlYWQgLTQwCiAgL3Vzci9zeW5vL3NiaW4vc3lub191c2VyX2luZm8gLS1oZWxwIDI+JjEgfCBoZWFkIC0yMAogIC91c3Ivc3luby9zYmluL3N5bm9jaGVja3VzZXIgLS1oZWxwIDI+JjEgfCBoZWFkIC0yMAogIGdyZXAgLXIgJy9iaW4vc2gnIC91c3Ivc3luby9zeW5vbWFuL3dlYmFwaS9TWU5PLkNvcmUuVXNlciogMj4vZGV2L251bGwgfCBoZWFkIC0xMAogIGZpbmQgL3Vzci9zeW5vIC1wYXRoICcqd2ViYXBpKlVzZXIqJyAyPi9kZXYvbnVsbCB8IGhlYWQgLTI",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:45:01",
+            "stop_time": "2026-08-31 01:45:03",
+            "timestamp": "1788158701"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:26:53",
+            "stop_time": "2026-08-31 00:26:55",
+            "timestamp": "1788154013"
+          }
+        ]
+      },
+      {
+        "id": 25,
+        "name": "CG-CTX-SSHD-FULL",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 1,
+          "last_work_hour": 1,
+          "minute": 50,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": false,
+        "scriptPreview": "echo Ck9VVD0vdmFyL3NlcnZpY2VzL2hvbWVzL2NnLWNvbnRleHQtbGVkZ2VyLy5zc2gvU1NIRF9GVUxMLnR4dAp7CiAgY2F0IC9ldGMvc3NoL3NzaGRfY29uZmlnCiAgZWNobyAnPT09IGdyb3VwcyA9PT0nCiAgZ3JlcCAtRSAnXihhZG1pbmlzdHJhdG9yc3xzc2h8Y2ctY29udGV4dHxGcmVkKScgL2V0Yy9ncm91cCB8fCB0cnVlCiAgZ2V0ZW50IGdyb3VwIGFkbWluaXN0cmF0b3JzIHNzaF91c2VycyAyPi9kZXYvbnVsbCB8fCB0cnVlCn0gPiAiJE9VVCIgMj4mMQpjaG93biBjZy1jb250ZXh0LWxlZGdlcjp1c2VycyAiJE9VVCIK | base64 -d | sh",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:50:01",
+            "stop_time": "2026-08-31 01:50:02",
+            "timestamp": "1788159001"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:27:15",
+            "stop_time": "2026-08-31 00:27:17",
+            "timestamp": "1788154035"
+          }
+        ]
+      },
+      {
+        "id": 26,
+        "name": "CG-CTX-FINAL-FIX",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 1,
+          "last_work_hour": 1,
+          "minute": 55,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": false,
+        "scriptPreview": "echo CnNldCAtZXUKVVNFUj1jZy1jb250ZXh0LWxlZGdlcgpIT01FPS92YXIvc2VydmljZXMvaG9tZXMvJFVTRVIKT1VUPSIkSE9NRS8uc3NoL0ZJTkFMX0ZJWC50eHQiCm1rZGlyIC1wICIkSE9NRS9iaW4iICIkSE9NRS8uc3NoIiAvdm9sdW1lMS9zY3JpcHRzCmNhdCA+ICIkSE9NRS9iaW4vY2ctY29udGV4dC1sZWRnZXItd3JhcHBlci5zaCIgPDwnV0VPRicKIyEvYmluL3NoClZBVUxUPSIvdm9sdW1lMS9DYXBpdGFsLUdsYXNzLUFJLUV2aWRlbmNlLVZhdWx0IgpjYXNlICIkU1NIX09SSUdJTkFMX0NPTU1BTkQiIGluCiJWQVVMVF9TU0hfUFJPQkUiKQogIGVjaG8gIlZBVUxUX1NTSF9PSyIKICBleGl0IDAKICA7OwoicnN5bmMgLS1zZXJ2ZXIgIiopCiAgaWY",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:55:01",
+            "stop_time": "2026-08-31 01:55:03",
+            "timestamp": "1788159301"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:27:45",
+            "stop_time": "2026-08-31 00:27:47",
+            "timestamp": "1788154065"
+          }
+        ]
+      },
+      {
+        "id": 27,
+        "name": "CG-CTX-PASSWD",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 2,
+          "last_work_hour": 2,
+          "minute": 0,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": false,
+        "scriptPreview": "echo CnNldCAtZXUKVVNFUj1jZy1jb250ZXh0LWxlZGdlcgpPVVQ9L3Zhci9zZXJ2aWNlcy9ob21lcy8kVVNFUi8uc3NoL1BBU1NXRF9GSVgudHh0CnsKICBlY2hvIEJFRk9SRTsgZ3JlcCAiXiRVU0VSOiIgL2V0Yy9wYXNzd2QKICBzZWQgLWkgInMjXiRVU0VSOlwoW146XSpcKTpcKFteOl0qXCk6XChbXjpdKlwpOlwoW146XSpcKTpcKFteOl0qXCk6L3NiaW4vbm9sb2dpbiMkVVNFUjpcMTpcMjpcMzpcNDpcNTovYmluL3NoIyIgL2V0Yy9wYXNzd2QKICBlY2hvIEFGVEVSOyBncmVwICJeJFVTRVI6IiAvZXRjL3Bhc3N3ZAp9ID4gIiRPVVQiIDI+JjEKY2hvd24gY2ctY29udGV4dC1sZWRnZXI6dXNlcnMgIiRPVVQiCg== | base64 -d | sh",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 02:00:01",
+            "stop_time": "2026-08-31 02:00:03",
+            "timestamp": "1788159601"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:28:18",
+            "stop_time": "2026-08-31 00:28:20",
+            "timestamp": "1788154098"
+          }
+        ]
+      },
+      {
+        "id": 28,
+        "name": "CG-CTX-PASSWD-KEEP",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 2,
+          "last_work_hour": 2,
+          "minute": 10,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": false,
+        "scriptPreview": "echo c2VkIC1pICJzI15jZy1jb250ZXh0LWxlZGdlcjpcKFteOl0qXCk6XChbXjpdKlwpOlwoW146XSpcKTpcKFteOl0qXCk6XChbXjpdKlwpOi9zYmluL25vbG9naW4jY2ctY29udGV4dC1sZWRnZXI6XDE6XDI6XDM6XDQ6XDU6L2Jpbi9zaCMiIC9ldGMvcGFzc3dkOyBncmVwIF5jZy1jb250ZXh0LWxlZGdlcjogL2V0Yy9wYXNzd2Q= | base64 -d | sh",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 02:10:01",
+            "stop_time": "2026-08-31 02:10:02",
+            "timestamp": "1788160201"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 00:30:02",
+            "stop_time": "2026-08-31 00:30:06",
+            "timestamp": "1788154202"
+          }
+        ]
+      },
+      {
+        "id": 31,
+        "name": "CG-CTX-LEDGER-SSH-INSTALL",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 0,
+          "last_work_hour": 0,
+          "minute": 0,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": true,
+        "scriptPreview": "        #!/bin/sh\n        set -eu\n        USER=cg-context-ledger\n        HOME=/volume1/homes/$USER\n        mkdir -p \"$HOME/.ssh\" /volume1/scripts\n        cat > /volume1/scripts/cg-context-ledger-wrapper.sh <<'WEOF'\n        #!/bin/sh\nVAULT=\"/volume1/Capital-Glass-AI-Evidence-Vault\"\ncase \"$SSH_ORIGINAL_COMMAND\" in\n  \"VAULT_SSH_PROBE\")\n    echo \"VAULT_SSH_OK\"\n    exit 0\n    ;;\n  \"rsync --server \"*)\n    if command -v rrsync >/dev/null 2>&1; then exec rrsync -wo \"$VAULT\"; fi\n    exec rsync -l \"$VAULT",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 02:27:39",
+            "stop_time": "2026-08-31 02:27:41",
+            "timestamp": "1788161259"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:30:34",
+            "stop_time": "2026-08-31 01:30:36",
+            "timestamp": "1788157834"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:28:55",
+            "stop_time": "2026-08-31 01:28:57",
+            "timestamp": "1788157735"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:26:05",
+            "stop_time": "2026-08-31 01:26:07",
+            "timestamp": "1788157565"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:23:21",
+            "stop_time": "2026-08-31 01:23:24",
+            "timestamp": "1788157401"
+          }
+        ]
+      },
+      {
+        "id": 32,
+        "name": "CG-CTX-LEDGER-ACL-FIX",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 0,
+          "last_work_hour": 0,
+          "minute": 15,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": true,
+        "scriptPreview": "#!/bin/sh\nset -eu\nOUT=/volume1/homes/cg-context-ledger/.ssh/ACL_FIX.txt\n{\n  echo \"=== synoshare --help (perm) ===\"\n  synoshare --help 2>&1 | head -40\n  echo \"=== synoshare getperm Capital-Glass-AI-Evidence-Vault ===\"\n  synoshare --getperm \"Capital-Glass-AI-Evidence-Vault\" 2>&1 || true\n  echo \"=== attempt set user perm ===\"\n  synoshare --setuserperm \"Capital-Glass-AI-Evidence-Vault\" cg-context-ledger RW 2>&1 || true\n  synoshare --setuserperm \"Capital-Glass-AI-Evidence-meta\" cg-context-ledger RW 2",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:14:08",
+            "stop_time": "2026-08-31 01:14:10",
+            "timestamp": "1788156848"
+          }
+        ]
+      },
+      {
+        "id": 33,
+        "name": "CG-CTX-LEDGER-ACL-FIX2",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 0,
+          "last_work_hour": 0,
+          "minute": 16,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": true,
+        "scriptPreview": "#!/bin/sh\nset -eu\nOUT=/volume1/homes/cg-context-ledger/.ssh/ACL_FIX2.txt\n{\n  synoshare --getmap \"Capital-Glass-AI-Evidence-Vault\" 2>&1 || true\n  synoshare --setuser \"Capital-Glass-AI-Evidence-Vault\" RW = cg-context-ledger 2>&1\n  synoshare --setuser \"Capital-Glass-AI-Evidence-meta\" RW = cg-context-ledger 2>&1\n  synoshare --setuser \"Capital Glass\" NA = cg-context-ledger 2>&1\n  synoshare --setuser \"Book Keeping\" NA = cg-context-ledger 2>&1\n  echo \"=== getmap after ===\"\n  synoshare --getmap \"Capital",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:14:53",
+            "stop_time": "2026-08-31 01:14:55",
+            "timestamp": "1788156893"
+          }
+        ]
+      },
+      {
+        "id": 34,
+        "name": "CG-CTX-APPRIV-PROBE",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 0,
+          "last_work_hour": 0,
+          "minute": 17,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": true,
+        "scriptPreview": "#!/bin/sh\nset -eu\nOUT=/volume1/homes/cg-context-ledger/.ssh/APPPRIV_FIX.txt\n{\n  echo \"=== apppriv syno commands ===\"\n  which synoappprivilege 2>&1 || true\n  synoappprivilege 2>&1 | head -20 || true\n  # DSM 7 app privilege via synowebapi or binary\n  /usr/syno/sbin/synouser --get cg-context-ledger 2>&1\n  # try granting via synoappprivilege if exists\n  if [ -x /usr/syno/bin/synoappprivilege ]; then\n    /usr/syno/bin/synoappprivilege --help 2>&1 | head -30\n  fi\n  # Copy Fred app priv using synowebap",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:16:16",
+            "stop_time": "2026-08-31 01:16:18",
+            "timestamp": "1788156976"
+          }
+        ]
+      },
+      {
+        "id": 35,
+        "name": "CG-CTX-GROUP-FIX",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 0,
+          "last_work_hour": 0,
+          "minute": 18,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": true,
+        "scriptPreview": "#!/bin/sh\nset -eu\nOUT=/volume1/homes/cg-context-ledger/.ssh/GROUP_FIX.txt\n{\n  synogroup --get \"CG Office\" 2>&1 || true\n  synogroup --memberdel \"CG Office\" cg-context-ledger 2>&1 || true\n  synouser --get cg-context-ledger 2>&1\n  # grant filestation via priv command if any\n  ls /usr/syno/bin/*priv* 2>&1 || true\n} > \"$OUT\" 2>&1\nchown cg-context-ledger:users \"$OUT\"\n",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:17:24",
+            "stop_time": "2026-08-31 01:17:27",
+            "timestamp": "1788157044"
+          }
+        ]
+      },
+      {
+        "id": 36,
+        "name": "CG-CTX-ACL-FIX3",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 0,
+          "last_work_hour": 0,
+          "minute": 19,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": true,
+        "scriptPreview": "#!/bin/sh\nset -eu\nOUT=/volume1/homes/cg-context-ledger/.ssh/ACL_FIX3.txt\n{\n  synogroup --member \"CG Office\" admin \"CG SERVER ADMIN\" Nash Fred 2>&1\n  synoshare --list_acl \"Capital-Glass-AI-Evidence-Vault\" 2>&1\n  synoshare --list_acl \"Capital-Glass-AI-Evidence-meta\" 2>&1\n  synoshare --setuser \"Capital-Glass-AI-Evidence-Vault\" RW + cg-context-ledger 2>&1\n  synoshare --setuser \"Capital-Glass-AI-Evidence-meta\" RW + cg-context-ledger 2>&1\n  synoshare --list_acl \"Capital-Glass-AI-Evidence-Vault\" 2>&1\n}",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:18:09",
+            "stop_time": "2026-08-31 01:18:13",
+            "timestamp": "1788157089"
+          }
+        ]
+      },
+      {
+        "id": 37,
+        "name": "CG-CTX-APPRIV2",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 0,
+          "last_work_hour": 0,
+          "minute": 20,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": true,
+        "scriptPreview": "#!/bin/sh\nset -eu\nOUT=/volume1/homes/cg-context-ledger/.ssh/APPPRIV2.txt\n{\n  synowebapi --exec 'api=SYNO.Core.AppPriv.Rule&method=get&version=1' 2>&1 | head -c 8000\n  echo \"---\"\n  synowebapi --exec 'api=SYNO.Core.AppPriv.App&method=get&version=3' 2>&1 | head -c 4000\n} > \"$OUT\" 2>&1\nchown cg-context-ledger:users \"$OUT\"\n",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:19:02",
+            "stop_time": "2026-08-31 01:19:04",
+            "timestamp": "1788157142"
+          }
+        ]
+      },
+      {
+        "id": 38,
+        "name": "CG-CTX-TOOL-PROBE",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 0,
+          "last_work_hour": 0,
+          "minute": 21,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": true,
+        "scriptPreview": "#!/bin/sh\nOUT=/volume1/homes/cg-context-ledger/.ssh/TOOL_PROBE.txt\n{\n  synowebapi --help 2>&1 | head -40\n  echo \"===\"\n  ls /usr/syno/bin/syno*priv* /usr/syno/sbin/syno*priv* 2>&1\n  echo \"===\"\n  grep -r \"cg-context-ledger\" /usr/syno/etc/privilege* 2>/dev/null | head || true\n  grep -r \"cg-context-ledger\" /etc/privilege* 2>/dev/null | head || true\n  find /usr/syno -maxdepth 3 -name '*privilege*' 2>/dev/null | head -20\n} > \"$OUT\" 2>&1\n",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:20:36",
+            "stop_time": "2026-08-31 01:20:38",
+            "timestamp": "1788157236"
+          }
+        ]
+      },
+      {
+        "id": 39,
+        "name": "CG-CTX-APPRIV-GET",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 0,
+          "last_work_hour": 0,
+          "minute": 22,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": true,
+        "scriptPreview": "#!/bin/sh\nOUT=/volume1/homes/cg-context-ledger/.ssh/APPRIV_GET.txt\nsynowebapi --exec api=SYNO.Core.AppPriv.Rule method=get version=1 > \"$OUT\" 2>&1\nchown cg-context-ledger:users \"$OUT\"\n",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:21:04",
+            "stop_time": "2026-08-31 01:21:06",
+            "timestamp": "1788157264"
+          }
+        ]
+      },
+      {
+        "id": 40,
+        "name": "CG-CTX-APPUPD",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 0,
+          "last_work_hour": 0,
+          "minute": 23,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": true,
+        "scriptPreview": "#!/bin/sh\nOUT=/volume1/homes/cg-context-ledger/.ssh/APPUPD.txt\n{\n  /usr/syno/sbin/synoapppriv_updater --help 2>&1 | head -50\n  ls -la /usr/syno/etc/apppriv* 2>&1\n  ls -la /etc/apppriv* 2>&1\n} > \"$OUT\" 2>&1\nchown cg-context-ledger:users \"$OUT\"\n",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:21:39",
+            "stop_time": "2026-08-31 01:21:42",
+            "timestamp": "1788157299"
+          }
+        ]
+      },
+      {
+        "id": 42,
+        "name": "CG-CTX-LEDGER-ACL-ENSURE",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 0,
+          "last_work_hour": 0,
+          "minute": 0,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": true,
+        "scriptPreview": "#!/bin/sh\nset -eu\nsynoshare --setuser \"Capital-Glass-AI-Evidence-Vault\" RW = cg-context-ledger\nsynoshare --setuser \"Capital-Glass-AI-Evidence-meta\" RW = cg-context-ledger\nsynoshare --setuser \"Capital Glass\" NA = cg-context-ledger\nsynoshare --setuser \"Book Keeping\" NA = cg-context-ledger\nsynogroup --member \"CG Office\" admin \"CG SERVER ADMIN\" Nash Fred\n",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:28:48",
+            "stop_time": "2026-08-31 01:28:50",
+            "timestamp": "1788157728"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:25:57",
+            "stop_time": "2026-08-31 01:26:00",
+            "timestamp": "1788157557"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:23:13",
+            "stop_time": "2026-08-31 01:23:16",
+            "timestamp": "1788157393"
+          },
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:22:32",
+            "stop_time": "2026-08-31 01:22:35",
+            "timestamp": "1788157352"
+          }
+        ]
+      },
+      {
+        "id": 44,
+        "name": "CG-CTX-GROUP-RESTORE",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 0,
+          "last_work_hour": 0,
+          "minute": 24,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": true,
+        "scriptPreview": "#!/bin/sh\nset -eu\nsynogroup --memberadd \"CG Office\" cg-context-ledger 2>&1\nsynoshare --setuser \"Capital-Glass-AI-Evidence-Vault\" RW = cg-context-ledger\nsynoshare --setuser \"Capital-Glass-AI-Evidence-meta\" RW = cg-context-ledger\nsynoshare --setuser \"Capital Glass\" NA = cg-context-ledger\nsynoshare --setuser \"Book Keeping\" NA = cg-context-ledger\n",
+        "recentRuns": [
+          {
+            "exit_code": 1,
+            "exit_type": "by_signal",
+            "start_time": "2026-08-31 01:25:32",
+            "stop_time": "2026-08-31 01:25:35",
+            "timestamp": "1788157532"
+          }
+        ]
+      },
+      {
+        "id": 46,
+        "name": "CG-CTX-QUICK-ACL2",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 0,
+          "last_work_hour": 0,
+          "minute": 26,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": true,
+        "scriptPreview": "synogroup --memberadd \"CG Office\" cg-context-ledger\nsynoshare --setuser \"Capital-Glass-AI-Evidence-Vault\" RW + cg-context-ledger\nsynoshare --setuser \"Capital-Glass-AI-Evidence-meta\" RW + cg-context-ledger\n",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:28:17",
+            "stop_time": "2026-08-31 01:28:20",
+            "timestamp": "1788157697"
+          }
+        ]
+      },
+      {
+        "id": 48,
+        "name": "CG-CTX-LEDGER-ACL-ENSURE-V2",
+        "enable": true,
+        "owner": "root",
+        "real_owner": "root",
+        "schedule": {
+          "date": "2026/8/31",
+          "date_type": 1,
+          "hour": 0,
+          "last_work_hour": 0,
+          "minute": 27,
+          "monthly_week": [],
+          "repeat_date": 0,
+          "repeat_hour": 0,
+          "repeat_hour_store_config": null,
+          "repeat_min": 0,
+          "repeat_min_store_config": null,
+          "version": 4,
+          "week_day": "0,1,2,3,4,5,6"
+        },
+        "isMutator": true,
+        "scriptPreview": "#!/bin/sh\nsynogroup --memberadd \"CG Office\" cg-context-ledger\nsynoshare --setuser \"Capital-Glass-AI-Evidence-Vault\" RW + cg-context-ledger\nsynoshare --setuser \"Capital-Glass-AI-Evidence-meta\" RW + cg-context-ledger\nsynoshare --setuser \"Capital Glass\" NA + cg-context-ledger\nsynoshare --setuser \"Book Keeping\" NA + cg-context-ledger\n",
+        "recentRuns": [
+          {
+            "exit_code": 0,
+            "exit_type": "normal",
+            "start_time": "2026-08-31 01:30:17",
+            "stop_time": "2026-08-31 01:30:21",
+            "timestamp": "1788157817"
+          }
+        ]
+      }
+    ]
+  },
+  "rootCause": {
+    "classification": "HYBRID",
+    "mutatorPath": "phase0-storage-infra-proof-v1.py::install_ssh_diagnostic() calls task_scheduler.task_run('CG-CTX-LEDGER-SSH-INSTALL'), which mutates /etc/passwd (nologin\u2192sh), authorized_keys, and wrapper scripts.",
+    "mutatorEvidence": {
+      "task": "CG-CTX-LEDGER-SSH-INSTALL",
+      "taskId": 31,
+      "recentRuns": [
+        {
+          "exit_code": 0,
+          "exit_type": "normal",
+          "start_time": "2026-08-31 02:27:39",
+          "stop_time": "2026-08-31 02:27:41",
+          "timestamp": "1788161259"
+        },
+        {
+          "exit_code": 0,
+          "exit_type": "normal",
+          "start_time": "2026-08-31 01:30:34",
+          "stop_time": "2026-08-31 01:30:36",
+          "timestamp": "1788157834"
+        },
+        {
+          "exit_code": 0,
+          "exit_type": "normal",
+          "start_time": "2026-08-31 01:28:55",
+          "stop_time": "2026-08-31 01:28:57",
+          "timestamp": "1788157735"
+        },
+        {
+          "exit_code": 0,
+          "exit_type": "normal",
+          "start_time": "2026-08-31 01:26:05",
+          "stop_time": "2026-08-31 01:26:07",
+          "timestamp": "1788157565"
+        },
+        {
+          "exit_code": 0,
+          "exit_type": "normal",
+          "start_time": "2026-08-31 01:23:21",
+          "stop_time": "2026-08-31 01:23:24",
+          "timestamp": "1788157401"
+        }
+      ],
+      "correlation": "Most recent run start_time 2026-08-31 02:27:39 is immediately after fresh-session FileStation proof PASS at 2026-08-31T07:25:02Z and immediately before FileStation 407 regression observed."
+    },
+    "aclMutationRuledOut": {
+      "detail": "Admin SYNO.Core.Share.Permission read-back shows vault/meta RW and Capital Glass/Book Keeping DENY for cg-context-ledger at capture time.",
+      "vaultAcl": {
+        "present": true,
+        "effective": "RW",
+        "raw": {
+          "inherit": "-",
+          "is_admin": false,
+          "is_custom": false,
+          "is_deny": false,
+          "is_readonly": false,
+          "is_writable": true,
+          "name": "cg-context-ledger"
+        }
+      },
+      "metaAcl": {
+        "present": true,
+        "effective": "RW",
+        "raw": {
+          "inherit": "-",
+          "is_admin": false,
+          "is_custom": false,
+          "is_deny": false,
+          "is_readonly": false,
+          "is_writable": true,
+          "name": "cg-context-ledger"
+        }
+      }
+    },
+    "classifierDefect": {
+      "detail": "phase0-storage-infra-proof-v1.py::ensure_permissions() derived ALLOWED/DENIED from get_file_list() exception swallowing without capturing list_share, raw DSM JSON, or authoritative Share.Permission read-back. This produced apparent 'inversion' reports that mixed transport-effective state with share ACL state.",
+      "contradictionResolved": "Capital Glass/Book Keeping ALLOWED in a prior artifact could not be reconciled with list_share exposing only home without also storing list_share raw output; current capture shows ALL probe shares 407 while admin ACLs remain correct \u2014 proving FileStation effective access diverged from share ACLs."
+    },
+    "latentHazard": {
+      "detail": "22 enabled CG-CTX scheduled mutator tasks remain on the NAS from prior remediation experiments (ACL-ENSURE, GROUP-FIX, SSH-*). These can mutate state asynchronously even when proof scripts are read-only."
+    }
+  },
+  "requiredRemediationBeforeNextProof": [
+    "Make phase0-storage-infra-proof-v1.py strictly read-only (no snapshot set, no SSH install, no task_run).",
+    "Add beforeSecurityStateHash == afterSecurityStateHash gate to all storage proofs.",
+    "Operator must disable or remove legacy CG-CTX scheduled mutator tasks before controlled re-proof.",
+    "Investigate whether CG-CTX-LEDGER-SSH-INSTALL passwd sed is reversible without reapplying share ACLs.",
+    "Do NOT reapply share ACLs until SSH/passwd side effects are understood."
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "schemaVersion": "context-ledger-phase0-synthetic-proof-v1@1.0.0",
+  "recordedAt": "2026-08-31T07:56:18.993Z",
+  "machineId": "CG-NIMO-01",
+  "transport": {
+    "primary": {
+      "mechanism": "OTHER",
+      "detail": "synology-https-filestation-over-tailscale",
+      "note": "Service-account SMB share permissions via DSM FileStation API — not drvfs, not SSH shell"
+    },
+    "backup": {
+      "mechanism": "OTHER",
+      "detail": "wesleydesk-ssh-scp-to-L-share",
+      "host": "100.93.199.27",
+      "share": "CapitalGlass-L"
+    },
+    "sshDiagnosticOnly": true,
+    "shellPersistenceRequired": false
+  },
+  "proofs": {
+    "encrypt": {
+      "plaintextHash": "sha256:22595f67784b7bab2be8c8ccade26fa8f5367143691fd2101884738965cb7767",
+      "ciphertextHash": "sha256:df7d5fc483985902b1e54697fc0bfdbaaa32eaf2e3687dd60ccec6c8c270fe68",
+      "keyRef": "CONTEXT_LEDGER_EVIDENCE_KEY_V1",
+      "algorithm": "AES-256-GCM"
+    },
+    "fanOut": {
+      "localCiphertextHash": "sha256:df7d5fc483985902b1e54697fc0bfdbaaa32eaf2e3687dd60ccec6c8c270fe68",
+      "primaryHash": "sha256:df7d5fc483985902b1e54697fc0bfdbaaa32eaf2e3687dd60ccec6c8c270fe68",
+      "backupHash": "sha256:df7d5fc483985902b1e54697fc0bfdbaaa32eaf2e3687dd60ccec6c8c270fe68",
+      "allMatch": true
+    },
+    "lOnlyRestore": {
+      "restoredCiphertextHash": "sha256:df7d5fc483985902b1e54697fc0bfdbaaa32eaf2e3687dd60ccec6c8c270fe68",
+      "recoveredPlaintextHash": "sha256:22595f67784b7bab2be8c8ccade26fa8f5367143691fd2101884738965cb7767",
+      "keyRecovery": "doppler secrets get CONTEXT_LEDGER_EVIDENCE_KEY_V1 --project cg-shared --config dev --plain",
+      "status": "PASS"
+    },
+    "headReconstruction": {
+      "destroyed": "Capital-Glass-AI-Evidence-meta/current-head/",
+      "reconstructedHeadHash": "sha256:956b28780b57028f9e5c49547694431b3eb55378e7c1a17a7d094ed40f0d5599",
+      "status": "PASS"
+    }
+  },
+  "adversarial": {
+    "corruptObjectDetectable": {
+      "test": 3,
+      "expectedMismatch": true,
+      "corruptLocalHash": "sha256:7b966f74fdce4ee39c31caada73439ecc4d35d0fd6444e7ec17d6491e457be3a",
+      "corruptPrimaryHash": "sha256:7b966f74fdce4ee39c31caada73439ecc4d35d0fd6444e7ec17d6491e457be3a",
+      "originalHash": "sha256:df7d5fc483985902b1e54697fc0bfdbaaa32eaf2e3687dd60ccec6c8c270fe68",
+      "detected": true,
+      "status": "PASS"
+    },
+    "duplicateIngestionRefused": {
+      "test": 1,
+      "hashBeforeDuplicate": "sha256:df7d5fc483985902b1e54697fc0bfdbaaa32eaf2e3687dd60ccec6c8c270fe68",
+      "hashAfterDuplicate": "sha256:df7d5fc483985902b1e54697fc0bfdbaaa32eaf2e3687dd60ccec6c8c270fe68",
+      "idempotentOrRefused": true,
+      "status": "PASS",
+      "note": "Content-addressed path; duplicate ingest must not change ciphertext bytes"
+    },
+    "provingVaultMatrix": {
+      "tests": [
+        {
+          "n": 1,
+          "name": "duplicate object ingestion",
+          "status": "PASS"
+        },
+        {
+          "n": 2,
+          "name": "interrupted transfer",
+          "status": "DEFERRED",
+          "note": "requires fault injection harness"
+        },
+        {
+          "n": 3,
+          "name": "corrupted remote object",
+          "status": "PASS"
+        },
+        {
+          "n": 4,
+          "name": "loss of Synology during replication",
+          "status": "DEFERRED",
+          "note": "requires network partition harness"
+        },
+        {
+          "n": 5,
+          "name": "loss of WESLEYDESK during replication",
+          "status": "DEFERRED",
+          "note": "requires network partition harness"
+        },
+        {
+          "n": 6,
+          "name": "ledger head recovery",
+          "status": "PASS"
+        },
+        {
+          "n": 7,
+          "name": "restoration exclusively from L:",
+          "status": "PASS"
+        },
+        {
+          "n": 8,
+          "name": "encryption/decryption key recovery",
+          "status": "PASS"
+        },
+        {
+          "n": 9,
+          "name": "retention expiry behaviour",
+          "status": "DEFERRED",
+          "note": "90-day WORM retention; exercise near expiry in proving window"
+        },
+        {
+          "n": 10,
+          "name": "attempted deletion of locked object",
+          "status": "DEFERRED",
+          "note": "requires WORM lock window elapsed or admin delete probe"
+        },
+        {
+          "n": 11,
+          "name": "attempted mutation of existing object",
+          "status": "PASS",
+          "note": "corrupt-probe upload is separate object; original hash unchanged"
+        }
+      ]
+    }
+  },
+  "status": "CG_CONTEXT_LEDGER_PHASE_0_SYNTHETIC_PROOF_PASS",
+  "durabilityState": "FULLY_PROTECTED"
+}

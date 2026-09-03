@@ -1,0 +1,51 @@
+{
+  "proofId": "dsm-enterprise-worm-create-proof-v1",
+  "status": "DSM_ENTERPRISE_WORM_CREATE_PROOF_PASS",
+  "provedAt": "2026-08-31T04:45:00Z",
+  "host": "100.112.81.50",
+  "dsmVersion": "7.3.2-86009 Update 4",
+  "model": "DS1525+",
+  "disposableShare": "CG-WORM-ENT-PROOF1",
+  "mechanism": {
+    "api": "SYNO.Core.Share",
+    "method": "create",
+    "transport": "request_webapi_data (JSON webapi + Cookie id=<sid> + X-SYNO-HASH)",
+    "source": "SYNO.SDS.AdminCenter.Share.CreateWizard.getWormParam + createHandler (admin_center.js)",
+    "note": "WORM config is nested under shareinfo.worm; top-level worm_* keys and disproven plaintext names are ignored while still returning success:true"
+  },
+  "createPayload": {
+    "name": "CG-WORM-ENT-PROOF1",
+    "shareinfo": {
+      "name": "CG-WORM-ENT-PROOF1",
+      "vol_path": "/volume1",
+      "enable_share_cow": true,
+      "enable_recycle_bin": false,
+      "recycle_bin_admin_only": true,
+      "worm": {
+        "subvol_mode": "enterprise",
+        "def_lock_mode": "immutable",
+        "lock_wait_time": 0,
+        "def_lock_duration": 2592000
+      }
+    }
+  },
+  "readBack": {
+    "worm_subvol_mode": "enterprise",
+    "worm_def_lock_mode": "immutable",
+    "worm_def_lock_duration": 2592000,
+    "worm_lock_wait_time": 0
+  },
+  "passCriteria": {
+    "worm_subvol_mode": "enterprise",
+    "worm_def_lock_mode": "immutable (DSM equivalent to Enterprise file lock mode)",
+    "worm_def_lock_duration": 2592000
+  },
+  "disprovenVariants": [
+    "enable_writeonce",
+    "writeonce_mode",
+    "writeonce_retention",
+    "share_protection",
+    "protection_mode",
+    "top-level shareinfo.worm_subvol_mode / worm_def_lock_mode / worm_def_lock_duration"
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "schemaVersion": "context-ledger-phase0-authority-pass-v1@1.0.0",
+  "recordedAt": "2026-08-31T05:52:00.906Z",
+  "updatedAt": "2026-08-31T06:00:00.000Z",
+  "machineId": "CG-NIMO-01",
+  "status": "CG_CONTEXT_LEDGER_PHASE_0_TECHNICAL_PASS_GOVERNANCE_PENDING",
+  "classification": "PHASE 0 TECHNICAL PASS — HUMAN GOVERNANCE ATTESTATION PENDING",
+  "formalAuthorityPass": {
+    "issued": false,
+    "verdict": "CG_CONTEXT_LEDGER_PHASE_0_AUTHORITY_V1_PASS",
+    "pendingUntil": [
+      "nas-governance-receipt-v1.json completed with human attestation (attestationState=ATTESTED, attestedBy set)",
+      "nas-governance-receipt-v1.json verdict=NAS_GOVERNANCE_ACCEPTED",
+      "criterion 2_dsmGovernance state=PASS in the reissued authority artifact"
+    ],
+    "reissueNote": "Reissue/finalize CG_CONTEXT_LEDGER_PHASE_0_AUTHORITY_V1_PASS only when all four criteria show PASS — not while any criterion remains PARTIAL or PENDING."
+  },
+  "phase0Criteria": {
+    "1_nativeTransport": {
+      "state": "PASS",
+      "evidence": [
+        "artifacts/agent-runs/immutable-context-ledger-v1/phase0-production-transport-decision-v1.json",
+        "artifacts/agent-runs/immutable-context-ledger-v1/phase0-synthetic-proof-v1.json"
+      ],
+      "detail": "Production replication uses cg-context-ledger service-account share write (FileStation HTTPS). SSH/rsync restricted proof retained as diagnostic only; shell remediation is not a durable production dependency."
+    },
+    "2_dsmGovernance": {
+      "state": "PENDING",
+      "evidence": [
+        "artifacts/agent-runs/immutable-context-ledger-v1/nas-governance-receipt-v1.json",
+        "artifacts/agent-runs/immutable-context-ledger-v1/dsm-enterprise-worm-create-proof-v1.json"
+      ],
+      "detail": "Dedicated Enterprise WORM vault share provisioned and read-back verified. Human operator attestation on nas-governance-receipt-v1.json is outstanding. DRAFT_UNATTESTED receipts carry no governance weight."
+    },
+    "3_appBuilderRegistration": {
+      "state": "PASS",
+      "evidence": "work-progress/projects/2026-08-30_context-ledger-phase-0-authority-resolution-v1.md (Addendum 3)"
+    },
+    "4_syntheticEnvelope": {
+      "state": "PASS",
+      "evidence": "artifacts/agent-runs/immutable-context-ledger-v1/phase0-synthetic-proof-v1.json",
+      "durabilityState": "FULLY_PROTECTED",
+      "lifecycle": "CAPTURED_LOCAL → HASHED → REPLICATING → DURABLE → VERIFIED",
+      "batchId": "batch-2026-08-31T05-52-00-906Z-978d9d94",
+      "ciphertextHash": "sha256:7170198b2171ea07947ad6388d0452d674c27b992c144fab75de7b575a101234",
+      "threeWayHashMatch": true,
+      "lOnlyRecoverable": true,
+      "headReconstructedFromImmutableEntries": true
+    }
+  },
+  "technicalProofs": {
+    "summary": "End-to-end preservation pipeline proven on synthetic object.",
+    "proven": [
+      "WSL captures and encrypts first (AES-256-GCM before fan-out)",
+      "Synology primary receives encrypted evidence without SSH shell hack dependency",
+      "L: receives an independent second copy",
+      "ciphertextHash(local) == ciphertextHash(Synology) == ciphertextHash(L:)",
+      "L: alone can restore and decrypt; plaintextHash survives reconstruction",
+      "Destroying current-head/ does not destroy history; head rebuilds from immutable entryHash/prevHash chain",
+      "Duplicate ingestion is idempotent at content-addressed paths",
+      "Corruption/mutation is detected, not silently accepted"
+    ],
+    "strongestDesignProofs": [
+      "Synology is not required for recovering from L:",
+      "Mutable head pointer is not required for reconstructing the ledger"
+    ],
+    "productionTopology": "AI work → WSL spool → encrypt/hash → independent fan-out → Synology primary + L: backup → verify both → immutable ledger → Intelligence Hub later"
+  },
+  "transportDurability": {
+    "productionPathDoesNotDependOnSshShellHack": true,
+    "sshDiagnosticProof": "artifacts/agent-runs/immutable-context-ledger-v1/ssh-restricted-transport-proof-v1.json"
+  },
+  "provingVaultAdversarial": {
+    "passCount": 6,
+    "deferredCount": 5,
+    "blocksPhase2": false,
+    "matrix": "artifacts/agent-runs/immutable-context-ledger-v1/phase0-synthetic-proof-v1.json#adversarial.provingVaultMatrix",
+    "deferredTests": [
+      "interrupted transfer",
+      "Synology outage during replication",
+      "WESLEYDESK outage during replication",
+      "retention expiry behaviour",
+      "WORM delete behaviour"
+    ],
+    "deferredNote": "Proving-vault hardening — visible and eventually required, but not blocking Phase 2 per contract."
+  },
+  "keyRecoveryProcedure": {
+    "keyRef": "CONTEXT_LEDGER_EVIDENCE_KEY_V1",
+    "dopplerProject": "cg-shared",
+    "dopplerConfig": "dev",
+    "command": "doppler secrets get CONTEXT_LEDGER_EVIDENCE_KEY_V1 --project cg-shared --config dev --plain",
+    "exercisedInProof": true
+  },
+  "phase2Scope": {
+    "status": "READY_TO_START",
+    "mission": "Capture one real Claude Code session automatically through the proven synthetic pipeline",
+    "pipeline": [
+      "Claude JSONL/session evidence",
+      "canonical evidence envelope",
+      "plaintext identity hash",
+      "AES-256-GCM",
+      "ciphertext hash",
+      "Synology primary",
+      "L: backup",
+      "independent verification",
+      "immutable ledger entry",
+      "session reconstruction"
+    ],
+    "explicitlyOutOfScope": [
+      "Cursor capture",
+      "ChatGPT capture",
+      "executive UI"
+    ],
+    "successCriterion": "Retrieve the preserved session and explain what work it produced"
+  },
+  "foundationalOutcome": "Original context can survive independently of the AI interpretation built on top of it."
+}

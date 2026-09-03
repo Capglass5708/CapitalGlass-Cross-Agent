@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "context-ledger-ssh-restricted-transport-proof-v1@1.0.0",
+  "recordedAt": "2026-08-31T05:30:00Z",
+  "host": "cg-server",
+  "tailscaleIp": "100.112.81.50",
+  "sshAlias": "cg-vault",
+  "serviceUser": "cg-context-ledger",
+  "publicKeyFingerprint": "SHA256:Cf2lFNe83DVh7izV8yljX3Z8nwxbKL1WCgEZjByy50o",
+  "wrapperPath": "/var/services/homes/cg-context-ledger/bin/cg-context-ledger-wrapper.sh",
+  "vaultPath": "/volume1/Capital-Glass-AI-Evidence-Vault",
+  "proofs": {
+    "VAULT_SSH_PROBE": {
+      "command": "ssh cg-vault VAULT_SSH_PROBE",
+      "expectedStdout": "VAULT_SSH_OK",
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    "arbitraryCommandDenied": {
+      "command": "ssh cg-vault id",
+      "expectedStderrContains": "REFUSED: command not in allowlist",
+      "exitCode": 1,
+      "status": "PASS"
+    },
+    "rsyncAllowlisted": {
+      "command": "ssh cg-vault rsync --server --version",
+      "exitCode": 0,
+      "status": "PASS"
+    }
+  },
+  "dsmPrerequisites": {
+    "appPrivileges": ["SYNO.SFTP", "SYNO.Rsync"],
+    "userShell": "/bin/sh",
+    "shellSetMethod": "root scheduled task sed on /etc/passwd (synouser internal shell remains /sbin/nologin; DSM may revert passwd without compensating scheduled task)",
+    "authorizedKeysOwner": "cg-context-ledger:users",
+    "authorizedKeysMode": "600",
+    "sshDirMode": "700"
+  },
+  "status": "CG_CONTEXT_LEDGER_SSH_RESTRICTED_TRANSPORT_PROOF_PASS",
+  "productionRole": "DIAGNOSTIC_ONLY",
+  "notProductionTransport": true,
+  "shellPersistenceDurable": false,
+  "productionTransport": {
+    "mechanism": "service-account share write",
+    "primary": "synology-https-filestation-over-tailscale (cg-context-ledger)",
+    "note": "SSH/rsync restricted proof does not satisfy production durability while passwd shell remediation can revert silently"
+  }
+}

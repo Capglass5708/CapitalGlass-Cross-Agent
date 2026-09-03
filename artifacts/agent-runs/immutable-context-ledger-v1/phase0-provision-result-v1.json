@@ -1,0 +1,132 @@
+{
+  "schemaVersion": "context-ledger-phase0-provision-v1@1.0.0",
+  "recordedAt": "2026-08-31T06:34:33.389200Z",
+  "nasHost": "100.112.81.50",
+  "vaultShare": {
+    "state": "EXISTS",
+    "worm": {
+      "name": "Capital-Glass-AI-Evidence-Vault",
+      "worm_subvol_mode": "enterprise",
+      "worm_def_lock_mode": "immutable",
+      "worm_def_lock_duration": 7776000,
+      "worm_lock_wait_time": 0
+    },
+    "wormEnterprise": true,
+    "wormReadback": {
+      "name": "Capital-Glass-AI-Evidence-Vault",
+      "worm_subvol_mode": "enterprise",
+      "worm_def_lock_mode": "immutable",
+      "worm_def_lock_duration": 7776000,
+      "worm_lock_wait_time": 0
+    },
+    "wormVerified": true
+  },
+  "metaShare": {
+    "state": "EXISTS"
+  },
+  "serviceUser": {
+    "state": "EXISTS",
+    "groups": [],
+    "isAdmin": false
+  },
+  "metaSnapshot": {
+    "setSchedule": {
+      "success": true
+    },
+    "setRetention": {
+      "success": true
+    },
+    "retentionReadback": {
+      "advDaily": 7,
+      "advHourly": 24,
+      "advMinimum": 5,
+      "advMonthly": 1,
+      "advPolicyType": 95,
+      "advRetainDay": 1,
+      "advWeekly": 2,
+      "advYearly": 0,
+      "daily": 7,
+      "hourly": 24,
+      "monthly": 1,
+      "name": "Capital-Glass-AI-Evidence-meta",
+      "policyType": 20,
+      "prefix": "Share#",
+      "recently": 30,
+      "retainDay": 7,
+      "schedule": {
+        "date_type": 1,
+        "hour": 2,
+        "last_work_hour": 2,
+        "min": 0,
+        "repeat_hour": 0,
+        "repeat_min": 0,
+        "week_name": "0,1,2,3,4,5,6"
+      },
+      "tid": -1,
+      "weekly": 2,
+      "yearly": 0
+    },
+    "scheduleReadback": {
+      "enable_snapshot_schedule": true,
+      "schedule": {
+        "date": "2026/8/31",
+        "date_type": 0,
+        "hour": 2,
+        "last_work_hour": 2,
+        "min": 0,
+        "monthly_week": [],
+        "next_trigger_time": "2026-08-31 02:00",
+        "repeat": 0,
+        "repeat_hour": 0,
+        "repeat_hour_store_config": null,
+        "repeat_min": 0,
+        "repeat_min_store_config": null,
+        "week_name": "0,1,2,3,4,5,6"
+      },
+      "task_id": 53
+    }
+  },
+  "layoutErrors": [
+    {
+      "path": "/Capital-Glass-AI-Evidence-Vault/objects/sha256",
+      "error": "FileStation.create_folder() missing 1 required positional argument: 'name'"
+    },
+    {
+      "path": "/Capital-Glass-AI-Evidence-Vault/immutable-metadata/manifests",
+      "error": "FileStation.create_folder() missing 1 required positional argument: 'name'"
+    },
+    {
+      "path": "/Capital-Glass-AI-Evidence-Vault/immutable-metadata/ledger-entries",
+      "error": "FileStation.create_folder() missing 1 required positional argument: 'name'"
+    },
+    {
+      "path": "/Capital-Glass-AI-Evidence-Vault/immutable-metadata/receipts",
+      "error": "FileStation.create_folder() missing 1 required positional argument: 'name'"
+    },
+    {
+      "path": "/Capital-Glass-AI-Evidence-meta/current-head",
+      "error": "FileStation.create_folder() missing 1 required positional argument: 'name'"
+    },
+    {
+      "path": "/Capital-Glass-AI-Evidence-meta/replication-state",
+      "error": "FileStation.create_folder() missing 1 required positional argument: 'name'"
+    },
+    {
+      "path": "/Capital-Glass-AI-Evidence-meta/queues",
+      "error": "FileStation.create_folder() missing 1 required positional argument: 'name'"
+    },
+    {
+      "path": "/Capital-Glass-AI-Evidence-meta/retry-state",
+      "error": "FileStation.create_folder() missing 1 required positional argument: 'name'"
+    },
+    {
+      "path": "/Capital-Glass-AI-Evidence-meta/indexes",
+      "error": "FileStation.create_folder() missing 1 required positional argument: 'name'"
+    },
+    {
+      "path": "/Capital-Glass-AI-Evidence-meta/operational-checkpoints",
+      "error": "FileStation.create_folder() missing 1 required positional argument: 'name'"
+    }
+  ],
+  "layoutCreated": []
+}
