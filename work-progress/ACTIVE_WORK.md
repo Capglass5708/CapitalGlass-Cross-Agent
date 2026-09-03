@@ -21,6 +21,16 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 ## Current saved work
 
+### 2026-08-26 CT — chatgpt-share-fetch-v1 (built + tested, live fetch blocked)
+
+| Field | Value |
+| --- | --- |
+| Work package | `chatgpt-share-fetch-v1` |
+| Status | **PARSING/ORCHESTRATION PROVEN, LIVE FETCH BLOCKED** — 10/10 unit tests passing against fixtures; real network fetch against `chatgpt.com/share/*` returns 403 even with a full browser-like header set |
+| Repos involved | CapitalGlass-Cross-Agent only |
+| Notes | Wesley asked how to remove the manual "download a ChatGPT export, drop it in chat" step for `chatgpt-findings-source.md`. Investigation found the automated half already exists (`chatgpt-harvest-move-to-l.yml` triggers on push to `chat-gpt-harvest`) and confirmed via a real example (`chatgpt-findings-source.md` in a merged harvest) that the file is a fully-structured, self-contained report ChatGPT itself writes as its own message — not a raw transcript — per the ChatGPT-lane protocol's own design principle: "ChatGPT compresses the conversation once into a traceable Git-staged artifact." That reframed the task: extract one message's raw text, not parse conversation semantics. Built `scripts/harvest/lib/chatgpt-share-fetch-lib.mjs` (layered extraction: parses the share page's own embedded `__NEXT_DATA__` JSON using ChatGPT's own documented conversation-export shape — a `mapping` of node→`{message:{author,content,create_time}}` — and fails loudly rather than falling back to a low-confidence guess) and `scripts/harvest/chatgpt-share-fetch.mjs` (thin CLI: fetch → parse → stage a local file → delegate entirely to the *existing* `chatgpt-closeout-from-download.mjs` orchestrator, reusing publish/git-gate/ingest/duplication-preflight unchanged — no reimplementation). 10 pure-logic tests, all passing. **Real, verified blocker:** a live fetch against the real domain (both a minimal and a full browser-like header set) returned `403 Forbidden` on a syntactically valid but nonexistent share id — 403 rather than 404 is more consistent with an edge-level bot block than a per-link check, though this wasn't confirmed against a real share link. If a real link also 403s, plain server-side HTTP fetch cannot do this job at all; the next step would be a headless-browser fetch (this environment has Chromium pre-installed for Playwright), which is a real new dependency for this repo — flagged for Wesley's decision, not added unilaterally. |
+| Evidence | `scripts/harvest/lib/chatgpt-share-fetch-lib.mjs`, `scripts/harvest/chatgpt-share-fetch.mjs`, `scripts/tests/run-chatgpt-share-fetch.test.mjs` (10/10 passing), `npm run harvest:chatgpt-share-fetch` / `npm run test:harvest:chatgpt-share-fetch` |
+| Next | Wesley to supply one real ChatGPT share link to test the live fetch against (throwaway/test content is fine) — resolves whether the 403 is bot detection (needs a real architecture decision: add Playwright, or fall back to manual paste) or an artifact of using a fake id. |
 ### 2026-08-25 CT — appbuilder-mission-harvest-gold-mine-guidance-v1 (corrected, protocol updated)
 
 | Field | Value |
