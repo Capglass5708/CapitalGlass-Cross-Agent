@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "cg-agent-runtime-mcp-manifest-v1",
+  "servers": [
+    {
+      "mcpId": "mcp:m8-github-plane",
+      "slug": "m8-github-plane",
+      "displayName": "M8 GitHub Plane",
+      "cursorServerId": "user-cg-github-plane-mcp",
+      "claudeServerId": null,
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "transport": "stdio-governed",
+      "readWriteClass": "github-mutation-authority",
+      "hosts": ["WESLEYDESK", "RYZEN9DESK", "WESLEY_WORK"],
+      "capabilities": [
+        "github.publish",
+        "github.pull-request.create",
+        "github.pull-request.merge",
+        "github.remote.verify"
+      ],
+      "role": "governed-github-mutation-plane-g0-g8"
+    },
+    {
+      "mcpId": "mcp:m8-feature-plane",
+      "slug": "m8-feature-plane",
+      "displayName": "M8 Feature Plane",
+      "cursorServerId": "user-cg-feature-plane-mcp",
+      "claudeServerId": null,
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "transport": "stdio-governed",
+      "readWriteClass": "feature-mutation-authority",
+      "hosts": ["WESLEYDESK", "RYZEN9DESK", "WESLEY_WORK"],
+      "capabilities": ["mutation.admission"],
+      "role": "governed-feature-plane-f0-f7"
+    },
+    {
+      "mcpId": "mcp:cg-app-builder",
+      "slug": "cg-app-builder-mcp",
+      "displayName": "CG App Builder MCP",
+      "cursorServerId": "user-cg-app-mcp",
+      "claudeServerId": null,
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "transport": "stdio",
+      "readWriteClass": "read-write-governed",
+      "hosts": ["WESLEYDESK", "RYZEN9DESK", "WESLEY_WORK"],
+      "capabilities": ["platform.contract.read", "mutation.admission", "agent_runtime_resolve"]
+    },
+    {
+      "mcpId": "mcp:capital-glass-mcp-suite",
+      "slug": "capital-glass-mcp-suite",
+      "displayName": "Capital Glass MCP Suite",
+      "cursorServerId": null,
+      "claudeServerId": "capital-glass-mcp-suite",
+      "ownerRepo": "Capital-Glass-MCP-Suite",
+      "transport": "stdio-subprocess",
+      "readWriteClass": "read-only-delegated",
+      "hosts": ["WESLEYDESK", "RYZEN9DESK", "WESLEY_WORK"],
+      "capabilities": ["platform.intelligence.read"]
+    }
+  ]
+}

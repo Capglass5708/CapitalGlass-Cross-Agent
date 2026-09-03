@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "cg-agent-runtime-worldview-lane-contract-v1",
+  "workPackageId": "agent-workstation-mcp-hub-index-v1",
+  "laneId": "agentRuntime",
+  "contractRole": "LOGICAL_AUTHORITY_INTERFACE",
+  "notExecutable": true,
+  "producerAuthority": "CG-AppBuilder-MCP",
+  "producerNote": "AppBuilder collects this lane in collectAuthorityLanes(); Cross-Agent does not execute",
+  "logicalAuthority": "CapitalGlass-Cross-Agent/registry/agent-runtime",
+  "consumer": "execution-context:resolve",
+  "driftVocabulary": "registry/agent-runtime/schema/drift-class.v1.json",
+  "generationContract": "registry/agent-runtime/authority/platform.v1.json",
+  "requiredInputs": {
+    "authorityGeneration": "Registry generation hash from compiled agent-runtime slices",
+    "machine": "Machine role/id from peer-live-proof + Office Admin + registry/machines/manifest.v1.json",
+    "client": "Agent client surface (cursor | claude | other) from registry",
+    "profile": "Workstation profile flags after baseline (controller, gpuExecutor, etc.)",
+    "requiredCapabilities": "Capability ids requested for the operation context",
+    "mcpContracts": "Required MCP bindings and contract generation from registry mcps manifest",
+    "observations": "Harvested machine-local realization observations (hooks, settings, paths, MCP wiring)"
+  },
+  "requiredOutputs": {
+    "authorityGeneration": "Generation hash echoed for convergence identity",
+    "machineResolution": "Resolved machine role + identity verdict",
+    "clientResolution": "Resolved client surface + binding verdict",
+    "profileResolution": "Profile flags applied after baseline check",
+    "capabilityResolution": "Required capabilities → resolved or UNRESOLVED",
+    "providerResolution": "Capability → provider mapping (e.g. mcp:m8-github-plane)",
+    "settingsVerdict": "Settings/hash/hook realization verdict (PASS | FAIL | UNKNOWN)",
+    "dependencyVerdict": "Dependency readiness verdict",
+    "drift": "Evaluated drift codes with severity (vocabulary from Cross-Agent only)",
+    "laneVerdict": "Lane-level RESOLVED | HOLD | UNAVAILABLE — consumed by authority convergence"
+  },
+  "crossAgentDefines": [
+    "runtime identities",
+    "capability/provider authority",
+    "drift vocabulary",
+    "generation contract",
+    "expected lane payload shape",
+    "milestone evidence requirements",
+    "integration pointers"
+  ],
+  "crossAgentDoesNot": [
+    "decide executionEligibility",
+    "issue admission",
+    "resolve sessions",
+    "acquire leases",
+    "actuate GitHub",
+    "write lifecycle state"
+  ],
+  "appBuilderImplementationHint": {
+    "collectorTarget": "scripts/worldview/lib/lanes/agent-runtime-lane.mjs",
+    "integratesVia": "collectAuthorityLanes() alongside git, runtimePosture, mcpHealth, governance, env, milestone, pi, hub, cache",
+    "forbidden": ["agent_runtime_resolve", "independent_session_resolver", "second_admission_front_door"]
+  },
+  "dagRegistration": {
+    "nodeId": "agent-runtime",
+    "role": "UPSTREAM_AUTHORITY",
+    "artifactRef": "agent-runtime-authority-snapshot",
+    "edgeTo": "execution-context-resolve",
+    "edgeKind": "READS"
+  }
+}

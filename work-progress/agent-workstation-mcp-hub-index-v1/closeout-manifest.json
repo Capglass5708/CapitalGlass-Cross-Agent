@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "cg-work-package-closeout-v1",
+  "workPackageId": "agent-workstation-mcp-hub-index-v1",
+  "phase": "wave-1b-platform-integration-contract",
+  "architecturalSentence": "Make the existing Capital Glass AI control plane deterministically aware of workstation/runtime state and enforce drift through worldview → execution eligibility → protocol kernel → Lane 0/M8.",
+  "crossAgentScope": {
+    "defines": [
+      "runtime identities",
+      "capability/provider authority",
+      "drift vocabulary",
+      "generation contract",
+      "expected lane payload",
+      "milestone evidence requirements",
+      "integration pointers"
+    ],
+    "doesNot": [
+      "decide executionEligibility",
+      "issue admission",
+      "resolve sessions",
+      "acquire leases",
+      "actuate GitHub",
+      "write lifecycle state"
+    ]
+  },
+  "appBuilderNextStep": {
+    "blockedUntil": "lane0_admission_or_worktree",
+    "instruction": "Implement agentRuntime worldview lane in admitted AppBuilder worktree against committed Cross-Agent contract",
+    "forbidden": ["agent_runtime_resolve", "new_admission_front_door", "mutate_leased_canonical_checkout"]
+  },
+  "milestoneId": "CG_AGENT_RUNTIME_DETERMINISM_V1",
+  "milestoneStateSource": "DERIVED_ONLY — npm run sdlc:milestone:status",
+  "promotionGates": [
+    "P0 AI_PLATFORM_BASELINE_CONVERGENCE",
+    "P1 RUNTIME_AUTHORITY_READY",
+    "P2 RUNTIME_CONTRACT_READY",
+    "P3 ESTATE_OBSERVED",
+    "P4 DRIFT_ENFORCEMENT_READY",
+    "P5 READ_PLANE_READY",
+    "P6 GITHUB_MUTATION_PLANE_READY",
+    "P7 SESSION_ADMISSION_READY"
+  ],
+  "finalPass": "CG_AGENT_RUNTIME_DETERMINISM_V1_PASS",
+  "negativeControls": [
+    "three_machine_baseline_parity",
+    "profile_diff_allowed_platform_diff_blocking",
+    "per_repo_lease_not_global_lock"
+  ],
+  "artifacts": [
+    "registry/agent-runtime/authority/platform-integration.v1.json",
+    "registry/agent-runtime/authority/worldview-lane-agent-runtime.v1.json",
+    "registry/agent-runtime/authority/baseline-convergence.v1.json",
+    "registry/agent-runtime/authority/machines/manifest.v1.json",
+    "work-progress/agent-workstation-mcp-hub-index-v1/PLATFORM-INTEGRATION-ARCHITECTURE.md"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "cg-agent-runtime-capability-manifest-v1",
+  "capabilities": [
+    {
+      "capabilityId": "git.local.read",
+      "displayName": "Local Git read-only",
+      "providerMcpId": null,
+      "authorityRepo": "LOCAL_GIT",
+      "plane": "LOCAL_GIT",
+      "status": "LOCAL_RESOLVED"
+    },
+    {
+      "capabilityId": "git.local.commit",
+      "displayName": "Local Git commit (add/commit)",
+      "providerMcpId": null,
+      "authorityRepo": "LOCAL_MUTATION_ADMISSION",
+      "plane": "LOCAL_MUTATION_ADMISSION",
+      "status": "LOCAL_RESOLVED",
+      "requires": ["mutation_lease", "repo_admission"]
+    },
+    {
+      "capabilityId": "github.publish",
+      "displayName": "Publish branch to GitHub remote",
+      "providerMcpId": "mcp:m8-github-plane",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "plane": "M8_GITHUB_PLANE",
+      "status": "RESOLVED",
+      "forbiddenTransport": ["git push"]
+    },
+    {
+      "capabilityId": "github.pull-request.create",
+      "displayName": "Create GitHub pull request",
+      "providerMcpId": "mcp:m8-github-plane",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "plane": "M8_GITHUB_PLANE",
+      "status": "RESOLVED",
+      "forbiddenTransport": ["gh pr create"]
+    },
+    {
+      "capabilityId": "github.pull-request.merge",
+      "displayName": "Merge GitHub pull request",
+      "providerMcpId": "mcp:m8-github-plane",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "plane": "M8_GITHUB_PLANE",
+      "status": "RESOLVED",
+      "forbiddenTransport": ["gh pr merge"]
+    },
+    {
+      "capabilityId": "github.remote.verify",
+      "displayName": "Verify remote SHA after GitHub mutation",
+      "providerMcpId": "mcp:m8-github-plane",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "plane": "M8_GITHUB_PLANE",
+      "status": "RESOLVED"
+    },
+    {
+      "capabilityId": "platform.intelligence.read",
+      "displayName": "Intelligence Hub read",
+      "providerMcpId": "mcp:capital-glass-mcp-suite",
+      "authorityRepo": "CapitalGlass-Cross-Agent",
+      "status": "RESOLVED"
+    },
+    {
+      "capabilityId": "platform.contract.read",
+      "displayName": "Platform contract read",
+      "providerMcpId": "mcp:cg-app-builder",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "status": "RESOLVED"
+    },
+    {
+      "capabilityId": "mutation.admission",
+      "displayName": "Mutation admission gate",
+      "providerMcpId": "mcp:cg-app-builder",
+      "authorityRepo": "CG-AppBuilder-MCP",
+      "status": "RESOLVED"
+    }
+  ]
+}
