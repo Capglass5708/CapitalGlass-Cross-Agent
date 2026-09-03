@@ -1,0 +1,123 @@
+{
+  "schema": "cg-federated-capability-index-v1@1.0.0",
+  "generatedAt": "2026-09-03T23:41:55.974Z",
+  "capabilities": [
+    {
+      "capabilityId": "document_layer_naming_v1",
+      "ownerRepo": "CapitalGlass-Documents",
+      "sourceIndex": "index/cg-federated-repo-index.v1.json",
+      "sourceIndexSha256": "sha256:13701e0bd2ab5555fc04f4ffe5d26ce4836e1b9d163e84ea34191cf0088e50e7",
+      "repoSha": "885767dccbbfe4bd0b2f7d539e8342dd1d120d31",
+      "status": "ACTIVE",
+      "authorityQuestion": "What is the official document display name for a project document?",
+      "authorityId": "document-layer-v1",
+      "implementation": {
+        "entrypoint": "resolveDisplayName",
+        "path": "api/_document-layer-runtime.ts"
+      },
+      "surfaces": [
+        "API",
+        "RUNTIME"
+      ],
+      "kind": "deterministic_function",
+      "version": "1.0.0",
+      "routing": "LOCAL_OR_GOVERNED_RUNTIME",
+      "localRepoRoot": "/home/wesle/repos/CapitalGlass-Documents"
+    },
+    {
+      "capabilityId": "federated_repo_index_compile_v1",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "sourceIndex": "index/cg-federated-repo-index.v1.json",
+      "sourceIndexSha256": "sha256:2548ce91e2d51709833a5a10c22febf967f4f48280a7908d2d2bb811902befc2",
+      "repoSha": "84acb184c84e7ddefc069183906f6a8aff6abd87",
+      "status": "ACTIVE",
+      "authorityQuestion": "How is a deterministic local federated repo index compiled from seed?",
+      "authorityId": "repo-index-compiler-v1",
+      "implementation": {
+        "entrypoint": "compileLocalIndex",
+        "path": "scripts/federated-repo-index/lib/compile-local-index.mjs"
+      },
+      "surfaces": [
+        "CLI"
+      ],
+      "kind": "deterministic_function",
+      "version": "1.0.0",
+      "routing": "LOCAL_OR_GOVERNED_RUNTIME",
+      "localRepoRoot": "/home/wesle/repos/CG-AppBuilder-MCP"
+    },
+    {
+      "capabilityId": "generate_governed_ide_workspace_v1",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "sourceIndex": "index/cg-federated-repo-index.v1.json",
+      "sourceIndexSha256": "sha256:2548ce91e2d51709833a5a10c22febf967f4f48280a7908d2d2bb811902befc2",
+      "repoSha": "84acb184c84e7ddefc069183906f6a8aff6abd87",
+      "status": "SPEC_FROZEN",
+      "authorityQuestion": "How is a governed IDE workspace file generated from canonical repo registry?",
+      "authorityId": "ide-workspace-admission-v1",
+      "implementation": {
+        "entrypoint": "generateGovernedIdeWorkspace",
+        "path": "artifacts/agent-runs/generated-ide-workspace-v1/GENERATED_IDE_WORKSPACE_V1_SPEC.json"
+      },
+      "surfaces": [
+        "CLI"
+      ],
+      "kind": "deterministic_function",
+      "version": "1.0.0",
+      "routing": "SPEC_ONLY",
+      "localRepoRoot": "/home/wesle/repos/CG-AppBuilder-MCP"
+    },
+    {
+      "capabilityId": "ide_workspace_admission_v1",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "sourceIndex": "index/cg-federated-repo-index.v1.json",
+      "sourceIndexSha256": "sha256:2548ce91e2d51709833a5a10c22febf967f4f48280a7908d2d2bb811902befc2",
+      "repoSha": "84acb184c84e7ddefc069183906f6a8aff6abd87",
+      "status": "FROZEN",
+      "authorityQuestion": "Is this IDE workspace or repository target authorized for execution?",
+      "authorityId": "ide-workspace-admission-v1",
+      "implementation": {
+        "entrypoint": "evaluateIdeWorkspaceAdmission",
+        "path": "scripts/ide-workspace-admission/lib/evaluate-ide-workspace-admission.mjs"
+      },
+      "surfaces": [
+        "CLI",
+        "RUNTIME"
+      ],
+      "kind": "deterministic_function",
+      "version": "1.0.0",
+      "routing": "LOCAL_OR_GOVERNED_RUNTIME",
+      "localRepoRoot": "/home/wesle/repos/CG-AppBuilder-MCP"
+    },
+    {
+      "capabilityId": "luna_identity_route_v1",
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "sourceIndex": "index/cg-federated-repo-index.v1.json",
+      "sourceIndexSha256": "sha256:2548ce91e2d51709833a5a10c22febf967f4f48280a7908d2d2bb811902befc2",
+      "repoSha": "84acb184c84e7ddefc069183906f6a8aff6abd87",
+      "status": "ACTIVE",
+      "authorityQuestion": "Which owner repo answers a domain/program/symbol identity query?",
+      "authorityId": "luna-estate-retrieval-v1",
+      "implementation": {
+        "entrypoint": "runLunaIdentityRoute",
+        "path": "scripts/federated-repo-index/lib/luna-identity-route.mjs"
+      },
+      "surfaces": [
+        "CLI",
+        "RUNTIME"
+      ],
+      "kind": "deterministic_function",
+      "version": "1.0.0",
+      "routing": "LOCAL_OR_GOVERNED_RUNTIME",
+      "localRepoRoot": "/home/wesle/repos/CG-AppBuilder-MCP"
+    }
+  ],
+  "stats": {
+    "totalCapabilities": 5,
+    "uniqueCapabilityIds": 5,
+    "ambiguousCapabilityCount": 0,
+    "invalidCapabilityCount": 0
+  },
+  "ambiguous": [],
+  "invalid": [],
+  "contentSha256": "sha256:f324e75432a0c002f8bbddca017dc1e1e1eeb7e92298c6d5108c895efd253ea2"
+}
