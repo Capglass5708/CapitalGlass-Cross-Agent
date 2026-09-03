@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "dkp-interface-state-contract-v1@1.0.0",
+  "knowledgeId": "DKP-git-estate-dirty-priority",
+  "knowledgeState": "DETERMINIZATION_CANDIDATE",
+  "scope": {
+    "machineRoles": ["ryzen9desk", "wesley_work"],
+    "repoDomains": ["git-estate"],
+    "environments": ["wsl-ext4-dev"],
+    "conditions": { "compiler": "git-estate/buildCompact" }
+  },
+  "claim": {
+    "type": "RULE",
+    "statement": "Dirty repositories are prioritized by materialDirtyFileCount descending"
+  },
+  "evidence": {
+    "receiptIds": [],
+    "eventRefs": [],
+    "contradictionRefs": []
+  },
+  "provenance": { "sourceEpochSha": null, "observedAt": null },
+  "governance": { "approvalRef": null, "governanceReceiptId": null },
+  "implementation": {
+    "ownerRepo": "CG-AppBuilder-MCP",
+    "component": "git-estate/compiler",
+    "path": "scripts/hot-cache-platform/datasets/git-estate/compiler.mjs"
+  },
+  "proof": {
+    "receiptId": null,
+    "gateResults": [],
+    "verdict": null
+  },
+  "review": { "demotionAllowed": true, "reviewState": null }
+}

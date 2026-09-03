@@ -208,6 +208,59 @@
         "appBuilderSha": "983cfba34dfefe4902cb60af258e94a4968491af",
         "officeAdminSha": "8357ef59aba3765b6a80a39386fd245c137debf6"
       }
+    },
+    {
+      "packetId": "repository-health-v1",
+      "extends": "mcp-preflight-base-v1",
+      "dependencyMode": "replace",
+      "version": "1.0.0",
+      "queryClass": "repository-health",
+      "commandIds": [
+        "git-estate:bulk-pull",
+        "hot-cache:compile -- --dataset=git-estate"
+      ],
+      "dependsOnDatasets": [
+        "git-estate",
+        "active-ledger"
+      ],
+      "executionLaneIds": [
+        "dkp-candidate-scout-v1"
+      ],
+      "tierViews": {
+        "scout": {
+          "include": [
+            "guardrailIds",
+            "blockers",
+            "openActions",
+            "dependsOnDatasets"
+          ],
+          "maxBytes": 4096
+        }
+      }
+    },
+    {
+      "packetId": "machine-capability-v1",
+      "extends": "mcp-preflight-base-v1",
+      "dependencyMode": "replace",
+      "version": "1.0.0",
+      "queryClass": "machine-capability",
+      "dependsOnDatasets": [
+        "git-estate"
+      ],
+      "executionLaneIds": [
+        "dkp-promotion-evaluator-v1"
+      ],
+      "tierViews": {
+        "scout": {
+          "include": [
+            "guardrailIds",
+            "blockers",
+            "openActions",
+            "dependsOnDatasets"
+          ],
+          "maxBytes": 4096
+        }
+      }
     }
   ]
 }

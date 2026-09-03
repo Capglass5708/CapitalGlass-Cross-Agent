@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dkp-interface-state-contract-v1@1.0.0",
+  "type": "object",
+  "required": ["schemaVersion", "knowledgeId", "knowledgeState", "scope", "claim"],
+  "properties": {
+    "schemaVersion": { "const": "dkp-interface-state-contract-v1@1.0.0" },
+    "knowledgeId": { "type": "string", "minLength": 1 },
+    "knowledgeState": { "type": "string" },
+    "scope": {
+      "type": "object",
+      "properties": {
+        "machineRoles": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "claim": { "type": "object" },
+    "governance": { "type": "object" },
+    "proof": { "type": "object" }
+  },
+  "additionalProperties": true
+}
