@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "closeout-manifest-v1@1.0.0",
+  "workPackageId": "agent-workstation-mcp-hub-index-v1",
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "missionClass": "implement",
+  "status": "CHANGE_0_SEEDED_AWAITING_RATIFICATION",
+  "changes": [
+    { "id": "change-0", "repo": "CapitalGlass-Cross-Agent", "title": "Stand up registry/agent-runtime/", "court": "4.0-L3", "state": "SEEDED" },
+    { "id": "change-3", "repo": "CG-AppBuilder-MCP", "title": "Credential + binary preconditions", "court": "4.0-L1", "state": "NOT_STARTED" },
+    { "id": "change-1", "repo": "CG-AppBuilder-MCP", "title": "Probe connector MCPs for real", "court": "4.0-L2", "state": "NOT_STARTED" },
+    { "id": "change-2", "repo": "CG-AppBuilder-MCP", "title": "Generated mission attestation", "court": "4.0-L1", "state": "NOT_STARTED" },
+    { "id": "change-4", "repo": "CG-AppBuilder-MCP", "title": "OAuth grant completeness", "court": "4.0-L1", "state": "NOT_STARTED" }
+  ],
+  "artifacts": [
+    "registry/agent-runtime/mcp-estate.v1.json",
+    "registry/agent-runtime/agent-runtime-profiles.v1.json",
+    "registry/agent-runtime/capability-bindings.v1.json",
+    "registry/agent-runtime/README.md"
+  ],
+  "seedProvenance": {
+    "generator": "CG-AppBuilder-MCP/scripts/agent-runtime/harvest-mcp-estate-seed-v1.mjs",
+    "generatorBranch": "work/agent-workstation-mcp-hub-index-v1",
+    "allRecordsUnreviewed": true,
+    "secretValuesRead": false
+  },
+  "blockingConditions": [
+    "Every record is SEEDED_UNREVIEWED; ratification is a human review and is not complete.",
+    "Several OPERATIONAL records declare no canonicalProbe and cannot be ratified until they do.",
+    "capability-bindings.v1.json is intentionally empty pending per-binding basis.",
+    "Registry drift observed at seed time: claude 27 servers vs cursor 18, DRIFT: 10."
+  ],
+  "acceptance": {
+    "change0": "registry/agent-runtime/ exists in CapitalGlass-Cross-Agent with the four artifacts, no secret values, and every record explicitly marked SEEDED_UNREVIEWED."
+  }
+}
