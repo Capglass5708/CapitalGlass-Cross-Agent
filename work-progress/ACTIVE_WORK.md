@@ -12,7 +12,7 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-08-13
+| Last updated | 2026-09-04
 | Current focus | WESLEYWORK Storage Keeper sole repair front door (`wesleywork-storage-protocol-contradiction-remediation-v1`); TWO_DESK_OPERATING + federated index Wave A closed
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
@@ -20,6 +20,18 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Project index | `work-progress/projects/INDEX.md` |
 
 ## Current saved work
+
+### 2026-09-04 CT — proposal-generator-door-hardware-component-free-text-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `proposal-generator-door-hardware-component-free-text-v1` |
+| Status | **MERGED to `main`** — Cursor-ProposalGenerator PR #227 squash-merged as `f282258` (2026-09-04 14:4x UTC) on Wesley's instruction; branch `claude/door-hardware-component-field-3texxd`, source commit `f30ccac`. Production deploy follows automatically via `production-deploy-after-validate.yml`. |
+| Source | Wesley (screenshot request) → Claude Code |
+| Repos involved | `Cursor-ProposalGenerator` (implementation), `CapitalGlass-Cross-Agent` (this ledger entry only) |
+| Notes | Wesley asked for the **Component** field on door hardware set rows in the Doors module to be a manual type-in field instead of a dropdown. The dropdown was limited to `HARDWARE_COMPONENT_CATALOG` plus names already in use on the project. Replaced the `SelectField` in `src/app/doors/page.tsx` with a plain `FormField` text input (same `componentName` wiring) and removed the now-dead option-list plumbing (`buildHardwareComponentSelectOptions` import, `hardwareComponentOptions`, `componentOptions` prop on `HardwareSetCard`). Catalog constant and helper in `src/lib/hardware-component-catalog.ts` left intact; still used by the storefront hardware catalog and its tests. |
+| Verification | `tsc --noEmit` green; `eslint src/app/doors/page.tsx` 0 errors (6 pre-existing unused-import warnings). Doors/hardware unit tests: 109 pass, 2 fail — both fail identically on `main` (assert the doors page references `reportsWorkflowHref` / Reports workflow link; unrelated to this change). One baseline failure ("hardware set cards stay collapsed by default") now passes as a side effect of the shorter `HardwareSetCard` signature. |
+| Next | None for the field change. Two follow-ups noted, not done here: (1) pre-existing Reports-workflow test failures on `main` (`merge-review-ui`, `module-centralized-source-ui`); (2) `sync-developer-memory.yml` fails on the first push of any new branch (root-commit range + `pipefail` on `echo | head`); proposed patch is in the PR #227 comment thread. |
 
 ### 2026-08-25 CT — appbuilder-mission-harvest-gold-mine-guidance-v1 (corrected, protocol updated)
 
