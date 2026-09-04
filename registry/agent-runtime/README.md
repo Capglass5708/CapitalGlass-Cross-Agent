@@ -34,3 +34,27 @@ Hub publication: WESLEYDESK GHA only.
 ## Work package
 
 `agent-workstation-mcp-hub-index-v1`
+
+## Estate index records (migrated into the nested manifests)
+
+`authority/mcps/manifest.v1.json` carries, alongside the authority object's own `servers[]`, the
+estate index that the AppBuilder provers read: `records[]` (one per MCP: canonical id,
+transport, launcher expectation, required/optional, `healthClass`, canonical read-only probe,
+credential shape contract), `seededFrom`, `secretValuesRead: false` and `estateIndex.counts`.
+`authority/machines/manifest.v1.json` carries `workstations[]` and `agentRoles[]` alongside
+`authorizedRoles[]`.
+
+Those keys are **generated, never hand-edited**, from the migration source under
+`work-progress/agent-workstation-mcp-hub-index-v1/migration-source/` by CG-AppBuilder-MCP:
+
+```bash
+npm run agent-runtime:materialize-authority -- --cross-agent-root <this checkout>
+npm run agent-runtime:materialize-authority:check -- --cross-agent-root <this checkout>   # drift gate
+```
+
+The generator preserves every authority key verbatim, reads no wall clock
+(`provenance.generatedAt` is the AppBuilder source commit's committer date) and is
+byte-identical on regeneration. Every record stays `SEEDED_UNREVIEWED` until a human review
+ratifies it; materializing is not ratification. Prove with
+`npm run agent-runtime:conformance` and `npm run agent-runtime:preconditions`
+(`CG_CROSS_AGENT_ROOT` pointing here).

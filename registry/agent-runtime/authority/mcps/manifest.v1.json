@@ -10,7 +10,11 @@
       "ownerRepo": "CG-AppBuilder-MCP",
       "transport": "stdio-governed",
       "readWriteClass": "github-mutation-authority",
-      "hosts": ["WESLEYDESK", "RYZEN9DESK", "WESLEY_WORK"],
+      "hosts": [
+        "WESLEYDESK",
+        "RYZEN9DESK",
+        "WESLEY_WORK"
+      ],
       "capabilities": [
         "github.publish",
         "github.pull-request.create",
@@ -28,8 +32,14 @@
       "ownerRepo": "CG-AppBuilder-MCP",
       "transport": "stdio-governed",
       "readWriteClass": "feature-mutation-authority",
-      "hosts": ["WESLEYDESK", "RYZEN9DESK", "WESLEY_WORK"],
-      "capabilities": ["mutation.admission"],
+      "hosts": [
+        "WESLEYDESK",
+        "RYZEN9DESK",
+        "WESLEY_WORK"
+      ],
+      "capabilities": [
+        "mutation.admission"
+      ],
       "role": "governed-feature-plane-f0-f7"
     },
     {
@@ -41,8 +51,16 @@
       "ownerRepo": "CG-AppBuilder-MCP",
       "transport": "stdio",
       "readWriteClass": "read-write-governed",
-      "hosts": ["WESLEYDESK", "RYZEN9DESK", "WESLEY_WORK"],
-      "capabilities": ["platform.contract.read", "mutation.admission", "agent_runtime_resolve"]
+      "hosts": [
+        "WESLEYDESK",
+        "RYZEN9DESK",
+        "WESLEY_WORK"
+      ],
+      "capabilities": [
+        "platform.contract.read",
+        "mutation.admission",
+        "agent_runtime_resolve"
+      ]
     },
     {
       "mcpId": "mcp:capital-glass-mcp-suite",
@@ -53,8 +71,1332 @@
       "ownerRepo": "Capital-Glass-MCP-Suite",
       "transport": "stdio-subprocess",
       "readWriteClass": "read-only-delegated",
-      "hosts": ["WESLEYDESK", "RYZEN9DESK", "WESLEY_WORK"],
-      "capabilities": ["platform.intelligence.read"]
+      "hosts": [
+        "WESLEYDESK",
+        "RYZEN9DESK",
+        "WESLEY_WORK"
+      ],
+      "capabilities": [
+        "platform.intelligence.read"
+      ]
     }
-  ]
+  ],
+  "estateIndex": {
+    "schema": "mcp-estate-v1@1.0.0",
+    "workPackageId": "agent-workstation-mcp-hub-index-v1",
+    "ownerRepo": "CapitalGlass-Cross-Agent",
+    "authorityClass": "LOGICAL_ESTATE_AUTHORITY",
+    "authorityNote": "Canonical logical index of the MCP/agent-workstation estate. Realized and proven by CG-AppBuilder-MCP; published read-only to the Intelligence Hub; consumed by Claude/Cursor configs. Those configs are outputs, never authority.",
+    "seedWarning": "Records marked SEEDED_UNREVIEWED were harvested from generated runtime state and have not been ratified. Harvest reproduces today's drift; review each record before treating it as authority.",
+    "seedGeneratedAt": "2026-09-04T02:25:28.252Z",
+    "migrationSource": "work-progress/agent-workstation-mcp-hub-index-v1/migration-source/mcp-estate.v1.json",
+    "counts": {
+      "OPERATIONAL": 14,
+      "AUTHORIZATION_ONLY": 3,
+      "GOVERNED_PROBE_INCOMPLETE": 6,
+      "NOT_GOVERNED": 6
+    }
+  },
+  "seededFrom": [
+    {
+      "ownerRepo": "GENERATED_RUNTIME_STATE",
+      "relativePath": "~/.cursor/mcp.json"
+    },
+    {
+      "ownerRepo": "GENERATED_RUNTIME_STATE",
+      "relativePath": "~/.claude.json"
+    },
+    {
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "relativePath": "scripts/lib/mcp-health/constants.mjs"
+    },
+    {
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "relativePath": "docs/platform-registry/mcp-authority-registry-v1.json"
+    },
+    {
+      "ownerRepo": "CG-AppBuilder-MCP",
+      "relativePath": "intelligence-hub/design/contracts/MCP_RUNTIME_PROBE_REGISTRY.v1.json"
+    },
+    {
+      "ownerRepo": "CapitalGlass-Cross-Agent",
+      "relativePath": "work-progress/agent-workstation-mcp-hub-index-v1/migration-source/mcp-estate.v1.json"
+    }
+  ],
+  "secretValuesRead": false,
+  "records": [
+    {
+      "recordId": "agent-loop-mcp",
+      "identities": {
+        "mcpId": "agent-loop-mcp",
+        "workspaceId": "agent-loop-mcp",
+        "cursorKey": "agent-loop",
+        "claudeKey": "agent-loop",
+        "registrationOrigin": "cursor-registry"
+      },
+      "declared": {
+        "requirement": "REQUIRED",
+        "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_MCP_SURFACE",
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION",
+            "RUNTIME_PROBE_REGISTRY"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
+        "transport": "stdio",
+        "launcher": {
+          "kind": "stdio",
+          "command": "doppler",
+          "args": [
+            "run",
+            "-p",
+            "capital-glass-agent-ops",
+            "-c",
+            "dev",
+            "--",
+            "node",
+            "/home/wesle/repos/capital-glass-agent-ops/mcps/agent-loop-mcp/src/server.mjs"
+          ]
+        },
+        "canonicalProbe": {
+          "preferredReadOnlyTool": "loop_status",
+          "fallbackReadOnlyTool": null,
+          "toolArguments": {},
+          "expectedResponseShape": {
+            "ok": true
+          }
+        },
+        "credentialContract": [
+          {
+            "key": "SUPABASE_URL",
+            "shapeClass": "HTTPS_URL",
+            "prefixes": [
+              "https://"
+            ],
+            "minLength": 12,
+            "maxLength": 500,
+            "singleLine": true,
+            "dopplerProject": "capital-glass-agent-ops",
+            "dopplerConfig": "dev"
+          },
+          {
+            "key": "SUPABASE_SERVICE_ROLE_KEY",
+            "shapeClass": "JWT",
+            "prefixes": [
+              "ey"
+            ],
+            "minLength": 40,
+            "maxLength": 4096,
+            "singleLine": true,
+            "dopplerProject": "capital-glass-agent-ops",
+            "dopplerConfig": "dev"
+          }
+        ]
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "app-builder-mcp",
+      "identities": {
+        "mcpId": "app-builder-mcp",
+        "workspaceId": "cg-app-builder-mcp",
+        "cursorKey": "cg-app-mcp",
+        "claudeKey": "cg-app-mcp",
+        "registrationOrigin": "cursor-registry"
+      },
+      "declared": {
+        "requirement": "REQUIRED",
+        "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_MCP_SURFACE",
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION",
+            "RUNTIME_PROBE_REGISTRY"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
+        "transport": "stdio",
+        "launcher": {
+          "kind": "stdio",
+          "command": "doppler",
+          "args": [
+            "run",
+            "-p",
+            "cg-mcp",
+            "-c",
+            "dev",
+            "--",
+            "node",
+            "/home/wesle/repos/CG-AppBuilder-MCP/services/cursor-mcp-server/run.mjs"
+          ]
+        },
+        "canonicalProbe": {
+          "preferredReadOnlyTool": "list_projects",
+          "fallbackReadOnlyTool": "intelligence.get_hub_status",
+          "toolArguments": {},
+          "expectedResponseShape": {
+            "projects": "array"
+          }
+        },
+        "credentialContract": [
+          {
+            "key": "MCP_API_TOKEN",
+            "shapeClass": "JWT",
+            "prefixes": [
+              "ey"
+            ],
+            "minLength": 40,
+            "maxLength": 4096,
+            "singleLine": true,
+            "dopplerProject": "cg-mcp",
+            "dopplerConfig": "dev"
+          }
+        ]
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "bid-composer-app-mcp",
+      "identities": {
+        "mcpId": "bid-composer-app-mcp",
+        "workspaceId": "bid-composer-app-mcp",
+        "cursorKey": null,
+        "claudeKey": "bid-composer-app-mcp",
+        "registrationOrigin": "claude-registry"
+      },
+      "declared": {
+        "requirement": "REQUIRED",
+        "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_MCP_SURFACE",
+            "RUNTIME_PROBE_REGISTRY"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
+        "transport": "stdio",
+        "launcher": {
+          "kind": "stdio",
+          "command": "node",
+          "args": [
+            "/home/wesle/repos/CapitalGlass-BidComposer/mcp/run-app-mcp.mjs"
+          ]
+        },
+        "canonicalProbe": {
+          "preferredReadOnlyTool": "app.get_summary",
+          "fallbackReadOnlyTool": "app.get_agent_preflight",
+          "toolArguments": {},
+          "expectedResponseShape": {
+            "summary": "string"
+          }
+        },
+        "credentialContract": []
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "capital-glass-mcp-suite",
+      "identities": {
+        "mcpId": "capital-glass-mcp-suite",
+        "workspaceId": "capital-glass-mcp-suite",
+        "cursorKey": null,
+        "claudeKey": "capital-glass-mcp-suite",
+        "registrationOrigin": "claude-registry"
+      },
+      "declared": {
+        "requirement": "NOT_APPLICABLE",
+        "healthClass": "NOT_GOVERNED",
+        "governance": {
+          "governed": false,
+          "basis": [],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "NOT_APPLICABLE",
+        "transport": "stdio",
+        "launcher": {
+          "kind": "stdio",
+          "command": "node",
+          "args": [
+            "/home/wesle/.local/share/capital-glass/claude-mcp-suite/1.0.1-31abb83acb58/server/index.mjs"
+          ]
+        },
+        "canonicalProbe": null,
+        "credentialContract": []
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "cg-feature-plane",
+      "identities": {
+        "mcpId": "cg-feature-plane",
+        "workspaceId": "cg-feature-plane",
+        "cursorKey": null,
+        "claudeKey": null,
+        "registrationOrigin": "repo-mcp-json"
+      },
+      "declared": {
+        "requirement": "REQUIRED",
+        "healthClass": "GOVERNED_PROBE_INCOMPLETE",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "GOVERNED_REPO_MCP_JSON"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
+        "transport": "stdio",
+        "launcher": {
+          "kind": "stdio",
+          "command": "node",
+          "args": [
+            "services/cg-feature-plane-mcp/index.mjs"
+          ]
+        },
+        "canonicalProbe": null,
+        "credentialContract": []
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "cg-github-plane",
+      "identities": {
+        "mcpId": "cg-github-plane",
+        "workspaceId": "cg-github-plane",
+        "cursorKey": null,
+        "claudeKey": null,
+        "registrationOrigin": "repo-mcp-json"
+      },
+      "declared": {
+        "requirement": "REQUIRED",
+        "healthClass": "GOVERNED_PROBE_INCOMPLETE",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "GOVERNED_REPO_MCP_JSON"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
+        "transport": "stdio",
+        "launcher": {
+          "kind": "stdio",
+          "command": "node",
+          "args": [
+            "services/cg-github-plane-mcp/index.mjs"
+          ]
+        },
+        "canonicalProbe": null,
+        "credentialContract": []
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "cloudflare",
+      "identities": {
+        "mcpId": "cloudflare",
+        "workspaceId": "cloudflare",
+        "cursorKey": "cloudflare",
+        "claudeKey": "cloudflare",
+        "registrationOrigin": "cursor-registry"
+      },
+      "declared": {
+        "requirement": "REQUIRED",
+        "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
+        "transport": "stdio",
+        "launcher": {
+          "kind": "stdio",
+          "command": "doppler",
+          "args": [
+            "run",
+            "-p",
+            "cg-shared",
+            "-c",
+            "dev",
+            "--",
+            "node",
+            "/home/wesle/repos/CG-AppBuilder-MCP/scripts/mcp-cloudflare-launch.mjs"
+          ]
+        },
+        "canonicalProbe": {
+          "preferredReadOnlyTool": "search",
+          "toolArguments": {
+            "query": "workers"
+          },
+          "expectedResponseShape": {}
+        },
+        "credentialContract": [
+          {
+            "key": "CLOUDFLARE_API_TOKEN",
+            "shapeClass": "OPAQUE_TOKEN",
+            "prefixes": [],
+            "minLength": 32,
+            "maxLength": 200,
+            "singleLine": true,
+            "dopplerProject": "cg-shared",
+            "dopplerConfig": "dev"
+          }
+        ]
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "cloudflare-bindings",
+      "identities": {
+        "mcpId": "cloudflare-bindings",
+        "workspaceId": "cloudflare-bindings",
+        "cursorKey": "cloudflare-bindings",
+        "claudeKey": "cloudflare-bindings",
+        "registrationOrigin": "cursor-registry"
+      },
+      "declared": {
+        "requirement": "NOT_APPLICABLE",
+        "healthClass": "NOT_GOVERNED",
+        "governance": {
+          "governed": false,
+          "basis": [],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "NOT_APPLICABLE",
+        "transport": "http",
+        "launcher": {
+          "kind": "http",
+          "url": "https://bindings.mcp.cloudflare.com/mcp"
+        },
+        "canonicalProbe": null,
+        "credentialContract": []
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "cloudflare-builds",
+      "identities": {
+        "mcpId": "cloudflare-builds",
+        "workspaceId": "cloudflare-builds",
+        "cursorKey": "cloudflare-builds",
+        "claudeKey": "cloudflare-builds",
+        "registrationOrigin": "cursor-registry"
+      },
+      "declared": {
+        "requirement": "NOT_APPLICABLE",
+        "healthClass": "NOT_GOVERNED",
+        "governance": {
+          "governed": false,
+          "basis": [],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "NOT_APPLICABLE",
+        "transport": "http",
+        "launcher": {
+          "kind": "http",
+          "url": "https://builds.mcp.cloudflare.com/mcp"
+        },
+        "canonicalProbe": null,
+        "credentialContract": []
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "cloudflare-docs",
+      "identities": {
+        "mcpId": "cloudflare-docs",
+        "workspaceId": "cloudflare-docs",
+        "cursorKey": "cloudflare-docs",
+        "claudeKey": "cloudflare-docs",
+        "registrationOrigin": "cursor-registry"
+      },
+      "declared": {
+        "requirement": "NOT_APPLICABLE",
+        "healthClass": "NOT_GOVERNED",
+        "governance": {
+          "governed": false,
+          "basis": [],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "NOT_APPLICABLE",
+        "transport": "http",
+        "launcher": {
+          "kind": "http",
+          "url": "https://docs.mcp.cloudflare.com/mcp"
+        },
+        "canonicalProbe": null,
+        "credentialContract": []
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "cloudflare-observability",
+      "identities": {
+        "mcpId": "cloudflare-observability",
+        "workspaceId": "cloudflare-observability",
+        "cursorKey": "cloudflare-observability",
+        "claudeKey": "cloudflare-observability",
+        "registrationOrigin": "cursor-registry"
+      },
+      "declared": {
+        "requirement": "NOT_APPLICABLE",
+        "healthClass": "NOT_GOVERNED",
+        "governance": {
+          "governed": false,
+          "basis": [],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "NOT_APPLICABLE",
+        "transport": "http",
+        "launcher": {
+          "kind": "http",
+          "url": "https://observability.mcp.cloudflare.com/mcp"
+        },
+        "canonicalProbe": null,
+        "credentialContract": []
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "cloudflare-platform",
+      "identities": {
+        "mcpId": "cloudflare-platform",
+        "workspaceId": "cloudflare-platform",
+        "cursorKey": "cloudflare-platform",
+        "claudeKey": "cloudflare-platform",
+        "registrationOrigin": "cursor-registry"
+      },
+      "declared": {
+        "requirement": "NOT_APPLICABLE",
+        "healthClass": "NOT_GOVERNED",
+        "governance": {
+          "governed": false,
+          "basis": [],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "NOT_APPLICABLE",
+        "transport": "http",
+        "launcher": {
+          "kind": "http",
+          "url": "https://mcp.cloudflare.com/mcp"
+        },
+        "canonicalProbe": null,
+        "credentialContract": []
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "computer-estimator-mcp",
+      "identities": {
+        "mcpId": "computer-estimator-mcp",
+        "workspaceId": "computer-estimator-mcp",
+        "cursorKey": null,
+        "claudeKey": "computer-estimator-mcp",
+        "registrationOrigin": "claude-registry"
+      },
+      "declared": {
+        "requirement": "REQUIRED",
+        "healthClass": "GOVERNED_PROBE_INCOMPLETE",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_MCP_SURFACE"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
+        "transport": "stdio",
+        "launcher": {
+          "kind": "stdio",
+          "command": "node",
+          "args": [
+            "/home/wesle/repos/CG-Computer-Estimator-MCP/mcp/run.mjs"
+          ]
+        },
+        "canonicalProbe": null,
+        "credentialContract": []
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "diagnostic-mcp",
+      "identities": {
+        "mcpId": "diagnostic-mcp",
+        "workspaceId": "cg-diagnostic-mcp",
+        "cursorKey": "cg-diagnostic",
+        "claudeKey": "cg-diagnostic",
+        "registrationOrigin": "cursor-registry"
+      },
+      "declared": {
+        "requirement": "REQUIRED",
+        "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_MCP_SURFACE",
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION",
+            "RUNTIME_PROBE_REGISTRY"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
+        "transport": "stdio",
+        "launcher": {
+          "kind": "stdio",
+          "command": "doppler",
+          "args": [
+            "run",
+            "-p",
+            "cg-mcp",
+            "-c",
+            "dev",
+            "--",
+            "node",
+            "/home/wesle/repos/CG-AppBuilder-MCP/services/cursor-diagnostic-mcp/run.mjs"
+          ]
+        },
+        "canonicalProbe": {
+          "preferredReadOnlyTool": "manifest_list",
+          "fallbackReadOnlyTool": "integrations_health_summary",
+          "toolArguments": {},
+          "expectedResponseShape": {
+            "applications": "array(non-empty)"
+          }
+        },
+        "credentialContract": []
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "document-center-app-mcp",
+      "identities": {
+        "mcpId": "document-center-app-mcp",
+        "workspaceId": "document-center-app-mcp",
+        "cursorKey": null,
+        "claudeKey": "document-center-app-mcp",
+        "registrationOrigin": "claude-registry"
+      },
+      "declared": {
+        "requirement": "REQUIRED",
+        "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_MCP_SURFACE",
+            "RUNTIME_PROBE_REGISTRY"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
+        "transport": "stdio",
+        "launcher": {
+          "kind": "stdio",
+          "command": "node",
+          "args": [
+            "/home/wesle/repos/CapitalGlass-Documents/mcp/run-app-mcp.mjs"
+          ]
+        },
+        "canonicalProbe": {
+          "preferredReadOnlyTool": "app.get_summary",
+          "fallbackReadOnlyTool": "document_center_preflight",
+          "toolArguments": {},
+          "expectedResponseShape": {
+            "summary": "string"
+          }
+        },
+        "credentialContract": []
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "doppler",
+      "identities": {
+        "mcpId": "doppler",
+        "workspaceId": "doppler",
+        "cursorKey": "doppler",
+        "claudeKey": "doppler",
+        "registrationOrigin": "cursor-registry"
+      },
+      "declared": {
+        "requirement": "REQUIRED",
+        "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
+        "transport": "stdio",
+        "launcher": {
+          "kind": "stdio",
+          "command": "node",
+          "args": [
+            "/home/wesle/repos/CG-AppBuilder-MCP/scripts/mcp-doppler-launch.mjs"
+          ]
+        },
+        "canonicalProbe": {
+          "preferredReadOnlyTool": "projects_list",
+          "toolArguments": {},
+          "expectedResponseShape": {}
+        },
+        "credentialContract": [
+          {
+            "key": "DOPPLER_TOKEN",
+            "shapeClass": "DOPPLER_TOKEN",
+            "prefixes": [
+              "dp.st.",
+              "dp.pt.",
+              "dp.sa.",
+              "dp.ct."
+            ],
+            "minLength": 40,
+            "maxLength": 200,
+            "singleLine": true,
+            "dopplerProject": null,
+            "dopplerConfig": null
+          }
+        ]
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "failure-intelligence-mcp",
+      "identities": {
+        "mcpId": "failure-intelligence-mcp",
+        "workspaceId": "failure-intelligence-mcp",
+        "cursorKey": "failure-intelligence-mcp",
+        "claudeKey": "failure-intelligence-mcp",
+        "registrationOrigin": "cursor-registry"
+      },
+      "declared": {
+        "requirement": "REQUIRED",
+        "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_MCP_SURFACE",
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION",
+            "RUNTIME_PROBE_REGISTRY"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
+        "transport": "stdio",
+        "launcher": {
+          "kind": "stdio",
+          "command": "node",
+          "args": [
+            "/home/wesle/repos/CG-Failure-Intelligence-MCP/mcp/run.mjs"
+          ]
+        },
+        "canonicalProbe": {
+          "preferredReadOnlyTool": "failure.list_routing_rules",
+          "fallbackReadOnlyTool": "failure.preflight",
+          "toolArguments": {},
+          "expectedResponseShape": {
+            "rules": "array(non-empty)"
+          }
+        },
+        "credentialContract": []
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "github",
+      "identities": {
+        "mcpId": "github",
+        "workspaceId": "github",
+        "cursorKey": "github",
+        "claudeKey": "github",
+        "registrationOrigin": "cursor-registry"
+      },
+      "declared": {
+        "requirement": "REQUIRED",
+        "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
+        "transport": "stdio",
+        "launcher": {
+          "kind": "stdio",
+          "command": "doppler",
+          "args": [
+            "run",
+            "-p",
+            "cg-shared",
+            "-c",
+            "dev",
+            "--",
+            "node",
+            "/home/wesle/repos/CG-AppBuilder-MCP/scripts/mcp-github-launch.mjs"
+          ]
+        },
+        "canonicalProbe": {
+          "preferredReadOnlyTool": "search_repositories",
+          "toolArguments": {
+            "query": "org:Capglass5708",
+            "perPage": 1
+          },
+          "expectedResponseShape": {
+            "total_count": "number"
+          }
+        },
+        "credentialContract": [
+          {
+            "key": "GITHUB_PERSONAL_ACCESS_TOKEN",
+            "shapeClass": "GITHUB_FINE_GRAINED_PAT",
+            "prefixes": [
+              "github_pat_"
+            ],
+            "minLength": 80,
+            "maxLength": 200,
+            "singleLine": true,
+            "dopplerProject": "cg-shared",
+            "dopplerConfig": "dev"
+          }
+        ]
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "human-estimator-mcp",
+      "identities": {
+        "mcpId": "human-estimator-mcp",
+        "workspaceId": "human-estimator-mcp",
+        "cursorKey": null,
+        "claudeKey": "human-estimator-mcp",
+        "registrationOrigin": "claude-registry"
+      },
+      "declared": {
+        "requirement": "REQUIRED",
+        "healthClass": "GOVERNED_PROBE_INCOMPLETE",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_MCP_SURFACE"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
+        "transport": "stdio",
+        "launcher": {
+          "kind": "stdio",
+          "command": "node",
+          "args": [
+            "/home/wesle/repos/CG-Human-Estimator-MCP/mcp/run.mjs"
+          ]
+        },
+        "canonicalProbe": null,
+        "credentialContract": []
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "office-admin-mcp",
+      "identities": {
+        "mcpId": "office-admin-mcp",
+        "workspaceId": "office-admin-mcp",
+        "cursorKey": "office-admin-mcp",
+        "claudeKey": "office-admin-mcp",
+        "registrationOrigin": "cursor-registry"
+      },
+      "declared": {
+        "requirement": "REQUIRED",
+        "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_MCP_SURFACE",
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION",
+            "RUNTIME_PROBE_REGISTRY"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
+        "transport": "stdio",
+        "launcher": {
+          "kind": "stdio",
+          "command": "node",
+          "args": [
+            "/home/wesle/repos/CapitalGlass-Office-Admin/mcp/run-office-admin-mcp.mjs"
+          ]
+        },
+        "canonicalProbe": {
+          "preferredReadOnlyTool": "office.get_agent_preflight",
+          "fallbackReadOnlyTool": "office.get_summary",
+          "toolArguments": {},
+          "expectedResponseShape": {
+            "verdict": "string"
+          }
+        },
+        "credentialContract": []
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "platform-governance-mcp",
+      "identities": {
+        "mcpId": "platform-governance-mcp",
+        "workspaceId": "cg-platform-governance-mcp",
+        "cursorKey": null,
+        "claudeKey": "cg-platform-governance-mcp",
+        "registrationOrigin": "claude-registry"
+      },
+      "declared": {
+        "requirement": "REQUIRED",
+        "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION",
+            "RUNTIME_PROBE_REGISTRY"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
+        "transport": "stdio",
+        "launcher": {
+          "kind": "stdio",
+          "command": "node",
+          "args": [
+            "/home/wesle/repos/CG-Platform-Governance-MCP/mcp-server/platform-governance/src/index.mjs"
+          ]
+        },
+        "canonicalProbe": {
+          "preferredReadOnlyTool": "governance_get_compounding_capture_contract",
+          "fallbackReadOnlyTool": null,
+          "toolArguments": {},
+          "expectedResponseShape": {
+            "contractId": "string"
+          }
+        },
+        "credentialContract": []
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "platform-intelligence-mcp",
+      "identities": {
+        "mcpId": "platform-intelligence-mcp",
+        "workspaceId": "platform-intelligence-mcp",
+        "cursorKey": null,
+        "claudeKey": "platform-intelligence-mcp",
+        "registrationOrigin": "claude-registry"
+      },
+      "declared": {
+        "requirement": "REQUIRED",
+        "healthClass": "AUTHORIZATION_ONLY",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_MCP_SURFACE",
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
+        "transport": "http",
+        "launcher": {
+          "kind": "http",
+          "url": "https://platform-mcp.capitalglasstxapps.com/mcp"
+        },
+        "canonicalProbe": null,
+        "credentialContract": []
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "proposal-generator-app-mcp",
+      "identities": {
+        "mcpId": "proposal-generator-app-mcp",
+        "workspaceId": "proposal-generator-app-mcp",
+        "cursorKey": null,
+        "claudeKey": "proposal-generator-app-mcp",
+        "registrationOrigin": "claude-registry"
+      },
+      "declared": {
+        "requirement": "REQUIRED",
+        "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_MCP_SURFACE",
+            "RUNTIME_PROBE_REGISTRY"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
+        "transport": "stdio",
+        "launcher": {
+          "kind": "stdio",
+          "command": "node",
+          "args": [
+            "/home/wesle/repos/Cursor-ProposalGenerator/mcp/run-app-mcp.mjs"
+          ]
+        },
+        "canonicalProbe": {
+          "preferredReadOnlyTool": "app.get_summary",
+          "fallbackReadOnlyTool": "app.get_agent_preflight",
+          "toolArguments": {},
+          "expectedResponseShape": {
+            "summary": "string"
+          }
+        },
+        "credentialContract": []
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "railway",
+      "identities": {
+        "mcpId": "railway",
+        "workspaceId": "railway",
+        "cursorKey": "railway",
+        "claudeKey": "railway",
+        "registrationOrigin": "cursor-registry"
+      },
+      "declared": {
+        "requirement": "REQUIRED",
+        "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
+        "transport": "stdio",
+        "launcher": {
+          "kind": "stdio",
+          "command": "doppler",
+          "args": [
+            "run",
+            "-p",
+            "cg-shared",
+            "-c",
+            "dev",
+            "--",
+            "node",
+            "/home/wesle/repos/CG-AppBuilder-MCP/scripts/mcp-railway-launch.mjs"
+          ]
+        },
+        "canonicalProbe": {
+          "preferredReadOnlyTool": "list-projects",
+          "toolArguments": {},
+          "expectedResponseShape": {}
+        },
+        "credentialContract": [
+          {
+            "key": "RAILWAY_API_TOKEN",
+            "shapeClass": "OPAQUE_TOKEN",
+            "prefixes": [],
+            "minLength": 32,
+            "maxLength": 200,
+            "singleLine": true,
+            "dopplerProject": "cg-shared",
+            "dopplerConfig": "dev"
+          }
+        ]
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "sharepoint-graph",
+      "identities": {
+        "mcpId": "sharepoint-graph",
+        "workspaceId": "sharepoint-graph",
+        "cursorKey": "sharepoint",
+        "claudeKey": "sharepoint",
+        "registrationOrigin": "cursor-registry"
+      },
+      "declared": {
+        "requirement": "REQUIRED",
+        "healthClass": "GOVERNED_PROBE_INCOMPLETE",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WINDOWS_INTERACTIVE",
+        "transport": "stdio",
+        "launcher": {
+          "kind": "stdio",
+          "command": "doppler",
+          "args": [
+            "run",
+            "-p",
+            "cg-documents",
+            "-c",
+            "dev",
+            "--",
+            "node",
+            "/home/wesle/repos/CG-AppBuilder-MCP/scripts/mcp-sharepoint-launch.mjs"
+          ]
+        },
+        "canonicalProbe": null,
+        "credentialContract": [
+          {
+            "key": "SHAREPOINT_MCP_URL",
+            "shapeClass": "HTTPS_URL",
+            "prefixes": [
+              "https://"
+            ],
+            "minLength": 12,
+            "maxLength": 500,
+            "singleLine": true,
+            "dopplerProject": "cg-documents",
+            "dopplerConfig": "dev"
+          },
+          {
+            "key": "SHAREPOINT_MCP_BEARER_TOKEN",
+            "shapeClass": "OPAQUE_TOKEN",
+            "prefixes": [],
+            "minLength": 32,
+            "maxLength": 4096,
+            "singleLine": true,
+            "dopplerProject": "cg-documents",
+            "dopplerConfig": "dev"
+          }
+        ]
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "suite-wiring-mcp",
+      "identities": {
+        "mcpId": "suite-wiring-mcp",
+        "workspaceId": "cg-suite-wiring-mcp",
+        "cursorKey": "cg-suite-wiring",
+        "claudeKey": "cg-suite-wiring",
+        "registrationOrigin": "cursor-registry"
+      },
+      "declared": {
+        "requirement": "REQUIRED",
+        "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_MCP_SURFACE",
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION",
+            "RUNTIME_PROBE_REGISTRY"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
+        "transport": "stdio",
+        "launcher": {
+          "kind": "stdio",
+          "command": "node",
+          "args": [
+            "/home/wesle/repos/CG-AppBuilder-MCP/services/cursor-suite-wiring-mcp/run.mjs"
+          ]
+        },
+        "canonicalProbe": {
+          "preferredReadOnlyTool": "list_suite_apps",
+          "fallbackReadOnlyTool": "list_suite_bridges",
+          "toolArguments": {},
+          "expectedResponseShape": {
+            "apps": "array(non-empty)",
+            "count": "number"
+          }
+        },
+        "credentialContract": []
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "supabase",
+      "identities": {
+        "mcpId": "supabase",
+        "workspaceId": "supabase",
+        "cursorKey": "supabase",
+        "claudeKey": "supabase",
+        "registrationOrigin": "cursor-registry"
+      },
+      "declared": {
+        "requirement": "REQUIRED",
+        "healthClass": "AUTHORIZATION_ONLY",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
+        "transport": "http",
+        "launcher": {
+          "kind": "http",
+          "url": "https://mcp.supabase.com/mcp?project_ref=wvidyxufvcrtezzkwwse"
+        },
+        "canonicalProbe": null,
+        "credentialContract": []
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "supabase-mcp-control",
+      "identities": {
+        "mcpId": "supabase-mcp-control",
+        "workspaceId": "supabase-mcp-control",
+        "cursorKey": "supabase-mcp-control",
+        "claudeKey": "supabase-mcp-control",
+        "registrationOrigin": "cursor-registry"
+      },
+      "declared": {
+        "requirement": "REQUIRED",
+        "healthClass": "AUTHORIZATION_ONLY",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
+        "transport": "http",
+        "launcher": {
+          "kind": "http",
+          "url": "https://mcp.supabase.com/mcp?project_ref=xjivcwcyyimjujbchwdf"
+        },
+        "canonicalProbe": null,
+        "credentialContract": []
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "visual-asset-engine-mcp",
+      "identities": {
+        "mcpId": "visual-asset-engine-mcp",
+        "workspaceId": "visual-asset-engine-mcp",
+        "cursorKey": null,
+        "claudeKey": "visual-asset-engine-mcp",
+        "registrationOrigin": "claude-registry"
+      },
+      "declared": {
+        "requirement": "REQUIRED",
+        "healthClass": "GOVERNED_PROBE_INCOMPLETE",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_MCP_SURFACE"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
+        "transport": "stdio",
+        "launcher": {
+          "kind": "stdio",
+          "command": "node",
+          "args": [
+            "/home/wesle/repos/Visual-Asset-Engine/mcp/run.mjs"
+          ]
+        },
+        "canonicalProbe": null,
+        "credentialContract": []
+      },
+      "classificationChange": null,
+      "reviewState": "SEEDED_UNREVIEWED"
+    }
+  ],
+  "provenance": {
+    "generator": "CG-AppBuilder-MCP/scripts/agent-runtime/materialize-agent-runtime-authority-v1.mjs",
+    "generatorSchema": "agent-runtime-authority-materialize-v1@1.0.0",
+    "generatorSha256": "6b2a145b4b0643e546ed48ae5420ca3063264acfcc18faeb3757328a1723e065",
+    "output": "mcps",
+    "generatedAt": "2026-09-04T15:04:18.000Z",
+    "generatedAtBasis": "SOURCE_COMMIT_COMMITTER_DATE",
+    "sourceCommit": {
+      "repository": "CG-AppBuilder-MCP",
+      "sha": "d5bcd63056aa280a4d2fea1cdaa4284496fd1d15",
+      "basis": "GENERATOR_LAST_COMMIT"
+    },
+    "authorityObject": {
+      "repository": "CapitalGlass-Cross-Agent",
+      "contractShortSha": "78365d5",
+      "sha": "78365d5fb23566e02478c2bb31a91c33ff204940",
+      "resolution": "RESOLVED_IN_OBJECT_STORE"
+    },
+    "inputs": [
+      {
+        "role": "AUTHORITY_MCPS_MANIFEST",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "relativePath": "registry/agent-runtime/authority/mcps/manifest.v1.json",
+        "sha256": "76755cda43de52e522184e02ca3f19e53222f976394bced0748a4db9ebfdc343",
+        "digestBasis": "CANONICAL_JSON_OF_AUTHORITY_KEYS"
+      },
+      {
+        "role": "AUTHORITY_MACHINES_MANIFEST",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "relativePath": "registry/agent-runtime/authority/machines/manifest.v1.json",
+        "sha256": "fd93f9192e4d17247bc5f3f8eac9a34d03f676dc16d6a5ba3c57751cf9ff8069",
+        "digestBasis": "CANONICAL_JSON_OF_AUTHORITY_KEYS"
+      },
+      {
+        "role": "ESTATE_INDEX_SEED",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "relativePath": "work-progress/agent-workstation-mcp-hub-index-v1/migration-source/mcp-estate.v1.json",
+        "sha256": "7f47bfa496e632416cc620dc2ae02c3f5badee84cd796c8d51619fdbbf5a2beb",
+        "digestBasis": "FILE_BYTES"
+      },
+      {
+        "role": "RUNTIME_PROFILES_SEED",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "relativePath": "work-progress/agent-workstation-mcp-hub-index-v1/migration-source/agent-runtime-profiles.v1.json",
+        "sha256": "56d40facdc52225031ee659ad5191f1e5ddc74eb0cb0aafcf9e846bb2afaa87e",
+        "digestBasis": "FILE_BYTES"
+      }
+    ],
+    "determinism": "No wall clock is read. Regeneration over unchanged inputs is byte-identical; running over this output is a no-op. Keys outside the generator's owned set are the authority object's own and are preserved verbatim.",
+    "secretValuesRead": false
+  }
 }
