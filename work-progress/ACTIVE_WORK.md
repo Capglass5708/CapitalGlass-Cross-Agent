@@ -12,7 +12,7 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-08-13
+| Last updated | 2026-09-04
 | Current focus | WESLEYWORK Storage Keeper sole repair front door (`wesleywork-storage-protocol-contradiction-remediation-v1`); TWO_DESK_OPERATING + federated index Wave A closed
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
@@ -20,6 +20,18 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Project index | `work-progress/projects/INDEX.md` |
 
 ## Current saved work
+
+### 2026-09-04 CT — proposal-generator-door-hardware-component-free-text-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `proposal-generator-door-hardware-component-free-text-v1` |
+| Status | **PUSHED — draft PR open** (Cursor-ProposalGenerator PR #227, branch `claude/door-hardware-component-field-3texxd`, commit `f30ccac`) |
+| Source | Wesley (screenshot request) → Claude Code |
+| Repos involved | `Cursor-ProposalGenerator` (implementation), `CapitalGlass-Cross-Agent` (this ledger entry only) |
+| Notes | Wesley asked for the **Component** field on door hardware set rows in the Doors module to be a manual type-in field instead of a dropdown. The dropdown was limited to `HARDWARE_COMPONENT_CATALOG` plus names already in use on the project. Replaced the `SelectField` in `src/app/doors/page.tsx` with a plain `FormField` text input (same `componentName` wiring) and removed the now-dead option-list plumbing (`buildHardwareComponentSelectOptions` import, `hardwareComponentOptions`, `componentOptions` prop on `HardwareSetCard`). Catalog constant and helper in `src/lib/hardware-component-catalog.ts` left intact; still used by the storefront hardware catalog and its tests. |
+| Verification | `tsc --noEmit` green; `eslint src/app/doors/page.tsx` 0 errors (6 pre-existing unused-import warnings). Doors/hardware unit tests: 109 pass, 2 fail — both fail identically on `main` (assert the doors page references `reportsWorkflowHref` / Reports workflow link; unrelated to this change). One baseline failure ("hardware set cards stay collapsed by default") now passes as a side effect of the shorter `HardwareSetCard` signature. |
+| Next | Wesley reviews PR #227 in Cursor-ProposalGenerator and merges. Pre-existing Reports-workflow test failures on `main` are a separate item, not addressed here. |
 
 ### 2026-08-25 CT — appbuilder-mission-harvest-gold-mine-guidance-v1 (corrected, protocol updated)
 
