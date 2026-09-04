@@ -28,11 +28,12 @@
   ],
   "seedWarning": "Records marked SEEDED_UNREVIEWED were harvested from generated runtime state and have not been ratified. Harvest reproduces today's drift; review each record before treating it as authority.",
   "secretValuesRead": false,
-  "generatedAt": "2026-09-04T02:01:25.723Z",
+  "generatedAt": "2026-09-04T02:25:28.252Z",
   "counts": {
     "OPERATIONAL": 14,
     "AUTHORIZATION_ONLY": 3,
-    "NOT_GOVERNED": 12
+    "GOVERNED_PROBE_INCOMPLETE": 6,
+    "NOT_GOVERNED": 6
   },
   "records": [
     {
@@ -47,6 +48,15 @@
       "declared": {
         "requirement": "REQUIRED",
         "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_MCP_SURFACE",
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION",
+            "RUNTIME_PROBE_REGISTRY"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
         "hostAdmission": "WSL2_REQUIRED",
         "transport": "stdio",
         "launcher": {
@@ -113,6 +123,15 @@
       "declared": {
         "requirement": "REQUIRED",
         "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_MCP_SURFACE",
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION",
+            "RUNTIME_PROBE_REGISTRY"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
         "hostAdmission": "WSL2_REQUIRED",
         "transport": "stdio",
         "launcher": {
@@ -165,9 +184,17 @@
         "registrationOrigin": "claude-registry"
       },
       "declared": {
-        "requirement": "NOT_APPLICABLE",
-        "healthClass": "NOT_GOVERNED",
-        "hostAdmission": "NOT_APPLICABLE",
+        "requirement": "REQUIRED",
+        "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_MCP_SURFACE",
+            "RUNTIME_PROBE_REGISTRY"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
         "transport": "stdio",
         "launcher": {
           "kind": "stdio",
@@ -201,6 +228,11 @@
       "declared": {
         "requirement": "NOT_APPLICABLE",
         "healthClass": "NOT_GOVERNED",
+        "governance": {
+          "governed": false,
+          "basis": [],
+          "note": "Presence in an agent config is never a governance basis."
+        },
         "hostAdmission": "NOT_APPLICABLE",
         "transport": "stdio",
         "launcher": {
@@ -227,7 +259,14 @@
       },
       "declared": {
         "requirement": "REQUIRED",
-        "healthClass": "OPERATIONAL",
+        "healthClass": "GOVERNED_PROBE_INCOMPLETE",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "GOVERNED_REPO_MCP_JSON"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
         "hostAdmission": "WSL2_REQUIRED",
         "transport": "stdio",
         "launcher": {
@@ -254,7 +293,14 @@
       },
       "declared": {
         "requirement": "REQUIRED",
-        "healthClass": "OPERATIONAL",
+        "healthClass": "GOVERNED_PROBE_INCOMPLETE",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "GOVERNED_REPO_MCP_JSON"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
         "hostAdmission": "WSL2_REQUIRED",
         "transport": "stdio",
         "launcher": {
@@ -282,6 +328,13 @@
       "declared": {
         "requirement": "REQUIRED",
         "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
         "hostAdmission": "WSL2_REQUIRED",
         "transport": "stdio",
         "launcher": {
@@ -333,6 +386,11 @@
       "declared": {
         "requirement": "NOT_APPLICABLE",
         "healthClass": "NOT_GOVERNED",
+        "governance": {
+          "governed": false,
+          "basis": [],
+          "note": "Presence in an agent config is never a governance basis."
+        },
         "hostAdmission": "NOT_APPLICABLE",
         "transport": "http",
         "launcher": {
@@ -357,6 +415,11 @@
       "declared": {
         "requirement": "NOT_APPLICABLE",
         "healthClass": "NOT_GOVERNED",
+        "governance": {
+          "governed": false,
+          "basis": [],
+          "note": "Presence in an agent config is never a governance basis."
+        },
         "hostAdmission": "NOT_APPLICABLE",
         "transport": "http",
         "launcher": {
@@ -381,6 +444,11 @@
       "declared": {
         "requirement": "NOT_APPLICABLE",
         "healthClass": "NOT_GOVERNED",
+        "governance": {
+          "governed": false,
+          "basis": [],
+          "note": "Presence in an agent config is never a governance basis."
+        },
         "hostAdmission": "NOT_APPLICABLE",
         "transport": "http",
         "launcher": {
@@ -405,6 +473,11 @@
       "declared": {
         "requirement": "NOT_APPLICABLE",
         "healthClass": "NOT_GOVERNED",
+        "governance": {
+          "governed": false,
+          "basis": [],
+          "note": "Presence in an agent config is never a governance basis."
+        },
         "hostAdmission": "NOT_APPLICABLE",
         "transport": "http",
         "launcher": {
@@ -429,6 +502,11 @@
       "declared": {
         "requirement": "NOT_APPLICABLE",
         "healthClass": "NOT_GOVERNED",
+        "governance": {
+          "governed": false,
+          "basis": [],
+          "note": "Presence in an agent config is never a governance basis."
+        },
         "hostAdmission": "NOT_APPLICABLE",
         "transport": "http",
         "launcher": {
@@ -451,9 +529,16 @@
         "registrationOrigin": "claude-registry"
       },
       "declared": {
-        "requirement": "NOT_APPLICABLE",
-        "healthClass": "NOT_GOVERNED",
-        "hostAdmission": "NOT_APPLICABLE",
+        "requirement": "REQUIRED",
+        "healthClass": "GOVERNED_PROBE_INCOMPLETE",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_MCP_SURFACE"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
         "transport": "stdio",
         "launcher": {
           "kind": "stdio",
@@ -480,6 +565,15 @@
       "declared": {
         "requirement": "REQUIRED",
         "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_MCP_SURFACE",
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION",
+            "RUNTIME_PROBE_REGISTRY"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
         "hostAdmission": "WSL2_REQUIRED",
         "transport": "stdio",
         "launcher": {
@@ -519,9 +613,17 @@
         "registrationOrigin": "claude-registry"
       },
       "declared": {
-        "requirement": "NOT_APPLICABLE",
-        "healthClass": "NOT_GOVERNED",
-        "hostAdmission": "NOT_APPLICABLE",
+        "requirement": "REQUIRED",
+        "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_MCP_SURFACE",
+            "RUNTIME_PROBE_REGISTRY"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
         "transport": "stdio",
         "launcher": {
           "kind": "stdio",
@@ -555,6 +657,13 @@
       "declared": {
         "requirement": "REQUIRED",
         "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
         "hostAdmission": "WSL2_REQUIRED",
         "transport": "stdio",
         "launcher": {
@@ -602,6 +711,15 @@
       "declared": {
         "requirement": "REQUIRED",
         "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_MCP_SURFACE",
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION",
+            "RUNTIME_PROBE_REGISTRY"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
         "hostAdmission": "WSL2_REQUIRED",
         "transport": "stdio",
         "launcher": {
@@ -636,6 +754,13 @@
       "declared": {
         "requirement": "REQUIRED",
         "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
         "hostAdmission": "WSL2_REQUIRED",
         "transport": "stdio",
         "launcher": {
@@ -690,9 +815,16 @@
         "registrationOrigin": "claude-registry"
       },
       "declared": {
-        "requirement": "NOT_APPLICABLE",
-        "healthClass": "NOT_GOVERNED",
-        "hostAdmission": "NOT_APPLICABLE",
+        "requirement": "REQUIRED",
+        "healthClass": "GOVERNED_PROBE_INCOMPLETE",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_MCP_SURFACE"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
         "transport": "stdio",
         "launcher": {
           "kind": "stdio",
@@ -719,6 +851,15 @@
       "declared": {
         "requirement": "REQUIRED",
         "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_MCP_SURFACE",
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION",
+            "RUNTIME_PROBE_REGISTRY"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
         "hostAdmission": "WSL2_REQUIRED",
         "transport": "stdio",
         "launcher": {
@@ -753,6 +894,14 @@
       "declared": {
         "requirement": "REQUIRED",
         "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION",
+            "RUNTIME_PROBE_REGISTRY"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
         "hostAdmission": "WSL2_REQUIRED",
         "transport": "stdio",
         "launcher": {
@@ -787,6 +936,14 @@
       "declared": {
         "requirement": "REQUIRED",
         "healthClass": "AUTHORIZATION_ONLY",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_MCP_SURFACE",
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
         "hostAdmission": "WSL2_REQUIRED",
         "transport": "http",
         "launcher": {
@@ -809,9 +966,17 @@
         "registrationOrigin": "claude-registry"
       },
       "declared": {
-        "requirement": "NOT_APPLICABLE",
-        "healthClass": "NOT_GOVERNED",
-        "hostAdmission": "NOT_APPLICABLE",
+        "requirement": "REQUIRED",
+        "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_MCP_SURFACE",
+            "RUNTIME_PROBE_REGISTRY"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
         "transport": "stdio",
         "launcher": {
           "kind": "stdio",
@@ -845,6 +1010,13 @@
       "declared": {
         "requirement": "REQUIRED",
         "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
         "hostAdmission": "WSL2_REQUIRED",
         "transport": "stdio",
         "launcher": {
@@ -893,7 +1065,14 @@
       },
       "declared": {
         "requirement": "REQUIRED",
-        "healthClass": "OPERATIONAL",
+        "healthClass": "GOVERNED_PROBE_INCOMPLETE",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
         "hostAdmission": "WINDOWS_INTERACTIVE",
         "transport": "stdio",
         "launcher": {
@@ -951,6 +1130,15 @@
       "declared": {
         "requirement": "REQUIRED",
         "healthClass": "OPERATIONAL",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_MCP_SURFACE",
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION",
+            "RUNTIME_PROBE_REGISTRY"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
         "hostAdmission": "WSL2_REQUIRED",
         "transport": "stdio",
         "launcher": {
@@ -986,6 +1174,13 @@
       "declared": {
         "requirement": "REQUIRED",
         "healthClass": "AUTHORIZATION_ONLY",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
         "hostAdmission": "WSL2_REQUIRED",
         "transport": "http",
         "launcher": {
@@ -1010,6 +1205,13 @@
       "declared": {
         "requirement": "REQUIRED",
         "healthClass": "AUTHORIZATION_ONLY",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_HEALTH_ADMISSION"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
         "hostAdmission": "WSL2_REQUIRED",
         "transport": "http",
         "launcher": {
@@ -1032,9 +1234,16 @@
         "registrationOrigin": "claude-registry"
       },
       "declared": {
-        "requirement": "NOT_APPLICABLE",
-        "healthClass": "NOT_GOVERNED",
-        "hostAdmission": "NOT_APPLICABLE",
+        "requirement": "REQUIRED",
+        "healthClass": "GOVERNED_PROBE_INCOMPLETE",
+        "governance": {
+          "governed": true,
+          "basis": [
+            "AUTHORITY_REGISTRY_MCP_SURFACE"
+          ],
+          "note": "Presence in an agent config is never a governance basis."
+        },
+        "hostAdmission": "WSL2_REQUIRED",
         "transport": "stdio",
         "launcher": {
           "kind": "stdio",
