@@ -1,0 +1,213 @@
+{
+  "bySeverity": {
+    "material": 6,
+    "medium": 16
+  },
+  "findings": [
+    {
+      "admissionGates": [
+        "APPLY_FLAG",
+        "DRY_RUN_DEFAULT"
+      ],
+      "detail": "M8_GITHUB_PLANE forbids GIT_COMMIT/GIT_PUSH but scripts/harvest/chatgpt-publish-draft.mjs performs it.",
+      "enforcementStatus": "HARD_ENFORCEMENT_NOT_STARTED",
+      "evidenceClass": "DERIVED_STATIC",
+      "findingId": "sha256:b0171dc7c6d8bd92c27929f3a4788cb4a40c8b9b3d7c1bddddf7f2765ae62daf",
+      "kind": "GOVERNANCE_MUTATION_CONTRADICTION",
+      "severity": "material",
+      "subject": "scripts/harvest/chatgpt-publish-draft.mjs"
+    },
+    {
+      "admissionGates": [
+        "APPLY_FLAG",
+        "DRY_RUN_DEFAULT"
+      ],
+      "detail": "M8_GITHUB_PLANE forbids GIT_COMMIT but scripts/harvest/harvest-closeout-git.mjs performs it.",
+      "enforcementStatus": "HARD_ENFORCEMENT_NOT_STARTED",
+      "evidenceClass": "DERIVED_STATIC",
+      "findingId": "sha256:293826f15f5b232e4c981388597cfb72510d4598651faee2a0719c71acc03060",
+      "kind": "GOVERNANCE_MUTATION_CONTRADICTION",
+      "severity": "material",
+      "subject": "scripts/harvest/harvest-closeout-git.mjs"
+    },
+    {
+      "detail": "expected NORMALIZED_CONTENT_EQUAL, observed PROJECTION_AHEAD_OF_SOURCE (projection v2.1/542L vs source v2/442L)",
+      "evidenceClass": "DERIVED_STATIC",
+      "findingId": "sha256:207cb18578e31ec82b60f52aee277a2eb686766101852f80024d46d069ad25cc",
+      "kind": "SOURCE_PROJECTION_DRIFT",
+      "severity": "material",
+      "subject": "harvest/protocol/chat-thread-closeout-autopsy-harvest-chatgpt-v1.md"
+    },
+    {
+      "detail": "expected NORMALIZED_CONTENT_EQUAL, observed PROJECTION_AHEAD_OF_SOURCE (projection v2.1/542L vs source v2/442L)",
+      "evidenceClass": "DERIVED_STATIC",
+      "findingId": "sha256:bb280f36ae03b1343045b66c62b25ed010dded072a56a88febef4c38f26d8e22",
+      "kind": "SOURCE_PROJECTION_DRIFT",
+      "severity": "material",
+      "subject": "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md"
+    },
+    {
+      "detail": "expected NORMALIZED_CONTENT_EQUAL, observed PROJECTION_AHEAD_OF_SOURCE (projection v1.3/1032L vs source v1/600L)",
+      "evidenceClass": "DERIVED_STATIC",
+      "findingId": "sha256:6e0dae7f309efc858dacf41cb362fa9a5329ebc61b06a19c082b82ebebf7b163",
+      "kind": "SOURCE_PROJECTION_DRIFT",
+      "severity": "material",
+      "subject": "harvest/protocol/chat-thread-closeout-autopsy-harvest-v1.md"
+    },
+    {
+      "detail": "expected NORMALIZED_CONTENT_EQUAL, observed PROJECTION_AHEAD_OF_SOURCE (projection v1.3/1032L vs source v1/600L)",
+      "evidenceClass": "DERIVED_STATIC",
+      "findingId": "sha256:73e71c09bf13af6a5075c57c4d986b98e48ccb7d6c3e5f894f0b01e4f6c061b8",
+      "kind": "SOURCE_PROJECTION_DRIFT",
+      "severity": "material",
+      "subject": "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md"
+    },
+    {
+      "detail": "expected NORMALIZED_CONTENT_EQUAL, observed SOURCE_MISSING",
+      "evidenceClass": "DERIVED_STATIC",
+      "findingId": "sha256:939398d644fc9972de1c51feefd1896d92ab83dfb4ce55beb421f4d61b1194cb",
+      "kind": "PROJECTION_WITHOUT_SOURCE",
+      "severity": "medium",
+      "subject": "harvest/protocol/chat-thread-system-advancement-harvest-chatgpt-v1.md"
+    },
+    {
+      "detail": "expected NORMALIZED_CONTENT_EQUAL, observed SOURCE_MISSING",
+      "evidenceClass": "DERIVED_STATIC",
+      "findingId": "sha256:32092f83996e7a4360945b952c03190d4855a9a277157b65d7901b7fdaa27e85",
+      "kind": "PROJECTION_WITHOUT_SOURCE",
+      "severity": "medium",
+      "subject": "harvest/protocol/CHAT-THREAD-SYSTEM-ADVANCEMENT-HARVEST-CHATGPT-V1.md"
+    },
+    {
+      "detail": "expected NORMALIZED_CONTENT_EQUAL, observed SOURCE_MISSING",
+      "evidenceClass": "DERIVED_STATIC",
+      "findingId": "sha256:e6569a74ab58eb24e878e55ba4a46dae31cc80a7069a46e4cb740f6eff039c3f",
+      "kind": "PROJECTION_WITHOUT_SOURCE",
+      "severity": "medium",
+      "subject": "harvest/protocol/chatgpt-draft-batch-assessment-t2-v1.md"
+    },
+    {
+      "detail": "expected NORMALIZED_CONTENT_EQUAL, observed SOURCE_MISSING",
+      "evidenceClass": "DERIVED_STATIC",
+      "findingId": "sha256:89e639ddfab56f7fb9dc49e8a3cdfaa709ccbd70dfe419f4544fa1cbc2707836",
+      "kind": "PROJECTION_WITHOUT_SOURCE",
+      "severity": "medium",
+      "subject": "harvest/protocol/CHATGPT-DRAFT-BATCH-ASSESSMENT-T2-V1.md"
+    },
+    {
+      "detail": "expected NORMALIZED_CONTENT_EQUAL, observed SOURCE_MISSING",
+      "evidenceClass": "DERIVED_STATIC",
+      "findingId": "sha256:3c8fd8e93dbffd5c7dd9c60f245932b8d2c88d92ccdae186b7c6943f2414898f",
+      "kind": "PROJECTION_WITHOUT_SOURCE",
+      "severity": "medium",
+      "subject": "harvest/protocol/chatgpt-harvest-git-publication-contract-v1.md"
+    },
+    {
+      "detail": "expected NORMALIZED_CONTENT_EQUAL, observed SOURCE_MISSING",
+      "evidenceClass": "DERIVED_STATIC",
+      "findingId": "sha256:6679987bc2cc9e4395d32c6c0ebf6d09944e1285aab398e1349da32a5e72ba9c",
+      "kind": "PROJECTION_WITHOUT_SOURCE",
+      "severity": "medium",
+      "subject": "harvest/protocol/CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md"
+    },
+    {
+      "detail": "expected NORMALIZED_CONTENT_EQUAL, observed SOURCE_MISSING",
+      "evidenceClass": "DERIVED_STATIC",
+      "findingId": "sha256:363021ac2b9837975e3b639d3e59dcfabdfd865ed141996a5d22a4e2b535787e",
+      "kind": "PROJECTION_WITHOUT_SOURCE",
+      "severity": "medium",
+      "subject": "harvest/protocol/CURSOR_HARVEST_INGEST_CLOSEOUT_WAVE_SDLC_V1.md"
+    },
+    {
+      "detail": "expected NORMALIZED_CONTENT_EQUAL, observed SOURCE_MISSING",
+      "evidenceClass": "DERIVED_STATIC",
+      "findingId": "sha256:73323ba9865b7e5c85ce92995f9707369df5f1d46092be411b11c831cfa0452f",
+      "kind": "PROJECTION_WITHOUT_SOURCE",
+      "severity": "medium",
+      "subject": "harvest/protocol/HARVEST-INGESTION-RUNBOOK-v1.md"
+    },
+    {
+      "detail": "expected NORMALIZED_CONTENT_EQUAL, observed SOURCE_MISSING",
+      "evidenceClass": "DERIVED_STATIC",
+      "findingId": "sha256:317357eacdbdf43ed808d2a59c78b233661ff7e2e9a496f26af1e4067c8bdd39",
+      "kind": "PROJECTION_WITHOUT_SOURCE",
+      "severity": "medium",
+      "subject": "harvest/protocol/system-advancement-quality-gate.md"
+    },
+    {
+      "detail": "expected NORMALIZED_CONTENT_EQUAL, observed SOURCE_MISSING",
+      "evidenceClass": "DERIVED_STATIC",
+      "findingId": "sha256:ca82019bed2aa1cce4462d964c61259dd691503ce61d5499b1cf9be34774dddb",
+      "kind": "PROJECTION_WITHOUT_SOURCE",
+      "severity": "medium",
+      "subject": "harvest/protocol/thread-autopsy-hub-accommodation-v1.md"
+    },
+    {
+      "detail": "Schema permits 1..64; runtime accepts only 48.",
+      "evidenceClass": "DERIVED_STATIC",
+      "findingId": "sha256:783ee44caeee114e3f2d91363aa0bb09321f36fb807cafffbaea7297fa9da58b",
+      "kind": "CONTRACT_RUNTIME_CONTRADICTION",
+      "severity": "medium",
+      "subject": "contracts/intelligence/correlation-markers-v1.schema.json#properties.markerBudget.properties.max"
+    },
+    {
+      "detail": "INDEX_GENERATED_AT = 2000-02-08T16:42:02.562Z (expected year within 2024..2027)",
+      "evidenceClass": "OBSERVED_SOURCE",
+      "findingId": "sha256:622be36422498bf321375c8b1bd762f78d13d12dbb855b24b74ff9950e1d8efd",
+      "kind": "IMPOSSIBLE_TIMESTAMP_PAST",
+      "severity": "medium",
+      "subject": "index/cg-federated-repo-index.v1.json:55"
+    },
+    {
+      "detail": "\"contentHash\": null",
+      "evidenceClass": "OBSERVED_SOURCE",
+      "findingId": "sha256:10d65f1f2452c1a14ca1423e99eacb1b498df677da4dc6023c0379f16f94ac8f",
+      "kind": "NULL_CONTENT_HASH",
+      "severity": "medium",
+      "subject": "registry/execution-packets/execution-packet-manifest.v1.json:5"
+    },
+    {
+      "detail": "\"sourceCommitSha\": \"0000000000000000000000000000000000000000\"",
+      "evidenceClass": "OBSERVED_SOURCE",
+      "findingId": "sha256:b31530e774e30f9c9946b987d6f86ecccca02e9d5ff6433df651a225fdbba77d",
+      "kind": "ALL_ZERO_HASH",
+      "severity": "medium",
+      "subject": "scripts/tests/fixtures/harvest-manifest-graph-minimal.json:5"
+    },
+    {
+      "detail": "\"estateContentSha256\": null",
+      "evidenceClass": "OBSERVED_SOURCE",
+      "findingId": "sha256:bd1255c8860b136ce3fab7e40dc18a6f450096eae440203fdc588f4642743879",
+      "kind": "NULL_CONTENT_HASH",
+      "severity": "medium",
+      "subject": "work-progress/publications/cg-federated-repo-index-estate-100-v1/cross-agent-publication-receipt.json:15"
+    },
+    {
+      "detail": "16 executables have no inbound edge from package.json, workflows, the import graph, or documentation.",
+      "evidenceClass": "DERIVED_GRAPH",
+      "findingId": "sha256:8f093ffe86191c9b174289917063b245e2bb2cc7fc041277d51532e446342c7c",
+      "kind": "ORPHANED_SCRIPTS",
+      "paths": [
+        "scripts/harvest/export-advancement-lineage-refs.mjs",
+        "scripts/harvest/generate-experience-bid-composer-loop-harvest.mjs",
+        "scripts/harvest/generate-experience-wave4-closeout-harvest.mjs",
+        "scripts/harvest/generate-gold-mine-compounding-reference-harvest.mjs",
+        "scripts/harvest/generate-harvest-protocol-self-learning-lane-closeout-harvest.mjs",
+        "scripts/harvest/generate-occ-sdlc-harvest-bridge.mjs",
+        "scripts/harvest/generate-project-folder-synology-harvest.mjs",
+        "scripts/harvest/generate-slice6-thread-harvest.mjs",
+        "scripts/harvest/generate-wesleywork-l-research-bootstrap-closeout-harvest.mjs",
+        "scripts/harvest/generate-wesleywork-l-windows-closeout-harvest.mjs",
+        "scripts/harvest/generate-z-l-drive-offlan-harvest.mjs",
+        "scripts/harvest/run-occ-hub-reuse-proof.mjs",
+        "scripts/harvest/run-slice6-post-publication-blind-retrieval.mjs",
+        "scripts/harvest/write-publication-hardening-baseline.mjs",
+        "scripts/intelligence/lib/envelope-validator-v1.mjs",
+        "scripts/intelligence/prove-first-real-mission-v1.mjs"
+      ],
+      "severity": "medium",
+      "subject": "scripts/"
+    }
+  ],
+  "total": 22
+}

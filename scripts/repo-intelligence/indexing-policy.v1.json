@@ -1,0 +1,122 @@
+{
+  "policyVersion": "repo-indexing-policy-v1@1.0.0",
+  "projectEpochYear": 2024,
+  "timestampToleranceYears": 1,
+  "projections": [
+    {
+      "projectionRoot": "harvest/protocol/",
+      "sourceRoots": ["docs/runbooks/", "docs/protocols/", "docs/harvest-z-mirror/"],
+      "mode": "GENERATED_MIRROR",
+      "expectedRelation": "NORMALIZED_CONTENT_EQUAL",
+      "declaredBy": "harvest/README.md"
+    }
+  ],
+  "governanceRules": [
+    {
+      "name": "M8_GITHUB_PLANE",
+      "path": ".cursor/rules/m8-github-plane-mandatory.mdc",
+      "forbids": ["GIT_COMMIT", "GIT_PUSH", "GIT_RESET", "GH_PR_MUTATION"],
+      "exemptWhen": "compiled planHash executing inside G5",
+      "enforcementStatus": "HARD_ENFORCEMENT_NOT_STARTED"
+    }
+  ],
+  "semanticValueDictionary": [
+    {
+      "path": "graphDeltaReceipt.nodesCorrected",
+      "valueType": "integer",
+      "zeroMeaning": "UNMEASURED",
+      "mustNotInfer": "NO_CORRECTIONS_OCCURRED",
+      "source": "scripts/intelligence/lib/graph-dividend-gate-v1.mjs"
+    },
+    {
+      "path": "graphDeltaReceipt.nodesSuperseded",
+      "valueType": "integer",
+      "zeroMeaning": "UNMEASURED",
+      "mustNotInfer": "NOTHING_SUPERSEDED",
+      "source": "scripts/intelligence/lib/graph-dividend-gate-v1.mjs"
+    },
+    {
+      "path": "graphDeltaReceipt.conflictsDetected",
+      "valueType": "integer",
+      "zeroMeaning": "UNMEASURED",
+      "mustNotInfer": "NO_CONFLICTS",
+      "source": "scripts/intelligence/lib/graph-dividend-gate-v1.mjs"
+    },
+    {
+      "path": "ingestReceipt.acceptance.IDEMPOTENT_REINGEST_PASS",
+      "valueType": "boolean|null",
+      "nullMeaning": "NOT_PROVEN_BY_PIPELINE",
+      "mustNotInfer": "FALSE_OR_TRUE",
+      "source": "scripts/intelligence/lib/ingest-pipeline-v1.mjs"
+    },
+    {
+      "path": "ingestReceipt.acceptance.LOCAL_RUNTIME_VALIDATED",
+      "valueType": "boolean|null",
+      "nullMeaning": "NOT_PROVEN_BY_PIPELINE",
+      "mustNotInfer": "FALSE_OR_TRUE",
+      "source": "scripts/intelligence/lib/ingest-pipeline-v1.mjs"
+    },
+    {
+      "path": "preflight.laneChecks[].status",
+      "valueType": "string",
+      "notCheckedMeaning": "LADDER_SHORT_CIRCUITED_BEFORE_PROBE",
+      "mustNotInfer": "PLANE_UNAVAILABLE",
+      "source": "scripts/intelligence/lib/unified-mission-receipt-v1.mjs"
+    }
+  ],
+  "blastRadiusSeeds": [
+    {
+      "symbol": "DERIVATION_VERSION",
+      "definedIn": "scripts/intelligence/lib/constants.mjs",
+      "propagatesTo": [
+        "ledgerId", "objectId", "semanticObjectId", "relationshipId",
+        "envelope.identity.contentHash", "hubCompact identity", "retrieval graph"
+      ],
+      "blastRadius": "ESTATE_INTELLIGENCE_GRAPH"
+    }
+  ],
+  "requiredReadSets": {
+    "modify-harvest-protocol": [
+      "harvest/protocol/chat-thread-closeout-autopsy-harvest-v1.md",
+      "harvest/README.md",
+      "scripts/harvest/record-harvest.mjs",
+      "scripts/harvest/schema/harvest-manifest-v1.schema.json"
+    ],
+    "modify-intelligence-ingest": [
+      "contracts/intelligence/OWNERSHIP.md",
+      "work-progress/projects/operational-intelligence-envelope-v1.md",
+      "scripts/intelligence/lib/ingest-pipeline-v1.mjs",
+      "scripts/intelligence/lib/constants.mjs",
+      "contracts/intelligence/registries/knowledge-relationship-types-v1.json"
+    ],
+    "modify-query-routing": [
+      "registry/query-routing/query-routing-manifest.v1.json",
+      "registry/query-routing/schemas/query-routing-manifest.v1.schema.json",
+      "scripts/query-routing/validate-query-routing-manifest.mjs"
+    ],
+    "modify-publication": [
+      "scripts/index/run-index-publisher.mjs",
+      ".github/workflows/index-publication.yml",
+      "runtime/index-publication/latest.json"
+    ]
+  },
+  "retrievalProofQuestions": [
+    "who-owns-operational-intelligence",
+    "what-command-starts-intelligence-ingest",
+    "what-does-index-publish-mutate",
+    "which-scripts-can-git-push",
+    "which-harvest-protocol-is-authoritative",
+    "what-changes-if-derivation-version-changes",
+    "which-sibling-repos-are-required",
+    "which-scripts-are-orphaned"
+  ],
+  "coverageCategories": {
+    "entrypoints": "scripts/**/*.mjs referenced by package.json",
+    "mutationSurfaces": "executables containing mutation primitives",
+    "authorityDocs": "contracts/**, registry/**, decisions/**",
+    "schemas": "**/*.schema.json",
+    "runtimeValidators": "scripts/**/validate*.mjs, scripts/**/schema-validate.mjs",
+    "ciWorkflows": ".github/workflows/**",
+    "historicalArtifacts": "artifacts/**"
+  }
+}

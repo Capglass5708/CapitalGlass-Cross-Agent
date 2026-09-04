@@ -26,6 +26,7 @@ const SUITES = [
   { id: "INTELLIGENCE_FIRST_REAL_MISSION", cmd: ["npm", "run", "test:intelligence-first-real-mission"] },
   { id: "INTELLIGENCE_VERIFICATION", cmd: ["npm", "run", "test:intelligence-verification"] },
   { id: "PHASE_B", cmd: ["npm", "run", "test:harvest:phase-b"] },
+  { id: "REPO_INTELLIGENCE_COMPILER", cmd: ["npm", "run", "test:repo-intelligence-compiler"] },
 ];
 
 const results = [];
