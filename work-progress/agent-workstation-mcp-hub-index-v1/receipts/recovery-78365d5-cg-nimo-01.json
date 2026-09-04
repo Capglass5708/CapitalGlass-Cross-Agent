@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "agent-runtime-authority-recovery-v1@1.0.0",
+  "workPackageId": "agent-workstation-mcp-hub-index-v1",
+  "operation": "RECOVER_AGENT_RUNTIME_AUTHORITY_78365D5",
+  "recordedAt": "2026-09-04T03:23:00Z",
+  "targetObject": {
+    "shortSha": "78365d5",
+    "repository": "CapitalGlass-Cross-Agent",
+    "declaredBy": "CG-AppBuilder-MCP/scripts/agent-runtime/lib/contract-provenance.mjs",
+    "declaredState": "LOCAL_COMMITTED_NOT_PUBLISHED",
+    "lineage": {
+      "parentContractSha": "e545ab3",
+      "architectureSha": "22ad7a3",
+      "provenanceRecordSha": "fa18bcc"
+    },
+    "shortShaCaveat": "Authority provenance should not permanently rely on a seven-character abbreviation. On recovery, repin to the full 40-character SHA and retain 78365d5 as the historical short identifier."
+  },
+  "corrections": [
+    {
+      "id": "MACHINE_IDENTITY_SUPERSEDED",
+      "supersedes": "claude-estate-mcp-parity-v1 receipt asserting machine CG-WESLEYWORK-01",
+      "correctedTo": "CG-NIMO-01",
+      "basis": "scripts/agent-runtime/lib/resolve-local-machine.mjs returns machineRole=cg_nimo_01, machineResolution=PASS, peerLiveProofRef=~/.capital-glass/waverunner-maintenance/peer-live-proofs/cg_nimo_01.json. Hostname DESKTOP-DQ67FAC appears only in cg_nimo_01.machine.json windowsComputerNames; WESLEY_WORK declares WESLEYWORK/WESLEY_WORK.",
+      "impact": "The first office_recovery_find_commit call searched WESLEY_WORK's catalog, which is not this machine's recovery evidence. That result stands as a WESLEY_WORK derived-index observation, not a CG-NIMO-01 one. The incorrect assertion was never published."
+    },
+    {
+      "id": "NIMO_LIVE_SEARCH_EXHAUSTED_BUT_ESTATE_OPEN",
+      "detail": "CG-NIMO-01's live object search is exhausted and negative. Estate-wide recovery remains OPEN. Exhaustion of one host is not exhaustion of the estate."
+    }
+  ],
+  "outcome": "NOT_PRESENT_ON_CG_NIMO_01",
+  "searchHost": {
+    "machineId": "CG-NIMO-01",
+    "machineRole": "cg_nimo_01",
+    "rawHostname": "DESKTOP-DQ67FAC",
+    "resolutionMethod": "scripts/agent-runtime/lib/resolve-local-machine.mjs",
+    "machineResolution": "PASS"
+  },
+  "liveObjectSearch": {
+    "authorityClass": "LIVE_OBJECT_STORE",
+    "note": "Stronger than a derived index: these queries read the object database directly, including unreachable objects.",
+    "objectStore": "/home/wesle/repos/CapitalGlass-Cross-Agent/.git",
+    "sharedByWorktrees": 6,
+    "checks": [
+      { "check": "git cat-file -t 78365d5", "result": "fatal: Not a valid object name" },
+      { "check": "git log --all -- registry/agent-runtime/", "result": "only 108421a, this mission's own unpublished commit" },
+      { "check": "git reflog --all", "result": "no reference to 78365d5 or the authority tree" },
+      { "check": "git stash list", "result": "empty" },
+      { "check": "git fsck --lost-found", "result": "8 dangling commits; none contains registry/agent-runtime/" },
+      { "check": "find repos+worktrees -name platform.v1.json -path *agent-runtime*", "result": "no matches" }
+    ],
+    "verdict": "EXHAUSTED_NEGATIVE"
+  },
+  "preservedObjectSearch": {
+    "authorityClass": "COLD_STORAGE_BUNDLE",
+    "note": "WESLEY_WORK's preserved Cross-Agent objects reachable from this host over the L: share.",
+    "bundles": [
+      {
+        "path": "/mnt/l/CapitalGlass-Recovery/WESLEY_WORK_PRE_CLEANUP_RECOVERY_V1/stashes/repos_CapitalGlass-Cross-Agent.stash-all.bundle",
+        "mtime": "2026-08-22",
+        "bundleVerify": "The bundle records a complete history",
+        "refs": "refs/preserve/wesley-work/stash/0000-0029",
+        "objectProbe": "78365d5 not a valid object name",
+        "vintageRationale": "Snapshot predates the Sep 3 contract lineage by 12 days, so it cannot contain the target object."
+      }
+    ],
+    "verdict": "NEGATIVE_BY_VINTAGE_AND_PROBE"
+  },
+  "derivedIndexSearch": {
+    "authorityClass": "DERIVED_INDEX",
+    "tool": "office_recovery_find_commit",
+    "results": [
+      { "machineId": "CG-NIMO-01", "outcome": "NO_SOURCE_SEARCHABLE", "sourcesSearched": 0, "sourcesUnsearched": 3, "reason": "CATALOG_AUTHORITY_UNDECLARED — no cold-storage catalog declared; STORAGE_TIER_UNREACHABLE" },
+      { "machineId": "WESLEY_WORK", "outcome": "NOT_FOUND_IN_SEARCHED_SOURCES", "sourcesSearched": 3, "rowsScanned": { "coldStorageIndex": 89, "stashEntries": 263, "bundleHeaders": 59 }, "caveat": "Derived indexes only; WESLEY_WORK's LIVE object store was NOT searched." },
+      { "machineId": "RYZEN9DESK", "outcome": "AUTHORITY_UNDECLARED", "sourcesSearched": 0, "reason": "No recovery evidence layout declared; the tool fails closed rather than borrowing another machine's layout." }
+    ]
+  },
+  "authoringHostEvidence": {
+    "finding": "The AppBuilder branch work/agent-workstation-mcp-hub-index-v1 was NOT authored on CG-NIMO-01.",
+    "basis": "The only reflog entries for 50055414c on this machine are this session's own `reset: moving to origin/...`. The commit arrived by fetch, never by local creation.",
+    "implication": "The paired Cross-Agent commit 78365d5 was created on another host and has not left it."
+  },
+  "transportBlocker": {
+    "finding": "The WESLEY_WORK live object sweep is NOT executable from CG-NIMO-01.",
+    "basis": "office_get_direct_connect_topology: CG-NIMO-01 appears in zero meshConnectivity.requiredDirections and has no canonicalMagicDns entry. Every declared ssh-admin-tailscale route is among CG-WESLEYWORK-01, CG-WESLEYDESK-01 and CG-RYZEN9DESK-01. The tailscale CLI is absent from WSL here and ~/.ssh/config declares only cg-vault.",
+    "consequence": "The sweep must run ON WESLEY_WORK. Executing it from here would also conflict with NIMO's mustNotExecute boundary against manufacturing another machine's facts."
+  },
+  "rulesHonoured": [
+    "108421a was NOT published as an alternative authority (zero remote copies).",
+    "The 11 missing authority files were NOT recreated from inference.",
+    "contract-provenance.mjs was NOT modified and contractCommitSha was NOT repinned.",
+    "No dual-layout fallback was added.",
+    "PR #539 remains independent of this authority recovery.",
+    "The live mutation lease held by session 4f4a28b0 was neither force-cleared nor bypassed; this receipt was written only after it cleared naturally at 03:22Z."
+  ],
+  "recoveryState": {
+    "CG_NIMO_01": "EXHAUSTED_NEGATIVE",
+    "WESLEY_WORK": "DERIVED_INDEX_NEGATIVE / LIVE_OBJECT_SEARCH_NOT_YET_RUN",
+    "RYZEN9DESK": "SEARCH_AUTHORITY_BEING_DECLARED / LIVE_SEARCH_NOT_YET_RUN",
+    "AUTHORITY_OBJECT_UNRECOVERABLE": "NOT_DECLARED"
+  },
+  "nextActions": [
+    { "id": "SEARCH_WESLEY_WORK_LIVE_OBJECTS", "priority": "PRIMARY", "detail": "Run the read-only live sweep on WESLEY_WORK itself across every distinct Cross-Agent object store: cat-file, log --all, reflog --all, stash list, fsck --full --unreachable --no-reflogs, fsck --lost-found, and local bundles. Prove worktrees share a store rather than assuming it." },
+    { "id": "DECLARE_RYZEN9DESK_RECOVERY_LAYOUT", "priority": "PARALLEL", "detail": "Declare a narrowly scoped READ-ONLY recovery-evidence layout for CG-RYZEN9DESK-01 in CapitalGlass-Office-Admin so its stores can be searched. This is search authority, not agent-runtime authority." }
+  ]
+}
