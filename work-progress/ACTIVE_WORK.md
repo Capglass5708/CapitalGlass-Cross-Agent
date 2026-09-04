@@ -12,14 +12,25 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-08-13
-| Current focus | WESLEYWORK Storage Keeper sole repair front door (`wesleywork-storage-protocol-contradiction-remediation-v1`); TWO_DESK_OPERATING + federated index Wave A closed
+| Last updated | 2026-09-04
+| Current focus | Proposal Generator door + hardware money per estimate section and three-section PDF roll-ups (`pg-estimate-sections-door-money-rollups-v1`, plan ready); prior: WESLEYWORK Storage Keeper sole repair front door (`wesleywork-storage-protocol-contradiction-remediation-v1`)
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Project index | `work-progress/projects/INDEX.md` |
 
 ## Current saved work
+
+### 2026-09-04 CT — pg-estimate-sections-door-money-rollups-v1 (plan ready)
+
+| Field | Value |
+| --- | --- |
+| Work package | `pg-estimate-sections-door-money-rollups-v1` (child of `proposal-generator-dynamic-estimate-sections-v1`, sequenced after `pg-estimate-sections-elevations-doors-v1`) |
+| Status | **PLAN READY — implementation not started.** Implementation belongs in Cursor-ProposalGenerator; this repo holds the plan, project file, and open decisions. |
+| Repos involved | CapitalGlass-Cross-Agent (plan + ledger); Cursor-ProposalGenerator (owner; read-only investigation at `140c9552`) |
+| Notes | Wesley's ask: the PDF preview roll-ups must show Interior, Exterior, and Retail as three sections; the financial roll-ups today are Interior / Exterior / Doors; the Door Module must break door cost out per section and make it assignable, with door hardware pricing following each door into its section. Investigation found that Proposal Generator already has most of this on `dynamic_sections_v1` projects: the Pricing Summary renders one row per active section in Section Manager order (`buildDynamicSectionPriceBreakoutTable`), Retail is an existing acceptance scenario, and the Doors page already embeds section assignment with elevation inheritance and manual override. The gap is money: no bridge writes the door schedule into `pricingBySectionId`, door assignment moves attributions that are never populated for doors, and readiness attributes only `fabricationCost` per door, so every section's Doors line is $0 and the project total is short by the door scope. Legacy `legacy_ie_v1` projects are hard-wired to two rows (Exterior / Interior, door sell split by hardware dollar ratio) and cannot show Retail without the deferred conversion work package. Plan designs a per-door attribution (material + fabrication + hardware in `doors`, door labor in `labor`, quantity-weighted), server-side write paths on assignment change, door schedule save, and an explicit reconcile, a Door Module "Door pricing by section" break-out, and leaves legacy untouched per the frozen contracts. Five open decisions for Wesley: hardware as its own line (contract amendment) vs folded into Doors; door sell derivation on the markup-free dynamic ledger; whether PDF rows absorb job-level costs so they sum to the Proposal Value; which (dynamic) project drives acceptance; whether a door's Interior/Exterior attribute may suggest a section. |
+| Evidence | Plan `plans/2026-09-04_pg-estimate-sections-door-money-rollups-v1.md`; project file `work-progress/projects/2026-09-04_pg-estimate-sections-door-money-rollups-v1.md` |
+| Next | Wesley decides O1–O5; then a Cursor-ProposalGenerator session under Auto Protocol v3.2 implements PR A (financial core) through PR E (docs/gates) per the plan's execution order, with staging acceptance on a dynamic project carrying Exterior / Interior / Retail. |
 
 ### 2026-08-25 CT — appbuilder-mission-harvest-gold-mine-guidance-v1 (corrected, protocol updated)
 

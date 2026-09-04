@@ -2,7 +2,7 @@
 
 Master index of all project files in `work-progress/projects/`.
 
-**Last updated:** 2026-08-13 (`wesleywork-storage-protocol-contradiction-remediation-v1` — ForceRemap/LAN-first INDEX closed; Storage Keeper sole WESLEYWORK repair front door)
+**Last updated:** 2026-09-04 (`pg-estimate-sections-door-money-rollups-v1` — plan for door + hardware money per estimate section and three-section PDF roll-ups in Proposal Generator)
 
 Read `AGENT_START_HERE.md` and `work-progress/ACTIVE_WORK.md` before working on any project listed here.
 
@@ -286,6 +286,7 @@ _238 registry packets · 106 intelligence entities_
 
 | Project ID | File | Status | Owner repo(s) | Last commit | Next action |
 | --- | --- | --- | --- | --- | --- |
+| `pg-estimate-sections-door-money-rollups-v1` | [2026-09-04_pg-estimate-sections-door-money-rollups-v1.md](./2026-09-04_pg-estimate-sections-door-money-rollups-v1.md) | **Planned — plan ready, implementation not started** — door + hardware money bridged into each estimate section so the PDF preview roll-up shows Interior / Exterior / Retail with doors included; Door Module per-section break-out. Plan: [plans/2026-09-04_pg-estimate-sections-door-money-rollups-v1.md](../../plans/2026-09-04_pg-estimate-sections-door-money-rollups-v1.md) | Cursor-ProposalGenerator | This branch (`claude/proposal-pdf-rollups-sections-9j0pgk`); PG investigated at `140c9552` | Wesley decides O1–O5 in the plan; then PR A (financial core) in Cursor-ProposalGenerator |
 | `compounding-intelligence-v2-live-integration-proof` | Plan only: [2026-08-25_compounding-intelligence-v2-live-integration-proof.md](../../plans/2026-08-25_compounding-intelligence-v2-live-integration-proof.md) | **Planned, not started** — 4-phase next mission (real hot-cache proof on 3 hosts; Supabase publish+readback via the existing projection path; WaveRunner integration; full end-to-end compounding proof). No phase executable from this container. | CapitalGlass-Cross-Agent | This commit (branch `claude/intelligence-hub-compounding-4f208p`) | Needs physical host access (phase 1), live Supabase credentials (phase 2), or WaveRunner repo access (phase 3) — plan is ready the moment any one exists |
 | `compounding-intelligence-unified-loop-v1` | [2026-08-25_compounding-intelligence-unified-loop-v1.md](./2026-08-25_compounding-intelligence-unified-loop-v1.md) | **Complete — PR #45 MERGED** (`e5f2fea`) — mission-intelligence registered in the real routing/dataset registries, hot-ai-cache ladder rung with SHA freshness, graph-aware mission context, unified receipt contract, WaveRunner-preflight contract documented | CapitalGlass-Cross-Agent | PR #45 merged (`e5f2fea`) | Superseded by `compounding-intelligence-v2-live-integration-proof` |
 | `compounding-intelligence-v2-implementation-v1` | [2026-08-25_compounding-intelligence-v2-implementation-v1.md](./2026-08-25_compounding-intelligence-v2-implementation-v1.md) | **Complete (in-scope pieces) — PR #43 MERGED** — registry+enforcement, freshness provenance, preflight, /goldmine (now wired to actually regenerate what preflight reads, proven by an in-repo two-agent test), harvest-risk-gates CI fixed, all tested | CapitalGlass-Cross-Agent | PR #43 merged (`9eb8e7c`) | Superseded by `compounding-intelligence-unified-loop-v1` for further work |
@@ -400,6 +401,14 @@ Recommended follow-on work packages (not yet project files):
 | --- | --- | --- |
 | `cg-federated-repo-index-v1` | **LIVE_RYZEN9_PROOF_PASS / WAVE_A_CLOSED** | Bound to AppBuilder `c87ee2420`; Hub L: publish after operator authorization |
 | `revu-opening-detection-top10-v1` | Rosewood lane status corrected | Build `cg-opening-locator-v1`; if marking Rosewood in Revu, start with controlled sheet choice and do not assume CE parse or BC bid exists |
+
+### Cursor-ProposalGenerator
+
+| Project ID | Status | Next action |
+| --- | --- | --- |
+| `pg-estimate-sections-door-money-rollups-v1` | Planned — plan ready | Wesley decides O1–O5; implement PR A (door attribution + section money sync) under Auto Protocol v3.2 |
+| `pg-estimator-trust-closure-v1` | ESTIMATOR_TRUST_BLOCKED (harvest-indexed) | See `2026-08-03_pg-estimator-trust-closure-v1.md` |
+| `pg-pricing-editable-workspace-persist-v1` | PRODUCT_FIX_REQUIRED (harvest-indexed) | See `2026-08-03_pg-pricing-editable-workspace-persist-v1.md` |
 
 ### CapitalGlass-Cross-Agent
 
