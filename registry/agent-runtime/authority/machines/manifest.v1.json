@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "cg-agent-runtime-machines-v1",
+  "workPackageId": "agent-workstation-mcp-hub-index-v1",
+  "commonFoundationRequired": true,
+  "baselineGate": "registry/agent-runtime/authority/baseline-convergence.v1.json",
+  "authorizedRoles": [
+    {
+      "machineRole": "cg_nimo_01",
+      "displayName": "CG-NIMO-01",
+      "historicalNote": "Cold-start controller onboarding pilot — full bootstrap path completed first",
+      "profile": {
+        "controller": true,
+        "gpuExecutor": false
+      }
+    },
+    {
+      "machineRole": "wesley_work",
+      "displayName": "WESLEY_WORK",
+      "profile": {
+        "controller": true,
+        "integrationCaptain": true,
+        "gpuExecutor": false
+      }
+    },
+    {
+      "machineRole": "ryzen9desk",
+      "displayName": "RYZEN9DESK",
+      "historicalNote": "Initially treated as executor-only; architecture always required same foundation",
+      "profile": {
+        "controller": true,
+        "gpuExecutor": true,
+        "gpuCapability": "RTX5080"
+      }
+    }
+  ],
+  "invariants": [
+    "All authorized roles require AI_PLATFORM_BASELINE_CONVERGENCE before profile evaluation",
+    "Executor capability is a profile flag — not exemption from agent protocol kernel or worldview",
+    "Machine identity from peer-live-proof — not inferred from repo checkout alone"
+  ]
+}

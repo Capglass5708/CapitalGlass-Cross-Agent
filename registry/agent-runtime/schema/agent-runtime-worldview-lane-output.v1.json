@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "cg-agent-runtime-worldview-lane-output-v1",
+  "title": "agentRuntime worldview lane collector output",
+  "description": "Read-only snapshot produced by CG-AppBuilder-MCP collectAgentRuntimeLane(). Consumed by deriveAuthorityVerdicts(); does not set executionEligibility directly.",
+  "type": "object",
+  "required": [
+    "lane",
+    "schemaVersion",
+    "authorityGeneration",
+    "observationGeneration",
+    "machine",
+    "client",
+    "profile",
+    "baseline",
+    "capabilities",
+    "providers",
+    "mcpBindings",
+    "settings",
+    "dependencies",
+    "drift",
+    "blockingDriftCount",
+    "fatalDriftCount",
+    "laneVerdict",
+    "executionImpact"
+  ],
+  "properties": {
+    "lane": { "const": "agentRuntime" },
+    "schemaVersion": { "const": "agent-runtime-worldview-lane-v1" },
+    "authorityGeneration": {
+      "type": "object",
+      "required": ["generationId", "digest"],
+      "properties": {
+        "generationId": { "type": "string" },
+        "digest": { "type": "string", "description": "sha256 digest of Cross-Agent authority bundle @ 22ad7a3 lineage" },
+        "sourceRef": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "observationGeneration": {
+      "type": "object",
+      "required": ["generationId", "accepted"],
+      "properties": {
+        "generationId": { "type": "string" },
+        "accepted": { "type": "boolean", "description": "false when observationGeneration !== authorityGeneration.generationId" },
+        "rejectionReason": {
+          "type": "string",
+          "enum": ["GENERATION_MISMATCH", "STALE", "MISSING", null]
+        }
+      },
+      "additionalProperties": true
+    },
+    "machine": {
+      "type": "object",
+      "properties": {
+        "machineRole": { "enum": ["cg_nimo_01", "wesley_work", "ryzen9desk", null] },
+        "machineResolution": { "enum": ["PASS", "FAIL", "UNKNOWN", "NOT_CHECKED", "UNAVAILABLE"] },
+        "peerLiveProofRef": { "type": ["string", "null"] }
+      },
+      "additionalProperties": true
+    },
+    "client": {
+      "type": "object",
+      "properties": {
+        "clientSurface": { "enum": ["cursor", "claude", "other", null] },
+        "clientResolution": { "enum": ["PASS", "FAIL", "UNKNOWN", "NOT_CHECKED", "UNAVAILABLE"] }
+      },
+      "additionalProperties": true
+    },
+    "profile": {
+      "type": "object",
+      "description": "Profile flags evaluated AFTER baseline; differences here are allowed when foundation matches",
+      "additionalProperties": true
+    },
+    "baseline": {
+      "type": "object",
+      "required": ["verdict"],
+      "properties": {
+        "verdict": {
+          "enum": ["PASS", "FAIL", "UNKNOWN", "NOT_CHECKED", "UNAVAILABLE"]
+        },
+        "foundationGeneration": {
+          "type": "object",
+          "description": "Per-component digests used for P0 cross-machine equality proof",
+          "properties": {
+            "agentProtocolKernel": { "type": "string" },
+            "governanceContract": { "type": "string" },
+            "worldviewContract": { "type": "string" },
+            "lane0Contract": { "type": "string" },
+            "m8Contract": { "type": "string" },
+            "globalBehaviorContract": { "type": "string" },
+            "requiredHookContract": { "type": "string" },
+            "requiredBaseMcpSurface": { "type": "string" }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "capabilityId": { "type": "string" },
+          "resolution": { "enum": ["RESOLVED", "UNRESOLVED", "NOT_REQUESTED"] }
+        }
+      }
+    },
+    "providers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "capabilityId": { "type": "string" },
+          "providerId": { "type": "string" }
+        }
+      }
+    },
+    "mcpBindings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "mcpId": { "type": "string" },
+          "contractGeneration": { "type": "string" },
+          "verdict": { "enum": ["PASS", "FAIL", "UNKNOWN", "NOT_CHECKED", "UNAVAILABLE"] }
+        }
+      }
+    },
+    "settings": {
+      "type": "object",
+      "properties": {
+        "settingsVerdict": { "enum": ["PASS", "FAIL", "UNKNOWN", "NOT_CHECKED", "UNAVAILABLE"] },
+        "hookVerdict": { "enum": ["PASS", "FAIL", "UNKNOWN", "NOT_CHECKED", "UNAVAILABLE"] },
+        "behaviorContractDigest": { "type": ["string", "null"] }
+      },
+      "additionalProperties": true
+    },
+    "dependencies": {
+      "type": "object",
+      "properties": {
+        "dependencyVerdict": { "enum": ["PASS", "FAIL", "UNKNOWN", "NOT_CHECKED", "UNAVAILABLE"] }
+      },
+      "additionalProperties": true
+    },
+    "drift": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["code", "severity"],
+        "properties": {
+          "code": { "type": "string", "description": "Must exist in drift-class.v1.json" },
+          "severity": { "enum": ["FATAL", "FAIL", "WARN", "INFO"] },
+          "scope": { "type": "string" },
+          "blocking": { "type": "boolean" }
+        }
+      }
+    },
+    "blockingDriftCount": { "type": "integer", "minimum": 0 },
+    "fatalDriftCount": { "type": "integer", "minimum": 0 },
+    "laneVerdict": {
+      "enum": ["PASS", "FAIL", "UNKNOWN", "NOT_CHECKED", "UNAVAILABLE"]
+    },
+    "executionImpact": {
+      "enum": ["NONE", "DEGRADED", "HOLD"],
+      "description": "HOLD blocks authority convergence when lane is REQUIRED"
+    }
+  },
+  "additionalProperties": false
+}

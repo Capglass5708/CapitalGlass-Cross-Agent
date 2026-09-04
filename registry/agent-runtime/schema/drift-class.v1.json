@@ -1,0 +1,173 @@
+{
+  "schemaVersion": "cg-agent-runtime-drift-class-v1",
+  "workPackageId": "agent-workstation-mcp-hub-index-v1",
+  "determinismProfile": "CG_AGENT_RUNTIME_DETERMINISM_V1",
+  "enforcementCodes": {
+    "DIRECT_GIT_MUTATION_FORBIDDEN": {
+      "severity": "FATAL",
+      "scope": "GIT_MUTATION",
+      "enforcement": "DENY_OPERATION",
+      "repairClass": "RETRY_THROUGH_M8",
+      "description": "Raw git push / direct GitHub API mutation attempted outside M8 plane"
+    },
+    "GITHUB_PLANE_REQUIRED": {
+      "severity": "FATAL",
+      "scope": "GIT_MUTATION",
+      "enforcement": "DENY_OPERATION",
+      "repairClass": "RETRY_THROUGH_M8",
+      "description": "Remote GitHub mutation requires M8 Feature Plane + GitHub Plane G0–G8"
+    }
+  },
+  "promotionDriftClasses": [
+    "DRIFT_DEPLOYMENT_GENERATION",
+    "DRIFT_DEPLOYMENT_PROVENANCE",
+    "DRIFT_WORKTREE_UNCOMMITTED",
+    "DRIFT_WORKTREE_SCOPE_CONTAMINATION",
+    "DRIFT_MUTATION_LEASE_CONFLICT",
+    "DRIFT_RUNTIME_BEHAVIOR",
+    "DRIFT_DATA_REALISATION",
+    "DRIFT_REMOTE_AUTHORITY_UNAVAILABLE"
+  ],
+  "githubPlaneDriftClasses": [
+    {
+      "code": "DRIFT_GITHUB_PLANE_BYPASS",
+      "severity": "FATAL",
+      "scope": "GIT_MUTATION",
+      "enforcement": "DENY_OPERATION",
+      "repairClass": "RETRY_THROUGH_M8",
+      "sessionFatal": false,
+      "description": "Unauthorized transport (git push, gh pr, direct API). Session may continue read/test/compile."
+    },
+    {
+      "code": "DRIFT_GITHUB_PLANE_UNAVAILABLE",
+      "severity": "FAIL",
+      "scope": "GIT_MUTATION",
+      "enforcement": "DENY_OPERATION",
+      "repairClass": "RESTORE_M8_PROVIDER",
+      "sessionFatal": false
+    },
+    {
+      "code": "DRIFT_GITHUB_PLANE_GENERATION",
+      "severity": "FAIL",
+      "scope": "GIT_MUTATION",
+      "enforcement": "DENY_OPERATION",
+      "repairClass": "RECOMPILE_M8_PLAN",
+      "sessionFatal": false
+    },
+    {
+      "code": "DRIFT_GITHUB_ACTUATOR",
+      "severity": "FAIL",
+      "scope": "GIT_MUTATION",
+      "enforcement": "DENY_OPERATION",
+      "repairClass": "VERIFY_ACTUATOR",
+      "sessionFatal": false
+    },
+    {
+      "code": "DRIFT_GITHUB_REMOTE_VERIFICATION",
+      "severity": "FAIL",
+      "scope": "GIT_MUTATION",
+      "enforcement": "DENY_OPERATION",
+      "repairClass": "REVERIFY_REMOTE_SHA",
+      "sessionFatal": false
+    },
+    {
+      "code": "DRIFT_GIT_MUTATION_TRANSPORT",
+      "severity": "FATAL",
+      "scope": "GIT_MUTATION",
+      "enforcement": "DENY_OPERATION",
+      "repairClass": "RETRY_THROUGH_M8",
+      "sessionFatal": false
+    },
+    {
+      "code": "DRIFT_M8_CHANGESET_SCOPE",
+      "severity": "FAIL",
+      "scope": "GIT_MUTATION",
+      "enforcement": "DENY_OPERATION",
+      "repairClass": "NARROW_CHANGESET",
+      "sessionFatal": false
+    },
+    {
+      "code": "DRIFT_M8_POLICY",
+      "severity": "FAIL",
+      "scope": "GIT_MUTATION",
+      "enforcement": "DENY_OPERATION",
+      "repairClass": "REFRESH_M8_POLICY",
+      "sessionFatal": false
+    }
+  ],
+  "baselineParityDriftClasses": [
+    {
+      "code": "DRIFT_BASELINE_FOUNDATION_MISSING",
+      "severity": "FAIL",
+      "scope": "BASELINE",
+      "enforcement": "HOLD_MUTATION",
+      "repairClass": "RUN_BASELINE_CONVERGENCE",
+      "sessionFatal": false,
+      "description": "Required common AI foundation component absent on this machine"
+    },
+    {
+      "code": "DRIFT_MACHINE_REALIZATION_INCOMPLETE",
+      "severity": "FAIL",
+      "scope": "BASELINE",
+      "enforcement": "HOLD_MUTATION",
+      "repairClass": "RUN_MACHINE_BOOTSTRAP",
+      "sessionFatal": false,
+      "description": "Git/platform code present but machine-local realization drifted (hooks, CLAUDE.md, peer-live-proof, MCP wiring)"
+    },
+    {
+      "code": "DRIFT_PROFILE_PARITY_VIOLATION",
+      "severity": "FAIL",
+      "scope": "BASELINE",
+      "enforcement": "HOLD_MUTATION",
+      "repairClass": "RESTORE_COMMON_FOUNDATION",
+      "sessionFatal": false,
+      "description": "Missing control-plane treated as profile difference — not acceptable"
+    },
+    {
+      "code": "DRIFT_BASELINE_GENERATION_MISMATCH",
+      "severity": "FAIL",
+      "scope": "BASELINE",
+      "enforcement": "HOLD_MUTATION",
+      "repairClass": "RECONVERGE_FOUNDATION_GENERATION",
+      "sessionFatal": false,
+      "description": "Cross-machine foundationGeneration digests differ at same authority generation — estate evaluator case DIFFERENT only"
+    }
+  ],
+  "inventory": ["DRIFT_SERVER_MISSING", "DRIFT_SERVER_EXTRA"],
+  "clientBinding": ["DRIFT_CLIENT_BINDING_MISSING", "DRIFT_CLIENT_BINDING_EXTRA"],
+  "profile": ["DRIFT_PROFILE_MISMATCH"],
+  "settings": [
+    "DRIFT_SETTINGS",
+    "DRIFT_SETTINGS_HASH",
+    "DRIFT_HOOK",
+    "DRIFT_PERMISSION",
+    "DRIFT_EXTENSION",
+    "DRIFT_PLUGIN"
+  ],
+  "launch": [
+    "DRIFT_TRANSPORT",
+    "DRIFT_ENTRYPOINT",
+    "DRIFT_WORKING_DIRECTORY",
+    "DRIFT_RUNTIME",
+    "DRIFT_RUNTIME_VERSION",
+    "DRIFT_PATH_HOST_MODE"
+  ],
+  "repo": ["DRIFT_REPO_PATH", "DRIFT_REPO_SHA"],
+  "dependency": [
+    "DRIFT_DEPENDENCY_MISSING",
+    "DRIFT_SERVICE_UNAVAILABLE",
+    "DRIFT_STORAGE_UNAVAILABLE"
+  ],
+  "secrets": ["DRIFT_SECRET_NAME_MISSING", "SECRETS_IN_INDEX_FORBIDDEN"],
+  "environment": ["DRIFT_ENV_CONTAMINATION"],
+  "capability": ["DRIFT_CAPABILITY_PROVIDER", "DRIFT_CAPABILITY_UNRESOLVED"],
+  "generation": ["DRIFT_AUTHORITY_GENERATION", "DRIFT_OBSERVATION_STALE"],
+  "baselineParity": [
+    "DRIFT_BASELINE_FOUNDATION_MISSING",
+    "DRIFT_MACHINE_REALIZATION_INCOMPLETE",
+    "DRIFT_PROFILE_PARITY_VIOLATION",
+    "DRIFT_BASELINE_GENERATION_MISMATCH"
+  ],
+  "observation": ["OBSERVATION_UNAVAILABLE", "OBSERVATION_NOT_CHECKED"],
+  "verdictStates": ["PASS", "FAIL", "UNKNOWN", "NOT_CHECKED", "UNAVAILABLE"]
+}

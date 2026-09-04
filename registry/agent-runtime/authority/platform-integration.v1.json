@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "cg-agent-runtime-platform-integration-v1",
+  "workPackageId": "agent-workstation-mcp-hub-index-v1",
+  "role": "LOGICAL_AUTHORITY_INPUT",
+  "notAnOrchestrator": true,
+  "crossAgentDefines": [
+    "runtime identities",
+    "capability/provider authority",
+    "drift vocabulary",
+    "generation contract",
+    "expected lane payload",
+    "milestone evidence requirements",
+    "integration pointers"
+  ],
+  "crossAgentDoesNot": [
+    "decide executionEligibility",
+    "issue admission",
+    "resolve sessions",
+    "acquire leases",
+    "actuate GitHub",
+    "write lifecycle state"
+  ],
+  "worldviewLaneContract": "registry/agent-runtime/authority/worldview-lane-agent-runtime.v1.json",
+  "forbiddenSurfaces": [
+    "agent_runtime_resolve",
+    "independent_session_start_resolver",
+    "manual_milestone_state_writes",
+    "raw_git_push_transport",
+    "parallel_claude_cursor_governance"
+  ],
+  "existingSpine": {
+    "governance": {
+      "repo": "CG-Platform-Governance",
+      "role": "constitutional_front_door"
+    },
+    "logicalAuthority": {
+      "repo": "CapitalGlass-Cross-Agent",
+      "path": "registry/agent-runtime/",
+      "role": "this_work_package"
+    },
+    "executionControlPlane": {
+      "repo": "CG-AppBuilder-MCP",
+      "commands": {
+        "worldviewResolve": "execution-context:resolve",
+        "lane0Admit": "lane0:admit",
+        "milestoneStatus": "sdlc:milestone:status",
+        "m8Acceptance": "m8:acceptance",
+        "githubPlaneCompile": "github-plane:compile",
+        "featurePlaneCompile": "feature-plane:compile"
+      }
+    },
+    "agentNeutralKernel": {
+      "package": "packages/agent-protocol-kernel",
+      "modules": [
+        "mission-admission-v1.mjs",
+        "foundation-check-v1.mjs",
+        "execution-court-classifier-v1.mjs",
+        "continuation-context-fingerprint-v1.mjs"
+      ],
+      "invariant": "ESTATE_WIDE_ENFORCEMENT — both Cursor and Claude import same kernel"
+    }
+  },
+  "worldviewIntegration": {
+    "resolverScript": "scripts/worldview/resolve-worldview.mjs",
+    "executionContextScript": "scripts/execution-context/resolve-execution-context.mjs",
+    "authorityDag": "scripts/worldview/lib/default-authority-dag.mjs",
+    "existingLanes": [
+      "git",
+      "governance",
+      "mcpHealth",
+      "env",
+      "milestone",
+      "pi",
+      "hub",
+      "cache",
+      "runtimePosture"
+    ],
+    "proposedLane": {
+      "laneId": "agentRuntime",
+      "contract": "registry/agent-runtime/authority/worldview-lane-agent-runtime.v1.json",
+      "collectorIntegration": "collectAuthorityLanes() — tenth lane alongside existing nine"
+    },
+    "driftFlow": [
+      "Cross-Agent defines drift codes",
+      "AppBuilder evaluates drift",
+      "authority convergence",
+      "executionEligibility",
+      "agent protocol kernel admission"
+    ]
+  },
+  "lane0Integration": {
+    "command": "lane0:admit",
+    "checkoutLeaseIncident": "extend_lane0_per_repo_batch — not new Cross-Agent lease system",
+    "leaseScope": "per_target_repo"
+  },
+  "m8Integration": {
+    "downstreamOf": ["execution-context:resolve", "lane0:admit", "capability_resolution"],
+    "githubMutationPolicy": "registry/agent-runtime/authority/github-mutation-policy.v1.json",
+    "platformInvariant": "GITHUB_OPERATIONS_MUST_USE_M8_PLANE"
+  },
+  "milestoneRegistration": {
+    "milestoneId": "CG_AGENT_RUNTIME_DETERMINISM_V1",
+    "statusCommand": "npm run sdlc:milestone:status -- --milestone CG_AGENT_RUNTIME_DETERMINISM_V1 --json",
+    "stateMachineDoc": "CG-AppBuilder-MCP/docs/work-packages/canonical-milestone-execution-state-machine-v1.md",
+    "derivedOnly": true,
+    "finalPass": "CG_AGENT_RUNTIME_DETERMINISM_V1_PASS",
+    "promotionGates": [
+      { "phase": "P0", "gateId": "AI_PLATFORM_BASELINE_CONVERGENCE" },
+      { "phase": "P1", "gateId": "RUNTIME_AUTHORITY_READY" },
+      { "phase": "P2", "gateId": "RUNTIME_CONTRACT_READY" },
+      { "phase": "P3", "gateId": "ESTATE_OBSERVED" },
+      { "phase": "P4", "gateId": "DRIFT_ENFORCEMENT_READY" },
+      { "phase": "P5", "gateId": "READ_PLANE_READY" },
+      { "phase": "P6", "gateId": "GITHUB_MUTATION_PLANE_READY" },
+      { "phase": "P7", "gateId": "SESSION_ADMISSION_READY" }
+    ],
+    "negativeControls": [
+      "three_machine_baseline_parity_nimo_wesley_work_ryzen9desk",
+      "profile_capability_diff_allowed_base_platform_diff_blocking",
+      "per_repo_lease_not_global_session_lock"
+    ]
+  }
+}

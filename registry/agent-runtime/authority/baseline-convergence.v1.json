@@ -1,0 +1,163 @@
+{
+  "schemaVersion": "cg-agent-runtime-baseline-convergence-v1",
+  "workPackageId": "agent-workstation-mcp-hub-index-v1",
+  "gateId": "AI_PLATFORM_BASELINE_CONVERGENCE",
+  "alias": "BASE_AGENT_PLATFORM_PARITY",
+  "ordering": "FIRST — must pass on every governed machine before profile or capability evaluation",
+  "question": "Does every governed AI workstation possess the same required platform foundation at the same authority generation?",
+  "diagnosis": {
+    "architecture": "PRESENT",
+    "platformCode": "PRESENT",
+    "machineTargeting": "RYZEN_SUPPORTED",
+    "rollout": "ASYMMETRIC",
+    "localRealization": "DRIFTED_OR_INCOMPLETE",
+    "parityEnforcement": "INSUFFICIENT",
+    "notTheProblem": "RYZEN_DOES_NOT_SUPPORT_THE_PLATFORM"
+  },
+  "historicalCause": {
+    "summary": "NIMO was cold-start controller onboarding; Ryzen was treated as specialized executor with parity deferred.",
+    "nimoPath": "Full workstation bootstrap — checkout, machine identity, Claude global config, preflight, MCP wiring, controller surfaces",
+    "ryzenGap": "Platform code available conceptually; machine-local realization not kept deterministically converged",
+    "roleModelError": "Executor role was mistaken for exemption from common AI foundation"
+  },
+  "authorizedMachines": {
+    "source": "CG-AppBuilder-MCP/scripts/claude-40/bootstrap-claude-wide-preflight-v1.mjs",
+    "roles": ["cg_nimo_01", "wesley_work", "ryzen9desk"],
+    "note": "Bootstrap authorizes all three — not NIMO-only. Resolves against peer-live-proof registry."
+  },
+  "twoStateCategories": {
+    "gitPlatformCode": [
+      "CG-AppBuilder-MCP checkout",
+      "packages/agent-protocol-kernel",
+      "scripts/worldview",
+      "scripts/lane0",
+      "scripts/m8"
+    ],
+    "machineRealization": [
+      "checkout generation",
+      "~/.claude/settings.json",
+      "~/.claude/CLAUDE.md",
+      "peer-live-proof",
+      "machine identity",
+      "MCP registrations",
+      "runtime paths",
+      "hooks",
+      "credentials",
+      "local cache",
+      "client config"
+    ]
+  },
+  "commonFoundation": {
+    "description": "Identical on every authorized development/agent machine before profile differences",
+    "components": [
+      {
+        "id": "agent_protocol_kernel",
+        "generationMustMatch": true,
+        "authority": "packages/agent-protocol-kernel"
+      },
+      {
+        "id": "governance",
+        "generationMustMatch": true,
+        "authority": "CG-Platform-Governance receipts"
+      },
+      {
+        "id": "worldview_contract",
+        "generationMustMatch": true,
+        "authority": "scripts/worldview + execution-context:resolve"
+      },
+      {
+        "id": "lane0_contract",
+        "generationMustMatch": true,
+        "authority": "scripts/lane0/admit"
+      },
+      {
+        "id": "m8_contract",
+        "generationMustMatch": true,
+        "authority": "scripts/m8 + github-plane-core"
+      },
+      {
+        "id": "global_admission_hook",
+        "check": "PASS",
+        "path": "~/.claude/settings.json PreToolUse hook",
+        "bootstrap": "npm run claude40:bootstrap-preflight"
+      },
+      {
+        "id": "behavior_contract_hash",
+        "check": "PASS",
+        "path": "~/.claude/CLAUDE.md",
+        "source": "config/claude-global/CLAUDE.md"
+      },
+      {
+        "id": "machine_identity",
+        "check": "PASS",
+        "authority": "peer-live-proof registry"
+      },
+      {
+        "id": "mcp_required_surface",
+        "check": "PASS",
+        "authority": "registry/agent-runtime/authority/mcps/manifest.v1.json"
+      },
+      {
+        "id": "runtime_profile_realization",
+        "check": "PASS",
+        "authority": "harvest + agentRuntime worldview lane"
+      }
+    ]
+  },
+  "profileLayer": {
+    "description": "Explicit profile differences AFTER baseline convergence PASS",
+    "machines": {
+      "cg_nimo_01": {
+        "controller": true,
+        "gpuExecutor": false
+      },
+      "wesley_work": {
+        "controller": true,
+        "integrationCaptain": true,
+        "gpuExecutor": false
+      },
+      "ryzen9desk": {
+        "controller": true,
+        "gpuExecutor": true,
+        "gpuCapability": "RTX5080"
+      }
+    },
+    "invariant": "missing_control_plane_component ≠ acceptable_profile_difference"
+  },
+  "evaluationFlow": [
+    "AI_PLATFORM_BASELINE_CONVERGENCE",
+    "per-machine HOST OBSERVATION (collector)",
+    "estate evaluator three-case compare (evaluate-baseline-convergence.v1.json)",
+    "then PROFILE_DIFFERENCES",
+    "then CAPABILITY_DIFFERENCES"
+  ],
+  "estateEvaluator": "registry/agent-runtime/authority/evaluate-baseline-convergence.v1.json",
+  "comparisonCases": {
+    "SAME_AND_CURRENT": "PASS — counts toward P0",
+    "DIFFERENT": "DRIFT_BASELINE_GENERATION_MISMATCH → HOLD",
+    "MISSING_OR_UNCHECKED": "NOT_PASS — do not collapse into DIFFERENT"
+  },
+  "verdictStatesPreserved": ["PASS", "FAIL", "UNKNOWN", "NOT_CHECKED", "UNAVAILABLE"],
+  "m8EstateExpectation": {
+    "source": "CG-AppBuilder-MCP/scripts/m8/final-activation.mjs",
+    "threeMachineMirrors": ["WESLEY_WORK", "CG_NIMO_01", "RYZEN9DESK"],
+    "intent": "MCP contract identical across machines; profile differs only after baseline"
+  },
+  "driftCodesWhenBaselineFails": [
+    "DRIFT_BASELINE_FOUNDATION_MISSING",
+    "DRIFT_BASELINE_GENERATION_MISMATCH",
+    "DRIFT_MACHINE_REALIZATION_INCOMPLETE",
+    "DRIFT_AUTHORITY_GENERATION",
+    "DRIFT_SETTINGS_HASH",
+    "DRIFT_HOOK",
+    "DRIFT_PROFILE_PARITY_VIOLATION"
+  ],
+  "verificationCommands": {
+    "claudeBootstrap": "npm run claude40:bootstrap-preflight",
+    "lane0": "npm run lane0:admit -- --json",
+    "executionContext": "npm run execution-context:resolve -- --json",
+    "m8Acceptance": "npm run m8:acceptance -- --json",
+    "harvest": "npm run agent-runtime:harvest -- --json",
+    "milestoneStatus": "npm run sdlc:milestone:status -- --milestone CG_AGENT_RUNTIME_DETERMINISM_V1 --json"
+  }
+}

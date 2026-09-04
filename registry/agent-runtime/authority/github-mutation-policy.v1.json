@@ -1,0 +1,101 @@
+{
+  "schemaVersion": "cg-agent-runtime-github-mutation-policy-v1",
+  "workPackageId": "agent-workstation-mcp-hub-index-v1",
+  "platformInvariant": "GITHUB_OPERATIONS_MUST_USE_M8_PLANE",
+  "authorityDoc": "CG-AppBuilder-MCP/docs/github-preservation/M8_DETERMINISTIC_OPERATIONS_SPINE.md",
+  "governanceDoc": "CG-AppBuilder-MCP/docs/protocol-governance/GITHUB_OPERATIONS_MUST_USE_M8_PLANE.md",
+  "boundary": {
+    "governanceDecides": "WHETHER",
+    "m8Decides": "HOW",
+    "githubActuatorDoes": "EXECUTION",
+    "verificationProves": "WHAT_HAPPENED"
+  },
+  "resolveEntrypoint": "execution-context:resolve",
+  "admissionStack": [
+    "execution-context:resolve",
+    "lane0:admit",
+    "agent-protocol-kernel mission admission",
+    "capability_resolution",
+    "m8_github_plane"
+  ],
+  "note": "Do not add agent_runtime_resolve(). Cross-Agent defines policy; AppBuilder evaluates.",
+  "admissionOrder": [
+    "MACHINE_SESSION_IDENTITY",
+    "REPO_WORKTREE_RESOLUTION",
+    "MUTATION_LEASE",
+    "GOVERNANCE_POLICY",
+    "REQUIRED_CAPABILITY",
+    "PROVIDER_RESOLUTION",
+    "M8_COMPILE_PLAN",
+    "M8_APPLY",
+    "M8_VERIFY",
+    "RECEIPT"
+  ],
+  "leaseEvaluation": {
+    "scope": "per_target_repo",
+    "batchIsolation": "lease_conflict_in_one_repo_must_not_deny_unrelated_repos",
+    "note": "Evaluate lease before M8 compile; skip GitHub plane work when local repo is not admissible"
+  },
+  "operationClassification": {
+    "localGitRead": {
+      "plane": "LOCAL_GIT",
+      "examples": ["git status", "git diff", "git log", "git show"],
+      "m8Required": false
+    },
+    "localMutationAdmission": {
+      "plane": "LOCAL_MUTATION_ADMISSION",
+      "examples": ["git add", "git commit"],
+      "m8Required": false,
+      "requires": ["mutation_lease", "repo_admission"]
+    },
+    "governedRemoteRead": {
+      "plane": "GOVERNED_REMOTE_READ",
+      "examples": ["git fetch"],
+      "m8Required": false,
+      "requires": ["remote_read_policy"]
+    },
+    "githubMutationM8Required": {
+      "plane": "M8_GITHUB_PLANE",
+      "examples": [
+        "git push",
+        "gh pr create",
+        "gh pr merge",
+        "gh pr update",
+        "github.api.mutation",
+        "branch_protection.mutation"
+      ],
+      "m8Required": true,
+      "unauthorizedTransport": true,
+      "enforcementCodes": ["DIRECT_GIT_MUTATION_FORBIDDEN", "GITHUB_PLANE_REQUIRED"],
+      "stack": [
+        "M8 Feature Plane F0–F7",
+        "M8 GitHub Plane G0–G8",
+        "GitHub actuator",
+        "remote verification",
+        "receipt"
+      ]
+    }
+  },
+  "repoPolicyOverlays": {
+    "Cursor-ProposalGenerator": {
+      "defaultBranch": "main",
+      "beforeM8": ["protocol-13b:ship-gate", "operator_approval_when_required"],
+      "note": "M8 executes only after app promotion policy admits the operation"
+    }
+  },
+  "resolveEntrypoint": "execution-context:resolve",
+  "admissionStack": [
+    "execution-context:resolve",
+    "lane0:admit",
+    "agent-protocol-kernel mission admission",
+    "capability_resolution",
+    "m8_github_plane"
+  ],
+  "note": "Do not add agent_runtime_resolve(). Cross-Agent defines policy; AppBuilder evaluates.",
+  "m8Stack": {
+    "featurePlane": "F0-F7",
+    "githubPlane": "G0-G8",
+    "providerMcpId": "mcp:m8-github-plane",
+    "ownerRepo": "CG-AppBuilder-MCP"
+  }
+}
