@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "cg-agent-runtime-platform-v1",
+  "workPackageId": "agent-workstation-mcp-hub-index-v1",
+  "determinismProfile": "CG_AGENT_RUNTIME_DETERMINISM_V1",
+  "architecturalSentence": "Make the existing Capital Glass AI control plane deterministically aware of workstation/runtime state and enforce drift through worldview → execution eligibility → protocol kernel → Lane 0/M8.",
+  "promotionGates": [
+    {
+      "phase": "P0",
+      "gateId": "AI_PLATFORM_BASELINE_CONVERGENCE",
+      "alias": "BASE_AGENT_PLATFORM_PARITY",
+      "authority": "registry/agent-runtime/authority/baseline-convergence.v1.json"
+    },
+    { "phase": "P1", "gateId": "RUNTIME_AUTHORITY_READY" },
+    { "phase": "P2", "gateId": "RUNTIME_CONTRACT_READY" },
+    { "phase": "P3", "gateId": "ESTATE_OBSERVED" },
+    { "phase": "P4", "gateId": "DRIFT_ENFORCEMENT_READY" },
+    { "phase": "P5", "gateId": "READ_PLANE_READY" },
+    { "phase": "P6", "gateId": "GITHUB_MUTATION_PLANE_READY" },
+    { "phase": "P7", "gateId": "SESSION_ADMISSION_READY" }
+  ],
+  "finalPass": "CG_AGENT_RUNTIME_DETERMINISM_V1_PASS",
+  "baselineGate": {
+    "gateId": "AI_PLATFORM_BASELINE_CONVERGENCE",
+    "ordering": "P0",
+    "requiresPassOnAllMachines": ["cg_nimo_01", "wesley_work", "ryzen9desk"],
+    "negativeControls": {
+      "perMachineBaseline": {
+        "description": "Each authorized machine must PASS baseline independently",
+        "sameKernelGeneration": true,
+        "sameGovernanceContractGeneration": true,
+        "sameRequiredBaseHooks": true,
+        "sameWorldviewContract": true,
+        "sameLane0Contract": true,
+        "sameM8Contract": true
+      },
+      "profileVsPlatform": {
+        "profileCapabilityDifferences": "ALLOWED",
+        "basePlatformDifferences": "BLOCKING_DRIFT"
+      }
+    }
+  },
+  "leaseNegativeControl": {
+    "description": "Per-repo lease must not become global session lock",
+    "scenario": "AppBuilder leased by session A; session B AppBuilder mutation DENIED; Cross-Agent and PG independently evaluated",
+    "adversarialTests": [
+      "lease_conflicted_repo_denied",
+      "unrelated_repo_clean_lease_independently_admissible"
+    ]
+  },
+  "milestoneRequirements": {
+    "AI_PLATFORM_BASELINE_CONVERGENCE": [
+      "nimo_baseline_pass",
+      "wesley_work_baseline_pass",
+      "ryzen9desk_baseline_pass",
+      "agent_protocol_kernel_generation_match",
+      "governance_contract_generation_match",
+      "required_base_hooks_pass",
+      "worldview_contract_generation_match",
+      "lane0_contract_generation_match",
+      "m8_contract_generation_match",
+      "machine_identity_pass",
+      "mcp_required_surface_pass"
+    ],
+    "RUNTIME_AUTHORITY_READY": [
+      "registry_schema_frozen",
+      "slice_compiler_pass",
+      "worldview_lane_contract_committed"
+    ],
+    "RUNTIME_CONTRACT_READY": [
+      "launch_contracts_defined",
+      "settings_contracts_defined",
+      "dependency_contracts_defined"
+    ],
+    "ESTATE_OBSERVED": [
+      "harvest_receipts_all_authorized_machines",
+      "observation_freshness_within_policy"
+    ],
+    "DRIFT_ENFORCEMENT_READY": [
+      "drift_vocabulary_committed",
+      "appbuilder_drift_evaluator_wired",
+      "baseline_drift_blocks_mutation"
+    ],
+    "READ_PLANE_READY": [
+      "hub_slices_compiled",
+      "determinism_gate_pass"
+    ],
+    "GITHUB_MUTATION_PLANE_READY": [
+      "m8_provider_registered",
+      "raw_git_push_adversarial_test_denied",
+      "raw_gh_mutation_adversarial_test_denied",
+      "lease_per_repo_isolation_adversarial_test_pass",
+      "receipt_binds_local_sha_to_remote_sha"
+    ],
+    "SESSION_ADMISSION_READY": [
+      "agentruntime_lane_in_worldview",
+      "authority_convergence_consumes_lane",
+      "kernel_admission_consumes_eligibility"
+    ]
+  },
+  "passGate": {
+    "profile": "CG_AGENT_RUNTIME_DETERMINISM_V1_PASS",
+    "requiresAllPromotionGates": true,
+    "milestoneEngine": {
+      "milestoneId": "CG_AGENT_RUNTIME_DETERMINISM_V1",
+      "statusCommand": "npm run sdlc:milestone:status -- --milestone CG_AGENT_RUNTIME_DETERMINISM_V1 --json",
+      "derivedOnly": true,
+      "authorityDoc": "CG-AppBuilder-MCP/docs/work-packages/canonical-milestone-execution-state-machine-v1.md",
+      "note": "Milestone engine derives state from evidence. Closeout must not write lifecycle state."
+    }
+  },
+  "platformIntegration": "registry/agent-runtime/authority/platform-integration.v1.json",
+  "worldviewLaneContract": "registry/agent-runtime/authority/worldview-lane-agent-runtime.v1.json",
+  "allowedSlices": [
+    "mcp-servers",
+    "agent-workstations",
+    "agent-client-surfaces",
+    "agent-capabilities",
+    "agent-runtime-contracts",
+    "agent-runtime-drift"
+  ],
+  "hotCacheTier": {
+    "hot": [
+      "mcp-servers",
+      "agent-workstations",
+      "agent-client-surfaces",
+      "agent-capabilities"
+    ],
+    "lazy": ["agent-runtime-contracts", "agent-runtime-drift"]
+  },
+  "githubMutationPolicy": "registry/agent-runtime/authority/github-mutation-policy.v1.json",
+  "driftClassAuthority": "registry/agent-runtime/schema/drift-class.v1.json",
+  "observationFreshnessMaxAgeHours": 168,
+  "suiteHubSliceWhitelistSource": "allowedSlices"
+}

@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "cg-agent-runtime-publication-batch-v1",
+  "workPackageId": "agent-workstation-mcp-hub-index-v1",
+  "recordedAt": "2026-09-03T22:18:00.000Z",
+  "incident": "raw_git_push_attempt_blocked_by_lease_and_policy",
+  "note": "No push executed. Raw git push is unauthorized transport; M8 publication pending.",
+  "repositories": [
+    {
+      "repoId": "CapitalGlass-Cross-Agent",
+      "localCommitSha": "ba97b9a",
+      "branch": "harvest/harvest-2026-08-12-estimating-spine-wp2-parallel-lane-closeout-v1",
+      "publicationState": "LOCAL_COMMITTED",
+      "publicationSubstate": "M8_PUBLICATION_PENDING",
+      "leaseState": "CLEAR",
+      "requiredCapability": "github.publish",
+      "requiredProvider": "mcp:m8-github-plane"
+    },
+    {
+      "repoId": "CG-AppBuilder-MCP",
+      "localCommitSha": "e79d08d52",
+      "branch": "work/github-direct-local-clone-v1",
+      "publicationState": "LOCAL_COMMITTED",
+      "publicationSubstate": "LEASE_BLOCKED",
+      "leaseState": "HELD_BY_OTHER",
+      "leaseHolder": "cursor session 77dd65eb",
+      "requiredCapability": "github.publish",
+      "requiredProvider": "mcp:m8-github-plane"
+    },
+    {
+      "repoId": "Cursor-ProposalGenerator",
+      "localCommitSha": "9ea892ea",
+      "branch": "main",
+      "publicationState": "LOCAL_COMMITTED",
+      "publicationSubstate": "SHIP_GATE_AND_M8_PENDING",
+      "leaseState": "CLEAR",
+      "requiredCapability": "github.publish",
+      "requiredProvider": "mcp:m8-github-plane",
+      "policyOverlay": ["protocol-13b:ship-gate", "operator_approval_when_required"]
+    }
+  ],
+  "driftObserved": ["DRIFT_GITHUB_PLANE_BYPASS", "DRIFT_MUTATION_LEASE_CONFLICT"],
+  "enforcementCodes": ["DIRECT_GIT_MUTATION_FORBIDDEN", "GITHUB_PLANE_REQUIRED"]
+}

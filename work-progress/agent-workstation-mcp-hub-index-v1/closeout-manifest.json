@@ -1,35 +1,158 @@
 {
-  "schemaVersion": "closeout-manifest-v1@1.0.0",
+  "schemaVersion": "cg-work-package-closeout-v1",
   "workPackageId": "agent-workstation-mcp-hub-index-v1",
-  "ownerRepo": "CapitalGlass-Cross-Agent",
-  "missionClass": "implement",
-  "status": "CHANGE_0_SEEDED_AWAITING_RATIFICATION",
-  "changes": [
-    { "id": "change-0", "repo": "CapitalGlass-Cross-Agent", "title": "Stand up registry/agent-runtime/", "court": "4.0-L3", "state": "SEEDED" },
-    { "id": "change-3", "repo": "CG-AppBuilder-MCP", "title": "Credential + binary preconditions", "court": "4.0-L1", "state": "NOT_STARTED" },
-    { "id": "change-1", "repo": "CG-AppBuilder-MCP", "title": "Probe connector MCPs for real", "court": "4.0-L2", "state": "NOT_STARTED" },
-    { "id": "change-2", "repo": "CG-AppBuilder-MCP", "title": "Generated mission attestation", "court": "4.0-L1", "state": "NOT_STARTED" },
-    { "id": "change-4", "repo": "CG-AppBuilder-MCP", "title": "OAuth grant completeness", "court": "4.0-L1", "state": "NOT_STARTED" }
+  "phase": "wave-1b-platform-integration-contract",
+  "architecturalSentence": "Make the existing Capital Glass AI control plane deterministically aware of workstation/runtime state and enforce drift through worldview → execution eligibility → protocol kernel → Lane 0/M8.",
+  "crossAgentScope": {
+    "defines": [
+      "runtime identities",
+      "capability/provider authority",
+      "drift vocabulary",
+      "generation contract",
+      "expected lane payload",
+      "milestone evidence requirements",
+      "integration pointers"
+    ],
+    "doesNot": [
+      "decide executionEligibility",
+      "issue admission",
+      "resolve sessions",
+      "acquire leases",
+      "actuate GitHub",
+      "write lifecycle state"
+    ]
+  },
+  "appBuilderNextStep": {
+    "blockedUntil": "lane0_admission_or_worktree",
+    "spec": "work-progress/agent-workstation-mcp-hub-index-v1/APPBUILDER-AGENT-RUNTIME-LANE-COLLECTOR-SPEC.md",
+    "outputSchema": "registry/agent-runtime/schema/agent-runtime-worldview-lane-output.v1.json",
+    "instruction": "Implement collectAgentRuntimeLane() in admitted AppBuilder worktree against 22ad7a3 contract",
+    "forbidden": [
+      "agent_runtime_resolve",
+      "new_admission_front_door",
+      "mutate_leased_canonical_checkout"
+    ]
+  },
+  "milestoneId": "CG_AGENT_RUNTIME_DETERMINISM_V1",
+  "milestoneStateSource": "DERIVED_ONLY — npm run sdlc:milestone:status",
+  "promotionGates": [
+    "P0 AI_PLATFORM_BASELINE_CONVERGENCE",
+    "P1 RUNTIME_AUTHORITY_READY",
+    "P2 RUNTIME_CONTRACT_READY",
+    "P3 ESTATE_OBSERVED",
+    "P4 DRIFT_ENFORCEMENT_READY",
+    "P5 READ_PLANE_READY",
+    "P6 GITHUB_MUTATION_PLANE_READY",
+    "P7 SESSION_ADMISSION_READY"
+  ],
+  "finalPass": "CG_AGENT_RUNTIME_DETERMINISM_V1_PASS",
+  "negativeControls": [
+    "three_machine_baseline_parity",
+    "profile_diff_allowed_platform_diff_blocking",
+    "per_repo_lease_not_global_lock"
   ],
   "artifacts": [
-    "registry/agent-runtime/mcp-estate.v1.json",
-    "registry/agent-runtime/agent-runtime-profiles.v1.json",
-    "registry/agent-runtime/capability-bindings.v1.json",
-    "registry/agent-runtime/README.md"
+    "registry/agent-runtime/authority/platform-integration.v1.json",
+    "registry/agent-runtime/authority/worldview-lane-agent-runtime.v1.json",
+    "registry/agent-runtime/schema/agent-runtime-worldview-lane-output.v1.json",
+    "registry/agent-runtime/authority/baseline-convergence.v1.json",
+    "registry/agent-runtime/authority/machines/manifest.v1.json",
+    "work-progress/agent-workstation-mcp-hub-index-v1/PLATFORM-INTEGRATION-ARCHITECTURE.md",
+    "work-progress/agent-workstation-mcp-hub-index-v1/APPBUILDER-AGENT-RUNTIME-LANE-COLLECTOR-SPEC.md"
   ],
-  "seedProvenance": {
-    "generator": "CG-AppBuilder-MCP/scripts/agent-runtime/harvest-mcp-estate-seed-v1.mjs",
-    "generatorBranch": "work/agent-workstation-mcp-hub-index-v1",
-    "allRecordsUnreviewed": true,
-    "secretValuesRead": false
+  "estateIndexSeed": {
+    "note": "Carried from the flat-layout lineage (108421a → a0cb0c2) at the merge of authority object 78365d5. The flat registry/agent-runtime/{mcp-estate,agent-runtime-profiles,capability-bindings}.v1.json files were retired in a0cb0c2; their content is the migration source for the nested authority manifests and is not a parallel authority.",
+    "status": "CHANGE_0_SEEDED_AWAITING_RATIFICATION",
+    "changes": [
+      {
+        "id": "change-0",
+        "repo": "CapitalGlass-Cross-Agent",
+        "title": "Stand up registry/agent-runtime/",
+        "court": "4.0-L3",
+        "state": "SEEDED"
+      },
+      {
+        "id": "change-3",
+        "repo": "CG-AppBuilder-MCP",
+        "title": "Credential + binary preconditions",
+        "court": "4.0-L1",
+        "state": "NOT_STARTED"
+      },
+      {
+        "id": "change-1",
+        "repo": "CG-AppBuilder-MCP",
+        "title": "Probe connector MCPs for real",
+        "court": "4.0-L2",
+        "state": "NOT_STARTED"
+      },
+      {
+        "id": "change-2",
+        "repo": "CG-AppBuilder-MCP",
+        "title": "Generated mission attestation",
+        "court": "4.0-L1",
+        "state": "NOT_STARTED"
+      },
+      {
+        "id": "change-4",
+        "repo": "CG-AppBuilder-MCP",
+        "title": "OAuth grant completeness",
+        "court": "4.0-L1",
+        "state": "NOT_STARTED"
+      }
+    ],
+    "migrationSource": [
+      "work-progress/agent-workstation-mcp-hub-index-v1/migration-source/mcp-estate.v1.json",
+      "work-progress/agent-workstation-mcp-hub-index-v1/migration-source/agent-runtime-profiles.v1.json",
+      "work-progress/agent-workstation-mcp-hub-index-v1/migration-source/capability-bindings.v1.json",
+      "work-progress/agent-workstation-mcp-hub-index-v1/migration-source/README.md"
+    ],
+    "seedProvenance": {
+      "generator": "CG-AppBuilder-MCP/scripts/agent-runtime/harvest-mcp-estate-seed-v1.mjs",
+      "generatorBranch": "work/agent-workstation-mcp-hub-index-v1",
+      "allRecordsUnreviewed": true,
+      "secretValuesRead": false
+    },
+    "blockingConditions": [
+      "Every record is SEEDED_UNREVIEWED; ratification is a human review and is not complete.",
+      "Several OPERATIONAL records declare no canonicalProbe and cannot be ratified until they do.",
+      "capability-bindings.v1.json is intentionally empty pending per-binding basis.",
+      "Registry drift observed at seed time: claude 27 servers vs cursor 18, DRIFT: 10."
+    ],
+    "acceptance": {
+      "change0": "registry/agent-runtime/ exists in CapitalGlass-Cross-Agent with the four artifacts, no secret values, and every record explicitly marked SEEDED_UNREVIEWED.",
+      "acceptanceNote": "Written for the flat layout. The flat artifacts were retired in a0cb0c2 and survive only as migration source; the nested authority layout from 78365d5 is the surviving shape."
+    }
   },
-  "blockingConditions": [
-    "Every record is SEEDED_UNREVIEWED; ratification is a human review and is not complete.",
-    "Several OPERATIONAL records declare no canonicalProbe and cannot be ratified until they do.",
-    "capability-bindings.v1.json is intentionally empty pending per-binding basis.",
-    "Registry drift observed at seed time: claude 27 servers vs cursor 18, DRIFT: 10."
-  ],
-  "acceptance": {
-    "change0": "registry/agent-runtime/ exists in CapitalGlass-Cross-Agent with the four artifacts, no secret values, and every record explicitly marked SEEDED_UNREVIEWED."
+  "authorityObjectRecovery": {
+    "state": "RECOVERED_FROM_Z_HANDOFF_BUNDLE",
+    "fullSha": "78365d5fb23566e02478c2bb31a91c33ff204940",
+    "shortSha": "78365d5",
+    "mergeCommit": "43736a9ecce5021727c48322a36e540ed0481c98",
+    "authorityRef": "refs/cg-authority/agent-runtime/78365d5",
+    "published": false,
+    "receipts": [
+      "work-progress/agent-workstation-mcp-hub-index-v1/receipts/recovery-78365d5-cg-nimo-01.json",
+      "work-progress/agent-workstation-mcp-hub-index-v1/receipts/recovery-78365d5-cg-nimo-01-sweep.json",
+      "work-progress/agent-workstation-mcp-hub-index-v1/receipts/recovery-78365d5-ryzen9desk.json",
+      "work-progress/agent-workstation-mcp-hub-index-v1/receipts/recovery-78365d5-ryzen9desk-sweep.json"
+    ]
+  },
+  "estateIndexMigration": {
+    "state": "MATERIALIZED_INTO_NESTED_MANIFESTS",
+    "generator": "CG-AppBuilder-MCP/scripts/agent-runtime/materialize-agent-runtime-authority-v1.mjs",
+    "sourceCommit": "d5bcd63056aa280a4d2fea1cdaa4284496fd1d15",
+    "outputs": [
+      "registry/agent-runtime/authority/mcps/manifest.v1.json",
+      "registry/agent-runtime/authority/machines/manifest.v1.json"
+    ],
+    "driftGate": "CG-AppBuilder-MCP: npm run agent-runtime:materialize-authority:check -- --cross-agent-root <checkout>",
+    "evidenceObservation": {
+      "observedOn": "RYZEN9DESK",
+      "observedAt": "2026-09-04",
+      "conformance": "MCP_ESTATE_CONFORMANCE_PASS; operational/authorization/estate-ready HOLD (0 ratified, unratifiedOperational=14)",
+      "preconditions": "MCP_PRECONDITIONS_HOLD - one named cause on that host: CREDENTIAL_SHAPE github GITHUB_PERSONAL_ACCESS_TOKEN (shape only, no value read)",
+      "note": "Observation, not lifecycle state; milestone state stays derived-only."
+    },
+    "ratification": "NOT_STARTED - all 29 records SEEDED_UNREVIEWED"
   }
 }

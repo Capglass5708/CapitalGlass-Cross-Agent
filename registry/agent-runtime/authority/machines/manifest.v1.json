@@ -1,0 +1,201 @@
+{
+  "schemaVersion": "cg-agent-runtime-machines-v1",
+  "workPackageId": "agent-workstation-mcp-hub-index-v1",
+  "commonFoundationRequired": true,
+  "baselineGate": "registry/agent-runtime/authority/baseline-convergence.v1.json",
+  "authorizedRoles": [
+    {
+      "machineRole": "cg_nimo_01",
+      "displayName": "CG-NIMO-01",
+      "historicalNote": "Cold-start controller onboarding pilot — full bootstrap path completed first",
+      "profile": {
+        "controller": true,
+        "gpuExecutor": false
+      }
+    },
+    {
+      "machineRole": "wesley_work",
+      "displayName": "WESLEY_WORK",
+      "profile": {
+        "controller": true,
+        "integrationCaptain": true,
+        "gpuExecutor": false
+      }
+    },
+    {
+      "machineRole": "ryzen9desk",
+      "displayName": "RYZEN9DESK",
+      "historicalNote": "Initially treated as executor-only; architecture always required same foundation",
+      "profile": {
+        "controller": true,
+        "gpuExecutor": true,
+        "gpuCapability": "RTX5080"
+      }
+    }
+  ],
+  "invariants": [
+    "All authorized roles require AI_PLATFORM_BASELINE_CONVERGENCE before profile evaluation",
+    "Executor capability is a profile flag — not exemption from agent protocol kernel or worldview",
+    "Machine identity from peer-live-proof — not inferred from repo checkout alone"
+  ],
+  "profiles": {
+    "schema": "agent-runtime-profiles-v1@1.0.0",
+    "workPackageId": "agent-workstation-mcp-hub-index-v1",
+    "authorityNote": "Declares which agent roles and workstations require which MCP surfaces. Machine identity itself is owned by CapitalGlass-Office-Admin; this file references machines, it does not define them.",
+    "seedWarning": "requiredMcps is deliberately empty on every record. A role-to-MCP requirement is a governance assertion and must be ratified explicitly, not inferred from whatever a machine happens to have registered today.",
+    "seedGeneratedAt": "2026-09-04T02:00:00Z",
+    "seededFrom": [
+      {
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "relativePath": "scripts/wsl/machines/*.machine.json"
+      },
+      {
+        "ownerRepo": "CG-AppBuilder-MCP",
+        "relativePath": ".claude/agents/*.md"
+      }
+    ],
+    "migrationSource": "work-progress/agent-workstation-mcp-hub-index-v1/migration-source/agent-runtime-profiles.v1.json"
+  },
+  "workstations": [
+    {
+      "recordId": "wesley_work",
+      "identities": {
+        "machineId": "CG-WESLEYWORK-01",
+        "machineRole": "wesley_work"
+      },
+      "declared": {
+        "healthAdmissionSession": "WSL2_CANONICAL",
+        "physicalAuthority": "CapitalGlass-Office-Admin",
+        "requiredMcps": [],
+        "notes": "Claude/VS Code pilot workstation."
+      },
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "cg_nimo_01",
+      "identities": {
+        "machineId": "CG-NIMO-01",
+        "machineRole": "cg_nimo_01"
+      },
+      "declared": {
+        "healthAdmissionSession": "WSL2_CANONICAL",
+        "physicalAuthority": "CapitalGlass-Office-Admin",
+        "requiredMcps": [],
+        "notes": "Governed IDE workspace front-door target."
+      },
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "ryzen9desk",
+      "identities": {
+        "machineId": "RYZEN9DESK",
+        "machineRole": "ryzen9desk"
+      },
+      "declared": {
+        "healthAdmissionSession": "WSL2_CANONICAL",
+        "physicalAuthority": "CapitalGlass-Office-Admin",
+        "requiredMcps": [],
+        "notes": "Direct Connect dispatch target."
+      },
+      "reviewState": "SEEDED_UNREVIEWED"
+    }
+  ],
+  "agentRoles": [
+    {
+      "recordId": "scout",
+      "declared": {
+        "authority": "READ_ONLY",
+        "requiredMcps": [],
+        "optionalMcps": []
+      },
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "builder",
+      "declared": {
+        "authority": "WRITE",
+        "requiredMcps": [],
+        "optionalMcps": []
+      },
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "critic",
+      "declared": {
+        "authority": "READ_ONLY",
+        "requiredMcps": [],
+        "optionalMcps": []
+      },
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "verifier",
+      "declared": {
+        "authority": "READ_ONLY_ALLOWLIST",
+        "requiredMcps": [],
+        "optionalMcps": []
+      },
+      "reviewState": "SEEDED_UNREVIEWED"
+    },
+    {
+      "recordId": "integrator",
+      "declared": {
+        "authority": "READ_ONLY",
+        "requiredMcps": [],
+        "optionalMcps": []
+      },
+      "reviewState": "SEEDED_UNREVIEWED"
+    }
+  ],
+  "provenance": {
+    "generator": "CG-AppBuilder-MCP/scripts/agent-runtime/materialize-agent-runtime-authority-v1.mjs",
+    "generatorSchema": "agent-runtime-authority-materialize-v1@1.0.0",
+    "generatorSha256": "6b2a145b4b0643e546ed48ae5420ca3063264acfcc18faeb3757328a1723e065",
+    "output": "machines",
+    "generatedAt": "2026-09-04T15:04:18.000Z",
+    "generatedAtBasis": "SOURCE_COMMIT_COMMITTER_DATE",
+    "sourceCommit": {
+      "repository": "CG-AppBuilder-MCP",
+      "sha": "d5bcd63056aa280a4d2fea1cdaa4284496fd1d15",
+      "basis": "GENERATOR_LAST_COMMIT"
+    },
+    "authorityObject": {
+      "repository": "CapitalGlass-Cross-Agent",
+      "contractShortSha": "78365d5",
+      "sha": "78365d5fb23566e02478c2bb31a91c33ff204940",
+      "resolution": "RESOLVED_IN_OBJECT_STORE"
+    },
+    "inputs": [
+      {
+        "role": "AUTHORITY_MCPS_MANIFEST",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "relativePath": "registry/agent-runtime/authority/mcps/manifest.v1.json",
+        "sha256": "76755cda43de52e522184e02ca3f19e53222f976394bced0748a4db9ebfdc343",
+        "digestBasis": "CANONICAL_JSON_OF_AUTHORITY_KEYS"
+      },
+      {
+        "role": "AUTHORITY_MACHINES_MANIFEST",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "relativePath": "registry/agent-runtime/authority/machines/manifest.v1.json",
+        "sha256": "fd93f9192e4d17247bc5f3f8eac9a34d03f676dc16d6a5ba3c57751cf9ff8069",
+        "digestBasis": "CANONICAL_JSON_OF_AUTHORITY_KEYS"
+      },
+      {
+        "role": "ESTATE_INDEX_SEED",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "relativePath": "work-progress/agent-workstation-mcp-hub-index-v1/migration-source/mcp-estate.v1.json",
+        "sha256": "7f47bfa496e632416cc620dc2ae02c3f5badee84cd796c8d51619fdbbf5a2beb",
+        "digestBasis": "FILE_BYTES"
+      },
+      {
+        "role": "RUNTIME_PROFILES_SEED",
+        "ownerRepo": "CapitalGlass-Cross-Agent",
+        "relativePath": "work-progress/agent-workstation-mcp-hub-index-v1/migration-source/agent-runtime-profiles.v1.json",
+        "sha256": "56d40facdc52225031ee659ad5191f1e5ddc74eb0cb0aafcf9e846bb2afaa87e",
+        "digestBasis": "FILE_BYTES"
+      }
+    ],
+    "determinism": "No wall clock is read. Regeneration over unchanged inputs is byte-identical; running over this output is a no-op. Keys outside the generator's owned set are the authority object's own and are preserved verbatim.",
+    "secretValuesRead": false
+  }
+}
