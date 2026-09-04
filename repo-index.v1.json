@@ -1,0 +1,633 @@
+{
+  "schemaVersion": "capital-glass-repo-deep-index-v1@1.1.0",
+  "repo": {
+    "name": "CapitalGlass-Cross-Agent",
+    "owner": "Capglass5708",
+    "indexedSourceBranch": "main",
+    "indexedSourceCommitSha": "b95828a632b954de5045d1fb691b70f43056d77e",
+    "indexedAt": "2026-09-04",
+    "indexBranch": "chatgpt/cross-agent-deep-index-v1",
+    "companionNarrativeIndex": "AI_INDEX.md"
+  },
+  "relatedIndexSystems": {
+    "note": "This deep index is NOT the estate routing index. Reconcile before rolling this pattern to further repos.",
+    "federatedEstateIndex": {
+      "localFile": "index/cg-federated-repo-index.v1.json",
+      "localSeed": "index/repo-index.seed.v1.json",
+      "compilerAuthority": "CG-AppBuilder-MCP",
+      "estateRoutingSource": "CG-AppBuilder-MCP/registry/federated-repo-index/estate-routing.v1.json",
+      "program": "cg-federated-repo-index-estate-100-v1",
+      "programState": "CG_FEDERATED_REPO_INDEX_WAVE_A_CLOSED",
+      "governedRepoTargetSet": 32,
+      "localFileStatus": "NEAR_EMPTY_STUB",
+      "reconciliationRequired": true
+    }
+  },
+  "scale": {
+    "totalTrackedFiles": 1861,
+    "npmScripts": 104,
+    "npmTestScripts": 41,
+    "byDirectory": {
+      "artifacts": 1258,
+      "scripts": 282,
+      "work-progress": 168,
+      "contracts": 37,
+      "registry": 22,
+      "harvest": 17,
+      "docs": 13,
+      "plans": 13,
+      "archive": 7,
+      "agent-notes-seeding": 7,
+      "verification": 4,
+      "handoffs": 3,
+      "runbooks": 3,
+      "index": 3,
+      "decisions": 2,
+      "repo-map": 2,
+      "runtime": 1,
+      "inbox": 1,
+      "chatgpt-reviews": 1,
+      "cursor-reports": 1
+    },
+    "scanGuidance": "artifacts/ is 68% of the repo and machine-generated. Read one run directory, never the tree. Do not repo-wide grep or fan out explore agents.",
+    "toolingNotes": {
+      "moduleType": "module",
+      "enginesField": null,
+      "ciNodeVersion": 22,
+      "devDependencies": ["ajv", "ajv-formats"],
+      "testFramework": "NONE - self-contained .mjs runners executed by node, non-zero exit on failure"
+    }
+  },
+  "classification": {
+    "primaryRole": "cross-agent-coordination-and-compounding-intelligence",
+    "roles": [
+      "human-coordination-authority",
+      "harvest-tooling-authority",
+      "operational-intelligence-owner",
+      "estate-retrieval-routing-registry-owner",
+      "cross-system-publication-coordinator"
+    ],
+    "notRoles": [
+      "universal-product-implementation-owner",
+      "constitutional-governance-owner",
+      "progression-authority",
+      "cg-master-graph-implementation-owner",
+      "federated-estate-index-compiler"
+    ]
+  },
+  "authority": {
+    "humanActiveWork": "work-progress/ACTIVE_WORK.md",
+    "durableDecisions": "decisions/DECISION_LOG.md",
+    "harvestRunPattern": "artifacts/agent-runs/<harvestId>/harvest-manifest-v1.json",
+    "harvestProtocolCurrent": "harvest/protocol/",
+    "harvestProtocolStale": "docs/runbooks/, docs/protocols/",
+    "operationalIntelligence": [
+      "contracts/intelligence/OWNERSHIP.md",
+      "work-progress/projects/operational-intelligence-envelope-v1.md"
+    ],
+    "queryRouting": "registry/query-routing/query-routing-manifest.v1.json",
+    "datasetRegistry": "registry/datasets/hot-cache-dataset-registry.v1.json",
+    "relationshipVocabulary": "contracts/intelligence/registries/knowledge-relationship-types-v1.json",
+    "external": {
+      "constitutionalGovernance": "CG-Platform-Governance-MCP",
+      "executionProducer": "CG-AppBuilder-MCP",
+      "progression": ["WaveRunner", "Git"],
+      "graphImplementation": "CG-MASTER-GRAPH",
+      "retrievalPlane": "Intelligence Hub",
+      "hotCacheSoleWriter": "Z: AI Cache Authority"
+    }
+  },
+  "supersession": {
+    "status": "RESOLVED",
+    "olderCoordinationOnlyDocs": [
+      "README.md",
+      "AGENT_START_HERE.md",
+      "work-progress/WORKSPACE_CONTEXT.md",
+      "repo-map/REPOSITORY_ROLES.md",
+      "decisions/DECISION_LOG.md"
+    ],
+    "rule": "Older meeting-repo-only guidance remains valid for product implementation placement but is partially superseded for the intelligence subsystem by the later ARCHITECTURE_LOCKED intelligence ownership contract and plan.",
+    "boundaryModel": {
+      "APPBUILDER": "DO THE WORK",
+      "CROSS_AGENT": "LEARN FROM THE WORK",
+      "INTELLIGENCE_HUB": "MAKE WHAT WAS LEARNED AVAILABLE",
+      "WAVERUNNER": "CONTROL WHAT HAPPENS NEXT"
+    }
+  },
+  "subsystems": [
+    {
+      "id": "coordination-ledger",
+      "purpose": "Durable human/agent work state, decisions, handoffs, project history and verification pointers.",
+      "entryFiles": [
+        "work-progress/ACTIVE_WORK.md",
+        "work-progress/projects/INDEX.md",
+        "decisions/DECISION_LOG.md",
+        "handoffs/CURRENT_HANDOFF.md"
+      ],
+      "authorityClass": "HUMAN_COORDINATION_AUTHORITY"
+    },
+    {
+      "id": "harvest",
+      "purpose": "Deterministic evidence harvest, derived views, publication, freshness, retention, quality, ChatGPT harvest and protocol-learning support.",
+      "fileCount": 140,
+      "entryCommands": ["npm run harvest:record -- --harvest-id=<id>"],
+      "entryFiles": [
+        "scripts/harvest/record-harvest.mjs",
+        "scripts/harvest/sync-derived.mjs",
+        "scripts/harvest/schema/harvest-manifest-v1.schema.json"
+      ],
+      "canonicalRunAuthority": "artifacts/agent-runs/<harvestId>/harvest-manifest-v1.json",
+      "authorityClass": "HARVEST_AUTHORITY",
+      "secretScan": "validate-harvest.mjs rejects token|secret|password|authorization|bearer|apiKey|privateKey before publication"
+    },
+    {
+      "id": "operational-intelligence",
+      "purpose": "Post-closeout deterministic learning: verify source evidence, project mission ledger, build derived intelligence, relationships, Hub compact payloads and provenance.",
+      "fileCount": 36,
+      "libLineCount": 4243,
+      "contractFileCount": 24,
+      "entryCommands": [
+        "npm run intelligence:ingest -- --handoff=<path> --dry-run --json",
+        "npm run intelligence:ingest -- --handoff=<path> --shared-dev-hub --json",
+        "npm run intelligence:preflight",
+        "npm run intelligence:correlate",
+        "npm run intelligence:bible-hub-publish",
+        "npm run intelligence:run-w1-corpus-replay"
+      ],
+      "entryFiles": [
+        "contracts/intelligence/OWNERSHIP.md",
+        "work-progress/projects/operational-intelligence-envelope-v1.md",
+        "scripts/intelligence/ingest.mjs",
+        "scripts/intelligence/lib/ingest-pipeline-v1.mjs"
+      ],
+      "authorityClass": "DERIVED_INTELLIGENCE_OWNER",
+      "invariants": [
+        "progressionAuthority=false",
+        "rawTelemetryDuplicated=false",
+        "authorityClass=DERIVED_INTELLIGENCE",
+        "producer-derived-payloads-forbidden",
+        "source-closeout-remains-evidence-authority",
+        "provenance-reconstructable",
+        "harvest-publication-path-forbidden-for-derived-intelligence",
+        "measurementQuality-must-not-be-collapsed-to-coarse-buckets"
+      ]
+    },
+    {
+      "id": "query-routing-and-datasets",
+      "purpose": "Route agent query classes to compact estate datasets and define dataset freshness/dependencies/miss behavior.",
+      "entryFiles": [
+        "registry/query-routing/query-routing-manifest.v1.json",
+        "registry/datasets/hot-cache-dataset-registry.v1.json",
+        "scripts/query-routing/validate-query-routing-manifest.mjs"
+      ],
+      "authorityClass": "REGISTRY_AUTHORITY",
+      "missNotAllowedDatasets": ["authority-estate", "git-estate"],
+      "primaryConsumer": "CG-AppBuilder-MCP/scripts/hot-cache-platform/lib/query-router.mjs"
+    },
+    {
+      "id": "index-publication",
+      "purpose": "Pinned-SHA publication of Cross-Agent state to Intelligence Hub and AI-cache planes using governed worker repos.",
+      "entryCommands": ["npm run index:publish"],
+      "entryFiles": [
+        "scripts/index/run-index-publisher.mjs",
+        ".github/workflows/index-publication.yml",
+        "runtime/index-publication/latest.json"
+      ],
+      "authorityClass": "PUBLICATION_COORDINATION",
+      "ciRunnerLabels": ["self-hosted", "ryzen9desk", "wsl2"]
+    },
+    {
+      "id": "federated-repo-index",
+      "purpose": "Owner-local entry in the estate-wide federated repo index; AppBuilder compiles estate routing, this repo publishes slices.",
+      "entryFiles": [
+        "index/cg-federated-repo-index.v1.json",
+        "index/repo-index.seed.v1.json",
+        "work-progress/projects/2026-08-12_cg-federated-repo-index-v1.md",
+        "work-progress/intelligence-hub-slices/federated-estate-routing.json"
+      ],
+      "authorityClass": "PUBLICATION_ONLY",
+      "warning": "Local index is a near-empty stub with a year-2000 INDEX_GENERATED_AT. Do not hand-edit the generated file; edit the seed. Luna must not write indexes.",
+      "standingInstruction": "Do not close Wave A, enter Wave B, or publish Hub replicas to L:."
+    },
+    {
+      "id": "experience-contracts",
+      "purpose": "Experience/business-observation/glazing-scope semantic contracts.",
+      "entryFiles": ["contracts/experience/"],
+      "authorityClass": "SEMANTIC_CONTRACT_AUTHORITY",
+      "invariants": ["EXPERIENCE_SOURCE_ROUNDTRIP_PASS", "EXPERIENCE_NO_SUPPRESSION_PASS"]
+    },
+    {
+      "id": "estimating-contracts",
+      "purpose": "Cross-repo estimating evidence and human-review contracts.",
+      "entryFiles": ["contracts/estimating/"],
+      "authorityClass": "CROSS_REPO_CONTRACT_AUTHORITY"
+    },
+    {
+      "id": "master-graph-coordination",
+      "purpose": "Coordinate CG-MASTER-GRAPH validation and Hub/suite publication without owning graph implementation.",
+      "entryCommands": ["npm run master-graph:publish-hub"],
+      "entryFiles": ["scripts/master-graph/run-hub-publication.mjs"],
+      "authorityClass": "ORCHESTRATION_ONLY"
+    },
+    {
+      "id": "runner-host-support",
+      "purpose": "WESLEYDESK runner/network/bootstrap support adapters.",
+      "entryFiles": ["scripts/runner/"],
+      "authorityClass": "HOST_SUPPORT_ADAPTER",
+      "warning": "Named for WESLEYDESK, but the CI runner label on main is ryzen9desk. Resolve current machine-registry/managed-executor authority before mutation."
+    }
+  ],
+  "operationalIntelligenceDetail": {
+    "schemaConstants": {
+      "source": "scripts/intelligence/lib/constants.mjs",
+      "DERIVATION_VERSION": "operational-intelligence-v1@1.0.0",
+      "MISSION_LEDGER_SCHEMA": "operational-mission-ledger-v1@1.0.0",
+      "ENVELOPE_SCHEMA": "operational-intelligence-envelope-v1@1.0.0",
+      "HANDOFF_SCHEMA": "intelligence-handoff-v1@1.0.0",
+      "HUB_COMPACT_SCHEMA": "operational-intelligence-hub-compact-v1@1.0.0",
+      "INGEST_RECEIPT_SCHEMA": "operational-intelligence-ingest-receipt-v1@1.0.0",
+      "AUTHORITY_FINGERPRINT_VERSION": "intelligence-authority-fingerprint-v1@1.0.0",
+      "note": "DERIVATION_VERSION participates in every id hash. Changing it re-keys the entire graph."
+    },
+    "ingestStages": [
+      {"step": "validate_handoff_schema", "stage": "HANDOFF_VALIDATION", "failCode": "HANDOFF_SCHEMA_INVALID"},
+      {"step": "reject_producer_derived_objects", "stage": "HANDOFF_VALIDATION", "failCode": "PRODUCER_DERIVED_OBJECTS_FORBIDDEN"},
+      {"step": "resolve_closeout", "stage": "CLOSEOUT_RESOLVE", "failCode": "CLOSEOUT_NOT_FOUND"},
+      {"step": "verify_closeout_hash", "stage": "CLOSEOUT_HASH_VERIFICATION", "failCode": "CLOSEOUT_HASH_MISMATCH"},
+      {"step": "validate_correlation_markers", "stage": "CORRELATION_VALIDATION", "failCode": "CORRELATION_MARKERS_INVALID", "conditional": "runs only when handoff.mission.material===true AND closeout.correlation is present"},
+      {"step": "verify_authority_fingerprint", "stage": "AUTHORITY_FINGERPRINT", "failCode": "AUTHORITY_FINGERPRINT_MISMATCH"},
+      {"step": "classify_evidence_reality", "stage": null, "failCode": null},
+      {"step": "project_mission_ledger", "stage": "LEDGER_PROJECTION", "failCode": "RAW_CLOSEOUT_COPIED"},
+      {"step": "build_derived_objects", "stage": "DERIVED_OBJECT_BUILD", "failCode": ["ENVELOPE_SCHEMA_INVALID", "PROGRESSION_AUTHORITY_FORBIDDEN", "SOURCE_AUTHORITY_INVALID", "RAW_TELEMETRY_DUPLICATED"]},
+      {"step": "validate_relationship_types", "stage": "RELATIONSHIP_VALIDATION", "failCode": "RELATIONSHIP_TYPE_NOT_REGISTERED"},
+      {"step": "build_relationship_edges", "stage": "GRAPH_DIVIDEND", "failCode": "GRAPH_DIVIDEND_GATE_FAILED"},
+      {"step": "compile_hub_compact", "stage": "HUB_COMPACT_COMPILE", "failCode": "RAW_CLOSEOUT_COPIED"},
+      {"step": "reconstruct_provenance", "stage": "PROVENANCE_RECONSTRUCTION", "failCode": "PROVENANCE_BROKEN"}
+    ],
+    "modes": {
+      "dry-run": {"verdict": "INGEST_DRY_RUN_PASS", "writes": "LOCAL_ARTIFACTS_ONLY"},
+      "shared-dev-hub": {"verdict": "INGEST_SHARED_DEV_STRUCTURAL_PASS", "writes": "LOCAL_ARTIFACTS_ONLY + Supabase intelligence_hub"}
+    },
+    "dryRunOutputRoot": "artifacts/agent-runs/operational-intelligence-envelope-v1/intelligence-dry-run/by-ledger/<ledgerId>/",
+    "dryRunOutputs": ["mission-ledger.json", "derived-objects/<objectId>.json", "relationships.json", "hub-compact.json", "provenance.json", "ingest-receipt-v1.json"],
+    "neverWrites": ["L: drive", "Z: drive"],
+    "evidenceReality": {
+      "values": ["REAL", "FIXTURE", "SYNTHETIC"],
+      "syntheticWhen": ["closeout.synthetic===true", "closeout.evidenceClass==='SYNTHETIC'"],
+      "fixtureWhen": ["mission.material!==true", "workPackageId matches /(fixture|fixtures|smoke|proof-wave|ephemeral|contract-fixture)/", "proof-wave marker in workPackageId or cheapestRedo", "closeout.task contains 'proof wave'"],
+      "trap": "A workPackageId containing 'smoke' or 'ephemeral' is classified FIXTURE regardless of how real the mission was."
+    },
+    "measurementQuality": {
+      "values": ["CACHE_VERIFIED", "PROVIDER_VERIFIED", "ESTIMATED", "DIRECT_MEASURED", "INFERRED"],
+      "precedence": "INFERRED when not REAL; else CACHE_VERIFIED (closeout.aiCacheHit) > PROVIDER_VERIFIED (providerTokenPairing.receiptSha256) > ESTIMATED (quality==='ESTIMATE_ONLY') > DIRECT_MEASURED",
+      "contractRule": "Collapsing these into coarse observed/inferred buckets is forbidden by OWNERSHIP.md"
+    },
+    "derivedObjectKinds": {
+      "operational": ["MISSION_MEASUREMENT", "RECEIPT_LEVERAGE_SIGNAL"],
+      "semantic": ["VERIFIED_TRUTH", "DECISION", "RESULT", "FAILURE", "ROOT_CAUSE", "REMEDIATION", "CORRECTION", "SUCCESS_PATTERN", "FASTER_PATH", "REPEATED_WORK", "BLOCKER", "RISK", "PROTOCOL_IMPROVEMENT", "CAPABILITY_SIGNAL", "FUTURE_OPPORTUNITY"],
+      "total": 17
+    },
+    "identityScheme": {
+      "source": "scripts/intelligence/lib/ids.mjs",
+      "ledgerId": "oi:ledger:<24hex> = hash(closeoutHash : DERIVATION_VERSION)",
+      "objectId": "oi:<kind>:<16hex> = hash(ledgerId : kind : closeoutHash : DERIVATION_VERSION)",
+      "semanticObjectId": "adds conceptKey to the hash input",
+      "workPackageAnchorId": "oi:workpackage:<16hex>",
+      "relationshipId": "oi:rel:<16hex> = hash(from : to : relationship : DERIVATION_VERSION)",
+      "contentHash": "sha256 of the envelope with identity.contentHash set to 'sha256:pending'",
+      "idempotency": "Re-ingesting the same closeout yields byte-identical ids, but IDEMPOTENT_REINGEST_PASS is never asserted."
+    },
+    "relationshipVocabulary": {
+      "registry": "contracts/intelligence/registries/knowledge-relationship-types-v1.json",
+      "activeTypeCount": 18,
+      "enforcement": "schema-validate.mjs#validateRelationshipEdges, immediately after buildRelationshipEdges(); unregistered or non-ACTIVE hard-fails with RELATIONSHIP_TYPE_NOT_REGISTERED",
+      "policy": "append-only; redefinition in place forbidden; removal forbidden; deprecate instead",
+      "byEmitter": {
+        "relationship-edge-builder-v1.mjs": ["PROJECTED_FROM", "DERIVED_FROM", "EVIDENCED_BY"],
+        "semantic-relationship-builder-v1.mjs": ["OBSERVED_IN", "PROVEN_BY", "ABOUT", "FAILED_BECAUSE_OF", "CORRECTED_BY", "REINFORCES", "ENABLES", "ENABLED_BY"],
+        "identity-reconciliation-v1.mjs": ["SAME_AS", "PROJECTS_TO"],
+        "registeredButNotEmitted": ["SUPPORTED_BY", "REQUIRES_EVIDENCE", "PREDICTS", "SIMILAR_TO", "PREVENTS", "SUPPORTS", "PREVENTED_BY"]
+      },
+      "confusables": [
+        "EVIDENCED_BY (evidence exists) vs REQUIRES_EVIDENCE (evidence gap)",
+        "PREDICTS carries edge-level confidence 0-1; no STRONGLY_PREDICTS type should be added",
+        "REINFORCES (pattern strengthens capability) is NOT the receipt metric nodesReinforced (which is identity-dedup)"
+      ]
+    },
+    "graphDividendGate": {
+      "source": "scripts/intelligence/lib/graph-dividend-gate-v1.mjs",
+      "requiredWhen": "handoff.mission.material === true",
+      "passCondition": "semanticObjects.length > 0 AND attachment.orphans === 0 AND attachment.attached === attachment.total",
+      "milestones": ["MATERIAL_WORK_INTELLIGENCE_DIVIDEND_ENFORCED_V1_PASS", "MATERIAL_WORK_INTELLIGENCE_DIVIDEND_V1_HOLD", "GRAPH_DIVIDEND_NOT_REQUIRED"],
+      "blockerCodes": ["SEMANTIC_OBJECTS_MISSING", "GRAPH_ATTACHMENT_INCOMPLETE"],
+      "graphDeltaReceiptHardcodedFields": {
+        "warning": "A zero in these fields means NOT COMPUTED, not none-occurred.",
+        "fields": ["nodesCorrected", "nodesSuperseded", "utilizationEdgesCreated", "conflictsDetected"],
+        "hardcodedDefaults": {"baselineNodes": 184, "baselineEdges": 302, "semanticPreservationRatio": 1}
+      }
+    },
+    "correlationMarkers": {
+      "schema": "contracts/intelligence/correlation-markers-v1.schema.json",
+      "implementation": "scripts/intelligence/lib/correlation-markers-v1.mjs",
+      "correlationIdPattern": "corr:<32hex>",
+      "missionIdPattern": "mission:<workPackageId>",
+      "registryCounts": {
+        "correlation-marker-types-v1": 12,
+        "correlation-mechanisms-v1": 10,
+        "correlation-subjects-v1": 9,
+        "correlation-relationship-types-v1": 7,
+        "correlation-systems-v1": 4,
+        "correlation-effects-v1": 3,
+        "correlation-problems-v1": 3,
+        "correlation-capabilities-pointer-v1": "pointer to CG-AppBuilder-MCP/scripts/sdlc-protocol-cursor/waverunner-capability-registry-v1.json"
+      },
+      "markerBudgetTrap": "Schema permits markerBudget.max in 1..64; validateCorrelationBlock hard-fails unless it is exactly 48 (MARKER_BUDGET_MAX). Producers must emit exactly 48.",
+      "crossRepoDependency": "loadCorrelationRegistries() calls resolveAppBuilderRoot(); correlation validation requires CG-AppBuilder-MCP to be resolvable."
+    },
+    "provenanceChain": ["DERIVED_OBJECT", "MISSION_LEDGER", "CLOSEOUT_EVIDENCE", "SOURCE_COMMIT"],
+    "provenanceOkRequires": [
+      "object CLOSEOUT evidence contentHash === handoff.closeoutHash",
+      "object CLOSEOUT evidence contentHash === ledger.closeoutHash",
+      "ledger edge relationship === PROJECTED_FROM",
+      "authority.progressionAuthority === false",
+      "authority.authorityClass === DERIVED_INTELLIGENCE"
+    ],
+    "hubWritePath": {
+      "store": "scripts/intelligence/lib/supabase-intelligence-store-v1.mjs",
+      "supabaseSchema": "intelligence_hub",
+      "tables": ["knowledge_objects", "relationships"],
+      "project": "MCP control-plane project",
+      "eligibilityGate": "resolveSharedDevHubWriteEligibility()",
+      "proof": "body-hash readback match, not write-trust",
+      "testability": "createMemoryIntelligenceHubStore() allows unit tests without credentials"
+    },
+    "receiptAcceptanceSemantics": {
+      "true_false": "actually evaluated this run",
+      "null": "NOT PROVEN by this pipeline at all",
+      "string": "deferred pending an external plane",
+      "alwaysNull": ["IDEMPOTENT_REINGEST_PASS", "LOCAL_RUNTIME_VALIDATED"],
+      "nullUnlessSharedDevHub": ["SHARED_DEV_KNOWLEDGE_OBJECT_WRITTEN", "RELATIONSHIP_WRITTEN", "HUB_BODY_HASH_READBACK_MATCH", "RETRIEVAL_SUCCESSFUL"],
+      "warning": "Do not cite INGEST_DRY_RUN_PASS as proof of idempotency or Hub durability."
+    },
+    "retrievalPreflight": {
+      "entry": "npm run intelligence:preflight",
+      "purpose": "produce a receipt proving planes were probed instead of an agent self-reporting that it checked the index",
+      "planeLadder": ["HOT_AI_CACHE", "L_DRIVE", "SUPABASE", "GIT_LEDGER_MIRROR"],
+      "outcomes": ["CACHE_HIT_FRESH", "L_HUB_READ_OK", "L_HUB_UNAVAILABLE_USING_SUPABASE", "L_HUB_UNAVAILABLE_USING_GIT_LEDGER", "ALL_HUB_PLANES_UNAVAILABLE"],
+      "cacheStatuses": ["CACHE_HIT_FRESH", "CACHE_HIT_STALE", "CACHE_MISS", "CACHE_ROOT_UNAVAILABLE"],
+      "cacheBundle": "00-master-index/BY-KIND/mission-intelligence.json",
+      "knownCacheHosts": ["WESLEY_WORK", "WESLEYDESK", "RYZEN9DESK"],
+      "gitMirror": "work-progress/intelligence-hub-slices/ - the only plane guaranteed reachable from any checkout",
+      "receiptRoot": "artifacts/agent-runs/intelligence-preflight-v1/",
+      "honestyRule": "A never-probed lane reads NOT_CHECKED, never UNAVAILABLE. waverunner and cacheRefresh read NOT_YET_INTEGRATED unless real evidence is supplied - never defaulted to a success value."
+    },
+    "readSideQueries": {
+      "source": "scripts/intelligence/lib/mission-graph-queries-v1.mjs",
+      "functions": ["loadRawIntelligenceEntities", "queryRecentlyCorrectedOrSuperseded", "queryRelationshipGraph", "queryUnmodeledEvidence", "parseDecisionLog", "queryGoverningDecisions"]
+    }
+  },
+  "workflows": [
+    {
+      "id": "harvest-record",
+      "authorityInput": "harvest-manifest-v1.json",
+      "steps": ["sync-derived", "reconcile-registry-boundary", "optional-expand-intelligence", "merge-intelligence-index", "generate-retrieval-artifacts", "render-harvest-index", "validate-harvest"],
+      "outputs": ["compact-records", "packet-index.json", "receipt.json", "HARVEST_SUMMARY.md", "coverage.json", "graph-extraction", "retrieval-index-views"]
+    },
+    {
+      "id": "operational-intelligence-ingest",
+      "authorityInput": "intelligence-handoff-v1 + referenced producer closeout",
+      "steps": ["validate-handoff", "reject-producer-derived-payload", "resolve-closeout", "verify-closeout-hash", "validate-correlation-markers", "verify-authority-fingerprint", "classify-evidence-reality", "project-mission-ledger", "build-derived-objects", "validate-relationship-types", "build-relationship-edges", "enforce-graph-dividend", "compile-hub-compact", "assert-no-raw-closeout-copy", "reconstruct-provenance", "optional-shared-dev-hub-publication"],
+      "successVerdict": "INGEST_DRY_RUN_PASS | INGEST_SHARED_DEV_STRUCTURAL_PASS"
+    },
+    {
+      "id": "index-publication",
+      "authorityInput": "pinned Cross-Agent Git SHA",
+      "steps": ["content-identity-noop-check", "L-mount-probe", "AppBuilder-ledger-ingest", "Data-Extraction-active-ledger-publication", "Z-ai-cache-publication", "freshness-gate", "publication-receipt", "L-source-sha-alignment"],
+      "failureVerdict": "PUBLICATION_HOLD",
+      "successVerdict": "PUBLISH_PASS",
+      "noopVerdict": "NOOP_CURRENT"
+    }
+  ],
+  "entryCommandPrerequisites": [
+    {"command": "npm run index:preflight -- --query=\"<task>\" --json", "mutates": false, "requires": ["CG_APPBUILDER_MCP_ROOT or sibling CG-AppBuilder-MCP checkout"]},
+    {"command": "npm run intelligence:preflight", "mutates": "local receipt only", "requires": []},
+    {"command": "npm run intelligence:ingest -- --handoff=<path> --dry-run --json", "mutates": "local artifacts only", "requires": ["resolvable producer closeout", "CG-AppBuilder-MCP resolvable if closeout carries a correlation block"]},
+    {"command": "npm run intelligence:ingest -- --handoff=<path> --shared-dev-hub --json", "mutates": "Supabase intelligence_hub", "requires": ["shared-dev write eligibility/credentials"]},
+    {"command": "npm run harvest:record -- --harvest-id=<id>", "mutates": "local artifacts", "requires": ["valid harvest-manifest-v1.json for that id"]},
+    {"command": "npm run harvest:sync-z-mirror", "mutates": "Z: drive", "requires": ["/mnt/z mounted"], "blockedVerdict": "Z_HARVEST_MIRROR_SYNC_BLOCKED"},
+    {"command": "npm run harvest:move-chatgpt-harvest-to-l", "mutates": "L: drive", "requires": ["/mnt/l mounted"]},
+    {"command": "npm run harvest:closeout-git -- --apply", "mutates": "local git branch/commit", "requires": [], "note": "defaults to dry-run; contradicts m8-github-plane-mandatory rule"},
+    {"command": "npm run harvest:chatgpt-publish-draft -- --apply", "mutates": "git push origin chat-gpt-harvest", "requires": ["on chat-gpt-harvest branch"], "note": "defaults to dry-run; most outward-facing command in the repo"},
+    {"command": "npm run index:freshness-gate", "mutates": "local receipt", "requires": ["Doppler CLI auth", "CG-AppBuilder-MCP"]},
+    {"command": "npm run index:publish", "mutates": "L: drive + --apply mutations in CG-AppBuilder-MCP and Data-Extraction", "requires": ["Doppler auth", "CG-AppBuilder-MCP", "Data-Extraction", "/mnt/l mounted"], "note": "intended to run only on the self-hosted runner"},
+    {"command": "npm run master-graph:publish-hub", "mutates": "runs publish inside CG-MASTER-GRAPH", "requires": ["CG_MASTER_GRAPH_ROOT or sibling checkout"]},
+    {"command": "npm run test:cross-agent-architecture", "mutates": false, "requires": ["some child suites need mounts/siblings; expect partial failures on a bare checkout"]}
+  ],
+  "environmentVariableNames": [
+    "CAPITALGLASS_CROSS_AGENT_ROOT", "CG_APPBUILDER_MCP_ROOT", "CG_ENVIRONMENT",
+    "CG_HARVEST_PUBLICATION_HARDENED", "CG_INTELLIGENCE_HUB_ROOT", "CG_MACHINE_ID",
+    "CG_MASTER_GRAPH_ROOT", "CG_REPOS_ROOT", "CG_WINDOWS_COMPUTER_NAME",
+    "CG_WSL_MACHINE_ROLE", "CROSS_AGENT_HARVEST_PROJECTION_APPROVED",
+    "CROSS_AGENT_LEDGER_INGEST_APPROVED", "DATA_EXTRACTION_ROOT",
+    "INTELLIGENCE_HUB_ROOT", "RUN_L_MOUNT_SMOKE", "HARVEST_ID",
+    "RUN_SHARED_DEV_HARVEST_PROJECTION", "SUPABASE_ACCESS_TOKEN"
+  ],
+  "dependencies": [
+    {"repoOrPlane": "CG-Platform-Governance-MCP", "relationship": "constitutional-authority"},
+    {"repoOrPlane": "CG-AppBuilder-MCP", "relationship": "execution-producer-worker-and-compiler", "usedFor": ["closeout evidence", "intelligence handoff", "ledger ingest", "index preflight", "correlation capability registry", "federated estate routing"]},
+    {"repoOrPlane": "Data-Extraction", "relationship": "publication-worker"},
+    {"repoOrPlane": "Scraper", "relationship": "raw-capture-upstream"},
+    {"repoOrPlane": "Intelligence Hub", "relationship": "retrieval-and-storage-plane"},
+    {"repoOrPlane": "Z: AI Cache Authority", "relationship": "hot-cache-plane-sole-writer"},
+    {"repoOrPlane": "WaveRunner/Git", "relationship": "progression-authority"},
+    {"repoOrPlane": "CG-MASTER-GRAPH", "relationship": "graph-owner"}
+  ],
+  "tests": {
+    "architectureMatrixCommand": "npm run test:cross-agent-architecture",
+    "architectureMatrixSuiteCount": 16,
+    "architectureMatrixSuites": ["HARVEST_CORE", "GIT_RETENTION", "RISK_REMEDIATION", "PUBLICATION_HARDENING", "LAYERED_VERDICT", "CONTENT_FRESHNESS", "IDENTITY", "HOT_CACHE", "QUERY_ROUTING", "PROTOCOL_SELF_LEARNING", "EXPERIENCE_GRAPH", "INTELLIGENCE_CONTRACTS", "INTELLIGENCE_INGEST", "INTELLIGENCE_FIRST_REAL_MISSION", "INTELLIGENCE_VERIFICATION", "PHASE_B"],
+    "coverageLayers": {
+      "allTestNpmScripts": 41,
+      "architectureMatrix": 16,
+      "hostedCiEnforced": 2
+    },
+    "hostedCiSuites": ["test:harvest:risk-remediation", "test:harvest:git-retention"],
+    "intelligenceSuitesChained": 13,
+    "intelligenceSuitesInMatrix": 4,
+    "intelligenceSuitesNotInMatrix": ["test:intelligence-correlation-markers", "test:intelligence-correlate", "test:intelligence-semantic-w1", "test:intelligence-relationship-registry", "test:intelligence-preflight", "test:intelligence-hot-ai-cache", "test:intelligence-mission-graph", "test:intelligence-goldmine", "test:intelligence-unified-receipt"],
+    "githubWorkflows": [
+      {"file": ".github/workflows/harvest-risk-gates.yml", "runner": "ubuntu-latest", "role": "the only genuine hosted PR gate"},
+      {"file": ".github/workflows/index-publication.yml", "runner": "self-hosted,ryzen9desk,wsl2", "role": "operational publication"},
+      {"file": ".github/workflows/chatgpt-harvest-move-to-l.yml", "runner": "self-hosted,ryzen9desk,wsl2", "role": "move ChatGPT drafts to L:"},
+      {"file": ".github/workflows/runner-smoke.yml", "runner": "self-hosted,ryzen9desk,wsl2", "role": "manual read-only runner probe"}
+    ],
+    "runtimeExecutedByIndexingPass": false,
+    "hardeningCaveat": "docs/HARDENING.md records NOT_YET_VERIFIED at an older commit; its zeros mean unmeasured, not clean."
+  },
+  "deadEnds": {
+    "abandonedDirectories": [
+      {"path": "inbox/", "documentedAs": "temporary raw notes before classification", "actual": "README stub only, never used"},
+      {"path": "chatgpt-reviews/", "documentedAs": "ChatGPT review notes on request", "actual": "README stub only, never used"},
+      {"path": "cursor-reports/", "documentedAs": "Cursor implementation reports and closeouts", "actual": "README stub only, never used"}
+    ],
+    "realTrafficMovedTo": ["work-progress/ACTIVE_WORK.md", "work-progress/projects/*.md"],
+    "orphanedScripts": [
+      "scripts/harvest/export-advancement-lineage-refs.mjs",
+      "scripts/harvest/generate-experience-bid-composer-loop-harvest.mjs",
+      "scripts/harvest/generate-experience-wave4-closeout-harvest.mjs",
+      "scripts/harvest/generate-gold-mine-compounding-reference-harvest.mjs",
+      "scripts/harvest/generate-harvest-protocol-self-learning-lane-closeout-harvest.mjs",
+      "scripts/harvest/generate-occ-sdlc-harvest-bridge.mjs",
+      "scripts/harvest/generate-project-folder-synology-harvest.mjs",
+      "scripts/harvest/generate-slice6-thread-harvest.mjs",
+      "scripts/harvest/generate-wesleywork-l-research-bootstrap-closeout-harvest.mjs",
+      "scripts/harvest/generate-wesleywork-l-windows-closeout-harvest.mjs",
+      "scripts/harvest/generate-z-l-drive-offlan-harvest.mjs",
+      "scripts/harvest/run-occ-hub-reuse-proof.mjs",
+      "scripts/harvest/run-slice6-post-publication-blind-retrieval.mjs",
+      "scripts/harvest/write-publication-hardening-baseline.mjs",
+      "scripts/intelligence/prove-first-real-mission-v1.mjs",
+      "scripts/tests/test-wesleydesk-runner.mjs"
+    ],
+    "orphanNote": "One-shot dated closeout generators from historical missions. Not current tooling; do not extend them or treat their hardcoded paths as configuration.",
+    "notOrphansDespiteAbsenceFromPackageJson": [
+      {"path": "scripts/runner/wesleydesk-index-publication-preflight.mjs", "invokedBy": ".github/workflows/runner-smoke.yml"},
+      {"path": "scripts/harvest/lock-worker.mjs", "invokedBy": "imported by two publication tests"}
+    ]
+  },
+  "driftFindings": [
+    {
+      "id": "onboarding-charter-drift",
+      "severity": "material",
+      "finding": "Older onboarding docs still describe coordination-only/no-scripts architecture despite later locked operational-intelligence ownership and 282 script files / 104 npm scripts.",
+      "fix": "Separate governance/documentation reconciliation mission; do not weaken the product-implementation placement rule."
+    },
+    {
+      "id": "current-doc-freshness-drift",
+      "severity": "medium",
+      "finding": "Files named CURRENT have different freshness dates; ACTIVE_WORK (2026-09-04) is newer than CURRENT_HANDOFF (2026-08-25) and CURRENT_GATES (unresolved 2026-08-02 issue).",
+      "fix": "Add sourceCommitSha / freshThrough metadata plus a deterministic stale-current-doc check."
+    },
+    {
+      "id": "m8-rule-contradicted-by-live-code",
+      "severity": "material",
+      "finding": "m8-github-plane-mandatory.mdc forbids ad-hoc git add/commit/push outside a compiled planHash, but scripts/harvest/harvest-closeout-git.mjs (git checkout -b/add/commit) and scripts/harvest/chatgpt-publish-draft.mjs (git push origin chat-gpt-harvest) do exactly that via execSync. Both default to dry-run. The rule concedes HARD_ENFORCEMENT is NOT_STARTED.",
+      "fix": "Explicit disposition: exempt these scripts in the rule, or route them through the M8 plane. Do not leave the contradiction undocumented."
+    },
+    {
+      "id": "ci-coverage-gap",
+      "severity": "medium",
+      "finding": "41 test scripts exist; the architecture matrix runs 16; hosted CI enforces 2. Nine of thirteen intelligence suites are outside the matrix entirely.",
+      "fix": "Decide whether the matrix (or a dependency-aware subset) becomes a required CI gate, and whether the nine intelligence suites belong in the matrix."
+    },
+    {
+      "id": "hardening-unverified",
+      "severity": "medium",
+      "finding": "docs/HARDENING.md explicitly records NOT_YET_VERIFIED at an older commit; it is not current health proof.",
+      "fix": "Run a fresh hardening mission bound to the current SHA before making health claims."
+    },
+    {
+      "id": "protocol-mirror-ahead-of-source",
+      "severity": "material",
+      "finding": "harvest/README.md says do not hand-edit mirrored protocol files and to edit docs/ sources instead, but harvest/protocol/chat-thread-closeout-autopsy-harvest-v1.md is v1.3/1031 lines while its declared source docs/runbooks/chat-thread-closeout-autopsy-harvest-v1.md is v1/599 lines. The mirror carries the mandatory HARVEST_GIT_DURABILITY_RULE the source lacks. Same inversion for the ChatGPT protocol (v2.1 mirror vs v2 source). Five harvest/protocol files have no docs/ counterpart at all.",
+      "interimRule": "Treat harvest/protocol/ as authoritative and docs/ as stale until the sync direction is repaired.",
+      "fix": "Repair the sync direction or redesignate the source of truth."
+    },
+    {
+      "id": "federated-index-stub",
+      "severity": "material",
+      "finding": "index/cg-federated-repo-index.v1.json declares capabilities, protocols, surfaces, dependencies, PROGRAMS, WORK_PACKAGES, SYMBOL_POINTERS, LATEST_RECEIPTS, DECISIONS, BLOCKERS and SUPERSEDED_ITEMS as empty arrays with a single CODE_POINTERS entry. It also carries schema cg-federated-repo-index-v1@1.0.0 alongside schemaVersion cg-federated-repo-index-v2.",
+      "risk": "The estate router learns almost nothing about this repo while AI_INDEX.md holds the real map - two indexes, one populated, one authoritative to the router.",
+      "fix": "Decide the relationship explicitly before rolling the deep-index pattern to further repos, or the estate forks into two incompatible index formats."
+    },
+    {
+      "id": "federated-index-corrupt-timestamp",
+      "severity": "medium",
+      "finding": "index/cg-federated-repo-index.v1.json has INDEX_GENERATED_AT of 2000-02-08T16:42:02.562Z (year 2000). The companion estate-100 receipt records publishedAt 2026-09-03T23:42:02.956Z; near-identical sub-second components indicate a clock/serialization defect at generation, not a placeholder. LAST_INDEXED_SHA 69582666 is real and recent.",
+      "risk": "Any freshness comparison against INDEX_GENERATED_AT computes a ~26-year-old index and will always-refresh or always-fail a staleness gate.",
+      "fix": "Repair in the generator (owned by AppBuilder), not by hand-editing the generated file."
+    },
+    {
+      "id": "correlation-marker-budget-schema-code-mismatch",
+      "severity": "medium",
+      "finding": "correlation-markers-v1.schema.json permits markerBudget.max in 1..64; validateCorrelationBlock() hard-fails unless it is exactly 48 (MARKER_BUDGET_MAX).",
+      "risk": "A producer writing to the published schema can emit a schema-valid handoff that ingest rejects with CORRELATION_MARKERS_INVALID.",
+      "fix": "Tighten the schema to const 48, or relax the validator to the schema range. Until then producers must emit exactly 48."
+    },
+    {
+      "id": "path-typo-home-wesle",
+      "severity": "material",
+      "finding": "The correct WSL root is /home/wesley/repos. The typo /home/wesle/repos (missing y) appears 277 times across 75 files, including live code (scripts/runner/lib/wesleydesk-host.mjs:61), a test env default (run-hot-cache-dataset-registry-authority.test.mjs:82), a test fixture, two orphaned generators, a live estate publication receipt (work-progress/publications/cg-federated-repo-index-estate-100-v1/cross-agent-publication-receipt.json), and foundational docs (AGENT_START_HERE.md, decisions/DECISION_LOG.md, handoffs/CURRENT_HANDOFF.md). The remainder are historical artifacts/**.",
+      "existingGuard": "run-hot-cache-dataset-registry-authority.test.mjs:60 already asserts the typo is absent - but only for one dataset file.",
+      "fix": "Correct live code, test defaults, receipts and foundational docs; leave immutable artifacts/** evidence alone; generalize the existing assertion into a repo-wide check."
+    },
+    {
+      "id": "estate-100-receipt-null-source-hash",
+      "severity": "medium",
+      "finding": "work-progress/publications/cg-federated-repo-index-estate-100-v1/cross-agent-publication-receipt.json records sourceShas.estateContentSha256 as null while capabilityContentSha256 is populated.",
+      "risk": "A publication receipt with a null source hash cannot support the SHA-alignment verification the publication chain depends on."
+    },
+    {
+      "id": "ingest-receipt-unproven-acceptance-keys",
+      "severity": "low-to-medium",
+      "finding": "IDEMPOTENT_REINGEST_PASS and LOCAL_RUNTIME_VALIDATED are hardcoded null in every ingest receipt. The id scheme makes idempotency structurally likely but it is asserted nowhere.",
+      "fix": "Implement the re-ingest comparison and set the key, or document it as permanently caller-supplied. Do not let null be read as true."
+    },
+    {
+      "id": "host-script-authority-risk",
+      "severity": "low-to-medium",
+      "finding": "scripts/runner/ contains concrete WESLEYDESK bootstrap/network scripts while the CI runner label on main is ryzen9desk and machine authority has evolved elsewhere.",
+      "fix": "Index them as support adapters and require current machine-registry resolution before mutation."
+    }
+  ],
+  "mechanicalVerificationRecipe": {
+    "purpose": "Run before the narrative pass when indexing any repo in this estate. Findings F,G,H,I,J,K in AI_INDEX.md all came from this pass.",
+    "checks": [
+      "scale: git ls-files | wc -l, then per-directory counts to decide what NOT to scan",
+      "path typos and forbidden host roots (git grep for /home/wesle/repos, C:\\Developer\\repos, /mnt/c/Developer)",
+      "orphaned scripts: present in scripts/ but referenced by no npm script, workflow, or importer",
+      "generated mirrors drifted ahead of declared source: compare version line and line count for every doc pair",
+      "contract vs implementation constants: schema minimum/maximum/const vs code _MAX/_MIN",
+      "corrupt or impossible timestamps in generated artifacts",
+      "null hashes in receipts that gate SHA alignment",
+      "dead directories: tracked but README-only"
+    ],
+    "ordering": "Mechanical pass first, then narrative. The narrative pass resolves what the repo means; the mechanical pass finds what it gets wrong."
+  },
+  "highValueFiles": [
+    "AI_INDEX.md",
+    "work-progress/ACTIVE_WORK.md",
+    "contracts/intelligence/OWNERSHIP.md",
+    "work-progress/projects/operational-intelligence-envelope-v1.md",
+    "scripts/intelligence/lib/ingest-pipeline-v1.mjs",
+    "scripts/intelligence/lib/constants.mjs",
+    "scripts/intelligence/lib/ids.mjs",
+    "scripts/intelligence/lib/evidence-classifier.mjs",
+    "scripts/intelligence/lib/graph-dividend-gate-v1.mjs",
+    "contracts/intelligence/registries/knowledge-relationship-types-v1.json",
+    "contracts/intelligence/correlation-markers-v1.schema.json",
+    "scripts/harvest/record-harvest.mjs",
+    "scripts/harvest/sync-derived.mjs",
+    "harvest/protocol/chat-thread-closeout-autopsy-harvest-v1.md",
+    "registry/query-routing/query-routing-manifest.v1.json",
+    "registry/datasets/hot-cache-dataset-registry.v1.json",
+    "scripts/index/run-index-publisher.mjs",
+    "index/cg-federated-repo-index.v1.json",
+    "registry/architecture/cross-agent-architecture-pr-disposition-registry.v1.json",
+    "decisions/DECISION_LOG.md",
+    "handoffs/CURRENT_HANDOFF.md",
+    "scripts/tests/run-cross-agent-architecture-matrix.test.mjs"
+  ],
+  "indexVerdict": {
+    "sourceReconciliation": "PASS",
+    "mechanicalVerification": "PASS",
+    "runtimeProver": "NOT_RUN_BY_THIS_INDEXING_PASS",
+    "documentationDriftFound": true,
+    "driftFindingCount": 13,
+    "authorityContradictionResolved": true,
+    "authorityContradictionOpen": "m8-github-plane rule vs live git-mutating harvest scripts",
+    "federatedIndexReconciliation": "REQUIRED_BEFORE_ESTATE_ROLLOUT",
+    "gate": "CROSS_AGENT_DEEP_INDEX_SOURCE_RECONCILIATION_PASS",
+    "verificationScope": "Every structural claim (file paths, npm script names, workflow runner labels, schema constants, stage names, failure codes, registry entry counts, file counts, typo counts, orphan list) verified against main @ b95828a by direct inspection. Claims about behavior on external planes (L:, Z:, Supabase, sibling repos) are read from source and not runtime-confirmed."
+  }
+}
