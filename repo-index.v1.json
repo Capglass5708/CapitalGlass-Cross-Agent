@@ -1,0 +1,297 @@
+{
+  "schemaVersion": "capital-glass-repo-deep-index-v1@1.0.0",
+  "repo": {
+    "name": "CapitalGlass-Cross-Agent",
+    "owner": "Capglass5708",
+    "indexedSourceBranch": "main",
+    "indexedSourceCommitSha": "b95828a632b954de5045d1fb691b70f43056d77e",
+    "indexedAt": "2026-09-04",
+    "indexBranch": "chatgpt/cross-agent-deep-index-v1"
+  },
+  "classification": {
+    "primaryRole": "cross-agent-coordination-and-compounding-intelligence",
+    "roles": [
+      "human-coordination-authority",
+      "harvest-tooling-authority",
+      "operational-intelligence-owner",
+      "estate-retrieval-routing-registry-owner",
+      "cross-system-publication-coordinator"
+    ],
+    "notRoles": [
+      "universal-product-implementation-owner",
+      "constitutional-governance-owner",
+      "progression-authority",
+      "cg-master-graph-implementation-owner"
+    ]
+  },
+  "authority": {
+    "humanActiveWork": "work-progress/ACTIVE_WORK.md",
+    "durableDecisions": "decisions/DECISION_LOG.md",
+    "harvestRunPattern": "artifacts/agent-runs/<harvestId>/harvest-manifest-v1.json",
+    "operationalIntelligence": [
+      "contracts/intelligence/OWNERSHIP.md",
+      "work-progress/projects/operational-intelligence-envelope-v1.md"
+    ],
+    "queryRouting": "registry/query-routing/query-routing-manifest.v1.json",
+    "datasetRegistry": "registry/datasets/hot-cache-dataset-registry.v1.json",
+    "external": {
+      "constitutionalGovernance": "CG-Platform-Governance-MCP",
+      "executionProducer": "CG-AppBuilder-MCP",
+      "progression": ["WaveRunner", "Git"],
+      "graphImplementation": "CG-MASTER-GRAPH",
+      "retrievalPlane": "Intelligence Hub"
+    }
+  },
+  "supersession": {
+    "status": "RESOLVED",
+    "olderCoordinationOnlyDocs": [
+      "README.md",
+      "AGENT_START_HERE.md",
+      "work-progress/WORKSPACE_CONTEXT.md",
+      "repo-map/REPOSITORY_ROLES.md",
+      "decisions/DECISION_LOG.md"
+    ],
+    "rule": "Older meeting-repo-only guidance remains valid for product implementation placement but is partially superseded for the intelligence subsystem by the later ARCHITECTURE_LOCKED intelligence ownership contract and plan."
+  },
+  "subsystems": [
+    {
+      "id": "coordination-ledger",
+      "purpose": "Durable human/agent work state, decisions, handoffs, project history and verification pointers.",
+      "entryFiles": [
+        "work-progress/ACTIVE_WORK.md",
+        "work-progress/projects/INDEX.md",
+        "decisions/DECISION_LOG.md",
+        "handoffs/CURRENT_HANDOFF.md"
+      ],
+      "authorityClass": "HUMAN_COORDINATION_AUTHORITY"
+    },
+    {
+      "id": "harvest",
+      "purpose": "Deterministic evidence harvest, derived views, publication, freshness, retention, quality, ChatGPT harvest and protocol-learning support.",
+      "entryCommands": ["npm run harvest:record -- --harvest-id=<id>"],
+      "entryFiles": [
+        "scripts/harvest/record-harvest.mjs",
+        "scripts/harvest/sync-derived.mjs",
+        "scripts/harvest/schema/harvest-manifest-v1.schema.json"
+      ],
+      "canonicalRunAuthority": "artifacts/agent-runs/<harvestId>/harvest-manifest-v1.json",
+      "authorityClass": "HARVEST_AUTHORITY"
+    },
+    {
+      "id": "operational-intelligence",
+      "purpose": "Post-closeout deterministic learning: verify source evidence, project mission ledger, build derived intelligence, relationships, Hub compact payloads and provenance.",
+      "entryCommands": [
+        "npm run intelligence:ingest -- --handoff=<path> --dry-run --json",
+        "npm run intelligence:ingest -- --handoff=<path> --shared-dev-hub --json"
+      ],
+      "entryFiles": [
+        "contracts/intelligence/OWNERSHIP.md",
+        "work-progress/projects/operational-intelligence-envelope-v1.md",
+        "scripts/intelligence/ingest.mjs",
+        "scripts/intelligence/lib/ingest-pipeline-v1.mjs"
+      ],
+      "authorityClass": "DERIVED_INTELLIGENCE_OWNER",
+      "invariants": [
+        "progressionAuthority=false",
+        "rawTelemetryDuplicated=false",
+        "producer-derived-payloads-forbidden",
+        "source-closeout-remains-evidence-authority",
+        "provenance-reconstructable"
+      ]
+    },
+    {
+      "id": "query-routing-and-datasets",
+      "purpose": "Route agent query classes to compact estate datasets and define dataset freshness/dependencies/miss behavior.",
+      "entryFiles": [
+        "registry/query-routing/query-routing-manifest.v1.json",
+        "registry/datasets/hot-cache-dataset-registry.v1.json",
+        "scripts/query-routing/validate-query-routing-manifest.mjs"
+      ],
+      "authorityClass": "REGISTRY_AUTHORITY"
+    },
+    {
+      "id": "index-publication",
+      "purpose": "Pinned-SHA publication of Cross-Agent state to Intelligence Hub and AI-cache planes using governed worker repos.",
+      "entryCommands": ["npm run index:publish"],
+      "entryFiles": [
+        "scripts/index/run-index-publisher.mjs",
+        ".github/workflows/index-publication.yml"
+      ],
+      "authorityClass": "PUBLICATION_COORDINATION"
+    },
+    {
+      "id": "experience-contracts",
+      "purpose": "Experience/business-observation/glazing-scope semantic contracts.",
+      "entryFiles": ["contracts/experience/"],
+      "authorityClass": "SEMANTIC_CONTRACT_AUTHORITY"
+    },
+    {
+      "id": "estimating-contracts",
+      "purpose": "Cross-repo estimating evidence and human-review contracts.",
+      "entryFiles": ["contracts/estimating/"],
+      "authorityClass": "CROSS_REPO_CONTRACT_AUTHORITY"
+    },
+    {
+      "id": "master-graph-coordination",
+      "purpose": "Coordinate CG-MASTER-GRAPH validation and Hub/suite publication without owning graph implementation.",
+      "entryCommands": ["npm run master-graph:publish-hub"],
+      "entryFiles": ["scripts/master-graph/run-hub-publication.mjs"],
+      "authorityClass": "ORCHESTRATION_ONLY"
+    },
+    {
+      "id": "runner-host-support",
+      "purpose": "WESLEYDESK runner/network/bootstrap support adapters.",
+      "entryFiles": ["scripts/runner/"],
+      "authorityClass": "HOST_SUPPORT_ADAPTER",
+      "warning": "Resolve current machine-registry/managed-executor authority before mutation."
+    }
+  ],
+  "workflows": [
+    {
+      "id": "harvest-record",
+      "authorityInput": "harvest-manifest-v1.json",
+      "steps": [
+        "sync-derived",
+        "reconcile-registry-boundary",
+        "optional-expand-intelligence",
+        "merge-intelligence-index",
+        "generate-retrieval-artifacts",
+        "render-harvest-index",
+        "validate-harvest"
+      ],
+      "outputs": [
+        "compact-records",
+        "packet-index.json",
+        "receipt.json",
+        "HARVEST_SUMMARY.md",
+        "coverage.json",
+        "graph-extraction",
+        "retrieval-index-views"
+      ]
+    },
+    {
+      "id": "operational-intelligence-ingest",
+      "authorityInput": "intelligence-handoff-v1 + referenced producer closeout",
+      "steps": [
+        "validate-handoff",
+        "reject-producer-derived-payload",
+        "resolve-closeout",
+        "verify-closeout-hash",
+        "verify-authority-fingerprint",
+        "classify-evidence-reality",
+        "project-mission-ledger",
+        "build-derived-objects",
+        "validate-relationships",
+        "enforce-graph-dividend",
+        "compile-hub-compact",
+        "reconstruct-provenance",
+        "optional-shared-dev-hub-publication"
+      ]
+    },
+    {
+      "id": "index-publication",
+      "authorityInput": "pinned Cross-Agent Git SHA",
+      "steps": [
+        "content-identity-noop-check",
+        "L-mount-probe",
+        "AppBuilder-ledger-ingest",
+        "Data-Extraction-active-ledger-publication",
+        "Z-ai-cache-publication",
+        "freshness-gate",
+        "publication-receipt",
+        "L-source-sha-alignment"
+      ],
+      "failureVerdict": "PUBLICATION_HOLD",
+      "successVerdict": "PUBLISH_PASS"
+    }
+  ],
+  "dependencies": [
+    {"repoOrPlane":"CG-Platform-Governance-MCP","relationship":"constitutional-authority"},
+    {"repoOrPlane":"CG-AppBuilder-MCP","relationship":"execution-producer-and-worker"},
+    {"repoOrPlane":"Data-Extraction","relationship":"publication-worker"},
+    {"repoOrPlane":"Scraper","relationship":"raw-capture-upstream"},
+    {"repoOrPlane":"Intelligence Hub","relationship":"retrieval-and-storage-plane"},
+    {"repoOrPlane":"Z: AI Cache Authority","relationship":"hot-cache-plane"},
+    {"repoOrPlane":"WaveRunner/Git","relationship":"progression-authority"},
+    {"repoOrPlane":"CG-MASTER-GRAPH","relationship":"graph-owner"}
+  ],
+  "tests": {
+    "architectureMatrixCommand": "npm run test:cross-agent-architecture",
+    "architectureMatrixSuiteCount": 16,
+    "architectureMatrixSuites": [
+      "HARVEST_CORE",
+      "GIT_RETENTION",
+      "RISK_REMEDIATION",
+      "PUBLICATION_HARDENING",
+      "LAYERED_VERDICT",
+      "CONTENT_FRESHNESS",
+      "IDENTITY",
+      "HOT_CACHE",
+      "QUERY_ROUTING",
+      "PROTOCOL_SELF_LEARNING",
+      "EXPERIENCE_GRAPH",
+      "INTELLIGENCE_CONTRACTS",
+      "INTELLIGENCE_INGEST",
+      "INTELLIGENCE_FIRST_REAL_MISSION",
+      "INTELLIGENCE_VERIFICATION",
+      "PHASE_B"
+    ],
+    "githubWorkflows": [
+      ".github/workflows/harvest-risk-gates.yml",
+      ".github/workflows/index-publication.yml",
+      ".github/workflows/chatgpt-harvest-move-to-l.yml",
+      ".github/workflows/runner-smoke.yml"
+    ],
+    "runtimeExecutedByIndexingPass": false
+  },
+  "driftFindings": [
+    {
+      "id": "onboarding-charter-drift",
+      "severity": "material",
+      "finding": "Older onboarding docs still describe coordination-only/no-scripts architecture despite later locked operational-intelligence ownership and extensive executable tooling."
+    },
+    {
+      "id": "current-doc-freshness-drift",
+      "severity": "medium",
+      "finding": "Files named CURRENT have different freshness dates; ACTIVE_WORK is newer than CURRENT_HANDOFF and CURRENT_GATES."
+    },
+    {
+      "id": "ci-coverage-gap",
+      "severity": "medium",
+      "finding": "A 16-suite architecture matrix exists, but current GitHub CI enforces narrower subsets/workflows."
+    },
+    {
+      "id": "hardening-unverified",
+      "severity": "medium",
+      "finding": "docs/HARDENING.md explicitly records NOT_YET_VERIFIED at an older commit; it is not current health proof."
+    },
+    {
+      "id": "host-script-authority-risk",
+      "severity": "low-to-medium",
+      "finding": "Concrete runner/host scripts can outlive current machine-control architecture and must not be treated as machine-registry authority."
+    }
+  ],
+  "highValueFiles": [
+    "AI_INDEX.md",
+    "work-progress/ACTIVE_WORK.md",
+    "contracts/intelligence/OWNERSHIP.md",
+    "work-progress/projects/operational-intelligence-envelope-v1.md",
+    "scripts/harvest/record-harvest.mjs",
+    "scripts/harvest/sync-derived.mjs",
+    "scripts/intelligence/lib/ingest-pipeline-v1.mjs",
+    "registry/query-routing/query-routing-manifest.v1.json",
+    "registry/datasets/hot-cache-dataset-registry.v1.json",
+    "scripts/index/run-index-publisher.mjs",
+    "registry/architecture/cross-agent-architecture-pr-disposition-registry.v1.json",
+    "decisions/DECISION_LOG.md",
+    "handoffs/CURRENT_HANDOFF.md",
+    "scripts/tests/run-cross-agent-architecture-matrix.test.mjs"
+  ],
+  "indexVerdict": {
+    "sourceReconciliation": "PASS",
+    "runtimeProver": "NOT_RUN_BY_THIS_INDEXING_PASS",
+    "documentationDriftFound": true,
+    "authorityContradictionResolved": true,
+    "gate": "CROSS_AGENT_DEEP_INDEX_SOURCE_RECONCILIATION_PASS"
+  }
+}
