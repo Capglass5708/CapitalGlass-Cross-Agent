@@ -1,0 +1,142 @@
+{
+  "schemaVersion": "agent-runtime-authority-recovery-v1@1.0.0",
+  "workPackageId": "agent-workstation-mcp-hub-index-v1",
+  "operation": "RECOVER_AGENT_RUNTIME_AUTHORITY_78365D5",
+  "recordedAt": "2026-09-04T14:59:25Z",
+  "outcome": "RECOVERED_FROM_Z_HANDOFF_BUNDLE",
+  "targetObject": {
+    "shortSha": "78365d5",
+    "fullSha": "78365d5fb23566e02478c2bb31a91c33ff204940",
+    "repository": "CapitalGlass-Cross-Agent",
+    "declaredBy": "CG-AppBuilder-MCP/scripts/agent-runtime/lib/contract-provenance.mjs (branch work/agent-workstation-mcp-hub-index-v1, PR #535)",
+    "declaredState": "LOCAL_COMMITTED_NOT_PUBLISHED",
+    "commit": {
+      "subject": "docs(agent-runtime): align collector spec with P0 three-case rule",
+      "author": "Capital Glass Agent <agent@capitalglasstx.com>",
+      "committedAt": "2026-09-03T17:28:00-05:00",
+      "parent": "4297b3e"
+    },
+    "lineageVerified": {
+      "commits": [
+        "22ad7a3",
+        "e545ab3",
+        "4297b3e",
+        "78365d5"
+      ],
+      "parentContractSha": "e545ab3 — present",
+      "architectureSha": "22ad7a3 — present",
+      "provenanceRecordSha": "fa18bcc — NOT present in the bundle or in this store; remains unresolved"
+    },
+    "treeAtObject": "registry/agent-runtime/{README.md, authority/{baseline-convergence,evaluate-baseline-convergence,github-mutation-policy,platform,platform-integration,publication-batch-2026-09-03,worldview-lane-agent-runtime}.v1.json, authority/{capabilities,machines,mcps}/manifest.v1.json, schema/{agent-runtime-worldview-lane-output,drift-class}.v1.json} + scripts/index/lib/classify-git-operation.mjs + 4 work-progress docs + closeout-manifest.json",
+    "shortShaCaveat": "Repin provenance to the full 40-character SHA; 78365d5 is retained as the historical short identifier."
+  },
+  "searchHost": {
+    "machineId": "CG-RYZEN9DESK-01",
+    "machineRole": "ryzen9desk",
+    "rawHostname": "CG-RYZEN9DESK-01",
+    "resolutionMethod": "DECLARED_MACHINE_REGISTRY (scripts/wsl/machines/ryzen9desk.machine.json windowsComputerNames) + CG_WSL_MACHINE_ROLE=ryzen9desk",
+    "machineResolution": "PASS"
+  },
+  "liveObjectSearch": {
+    "authorityClass": "LIVE_OBJECT_STORE",
+    "objectStore": "/home/wesley/repos/CapitalGlass-Cross-Agent/.git",
+    "sharedByWorktrees": 11,
+    "distinctObjectStores": 1,
+    "checks": [
+      {
+        "check": "git cat-file -t 78365d5 (before apply)",
+        "result": "fatal: Not a valid object name 78365d5"
+      },
+      {
+        "check": "git log --all -- registry/agent-runtime/",
+        "result": "a0cb0c2, 108421a only — the flat-layout lineage, no nested authority"
+      },
+      {
+        "check": "for-each-ref refs/cg-authority/** and refs/tags/cg-contract-capture-*",
+        "result": "none"
+      },
+      {
+        "check": "find ~/repos ~/worktrees -name platform.v1.json -path *agent-runtime*",
+        "result": "no matches"
+      }
+    ],
+    "verdict": "EXHAUSTED_NEGATIVE_BEFORE_APPLY",
+    "note": "The HANDOFF-MANIFEST names RYZEN9DESK as sourceMachine, so a checkout on this host held the object at capture time (2026-09-04T03:17Z); by this session it was no longer in the live store. The capture's audit mirror path under /home/wesley/repos/CG-AppBuilder-MCP-worktrees/agent-workstation-mcp-hub-index-v1/artifacts/ does not exist on this host either."
+  },
+  "preservedObjectSearch": {
+    "authorityClass": "GOVERNED_HANDOFF_BUNDLE",
+    "bundle": {
+      "path": "/mnt/z/Office/Wes/Direct Connect/handoffs/agent-workstation-mcp-hub-index-v1/contract-generation-bundle/contract-generation-78365d5.bundle",
+      "manifest": "/mnt/z/Office/Wes/Direct Connect/handoffs/agent-workstation-mcp-hub-index-v1/contract-generation-bundle/HANDOFF-MANIFEST.json",
+      "producer": "CG-AppBuilder-MCP scripts/agent-runtime/lib/contract-generation-materialize.mjs captureContractBundle/stageContractBundle (PR #535)",
+      "stagedAt": "2026-09-04T03:17:51.430Z",
+      "sourceMachine": "RYZEN9DESK",
+      "targetMachine": "WESLEY_WORK",
+      "bytes": 35099,
+      "sha256": "84496553233602cc8a71392efbd388c9e2254ba2ae144d637efb3ea61a9dada7",
+      "sha256MatchesManifest": true,
+      "bundleVerify": "okay — contains refs/tags/cg-contract-capture-78365d5 = 78365d5fb23566e02478c2bb31a91c33ff204940; requires 2747c5ea502555e0354e71264eb13c4b67ffa439 (Merge PR #53), an ancestor of origin/main 3ac5d4f"
+    },
+    "verdict": "FOUND"
+  },
+  "apply": {
+    "mechanism": "The same operation PR #535's apply-contract-generation-bundle.mjs performs on the target: git fetch <bundle> refs/tags/cg-contract-capture-78365d5:refs/cg-authority/agent-runtime/78365d5",
+    "executedOn": "RYZEN9DESK, worktree /home/wesley/worktrees/CapitalGlass-Cross-Agent/agent-runtime-authority-v1 (branch work/agent-runtime-authority-v1)",
+    "authorityRef": "refs/cg-authority/agent-runtime/78365d5",
+    "headMovedByApply": false,
+    "headAtApply": "3ac5d4f",
+    "exactObject": true
+  },
+  "integration": {
+    "branch": "work/agent-runtime-authority-v1",
+    "method": "git merge --no-ff refs/cg-authority/agent-runtime/78365d5 — exact object as second parent; no cherry-pick, no amend, no squash",
+    "mergeCommit": "43736a9ecce5021727c48322a36e540ed0481c98",
+    "conflicts": [
+      "work-progress/agent-workstation-mcp-hub-index-v1/closeout-manifest.json (add/add) — resolved as the union: 78365d5's manifest kept, flat-seed lineage carried under estateIndexSeed"
+    ],
+    "flatLayoutRecreated": false,
+    "dualLayoutFallbackAdded": false,
+    "contractProvenanceModified": false,
+    "published": false,
+    "publication": "NOT_PUSHED — publication of the recovered object stays an operator decision via the governed GitHub plane (github.publish)"
+  },
+  "sweepTool": {
+    "script": "work-progress/agent-workstation-mcp-hub-index-v1/recover-78365d5-live-sweep.sh",
+    "invocation": "--expect-machine ryzen9desk --roots '/home/wesley/repos /home/wesley/worktrees' --skip-bundles",
+    "receipt": "work-progress/agent-workstation-mcp-hub-index-v1/receipts/recovery-78365d5-ryzen9desk-sweep.json",
+    "ranAfterApply": true,
+    "note": "Its FOUND verdict is a consequence of the bundle apply above, not evidence of a pre-existing live object. Limitation observed: the script's bundle scan (find -maxdepth 6, grep -i cross-agent) cannot see the Z handoff bundle — the file sits at depth 7 under /mnt/z and its basename does not contain 'cross-agent'. Recorded as follow-up; not changed here."
+  },
+  "corrections": [
+    {
+      "id": "RYZEN9DESK_LIVE_SEARCH_RUN",
+      "supersedes": "receipts/recovery-78365d5-cg-nimo-01.json recoveryState.RYZEN9DESK = 'SEARCH_AUTHORITY_BEING_DECLARED / LIVE_SEARCH_NOT_YET_RUN'",
+      "detail": "The live search ran on RYZEN9DESK against the git-resolved list of distinct object stores. No Office-Admin recovery-evidence layout was required, because the object was recovered from the governed handoff bundle that PR #535 staged on the Z handoff bus."
+    }
+  ],
+  "recoveryState": {
+    "CG_NIMO_01": "EXHAUSTED_NEGATIVE",
+    "WESLEY_WORK": "LIVE_SEARCH_NOT_REQUIRED — object recovered",
+    "RYZEN9DESK": "RECOVERED_FROM_Z_HANDOFF_BUNDLE",
+    "AUTHORITY_OBJECT_UNRECOVERABLE": "NOT_DECLARED — object recovered"
+  },
+  "nextActions": [
+    {
+      "id": "PUBLISH_EXACT_OBJECT",
+      "priority": "OPERATOR",
+      "detail": "Publish the exact object through the governed GitHub plane; then repin contract-provenance.mjs to the full SHA and flip contractState/REMOTE_AUTHORITY_PUBLISHED."
+    },
+    {
+      "id": "RESOLVE_FA18BCC",
+      "priority": "SECONDARY",
+      "detail": "provenanceRecordSha fa18bcc is not in the bundle; locate or retire that pin."
+    },
+    {
+      "id": "SWEEP_BUNDLE_SCAN_DEPTH",
+      "priority": "FOLLOW_UP",
+      "detail": "Extend the sweep's bundle scan to the Z handoff layout (depth >= 7, basename contract-generation-*.bundle)."
+    }
+  ],
+  "readOnly": false,
+  "secretValuesRead": false
+}
