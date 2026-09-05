@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "nimo-ryzen-intent-catalog-v1@1.0.0",
+  "description": "Catalogued operator intents for NIMO→RYZEN execution. Natural language maps to allowlisted executor profiles only — never arbitrary shell.",
+  "targetMachineCanonicalId": "CG-RYZEN9DESK-01",
+  "controllerMachineId": "CG-NIMO-01",
+  "defaultWorkPackageId": "ryzen9desk-managed-executor-v1",
+  "machineAliases": {
+    "ryzen9": "RYZEN9DESK",
+    "ryzen": "RYZEN9DESK",
+    "ryzen9desk": "RYZEN9DESK",
+    "cg-ryzen9desk-01": "RYZEN9DESK"
+  },
+  "repoAliases": {
+    "appbuilder": "CG-AppBuilder-MCP",
+    "app builder": "CG-AppBuilder-MCP",
+    "cg-appbuilder-mcp": "CG-AppBuilder-MCP",
+    "office admin": "CapitalGlass-Office-Admin",
+    "office-admin": "CapitalGlass-Office-Admin",
+    "capitalglass-office-admin": "CapitalGlass-Office-Admin",
+    "cg-master-graph": "CG-MASTER-GRAPH",
+    "master graph": "CG-MASTER-GRAPH",
+    "master-graph": "CG-MASTER-GRAPH"
+  },
+  "boundedTestScripts": {
+    "CapitalGlass-Office-Admin": {
+      "plaintext-gate": "test:plaintext-gate",
+      "development-roots": "test:development-roots",
+      "evaluate-execution-admission": "test:evaluate-execution-admission"
+    },
+    "CG-AppBuilder-MCP": {
+      "controller-attribution": "test:controller-attribution"
+    }
+  },
+  "intents": [
+    {
+      "id": "hostname-on-ryzen",
+      "executionClass": "READ_ONLY",
+      "admissionOperation": "query_machine_state",
+      "jobProfile": "executor-smoke",
+      "operationLabel": "hostname",
+      "patterns": [
+        "\\bhostname\\b",
+        "\\bhost\\s+name\\b"
+      ],
+      "requiresRepo": false,
+      "acceptanceCanary": true
+    },
+    {
+      "id": "git-status-on-ryzen",
+      "executionClass": "READ_ONLY",
+      "admissionOperation": "git_inspect",
+      "jobProfile": "git-inspect",
+      "operationLabel": "git status",
+      "patterns": [
+        "\\bgit\\s+status\\b"
+      ],
+      "requiresRepo": true,
+      "acceptanceCanary": true
+    },
+    {
+      "id": "bounded-test-on-ryzen",
+      "executionClass": "READ_ONLY",
+      "admissionOperation": "bounded_repo_test",
+      "jobProfile": "repo-bounded-test",
+      "operationLabel": "bounded test suite",
+      "patterns": [
+        "\\b(test|tests|test suite)\\b",
+        "\\brun\\s+(a\\s+)?bounded\\s+test"
+      ],
+      "requiresRepo": true,
+      "defaultBoundedTestKey": "plaintext-gate",
+      "acceptanceCanary": true
+    }
+  ]
+}
