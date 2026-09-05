@@ -12,14 +12,26 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-08-13
-| Current focus | WESLEYWORK Storage Keeper sole repair front door (`wesleywork-storage-protocol-contradiction-remediation-v1`); TWO_DESK_OPERATING + federated index Wave A closed
+| Last updated | 2026-09-05
+| Current focus | RYZEN9DESK remote VS Code/Claude bootstrap (`ryzen9desk-wsl2-canonical-workspace-v1`); WESLEYWORK Storage Keeper when storage work resumes
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Project index | `work-progress/projects/INDEX.md` |
 
 ## Current saved work
+
+### 2026-09-05 CT — RYZEN9DESK VS Code remote bootstrap (GHA from CG-NIMO-01)
+
+| Field | Value |
+| --- | --- |
+| Work package | `ryzen9desk-wsl2-canonical-workspace-v1` |
+| Verdict | **IN_PROGRESS** — `dev-env-parity-apply` PASS; vscode-automation fix on AppBuilder `main` @ `94c71cca2` |
+| Owner repo | `CG-AppBuilder-MCP` (fix + executor); index slice in Cross-Agent |
+| GHA runs | host-preflight `33932903479` PASS; dev-env-parity `33932929030` PASS; vscode-automation `33932997041` FAIL (pre-fix); mcp-verify `33933080056` FAIL (gateway headless) |
+| Index slice | `work-progress/intelligence-hub-slices/ryzen9desk-vscode-remote-bootstrap-v1.json` |
+| Cross-desk pointer | `cross-desk-routing.json` → `ryzen9deskVscodeRemoteBootstrap` |
+| Next | Re-dispatch `vscode-automation`; operator RDP for VS Code Claude panel if launch did not surface |
 
 ### 2026-08-25 CT — appbuilder-mission-harvest-gold-mine-guidance-v1 (corrected, protocol updated)
 
