@@ -26,12 +26,12 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Field | Value |
 | --- | --- |
 | Work package | `ryzen9desk-wsl2-canonical-workspace-v1` |
-| Verdict | **IN_PROGRESS** — `dev-env-parity-apply` PASS; vscode-automation fix on AppBuilder `main` @ `94c71cca2` |
+| Verdict | **IN_PROGRESS** — `vscode-automation` PASS run `33933473045`; AppBuilder `main` @ `1346d1415` |
 | Owner repo | `CG-AppBuilder-MCP` (fix + executor); index slice in Cross-Agent |
 | GHA runs | host-preflight `33932903479` PASS; dev-env-parity `33932929030` PASS; vscode-automation `33932997041` FAIL (pre-fix); mcp-verify `33933080056` FAIL (gateway headless) |
 | Index slice | `work-progress/intelligence-hub-slices/ryzen9desk-vscode-remote-bootstrap-v1.json` |
 | Cross-desk pointer | `cross-desk-routing.json` → `ryzen9deskVscodeRemoteBootstrap` |
-| Next | Re-dispatch `vscode-automation`; operator RDP for VS Code Claude panel if launch did not surface |
+| Next | RDP to Ryzen to confirm VS Code UI; headless Claude via `claude40:front-door` |
 
 ### 2026-08-25 CT — appbuilder-mission-harvest-gold-mine-guidance-v1 (corrected, protocol updated)
 

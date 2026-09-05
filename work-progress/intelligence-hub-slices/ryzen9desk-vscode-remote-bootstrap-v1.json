@@ -1,13 +1,13 @@
 {
   "schemaVersion": "intelligence-hub-ryzen9desk-vscode-remote-bootstrap-v1@1.0.0",
   "kind": "cross_desk_remote_bootstrap",
-  "updatedAt": "2026-09-05T00:35:00.000Z",
+  "updatedAt": "2026-09-05T00:36:00.000Z",
   "workPackageId": "ryzen9desk-wsl2-canonical-workspace-v1",
   "ownerRepo": "CG-AppBuilder-MCP",
-  "fixCommit": "94c71cca2",
+  "fixCommits": ["94c71cca2", "1346d1415"],
   "fixBranch": "main",
-  "fixSummary": "run-ryzen9desk-vscode-automation.mjs detects Windows VS Code via /mnt/c paths (not Linux $HOME/../AppData) and launches code --remote wsl+Ubuntu-24.04 workspace non-blocking",
-  "verdict": "DEV_ENV_PARITY_PASS_VSCODE_AUTOMATION_FIX_MERGED",
+  "fixSummary": "vscode-automation resolves Windows Code.exe under /mnt/c, uses it for CLI/extension steps, launches WSL remote workspace; follow-up fix uses Code.exe when WSL code shim absent",
+  "verdict": "VSCODE_AUTOMATION_PASS",
   "executionPlane": "WSL_GHA_EXECUTOR",
   "runnerName": "ryzen9desk-wsl2-CG-RYZEN9DESK-01",
   "dispatchFromAnyHost": true,
@@ -23,6 +23,8 @@
     "hostPreflight": { "runId": "33932903479", "conclusion": "success" },
     "devEnvParityApply": { "runId": "33932929030", "conclusion": "success" },
     "vscodeAutomationBeforeFix": { "runId": "33932997041", "conclusion": "failure", "code": "VSCODE_NOT_INSTALLED_FALSE_POSITIVE" },
+    "vscodeAutomationPostMergePartial": { "runId": "33933416128", "conclusion": "failure", "code": "CODE_CLI_UNAVAILABLE" },
+    "vscodeAutomationPass": { "runId": "33933473045", "conclusion": "success", "receiptVerdict": "AUTOMATED_SETUP_COMPLETE" },
     "mcpVerify": { "runId": "33933080056", "conclusion": "failure", "code": "GATEWAY_HEALTH_VALIDATION_FAILED" }
   },
   "ryzenDevEnvState": {
@@ -33,7 +35,7 @@
     "vscodeServerProvisioned": true,
     "admissionGatePinned": true
   },
-  "approvalRef": "remote-vscode-claude-bootstrap-v1",
+  "approvalRef": "remote-vscode-claude-bootstrap-v1-code-exe-cli",
   "openWorkspaceCommand": "code --remote wsl+Ubuntu-24.04 /home/wesley/repos/CG-AppBuilder-MCP/Capital-Glass-RYZEN9DESK.WSL.code-workspace",
   "headlessClaudeCommand": "cd ~/repos/CG-AppBuilder-MCP && npm run claude40:front-door -- --wp=<mission-id>",
   "limitations": [
@@ -42,8 +44,9 @@
     "GHA checks out main only — vscode-automation fix must be on main before re-dispatch"
   ],
   "nextActions": [
-    "Re-dispatch job_profile=vscode-automation after fix on main",
-    "RDP to Ryzen to confirm VS Code + Claude Code panel if Windows session was inactive during launch"
+    "RDP to Ryzen to confirm VS Code window surfaced if Windows session was inactive during launch",
+    "Use headless Claude via claude40:front-door until interactive VS Code session confirmed",
+    "mcp-verify remains separate lane — gateway health when Windows interactive session available"
   ],
   "hubAuthority": {
     "compactSliceL": "L:/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/ryzen9desk-vscode-remote-bootstrap-v1.json",

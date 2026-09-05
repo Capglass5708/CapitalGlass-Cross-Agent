@@ -1,6 +1,6 @@
 # Work package: ryzen9desk-wsl2-canonical-workspace-v1
 
-**Verdict:** `IN_PROGRESS` — remote GHA bootstrap PASS; VS Code automation fix merged to AppBuilder `main`  
+**Verdict:** `IN_PROGRESS` — `vscode-automation` GHA PASS; VS Code remote workspace launched from Ryzen executor  
 **Owner repo:** `CG-AppBuilder-MCP` (tooling + receipts); live execution on RYZEN9DESK  
 **Last updated:** 2026-09-05
 
@@ -22,8 +22,8 @@ Make RYZEN9DESK use WSL2 as the default Cursor/VS Code and Capital Glass agent e
 | Claude CLI + admission gate | **PASS** — CLI 2.1.261; gate pinned to stable runtime |
 | VS Code Windows + server + extensions | **PASS** — 1.136.1; `anthropic.claude-code` installed |
 | `vscode-automation` GHA (pre-fix) | **FAIL** — false `VSCODE_NOT_INSTALLED` (wrong path check) |
-| `vscode-automation` script fix | **MERGED** — AppBuilder `main` @ `94c71cca2` |
-| `vscode-automation` GHA (post-fix) | **Pending re-dispatch** |
+| `vscode-automation` script fix | **MERGED** — AppBuilder `main` @ `94c71cca2`, `1346d1415` |
+| `vscode-automation` GHA | **PASS** — run `33933473045` (`AUTOMATED_SETUP_COMPLETE`) |
 | `mcp-verify` GHA | **FAIL** — `GATEWAY_HEALTH_VALIDATION_FAILED` (headless; Windows gateway) |
 | ext4 repo library pin / wsl2-canonical full runbook | **Not run** |
 | Restart + reopen acceptance | **Not run** |
@@ -42,7 +42,7 @@ Cross-desk routing pointer: `cross-desk-routing.json` → `ryzen9deskVscodeRemot
 
 - `scripts/wsl/machines/ryzen9desk.machine.json`
 - `scripts/wsl/run-ryzen9desk-wsl2-canonical-workspace.mjs`
-- `scripts/wsl/run-ryzen9desk-vscode-automation.mjs` — **fixed 2026-09-05** (`94c71cca2`): `/mnt/c` Windows VS Code discovery + remote workspace launch
+- `scripts/wsl/run-ryzen9desk-vscode-automation.mjs` — **fixed 2026-09-05** (`94c71cca2`, `1346d1415`): `/mnt/c` Code.exe discovery, CLI via Windows exe, remote workspace launch
 - `npm run ryzen9desk:wsl2-canonical`
 - `npm run ryzen9desk:vscode-automation:json`
 - Target workspace: `~/repos/CG-AppBuilder-MCP/Capital-Glass-RYZEN9DESK.WSL.code-workspace`
@@ -73,9 +73,9 @@ gh workflow run ryzen9desk-executor-dispatch.yml \
 
 ## Next operator action
 
-1. Re-dispatch `vscode-automation` after `94c71cca2` on `main` (automated or manual).
-2. RDP to Ryzen if VS Code GUI did not appear — requires logged-in Windows session.
-3. Optional: dispatch `wsl2-canonical-setup` for full Cursor runbook after VS Code lane stable.
+1. RDP to Ryzen to confirm VS Code + Claude Code panel if Windows session was inactive during launch.
+2. Headless agent work: `npm run claude40:front-door -- --wp=<mission-id>` on Ryzen WSL.
+3. Optional: dispatch `wsl2-canonical-setup` for full Cursor runbook; `mcp-verify` when Windows gateway reachable.
 
 ---
 

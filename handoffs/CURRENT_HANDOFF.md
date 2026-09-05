@@ -70,7 +70,7 @@ Artifacts: `CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-index-preflight-e
 | 4 | `wesleywork-drive-mount-task-dedupe-v1` | IMPLEMENTED — live deploy pending | Elevated Windows deploy on WESLEY_WORK |
 | 5 | `suite-ci-healing-v1` | PARTIAL PASS | Align `EXPECTED_DOCUMENT_CENTER_GIT_SHA` or redeploy DC; rerun smokes |
 
-`ryzen9desk-wsl2-canonical-workspace-v1` is **IN_PROGRESS** — remote GHA `dev-env-parity-apply` PASS (2026-09-05); vscode-automation path fix merged AppBuilder `main` @ `94c71cca2`. Hub slice: `work-progress/intelligence-hub-slices/ryzen9desk-vscode-remote-bootstrap-v1.json`. Re-dispatch `vscode-automation`; RDP for interactive VS Code Claude panel.
+`ryzen9desk-wsl2-canonical-workspace-v1` is **IN_PROGRESS** — `vscode-automation` GHA **PASS** run `33933473045` (2026-09-05); AppBuilder `main` @ `1346d1415`. Hub slice: `work-progress/intelligence-hub-slices/ryzen9desk-vscode-remote-bootstrap-v1.json`. RDP to confirm VS Code UI; headless Claude via `claude40:front-door`.
 
 ---
 
