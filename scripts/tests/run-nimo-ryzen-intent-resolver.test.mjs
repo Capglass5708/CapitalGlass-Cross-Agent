@@ -38,8 +38,8 @@ test("bounded test in Office Admin on ryzen9 resolves repo-bounded-test", () => 
   assert.equal(result.intentId, "bounded-test-on-ryzen");
   assert.equal(result.jobProfile, "repo-bounded-test");
   assert.equal(result.resolvedRepo, "CapitalGlass-Office-Admin");
-  assert.equal(result.boundedTestKey, "development-roots");
-  assert.equal(result.npmScript, "test:development-roots");
+  assert.equal(result.boundedTestKey, "plaintext-gate");
+  assert.equal(result.npmScript, "test:plaintext-gate");
 });
 
 test("destructive instruction is blocked", () => {
