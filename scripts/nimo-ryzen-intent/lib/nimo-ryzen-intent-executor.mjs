@@ -51,26 +51,51 @@ function findReceiptFile(rootDir, fileName) {
   return null;
 }
 
+function readReceiptJson(receiptPath) {
+  if (!receiptPath) return null;
+  return JSON.parse(fs.readFileSync(receiptPath, "utf8"));
+}
+
+function normalizeRepositoryEntries(repositories) {
+  return (repositories ?? []).map((row) => ({
+    ...row,
+    name: row.name ?? row.repo ?? null,
+  }));
+}
+
 function downloadReceipt(runId, outDir) {
   fs.mkdirSync(outDir, { recursive: true });
   execSync(
     `gh run download "${runId}" --repo ${APPBUILDER_GITHUB_REPO} --dir "${outDir}"`,
     { encoding: "utf8", stdio: ["pipe", "pipe", "pipe"] },
   );
-  const preferred = [
-    "ryzen9desk-executor-receipt.json",
-    "executor-preflight-receipt.json",
-    "host-preflight-receipt.json",
-    "ryzen9desk-git-inspect-receipt.json",
-    "ryzen9desk-repo-bounded-test-receipt.json",
-  ];
-  for (const fileName of preferred) {
-    const receiptPath = findReceiptFile(outDir, fileName);
-    if (receiptPath) {
-      return { receiptPath, receipt: JSON.parse(fs.readFileSync(receiptPath, "utf8")) };
+  const primaryPath = findReceiptFile(outDir, "ryzen9desk-executor-receipt.json");
+  const gitInspectPath = findReceiptFile(outDir, "git-inspect-receipt.json");
+  const boundedTestPath = findReceiptFile(outDir, "ryzen9desk-repo-bounded-test-receipt.json");
+  const receipt = readReceiptJson(primaryPath);
+  if (!receipt) {
+    return { receiptPath: null, receipt: null };
+  }
+
+  const gitInspect = readReceiptJson(gitInspectPath);
+  if (gitInspect?.repositories?.length) {
+    receipt.repositories = normalizeRepositoryEntries(gitInspect.repositories);
+  }
+
+  const boundedTest = readReceiptJson(boundedTestPath);
+  if (boundedTest) {
+    receipt.boundedTest = {
+      repository: boundedTest.repository ?? null,
+      boundedTestKey: boundedTest.boundedTestKey ?? null,
+      npmScript: boundedTest.npmScript ?? null,
+      verdict: boundedTest.verdict ?? null,
+    };
+    if (boundedTest.testResult) {
+      receipt.testResult = boundedTest.testResult;
     }
   }
-  return { receiptPath: null, receipt: null };
+
+  return { receiptPath: primaryPath, receipt };
 }
 
 function summarizeOutput(receipt) {
@@ -80,7 +105,7 @@ function summarizeOutput(receipt) {
   if (receipt.host?.wslHostname) chunks.push(`wslHostname=${receipt.host.wslHostname}`);
   if (receipt.repositories?.length === 1) {
     const repo = receipt.repositories[0];
-    chunks.push(`repo=${repo.name} branch=${repo.branch ?? "?"}`);
+    chunks.push(`repo=${repo.name ?? repo.repo} branch=${repo.branch ?? "?"}`);
   }
   if (receipt.testResult?.exitCode != null) {
     chunks.push(`testExitCode=${receipt.testResult.exitCode}`);
@@ -129,9 +154,19 @@ function validateExecutorReceipt(receipt, runId, resolution) {
   }
 
   if (resolution?.jobProfile === "git-inspect" && resolution.resolvedRepo) {
-    const names = (receipt.repositories ?? []).map((r) => r.name);
+    const names = (receipt.repositories ?? []).map((r) => r.name ?? r.repo);
     if (!names.includes(resolution.resolvedRepo)) {
       errors.push({ code: "GIT_INSPECT_REPO_MISMATCH", expected: resolution.resolvedRepo, actual: names });
+    }
+  }
+
+  if (resolution?.jobProfile === "repo-bounded-test") {
+    const testExit = receipt.testResult?.exitCode ?? receipt.boundedTest?.testResult?.exitCode;
+    if (testExit != null && testExit !== 0) {
+      errors.push({ code: "BOUNDED_TEST_FAILED", exitCode: testExit });
+    }
+    if (receipt.boundedTest?.verdict && receipt.boundedTest.verdict !== "PASS") {
+      errors.push({ code: "BOUNDED_TEST_VERDICT_NOT_PASS", actual: receipt.boundedTest.verdict });
     }
   }
 
