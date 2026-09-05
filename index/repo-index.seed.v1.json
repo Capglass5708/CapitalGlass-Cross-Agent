@@ -9,40 +9,439 @@
       "authorityId": "cross-agent-ledger-v1",
       "question": "Who owns suite program ledger and publication?",
       "status": "ACTIVE"
+    },
+    {
+      "authorityId": "active-work-ledger-v1",
+      "question": "What is the current status, blocker, and next action for a Capital Glass work package?",
+      "status": "ACTIVE"
+    },
+    {
+      "authorityId": "canonical-knowledge-location-v1",
+      "question": "Where does a given class of Capital Glass knowledge canonically live across L:, Z:, and the estate repos?",
+      "status": "ACTIVE"
+    },
+    {
+      "authorityId": "harvest-protocol-v1",
+      "question": "Which protocol version governs chat-thread closeout autopsy harvest?",
+      "status": "ACTIVE"
+    },
+    {
+      "authorityId": "master-graph-planning-v1",
+      "question": "Which Master Graph documents remain Cross-Agent planning authority rather than moving to CG-MASTER-GRAPH?",
+      "status": "ACTIVE"
+    },
+    {
+      "authorityId": "federated-index-ledger-v1",
+      "question": "What is the program state of each federated repo index wave?",
+      "status": "ACTIVE"
+    },
+    {
+      "authorityId": "github-mutation-admission-v1",
+      "question": "Which git operations does the M8 mutation policy classify as governed mutations?",
+      "status": "ACTIVE"
+    },
+    {
+      "authorityId": "agent-runtime-estate-v1",
+      "question": "What is the canonical MCP and agent-workstation estate, and what health obligation does each record carry?",
+      "status": "SEEDED_UNREVIEWED"
     }
   ],
-  "capabilities": [],
+  "capabilities": [
+    {
+      "capabilityId": "intelligence_hub_publish_v1",
+      "authorityId": "cross-agent-ledger-v1",
+      "authorityQuestion": "How is Cross-Agent ledger intelligence published to the Intelligence Hub?",
+      "implementation": {
+        "entrypoint": "publishIntelligenceFull",
+        "path": "scripts/harvest/lib/publish-intelligence-full-lib.mjs"
+      },
+      "surfaces": [
+        "CLI"
+      ],
+      "kind": "deterministic_function",
+      "version": "1.0.0",
+      "routing": "LOCAL_OR_GOVERNED_RUNTIME",
+      "status": "ACTIVE"
+    },
+    {
+      "capabilityId": "index_freshness_gate_v1",
+      "authorityId": "cross-agent-ledger-v1",
+      "authorityQuestion": "Is the published Cross-Agent index current with the authority commit on main?",
+      "implementation": {
+        "entrypoint": "main",
+        "path": "scripts/index/freshness-gate.mjs"
+      },
+      "surfaces": [
+        "CLI"
+      ],
+      "kind": "deterministic_function",
+      "version": "1.0.0",
+      "routing": "LOCAL_OR_GOVERNED_RUNTIME",
+      "status": "ACTIVE"
+    },
+    {
+      "capabilityId": "index_publication_v1",
+      "authorityId": "cross-agent-ledger-v1",
+      "authorityQuestion": "How is the Cross-Agent index published to the L: Intelligence Hub and the Z: AI cache?",
+      "implementation": {
+        "entrypoint": "main",
+        "path": "scripts/index/run-index-publisher.mjs"
+      },
+      "surfaces": [
+        "CLI"
+      ],
+      "kind": "deterministic_function",
+      "version": "1.0.0",
+      "routing": "LOCAL_OR_GOVERNED_RUNTIME",
+      "status": "ACTIVE"
+    },
+    {
+      "capabilityId": "index_control_slice_compile_v1",
+      "authorityId": "cross-agent-ledger-v1",
+      "authorityQuestion": "Which control slices does the Intelligence Hub receive from the Cross-Agent ledger?",
+      "implementation": {
+        "entrypoint": "main",
+        "path": "scripts/index/compile-control-slices.mjs"
+      },
+      "surfaces": [
+        "CLI"
+      ],
+      "kind": "deterministic_function",
+      "version": "1.0.0",
+      "routing": "LOCAL_OR_GOVERNED_RUNTIME",
+      "status": "ACTIVE"
+    },
+    {
+      "capabilityId": "git_operation_classify_v1",
+      "authorityId": "github-mutation-admission-v1",
+      "authorityQuestion": "Is a given git command a read or a governed mutation under M8 admission?",
+      "implementation": {
+        "entrypoint": "classifyGitCommand",
+        "path": "scripts/index/lib/classify-git-operation.mjs"
+      },
+      "surfaces": [
+        "CLI",
+        "RUNTIME"
+      ],
+      "kind": "deterministic_function",
+      "version": "1.0.0",
+      "routing": "LOCAL_OR_GOVERNED_RUNTIME",
+      "status": "ACTIVE"
+    },
+    {
+      "capabilityId": "repo_root_resolve_v1",
+      "authorityId": "canonical-knowledge-location-v1",
+      "authorityQuestion": "Where is a sibling estate repo checked out on this host?",
+      "implementation": {
+        "entrypoint": "resolveSiblingRepo",
+        "path": "scripts/index/lib/resolve-repo-roots.mjs"
+      },
+      "surfaces": [
+        "RUNTIME"
+      ],
+      "kind": "deterministic_function",
+      "version": "1.0.0",
+      "routing": "LOCAL_OR_GOVERNED_RUNTIME",
+      "status": "ACTIVE"
+    },
+    {
+      "capabilityId": "git_head_resolve_v1",
+      "authorityId": "cross-agent-ledger-v1",
+      "authorityQuestion": "What is the observed git HEAD for a repo at index generation time?",
+      "implementation": {
+        "entrypoint": "resolveGitHead",
+        "path": "scripts/index/lib/git-head.mjs"
+      },
+      "surfaces": [
+        "RUNTIME"
+      ],
+      "kind": "deterministic_function",
+      "version": "1.0.0",
+      "routing": "LOCAL_OR_GOVERNED_RUNTIME",
+      "status": "ACTIVE"
+    }
+  ],
   "protocols": [],
   "surfaces": [],
   "dependencies": [],
   "DOMAINS": [
-    "cross-agent"
+    "cross-agent",
+    "enterprise-planning",
+    "harvest-orchestration",
+    "master-graph-planning",
+    "agent-runtime-registry"
   ],
   "CAPABILITIES": [
     "active-work-ledger",
-    "intelligence-hub-publication"
+    "agent-runtime-registry",
+    "federated-index-ledger",
+    "git-mutation-policy",
+    "harvest-protocol-authority",
+    "index-freshness-gate",
+    "index-publication",
+    "intelligence-hub-publication",
+    "master-graph-planning"
   ],
-  "PROGRAMS": [],
-  "WORK_PACKAGES": [],
+  "PROGRAMS": [
+    {
+      "id": "cg-federated-repo-index-v1",
+      "name": "Federated repo index",
+      "aliases": [
+        "federated repo index",
+        "repo index",
+        "wave a"
+      ]
+    },
+    {
+      "id": "cg-federated-repo-index-estate-100-v1",
+      "name": "Federated repo index estate-100",
+      "aliases": [
+        "estate 100",
+        "estate-100"
+      ]
+    },
+    {
+      "id": "agent-workstation-mcp-hub-index-v1",
+      "name": "Agent workstation MCP estate index",
+      "aliases": [
+        "mcp estate",
+        "mcp estate index",
+        "agent runtime registry"
+      ]
+    },
+    {
+      "id": "capital-glass-master-graph-foundation-v1",
+      "name": "Master Graph enterprise planning",
+      "aliases": [
+        "master graph planning",
+        "master graph roadmap"
+      ]
+    },
+    {
+      "id": "compounding-intelligence-v2-live-integration-proof",
+      "name": "Compounding intelligence v2 live integration proof",
+      "aliases": [
+        "compounding intelligence v2",
+        "live integration proof"
+      ]
+    },
+    {
+      "id": "compounding-intelligence-unified-loop-v1",
+      "name": "Compounding intelligence unified loop",
+      "aliases": [
+        "unified loop"
+      ]
+    },
+    {
+      "id": "intelligence-hub-compounding-intelligence-investigation-v1",
+      "name": "Intelligence Hub compounding investigation",
+      "aliases": [
+        "compounding investigation"
+      ]
+    },
+    {
+      "id": "appbuilder-mission-harvest-gold-mine-guidance-v1",
+      "name": "AppBuilder mission harvest Gold Mine guidance",
+      "aliases": [
+        "gold mine guidance"
+      ]
+    }
+  ],
+  "WORK_PACKAGES": [
+    "cg-federated-repo-index-v1",
+    "cg-federated-repo-index-estate-100-v1",
+    "agent-workstation-mcp-hub-index-v1",
+    "capital-glass-master-graph-foundation-v1",
+    "compounding-intelligence-v2-live-integration-proof",
+    "compounding-intelligence-unified-loop-v1",
+    "intelligence-hub-compounding-intelligence-investigation-v1",
+    "appbuilder-mission-harvest-gold-mine-guidance-v1"
+  ],
   "CODE_POINTERS": [
     {
       "path": "work-progress/ACTIVE_WORK.md"
+    },
+    {
+      "path": "work-progress/projects/INDEX.md"
+    },
+    {
+      "path": "work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md"
+    },
+    {
+      "path": "work-progress/WORKSPACE_CONTEXT.md"
+    },
+    {
+      "path": "decisions/DECISION_LOG.md"
+    },
+    {
+      "path": "runbooks/AGENT_LEDGER_UPDATE_RUNBOOK.md"
+    },
+    {
+      "path": "work-progress/projects/2026-08-12_cg-federated-repo-index-v1.md",
+      "program": "cg-federated-repo-index-v1"
+    },
+    {
+      "path": "index/repo-index.seed.v1.json",
+      "program": "cg-federated-repo-index-estate-100-v1"
+    },
+    {
+      "path": "work-progress/intelligence-hub-slices/federated-estate-routing.json",
+      "program": "cg-federated-repo-index-estate-100-v1"
+    },
+    {
+      "path": "work-progress/intelligence-hub-slices/federated-capabilities.v1.json",
+      "program": "cg-federated-repo-index-estate-100-v1"
+    },
+    {
+      "path": "scripts/index/lib/resolve-repo-roots.mjs",
+      "program": "cg-federated-repo-index-estate-100-v1"
+    },
+    {
+      "path": "scripts/index/lib/git-head.mjs",
+      "program": "cg-federated-repo-index-estate-100-v1"
+    },
+    {
+      "path": "registry/agent-runtime/README.md",
+      "program": "agent-workstation-mcp-hub-index-v1"
+    },
+    {
+      "path": "registry/agent-runtime/authority/mcps/manifest.v1.json",
+      "program": "agent-workstation-mcp-hub-index-v1"
+    },
+    {
+      "path": "registry/agent-runtime/authority/machines/manifest.v1.json",
+      "program": "agent-workstation-mcp-hub-index-v1"
+    },
+    {
+      "path": "work-progress/agent-workstation-mcp-hub-index-v1/closeout-manifest.json",
+      "program": "agent-workstation-mcp-hub-index-v1"
+    },
+    {
+      "path": "scripts/index/lib/classify-git-operation.mjs",
+      "program": "agent-workstation-mcp-hub-index-v1"
+    },
+    {
+      "path": "docs/master-graph/README.md",
+      "program": "capital-glass-master-graph-foundation-v1"
+    },
+    {
+      "path": "docs/master-graph/CG-MASTER-GRAPH-ROADMAP-v1.md",
+      "program": "capital-glass-master-graph-foundation-v1"
+    },
+    {
+      "path": "contracts/intelligence/unified-mission-receipt-v1.schema.json",
+      "program": "compounding-intelligence-unified-loop-v1"
+    },
+    {
+      "path": "contracts/intelligence/waverunner-preflight-consumption-contract-v1.md",
+      "program": "compounding-intelligence-unified-loop-v1"
+    },
+    {
+      "path": "scripts/harvest/lib/publish-intelligence-full-lib.mjs",
+      "program": "compounding-intelligence-unified-loop-v1"
+    },
+    {
+      "path": "scripts/index/freshness-gate.mjs",
+      "program": "compounding-intelligence-unified-loop-v1"
+    },
+    {
+      "path": "scripts/index/run-index-publisher.mjs",
+      "program": "compounding-intelligence-unified-loop-v1"
+    },
+    {
+      "path": "scripts/index/compile-control-slices.mjs",
+      "program": "compounding-intelligence-unified-loop-v1"
+    },
+    {
+      "path": "harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md",
+      "program": "appbuilder-mission-harvest-gold-mine-guidance-v1"
     }
   ],
   "SYMBOL_POINTERS": [],
   "ARTIFACT_ROOTS": [
-    "artifacts/agent-runs"
+    "artifacts/agent-runs",
+    "work-progress/intelligence-hub-slices"
   ],
-  "LATEST_RECEIPTS": [],
-  "DECISIONS": [],
-  "BLOCKERS": [],
+  "LATEST_RECEIPTS": [
+    {
+      "workPackageId": "agent-workstation-mcp-hub-index-v1",
+      "kind": "work-package-closeout",
+      "path": "work-progress/agent-workstation-mcp-hub-index-v1/closeout-manifest.json",
+      "sourceCommit": "d540d8fcf2a499fdab25ff2a3db16610770a1cfc"
+    },
+    {
+      "workPackageId": "capital-glass-master-graph-foundation-v1",
+      "kind": "planning-transfer",
+      "path": "artifacts/agent-runs/cg-master-graph-planning-transfer-v1/planning-transfer-receipt-v1.json",
+      "sourceCommit": "f060d4bfb86ba5d8eea8977e90a80435cbce253b"
+    },
+    {
+      "workPackageId": "compounding-intelligence-v2-live-integration-proof",
+      "kind": "first-real-mission-hub-proof",
+      "path": "artifacts/agent-runs/mcp-estate-remediation-v1/first-real-mission-proof-receipt.json",
+      "sourceCommit": "c97e209c28321601b7333a8582322eb6d858f4da"
+    },
+    {
+      "workPackageId": "compounding-intelligence-v2-live-integration-proof",
+      "kind": "index-publication",
+      "path": "artifacts/agent-runs/cross-agent-index-publication-v1/latest.json",
+      "sourceCommit": "ea9111d4b0482f256e62485a6374e2722aeef881"
+    }
+  ],
+  "DECISIONS": [
+    "decisions/DECISION_LOG.md"
+  ],
+  "BLOCKERS": [
+    {
+      "id": "federated-index-wave-a-generate-receipt-missing",
+      "summary": "cg-federated-repo-index-v1 asserts WAVE_A_CLOSED while ryzen9desk-wave-a-generate-receipt.json is still missing and the project file records waveACloseEligible=false",
+      "owner": "CG-AppBuilder-MCP"
+    },
+    {
+      "id": "agent-runtime-ratification-not-started",
+      "summary": "All 29 MCP estate records are SEEDED_UNREVIEWED; operational, authorization and estate-ready gates HOLD at 0 ratified (unratifiedOperational=14)",
+      "owner": "CapitalGlass-Cross-Agent"
+    },
+    {
+      "id": "mcp-preconditions-credential-shape",
+      "summary": "MCP_PRECONDITIONS_HOLD on RYZEN9DESK with one named cause: CREDENTIAL_SHAPE github GITHUB_PERSONAL_ACCESS_TOKEN (shape only, no value read)",
+      "owner": "CG-AppBuilder-MCP"
+    },
+    {
+      "id": "master-graph-absent-from-estate-routing",
+      "summary": "CG-MASTER-GRAPH commits index/cg-federated-repo-index.v1.json but appears in none of the 32 routes in federated-estate-routing.json, so it is unroutable from the estate index",
+      "owner": "CG-AppBuilder-MCP"
+    }
+  ],
   "ALIASES": [
     "cross agent",
-    "active work"
+    "cross-agent",
+    "active work",
+    "active work ledger",
+    "coordination repo",
+    "capitalglass-cross-agent"
   ],
-  "ESTATE_ALIASES": [],
-  "SUPERSEDED_ITEMS": [],
+  "ESTATE_ALIASES": [
+    "cross agent",
+    "active work ledger"
+  ],
+  "SUPERSEDED_ITEMS": [
+    {
+      "id": "compounding-intelligence-v2-implementation-v1",
+      "supersededBy": "compounding-intelligence-unified-loop-v1",
+      "note": "PR #43 merged; further work moved to the unified loop package"
+    },
+    {
+      "id": "compounding-intelligence-unified-loop-v1",
+      "supersededBy": "compounding-intelligence-v2-live-integration-proof",
+      "note": "PR #45 merged; live cross-system proof is the successor package"
+    }
+  ],
   "NEXT_ACTIONS": [
-    "cg-federated-repo-index-estate-100-v1 baseline seed"
+    "Regenerate index/cg-federated-repo-index.v1.json from this seed with the CG-AppBuilder-MCP federated-repo-index compiler; repoSha, digests and provenance are compiler-owned and must not be hand-written",
+    "Obtain the protocols[]/surfaces[]/dependencies[] element contract from CG-AppBuilder-MCP before populating them - left empty deliberately rather than guessed",
+    "Add CG-MASTER-GRAPH to the estate routing harvest so its committed local index becomes routable",
+    "Ratify the 29 SEEDED_UNREVIEWED agent-runtime MCP estate records (human review)",
+    "Reconcile the cg-federated-repo-index-v1 ledger label: WAVE_A_CLOSED is asserted while the Wave A generate receipt is missing"
   ]
 }
