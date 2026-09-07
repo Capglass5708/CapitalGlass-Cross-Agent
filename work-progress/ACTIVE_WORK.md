@@ -12,14 +12,26 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-09-05
-| Current focus | RYZEN9DESK remote VS Code/Claude bootstrap (`ryzen9desk-wsl2-canonical-workspace-v1`); WESLEYWORK Storage Keeper when storage work resumes; PG door hardware component free-text shipped
+| Last updated | 2026-09-07
+| Current focus | Estate repo-indexing coverage (`estate-repo-indexing-audit-v1`) — 17 of 43 entries need action; `Computer Estimator` plan-vision index missing, blocking `cg-federated-repo-index-v1` Wave A close. Prior focus: RYZEN9DESK remote VS Code/Claude bootstrap (`ryzen9desk-wsl2-canonical-workspace-v1`)
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Project index | `work-progress/projects/INDEX.md` |
 
 ## Current saved work
+
+### 2026-09-07 CT — estate-repo-indexing-audit-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `estate-repo-indexing-audit-v1` |
+| Status | **COMPLETE (audit)** — read-only; all remediation is OPEN and owned by CG-AppBuilder-MCP |
+| Repos involved | `CapitalGlass-Cross-Agent` (this record only); read-only reads across all 41 `Capglass5708` repos |
+| Notes | Wesley asked for a full-estate investigation of what still needs indexing. Audited all 41 GitHub repos against the governed target set (`CG-AppBuilder-MCP@04f81628` `ci-enforcement-registry.v1.json` → 32 `enforcedRepos`, 31 seed-bank seeds) and the 32-route estate-routing slice. 26 of 43 audited entries are current; 17 need action. Highest-value finding: **`Computer Estimator` has no published index at all** — it is enforced, seeded and routed for `plan-vision`, but the only estimator repo on GitHub (`Computer-Estimator-`) carries an index whose `REPO_ID` is `Computer-Estimator-glazing-spine`, and no GitHub repo exists for that identity. That is precisely the `LOCAL_INDEX_HIT` evidence `cg-federated-repo-index-v1` Wave A close has been waiting on, so Wave A cannot close from published state today. Also found: `CG-MASTER-GRAPH` is actively developed, self-declares three capabilities, and carries a hand-authored v1 index (no `provenance`, digest field holds a work-package id) while being absent from `enforcedRepos`, the seed bank and routing — the router cannot resolve it. Nine further repos (`CG-Web-Agent` most urgent, pushed 2026-09-07) are entirely outside the federated index. `capital-glass-developer-memory` still holds an `enforcedRepos` slot and a seed despite `DECOMMISSIONED.md` and GitHub archival — while it stands, a 100% estate-index proof is unreachable by construction. Root cause behind the four drifted indexes is structural, not per-repo: `perRepoNativeCi` is `AVAILABLE_NOT_ENFORCED` with `perRepoNativeCiCallers: []`, so nothing re-indexes a repo when it changes. Re-running the compiler clears today's drift and buys nothing durable. |
+| Evidence | `registry/git-estate/repo-indexing-audit.v1.json` (43 records, machine-readable), project file `work-progress/projects/2026-09-07_estate-repo-indexing-audit-v1.md` |
+| Verification | Read-only. Index presence via GitHub contents listing of `index/` per repo; freshness via blobless partial clone per repo, comparing `LAST_INDEXED_SHA` against origin HEAD **and** against the commit that last wrote the index file, so the structural one-commit publication lag is excluded. No index, seed, routing file or enforcement registry was modified. |
+| Next action | Owned by CG-AppBuilder-MCP, in order: (1) resolve the Computer Estimator / glazing-spine identity split and publish a real plan-vision index; (2) wire the per-repo `federated-index-check.yml` callers so indexes refresh on change; (3) adopt `CG-MASTER-GRAPH`; (4) adopt-or-retire the 9 ungoverned repos; (5) retire `capital-glass-developer-memory` from the target set; (6) regenerate the 4 drifted indexes, only after (2). |
 
 ### 2026-09-05 CT — RYZEN9DESK VS Code remote bootstrap (GHA from CG-NIMO-01)
 
