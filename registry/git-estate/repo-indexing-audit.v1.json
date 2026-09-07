@@ -1,109 +1,98 @@
 {
-  "schemaVersion": "cross-agent-repo-indexing-audit-v1@1.0.0",
+  "schemaVersion": "cross-agent-repo-indexing-audit-v1@2.0.0",
   "workPackageId": "estate-repo-indexing-audit-v1",
   "ownerRepo": "CapitalGlass-Cross-Agent",
   "auditRole": "COORDINATION_RECORD_ONLY",
   "compilerAuthority": "CG-AppBuilder-MCP",
-  "generatedAt": "2026-09-07T16:51:07Z",
+  "generatedAt": "2026-09-07T21:06:24Z",
+  "remediationRunbook": "runbooks/ESTATE_REPO_INDEXING_REMEDIATION_RUNBOOK.md",
+  "revisionNote": "v2.0.0 supersedes v1.0.0. v1 classified coverage against registry/federated-repo-index/ci-enforcement-registry.v1.json, which is a DERIVED artifact and is stale. v2 classifies against the root authority, scripts/wsl/wsl-repo-library-manifest.v1.json. Three v1 findings were wrong as a result and are corrected here: 'Computer Estimator' is not a missing index (its manifest row was deleted 2026-09-05 in commit e5ce13fa, leaving one estimator identity, Computer-Estimator-glazing-spine, which IS published); 'Computer-Estimator-glazing-spine' hosting is not unresolved (it is the surviving identity and correctly owns GitHub repo Computer-Estimator-); and capital-glass-developer-memory does not need retiring from the target set (it was already declared governanceStatus=excluded with reason ARCHIVED_READ_ONLY in that same commit). The real defect those symptoms pointed at is the stale derived layer, recorded under derivedLayerDrift below.",
+  "authorityChain": {
+    "root": {
+      "file": "CG-AppBuilder-MCP scripts/wsl/wsl-repo-library-manifest.v1.json",
+      "readAtSha": "04f81628db7cf0f67fd6a5a312835cda28a01f3b",
+      "lastChangedBy": "5c698b33f3c0114fd58c02c9260888edcd8dffbc (2026-09-07T03:18:13Z) Admit CG-Web-Agent to estate Git spine registry",
+      "content": "32 rows: 31 governanceStatus=active, 1 excluded"
+    },
+    "derived": [
+      {
+        "file": "CG-AppBuilder-MCP registry/federated-repo-index/estate-routing.v1.json",
+        "generatedAt": "2026-09-06T14:24:10.474Z",
+        "reflects": "31 routes - one generation behind: no CG-Web-Agent"
+      },
+      {
+        "file": "CG-AppBuilder-MCP registry/federated-repo-index/ci-enforcement-registry.v1.json",
+        "lastCommitted": "2026-09-05T15:19:46Z",
+        "generatedAtClaims": "2026-09-03T00:00:00.000Z",
+        "reflects": "32 enforcedRepos - two generations behind: still enforces deleted identity 'Computer Estimator', still enforces excluded capital-glass-developer-memory, omits CG-Web-Agent"
+      },
+      {
+        "file": "CG-AppBuilder-MCP registry/federated-repo-index/seed-bank/",
+        "lastCommitted": "2026-09-05T15:19:46Z",
+        "reflects": "31 seeds - carries stale 'Computer Estimator.seed.v1.json', lacks 'CG-Web-Agent.seed.v1.json'"
+      },
+      {
+        "file": "CapitalGlass-Cross-Agent work-progress/intelligence-hub-slices/federated-estate-routing.json",
+        "generatedAt": "2026-09-03T23:41:55.974Z",
+        "reflects": "32 routes - two generations behind. THIS IS THE COPY AGENTS ACTUALLY READ"
+      }
+    ]
+  },
   "method": {
     "estateEnumeration": "Claude Code Remote list_repos for the Capglass5708 account (41 repositories)",
-    "governedTargetSet": "CG-AppBuilder-MCP@04f81628 registry/federated-repo-index/ci-enforcement-registry.v1.json -> enforcedRepos (32 entries) and registry/federated-repo-index/seed-bank (31 seeds)",
-    "routing": "CapitalGlass-Cross-Agent work-progress/intelligence-hub-slices/federated-estate-routing.json (32 routes, published 2026-09-03)",
+    "governedTargetSet": "scripts/wsl/wsl-repo-library-manifest.v1.json repositories[] (root authority), read at CG-AppBuilder-MCP@04f81628",
     "indexPresence": "GitHub contents API listing of index/ per repository",
     "indexFreshness": "blobless partial clone per repository; LAST_INDEXED_SHA read from index/cg-federated-repo-index.v1.json, compared against origin HEAD and against the commit that last wrote the index file",
     "driftDefinition": "commitsAheadOfIndexPublication counts commits on the default branch after the commit that published the index file, so the structural one-commit publication lag is excluded and 0 means current"
   },
   "totals": {
     "githubReposInAccount": 41,
-    "governedTargetSetEntries": 32,
-    "governedTargetSetEntriesMappingToDistinctGithubRepos": 31,
-    "githubReposWithPublishedFederatedIndex": 31,
-    "githubReposWithNoFederatedIndex": 10,
-    "githubReposOutsideGovernedTargetSet": 10
+    "manifestRows": 32,
+    "governedActive": 31,
+    "governedExcluded": 1,
+    "governedActiveWithPublishedIndex": 30,
+    "governedActiveMissingIndex": 1,
+    "notGovernedAtAll": 9,
+    "governedCoveragePct": 96.8
   },
   "verdictCounts": {
-    "INDEX_MISSING": 1,
-    "IDENTITY_HOSTING_UNRESOLVED": 1,
-    "ADOPT_THEN_REINDEX": 1,
-    "TRIAGE_THEN_INDEX_OR_RETIRE": 9,
+    "GOVERNED_BUT_UNOBSERVED": 1,
+    "ADOPT_OR_DECLARE_EXCLUDED": 9,
     "REINDEX_RECOMMENDED": 4,
-    "REMOVE_FROM_TARGET_SET": 1,
+    "NO_ACTION_CORRECTLY_EXCLUDED": 1,
     "INDEX_CURRENT": 26
   },
   "verdictLegend": {
-    "INDEX_MISSING": "Governed identity with no index published anywhere",
-    "IDENTITY_HOSTING_UNRESOLVED": "Governed identity whose index is published into another repo because it has no repo of its own",
-    "ADOPT_THEN_REINDEX": "Repo carries an index but is absent from the governed target set; adopt then regenerate",
-    "TRIAGE_THEN_INDEX_OR_RETIRE": "Repo is invisible to the federated index; decide adopt-and-index or declare retired",
-    "REINDEX_REQUIRED": "Index present but not compiler-generated or structurally non-conformant",
+    "GOVERNED_BUT_UNOBSERVED": "In the manifest as active, but its projection could not be read - an error, per governed-manifest-admission.mjs",
+    "ADOPT_OR_DECLARE_EXCLUDED": "Not in the manifest at all, so the estate can neither see it nor report it missing",
     "REINDEX_RECOMMENDED": "Index present and conformant but the repo has advanced past it",
-    "REMOVE_FROM_TARGET_SET": "Governed entry that should be retired rather than indexed",
+    "NO_ACTION_CORRECTLY_EXCLUDED": "Declared out of scope with a machine-readable reason; absence of an index is intended",
     "INDEX_CURRENT": "Index published, conformant and at the repo tip"
   },
+  "derivedLayerDrift": {
+    "severity": "HIGH",
+    "summary": "The root manifest was admitted and corrected on 2026-09-05 and extended on 2026-09-07, but no derived artifact has fully caught up. Agents routing through the published Cross-Agent slice are working from an estate that is two generations stale.",
+    "concreteWrongness": [
+      "ci-enforcement-registry.v1.json enforces 'Computer Estimator', an identity deleted from the manifest on 2026-09-05 - it can never be satisfied, so any 100% estate proof against that registry is unreachable by construction",
+      "ci-enforcement-registry.v1.json enforces capital-glass-developer-memory, which the manifest declares excluded (ARCHIVED_READ_ONLY) - a second permanently-unreachable row",
+      "seed-bank carries 'Computer Estimator.seed.v1.json' for that deleted identity and has no seed for CG-Web-Agent",
+      "Neither AppBuilder estate-routing nor the published Cross-Agent slice contains CG-Web-Agent",
+      "The published Cross-Agent slice still advertises a 'Computer Estimator' route with localRepoRoot /home/wesle/repos/Computer Estimator - a machine path with no GitHub remote"
+    ],
+    "runbookStep": 2
+  },
   "openStructuralFindings": [
-    "Per-repo native CI is not wired: ci-enforcement-registry.v1.json reports perRepoNativeCi AVAILABLE_NOT_ENFORCED and perRepoNativeCiCallers is empty, so nothing re-indexes a repo when it changes. Every REINDEX_RECOMMENDED row below is a symptom of this, not of a per-repo mistake.",
-    "The 2026-09-05 baseline sweep was generated on a single host (DESKTOP-DQ67FAC / cg_nimo_01) between 05:53 and 05:54 UTC and pushed ~14:37-14:39 UTC. Indexes therefore record pre-publication SHAs by design (lastIndexedShaMeaning OBSERVED_HEAD_AT_GENERATION).",
-    "Cursor-ProposalGenerator and CG-MASTER-GRAPH are the only indexed repos missing index/compounding-aliases.v1.json.",
-    "CG-AppBuilder-MCP has no seed in its own seed-bank; its seed lives at index/repo-index.seed.v1.json. Expected for the compiler host, recorded so a 31-vs-32 count is not read as a gap."
+    "Per-repo native CI is not wired: ci-enforcement-registry.v1.json reports perRepoNativeCi AVAILABLE_NOT_ENFORCED and perRepoNativeCiCallers is empty. The reusable workflow (.github/workflows/federated-index-check.yml) and the caller template both exist in CG-AppBuilder-MCP, and propagate-estate-index-notify.mjs exists to distribute them, but no governed repo has the caller installed. Nothing re-indexes a repo when it changes - every REINDEX_RECOMMENDED row is a symptom of this.",
+    "The 2026-09-05 baseline sweep was generated on a single host (DESKTOP-DQ67FAC / cg_nimo_01) between 05:53 and 05:54 UTC and pushed ~14:37-14:39 UTC. Indexes record pre-publication SHAs by design (lastIndexedShaMeaning OBSERVED_HEAD_AT_GENERATION), so a one-commit lag is expected and is excluded from drift counts.",
+    "Cursor-ProposalGenerator and CG-MASTER-GRAPH are the only indexed repos missing index/compounding-aliases.v1.json. Cursor-ProposalGenerator was indexed in a separate earlier run (2026-09-05T02:05) rather than in the main sweep.",
+    "CG-AppBuilder-MCP has no seed in its own seed-bank; its seed lives at index/repo-index.seed.v1.json. Expected for the compiler host - recorded so a 30-vs-31 seed count is not misread as a gap."
   ],
   "records": [
     {
-      "githubRepo": null,
-      "repoIdInPublishedIndex": null,
-      "governedTargetSetMember": true,
-      "declaredRepoId": "Computer Estimator",
-      "indexPublished": false,
-      "indexPath": null,
-      "indexSchemaVersion": null,
-      "indexGeneratedAt": null,
-      "lastIndexedSha": null,
-      "liveHeadSha": null,
-      "commitsAheadOfIndexPublication": null,
-      "lastPushedAt": null,
-      "verdict": "INDEX_MISSING",
-      "requiredAction": "Publish the plan-vision index. This identity is enforced, seeded (seed-bank/Computer Estimator.seed.v1.json) and routed (domain plan-vision, localRepoRoot /home/wesle/repos/Computer Estimator), but no index for it exists on GitHub: the only estimator repo (Computer-Estimator-) carries the Computer-Estimator-glazing-spine index instead.",
-      "severity": "HIGH",
-      "notes": "Owns capabilities admission-router, opening-detection, vision-plane and program rtx5080-plan-vision-intelligence-plane-v1. Directly blocks cg-federated-repo-index-v1 Wave A close, which requires ESTATE_ROUTE_HIT + LOCAL_INDEX_HIT for Vision Plane and admit_structure."
-    },
-    {
-      "githubRepo": null,
-      "repoIdInPublishedIndex": null,
-      "governedTargetSetMember": true,
-      "declaredRepoId": "Computer-Estimator-glazing-spine",
-      "indexPublished": true,
-      "indexPath": "Computer-Estimator-:index/cg-federated-repo-index.v1.json",
-      "indexSchemaVersion": "cg-federated-repo-index-v2",
-      "indexGeneratedAt": "2026-09-05T05:54:13.710Z",
-      "lastIndexedSha": "1329455e445369bf8bcbdc2361e5f13f809c19ba",
-      "liveHeadSha": null,
-      "commitsAheadOfIndexPublication": null,
-      "lastPushedAt": null,
-      "verdict": "IDENTITY_HOSTING_UNRESOLVED",
-      "requiredAction": "Decide whether glazing-spine is a distinct repo or a lane of Computer Estimator, then re-home its index. It is enforced, seeded and routed to localRepoRoot /home/wesle/repos/Computer-Estimator-glazing-spine, but no such GitHub repo exists and the git-estate manifest has no record for it; its index currently occupies Computer-Estimator-.",
-      "severity": "HIGH",
-      "notes": "Must be resolved together with the Computer Estimator gap - the two share one GitHub repo."
-    },
-    {
-      "githubRepo": "CG-MASTER-GRAPH",
-      "repoIdInPublishedIndex": "CG-MASTER-GRAPH",
-      "governedTargetSetMember": false,
-      "indexPublished": true,
-      "indexPath": "index/cg-federated-repo-index.v1.json",
-      "indexSchemaVersion": "v1-only-no-provenance",
-      "indexGeneratedAt": "2026-09-02T08:10:00.000Z",
-      "lastIndexedSha": "250db6e8d2782cf2097b2fe5a6b5d6929fc7616c",
-      "liveHeadSha": "f7250aac2272ec811070a9d0aa6fb3ed0c1549d9",
-      "commitsAheadOfIndexPublication": 9,
-      "lastPushedAt": "2026-09-06T06:26:33Z",
-      "verdict": "ADOPT_THEN_REINDEX",
-      "requiredAction": "Add to enforcedRepos, add a seed to CG-AppBuilder-MCP seed-bank, add an estate-routing entry, then regenerate. Its index is hand-authored: schema v1 only, no schemaVersion v2, no provenance block, INDEX_INPUT_DIGEST holds a work-package id instead of a sha256, and no compounding-aliases.v1.json.",
-      "severity": "HIGH",
-      "notes": "Actively developed (pushed 2026-09-06) and self-declares owner of the master-graph and glazing-estimating-knowledge domains with capabilities graph-compile, glazing-knowledge-pack, graph-intelligence-audit - none of which the estate router can currently resolve. 9 commits past its index publication."
-    },
-    {
       "githubRepo": "CG-Web-Agent",
+      "manifestFolderName": "CG-Web-Agent",
       "repoIdInPublishedIndex": null,
-      "governedTargetSetMember": false,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": false,
       "indexPath": null,
       "indexSchemaVersion": null,
@@ -112,15 +101,36 @@
       "liveHeadSha": "aaff807b73bd1ac64b22dcc051abf00afb76ba22",
       "commitsAheadOfIndexPublication": null,
       "lastPushedAt": "2026-09-07T04:22:46Z",
-      "verdict": "TRIAGE_THEN_INDEX_OR_RETIRE",
-      "requiredAction": "Not in enforcedRepos, has no seed in CG-AppBuilder-MCP seed-bank and no estate-routing entry. Decide adopt-and-index or declare retired; either way it must stop being invisible to the federated index.",
+      "verdict": "GOVERNED_BUT_UNOBSERVED",
       "severity": "HIGH",
-      "notes": "ACTIVE - pushed 2026-09-07; has an unrelated index/latest directory, no federated index"
+      "requiredAction": "Seed and index it. Admitted to the manifest 2026-09-07T03:18Z (commit 5c698b33) but no derived artifact has caught up: no seed in seed-bank, no estate-routing entry, no index. Runbook steps 3-5.",
+      "runbookStep": 3,
+      "notes": "The single coverage gap among governed-active repos. Actively developed (pushed 2026-09-07). Its index/ directory holds an unrelated index/latest tree, not a federated index."
+    },
+    {
+      "githubRepo": "CG-MASTER-GRAPH",
+      "manifestFolderName": null,
+      "repoIdInPublishedIndex": "CG-MASTER-GRAPH",
+      "governance": "NOT_GOVERNED",
+      "indexPublished": true,
+      "indexPath": "index/cg-federated-repo-index.v1.json",
+      "indexSchemaVersion": "v1-only-no-provenance",
+      "indexGeneratedAt": "2026-09-02T08:10:00.000Z",
+      "lastIndexedSha": "250db6e8d2782cf2097b2fe5a6b5d6929fc7616c",
+      "liveHeadSha": "f7250aac2272ec811070a9d0aa6fb3ed0c1549d9",
+      "commitsAheadOfIndexPublication": 9,
+      "lastPushedAt": "2026-09-06T06:26:33Z",
+      "verdict": "ADOPT_OR_DECLARE_EXCLUDED",
+      "severity": "HIGH",
+      "requiredAction": "Absent from the governed manifest entirely, so the estate cannot see it and cannot report it missing. Decide: add a manifest row (adopt), or add a row with governanceStatus=excluded and a declared reason (retire). Absence is never exclusion. Runbook step 7.",
+      "runbookStep": 7,
+      "notes": "Actively developed (pushed 2026-09-06). Self-declares the master-graph and glazing-estimating-knowledge domains with capabilities graph-compile, glazing-knowledge-pack, graph-intelligence-audit - none resolvable by the estate router. Carries a hand-authored index: schema v1 only, no provenance block, INDEX_INPUT_DIGEST holds a work-package id instead of a sha256, no compounding-aliases.v1.json. 9 commits past its index publication."
     },
     {
       "githubRepo": "Rewire",
+      "manifestFolderName": null,
       "repoIdInPublishedIndex": null,
-      "governedTargetSetMember": false,
+      "governance": "NOT_GOVERNED",
       "indexPublished": false,
       "indexPath": null,
       "indexSchemaVersion": null,
@@ -129,15 +139,17 @@
       "liveHeadSha": "99e415c3730b00c2c6f6ba0ba1e3659d21e7f3e7",
       "commitsAheadOfIndexPublication": null,
       "lastPushedAt": "2026-09-02T14:39:13Z",
-      "verdict": "TRIAGE_THEN_INDEX_OR_RETIRE",
-      "requiredAction": "Not in enforcedRepos, has no seed in CG-AppBuilder-MCP seed-bank and no estate-routing entry. Decide adopt-and-index or declare retired; either way it must stop being invisible to the federated index.",
+      "verdict": "ADOPT_OR_DECLARE_EXCLUDED",
       "severity": "MEDIUM",
-      "notes": "ACTIVE - pushed 2026-09-02"
+      "requiredAction": "Absent from the governed manifest entirely, so the estate cannot see it and cannot report it missing. Decide: add a manifest row (adopt), or add a row with governanceStatus=excluded and a declared reason (retire). Absence is never exclusion. Runbook step 7.",
+      "runbookStep": 7,
+      "notes": "Active - last push 2026-09-02."
     },
     {
       "githubRepo": "capital-glass-estimating-parser",
+      "manifestFolderName": null,
       "repoIdInPublishedIndex": null,
-      "governedTargetSetMember": false,
+      "governance": "NOT_GOVERNED",
       "indexPublished": false,
       "indexPath": null,
       "indexSchemaVersion": null,
@@ -146,15 +158,17 @@
       "liveHeadSha": "1fead9903daf8fa80875167320dd06f8c1e8f209",
       "commitsAheadOfIndexPublication": null,
       "lastPushedAt": "2026-08-12T05:27:47Z",
-      "verdict": "TRIAGE_THEN_INDEX_OR_RETIRE",
-      "requiredAction": "Not in enforcedRepos, has no seed in CG-AppBuilder-MCP seed-bank and no estate-routing entry. Decide adopt-and-index or declare retired; either way it must stop being invisible to the federated index.",
+      "verdict": "ADOPT_OR_DECLARE_EXCLUDED",
       "severity": "MEDIUM",
-      "notes": "Low activity - last push 2026-08-12; name overlaps the estimating spine, confirm it is not a superseded parser lane"
+      "requiredAction": "Absent from the governed manifest entirely, so the estate cannot see it and cannot report it missing. Decide: add a manifest row (adopt), or add a row with governanceStatus=excluded and a declared reason (retire). Absence is never exclusion. Runbook step 7.",
+      "runbookStep": 7,
+      "notes": "Last push 2026-08-12. Name overlaps the estimating spine; confirm it is not a superseded parser lane before adopting."
     },
     {
       "githubRepo": "WatchDog",
+      "manifestFolderName": null,
       "repoIdInPublishedIndex": null,
-      "governedTargetSetMember": false,
+      "governance": "NOT_GOVERNED",
       "indexPublished": false,
       "indexPath": null,
       "indexSchemaVersion": null,
@@ -163,15 +177,17 @@
       "liveHeadSha": "03e623493eb0d83825c5f8d4321aff0285207af3",
       "commitsAheadOfIndexPublication": null,
       "lastPushedAt": "2026-06-25T00:01:05Z",
-      "verdict": "TRIAGE_THEN_INDEX_OR_RETIRE",
-      "requiredAction": "Not in enforcedRepos, has no seed in CG-AppBuilder-MCP seed-bank and no estate-routing entry. Decide adopt-and-index or declare retired; either way it must stop being invisible to the federated index.",
+      "verdict": "ADOPT_OR_DECLARE_EXCLUDED",
       "severity": "LOW",
-      "notes": "Dormant - last push 2026-06-25"
+      "requiredAction": "Absent from the governed manifest entirely, so the estate cannot see it and cannot report it missing. Decide: add a manifest row (adopt), or add a row with governanceStatus=excluded and a declared reason (retire). Absence is never exclusion. Runbook step 7.",
+      "runbookStep": 7,
+      "notes": "Dormant - last push 2026-06-25."
     },
     {
       "githubRepo": "capital-glass-idea-vault",
+      "manifestFolderName": null,
       "repoIdInPublishedIndex": null,
-      "governedTargetSetMember": false,
+      "governance": "NOT_GOVERNED",
       "indexPublished": false,
       "indexPath": null,
       "indexSchemaVersion": null,
@@ -180,15 +196,17 @@
       "liveHeadSha": "29dfe30831dad433179ebe8788bf78d4eb1dd149",
       "commitsAheadOfIndexPublication": null,
       "lastPushedAt": "2026-08-14T05:20:18Z",
-      "verdict": "TRIAGE_THEN_INDEX_OR_RETIRE",
-      "requiredAction": "Not in enforcedRepos, has no seed in CG-AppBuilder-MCP seed-bank and no estate-routing entry. Decide adopt-and-index or declare retired; either way it must stop being invisible to the federated index.",
+      "verdict": "ADOPT_OR_DECLARE_EXCLUDED",
       "severity": "LOW",
-      "notes": "Low activity - last push 2026-08-14"
+      "requiredAction": "Absent from the governed manifest entirely, so the estate cannot see it and cannot report it missing. Decide: add a manifest row (adopt), or add a row with governanceStatus=excluded and a declared reason (retire). Absence is never exclusion. Runbook step 7.",
+      "runbookStep": 7,
+      "notes": "Last push 2026-08-14."
     },
     {
       "githubRepo": "capital-glass-marketing-ops",
+      "manifestFolderName": null,
       "repoIdInPublishedIndex": null,
-      "governedTargetSetMember": false,
+      "governance": "NOT_GOVERNED",
       "indexPublished": false,
       "indexPath": null,
       "indexSchemaVersion": null,
@@ -197,15 +215,17 @@
       "liveHeadSha": "715e0b7d19a300879076a9d050953a9a9a69dee3",
       "commitsAheadOfIndexPublication": null,
       "lastPushedAt": "2026-06-05T05:28:00Z",
-      "verdict": "TRIAGE_THEN_INDEX_OR_RETIRE",
-      "requiredAction": "Not in enforcedRepos, has no seed in CG-AppBuilder-MCP seed-bank and no estate-routing entry. Decide adopt-and-index or declare retired; either way it must stop being invisible to the federated index.",
+      "verdict": "ADOPT_OR_DECLARE_EXCLUDED",
       "severity": "LOW",
-      "notes": "Dormant - last push 2026-06-05"
+      "requiredAction": "Absent from the governed manifest entirely, so the estate cannot see it and cannot report it missing. Decide: add a manifest row (adopt), or add a row with governanceStatus=excluded and a declared reason (retire). Absence is never exclusion. Runbook step 7.",
+      "runbookStep": 7,
+      "notes": "Dormant - last push 2026-06-05."
     },
     {
       "githubRepo": "capital-glass-research-intel",
+      "manifestFolderName": null,
       "repoIdInPublishedIndex": null,
-      "governedTargetSetMember": false,
+      "governance": "NOT_GOVERNED",
       "indexPublished": false,
       "indexPath": null,
       "indexSchemaVersion": null,
@@ -214,15 +234,17 @@
       "liveHeadSha": "971b677d80f502719dc69ac9ad6cc06eb38dc00a",
       "commitsAheadOfIndexPublication": null,
       "lastPushedAt": "2026-07-20T18:27:02Z",
-      "verdict": "TRIAGE_THEN_INDEX_OR_RETIRE",
-      "requiredAction": "Not in enforcedRepos, has no seed in CG-AppBuilder-MCP seed-bank and no estate-routing entry. Decide adopt-and-index or declare retired; either way it must stop being invisible to the federated index.",
+      "verdict": "ADOPT_OR_DECLARE_EXCLUDED",
       "severity": "LOW",
-      "notes": "Dormant - last push 2026-07-20"
+      "requiredAction": "Absent from the governed manifest entirely, so the estate cannot see it and cannot report it missing. Decide: add a manifest row (adopt), or add a row with governanceStatus=excluded and a declared reason (retire). Absence is never exclusion. Runbook step 7.",
+      "runbookStep": 7,
+      "notes": "Dormant - last push 2026-07-20."
     },
     {
       "githubRepo": "capitalglass-contacts",
+      "manifestFolderName": null,
       "repoIdInPublishedIndex": null,
-      "governedTargetSetMember": false,
+      "governance": "NOT_GOVERNED",
       "indexPublished": false,
       "indexPath": null,
       "indexSchemaVersion": null,
@@ -231,15 +253,17 @@
       "liveHeadSha": "1780301e8f12dffa53f4eda7a66965f1aabeb368",
       "commitsAheadOfIndexPublication": null,
       "lastPushedAt": "2026-07-15T01:40:37Z",
-      "verdict": "TRIAGE_THEN_INDEX_OR_RETIRE",
-      "requiredAction": "Not in enforcedRepos, has no seed in CG-AppBuilder-MCP seed-bank and no estate-routing entry. Decide adopt-and-index or declare retired; either way it must stop being invisible to the federated index.",
+      "verdict": "ADOPT_OR_DECLARE_EXCLUDED",
       "severity": "LOW",
-      "notes": "Dormant - last push 2026-07-15; name collides with the governed capital-glass-contacts, likely superseded"
+      "requiredAction": "Absent from the governed manifest entirely, so the estate cannot see it and cannot report it missing. Decide: add a manifest row (adopt), or add a row with governanceStatus=excluded and a declared reason (retire). Absence is never exclusion. Runbook step 7.",
+      "runbookStep": 7,
+      "notes": "Dormant - last push 2026-07-15. Name collides with the governed capital-glass-contacts; likely superseded."
     },
     {
       "githubRepo": "cursor-supabase-platform",
+      "manifestFolderName": null,
       "repoIdInPublishedIndex": null,
-      "governedTargetSetMember": false,
+      "governance": "NOT_GOVERNED",
       "indexPublished": false,
       "indexPath": null,
       "indexSchemaVersion": null,
@@ -248,15 +272,17 @@
       "liveHeadSha": "d097b3dc7512f0689519b610563a5b08db7ca91f",
       "commitsAheadOfIndexPublication": null,
       "lastPushedAt": "2026-07-20T16:47:24Z",
-      "verdict": "TRIAGE_THEN_INDEX_OR_RETIRE",
-      "requiredAction": "Not in enforcedRepos, has no seed in CG-AppBuilder-MCP seed-bank and no estate-routing entry. Decide adopt-and-index or declare retired; either way it must stop being invisible to the federated index.",
+      "verdict": "ADOPT_OR_DECLARE_EXCLUDED",
       "severity": "LOW",
-      "notes": "Dormant - last push 2026-07-20"
+      "requiredAction": "Absent from the governed manifest entirely, so the estate cannot see it and cannot report it missing. Decide: add a manifest row (adopt), or add a row with governanceStatus=excluded and a declared reason (retire). Absence is never exclusion. Runbook step 7.",
+      "runbookStep": 7,
+      "notes": "Dormant - last push 2026-07-20."
     },
     {
       "githubRepo": "CG-AppBuilder-MCP",
+      "manifestFolderName": "CG-AppBuilder-MCP",
       "repoIdInPublishedIndex": "CG-AppBuilder-MCP",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -266,12 +292,16 @@
       "commitsAheadOfIndexPublication": 1,
       "lastPushedAt": "2026-09-07T05:15:15Z",
       "verdict": "REINDEX_RECOMMENDED",
-      "requiredAction": "Regenerate: repo advanced 1 commit(s) past the index publication commit"
+      "severity": "LOW",
+      "requiredAction": "Regenerate: repo advanced 1 commit(s) past the commit that published its index. Fix the cause first (step 2 of the runbook), not just this symptom.",
+      "runbookStep": 6,
+      "notes": null
     },
     {
       "githubRepo": "CapitalGlass-Cross-Agent",
+      "manifestFolderName": "CapitalGlass-Cross-Agent",
       "repoIdInPublishedIndex": "CapitalGlass-Cross-Agent",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -281,12 +311,16 @@
       "commitsAheadOfIndexPublication": 5,
       "lastPushedAt": "2026-09-05T17:45:47Z",
       "verdict": "REINDEX_RECOMMENDED",
-      "requiredAction": "Regenerate: repo advanced 5 commit(s) past the index publication commit"
+      "severity": "LOW",
+      "requiredAction": "Regenerate: repo advanced 5 commit(s) past the commit that published its index. Fix the cause first (step 2 of the runbook), not just this symptom.",
+      "runbookStep": 6,
+      "notes": null
     },
     {
       "githubRepo": "Cursor-ProposalGenerator",
+      "manifestFolderName": "Cursor-ProposalGenerator",
       "repoIdInPublishedIndex": "Cursor-ProposalGenerator",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -296,12 +330,16 @@
       "commitsAheadOfIndexPublication": 1,
       "lastPushedAt": "2026-09-05T03:13:48Z",
       "verdict": "REINDEX_RECOMMENDED",
-      "requiredAction": "Regenerate: repo advanced 1 commit(s) past the index publication commit"
+      "severity": "LOW",
+      "requiredAction": "Regenerate: repo advanced 1 commit(s) past the commit that published its index. Fix the cause first (step 2 of the runbook), not just this symptom.",
+      "runbookStep": 6,
+      "notes": null
     },
     {
       "githubRepo": "capital-glass-project-dashboard",
+      "manifestFolderName": "capital-glass-project-dashboard",
       "repoIdInPublishedIndex": "capital-glass-project-dashboard",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -311,12 +349,16 @@
       "commitsAheadOfIndexPublication": 2,
       "lastPushedAt": "2026-09-07T11:16:03Z",
       "verdict": "REINDEX_RECOMMENDED",
-      "requiredAction": "Regenerate: repo advanced 2 commit(s) past the index publication commit"
+      "severity": "LOW",
+      "requiredAction": "Regenerate: repo advanced 2 commit(s) past the commit that published its index. Fix the cause first (step 2 of the runbook), not just this symptom.",
+      "runbookStep": 6,
+      "notes": null
     },
     {
       "githubRepo": "capital-glass-developer-memory",
+      "manifestFolderName": "capital-glass-developer-memory",
       "repoIdInPublishedIndex": null,
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_EXCLUDED",
       "indexPublished": false,
       "indexPath": null,
       "indexSchemaVersion": null,
@@ -325,15 +367,17 @@
       "liveHeadSha": "a93fe760e3c8abbd1a83a08578a30487e4f3ada5",
       "commitsAheadOfIndexPublication": null,
       "lastPushedAt": "2026-05-31T23:15:33Z",
-      "verdict": "REMOVE_FROM_TARGET_SET",
-      "requiredAction": "Do not index. Retire the enforcedRepos entry and the seed-bank seed - the repo carries DECOMMISSIONED.md (2026-05-31, superseded by capital-glass-agent-ops) and is archived on GitHub.",
-      "severity": "MEDIUM",
-      "notes": "Only governed entry that is both un-indexed and intentionally dead. Leaving it enforced permanently blocks a clean 100% estate-index proof."
+      "verdict": "NO_ACTION_CORRECTLY_EXCLUDED",
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": "Correctly declared out of scope in the manifest: governanceStatus=excluded, exclusionReason=ARCHIVED_READ_ONLY. Absence of an index here is intended, not a gap. The stale derived ci-enforcement-registry still enforces it - that is a registry defect (runbook step 2), not a repo defect."
     },
     {
       "githubRepo": "CG-Computer-Estimator-MCP",
+      "manifestFolderName": "CG-Computer-Estimator-MCP",
       "repoIdInPublishedIndex": "CG-Computer-Estimator-MCP",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -343,12 +387,16 @@
       "commitsAheadOfIndexPublication": 0,
       "lastPushedAt": "2026-09-05T14:39:07Z",
       "verdict": "INDEX_CURRENT",
-      "requiredAction": null
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": null
     },
     {
       "githubRepo": "CG-Failure-Intelligence-MCP",
+      "manifestFolderName": "CG-Failure-Intelligence-MCP",
       "repoIdInPublishedIndex": "CG-Failure-Intelligence-MCP",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -358,12 +406,16 @@
       "commitsAheadOfIndexPublication": 0,
       "lastPushedAt": "2026-09-05T14:39:24Z",
       "verdict": "INDEX_CURRENT",
-      "requiredAction": null
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": null
     },
     {
       "githubRepo": "CG-Human-Estimator-MCP",
+      "manifestFolderName": "CG-Human-Estimator-MCP",
       "repoIdInPublishedIndex": "CG-Human-Estimator-MCP",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -373,12 +425,16 @@
       "commitsAheadOfIndexPublication": 0,
       "lastPushedAt": "2026-09-05T14:39:12Z",
       "verdict": "INDEX_CURRENT",
-      "requiredAction": null
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": null
     },
     {
       "githubRepo": "CG-Night-Owl",
+      "manifestFolderName": "CG-Night-Owl",
       "repoIdInPublishedIndex": "CG-Night-Owl",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -388,12 +444,16 @@
       "commitsAheadOfIndexPublication": 0,
       "lastPushedAt": "2026-09-05T14:39:50Z",
       "verdict": "INDEX_CURRENT",
-      "requiredAction": null
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": null
     },
     {
       "githubRepo": "CG-Platform-Governance-MCP",
+      "manifestFolderName": "CG-Platform-Governance-MCP",
       "repoIdInPublishedIndex": "CG-Platform-Governance-MCP",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -403,12 +463,16 @@
       "commitsAheadOfIndexPublication": 0,
       "lastPushedAt": "2026-09-05T14:37:40Z",
       "verdict": "INDEX_CURRENT",
-      "requiredAction": null
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": null
     },
     {
       "githubRepo": "Capital-Glass-Procedures-",
+      "manifestFolderName": "Capital-Glass-Procedures-",
       "repoIdInPublishedIndex": "Capital-Glass-Procedures-",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -418,12 +482,16 @@
       "commitsAheadOfIndexPublication": 0,
       "lastPushedAt": "2026-09-05T14:38:27Z",
       "verdict": "INDEX_CURRENT",
-      "requiredAction": null
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": null
     },
     {
       "githubRepo": "CapitalGlass-BidComposer",
+      "manifestFolderName": "CapitalGlass-BidComposer",
       "repoIdInPublishedIndex": "CapitalGlass-BidComposer",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -433,12 +501,16 @@
       "commitsAheadOfIndexPublication": 0,
       "lastPushedAt": "2026-09-05T14:38:37Z",
       "verdict": "INDEX_CURRENT",
-      "requiredAction": null
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": null
     },
     {
       "githubRepo": "CapitalGlass-CalendarDashBoard",
+      "manifestFolderName": "CapitalGlass-CalendarDashBoard",
       "repoIdInPublishedIndex": "CapitalGlass-CalendarDashBoard",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -448,12 +520,16 @@
       "commitsAheadOfIndexPublication": 0,
       "lastPushedAt": "2026-09-06T16:55:56Z",
       "verdict": "INDEX_CURRENT",
-      "requiredAction": null
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": null
     },
     {
       "githubRepo": "CapitalGlass-Documents",
+      "manifestFolderName": "CapitalGlass-Documents",
       "repoIdInPublishedIndex": "CapitalGlass-Documents",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -463,12 +539,16 @@
       "commitsAheadOfIndexPublication": 0,
       "lastPushedAt": "2026-09-07T06:27:37Z",
       "verdict": "INDEX_CURRENT",
-      "requiredAction": null
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": null
     },
     {
       "githubRepo": "CapitalGlass-Email",
+      "manifestFolderName": "CapitalGlass-Email",
       "repoIdInPublishedIndex": "CapitalGlass-Email",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -478,12 +558,16 @@
       "commitsAheadOfIndexPublication": 0,
       "lastPushedAt": "2026-09-05T14:38:23Z",
       "verdict": "INDEX_CURRENT",
-      "requiredAction": null
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": null
     },
     {
       "githubRepo": "CapitalGlass-Office-Admin",
+      "manifestFolderName": "CapitalGlass-Office-Admin",
       "repoIdInPublishedIndex": "CapitalGlass-Office-Admin",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -493,12 +577,16 @@
       "commitsAheadOfIndexPublication": 0,
       "lastPushedAt": "2026-09-05T21:41:27Z",
       "verdict": "INDEX_CURRENT",
-      "requiredAction": null
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": null
     },
     {
       "githubRepo": "CapitalGlassRevu",
+      "manifestFolderName": "CapitalGlassRevu",
       "repoIdInPublishedIndex": "CapitalGlassRevu",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -508,12 +596,16 @@
       "commitsAheadOfIndexPublication": 0,
       "lastPushedAt": "2026-09-05T14:38:42Z",
       "verdict": "INDEX_CURRENT",
-      "requiredAction": null
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": null
     },
     {
       "githubRepo": "Computer-Estimator-",
+      "manifestFolderName": "Computer-Estimator-glazing-spine",
       "repoIdInPublishedIndex": "Computer-Estimator-glazing-spine",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -523,12 +615,16 @@
       "commitsAheadOfIndexPublication": 0,
       "lastPushedAt": "2026-09-05T14:39:18Z",
       "verdict": "INDEX_CURRENT",
-      "requiredAction": null
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": null
     },
     {
       "githubRepo": "Cursor-MCP-Kit",
+      "manifestFolderName": "Cursor-MCP-Kit",
       "repoIdInPublishedIndex": "Cursor-MCP-Kit",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -538,12 +634,16 @@
       "commitsAheadOfIndexPublication": 0,
       "lastPushedAt": "2026-09-05T14:37:50Z",
       "verdict": "INDEX_CURRENT",
-      "requiredAction": null
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": null
     },
     {
       "githubRepo": "Data-Extraction",
+      "manifestFolderName": "Data-Extraction",
       "repoIdInPublishedIndex": "Data-Extraction",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -553,12 +653,16 @@
       "commitsAheadOfIndexPublication": 0,
       "lastPushedAt": "2026-09-05T14:38:51Z",
       "verdict": "INDEX_CURRENT",
-      "requiredAction": null
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": null
     },
     {
       "githubRepo": "MailRoom",
+      "manifestFolderName": "MailRoom",
       "repoIdInPublishedIndex": "MailRoom",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -568,12 +672,16 @@
       "commitsAheadOfIndexPublication": 0,
       "lastPushedAt": "2026-09-05T14:38:46Z",
       "verdict": "INDEX_CURRENT",
-      "requiredAction": null
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": null
     },
     {
       "githubRepo": "Scraper",
+      "manifestFolderName": "Scraper",
       "repoIdInPublishedIndex": "Scraper",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -583,12 +691,16 @@
       "commitsAheadOfIndexPublication": 0,
       "lastPushedAt": "2026-09-05T14:39:02Z",
       "verdict": "INDEX_CURRENT",
-      "requiredAction": null
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": null
     },
     {
       "githubRepo": "Visual-Asset-Engine",
+      "manifestFolderName": "Visual-Asset-Engine",
       "repoIdInPublishedIndex": "Visual-Asset-Engine",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -598,12 +710,16 @@
       "commitsAheadOfIndexPublication": 0,
       "lastPushedAt": "2026-09-05T14:38:57Z",
       "verdict": "INDEX_CURRENT",
-      "requiredAction": null
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": null
     },
     {
       "githubRepo": "capital-glass-agent-ops",
+      "manifestFolderName": "capital-glass-agent-ops",
       "repoIdInPublishedIndex": "capital-glass-agent-ops",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -613,12 +729,16 @@
       "commitsAheadOfIndexPublication": 0,
       "lastPushedAt": "2026-09-05T14:39:29Z",
       "verdict": "INDEX_CURRENT",
-      "requiredAction": null
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": null
     },
     {
       "githubRepo": "capital-glass-contacts",
+      "manifestFolderName": "capital-glass-contacts",
       "repoIdInPublishedIndex": "capital-glass-contacts",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -628,12 +748,16 @@
       "commitsAheadOfIndexPublication": 0,
       "lastPushedAt": "2026-09-05T14:38:18Z",
       "verdict": "INDEX_CURRENT",
-      "requiredAction": null
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": null
     },
     {
       "githubRepo": "capital-glass-platform-health",
+      "manifestFolderName": "capital-glass-platform-health",
       "repoIdInPublishedIndex": "capital-glass-platform-health",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -643,12 +767,16 @@
       "commitsAheadOfIndexPublication": 0,
       "lastPushedAt": "2026-09-05T14:39:45Z",
       "verdict": "INDEX_CURRENT",
-      "requiredAction": null
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": null
     },
     {
       "githubRepo": "capital-glass-po-app",
+      "manifestFolderName": "capital-glass-po-app",
       "repoIdInPublishedIndex": "capital-glass-po-app",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -658,12 +786,16 @@
       "commitsAheadOfIndexPublication": 0,
       "lastPushedAt": "2026-09-05T14:38:07Z",
       "verdict": "INDEX_CURRENT",
-      "requiredAction": null
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": null
     },
     {
       "githubRepo": "capital-glass-product-catalog",
+      "manifestFolderName": "capital-glass-product-catalog",
       "repoIdInPublishedIndex": "capital-glass-product-catalog",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -673,12 +805,16 @@
       "commitsAheadOfIndexPublication": 0,
       "lastPushedAt": "2026-09-05T14:38:33Z",
       "verdict": "INDEX_CURRENT",
-      "requiredAction": null
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": null
     },
     {
       "githubRepo": "cg-apps-hub",
+      "manifestFolderName": "cg-apps-hub",
       "repoIdInPublishedIndex": "cg-apps-hub",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -688,12 +824,16 @@
       "commitsAheadOfIndexPublication": 0,
       "lastPushedAt": "2026-09-05T14:37:55Z",
       "verdict": "INDEX_CURRENT",
-      "requiredAction": null
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": null
     },
     {
       "githubRepo": "debugging-fabric-standalone",
+      "manifestFolderName": "debugging-fabric-standalone",
       "repoIdInPublishedIndex": "debugging-fabric-standalone",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -703,12 +843,16 @@
       "commitsAheadOfIndexPublication": 0,
       "lastPushedAt": "2026-09-05T14:39:39Z",
       "verdict": "INDEX_CURRENT",
-      "requiredAction": null
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": null
     },
     {
       "githubRepo": "sharepoint-mcp",
+      "manifestFolderName": "sharepoint-mcp",
       "repoIdInPublishedIndex": "sharepoint-mcp",
-      "governedTargetSetMember": true,
+      "governance": "GOVERNED_ACTIVE",
       "indexPublished": true,
       "indexPath": "index/cg-federated-repo-index.v1.json",
       "indexSchemaVersion": "cg-federated-repo-index-v2",
@@ -718,7 +862,10 @@
       "commitsAheadOfIndexPublication": 0,
       "lastPushedAt": "2026-09-05T14:39:34Z",
       "verdict": "INDEX_CURRENT",
-      "requiredAction": null
+      "severity": null,
+      "requiredAction": null,
+      "runbookStep": null,
+      "notes": null
     }
   ]
 }
