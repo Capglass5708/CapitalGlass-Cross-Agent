@@ -3,6 +3,11 @@
 **Last reconciled:** 2026-08-25
 **Ledger commit anchor:** `0b13f42` (verify with `git rev-parse HEAD` in this repo)
 
+> **Open handoff (2026-09-07):** estate repo-indexing remediation —
+> `handoffs/2026-09-07_estate-repo-indexing-remediation-handoff.md`.
+> Scope outline and work packages; commands in `runbooks/ESTATE_REPO_INDEXING_REMEDIATION_RUNBOOK.md`.
+> Independent of the RYZEN9DESK work below.
+
 Read these files first, in order:
 
 1. `AGENT_START_HERE.md`

@@ -12,14 +12,26 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-09-05
-| Current focus | RYZEN9DESK remote VS Code/Claude bootstrap (`ryzen9desk-wsl2-canonical-workspace-v1`); WESLEYWORK Storage Keeper when storage work resumes; PG door hardware component free-text shipped
+| Last updated | 2026-09-07
+| Current focus | Estate repo-indexing remediation (`estate-repo-indexing-audit-v1`) — coverage 30/31 governed-active; derived registry layer stale vs the admitted manifest; `CG-Web-Agent` unindexed; runbook ready at `runbooks/ESTATE_REPO_INDEXING_REMEDIATION_RUNBOOK.md`. Prior focus: RYZEN9DESK remote VS Code/Claude bootstrap (`ryzen9desk-wsl2-canonical-workspace-v1`)
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Project index | `work-progress/projects/INDEX.md` |
 
 ## Current saved work
+
+### 2026-09-07 CT — estate-repo-indexing-audit-v1
+
+| Field | Value |
+| --- | --- |
+| Work package | `estate-repo-indexing-audit-v1` |
+| Status | **COMPLETE (audit + runbook)** — read-only; all remediation is OPEN and owned by CG-AppBuilder-MCP |
+| Repos involved | `CapitalGlass-Cross-Agent` (this record only); read-only reads across all 41 `Capglass5708` repos |
+| Notes | Wesley asked for a full-estate investigation of what still needs indexing, then for a report an agent can execute. Audited all 41 GitHub repos against the root authority — `CG-AppBuilder-MCP@04f81628` `scripts/wsl/wsl-repo-library-manifest.v1.json` (32 rows: 31 active + 1 excluded). **Coverage is 30 of 31 governed-active repos (96.8%).** Findings: (1) **HIGH — the derived layer no longer matches the manifest it derives from.** The manifest was corrected 2026-09-05 (`e5ce13fa`) and extended 2026-09-07 (`5c698b33`); `ci-enforcement-registry.v1.json` still enforces `Computer Estimator` (a deleted identity) and `capital-glass-developer-memory` (declared excluded) and omits `CG-Web-Agent`, the seed bank carries a stale `Computer Estimator` seed, and the Cross-Agent slice agents actually read is two generations behind and still advertises a machine path with no GitHub remote. Two permanently-unsatisfiable enforced rows mean a 100% estate proof against that registry is unreachable by construction. (2) **HIGH — `CG-Web-Agent` is the single governed coverage gap**: admitted to the manifest 2026-09-07T03:18Z, actively developed, no seed/route/index (`GOVERNED_BUT_UNOBSERVED`). (3) Nine repos have no manifest row at all, `CG-MASTER-GRAPH` most urgently (active, three unresolvable capabilities, hand-authored v1 index). (4) Four indexes drifted, cause structural: `perRepoNativeCi` is `AVAILABLE_NOT_ENFORCED` with zero callers wired, so nothing re-indexes a repo when it changes. **Correction:** v1.0.0 of this audit classified against `ci-enforcement-registry.v1.json` — a derived, stale artifact — and reported three defects (`Computer Estimator` missing, glazing-spine hosting unresolved, developer-memory needing retirement) that AppBuilder had already fixed in the manifest two days earlier. v2.0.0 classifies against the manifest and records the stale derived layer as the real defect. |
+| Evidence | `registry/git-estate/repo-indexing-audit.v1.json` (schema v2.0.0, 41 records — one per account repo), `runbooks/ESTATE_REPO_INDEXING_REMEDIATION_RUNBOOK.md` (8-step execution runbook), project file `work-progress/projects/2026-09-07_estate-repo-indexing-audit-v1.md` |
+| Verification | Read-only; nothing in the federated plane modified. Index presence via GitHub contents listing per repo; freshness via blobless partial clone comparing `LAST_INDEXED_SHA` against origin HEAD **and** against the commit that last wrote the index file, so the structural one-commit publication lag is excluded. All 14 `npm run` commands cited in the runbook cross-checked against the `package.json` of the repo they run in; `run-validate-governed-manifest-admission.mjs` has no npm alias and the runbook invokes it directly. |
+| Next action | Runbook steps, in order, owned by CG-AppBuilder-MCP: (2) reconcile the derived layer with the admitted manifest; (3-4) seed and index `CG-Web-Agent`; (5) republish the estate slices into this repo; (6) wire the per-repo `federated-index-check` callers — the durable fix — then clear the 4 drifted indexes; (7) adopt-or-exclude the 9 ungoverned repos, **blocked on Wesley's decision**. Steps 2-6 need the local ext4 checkouts and cannot run from a cloud session. |
 
 ### 2026-09-05 CT — RYZEN9DESK VS Code remote bootstrap (GHA from CG-NIMO-01)
 
