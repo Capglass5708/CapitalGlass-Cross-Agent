@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "ryzen9desk-executor-preflight-v1@1.2.0",
+  "workPackageId": "ryzen9desk-managed-executor-v1",
+  "generatedAt": "2026-09-05T17:07:38.261Z",
+  "controlHost": "CG-NIMO-01",
+  "controllerAttribution": {
+    "ok": true,
+    "reasonCode": "CONTROLLER_ATTRIBUTION_VERIFIED",
+    "controlHost": "CG-NIMO-01",
+    "evidence": {
+      "dispatchController": "CG-NIMO-01",
+      "leaseActor": "CG-NIMO-01",
+      "canonicalPrimary": "CG-NIMO-01",
+      "canonicalStandby": "CG-WESLEYWORK-01",
+      "controllerEpoch": 2,
+      "leaseId": "lease-2-3f404abd-08ad-4713-8449-c6d3fb63f510",
+      "leaseStatus": "PRIMARY_ACTIVE",
+      "leasePath": "/mnt/z/Office/Wes/Direct Connect/Wesley Work Direct Connect/wsl/receipts/controller-authority/controller-lease.latest.json",
+      "authorityPath": "/home/wesley/actions-runner/_work/CG-AppBuilder-MCP/CG-AppBuilder-MCP/scripts/direct-connect/ryzen9desk-connection-topology.v2.json",
+      "authoritySource": "APPBUILDER_TOPOLOGY_MIRROR"
+    }
+  },
+  "executionHost": "RYZEN9DESK",
+  "allowlistHash": "3675d94364a9ed929439f5921b9a4c730578969b5926274b1af803b5453fb533",
+  "host": {
+    "wslHostname": "CG-RYZEN9DESK-01",
+    "windowsComputerName": "CG-RYZEN9DESK-01",
+    "wslUser": "wesley",
+    "wslDistro": "Ubuntu-24.04",
+    "tailscaleName": "cg-ryzen9desk-01",
+    "machineRole": "ryzen9desk",
+    "hostMatchesRyzen9desk": true
+  },
+  "checks": {
+    "reposRoot": {
+      "path": "/home/wesley/repos",
+      "ok": true
+    },
+    "intelligenceHub": {
+      "path": "/mnt/l/Capital-Glass-Intelligence-Hub",
+      "ok": true,
+      "required": false
+    },
+    "gpu": {
+      "required": true,
+      "nvidiaSmiOk": true
+    }
+  },
+  "verdict": "PASS"
+}
