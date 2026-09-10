@@ -1,0 +1,19 @@
+name: Repo index seed gate
+
+# The seed points at paths across the whole repo, so a file moved or deleted
+# anywhere can rot a pointer. This runs everywhere rather than on index/** only.
+on:
+  push:
+  pull_request:
+
+jobs:
+  repo-index-seed-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      # No npm ci: the validator uses only node builtins.
+      - name: Validate federated repo index seed
+        run: npm run index:validate-seed
