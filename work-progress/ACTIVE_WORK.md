@@ -12,14 +12,25 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-09-05
-| Current focus | RYZEN9DESK remote VS Code/Claude bootstrap (`ryzen9desk-wsl2-canonical-workspace-v1`); WESLEYWORK Storage Keeper when storage work resumes; PG door hardware component free-text shipped
+| Last updated | 2026-09-09
+| Current focus | `WESLEYDESK_DIRECT_CONNECT_EXECUTION_V1` WESLEY_WORK control-plane slice (REGISTERED_PENDING_HOST_ACTIVATION). Do not dispatch to Ryzen. Do not claim Desk READY. |
 | Primary authority repo | CG-Platform-Governance-MCP |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Project index | `work-progress/projects/INDEX.md` |
 
 ## Current saved work
+
+### 2026-09-09 CT — WESLEYDESK Direct Connect execution target (control-plane)
+
+| Field | Value |
+| --- | --- |
+| Work package | `WESLEYDESK_DIRECT_CONNECT_EXECUTION_V1` |
+| Verdict | **HOLD** at `REGISTERED_PENDING_HOST_ACTIVATION` — not READY/ONLINE; PASS only at `INDEXED_READY` |
+| Owner repo | CapitalGlass-Office-Admin (catalog); CapitalGlass-Cross-Agent (Git pointer) |
+| Expected runner | `wesleydesk-wsl2-CG-WESLEYDESK-01` |
+| Forbidden | Dispatch this WP to RYZEN9DESK; manufacture Desk ONLINE proof from WESLEY_WORK |
+| Next | CG-WESLEYDESK-01 host activation |
 
 ### 2026-09-05 CT — RYZEN9DESK VS Code remote bootstrap (GHA from CG-NIMO-01)
 

@@ -1,11 +1,12 @@
 {
   "schemaVersion": "intelligence-hub-cross-desk-routing-v1@1.0.0",
   "kind": "cross_desk_routing",
-  "updatedAt": "2026-09-05T00:35:00.000Z",
+  "updatedAt": "2026-09-10T01:10:00.000Z",
   "workPackageId": "dual-machine-desk-sync-hub-v1",
   "relatedWorkPackages": [
     "direct-connect-first-read-enforcement-v1",
-    "direct-connect-hop-lessons-hub-v1"
+    "direct-connect-hop-lessons-hub-v1",
+    "WESLEYDESK_DIRECT_CONNECT_EXECUTION_V1"
   ],
   "sourceRepository": "CapitalGlass-Office-Admin",
   "sourcePath": "mcp/knowledge-index/cg-direct-connect-auto-connect.v1.json",
@@ -33,7 +34,16 @@
     "handoff": "Z: dated folder — packets, hop file, receipts",
     "epoch": "npm run dual-machine:write-hop-packet + session-start --cheap",
     "sshBreakGlass": "ssh-admin-tailscale after hop — not the hop",
-    "ghaRunner": "Ryzen-only. WesleyWork dispatches to Ryzen, not the reverse."
+    "ghaRunner": "Default unpinned WSL executor remains RYZEN9DESK. CG-WESLEYDESK-01 is REGISTERED_PENDING_HOST_ACTIVATION only; targetHost=CG-WESLEYDESK-01 must not reroute to Ryzen."
+  },
+  "wesleydeskDirectConnectExecution": {
+    "workPackageId": "WESLEYDESK_DIRECT_CONNECT_EXECUTION_V1",
+    "targetHost": "CG-WESLEYDESK-01",
+    "expectedRunnerName": "wesleydesk-wsl2-CG-WESLEYDESK-01",
+    "activationState": "REGISTERED_PENDING_HOST_ACTIVATION",
+    "executable": false,
+    "hubSliceGit": "work-progress/intelligence-hub-slices/wesleydesk-direct-connect-execution-v1.json",
+    "note": "Declared pending target. Not READY, ONLINE, or INDEXED_READY."
   },
   "unifyWorktree": "CG-AppBuilder-MCP-worktrees/protocol-40-estate-unify-v1",
   "squashLand": "After squash-merge, reset unify worktree to origin/main. Do not ff-only from PR SHA. Rewrite hop packet to live HEAD.",
