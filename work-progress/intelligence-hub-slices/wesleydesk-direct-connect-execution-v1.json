@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "intelligence-hub-wesleydesk-direct-connect-execution-v1@1.0.0",
+  "kind": "work_package_pointer",
+  "updatedAt": "2026-09-10T01:10:00.000Z",
+  "workPackageId": "WESLEYDESK_DIRECT_CONNECT_EXECUTION_V1",
+  "aliases": ["wesleydesk-direct-connect-execution-v1"],
+  "sourceRepository": "CapitalGlass-Office-Admin",
+  "indexRepository": "CapitalGlass-Cross-Agent",
+  "projectFile": "work-progress/projects/2026-09-09_wesleydesk-direct-connect-execution-v1.md",
+  "targetHost": "CG-WESLEYDESK-01",
+  "expectedRunnerName": "wesleydesk-wsl2-CG-WESLEYDESK-01",
+  "dispatchWorkflow": "wesleydesk-executor-dispatch.yml",
+  "activationState": "REGISTERED_PENDING_HOST_ACTIVATION",
+  "executable": false,
+  "claimsForbiddenUntilHostEvidence": ["READY", "ONLINE", "ONLINE_IDLE", "INDEXED_READY", "PASS"],
+  "verdict": "HOLD",
+  "verdictDetail": "Declared pending Direct Connect execution target. Do not treat as healthy/ready. Do not dispatch to RYZEN9DESK.",
+  "passPermittedOnlyAt": "INDEXED_READY",
+  "stateMachine": [
+    "UNKNOWN",
+    "REGISTERED_PENDING_HOST_ACTIVATION",
+    "HOST_IDENTITY_PROVEN",
+    "EXECUTOR_BOUND",
+    "ONLINE_IDLE",
+    "DISPATCH_PROVEN",
+    "INDEXED_READY"
+  ],
+  "notThisWorkPackage": "wesleydesk-direct-connect-kit-v1",
+  "notThisRunner": "wesleydesk-wsl2-cross-agent",
+  "hubPublication": "pending_after_git_truth_and_host_proof",
+  "retrievalExpectationUntilHubPublish": {
+    "freshSession": "INDEX_MISS_or_FAILOVER_GIT_LEDGER",
+    "rawScanRequired": true,
+    "note": "This Git pointer is the control-plane contract. Hub INDEX_HIT with rawScanRequired NO is a later publication step."
+  }
+}
