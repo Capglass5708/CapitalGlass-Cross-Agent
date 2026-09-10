@@ -1,0 +1,24 @@
+name: ledger-docs-check
+
+on:
+  pull_request:
+    paths:
+      - "work-progress/**"
+      - "scripts/tests/run-ledger-docs-check.test.mjs"
+      - ".github/workflows/ledger-docs-check.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  ledger-docs-check:
+    name: ledger-docs-check
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Ledger / docs integrity
+        run: node scripts/tests/run-ledger-docs-check.test.mjs
