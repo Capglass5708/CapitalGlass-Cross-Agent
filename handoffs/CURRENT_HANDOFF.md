@@ -1,6 +1,6 @@
 # Current Handoff
 
-**Last reconciled:** 2026-08-25
+**Last reconciled:** 2026-09-08 (VAE index / Git-spine / tool-surface section added)
 **Ledger commit anchor:** `0b13f42` (verify with `git rev-parse HEAD` in this repo)
 
 Read these files first, in order:
@@ -11,6 +11,30 @@ Read these files first, in order:
 4. `work-progress/ACTIVE_WORK.md`
 5. `work-progress/projects/INDEX.md`
 6. `plans/2026-08-03_cross-agent-repo-hygiene-and-agent-investigation-v1.md` (investigation playbook)
+
+---
+
+## Active: VAE index, Git-spine admission, and tool surface (2026-09-08)
+
+Full handoff: **`handoffs/2026-09-08_vae-index-and-tool-surface-handoff.md`**
+Branch `claude/vae-repo-index-state-tga2aa` · PR **#67** (draft). Nothing applied to owning repos.
+
+**Read the handoff before touching either spine.** The federated repo index and the Git spine are
+unrelated systems; conflating them cost a cycle in the originating session.
+
+| Workstream | State | Packet |
+| --- | --- | --- |
+| Federated index seed | PROPOSED, `COMPILE_PASS` verified | `artifacts/agent-runs/vae-repo-index-seed-population-v1/` |
+| Git-spine admission | `ON_SPINE_BUT_UNGOVERNED_AND_STALE` | `artifacts/agent-runs/vae-git-spine-admission-audit-v1/` |
+| Tool surface | 143 capabilities inventoried | `artifacts/agent-runs/vae-tool-surface-inventory-v1/` |
+
+Highest-leverage item: VAE has **two** MCP servers — the root (`npm run mcp:start`) exposes 2 tools
+while `generation-core/packages/mcp-server/index.mjs` implements 26. **24 tools are already built
+and unreachable.** Wiring, not building.
+
+Three decisions block the AppBuilder work: registry **classification** (recommend `mcp_package`),
+**domain key** (no `visual-assets` domain exists), and whether to **widen the seed** from 5
+capabilities toward the 143-capability reality.
 
 ---
 
