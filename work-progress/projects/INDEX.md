@@ -2,7 +2,7 @@
 
 Master index of all project files in `work-progress/projects/`.
 
-**Last updated:** 2026-08-13 (`wesleywork-storage-protocol-contradiction-remediation-v1` — ForceRemap/LAN-first INDEX closed; Storage Keeper sole WESLEYWORK repair front door)
+**Last updated:** 2026-09-10 (`github-plane-legacy-path-retirement-v1` — current milestone **MAP_CALLER_COMPLETE**; next MIGRATE)
 
 Read `AGENT_START_HERE.md` and `work-progress/ACTIVE_WORK.md` before working on any project listed here.
 
@@ -286,6 +286,7 @@ _238 registry packets · 106 intelligence entities_
 
 | Project ID | File | Status | Owner repo(s) | Last commit | Next action |
 | --- | --- | --- | --- | --- | --- |
+| `github-plane-legacy-path-retirement-v1` | [2026-09-10_github-plane-legacy-path-retirement-v1.md](./2026-09-10_github-plane-legacy-path-retirement-v1.md) | **CURRENT MILESTONE — MAP_CALLER_COMPLETE** — next MIGRATE; parent `GITHUB_PLANE_ESTATE_MANDATORY_ENFORCEMENT_V1` ACTIVE (not estate-enforced) | `CG-AppBuilder-MCP` | AppBuilder MAP_CALLER merge `96a40af6…` (PR 632) | MIGRATE live main-without-G5 callers; do not DENY/REMOVE yet |
 | `compounding-intelligence-v2-live-integration-proof` | Plan only: [2026-08-25_compounding-intelligence-v2-live-integration-proof.md](../../plans/2026-08-25_compounding-intelligence-v2-live-integration-proof.md) | **Planned, not started** — 4-phase next mission (real hot-cache proof on 3 hosts; Supabase publish+readback via the existing projection path; WaveRunner integration; full end-to-end compounding proof). No phase executable from this container. | CapitalGlass-Cross-Agent | This commit (branch `claude/intelligence-hub-compounding-4f208p`) | Needs physical host access (phase 1), live Supabase credentials (phase 2), or WaveRunner repo access (phase 3) — plan is ready the moment any one exists |
 | `compounding-intelligence-unified-loop-v1` | [2026-08-25_compounding-intelligence-unified-loop-v1.md](./2026-08-25_compounding-intelligence-unified-loop-v1.md) | **Complete — PR #45 MERGED** (`e5f2fea`) — mission-intelligence registered in the real routing/dataset registries, hot-ai-cache ladder rung with SHA freshness, graph-aware mission context, unified receipt contract, WaveRunner-preflight contract documented | CapitalGlass-Cross-Agent | PR #45 merged (`e5f2fea`) | Superseded by `compounding-intelligence-v2-live-integration-proof` |
 | `compounding-intelligence-v2-implementation-v1` | [2026-08-25_compounding-intelligence-v2-implementation-v1.md](./2026-08-25_compounding-intelligence-v2-implementation-v1.md) | **Complete (in-scope pieces) — PR #43 MERGED** — registry+enforcement, freshness provenance, preflight, /goldmine (now wired to actually regenerate what preflight reads, proven by an in-repo two-agent test), harvest-risk-gates CI fixed, all tested | CapitalGlass-Cross-Agent | PR #43 merged (`9eb8e7c`) | Superseded by `compounding-intelligence-unified-loop-v1` for further work |
@@ -405,6 +406,7 @@ Recommended follow-on work packages (not yet project files):
 
 | Project ID | Status | Next action |
 | --- | --- | --- |
+| `github-plane-legacy-path-retirement-v1` | **CURRENT MILESTONE — MAP_CALLER_COMPLETE** | MIGRATE live main-without-G5 callers; do not DENY/REMOVE |
 | `appbuilder-mission-harvest-gold-mine-guidance-v1` | **Corrected and complete** — protocol rule + reference guidance, no code bridge needed | None — proven live by `harvest-2026-08-25-mcp-estate-remediation-v1`'s closeout receipt; supersedes the same-day `appbuilder-closeout-to-gold-mine-projection-contract-v1`, which wrongly proposed a code bridge |
 | `intelligence-hub-compounding-intelligence-investigation-v1` | Investigation complete; V2 proposal drafted | Operator decision on proposal 1/2/4 (charter, retrieval preflight, harder proof) |
 | `compounding-intelligence-v2-live-integration-proof` | **Plan complete — PR #46 merged** (`f3ce532`); execution not started | Host execution session, starting from `plans/2026-08-25_compounding-intelligence-v2-phase0-execution-handoff.md` (real `L:` mount, hot cache, live Supabase credentials, WaveRunner runtime), not further Cross-Agent planning; success = fresh agent auto-receives intelligence from a new commit, nothing manually refreshed |
@@ -455,13 +457,14 @@ Priority order from `work-progress/ACTIVE_WORK.md`:
 
 | Priority | Action | Owner repo |
 | --- | --- | --- |
-| 1 | Rerun Document Center production smokes after SHA pin | `CapitalGlass-Documents` |
-| 2 | Restart MCP so Governance compounding tools load (operator checklist) | Cursor / local MCP |
-| 3 | Run `north-star-compounding-vertical-pilot-v1` | Governance + AppBuilder |
-| 4 | Run `platform-governance-phase4-registries-v1` | `CG-Platform-Governance-MCP` |
-| 5 | Scope `cg-opening-locator-v1` parser package from Revu/Docling evidence | `Computer Estimator`, `Data-Extraction` |
-| 6 | Scope `revu-production-takeoff-pilot-v1` after fixture gates | `CapitalGlassRevu`, `Bid Composer` |
-| 7 | Keep ledger updated as work proceeds | `CapitalGlass-Cross-Agent` |
+| 1 | **Current milestone:** MIGRATE `github-plane-legacy-path-retirement-v1` callers that can write main without planHash/G5 | `CG-AppBuilder-MCP` |
+| 2 | Rerun Document Center production smokes after SHA pin | `CapitalGlass-Documents` |
+| 3 | Restart MCP so Governance compounding tools load (operator checklist) | Cursor / local MCP |
+| 4 | Run `north-star-compounding-vertical-pilot-v1` | Governance + AppBuilder |
+| 5 | Run `platform-governance-phase4-registries-v1` | `CG-Platform-Governance-MCP` |
+| 6 | Scope `cg-opening-locator-v1` parser package from Revu/Docling evidence | `Computer Estimator`, `Data-Extraction` |
+| 7 | Scope `revu-production-takeoff-pilot-v1` after fixture gates | `CapitalGlassRevu`, `Bid Composer` |
+| 8 | Keep ledger updated as work proceeds | `CapitalGlass-Cross-Agent` |
 
 ---
 

@@ -12,14 +12,31 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-09-05
-| Current focus | RYZEN9DESK remote VS Code/Claude bootstrap (`ryzen9desk-wsl2-canonical-workspace-v1`); WESLEYWORK Storage Keeper when storage work resumes; PG door hardware component free-text shipped
-| Primary authority repo | CG-Platform-Governance-MCP |
+| Last updated | 2026-09-10
+| Current focus | **Current milestone:** `github-plane-legacy-path-retirement-v1` — `MAP_CALLER_COMPLETE`; next **MIGRATE**. Parent `GITHUB_PLANE_ESTATE_MANDATORY_ENFORCEMENT_V1` remains ACTIVE (not estate-enforced). |
+| Primary authority repo | CG-AppBuilder-MCP (M8 GitHub Plane) |
 | Execution repo | CG-AppBuilder-MCP |
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Project index | `work-progress/projects/INDEX.md` |
+| Project file | `work-progress/projects/2026-09-10_github-plane-legacy-path-retirement-v1.md` |
 
 ## Current saved work
+
+### 2026-09-10 CT — github-plane-legacy-path-retirement-v1 (current milestone: MAP_CALLER)
+
+| Field | Value |
+| --- | --- |
+| Work package | `github-plane-legacy-path-retirement-v1` |
+| Parent milestone | `GITHUB_PLANE_ESTATE_MANDATORY_ENFORCEMENT_V1` |
+| Current milestone | **MAP_CALLER_COMPLETE** — `GITHUB_PLANE_LEGACY_PATH_RETIREMENT_V1=MAP_CALLER_COMPLETE` |
+| Next | **MIGRATE** (not DENY, not REMOVE) |
+| Status | **ACTIVE** — caller graph durable on AppBuilder `main` |
+| Owner repo | `CG-AppBuilder-MCP` |
+| Project file | `work-progress/projects/2026-09-10_github-plane-legacy-path-retirement-v1.md` |
+| Evidence | DISCOVER PR [631](https://github.com/Capglass5708/CG-AppBuilder-MCP/pull/631) merge `ff8c1a57…`; MAP_CALLER PR [632](https://github.com/Capglass5708/CG-AppBuilder-MCP/pull/632) merge `96a40af6d826343880c4d993d5b6afe92cb47d45`; graph `registry/github-plane/legacy-path-retirement-map-caller-graph.v1.json` (39/39 writers mapped) |
+| Not claimed | `ESTATE_CALLER_INVENTORY=PASS`, `M8_GITHUB_PLANE_ESTATE_ENFORCED=PASS`, `CG_GIT_ESTATE_CONVERGENCE=DETERMINISTIC` |
+| Next action | Migrate live main-without-G5 callers first (`user-github-mcp`, protocol-13b ship push, sync-developer-memory, agent-ops GHA). Preserve recovery paths. |
+
 
 ### 2026-09-05 CT — RYZEN9DESK VS Code remote bootstrap (GHA from CG-NIMO-01)
 
