@@ -94,10 +94,8 @@ test("compact projection input is built from L durable bundle only", () => {
   });
 });
 
-test("phase B live projection reaches IN_SYNC via AppBuilder projector", () => {
+test("phase B default projector reports the retired snapshot route and never invokes AppBuilder", () => {
   withTempHub((hubRoot, zCacheRoot) => {
-    const appBuilderRoot = resolveAppBuilderRoot(REPO_ROOT);
-    assert.ok(fs.existsSync(path.join(appBuilderRoot, "scripts/cross-agent-harvest-projection/project-harvest-snapshot.mjs")));
     const staged = stageAndPublish(hubRoot);
     const result = runPhaseBPublication({
       hubRoot,
@@ -105,12 +103,14 @@ test("phase B live projection reaches IN_SYNC via AppBuilder projector", () => {
       payloadHash: staged.payloadHash,
       lDurablePublisher: createDefaultLDurablePublisher(),
       zPublisher: createDefaultZPublisher({ zCacheRoot }),
-      supabaseProjector: createDefaultSupabaseProjector({ hubRoot, appBuilderRoot, useMemoryStore: true }),
+      // An AppBuilder root that does not exist: the retired route must not need it.
+      supabaseProjector: createDefaultSupabaseProjector({ hubRoot, appBuilderRoot: "/nonexistent-appbuilder", useMemoryStore: false }),
       layerVerifier: createDefaultLayerVerifier(),
       operationWriter: createDefaultOperationWriter(),
     });
     assert.equal(result.phaseBVerdict, PHASE_B_VERDICTS.COMPLETE);
-    assert.equal(result.layers.supabaseProjection.status, "IN_SYNC");
+    assert.equal(result.layers.supabaseProjection.status, "NOT_REQUIRED");
+    assert.equal(result.layers.supabaseProjection.verdict, "SUPABASE_SNAPSHOT_ROUTE_RETIRED");
     const opsInput = path.join(
       hubRoot,
       "00-master-index/_operations/harvest-publication",
@@ -118,7 +118,7 @@ test("phase B live projection reaches IN_SYNC via AppBuilder projector", () => {
       staged.payloadHash.replace(/^sha256:/, ""),
       PROJECTION_INPUT_FILENAME,
     );
-    assert.ok(fs.existsSync(opsInput));
+    assert.equal(fs.existsSync(opsInput), false, "no projection input is written for a retired route");
   });
 });
 
@@ -148,7 +148,7 @@ test("database outage leaves L durable and Phase B degraded", () => {
   });
 });
 
-test("retry after outage completes with NOOP layers", () => {
+test("retry after outage settles NOOP once the retired layer reports NOT_REQUIRED", () => {
   withTempHub((hubRoot, zCacheRoot) => {
     const appBuilderRoot = resolveAppBuilderRoot(REPO_ROOT);
     const staged = stageAndPublish(hubRoot);
@@ -189,12 +189,12 @@ test("retry after outage completes with NOOP layers", () => {
     });
     assert.equal(second.layers.lDurable.status, "NOOP_CURRENT");
     assert.equal(second.layers.zCache.status, "NOOP_CURRENT");
-    assert.equal(second.layers.supabaseProjection.status, "IN_SYNC");
-    assert.equal(second.phaseBVerdict, PHASE_B_VERDICTS.COMPLETE);
+    assert.equal(second.layers.supabaseProjection.status, "NOT_REQUIRED");
+    assert.equal(second.phaseBVerdict, PHASE_B_VERDICTS.NOOP);
   });
 });
 
-test("dirty cross-agent worktree does not block snapshot projection", () => {
+test("dirty cross-agent worktree does not affect the retired snapshot layer", () => {
   const dirtyPath = path.join(REPO_ROOT, ".wave4-cross-agent-dirty.tmp");
   const before = gitPorcelain(REPO_ROOT);
   fs.writeFileSync(dirtyPath, "probe\n");
@@ -207,7 +207,8 @@ test("dirty cross-agent worktree does not block snapshot projection", () => {
         appBuilderRoot: resolveAppBuilderRoot(REPO_ROOT),
         useMemoryStore: true,
       });
-      assert.equal(result.status, "IN_SYNC");
+      assert.equal(result.status, "NOT_REQUIRED");
+      assert.equal(result.verdict, "SUPABASE_SNAPSHOT_ROUTE_RETIRED");
     });
   } finally {
     fs.rmSync(dirtyPath, { force: true });

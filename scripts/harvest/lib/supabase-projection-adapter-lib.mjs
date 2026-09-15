@@ -11,6 +11,22 @@ export const SUPABASE_PROJECTION_RECEIPT_SCHEMA = "harvest-supabase-projection-r
 export const PROJECTION_INPUT_SCHEMA = "harvest-supabase-projection-input-v1@1.0.0";
 export const PROJECTION_INPUT_FILENAME = "harvest-supabase-projection-input-v1.json";
 
+/**
+ * CG_CROSS_AGENT_SEED_MIGRATION_V1 retired the AppBuilder snapshot projection
+ * (coordination.cross_agent_harvest_snapshots). It duplicated the Hub cross-agent-harvest domain and
+ * nothing read it; seeds now reach agents through CG-AppBuilder-MCP's cross-agent-harvest producer
+ * (Hub seed verified against Git → harvest package → Hub harvest object → startup packet). The layer
+ * is reported NOT_REQUIRED with an explicit verdict so Phase B neither invokes the retired route nor
+ * degrades because of it.
+ */
+export const SNAPSHOT_ROUTE_RETIRED = Object.freeze({
+  ok: true,
+  status: "NOT_REQUIRED",
+  verdict: "SUPABASE_SNAPSHOT_ROUTE_RETIRED",
+  retiredBy: "cg-cross-agent-seed-migration-v1",
+  canonicalRoute: "CG-AppBuilder-MCP: npm run compounding:cross-agent-producer",
+});
+
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
 }
@@ -93,6 +109,8 @@ export function writeProjectionInputToOperations(hubRoot, harvestId, payloadHash
 
 function mapProjectorVerdict(receipt) {
   switch (receipt.verdict) {
+    case "ROUTE_RETIRED":
+      return { ...SNAPSHOT_ROUTE_RETIRED };
     case "PROJECTION_INSERTED":
     case "PROJECTION_SUPERSEDED":
       return {
@@ -201,8 +219,8 @@ export function invokeAppBuilderProjector({
 }
 
 /**
- * Apply compact Supabase projection via AppBuilder snapshot projector.
- * Reads durable context from L: only — never the live Cross-Agent worktree.
+ * Supabase compact projection layer for Phase B. An injected projector is still honoured (layer-policy
+ * tests); the default AppBuilder snapshot route is retired — see SNAPSHOT_ROUTE_RETIRED.
  */
 export function applySupabaseProjection(context, options = {}) {
   if (options.skipApply) {
@@ -245,52 +263,8 @@ export function applySupabaseProjection(context, options = {}) {
     return result;
   }
 
-  if (!options.hubRoot) {
-    throw new Error("MISSING_HUB_ROOT_FOR_SUPABASE_PROJECTION");
-  }
-
-  const input = buildCompactProjectionInput(
-    options.hubRoot,
-    context,
-    options.phaseBVerdict ?? "PHASE_B_IN_PROGRESS",
-  );
-  const inputWrite = writeProjectionInputToOperations(
-    options.hubRoot,
-    context.harvestId,
-    context.payloadHash,
-    input,
-  );
-  const memoryStoreFile =
-    options.memoryStoreFile ??
-    (options.useMemoryStore !== false
-      ? path.join(inputWrite.inputPath, "..", "projection-memory-store.json")
-      : null);
-
-  const result = invokeAppBuilderProjector({
-    inputPath: inputWrite.inputPath,
-    apply: options.apply !== false,
-    appBuilderRoot: options.appBuilderRoot,
-    crossAgentRoot: options.crossAgentRoot,
-    useMemoryStore: options.useMemoryStore !== false && !memoryStoreFile,
-    memoryStoreFile,
-  });
-
-  if (result.receipt?.payloadHash && result.receipt.payloadHash !== context.payloadHash) {
-    return {
-      ok: false,
-      status: "FAILED_REQUIRED",
-      verdict: "SUPABASE_PROJECTION_FAIL",
-      error: "payload_hash_mismatch",
-      inputPath: inputWrite.inputPath,
-    };
-  }
-
-  return {
-    ...result,
-    inputPath: inputWrite.inputPath,
-    inputRel: inputWrite.inputRel,
-    payload: input,
-  };
+  // The default route was the AppBuilder snapshot projector, which is retired: nothing is written.
+  return { ...SNAPSHOT_ROUTE_RETIRED };
 }
 
 export function clearSupabaseProjectionMemory() {

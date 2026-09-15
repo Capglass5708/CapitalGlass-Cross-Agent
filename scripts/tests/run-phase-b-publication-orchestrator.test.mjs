@@ -97,7 +97,9 @@ test("all required layers succeed returns PHASE_B_COMPLETE", () => {
     assert.equal(result.phaseBVerdict, PHASE_B_VERDICTS.COMPLETE);
     assert.equal(result.layers.lDurable.status, "CURRENT");
     assert.equal(result.layers.zCache.status, "CURRENT");
-    assert.equal(result.layers.supabaseProjection.status, "IN_SYNC");
+    // The snapshot route is retired: the default projector reports the layer NOT_REQUIRED.
+    assert.equal(result.layers.supabaseProjection.status, "NOT_REQUIRED");
+    assert.equal(result.layers.supabaseProjection.verdict, "SUPABASE_SNAPSHOT_ROUTE_RETIRED");
     assert.equal(result.layers.gitPointer.status, "PENDING_PHASE_C");
     assert.equal(result.pointerCandidate.receiptCommit, null);
   });
@@ -112,7 +114,7 @@ test("identical rerun returns NOOP_CURRENT", () => {
     assert.equal(second.phaseBVerdict, PHASE_B_VERDICTS.NOOP);
     assert.equal(second.layers.lDurable.status, "NOOP_CURRENT");
     assert.equal(second.layers.zCache.status, "NOOP_CURRENT");
-    assert.equal(second.layers.supabaseProjection.status, "NOOP_CURRENT");
+    assert.equal(second.layers.supabaseProjection.status, "NOT_REQUIRED");
   });
 });
 
@@ -199,7 +201,9 @@ test("interrupted Phase B resumes without republishing L payload", () => {
 
     const second = runPhaseB(hubRoot, payloadHash, { supabaseProjector: flakySupabase }, zCacheRoot);
     assert.equal(second.layers.lDurable.status, "NOOP_CURRENT");
-    assert.equal(second.phaseBVerdict, PHASE_B_VERDICTS.COMPLETE);
+    // L and Z were already durable; the retried layer is the retired snapshot route, so nothing is left to do.
+    assert.equal(second.layers.supabaseProjection.status, "NOT_REQUIRED");
+    assert.equal(second.phaseBVerdict, PHASE_B_VERDICTS.NOOP);
     assert.equal(supabaseAttempts, 2);
   });
 });

@@ -244,7 +244,7 @@ test("post-Phase C Phase B rerun is NOOP_CURRENT with no new Git commit", () => 
     assert.equal(rerun.phaseBVerdict, PHASE_B_VERDICTS.NOOP);
     assert.equal(rerun.layers.lDurable.status, "NOOP_CURRENT");
     assert.equal(rerun.layers.zCache.status, "NOOP_CURRENT");
-    assert.equal(rerun.layers.supabaseProjection.status, "NOOP_CURRENT");
+    assert.equal(rerun.layers.supabaseProjection.status, "NOT_REQUIRED");
     assert.equal(gitHead(repoRoot), headAfterPhaseC);
   });
 });

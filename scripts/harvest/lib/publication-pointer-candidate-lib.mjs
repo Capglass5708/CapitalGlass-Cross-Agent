@@ -71,6 +71,7 @@ function mapLayerStatusForPointer(status) {
 
 function mapSupabaseStatusForPointer(status) {
   if (status === "IN_SYNC" || status === "NOOP_CURRENT") return "in_sync";
+  if (status === "NOT_REQUIRED") return "not_required";
   if (status === "FAILED_REQUIRED") return "failed";
   if (status === "SKIPPED") return "skipped";
   return "pending";

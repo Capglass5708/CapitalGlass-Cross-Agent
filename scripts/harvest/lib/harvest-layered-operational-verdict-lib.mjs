@@ -338,7 +338,8 @@ export function computeOverallOperationalVerdict({
     (layers.zCache.status === "NOOP_CURRENT" || layers.zCache.status === "CURRENT" || !layers.zCache.required) &&
     (layers.supabaseProjection.status === "NOOP_CURRENT" ||
       layers.supabaseProjection.status === "IN_SYNC" ||
-      layers.supabaseProjection.status === "CURRENT");
+      layers.supabaseProjection.status === "CURRENT" ||
+      !layers.supabaseProjection.required);
 
   if (allNoop && layerPasses(layers.gitPointer)) {
     return OPERATIONAL_VERDICTS.NOOP;
@@ -460,10 +461,10 @@ export function evaluateLayeredOperationalVerdict({
     ? readSupabaseFreshnessLayer(hubRoot, harvestId, payloadHash)
     : { ok: false, required: true };
   const supabaseProjection = buildLayerRecord({
-    required: true,
+    required: sbRaw.required !== false,
     status: sbRaw.ok
-      ? sbRaw.status === "NOOP_CURRENT"
-        ? "NOOP_CURRENT"
+      ? ["NOOP_CURRENT", "NOT_REQUIRED"].includes(sbRaw.status)
+        ? sbRaw.status
         : "IN_SYNC"
       : sbRaw.status ?? "MISSING",
     verificationMode: sbRaw.ok ? VERIFICATION_MODES.RECEIPT_VERIFIED : VERIFICATION_MODES.NOT_VERIFIED,
