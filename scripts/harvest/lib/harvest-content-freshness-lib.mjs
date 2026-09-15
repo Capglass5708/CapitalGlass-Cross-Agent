@@ -163,6 +163,20 @@ export function readSupabaseFreshnessLayer(hubRoot, harvestId, payloadHash) {
   const phaseBReceipt = readJson(phaseBReceiptPath);
   const layer = phaseBReceipt.layers?.supabaseProjection ?? {};
   const sourcePayloadHash = normalizeHash(layer.sourcePayloadHash ?? phaseBReceipt.payloadHash);
+  // The snapshot route is retired (CG_CROSS_AGENT_SEED_MIGRATION_V1): a layer that says so explicitly is
+  // not required and cannot be stale. Only that explicit verdict is accepted, never a bare NOT_REQUIRED.
+  if (layer.status === "NOT_REQUIRED" && layer.verdict === "SUPABASE_SNAPSHOT_ROUTE_RETIRED") {
+    return {
+      status: "NOT_REQUIRED",
+      verdict: "SUPABASE_SNAPSHOT_ROUTE_RETIRED",
+      ok: true,
+      required: false,
+      sourcePayloadHash,
+      phaseBVerdict: phaseBReceipt.phaseBVerdict,
+      layerStatus: layer.status,
+      phaseBReceiptPath,
+    };
+  }
   const aligned = sourcePayloadHash === normalizeHash(payloadHash);
   const layerOk =
     aligned &&
