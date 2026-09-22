@@ -264,7 +264,7 @@ Secret values are **not** reproduced in this report — only file locations.
 4. **Fix broken runtime paths:** `commit-local` ESM bug; both Dockerfiles; `.mcp.json` launchers.
 5. **Make CI honest:** lint + aggregate test job + package matrix; delete 35 dead script targets; timeouts/concurrency/SHA pins; input-via-env on dispatch workflows; secret scanning.
 6. **Dependency sweep:** `next` upgrade, MCP SDK bump, npm workspaces.
-7. **Hygiene program:** evidence lifecycle + directory-level `.gitignore`; untrack 276 ignored files; archive dead scripts/docs; reconcile README/AGENTS/CLAUDE.; triage 48 open PRs and prune 1,236 branches (7A.3–7A.4).
+7. **Hygiene program:** evidence lifecycle + directory-level `.gitignore`; untrack 276 ignored files; archive dead scripts/docs; reconcile README/AGENTS/CLAUDE; triage 48 open PRs and prune 1,236 branches (7A.3–7A.4).
 
 ## 9. Inspection notes
 - The subject-repo clone was shallow (depth 1); commit history for specific files was read through the GitHub API instead (section 7A). A full-history secret scan across all branches was not run.
