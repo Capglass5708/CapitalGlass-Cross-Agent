@@ -19,6 +19,7 @@ Five parallel read-only audits, with the High/Critical items spot-checked by han
 | Repo hygiene | Committed generated output, `.gitignore`, npm scripts, `scripts/`, `docs/`, root clutter, agent docs |
 | CI/CD | 44 files in `.github/workflows`, required-check registry, last ~100 `main` runs |
 | Packages / tests / deps | `packages/*`, `apps/admin-ui`, `schemas/`, `contracts/`, `registry/`, `npm audit`, test runs |
+| GitHub state | Branch protection, branches, open PRs/issues, file commit history (GitHub API) |
 
 **Repo at a glance:** 14,035 tracked files (~378 MB working tree), 2,079 npm scripts, 4,210 files under `scripts/`, 873 under `docs/`, 44 workflows, 18 separate lockfiles, 7 MCP servers + 1 REST API.
 
@@ -40,6 +41,8 @@ Secret values are **not** reproduced in this report — only file locations.
 | 8 | High | Platform-intelligence Docker image build broken by `.dockerignore` | 4.2 |
 | 9 | High | No lint or aggregate test in CI; `npm test` covers 14 of 524 test scripts | 6.3 |
 | 10 | High | 35 npm scripts point at files that don't exist | 6.4 |
+| 11 | High | `main` has no branch protection — "required" checks aren't enforced | 7A.1 |
+| 12 | Medium | 1,236 branches, 48 open PRs (many stale), bot index PRs never landing | 7A.3–7A.4 |
 
 ---
 
@@ -222,17 +225,49 @@ Secret values are **not** reproduced in this report — only file locations.
 
 ---
 
+## 7A. GitHub repository state (checked via GitHub API, 2026-09-22)
+
+### 7A.1 High — `main` has no branch protection
+- The branches API reports `main` as `"protected": false`. The required-check policy in `registry/github-plane/check-policy.v1.json` is therefore not enforced by GitHub itself (unless an org/repo ruleset applies — confirm in Settings → Rules).
+- Consistent with this: `main` keeps receiving merges (e.g. #737 at HEAD) while the "required" `closeout` and `audit` checks are red.
+- **Action:** add branch protection or a ruleset on `main` requiring the checks that actually pass (after 5.1 is fixed), blocking force-push and deletion.
+
+### 7A.2 High — the committed API keys have been in history since early August, and a redaction pass missed them
+- `cursor-wide-cheapest-redo-governance-v1/startup-retrieval-receipt-v1.json` was added in `c98de72` (2026-08-01); `z-drive-pre-session-gate-hardening-v1/startup-retrieval-receipt-v1.json` in `6ed873a` (2026-08-02).
+- Commit `1b02df1` (2026-09-08, "redact artifact secrets … Scanner fails closed on JWT/Doppler shapes") touched both files but left the Cloudflare and Resend values in place — the scanner only recognizes JWT/Doppler patterns.
+- With 1,236 branches, many cut after August 1, copies of these files exist on many refs; deleting the files on `main` does not remove them.
+- **Action:** rotation is the real fix (history purge is secondary and costly at this branch count); widen the scanner to generic provider-key patterns (`cfut_`, `re_`, etc.) or adopt gitleaks; enable GitHub secret scanning / push protection if the plan allows it.
+
+### 7A.3 Medium — branch sprawl: 1,236 branches
+- By prefix: `recovery/` 457, `work/` 290, `feat/` 176, `chore/` 129, `fix/` 60, `mission/` 13, `docs/` 12, others.
+- 91 are `chore/promptops-index-publication-*` automation branches (mostly July 2026) that were never cleaned up.
+- `recovery/` branches encode machine/repo/timestamp paths (e.g. `recovery/cg-nimo-01/cg-appbuilder-mcp/.../20260913T070912Z`) and stash SHAs — a backup mechanism living in the shared remote.
+- **Action:** enable "automatically delete head branches"; have the publication workflow delete its branch after merge; move recovery snapshots to tags in a separate archive repo or bundle storage; prune merged branches.
+
+### 7A.4 Medium — 48 open PRs, most stale
+- 48 open PRs; the oldest date to 2026-07-26 (#182) and ~30 have had no activity for 3+ weeks.
+- Two are explicitly throwaway: #728, #729 ("[THROWAWAY - DO NOT MERGE] G5 … probe") — close them.
+- Three long-lived bot PRs from `cg-derived-state-publisher[bot]` (#647, #648, #649, open since 2026-09-11, still updated daily). #648 is `promptops-index` — landing it is what the red `closeout`/`audit` gates are waiting for (see 5.1), so these bot PRs not merging is part of why `main` stays red.
+- Several overlap in theme (auto-v32 #227/#228, PI publication #349/#411/#412, index-authorship retirement #572/#575), suggesting superseded work.
+- **Action:** triage — merge or close each; close anything superseded by work already on `main`; set a stale-PR policy.
+
+### 7A.5 Low — issues are not used for tracking
+- One open issue (#39, 2026-07-12). Work tracking lives in docs/ledgers and PR titles instead; the findings in this report would have no home in the subject repo's tracker. Consider filing the Critical/High items as issues.
+
+---
+
 ## 8. Suggested sequencing
 
 1. **Today:** rotate Cloudflare + Resend keys; switch platform-intelligence OAuth off `embedded` in production (or take the remote endpoint offline); escape the consent page.
-2. **Unblock merging:** make `closeout`/`audit` PromptOps checks hermetic.
+2. **Unblock merging, then enforce it:** make `closeout`/`audit` PromptOps checks hermetic; land or close the derived-state bot PRs; then turn on branch protection for `main` (7A.1).
 3. **Harden data plane:** Supabase RPC revokes + verify live; RLS on exposed/oauth tables.
 4. **Fix broken runtime paths:** `commit-local` ESM bug; both Dockerfiles; `.mcp.json` launchers.
 5. **Make CI honest:** lint + aggregate test job + package matrix; delete 35 dead script targets; timeouts/concurrency/SHA pins; input-via-env on dispatch workflows; secret scanning.
 6. **Dependency sweep:** `next` upgrade, MCP SDK bump, npm workspaces.
-7. **Hygiene program:** evidence lifecycle + directory-level `.gitignore`; untrack 276 ignored files; archive dead scripts/docs; reconcile README/AGENTS/CLAUDE.
+7. **Hygiene program:** evidence lifecycle + directory-level `.gitignore`; untrack 276 ignored files; archive dead scripts/docs; reconcile README/AGENTS/CLAUDE.; triage 48 open PRs and prune 1,236 branches (7A.3–7A.4).
 
 ## 9. Inspection notes
-- The subject-repo clone was shallow (depth 1); history-based checks (e.g. when secrets were introduced, older history secret scan) were not possible.
+- The subject-repo clone was shallow (depth 1); commit history for specific files was read through the GitHub API instead (section 7A). A full-history secret scan across all branches was not run.
+- Not checked (needs repo-admin API access not available here): rulesets, Actions secrets/permissions settings, Dependabot/code-scanning/secret-scanning alert status, deploy keys, webhooks, collaborators.
 - Running `suite-control-plane` tests locally wrote two untracked files under `artifacts/suite-control-plane/pipeline-smoke/` in the inspection sandbox clone only (see 4.4); nothing was pushed to CG-AppBuilder-MCP.
 - Docker daemon unavailable; Docker findings are from static reading.
