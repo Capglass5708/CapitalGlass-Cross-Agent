@@ -1,0 +1,793 @@
+{
+  "schema": "vae-tool-surface-inventory-v1@1.0.0",
+  "subject": {
+    "repo": "Capglass5708/Visual-Asset-Engine",
+    "ref": "main",
+    "sha": "44e121c006f8e762008053a6df63d8fbf53e13b3"
+  },
+  "method": "Static extraction from the working tree; every tier-2 symbol re-verified as an actual named export at its stated path.",
+  "servers": {
+    "live": {
+      "entry": "mcp/run.mjs",
+      "script": "npm run mcp:start",
+      "toolCount": 2
+    },
+    "orphaned": {
+      "entry": "generation-core/packages/mcp-server/index.mjs",
+      "script": "generation-core/package.json -> 'mcp'",
+      "toolCount": 26
+    }
+  },
+  "tiers": {
+    "tier1_implemented": {
+      "count": 28,
+      "note": "Already written as MCP tools.",
+      "tools": [
+        {
+          "tool": "validate_brief",
+          "capability": "read-only",
+          "module": "generation-core/packages/mcp-server/index.mjs",
+          "exposedVia": "generation-core npm script 'mcp' only — NOT the root server"
+        },
+        {
+          "tool": "search_assets",
+          "capability": "read-only",
+          "module": "generation-core/packages/mcp-server/index.mjs",
+          "exposedVia": "generation-core npm script 'mcp' only — NOT the root server"
+        },
+        {
+          "tool": "recover_run",
+          "capability": "read-only",
+          "module": "generation-core/packages/mcp-server/index.mjs",
+          "exposedVia": "generation-core npm script 'mcp' only — NOT the root server"
+        },
+        {
+          "tool": "start_generation",
+          "capability": "write",
+          "module": "generation-core/packages/mcp-server/index.mjs",
+          "exposedVia": "generation-core npm script 'mcp' only — NOT the root server"
+        },
+        {
+          "tool": "get_run_status",
+          "capability": "read-only",
+          "module": "generation-core/packages/mcp-server/index.mjs",
+          "exposedVia": "generation-core npm script 'mcp' only — NOT the root server"
+        },
+        {
+          "tool": "render_candidates",
+          "capability": "read-only",
+          "module": "generation-core/packages/mcp-server/index.mjs",
+          "exposedVia": "generation-core npm script 'mcp' only — NOT the root server"
+        },
+        {
+          "tool": "evaluate_run",
+          "capability": "read-only",
+          "module": "generation-core/packages/mcp-server/index.mjs",
+          "exposedVia": "generation-core npm script 'mcp' only — NOT the root server"
+        },
+        {
+          "tool": "apply_consolidated_correction",
+          "capability": "write",
+          "module": "generation-core/packages/mcp-server/index.mjs",
+          "exposedVia": "generation-core npm script 'mcp' only — NOT the root server"
+        },
+        {
+          "tool": "verify_run",
+          "capability": "read-only",
+          "module": "generation-core/packages/mcp-server/index.mjs",
+          "exposedVia": "generation-core npm script 'mcp' only — NOT the root server"
+        },
+        {
+          "tool": "publish_catalog_entry",
+          "capability": "write",
+          "module": "generation-core/packages/mcp-server/index.mjs",
+          "exposedVia": "generation-core npm script 'mcp' only — NOT the root server"
+        },
+        {
+          "tool": "compile_tokens",
+          "capability": "write",
+          "module": "generation-core/packages/mcp-server/index.mjs",
+          "exposedVia": "generation-core npm script 'mcp' only — NOT the root server"
+        },
+        {
+          "tool": "list_patterns",
+          "capability": "read-only",
+          "module": "generation-core/packages/mcp-server/index.mjs",
+          "exposedVia": "generation-core npm script 'mcp' only — NOT the root server"
+        },
+        {
+          "tool": "registry_snapshot",
+          "capability": "read-only",
+          "module": "generation-core/packages/mcp-server/index.mjs",
+          "exposedVia": "generation-core npm script 'mcp' only — NOT the root server"
+        },
+        {
+          "tool": "generate_from_brief",
+          "capability": "write",
+          "module": "generation-core/packages/mcp-server/index.mjs",
+          "exposedVia": "generation-core npm script 'mcp' only — NOT the root server"
+        },
+        {
+          "tool": "evaluate_gates",
+          "capability": "read-only",
+          "module": "generation-core/packages/mcp-server/index.mjs",
+          "exposedVia": "generation-core npm script 'mcp' only — NOT the root server"
+        },
+        {
+          "tool": "get_visual_contract",
+          "capability": "read-only",
+          "module": "generation-core/packages/mcp-server/index.mjs",
+          "exposedVia": "generation-core npm script 'mcp' only — NOT the root server"
+        },
+        {
+          "tool": "diagnose_dissolve_regression",
+          "capability": "read-only",
+          "module": "generation-core/packages/mcp-server/index.mjs",
+          "exposedVia": "generation-core npm script 'mcp' only — NOT the root server"
+        },
+        {
+          "tool": "verify_consumer_cover",
+          "capability": "read-only",
+          "module": "generation-core/packages/mcp-server/index.mjs",
+          "exposedVia": "generation-core npm script 'mcp' only — NOT the root server"
+        },
+        {
+          "tool": "validate_document_brief",
+          "capability": "read-only",
+          "module": "generation-core/packages/mcp-server/index.mjs",
+          "exposedVia": "generation-core npm script 'mcp' only — NOT the root server"
+        },
+        {
+          "tool": "search_document_assets",
+          "capability": "read-only",
+          "module": "generation-core/packages/mcp-server/index.mjs",
+          "exposedVia": "generation-core npm script 'mcp' only — NOT the root server"
+        },
+        {
+          "tool": "export_for_document",
+          "capability": "read-only",
+          "module": "generation-core/packages/mcp-server/index.mjs",
+          "exposedVia": "generation-core npm script 'mcp' only — NOT the root server"
+        },
+        {
+          "tool": "illustrator_health",
+          "capability": "read-only",
+          "module": "generation-core/packages/authoring-adapters/illustrator/mcp-tools.mjs",
+          "exposedVia": "spread into mcp-server; NOT the root server"
+        },
+        {
+          "tool": "illustrator_list_presets",
+          "capability": "read-only",
+          "module": "generation-core/packages/authoring-adapters/illustrator/mcp-tools.mjs",
+          "exposedVia": "spread into mcp-server; NOT the root server"
+        },
+        {
+          "tool": "illustrator_list_layout_templates",
+          "capability": "read-only",
+          "module": "generation-core/packages/authoring-adapters/illustrator/mcp-tools.mjs",
+          "exposedVia": "spread into mcp-server; NOT the root server"
+        },
+        {
+          "tool": "illustrator_trace_markup",
+          "capability": "write",
+          "module": "generation-core/packages/authoring-adapters/illustrator/mcp-tools.mjs",
+          "exposedVia": "spread into mcp-server; NOT the root server"
+        },
+        {
+          "tool": "illustrator_plan_layout",
+          "capability": "read-only",
+          "module": "generation-core/packages/authoring-adapters/illustrator/mcp-tools.mjs",
+          "exposedVia": "spread into mcp-server; NOT the root server"
+        },
+        {
+          "tool": "vae.get_illustrator_preflight",
+          "capability": "read-only",
+          "module": "mcp/tools.mjs",
+          "exposedVia": "root `npm run mcp:start` (LIVE)"
+        },
+        {
+          "tool": "vae.get_bid_sheet_lane_receipt",
+          "capability": "read-only",
+          "module": "mcp/tools.mjs",
+          "exposedVia": "root `npm run mcp:start` (LIVE)"
+        }
+      ]
+    },
+    "tier2_ready_unregistered": {
+      "count": 78,
+      "note": "Named exports with bounded inputs; registration is mechanical.",
+      "functions": [
+        {
+          "domain": "graph-and-retrieval",
+          "fn": "buildVisualGraph",
+          "module": "graph/projection/build-visual-graph.mjs"
+        },
+        {
+          "domain": "graph-and-retrieval",
+          "fn": "validateVisualGraph",
+          "module": "graph/projection/validate-visual-graph.mjs"
+        },
+        {
+          "domain": "graph-and-retrieval",
+          "fn": "publishVisualGraphPacket",
+          "module": "graph/publication/publish-visual-graph.mjs"
+        },
+        {
+          "domain": "graph-and-retrieval",
+          "fn": "runExperienceHarvest",
+          "module": "graph/experience/harvest/run-experience-harvest.mjs"
+        },
+        {
+          "domain": "graph-and-retrieval",
+          "fn": "getVisualContext",
+          "module": "graph/retrieval/get-visual-context.mjs"
+        },
+        {
+          "domain": "graph-and-retrieval",
+          "fn": "findVisualPattern",
+          "module": "graph/retrieval/get-visual-context.mjs"
+        },
+        {
+          "domain": "graph-and-retrieval",
+          "fn": "findKnownFailures",
+          "module": "graph/retrieval/get-visual-context.mjs"
+        },
+        {
+          "domain": "graph-and-retrieval",
+          "fn": "findReferenceImplementation",
+          "module": "graph/retrieval/get-visual-context.mjs"
+        },
+        {
+          "domain": "graph-and-retrieval",
+          "fn": "capabilityLookup",
+          "module": "graph/retrieval/get-visual-context.mjs"
+        },
+        {
+          "domain": "graph-and-retrieval",
+          "fn": "loadVisualGraphSnapshot",
+          "module": "graph/retrieval/get-visual-context.mjs"
+        },
+        {
+          "domain": "generation-and-render",
+          "fn": "runCreationPipeline",
+          "module": "generation-core/packages/creation-kernel/index.mjs"
+        },
+        {
+          "domain": "generation-and-render",
+          "fn": "renderComposition",
+          "module": "generation-core/packages/creation-kernel/index.mjs"
+        },
+        {
+          "domain": "generation-and-render",
+          "fn": "compileCreativeDirection",
+          "module": "generation-core/packages/creative-direction/index.mjs"
+        },
+        {
+          "domain": "generation-and-render",
+          "fn": "runCreativeDirectionPipeline",
+          "module": "generation-core/packages/creative-direction/index.mjs"
+        },
+        {
+          "domain": "generation-and-render",
+          "fn": "runGlazingVisualPipeline",
+          "module": "generation-core/packages/glazing-visual-intelligence/index.mjs"
+        },
+        {
+          "domain": "generation-and-render",
+          "fn": "runMeasuredProposalCover",
+          "module": "generation-core/packages/generator/run-measured.mjs"
+        },
+        {
+          "domain": "generation-and-render",
+          "fn": "generateProposalCoverCandidates",
+          "module": "generation-core/packages/renderers/proposal-cover.mjs"
+        },
+        {
+          "domain": "generation-and-render",
+          "fn": "selectBestCandidate",
+          "module": "generation-core/packages/renderers/proposal-cover.mjs"
+        },
+        {
+          "domain": "generation-and-render",
+          "fn": "applyConsolidatedCorrection",
+          "module": "generation-core/packages/renderers/proposal-cover.mjs"
+        },
+        {
+          "domain": "generation-and-render",
+          "fn": "generateProposalSectionCandidates",
+          "module": "generation-core/packages/renderers/proposal-section.mjs"
+        },
+        {
+          "domain": "generation-and-render",
+          "fn": "selectBestSectionCandidate",
+          "module": "generation-core/packages/renderers/proposal-section.mjs"
+        },
+        {
+          "domain": "generation-and-render",
+          "fn": "scoreSectionCandidate",
+          "module": "generation-core/packages/renderers/proposal-section.mjs"
+        },
+        {
+          "domain": "generation-and-render",
+          "fn": "runProposalSectionVisualCritic",
+          "module": "generation-core/packages/renderers/proposal-section.mjs"
+        },
+        {
+          "domain": "asset-intake",
+          "fn": "importPhotoPackage",
+          "module": "generation-core/packages/photo-intake/import.mjs"
+        },
+        {
+          "domain": "asset-intake",
+          "fn": "attachSupportedDerivative",
+          "module": "generation-core/packages/photo-intake/import.mjs"
+        },
+        {
+          "domain": "asset-intake",
+          "fn": "classifyPhotoPackage",
+          "module": "generation-core/packages/photo-intake/classify.mjs"
+        },
+        {
+          "domain": "asset-intake",
+          "fn": "approvePhotoCandidate",
+          "module": "generation-core/packages/photo-intake/approve.mjs"
+        },
+        {
+          "domain": "asset-intake",
+          "fn": "runMetadataGate",
+          "module": "generation-core/packages/photo-intake/gates.mjs"
+        },
+        {
+          "domain": "asset-intake",
+          "fn": "runPrivacyGate",
+          "module": "generation-core/packages/photo-intake/gates.mjs"
+        },
+        {
+          "domain": "asset-intake",
+          "fn": "runQualityGate",
+          "module": "generation-core/packages/photo-intake/gates.mjs"
+        },
+        {
+          "domain": "asset-intake",
+          "fn": "runAllGates",
+          "module": "generation-core/packages/photo-intake/gates.mjs"
+        },
+        {
+          "domain": "asset-intake",
+          "fn": "importVectorPackage",
+          "module": "generation-core/packages/vector-intake/import.mjs"
+        },
+        {
+          "domain": "asset-intake",
+          "fn": "approveVectorCandidate",
+          "module": "generation-core/packages/vector-intake/approve.mjs"
+        },
+        {
+          "domain": "asset-intake",
+          "fn": "inspectVectorIntakePackage",
+          "module": "generation-core/packages/vector-intake/inspect.mjs"
+        },
+        {
+          "domain": "asset-intake",
+          "fn": "importCanvasPackage",
+          "module": "generation-core/packages/canvas-intake/inspect.mjs"
+        },
+        {
+          "domain": "asset-intake",
+          "fn": "inspectCanvasPackage",
+          "module": "generation-core/packages/canvas-intake/inspect.mjs"
+        },
+        {
+          "domain": "asset-intake",
+          "fn": "approveCanvasCandidate",
+          "module": "generation-core/packages/canvas-intake/approve.mjs"
+        },
+        {
+          "domain": "document-validation",
+          "fn": "validateContentBlockEntry",
+          "module": "generation-core/packages/document-foundation/validate.mjs"
+        },
+        {
+          "domain": "document-validation",
+          "fn": "validateContentBlockCatalog",
+          "module": "generation-core/packages/document-foundation/validate.mjs"
+        },
+        {
+          "domain": "document-validation",
+          "fn": "verifyAdapterContract",
+          "module": "generation-core/packages/document-foundation/validate.mjs"
+        },
+        {
+          "domain": "document-validation",
+          "fn": "verifyIllustratorExportReceipt",
+          "module": "generation-core/packages/document-foundation/validate.mjs"
+        },
+        {
+          "domain": "document-validation",
+          "fn": "validateIllustratorTraceBrief",
+          "module": "generation-core/packages/document-foundation/validate.mjs"
+        },
+        {
+          "domain": "document-validation",
+          "fn": "validateIllustratorLayoutBrief",
+          "module": "generation-core/packages/document-foundation/validate.mjs"
+        },
+        {
+          "domain": "document-validation",
+          "fn": "verifyFigmaExportReceipt",
+          "module": "generation-core/packages/document-foundation/validate.mjs"
+        },
+        {
+          "domain": "document-validation",
+          "fn": "loadPageGeometryProfile",
+          "module": "generation-core/packages/document-foundation/validate.mjs"
+        },
+        {
+          "domain": "production-gates",
+          "fn": "validateProductionReceipt",
+          "module": "generation-core/packages/document-foundation/production-verify.mjs"
+        },
+        {
+          "domain": "production-gates",
+          "fn": "validateDocumentVisualPin",
+          "module": "generation-core/packages/document-foundation/production-verify.mjs"
+        },
+        {
+          "domain": "production-gates",
+          "fn": "validateBriefForProduction",
+          "module": "generation-core/packages/document-foundation/production-verify.mjs"
+        },
+        {
+          "domain": "production-gates",
+          "fn": "gateIllustratorAdapterReceipt",
+          "module": "generation-core/packages/document-foundation/production-verify.mjs"
+        },
+        {
+          "domain": "production-gates",
+          "fn": "gateAdapterContract",
+          "module": "generation-core/packages/document-foundation/production-verify.mjs"
+        },
+        {
+          "domain": "production-gates",
+          "fn": "mergeReceiptWithPriorGuard",
+          "module": "generation-core/packages/document-foundation/production-verify.mjs"
+        },
+        {
+          "domain": "production-gates",
+          "fn": "buildConsumerPinsFromReceipts",
+          "module": "generation-core/packages/document-foundation/production-verify.mjs"
+        },
+        {
+          "domain": "folder-icons",
+          "fn": "loadFolderIconCatalog",
+          "module": "generation-core/packages/folder-icons/abilities.mjs"
+        },
+        {
+          "domain": "folder-icons",
+          "fn": "listFolderIconColors",
+          "module": "generation-core/packages/folder-icons/abilities.mjs"
+        },
+        {
+          "domain": "folder-icons",
+          "fn": "resolveFolderPhaseIconColor",
+          "module": "generation-core/packages/folder-icons/abilities.mjs"
+        },
+        {
+          "domain": "folder-icons",
+          "fn": "resolveFolderIconClasses",
+          "module": "generation-core/packages/folder-icons/abilities.mjs"
+        },
+        {
+          "domain": "folder-icons",
+          "fn": "resolveFolderIconAssetPath",
+          "module": "generation-core/packages/folder-icons/abilities.mjs"
+        },
+        {
+          "domain": "folder-icons",
+          "fn": "getFolderIconConsumerSpec",
+          "module": "generation-core/packages/folder-icons/abilities.mjs"
+        },
+        {
+          "domain": "vector-illustrator",
+          "fn": "preflightIllustratorDualPath",
+          "module": "generation-core/packages/illustrator-vectorize/vectorize.mjs"
+        },
+        {
+          "domain": "vector-illustrator",
+          "fn": "vectorizeDocument",
+          "module": "generation-core/packages/illustrator-vectorize/vectorize.mjs"
+        },
+        {
+          "domain": "vector-illustrator",
+          "fn": "validateEstimatorSemanticAssembly",
+          "module": "generation-core/packages/illustrator-vectorize/semantic-assembly.mjs"
+        },
+        {
+          "domain": "vector-illustrator",
+          "fn": "stageSemanticAssembly",
+          "module": "generation-core/packages/illustrator-vectorize/semantic-assembly.mjs"
+        },
+        {
+          "domain": "evaluators",
+          "fn": "runVisualCritic",
+          "module": "generation-core/packages/evaluators/critic.mjs"
+        },
+        {
+          "domain": "evaluators",
+          "fn": "consolidateFindings",
+          "module": "generation-core/packages/evaluators/critic.mjs"
+        },
+        {
+          "domain": "evaluators",
+          "fn": "analyzeRenderedArtifact",
+          "module": "generation-core/packages/evaluators/analyze-render.mjs"
+        },
+        {
+          "domain": "evaluators",
+          "fn": "combinedGateReport",
+          "module": "generation-core/packages/evaluators/gates.mjs"
+        },
+        {
+          "domain": "social-creative",
+          "fn": "loadPlatformFormats",
+          "module": "generation-core/packages/social-creative/engine.mjs"
+        },
+        {
+          "domain": "social-creative",
+          "fn": "verifyPlatformFormatsLive",
+          "module": "generation-core/packages/social-creative/engine.mjs"
+        },
+        {
+          "domain": "social-creative",
+          "fn": "runSocialQaChecklist",
+          "module": "generation-core/packages/social-creative/engine.mjs"
+        },
+        {
+          "domain": "social-creative",
+          "fn": "buildExportPlan",
+          "module": "generation-core/packages/social-creative/engine.mjs"
+        },
+        {
+          "domain": "catalog-tokens-registry",
+          "fn": "loadImageCatalog",
+          "module": "generation-core/packages/catalog/image-catalog.mjs"
+        },
+        {
+          "domain": "catalog-tokens-registry",
+          "fn": "getImageById",
+          "module": "generation-core/packages/catalog/image-catalog.mjs"
+        },
+        {
+          "domain": "catalog-tokens-registry",
+          "fn": "verifyImageCatalogEntry",
+          "module": "generation-core/packages/catalog/image-catalog.mjs"
+        },
+        {
+          "domain": "catalog-tokens-registry",
+          "fn": "compileCapitalGlassTokens",
+          "module": "generation-core/packages/dtcg-compiler/compile.mjs"
+        },
+        {
+          "domain": "catalog-tokens-registry",
+          "fn": "dtcgToCss",
+          "module": "generation-core/packages/dtcg-compiler/compile.mjs"
+        },
+        {
+          "domain": "catalog-tokens-registry",
+          "fn": "getPatternById",
+          "module": "generation-core/packages/registry/load.mjs"
+        },
+        {
+          "domain": "catalog-tokens-registry",
+          "fn": "compileCanvasDesign",
+          "module": "generation-core/packages/canvas-design/compile.mjs"
+        },
+        {
+          "domain": "catalog-tokens-registry",
+          "fn": "synthesizeVisualSpec",
+          "module": "pipeline/synthesize-visual-spec.mjs"
+        }
+      ]
+    },
+    "tier3_cli_only": {
+      "count": 37,
+      "note": "Tool-grade lanes with NO named export; need an entrypoint extracted first.",
+      "lanes": [
+        {
+          "lane": "registry:publish-preflight",
+          "entry": "scripts/registry-publish-preflight.mjs",
+          "command": "node scripts/registry-publish-preflight.mjs"
+        },
+        {
+          "lane": "rebaseline:review-pack",
+          "entry": "scripts/generate-rebaseline-review-pack.mjs",
+          "command": "node scripts/generate-rebaseline-review-pack.mjs"
+        },
+        {
+          "lane": "mcp:start",
+          "entry": "mcp/run.mjs",
+          "command": "node mcp/run.mjs"
+        },
+        {
+          "lane": "mcp:tools:list",
+          "entry": "scripts/list-visual-asset-engine-mcp-tools.mjs",
+          "command": "node scripts/list-visual-asset-engine-mcp-tools.mjs"
+        },
+        {
+          "lane": "compile:mailroom-doss-command-center",
+          "entry": "pipeline/compile-mailroom-doss-command-center.mjs",
+          "command": "node pipeline/compile-mailroom-doss-command-center.mjs --target-app mailroom"
+        },
+        {
+          "lane": "generate:mailroom-storybook",
+          "entry": "pipeline/generate-mailroom-storybook.mjs",
+          "command": "node pipeline/generate-mailroom-storybook.mjs"
+        },
+        {
+          "lane": "pageflows:mailroom:review-upgrade",
+          "entry": "pipeline/run-pageflows-mailroom-review-upgrade.mjs",
+          "command": "node pipeline/run-pageflows-mailroom-review-upgrade.mjs"
+        },
+        {
+          "lane": "vae:work-package",
+          "entry": "pipeline/run-vae-work-package.mjs",
+          "command": "node pipeline/run-vae-work-package.mjs"
+        },
+        {
+          "lane": "compile:mailroom-work-package-handoff",
+          "entry": "pipeline/compile-mailroom-work-package-handoff.mjs",
+          "command": "node pipeline/compile-mailroom-work-package-handoff.mjs"
+        },
+        {
+          "lane": "apply:mailroom-work-package-handoff",
+          "entry": "pipeline/apply-mailroom-work-package-handoff.mjs",
+          "command": "node pipeline/apply-mailroom-work-package-handoff.mjs"
+        },
+        {
+          "lane": "verify:mailroom-work-package-handoff",
+          "entry": "scripts/verify-mailroom-work-package-handoff.mjs",
+          "command": "node scripts/verify-mailroom-work-package-handoff.mjs"
+        },
+        {
+          "lane": "vae:pipeline:status",
+          "entry": "pipeline/vae-pipeline-status.mjs",
+          "command": "node pipeline/vae-pipeline-status.mjs"
+        },
+        {
+          "lane": "generate:mailroom-component-spec",
+          "entry": "pipeline/generate-mailroom-component-spec.mjs",
+          "command": "node pipeline/generate-mailroom-component-spec.mjs"
+        },
+        {
+          "lane": "generate:mailroom-ui-reference-consumer",
+          "entry": "pipeline/generate-mailroom-ui-reference-consumer.mjs",
+          "command": "node pipeline/generate-mailroom-ui-reference-consumer.mjs"
+        },
+        {
+          "lane": "generate:consumer-spec",
+          "entry": "pipeline/generate-consumer-spec.mjs",
+          "command": "node pipeline/generate-consumer-spec.mjs"
+        },
+        {
+          "lane": "generate:consumer-implementation",
+          "entry": "pipeline/generate-consumer-implementation-package.mjs",
+          "command": "node pipeline/generate-consumer-implementation-package.mjs"
+        },
+        {
+          "lane": "verify:consumer-adapters",
+          "entry": "scripts/verify-consumer-adapters.mjs",
+          "command": "node scripts/verify-consumer-adapters.mjs"
+        },
+        {
+          "lane": "pattern-lifecycle:index",
+          "entry": "scripts/pattern-lifecycle-index.mjs",
+          "command": "node scripts/pattern-lifecycle-index.mjs"
+        },
+        {
+          "lane": "pattern-lifecycle:verify",
+          "entry": "scripts/pattern-lifecycle-verify.mjs",
+          "command": "node scripts/pattern-lifecycle-verify.mjs"
+        },
+        {
+          "lane": "synthesize:pattern-from-candidate",
+          "entry": "pipeline/synthesize-pattern-from-candidate.mjs",
+          "command": "node pipeline/synthesize-pattern-from-candidate.mjs"
+        },
+        {
+          "lane": "emit:interaction-recipe",
+          "entry": "pipeline/emit-interaction-recipe.mjs",
+          "command": "node pipeline/emit-interaction-recipe.mjs"
+        },
+        {
+          "lane": "emit:pageflows-recipe-candidates",
+          "entry": "pipeline/emit-pageflows-recipe-candidates.mjs",
+          "command": "node pipeline/emit-pageflows-recipe-candidates.mjs"
+        },
+        {
+          "lane": "capture-pipeline:refresh-truth",
+          "entry": "scripts/refresh-capture-pipeline-truth.mjs",
+          "command": "node scripts/refresh-capture-pipeline-truth.mjs"
+        },
+        {
+          "lane": "capture-pipeline:status",
+          "entry": "scripts/capture-pipeline-status.mjs",
+          "command": "node scripts/capture-pipeline-status.mjs"
+        },
+        {
+          "lane": "agent:preflight:auto-v32",
+          "entry": "scripts/north-star-lifecycle-delegate.mjs",
+          "command": "node scripts/north-star-lifecycle-delegate.mjs preflight"
+        },
+        {
+          "lane": "agent:north-star:retention-review",
+          "entry": "scripts/north-star-lifecycle-delegate.mjs",
+          "command": "node scripts/north-star-lifecycle-delegate.mjs retention-review"
+        },
+        {
+          "lane": "agent:closeout:assess",
+          "entry": "scripts/north-star-lifecycle-delegate.mjs",
+          "command": "node scripts/north-star-lifecycle-delegate.mjs closeout-assess"
+        },
+        {
+          "lane": "auto:v3:session-closeout",
+          "entry": "scripts/north-star-lifecycle-delegate.mjs",
+          "command": "node scripts/north-star-lifecycle-delegate.mjs session-closeout"
+        },
+        {
+          "lane": "graph:retrieval:proof:local",
+          "entry": "graph/tests/run-vae-local-retrieval-proof.mjs",
+          "command": "node graph/tests/run-vae-local-retrieval-proof.mjs"
+        },
+        {
+          "lane": "graph:milestone",
+          "entry": "scripts/graph/run-visual-intelligence-graph-milestone.mjs",
+          "command": "node scripts/graph/run-visual-intelligence-graph-milestone.mjs"
+        },
+        {
+          "lane": "graph:experience:test",
+          "entry": "graph/experience/tests/run-experience-tests.mjs",
+          "command": "node graph/experience/tests/run-experience-tests.mjs"
+        },
+        {
+          "lane": "graph:retrieval:proof:experience",
+          "entry": "graph/tests/run-vae-experience-retrieval-proof.mjs",
+          "command": "node graph/tests/run-vae-experience-retrieval-proof.mjs"
+        },
+        {
+          "lane": "graph:experience:milestone",
+          "entry": "scripts/graph/run-visual-intelligence-experience-harvest-milestone.mjs",
+          "command": "node scripts/graph/run-visual-intelligence-experience-harvest-milestone.mjs"
+        },
+        {
+          "lane": "vae:creation-kernel:showcase",
+          "entry": "pipeline/run-creation-kernel-showcase.mjs",
+          "command": "node pipeline/run-creation-kernel-showcase.mjs"
+        },
+        {
+          "lane": "vae:creative-direction:showcase",
+          "entry": "pipeline/run-creative-direction-showcase.mjs",
+          "command": "node pipeline/run-creative-direction-showcase.mjs"
+        },
+        {
+          "lane": "vae:glazing:showcase",
+          "entry": "pipeline/run-glazing-visual-intelligence-showcase.mjs",
+          "command": "node pipeline/run-glazing-visual-intelligence-showcase.mjs"
+        },
+        {
+          "lane": "vae:bid-sheet:data-driven",
+          "entry": "pipeline/run-data-driven-bid-sheet-creator-v2.mjs",
+          "command": "node pipeline/run-data-driven-bid-sheet-creator-v2.mjs"
+        }
+      ]
+    }
+  },
+  "totals": {
+    "toolQualifying": 143
+  },
+  "exclusions": "Pure helpers (loadJson, getRepoRoot, hashContent), type guards, and test utilities were excluded by judgment; the tier-2 boundary is a defensible call, not a formal rule.",
+  "caveats": [
+    "illustrator_trace_markup and vectorizeDocument are workstation-local (WESLEYDESK, not CI) per docs/application-bible/07-KNOWN-EXCEPTIONS.md and need routing metadata, not plain registration.",
+    "export_for_document is declared read-only but accepts forceGenerate; treat its capability class as needing review."
+  ],
+  "unverifiedSymbols": []
+}

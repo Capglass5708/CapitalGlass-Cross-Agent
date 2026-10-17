@@ -1,0 +1,268 @@
+{
+  "authorities": [
+    {
+      "authorityId": "visual-asset-engine-identity-v1",
+      "question": "Which repository owns Visual Asset Engine?",
+      "status": "ACTIVE"
+    },
+    {
+      "authorityId": "visual-generation-authority-v1",
+      "question": "Who owns visual generation - design tokens, recipes, renderers, the pattern vault, Illustrator vector trace and evidence packs?",
+      "status": "ACTIVE"
+    },
+    {
+      "authorityId": "visual-intelligence-graph-v1",
+      "question": "Which extraction is the authoritative visual-intelligence graph published to CG-MASTER-GRAPH?",
+      "status": "ACTIVE"
+    }
+  ],
+  "capabilities": [
+    {
+      "capabilityId": "visual_intelligence_graph_build_v1",
+      "kind": "deterministic_function",
+      "version": "1.0.0",
+      "status": "ACTIVE",
+      "authorityId": "visual-intelligence-graph-v1",
+      "question": "How is the visual-intelligence graph projection built from this repository's sources?",
+      "implementation": {
+        "entrypoint": "buildVisualGraph",
+        "path": "graph/projection/build-visual-graph.mjs"
+      },
+      "surfaces": [
+        "CLI"
+      ],
+      "metadata": {
+        "npmScript": "graph:extract",
+        "validateScript": "graph:validate"
+      }
+    },
+    {
+      "capabilityId": "visual_intelligence_graph_publish_v1",
+      "kind": "deterministic_function",
+      "version": "2.0.0",
+      "status": "ACTIVE",
+      "authorityId": "visual-intelligence-graph-v1",
+      "question": "Which packet does this repository publish as the authoritative visual-intelligence extraction?",
+      "implementation": {
+        "entrypoint": "publishVisualGraphPacket",
+        "path": "graph/publication/publish-visual-graph.mjs"
+      },
+      "surfaces": [
+        "CLI"
+      ],
+      "metadata": {
+        "npmScript": "graph:publish:packet",
+        "graphProducerCapability": "vae-visual-graph-publish",
+        "extractionId": "extraction:vae-visual-intelligence-authoritative-v1",
+        "publishedPacket": "graph/publication/vae-visual-intelligence-authoritative-v1.extraction.v1.json",
+        "consumer": "CG-MASTER-GRAPH"
+      }
+    },
+    {
+      "capabilityId": "visual_context_retrieval_v1",
+      "kind": "deterministic_function",
+      "version": "1.0.0",
+      "status": "ACTIVE",
+      "authorityId": "visual-intelligence-graph-v1",
+      "question": "What visual context, prior failures and reference implementations does the graph hold for a pattern?",
+      "implementation": {
+        "entrypoint": "getVisualContext",
+        "path": "graph/retrieval/get-visual-context.mjs"
+      },
+      "surfaces": [
+        "CLI",
+        "RUNTIME"
+      ],
+      "metadata": {
+        "proofScript": "graph:retrieval:proof:local"
+      }
+    },
+    {
+      "capabilityId": "illustrator_vector_trace_v1",
+      "kind": "deterministic_function",
+      "version": "1.0.0",
+      "status": "ACTIVE",
+      "authorityId": "visual-generation-authority-v1",
+      "question": "Which engine performs Illustrator vector trace for the suite?",
+      "implementation": {
+        "entrypoint": "vectorizeDocument",
+        "path": "generation-core/packages/illustrator-vectorize/vectorize.mjs"
+      },
+      "surfaces": [
+        "CLI",
+        "MCP"
+      ],
+      "metadata": {
+        "soleExecutionEngine": true,
+        "executionHost": "WESLEYDESK",
+        "notRunInCi": true,
+        "exceptionRef": "docs/application-bible/07-KNOWN-EXCEPTIONS.md",
+        "contract": "generation-core/contracts/illustrator-visual-authoring.v1.json"
+      }
+    },
+    {
+      "capabilityId": "vae_read_only_mcp_tools_v1",
+      "kind": "mcp_tool_set",
+      "version": "1.0.0",
+      "status": "ACTIVE",
+      "authorityId": "visual-asset-engine-identity-v1",
+      "question": "Which read-only MCP tools does Visual Asset Engine expose to the suite?",
+      "implementation": {
+        "entrypoint": "callVisualAssetEngineMcpTool",
+        "path": "mcp/tools.mjs"
+      },
+      "surfaces": [
+        "MCP"
+      ],
+      "metadata": {
+        "toolNames": [
+          "vae.get_illustrator_preflight",
+          "vae.get_bid_sheet_lane_receipt"
+        ],
+        "readOnly": true,
+        "server": "mcp/run.mjs"
+      }
+    }
+  ],
+  "protocols": [
+    {
+      "protocolId": "proposal-cover-hero-dissolve-v1",
+      "name": "Proposal cover hero dissolve contract",
+      "status": "ACTIVE",
+      "path": "generation-core/contracts/proposal-cover-hero-dissolve.v1.json"
+    },
+    {
+      "protocolId": "illustrator-visual-authoring-v1",
+      "name": "Illustrator visual authoring contract",
+      "status": "ACTIVE",
+      "path": "generation-core/contracts/illustrator-visual-authoring.v1.json"
+    },
+    {
+      "protocolId": "visual-experience-event-v1",
+      "name": "Visual experience event contract",
+      "status": "ACTIVE",
+      "path": "graph/contracts/visual-experience-event.v1.json"
+    }
+  ],
+  "surfaces": [
+    {
+      "surfaceId": "vae-mcp-server",
+      "kind": "MCP",
+      "entrypoint": "mcp:start",
+      "path": "mcp/run.mjs",
+      "status": "ACTIVE"
+    },
+    {
+      "surfaceId": "vae-cli",
+      "kind": "CLI",
+      "entrypoint": "vae",
+      "path": "generation-core/packages/cli/bin/vae.mjs",
+      "status": "ACTIVE"
+    },
+    {
+      "surfaceId": "vae-pipeline-status",
+      "kind": "SCRIPT",
+      "entrypoint": "vae:pipeline:status",
+      "path": "pipeline/vae-pipeline-status.mjs",
+      "status": "ACTIVE"
+    }
+  ],
+  "dependencies": [
+    {
+      "repoId": "CG-AppBuilder-MCP",
+      "relationship": "contract-and-governance-authority",
+      "note": "MCP contract registry and Application Bible sync; overrides this repo's docs on conflict."
+    }
+  ],
+  "DOMAINS": [
+    "visual-assets"
+  ],
+  "CAPABILITIES": [
+    "visual-asset-pipeline"
+  ],
+  "PROGRAMS": [
+    {
+      "id": "vae-foundation-v1",
+      "name": "VAE foundation",
+      "aliases": [
+        "vae",
+        "visual asset engine"
+      ]
+    },
+    {
+      "id": "vae-visual-intelligence-authoritative-v1",
+      "name": "VAE authoritative visual-intelligence extraction",
+      "aliases": [
+        "visual intelligence graph",
+        "vae graph"
+      ]
+    }
+  ],
+  "WORK_PACKAGES": [
+    "vae-foundation-v1",
+    "vae-visual-intelligence-authoritative-v1"
+  ],
+  "CODE_POINTERS": [
+    {
+      "path": "README.md",
+      "program": "vae-foundation-v1"
+    },
+    {
+      "path": "docs/application-bible/README.md",
+      "program": "vae-foundation-v1"
+    },
+    {
+      "path": "generation-core/contracts/proposal-cover-hero-dissolve.v1.json",
+      "program": "vae-foundation-v1"
+    },
+    {
+      "path": "graph/publication/vae-visual-intelligence-authoritative-v1.extraction.v1.json",
+      "program": "vae-visual-intelligence-authoritative-v1"
+    }
+  ],
+  "SYMBOL_POINTERS": [
+    {
+      "symbol": "buildVisualGraph",
+      "path": "graph/projection/build-visual-graph.mjs",
+      "program": "vae-visual-intelligence-authoritative-v1"
+    },
+    {
+      "symbol": "publishVisualGraphPacket",
+      "path": "graph/publication/publish-visual-graph.mjs",
+      "program": "vae-visual-intelligence-authoritative-v1"
+    },
+    {
+      "symbol": "getVisualContext",
+      "path": "graph/retrieval/get-visual-context.mjs",
+      "program": "vae-visual-intelligence-authoritative-v1"
+    },
+    {
+      "symbol": "vectorizeDocument",
+      "path": "generation-core/packages/illustrator-vectorize/vectorize.mjs",
+      "program": "vae-foundation-v1"
+    },
+    {
+      "symbol": "callVisualAssetEngineMcpTool",
+      "path": "mcp/tools.mjs",
+      "program": "vae-foundation-v1"
+    }
+  ],
+  "ARTIFACT_ROOTS": [
+    "artifacts/agent-runs",
+    "artifacts/runs"
+  ],
+  "ALIASES": [
+    "vae",
+    "visual asset engine",
+    "visual-asset-engine"
+  ],
+  "ESTATE_ALIASES": [
+    "vae",
+    "visual-asset-engine",
+    "visual asset engine"
+  ],
+  "NEXT_ACTIONS": [
+    "Mirror this seed into CG-AppBuilder-MCP RICH_OVERRIDES so generate-seed-bank.mjs stops regenerating the engines-tier boilerplate over it",
+    "Populate LATEST_RECEIPTS from the graph milestone runs under artifacts/runs"
+  ]
+}
