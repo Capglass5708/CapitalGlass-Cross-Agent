@@ -239,10 +239,15 @@
         },
         "canonicalProbe": {
           "preferredReadOnlyTool": "list_projects",
-          "fallbackReadOnlyTool": "intelligence.get_hub_status",
+          "fallbackReadOnlyTool": null,
           "toolArguments": {},
           "expectedResponseShape": {
             "projects": "array"
+          },
+          "intelligenceConsultAuthority": {
+            "cursorKey": "bb-intel",
+            "preferredReadOnlyTool": "bb_intel_status",
+            "fallbackReadOnlyTool": "bb_intel_home"
           }
         },
         "credentialContract": [
