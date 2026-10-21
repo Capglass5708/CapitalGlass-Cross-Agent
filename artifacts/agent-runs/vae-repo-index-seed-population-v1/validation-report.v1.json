@@ -1,0 +1,166 @@
+{
+  "schema": "cg-vae-seed-population-validation-report-v1@1.0.0",
+  "workPackageId": "vae-repo-index-seed-population-v1",
+  "proposal": {
+    "seed": "proposed-seed.v1.json",
+    "target": "Visual-Asset-Engine index/repo-index.seed.v1.json",
+    "seedBankOverride": "proposed-seed-bank-override.v1.json",
+    "seedBankTarget": "CG-AppBuilder-MCP scripts/federated-repo-index/generate-seed-bank.mjs RICH_OVERRIDES[\"Visual-Asset-Engine\"]"
+  },
+  "compiler": {
+    "source": "CG-AppBuilder-MCP@04f81628db7cf0f67fd6a5a312835cda28a01f3b",
+    "modules": [
+      "scripts/federated-repo-index/lib/compile-local-index.mjs",
+      "scripts/federated-repo-index/lib/structured-index.mjs",
+      "scripts/federated-repo-index/lib/validate.mjs",
+      "scripts/federated-repo-index/lib/constants.mjs",
+      "scripts/federated-repo-index/lib/index-input-digest.mjs",
+      "scripts/federated-repo-index/lib/pointer-git-status.mjs",
+      "scripts/federated-repo-index/lib/source-authority-sha.mjs"
+    ],
+    "stubbed": [
+      "scripts/wsl/lib/cg-wsl2-machine-profile.mjs"
+    ],
+    "stubRationale": "Operator-host WSL machine profile is unavailable off-host; describeGeneratingHost() already tolerates its absence and records machineRole null."
+  },
+  "subject": {
+    "repo": "Capglass5708/Visual-Asset-Engine",
+    "observedHead": "44e121c006f8e762008053a6df63d8fbf53e13b3",
+    "checkout": "shallow clone (git clone --depth 1) of main"
+  },
+  "result": {
+    "verdict": "COMPILE_PASS",
+    "requireStructured": true,
+    "note": "compileLocalIndex throws LOCAL_INDEX_INVALID when validateLocalIndex fails; it returned an index."
+  },
+  "compiledSummary": {
+    "repoClass": "engines",
+    "authorities": [
+      "visual-asset-engine-identity-v1",
+      "visual-generation-authority-v1",
+      "visual-intelligence-graph-v1"
+    ],
+    "capabilities": [
+      {
+        "capabilityId": "illustrator_vector_trace_v1",
+        "status": "ACTIVE",
+        "path": "generation-core/packages/illustrator-vectorize/vectorize.mjs"
+      },
+      {
+        "capabilityId": "vae_read_only_mcp_tools_v1",
+        "status": "ACTIVE",
+        "path": "mcp/tools.mjs"
+      },
+      {
+        "capabilityId": "visual_context_retrieval_v1",
+        "status": "ACTIVE",
+        "path": "graph/retrieval/get-visual-context.mjs"
+      },
+      {
+        "capabilityId": "visual_intelligence_graph_build_v1",
+        "status": "ACTIVE",
+        "path": "graph/projection/build-visual-graph.mjs"
+      },
+      {
+        "capabilityId": "visual_intelligence_graph_publish_v1",
+        "status": "ACTIVE",
+        "path": "graph/publication/publish-visual-graph.mjs"
+      }
+    ],
+    "protocols": [
+      "illustrator-visual-authoring-v1",
+      "proposal-cover-hero-dissolve-v1",
+      "visual-experience-event-v1"
+    ],
+    "surfaces": [
+      {
+        "surfaceId": "vae-cli",
+        "kind": "CLI"
+      },
+      {
+        "surfaceId": "vae-mcp-server",
+        "kind": "MCP"
+      },
+      {
+        "surfaceId": "vae-pipeline-status",
+        "kind": "SCRIPT"
+      }
+    ],
+    "dependencies": [
+      "CG-AppBuilder-MCP"
+    ],
+    "legacyCapabilities": [
+      "illustrator_vector_trace_v1",
+      "vae_read_only_mcp_tools_v1",
+      "visual-asset-pipeline",
+      "visual_context_retrieval_v1",
+      "visual_intelligence_graph_build_v1",
+      "visual_intelligence_graph_publish_v1"
+    ],
+    "codePointerCount": 4,
+    "symbolPointerCount": 5,
+    "allPointersClean": true,
+    "routingSummary": {
+      "ownerRepo": "Visual-Asset-Engine",
+      "ownerIndex": "Visual-Asset-Engine-index",
+      "domains": [
+        "visual-assets"
+      ],
+      "canonicalPrograms": [
+        "vae-foundation-v1",
+        "vae-visual-intelligence-authoritative-v1"
+      ],
+      "aliases": [
+        "vae",
+        "visual asset engine",
+        "visual-asset-engine"
+      ],
+      "estateAliases": [
+        "vae",
+        "visual-asset-engine",
+        "visual asset engine"
+      ],
+      "capabilities": [
+        "illustrator_vector_trace_v1",
+        "vae_read_only_mcp_tools_v1",
+        "visual-asset-pipeline",
+        "visual_context_retrieval_v1",
+        "visual_intelligence_graph_build_v1",
+        "visual_intelligence_graph_publish_v1"
+      ],
+      "localIndexPath": "index/cg-federated-repo-index.v1.json"
+    },
+    "contentSha256": "sha256:402da67a8218b3e054213e2108a297e692473a3529dc625fe0042ace89574e3f"
+  },
+  "negativeControl": {
+    "capability_implementation_path_missing": {
+      "rejected": true,
+      "errors": [
+        "capability visual_intelligence_graph_build_v1: implementation path missing: graph/projection/does-not-exist.mjs"
+      ]
+    },
+    "capability_undeclared_authority_id": {
+      "rejected": true,
+      "errors": [
+        "capability visual_intelligence_graph_build_v1: invalid authorityId no-such-authority-v1"
+      ]
+    },
+    "surface_missing_kind": {
+      "rejected": true,
+      "errors": [
+        "surface vae-mcp-server: kind is required"
+      ]
+    },
+    "duplicate_capability_id": {
+      "rejected": true,
+      "errors": [
+        "duplicate capabilityId visual_intelligence_graph_build_v1"
+      ]
+    }
+  },
+  "caveats": [
+    "compiled-index-preview.v1.json was produced off the operator host from a shallow clone. Its INDEX_GENERATED_AT, provenance.generatedOn and LAST_INDEXED_SHA are artefacts of this run and are NOT publishable.",
+    "Only the seed is the deliverable. The index must be recompiled on the governed host so provenance binds to that host and to the commit that carries the seed.",
+    "contentSha256 above is a preview of the content identity the seed produces; it excludes INDEX_GENERATED_AT, LAST_INDEXED_SHA and pointer observation fields, so it should reproduce on the governed host for the same tree."
+  ]
+}
