@@ -2,7 +2,7 @@
 
 ## Summary
 
-Implements the VAE Universal Spatial Intelligence master plan (`plans/2026-10-29_vae-universal-spatial-intelligence-master-plan.md`, branch `plan/vae-universal-spatial-intelligence-20261029` @ `12b68fe`) in the owning repo, `BlackBoxCompute/Visual-Asset-Engine`. Plan §10 steps 1–6 and the §5 `svg-render` prerequisite are implemented as seven stacked PRs (#27–#33). All seven are reviewed and tested in the lab. **None is merged or deployed yet.** The milestone is integration: merged, deployed to the MCP host, and proven by live tool calls.
+Implements the VAE Universal Spatial Intelligence master plan (`plans/2026-10-29_vae-universal-spatial-intelligence-master-plan.md`, branch `plan/vae-universal-spatial-intelligence-20261029` @ `12b68fe`) in the owning repo, `BlackBoxCompute/Visual-Asset-Engine`. Plan §10 steps 1–6 and the §5 `svg-render` prerequisite are implemented as seven stacked PRs (#27–#33). On 2026-10-29 all seven were **merged** (owner-granted DALs), **deployed** to the MCP host and **proven** by live tool calls, and `main`'s authoritative local-actions CI passed on the merge commit `0c3b1f9`.
 
 ## Workspace
 
@@ -15,7 +15,7 @@ Implements the VAE Universal Spatial Intelligence master plan (`plans/2026-10-29
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Authority repo | BlackBoxCompute/Visual-Asset-Engine |
 | Execution repo | BlackBoxCompute/Visual-Asset-Engine (consumer fix: Capglass5708/CG-Website-) |
-| Status | Active: integration gate (owner merges) |
+| Status | Active: slices 1–7 integrated; follow-ups open (CI parity PR #34, PDF adapter) |
 
 ## Repositories involved
 
@@ -33,15 +33,15 @@ VAE owns capture, spatial scene, comparison, inspection and replacement planning
 
 | Slice | PR | Implemented | GPT-reviewed | Lab-tested | Merged | Deployed (MCP host) | Independently verified |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 Lessons as tests; empty join fails closed | [#27](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/27) | yes | approved | yes | no | no | no |
-| 2 CDP element capture, VisualScene v2, storefront baseline | [#28](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/28) | yes | approved | yes | no | no | no |
-| 3 Element-level comparison across differing DOMs | [#29](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/29) | yes | approved | yes | no | no | no |
-| 4 Read-only Reference Inspector; full-page lazy loading | [#30](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/30) | yes | approved | yes | no | no | no |
-| 5 Focal-point responsive image replacement | [#31](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/31) | yes | approved | yes | no | no | no |
-| 6 Reuse on a second page; mission receipt | [#32](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/32) | evidence only | n/a | yes | no | no | no |
-| 7 `svg-render` capture adapter | [#33](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/33) | yes | approved | yes | no | no | no |
+| 1 Lessons as tests; empty join fails closed | [#27](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/27) | yes | approved | yes | yes | yes | yes |
+| 2 CDP element capture, VisualScene v2, storefront baseline | [#28](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/28) | yes | approved | yes | yes | yes | yes |
+| 3 Element-level comparison across differing DOMs | [#29](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/29) | yes | approved | yes | yes | yes | yes |
+| 4 Read-only Reference Inspector; full-page lazy loading | [#30](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/30) | yes | approved | yes | yes | yes | yes |
+| 5 Focal-point responsive image replacement | [#31](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/31) | yes | approved | yes | yes | yes | yes |
+| 6 Reuse on a second page; mission receipt | [#32](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/32) | evidence only | n/a | yes | yes | yes | yes |
+| 7 `svg-render` capture adapter | [#33](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/33) | yes | approved | yes | yes | yes | yes |
 
-"Lab-tested" means the Omarchy host and the full `generation-core.yml` step list run locally, which is WORKFLOW_COMPLETE input, not RELEASE_PROVEN. "Independently verified" means a post-merge CI run on `main` plus the live MCP probe below.
+"Lab-tested" means the Omarchy host and the full `generation-core.yml` step list run locally, which is WORKFLOW_COMPLETE input, not RELEASE_PROVEN. "Independently verified" = `main`'s authoritative local-actions CI on `0c3b1f9` (test-and-gates and visual-graph-authority success, signed receipt, network none, read-only root) plus the live MCP probe. Caveat: that CI did not yet run the two USI suites; [VAE #34](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/34) adds them (verified in the CI image: 26/26, 44/44).
 
 ## Valuable decisions
 
@@ -67,6 +67,8 @@ Baseline (CG-Website `b3d1aa97`, storefront page). Region loop against the infer
 | --- | --- | --- |
 | `generation-core.yml` step list + `test:visual-reference-proof` + `test:reference-layout-intelligence` + toolbox gates, at `c6b7d77` (#33 head) | 22/22 pass | lab, Omarchy host, Chromium 155 |
 | Stack integrity | linear: `84aec220` → 8f15f38 → 02b9851 → 0543382 → cc5759f → 11228a9 → 5f1c220 → c6b7d77 (29 commits) | remote heads match; `main` unchanged at `84aec220` |
+| Live MCP probe, post-merge (host at `0c3b1f9`) | `NO_MATCHES` / `IDENTITY_MISMATCH` / `CALLER_ALIGN_REGION_IDENTITY`; contract 1.2.0 with `image.focal-fit` | deployed code proven |
+| `main` CI on `0c3b1f9` (local-actions) | test-and-gates success, visual-graph-authority success; signed receipt, exit 0 | independent |
 | Live MCP probe, pre-merge (host checkout `84aec220`) | zero-match join → `CORRECTION_REQUIRED` / `CALLER_FIX_THEN_RECAPTURE`; asset contract 1.1.0, no `image.focal-fit` | Plan §2.3 lesson 1's silent-zero bug is live |
 | Same probe against the stack (`c6b7d77`) | `NO_MATCHES` / `IDENTITY_MISMATCH` / `CALLER_ALIGN_REGION_IDENTITY`; contract 1.2.0 with `image.focal-fit` | this is the post-merge deployment proof |
 
@@ -76,23 +78,23 @@ Baseline (CG-Website `b3d1aa97`, storefront page). Region loop against the infer
 
 | Blocker | Owner repo | Required action |
 | --- | --- | --- |
-| Owner merge of #27 → #33, in order, with merge commits (squash or rebase would orphan the later stacked PRs; earlier VAE PRs used merge commits) | Visual-Asset-Engine | Owner |
-| MCP host checkout (`blackbox:/home/wesley/src/Visual-Asset-Engine`, used by Claude and Cursor) still at `84aec220` | Visual-Asset-Engine | After merge: fast-forward pull (its 119 locally modified generated files do not overlap the 29 changed files), rerun the probe, write the acceptance receipt |
+| Authoritative CI parity script omits the two USI suites | Visual-Asset-Engine | Owner merge grant for [#34](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/34) |
 | CG-Website anatomy illustration broken in production (0x14 byte) | CG-Website- | Review/merge [CG-Website PR #12](https://github.com/Capglass5708/CG-Website-/pull/12); deployment by that repo's owner |
 
 ## Commits / PRs
 
 | Repo | Commit / PR | Status |
 | --- | --- | --- |
-| Visual-Asset-Engine | #27–#33 (heads above) | open, approved by review, awaiting owner merge |
+| Visual-Asset-Engine | #27–#33 merged: 4ba23a2, 85a3d8f, fbf5ca6, ab16fba, 78aa378, 852677f, 0c3b1f9 (`main`) | merged, deployed, CI green |
+| Visual-Asset-Engine | [#34](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/34): CI parity + operational acceptance receipt | open; GPT approve gx-cbc01ded-fc3 |
 | CG-Website- | [#12](https://github.com/Capglass5708/CG-Website-/pull/12) `0870c59`: one byte in `anatomy.svg` + XML parse check in `tests/storefront-systems-page-v1.py` | open; before/after evidence in the PR |
 
 ## Next actions
 
 | Priority | Action | Owner repo | Status |
 | --- | --- | --- | --- |
-| 1 | Merge #27–#33 in order | Visual-Asset-Engine | owner |
-| 2 | Update MCP host checkout; rerun live probe; operational acceptance receipt | Visual-Asset-Engine | ready, waiting on 1 |
+| 1 | Merge #34; confirm both USI suites in `main`'s signed CI receipt | Visual-Asset-Engine | owner grant |
+| 2 | Prevent drift between `generation-core.yml` and the parity script | Visual-Asset-Engine | not started |
 | 3 | `pdf-render` adapter per approved plan (gx-63a53a10-f89), from integrated `main` | Visual-Asset-Engine | design approved; not started |
 | 4 | Interaction/responsive state capture (menus, details); contextual matching for repeated cards | Visual-Asset-Engine | not started |
 | 5 | Fusion / rebrand / functional reconstruction; §7 license inventory per candidate; learning-sink integration | Visual-Asset-Engine | not started |
@@ -110,3 +112,9 @@ Baseline (CG-Website `b3d1aa97`, storefront page). Region loop against the infer
 - Slices 1–7 published as VAE PRs #27–#33, each through the bb-gpt review loop to approval.
 - Integration gate verified pre-merge: stack linear, heads match, CI step list green in the lab, MCP host and probe identified.
 - CG-Website PR #12 opened (anatomy.svg). PDF adapter plan approved; implementation deferred until after integration.
+
+### 2026-10-29 CT — Claude Code (integration)
+
+- Owner granted merge DALs; #27–#33 merged in order with merge commits, `main` 84aec220 → 0c3b1f9; merged tree identical to the reviewed head.
+- MCP host checkout moved to `0c3b1f9`; the live probe proves the merged implementation runs. `main` local-actions CI green.
+- Found and fixed in PR #34: the authoritative CI parity script never ran the USI suites. Operational acceptance receipt: VAE `artifacts/agent-runs/VAE-USI-20261029/operational-acceptance.json` (on #34).
