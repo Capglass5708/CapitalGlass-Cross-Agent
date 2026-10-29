@@ -35,7 +35,7 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Verification | Lab: full `generation-core.yml` step list + visual-proof + reference-layout + toolbox gates 22/22 at `c6b7d77`. Live MCP probe pre-merge (host at `84aec220`) still shows the silent-zero-match bug; the same probe against the stack shows the fix |
 | Correction | PRs #27–#32 blamed `@capital-glass/vae-tokens` for 3 `test:root` failures; the real cause was uninstalled `packages/vae-visual` deps. Fixed in #33 (CI install step + receipt) |
 | Not claimed | RELEASE_PROVEN, pixel-perfect, SSIM (no approved reference PNG) |
-| Next action | Merge VAE #34 (authoritative CI parity runs the USI suites; operational acceptance receipt); then `pdf-render` (plan approved, gx-63a53a10-f89) |
+| Next action | `pdf-render` (plan approved, gx-63a53a10-f89). VAE #34 merged as `4a6662c`: authoritative CI ran both USI suites (26/26, 44/44) |
 
 ### 2026-09-10 CT — github-plane-legacy-path-retirement-v1 (current milestone: MAP_CALLER)
 
