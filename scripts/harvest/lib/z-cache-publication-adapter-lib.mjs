@@ -39,7 +39,7 @@ function readExistingReceipt(cacheDir) {
 }
 
 /**
- * Publish Z: cache products derived from L: durable identity only.
+ * Publish Z: cache products derived from Z:/BlackBoxAi durable identity only.
  * Does not read Git harvest directories or payload bodies.
  */
 export function publishZCacheFromL(context, options = {}) {

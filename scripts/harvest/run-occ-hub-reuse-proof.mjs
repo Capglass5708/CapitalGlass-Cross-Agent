@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Mandatory Hub-mediated reuse proof for occ-sdlc-harvest-bridge-v1.
- * Answers OCC retrieval questions from L: Intelligence Hub catalog only.
+ * Answers OCC retrieval questions from Z:/BlackBoxAi Intelligence Hub catalog only.
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -12,7 +12,7 @@ const REPO_ROOT = path.resolve(__dirname, "../..");
 const HUB_ROOT =
   process.env.INTELLIGENCE_HUB_ROOT?.trim() ||
   process.env.CG_INTELLIGENCE_HUB_ROOT?.trim() ||
-  "/mnt/l/Capital-Glass-Intelligence-Hub";
+  "/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub";
 const WORK_PACKAGE = "occ-sdlc-harvest-bridge-v1";
 const HARVEST_ID = "harvest-2026-08-17-capital-glass-operations-command-center-v1";
 const OUT_DIR = path.join(REPO_ROOT, "artifacts/agent-runs", WORK_PACKAGE);
@@ -81,7 +81,7 @@ function scoreMatch(query, record) {
 
 function searchHub(query, expectedSeedId) {
   if (!fs.existsSync(CATALOG_DIR)) {
-    return { found: false, layer: "L-catalog", error: "catalog missing", retrievalCode: "L_DRIVE_NOT_MOUNTED_IN_WSL" };
+    return { found: false, layer: "L-catalog", error: "catalog missing", retrievalCode: "Z_BLACKBOXAI_NOT_MOUNTED" };
   }
 
   const direct = loadCatalogRecord(expectedSeedId);
@@ -144,7 +144,7 @@ function main() {
     questionCount: QUESTIONS.length,
     passCount,
     verdict,
-    retrievalCode: verdict === "HUB_REUSE_PROOF_PASS" ? "INDEX_HIT" : hubMounted ? "INDEX_MISS" : "L_DRIVE_NOT_MOUNTED_IN_WSL",
+    retrievalCode: verdict === "HUB_REUSE_PROOF_PASS" ? "INDEX_HIT" : hubMounted ? "INDEX_MISS" : "Z_BLACKBOXAI_NOT_MOUNTED",
     forbiddenSources: ["Calendar repo grep", "compounding-reuse-receipt-v1.json local read"],
     results,
   };

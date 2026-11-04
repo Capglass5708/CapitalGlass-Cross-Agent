@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Operator chain: Supabase ingest → L: publish → freshness gate (all layers same SHA).
+ * Operator chain: Supabase ingest → Z:/BlackBoxAi publish → freshness gate (all layers same SHA).
  */
 import { execSync } from "node:child_process";
 import path from "node:path";
@@ -10,7 +10,7 @@ import { resolveAppBuilderRoot, resolveDataExtractionRoot } from "./lib/resolve-
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const APP_BUILDER_ROOT = resolveAppBuilderRoot(REPO_ROOT);
 const DATA_EXTRACTION_ROOT = resolveDataExtractionRoot(REPO_ROOT);
-const HUB_ROOT = process.env.INTELLIGENCE_HUB_ROOT || "/mnt/l/Capital-Glass-Intelligence-Hub";
+const HUB_ROOT = process.env.INTELLIGENCE_HUB_ROOT || "/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub";
 
 function run(cmd, cwd, env = {}) {
   console.log(`> ${cmd}`);

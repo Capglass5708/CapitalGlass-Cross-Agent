@@ -10,7 +10,7 @@ import path from 'node:path';
 import { REPO_ROOT } from './paths.mjs';
 import { mergeManifestIntoIntelligenceIndex } from './intelligence-index-lib.mjs';
 import { writeHarvestIntelligenceRetrievalArtifacts } from './harvest-intelligence-retrieval-lib.mjs';
-import { testLHubPlane, testSupabasePlane } from '../../intelligence/lib/preflight-v1.mjs';
+import { testZHubPlane, testSupabasePlane, Z_HUB_PLANE } from '../../intelligence/lib/preflight-v1.mjs';
 
 export function loadEvidenceManifest(evidencePath) {
   const resolved = path.resolve(evidencePath);
@@ -33,11 +33,11 @@ function countContradictionsRequiringReview(manifest) {
 
 // Diagnostic only — reports whether a remote Hub plane is reachable, never a
 // claim that anything was published there. No code path in this function
-// writes to L: or Supabase; an actual Hub-publish implementation for Gold
+// writes to the Z:/BlackBoxAi Hub or Supabase; an actual Hub-publish implementation for Gold
 // Mine evidence is future work (see the V2 proposal's cross-repo items).
 async function checkHubPlaneReachability() {
-  const lHub = testLHubPlane();
-  if (lHub.available) return { reachable: true, plane: 'L_DRIVE' };
+  const zHub = testZHubPlane();
+  if (zHub.available) return { reachable: true, plane: Z_HUB_PLANE };
   const supabase = await testSupabasePlane();
   if (supabase.available) return { reachable: true, plane: 'SUPABASE' };
   return { reachable: false, plane: null, reason: 'ALL_HUB_PLANES_UNAVAILABLE' };
@@ -129,7 +129,7 @@ export async function runGoldMineProtocol(manifest, { repoRoot = REPO_ROOT } = {
   if (contradictionsRequiringReview > 0) {
     result.note = `${contradictionsRequiringReview} packet(s) contradict existing intelligence and need review before this can be treated as fully resolved. Evidence was still harvested, merged into the local intelligence index, and the local retrieval slice was regenerated.`;
   } else {
-    result.note = "Evidence harvested, merged into the governed local intelligence index, and the local retrieval slice (work-progress/intelligence-hub-slices/harvest-intelligence.json) was regenerated so a fresh intelligence.preflight() call can retrieve it immediately. Remote Hub publication (L:/Supabase) is not implemented by this protocol yet — nothing was silently published beyond this repo's own Git-tracked mirror.";
+    result.note = "Evidence harvested, merged into the governed local intelligence index, and the local retrieval slice (work-progress/intelligence-hub-slices/harvest-intelligence.json) was regenerated so a fresh intelligence.preflight() call can retrieve it immediately. Remote Hub publication (Z:/BlackBoxAi Hub/Supabase) is not implemented by this protocol yet — nothing was silently published beyond this repo's own Git-tracked mirror.";
   }
 
   fs.mkdirSync(runDir, { recursive: true });

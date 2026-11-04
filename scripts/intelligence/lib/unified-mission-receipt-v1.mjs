@@ -11,6 +11,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+// Same value as preflight-v1 Z_HUB_PLANE; kept literal so this builder stays dependency-free.
+const Z_HUB_PLANE = 'Z_BLACKBOXAI';
+
 export const UNIFIED_RECEIPT_SCHEMA = 'unified-mission-receipt-v1@1.0.0';
 
 export function buildUnifiedMissionReceipt({
@@ -26,7 +29,7 @@ export function buildUnifiedMissionReceipt({
   }
 
   const cacheLane = preflightResult.laneChecks?.find((l) => l.plane === 'HOT_AI_CACHE') ?? null;
-  const lHubLane = preflightResult.laneChecks?.find((l) => l.plane === 'L_DRIVE') ?? null;
+  const hubLane = preflightResult.laneChecks?.find((l) => l.plane === Z_HUB_PLANE) ?? null;
   const supabaseLane = preflightResult.laneChecks?.find((l) => l.plane === 'SUPABASE') ?? null;
 
   return {
@@ -38,7 +41,8 @@ export function buildUnifiedMissionReceipt({
     // A null lane means the ladder short-circuited before this plane was
     // ever probed (e.g. a fresh hot-cache hit) -- that must read NOT_CHECKED,
     // never UNAVAILABLE, which would falsely claim the plane was tried and failed.
-    lHub: !lHubLane ? 'NOT_CHECKED' : lHubLane.available ? 'VERIFIED' : 'UNAVAILABLE',
+    // `lHub` is the v1 contract field name; it reports the Z:/BlackBoxAi Hub lane.
+    lHub: !hubLane ? 'NOT_CHECKED' : hubLane.available ? 'VERIFIED' : 'UNAVAILABLE',
     supabaseProjection: !supabaseLane ? 'NOT_CHECKED' : supabaseLane.available ? 'CURRENT' : 'UNAVAILABLE',
     waverunner: waverunner ?? 'NOT_YET_INTEGRATED',
     goldmine: goldmineReceipt?.verdict ?? 'NOT_RUN',

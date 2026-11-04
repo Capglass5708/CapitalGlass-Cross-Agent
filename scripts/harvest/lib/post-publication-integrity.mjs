@@ -32,7 +32,7 @@ export function verifyPostPublicationIntegrity({
   };
 
   const lProtocolPath = path.join(hubRoot, "../02-catalog/Harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md");
-  const altL = "/mnt/l/02-catalog/Harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md";
+  const altL = "/mnt/z/BlackBoxAi/02-catalog/Harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md";
   const lPath = fs.existsSync(altL) ? altL : lProtocolPath;
   if (fs.existsSync(lPath)) {
     after.lProtocol = { hash: hashFileContent(fs.readFileSync(lPath, "utf8")) };

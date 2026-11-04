@@ -20,17 +20,28 @@ function writeJsonAtomic(filePath, value) {
   fs.renameSync(temp, filePath);
 }
 
-export function resolveLDriveRoot(env = process.env) {
+/** AI home on Z: (L: retired 2026-11-03). */
+export const Z_BLACKBOXAI_ROOT = "/mnt/z/BlackBoxAi";
+
+/**
+ * Resolve the AI home root. `CG_Z_BLACKBOXAI_ROOT` is primary; `CG_L_DRIVE_ROOT` and
+ * `L_DRIVE_ROOT` are deprecated read-only aliases kept for existing callers.
+ */
+export function resolveZBlackBoxAiRoot(env = process.env) {
   const candidates = [
+    env.CG_Z_BLACKBOXAI_ROOT?.trim(),
     env.CG_L_DRIVE_ROOT?.trim(),
     env.L_DRIVE_ROOT?.trim(),
-    "/mnt/l",
+    Z_BLACKBOXAI_ROOT,
   ].filter(Boolean);
   for (const root of candidates) {
     if (fs.existsSync(root)) return root;
   }
-  return candidates[0] ?? "/mnt/l";
+  return candidates[0] ?? Z_BLACKBOXAI_ROOT;
 }
+
+/** @deprecated Use resolveZBlackBoxAiRoot. */
+export const resolveLDriveRoot = resolveZBlackBoxAiRoot;
 
 export function resolveChatgptHarvestDestinationRoot(lDriveRoot = resolveLDriveRoot()) {
   return path.join(lDriveRoot, CATALOG_REL, BRANCH_FOLDER);
@@ -199,7 +210,7 @@ export function moveChatgptHarvestToL({
     lDriveRoot,
     destinationRoot: manifest.destinationRoot,
     destinationRel: manifest.destinationRel,
-    windowsPath: `L:\\${CATALOG_REL.replace(/\//g, "\\")}\\${BRANCH_FOLDER}\\`,
+    windowsPath: `Z:\\BlackBoxAi\\${CATALOG_REL.replace(/\//g, "\\")}\\${BRANCH_FOLDER}\\`,
     movedCount: moved.length,
     skippedCount: skipped.length,
     failureCount: failures.length,

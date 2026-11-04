@@ -13,7 +13,7 @@ function writeJsonAtomic(filePath, value) {
 }
 
 /**
- * Sync Git do-not-advance-registry to L: BY-KIND/do-not-advance.json
+ * Sync Git do-not-advance-registry to Z:/BlackBoxAi BY-KIND/do-not-advance.json
  */
 export function syncDoNotAdvanceToHub({ repoRoot, hubRoot }) {
   const registryPath = path.join(repoRoot, "work-progress/do-not-advance-registry.json");
@@ -46,7 +46,7 @@ const LANE_ROW =
 const LANE_MARKER = "**Preflight:** use only open-actions + blockers slices by default.";
 
 /**
- * Register thread-autopsy-index in INDEX.json and AGENT_START_HERE.md on L:
+ * Register thread-autopsy-index in INDEX.json and AGENT_START_HERE.md on Z:/BlackBoxAi
  */
 export function registerThreadAutopsyHubIndex({ hubRoot, gitHead }) {
   const errors = [];
@@ -110,7 +110,7 @@ const PROMPT_HARVEST_LANE_ROW =
   "| Prompt harvest index | `BY-KIND/prompt-harvest-index.json` | Approved harvest prompt metadata (compact) — **explicit retrieval only** |";
 
 /**
- * Merge per-harvest prompt-harvest-index-slice.json into L: BY-KIND aggregate.
+ * Merge per-harvest prompt-harvest-index-slice.json into Z:/BlackBoxAi BY-KIND aggregate.
  */
 export function upsertPromptHarvestHubIndex({ repoRoot, hubRoot, harvestId, gitHead }) {
   const runSlicePath = path.join(
@@ -163,7 +163,7 @@ export function upsertPromptHarvestHubIndex({ repoRoot, hubRoot, harvestId, gitH
 }
 
 /**
- * Register prompt-harvest-index in INDEX.json and AGENT_START_HERE.md on L:
+ * Register prompt-harvest-index in INDEX.json and AGENT_START_HERE.md on Z:/BlackBoxAi
  */
 export function registerPromptHarvestHubIndex({ hubRoot, gitHead }) {
   const errors = [];

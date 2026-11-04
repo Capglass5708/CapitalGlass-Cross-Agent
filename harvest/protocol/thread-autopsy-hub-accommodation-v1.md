@@ -1,18 +1,18 @@
 # Intelligence Hub accommodation — thread autopsy harvest v1
 
 **Protocol:** [CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md](./CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md)  
-**Hub root:** `L:/Capital-Glass-Intelligence-Hub` (WSL: `/mnt/l/Capital-Glass-Intelligence-Hub`)  
+**Hub root:** `Z:/BlackBoxAi/Capital-Glass-Intelligence-Hub` (WSL: `/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub`)  
 **Git authority:** CapitalGlass-Cross-Agent (pointers only)  
 **Storage policy:** [HARVEST-STORAGE-POLICY-v1.md](./HARVEST-STORAGE-POLICY-v1.md)
 
-Git (Cross-Agent) owns schemas, compilers, and **minimal lineage pointers** (manifest + publication pointer). **L: Intelligence Hub** owns complete durable harvest intelligence. **Supabase** holds pointer projections and metadata only.
+Git (Cross-Agent) owns schemas, compilers, and **minimal lineage pointers** (manifest + publication pointer). **Z:/BlackBoxAi Intelligence Hub** owns complete durable harvest intelligence. **Supabase** holds pointer projections and metadata only.
 
 ---
 
 ## Architecture
 
 ```text
-Phase A — Local staging (validate; stage on L: _staging)
+Phase A — Local staging (validate; stage on Z:/BlackBoxAi _staging)
   artifacts/agent-runs/<harvest-id>/     # transient local encoding
         ↓ validate + commit manifest only (Phase A)
 
@@ -20,11 +20,11 @@ Git (Cross-Agent) — phased pointers
   Phase A: harvest-manifest-v1.json (+ optional HARVEST_SUMMARY.md)
   Phase C: harvest-publication-pointer-v1.json (last)
 
-L: _staging/harvests/<harvestId>/<payloadHash>/   # immutable handoff (Phase A)
+Z:/BlackBoxAi _staging/harvests/<harvestId>/<payloadHash>/   # immutable handoff (Phase A)
 
 Phase B — Operator publish (no Git mutations)
         ↓ harvest:compile-seed-packets → harvest:publish-hub-seed
-L: Intelligence Hub — complete durable intelligence
+Z:/BlackBoxAi Intelligence Hub — complete durable intelligence
   02-catalog/knowledge-objects/cross-agent-harvest/<SEED-ID>.json
   00-master-index/BY-KIND/thread-autopsy-index.json
   00-master-index/BY-KIND/do-not-advance.json
@@ -37,7 +37,7 @@ C: hot-routing-index (critical seed IDs only)
 
 **Design rules:**
 
-1. **L: owns** autopsy bundles, seed bodies, waste ledgers, and catalog objects after publish.
+1. **Z:/BlackBoxAi owns** autopsy bundles, seed bodies, waste ledgers, and catalog objects after publish.
 2. **Git owns** packet IDs + hashes in manifest — not duplicate payload bodies (target state).
 3. The hub gets **atomic seed packets** plus a **thin index slice** for retrieval.
 4. Git commit/push **does not** substitute for Phase B publish.
@@ -154,7 +154,7 @@ Extends proven `harvest-qa-record` pattern with autopsy fields.
 | File | Role | Syncs to hub |
 | --- | --- | --- |
 | `harvest-manifest-v1.json` | Machine coordination + packet ID/hash refs | Referenced by index slice |
-| `harvest-publication-pointer-v1.json` | Lineage, verdict, L:/Z:/Supabase refs | Updated after Phase B |
+| `harvest-publication-pointer-v1.json` | Lineage, verdict, Z:/Supabase refs | Updated after Phase B |
 | `HARVEST_SUMMARY.md` | Optional human narrative | No |
 
 ### Estate registries (Git)
@@ -180,7 +180,7 @@ Extends proven `harvest-qa-record` pattern with autopsy fields.
 ## Publication commands
 
 ```bash
-# Cross-Agent (operator, L: mounted)
+# Cross-Agent (operator, Z:/BlackBoxAi mounted)
 npm run harvest:compile-seed-packets -- --harvest-id=<id>
 npm run harvest:blind-retrieval -- --harvest-id=<id>
 npm run harvest:publish-hub-seed -- --harvest-id=<id>
@@ -201,8 +201,8 @@ Cursor agents: **forbidden** from steps above.
 | --- | --- | --- |
 | `harvest-qa-record` catalog objects | Exists (Synology pilot) | Generalized in `publish-hub-seed-lib.mjs` |
 | `cross-agent-harvest-*.json` BY-KIND pointer | Exists | Per-harvest upsert in publisher |
-| `do-not-advance.json` on L: | **Synced** | `syncDoNotAdvanceToHub()` on `index:publish` |
-| `commands.json` on L: | Exists | Auto-sync from command-index on publish |
+| `do-not-advance.json` on Z:/BlackBoxAi | **Synced** | `syncDoNotAdvanceToHub()` on `index:publish` |
+| `commands.json` on Z:/BlackBoxAi | Exists | Auto-sync from command-index on publish |
 | `thread-autopsy-index.json` | **Built** | Created/upserted by `harvest:publish-hub-seed` + `registerThreadAutopsyHubIndex` |
 | `harvest-thread-autopsy-seed` object type | **Built** | Schema + `compile-seed-packets` catalog stubs |
 | `harvest:compile-seed-packets` | **Built** | `scripts/harvest/compile-seed-packets.mjs` |

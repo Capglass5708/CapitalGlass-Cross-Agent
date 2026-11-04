@@ -10,8 +10,9 @@ export const Z_HARVEST_MIRROR_RECEIPT_SCHEMA = "harvest-z-mirror-sync-receipt-v1
 
 export const Z_HARVEST_EXPECTED_MOUNT = "/mnt/z";
 export const Z_HARVEST_PROTOCOL_ROOT = "/mnt/z/Capital-Glass-Dev/Harvest";
-export const L_HARVEST_EXPECTED_MOUNT = "/mnt/l";
-export const L_HUB_INDEX_ROOT = "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index";
+/** Intelligence Hub on Z:/BlackBoxAi (L: retired 2026-11-03). */
+export const Z_BLACKBOXAI_HUB_INDEX_ROOT =
+  "/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index";
 
 export const Z_HARVEST_WAVE_SDLC_REL = "protocol/CURSOR_HARVEST_INGEST_CLOSEOUT_WAVE_SDLC_V1.md";
 
@@ -110,7 +111,7 @@ Z:\\\\Capital-Glass-Dev\\\\Harvest\\\\protocol\\\\CHAT-THREAD-CLOSEOUT-AUTOPSY-H
 | \`npm run harvest:sync-z-mirror -- --repo-mirror-only\` | no | no | \`Z_HARVEST_REPO_MIRROR_PASS\` | 0 |
 | Z unavailable (default mode) | — | — | \`Z_HARVEST_MIRROR_SYNC_BLOCKED\` | 1 |
 
-L: hub index findings are **warnings** for z-mirror; they do not block Z publication.
+Z:/BlackBoxAi hub index findings are **warnings** for z-mirror; they do not block Z publication.
 \`harvest:sync-derived\` uses repository-only mode (\`requireZPublication: false\`).
 
 Receipt: \`harvest/z-mirror-sync-receipt.json\` — check \`verdict\`, \`errors\`, \`warnings\`, \`mountAuthority\`.
@@ -141,11 +142,10 @@ function isMountPoint(mountPath) {
 }
 
 /**
- * Assess expected WSL mount points for Z: harvest publication and optional L: hub.
+ * Assess expected WSL mount points for Z: harvest publication and the optional Z:/BlackBoxAi Intelligence Hub.
  */
 export function assessHarvestMountAuthority(env = process.env) {
   const zMount = env.CG_Z_HARVEST_MOUNT?.trim() || Z_HARVEST_EXPECTED_MOUNT;
-  const lMount = env.CG_L_HUB_MOUNT?.trim() || L_HARVEST_EXPECTED_MOUNT;
   const zHarvestRoot = env.CG_Z_HARVEST_ROOT?.trim() || Z_HARVEST_PROTOCOL_ROOT;
   const zProtocolDir = path.join(zHarvestRoot, "protocol");
 
@@ -157,11 +157,11 @@ export function assessHarvestMountAuthority(env = process.env) {
       harvestProtocolDir: fs.existsSync(zProtocolDir),
       harvestProtocolDirPath: zProtocolDir,
     },
-    l: {
-      mountpoint: lMount,
-      mounted: isMountPoint(lMount),
-      hubIndexDir: fs.existsSync(L_HUB_INDEX_ROOT),
-      hubIndexPath: L_HUB_INDEX_ROOT,
+    hub: {
+      mountpoint: zMount,
+      mounted: isMountPoint(zMount),
+      hubIndexDir: fs.existsSync(Z_BLACKBOXAI_HUB_INDEX_ROOT),
+      hubIndexPath: Z_BLACKBOXAI_HUB_INDEX_ROOT,
     },
   };
 }
@@ -233,10 +233,10 @@ export function syncZHarvestMirror({
   const warnings = [];
   const authorityDecisions = [];
 
-  if (!mountAuthority.l.mounted) {
-    warnings.push(`L_MOUNT_MISSING: ${mountAuthority.l.mountpoint} not mounted (optional for z-mirror)`);
-  } else if (!mountAuthority.l.hubIndexDir) {
-    warnings.push(`L_HUB_INDEX_MISSING: ${L_HUB_INDEX_ROOT} (optional for z-mirror)`);
+  if (!mountAuthority.hub.hubIndexDir) {
+    warnings.push(
+      `Z_BLACKBOXAI_NOT_MOUNTED: ${Z_BLACKBOXAI_HUB_INDEX_ROOT} missing (optional for z-mirror)`,
+    );
   }
 
   if (requireZPublication) {

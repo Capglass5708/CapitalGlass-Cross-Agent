@@ -236,7 +236,7 @@ export function exportProtocolSelfLearning({ harvestId, options = {} }) {
     processingOwner: "Data-Extraction",
     catalogRole: "RETRIEVAL_ONLY",
     lPublicationStatus: "NOT_RUN_BY_CROSS_AGENT",
-    targetCatalog: "L:\\02-catalog\\Harvest\\Harvest Protocol Self Learning",
+    targetCatalog: "Z:\\BlackBoxAi\\02-catalog\\Harvest\\Harvest Protocol Self Learning",
     automaticProtocolMutation: false,
   };
   const receiptPath = path.join(outDir, "protocol-self-learning-export-receipt.json");

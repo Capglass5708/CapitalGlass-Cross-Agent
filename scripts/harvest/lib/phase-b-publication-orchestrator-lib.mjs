@@ -235,7 +235,7 @@ function runPhaseBPublicationCore({
 
   const layers = createInitialLayerState({ retrievalEligible, aiCacheEligible, skipSupabase });
 
-  // Stage 1 — L: durable bundle (always first)
+  // Stage 1 — Z:/BlackBoxAi durable bundle (always first)
   let lResult;
   try {
     lResult = lDurablePublisher({ hubRoot, harvestId, payloadHash });
@@ -285,18 +285,18 @@ function runPhaseBPublicationCore({
     };
   }
 
-  // Read durable identity from L: — not Git worktree
+  // Read durable identity from Z:/BlackBoxAi — not Git worktree
   const context = readDurablePublicationContext(hubRoot, harvestId, payloadHash);
   const identity = inputIdentity ?? context;
 
-  // Stage 2 — Z: cache from L:
+  // Stage 2 — Z: cache from Z:/BlackBoxAi
   if (layers.zCache.required) {
     const zResult = mapZCacheResult(zPublisher(context));
     stages.push({ stage: "zCache", ok: zResult.ok !== false, status: zResult.status, verdict: zResult.verdict });
     applyLayerResult(layers, "zCache", zResult);
   }
 
-  // Stage 3 — Supabase compact projection from L:
+  // Stage 3 — Supabase compact projection from Z:/BlackBoxAi
   const supabaseResult = mapSupabaseResult(
     supabaseProjector(
       { ...context, phaseBStatus: "PHASE_B_IN_PROGRESS" },

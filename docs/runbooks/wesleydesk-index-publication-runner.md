@@ -5,7 +5,7 @@
 **Workflow:** `.github/workflows/index-publication.yml`  
 **Runner labels:** `self-hosted`, `wesleydesk`, `wsl2`
 
-Cross-Agent index publication to L:/Supabase **must** execute on **CG-WESLEYDESK-01** WSL2 because that host owns the canonical L: Intelligence Hub mount. WESLEY_WORK is a control host only.
+Cross-Agent index publication to Z:/BlackBoxAi Hub/Supabase **must** execute on **CG-WESLEYDESK-01** WSL2 because that host owns the canonical Z:/BlackBoxAi Intelligence Hub mount. WESLEY_WORK is a control host only.
 
 **Triggers:** `workflow_dispatch` (manual) and **push to `main`** when `work-progress/**`, `handoffs/**`, or `registry/**` change.
 
@@ -23,7 +23,7 @@ gh api repos/Capglass5708/CapitalGlass-Cross-Agent/actions/runners
 | Check | Command |
 | --- | --- |
 | Host identity | `npm run runner:preflight` |
-| L: mounted | `test -d /mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND` |
+| Z:/BlackBoxAi mounted | `test -d /mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND` |
 | Sibling repos | `CG-AppBuilder-MCP`, `Data-Extraction` under `~/repos` |
 | Doppler | `doppler --version` (publication uses `doppler run`) |
 | GitHub CLI | `gh auth status` |

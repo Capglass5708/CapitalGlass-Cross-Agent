@@ -74,7 +74,7 @@ function readJson(filePath) {
 
 function copyFileEnsuringDir(src, dest) {
   fs.mkdirSync(path.dirname(dest), { recursive: true });
-  // drvfs (WSL /mnt/l) rejects Node copyFileSync; read/write is reliable.
+  // drvfs/CIFS mounts (WSL /mnt/z) reject Node copyFileSync; read/write is reliable.
   const content = fs.readFileSync(src);
   fs.writeFileSync(dest, content);
 }

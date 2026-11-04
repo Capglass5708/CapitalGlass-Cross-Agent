@@ -114,7 +114,7 @@ Forbidden: edits to canonical `main` material (schemas, validators, scripts, hub
 ```text
 push chat-gpt-harvest
   → (when on main) .github/workflows/chatgpt-harvest-move-to-l.yml
-  → L:\02-catalog\chatgpt-draft-staging\chat-gpt-harvest\<harvest-id>\
+  → Z:\BlackBoxAi\02-catalog\chatgpt-draft-staging\chat-gpt-harvest\<harvest-id>\
   → Cursor pull + ingest + validate
 ```
 

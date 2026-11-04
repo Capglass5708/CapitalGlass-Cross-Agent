@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Post-publication gate: receipt verdict + L: BY-KIND sourceCommitSha === GITHUB_SHA.
+ * Post-publication gate: receipt verdict + Z:/BlackBoxAi BY-KIND sourceCommitSha === GITHUB_SHA.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -10,7 +10,7 @@ const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..
 const HUB_ROOT =
   process.env.INTELLIGENCE_HUB_ROOT?.trim() ||
   process.env.CG_INTELLIGENCE_HUB_ROOT?.trim() ||
-  '/mnt/l/Capital-Glass-Intelligence-Hub';
+  '/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub';
 
 const expectedSha = process.env.GITHUB_SHA?.trim();
 if (!expectedSha) {

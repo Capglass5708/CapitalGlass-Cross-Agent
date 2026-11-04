@@ -376,10 +376,10 @@ UNMANAGED_FILE_DROP
   -> GOVERNED_KNOWLEDGE_INTAKE_FOUNDATION
 ```
 
-### L: source and archive folders
+### Z:/BlackBoxAi source and archive folders
 
 ```text
-L:\Capital-Glass-Knowledge-Intake\
+Z:\BlackBoxAi\Capital-Glass-Knowledge-Intake\
   Audio\
     Incoming\
     Processing\
@@ -419,7 +419,7 @@ Z:\Capital-Glass-Knowledge-Intake\
 
 Users place files only into `Incoming`. Data-Extraction controls all later movement.
 
-## Stage 7 - Continuous L:/Z: observation
+## Stage 7 - Continuous Z: observation
 
 Work package:
 
@@ -444,7 +444,7 @@ Use:
 - Exclusion registry
 - Sensitivity and retention policies
 
-The system may have full read access to `/mnt/l` and `/mnt/z`, but only registered roots receive content extraction.
+The system may have full read access to `/mnt/z` (AI home `/mnt/z/BlackBoxAi`), but only registered roots receive content extraction.
 
 ## Stage 8 - Audio and document Knowledge Packages
 
@@ -593,7 +593,7 @@ Publication path:
 
 ```text
 Git graph release
-  -> L: Intelligence Hub
+  -> Z:/BlackBoxAi Intelligence Hub
   -> Z: AI-Cache-Authority
   -> Supabase projection
 ```

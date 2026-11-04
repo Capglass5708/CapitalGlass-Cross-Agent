@@ -18,7 +18,7 @@ export function resolveHubRoot(env = process.env) {
   const candidates = [
     env.INTELLIGENCE_HUB_ROOT?.trim(),
     env.CG_INTELLIGENCE_HUB_ROOT?.trim(),
-    "/mnt/l/Capital-Glass-Intelligence-Hub",
+    "/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub",
     "/mnt/z/Capital-Glass-Intelligence-Hub",
   ].filter(Boolean);
   for (const root of candidates) {
@@ -26,7 +26,7 @@ export function resolveHubRoot(env = process.env) {
       return root;
     }
   }
-  return candidates[0] ?? "/mnt/l/Capital-Glass-Intelligence-Hub";
+  return candidates[0] ?? "/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub";
 }
 
 function buildLegacyKnowledgeObject(record, harvestId, gitHead, contentHash) {
@@ -130,13 +130,13 @@ function writePerHarvestPointer({ hubRoot, harvestId, gitHead, seedManifest, pub
 }
 
 /**
- * Publish compiled seeds to L: Intelligence Hub catalog.
+ * Publish compiled seeds to Z:/BlackBoxAi Intelligence Hub catalog.
  */
 export function publishHubSeed({ repoRoot, harvestId, gitHead, hubRoot = null }) {
   const HUB_ROOT = hubRoot ?? resolveHubRoot();
   const hubIndexRoot = path.join(HUB_ROOT, "00-master-index");
   if (!fs.existsSync(path.join(hubIndexRoot, "BY-KIND"))) {
-    return { ok: false, errors: [`L: not mounted at ${hubIndexRoot}`] };
+    return { ok: false, errors: [`Z:/BlackBoxAi not mounted at ${hubIndexRoot}`] };
   }
 
   const runDir = path.join(repoRoot, "artifacts/agent-runs", harvestId);

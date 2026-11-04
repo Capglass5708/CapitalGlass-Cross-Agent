@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Alias for deterministic move to L: canonical chat-gpt-harvest folder.
+ * Alias for deterministic move to the Z:/BlackBoxAi canonical chat-gpt-harvest folder.
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -8,15 +8,17 @@ import path from "node:path";
 import { REPO_ROOT } from "./lib/paths.mjs";
 import {
   moveChatgptHarvestToL,
-  resolveLDriveRoot,
+  resolveZBlackBoxAiRoot,
   PASS_VERDICT,
 } from "./lib/chatgpt-harvest-deterministic-move-lib.mjs";
 
 const RECEIPT_DIR = path.join(REPO_ROOT, "artifacts/agent-runs/chatgpt-harvest-l-move");
 
 function parseArgs(argv) {
-  let lDriveRoot = resolveLDriveRoot();
+  let lDriveRoot = resolveZBlackBoxAiRoot();
   for (const arg of argv) {
+    if (arg.startsWith("--z-root=")) lDriveRoot = arg.slice("--z-root=".length);
+    // Deprecated alias (L: retired 2026-11-03).
     if (arg.startsWith("--l-drive-root=")) lDriveRoot = arg.slice("--l-drive-root=".length);
   }
   return {

@@ -1,6 +1,6 @@
 /**
  * Hot AI cache plane — the first-checked rung in intelligence.preflight()'s
- * retrieval ladder, ahead of L:. Reuses the existing, already-proven host/root
+ * retrieval ladder, ahead of Z:/BlackBoxAi. Reuses the existing, already-proven host/root
  * resolution from the harvest AI-cache pipeline (Z: canonical authority, then
  * per-host read-through replicas — see host-ai-cache-fanout-lib.mjs's own
  * comment: "Z remains sole writer; host roots are read-through replicas")
@@ -16,7 +16,7 @@
  * this repo does own.
  *
  * The exact per-dataset bundle file location under a resolved cache root is a
- * best-effort convention (mirroring the L: drive's 00-master-index/BY-KIND/
+ * best-effort convention (mirroring the Z:/BlackBoxAi Hub's 00-master-index/BY-KIND/
  * layout already used elsewhere in this repo) — this repo owns the dataset's
  * registration and freshness contract, but the physical compiler that writes
  * this file lives in CG-AppBuilder-MCP and this exact path hasn't been

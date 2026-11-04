@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * One-shot: make a chat-thread harvest operational on L:, Z:, and C: hot cache.
+ * One-shot: make a chat-thread harvest operational on Z: (incl. Z:/BlackBoxAi Hub) and C: hot cache.
  *
  * Usage:
  *   npm run harvest:publish-intelligence-full -- --harvest-id=<id>

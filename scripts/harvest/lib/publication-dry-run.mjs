@@ -27,7 +27,7 @@ function listSeedPacketIds(runDir) {
 export function buildPublicationDryRun({
   repoRoot,
   harvestId,
-  hubRoot = "/mnt/l/Capital-Glass-Intelligence-Hub",
+  hubRoot = "/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub",
 }) {
   const runDir = path.join(repoRoot, "artifacts/agent-runs", harvestId);
   const manifestPath = path.join(runDir, "harvest-manifest-v1.json");

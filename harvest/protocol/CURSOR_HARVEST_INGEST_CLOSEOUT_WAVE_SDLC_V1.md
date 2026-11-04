@@ -22,8 +22,8 @@ Do **not** hand-edit the Z: mirror. Commit changes in Data-Extraction, then run 
 | --- | --- |
 | Cross-Agent harvest | `harvest:validate` PASS + `validation-result.json` |
 | Data-Extraction classification | `cursor-cross-agent-harvest-v1` → `READY_FOR_INGEST` |
-| L: direct staging | Atomic delivery to `incoming/<harvest-id>/` |
-| Extraction | Two-pass inspect: PASS → `SKIPPED_IDEMPOTENTLY` + receipt on L: |
+| Z:/BlackBoxAi direct staging | Atomic delivery to `incoming/<harvest-id>/` |
+| Extraction | Two-pass inspect: PASS → `SKIPPED_IDEMPOTENTLY` + receipt on Z:/BlackBoxAi |
 | Publication | Operator checklist emitted; **not** claimed by Cursor |
 
 ## Protocol anchors
@@ -32,10 +32,10 @@ Do **not** hand-edit the Z: mirror. Commit changes in Data-Extraction, then run 
 | --- | --- |
 | Thread autopsy + Cursor opener | `Z:\Capital-Glass-Dev\Harvest\protocol\CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md` |
 | Record → validate → publication | `Z:\Capital-Glass-Dev\Harvest\protocol\HARVEST-INGESTION-RUNBOOK-v1.md` |
-| L: staging boundary | `docs/platform/CURSOR_DIRECT_STAGING_V1.md` (when present) / `config/cursor-direct-staging-v1.json` |
+| Z:/BlackBoxAi staging boundary | `docs/platform/CURSOR_DIRECT_STAGING_V1.md` (when present) / `config/cursor-direct-staging-v1.json` |
 | Scope identity | `docs/platform/HARVEST_SCOPE_IDENTITY.md` |
 | Branch investigation | `docs/platform/HARVEST_BRANCH_INVESTIGATION.md` |
-| L: 21-package smoke | `docs/platform/CURSOR_DIRECT_STAGING_L21_SMOKE_CHECKLIST.md` |
+| Z:/BlackBoxAi 21-package smoke | `docs/platform/CURSOR_DIRECT_STAGING_L21_SMOKE_CHECKLIST.md` |
 
 ---
 
@@ -46,7 +46,7 @@ Do **not** hand-edit the Z: mirror. Commit changes in Data-Extraction, then run 
 - Record harvest artifacts in CapitalGlass-Cross-Agent
 - Run `harvest:sync-derived`, `harvest:validate`, `test:harvest`
 - Build `cursor-staging-manifest-v1.json` + package hashes
-- Write to `L:\02-catalog\cursor-direct-staging-v1\incoming\.partial\<harvest-id>\`
+- Write to `Z:\BlackBoxAi\02-catalog\cursor-direct-staging-v1\incoming\.partial\<harvest-id>\`
 - Atomically rename to `incoming\<harvest-id>\`
 - Run Data-Extraction read-only or production inspect (receipts owned by DE)
 - Run `harvest:investigate-branch`, `harvest:validate-staging-manifest`
@@ -60,9 +60,9 @@ Do **not** hand-edit the Z: mirror. Commit changes in Data-Extraction, then run 
 - Invent `sourceRepo`, `sourceBranch`, `sourceCommitSha`, `packetId`, or finding values
 - Claim `READY_FOR_INGEST` without Data-Extraction protocol adapter PASS
 - Claim `index:publish`, `harvest:publish-hub-seed`, `FULLY_SEEDED`, or hub freshness without operator receipt
-- Overwrite completed L: packages or mutate extraction receipts
+- Overwrite completed Z:/BlackBoxAi packages or mutate extraction receipts
 - Run `cross-agent-ledger:ingest -- --apply` without operator approval
-- Use `--scan-all` on L: SMB as unattended production default
+- Use `--scan-all` on Z:/BlackBoxAi SMB as unattended production default
 
 **Fail closed:** If repo/branch/commit/packet identity cannot be proven → `HARVEST_PARTIAL` or `HARVEST_BLOCKED`, never a falsely complete manifest.
 
@@ -72,7 +72,7 @@ Do **not** hand-edit the Z: mirror. Commit changes in Data-Extraction, then run 
 
 Execution order: **W0 → WA → WB → WC → WD → WE → WF → WG → WH → WI → WJ → WK**
 
-Stop at first FAIL in WC, WD, WE, or WG unless explicitly downgrading verdict. WF may `BLOCK` on L: mount — complete WC–WE in Git; defer WF–WG to operator.
+Stop at first FAIL in WC, WD, WE, or WG unless explicitly downgrading verdict. WF may `BLOCK` on Z:/BlackBoxAi mount — complete WC–WE in Git; defer WF–WG to operator.
 
 ---
 
@@ -91,7 +91,7 @@ npm run agent:index:preflight -- --query="cursor harvest ingest closeout wave" -
 
 - [ ] Retrieval code logged (`INDEX_HIT_AI_CACHE` | `INDEX_HIT` | `INDEX_MISS` | `FAILOVER_*`)
 - [ ] `harvest-id` assigned and frozen: `harvest-YYYY-MM-DD-<slug>-v1`
-- [ ] L: status recorded: `test -d /mnt/l/02-catalog/cursor-direct-staging-v1/incoming`
+- [ ] Z:/BlackBoxAi status recorded: `test -d /mnt/z/BlackBoxAi/02-catalog/cursor-direct-staging-v1/incoming`
 
 **Evidence:** Chat retrieval block; `thread-event-inventory.json` stub OK
 
@@ -227,11 +227,11 @@ npm run harvest:validate-staging-manifest -- \
 
 ---
 
-### WF — L: atomic staging delivery
+### WF — Z:/BlackBoxAi atomic staging delivery
 
 **Owner:** Cursor producer  
-**Depends:** WE_PASS; L: mounted  
-**Catalog:** `L:\02-catalog\cursor-direct-staging-v1`
+**Depends:** WE_PASS; Z:/BlackBoxAi mounted  
+**Catalog:** `Z:\BlackBoxAi\02-catalog\cursor-direct-staging-v1`
 
 **Atomic delivery order:**
 
@@ -257,13 +257,13 @@ npm run harvest:validate-staging-manifest -- \
 
 **Owner:** Data-Extraction  
 **Depends:** WF_PASS (or `WF_BLOCKED` documented)  
-**Mode:** Selected harvest (`--harvest-id`) — not default `--scan-all` on L: SMB
+**Mode:** Selected harvest (`--harvest-id`) — not default `--scan-all` on Z:/BlackBoxAi SMB
 
 ```bash
 export FROZEN_AT=2026-08-06T12:00:00.000Z  # freeze for both passes
 
 npm run extract:inspect-cursor-staging -- --json \
-  --staging-root=/mnt/l/02-catalog/cursor-direct-staging-v1 \
+  --staging-root=/mnt/z/BlackBoxAi/02-catalog/cursor-direct-staging-v1 \
   --harvest-id=<harvest-id> \
   --frozen-at="$FROZEN_AT"
 # repeat pass 2 — expect SKIPPED_IDEMPOTENTLY
@@ -358,9 +358,9 @@ Publication: NOT_RUN_BY_CURSOR | Next operator action: <one sentence>
 2. `harvest:validate` PASS + `test:harvest` PASS
 3. Data-Extraction investigate → `READY_FOR_INGEST` for `cursor-cross-agent-harvest-v1`
 4. `cursor-staging-manifest-v1.json` ROUTABLE with DECLARED scope
-5. L: `incoming/<harvest-id>/` atomically delivered
+5. Z:/BlackBoxAi `incoming/<harvest-id>/` atomically delivered
 6. Inspect pass1 PASS + pass2 `SKIPPED_IDEMPOTENTLY`
-7. `extraction-receipt-v1.json` on L: with `hubPublication: false`
+7. `extraction-receipt-v1.json` on Z:/BlackBoxAi with `hubPublication: false`
 8. No false publication / cache / Supabase / freshness claims
 9. Operator publication checklist emitted
 10. Auto v3.2 session-closeout recorded
@@ -398,8 +398,8 @@ DATA-EXTRACTION INGEST CONTRACT (harvest-manifest-v1.json):
 
 After WC: harvest:validate PASS required before WF/WG.
 After WC: confirm Data-Extraction READY_FOR_INGEST under cursor-cross-agent-harvest-v1.
-After WE: atomic L: delivery to incoming/.partial then rename.
-After WG: two-pass extract:inspect with frozen-at; receipt on L: hubPublication false.
+After WE: atomic Z:/BlackBoxAi delivery to incoming/.partial then rename.
+After WG: two-pass extract:inspect with frozen-at; receipt on Z:/BlackBoxAi hubPublication false.
 
 Final: wave gate table, milestone verdict, ROI top-3, do-not-advance, next operator action.
 ```

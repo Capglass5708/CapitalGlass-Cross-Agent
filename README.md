@@ -10,7 +10,7 @@ Cross-agent workspace for ChatGPT, Cursor, and you.
 | --- | --- | --- |
 | 1 | [`AGENT_START_HERE.md`](./AGENT_START_HERE.md) | Operating rules and first-read path |
 | 2 | [`work-progress/WORKSPACE_CONTEXT.md`](./work-progress/WORKSPACE_CONTEXT.md) | Workspace and repo ownership |
-| 3 | [`work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md`](./work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md) | Canonical map for L:/Z:/repo knowledge locations |
+| 3 | [`work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md`](./work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md) | Canonical map for Z:/repo knowledge locations |
 | 4 | [`work-progress/ACTIVE_WORK.md`](./work-progress/ACTIVE_WORK.md) | Live ledger and current blockers |
 | 5 | [`work-progress/projects/INDEX.md`](./work-progress/projects/INDEX.md) | Project/work-package index |
 

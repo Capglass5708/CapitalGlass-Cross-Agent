@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 /**
- * Deterministic move of ChatGPT harvest draft markdown to L: canonical folder.
+ * Deterministic move of ChatGPT harvest draft markdown to the Z:/BlackBoxAi canonical folder
+ * (L: retired 2026-11-03; script and npm names kept for compatibility).
  *
  * Destination:
- *   L:\02-catalog\chatgpt-draft-staging\chat-gpt-harvest\
- *   /mnt/l/02-catalog/chatgpt-draft-staging/chat-gpt-harvest/
+ *   Z:\BlackBoxAi\02-catalog\chatgpt-draft-staging\chat-gpt-harvest\
+ *   /mnt/z/BlackBoxAi/02-catalog/chatgpt-draft-staging/chat-gpt-harvest/
  *
  * Usage:
  *   npm run harvest:move-chatgpt-harvest-to-l
@@ -17,15 +18,17 @@ import path from "node:path";
 import { REPO_ROOT } from "./lib/paths.mjs";
 import {
   moveChatgptHarvestToL,
-  resolveLDriveRoot,
+  resolveZBlackBoxAiRoot,
   PASS_VERDICT,
 } from "./lib/chatgpt-harvest-deterministic-move-lib.mjs";
 
 const RECEIPT_DIR = path.join(REPO_ROOT, "artifacts/agent-runs/chatgpt-harvest-l-move");
 
 function parseArgs(argv) {
-  let lDriveRoot = resolveLDriveRoot();
+  let lDriveRoot = resolveZBlackBoxAiRoot();
   for (const arg of argv) {
+    if (arg.startsWith("--z-root=")) lDriveRoot = arg.slice("--z-root=".length);
+    // Deprecated alias (L: retired 2026-11-03).
     if (arg.startsWith("--l-drive-root=")) lDriveRoot = arg.slice("--l-drive-root=".length);
   }
   return {

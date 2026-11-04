@@ -20,7 +20,7 @@ No implementation code, MCP servers, databases, Bible copies, app scaffolding, o
 | --- | --- | --- |
 | 1 | `AGENT_START_HERE.md` | This file — rules and orientation |
 | 2 | `work-progress/WORKSPACE_CONTEXT.md` | Active workspace, repo roles, authority split |
-| 3 | `work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md` | Canonical map for L:/Z:/repo knowledge locations |
+| 3 | `work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md` | Canonical map for Z:/repo knowledge locations |
 | 4 | `work-progress/ACTIVE_WORK.md` | Current valuable-work ledger and progress log |
 | 5 | `work-progress/projects/INDEX.md` | Master index of all project files |
 | 6 | Relevant project file in `work-progress/projects/` | Durable notes for the specific mission you are joining |
