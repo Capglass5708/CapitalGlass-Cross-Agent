@@ -32,7 +32,7 @@ Pair with `intelligence-hub-first-read.mdc` for Revu/estimating deep topics and 
 
 | Value | Behavior |
 | --- | --- |
-| `REQUIRED` | Must retrieve compact index before repo scan; fail closed on `INDEX_REQUIRED_UNAVAILABLE` or `L_DRIVE_NOT_MOUNTED_IN_WSL` for Revu deep |
+| `REQUIRED` | Must retrieve compact index before repo scan; fail closed on `INDEX_REQUIRED_UNAVAILABLE` or `Z_BLACKBOXAI_NOT_MOUNTED` for Revu deep |
 | `OPTIONAL` | Prefer compact index; repo scan allowed when index miss |
 | `NOT_APPLICABLE` | Skip index retrieval; bounded single-repo work |
 
@@ -53,7 +53,7 @@ Raw scan required: YES | NO
 - `npm run index:refresh-anchors`
 - `cross-agent-ledger:ingest -- --apply`
 - `agent-research-library:publish-active-work-ledger`
-- Any L: write or publication mutation
+- Any Z:/BlackBoxAi hub write or publication mutation
 
 Publication runs on **WESLEYDESK GitHub Actions** (`index-publication.yml`) — not from Cursor agents.
 
