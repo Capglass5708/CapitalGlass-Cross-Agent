@@ -90,7 +90,7 @@ const packets = [
     ownerRepo: "CG-AppBuilder-MCP",
     ownerIndexingStatus: "indexed",
     projectFile: "work-progress/projects/2026-08-03_intelligence-hub-index-ai-cache-freshness-v1.md",
-    evidenceRefs: ["L:/Capital-Glass-Intelligence-Hub/00-master-index"],
+    evidenceRefs: ["Z:/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index"],
     nextAction: "cross-agent-index-auto-publisher-activation-v1 when operator enables",
     advancementGate: "not-required",
     doNotAdvance: [],

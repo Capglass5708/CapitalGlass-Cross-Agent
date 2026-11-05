@@ -63,7 +63,7 @@ const packets = [
     ownerRepo: "Data-Extraction",
     evidenceRefs: ["TE-005", `Data-Extraction@${DE_SHA}`, "PR #31 merged"],
     commitRefs: [`Data-Extraction@${DE_SHA}`],
-    nextAction: "HARVEST_PROTOCOL_CATALOG_ROOT=/mnt/l for L publication",
+    nextAction: "HARVEST_PROTOCOL_CATALOG_ROOT=/mnt/z/BlackBoxAi for L publication",
     advancementGate: "npm run test:harvest-protocol-self-learning exit 0",
   }),
   packet({
@@ -318,7 +318,7 @@ const seedPackets = [
     kind: "runbook",
     title: "Lane C protocol self-learning operator chain",
     summary:
-      "After harvest:validate PASS and protocolImprovementCandidates exist: export from Cross-Agent, ingest+publish-l+verify in Data-Extraction with HARVEST_PROTOCOL_CATALOG_ROOT=/mnt/l.",
+      "After harvest:validate PASS and protocolImprovementCandidates exist: export from Cross-Agent, ingest+publish-z+verify in Data-Extraction with HARVEST_PROTOCOL_CATALOG_ROOT=/mnt/z/BlackBoxAi.",
     retrievalQuestions: [
       "How do I publish harvest protocol improvements to L catalog?",
       "What commands run Lane C after a validated harvest?",

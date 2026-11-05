@@ -241,7 +241,7 @@ Notes:
 | Next action | Commit/push Cross-Agent ledger corrections |
 
 Notes:
-- Published: `L:/Capital-Glass-Intelligence-Hub/00-master-index/cross-agent-master-work/2026-08-02_MASTER_WORK_DOCUMENT.md`
+- Published: `Z:/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index/cross-agent-master-work/2026-08-02_MASTER_WORK_DOCUMENT.md`
 - Git source of truth: `work-progress/2026-08-02_MASTER_WORK_DOCUMENT.md`
 - Corrected Governance `0f6dafd` push status in master doc
 
@@ -260,7 +260,7 @@ Notes:
 
 ### 2026-08-01 CT - L master index made canonical front door
 
-- Canonical operational front door for agents: `L:\Capital-Glass-Intelligence-Hub\00-master-index\`.
+- Canonical operational front door for agents: `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\`.
 - Key files: `AGENT_START_HERE.md`, `INDEX.json`, `AGENT_BUILD_CATALOG.json`, and `BY-KIND/*.json` slices.
 - Inventory reported synced: 12 Capital Glass apps, 7 platform repos, 18 MCP servers, 5 Cursor plugins, 20 external GitHub research libraries, 5 vendor tools, 2 DE handoff packages, 20 linked knowledge builds.
 - Data-Extraction owns sync via `npm run agent-research-library:sync-master-index`; estate manifest is `Data-Extraction/config/agent-research-library/estate-manifest-v1.json`.

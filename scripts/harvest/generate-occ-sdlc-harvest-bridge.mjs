@@ -115,7 +115,7 @@ function seedPacket(seed) {
     evidenceRefs: seed.evidenceRefs,
     futureAgentInstructions: {
       whenThisAppears: seed.title,
-      startAt: [`L:/Capital-Glass-Intelligence-Hub/02-catalog/knowledge-objects/cross-agent-harvest/${seed.seedId.toLowerCase()}.json`],
+      startAt: [`Z:/BlackBoxAi/Capital-Glass-Intelligence-Hub/02-catalog/knowledge-objects/cross-agent-harvest/${seed.seedId.toLowerCase()}.json`],
       runPreflight: ["npm run agent:index:scout -- --json"],
       doNot: ["Treat repo-local compounding-reuse-receipt as Hub authority when L: is mountable"],
       proveBeforeClaiming: ["INDEX_HIT from L: catalog seed, not Calendar artifact grep"]

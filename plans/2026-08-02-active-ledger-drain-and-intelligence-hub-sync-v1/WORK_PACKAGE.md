@@ -277,7 +277,7 @@ cd C:\Developer\repos\Data-Extraction
 npm run agent-research-library:sync-master-index
 
 # L: file exists
-Test-Path "L:\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\active-work-ledger.json"
+Test-Path "Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\active-work-ledger.json"
 ```
 
 ---

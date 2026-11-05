@@ -5,7 +5,7 @@
 **Schema:** `intelligence-hub-dual-machine-desk-sync-v1@1.0.0`  
 **Work package:** `dual-machine-desk-sync-hub-v1`  
 **Git source of truth:** `CapitalGlass-Cross-Agent/work-progress/knowledge/dual-machine-desk-sync-system-v1.md`  
-**Hub mirror:** `L:/Capital-Glass-Intelligence-Hub/03-domains/office-infrastructure/knowledge/dual-machine-desk-sync-system-v1.md`  
+**Hub mirror:** `Z:/BlackBoxAi/Capital-Glass-Intelligence-Hub/03-domains/office-infrastructure/knowledge/dual-machine-desk-sync-system-v1.md`  
 **Compact slice:** `00-master-index/BY-KIND/cross-desk-routing.json`  
 **Published:** 2026-08-12  
 **Status:** `CURRENT` — operator + agent retrieval authority for cross-desk alignment

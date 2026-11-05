@@ -22,7 +22,7 @@ Activate hot-cache-first scout retrieval with governed git-estate and authority-
 
 - **Generation:** `20260804T230338Z-1cbb231b`
 - **payloadHash:** `a5f956c811b8d6d1c366db4d40d6bfb0da4ccaea40f1cd6e47d17a10a48f1a41`
-- **L destination:** `L:/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/git-estate-index.json`
+- **L destination:** `Z:/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/git-estate-index.json`
 - **Gates:** `L_BY_KIND_PUBLICATION_PASS`, `LOCAL_L_HASH_ALIGNMENT_PASS`, `SCOUT_L_FALLBACK_PASS`, `DATASET_HIT_L`, `rawScanRequired: false`, `liveCompileCount: 0`
 
 ## Deferred

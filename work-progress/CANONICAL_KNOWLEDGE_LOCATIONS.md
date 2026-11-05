@@ -11,7 +11,7 @@ Purpose: stop valuable information from getting scattered across chat, Cursor ou
 Agents looking for available apps, repos, MCP servers, plugins, external libraries, vendor tools, handoff packages, and knowledge builds should start here:
 
 ```text
-L:\Capital-Glass-Intelligence-Hub\00-master-index\
+Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\
 ```
 
 | File / folder | What it is |
@@ -38,14 +38,14 @@ Current synced inventory:
 ### BY-KIND slices
 
 ```text
-L:\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\capital-glass-apps.json
-L:\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\platform-repos.json
-L:\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\mcp-servers.json
-L:\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\cursor-plugins.json
-L:\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\external-libraries.json
-L:\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\vendor-tools.json
-L:\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\handoff-packages.json
-L:\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\cross-agent-master-work.json
+Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\capital-glass-apps.json
+Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\platform-repos.json
+Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\mcp-servers.json
+Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\cursor-plugins.json
+Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\external-libraries.json
+Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\vendor-tools.json
+Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\handoff-packages.json
+Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\cross-agent-master-work.json
 ```
 
 ### Cross-Agent master work (published copy on L:)
@@ -71,7 +71,7 @@ Git source of truth: `CapitalGlass-Cross-Agent/work-progress/knowledge/dual-mach
 
 ### Agent use pattern
 
-1. Open `L:\Capital-Glass-Intelligence-Hub\00-master-index\AGENT_START_HERE.md`.
+1. Open `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\AGENT_START_HERE.md`.
 2. Load `AGENT_BUILD_CATALOG.json` or the relevant `BY-KIND/*.json` slice.
 3. Follow the item pointers to opportunity maps, source catalogs, GitHub corpuses, capture manifests, and knowledge builds.
 4. Use Cross-Agent project files for human decisions, current status, run evidence, commits, and next actions.
@@ -120,7 +120,7 @@ Latest reported Data-Extraction commit for this feature: `bbddfe3` on `main`.
 Recommended next improvement: weekly job to mirror `operational-knowledge.json` files to:
 
 ```text
-L:\Capital-Glass-Intelligence-Hub\02-capability-library\
+Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\02-capability-library\
 ```
 
 
@@ -150,7 +150,7 @@ When an agent needs available apps, libraries, tools, indexes, scraped GitHub ma
 | Research selection indexes | Ranked app/library/vendor lists and adoption decisions | `Data-Extraction/config/agent-research-library/*.json` |
 | Raw scraped GitHub/site captures | Capture plans, manifests, scraped pages, URL inventories | `Scraper/ui-capture/artifacts/vendor-docs/<vendor-or-topic>/` |
 | Processed knowledge packages | Data-Extraction KBs, manifests, retrieval snapshots, operational notes | `Data-Extraction/artifacts/data-extraction-2/` |
-| Published quick-access copies | Synology/L: compact indexes and agent entry points | `L:\Capital-Glass-Intelligence-Hub\00-master-index\`, `L:\Capital-Glass-Research\...`, `L:\Capital-Glass-Intelligence-Hub\...` |
+| Published quick-access copies | Synology/L: compact indexes and agent entry points | `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\`, `L:\Capital-Glass-Research\...`, `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\...` |
 | Shared published mirrors | Z: published suite material when a workflow publishes there | `Z:\Capital-Glass-Dev\...` |
 | Suite app map | App registry, Bible/source map, application keys | `CG-AppBuilder-MCP/docs/SUITE_APPLICATION_BIBLE_REGISTRY.json` |
 | Suite bridges | Repo ownership, app-to-app bridges, workflow gaps | `CG-AppBuilder-MCP/docs/SUITE_BRIDGE_MAP.md` |
@@ -160,14 +160,14 @@ When an agent needs available apps, libraries, tools, indexes, scraped GitHub ma
 
 ## GitHub-Scraped Research Canonical Path
 
-When the user asks where scraped GitHub libraries/apps are stored, start with `L:\Capital-Glass-Intelligence-Hub\00-master-index\`, then answer with this ladder:
+When the user asks where scraped GitHub libraries/apps are stored, start with `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\`, then answer with this ladder:
 
 | Step | Look here | Meaning |
 | --- | --- | --- |
 | 1 | `Data-Extraction/config/agent-research-library/` | Which libraries/apps were selected and why |
 | 2 | `Scraper/ui-capture/artifacts/vendor-docs/` | Raw captured GitHub/site material |
 | 3 | `Data-Extraction/artifacts/data-extraction-2/` | Processed knowledge packages |
-| 4 | `L:\Capital-Glass-Research\` and `L:\Capital-Glass-Intelligence-Hub\` | Published quick-access copies |
+| 4 | `L:\Capital-Glass-Research\` and `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\` | Published quick-access copies |
 | 5 | Relevant Cross-Agent project file | Current decision, owner, status, and next action |
 
 ## Known Research Indexes And Packages
@@ -178,7 +178,7 @@ When the user asks where scraped GitHub libraries/apps are stored, start with `L
 | Revu opening pilot KBs | `PKG-REVU-OPENING-DETECTION-PILOT-V1` | `Data-Extraction/artifacts/data-extraction-2/revu-opening-detection-pilot/` |
 | Docling GitHub ingest | `KB-DOCLING-GITHUB-V1-2026-08-01` | `Data-Extraction/artifacts/data-extraction-2/vendor-pilot/KB-DOCLING-GITHUB-V1-2026-08-01/` |
 | Docling raw capture | GitHub vendor docs capture | `Scraper/ui-capture/artifacts/vendor-docs/docling/` |
-| Docling published compact | Agent compact and manifests | `L:\Capital-Glass-Intelligence-Hub\03-domains\vendor-docs\docling\...`, `L:\Capital-Glass-Research\Scraper-Corpus\vendor-docs\docling\...` |
+| Docling published compact | Agent compact and manifests | `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\03-domains\vendor-docs\docling\...`, `L:\Capital-Glass-Research\Scraper-Corpus\vendor-docs\docling\...` |
 | Unstructured GitHub scrape | Vendor docs capture/corpus | `Scraper/ui-capture/artifacts/vendor-docs/unstructured/` and DE publish target when processed |
 | Proposal stack pilot | Proposal output libraries | `Data-Extraction/artifacts/data-extraction-2/proposal-stack-pilot/` |
 
@@ -265,7 +265,7 @@ Scope:
 | What libraries/apps were researched? | `Data-Extraction/config/agent-research-library/` |
 | Where are raw scraped pages? | `Scraper/ui-capture/artifacts/vendor-docs/` |
 | Where are processed knowledge packages? | `Data-Extraction/artifacts/data-extraction-2/` |
-| Where are quick-access published copies? | `L:\Capital-Glass-Research\` and `L:\Capital-Glass-Intelligence-Hub\` |
+| Where are quick-access published copies? | `L:\Capital-Glass-Research\` and `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\` |
 | How do apps/repos connect? | `CG-AppBuilder-MCP/docs/SUITE_BRIDGE_MAP.md` |
 | What schema should a producer/consumer use? | `CG-AppBuilder-MCP/contracts/external-schema-index.json` |
 | What is the constitutional capture/closeout rule? | `CG-Platform-Governance-MCP` |

@@ -71,7 +71,7 @@ Manual `scripts/dev-bootstrap/staging-synology-project-folder-prereq.sql` supers
 | Alias | `https://documents-dev.capitalglasstxapps.com` → `e3fe6ec` |
 | Fresh E2E project | `a877adf9-6669-411a-8757-aa7ae9b29d17` |
 | Job | `d10f536e-3a66-4aeb-a647-ef61f876d634` succeeded |
-| Folder | `L:\Capital-Glass-Projects-Dev\REPRO-20260803 - Repro Proof` |
+| Folder | `Z:\Capital-Glass-Projects-Dev\REPRO-20260803 - Repro Proof` |
 
 G1–G10: **ALL PASS** — see [`gate-results.json`](../artifacts/agent-runs/project-folder-synology-primary-v1-dev-reproducibility-hardening/gate-results.json).
 

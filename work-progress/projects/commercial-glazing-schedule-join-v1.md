@@ -17,7 +17,7 @@ Join opening identity to schedule rows and emit a deterministic **enriched glazi
 | --- | --- |
 | Project | Beacon Hill / **CG-2036-26** |
 | `projectId` | `5d38b25a-c391-4d7c-8866-f8a1f4cea942` |
-| L: path | `/mnt/l/Capital-Glass-Projects/CG-2036-26 - Lincoln - Waller Beacon Hill` |
+| L: path | `/mnt/z/Capital-Glass-Projects/CG-2036-26 - Lincoln - Waller Beacon Hill` |
 | General Elevation report | `01 - Estimating/05 - Reports/General Elevation/LINCOLN - WALLER BEACON HILL EXTERIOR - General Elevation.XLS` |
 
 ## Reuse (do not rebuild)

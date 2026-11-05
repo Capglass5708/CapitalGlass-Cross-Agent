@@ -72,7 +72,7 @@ Prior proof project `e15f1184-72db-47fc-9ba1-f7e9c2f8b02c` remains sample/local 
 | Dashboard | Dev deployment pointed at **dev** Document Center only |
 | Doppler | `cg-documents` / **`dev`** |
 | Supabase | Separate development project (preferred); isolated schema only with I2 guards |
-| Synology root | `L:\Capital-Glass-Projects-Dev` (WSL: `/mnt/l/Capital-Glass-Projects-Dev`) — **server-enforced (I4)** |
+| Synology root | `L:\Capital-Glass-Projects-Dev` (WSL: `/mnt/z/Capital-Glass-Projects-Dev`) — **server-enforced (I4)** |
 | Worker | `office-project-folder-provision-dev` — unique token **(I3)** |
 | Project records | Clearly marked `sample` / `development` |
 | SharePoint | **Disabled** until Synology dev flow passes |
@@ -84,7 +84,7 @@ Prior proof project `e15f1184-72db-47fc-9ba1-f7e9c2f8b02c` remains sample/local 
 | `DOCUMENT_LAYER_URL` | Stable dev Document Center URL **(I1)** |
 | `PROJECT_FOLDER_PROVISION_WORKER_TOKEN` | **Unique** dev token — Doppler `cg-documents/dev` **(I3)** |
 | `SYNOLOGY_PROJECTS_ROOT` | `L:\Capital-Glass-Projects-Dev` **(I4)** |
-| `SYNOLOGY_PROJECTS_WSL_ROOT` | `/mnt/l/Capital-Glass-Projects-Dev` **(I4)** |
+| `SYNOLOGY_PROJECTS_WSL_ROOT` | `/mnt/z/Capital-Glass-Projects-Dev` **(I4)** |
 | `PROJECT_FOLDER_CLAIMED_BY` | e.g. `CG-WESLEYDESK-01-dev` |
 
 ### Feature flag (dev only)
@@ -116,7 +116,7 @@ Prior proof project `e15f1184-72db-47fc-9ba1-f7e9c2f8b02c` remains sample/local 
 - [ ] Isolation decisions I1–I4 implemented and verified
 - [ ] Document Center deployed to **stable dev alias** with Slice 0–3 routes
 - [ ] `POST .../claim` and `.../complete` return auth/JSON on **dev**, not 405; invalid auth rejected
-- [ ] Dev worker polls dev URL only; folders under `L:\Capital-Glass-Projects-Dev\` only
+- [ ] Dev worker polls dev URL only; folders under `Z:\Capital-Glass-Projects-Dev\` only
 - [ ] Multiple dev Dashboard project creates succeed
 - [ ] Idempotent retries, duplicate protection, worker-offline recovery documented
 - [ ] Public APIs verified: no `local_path_hint` / UNC / WSL leaks
@@ -131,8 +131,8 @@ Prior proof project `e15f1184-72db-47fc-9ba1-f7e9c2f8b02c` remains sample/local 
 
 | Environment | Root |
 |-------------|------|
-| Production (future) | `L:\Capital-Glass-Projects\` |
-| Development | `L:\Capital-Glass-Projects-Dev\` |
+| Production (future) | `Z:\Capital-Glass-Projects\` |
+| Development | `Z:\Capital-Glass-Projects-Dev\` |
 
 Dev folders **must not** land under the production root.
 

@@ -181,7 +181,7 @@ Seed pipeline may proceed for structured ledger + L: compact mirror. Operator sh
 | Verdict | HOLD (partial PASS) |
 | Compact seed | PASS |
 | Verify | PASS |
-| L: mirror | `/mnt/l/Capital-Glass-Intelligence-Hub/02-catalog/cross-agent-notes/wsl-mcp-cursor-doppler-promptops-hardening-v1.json` |
+| L: mirror | `/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/02-catalog/cross-agent-notes/wsl-mcp-cursor-doppler-promptops-hardening-v1.json` |
 | Structured-ledger ingest | `BLOCKED_OPERATOR_APPROVAL` |
 | Drift | UNKNOWN / `SUPABASE_PROJECTION_MISSING` |
 | Host mode | `HOST_MODE_BLOCKED`, PWD `/mnt/c/Developer/repos/CG-AppBuilder-MCP` |

@@ -38,7 +38,7 @@ If blocked: stop implementation; reconnect Cursor via WSL Suite workspace.
 ### Step 3 — Compact retrieval (suite / blockers / active work)
 
 ```bash
-test -d /mnt/l/Capital-Glass-Intelligence-Hub/00-master-index && echo L_MOUNTED || echo L_MISSING
+test -d /mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index && echo L_MOUNTED || echo L_MISSING
 ```
 
 | L: mount | Action |

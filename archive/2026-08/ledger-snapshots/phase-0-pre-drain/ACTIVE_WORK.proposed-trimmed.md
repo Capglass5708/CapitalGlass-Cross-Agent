@@ -75,6 +75,6 @@ Project file: `work-progress/projects/2026-08-01_north-star-compounding-proof-v1
 | --- | --- |
 | Work package | `cross-agent-master-work-ingest-v1` |
 | Status | Published to L: |
-| L: path | `L:/Capital-Glass-Intelligence-Hub/00-master-index/cross-agent-master-work/` |
+| L: path | `Z:/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index/cross-agent-master-work/` |
 
 Older entries (10): archived at `archive/2026-08/ledger-snapshots/phase-0-pre-drain/ACTIVE_WORK-2026-08-02-pre-drain.md`

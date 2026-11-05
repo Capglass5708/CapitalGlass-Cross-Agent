@@ -58,7 +58,7 @@
 | Project code | `DEV-SYNOLOGY-PROOF-20260803` |
 | Jobs succeeded | `f32de321`, `fa9506a7`, `d54135d1` |
 | Folder paths | 48 under dev root only |
-| Production root | No matching folder under `L:\Capital-Glass-Projects\` |
+| Production root | No matching folder under `Z:\Capital-Glass-Projects\` |
 
 ---
 

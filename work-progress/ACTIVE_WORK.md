@@ -129,7 +129,7 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Forbidden | ForceRemap; re-enable PreCursor; implement offlan cmdkey WP; Cursor Hub write |
 | Windows Z | `\\cg-server\Capital Glass` |
 | Windows L | `\\wesleydesk\CapitalGlass-L` |
-| WSL | Independent CIFS `/mnt/z` → `//cg-server/Capital Glass`; `/mnt/l` → `//wesleydesk/CapitalGlass-L` |
+| WSL | Independent CIFS `/mnt/z` → `//cg-server/Capital Glass` (includes `Z:\BlackBoxAi`); L: retired 2026-11-03 |
 | Next | WESLEYDESK GHA Hub republish after both remotes land. Do not write L: from Cursor. |
 
 ### 2026-08-11 CT — active-ledger-saved-work-exporter-fix + unauthorized-merge-353-ratify-cleanup-v1
@@ -365,7 +365,7 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 | 2 | Do **not** deploy `Install-CgWesleyWorkDriveMountPersistence.ps1`. Keep Storage Keeper. Hub republish after INDEX (`wesleywork-storage-protocol-contradiction-remediation-v1`) | CapitalGlass-Office-Admin | SUPERSEDED installer — live ProgramData tombstone 2026-08-13 |
 | 3 | Rerun Document Center production smokes after SHA pin (`suite-ci-healing-v1`) | CapitalGlass-Documents | **Ready** — Doppler + GitHub `EXPECTED_DOCUMENT_CENTER_GIT_SHA` synced 2026-08-04 |
 | 2 | Use Windows Desktop `Capital Glass Cursor (WSL Suite).lnk`; close any Cursor windows opened from `/mnt/c` / `C:\Developer\repos` | Cursor / operator | Ongoing operating rule — WSL default verify PASS |
-| 2 | L: hub readable at `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index` | WESLEYDESK / WSL | Complete for seed report |
+| 2 | L: hub readable at `/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index` | WESLEYDESK / WSL | Complete for seed report |
 | 3 | WSL seed structured-ledger ingest and drift probe | CG-AppBuilder-MCP | Complete — `IN_SYNC` via Doppler-backed Supabase token |
 | 3 | Reload Cursor MCP after WSL repair Waves 1-3 | Cursor / operator | Pending |
 | 3 | Complete Vercel MCP auth only when Vercel connector is needed | Cursor / Vercel | Pending |
@@ -374,7 +374,7 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 | 6 | Run Cursor seeding handoff `cross-agent-seed-wsl-mcp-backfill-v1` from `~/repos/CG-AppBuilder-MCP` | CG-AppBuilder-MCP | Pending |
 | 7 | Re-run gated ingest after ledger updates (`cross-agent-ledger:ingest --apply`) | CG-AppBuilder-MCP | Recurring |
 | 8 | Run drift probe when hub/projection may be stale | CG-AppBuilder-MCP | Recurring |
-| 9 | Publish L: hub slices after ledger edits | Data-Extraction | Recurring |
+| 9 | Publish Z: hub slices after ledger edits | Data-Extraction | Recurring |
 | 10 | Restart MCP for Governance compounding tools | Cursor / local MCP | Pending |
 
 **Default agent preflight (machine-readable):** `openActions` + `blockers` only — L: hub slices when available, else Supabase derived projection (`compact-slices-only`). Not full ledger. `currentFocus` human-only (`whats-active-now --include-current-focus`).

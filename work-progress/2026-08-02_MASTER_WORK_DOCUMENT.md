@@ -10,7 +10,7 @@ Today's work established three major control points:
 
 | Area | Result |
 | --- | --- |
-| Agent knowledge access | `L:\Capital-Glass-Intelligence-Hub\00-master-index\` is now the canonical operational front door |
+| Agent knowledge access | `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\` is now the canonical operational front door |
 | Cross-Agent role | `CapitalGlass-Cross-Agent` is the human ledger: decisions, status, evidence, paths, commits, next actions |
 | GPU/parser direction | `RYZEN9DESK` owns RTX 5080 proof; Computer Estimator owns `cg-opening-locator-v1`; Revu MCP remains controlled fixture/markup lane |
 
@@ -24,14 +24,14 @@ The main theme: stop losing valuable work in chat. Agents now have a start path,
 | Current live ledger | `CapitalGlass-Cross-Agent/work-progress/ACTIVE_WORK.md` |
 | Canonical knowledge map | `CapitalGlass-Cross-Agent/work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md` |
 | Project index | `CapitalGlass-Cross-Agent/work-progress/projects/INDEX.md` |
-| Machine-readable build catalog | `L:\Capital-Glass-Intelligence-Hub\00-master-index\` |
+| Machine-readable build catalog | `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\` |
 
 ## L: Master Index
 
 The synced operational catalog is:
 
 ```text
-L:\Capital-Glass-Intelligence-Hub\00-master-index\
+Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\
 ```
 
 | File / folder | Purpose |
@@ -74,7 +74,7 @@ Known gaps:
 Recommended next improvement: mirror `operational-knowledge.json` files to:
 
 ```text
-L:\Capital-Glass-Intelligence-Hub\02-capability-library\
+Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\02-capability-library\
 ```
 
 ## Cross-Agent Files Created / Updated
@@ -94,11 +94,11 @@ L:\Capital-Glass-Intelligence-Hub\02-capability-library\
 | Layer | Owner / location |
 | --- | --- |
 | Human decisions and status | `CapitalGlass-Cross-Agent` |
-| Machine-readable catalog | `L:\Capital-Glass-Intelligence-Hub\00-master-index\` |
+| Machine-readable catalog | `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\` |
 | Research selection indexes | `Data-Extraction/config/agent-research-library/*.json` |
 | Raw scraped GitHub/site captures | `Scraper/ui-capture/artifacts/vendor-docs/<vendor-or-topic>/` |
 | Processed DE knowledge packages | `Data-Extraction/artifacts/data-extraction-2/` |
-| Published quick-access copies | `L:\Capital-Glass-Research\...`, `L:\Capital-Glass-Intelligence-Hub\...` |
+| Published quick-access copies | `L:\Capital-Glass-Research\...`, `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\...` |
 | Shared published suite mirror | `Z:\Capital-Glass-Dev\...` where the workflow publishes there |
 | Implementation code | Owning app repo only |
 
@@ -373,12 +373,12 @@ Ingest result: **PASS**.
 
 | Field | Value |
 | --- | --- |
-| Published path | `L:\Capital-Glass-Intelligence-Hub\00-master-index\cross-agent-master-work\2026-08-02_MASTER_WORK_DOCUMENT.md` |
-| Latest alias | `L:\Capital-Glass-Intelligence-Hub\00-master-index\cross-agent-master-work\LATEST.md` |
-| Slice index | `L:\Capital-Glass-Intelligence-Hub\00-master-index\cross-agent-master-work\INDEX.json` |
-| BY-KIND slice | `L:\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\cross-agent-master-work.json` |
-| Top-level index | `L:\Capital-Glass-Intelligence-Hub\00-master-index\INDEX.json` |
-| Unified catalog | `L:\Capital-Glass-Intelligence-Hub\00-master-index\AGENT_BUILD_CATALOG.json` |
+| Published path | `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\cross-agent-master-work\2026-08-02_MASTER_WORK_DOCUMENT.md` |
+| Latest alias | `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\cross-agent-master-work\LATEST.md` |
+| Slice index | `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\cross-agent-master-work\INDEX.json` |
+| BY-KIND slice | `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\cross-agent-master-work.json` |
+| Top-level index | `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\INDEX.json` |
+| Unified catalog | `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\AGENT_BUILD_CATALOG.json` |
 | Source commit | `1e3751c` |
 | Original creation commit | `7f454e3` |
 | Ledger pointer commit | `506a229` |
@@ -403,7 +403,7 @@ Warnings:
 
 Agent discovery paths:
 
-- `L:\Capital-Glass-Intelligence-Hub\00-master-index\AGENT_START_HERE.md`
+- `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\AGENT_START_HERE.md`
 - `INDEX.json` → `quickLinks.crossAgentMasterWork`
 - `AGENT_BUILD_CATALOG.json` → item `cross-agent-master-work-2026-08-02`
 - `BY-KIND\cross-agent-master-work.json`

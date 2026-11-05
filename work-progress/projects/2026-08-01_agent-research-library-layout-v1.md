@@ -61,12 +61,12 @@ Data-Extraction owns the scaffold/verify contract for the research-library layou
 | Layout manifest | `Z:\Capital-Glass-Research\Scraper-Corpus\00-control\AGENT-RESEARCH-LIBRARY-LAYOUT.json` | Written |
 | Z: Scraper-Corpus source registry | `Z:\Capital-Glass-Research\Scraper-Corpus\00-source-registry` | Created |
 | Z: Scraper-Corpus evidence hashes | `Z:\Capital-Glass-Research\Scraper-Corpus\09-evidence-hashes` | Created |
-| L: app opportunity map | `L:\Capital-Glass-Intelligence-Hub\08-app-opportunity-map` | Created with gate docs |
-| L: approved-for-use gate | `L:\Capital-Glass-Intelligence-Hub\10-approved-for-use` | Created with gate docs |
+| L: app opportunity map | `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\08-app-opportunity-map` | Created with gate docs |
+| L: approved-for-use gate | `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\10-approved-for-use` | Created with gate docs |
 | Z: proposal-stack registry | `Z:\Capital-Glass-Research\Scraper-Corpus\00-source-registry\proposal-stack-top10-v1.json` | Published |
 | Z: proposal-stack crawl queue | `Z:\Capital-Glass-Research\Scraper-Corpus\01-crawl-queue\proposal-stack-top10-v1-queue.json` | Published |
 | Z: github-research manifests | `Z:\Capital-Glass-Research\Scraper-Corpus\github-research\repos\{slug}\02-manifests\` | Nine slugs published (manifest-only) |
-| L: opportunity map index | `L:\Capital-Glass-Intelligence-Hub\08-app-opportunity-map\proposal-stack-top10-index.json` | Published |
+| L: opportunity map index | `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\08-app-opportunity-map\proposal-stack-top10-index.json` | Published |
 | DE handoff package | `PKG-PROPOSAL-STACK-PILOT-V1` | ACK_ACCEPTED |
 | DE knowledge builds | `Data-Extraction/artifacts/data-extraction-2/proposal-stack-pilot/KB-*` | Nine builds (repo-local, not in meeting repo) |
 

@@ -45,13 +45,13 @@ Scraper owns raw GitHub capture and vendor-docs publishing. Data-Extraction owns
 ## Target L: drive layout
 
 ```text
-L:/Capital-Glass-Research/
+Z:/BlackBoxAi/Capital-Glass-Research/
   Scraper-Corpus/vendor-docs/docling/
   de2-producer-intake/
   estimating-suite-cold-cache/intelligence/vendor-docs/docling/
     PKG-DE2-DOCLING-.../retrieval-snapshot.json
 
-L:/Capital-Glass-Intelligence-Hub/03-domains/vendor-docs/docling/compacts/
+Z:/BlackBoxAi/Capital-Glass-Intelligence-Hub/03-domains/vendor-docs/docling/compacts/
   docling-adoption-agent-compact-v1.json
 ```
 
@@ -226,7 +226,7 @@ npm run de:handoff-health
 
 - UI-reference captures are not enough for vendor-docs estates because they lack extracted article manifests and governed corpus publishing.
 - A generic GitHub articles builder should serve Docling, Unstructured, and future GitHub vendor research captures.
-- Agent retrieval should start with `L:/Capital-Glass-Intelligence-Hub/.../compacts/*-agent-compact-v1.json`, then warm retrieval snapshots, then full source only as a last resort.
+- Agent retrieval should start with `Z:/BlackBoxAi/Capital-Glass-Intelligence-Hub/.../compacts/*-agent-compact-v1.json`, then warm retrieval snapshots, then full source only as a last resort.
 
 ## Update log
 
@@ -244,9 +244,9 @@ npm run de:handoff-health
 - Publish completed in about 28 seconds, compared with the previous 21+ minute crash path.
 - It publishes manifests and pointers to Z:, mirrors only lightweight sections `00-control`, `02-manifests`, and `03-provenance` to L:, and leaves full page bytes in the local capture plus DE2 cold cache.
 - Agent L: entry points:
-  - `L:/Capital-Glass-Intelligence-Hub/03-domains/vendor-docs/docling/compacts/docling-adoption-agent-compact-v1.json`.
-  - `L:/Capital-Glass-Research/Scraper-Corpus/vendor-docs/docling/02-manifests/extracted-articles-docling-github-v1.json`.
-  - `L:/Capital-Glass-Research/estimating-suite-cold-cache/intelligence/vendor-docs/docling/PKG-DE2-DOCLING-.../retrieval-snapshot.json`.
+  - `Z:/BlackBoxAi/Capital-Glass-Intelligence-Hub/03-domains/vendor-docs/docling/compacts/docling-adoption-agent-compact-v1.json`.
+  - `Z:/BlackBoxAi/Capital-Glass-Research/Scraper-Corpus/vendor-docs/docling/02-manifests/extracted-articles-docling-github-v1.json`.
+  - `Z:/BlackBoxAi/Capital-Glass-Research/estimating-suite-cold-cache/intelligence/vendor-docs/docling/PKG-DE2-DOCLING-.../retrieval-snapshot.json`.
 - Use `npm run vendor-docs:publish:docling:full` only when all 1,076 pages must be mirrored to L:.
 
 ### 2026-08-01 CT — attached markdown / ChatGPT

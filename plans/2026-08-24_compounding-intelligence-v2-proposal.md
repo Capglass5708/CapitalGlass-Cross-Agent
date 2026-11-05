@@ -35,12 +35,12 @@ Wesley's stated priority order — resolve first: **#1 (charter), #2 (retrieval)
 
 ### 2a. The retrieval ladder must be a physical test, not an assumption
 
-Wesley's sharpening: there are three real retrieval planes — `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index` (primary, WSL path for `L:\Capital-Glass-Intelligence-Hub\00-master-index`), the Supabase `intelligence_hub` projection (fallback), and the Git-based ledger/local mirror (last fallback) — and `.cursor/rules/intelligence-hub-first-read.mdc` already documents this exact failover order plus outcome codes (`INDEX_HIT`, `INDEX_MISS`, `L_DRIVE_NOT_MOUNTED_IN_WSL`, `FAILOVER_SUPABASE`, `FAILOVER_GIT_LEDGER`, `CACHE_HIT`, `CACHE_MISS`). The gap isn't that the design is wrong — it's that today the "test" is an agent following prose instructions and self-reporting an outcome code in its own response text, with nothing durable to verify it actually happened.
+Wesley's sharpening: there are three real retrieval planes — `/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index` (primary, WSL path for `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index`), the Supabase `intelligence_hub` projection (fallback), and the Git-based ledger/local mirror (last fallback) — and `.cursor/rules/intelligence-hub-first-read.mdc` already documents this exact failover order plus outcome codes (`INDEX_HIT`, `INDEX_MISS`, `L_DRIVE_NOT_MOUNTED_IN_WSL`, `FAILOVER_SUPABASE`, `FAILOVER_GIT_LEDGER`, `CACHE_HIT`, `CACHE_MISS`). The gap isn't that the design is wrong — it's that today the "test" is an agent following prose instructions and self-reporting an outcome code in its own response text, with nothing durable to verify it actually happened.
 
-**Verified live, this session:** `test -d /mnt/l/Capital-Glass-Intelligence-Hub/00-master-index` returns false in this container — `/mnt/` here only contains `attach/`, `skills/`, `user-data/`. This is a concrete, reproducible instance of exactly the failure mode the fix needs to handle, not a hypothetical.
+**Verified live, this session:** `test -d /mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index` returns false in this container — `/mnt/` here only contains `attach/`, `skills/`, `user-data/`. This is a concrete, reproducible instance of exactly the failure mode the fix needs to handle, not a hypothetical.
 
 **Proposed concrete spec** for `intelligence.preflight()`'s first step:
-1. Physically test `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index` (fs existence + read, not just a path string check).
+1. Physically test `/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index` (fs existence + read, not just a path string check).
 2. On success: record the outcome as `L_HUB_READ_OK` **and** which index version/SHA was actually consumed.
 3. On failure: fall back to testing the Supabase `intelligence_hub` projection → `L_HUB_UNAVAILABLE_USING_SUPABASE` on success.
 4. On failure: fall back to the Git ledger (`work-progress/ACTIVE_WORK.md` + `work-progress/intelligence-hub-slices/`) → `L_HUB_UNAVAILABLE_USING_GIT_LEDGER` on success.

@@ -43,7 +43,7 @@
 | Project ID | `e0c74c03-9bbc-41c1-9d4d-b93e8a825332` |
 | Project number | `PROD-SYNOLOGY-CANARY-20260803` |
 | Primary job | `89fcc82e-71ba-43f6-93e6-912bbba3b1ae` |
-| Folder root | `L:\Capital-Glass-Projects\` only |
+| Folder root | `Z:\Capital-Glass-Projects\` only |
 | Storage | `synology` / `primary` / `active` |
 
 ---
@@ -75,7 +75,7 @@
 | `project_folder_provision_jobs` queue depth | Unexpected growth or stuck `queued` rows |
 | Job quality | Failed, stuck, or duplicate succeeded jobs |
 | Production worker | Restarts, error loops, claim failures on WESLEYDESK |
-| Synology root | Unexpected folders under `L:\Capital-Glass-Projects\` |
+| Synology root | Unexpected folders under `Z:\Capital-Glass-Projects\` |
 | Isolation | Dev/production cross-contamination (dev root, dev Supabase) |
 | Document Center | New application errors on production |
 | SharePoint boundary | Any mirror/population attempts for this workflow |

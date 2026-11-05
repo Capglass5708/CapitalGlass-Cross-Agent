@@ -52,7 +52,7 @@ const packets = [
     ],
     nextAction:
       "Wake WESLEYDESK + Tailscale SMB or join office LAN; rerun Ensure-CgWesleyWorkDriveMounts.ps1 -Mode ForceRemap from cd C:\\",
-    advancementGate: "Test-Path L:\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json",
+    advancementGate: "Test-Path Z:\\BlackBoxAi\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json",
     doNotAdvance: [
       "INDEX_HIT on L: while Windows L: path is False",
       "Claim OPERATIONAL index freshness while holdReason=CACHE_AND_L_STALE_OR_MISSING",
@@ -198,7 +198,7 @@ writeJson("code-touch-summary.json", {
   operatorCommands: [
     "Ensure-CgWesleyWorkDriveMounts.ps1 -Mode ForceRemap",
     "Test-Path Z:\\Capital-Glass-Dev",
-    "Test-Path L:\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json",
+    "Test-Path Z:\\BlackBoxAi\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json",
   ],
 });
 
@@ -350,7 +350,7 @@ writeJson("thread-autopsy-bundle.json", {
       awardOrVerdict: "INDEX_HIT",
       currentStatus: "HOLD",
       doNotClaimUntil: [
-        "Windows Test-Path L:\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json",
+        "Windows Test-Path Z:\\BlackBoxAi\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json",
         "index:freshness-gate PASS without holdReason",
       ],
       lastKnownEvidence: ["FAILOVER_GIT_LEDGER", "CACHE_AND_L_STALE_OR_MISSING"],
@@ -414,7 +414,7 @@ const seeds = [
       startAt: ["docs/work-packages/z-drive-pre-session-gate-hardening-v1.md"],
       runPreflight: [
         "powershell Test-Path 'Z:\\Capital-Glass-Dev'",
-        "powershell Test-Path 'L:\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json'",
+        "powershell Test-Path 'Z:\\BlackBoxAi\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json'",
       ],
       doNot: ["Log INDEX_HIT based on WSL path alone", "Skip ForceRemap because WSL lists /mnt/z"],
       proveBeforeClaiming: ["Windows and WSL probe agreement or explicit PARTIAL verdict"],

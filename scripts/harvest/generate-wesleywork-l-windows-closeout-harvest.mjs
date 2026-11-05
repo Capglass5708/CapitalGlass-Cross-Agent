@@ -55,7 +55,7 @@ const packets = [
     ],
     nextAction:
       "Elevated Install-CgWesleyWorkDriveMountPersistence.ps1; verify logon task remaps L when LAN 109 down but Tailscale up",
-    advancementGate: "cmd.exe net use L: shows OK and Test-Path L:\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json",
+    advancementGate: "cmd.exe net use L: shows OK and Test-Path Z:\\BlackBoxAi\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json",
     doNotAdvance: [
       "Report L online from WSL /mnt/l alone",
       "Claim INDEX_HIT on L hub while Windows L:\\ unavailable",
@@ -358,7 +358,7 @@ writeJson("thread-autopsy-bundle.json", {
       currentStatus: "HOLD",
       doNotClaimUntil: [
         "cmd.exe net use L: Status OK",
-        "Test-Path L:\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json",
+        "Test-Path Z:\\BlackBoxAi\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json",
       ],
       lastKnownEvidence: ["TE-007", "WIN_L_INDEX_OK"],
       proofCommandId: "wesleywork-l-tailscale-remap-command-v1",

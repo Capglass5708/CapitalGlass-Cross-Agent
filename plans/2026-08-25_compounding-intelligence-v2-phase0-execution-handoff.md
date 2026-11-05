@@ -11,7 +11,7 @@ This is an **execution** handoff, not a design document. The design is done and 
 The plan was written inside a container scoped to the `CapitalGlass-Cross-Agent` repo only: no physical host access, no live Supabase credentials, no WaveRunner repo, no real `L:` mount. Everything in that session was real code, real tests, real merged PRs (#43, #45, #46) — but every claim about live systems was necessarily either an investigation finding or a deferred requirement. You are the session that has what that one didn't. Confirm you actually do before starting:
 
 - [ ] Running on a real Capital Glass host (WESLEY_WORK, WESLEYDESK, or RYZEN9DESK — see `work-progress/intelligence-hub-slices/host-authority.json` for what each host is for)
-- [ ] The `L:` drive (or its WSL mount, `/mnt/l/Capital-Glass-Intelligence-Hub`) is actually mounted and readable
+- [ ] The `L:` drive (or its WSL mount, `/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub`) is actually mounted and readable
 - [ ] A real hot-cache path resolves for this host (`S:`, `D:`, or `C:` "AI Cursur Cache" per host — see `scripts/intelligence/lib/hot-ai-cache-plane-v1.mjs`'s `ALL_KNOWN_CACHE_HOST_IDS`)
 - [ ] Live Supabase credentials are actually available (`CROSS_AGENT_INTELLIGENCE_HUB_PROJECTION_APPROVED`, `INTELLIGENCE_HUB_LIVE_WRITES`, plus whatever Doppler config `freshness-gate.mjs` expects — it shells out via `doppler run --project cg-mcp --config dev`)
 - [ ] If you're touching Phase 3, WaveRunner's repo (or `CG-AppBuilder-MCP`, which hosts `scripts/sdlc-protocol-cursor/waverunner-capability-registry-v1.json`) is actually reachable from here

@@ -323,7 +323,7 @@ Latest pasted seed mission report:
 | Cross-Agent commit | `1c0bd9f` pushed to `origin/main` |
 | Source commit (Agent Fast Path) | `f2b3cfa` |
 | Compact hash | `5b619c288243af955efdea51b359349834284abb998f92d8186d8149d479aacb` |
-| L: mirror | `/mnt/l/Capital-Glass-Intelligence-Hub/02-catalog/cross-agent-notes/wsl-mcp-cursor-doppler-promptops-hardening-v1.json` |
+| L: mirror | `/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/02-catalog/cross-agent-notes/wsl-mcp-cursor-doppler-promptops-hardening-v1.json` |
 | `cross-agent-notes:seed --apply` | PASS |
 | `cross-agent-notes:verify` | PASS |
 
@@ -346,7 +346,7 @@ Evidence paths:
 | --- | --- |
 | Apply receipt | `~/repos/CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-notes-seeding-v1/wsl-mcp-cursor-doppler-promptops-hardening-v1/apply-result.json` |
 | Ingest receipt | `~/repos/CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-structured-ledger-projection-v1/ingest-apply-receipt.json` |
-| L: hub index | `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index`, readable |
+| L: hub index | `/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index`, readable |
 
 Host check:
 
@@ -602,7 +602,7 @@ bash ~/repos/CG-AppBuilder-MCP/scripts/ci/ensure-wsl-l-hub-mount.sh
 **Verify before material work:**
 
 - `pwd` under `/home/wesle/repos` (not `/mnt/c/Developer/repos`)
-- `test -d /mnt/l/Capital-Glass-Intelligence-Hub/00-master-index`
+- `test -d /mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index`
 - `curl -fsS --max-time 3 "$MCP_API_URL/health"`
 
 **Do not:** Git-mutate from NTFS workspace; use LAN-only L: map when Tailscale `wesleydesk` is reachable; paste secrets into env files.
@@ -612,7 +612,7 @@ bash ~/repos/CG-AppBuilder-MCP/scripts/ci/ensure-wsl-l-hub-mount.sh
 ### 2026-08-02 CT — L: remounted via Tailscale; seed pipeline unblocked
 
 - Windows L: mapped to `\\wesleydesk\CapitalGlass-L` (LAN `192.168.1.109` offline).
-- WSL `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index` readable.
+- WSL `/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index` readable.
 - Agent Fast Path added for `cross-agent-notes-seeding-v1` compact projection.
 - Cursor workspace still on `/mnt/c/Developer/repos` until operator reopens ext4 root.
 
@@ -660,7 +660,7 @@ bash ~/repos/CG-AppBuilder-MCP/scripts/ci/ensure-wsl-l-hub-mount.sh
 ### 2026-08-02 CT — seed mission HOLD (partial PASS)
 
 - `cross-agent-notes:seed --apply` PASS and `cross-agent-notes:verify` PASS.
-- L: mirror written under `/mnt/l/Capital-Glass-Intelligence-Hub/02-catalog/cross-agent-notes/`.
+- L: mirror written under `/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/02-catalog/cross-agent-notes/`.
 - L: `00-master-index` readable; L: blocker cleared.
 - Structured-ledger ingest blocked by operator approval gate: `BLOCKED_OPERATOR_APPROVAL`.
 - Drift probe result: `SUPABASE_PROJECTION_MISSING`; drift remains UNKNOWN.
@@ -673,7 +673,7 @@ bash ~/repos/CG-AppBuilder-MCP/scripts/ci/ensure-wsl-l-hub-mount.sh
 - Cross-Agent bootstrapped under `/home/wesle/repos/CapitalGlass-Cross-Agent` as a readable symlink to the NTFS checkout.
 - Z: mounted at `/mnt/z`; L: failed because `\\192.168.1.109\CapitalGlass-L` is unreachable from the current network state.
 - Cursor still needs to reopen from `/home/wesle/repos/CG-AppBuilder-MCP`; current session remains `HOST_MODE_BLOCKED` if opened from `/mnt/c/Developer/repos`.
-- Seed mission must wait until L: shows `L:\Capital-Glass-Intelligence-Hub\00-master-index\`.
+- Seed mission must wait until L: shows `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\`.
 
 ### 2026-08-02 CT — clean MCP authority state reported
 
