@@ -168,7 +168,7 @@ Do not mark the whole work package complete until these are resolved or explicit
 
 | Check | Status (2026-08-02 CT) |
 | --- | --- |
-| L: hub `/mnt/l/.../00-master-index` | **PASS** — `\\wesleydesk\CapitalGlass-L` via Tailscale |
+| L: hub `/mnt/z/BlackBoxAi/.../00-master-index` | **PASS** — `\\wesleydesk\Capital-Glass-BlackBoxAi` via Tailscale |
 | Cursor workspace ext4 root | **HOLD** — reopen from `/home/wesle/repos/CG-AppBuilder-MCP` |
 
 Seed pipeline may proceed for structured ledger + L: compact mirror. Operator should still reopen Cursor on ext4 for material MCP work.

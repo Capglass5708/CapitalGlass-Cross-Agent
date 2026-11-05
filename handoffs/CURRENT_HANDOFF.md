@@ -44,7 +44,7 @@ Use this order for **suite status, blockers, and active work** — not for Revu/
 | 2 | Supabase structured-ledger projection | Z:/BlackBoxAi missing; run drift probe from AppBuilder with Doppler |
 | 3 | Git ledger | `work-progress/ACTIVE_WORK.md` + `projects/INDEX.md` in this repo |
 
-If `test -d /mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index` fails, log **`Z_BLACKBOXAI_NOT_MOUNTED`** (replaces `L_DRIVE_NOT_MOUNTED_IN_WSL`; L: retired permanently 2026-11-03, see `CAD-20261103-l-retired-z-blackboxai`) and continue down the ladder; Revu/estimating deep topics stop there.
+If `test -d /mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index` fails, log **`Z_BLACKBOXAI_NOT_MOUNTED`** (replaces `Z_BLACKBOXAI_NOT_MOUNTED_IN_WSL`; Z: BlackBoxAi (L: retired permanently 2026-11-03, see `CAD-20261103-l-retired-z-blackboxai`) and continue down the ladder; Revu/estimating deep topics stop there.
 
 **Cleared (do not re-block on):** structured-ledger ingest HOLD, `/mnt/c` host blocker, `SUPABASE_PROJECTION_MISSING` false negative — all resolved at WSL ext4 + Doppler ingest. Re-run ingest only after **new** `ACTIVE_WORK.md` edits.
 

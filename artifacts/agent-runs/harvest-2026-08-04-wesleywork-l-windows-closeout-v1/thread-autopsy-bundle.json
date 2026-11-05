@@ -7,7 +7,7 @@
     {
       "wasteId": "TW-001",
       "type": "host",
-      "description": "Reported WSL /mnt/l OK while Windows L: was completely unmapped",
+      "description": "Reported WSL /mnt/z/BlackBoxAi OK while Windows Z: (BlackBoxAi) was completely unmapped",
       "evidenceRefs": [
         "TE-002",
         "TE-005",
@@ -87,7 +87,7 @@
       "situation": "User reports L drive offline on WESLEY_WORK",
       "actualExecution": {
         "steps": [
-          "Checked WSL /mnt/l — appeared OK",
+          "Checked WSL /mnt/z/BlackBoxAi — appeared OK",
           "Fixed scout/mount env paths",
           "User still could not open L in Explorer after restart"
         ],
@@ -99,9 +99,9 @@
       },
       "optimalExecution": {
         "steps": [
-          "cmd.exe net use L: immediately",
+          "cmd.exe net use Z: immediately",
           "If missing: Map-CgWesleyWorkLInUserSession.ps1 (Tailscale wesleydesk when LAN 109 down)",
-          "Then refresh WSL drvfs /mnt/l"
+          "Then refresh WSL drvfs /mnt/z/BlackBoxAi"
         ],
         "outcome": "Explorer L available in first repair pass",
         "requiredPreflight": [
@@ -150,7 +150,7 @@
       "wrongMoveId": "WM-001",
       "summary": "Trusted WSL drvfs L mount as proof L drive is online",
       "whereItHappened": "Initial diagnosis turn",
-      "whyItWasWrong": "Windows L: was unmapped — Explorer and drvfs source broken",
+      "whyItWasWrong": "Windows Z: (BlackBoxAi) was unmapped — Explorer and drvfs source broken",
       "correctFirstMove": "net use L: on Windows host",
       "preventiveControl": "Dual-layer drive health: Windows net use + WSL path",
       "seedTarget": "IH-WINDOWS-L-VS-WSL-L-001",
@@ -222,8 +222,8 @@
       "awardOrVerdict": "L_DRIVE_ONLINE",
       "currentStatus": "HOLD",
       "doNotClaimUntil": [
-        "cmd.exe net use L: Status OK",
-        "Test-Path L:\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json"
+        "cmd.exe net use Z: Status OK",
+        "Test-Path Z:\\BlackBoxAi\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json"
       ],
       "lastKnownEvidence": [
         "TE-007",
@@ -235,7 +235,7 @@
       "awardOrVerdict": "INDEX_HIT on L hub",
       "currentStatus": "HOLD",
       "doNotClaimUntil": [
-        "Windows L: mapped — not WSL /mnt/l alone"
+        "Windows Z: (BlackBoxAi) mapped — not WSL /mnt/z/BlackBoxAi alone"
       ],
       "lastKnownEvidence": [
         "WM-001"

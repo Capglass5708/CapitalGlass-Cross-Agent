@@ -53,11 +53,11 @@ Compiled by `npm run index:compile-control-slices` into `work-progress/intellige
 - `freshness-dashboard.json`
 - `domains/*.json`
 
-Publication target: `L:/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/` after freshness gate PASS on WESLEYDESK.
+Publication target: `Z:/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/` after freshness gate PASS on WESLEYDESK.
 
 ## Forbidden expansions
 
-- Long markdown dumps to L: without machine-readable slices
+- Long markdown dumps to Z: BlackBoxAi without machine-readable slices
 - Claiming hub current without freshness gate PASS
 - Duplicating owner-repo truth only in chat or harvest prose
 

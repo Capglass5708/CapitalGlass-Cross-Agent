@@ -49,7 +49,7 @@ These four rules are **non-negotiable** for the dev lane:
 | **I1** | **Stable dev hostname** | Use a **stable dev hostname/alias** (e.g. dedicated Vercel staging alias or fixed subdomain). **Do not** use ephemeral per-commit Vercel preview URLs as the dev authority. |
 | **I2** | **Supabase isolation** | **Prefer a separate Supabase development project.** If an isolated schema is used temporarily, dev workers must be **structurally incapable** of claiming production jobs (separate DB URL, separate job tables, or claim filter by environment). |
 | **I3** | **Unique dev worker token** | Issue a **unique** `PROJECT_FOLDER_PROVISION_WORKER_TOKEN` in `cg-documents/dev`. **Never** reuse the production worker token. |
-| **I4** | **Server-enforced dev root** | Enforce `L:\Capital-Glass-Projects-Dev` **server-side** (env + worker config + complete-handler validation). **Do not** allow request payloads to select the storage root. |
+| **I4** | **Server-enforced dev root** | Enforce `Z:\Capital-Glass-Projects-Dev` **server-side** (env + worker config + complete-handler validation). **Do not** allow request payloads to select the storage root. |
 
 ---
 
@@ -72,7 +72,7 @@ Prior proof project `e15f1184-72db-47fc-9ba1-f7e9c2f8b02c` remains sample/local 
 | Dashboard | Dev deployment pointed at **dev** Document Center only |
 | Doppler | `cg-documents` / **`dev`** |
 | Supabase | Separate development project (preferred); isolated schema only with I2 guards |
-| Synology root | `L:\Capital-Glass-Projects-Dev` (WSL: `/mnt/z/Capital-Glass-Projects-Dev`) — **server-enforced (I4)** |
+| Synology root | `Z:\Capital-Glass-Projects-Dev` (WSL: `/mnt/z/Capital-Glass-Projects-Dev`) — **server-enforced (I4)** |
 | Worker | `office-project-folder-provision-dev` — unique token **(I3)** |
 | Project records | Clearly marked `sample` / `development` |
 | SharePoint | **Disabled** until Synology dev flow passes |
@@ -83,7 +83,7 @@ Prior proof project `e15f1184-72db-47fc-9ba1-f7e9c2f8b02c` remains sample/local 
 |----------|-----------|
 | `DOCUMENT_LAYER_URL` | Stable dev Document Center URL **(I1)** |
 | `PROJECT_FOLDER_PROVISION_WORKER_TOKEN` | **Unique** dev token — Doppler `cg-documents/dev` **(I3)** |
-| `SYNOLOGY_PROJECTS_ROOT` | `L:\Capital-Glass-Projects-Dev` **(I4)** |
+| `SYNOLOGY_PROJECTS_ROOT` | `Z:\Capital-Glass-Projects-Dev` **(I4)** |
 | `SYNOLOGY_PROJECTS_WSL_ROOT` | `/mnt/z/Capital-Glass-Projects-Dev` **(I4)** |
 | `PROJECT_FOLDER_CLAIMED_BY` | e.g. `CG-WESLEYDESK-01-dev` |
 

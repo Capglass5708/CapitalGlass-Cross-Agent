@@ -41,7 +41,7 @@
       "status": "PASS",
       "publicationMethod": "DIRECTORY_RENAME",
       "durablePath": "02-catalog/harvests/harvest-2026-08-25-mcp-estate-remediation-v1/ec8572b24bfeb3735197d2eef37b4e6865eb11464537f44881b366121d85d8e6",
-      "verifiedBy": "direct filesystem read of /mnt/l/Capital-Glass-Intelligence-Hub payload (19 compact-records + manifest + evidence + thread-inventory all present)"
+      "verifiedBy": "direct filesystem read of /mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub payload (19 compact-records + manifest + evidence + thread-inventory all present)"
     },
     "zCache": {
       "status": "PASS",
@@ -75,9 +75,9 @@
   "RETRIEVAL_VERIFY": {
     "method": "fresh, blind Agent-tool subagent given zero mission context, path, or harvest ID",
     "question": "Does Claude Code support a cwd field for stdio MCP server registrations, and if not, what is the correct way to set a server's working directory?",
-    "result": "PASS -- agent correctly answered via a raw grep across /mnt/l/Capital-Glass-Intelligence-Hub, landed on compact-records/claude-code-cwd-unsupported-v1.json, quoted the correct nextAction and evidenceRefs, and cross-referenced EVT-405 in thread-event-inventory.json for the exact fix syntax",
+    "result": "PASS -- agent correctly answered via a raw grep across /mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub, landed on compact-records/claude-code-cwd-unsupported-v1.json, quoted the correct nextAction and evidenceRefs, and cross-referenced EVT-405 in thread-event-inventory.json for the exact fix syntax",
     "retrievalPlaneServed": "direct filesystem search over the L: Intelligence Hub mount",
-    "secondaryFinding": "the fresh agent independently tried intelligence_search_hub and office_search_knowledge (cg-app-mcp / office-admin-mcp) and got zero/irrelevant results from both -- corroborating this session's own finding that cg-app-mcp's intelligence_get_hub_status reports hubAccessible:false (L:\\Capital-Glass-Intelligence-Hub, a Windows-style path, unreachable from that MCP's binding). Recorded as an open, pre-existing host-binding defect (WC-MCP-006), not caused by this mission."
+    "secondaryFinding": "the fresh agent independently tried intelligence_search_hub and office_search_knowledge (cg-app-mcp / office-admin-mcp) and got zero/irrelevant results from both -- corroborating this session's own finding that cg-app-mcp's intelligence_get_hub_status reports hubAccessible:false (Z:\BlackBoxAi\\Capital-Glass-Intelligence-Hub, a Windows-style path, unreachable from that MCP's binding). Recorded as an open, pre-existing host-binding defect (WC-MCP-006), not caused by this mission."
   },
   "SECURITY": {
     "secretsPublished": 0,
@@ -93,7 +93,7 @@
       "WC-MCP-001: make validate-mcp-workspaces.mjs / SYNOLOGY_OPS_ROOT host/path-authority aware for WSL2 (not executed, per original mission scope)",
       "WC-MCP-002: require upper-bounded major-version constraints for Python MCP dependencies estate-wide (Computer Estimator was the one instance fixed)",
       "WC-MCP-005 (new): phase-b-v2's Supabase projection silently defaults to a local file-store simulation with no CLI opt-in to the real path -- fix the CLI or its defaults",
-      "WC-MCP-006 (new, pre-existing): cg-app-mcp's intelligence_search_hub / intelligence_get_hub_status reports hubAccessible:false due to a Windows-style L:\\ path binding unreachable from this MCP server's runtime -- same class of host-binding gap as office-admin-mcp's stale binding",
+      "WC-MCP-006 (new, pre-existing): cg-app-mcp's intelligence_search_hub / intelligence_get_hub_status reports hubAccessible:false due to a Windows-style Z:\BlackBoxAi\\ path binding unreachable from this MCP server's runtime -- same class of host-binding gap as office-admin-mcp's stale binding",
       "Complete Phase C git-pointer materialization once a documented prune/archive path for the run directory exists",
       "Commit the staged harvest-artifacts branch (harvest/mcp-estate-remediation-v1-2026-08-25) once CapitalGlass-Cross-Agent has a configured git identity",
       "Merge the 3 tracked remediation commits (0b389796, 049c439, 80a1167) via PR when convenient -- not a blocker, per standing instruction"

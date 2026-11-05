@@ -11,8 +11,8 @@
   "cacheResult": "CACHE_MISS",
   "overallHarvestVerdict": "HARVEST_COMPLETE",
   "doNotAdvance": [
-    "Claim L: INDEX_HIT when Windows Test-Path L:\\...\\INDEX.json is False",
-    "Trust WSL /mnt/l alone for drive health on WESLEY_WORK",
+    "Claim L: INDEX_HIT when Windows Test-Path Z:\\BlackBoxAi\\...\\INDEX.json is False",
+    "Trust WSL /mnt/z/BlackBoxAi alone for drive health on WESLEY_WORK",
     "Run ForceRemap from WSL working directory without cd C:\\",
     "Improvise net use / UNC discovery (RA-004)"
   ],
@@ -64,9 +64,9 @@
         "thread-autopsy-bundle.json#ED-001"
       ],
       "nextAction": "Wake WESLEYDESK + Tailscale SMB or join office LAN; rerun Ensure-CgWesleyWorkDriveMounts.ps1 -Mode ForceRemap from cd C:\\",
-      "advancementGate": "Test-Path L:\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json",
+      "advancementGate": "Test-Path Z:\\BlackBoxAi\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json",
       "doNotAdvance": [
-        "INDEX_HIT on L: while Windows L: path is False",
+        "INDEX_HIT on Z: BlackBoxAi while Windows Z: (BlackBoxAi) path is False",
         "Claim OPERATIONAL index freshness while holdReason=CACHE_AND_L_STALE_OR_MISSING"
       ]
     },
@@ -86,7 +86,7 @@
       "ownerIndexingStatus": "indexed",
       "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
       "evidenceRefs": [
-        "WSL test -d /mnt/l OK while Windows Test-Path L:\\... INDEX.json False",
+        "WSL test -d /mnt/z/BlackBoxAi OK while Windows Test-Path Z:\\BlackBoxAi\\... INDEX.json False",
         "thread-autopsy-bundle.json#WM-001",
         "docs/work-packages/z-drive-pre-session-gate-hardening-v1.md"
       ],

@@ -237,7 +237,7 @@ Root causes fixed or identified:
 | Wrong `CG_REPOS_ROOT` | `.profile` and `.bashrc` forced `/mnt/c/Developer/repos` |
 | Agent shells missed env | Non-interactive shells returned before `cursor-wsl.env` was sourced |
 | Cross-Agent missing on ext4 | Repo only existed under NTFS |
-| L: not readable in WSL | Windows L: unmapped; `\\\\192.168.1.109\\CapitalGlass-L` unreachable, error 67 |
+| L: not readable in WSL | Windows Z: (BlackBoxAi) unmapped; `\\\\192.168.1.109\\Capital-Glass-BlackBoxAi` unreachable, error 67 |
 
 Created / fixed in shell configuration:
 
@@ -251,7 +251,7 @@ New scripts reported in `~/repos/CG-AppBuilder-MCP`:
 
 | Script | Purpose |
 | --- | --- |
-| `scripts/ci/ensure-wsl-l-hub-mount.sh` | Mount L: at `/mnt/l` using drvfs with SMB fallback |
+| `scripts/ci/ensure-wsl-l-hub-mount.sh` | Mount L: at `/mnt/z/BlackBoxAi` using drvfs with SMB fallback |
 | `scripts/ci/install-wsl-hub-drive-fstab.sh` | Persist Z:/L: in `/etc/fstab` |
 | `scripts/wsl/bootstrap-cross-agent-ext4.sh` | Symlink Cross-Agent into `~/repos` |
 | `scripts/wsl/ensure-windows-drive-maps.ps1` | Map Z:/L: on Windows |
@@ -272,8 +272,8 @@ Current status from pasted result:
 | Cross-Agent on ext4 | PASS |
 | CG-AppBuilder-MCP on ext4 | PASS |
 | Z: in WSL `/mnt/z` | PASS |
-| L: in WSL `/mnt/l` | FAIL, WESLEYDESK LAN offline / `192.168.1.109` unreachable |
-| `00-master-index` on L: | BLOCKED until L: maps |
+| L: in WSL `/mnt/z/BlackBoxAi` | FAIL, WESLEYDESK LAN offline / `192.168.1.109` unreachable |
+| `00-master-index` on Z: BlackBoxAi | BLOCKED until L: maps |
 | Cursor workspace path | FAIL, still `/mnt/c/Developer/repos` / `HOST_MODE_BLOCKED` |
 
 Required operator sequence:
@@ -304,7 +304,7 @@ bash ~/repos/CG-AppBuilder-MCP/scripts/ci/ensure-wsl-l-hub-mount.sh
 Important rule:
 
 ```text
-L: cannot be faked locally. It depends on \\\\192.168.1.109\\CapitalGlass-L on WESLEYDESK. Z: is up, but the Intelligence Hub lives on L:, not Z:.
+L: cannot be faked locally. It depends on \\\\192.168.1.109\\Capital-Glass-BlackBoxAi on WESLEYDESK. Z: is up, but the Intelligence Hub lives on Z: BlackBoxAi, not Z:.
 ```
 
 
@@ -354,7 +354,7 @@ Host check:
 | --- | --- |
 | Workspace PWD | `/mnt/c/Developer/repos/CG-AppBuilder-MCP` — `HOST_MODE_BLOCKED` |
 | `CG_REPOS_ROOT` | `/home/wesle/repos` PASS |
-| L: mounted | PASS through `\\\\wesleydesk\\CapitalGlass-L` via Tailscale |
+| L: mounted | PASS through `\\\\wesleydesk\\Capital-Glass-BlackBoxAi` via Tailscale |
 | `00-master-index` | PASS |
 
 What was delivered in Cross-Agent:
@@ -576,22 +576,22 @@ Cursor diagnostic surface: `cg-diagnostic -> integrations_health_summary` after 
 ## Agent Fast Path
 
 **Work package:** `cross-agent-seed-wsl-mcp-backfill-v1`  
-**Failure codes:** `HOST_MODE_BLOCKED` now indicates a regression from verified WSL default; `L_DRIVE_LAN_UNREACHABLE_USE_TAILSCALE`, `L_DRIVE_NOT_MOUNTED_IN_WSL`  
+**Failure codes:** `HOST_MODE_BLOCKED` now indicates a regression from verified WSL default; `L_DRIVE_LAN_UNREACHABLE_USE_TAILSCALE`, `Z_BLACKBOXAI_NOT_MOUNTED_IN_WSL`  
 **Owner route:** CG-AppBuilder-MCP + Cursor-MCP-Kit (WSL repair); CapitalGlass-Office-Admin (Windows drive maps)  
 **Canonical host:** WSL ext4 `$HOME/repos` — not `/mnt/c/Developer/repos`  
 **Env authority:** `~/.config/capital-glass/cursor-wsl.env` (`CG_REPOS_ROOT=/home/wesle/repos`)
 
-**Windows L: (WESLEY_WORK) — LAN first, Tailscale fallback:**
+**Windows Z: (BlackBoxAi) (WESLEY_WORK) — LAN first, Tailscale fallback:**
 
 ```powershell
-net use L: \\192.168.1.109\CapitalGlass-L /persistent:yes
+net use L: \\192.168.1.109\Capital-Glass-BlackBoxAi /persistent:yes
 # if error 67:
-net use L: \\wesleydesk\CapitalGlass-L /persistent:yes
+net use L: \\wesleydesk\Capital-Glass-BlackBoxAi /persistent:yes
 ```
 
 **Scripted:** `CG-AppBuilder-MCP/scripts/wsl/ensure-windows-drive-maps.ps1`
 
-**WSL after Windows L: mapped:**
+**WSL after Windows Z: (BlackBoxAi) mapped:**
 
 ```bash
 bash ~/repos/CG-AppBuilder-MCP/scripts/ci/ensure-wsl-l-hub-mount.sh
@@ -611,7 +611,7 @@ bash ~/repos/CG-AppBuilder-MCP/scripts/ci/ensure-wsl-l-hub-mount.sh
 
 ### 2026-08-02 CT — L: remounted via Tailscale; seed pipeline unblocked
 
-- Windows L: mapped to `\\wesleydesk\CapitalGlass-L` (LAN `192.168.1.109` offline).
+- Windows Z: (BlackBoxAi) mapped to `\\wesleydesk\Capital-Glass-BlackBoxAi` (LAN `192.168.1.109` offline).
 - WSL `/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index` readable.
 - Agent Fast Path added for `cross-agent-notes-seeding-v1` compact projection.
 - Cursor workspace still on `/mnt/c/Developer/repos` until operator reopens ext4 root.
@@ -671,7 +671,7 @@ bash ~/repos/CG-AppBuilder-MCP/scripts/ci/ensure-wsl-l-hub-mount.sh
 
 - Shell config repaired so all shells can source `cursor-wsl.env` and resolve `CG_REPOS_ROOT=/home/wesle/repos`.
 - Cross-Agent bootstrapped under `/home/wesle/repos/CapitalGlass-Cross-Agent` as a readable symlink to the NTFS checkout.
-- Z: mounted at `/mnt/z`; L: failed because `\\192.168.1.109\CapitalGlass-L` is unreachable from the current network state.
+- Z: mounted at `/mnt/z`; L: failed because `\\192.168.1.109\Capital-Glass-BlackBoxAi` is unreachable from the current network state.
 - Cursor still needs to reopen from `/home/wesle/repos/CG-AppBuilder-MCP`; current session remains `HOST_MODE_BLOCKED` if opened from `/mnt/c/Developer/repos`.
 - Seed mission must wait until L: shows `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\`.
 

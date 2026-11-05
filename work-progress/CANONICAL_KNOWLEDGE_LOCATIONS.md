@@ -2,7 +2,7 @@
 
 This is the canonical map for where agents should look for reusable Capital Glass build knowledge, scraped research, app indexes, published packages, and coordination notes.
 
-The operational front door for machine-readable build assistance is now the synced master index on L:.
+The operational front door for machine-readable build assistance is now the synced master index on Z: BlackBoxAi.
 
 Purpose: stop valuable information from getting scattered across chat, Cursor output, local folders, and implementation repos.
 
@@ -48,7 +48,7 @@ Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\handoff-pac
 Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\BY-KIND\cross-agent-master-work.json
 ```
 
-### Cross-Agent master work (published copy on L:)
+### Cross-Agent master work (published copy on Z: BlackBoxAi)
 
 Git source of truth: `CapitalGlass-Cross-Agent/work-progress/2026-08-02_MASTER_WORK_DOCUMENT.md`
 
@@ -81,8 +81,8 @@ Example pointer shape from the unified catalog:
 ```json
 {
   "pointers": {
-    "opportunityMap": "L:/.../08-app-opportunity-map/pymkup.json",
-    "sourceCatalog": "L:/.../01-source-catalog/pymkup.json",
+    "opportunityMap": "Z:/BlackBoxAi/.../08-app-opportunity-map/pymkup.json",
+    "sourceCatalog": "Z:/BlackBoxAi/.../01-source-catalog/pymkup.json",
     "githubCorpus": "Z:/.../github-research/repos/pymkup",
     "captureManifest": "Z:/.../02-manifests/revu-opening-pymkup-github-v1.json",
     "knowledgeBuild": "C:/Developer/repos/Data-Extraction/artifacts/.../operational-knowledge.json"
@@ -115,7 +115,7 @@ Latest reported Data-Extraction commit for this feature: `bbddfe3` on `main`.
 | --- | --- |
 | `10-approved-for-use/` | Empty until agent review promotes items |
 | Rank 9 YOLO benchmark | No repo URL pinned |
-| Knowledge build paths | Some still point to local DE machine C: until warm-cache sync to L: is added |
+| Knowledge build paths | Some still point to local DE machine C: until warm-cache sync to Z: BlackBoxAi is added |
 
 Recommended next improvement: weekly job to mirror `operational-knowledge.json` files to:
 
@@ -150,7 +150,7 @@ When an agent needs available apps, libraries, tools, indexes, scraped GitHub ma
 | Research selection indexes | Ranked app/library/vendor lists and adoption decisions | `Data-Extraction/config/agent-research-library/*.json` |
 | Raw scraped GitHub/site captures | Capture plans, manifests, scraped pages, URL inventories | `Scraper/ui-capture/artifacts/vendor-docs/<vendor-or-topic>/` |
 | Processed knowledge packages | Data-Extraction KBs, manifests, retrieval snapshots, operational notes | `Data-Extraction/artifacts/data-extraction-2/` |
-| Published quick-access copies | Synology/L: compact indexes and agent entry points | `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\`, `L:\Capital-Glass-Research\...`, `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\...` |
+| Published quick-access copies | Synology/L: compact indexes and agent entry points | `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index\`, `Z:\BlackBoxAi\Capital-Glass-Research\...`, `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\...` |
 | Shared published mirrors | Z: published suite material when a workflow publishes there | `Z:\Capital-Glass-Dev\...` |
 | Suite app map | App registry, Bible/source map, application keys | `CG-AppBuilder-MCP/docs/SUITE_APPLICATION_BIBLE_REGISTRY.json` |
 | Suite bridges | Repo ownership, app-to-app bridges, workflow gaps | `CG-AppBuilder-MCP/docs/SUITE_BRIDGE_MAP.md` |
@@ -167,7 +167,7 @@ When the user asks where scraped GitHub libraries/apps are stored, start with `Z
 | 1 | `Data-Extraction/config/agent-research-library/` | Which libraries/apps were selected and why |
 | 2 | `Scraper/ui-capture/artifacts/vendor-docs/` | Raw captured GitHub/site material |
 | 3 | `Data-Extraction/artifacts/data-extraction-2/` | Processed knowledge packages |
-| 4 | `L:\Capital-Glass-Research\` and `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\` | Published quick-access copies |
+| 4 | `Z:\BlackBoxAi\Capital-Glass-Research\` and `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\` | Published quick-access copies |
 | 5 | Relevant Cross-Agent project file | Current decision, owner, status, and next action |
 
 ## Known Research Indexes And Packages
@@ -178,7 +178,7 @@ When the user asks where scraped GitHub libraries/apps are stored, start with `Z
 | Revu opening pilot KBs | `PKG-REVU-OPENING-DETECTION-PILOT-V1` | `Data-Extraction/artifacts/data-extraction-2/revu-opening-detection-pilot/` |
 | Docling GitHub ingest | `KB-DOCLING-GITHUB-V1-2026-08-01` | `Data-Extraction/artifacts/data-extraction-2/vendor-pilot/KB-DOCLING-GITHUB-V1-2026-08-01/` |
 | Docling raw capture | GitHub vendor docs capture | `Scraper/ui-capture/artifacts/vendor-docs/docling/` |
-| Docling published compact | Agent compact and manifests | `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\03-domains\vendor-docs\docling\...`, `L:\Capital-Glass-Research\Scraper-Corpus\vendor-docs\docling\...` |
+| Docling published compact | Agent compact and manifests | `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\03-domains\vendor-docs\docling\...`, `Z:\BlackBoxAi\Capital-Glass-Research\Scraper-Corpus\vendor-docs\docling\...` |
 | Unstructured GitHub scrape | Vendor docs capture/corpus | `Scraper/ui-capture/artifacts/vendor-docs/unstructured/` and DE publish target when processed |
 | Proposal stack pilot | Proposal output libraries | `Data-Extraction/artifacts/data-extraction-2/proposal-stack-pilot/` |
 
@@ -265,7 +265,7 @@ Scope:
 | What libraries/apps were researched? | `Data-Extraction/config/agent-research-library/` |
 | Where are raw scraped pages? | `Scraper/ui-capture/artifacts/vendor-docs/` |
 | Where are processed knowledge packages? | `Data-Extraction/artifacts/data-extraction-2/` |
-| Where are quick-access published copies? | `L:\Capital-Glass-Research\` and `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\` |
+| Where are quick-access published copies? | `Z:\BlackBoxAi\Capital-Glass-Research\` and `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\` |
 | How do apps/repos connect? | `CG-AppBuilder-MCP/docs/SUITE_BRIDGE_MAP.md` |
 | What schema should a producer/consumer use? | `CG-AppBuilder-MCP/contracts/external-schema-index.json` |
 | What is the constitutional capture/closeout rule? | `CG-Platform-Governance-MCP` |

@@ -18,8 +18,8 @@
 
 ## Global doNotAdvance
 
-- Report L online from WSL /mnt/l alone on WESLEY_WORK
-- Claim INDEX_HIT when Windows L:\...\INDEX.json is False
+- Report L online from WSL /mnt/z/BlackBoxAi alone on WESLEY_WORK
+- Claim INDEX_HIT when Windows Z: (BlackBoxAi)\...\INDEX.json is False
 - Re-pin cursor-wsl.env CG_REPOS_ROOT to /mnt/c/Developer/repos
 - Improvise net use / UNC discovery (RA-004)
 

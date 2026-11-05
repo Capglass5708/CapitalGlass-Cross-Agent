@@ -31,7 +31,7 @@
     {
       "wasteId": "TW-003",
       "type": "host",
-      "description": "No automated /mnt/l bootstrap — manual sudo mount each WSL session",
+      "description": "No automated /mnt/z/BlackBoxAi bootstrap — manual sudo mount each WSL session",
       "evidenceRefs": [
         "TE-003",
         "TE-004"
@@ -54,7 +54,7 @@
     {
       "wasteId": "TW-005",
       "type": "rework",
-      "description": "Overlapping L: drive investigation with prior wesleywork-l-windows harvest",
+      "description": "Overlapping Z: BlackBoxAi drive investigation with prior wesleywork-l-windows harvest",
       "evidenceRefs": [
         "harvest-2026-08-04-wesleywork-l-windows-closeout-v1",
         "BY-KIND/thread-autopsy-index.json"
@@ -67,7 +67,7 @@
   "operatorFriction": [
     {
       "frictionId": "OF-001",
-      "trigger": "Preflight blocked on DE handoff while Windows L: was mapped but WSL /mnt/l was not",
+      "trigger": "Preflight blocked on DE handoff while Windows Z: (BlackBoxAi) was mapped but WSL /mnt/z/BlackBoxAi was not",
       "operatorCost": "high",
       "systemFix": "Bootstrap L: mount automatically before de:handoff-health on wesley_work",
       "evidenceRefs": [
@@ -86,7 +86,7 @@
       "actualExecution": {
         "steps": [
           "Investigated duplicate preflight failures",
-          "Eventually found /mnt/l missing",
+          "Eventually found /mnt/z/BlackBoxAi missing",
           "Manual sudo mount"
         ],
         "outcome": "HEALTHY after manual intervention",
@@ -100,7 +100,7 @@
         "steps": [
           "npm run wsl:bootstrap-l-research first",
           "Read probe JSON for dualCorpusBridgeValid and researchIntakeIndexReadable",
-          "If BLOCKED check Windows L: via Ensure-CgWesleyWorkDriveMounts.ps1"
+          "If BLOCKED check Windows Z: (BlackBoxAi) via Ensure-CgWesleyWorkDriveMounts.ps1"
         ],
         "outcome": "Automated mount or actionable BLOCKED without manual sudo guesswork",
         "requiredPreflight": [
@@ -192,7 +192,7 @@
   "duplicateWork": [
     {
       "duplicateId": "DW-001",
-      "subject": "WESLEY_WORK L: /mnt/l availability",
+      "subject": "WESLEY_WORK L: /mnt/z/BlackBoxAi availability",
       "firstKnownInstance": "harvest-2026-08-04-wesleywork-l-windows-closeout-v1",
       "priorIndexSlice": "BY-KIND/thread-autopsy-index.json",
       "whyRepeated": "Prior harvest covered Windows remap; this thread adds DE research intake + bootstrap",
@@ -216,7 +216,7 @@
     {
       "rank": 2,
       "title": "Office Admin Install-CgWesleyWorkDriveMountPersistence.ps1 elevated",
-      "whyItPays": "Windows L: survives logon when LAN down",
+      "whyItPays": "Windows Z: (BlackBoxAi) survives logon when LAN down",
       "effort": "medium",
       "ownerRepo": "CapitalGlass-Office-Admin",
       "savedWasteIds": [

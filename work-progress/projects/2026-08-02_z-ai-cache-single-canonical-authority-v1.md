@@ -24,14 +24,14 @@ Suite-wide AI-cache release authority is singular on Z. Host-local roots (S/D/C)
 **CURRENT rule:** only the Z promotion owner writes global `CURRENT\current-ai-cache-release.json`.  
 **Host-local producers/replicas only:** WESLEY_WORK (`D:\AI Cursur Cache`), WESLEYDESK (`S:\AI Cursur Cache`), RYZEN9DESK (`C:\AI Cursur Cache`).  
 **RYZEN9DESK:** publishes candidates to `Z:\...\AI-Cache-Authority\intake\RYZEN9DESK` — not a second canonical root.  
-**L:** retrieval mirror only (`L:\Capital-Glass-Intelligence-Hub`); never authority fallback or CURRENT promotion.  
+**L:** retrieval mirror only (`Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub`); never authority fallback or CURRENT promotion.  
 **Supabase:** metadata/pointer/telemetry only (`agentops.authority_cache_*`); never canonical cache bodies.  
 **Tier-1 cache:** requires Z release binding (`evaluateAiCacheReleaseBinding`) or explicit verified-local read-only state (`PASS_OFFLINE_VERIFIED_LOCAL_RELEASE`).  
 **Three-host truth verdict:** `Z_MASTER_THREE_HOST_AI_CACHE_ALIGNED` — probe via `npm run ai-cache-z-master:three-host-status -- --json`.  
 **Governance contract:** `CG-Platform-Governance-MCP/docs/platform/CROSS_AGENT_NOTE_AUTHORITY_DECISION_CONTRACT.md`  
 **Work package:** `CG-AppBuilder-MCP/docs/work-packages/z-ai-cache-single-canonical-authority-v1.md`  
 **Cache contract:** `CG-AppBuilder-MCP/docs/AUTHORITY_CACHE_SUPABASE_CONTRACT.md`  
-**Do not:** treat L:, host-local S/D/C, Supabase rows, or chat as suite AI-cache authority; do not create a second canonical root.
+**Do not:** treat Z: BlackBoxAi, host-local S/D/C, Supabase rows, or chat as suite AI-cache authority; do not create a second canonical root.
 
 ## Evidence (pointers only)
 

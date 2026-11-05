@@ -1,7 +1,7 @@
 /**
  * Unified retrieval ladder for intelligence.preflight(): one shared,
  * agent-independent retrieval mechanism. Physically tests the hot AI cache,
- * then the Z:/BlackBoxAi Hub (L: retired 2026-11-03), then Supabase, then falls back to the Git ledger, and
+ * then the Z:/BlackBoxAi Hub (Z: BlackBoxAi (Z: BlackBoxAi (L: retired 2026-11-03), then Supabase, then falls back to the Git ledger, and
  * returns a real outcome code plus a mission-context bundle (proposal 8)
  * instead of an agent self-reporting that it "checked the index."
  */
@@ -84,9 +84,9 @@ export function testZHubPlane() {
   };
 }
 
-/** @deprecated Use resolveZHubIndexPath (L: retired 2026-11-03). */
+/** @deprecated Use resolveZHubIndexPath (Z: BlackBoxAi (Z: BlackBoxAi (L: retired 2026-11-03). */
 export const resolveLHubIndexPath = resolveZHubIndexPath;
-/** @deprecated Use testZHubPlane (L: retired 2026-11-03). */
+/** @deprecated Use testZHubPlane (Z: BlackBoxAi (Z: BlackBoxAi (L: retired 2026-11-03). */
 export const testLHubPlane = testZHubPlane;
 
 /** Step 2 — Supabase intelligence_hub projection, reusing the existing live-store resolver. */

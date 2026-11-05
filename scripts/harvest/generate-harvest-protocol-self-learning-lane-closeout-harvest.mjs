@@ -178,7 +178,7 @@ writeJson("thread-event-inventory.json", {
     { eventId: "TE-008", phase: "verification", summary: "all-spokes-verification GO_WITH_WARN", evidenceRefs: ["verification-closeout.json"] },
     { eventId: "TE-009", phase: "mistake", summary: "verify.mjs re-published empty package — fixed read-only", evidenceRefs: ["stale 6ac721898b folder deleted"] },
     { eventId: "TE-010", phase: "mistake", summary: "z-mirror docs/runbooks stale vs harvest/protocol Lane C", evidenceRefs: ["docs/runbooks 0 Lane C matches"] },
-    { eventId: "TE-011", phase: "operator", summary: "@ L protocol run file — synced 749 lines from Git canonical", evidenceRefs: ["L:/02-catalog/Harvest/protocol"] },
+    { eventId: "TE-011", phase: "operator", summary: "@ L protocol run file — synced 749 lines from Git canonical", evidenceRefs: ["Z:/BlackBoxAi/02-catalog/Harvest/protocol"] },
     { eventId: "TE-012", phase: "verification", summary: "test:harvest WARN pre-existing z-mirror source gap", evidenceRefs: ["verification-closeout.json tests"] },
   ],
 });
@@ -369,7 +369,7 @@ const seedPackets = [
       whenThisAppears: "Operator @ L protocol for closeout or Lane C missing from L copy",
       startAt: [
         "CapitalGlass-Cross-Agent/harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-V1.md",
-        "L:/02-catalog/Harvest/protocol/"
+        "Z:/BlackBoxAi/02-catalog/Harvest/protocol/"
       ],
       runPreflight: [
         "wc -l Git vs L protocol file",
@@ -447,7 +447,7 @@ writeJson("harvest-manifest-v1.json", {
     dataExtractionStatus: "not-run",
     catalogPublishStatus: "not-run",
     retrievalStatus: "not-run",
-    targetCatalog: "L:\\02-catalog\\Harvest\\Harvest Protocol Self Learning",
+    targetCatalog: "Z:\BlackBoxAi\\02-catalog\\Harvest\\Harvest Protocol Self Learning",
     authorityStatus: "PROPOSAL",
     automaticProtocolMutation: false,
     note: "This harvest documents Lane C implementation; meta protocol candidates deferred to separate review",

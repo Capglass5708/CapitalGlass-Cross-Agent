@@ -194,7 +194,7 @@ Stages (all Cross-Agent):
 4. Build derived objects (OP-00A envelope)
 5. Generate relationship edges
 6. Compile Hub compact objects
-7. **Mode A (default/CI):** dry-run corpus under `artifacts/agent-runs/operational-intelligence-envelope-v1/intelligence-dry-run/` — no L:/Z: writes
+7. **Mode A (default/CI):** dry-run corpus under `artifacts/agent-runs/operational-intelligence-envelope-v1/intelligence-dry-run/` — no Z:/BlackBoxAi/Z: writes
 8. **Mode B (shared-dev / first-mission gate):** write `intelligence_hub.knowledge_objects` + `relationships` + `body_hash` readback
 9. Retrieval + provenance reconstruction
 
@@ -353,7 +353,7 @@ Remain `WAITING_FOR_REAL_MISSION` until a **genuine** ordinary material mission 
 - No Foundry / overnight agent / opportunity miner / strategic synthesizer
 - No manufactured 25/100/1000-mission cohort or fake first real mission
 - No Hub progression authority
-- No production L:/Z: Hub publication claim (shared-dev only for gate)
+- No production Z: BlackBoxAi/Z: Hub publication claim (shared-dev only for gate)
 - No Data-Extraction ingest for this pipeline
 - No AppBuilder intelligence-model code / second envelope in AppBuilder or Governance
 - No collapsing measurementQuality into observed|inferred|synthetic

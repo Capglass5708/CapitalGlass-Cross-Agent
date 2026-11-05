@@ -40,7 +40,7 @@ SEARCH_ROOTS="$HOME"
 # Bundle roots include the SMB-mounted recovery tiers, which are slow enough that an
 # unbounded scan can look like a hang. Bounded, and its completeness is REPORTED — a
 # truncated scan must never be recorded as an exhaustive one.
-BUNDLE_ROOTS="${CG_BUNDLE_ROOTS:-$HOME /mnt/l /mnt/z}"
+BUNDLE_ROOTS="${CG_BUNDLE_ROOTS:-$HOME /mnt/z/BlackBoxAi /mnt/z}"
 BUNDLE_TIMEOUT="${CG_BUNDLE_TIMEOUT:-180}"
 
 while [ $# -gt 0 ]; do

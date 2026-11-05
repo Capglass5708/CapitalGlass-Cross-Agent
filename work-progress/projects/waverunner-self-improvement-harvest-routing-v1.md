@@ -3,7 +3,7 @@
 **Mission class:** implement  
 **Execution mode:** MILESTONE_WAVE  
 **Primary repos:** CapitalGlass-Cross-Agent, Data-Extraction  
-**Target catalog:** `L:\02-catalog\SDLC Gated Wave Protocols\WaveRunner Self Improvements Harvesting`
+**Target catalog:** `Z:\BlackBoxAi\02-catalog\SDLC Gated Wave Protocols\WaveRunner Self Improvements Harvesting`
 
 ## Authority chain
 

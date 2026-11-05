@@ -7,7 +7,7 @@
   "sourceCommitSha": "dc1c3b2bd075ba61d9b0ebfdcbd4fef6761c4892",
   "tier": "T2",
   "authorityModel": "CHAT_THREAD_STRUCTURED_TRUTH",
-  "intelligenceHubRoot": "/mnt/l/Capital-Glass-Intelligence-Hub",
+  "intelligenceHubRoot": "/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub",
   "layers": {
     "git": {
       "path": "/home/wesley/repos/CapitalGlass-Cross-Agent/artifacts/agent-runs/harvest-2026-08-04-document-center-adaptive-details-w17-v1/harvest-manifest-v1.json",
@@ -45,11 +45,11 @@
           "trimmed": false
         },
         "authorityPointers": {
-          "lHubRoot": "/mnt/l/Capital-Glass-Intelligence-Hub",
-          "lMasterIndex": "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index",
-          "lOpenActions": "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/active-work-open-actions.json",
-          "lBlockers": "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/active-work-blockers.json",
-          "lThreadAutopsyIndex": "/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/thread-autopsy-index.json",
+          "lHubRoot": "/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub",
+          "lMasterIndex": "/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index",
+          "lOpenActions": "/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/active-work-open-actions.json",
+          "lBlockers": "/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/active-work-blockers.json",
+          "lThreadAutopsyIndex": "/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/thread-autopsy-index.json",
           "zBundlePath": "/mnt/z/Capital-Glass-Intelligence-Hub/AI-Cache-Authority/objects/intelligence-hub-index/current-index-bundle.v1.json",
           "zIndexPointerPath": "/mnt/z/Capital-Glass-Intelligence-Hub/AI-Cache-Authority/index-freshness/CURRENT/current-index-pointer.json",
           "crossAgentSlicesRoot": "/home/wesley/repos/CapitalGlass-Cross-Agent/work-progress/intelligence-hub-slices"
@@ -82,7 +82,7 @@
             },
             {
               "priority": 2,
-              "action": "L: hub readable at `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index`",
+              "action": "L: hub readable at `/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index`",
               "ownerRepo": "WESLEYDESK / WSL",
               "status": "Complete for seed report"
             }
@@ -158,7 +158,7 @@
             },
             {
               "priority": 2,
-              "action": "L: hub readable at `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index`",
+              "action": "L: hub readable at `/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index`",
               "ownerRepo": "WESLEYDESK / WSL",
               "status": "Complete for seed report"
             }
@@ -286,7 +286,7 @@
                     "hostId": "WESLEYDESK",
                     "role": "index publication, GitHub Actions runner, primary dev",
                     "paths": {
-                      "intelligenceHub": "L:/Capital-Glass-Intelligence-Hub",
+                      "intelligenceHub": "Z:/BlackBoxAi/Capital-Glass-Intelligence-Hub",
                       "aiCache": "S:/AI Cursur Cache"
                     }
                   },
@@ -294,7 +294,7 @@
                     "hostId": "WESLEY_WORK",
                     "role": "WSL dev, cross-agent ledger ingest",
                     "paths": {
-                      "intelligenceHub": "/mnt/l/Capital-Glass-Intelligence-Hub",
+                      "intelligenceHub": "/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub",
                       "aiCache": "/mnt/d/AI Cursur Cache"
                     }
                   },
@@ -377,7 +377,7 @@
             "operatorPlaybook": [
               "cd C:\\",
               "Ensure-CgWesleyWorkDriveMounts.ps1 -Mode ForceRemap",
-              "sudo mount -t drvfs L: /mnt/l after Windows L healthy"
+              "sudo mount -t drvfs L: /mnt/z/BlackBoxAi after Windows L healthy"
             ],
             "escalation": [
               "wesleydesk:445 down → repair Tailscale or WESLEYDESK SMB",

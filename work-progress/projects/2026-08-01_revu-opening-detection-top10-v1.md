@@ -412,7 +412,7 @@ This corrects the Rosewood project state and separates the three active lanes.
 | Instructor videos | 13 clips registered in `Data-Extraction/topics/bluebeam-revu/projects/rosewood/project.json` |
 | Stages covered | Cover -> floor -> schedule -> elevations -> details -> RFIs/clarifications |
 | Latest capture | `VID-ROSEWOOD-DETAIL003` - finishing schedule / exterior window notes |
-| Corpus | Transcripts + logic instances on `L:\Capital-Glass-Research` |
+| Corpus | Transcripts + logic instances on `Z:\BlackBoxAi\Capital-Glass-Research` |
 | Estimating knowledge | Bound to `CG-PROJ-ROSEWOOD` + `schedule_review` for Human Estimator MCP proof target |
 
 Interpretation: this lane is operator walkthrough -> transcript -> structured estimating logic. It does not mean a Bid Composer proposal is ready.

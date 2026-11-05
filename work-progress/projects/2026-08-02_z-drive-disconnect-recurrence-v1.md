@@ -30,7 +30,7 @@ cd C:\
 & "$env:LOCALAPPDATA\CapitalGlass\Storage\Invoke-CgStorageKeeper.ps1" -Mode Health
 ```
 
-**Verify:** Storage Keeper `overall=HEALTHY`; Z `\\cg-server\Capital Glass`; L `\\wesleydesk\CapitalGlass-L`. WSL mounts independently.
+**Verify:** Storage Keeper `overall=HEALTHY`; Z `\\cg-server\Capital Glass`; L `\\wesleydesk\Capital-Glass-BlackBoxAi`. WSL mounts independently.
 
 **Do not:** patch consumer apps for Z: mapping; rediscover UNC paths via repo search; create a second FI repair record.
 
@@ -58,7 +58,7 @@ If a path 404s in Cross-Agent, resolve from the **owner repo** at the commit cit
 
 ### 2026-08-04 — Thread harvest harvest-2026-08-04-wesleywork-l-windows-closeout-v1
 
-- Windows L: remapped via Tailscale wesleydesk; ext4 repos root fix in mount gate.
+- Windows Z: (BlackBoxAi) remapped via Tailscale wesleydesk; ext4 repos root fix in mount gate.
 - Seeds: IH-WESLEYWORK-L-TAILSCALE-REMAP-001, IH-MOUNT-AUTHORITY-EXT4-REPOS-001, IH-WINDOWS-L-VS-WSL-L-001.
 
 ### 2026-08-06 — Thread harvest harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1

@@ -35,15 +35,15 @@ Wesley's stated priority order — resolve first: **#1 (charter), #2 (retrieval)
 
 ### 2a. The retrieval ladder must be a physical test, not an assumption
 
-Wesley's sharpening: there are three real retrieval planes — `/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index` (primary, WSL path for `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index`), the Supabase `intelligence_hub` projection (fallback), and the Git-based ledger/local mirror (last fallback) — and `.cursor/rules/intelligence-hub-first-read.mdc` already documents this exact failover order plus outcome codes (`INDEX_HIT`, `INDEX_MISS`, `L_DRIVE_NOT_MOUNTED_IN_WSL`, `FAILOVER_SUPABASE`, `FAILOVER_GIT_LEDGER`, `CACHE_HIT`, `CACHE_MISS`). The gap isn't that the design is wrong — it's that today the "test" is an agent following prose instructions and self-reporting an outcome code in its own response text, with nothing durable to verify it actually happened.
+Wesley's sharpening: there are three real retrieval planes — `/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index` (primary, WSL path for `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index`), the Supabase `intelligence_hub` projection (fallback), and the Git-based ledger/local mirror (last fallback) — and `.cursor/rules/intelligence-hub-first-read.mdc` already documents this exact failover order plus outcome codes (`INDEX_HIT`, `INDEX_MISS`, `Z_BLACKBOXAI_NOT_MOUNTED_IN_WSL`, `FAILOVER_SUPABASE`, `FAILOVER_GIT_LEDGER`, `CACHE_HIT`, `CACHE_MISS`). The gap isn't that the design is wrong — it's that today the "test" is an agent following prose instructions and self-reporting an outcome code in its own response text, with nothing durable to verify it actually happened.
 
 **Verified live, this session:** `test -d /mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index` returns false in this container — `/mnt/` here only contains `attach/`, `skills/`, `user-data/`. This is a concrete, reproducible instance of exactly the failure mode the fix needs to handle, not a hypothetical.
 
 **Proposed concrete spec** for `intelligence.preflight()`'s first step:
 1. Physically test `/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index` (fs existence + read, not just a path string check).
-2. On success: record the outcome as `L_HUB_READ_OK` **and** which index version/SHA was actually consumed.
-3. On failure: fall back to testing the Supabase `intelligence_hub` projection → `L_HUB_UNAVAILABLE_USING_SUPABASE` on success.
-4. On failure: fall back to the Git ledger (`work-progress/ACTIVE_WORK.md` + `work-progress/intelligence-hub-slices/`) → `L_HUB_UNAVAILABLE_USING_GIT_LEDGER` on success.
+2. On success: record the outcome as `Z_HUB_READ_OK` **and** which index version/SHA was actually consumed.
+3. On failure: fall back to testing the Supabase `intelligence_hub` projection → `Z_HUB_UNAVAILABLE_USING_SUPABASE` on success.
+4. On failure: fall back to the Git ledger (`work-progress/ACTIVE_WORK.md` + `work-progress/intelligence-hub-slices/`) → `Z_HUB_UNAVAILABLE_USING_GIT_LEDGER` on success.
 5. If none succeed: `ALL_HUB_PLANES_UNAVAILABLE` — for Revu/estimating/MCP-deep topics this stays fail-closed per the existing rule; for suite-status/blockers topics the existing rule's layered-failover behavior is preserved.
 
 Every outcome should be a **real return value plus a written receipt**, matching this repo's existing pattern (ingest receipts, publication receipts, freshness-gate receipts all already work this way) — not just text in an agent's reply that no one can audit later.
@@ -109,7 +109,7 @@ That last clause — retrieval measurably changing what Agent B does — is the 
 
 ## 5. The relationship graph isn't a record of compounding — it's the mechanism
 
-Wesley's elevation of this item: the graph shouldn't be treated as bookkeeping for compounding that happens elsewhere. It's what turns "the Hub has 500 pieces of knowledge" into "the Hub knows how 500 things relate" — an agent that walks `WSL /mnt/l mount → ENABLES → Intelligence Hub retrieval → REQUIRED_BY → Agent preflight` understands *why* something matters, not just that it exists. Two sub-proposals: redefine what counts as dividend, and give the relationship vocabulary itself real governance.
+Wesley's elevation of this item: the graph shouldn't be treated as bookkeeping for compounding that happens elsewhere. It's what turns "the Hub has 500 pieces of knowledge" into "the Hub knows how 500 things relate" — an agent that walks `WSL /mnt/z/BlackBoxAi mount → ENABLES → Intelligence Hub retrieval → REQUIRED_BY → Agent preflight` understands *why* something matters, not just that it exists. Two sub-proposals: redefine what counts as dividend, and give the relationship vocabulary itself real governance.
 
 ### 5a. What already exists — verified
 

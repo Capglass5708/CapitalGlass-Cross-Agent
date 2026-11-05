@@ -6,16 +6,16 @@
   "summary": "findmnt shows 9p with source L: for valid drvfs mounts — do not BLOCKED solely on fstype.",
   "retrievalQuestions": [
     "wesley-work-l-research-bootstrap BLOCKED unexpected-fstype 9p?",
-    "Is /mnt/l healthy when findmnt says 9p?"
+    "Is /mnt/z/BlackBoxAi healthy when findmnt says 9p?"
   ],
   "evidenceRefs": [
     "d6ad9624",
-    "mount | grep /mnt/l"
+    "mount | grep /mnt/z/BlackBoxAi"
   ],
   "futureAgentInstructions": {
     "whenThisAppears": "Bootstrap reports mountSourceValid false with fstype 9p",
     "startAt": [
-      "findmnt /mnt/l",
+      "findmnt /mnt/z/BlackBoxAi",
       "validateLMountSource in bootstrap lib"
     ],
     "runPreflight": [

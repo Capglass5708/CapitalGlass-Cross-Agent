@@ -11,8 +11,8 @@
   "cacheResult": "CACHE_MISS",
   "overallHarvestVerdict": "HARVEST_COMPLETE",
   "doNotAdvance": [
-    "Report L online from WSL /mnt/l alone on WESLEY_WORK",
-    "Claim INDEX_HIT when Windows L:\\...\\INDEX.json is False",
+    "Report L online from WSL /mnt/z/BlackBoxAi alone on WESLEY_WORK",
+    "Claim INDEX_HIT when Windows Z: (BlackBoxAi)\\...\\INDEX.json is False",
     "Re-pin cursor-wsl.env CG_REPOS_ROOT to /mnt/c/Developer/repos",
     "Improvise net use / UNC discovery (RA-004)"
   ],
@@ -56,7 +56,7 @@
       ],
       "packetKind": "blocker",
       "packetId": "windows-l-unmapped-explorer-v1",
-      "packetTitle": "Windows L: unmapped — Explorer unavailable while WSL /mnt/l may look OK",
+      "packetTitle": "Windows Z: (BlackBoxAi) unmapped — Explorer unavailable while WSL /mnt/z/BlackBoxAi may look OK",
       "state": "RESOLVED_SESSION",
       "packetVerdict": "L_REMAPPED_VIA_TAILSCALE_HOSTNAME",
       "ownerRepo": "CapitalGlass-Office-Admin",
@@ -64,15 +64,15 @@
       "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
       "evidenceRefs": [
         "net use L: before repair — connection not found",
-        "net use L: after — \\\\wesleydesk\\CapitalGlass-L OK",
+        "net use L: after — \\\\wesleydesk\\Capital-Glass-BlackBoxAi OK",
         "WIN_L_INDEX_OK after Map-CgWesleyWorkLInUserSession.ps1",
         "thread-autopsy-bundle.json#ED-001"
       ],
       "nextAction": "Elevated Install-CgWesleyWorkDriveMountPersistence.ps1; verify logon task remaps L when LAN 109 down but Tailscale up",
-      "advancementGate": "cmd.exe net use L: shows OK and Test-Path L:\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json",
+      "advancementGate": "cmd.exe net use Z: shows OK and Test-Path Z:\\BlackBoxAi\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json",
       "doNotAdvance": [
-        "Report L online from WSL /mnt/l alone",
-        "Claim INDEX_HIT on L hub while Windows L:\\ unavailable"
+        "Report L online from WSL /mnt/z/BlackBoxAi alone",
+        "Claim INDEX_HIT on L hub while Windows Z: (BlackBoxAi)\\ unavailable"
       ]
     },
     {
@@ -119,7 +119,7 @@
       "ownerIndexingStatus": "indexed",
       "projectFile": "work-progress/projects/2026-08-02_z-drive-disconnect-recurrence-v1.md",
       "evidenceRefs": [
-        "Map-CgWesleyWorkLInUserSession.ps1 output [OK] L: mapped via \\\\wesleydesk\\CapitalGlass-L",
+        "Map-CgWesleyWorkLInUserSession.ps1 output [OK] L: mapped via \\\\wesleydesk\\Capital-Glass-BlackBoxAi",
         "192.168.1.109 ping fail; 100.93.199.27 Tailscale SMB 445 open"
       ],
       "nextAction": "Operator quick fix: C:\\Developer\\repos\\CapitalGlass-Office-Admin\\scripts\\devices\\CG-WESLEYWORK-01\\Map-CgWesleyWorkLInUserSession.ps1",

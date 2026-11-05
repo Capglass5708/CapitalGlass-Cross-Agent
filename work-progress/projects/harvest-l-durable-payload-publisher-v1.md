@@ -18,7 +18,7 @@ Live L: smoke:
 RUN_L_MOUNT_SMOKE=1 npm run test:harvest:l-durable
 ```
 
-Synthetic smoke harvest ID on L: (cleaned up by test): `harvest-wave2-l-durable-smoke-v1`
+Synthetic smoke harvest ID on Z: BlackBoxAi (cleaned up by test): `harvest-wave2-l-durable-smoke-v1`
 
 ## Scope
 
@@ -30,7 +30,7 @@ Complete content-addressed L: bundle staging and publication only. No Z:, Supaba
 |------|-------|
 | L_STAGING_WRITE_PASS | Staged bundle under `_staging/harvests/<id>/<payloadHash>/` |
 | L_STAGING_HASH_PASS | Inventory hash verification in `stageLDurableBundle` |
-| L_ATOMIC_PROMOTION_PASS | `DIRECTORY_RENAME` on `/mnt/l` (smoke test); fallback `COPY_THEN_COMPLETE_MARKER` |
+| L_ATOMIC_PROMOTION_PASS | `DIRECTORY_RENAME` on `/mnt/z/BlackBoxAi` (smoke test); fallback `COPY_THEN_COMPLETE_MARKER` |
 | L_DURABLE_COMPLETE_PASS | Full bundle under `02-catalog/harvests` + `PUBLICATION_COMPLETE.json` |
 | L_RECONSTRUCTION_PASS | Reconstruct payload from catalog-only copy |
 | L_IDEMPOTENCY_PASS | Second run → `NOOP_CURRENT` |
@@ -41,7 +41,7 @@ Complete content-addressed L: bundle staging and publication only. No Z:, Supaba
 
 ## drvfs note
 
-WSL `/mnt/l` rejects Node `fs.copyFileSync` (EPERM) but accepts `readFileSync` + `writeFileSync` and shell `cp -f`. Staging/copy paths use read/write. Do not use `rsync` overwrite on this mount.
+WSL `/mnt/z/BlackBoxAi` rejects Node `fs.copyFileSync` (EPERM) but accepts `readFileSync` + `writeFileSync` and shell `cp -f`. Staging/copy paths use read/write. Do not use `rsync` overwrite on this mount.
 
 ## Verification
 

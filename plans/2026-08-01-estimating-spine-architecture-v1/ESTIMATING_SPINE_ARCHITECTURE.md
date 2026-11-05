@@ -41,13 +41,13 @@ The spine is **not one app**. It is a **chain of authorities** with hard boundar
 | Layer | Role | Owns persistence? |
 | --- | --- | --- |
 | **Document Center** | Canonical project documents (plan PDFs, specs) | `project_documents`, storage |
-| **Computer Estimator (CE)** | Construction-document evidence producer | Local Postgres + `L:\Bid Composer Parser\` |
+| **Computer Estimator (CE)** | Construction-document evidence producer | Local Postgres + `Z:\BlackBoxAi\Bid Composer Parser\` |
 | **Bid Composer (BC)** | Review spine, disposition, pricing, proposal compile/issue | All `bid_*` + `proposal_input_models` |
 | **Human Estimator Core** | Pure evaluation (ontology, readiness, truths) | **No tables** — code in BC repo |
 | **Human Estimator MCP** | Read-only agent surface over BC state | **No writes** |
 | **Command MCP** | Gated mutation adapter (`bidcomposer.*`) | Audit tables only |
 | **Visual Asset Engine (VAE)** | Bid-sheet SVG trace (visual lane) | Corpus + vector packages |
-| **Data-Extraction (DE)** | Research hub, VERIFY_LIVE logic, bridge pointers | Logic graphs on L: — no runtime coupling |
+| **Data-Extraction (DE)** | Research hub, VERIFY_LIVE logic, bridge pointers | Logic graphs on Z: BlackBoxAi — no runtime coupling |
 | **Proposal Generator** | **Separate product** — new-construction estimating | `project_proposal_*`, `openings`, etc. |
 | **CG-AppBuilder-MCP** | Suite control plane: bridges, ownership, Bibles, gates | MCP Supabase (not estimating data) |
 
@@ -95,7 +95,7 @@ keyword detected → scope auto-included → quantity accepted → price approve
 | --- | --- |
 | `plan_documents`, `plan_sheets`, `extraction_runs`, region/OCR/embedding tables | Write any `bid_*` table |
 | Append-only evidence (no UPDATE/DELETE) | Become proposal compiler |
-| `L:\Bid Composer Parser\documents\<id>\` packages | Expose CE Postgres to BC |
+| `Z:\BlackBoxAi\Bid Composer Parser\documents\<id>\` packages | Expose CE Postgres to BC |
 | `parserEvidencePackage@1.0.0` contract | Treat `Z:\Office\Plan Parser\Plan Out` as canonical |
 
 **Pipeline stages:** `detect_regions` → `extract_tables` → OCR/layout → package publish (`READY.json` last).
@@ -315,7 +315,7 @@ flowchart TB
 
 1. Operator drops PDF in Plan In or triggers `cest run`.
 2. CE pipeline: regions → tables → OCR → provenance.
-3. Package published to `L:\Bid Composer Parser\documents\<document-id>\`:
+3. Package published to `Z:\BlackBoxAi\Bid Composer Parser\documents\<document-id>\`:
    - `evidence-package.json` (`parserEvidencePackage@1.0.0`)
    - `assets/manifest.json`, crops
    - **`READY.json` written last** (consumers reject without it)
@@ -411,7 +411,7 @@ npm run agent-lane:run -- --bidId <uuid> --stage schedule-review
 | `PARSER_EVIDENCE_IMPORT_ENABLED` | BC | Feature gate (off by default) |
 | `BID_COMPOSER_PARSER_IMPORT_TOKEN` | BC | Import API auth |
 | `BID_COMPOSER_PARSER_IMPORT_URL` / `PARSER_RELAY_URL` | Relay | Consumer endpoint |
-| `PROCESSED_OUTPUT_DIR` | CE | Package root (`L:\Bid Composer Parser\documents\`) |
+| `PROCESSED_OUTPUT_DIR` | CE | Package root (`Z:\BlackBoxAi\Bid Composer Parser\documents\`) |
 
 ### Estimating writes (Wave 3)
 
@@ -444,7 +444,7 @@ npm run agent-lane:run -- --bidId <uuid> --stage schedule-review
 | --- | --- | --- |
 | **Legacy GPT text intake** | **Live production** | BC review UI |
 | **Revu takeoff** (`capital-glass-revu-takeoff-v1`) | Dev/staging | `/bids/{id}/revu-takeoff-review` |
-| **DE VERIFY_LIVE** | Operator logic on L: | Concept promotion → BC registry |
+| **DE VERIFY_LIVE** | Operator logic on Z: BlackBoxAi | Concept promotion → BC registry |
 | **VAE visual lane** | Wave A-Visual | Vector paths on `bid_scope_visuals` |
 | **OBS capture** | Research corpus | DE logic sync |
 
@@ -491,7 +491,7 @@ Baseline package: `bid-disposition-proposal-spine-baseline-1` — primary measur
 | Reusable concept (MCP-ready) | BC concepts registry + Application Bible |
 | Bridge contract | CG-AppBuilder-MCP `suite-bridge-contracts.ts` |
 | Table ownership | `domain-ownership.ts` |
-| Operator VERIFY_LIVE truth | DE logic instances on L: |
+| Operator VERIFY_LIVE truth | DE logic instances on Z: BlackBoxAi |
 | Architectural decision | ADR in owning repo |
 
 ---
@@ -565,7 +565,7 @@ Baseline package: `bid-disposition-proposal-spine-baseline-1` — primary measur
 
 The **estimating spine** is a **multi-repo ecosystem** unified by:
 
-1. **CE produces** immutable, provenance-rich parser evidence on L:.
+1. **CE produces** immutable, provenance-rich parser evidence on Z: BlackBoxAi.
 2. **BC consumes** via authenticated import into `bid_parser_*`, maps to variable candidates, and owns **all** review, disposition, pricing, and issuance.
 3. **Human Estimator Core evaluates** readiness in pure code; **HE MCP exposes read-only** corroboration; **Command MCP gates writes**.
 4. **DE coordinates meaning** across repos via pointer bridges — never runtime mutation.

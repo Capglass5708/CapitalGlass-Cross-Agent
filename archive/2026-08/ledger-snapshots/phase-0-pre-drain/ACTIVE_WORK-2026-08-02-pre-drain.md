@@ -235,7 +235,7 @@ Notes:
 | Work package | `cross-agent-master-work-ingest-v1` |
 | Source | Cursor |
 | Repos involved | `CapitalGlass-Cross-Agent` |
-| Status | Published to L: |
+| Status | Published to Z: BlackBoxAi |
 | Commits / PRs | Source doc `7f454e3`; ledger base `506a229`; ingest commit pending |
 | Verification | L: copy + `cross-agent-master-work/INDEX.json` + `LATEST.md` + `BY-KIND/cross-agent-master-work.json` + top-level `INDEX.json` + `AGENT_BUILD_CATALOG.json` |
 | Next action | Commit/push Cross-Agent ledger corrections |
@@ -266,7 +266,7 @@ Notes:
 - Data-Extraction owns sync via `npm run agent-research-library:sync-master-index`; estate manifest is `Data-Extraction/config/agent-research-library/estate-manifest-v1.json`.
 - Data-Extraction feature reported committed and pushed as `bbddfe3` on `main`.
 - Cross-Agent canonical map updated in `work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md`; Cross-Agent remains the human decision ledger, while L: master index is the machine-readable build catalog.
-- Known gaps: `10-approved-for-use/` empty until review, rank 9 YOLO URL not pinned, some knowledge build paths still local C: until warm-cache sync to L: is added.
+- Known gaps: `10-approved-for-use/` empty until review, rank 9 YOLO URL not pinned, some knowledge build paths still local C: until warm-cache sync to Z: BlackBoxAi is added.
 
 ### 2026-08-01 CT - Rosewood parser running on Ryzen9Desk
 
@@ -282,7 +282,7 @@ Notes:
 
 - Created `work-progress/CANONICAL_KNOWLEDGE_LOCATIONS.md` as the canonical place for agents to find scraped GitHub research, available app/library indexes, processed DE packages, Synology quick-access paths, suite maps, and schema pointers.
 - Updated `AGENT_START_HERE.md` and `work-progress/WORKSPACE_CONTEXT.md` to point agents to the canonical map.
-- Canonical rule: Cross-Agent stores decisions and pointers; Scraper stores raw captures; Data-Extraction stores indexes and processed KBs; L:/Z: store published quick-access copies; implementation repos consume the knowledge.
+- Canonical rule: Cross-Agent stores decisions and pointers; Scraper stores raw captures; Data-Extraction stores indexes and processed KBs; Z:/BlackBoxAi/Z: store published quick-access copies; implementation repos consume the knowledge.
 - Commits: Cross-Agent `d0558a0`, `e6ddb41`, `ae110e8`.
 
 ### 2026-08-01 CT - Ryzen9Desk parser run evidence captured

@@ -69,7 +69,7 @@ Known gaps:
 | --- | --- |
 | `10-approved-for-use/` | Empty until review promotes items |
 | Rank 9 YOLO benchmark | No repo URL pinned |
-| Knowledge build paths | Some still point to local C: until warm-cache sync to L: exists |
+| Knowledge build paths | Some still point to local C: until warm-cache sync to Z: BlackBoxAi exists |
 
 Recommended next improvement: mirror `operational-knowledge.json` files to:
 
@@ -98,7 +98,7 @@ Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\02-capability-library\
 | Research selection indexes | `Data-Extraction/config/agent-research-library/*.json` |
 | Raw scraped GitHub/site captures | `Scraper/ui-capture/artifacts/vendor-docs/<vendor-or-topic>/` |
 | Processed DE knowledge packages | `Data-Extraction/artifacts/data-extraction-2/` |
-| Published quick-access copies | `L:\Capital-Glass-Research\...`, `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\...` |
+| Published quick-access copies | `Z:\BlackBoxAi\Capital-Glass-Research\...`, `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\...` |
 | Shared published suite mirror | `Z:\Capital-Glass-Dev\...` where the workflow publishes there |
 | Implementation code | Owning app repo only |
 
@@ -363,7 +363,7 @@ Additional Cross-Agent commits today captured parser/Rosewood run evidence and a
 | 5 | Scope/implement `cg-opening-locator-v1` with SAHI + PaddleDetection | Computer Estimator |
 | 6 | Stand up CVAT + SAM 2 labeling lane if approved | Computer Estimator / Data-Extraction |
 | 7 | Benchmark Docling against CE schedule/table fixtures | Computer Estimator |
-| 8 | Add warm-cache sync of `operational-knowledge.json` to L: capability library | Data-Extraction |
+| 8 | Add warm-cache sync of `operational-knowledge.json` to Z: BlackBoxAi capability library | Data-Extraction |
 | 9 | Restart Cursor MCP for Governance tools | Operator |
 | 10 | Push `CG-AppBuilder-MCP` `480315c2` when approved | Operator / repos |
 

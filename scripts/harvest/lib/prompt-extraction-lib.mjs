@@ -28,7 +28,7 @@ const TRANSIENT_PATTERNS = [
   /\b\/mnt\/[a-z]\/[^\s]+/gi,
   /\b\/home\/[^\s]+/gi,
   /\bZ:\\[^\s]+/gi,
-  /\bL:\\[^\s]+/gi,
+  /\bZ:\BlackBoxAi\\[^\s]+/gi,
 ];
 
 const INPUT_PLACEHOLDERS = [

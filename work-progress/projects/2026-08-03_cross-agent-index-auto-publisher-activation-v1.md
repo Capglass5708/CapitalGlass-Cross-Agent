@@ -2,7 +2,7 @@
 
 ## Summary
 
-Next mission after index freshness foundation — activate Cross-Agent index auto-publisher and prove post-commit publication to L:/Supabase.
+Next mission after index freshness foundation — activate Cross-Agent index auto-publisher and prove post-commit publication to Z: BlackBoxAi/Supabase.
 
 ## Workspace
 

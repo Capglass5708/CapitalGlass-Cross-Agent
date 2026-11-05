@@ -3,19 +3,19 @@
   "seedId": "IH-HUB-CATALOG-VERIFY-001",
   "kind": "command",
   "title": "Verify Intelligence Hub harvest catalog independently of freshness gate",
-  "summary": "12 thread-autopsy seeds on L: catalog does not imply index:freshness-gate PASS — check both.",
+  "summary": "12 thread-autopsy seeds on Z: BlackBoxAi catalog does not imply index:freshness-gate PASS — check both.",
   "retrievalQuestions": [
     "How do I verify harvest seeds reached the Intelligence Hub?",
     "Does catalog populated mean FULLY_SEEDED?"
   ],
   "evidenceRefs": [
-    "L:/Capital-Glass-Intelligence-Hub/02-catalog/knowledge-objects/cross-agent-harvest/",
+    "Z:/BlackBoxAi/Capital-Glass-Intelligence-Hub/02-catalog/knowledge-objects/cross-agent-harvest/",
     "BY-KIND/thread-autopsy-index.json"
   ],
   "futureAgentInstructions": {
     "whenThisAppears": "Operator asks if hub is populated",
     "startAt": ["BY-KIND/thread-autopsy-index.json", "02-catalog/knowledge-objects/cross-agent-harvest/"],
-    "runPreflight": ["test -f /mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/thread-autopsy-index.json"],
+    "runPreflight": ["test -f /mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/thread-autopsy-index.json"],
     "doNot": ["Conflate catalog file presence with freshness-gate PASS"],
     "proveBeforeClaiming": ["12 seed files exist", "index:freshness-gate at current HEAD"]
   },

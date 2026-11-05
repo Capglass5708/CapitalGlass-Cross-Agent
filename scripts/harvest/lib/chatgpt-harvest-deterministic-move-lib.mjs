@@ -20,7 +20,7 @@ function writeJsonAtomic(filePath, value) {
   fs.renameSync(temp, filePath);
 }
 
-/** AI home on Z: (L: retired 2026-11-03). */
+/** AI home on Z: (Z: BlackBoxAi (Z: BlackBoxAi (L: retired 2026-11-03). */
 export const Z_BLACKBOXAI_ROOT = "/mnt/z/BlackBoxAi";
 
 /**

@@ -18,8 +18,8 @@
 
 ## Global doNotAdvance
 
-- Claim L: INDEX_HIT when Windows Test-Path L:\...\INDEX.json is False
-- Trust WSL /mnt/l alone for drive health on WESLEY_WORK
+- Claim L: INDEX_HIT when Windows Test-Path Z:\BlackBoxAi\...\INDEX.json is False
+- Trust WSL /mnt/z/BlackBoxAi alone for drive health on WESLEY_WORK
 - Run ForceRemap from WSL working directory without cd C:\
 - Improvise net use / UNC discovery (RA-004)
 

@@ -23,10 +23,10 @@ cd C:\
 & "$env:LOCALAPPDATA\CapitalGlass\Storage\Invoke-CgStorageKeeper.ps1" -Mode Health
 ```
 
-**Never:** ForceRemap. Map WESLEYWORK to `192.168.*`. Treat WSL `/mnt/z` `/mnt/l` as `drvfs` of the Windows letters. Re-enable PreCursor or `DriveMount-Health`. Deploy `Install-CgWesleyWorkDriveMountPersistence.ps1`.
+**Never:** ForceRemap. Map WESLEYWORK to `192.168.*`. Treat WSL `/mnt/z` `/mnt/z/BlackBoxAi` as `drvfs` of the Windows letters. Re-enable PreCursor or `DriveMount-Health`. Deploy `Install-CgWesleyWorkDriveMountPersistence.ps1`.
 
-**Windows canonical:** Z `\\cg-server\Capital Glass` · L `\\wesleydesk\CapitalGlass-L`  
-**WSL independent CIFS:** `/mnt/z` → `//cg-server/Capital Glass` · `/mnt/l` → `//wesleydesk/CapitalGlass-L`
+**Windows canonical:** Z `\\cg-server\Capital Glass` · L `\\wesleydesk\Capital-Glass-BlackBoxAi`  
+**WSL independent CIFS:** `/mnt/z` → `//cg-server/Capital Glass` · `/mnt/z/BlackBoxAi` → `//cg-server/Capital Glass/BlackBoxAi`
 
 ## Live-machine closeout gate (2026-08-13)
 

@@ -1,7 +1,7 @@
 {
   "schemaVersion": "thread-event-inventory-v1@1.0.0",
   "harvestId": "harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1",
-  "threadScope": "DE handoff preflight blockers + durable /mnt/l bootstrap on WESLEY_WORK",
+  "threadScope": "DE handoff preflight blockers + durable /mnt/z/BlackBoxAi bootstrap on WESLEY_WORK",
   "generatedAt": "2026-08-06T08:00:00.000Z",
   "events": [
     {
@@ -24,16 +24,16 @@
     {
       "eventId": "TE-003",
       "phase": "diagnosis",
-      "summary": "Windows L: had corpus; WSL /mnt/l not mounted",
+      "summary": "Windows Z: (BlackBoxAi) had corpus; WSL /mnt/z/BlackBoxAi not mounted",
       "evidenceRefs": [
         "powershell Test-Path L index",
-        "missing /mnt/l"
+        "missing /mnt/z/BlackBoxAi"
       ]
     },
     {
       "eventId": "TE-004",
       "phase": "repair",
-      "summary": "Manual sudo mount -t drvfs L: /mnt/l → de:handoff-health HEALTHY",
+      "summary": "Manual sudo mount -t drvfs L: /mnt/z/BlackBoxAi → de:handoff-health HEALTHY",
       "evidenceRefs": [
         "session mount evidence"
       ]
@@ -57,7 +57,7 @@
     {
       "eventId": "TE-007",
       "phase": "mission",
-      "summary": "User approved durable WESLEY_WORK /mnt/l bootstrap SDLC mission",
+      "summary": "User approved durable WESLEY_WORK /mnt/z/BlackBoxAi bootstrap SDLC mission",
       "evidenceRefs": [
         "user mission prompt"
       ]
@@ -76,7 +76,7 @@
       "phase": "fix",
       "summary": "WSL2 drvfs surfaces as fstype 9p — validation updated",
       "evidenceRefs": [
-        "findmnt /mnt/l",
+        "findmnt /mnt/z/BlackBoxAi",
         "d6ad9624"
       ]
     },

@@ -82,7 +82,7 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Repos involved | CapitalGlass-Cross-Agent (this plan); execution will touch WaveRunner, CG-AppBuilder-MCP, and the real WESLEY_WORK/WESLEYDESK/RYZEN9DESK hosts, none in this session's scope |
 | Notes | Next mission after PR #45 merged, per Wesley's explicit direction to freeze the intelligence-layer local plumbing and move to a real cross-system proof. Five ordered phases: (0) close automatic intelligence freshness — Git main changes → freshness gate detects SHA mismatch → correct repo incrementally re-indexed → new publication becomes authoritative-current → L-drive cache refresh → hot-cache invalidation → Supabase confirmation → preflight reads the new generation and reports the source SHA it actually consumed, with no operator manually kicking it, plus a status-vocabulary fix (`publicationPosition`/`authorityFreshness` replacing the ambiguous `currentPublication` reported alongside `INDEX_BEHIND`); (1) real hot-AI-cache proof on all 3 hosts; (2) Supabase publication + readback through the *existing* governed OP-00A projection path — no second implementation; (3) WaveRunner integration consuming the shared preflight contract; (4) true end-to-end compounding proof (real mission → Gold Mine/graph mutation → Supabase + cache refresh → fresh agent session → proven retrieval). Governed by one uncompromising success condition: after a commit lands on `main`, a fresh agent must automatically receive intelligence derived from it without Wesley manually refreshing anything. Also governed by an explicit architectural rule across all five phases: no component reimplements another's responsibility (Cross-Agent ≠ Platform Intelligence, WaveRunner doesn't build a second preflight, hot cache/Supabase/L: don't become authority, Gold Mine doesn't bypass the graph, preflight doesn't tolerate stale provenance silently). Also recorded a deferred design item: scope-aware cache keys/filtered derived bundles, so a scoped query can eventually get a legitimate cache hit instead of always falling through to live retrieval (today's safe-but-inefficient behavior). |
 | Evidence | Plan `plans/2026-08-25_compounding-intelligence-v2-live-integration-proof.md`; **execution handoff `plans/2026-08-25_compounding-intelligence-v2-phase0-execution-handoff.md` — read the handoff first, it's the host session's actual starting point** |
-| Next | Not another Cross-Agent research session — Wesley's instruction is that the next agent session should be an execution session on the host (WSL host → real `L:` mount → real hot cache → live Supabase credentials → WaveRunner runtime). That session should open the execution handoff above before anything else. Phase 0 needs a real `main` push observed end-to-end with nothing manually re-run; phase 1 needs physical access to the three named hosts; phase 3 needs WaveRunner's repo added to a session's scope; phase 2 needs live Supabase credentials. This plan is ready the moment host access exists. |
+| Next | Not another Cross-Agent research session — Wesley's instruction is that the next agent session should be an execution session on the host (WSL host → real `Z:` (BlackBoxAi) mount → real hot cache → live Supabase credentials → WaveRunner runtime). That session should open the execution handoff above before anything else. Phase 0 needs a real `main` push observed end-to-end with nothing manually re-run; phase 1 needs physical access to the three named hosts; phase 3 needs WaveRunner's repo added to a session's scope; phase 2 needs live Supabase credentials. This plan is ready the moment host access exists. |
 
 ### 2026-08-25 CT — compounding-intelligence-unified-loop-v1
 
@@ -128,8 +128,8 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Front door | `%LOCALAPPDATA%\CapitalGlass\Storage\Invoke-CgStorageKeeper.ps1 -Mode Health` |
 | Forbidden | ForceRemap; re-enable PreCursor; implement offlan cmdkey WP; Cursor Hub write |
 | Windows Z | `\\cg-server\Capital Glass` |
-| Windows L | `\\wesleydesk\CapitalGlass-L` |
-| WSL | Independent CIFS `/mnt/z` → `//cg-server/Capital Glass` (includes `Z:\BlackBoxAi`); L: retired 2026-11-03 |
+| Windows L | `\\wesleydesk\Capital-Glass-BlackBoxAi` |
+| WSL | Independent CIFS `/mnt/z` → `//cg-server/Capital Glass` (includes `Z:\BlackBoxAi`); Z: BlackBoxAi (L: retired 2026-11-03 |
 | Next | WESLEYDESK GHA Hub republish after both remotes land. Do not write L: from Cursor. |
 
 ### 2026-08-11 CT — active-ledger-saved-work-exporter-fix + unauthorized-merge-353-ratify-cleanup-v1
@@ -163,7 +163,7 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Project file | `work-progress/projects/2026-08-12_cg-federated-repo-index-v1.md` |
 | Next | Hub L: replica publish only after operator authorization (replicas last). Do not expand indexing scope. |
 | Recorded failure | `AGENT_RETRIEVAL_FRONT_DOOR_SKIPPED` — addressed by Luna director mandatory entry |
-| Deferred | Hub replica publish to L:; `ryzen9desk-executor-transport-repair-v1` hardening |
+| Deferred | Hub replica publish to Z: BlackBoxAi; `ryzen9desk-executor-transport-repair-v1` hardening |
 
 ### 2026-08-11 CT — two-desk-operating-v1
 
@@ -256,7 +256,7 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 | Work package | `intelligence-hub-capability-expansion-v1` |
 | Verdict | **WAVE1_SHIPPED** — `PUBLISH_PASS` @ `164bda7` |
 | Artifacts | `artifacts/agent-runs/intelligence-hub-capability-expansion-v1/` (`milestone-receipt-v1.json`) |
-| Publication | Git/Supabase/L: aligned; control slices on L: BY-KIND |
+| Publication | Git/Supabase/L: aligned; control slices on Z: BlackBoxAi BY-KIND |
 | Tests | `test:index-control-slices` 7/7 PASS; idempotency `NOOP_CURRENT` |
 | Next | Wave 2 auto-publisher activation on WESLEYDESK |
 
@@ -410,7 +410,7 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 | Parent | `project-folder-synology-primary-v1` → **PRODUCTIONIZATION_HALTED** |
 | Root cause | Skipped hosted dev lane: local proof → production Vercel |
 | Ops | `PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED=false` in Doppler `cg-documents/prd` + Vercel production |
-| Dev roots | `L:\Capital-Glass-Projects-Dev` / Doppler `cg-documents/dev` |
+| Dev roots | `Z:\Capital-Glass-Projects-Dev` / Doppler `cg-documents/dev` |
 | Production | Frozen until dev gates pass; promotion of proven commit only |
 
 ### 2026-08-03 CT — WESLEY_WORK drive-mount task dedupe IMPLEMENTED
@@ -502,7 +502,7 @@ Full pre-drain commit table: `archive/2026-08/ledger-snapshots/phase-0-pre-drain
 | Field | Value |
 | --- | --- |
 | Work package | `wsl-mcp-cursor-doppler-promptops-hardening-v1` |
-| Status | **Ledger seed slice PASS** — compact promoted to L: and verified; Supabase projection updated to `5ddd274` / `9eb1c562...`; drift `IN_SYNC`; host mode still `/mnt/c` remains separate |
+| Status | **Ledger seed slice PASS** — compact promoted to Z: BlackBoxAi and verified; Supabase projection updated to `5ddd274` / `9eb1c562...`; drift `IN_SYNC`; host mode still `/mnt/c` remains separate |
 | Project file | `work-progress/projects/2026-08-02_wsl-mcp-cursor-doppler-promptops-hardening-v1.md` |
 | Verification | `wsl:mcp:smoke` 31/31 PASS; durable bootstrap 20/20 PASS; Doppler probe OK; path-coherence fallback `wsl:mcp:verify` PASS / `wsl:mcp:repair` NO_CHANGE |
 | Next action | Reopen Cursor from `/home/wesle/repos/CG-AppBuilder-MCP`; keep Vercel MCP auth, Cloudflare loopback, and `mcp:attest` as separate follow-ups |

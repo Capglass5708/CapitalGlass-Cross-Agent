@@ -43,7 +43,7 @@
 | HEAD | `7c0b76ffba8d085ecdf6786d93892545fe99ce53` |
 | Dev worker service | `CapitalGlass-Office-ProjectFolder-Provision-Dev` (RUNNING) |
 | Worker identity | `CG-WESLEYDESK-01-dev` |
-| Dev Synology root | `L:\Capital-Glass-Projects-Dev` |
+| Dev Synology root | `Z:\Capital-Glass-Projects-Dev` |
 | Env bootstrap | Doppler `cg-documents/dev` → `.env` on worker host (values not recorded) |
 
 **Note:** NSSM runs `run-worker-loop.mjs` (Node env loader) because PowerShell `.env` import corrupts bearer tokens for the stock `tsx` worker entry on WESLEYDESK SSH sessions.

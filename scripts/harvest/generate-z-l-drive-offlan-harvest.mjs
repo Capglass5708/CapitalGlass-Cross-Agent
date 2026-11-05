@@ -54,7 +54,7 @@ const packets = [
       "Wake WESLEYDESK + Tailscale SMB or join office LAN; rerun Ensure-CgWesleyWorkDriveMounts.ps1 -Mode ForceRemap from cd C:\\",
     advancementGate: "Test-Path Z:\\BlackBoxAi\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json",
     doNotAdvance: [
-      "INDEX_HIT on L: while Windows L: path is False",
+      "INDEX_HIT on Z: BlackBoxAi while Windows Z: (BlackBoxAi) path is False",
       "Claim OPERATIONAL index freshness while holdReason=CACHE_AND_L_STALE_OR_MISSING",
     ],
   }),
@@ -68,7 +68,7 @@ const packets = [
     ownerIndexingStatus: "indexed",
     projectFile: PROJECT_FILE,
     evidenceRefs: [
-      "WSL test -d /mnt/l OK while Windows Test-Path L:\\... INDEX.json False",
+      "WSL test -d /mnt/z/BlackBoxAi OK while Windows Test-Path Z:\\BlackBoxAi\\... INDEX.json False",
       "thread-autopsy-bundle.json#WM-001",
       "docs/work-packages/z-drive-pre-session-gate-hardening-v1.md",
     ],
@@ -110,8 +110,8 @@ const manifest = {
   cacheResult: "CACHE_MISS",
   overallHarvestVerdict: "HARVEST_COMPLETE",
   doNotAdvance: [
-    "Claim L: INDEX_HIT when Windows Test-Path L:\\...\\INDEX.json is False",
-    "Trust WSL /mnt/l alone for drive health on WESLEY_WORK",
+    "Claim L: INDEX_HIT when Windows Test-Path Z:\\BlackBoxAi\\...\\INDEX.json is False",
+    "Trust WSL /mnt/z/BlackBoxAi alone for drive health on WESLEY_WORK",
     "Run ForceRemap from WSL working directory without cd C:\\",
     "Improvise net use / UNC discovery (RA-004)",
   ],
@@ -149,13 +149,13 @@ writeJson("thread-event-inventory.json", {
     {
       eventId: "TE-002",
       phase: "diagnosis",
-      summary: "WSL showed /mnt/l and /mnt/z readable; index preflight STALE (FAILOVER_GIT_LEDGER)",
+      summary: "WSL showed /mnt/z/BlackBoxAi and /mnt/z readable; index preflight STALE (FAILOVER_GIT_LEDGER)",
       evidenceRefs: ["agent:index:preflight holdReason=CACHE_AND_L_STALE_OR_MISSING"],
     },
     {
       eventId: "TE-003",
       phase: "diagnosis",
-      summary: "Windows Test-Path Z:\\Capital-Glass-Dev False, L:\\...\\INDEX.json False",
+      summary: "Windows Test-Path Z:\\Capital-Glass-Dev False, Z:\BlackBoxAi\\...\\INDEX.json False",
       evidenceRefs: ["powershell Test-Path after WSL mount check"],
     },
     {
@@ -252,7 +252,7 @@ writeJson("thread-autopsy-bundle.json", {
       situation: "User reports Z and L unavailable on WESLEY_WORK",
       actualExecution: {
         steps: [
-          "Checked /mnt/l and /mnt/z in WSL — appeared OK",
+          "Checked /mnt/z/BlackBoxAi and /mnt/z in WSL — appeared OK",
           "Ran index preflight — FAILOVER_GIT_LEDGER STALE",
           "Later discovered Windows Z/L both False",
         ],
@@ -298,7 +298,7 @@ writeJson("thread-autopsy-bundle.json", {
       summary: "Reported L/Z mounts OK based on WSL drvfs alone",
       whereItHappened: "Initial thread diagnosis",
       whyItWasWrong: "Windows drive letters were disconnected; WSL retained stale 9p mounts",
-      correctFirstMove: "powershell Test-Path on Z:\\Capital-Glass-Dev and L:\\...\\INDEX.json",
+      correctFirstMove: "powershell Test-Path on Z:\\Capital-Glass-Dev and Z:\BlackBoxAi\\...\\INDEX.json",
       preventiveControl: "Dual-layer drive health check in agent runbook",
       executionDeltaId: "ED-001",
       seedTarget: "IH-WSL-DRVF-GHOST-002",
@@ -401,7 +401,7 @@ const seeds = [
     schemaVersion: "harvest-seed-packet-v1@1.0.0",
     seedId: "IH-WSL-DRVF-GHOST-002",
     kind: "lesson",
-    title: "WSL /mnt/l and /mnt/z can lie when Windows drives are disconnected",
+    title: "WSL /mnt/z/BlackBoxAi and /mnt/z can lie when Windows drives are disconnected",
     summary:
       "drvfs may serve stale cached directory listings after Windows unmaps Z: or L:; always verify Windows layer.",
     retrievalQuestions: [
@@ -410,7 +410,7 @@ const seeds = [
     ],
     evidenceRefs: ["TE-002", "TE-003", "thread-autopsy-bundle.json#WM-001"],
     futureAgentInstructions: {
-      whenThisAppears: "Agent checks /mnt/l before Windows drive health",
+      whenThisAppears: "Agent checks /mnt/z/BlackBoxAi before Windows drive health",
       startAt: ["docs/work-packages/z-drive-pre-session-gate-hardening-v1.md"],
       runPreflight: [
         "powershell Test-Path 'Z:\\Capital-Glass-Dev'",

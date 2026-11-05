@@ -13,7 +13,7 @@
   "sourceCommitShaIndex": "d993c038c88e4a31affa4d228b4f23a9243634be",
   "overallHarvestVerdict": "HARVEST_COMPLETE",
   "doNotAdvance": [
-    "Claim de:handoff-health PASS while /mnt/l unmounted or index unreadable",
+    "Claim de:handoff-health PASS while /mnt/z/BlackBoxAi unmounted or index unreadable",
     "Trust piped de:handoff-health exit code",
     "WSL-only mcp:build as Windows PM2 stamp authority",
     "Reject valid WSL2 L: mount because findmnt reports fstype 9p",
@@ -68,14 +68,14 @@
       ],
       "packetKind": "blocker",
       "packetId": "de-handoff-degraded-wsl-l-unmounted-v1",
-      "packetTitle": "DE handoff DEGRADED when /mnt/l missing despite Windows L: corpus",
+      "packetTitle": "DE handoff DEGRADED when /mnt/z/BlackBoxAi missing despite Windows Z: (BlackBoxAi) corpus",
       "state": "RESOLVED",
       "packetVerdict": "BOOTSTRAP_SHIPPED",
       "ownerRepo": "CG-AppBuilder-MCP",
       "ownerIndexingStatus": "indexed",
       "evidenceRefs": [
         "run-de-handoff-health.mjs dualCorpusBridgeValid:false researchIntakeIndexReadable:false",
-        "manual sudo mount -t drvfs L: /mnt/l → HEALTHY",
+        "manual sudo mount -t drvfs L: /mnt/z/BlackBoxAi → HEALTHY",
         "CG-AppBuilder-MCP d6ad9624",
         "thread-autopsy-bundle.json#ED-001"
       ]
@@ -174,11 +174,11 @@
       "doNotAdvance": [
         "Treat bootstrap as sole DE health source — de:handoff-health remains independent",
         "Reject WSL2 drvfs mounts that report fstype 9p with source L:",
-        "Destructively umount wrong /mnt/l without operator review"
+        "Destructively umount wrong /mnt/z/BlackBoxAi without operator review"
       ],
       "packetKind": "protocol_upgrade",
       "packetId": "wesley-work-l-research-bootstrap-protocol-v1",
-      "packetTitle": "Idempotent WESLEY_WORK L: → /mnt/l bootstrap before DE handoff preflight",
+      "packetTitle": "Idempotent WESLEY_WORK L: → /mnt/z/BlackBoxAi bootstrap before DE handoff preflight",
       "state": "SHIPPED",
       "packetVerdict": "PASS",
       "ownerRepo": "CG-AppBuilder-MCP",
@@ -266,7 +266,7 @@
       "evidenceRefs": [
         "git d6ad9624 fix(wsl): add durable L drive mount bootstrap",
         "runtime/agent-preflight/app-builder-mcp/latest.json verdict PASS",
-        "findmnt /mnt/l L: 9p drvfs"
+        "findmnt /mnt/z/BlackBoxAi L: 9p drvfs"
       ],
       "pathOrSha": "d6ad9624",
       "provesWhat": "Durable bootstrap shipped and preflight PASS",

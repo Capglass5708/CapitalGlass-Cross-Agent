@@ -34,7 +34,7 @@ Harvest mission recording latest cross-thread ChatGPT state into Cross-Agent for
 
 - No product code changes outside Cross-Agent harvest artifacts
 - No production deploys
-- No L:/Z:/Supabase publish in harvest commit
+- No Z:/BlackBoxAi/Z:/Supabase publish in harvest commit
 - No SSH / Direct Connect recovery runs
 
 ## Preserved non-claims

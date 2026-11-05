@@ -56,19 +56,19 @@
       "workflowId": "wf-l-by-kind-publication-v1",
       "displayName": "L BY-KIND publication",
       "ownerRepo": "CG-AppBuilder-MCP",
-      "purpose": "Verify and publish Intelligence Hub BY-KIND slices to L: retrieval mirror with hash alignment.",
+      "purpose": "Verify and publish Intelligence Hub BY-KIND slices to Z: BlackBoxAi retrieval mirror with hash alignment.",
       "entryCommandIds": [
         "hot-cache-publish-l-by-kind-dry-run",
         "hot-cache-verify-l-hash-alignment"
       ],
-      "preconditions": ["CG_INTELLIGENCE_HUB_ROOT or /mnt/l mount", "hot-cache compile current"],
+      "preconditions": ["CG_INTELLIGENCE_HUB_ROOT or /mnt/z/BlackBoxAi mount", "hot-cache compile current"],
       "requiredApprovals": ["operator-l-publication"],
       "mutationScope": "Z:/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND",
       "allowedMachines": ["WESLEYDESK"],
       "inputAuthorities": ["hot-cache compact slices", "index publication SHA"],
       "outputArtifacts": ["Z:/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/*.json"],
       "acceptanceGates": ["L_BY_KIND_PUBLICATION_DRY_RUN_PASS", "LOCAL_L_HASH_ALIGNMENT_PASS"],
-      "failureClassifications": ["L_DRIVE_NOT_MOUNTED", "HASH_DRIFT"],
+      "failureClassifications": ["Z_BLACKBOXAI_NOT_MOUNTED", "HASH_DRIFT"],
       "rollbackWorkflowId": null,
       "receiptContract": "l-by-kind-publication-receipt-v1",
       "relatedDatasetIds": ["active-ledger", "intelligence-hub-domains"]

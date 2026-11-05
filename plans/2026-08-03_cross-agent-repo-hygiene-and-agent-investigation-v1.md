@@ -46,7 +46,7 @@ test -d /mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index && echo
 | Mounted | Read `BY-KIND/active-work-blockers.json`, `active-work-open-actions.json`, `whats-active-now.json` |
 | Missing | Fall back to Supabase projection via AppBuilder `active-ledger:sync:check` + `whats-active-now`; then Git `ACTIVE_WORK.md` |
 
-**Revu / estimating / MCP deep topics:** L: mount is **required** (`L_DRIVE_NOT_MOUNTED_IN_WSL` = stop). Supabase fallback does **not** apply to those slices.
+**Revu / estimating / MCP deep topics:** L: mount is **required** (`Z_BLACKBOXAI_NOT_MOUNTED_IN_WSL` = stop). Supabase fallback does **not** apply to those slices.
 
 ### Step 4 — Find implementation
 

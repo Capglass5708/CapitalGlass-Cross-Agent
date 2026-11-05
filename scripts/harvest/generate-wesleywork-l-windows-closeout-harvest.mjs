@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * harvest-2026-08-04-wesleywork-l-windows-closeout-v1 (T2)
- * Thread: L offline again — ext4 path fix + Windows L: remap via Tailscale wesleydesk.
+ * Thread: L offline again — ext4 path fix + Windows Z: (BlackBoxAi) remap via Tailscale wesleydesk.
  * Supersedes/extends harvest-2026-08-04-z-l-drive-offlan-session-v1.
  */
 import fs from "node:fs";
@@ -41,7 +41,7 @@ const packets = [
   packet({
     packetId: "windows-l-unmapped-explorer-v1",
     packetKind: "blocker",
-    packetTitle: "Windows L: unmapped — Explorer unavailable while WSL /mnt/l may look OK",
+    packetTitle: "Windows Z: (BlackBoxAi) unmapped — Explorer unavailable while WSL /mnt/z/BlackBoxAi may look OK",
     state: "RESOLVED_SESSION",
     packetVerdict: "L_REMAPPED_VIA_TAILSCALE_HOSTNAME",
     ownerRepo: "CapitalGlass-Office-Admin",
@@ -49,16 +49,16 @@ const packets = [
     projectFile: PROJECT_FILE,
     evidenceRefs: [
       "net use L: before repair — connection not found",
-      "net use L: after — \\\\wesleydesk\\CapitalGlass-L OK",
+      "net use L: after — \\\\wesleydesk\\Capital-Glass-BlackBoxAi OK",
       "WIN_L_INDEX_OK after Map-CgWesleyWorkLInUserSession.ps1",
       "thread-autopsy-bundle.json#ED-001",
     ],
     nextAction:
       "Elevated Install-CgWesleyWorkDriveMountPersistence.ps1; verify logon task remaps L when LAN 109 down but Tailscale up",
-    advancementGate: "cmd.exe net use L: shows OK and Test-Path Z:\\BlackBoxAi\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json",
+    advancementGate: "cmd.exe net use Z: shows OK and Test-Path Z:\\BlackBoxAi\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json",
     doNotAdvance: [
-      "Report L online from WSL /mnt/l alone",
-      "Claim INDEX_HIT on L hub while Windows L:\\ unavailable",
+      "Report L online from WSL /mnt/z/BlackBoxAi alone",
+      "Claim INDEX_HIT on L hub while Windows Z: (BlackBoxAi)\\ unavailable",
     ],
     relatedPackets: ["z-l-drive-offlan-partial-availability-v1"],
   }),
@@ -91,7 +91,7 @@ const packets = [
     ownerIndexingStatus: "indexed",
     projectFile: PROJECT_FILE,
     evidenceRefs: [
-      "Map-CgWesleyWorkLInUserSession.ps1 output [OK] L: mapped via \\\\wesleydesk\\CapitalGlass-L",
+      "Map-CgWesleyWorkLInUserSession.ps1 output [OK] L: mapped via \\\\wesleydesk\\Capital-Glass-BlackBoxAi",
       "192.168.1.109 ping fail; 100.93.199.27 Tailscale SMB 445 open",
     ],
     nextAction:
@@ -114,8 +114,8 @@ const manifest = {
   cacheResult: "CACHE_MISS",
   overallHarvestVerdict: "HARVEST_COMPLETE",
   doNotAdvance: [
-    "Report L online from WSL /mnt/l alone on WESLEY_WORK",
-    "Claim INDEX_HIT when Windows L:\\...\\INDEX.json is False",
+    "Report L online from WSL /mnt/z/BlackBoxAi alone on WESLEY_WORK",
+    "Claim INDEX_HIT when Windows Z: (BlackBoxAi)\\...\\INDEX.json is False",
     "Re-pin cursor-wsl.env CG_REPOS_ROOT to /mnt/c/Developer/repos",
     "Improvise net use / UNC discovery (RA-004)",
   ],
@@ -146,13 +146,13 @@ writeJson("thread-event-inventory.json", {
   generatedAt: AS_OF,
   events: [
     { eventId: "TE-001", phase: "operator", summary: "User: L is offline, fix and identify why lost again", evidenceRefs: ["user turn 1"] },
-    { eventId: "TE-002", phase: "diagnosis", summary: "WSL /mnt/l readable; scout failed on NTFS CG_APPBUILDER_MCP_ROOT", evidenceRefs: ["agent:index:scout contract missing NTFS path"] },
+    { eventId: "TE-002", phase: "diagnosis", summary: "WSL /mnt/z/BlackBoxAi readable; scout failed on NTFS CG_APPBUILDER_MCP_ROOT", evidenceRefs: ["agent:index:scout contract missing NTFS path"] },
     { eventId: "TE-003", phase: "repair", summary: "Fixed mount-authority + scout to prefer /home/wesle/repos ext4", evidenceRefs: ["wsl-mount-authority-lib.mjs", "cursor-wsl.env repair"] },
     { eventId: "TE-004", phase: "operator", summary: "User: should not be Windows path but WSL2 repo", evidenceRefs: ["user correction"] },
     { eventId: "TE-005", phase: "diagnosis", summary: "Windows net use L: missing; LAN 192.168.1.109 down; Tailscale desk 445 open", evidenceRefs: ["ping/SMB probes"] },
-    { eventId: "TE-006", phase: "operator", summary: "User restarted Cursor — Explorer L:\\ still unavailable (screenshot)", evidenceRefs: ["user screenshot L unavailable dialog"] },
-    { eventId: "TE-007", phase: "repair", summary: "Map-CgWesleyWorkLInUserSession.ps1 — L OK via \\\\wesleydesk\\CapitalGlass-L", evidenceRefs: ["powershell Map script output"] },
-    { eventId: "TE-008", phase: "verification", summary: "WIN_L_INDEX_OK; WSL /mnt/l refreshed", evidenceRefs: ["cmd net use L:", "umount/mount drvfs"] },
+    { eventId: "TE-006", phase: "operator", summary: "User restarted Cursor — Explorer Z:\BlackBoxAi\\ still unavailable (screenshot)", evidenceRefs: ["user screenshot L unavailable dialog"] },
+    { eventId: "TE-007", phase: "repair", summary: "Map-CgWesleyWorkLInUserSession.ps1 — L OK via \\\\wesleydesk\\Capital-Glass-BlackBoxAi", evidenceRefs: ["powershell Map script output"] },
+    { eventId: "TE-008", phase: "verification", summary: "WIN_L_INDEX_OK; WSL /mnt/z/BlackBoxAi refreshed", evidenceRefs: ["cmd net use L:", "umount/mount drvfs"] },
   ],
 });
 
@@ -194,7 +194,7 @@ writeJson("thread-autopsy-bundle.json", {
     {
       wasteId: "TW-001",
       type: "host",
-      description: "Reported WSL /mnt/l OK while Windows L: was completely unmapped",
+      description: "Reported WSL /mnt/z/BlackBoxAi OK while Windows Z: (BlackBoxAi) was completely unmapped",
       evidenceRefs: ["TE-002", "TE-005", "TE-006"],
       estimatedImpact: "high",
       savedBy: "Windows net use L: + Test-Path L index before any L online claim",
@@ -252,7 +252,7 @@ writeJson("thread-autopsy-bundle.json", {
       situation: "User reports L drive offline on WESLEY_WORK",
       actualExecution: {
         steps: [
-          "Checked WSL /mnt/l — appeared OK",
+          "Checked WSL /mnt/z/BlackBoxAi — appeared OK",
           "Fixed scout/mount env paths",
           "User still could not open L in Explorer after restart",
         ],
@@ -261,9 +261,9 @@ writeJson("thread-autopsy-bundle.json", {
       },
       optimalExecution: {
         steps: [
-          "cmd.exe net use L: immediately",
+          "cmd.exe net use Z: immediately",
           "If missing: Map-CgWesleyWorkLInUserSession.ps1 (Tailscale wesleydesk when LAN 109 down)",
-          "Then refresh WSL drvfs /mnt/l",
+          "Then refresh WSL drvfs /mnt/z/BlackBoxAi",
         ],
         outcome: "Explorer L available in first repair pass",
         requiredPreflight: ["office.get_drive_connectivity_matrix"],
@@ -292,7 +292,7 @@ writeJson("thread-autopsy-bundle.json", {
       wrongMoveId: "WM-001",
       summary: "Trusted WSL drvfs L mount as proof L drive is online",
       whereItHappened: "Initial diagnosis turn",
-      whyItWasWrong: "Windows L: was unmapped — Explorer and drvfs source broken",
+      whyItWasWrong: "Windows Z: (BlackBoxAi) was unmapped — Explorer and drvfs source broken",
       correctFirstMove: "net use L: on Windows host",
       preventiveControl: "Dual-layer drive health: Windows net use + WSL path",
       seedTarget: "IH-WINDOWS-L-VS-WSL-L-001",
@@ -357,7 +357,7 @@ writeJson("thread-autopsy-bundle.json", {
       awardOrVerdict: "L_DRIVE_ONLINE",
       currentStatus: "HOLD",
       doNotClaimUntil: [
-        "cmd.exe net use L: Status OK",
+        "cmd.exe net use Z: Status OK",
         "Test-Path Z:\\BlackBoxAi\\Capital-Glass-Intelligence-Hub\\00-master-index\\INDEX.json",
       ],
       lastKnownEvidence: ["TE-007", "WIN_L_INDEX_OK"],
@@ -366,7 +366,7 @@ writeJson("thread-autopsy-bundle.json", {
     {
       awardOrVerdict: "INDEX_HIT on L hub",
       currentStatus: "HOLD",
-      doNotClaimUntil: ["Windows L: mapped — not WSL /mnt/l alone"],
+      doNotClaimUntil: ["Windows Z: (BlackBoxAi) mapped — not WSL /mnt/z/BlackBoxAi alone"],
       lastKnownEvidence: ["WM-001"],
     },
   ],
@@ -386,17 +386,17 @@ const seeds = [
     kind: "failure-pattern",
     title: "WESLEY_WORK L: off-LAN — remap via wesleydesk Tailscale hostname",
     summary:
-      "When 192.168.1.109 LAN is down but Tailscale reaches WESLEYDESK, map L: with Map-CgWesleyWorkLInUserSession.ps1 to \\\\wesleydesk\\CapitalGlass-L.",
+      "When 192.168.1.109 LAN is down but Tailscale reaches WESLEYDESK, map L: with Map-CgWesleyWorkLInUserSession.ps1 to \\\\wesleydesk\\Capital-Glass-BlackBoxAi.",
     retrievalQuestions: [
       "Why is L drive unavailable in Explorer on WESLEY_WORK away from office?",
       "How do I remap L when desk LAN IP does not ping?",
     ],
     evidenceRefs: [HARVEST_ID, "Map-CgWesleyWorkLInUserSession.ps1 session output"],
     futureAgentInstructions: {
-      whenThisAppears: "User cannot open L:\\ in File Explorer on WESLEY_WORK",
-      startAt: ["office.get_drive_connectivity_matrix", "cmd.exe net use L:"],
+      whenThisAppears: "User cannot open Z:\BlackBoxAi\\ in File Explorer on WESLEY_WORK",
+      startAt: ["office.get_drive_connectivity_matrix", "cmd.exe net use Z:"],
       runPreflight: ["Map-CgWesleyWorkLInUserSession.ps1 from C:\\Developer\\repos\\...\\CG-WESLEYWORK-01"],
-      doNot: ["Trust WSL /mnt/l alone", "Use LAN 192.168.1.109 when ping fails"],
+      doNot: ["Trust WSL /mnt/z/BlackBoxAi alone", "Use LAN 192.168.1.109 when ping fails"],
       proveBeforeClaiming: ["net use L: Status OK", "WIN_L_INDEX_OK"],
     },
     ownerRepo: "CapitalGlass-Office-Admin",
@@ -432,19 +432,19 @@ const seeds = [
     schemaVersion: "harvest-seed-packet-v1@1.0.0",
     seedId: "IH-WINDOWS-L-VS-WSL-L-001",
     kind: "failure-pattern",
-    title: "Windows L: vs WSL /mnt/l — dual-layer verification required",
+    title: "Windows Z: (BlackBoxAi) vs WSL /mnt/z/BlackBoxAi — dual-layer verification required",
     summary:
-      "WSL drvfs can show /mnt/l content while Windows L: is unmapped; File Explorer uses Windows layer.",
+      "WSL drvfs can show /mnt/z/BlackBoxAi content while Windows Z: (BlackBoxAi) is unmapped; File Explorer uses Windows layer.",
     retrievalQuestions: [
       "WSL says L mounted but Explorer says L unavailable?",
-      "Can I trust test -d /mnt/l for drive health?",
+      "Can I trust test -d /mnt/z/BlackBoxAi for drive health?",
     ],
     evidenceRefs: [HARVEST_ID, "WM-001", PRIOR_HARVEST],
     futureAgentInstructions: {
       whenThisAppears: "Agent reports L OK but user sees L unavailable dialog",
-      startAt: ["cmd.exe net use L:", "Test-Path L:\\...\\INDEX.json"],
+      startAt: ["cmd.exe net use Z:", "Test-Path Z:\\BlackBoxAi\\...\\INDEX.json"],
       runPreflight: [],
-      doNot: ["Claim L_DRIVE_NOT_MOUNTED_IN_WSL false from /mnt/l only"],
+      doNot: ["Claim Z_BLACKBOXAI_NOT_MOUNTED_IN_WSL false from /mnt/z/BlackBoxAi only"],
       proveBeforeClaiming: ["Windows net use L: OK before INDEX_HIT on L hub"],
     },
     ownerRepo: "CapitalGlass-Office-Admin",
@@ -474,9 +474,9 @@ fs.writeFileSync(
 **Retrieval:** INDEX_HIT · **Cache:** CACHE_MISS
 
 ## Thread truth
-- Windows L: was unmapped (Explorer error) while WSL /mnt/l looked OK.
+- Windows Z: (BlackBoxAi) was unmapped (Explorer error) while WSL /mnt/z/BlackBoxAi looked OK.
 - LAN 192.168.1.109 unreachable; Tailscale to WESLEYDESK SMB works.
-- Fixed via Map-CgWesleyWorkLInUserSession.ps1 to wesleydesk CapitalGlass-L share.
+- Fixed via Map-CgWesleyWorkLInUserSession.ps1 to wesleydesk Capital-Glass-BlackBoxAi share.
 - CG-AppBuilder-MCP mount gate now uses ext4 ~/repos (not injected NTFS path).
 
 ## Do not advance
@@ -538,7 +538,7 @@ upsertRegistryAndBoundary();
 
 const projectPath = path.join(REPO_ROOT, PROJECT_FILE);
 if (fs.existsSync(projectPath)) {
-  const entry = `\n### 2026-08-04 — Thread harvest ${HARVEST_ID}\n\n- Windows L: remapped via Tailscale wesleydesk; ext4 repos root fix in mount gate.\n- Seeds: IH-WESLEYWORK-L-TAILSCALE-REMAP-001, IH-MOUNT-AUTHORITY-EXT4-REPOS-001, IH-WINDOWS-L-VS-WSL-L-001.\n`;
+  const entry = `\n### 2026-08-04 — Thread harvest ${HARVEST_ID}\n\n- Windows Z: (BlackBoxAi) remapped via Tailscale wesleydesk; ext4 repos root fix in mount gate.\n- Seeds: IH-WESLEYWORK-L-TAILSCALE-REMAP-001, IH-MOUNT-AUTHORITY-EXT4-REPOS-001, IH-WINDOWS-L-VS-WSL-L-001.\n`;
   let body = fs.readFileSync(projectPath, "utf8");
   if (!body.includes(HARVEST_ID)) {
     fs.writeFileSync(projectPath, `${body}${entry}`, "utf8");

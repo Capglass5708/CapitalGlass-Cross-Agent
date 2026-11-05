@@ -2,7 +2,7 @@
 
 ## Summary
 
-Scaffold the Z:/L:/Intelligence Hub folder layout for the Scraper → Data-Extraction → agent research library pipeline so captured GitHub, website, vendor-docs, and extracted knowledge can be stored, verified, and consumed by agents under Northstar-style storage discipline.
+Scaffold the Z:/Z:/BlackBoxAi/Intelligence Hub folder layout for the Scraper → Data-Extraction → agent research library pipeline so captured GitHub, website, vendor-docs, and extracted knowledge can be stored, verified, and consumed by agents under Northstar-style storage discipline.
 
 ## Workspace
 
@@ -21,7 +21,7 @@ Scaffold the Z:/L:/Intelligence Hub folder layout for the Scraper → Data-Extra
 
 | Repo | Role |
 | --- | --- |
-| Data-Extraction | Scaffolds and verifies Z:/L:/Hub ingestion folder layout; extends NAS scaffold and L: extraction directories |
+| Data-Extraction | Scaffolds and verifies Z:/Z:/BlackBoxAi/Hub ingestion folder layout; extends NAS scaffold and L: extraction directories |
 | Scraper | Aligns Pageflows capture root away from retired `Z:\TEMP L DRIVE` path |
 | CapitalGlass-Cross-Agent | Meeting repo: durable notes, commits, blockers, next actions |
 

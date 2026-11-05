@@ -123,8 +123,8 @@
       "alternateQuestions": [
         "What mounts L: research intake for DE handoff on WESLEY_WORK?"
       ],
-      "shortAnswer": "Windows L: may host Capital-Glass-Research while WSL lacks /mnt/l; run npm run wsl:bootstrap-l-research before de:handoff-health.",
-      "detailedAnswer": "DE handoff DEGRADED when WSL /mnt/l missing on WESLEY_WORK",
+      "shortAnswer": "Windows Z: (BlackBoxAi) may host Capital-Glass-Research while WSL lacks /mnt/z/BlackBoxAi; run npm run wsl:bootstrap-l-research before de:handoff-health.",
+      "detailedAnswer": "DE handoff DEGRADED when WSL /mnt/z/BlackBoxAi missing on WESLEY_WORK",
       "currentStatus": "candidate",
       "answerScope": "thread-autopsy",
       "asOf": "2026-08-06T08:10:21.790Z",
@@ -169,7 +169,7 @@
         ],
         "proveBeforeClaiming": [
           "researchIntakeIndexReadable true",
-          "findmnt /mnt/l source L:"
+          "findmnt /mnt/z/BlackBoxAi source L:"
         ]
       },
       "promotionClass": "POLICY_GATED",
@@ -180,7 +180,7 @@
       "questionId": "IHWSL2DRVF9P",
       "canonicalQuestion": "wesley-work-l-research-bootstrap BLOCKED unexpected-fstype 9p?",
       "alternateQuestions": [
-        "Is /mnt/l healthy when findmnt says 9p?"
+        "Is /mnt/z/BlackBoxAi healthy when findmnt says 9p?"
       ],
       "shortAnswer": "findmnt shows 9p with source L: for valid drvfs mounts — do not BLOCKED solely on fstype.",
       "detailedAnswer": "WSL2 drvfs L: mount reports fstype 9p not drvfs",
@@ -196,7 +196,7 @@
       ],
       "evidenceUrls": [
         "d6ad9624",
-        "mount | grep /mnt/l"
+        "mount | grep /mnt/z/BlackBoxAi"
       ],
       "confidence": "partially_verified",
       "keywords": [
@@ -215,7 +215,7 @@
       "futureAgentInstructions": {
         "whenThisAppears": "Bootstrap reports mountSourceValid false with fstype 9p",
         "startAt": [
-          "findmnt /mnt/l",
+          "findmnt /mnt/z/BlackBoxAi",
           "validateLMountSource in bootstrap lib"
         ],
         "runPreflight": [

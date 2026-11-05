@@ -23,8 +23,8 @@
 | Live application SHA | `0f84735` (descendant) |
 | Production flag | PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED=true |
 | Production worker | CapitalGlass-Office-ProjectFolder-Provision RUNNING |
-| Production root | L:\\Capital-Glass-Projects\\ |
-| Dev root | L:\\Capital-Glass-Projects-Dev\\ |
+| Production root | Z:\\Capital-Glass-Projects\\ |
+| Dev root | Z:\\Capital-Glass-Projects-Dev\\ |
 | Production Supabase | wvidyxufvcrtezzkwwse |
 | Dev Supabase | mazvavlshjshwklcvxaw |
 | Historical migration | Frozen — NOT STARTED |
@@ -45,7 +45,7 @@
 
 ### RQ01: Where are new project folders stored?
 - **Returned IH-PFSP:** IH-PFSP-001
-- **Short answer:** Production new-project folders are created under L:\Capital-Glass-Projects\ on CG-WESLEYDESK-01.
+- **Short answer:** Production new-project folders are created under Z:\Capital-Glass-Projects\ on CG-WESLEYDESK-01.
 - **Classification:** VERIFIED
 - **Layer:** intelligence-hub-L-catalog
 - **Authority:** artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json
@@ -101,14 +101,14 @@
 
 ### RQ09: What is the production Synology root?
 - **Returned IH-PFSP:** IH-PFSP-009
-- **Short answer:** L:\Capital-Glass-Projects\
+- **Short answer:** Z:\Capital-Glass-Projects\
 - **Classification:** VERIFIED
 - **Layer:** intelligence-hub-L-catalog
 - **Authority:** artifacts/agent-runs/project-folder-synology-primary-v1-production-promotion/receipt.json
 
 ### RQ10: What is the dev Synology root?
 - **Returned IH-PFSP:** IH-PFSP-010
-- **Short answer:** L:\Capital-Glass-Projects-Dev\
+- **Short answer:** Z:\Capital-Glass-Projects-Dev\
 - **Classification:** VERIFIED
 - **Layer:** intelligence-hub-L-catalog
 - **Authority:** artifacts/agent-runs/project-folder-synology-primary-v1-dev-hosted-environment/receipt.json

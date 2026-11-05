@@ -60,7 +60,7 @@ This ChatGPT lane did not execute Intelligence Hub, AI Cache, Cross-Agent index,
 
 ### EVT-002 — Gold Mine North Star charter created
 - **Event:** A durable North Star charter was created and later placed at:
-  `L:\02-catalog\Harvest\GOLD-MINE-NORTH-STAR-CHARTER.md`
+  `Z:\BlackBoxAi\02-catalog\Harvest\GOLD-MINE-NORTH-STAR-CHARTER.md`
 - **Gold Mine signal:** `ADOPTION_SIGNAL`
 - **Implementation state:** `ADOPTED`
 - **Evidence:** current conversation.

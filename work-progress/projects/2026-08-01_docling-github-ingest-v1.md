@@ -2,7 +2,7 @@
 
 ## Summary
 
-Ingest `docling-project/docling` as a first-class vendor-docs estate so agents can retrieve Docling capabilities, APIs, MCP usage, and document-processing patterns from L: drive without bulk-reading GitHub.
+Ingest `docling-project/docling` as a first-class vendor-docs estate so agents can retrieve Docling capabilities, APIs, MCP usage, and document-processing patterns from Z: BlackBoxAi drive without bulk-reading GitHub.
 
 ## Workspace
 
@@ -42,7 +42,7 @@ Scraper owns raw GitHub capture and vendor-docs publishing. Data-Extraction owns
 | Docling vendor interpreter | Missing in `Data-Extraction/scripts/lib/vendor-interpretation/registry.mjs` |
 | DE2 warm-retrieval ladder | Missing; template exists at `Data-Extraction/scripts/supabase/warm-retrieval-ladder.mjs` |
 
-## Target L: drive layout
+## Target Z: BlackBoxAi drive layout
 
 ```text
 Z:/BlackBoxAi/Capital-Glass-Research/
@@ -76,12 +76,12 @@ Z:/Capital-Glass-Research/Scraper-Corpus/vendor-docs/docling/
 - Existing GitHub bulk scraper identified.
 - Wrong-lane Docling UI-reference capture identified.
 - Missing shared GitHub → articles builder identified.
-- Target Z:/L:/Intelligence Hub layout specified.
+- Target Z:/Z:/BlackBoxAi/Intelligence Hub layout specified.
 - Scraper and Data-Extraction file changes listed for implementation.
 - Verification and closeout chain specified.
 - `publish-docling-corpus.mjs` updated so publish uses `manifest-only-fast` by default.
 - Manifest-only publish completed in about 28 seconds; prior full copy path crashed after 21+ minutes.
-- Publish now writes manifests and pointers to Z:, mirrors only lightweight sections to L:, and leaves full page bytes in local capture plus DE2 cold cache.
+- Publish now writes manifests and pointers to Z:, mirrors only lightweight sections to Z: BlackBoxAi, and leaves full page bytes in local capture plus DE2 cold cache.
 - Full L: mirroring of all 1,076 pages is explicitly opt-in via `npm run vendor-docs:publish:docling:full`.
 
 ## Evidence / artifact paths
@@ -99,7 +99,7 @@ Z:/Capital-Glass-Research/Scraper-Corpus/vendor-docs/docling/
 | --- | --- |
 | `config/vendor-docs-targets/docling-github-v1.json` | Vendor target config for `docling-project/docling` |
 | `ui-capture/scripts/build-github-markdown-articles.mjs` | Generic GitHub capture → `extracted-articles.json` builder |
-| `ui-capture/scripts/publish-docling-corpus.mjs` | Publish Docling corpus to Z: and mirror to L: |
+| `ui-capture/scripts/publish-docling-corpus.mjs` | Publish Docling corpus to Z: and mirror to Z: BlackBoxAi |
 | `ui-capture/package.json` | Add Docling scrape/build/publish npm scripts |
 
 ## Planned Data-Extraction changes
@@ -170,7 +170,7 @@ npm run docling:warm-retrieval-ladder -- --mcp-repo C:\Developer\repos\CG-AppBui
 ### Placement verification
 
 ```powershell
-Test-Path L:\Capital-Glass-Research\Scraper-Corpus\vendor-docs\docling\02-manifests\extracted-articles-docling-github-v1.json
+Test-Path Z:\BlackBoxAi\Capital-Glass-Research\Scraper-Corpus\vendor-docs\docling\02-manifests\extracted-articles-docling-github-v1.json
 npm run synology:sync-handoff-intake
 npm run synology:verify-nas-layout
 npm run vendor-docs:pipeline-status -- --vendor docling
@@ -198,7 +198,7 @@ npm run de:handoff-health
 | Warm retrieval ladder missing | Data-Extraction | Implement `scripts/docling/warm-retrieval-ladder.mjs` |
 | Z:/L: may be unmounted | Operator / environment | Fail fast with dry-run and document mount prerequisites |
 | GitHub API rate limits | Scraper / operator | Run off-peak or set `GITHUB_TOKEN` for higher limits |
-| Full page mirror to L: is expensive | Scraper / operator | Use `npm run vendor-docs:publish:docling:full` only when all 1,076 pages are explicitly needed on L: |
+| Full page mirror to Z: BlackBoxAi is expensive | Scraper / operator | Use `npm run vendor-docs:publish:docling:full` only when all 1,076 pages are explicitly needed on Z: BlackBoxAi |
 
 ## Commits / PRs
 
@@ -242,15 +242,15 @@ npm run de:handoff-health
 - Publish now uses `manifest-only-fast` by default.
 - `publish-docling-corpus.mjs` skips bulk page copies.
 - Publish completed in about 28 seconds, compared with the previous 21+ minute crash path.
-- It publishes manifests and pointers to Z:, mirrors only lightweight sections `00-control`, `02-manifests`, and `03-provenance` to L:, and leaves full page bytes in the local capture plus DE2 cold cache.
+- It publishes manifests and pointers to Z:, mirrors only lightweight sections `00-control`, `02-manifests`, and `03-provenance` to Z: BlackBoxAi, and leaves full page bytes in the local capture plus DE2 cold cache.
 - Agent L: entry points:
   - `Z:/BlackBoxAi/Capital-Glass-Intelligence-Hub/03-domains/vendor-docs/docling/compacts/docling-adoption-agent-compact-v1.json`.
   - `Z:/BlackBoxAi/Capital-Glass-Research/Scraper-Corpus/vendor-docs/docling/02-manifests/extracted-articles-docling-github-v1.json`.
   - `Z:/BlackBoxAi/Capital-Glass-Research/estimating-suite-cold-cache/intelligence/vendor-docs/docling/PKG-DE2-DOCLING-.../retrieval-snapshot.json`.
-- Use `npm run vendor-docs:publish:docling:full` only when all 1,076 pages must be mirrored to L:.
+- Use `npm run vendor-docs:publish:docling:full` only when all 1,076 pages must be mirrored to Z: BlackBoxAi.
 
 ### 2026-08-01 CT — attached markdown / ChatGPT
 
 - Captured Docling GitHub → Data-Extraction → L: Drive ingest plan.
 - Identified missing shared GitHub articles builder as a blocker for both Docling and Unstructured corpus publish.
-- Captured target L: drive layout, planned Scraper/Data-Extraction files, commands, verification chain, risks, and execution order.
+- Captured target Z: BlackBoxAi drive layout, planned Scraper/Data-Extraction files, commands, verification chain, risks, and execution order.

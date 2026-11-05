@@ -49,7 +49,7 @@ Full commit table preserved in pre-drain archive.
 | 4 | Run `north-star-compounding-vertical-pilot-v1` | Governance + AppBuilder | Recommended |
 | 5 | Phase 1 export/lint after Governance approval | CG-AppBuilder-MCP | Blocked on approval |
 
-Machine-readable preflight (Phase 1+): `L:/00-master-index/BY-KIND/active-work-open-actions.json` and `active-work-blockers.json` only — not full ledger.
+Machine-readable preflight (Phase 1+): `Z:/BlackBoxAi/00-master-index/BY-KIND/active-work-open-actions.json` and `active-work-blockers.json` only — not full ledger.
 
 ## Progress log (last 3 entries)
 
@@ -74,7 +74,7 @@ Project file: `work-progress/projects/2026-08-01_north-star-compounding-proof-v1
 | Field | Value |
 | --- | --- |
 | Work package | `cross-agent-master-work-ingest-v1` |
-| Status | Published to L: |
+| Status | Published to Z: BlackBoxAi |
 | L: path | `Z:/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index/cross-agent-master-work/` |
 
 Older entries (10): archived at `archive/2026-08/ledger-snapshots/phase-0-pre-drain/ACTIVE_WORK-2026-08-02-pre-drain.md`

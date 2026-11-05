@@ -23,7 +23,7 @@
 
 ## Global doNotAdvance
 
-- Claim de:handoff-health PASS while /mnt/l unmounted or index unreadable
+- Claim de:handoff-health PASS while /mnt/z/BlackBoxAi unmounted or index unreadable
 - Trust piped de:handoff-health exit code
 - WSL-only mcp:build as Windows PM2 stamp authority
 - Reject valid WSL2 L: mount because findmnt reports fstype 9p

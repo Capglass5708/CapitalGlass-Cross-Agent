@@ -21,7 +21,7 @@
 | Worker claim + complete | PASS |
 | `synology` / `primary` / `active` in Supabase | PASS |
 | `synology_primary_create` job `succeeded` | PASS |
-| L: folder + taxonomy on `/mnt/l/Capital-Glass-Projects/` | PASS (48 paths) |
+| L: folder + taxonomy on `/mnt/z/Capital-Glass-Projects/` | PASS (48 paths) |
 
 ### Test project (sample — not production E2E)
 
@@ -29,7 +29,7 @@
 |-------|--------|
 | `projectId` | `e15f1184-72db-47fc-9ba1-f7e9c2f8b02c` |
 | `folder_segment` | `CG-PROOF-mscwggig - Synology Proof mscwggig` |
-| WSL path | `/mnt/l/Capital-Glass-Projects/CG-PROOF-mscwggig - Synology Proof mscwggig/` |
+| WSL path | `/mnt/z/Capital-Glass-Projects/CG-PROOF-mscwggig - Synology Proof mscwggig/` |
 
 ---
 
@@ -63,7 +63,7 @@
 3. Verify `claim`/`complete` ≠ 405.
 4. Install `workers/office-project-folder-provision` on WESLEYDESK (Doppler `cg-documents/prd`).
 5. Create one real project via `/capital-pipeline`.
-6. Confirm `L:\Capital-Glass-Projects\{folder_segment}\` + DB `synology_primary_active`.
+6. Confirm `Z:\Capital-Glass-Projects\{folder_segment}\` + DB `synology_primary_active`.
 7. Only then consider Slice 4.
 
 ---
@@ -72,12 +72,12 @@
 
 ```bash
 cd CapitalGlass-Documents
-mkdir -p /mnt/l/Capital-Glass-Projects
+mkdir -p /mnt/z/Capital-Glass-Projects
 doppler run --project cg-documents --config prd -- \
   env PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED=true \
   PROJECT_FOLDER_PROVISION_WORKER_TOKEN="$TOKEN" \
   DOCUMENT_ENGINE_TOKEN="$TOKEN" \
-  SYNOLOGY_PROJECTS_WSL_ROOT=/mnt/l/Capital-Glass-Projects \
+  SYNOLOGY_PROJECTS_WSL_ROOT=/mnt/z/Capital-Glass-Projects \
   npx tsx scripts/proof/project-folder-synology-primary-proof.ts
 ```
 

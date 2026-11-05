@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * harvest-2026-08-06-wesley-work-l-research-bootstrap-closeout-v1 (T2)
- * Thread: DE handoff DEGRADED (/mnt/l missing) → preflight fixes → durable L: bootstrap (d6ad9624).
+ * Thread: DE handoff DEGRADED (/mnt/z/BlackBoxAi missing) → preflight fixes → durable L: bootstrap (d6ad9624).
  * Supersedes/extends harvest-2026-08-04-wesleywork-l-windows-closeout-v1 (same L: class, DE intake path).
  */
 import fs from "node:fs";
@@ -49,14 +49,14 @@ const packets = [
   packet({
     packetId: "de-handoff-degraded-wsl-l-unmounted-v1",
     packetKind: "blocker",
-    packetTitle: "DE handoff DEGRADED when /mnt/l missing despite Windows L: corpus",
+    packetTitle: "DE handoff DEGRADED when /mnt/z/BlackBoxAi missing despite Windows Z: (BlackBoxAi) corpus",
     state: "RESOLVED",
     packetVerdict: "BOOTSTRAP_SHIPPED",
     ownerRepo: "CG-AppBuilder-MCP",
     ownerIndexingStatus: "indexed",
     evidenceRefs: [
       "run-de-handoff-health.mjs dualCorpusBridgeValid:false researchIntakeIndexReadable:false",
-      "manual sudo mount -t drvfs L: /mnt/l → HEALTHY",
+      "manual sudo mount -t drvfs L: /mnt/z/BlackBoxAi → HEALTHY",
       `CG-AppBuilder-MCP ${APP_BUILDER_COMMIT}`,
       "thread-autopsy-bundle.json#ED-001",
     ],
@@ -123,7 +123,7 @@ const packets = [
   packet({
     packetId: "wesley-work-l-research-bootstrap-protocol-v1",
     packetKind: "protocol_upgrade",
-    packetTitle: "Idempotent WESLEY_WORK L: → /mnt/l bootstrap before DE handoff preflight",
+    packetTitle: "Idempotent WESLEY_WORK L: → /mnt/z/BlackBoxAi bootstrap before DE handoff preflight",
     state: "SHIPPED",
     packetVerdict: "PASS",
     ownerRepo: "CG-AppBuilder-MCP",
@@ -139,7 +139,7 @@ const packets = [
     doNotAdvance: [
       "Treat bootstrap as sole DE health source — de:handoff-health remains independent",
       "Reject WSL2 drvfs mounts that report fstype 9p with source L:",
-      "Destructively umount wrong /mnt/l without operator review",
+      "Destructively umount wrong /mnt/z/BlackBoxAi without operator review",
     ],
     commitRefs: [`CG-AppBuilder-MCP@${APP_BUILDER_COMMIT}`],
   }),
@@ -193,7 +193,7 @@ const packets = [
     evidenceRefs: [
       `git ${APP_BUILDER_COMMIT} fix(wsl): add durable L drive mount bootstrap`,
       "runtime/agent-preflight/app-builder-mcp/latest.json verdict PASS",
-      "findmnt /mnt/l L: 9p drvfs",
+      "findmnt /mnt/z/BlackBoxAi L: 9p drvfs",
     ],
     pathOrSha: APP_BUILDER_COMMIT,
     provesWhat: "Durable bootstrap shipped and preflight PASS",
@@ -216,7 +216,7 @@ const manifest = {
   sourceCommitShaIndex: "d993c038c88e4a31affa4d228b4f23a9243634be",
   overallHarvestVerdict: "HARVEST_COMPLETE",
   doNotAdvance: [
-    "Claim de:handoff-health PASS while /mnt/l unmounted or index unreadable",
+    "Claim de:handoff-health PASS while /mnt/z/BlackBoxAi unmounted or index unreadable",
     "Trust piped de:handoff-health exit code",
     "WSL-only mcp:build as Windows PM2 stamp authority",
     "Reject valid WSL2 L: mount because findmnt reports fstype 9p",
@@ -248,7 +248,7 @@ writeJson("harvest-manifest-v1.json", manifest);
 writeJson("thread-event-inventory.json", {
   schemaVersion: "thread-event-inventory-v1@1.0.0",
   harvestId: HARVEST_ID,
-  threadScope: "DE handoff preflight blockers + durable /mnt/l bootstrap on WESLEY_WORK",
+  threadScope: "DE handoff preflight blockers + durable /mnt/z/BlackBoxAi bootstrap on WESLEY_WORK",
   generatedAt: AS_OF,
   events: [
     {
@@ -266,13 +266,13 @@ writeJson("thread-event-inventory.json", {
     {
       eventId: "TE-003",
       phase: "diagnosis",
-      summary: "Windows L: had corpus; WSL /mnt/l not mounted",
-      evidenceRefs: ["powershell Test-Path L index", "missing /mnt/l"],
+      summary: "Windows Z: (BlackBoxAi) had corpus; WSL /mnt/z/BlackBoxAi not mounted",
+      evidenceRefs: ["powershell Test-Path L index", "missing /mnt/z/BlackBoxAi"],
     },
     {
       eventId: "TE-004",
       phase: "repair",
-      summary: "Manual sudo mount -t drvfs L: /mnt/l → de:handoff-health HEALTHY",
+      summary: "Manual sudo mount -t drvfs L: /mnt/z/BlackBoxAi → de:handoff-health HEALTHY",
       evidenceRefs: ["session mount evidence"],
     },
     {
@@ -290,7 +290,7 @@ writeJson("thread-event-inventory.json", {
     {
       eventId: "TE-007",
       phase: "mission",
-      summary: "User approved durable WESLEY_WORK /mnt/l bootstrap SDLC mission",
+      summary: "User approved durable WESLEY_WORK /mnt/z/BlackBoxAi bootstrap SDLC mission",
       evidenceRefs: ["user mission prompt"],
     },
     {
@@ -303,7 +303,7 @@ writeJson("thread-event-inventory.json", {
       eventId: "TE-009",
       phase: "fix",
       summary: "WSL2 drvfs surfaces as fstype 9p — validation updated",
-      evidenceRefs: ["findmnt /mnt/l", APP_BUILDER_COMMIT],
+      evidenceRefs: ["findmnt /mnt/z/BlackBoxAi", APP_BUILDER_COMMIT],
     },
     {
       eventId: "TE-010",
@@ -382,7 +382,7 @@ writeJson("thread-autopsy-bundle.json", {
     {
       wasteId: "TW-003",
       type: "host",
-      description: "No automated /mnt/l bootstrap — manual sudo mount each WSL session",
+      description: "No automated /mnt/z/BlackBoxAi bootstrap — manual sudo mount each WSL session",
       evidenceRefs: ["TE-003", "TE-004"],
       estimatedImpact: "high",
       savedBy: "npm run wsl:bootstrap-l-research in preflight chain",
@@ -400,7 +400,7 @@ writeJson("thread-autopsy-bundle.json", {
     {
       wasteId: "TW-005",
       type: "rework",
-      description: "Overlapping L: drive investigation with prior wesleywork-l-windows harvest",
+      description: "Overlapping Z: BlackBoxAi drive investigation with prior wesleywork-l-windows harvest",
       evidenceRefs: [PRIOR_HARVEST, "BY-KIND/thread-autopsy-index.json"],
       estimatedImpact: "low",
       savedBy: "Load IH-WINDOWS-L-VS-WSL-L-001 before new L: diagnosis",
@@ -410,7 +410,7 @@ writeJson("thread-autopsy-bundle.json", {
   operatorFriction: [
     {
       frictionId: "OF-001",
-      trigger: "Preflight blocked on DE handoff while Windows L: was mapped but WSL /mnt/l was not",
+      trigger: "Preflight blocked on DE handoff while Windows Z: (BlackBoxAi) was mapped but WSL /mnt/z/BlackBoxAi was not",
       operatorCost: "high",
       systemFix: "Bootstrap L: mount automatically before de:handoff-health on wesley_work",
       evidenceRefs: ["TE-003", "user mission approval TE-007"],
@@ -424,7 +424,7 @@ writeJson("thread-autopsy-bundle.json", {
       actualExecution: {
         steps: [
           "Investigated duplicate preflight failures",
-          "Eventually found /mnt/l missing",
+          "Eventually found /mnt/z/BlackBoxAi missing",
           "Manual sudo mount",
         ],
         outcome: "HEALTHY after manual intervention",
@@ -434,7 +434,7 @@ writeJson("thread-autopsy-bundle.json", {
         steps: [
           "npm run wsl:bootstrap-l-research first",
           "Read probe JSON for dualCorpusBridgeValid and researchIntakeIndexReadable",
-          "If BLOCKED check Windows L: via Ensure-CgWesleyWorkDriveMounts.ps1",
+          "If BLOCKED check Windows Z: (BlackBoxAi) via Ensure-CgWesleyWorkDriveMounts.ps1",
         ],
         outcome: "Automated mount or actionable BLOCKED without manual sudo guesswork",
         requiredPreflight: ["npm run wsl:bootstrap-l-research"],
@@ -497,7 +497,7 @@ writeJson("thread-autopsy-bundle.json", {
   duplicateWork: [
     {
       duplicateId: "DW-001",
-      subject: "WESLEY_WORK L: /mnt/l availability",
+      subject: "WESLEY_WORK L: /mnt/z/BlackBoxAi availability",
       firstKnownInstance: PRIOR_HARVEST,
       priorIndexSlice: "BY-KIND/thread-autopsy-index.json",
       whyRepeated: "Prior harvest covered Windows remap; this thread adds DE research intake + bootstrap",
@@ -519,7 +519,7 @@ writeJson("thread-autopsy-bundle.json", {
     {
       rank: 2,
       title: "Office Admin Install-CgWesleyWorkDriveMountPersistence.ps1 elevated",
-      whyItPays: "Windows L: survives logon when LAN down",
+      whyItPays: "Windows Z: (BlackBoxAi) survives logon when LAN down",
       effort: "medium",
       ownerRepo: "CapitalGlass-Office-Admin",
       savedWasteIds: ["TW-003", "TW-005"],
@@ -580,9 +580,9 @@ const seeds = [
     schemaVersion: "harvest-seed-packet-v1@1.0.0",
     seedId: "IH-WESLEY-WORK-L-RESEARCH-BOOTSTRAP-001",
     kind: "failure-pattern",
-    title: "DE handoff DEGRADED when WSL /mnt/l missing on WESLEY_WORK",
+    title: "DE handoff DEGRADED when WSL /mnt/z/BlackBoxAi missing on WESLEY_WORK",
     summary:
-      "Windows L: may host Capital-Glass-Research while WSL lacks /mnt/l; run npm run wsl:bootstrap-l-research before de:handoff-health.",
+      "Windows Z: (BlackBoxAi) may host Capital-Glass-Research while WSL lacks /mnt/z/BlackBoxAi; run npm run wsl:bootstrap-l-research before de:handoff-health.",
     retrievalQuestions: [
       "Why is de:handoff-health DEGRADED with dualCorpusBridgeValid false?",
       "What mounts L: research intake for DE handoff on WESLEY_WORK?",
@@ -593,7 +593,7 @@ const seeds = [
       startAt: ["runtime/wesley-work-l-research-bootstrap/latest.json", "data-extraction-workspace-standard.mjs"],
       runPreflight: ["npm run wsl:bootstrap-l-research", "npm run de:handoff-health"],
       doNot: ["Remove de-handoff-health from preflight", "Force HEALTHY when index unreadable"],
-      proveBeforeClaiming: ["researchIntakeIndexReadable true", "findmnt /mnt/l source L:"],
+      proveBeforeClaiming: ["researchIntakeIndexReadable true", "findmnt /mnt/z/BlackBoxAi source L:"],
     },
     ownerRepo: "CG-AppBuilder-MCP",
     targetSlice: "BY-KIND/thread-autopsy-index.json",
@@ -655,12 +655,12 @@ const seeds = [
     summary: "findmnt shows 9p with source L: for valid drvfs mounts — do not BLOCKED solely on fstype.",
     retrievalQuestions: [
       "wesley-work-l-research-bootstrap BLOCKED unexpected-fstype 9p?",
-      "Is /mnt/l healthy when findmnt says 9p?",
+      "Is /mnt/z/BlackBoxAi healthy when findmnt says 9p?",
     ],
-    evidenceRefs: [APP_BUILDER_COMMIT, "mount | grep /mnt/l"],
+    evidenceRefs: [APP_BUILDER_COMMIT, "mount | grep /mnt/z/BlackBoxAi"],
     futureAgentInstructions: {
       whenThisAppears: "Bootstrap reports mountSourceValid false with fstype 9p",
-      startAt: ["findmnt /mnt/l", "validateLMountSource in bootstrap lib"],
+      startAt: ["findmnt /mnt/z/BlackBoxAi", "validateLMountSource in bootstrap lib"],
       runPreflight: ["npm run wsl:bootstrap-l-research:verify"],
       doNot: ["Require fstype drvfs only on WSL2", "Unmount 9p+L: without operator review"],
       proveBeforeClaiming: ["source L:", "research intake index readable"],
@@ -691,7 +691,7 @@ fs.writeFileSync(
 **Retrieval:** INDEX_HIT_AI_CACHE · **Cache:** CACHE_MISS
 
 ## Thread truth
-- DE handoff DEGRADED because WSL /mnt/l was not mounted (Windows L: had research corpus).
+- DE handoff DEGRADED because WSL /mnt/z/BlackBoxAi was not mounted (Windows Z: (BlackBoxAi) had research corpus).
 - Shipped idempotent bootstrap (CG-AppBuilder-MCP ${APP_BUILDER_COMMIT}) integrated into preflight.
 - Fixed duplicate de-handoff-health step (${APP_BUILDER_PREFLIGHT_COMMIT}) and Documents contract false positive (${DOCUMENTS_CONTRACT_COMMIT}).
 - WSL2 drvfs mounts validate as 9p+L:.
