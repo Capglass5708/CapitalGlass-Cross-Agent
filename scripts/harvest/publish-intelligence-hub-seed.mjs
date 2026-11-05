@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Publish harvest seeds to L: Intelligence Hub (generalized).
+ * Publish harvest seeds to Z:/BlackBoxAi Intelligence Hub (generalized).
  *
  * Usage:
  *   npm run harvest:publish-hub-seed -- --harvest-id=<id>

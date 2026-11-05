@@ -48,7 +48,7 @@ Orient with these numbers before scanning. **Do not `ls -R`, `grep -r`, or fan o
 | `inbox/`, `chatgpt-reviews/`, `cursor-reports/` | 1 each | **README stub only — dead surfaces.** See §13. |
 | **Total tracked** | **1861** | |
 
-`.gitignore` is minimal (`.DS_Store`, `Thumbs.db`, `*.env`, `node_modules/`). Everything above — including generated JSON — is fully git-tracked. The generated targets that live *outside* git are the external mounts (`Z:`, `L:`) and Supabase.
+`.gitignore` is minimal (`.DS_Store`, `Thumbs.db`, `*.env`, `node_modules/`). Everything above — including generated JSON — is fully git-tracked. The generated targets that live *outside* git are the external mounts (`Z:`, `Z:/BlackBoxAi`) and Supabase.
 
 **Node/tooling:** `"type": "module"`, no `engines` field (CI pins Node 22 via `actions/setup-node`). `devDependencies` are only `ajv` + `ajv-formats`. There is **no test framework** — every test is a self-contained `.mjs` run directly by `node`, exiting non-zero on failure.
 
@@ -71,7 +71,7 @@ Orient with these numbers before scanning. **Do not `ls -R`, `grep -r`, or fan o
 | Query routing | `registry/query-routing/query-routing-manifest.v1.json` | owner/maintainer |
 | Hot-cache dataset contract | `registry/datasets/hot-cache-dataset-registry.v1.json` | owner |
 | Federated repo-index estate routing | `CG-AppBuilder-MCP/registry/federated-repo-index/` | publication authority only; AppBuilder is compiler authority |
-| Retrieval storage | Intelligence Hub / L: / Supabase / Z: under their own contracts | retrieval/publication plane, not progression authority |
+| Retrieval storage | Intelligence Hub (Z:/BlackBoxAi) / Supabase / Z: under their own contracts | retrieval/publication plane, not progression authority |
 | CG Master Graph truth | `CG-MASTER-GRAPH` | Cross-Agent coordinates validate/publish only |
 
 ### 3.2 Supersession: stale "meeting repo only" guidance
@@ -357,7 +357,7 @@ artifacts/agent-runs/operational-intelligence-envelope-v1/intelligence-dry-run/b
   ingest-receipt-v1.json
 ```
 
-`writeScope` is reported as `LOCAL_ARTIFACTS_ONLY`. `receipt.writes` pins `lDrive: false`, `zDrive: false` in every mode — this pipeline **never** writes L: or Z:.
+`writeScope` is reported as `LOCAL_ARTIFACTS_ONLY`. `receipt.writes` pins `lDrive: false`, `zDrive: false` in every mode — this pipeline **never** writes Z:.
 
 ### 5.13 Retrieval preflight and the plane ladder
 
@@ -367,13 +367,13 @@ Ladder outcomes (`OUTCOME`):
 
 ```text
 CACHE_HIT_FRESH
-L_HUB_READ_OK
-L_HUB_UNAVAILABLE_USING_SUPABASE
-L_HUB_UNAVAILABLE_USING_GIT_LEDGER
+Z_HUB_READ_OK
+Z_HUB_UNAVAILABLE_USING_SUPABASE
+Z_HUB_UNAVAILABLE_USING_GIT_LEDGER
 ALL_HUB_PLANES_UNAVAILABLE
 ```
 
-Planes probed in order: **hot AI cache** → **L: hub** (`/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index`) → **Supabase** → **Git ledger mirror** (`work-progress/intelligence-hub-slices/`, "the only plane guaranteed reachable from any checkout"). Receipts land in `artifacts/agent-runs/intelligence-preflight-v1/`.
+Planes probed in order: **hot AI cache** → **Z:/BlackBoxAi hub** (`/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index`) → **Supabase** → **Git ledger mirror** (`work-progress/intelligence-hub-slices/`, "the only plane guaranteed reachable from any checkout"). Receipts land in `artifacts/agent-runs/intelligence-preflight-v1/`.
 
 Hot cache (`hot-ai-cache-plane-v1.mjs`): bundle `00-master-index/BY-KIND/mission-intelligence.json`; statuses `CACHE_HIT_FRESH | CACHE_HIT_STALE | CACHE_MISS | CACHE_ROOT_UNAVAILABLE`; known hosts `WESLEY_WORK`, `WESLEYDESK`, `RYZEN9DESK`. **Z: is the sole-writer canonical authority; host roots are read-through replicas.**
 
@@ -487,22 +487,22 @@ Consumers are largely **external** — `CG-AppBuilder-MCP/scripts/hot-cache-plat
 pin Cross-Agent Git SHA
   -> compute publication content identity
   -> exact prior publication current? NOOP_CURRENT
-  -> prove L: master-index mount
+  -> prove Z:/BlackBoxAi master-index mount
   -> AppBuilder cross-agent-ledger ingest
   -> Data-Extraction active-work-ledger publication
   -> AppBuilder-backed Z: AI-cache publication
   -> Cross-Agent freshness gate
   -> emit PUBLISH_PASS receipt
-  -> verify L: sourceCommitSha alignment
+  -> verify Z:/BlackBoxAi sourceCommitSha alignment
 ```
 
-Missing L: or downstream gate failure produces `PUBLICATION_HOLD`. Runtime receipt: `runtime/index-publication/latest.json`, read back to short-circuit to `NOOP_CURRENT` when SHA + contentHash match.
+Missing Z:/BlackBoxAi or downstream gate failure produces `PUBLICATION_HOLD`. Runtime receipt: `runtime/index-publication/latest.json`, read back to short-circuit to `NOOP_CURRENT` when SHA + contentHash match.
 
-**GitHub Actions:** `.github/workflows/index-publication.yml` runs on `main` changes under `work-progress/**`, `handoffs/**`, or `registry/**`, plus manual dispatch. It runs on **self-hosted `[self-hosted, ryzen9desk, wsl2]`** (45-minute timeout), pins the checkout SHA, probes L:, runs the publisher, verifies SHA alignment, and uploads the publication receipt.
+**GitHub Actions:** `.github/workflows/index-publication.yml` runs on `main` changes under `work-progress/**`, `handoffs/**`, or `registry/**`, plus manual dispatch. It runs on **self-hosted `[self-hosted, ryzen9desk, wsl2]`** (45-minute timeout), pins the checkout SHA, probes Z:/BlackBoxAi, runs the publisher, verifies SHA alignment, and uploads the publication receipt.
 
 **Boundary:** Cross-Agent owns publication coordination/source state. It deliberately calls AppBuilder and Data-Extraction as workers for capabilities those repos own. Do not duplicate those implementations into Cross-Agent merely to remove the dependency.
 
-Other index scripts: `preflight.mjs` (`index:preflight` — a thin wrapper that `execSync`s into `CG-AppBuilder-MCP/scripts/cross-agent-index/run-index-preflight.mjs`), `freshness-gate.mjs` (fail-closed git/Supabase/L: SHA comparison), `verify-publication-sha-alignment.mjs`, `sync-publication.mjs`, `refresh-continuity-anchors.mjs`, `compile-control-slices.mjs`.
+Other index scripts: `preflight.mjs` (`index:preflight` — a thin wrapper that `execSync`s into `CG-AppBuilder-MCP/scripts/cross-agent-index/run-index-preflight.mjs`), `freshness-gate.mjs` (fail-closed git/Supabase/Z:/BlackBoxAi SHA comparison), `verify-publication-sha-alignment.mjs`, `sync-publication.mjs`, `refresh-continuity-anchors.mjs`, `compile-control-slices.mjs`.
 
 ---
 
@@ -522,7 +522,7 @@ Other index scripts: `preflight.mjs` (`index:preflight` — a thin wrapper that 
 
 **Authority split** (from the program record): AppBuilder owns estate routing, schemas, and the generate CLI. Each repo owns its local index. Intelligence Hub may receive replicas **last**, after Wave A close — never as owner. Luna is a read-only retriever and **must not write indexes**.
 
-**Program state:** `CG_FEDERATED_REPO_INDEX_WAVE_A_CLOSED` / acceptance `LIVE_RYZEN9_PROOF_PASS`, `waveACloseEligible: false`. The record carries an explicit standing instruction: *do not* close Wave A, enter Wave B, publish Hub replicas to L:, or widen the work package to repair GitHub Actions / SSH.
+**Program state:** `CG_FEDERATED_REPO_INDEX_WAVE_A_CLOSED` / acceptance `LIVE_RYZEN9_PROOF_PASS`, `waveACloseEligible: false`. The record carries an explicit standing instruction: *do not* close Wave A, enter Wave B, publish Hub replicas to Z:/BlackBoxAi, or widen the work package to repair GitHub Actions / SSH.
 
 The estate-100 receipt (published `2026-09-03`) names a **governed repo target set of 32** and compiles from `CG-AppBuilder-MCP/registry/federated-repo-index/{estate-routing,capabilities}.v1.json`.
 
@@ -554,11 +554,11 @@ Several "simple" npm scripts shell out to **other repos** or **external mounts**
 | `npm run intelligence:ingest -- --handoff=<path> --shared-dev-hub --json` | **Supabase `intelligence_hub`** | above, plus shared-dev write eligibility/credentials |
 | `npm run harvest:record -- --harvest-id=<id>` | local artifacts | a valid `harvest-manifest-v1.json` for that id |
 | `npm run harvest:sync-z-mirror` | **writes `Z:`** | `/mnt/z` mounted; else `Z_HARVEST_MIRROR_SYNC_BLOCKED` (exit 1) |
-| `npm run harvest:move-chatgpt-harvest-to-l`, `harvest:stage-chatgpt-drafts-on-l` | **writes `L:`** | `/mnt/l` mounted |
+| `npm run harvest:move-chatgpt-harvest-to-l`, `harvest:stage-chatgpt-drafts-on-l` | **writes `Z:/BlackBoxAi`** | `/mnt/z/BlackBoxAi` mounted |
 | `npm run harvest:closeout-git -- --apply` | **local git branch/commit** | default is dry-run; see §15-C |
 | `npm run harvest:chatgpt-publish-draft -- --apply` | **`git push origin chat-gpt-harvest`** | must be on that branch; default is dry-run; see §15-C |
 | `npm run index:freshness-gate` | local receipt | **Doppler CLI auth** + `CG-AppBuilder-MCP` (runs `doppler run --project cg-mcp --config dev -- npm run cross-agent-ledger:drift-probe`) |
-| `npm run index:publish` | **L:, plus `--apply` mutations in two other repos** | Doppler auth, `CG-AppBuilder-MCP`, `Data-Extraction`, `/mnt/l` mounted. Intended to run only on the self-hosted runner. |
+| `npm run index:publish` | **Z:/BlackBoxAi, plus `--apply` mutations in two other repos** | Doppler auth, `CG-AppBuilder-MCP`, `Data-Extraction`, `/mnt/z/BlackBoxAi` mounted. Intended to run only on the self-hosted runner. |
 | `npm run master-graph:publish-hub` | **runs publish in `CG-MASTER-GRAPH`** | `CG_MASTER_GRAPH_ROOT` or sibling checkout |
 | `npm run test:cross-agent-architecture` | no | some child suites need mounts/siblings; expect partial failures on a bare checkout |
 
@@ -586,7 +586,7 @@ Doppler project/config referenced: `cg-mcp` / `dev`. Secret *names* live in that
 | `CG-AppBuilder-MCP` | producer + worker + compiler | closeout evidence, intelligence handoff, ledger ingest, cache/publication primitives, index preflight, correlation capability registry, federated estate routing | AppBuilder does work; does not own Cross-Agent derived-intelligence semantics |
 | `Data-Extraction` | worker / publisher | active-work ledger / research-library publication | processing/publication implementation stays there |
 | `Scraper` | upstream capture | raw source/research capture | raw capture owner; Cross-Agent stores context/pointers |
-| Intelligence Hub (L:/Supabase) | retrieval/storage | master index, BY-KIND, derived-intelligence readback | retrieval plane; never progression authority |
+| Intelligence Hub (Z:/BlackBoxAi Hub/Supabase) | retrieval/storage | master index, BY-KIND, derived-intelligence readback | retrieval plane; never progression authority |
 | Z: AI Cache Authority | cache plane | fast agent cache publication/retrieval; **sole-writer canonical** for the hot cache | cache cannot override fresher Git authority |
 | WaveRunner / Git | progression | controls execution progression | derived intelligence cannot advance work by itself |
 | `CG-MASTER-GRAPH` | graph owner | validates/publishes suite graph | Cross-Agent coordinates only |
@@ -664,10 +664,10 @@ The gap is real and asymmetric for intelligence: `npm run test:intelligence` cha
 | --- | --- | --- |
 | `harvest-risk-gates.yml` | `ubuntu-latest` | **The only genuine hosted PR gate.** Path-filtered. |
 | `index-publication.yml` | `[self-hosted, ryzen9desk, wsl2]` | Operational publication, not a code test |
-| `chatgpt-harvest-move-to-l.yml` | `[self-hosted, ryzen9desk, wsl2]` | Moves ChatGPT drafts to L: |
+| `chatgpt-harvest-move-to-l.yml` | `[self-hosted, ryzen9desk, wsl2]` | Moves ChatGPT drafts to Z:/BlackBoxAi |
 | `runner-smoke.yml` | `[self-hosted, ryzen9desk, wsl2]` | Manual read-only runner probe |
 
-Three of four require the self-hosted WSL2 runner with L: mounted, Doppler, and sibling repos — **not reproducible in standard CI or by a remote agent**.
+Three of four require the self-hosted WSL2 runner with Z:/BlackBoxAi mounted, Doppler, and sibling repos — **not reproducible in standard CI or by a remote agent**.
 
 ### Hardening caveat
 
@@ -853,7 +853,7 @@ Run this **first**. Then read for authority and architecture. The narrative pass
 | `contracts/intelligence/` | intelligence schemas/ownership | derived-intelligence semantics | progression control |
 | intelligence dry-run artifacts | deterministic projection evidence | ingest-output proof | source closeout truth; idempotency; Hub durability |
 | Supabase `intelligence_hub` | derived-intelligence store/readback | stored projection | mission progression authority |
-| L: Intelligence Hub | master-index/BY-KIND retrieval | published retrieval snapshot when fresh | override of newer Git state |
+| Z:/BlackBoxAi Intelligence Hub | master-index/BY-KIND retrieval | published retrieval snapshot when fresh | override of newer Git state |
 | Z: AI Cache Authority | hot cache | canonical cache release (sole writer) | code/protocol authority |
 | `registry/**` | routing/dataset/estate manifests | declared registry domain | owner-repo implementation beyond registry claims |
 | `index/` | federated repo-index entry | routing identity for this repo | this repo's real structure (currently a stub — §15-G) |
@@ -881,7 +881,7 @@ Consequences:
 3. **Do not let derived intelligence claim progression authority.** `progressionAuthority` remains false — pinned as `const` in the schema *and* re-checked imperatively.
 4. **Do not duplicate raw closeouts into derived ledger/Hub compact objects.** Preserve provenance instead.
 5. **Do not hand-edit generated harvest projections as canonical.** Change the manifest/source and regenerate.
-6. **Do not treat stale cache/L: snapshots as newer than Git.** Source SHA and freshness matter; Z: is the sole writer of the hot cache.
+6. **Do not treat stale cache/Z:/BlackBoxAi snapshots as newer than Git.** Source SHA and freshness matter; Z: is the sole writer of the hot cache.
 7. **Do not infer current authority from filenames alone.** `CURRENT_*` can be stale; a "generated mirror" can be ahead of its source (§15-F).
 8. **Do not extend an old conflicting PR branch as architecture.** Check the disposition registry and current `main`.
 9. **Do not make Cross-Agent a product repo.** Product UI/domain implementation stays with the product owner.
@@ -988,7 +988,7 @@ machine / runner authority
 
 This deep index is **source-complete and mechanically verified enough to guide agent investigation and modification routing**. It does **not** claim runtime PASS: this indexing session did not execute the repository's test or prover commands.
 
-Every structural claim (file paths, npm script names, workflow runner labels, schema constants, stage names, failure codes, registry entry counts, file counts, typo counts, orphan list) was verified against `main` @ `b95828a` by direct inspection. Claims about behavior on external planes (L:, Z:, Supabase, sibling repos) are read from source and **not** runtime-confirmed.
+Every structural claim (file paths, npm script names, workflow runner labels, schema constants, stage names, failure codes, registry entry counts, file counts, typo counts, orphan list) was verified against `main` @ `b95828a` by direct inspection. Claims about behavior on external planes (Z:/BlackBoxAi, Z:, Supabase, sibling repos) are read from source and **not** runtime-confirmed.
 
 ```text
 CROSS_AGENT_DEEP_INDEX_SOURCE_RECONCILIATION_PASS

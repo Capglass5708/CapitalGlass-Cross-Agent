@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Slice 6 post-publication blind retrieval — query L: only; never use IMP-0001..0004 in queries.
+ * Slice 6 post-publication blind retrieval — query Z:/BlackBoxAi only; never use IMP-0001..0004 in queries.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -12,7 +12,7 @@ const REPO_ROOT = path.resolve(__dirname, '../..');
 const HUB_ROOT =
   process.env.INTELLIGENCE_HUB_ROOT?.trim() ||
   process.env.CG_INTELLIGENCE_HUB_ROOT?.trim() ||
-  '/mnt/l/Capital-Glass-Intelligence-Hub';
+  '/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub';
 const OUT_PATH = path.join(
   REPO_ROOT,
   'artifacts/agent-runs/three-way-agent-improvement-intelligence-v1/post-publication-blind-retrieval-v1.json',
@@ -85,7 +85,7 @@ function scoreQuery(query, corpus) {
 
 function main() {
   if (!fs.existsSync(path.join(HUB_ROOT, '00-master-index'))) {
-    console.error(`L: hub not mounted at ${HUB_ROOT}`);
+    console.error(`Z:/BlackBoxAi hub not mounted at ${HUB_ROOT}`);
     process.exit(1);
   }
 

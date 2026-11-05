@@ -82,7 +82,7 @@ Extract: ROI items, waste patterns, correction ledger, seed ideas, do-not-advanc
 | --- | --- |
 | Duplication | `npm run harvest:duplication-preflight -- --harvest-id=<batch-harvest-id>` |
 | Registry / prior harvests | `work-progress/harvest-packet-registry.json` |
-| Hub / index | L: `00-master-index/BY-KIND/*.json` or hot-cache routing index |
+| Hub / index | Z:/BlackBoxAi `00-master-index/BY-KIND/*.json` or hot-cache routing index |
 | Code / receipts | Owner repos per `owner-repo-boundary-index.json` |
 | Lane map | `BRANCH_LANE_MAP.md` on `chat-gpt-harvest` |
 

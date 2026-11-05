@@ -1,6 +1,6 @@
-name: ChatGPT harvest move to L
+name: ChatGPT harvest move to Z BlackBoxAi
 
-# Push ChatGPT draft findings on chat-gpt-harvest → deterministic move to L: catalog.
+# Push ChatGPT draft findings on chat-gpt-harvest → deterministic move to Z:/BlackBoxAi catalog (L: retired 2026-11-03).
 # No assessment, publication, or content mutation — move only.
 
 on:
@@ -23,7 +23,7 @@ jobs:
     runs-on: [self-hosted, wesleydesk, wsl2]
     timeout-minutes: 15
     env:
-      CG_L_DRIVE_ROOT: /mnt/l
+      CG_Z_BLACKBOXAI_ROOT: /mnt/z/BlackBoxAi
       CAPITALGLASS_CROSS_AGENT_ROOT: ${{ github.workspace }}
     steps:
       - name: Checkout chat-gpt-harvest
@@ -32,14 +32,14 @@ jobs:
           ref: chat-gpt-harvest
           fetch-depth: 1
 
-      - name: L drive mount probe
-        run: test -d /mnt/l
+      - name: Z BlackBoxAi mount probe
+        run: test -d /mnt/z/BlackBoxAi/02-catalog || { echo Z_BLACKBOXAI_NOT_MOUNTED; exit 1; }
 
       - uses: actions/setup-node@b789df37d6b7526a863bf51b65df64f3f56ffe4f
         with:
           node-version: '22'
 
-      - name: Deterministic move to L catalog
+      - name: Deterministic move to Z BlackBoxAi catalog
         run: npm run harvest:move-chatgpt-harvest-to-l -- --json
 
       - name: Upload move receipt

@@ -94,7 +94,7 @@ function buildReceipt(manifest, harvestManifestHash, ledgerBefore, ledgerAfter, 
     retrieval: {
       primaryOutcome: manifest.retrievalResult,
       cacheOutcome: manifest.cacheResult,
-      hubMount: "L_DRIVE_MOUNTED_IN_WSL",
+      hubMount: "Z_BLACKBOXAI_MOUNTED",
     },
     constraintsHonored: {
       noSsh: true,

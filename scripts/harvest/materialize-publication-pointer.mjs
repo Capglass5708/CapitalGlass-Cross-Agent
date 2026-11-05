@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Phase C — materialize harvest-publication-pointer-v1.json and record L: phase-c receipt.
+ * Phase C — materialize harvest-publication-pointer-v1.json and record Z:/BlackBoxAi phase-c receipt.
  * Apply requires PHASE_C_POINTER_APPROVED=1. Never embeds the Git commit SHA in the pointer file.
  */
 import path from "node:path";

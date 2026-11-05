@@ -29,7 +29,7 @@ jobs:
     runs-on: [self-hosted, ryzen9desk, wsl2]
     timeout-minutes: 45
     env:
-      INTELLIGENCE_HUB_ROOT: /mnt/l/Capital-Glass-Intelligence-Hub
+      INTELLIGENCE_HUB_ROOT: /mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub
       CG_APPBUILDER_MCP_ROOT: /home/wesley/repos/CG-AppBuilder-MCP
       CAPITALGLASS_CROSS_AGENT_ROOT: ${{ github.workspace }}
     steps:
@@ -41,8 +41,8 @@ jobs:
       - name: Pin publication SHA
         run: echo "GITHUB_SHA=${{ github.sha }}" >> "$GITHUB_ENV"
 
-      - name: L mount probe
-        run: test -d /mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND
+      - name: Z BlackBoxAi hub mount probe
+        run: test -d /mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND
 
       - uses: actions/setup-node@b789df37d6b7526a863bf51b65df64f3f56ffe4f
         with:

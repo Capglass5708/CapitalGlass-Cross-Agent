@@ -11,7 +11,7 @@ This runbook extends the existing Cross-Agent harvest system. It does not replac
 | Protocol / whether work counts | `CG-Platform-Governance-MCP` |
 | Harvest/cache/sync execution | `CG-AppBuilder-MCP` |
 | Human ledger and coordination | `CapitalGlass-Cross-Agent` |
-| Machine-readable front door | `L:\\Capital-Glass-Intelligence-Hub\\00-master-index` |
+| Machine-readable front door | `Z:\\BlackBoxAi\\Capital-Glass-Intelligence-Hub\\00-master-index` |
 | Hot AI cache / scout routing | `Z:\\Capital-Glass-Intelligence-Hub\\AI-Cache-Authority` and host hot cache where configured |
 | Owner implementation | Owning app / MCP / infra repo |
 
@@ -172,7 +172,7 @@ Correct chain:
 record harvest
 validate harvest
 commit harvest
-then separately: ingest ledger -> publish L: -> refresh hot cache -> freshness gate
+then separately: ingest ledger -> publish Z:/BlackBoxAi -> refresh hot cache -> freshness gate
 ```
 
 Do not claim `PUBLICATION_PASS` from a docs-only harvest unless the publication receipt exists.

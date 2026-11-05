@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Post-publication retrieval benchmark — queries L: Intelligence Hub only.
+ * Post-publication retrieval benchmark — queries Z:/BlackBoxAi Intelligence Hub only.
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -12,7 +12,7 @@ const REPO_ROOT = path.resolve(__dirname, "../..");
 const HUB_ROOT =
   process.env.INTELLIGENCE_HUB_ROOT?.trim() ||
   process.env.CG_INTELLIGENCE_HUB_ROOT?.trim() ||
-  "/mnt/l/Capital-Glass-Intelligence-Hub";
+  "/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub";
 const WORK_PACKAGE = "complete-project-folder-synology-intelligence-publication-v1";
 const HARVEST_DIR = path.join(REPO_ROOT, "artifacts/agent-runs", HARVEST_ID);
 const OUT_DIR = path.join(REPO_ROOT, "artifacts/agent-runs", WORK_PACKAGE);

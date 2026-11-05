@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Automatic Cross-Agent index publisher — pinned SHA, content-hash no-op, L: mount probe.
- * Writes receipt outside Git (runtime + L: _operations).
+ * Automatic Cross-Agent index publisher — pinned SHA, content-hash no-op, Z:/BlackBoxAi mount probe.
+ * Writes receipt outside Git (runtime + Z:/BlackBoxAi _operations).
  */
 import { createHash } from 'node:crypto';
 import { execSync } from 'node:child_process';
@@ -17,7 +17,7 @@ const DATA_EXTRACTION_ROOT = resolveDataExtractionRoot(REPO_ROOT);
 const HUB_ROOT =
   process.env.INTELLIGENCE_HUB_ROOT?.trim() ||
   process.env.CG_INTELLIGENCE_HUB_ROOT?.trim() ||
-  '/mnt/l/Capital-Glass-Intelligence-Hub';
+  '/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub';
 
 const PUBLICATION_RECEIPT_SCHEMA = 'cross-agent-index-publication-receipt-v1@1.0.0';
 
@@ -156,10 +156,10 @@ async function main() {
       layers: { intelligenceHub: { mounted: false, path: hubIndexRoot } },
       freshnessGate: null,
       durationMs: Date.now() - started,
-      issues: [`L: index root missing: ${hubIndexRoot}`],
+      issues: [`Z:/BlackBoxAi index root missing: ${hubIndexRoot}`],
     };
     writeReceipt(hold);
-    console.error('index publisher PUBLICATION_HOLD — L: not mounted');
+    console.error('index publisher PUBLICATION_HOLD — Z:/BlackBoxAi not mounted');
     process.exit(1);
   }
 

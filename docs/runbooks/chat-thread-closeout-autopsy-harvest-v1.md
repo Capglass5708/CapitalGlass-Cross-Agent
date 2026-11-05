@@ -65,7 +65,7 @@ Do not claim hub publication or `FULLY_SEEDED` without `index:freshness-gate` re
 
 1. Cross-Agent is coordination authority, not an implementation repo.
 2. Start from Intelligence Hub or Cross-Agent index before broad repo grep.
-3. Log retrieval: `INDEX_HIT_AI_CACHE` | `INDEX_HIT` | `INDEX_MISS` | `L_DRIVE_NOT_MOUNTED_IN_WSL` | `FAILOVER_SUPABASE` | `FAILOVER_GIT_LEDGER`.
+3. Log retrieval: `INDEX_HIT_AI_CACHE` | `INDEX_HIT` | `INDEX_MISS` | `Z_BLACKBOXAI_NOT_MOUNTED` | `FAILOVER_SUPABASE` | `FAILOVER_GIT_LEDGER`.
 4. Do not advance operational awards without receipts.
 5. Do not mark a blocker closed because a prompt says so — verify artifact, command, or commit.
 6. Wrong moves must be structured records, not buried prose.
@@ -167,7 +167,7 @@ Do not repo-wide grep unless `rawScanRequired=true`, compact index insufficient,
 For thread-autopsy retrieval (explicit only):
 
 ```text
-L:/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/thread-autopsy-index.json
+Z:/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/thread-autopsy-index.json
 ```
 
 ---
@@ -340,7 +340,7 @@ Manifest optional extension:
 | 5 | `npm run test:harvest` | Agent |
 | 6 | `npm run harvest:compile-seed-packets -- --harvest-id=<id>` | Agent (when seeds exist) |
 | 7 | `npm run harvest:blind-retrieval -- --harvest-id=<id>` | Agent (T2+) |
-| 8 | `npm run harvest:publish-hub-seed -- --harvest-id=<id>` | **Operator** (L: mounted) |
+| 8 | `npm run harvest:publish-hub-seed -- --harvest-id=<id>` | **Operator** (Z:/BlackBoxAi mounted) |
 | 9 | `npm run index:publish` | **Operator** (WESLEYDESK GHA or break-glass) |
 | 10 | `npm run index:freshness-gate` | **Operator** |
 
@@ -434,7 +434,7 @@ Review this entire thread and harvest it into durable Intelligence Hub seed mate
 
 Tier: T1 (use T2 if long thread, user frustration, multi-repo, or repeated work).
 
-Start with Intelligence Hub / Cross-Agent index. Log INDEX_HIT_AI_CACHE, INDEX_HIT, INDEX_MISS, L_DRIVE_NOT_MOUNTED_IN_WSL, FAILOVER_SUPABASE, or FAILOVER_GIT_LEDGER. Do not broad-scan repos before compact index retrieval unless rawScanRequired=true.
+Start with Intelligence Hub / Cross-Agent index. Log INDEX_HIT_AI_CACHE, INDEX_HIT, INDEX_MISS, Z_BLACKBOXAI_NOT_MOUNTED, FAILOVER_SUPABASE, or FAILOVER_GIT_LEDGER. Do not broad-scan repos before compact index retrieval unless rawScanRequired=true.
 
 Produce structured closeout autopsy (not prose summary):
 - thread event inventory with evidenceRefs

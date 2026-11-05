@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Fail-closed gate: Git HEAD, Supabase projection, and L: LATEST must share sourceCommitSha.
+ * Fail-closed gate: Git HEAD, Supabase projection, and Z:/BlackBoxAi LATEST must share sourceCommitSha.
  */
 import { execSync } from "node:child_process";
 import fs from "node:fs";
@@ -14,7 +14,7 @@ const APP_BUILDER_ROOT = resolveAppBuilderRoot(REPO_ROOT);
 const HUB_ROOT =
   process.env.INTELLIGENCE_HUB_ROOT?.trim() ||
   process.env.CG_INTELLIGENCE_HUB_ROOT?.trim() ||
-  "/mnt/l/Capital-Glass-Intelligence-Hub";
+  "/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub";
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
@@ -90,9 +90,9 @@ async function main() {
   const hotCache = await readHotCacheLayer(gitHead);
 
   const issues = [];
-  if (!hub.available) issues.push(`L: LATEST missing: ${hub.path}`);
+  if (!hub.available) issues.push(`Z:/BlackBoxAi LATEST missing: ${hub.path}`);
   if (hub.available && hub.sourceCommitSha !== gitHead) {
-    issues.push(`L: sourceCommitSha ${hub.sourceCommitSha} !== git ${gitHead}`);
+    issues.push(`Z:/BlackBoxAi sourceCommitSha ${hub.sourceCommitSha} !== git ${gitHead}`);
   }
   if (drift.verdict !== "IN_SYNC") issues.push(`Supabase drift verdict: ${drift.verdict}`);
   if (supabaseSha && supabaseSha !== gitHead) {

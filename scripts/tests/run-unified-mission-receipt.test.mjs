@@ -87,7 +87,7 @@ function testUnifiedReceiptRequiresARealPreflightResult() {
 }
 
 function testWaverunnerAndCacheRefreshOnlySetByExplicitEvidence() {
-  const fakePreflightResult = { outcome: 'L_HUB_UNAVAILABLE_USING_GIT_LEDGER', mission: 'x', laneChecks: [] };
+  const fakePreflightResult = { outcome: 'Z_HUB_UNAVAILABLE_USING_GIT_LEDGER', mission: 'x', laneChecks: [] };
   const withoutEvidence = buildUnifiedMissionReceipt({ preflightResult: fakePreflightResult });
   assert.equal(withoutEvidence.waverunner, 'NOT_YET_INTEGRATED');
   assert.equal(withoutEvidence.cacheRefresh, 'NOT_YET_INTEGRATED');
@@ -117,11 +117,11 @@ function testShortCircuitedLanesReportNotCheckedNotUnavailable() {
   // Contrast: when a lane genuinely was probed and failed, it must still say
   // UNAVAILABLE, not NOT_CHECKED -- this isn't just "always say not-checked".
   const probedAndFailedResult = {
-    outcome: 'L_HUB_UNAVAILABLE_USING_GIT_LEDGER',
+    outcome: 'Z_HUB_UNAVAILABLE_USING_GIT_LEDGER',
     mission: 'x',
     laneChecks: [
       { plane: 'HOT_AI_CACHE', available: false, cacheStatus: 'CACHE_ROOT_UNAVAILABLE' },
-      { plane: 'L_DRIVE', available: false },
+      { plane: 'Z_BLACKBOXAI', available: false },
       { plane: 'SUPABASE', available: false },
       { plane: 'GIT_LEDGER', available: true },
     ],
@@ -143,7 +143,7 @@ function testWriteUnifiedMissionReceiptWritesToDisk() {
   const tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'unified-receipt-write-test-'));
   try {
     const receipt = buildUnifiedMissionReceipt({
-      preflightResult: { outcome: 'L_HUB_UNAVAILABLE_USING_GIT_LEDGER', mission: 'x', laneChecks: [] },
+      preflightResult: { outcome: 'Z_HUB_UNAVAILABLE_USING_GIT_LEDGER', mission: 'x', laneChecks: [] },
     });
     const receiptPath = writeUnifiedMissionReceipt(receipt, tmpRoot);
     assert.ok(fs.existsSync(receiptPath));

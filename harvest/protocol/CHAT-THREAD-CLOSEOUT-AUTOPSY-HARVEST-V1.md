@@ -5,7 +5,7 @@
 **Companion:** [Intelligence Hub accommodation](./thread-autopsy-hub-accommodation-v1.md)  
 **Base harvest runbook:** [harvest-record-validate-sync.md](./harvest-record-validate-sync.md)  
 **Lifecycle proof (agent-owned):** `npm run harvest:proof:thread-autopsy-lifecycle`  
-**Compounding context:** `L:\02-catalog\Harvest\GOLD-MINE-NORTH-STAR-CHARTER.md` (harvest → Hub → Gold Mine → implementation → remeasure)
+**Compounding context:** `Z:\BlackBoxAi\02-catalog\Harvest\GOLD-MINE-NORTH-STAR-CHARTER.md` (harvest → Hub → Gold Mine → implementation → remeasure)
 
 ---
 
@@ -29,7 +29,7 @@ This is **not** a chat summary. It is a **thread autopsy and intelligence extrac
 
 **v1.2 Git durability rule:** After validation + tests PASS, Cursor agents MUST commit and push harvest-owned Cross-Agent artifacts (scoped) before claiming HARVEST_COMPLETE. Hub/index publication remains operator-owned.
 
-**v1.3 AppBuilder-mission harvest rule:** This protocol's source is not limited to a literal chat thread — a completed AppBuilder mission closeout (evidence carrying a `sourceRepo`/`authoritySourceCommit` pointing at an execution repo, e.g. CG-AppBuilder-MCP, rather than a conversation) is an equally valid, equally required harvest source. Proven live: `harvest-2026-08-25-mcp-estate-remediation-v1` closed out AppBuilder mission `mcp-estate-remediation-v1` this way — `FULL_CLOSEOUT_WAVERUNNER = OPERATIONALLY_PROVEN`, L: durable + Z: cache + independently-verified Supabase snapshot. That same mission's OP-00A/Intelligence-Hub ingest (`intelligence:ingest`) is a **separate, parallel** closeout action — it proves the mission's evidence is durably captured and agent-retrievable, but it never sets `goldMineSignalClass` on anything, so it must never be assumed to have already covered Gold Mine eligibility. A harvest closeout of an AppBuilder mission MUST separately evaluate each packet against the Gold Mine evidence contract (§ below) — see `contracts/intelligence/appbuilder-mission-harvest-gold-mine-guidance-v1.md` for a reference signal-type mapping from common AppBuilder-mission evidence.
+**v1.3 AppBuilder-mission harvest rule:** This protocol's source is not limited to a literal chat thread — a completed AppBuilder mission closeout (evidence carrying a `sourceRepo`/`authoritySourceCommit` pointing at an execution repo, e.g. CG-AppBuilder-MCP, rather than a conversation) is an equally valid, equally required harvest source. Proven live: `harvest-2026-08-25-mcp-estate-remediation-v1` closed out AppBuilder mission `mcp-estate-remediation-v1` this way — `FULL_CLOSEOUT_WAVERUNNER = OPERATIONALLY_PROVEN`, Z:/BlackBoxAi durable + Z: cache + independently-verified Supabase snapshot. That same mission's OP-00A/Intelligence-Hub ingest (`intelligence:ingest`) is a **separate, parallel** closeout action — it proves the mission's evidence is durably captured and agent-retrievable, but it never sets `goldMineSignalClass` on anything, so it must never be assumed to have already covered Gold Mine eligibility. A harvest closeout of an AppBuilder mission MUST separately evaluate each packet against the Gold Mine evidence contract (§ below) — see `contracts/intelligence/appbuilder-mission-harvest-gold-mine-guidance-v1.md` for a reference signal-type mapping from common AppBuilder-mission evidence.
 
 Cross-Agent records coordination, receipts, ledger updates, and seed manifests only. Implementation code belongs in owner repos. **Data-Extraction** owns Gold Mine discovery, candidate digests, and §10 remeasurement; harvest supplies semantic evidence upstream.
 
@@ -82,7 +82,7 @@ Do not claim hub publication or `FULLY_SEEDED` without `index:freshness-gate` re
 
 1. Cross-Agent is coordination authority, not an implementation repo.
 2. Start from Intelligence Hub or Cross-Agent index before broad repo grep.
-3. Log retrieval: `INDEX_HIT_AI_CACHE` | `INDEX_HIT` | `INDEX_MISS` | `L_DRIVE_NOT_MOUNTED_IN_WSL` | `FAILOVER_SUPABASE` | `FAILOVER_GIT_LEDGER`.
+3. Log retrieval: `INDEX_HIT_AI_CACHE` | `INDEX_HIT` | `INDEX_MISS` | `Z_BLACKBOXAI_NOT_MOUNTED` | `FAILOVER_SUPABASE` | `FAILOVER_GIT_LEDGER`.
 4. Do not advance operational awards without receipts.
 5. Do not mark a blocker closed because a prompt says so — verify artifact, command, or commit.
 6. Wrong moves must be structured records, not buried prose.
@@ -271,9 +271,9 @@ Use this lane only when a validated harvest contains evidence-backed improvement
 
 **Target catalog:**
 
-`L:\02-catalog\Harvest\Harvest Protocol Self Learning`
+`Z:\BlackBoxAi\02-catalog\Harvest\Harvest Protocol Self Learning`
 
-Lane C is **separate** from Lane B Intelligence Hub seed publication and from the WaveRunner self-improvement lane (`L:\02-catalog\SDLC Gated Wave Protocols\WaveRunner Self Improvements Harvesting`). Do not merge outputs.
+Lane C is **separate** from Lane B Intelligence Hub seed publication and from the WaveRunner self-improvement lane (`Z:\BlackBoxAi\02-catalog\SDLC Gated Wave Protocols\WaveRunner Self Improvements Harvesting`). Do not merge outputs.
 
 **Lane D — Gold Mine estate projection (downstream, not Lane C):**
 
@@ -391,7 +391,7 @@ Do not repo-wide grep unless `rawScanRequired=true`, compact index insufficient,
 For thread-autopsy retrieval (explicit only):
 
 ```text
-L:/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/thread-autopsy-index.json
+Z:/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/thread-autopsy-index.json
 ```
 
 ---
@@ -651,7 +651,7 @@ Manifest optional extension:
 
 | Step | Command | Who |
 | --- | --- | --- |
-| 13 | `npm run harvest:publish-hub-seed -- --harvest-id=<id>` | **Operator** (L: mounted) |
+| 13 | `npm run harvest:publish-hub-seed -- --harvest-id=<id>` | **Operator** (Z:/BlackBoxAi mounted) |
 | 14 | `npm run index:publish` | **Operator** (WESLEYDESK GHA or break-glass) |
 | 15 | `npm run index:freshness-gate` | **Operator** |
 
@@ -720,7 +720,7 @@ Track Lane C separately from `projection.hubPublishStatus`. Use manifest provena
   "dataExtractionStatus": "not-run",
   "catalogPublishStatus": "not-run",
   "retrievalStatus": "not-run",
-  "targetCatalog": "L:\\02-catalog\\Harvest\\Harvest Protocol Self Learning",
+  "targetCatalog": "Z:\\BlackBoxAi\\02-catalog\\Harvest\\Harvest Protocol Self Learning",
   "authorityStatus": "PROPOSAL",
   "automaticProtocolMutation": false
 }
@@ -845,7 +845,7 @@ Review this entire thread and harvest it into durable Intelligence Hub seed mate
 
 Tier: T1 (use T2 if long thread, user frustration, multi-repo, or repeated work).
 
-Start with Intelligence Hub / Cross-Agent index. Log INDEX_HIT_AI_CACHE, INDEX_HIT, INDEX_MISS, L_DRIVE_NOT_MOUNTED_IN_WSL, FAILOVER_SUPABASE, or FAILOVER_GIT_LEDGER. Do not broad-scan repos before compact index retrieval unless rawScanRequired=true.
+Start with Intelligence Hub / Cross-Agent index. Log INDEX_HIT_AI_CACHE, INDEX_HIT, INDEX_MISS, Z_BLACKBOXAI_NOT_MOUNTED, FAILOVER_SUPABASE, or FAILOVER_GIT_LEDGER. Do not broad-scan repos before compact index retrieval unless rawScanRequired=true.
 
 Produce structured closeout autopsy (not prose summary):
 - thread event inventory with evidenceRefs

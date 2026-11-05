@@ -10,7 +10,7 @@ import path from 'node:path';
 
 import {
   OUTCOME,
-  testLHubPlane,
+  testZHubPlane,
   testSupabasePlane,
   testGitLedgerPlane,
   buildMissionContextBundle,
@@ -18,9 +18,9 @@ import {
   writePreflightReceipt,
 } from '../intelligence/lib/preflight-v1.mjs';
 
-function testLHubPlaneNeverThrows() {
-  const result = testLHubPlane();
-  assert.equal(result.plane, 'L_DRIVE');
+function testZHubPlaneNeverThrows() {
+  const result = testZHubPlane();
+  assert.equal(result.plane, 'Z_BLACKBOXAI');
   assert.equal(typeof result.available, 'boolean');
 }
 
@@ -97,16 +97,16 @@ function testBuildMissionContextBundleRespectsRepoRootOverride() {
 }
 
 async function testFullLadderReachesGitLedgerInThisEnvironment() {
-  // This container has no hot AI cache mount, no /mnt/l mount, and no sibling
+  // This container has no hot AI cache mount, no /mnt/z/BlackBoxAi hub mount, and no sibling
   // AppBuilder checkout, so the ladder must fall all the way to the Git
   // ledger and still succeed — this is the one lane genuinely end-to-end
   // testable outside the real dev host.
   const result = await runIntelligencePreflight({ mission: 'test-mission', repos: ['CapitalGlass-Cross-Agent'], concepts: [] });
-  assert.equal(result.outcome, OUTCOME.L_HUB_UNAVAILABLE_USING_GIT_LEDGER);
-  assert.equal(result.laneChecks.length, 4, 'should have physically tested hot cache, then L:, then Supabase, then Git ledger');
+  assert.equal(result.outcome, OUTCOME.Z_HUB_UNAVAILABLE_USING_GIT_LEDGER);
+  assert.equal(result.laneChecks.length, 4, 'should have physically tested hot cache, then Z:/BlackBoxAi, then Supabase, then Git ledger');
   assert.equal(result.laneChecks[0].plane, 'HOT_AI_CACHE');
   assert.equal(result.laneChecks[0].available, false, 'no physical cache is mounted in this container');
-  assert.equal(result.laneChecks[1].plane, 'L_DRIVE');
+  assert.equal(result.laneChecks[1].plane, 'Z_BLACKBOXAI');
   assert.equal(result.laneChecks[2].plane, 'SUPABASE');
   assert.equal(result.laneChecks[3].plane, 'GIT_LEDGER');
   assert.ok(result.bundle, 'a successful lane must return a mission-context bundle');
@@ -118,21 +118,21 @@ function testReceiptIsWritten() {
     const fakeResult = {
       schema: 'intelligence-preflight-receipt-v1@1.0.0',
       generatedAt: new Date().toISOString(),
-      outcome: OUTCOME.L_HUB_UNAVAILABLE_USING_GIT_LEDGER,
+      outcome: OUTCOME.Z_HUB_UNAVAILABLE_USING_GIT_LEDGER,
       laneChecks: [],
       bundle: null,
     };
     const receiptPath = writePreflightReceipt(fakeResult, tmpRoot);
     assert.ok(fs.existsSync(receiptPath));
     const written = JSON.parse(fs.readFileSync(receiptPath, 'utf8'));
-    assert.equal(written.outcome, OUTCOME.L_HUB_UNAVAILABLE_USING_GIT_LEDGER);
+    assert.equal(written.outcome, OUTCOME.Z_HUB_UNAVAILABLE_USING_GIT_LEDGER);
   } finally {
     fs.rmSync(tmpRoot, { recursive: true, force: true });
   }
 }
 
 const tests = [
-  ['L: plane test never throws', testLHubPlaneNeverThrows],
+  ['Z:/BlackBoxAi plane test never throws', testZHubPlaneNeverThrows],
   ['Supabase plane degrades gracefully without a sibling checkout', testSupabasePlaneDegradesGracefully],
   ['Git ledger plane is always available', testGitLedgerPlaneAvailable],
   ['mission-context bundle has the expected shape', testMissionContextBundleShape],

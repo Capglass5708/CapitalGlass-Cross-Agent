@@ -161,7 +161,7 @@ function findPublishedHarvestRepublishBlock({ harvestId, gitHead, threadAutopsyI
       existingSourceCommitSha: indexSha,
       nextSourceCommitSha: gitHead,
       message:
-        "harvest already published on L: with different sourceCommitSha — set manifest.supersession or use --allow-republish",
+        "harvest already published on Z:/BlackBoxAi with different sourceCommitSha — set manifest.supersession or use --allow-republish",
     };
   }
   return null;
@@ -249,7 +249,7 @@ function validateConsultationClaims({ bundle, sources }) {
   for (const name of requiredReadable) {
     const slice = sources.hubSlices.find((s) => s.name === name);
     if (!slice?.readable) {
-      errors.push(`duplicationCheck lists ${name} but slice unreadable on L:`);
+      errors.push(`duplicationCheck lists ${name} but slice unreadable on Z:/BlackBoxAi`);
     }
   }
 
@@ -279,7 +279,7 @@ function detectHostPublicationRouting(hubRoot) {
 }
 
 /**
- * Automated duplication preflight — consults registry, command-index, and L: hub slices.
+ * Automated duplication preflight — consults registry, command-index, and Z:/BlackBoxAi hub slices.
  */
 export function resolvePublicationRoutingForPreflight({ repoRoot, hubRoot } = {}) {
   return detectHostPublicationRouting(hubRoot ?? resolveHubRoot());
@@ -364,12 +364,12 @@ export function runDuplicationPreflight({
   if (seedIdCollisions.length > 0 && mode === "publish") {
     errors.push(
       ...seedIdCollisions.map(
-        (c) => `seedId ${c.seedId} already on L: (${c.existingFile}) — add supersedes or --allow-supersede-seed`,
+        (c) => `seedId ${c.seedId} already on Z:/BlackBoxAi (${c.existingFile}) — add supersedes or --allow-supersede-seed`,
       ),
     );
   } else if (seedIdCollisions.length > 0) {
     warnings.push(
-      ...seedIdCollisions.map((c) => `seedId ${c.seedId} already on L: — publish will block without supersession`),
+      ...seedIdCollisions.map((c) => `seedId ${c.seedId} already on Z:/BlackBoxAi — publish will block without supersession`),
     );
   }
   if (semanticDuplicates.length > 0) {

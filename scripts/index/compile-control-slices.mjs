@@ -2,7 +2,7 @@
 /**
  * Compile machine-readable Intelligence Hub control slices from Git-authoritative sources.
  * Output: work-progress/intelligence-hub-slices/*.json
- * Does not publish to L: — use index:publish on WESLEYDESK after freshness gate PASS.
+ * Does not publish to Z:/BlackBoxAi — use index:publish on WESLEYDESK after freshness gate PASS.
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -151,12 +151,12 @@ function buildHostAuthority() {
       {
         hostId: "WESLEYDESK",
         role: "index publication, GitHub Actions runner, primary dev",
-        paths: { intelligenceHub: "L:/Capital-Glass-Intelligence-Hub", aiCache: "S:/AI Cursur Cache" },
+        paths: { intelligenceHub: "Z:/BlackBoxAi/Capital-Glass-Intelligence-Hub", aiCache: "S:/AI Cursur Cache" },
       },
       {
         hostId: "WESLEY_WORK",
         role: "WSL dev, cross-agent ledger ingest",
-        paths: { intelligenceHub: "/mnt/l/Capital-Glass-Intelligence-Hub", aiCache: "/mnt/d/AI Cursur Cache" },
+        paths: { intelligenceHub: "/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub", aiCache: "/mnt/d/AI Cursur Cache" },
       },
       {
         hostId: "RYZEN9DESK",

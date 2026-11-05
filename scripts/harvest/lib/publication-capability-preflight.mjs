@@ -29,12 +29,13 @@ function checkWaveSdlcSource(repoRoot) {
 /**
  * Host capability preflight — never returns secret values.
  */
-export function runPublicationCapabilityPreflight({ repoRoot, hubRoot = "/mnt/l/Capital-Glass-Intelligence-Hub" } = {}) {
+export function runPublicationCapabilityPreflight({ repoRoot, hubRoot = "/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub" } = {}) {
   const supabaseCapability = resolveSupabaseProjectionCapability();
   const capabilities = {
     git: fs.existsSync(path.join(repoRoot, ".git")) ? "AVAILABLE" : "REQUIRED_UNAVAILABLE",
     gitPush: "UNVERIFIED",
-    lDrive: isMountPoint("/mnt/l") && fs.existsSync(path.join(hubRoot, "00-master-index")) ? "AVAILABLE" : "REQUIRED_UNAVAILABLE",
+    // L: retired 2026-11-03; the Intelligence Hub lives on Z:/BlackBoxAi.
+    zBlackBoxAiHub: isMountPoint("/mnt/z") && fs.existsSync(path.join(hubRoot, "00-master-index")) ? "AVAILABLE" : "REQUIRED_UNAVAILABLE",
     zDrive: isMountPoint("/mnt/z") && fs.existsSync(Z_HARVEST_PROTOCOL_ROOT) ? "AVAILABLE" : "OPTIONAL_UNAVAILABLE",
     zWaveSdlcSource: checkWaveSdlcSource(repoRoot),
     supabase: supabaseCapability.status,
@@ -71,7 +72,7 @@ export function runPublicationCapabilityPreflight({ repoRoot, hubRoot = "/mnt/l/
       k === "supabase" ? "WARN_OPTIONAL_SUPABASE_UNAVAILABLE" : `WARN_OPTIONAL_${k.toUpperCase()}_UNAVAILABLE`,
     ),
     blockers: requiredUnavailable.map((k) =>
-      k === "lDrive" ? "BLOCK_L_UNAVAILABLE" : "BLOCK_REQUIRED_CAPABILITY",
+      k === "zBlackBoxAiHub" ? "BLOCK_Z_BLACKBOXAI_UNAVAILABLE" : "BLOCK_REQUIRED_CAPABILITY",
     ),
   };
 }

@@ -207,7 +207,7 @@
       ],
       "authorityClass": "PUBLICATION_ONLY",
       "warning": "Local index is a near-empty stub with a year-2000 INDEX_GENERATED_AT. Do not hand-edit the generated file; edit the seed. Luna must not write indexes.",
-      "standingInstruction": "Do not close Wave A, enter Wave B, or publish Hub replicas to L:."
+      "standingInstruction": "Do not close Wave A, enter Wave B, or publish Hub replicas to Z:/BlackBoxAi."
     },
     {
       "id": "experience-contracts",
@@ -372,8 +372,8 @@
     "retrievalPreflight": {
       "entry": "npm run intelligence:preflight",
       "purpose": "produce a receipt proving planes were probed instead of an agent self-reporting that it checked the index",
-      "planeLadder": ["HOT_AI_CACHE", "L_DRIVE", "SUPABASE", "GIT_LEDGER_MIRROR"],
-      "outcomes": ["CACHE_HIT_FRESH", "L_HUB_READ_OK", "L_HUB_UNAVAILABLE_USING_SUPABASE", "L_HUB_UNAVAILABLE_USING_GIT_LEDGER", "ALL_HUB_PLANES_UNAVAILABLE"],
+      "planeLadder": ["HOT_AI_CACHE", "Z_BLACKBOXAI", "SUPABASE", "GIT_LEDGER_MIRROR"],
+      "outcomes": ["CACHE_HIT_FRESH", "Z_HUB_READ_OK", "Z_HUB_UNAVAILABLE_USING_SUPABASE", "Z_HUB_UNAVAILABLE_USING_GIT_LEDGER", "ALL_HUB_PLANES_UNAVAILABLE"],
       "cacheStatuses": ["CACHE_HIT_FRESH", "CACHE_HIT_STALE", "CACHE_MISS", "CACHE_ROOT_UNAVAILABLE"],
       "cacheBundle": "00-master-index/BY-KIND/mission-intelligence.json",
       "knownCacheHosts": ["WESLEY_WORK", "WESLEYDESK", "RYZEN9DESK"],
@@ -415,11 +415,11 @@
     {"command": "npm run intelligence:ingest -- --handoff=<path> --shared-dev-hub --json", "mutates": "Supabase intelligence_hub", "requires": ["shared-dev write eligibility/credentials"]},
     {"command": "npm run harvest:record -- --harvest-id=<id>", "mutates": "local artifacts", "requires": ["valid harvest-manifest-v1.json for that id"]},
     {"command": "npm run harvest:sync-z-mirror", "mutates": "Z: drive", "requires": ["/mnt/z mounted"], "blockedVerdict": "Z_HARVEST_MIRROR_SYNC_BLOCKED"},
-    {"command": "npm run harvest:move-chatgpt-harvest-to-l", "mutates": "L: drive", "requires": ["/mnt/l mounted"]},
+    {"command": "npm run harvest:move-chatgpt-harvest-to-l", "mutates": "Z:/BlackBoxAi", "requires": ["/mnt/z/BlackBoxAi mounted"]},
     {"command": "npm run harvest:closeout-git -- --apply", "mutates": "local git branch/commit", "requires": [], "note": "defaults to dry-run; contradicts m8-github-plane-mandatory rule"},
     {"command": "npm run harvest:chatgpt-publish-draft -- --apply", "mutates": "git push origin chat-gpt-harvest", "requires": ["on chat-gpt-harvest branch"], "note": "defaults to dry-run; most outward-facing command in the repo"},
     {"command": "npm run index:freshness-gate", "mutates": "local receipt", "requires": ["Doppler CLI auth", "CG-AppBuilder-MCP"]},
-    {"command": "npm run index:publish", "mutates": "L: drive + --apply mutations in CG-AppBuilder-MCP and Data-Extraction", "requires": ["Doppler auth", "CG-AppBuilder-MCP", "Data-Extraction", "/mnt/l mounted"], "note": "intended to run only on the self-hosted runner"},
+    {"command": "npm run index:publish", "mutates": "Z:/BlackBoxAi + --apply mutations in CG-AppBuilder-MCP and Data-Extraction", "requires": ["Doppler auth", "CG-AppBuilder-MCP", "Data-Extraction", "/mnt/z/BlackBoxAi mounted"], "note": "intended to run only on the self-hosted runner"},
     {"command": "npm run master-graph:publish-hub", "mutates": "runs publish inside CG-MASTER-GRAPH", "requires": ["CG_MASTER_GRAPH_ROOT or sibling checkout"]},
     {"command": "npm run test:cross-agent-architecture", "mutates": false, "requires": ["some child suites need mounts/siblings; expect partial failures on a bare checkout"]}
   ],
@@ -458,7 +458,7 @@
     "githubWorkflows": [
       {"file": ".github/workflows/harvest-risk-gates.yml", "runner": "ubuntu-latest", "role": "the only genuine hosted PR gate"},
       {"file": ".github/workflows/index-publication.yml", "runner": "self-hosted,ryzen9desk,wsl2", "role": "operational publication"},
-      {"file": ".github/workflows/chatgpt-harvest-move-to-l.yml", "runner": "self-hosted,ryzen9desk,wsl2", "role": "move ChatGPT drafts to L:"},
+      {"file": ".github/workflows/chatgpt-harvest-move-to-l.yml", "runner": "self-hosted,ryzen9desk,wsl2", "role": "move ChatGPT drafts to Z:/BlackBoxAi"},
       {"file": ".github/workflows/runner-smoke.yml", "runner": "self-hosted,ryzen9desk,wsl2", "role": "manual read-only runner probe"}
     ],
     "runtimeExecutedByIndexingPass": false,

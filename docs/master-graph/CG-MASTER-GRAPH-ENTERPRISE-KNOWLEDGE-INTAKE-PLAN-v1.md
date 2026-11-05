@@ -241,12 +241,12 @@ It must not silently change production extraction behavior based on unreviewed f
 
 ## Synology knowledge-intake authority
 
-The canonical source intake should live on Synology through L:.
+The canonical source intake should live on Synology through Z:/BlackBoxAi.
 
-### L: source and archive authority
+### Z:/BlackBoxAi source and archive authority
 
 ```text
-L:\Capital-Glass-Knowledge-Intake\
+Z:\BlackBoxAi\Capital-Glass-Knowledge-Intake\
   Audio\
     Incoming\
     Processing\
@@ -284,7 +284,7 @@ Z:\Capital-Glass-Knowledge-Intake\
   Index\
 ```
 
-L: preserves original source artifacts and durable processed packages.
+Z:/BlackBoxAi preserves original source artifacts and durable processed packages.
 
 Z: stores derived transcripts, normalized extraction packages, graph contributions, publication outputs, cache material, and supersession records.
 
@@ -430,7 +430,7 @@ When no manifest exists, Data-Extraction may propose pairing based on timestamps
 A successfully processed package may look like:
 
 ```text
-L:\Capital-Glass-Knowledge-Intake\Packages\Processed\KP-<ID>\
+Z:\BlackBoxAi\Capital-Glass-Knowledge-Intake\Packages\Processed\KP-<ID>\
   original\
     proposal.pdf
     estimator-walkthrough.m4a
@@ -452,12 +452,12 @@ L:\Capital-Glass-Knowledge-Intake\Packages\Processed\KP-<ID>\
 
 Nothing should be moved to `Processed` until the package manifest, extraction outputs, graph contribution, and receipts agree.
 
-## Full L: and Z: observation
+## Full Z: observation
 
-The system should have persistent read access to the full mounted L: and Z: surfaces from WSL2:
+The system should have persistent read access to the full mounted Z: surfaces from WSL2:
 
 ```text
-/mnt/l
+/mnt/z/BlackBoxAi
 /mnt/z
 ```
 
@@ -506,7 +506,7 @@ Code and execution authority remain in WSL2 ext4:
 /home/wesley/repos/CapitalGlass-Cross-Agent
 ```
 
-L: and Z: are source, archive, cache, publication, and intelligence surfaces—not development workspaces.
+Z: are source, archive, cache, publication, and intelligence surfaces—not development workspaces.
 
 ## Required source anchoring
 
@@ -719,7 +719,7 @@ The program is ready for broad ingestion only when:
 
 - Synology intake folders exist
 - Data-Extraction is the exclusive processing authority for managed intake state transitions
-- L: and Z: are readable from the WSL2 runtime
+- Z: are readable from the WSL2 runtime
 - Audio, Documents, and Packages lanes are operational
 - Originals are preserved
 - Audio and document pairings remain linked

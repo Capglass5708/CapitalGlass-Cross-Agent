@@ -181,7 +181,7 @@ function updateManifestProjection(runDir, { hubPublishStatus, operationalReceipt
 }
 
 /**
- * Make a validated harvest operational across L:, Z:, and C: hot cache.
+ * Make a validated harvest operational across Z: (incl. Z:/BlackBoxAi Hub) and C: hot cache.
  * Chat-thread structured artifacts are authority — this publishes them to retrieval layers.
  */
 export function publishIntelligenceFull({
@@ -212,7 +212,7 @@ export function publishIntelligenceFull({
   if (!fs.existsSync(path.join(hubRoot, "00-master-index", "BY-KIND"))) {
     return {
       ok: false,
-      verdict: "L_DRIVE_NOT_MOUNTED",
+      verdict: "Z_BLACKBOXAI_NOT_MOUNTED",
       errors: [`Intelligence Hub not mounted at ${hubRoot}`],
     };
   }

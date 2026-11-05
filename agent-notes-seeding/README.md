@@ -11,7 +11,7 @@ Cross-Agent Notes Seeding turns selected coordination notes in **CapitalGlass-Cr
 | **CG-Platform-Governance-MCP** | Authority, provenance, duplicate prevention, promotion compliance |
 | **CG-Failure-Intelligence-MCP** | Canonical fast path for known failures and repair shortcuts |
 | **Z:\Capital-Glass-Intelligence-Hub\AI-Cache-Authority** | Sole canonical AI-cache release authority |
-| **L:\Capital-Glass-Intelligence-Hub** | Non-authoritative compact retrieval mirror |
+| **Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub** | Non-authoritative compact retrieval mirror |
 | **Supabase** | IDs, hashes, pointers, links, freshness, telemetry — not duplicate note bodies |
 
 ## Eligible for seeding

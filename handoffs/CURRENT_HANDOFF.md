@@ -21,7 +21,7 @@ Read these files first, in order:
 | Agent repos | `/home/wesle/repos` (ext4) |
 | Default workspace | `/home/wesle/Capital-Glass-Suite.WSL.code-workspace` |
 | Env authority | `~/.config/capital-glass/cursor-wsl.env` |
-| Intelligence Hub (L:) | `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index` |
+| Intelligence Hub (Z:/BlackBoxAi) | `/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index` |
 | AI cache authority (Z:) | `/mnt/z/Capital-Glass-Intelligence-Hub/AI-Cache-Authority` |
 
 **Do not** use `C:\Developer\repos` or `/mnt/c/Developer/repos` for agent work. If Cursor opens from `/mnt/c`, treat as `HOST_MODE_BLOCKED` and reconnect via WSL Suite shortcut.
@@ -36,13 +36,15 @@ npm run cursor:wsl-default:verify
 
 ## Retrieval failover (single contract)
 
-Use this order for **suite status, blockers, and active work** — not for Revu/estimating deep dives (those stay L:-first per `intelligence-hub-first-read`):
+Use this order for **suite status, blockers, and active work** — not for Revu/estimating deep dives (those stay Z:/BlackBoxAi-first per `intelligence-hub-first-read`):
 
 | Priority | Source | When |
 | --- | --- | --- |
-| 1 | L: `BY-KIND/*.json` | `/mnt/l/.../00-master-index` is mounted |
-| 2 | Supabase structured-ledger projection | L: missing; run drift probe from AppBuilder with Doppler |
+| 1 | Z:/BlackBoxAi `BY-KIND/*.json` | `/mnt/z/BlackBoxAi/.../00-master-index` is mounted |
+| 2 | Supabase structured-ledger projection | Z:/BlackBoxAi missing; run drift probe from AppBuilder with Doppler |
 | 3 | Git ledger | `work-progress/ACTIVE_WORK.md` + `projects/INDEX.md` in this repo |
+
+If `test -d /mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index` fails, log **`Z_BLACKBOXAI_NOT_MOUNTED`** (replaces `L_DRIVE_NOT_MOUNTED_IN_WSL`; L: retired permanently 2026-11-03, see `CAD-20261103-l-retired-z-blackboxai`) and continue down the ladder; Revu/estimating deep topics stop there.
 
 **Cleared (do not re-block on):** structured-ledger ingest HOLD, `/mnt/c` host blocker, `SUPABASE_PROJECTION_MISSING` false negative — all resolved at WSL ext4 + Doppler ingest. Re-run ingest only after **new** `ACTIVE_WORK.md` edits.
 
@@ -65,7 +67,7 @@ Artifacts: `CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-index-preflight-e
 | Priority | Project | Status | Next action |
 | --- | --- | --- | --- |
 | 1 | `ryzen9desk-managed-executor-v1` | CODE_READY_FOR_RUNNER_BOOTSTRAP | Create runner group/env; install runner on RYZEN9DESK; dispatch `executor-smoke` |
-| 2 | `project-folder-synology-primary-v1-dev-environment` | ACTIVE | Deploy DC to dev URL; prove claim/complete on `L:\Capital-Glass-Projects-Dev` |
+| 2 | `project-folder-synology-primary-v1-dev-environment` | ACTIVE | Deploy DC to dev URL; prove claim/complete on `Z:\Capital-Glass-Projects-Dev` |
 | 3 | `project-folder-synology-primary-v1` | HALTED — prod productionization failed | No prod until dev lane gates pass |
 | 4 | `wesleywork-drive-mount-task-dedupe-v1` | IMPLEMENTED — live deploy pending | Elevated Windows deploy on WESLEY_WORK |
 | 5 | `suite-ci-healing-v1` | PARTIAL PASS | Align `EXPECTED_DOCUMENT_CENTER_GIT_SHA` or redeploy DC; rerun smokes |
@@ -78,7 +80,7 @@ Artifacts: `CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-index-preflight-e
 
 | Project | Status |
 | --- | --- |
-| `active-ledger-drain-and-intelligence-hub-sync-v1` | **Complete — closeout PASS** (Phase 5 done); recurring L: publish after ledger edits |
+| `active-ledger-drain-and-intelligence-hub-sync-v1` | **Complete — closeout PASS** (Phase 5 done); recurring Z:/BlackBoxAi publish after ledger edits |
 | `cross-agent-structured-ledger-projection-v1` | MILESTONE PASS — ingest + drift probe after ledger updates |
 | `wsl-mcp-cursor-doppler-promptops-hardening-v1` | PASS — WSL default active; `mcp:repair:cursor` PASS |
 
@@ -98,10 +100,10 @@ Artifacts: `CG-AppBuilder-MCP/artifacts/agent-runs/cross-agent-index-preflight-e
 From `/home/wesle/repos/CG-AppBuilder-MCP` with `INTELLIGENCE_HUB_ROOT` set:
 
 ```bash
-export INTELLIGENCE_HUB_ROOT=/mnt/l/Capital-Glass-Intelligence-Hub
+export INTELLIGENCE_HUB_ROOT=/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub
 npm run active-ledger:export -- --repo=/home/wesle/repos/CapitalGlass-Cross-Agent
 CROSS_AGENT_LEDGER_INGEST_APPROVED=1 doppler run --project cg-mcp --config dev -- npm run cross-agent-ledger:ingest -- --apply --repo=/home/wesle/repos/CapitalGlass-Cross-Agent
 npm run active-ledger:sync:check -- --repo=/home/wesle/repos/CapitalGlass-Cross-Agent
 ```
 
-Expect **IN_SYNC** at current `HEAD` when L:, Supabase, and Git agree.
+Expect **IN_SYNC** at current `HEAD` when Z:/BlackBoxAi, Supabase, and Git agree.

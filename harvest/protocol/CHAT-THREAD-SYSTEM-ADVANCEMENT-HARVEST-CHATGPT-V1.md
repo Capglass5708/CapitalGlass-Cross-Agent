@@ -33,7 +33,7 @@
 3. Declare `DRAFT_FILE` in your first sentence.
 4. Produce `system-advancement-findings-source.md` with **SYNTHESIZED** and **INVENTED** `IMP-###` / `ADV-###` (not summary-only).
 5. Push to `chat-gpt-harvest`; pass `CHATGPT_HARVEST_GIT_GATE`; claim `CHATGPT_SOURCE_PUBLISHED` only after remote SHA verification.
-6. **Do not** run Cursor ingest, L: move verification, or Data-Extraction — Git staging + SHA receipt only.
+6. **Do not** run Cursor ingest, Z:/BlackBoxAi move verification, or Data-Extraction — Git staging + SHA receipt only.
 
 **One-line trigger**
 
@@ -111,7 +111,7 @@ See OBSERVED protocol § Tiered closeout classifier. Run **this file** only for 
 
 ---
 
-## ChatGPT → Git → L: pipeline (automatic after push)
+## ChatGPT → Git → Z:/BlackBoxAi pipeline (automatic after push)
 
 Same estate pipeline as OBSERVED autopsy. ChatGPT **only** pushes to `chat-gpt-harvest`.
 
@@ -119,7 +119,7 @@ Same estate pipeline as OBSERVED autopsy. ChatGPT **only** pushes to `chat-gpt-h
 ChatGPT DRAFT_FILE
   → push system-advancement-findings-source.md to chat-gpt-harvest
   → GitHub Actions: chatgpt-harvest-move-to-l.yml
-  → L: 02-catalog/chatgpt-draft-staging/chat-gpt-harvest/<harvest-id>/
+  → Z:/BlackBoxAi 02-catalog/chatgpt-draft-staging/chat-gpt-harvest/<harvest-id>/
   → (later) Data-Extraction advancement:ingest — Phase 2; not ChatGPT
   → Cursor harvest:ingest-chatgpt-advancement (when shipped) + novelty/duplication checks
 ```
@@ -351,7 +351,7 @@ Distinct from autopsy `chatgpt-findings-source.md` on the same harvest id.
 
 ## Handoff to Cursor
 
-**Push first.** GitHub Action moves draft to L: staging; Cursor pulls from `chat-gpt-harvest`.
+**Push first.** GitHub Action moves draft to Z:/BlackBoxAi staging; Cursor pulls from `chat-gpt-harvest`.
 
 Phase 1: manual validation from Markdown. Phase 2: structured ingest (not shipped).
 
@@ -369,7 +369,7 @@ npm run advancement:novelty-check -- --harvest-id=<id>
 npm run advancement:score -- --harvest-id=<id>
 npm run advancement:validate -- --harvest-id=<id>
 
-# Future Data-Extraction (from L: staging):
+# Future Data-Extraction (from Z:/BlackBoxAi staging):
 # cd Data-Extraction && npm run advancement:ingest -- --source=<findings.md> --advancement-id=<ADV-id>
 
 Cursor verifies CROSS_CHECK_REQUIRED; operator approves candidates before publish-intelligence-full.
@@ -442,14 +442,14 @@ Follow [CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md](./CHATGPT-HARVEST-GIT-PU
 5. Push to `origin chat-gpt-harvest` — not `main`.
 6. Verify remote SHA == local SHA; emit `gitPublicationReceipt`.
 7. Claim `CHATGPT_SOURCE_PUBLISHED` only if gate PASS; else `BLOCKED_GIT_PUBLICATION`.
-8. State `L: move: NOT_RUN_BY_CHATGPT` (GitHub Action when workflow on `main`).
+8. State `Z:/BlackBoxAi move: NOT_RUN_BY_CHATGPT` (GitHub Action when workflow on `main`).
 9. State `Advancement status: CANDIDATE`; `Publication: NOT_RUN_BY_CURSOR`; `Implementation: NOT_AUTHORIZED`.
 
 | Claim after push | Allowed? |
 | --- | --- |
 | `CHATGPT_SOURCE_PUBLISHED` + SHA receipt | Yes (gate PASS) |
 | `SYSTEM_ADVANCEMENT_DRAFT_READY` only | Yes if push not yet verified |
-| L: staging move complete | **No** — Action only |
+| Z:/BlackBoxAi staging move complete | **No** — Action only |
 | `HARVEST_COMPLETE` / gate passes / `PUBLICATION_PASS` | **No** |
 | Data-Extraction ingest complete | **No** — deferred |
 
@@ -458,11 +458,11 @@ Follow [CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md](./CHATGPT-HARVEST-GIT-PU
 | Layer | State |
 | --- | --- |
 | Git draft | `not-run` or commit SHA |
-| L: draft staging (GitHub Action) | `not-run` |
+| Z:/BlackBoxAi draft staging (GitHub Action) | `not-run` |
 | Cursor ingest | `not-run` |
 | Novelty verification | `not-run` |
 | Architecture verification | `not-run` |
-| L: Hub publication | `not-run` |
+| Z:/BlackBoxAi Hub publication | `not-run` |
 | Z: cache projection | `not-run` |
 | Supabase projection | `not-run` |
 | Data-Extraction advancement ingest | `not-run` |
@@ -477,7 +477,7 @@ Follow [CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md](./CHATGPT-HARVEST-GIT-PU
 | --- | --- |
 | [chat-thread-closeout-autopsy-harvest-chatgpt-v1.md](./chat-thread-closeout-autopsy-harvest-chatgpt-v1.md) | OBSERVED intelligence lane |
 | [chatgpt-system-advancement-findings-template.md](./chatgpt-system-advancement-findings-template.md) | Findings template |
-| `.github/workflows/chatgpt-harvest-move-to-l.yml` | Push → L: staging |
+| `.github/workflows/chatgpt-harvest-move-to-l.yml` | Push → Z:/BlackBoxAi staging |
 | `Data-Extraction/docs/platform/SUITE_ADVANCEMENT_GRAPH_LANE.md` | Future scoring/graph ingest |
 | `scripts/harvest/schema/advancement-intelligence-v1.schema.json` | `ADV-###` provenance |
 | `scripts/harvest/schema/gated-wave-state-v1.schema.json` | Wave state stub (Phase 6) |

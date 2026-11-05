@@ -20,11 +20,11 @@ Cross-Agent harvests record coordination state only. Implementation, SSH, runner
 | 5 | `npm run test:harvest` | CapitalGlass-Cross-Agent | Regression tests |
 | 6 | `npm run index:refresh-anchors` | CapitalGlass-Cross-Agent | Refresh handoff ledger anchor + continuity metadata |
 | 7 | `npm run cross-agent-ledger:ingest -- --apply` | CG-AppBuilder-MCP | Supabase projection (requires `CROSS_AGENT_LEDGER_INGEST_APPROVED=1`) |
-| 7b | `npm run active-ledger:sync -- --publish` | CG-AppBuilder-MCP | **Fallback** L: publish when Data-Extraction path unavailable |
-| 8 | `npm run agent-research-library:publish-active-work-ledger` | Data-Extraction | Primary L: hub publish (operator approval) |
-| 9 | `npm run index:freshness-gate` | CapitalGlass-Cross-Agent | **Required** — Git, Supabase, and L: must share `sourceCommitSha` |
+| 7b | `npm run active-ledger:sync -- --publish` | CG-AppBuilder-MCP | **Fallback** Z:/BlackBoxAi publish when Data-Extraction path unavailable |
+| 8 | `npm run agent-research-library:publish-active-work-ledger` | Data-Extraction | Primary Z:/BlackBoxAi hub publish (operator approval) |
+| 9 | `npm run index:freshness-gate` | CapitalGlass-Cross-Agent | **Required** — Git, Supabase, and Z:/BlackBoxAi must share `sourceCommitSha` |
 
-**Operator one-shot** (steps 7–9): `npm run index:sync-publication` from Cross-Agent (Doppler + L: mount required) — **break-glass only** after v1.
+**Operator one-shot** (steps 7–9): `npm run index:sync-publication` from Cross-Agent (Doppler + Z:/BlackBoxAi mount required) — **break-glass only** after v1.
 
 **Automatic publication (v1.1):** `npm run index:publish` via GitHub Actions `index-publication.yml` on WESLEYDESK. Bootstrap: `docs/runbooks/wesleydesk-index-publication-runner.md`. Cursor preflight uses read-only `npm run index:preflight`.
 

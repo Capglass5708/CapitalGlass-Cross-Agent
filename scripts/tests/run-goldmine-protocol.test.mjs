@@ -88,7 +88,7 @@ async function testFullRunProducesCompleteReceipt() {
     // a remote Hub plane yet, regardless of whether one is reachable.
     assert.equal(receipt.hubPublication, 'NOT_IMPLEMENTED');
     assert.equal(typeof receipt.hubPlaneReachable, 'boolean');
-    assert.ok(receipt.note.includes('Remote Hub publication (L:/Supabase) is not implemented'));
+    assert.ok(receipt.note.includes('Remote Hub publication (Z:/BlackBoxAi Hub/Supabase) is not implemented'));
     assert.ok(fs.existsSync(receipt.receiptPath), 'receipt must be written to disk');
     assert.ok(fs.existsSync(path.join(repoRoot, 'work-progress/harvest-intelligence-index.json')), 'real run must write the intelligence index');
 

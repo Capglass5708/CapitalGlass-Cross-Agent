@@ -45,7 +45,7 @@ function listJsonBasenames(dir) {
 }
 
 /**
- * Build compact projection input from L: durable bundle metadata only.
+ * Build compact projection input from Z:/BlackBoxAi durable bundle metadata only.
  * Does not read Cross-Agent Git worktree harvest directories.
  */
 export function buildCompactProjectionInput(hubRoot, context, phaseBVerdict = "PHASE_B_COMPLETE") {

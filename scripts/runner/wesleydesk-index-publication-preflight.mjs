@@ -35,7 +35,7 @@ function main() {
   const hubRoot =
     process.env.INTELLIGENCE_HUB_ROOT?.trim() ||
     profile.intelligenceHubRoot ||
-    '/mnt/l/Capital-Glass-Intelligence-Hub';
+    '/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub';
   const hubIndexRoot = path.join(hubRoot, '00-master-index');
   const crossAgentRoot =
     process.env.CAPITALGLASS_CROSS_AGENT_ROOT?.trim() ||
@@ -86,8 +86,8 @@ function main() {
     receipt.blocker = `Repos root missing: ${reposRoot}`;
   } else if (!receipt.checks.intelligenceHub.ok) {
     receipt.verdict = 'BLOCKED';
-    receipt.blocker = `L: Intelligence Hub index missing: ${hubIndexRoot}`;
-    receipt.operatorAction = 'Mount L: in WESLEYDESK WSL before index publication.';
+    receipt.blocker = `Z:/BlackBoxAi Intelligence Hub index missing: ${hubIndexRoot}`;
+    receipt.operatorAction = 'Mount Z: (/mnt/z/BlackBoxAi) in WESLEYDESK WSL before index publication.';
   } else if (Object.values(siblingChecks).some((entry) => !entry.ok)) {
     receipt.verdict = 'BLOCKED';
     receipt.blocker = 'Required sibling repos missing under repos root.';

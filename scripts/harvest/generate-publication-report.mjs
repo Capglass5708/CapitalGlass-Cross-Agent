@@ -12,7 +12,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "../..");
 const HUB_ROOT =
   process.env.INTELLIGENCE_HUB_ROOT?.trim() ||
-  "/mnt/l/Capital-Glass-Intelligence-Hub";
+  "/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub";
 const WORK_PACKAGE = "complete-project-folder-synology-intelligence-publication-v1";
 const HARVEST_DIR = path.join(REPO_ROOT, "artifacts/agent-runs", HARVEST_ID);
 const OUT_DIR = path.join(REPO_ROOT, "artifacts/agent-runs", WORK_PACKAGE);
@@ -71,8 +71,8 @@ function main() {
   lines.push(`| Live application SHA | \`${manifest?.lineage?.liveProductionShaVerified ?? "0f84735"}\` (descendant) |`);
   lines.push(`| Production flag | PROJECT_FOLDER_SYNOLOGY_PRIMARY_ENABLED=true |`);
   lines.push(`| Production worker | CapitalGlass-Office-ProjectFolder-Provision RUNNING |`);
-  lines.push(`| Production root | L:\\\\Capital-Glass-Projects\\\\ |`);
-  lines.push(`| Dev root | L:\\\\Capital-Glass-Projects-Dev\\\\ |`);
+  lines.push(`| Production root | Z:\\\\Capital-Glass-Projects\\\\ |`);
+  lines.push(`| Dev root | Z:\\\\Capital-Glass-Projects-Dev\\\\ |`);
   lines.push(`| Production Supabase | wvidyxufvcrtezzkwwse |`);
   lines.push(`| Dev Supabase | mazvavlshjshwklcvxaw |`);
   lines.push(`| Historical migration | Frozen — NOT STARTED |`);
@@ -80,13 +80,13 @@ function main() {
   lines.push(`| Stabilization | 24h observe-only |`);
   lines.push("");
 
-  lines.push("## 3. Git versus L: versus Supabase parity");
+  lines.push("## 3. Git versus Z:/BlackBoxAi Hub versus Supabase parity");
   lines.push("");
   lines.push(`| Layer | sourceCommitSha | Status |`);
   lines.push(`| --- | --- | --- |`);
   lines.push(`| Git (worktree) | \`${gitHead}\` | authority |`);
-  lines.push(`| L: active-work-ledger | \`${hubLatest?.sourceCommitSha ?? "unknown"}\` | ${hubLatest?.sourceCommitSha === gitHead ? "in sync" : "check freshness gate"} |`);
-  lines.push(`| L: harvest BY-KIND | \`${hubPub?.sourceCommitSha ?? "n/a"}\` | ${hubPub?.verdict ?? "missing"} |`);
+  lines.push(`| Z:/BlackBoxAi active-work-ledger | \`${hubLatest?.sourceCommitSha ?? "unknown"}\` | ${hubLatest?.sourceCommitSha === gitHead ? "in sync" : "check freshness gate"} |`);
+  lines.push(`| Z:/BlackBoxAi harvest BY-KIND | \`${hubPub?.sourceCommitSha ?? "n/a"}\` | ${hubPub?.verdict ?? "missing"} |`);
   lines.push(`| Supabase projection | \`${freshness?.layers?.supabase?.sourceCommitSha ?? "unknown"}\` | ${freshness?.layers?.supabase?.verdict ?? freshness?.verdict ?? "unknown"} |`);
   lines.push(`| Freshness gate | — | \`${freshness?.verdict ?? "NOT_RUN"}\` |`);
   lines.push("");
@@ -151,12 +151,12 @@ function main() {
   lines.push(`| Questions executed | ${hubRetrieval?.questionsExecuted ?? 0}/24 |`);
   lines.push(`| Pass rate | ${((hubRetrieval?.score ?? 0) * 100).toFixed(1)}% |`);
   lines.push(`| Retrieval layer | intelligence-hub-L-catalog |`);
-  lines.push(`| Source | L: only (not Git JSON) |`);
+  lines.push(`| Source | Z:/BlackBoxAi only (not Git JSON) |`);
   lines.push("");
 
   lines.push("## 11. Human cross-check checklist");
   lines.push("");
-  lines.push("- [ ] Confirm L: files exist under 02-catalog/knowledge-objects/cross-agent-harvest/");
+  lines.push("- [ ] Confirm Z:/BlackBoxAi files exist under 02-catalog/knowledge-objects/cross-agent-harvest/");
   lines.push("- [ ] Confirm freshness gate PASS after index publication");
   lines.push("- [ ] Confirm production still in stabilization observe-only");
   lines.push("- [ ] Confirm no secrets in Hub records");

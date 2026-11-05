@@ -1,12 +1,12 @@
 {
   "schemaVersion": "intelligence-hub-host-authority-slice-v1@1.0.0",
-  "updatedAt": "2026-09-05T00:34:12.330Z",
+  "updatedAt": "2026-11-05T17:10:00.000Z",
   "hosts": [
     {
       "hostId": "WESLEYDESK",
       "role": "index publication, GitHub Actions runner, primary dev",
       "paths": {
-        "intelligenceHub": "L:/Capital-Glass-Intelligence-Hub",
+        "intelligenceHub": "Z:/BlackBoxAi/Capital-Glass-Intelligence-Hub",
         "aiCache": "S:/AI Cursur Cache"
       }
     },
@@ -14,7 +14,7 @@
       "hostId": "WESLEY_WORK",
       "role": "WSL dev, cross-agent ledger ingest",
       "paths": {
-        "intelligenceHub": "/mnt/l/Capital-Glass-Intelligence-Hub",
+        "intelligenceHub": "/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub",
         "aiCache": "/mnt/d/AI Cursur Cache"
       }
     },
@@ -23,6 +23,14 @@
       "role": "managed executor, Direct Connect endpoint",
       "paths": {
         "aiCache": "C:/AI Cursur Cache"
+      }
+    },
+    {
+      "hostId": "blackbox001",
+      "role": "Estimator Reader, document worker, Z: projects mount",
+      "paths": {
+        "intelligenceHub": "/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub",
+        "projectsRoot": "/mnt/z/Capital-Glass-Projects"
       }
     }
   ]

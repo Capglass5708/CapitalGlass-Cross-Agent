@@ -1,7 +1,7 @@
 /**
  * Unified retrieval ladder for intelligence.preflight(): one shared,
  * agent-independent retrieval mechanism. Physically tests the hot AI cache,
- * then the L: Hub, then Supabase, then falls back to the Git ledger, and
+ * then the Z:/BlackBoxAi Hub (L: retired 2026-11-03), then Supabase, then falls back to the Git ledger, and
  * returns a real outcome code plus a mission-context bundle (proposal 8)
  * instead of an agent self-reporting that it "checked the index."
  */
@@ -22,13 +22,15 @@ import {
 
 export const OUTCOME = {
   CACHE_HIT_FRESH: 'CACHE_HIT_FRESH',
-  L_HUB_READ_OK: 'L_HUB_READ_OK',
-  L_HUB_UNAVAILABLE_USING_SUPABASE: 'L_HUB_UNAVAILABLE_USING_SUPABASE',
-  L_HUB_UNAVAILABLE_USING_GIT_LEDGER: 'L_HUB_UNAVAILABLE_USING_GIT_LEDGER',
+  Z_HUB_READ_OK: 'Z_HUB_READ_OK',
+  Z_HUB_UNAVAILABLE_USING_SUPABASE: 'Z_HUB_UNAVAILABLE_USING_SUPABASE',
+  Z_HUB_UNAVAILABLE_USING_GIT_LEDGER: 'Z_HUB_UNAVAILABLE_USING_GIT_LEDGER',
   ALL_HUB_PLANES_UNAVAILABLE: 'ALL_HUB_PLANES_UNAVAILABLE',
 };
 
-const DEFAULT_L_HUB_PATH = '/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index';
+/** Retrieval plane id for the Intelligence Hub on Z:/BlackBoxAi (replaces L_DRIVE). */
+export const Z_HUB_PLANE = 'Z_BLACKBOXAI';
+const DEFAULT_Z_HUB_PATH = '/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index';
 export const RECEIPT_ROOT = path.join(REPO_ROOT, 'artifacts/agent-runs/intelligence-preflight-v1');
 
 function slicesDir(repoRoot) {
@@ -49,30 +51,43 @@ function matchesQuery(text, needles) {
   return needles.some((needle) => haystack.includes(String(needle).toLowerCase()));
 }
 
-export function resolveLHubIndexPath() {
-  return process.env.CG_INTELLIGENCE_HUB_L_PATH || DEFAULT_L_HUB_PATH;
+/**
+ * `CG_INTELLIGENCE_HUB_Z_PATH` is primary; `CG_INTELLIGENCE_HUB_L_PATH` is a deprecated
+ * read-only alias kept for existing callers.
+ */
+export function resolveZHubIndexPath() {
+  return (
+    process.env.CG_INTELLIGENCE_HUB_Z_PATH ||
+    process.env.CG_INTELLIGENCE_HUB_L_PATH ||
+    DEFAULT_Z_HUB_PATH
+  );
 }
 
-/** Step 1 of the ladder — physically test the L: Hub, never assume it. */
-export function testLHubPlane() {
-  const lHubPath = resolveLHubIndexPath();
+/** Step 1 of the ladder — physically test the Z:/BlackBoxAi Hub, never assume it. */
+export function testZHubPlane() {
+  const zHubPath = resolveZHubIndexPath();
   let available = false;
   try {
-    available = fs.statSync(lHubPath).isDirectory();
+    available = fs.statSync(zHubPath).isDirectory();
   } catch {
     available = false;
   }
   if (!available) {
-    return { plane: 'L_DRIVE', available: false, path: lHubPath };
+    return { plane: Z_HUB_PLANE, available: false, path: zHubPath };
   }
-  const index = loadJsonSafe(path.join(lHubPath, 'INDEX.json'));
+  const index = loadJsonSafe(path.join(zHubPath, 'INDEX.json'));
   return {
-    plane: 'L_DRIVE',
+    plane: Z_HUB_PLANE,
     available: true,
-    path: lHubPath,
+    path: zHubPath,
     indexVersion: index?.contentHash ?? index?.generatedAt ?? null,
   };
 }
+
+/** @deprecated Use resolveZHubIndexPath (L: retired 2026-11-03). */
+export const resolveLHubIndexPath = resolveZHubIndexPath;
+/** @deprecated Use testZHubPlane (L: retired 2026-11-03). */
+export const testLHubPlane = testZHubPlane;
 
 /** Step 2 — Supabase intelligence_hub projection, reusing the existing live-store resolver. */
 export async function testSupabasePlane() {
@@ -100,10 +115,10 @@ export function testGitLedgerPlane(repoRoot = REPO_ROOT) {
  * Git-tracked local mirror (work-progress/intelligence-hub-slices/) — this is
  * the one plane fully testable and verifiable in every environment. It does
  * NOT yet vary by which retrieval-ladder plane reported success: an
- * L_HUB_READ_OK or L_HUB_UNAVAILABLE_USING_SUPABASE outcome still returns a
- * Git-mirror-sourced bundle, not a live L:/Supabase-sourced one. Callers
+ * Z_HUB_READ_OK or Z_HUB_UNAVAILABLE_USING_SUPABASE outcome still returns a
+ * Git-mirror-sourced bundle, not a live Z:/Supabase-sourced one. Callers
  * should treat `bundleSource` (below), not `outcome`, as the source of truth
- * for where the bundle's content actually came from. Reading live L:/Supabase
+ * for where the bundle's content actually came from. Reading live Z:/Supabase
  * catalogs directly is real follow-up work this session couldn't build and
  * verify without access to either plane.
  */
@@ -199,17 +214,17 @@ export async function runIntelligencePreflight({ mission = null, repos = [], con
     });
   }
 
-  const lHub = testLHubPlane();
-  laneChecks.push(lHub);
-  if (lHub.available) {
+  const zHub = testZHubPlane();
+  laneChecks.push(zHub);
+  if (zHub.available) {
     return finalizePreflight({
-      outcome: OUTCOME.L_HUB_READ_OK,
+      outcome: OUTCOME.Z_HUB_READ_OK,
       mission,
       repos,
       concepts,
       repoRoot,
       laneChecks,
-      indexVersion: lHub.indexVersion,
+      indexVersion: zHub.indexVersion,
     });
   }
 
@@ -217,7 +232,7 @@ export async function runIntelligencePreflight({ mission = null, repos = [], con
   laneChecks.push(supabase);
   if (supabase.available) {
     return finalizePreflight({
-      outcome: OUTCOME.L_HUB_UNAVAILABLE_USING_SUPABASE,
+      outcome: OUTCOME.Z_HUB_UNAVAILABLE_USING_SUPABASE,
       mission,
       repos,
       concepts,
@@ -230,7 +245,7 @@ export async function runIntelligencePreflight({ mission = null, repos = [], con
   laneChecks.push(gitLedger);
   if (gitLedger.available) {
     return finalizePreflight({
-      outcome: OUTCOME.L_HUB_UNAVAILABLE_USING_GIT_LEDGER,
+      outcome: OUTCOME.Z_HUB_UNAVAILABLE_USING_GIT_LEDGER,
       mission,
       repos,
       concepts,

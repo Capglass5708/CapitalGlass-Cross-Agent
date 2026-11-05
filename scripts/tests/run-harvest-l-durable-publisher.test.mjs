@@ -219,9 +219,9 @@ test("git porcelain unchanged after publish-l-durable", () => {
   assert.equal(before, after);
 });
 
-if (process.env.RUN_L_MOUNT_SMOKE === "1" && fs.existsSync("/mnt/l/Capital-Glass-Intelligence-Hub")) {
+if (process.env.RUN_L_MOUNT_SMOKE === "1" && fs.existsSync("/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub")) {
   test("mounted L: directory rename promotion smoke", () => {
-    const hubRoot = "/mnt/l/Capital-Glass-Intelligence-Hub";
+    const hubRoot = "/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub";
     const smokeId = "harvest-wave2-l-durable-smoke-v1";
     const tmpSource = fs.mkdtempSync(path.join(os.tmpdir(), "harvest-l-smoke-src-"));
     fs.cpSync(FIXTURE_SOURCE, tmpSource, { recursive: true });

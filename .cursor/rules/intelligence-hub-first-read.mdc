@@ -4,15 +4,15 @@ alwaysApply: true
 canonicalOwner: CG-AppBuilder-MCP
 canonicalPath: agent-packs/three-way-agent/rules/intelligence-hub-first-read.mdc
 generatedCopy: true
-ruleVersion: 1.2.0
-canonicalContentHash: 1547b2990957be45044a954c067b4c94e6a1a191c226d4e0d89bd9be9d5b9815
+ruleVersion: 1.4.0
+canonicalContentHash: b47f81f1bfeaffc0433adfe667824dab5163efa52c5a51991337a28c9193919a
 ---
 
 # Intelligence Hub first-read (mandatory)
 
 For **Revu / estimating / MCP / suite-status** questions, **retrieve from the Intelligence Hub first**. Inspect repos only when the index points there.
 
-This is a **mechanical gate**, not a preference. Violations (repo-wide grep, subagents, or full L: scan before compact slices) invalidate the answer.
+This is a **mechanical gate**, not a preference. Violations (repo-wide grep, subagents, or full Z:/BlackBoxAi scan before compact slices) invalidate the answer.
 
 ## Trigger topics
 
@@ -24,51 +24,64 @@ Apply when the task may involve any of:
 - Bid Composer estimating intake, `revu-production-takeoff-pilot-v1`
 - `revu-opening-detection-top10-v1`, `revu-mcp-production-workflow-locked`
 
-**Two retrieval classes** (do not conflate):
+**Three retrieval classes** (do not conflate):
 
-| Class | Topics | L: unmounted behavior |
+| Class | Topics | First surface |
 | --- | --- | --- |
-| **Revu / estimating / MCP deep** | Revu markup, opening detection, parser evidence, estimating intake | **Fail closed** — `L_DRIVE_NOT_MOUNTED_IN_WSL`; no repo grep substitute |
-| **Suite status / blockers / active work** | Work packages, blockers, open actions, host authority, ledger state | **Layered failover** — see § Retrieval failover below |
+| **Domain / program / location / symbol** | Vision Plane, `admit_structure`, owner repo, program id | **Federated estate → owner local index** (`luna:retrieve --query`) |
+| **Revu / estimating binary evidence** | Open the PDF, markup the plan, Studio URL, plan binary | **Z:/BlackBoxAi fail-closed** — `Z_BLACKBOXAI_NOT_MOUNTED`; no repo grep substitute |
+| **Suite status / blockers / active work** | Work packages, blockers, open actions, host authority, ledger state | Hub compact slices (layered failover below) |
 
 Decision ID: `CAD-20260803-retrieval-failover-layered` (`CapitalGlass-Cross-Agent/decisions/DECISION_LOG.md`).
 
 ## Mount check
 
 ```bash
-test -d /mnt/l/Capital-Glass-Intelligence-Hub/00-master-index
+test -d /mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index
 ```
 
-Windows path: `L:\Capital-Glass-Intelligence-Hub\00-master-index`
+Windows path: `Z:\BlackBoxAi\Capital-Glass-Intelligence-Hub\00-master-index`
 
-| Result | Revu / estimating / MCP deep | Suite status / blockers / active work |
-| --- | --- | --- |
-| Directory **missing** | Report **`L_DRIVE_NOT_MOUNTED_IN_WSL`** and stop | Use **layered failover** (§ below); log `L_DRIVE_NOT_MOUNTED_IN_WSL` then continue failover lane |
-| Directory **present** | Continue mandatory L: retrieval order below | Continue mandatory L: retrieval order below |
+| Result | Domain / program / symbol | Revu / estimating binary | Suite status / blockers / active work |
+| --- | --- | --- | --- |
+| Directory **missing** | Federated estate + owner local index still allowed | Report **`Z_BLACKBOXAI_NOT_MOUNTED`** and stop | Use **layered failover** (§ below); log `Z_BLACKBOXAI_NOT_MOUNTED` then continue failover lane |
+| Directory **present** | Federated first; Hub replicas are corroboration only | Continue mandatory Z:/BlackBoxAi retrieval order below | Continue mandatory Z:/BlackBoxAi retrieval order below |
 
 ## Retrieval failover (layered contract)
 
 **Single contract** — also recorded in `CapitalGlass-Cross-Agent/handoffs/CURRENT_HANDOFF.md`.
 
-Use this order for **suite status, blockers, and active work only** when L: `00-master-index` is not mounted or compact slices are stale:
+Use this order for **suite status, blockers, and active work only** when Z:/BlackBoxAi `00-master-index` is not mounted or compact slices are stale:
 
 | Priority | Source | When |
 | --- | --- | --- |
-| 1 | L: `BY-KIND/*.json` + `cross-agent-master-work/` | `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index` is mounted |
-| 2 | Supabase structured-ledger projection | L: missing; run drift probe / ingest from `CG-AppBuilder-MCP` with Doppler (`cross-agent-ledger:ingest`, `cross-agent-ledger:drift-probe`) |
+| 1 | Z:/BlackBoxAi `BY-KIND/*.json` + `cross-agent-master-work/` | `/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index` is mounted |
+| 2 | Supabase structured-ledger projection | Z:/BlackBoxAi missing; run drift probe / ingest from `CG-AppBuilder-MCP` with Doppler (`cross-agent-ledger:ingest`, `cross-agent-ledger:drift-probe`) |
 | 3 | Git ledger (Cross-Agent) | `work-progress/ACTIVE_WORK.md` + `work-progress/projects/INDEX.md` + `handoffs/CURRENT_HANDOFF.md` |
 
-**Forbidden:** treating Supabase projection or Git ledger alone as sufficient for **Revu / estimating / MCP deep** topics when L: is mountable — those topics remain L:-first and fail closed without L:.
+**Forbidden:** treating Supabase projection or Git ledger alone as sufficient for **Revu / estimating / MCP deep** topics when Z:/BlackBoxAi is mountable — those topics remain Z:/BlackBoxAi-first and fail closed without it.
 
 **Cleared blockers (do not re-block):** structured-ledger ingest HOLD, `/mnt/c` host blocker, `SUPABASE_PROJECTION_MISSING` false negative when WSL ext4 + Doppler ingest is operational. Re-run ingest only after **new** `ACTIVE_WORK.md` edits.
 
 ## Mandatory retrieval order
 
-**Do not** run repo-wide grep, launch explore subagents, or recursively scan L: before these steps.
+**Do not** run repo-wide grep, launch explore subagents, or recursively scan Z:/BlackBoxAi before these steps.
+
+### 0. Federated identity (domain / program / location / symbol)
+
+When the question is *where does this live* (Vision Plane, program id, `admit_structure`, owner repo):
+
+1. AppBuilder estate routing (`registry/federated-repo-index/estate-routing.v1.json` or Hub replica `BY-KIND/federated-estate-routing.json`)
+2. Owner local index (`index/cg-federated-repo-index.v1.json`)
+3. Source path from the local pointer
+
+Log `ESTATE_ROUTE_HIT|MISS` and `LOCAL_INDEX_HIT|MISS`. If the pointer is `GIT_POINTER_UNCOMMITTED_LOCAL`, do **not** fall back to GitHub or codeintel for that symbol. Luna `--query` is routing-only and must not compile material mission context.
+
+Hub compact slices remain first for ledger/status. Revu/estimating **binaries** remain Z:/BlackBoxAi fail-closed.
 
 ### 1. Front door
 
-`/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index`
+`/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index`
 
 Read `AGENT_START_HERE.md` and `INDEX.json` when topic scope is unclear.
 
@@ -76,10 +89,10 @@ Read `AGENT_START_HERE.md` and `INDEX.json` when topic scope is unclear.
 
 Read in this order (small JSON only):
 
-1. `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/active-work-blockers.json`
-2. `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/mcp-servers.json`
-3. `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/host-authority.json`
-4. `/mnt/l/Capital-Glass-Intelligence-Hub/00-master-index/cross-agent-master-work/` (project pointers for the active topic)
+1. `/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/active-work-blockers.json`
+2. `/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/mcp-servers.json`
+3. `/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index/BY-KIND/host-authority.json`
+4. `/mnt/z/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index/cross-agent-master-work/` (project pointers for the active topic)
 
 Optional only when blockers/MCP slice insufficient:
 
@@ -110,7 +123,7 @@ Forbidden before index retrieval completes:
 
 - Repo-wide `grep` / codebase search across suite repos
 - `Task` / explore subagents for broad discovery
-- Full-drive or recursive L: scan outside `00-master-index`
+- Full-drive or recursive Z:/BlackBoxAi scan outside `00-master-index`
 
 ## Cache / index logging (required in response)
 
@@ -121,9 +134,14 @@ Report exactly one primary retrieval outcome:
 | `INDEX_HIT_AI_CACHE` | Z AI-cache index bundle served compact slices (scout preflight tier 1) |
 | `INDEX_HIT` | Compact slices contained enough facts to answer |
 | `INDEX_MISS` | Slices read but topic not indexed; name missing pointer before repo fallback |
-| `L_DRIVE_NOT_MOUNTED_IN_WSL` | Mount check failed; **Revu/estimating stops**; suite status may continue failover lane |
-| `FAILOVER_SUPABASE` | L: unavailable; used structured-ledger projection |
-| `FAILOVER_GIT_LEDGER` | L: and projection insufficient; used Cross-Agent Git ledger |
+| `ESTATE_ROUTE_HIT` | Federated estate routed the query to an owner repo |
+| `ESTATE_ROUTE_MISS` | Federated estate had no route |
+| `LOCAL_INDEX_HIT` | Owner local index resolved the program or symbol |
+| `LOCAL_INDEX_MISS` | Owner local index missed; compounding candidate only |
+| `GIT_POINTER_UNCOMMITTED_LOCAL` | Pointer bytes exist only on the local checkout; GitHub/codeintel fallback forbidden |
+| `Z_BLACKBOXAI_NOT_MOUNTED` | Mount check failed; **Revu/estimating binaries stop**; suite status may continue failover lane |
+| `FAILOVER_SUPABASE` | Z:/BlackBoxAi unavailable; used structured-ledger projection |
+| `FAILOVER_GIT_LEDGER` | Z:/BlackBoxAi and projection insufficient; used Cross-Agent Git ledger |
 | `CACHE_HIT` | Auto v3.2 / compiled context pack reused with matching authority |
 | `CACHE_MISS` | No reusable compiled pack; index slices were live-read |
 
@@ -153,8 +171,19 @@ The 3-way **scout** tier runs before builder on every Cursor turn via estate-syn
 
 ## Related authority
 
-- Hub front door: `L:/Capital-Glass-Intelligence-Hub/00-master-index/AGENT_START_HERE.md`
+- Hub front door: `Z:/BlackBoxAi/Capital-Glass-Intelligence-Hub/00-master-index/` (`/mnt/z/BlackBoxAi/...`); the ingest host writes `~/.local/state/capital-glass-intelligence-hub/` locally and mirrors it there. L: is retired permanently (2026-11-03); L: paths in old records are pre-retirement identity only
+- Federated estate routing: `CG-AppBuilder-MCP/registry/federated-repo-index/estate-routing.v1.json`
+- Owner local index: `<owner-repo>/index/cg-federated-repo-index.v1.json`
 - Cross-Agent project files: `CapitalGlass-Cross-Agent/work-progress/projects/`
 - Cross-Agent failover contract: `CapitalGlass-Cross-Agent/handoffs/CURRENT_HANDOFF.md` (§ Retrieval failover)
 - Structured ledger ingest: `CG-AppBuilder-MCP` — `npm run cross-agent-ledger:ingest`, `npm run cross-agent-ledger:drift-probe`
-- Suite cache authority: `Z:/Capital-Glass-Intelligence-Hub/AI-Cache-Authority` (compile/reuse lane; L: is retrieval mirror)
+- Suite cache authority: `Z:/Capital-Glass-Intelligence-Hub/AI-Cache-Authority` (compile/reuse lane)
+
+## Close the loop (Black Box Hub 2 scorecard)
+
+- The scout lane consult is recorded as front door `cursor-scout` (override `CC_MODE_SCOUT_APPLICATION_ID`), linked from its
+  `prompt_ref` so the R1 E1 rate is measured per agent, day and repo; the redacted query text goes to the Black Box runtime
+  eval sidecar for E4 labeling (`HUB2_EVAL_SIDECAR=0` disables).
+- A consult that changed the plan is a decision: call `bb_intel_decide` (or `npm run hub2:decide` in BlackBoxCompute/Intelligence)
+  before the session ends and `bb_intel_outcome` when the result is known. Consulting without deciding earns no credit; the
+  scorecard stays CC_MODE_INSTRUMENTED_NOT_IMPROVED until >= 10 linked decisions carry outcomes.

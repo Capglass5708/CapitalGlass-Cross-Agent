@@ -10,7 +10,7 @@
 
 **Shared Git contract:** [CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md](./CHATGPT-HARVEST-GIT-PUBLICATION-CONTRACT-V1.md) — `CHATGPT_HARVEST_GIT_GATE`, verdict stages, `chat-gpt-harvest` branch rules.
 
-**Governing compounding context (read-only):** `L:\02-catalog\Harvest\GOLD-MINE-NORTH-STAR-CHARTER.md`  
+**Governing compounding context (read-only):** `Z:\BlackBoxAi\02-catalog\Harvest\GOLD-MINE-NORTH-STAR-CHARTER.md`  
 Harvest is **one evidence source** into Gold Mine compounding. Gold Mine does **not** own harvest authority; Data-Extraction owns discovery and candidate lifecycle.
 
 ---
@@ -25,7 +25,7 @@ Only these surfaces define ChatGPT harvest behavior for operators and agents:
 | --- | --- |
 | `CapitalGlass-Cross-Agent` **`main`** → `harvest/protocol/CHAT-THREAD-CLOSEOUT-AUTOPSY-HARVEST-CHATGPT-V1.md` | Git authority |
 | `Z:\Capital-Glass-Dev\Harvest\protocol\` (via `npm run harvest:sync-z-mirror`) | Z canonical publication |
-| `L:\02-catalog\Harvest\protocol\` | L retrieval mirror (must match Z after sync) |
+| `Z:\BlackBoxAi\02-catalog\Harvest\protocol\` | L retrieval mirror (must match Z after sync) |
 
 Branch-only protocol text, chat transcripts, and unmerged commits are **non-authoritative** for closeout behavior.
 
@@ -33,7 +33,7 @@ Branch-only protocol text, chat transcripts, and unmerged commits are **non-auth
 
 ## Purpose
 
-Use **ChatGPT** to compress a completed conversation into a **designated harvest evidence artifact** when Cursor, L:, and index commands are not in scope.
+Use **ChatGPT** to compress a completed conversation into a **designated harvest evidence artifact** when Cursor, Z:/BlackBoxAi, and index commands are not in scope.
 
 **Default use:** feed [chat-improvement-extract-chatgpt-v1.md](./chat-improvement-extract-chatgpt-v1.md) with a Cursor chat — improvements + cross-check only.
 
@@ -61,7 +61,7 @@ Chat thread
   → CapitalGlass-Cross-Agent
       branch: chat-gpt-harvest
       commit SHA + remote verification
-  → (estate automation, when workflow on main) L: draft staging move
+  → (estate automation, when workflow on main) Z:/BlackBoxAi draft staging move
   → Cursor ingest / validation
   → canonical harvest records
   → Git main
@@ -224,7 +224,7 @@ It means:
 | `chatgpt-findings-source.md` | Yes — **mandatory** | Ingest via `harvest:ingest-chatgpt-findings` |
 | Commit + push to `chat-gpt-harvest` | **Yes — mandatory closeout** | Pull + ingest |
 | `CHATGPT_HARVEST_GIT_GATE` | Yes (report receipt) | May verify SHA |
-| L: draft staging (GitHub Action) | **No** — estate automation on push | Monitor / `workflow_dispatch` |
+| Z:/BlackBoxAi draft staging (GitHub Action) | **No** — estate automation on push | Monitor / `workflow_dispatch` |
 | `harvest:ingest-chatgpt-findings` | No | Yes |
 | `harvest:duplication-preflight` | No | Yes |
 | `harvest:validate` | No | Yes |
@@ -234,7 +234,7 @@ It means:
 | Claim `FULLY_SEEDED` / `INDEX_HIT` | **Never** | After scout preflight |
 | Lane C protocol-upgrade candidates (draft) | Yes — label `protocol-upgrade` | Yes (canonical) |
 | Run `harvest:export:protocol-self-learning` | **No** | Yes (after validate PASS) |
-| Publish to `L:\02-catalog\Harvest\Harvest Protocol Self Learning` | **Never** | Data-Extraction only |
+| Publish to `Z:\BlackBoxAi\02-catalog\Harvest\Harvest Protocol Self Learning` | **Never** | Data-Extraction only |
 
 ---
 
@@ -287,14 +287,14 @@ ChatGPT **only** pushes to `chat-gpt-harvest`. ChatGPT must **not** claim these 
 ```text
 push chat-gpt-harvest
   → (when on main) GitHub Actions: chatgpt-harvest-move-to-l.yml
-  → L:\02-catalog\chatgpt-draft-staging\chat-gpt-harvest\<harvest-id>\
+  → Z:\BlackBoxAi\02-catalog\chatgpt-draft-staging\chat-gpt-harvest\<harvest-id>\
   → Cursor pull + harvest:ingest-chatgpt-findings + validate + publish
 ```
 
 | Stage | Actor | Notes |
 | --- | --- | --- |
 | Git draft | ChatGPT | Artifact + SHA receipt |
-| L: move | GitHub Action on `main` | Move-only staging; not Hub publication |
+| Z:/BlackBoxAi move | GitHub Action on `main` | Move-only staging; not Hub publication |
 | Cursor ingest | WSL / Cursor | Canonical harvest JSON |
 | `main` + Z + L | Cursor / operator | After validation |
 
@@ -478,10 +478,10 @@ npm run harvest:publish-intelligence-full -- --harvest-id=<id>
 | --- | --- |
 | Git draft (`chat-gpt-harvest`) | `not-run` or commit SHA after gate PASS |
 | `CHATGPT_HARVEST_GIT_GATE` | `PASS` / `FAIL` / `not-run` |
-| L: draft staging (Action move) | `not-run` |
+| Z:/BlackBoxAi draft staging (Action move) | `not-run` |
 | Cursor ingest | `not-run` |
 | `harvest:validate` | `not-run` |
-| L: Hub catalog (operator publish) | `not-run` |
+| Z:/BlackBoxAi Hub catalog (operator publish) | `not-run` |
 | Z: AI cache | `not-run` |
 | Supabase projection | `not-run` |
 | Lane C export / Data-Extraction | `not-run` |
@@ -529,7 +529,7 @@ Honor CONCEPT_ONLY_NO_WRITE / STOP_NOW if applicable earlier in thread.
 | [chat-improvement-extract-chatgpt-v1.md](./chat-improvement-extract-chatgpt-v1.md) | Default improvement-extract lane |
 | [chat-thread-closeout-autopsy-harvest-v1.md](./chat-thread-closeout-autopsy-harvest-v1.md) | Cursor + operator canonical protocol |
 | [chat-thread-system-advancement-harvest-chatgpt-v1.md](./chat-thread-system-advancement-harvest-chatgpt-v1.md) | ADVANCEMENT synthesis (same Git gate) |
-| [thread-autopsy-hub-accommodation-v1.md](./thread-autopsy-hub-accommodation-v1.md) | L: hub paths |
+| [thread-autopsy-hub-accommodation-v1.md](./thread-autopsy-hub-accommodation-v1.md) | Z:/BlackBoxAi hub paths |
 | `scripts/harvest/ingest-chatgpt-findings.mjs` | Copy findings MD into harvest run dir |
 | `.github/workflows/chatgpt-harvest-move-to-l.yml` | Push → L staging (must be on `main` to run) |
 | `artifacts/agent-runs/harvest-2026-08-04-chatgpt-autopsy-findings-v1/` | Example ingested harvest |

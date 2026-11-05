@@ -56,7 +56,7 @@ const chatgptDoc = fs.readFileSync(
 assert.match(protocolDoc, /### Lane A — owner-repo material work/);
 assert.match(protocolDoc, /### Lane B — cross-thread autopsy/);
 assert.match(protocolDoc, /### Lane C — Harvest Protocol Self-Learning/);
-assert.match(protocolDoc, /L:\\\\02-catalog\\\\Harvest\\\\Harvest Protocol Self Learning/);
+assert.match(protocolDoc, /Z:\\\\BlackBoxAi\\\\02-catalog\\\\Harvest\\\\Harvest Protocol Self Learning/);
 assert.match(protocolDoc, /\*\*Data-Extraction\*\* owns protocol relevance filtering/);
 assert.match(protocolDoc, /\*\*CapitalGlass-Cross-Agent\*\* owns canonical harvest records/);
 assert.match(protocolDoc, /application bugs/);
