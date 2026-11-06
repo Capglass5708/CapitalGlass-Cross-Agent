@@ -19,6 +19,7 @@ const TRACKED_AUTHORITY_PATHS = [
   "registry/git-estate/git-estate-manifest.v1.json",
   "registry/authority-estate/authority-estate-manifest.v1.json",
   "registry/query-routing/query-routing-manifest.v1.json",
+  "registry/worktree-estate/worktree-estate-manifest.v1.json",
 ];
 
 export function validateHotCacheDatasetRegistry({

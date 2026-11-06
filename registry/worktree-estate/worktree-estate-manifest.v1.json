@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "worktree-estate-manifest-v1@1.0.0",
+  "workPackageId": "repository-digital-twin-proposal-generator-v1",
+  "ownerRepo": "CapitalGlass-Cross-Agent",
+  "description": "Repositories whose working state (worktrees, branches, stashes, runs, container mounts) the CG-AppBuilder-MCP worktree-estate hot-cache dataset observes, and the roots each machine scans. Roots are symbolic: HOME = the observer's home directory, AGENT_SANDBOX_ROOT = $AGENT_SANDBOX_ROOT or /srv/agent-sandboxes, SRV = /srv. A machine absent from `machines` reports AUTHORITY_UNDECLARED, never an empty estate.",
+  "consumer": {
+    "ownerRepo": "CG-AppBuilder-MCP",
+    "compiler": "scripts/hot-cache-platform/datasets/worktree-estate/compiler.mjs",
+    "surface": "CapitalGlass-Office-Admin Suite Ops /proposal-generator/working-state (tailnet console only)"
+  },
+  "repos": [
+    {
+      "repoId": "cursor-proposal-generator",
+      "github": {
+        "org": "Capglass5708",
+        "repo": "Cursor-ProposalGenerator",
+        "defaultBranch": "main"
+      },
+      "sectionMap": {
+        "path": "docs/functional-map/section-paths.v1.json"
+      },
+      "runFolderNames": ["Cursor-ProposalGenerator"]
+    }
+  ],
+  "machines": {
+    "blackbox001": {
+      "roots": [
+        { "base": "HOME", "rel": "src", "maxDepth": 2, "kind": "ACTIVE" },
+        { "base": "AGENT_SANDBOX_ROOT", "rel": "repos", "maxDepth": 1, "kind": "ACTIVE" },
+        { "base": "AGENT_SANDBOX_ROOT", "rel": "runs", "maxDepth": 3, "kind": "RUN" },
+        { "base": "AGENT_SANDBOX_ROOT", "rel": "blackbox/runs", "maxDepth": 2, "kind": "RUN" },
+        { "base": "SRV", "rel": "", "match": "*archived*", "maxDepth": 4, "kind": "ARCHIVED" }
+      ],
+      "runRoots": [
+        { "base": "AGENT_SANDBOX_ROOT", "rel": "runs" }
+      ]
+    }
+  },
+  "budgets": {
+    "maxFilesPerList": 500,
+    "maxWallSeconds": 180,
+    "mirrorFetchTimeoutSeconds": 120,
+    "mirrorStaleAfterSeconds": 3600,
+    "maxDirsVisited": 20000
+  }
+}
