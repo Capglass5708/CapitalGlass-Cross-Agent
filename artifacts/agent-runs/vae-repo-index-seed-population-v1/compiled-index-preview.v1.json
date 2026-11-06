@@ -1,0 +1,389 @@
+{
+  "schema": "cg-federated-repo-index-v1@1.0.0",
+  "schemaVersion": "cg-federated-repo-index-v2",
+  "REPO_ID": "Visual-Asset-Engine",
+  "APP_ID": "visual-asset-engine",
+  "repoClass": "engines",
+  "status": "ACTIVE",
+  "DOMAINS": [
+    "visual-assets"
+  ],
+  "CAPABILITIES": [
+    "illustrator_vector_trace_v1",
+    "vae_read_only_mcp_tools_v1",
+    "visual-asset-pipeline",
+    "visual_context_retrieval_v1",
+    "visual_intelligence_graph_build_v1",
+    "visual_intelligence_graph_publish_v1"
+  ],
+  "authorities": [
+    {
+      "authorityId": "visual-asset-engine-identity-v1",
+      "question": "Which repository owns Visual Asset Engine?",
+      "status": "ACTIVE"
+    },
+    {
+      "authorityId": "visual-generation-authority-v1",
+      "question": "Who owns visual generation - design tokens, recipes, renderers, the pattern vault, Illustrator vector trace and evidence packs?",
+      "status": "ACTIVE"
+    },
+    {
+      "authorityId": "visual-intelligence-graph-v1",
+      "question": "Which extraction is the authoritative visual-intelligence graph published to CG-MASTER-GRAPH?",
+      "status": "ACTIVE"
+    }
+  ],
+  "capabilities": [
+    {
+      "capabilityId": "illustrator_vector_trace_v1",
+      "kind": "deterministic_function",
+      "version": "1.0.0",
+      "status": "ACTIVE",
+      "authorityId": "visual-generation-authority-v1",
+      "question": "Which engine performs Illustrator vector trace for the suite?",
+      "implementation": {
+        "entrypoint": "vectorizeDocument",
+        "path": "generation-core/packages/illustrator-vectorize/vectorize.mjs"
+      },
+      "surfaces": [
+        "CLI",
+        "MCP"
+      ],
+      "package": null,
+      "metadata": {
+        "soleExecutionEngine": true,
+        "executionHost": "WESLEYDESK",
+        "notRunInCi": true,
+        "exceptionRef": "docs/application-bible/07-KNOWN-EXCEPTIONS.md",
+        "contract": "generation-core/contracts/illustrator-visual-authoring.v1.json"
+      }
+    },
+    {
+      "capabilityId": "vae_read_only_mcp_tools_v1",
+      "kind": "mcp_tool_set",
+      "version": "1.0.0",
+      "status": "ACTIVE",
+      "authorityId": "visual-asset-engine-identity-v1",
+      "question": "Which read-only MCP tools does Visual Asset Engine expose to the suite?",
+      "implementation": {
+        "entrypoint": "callVisualAssetEngineMcpTool",
+        "path": "mcp/tools.mjs"
+      },
+      "surfaces": [
+        "MCP"
+      ],
+      "package": null,
+      "metadata": {
+        "toolNames": [
+          "vae.get_illustrator_preflight",
+          "vae.get_bid_sheet_lane_receipt"
+        ],
+        "readOnly": true,
+        "server": "mcp/run.mjs"
+      }
+    },
+    {
+      "capabilityId": "visual_context_retrieval_v1",
+      "kind": "deterministic_function",
+      "version": "1.0.0",
+      "status": "ACTIVE",
+      "authorityId": "visual-intelligence-graph-v1",
+      "question": "What visual context, prior failures and reference implementations does the graph hold for a pattern?",
+      "implementation": {
+        "entrypoint": "getVisualContext",
+        "path": "graph/retrieval/get-visual-context.mjs"
+      },
+      "surfaces": [
+        "CLI",
+        "RUNTIME"
+      ],
+      "package": null,
+      "metadata": {
+        "proofScript": "graph:retrieval:proof:local"
+      }
+    },
+    {
+      "capabilityId": "visual_intelligence_graph_build_v1",
+      "kind": "deterministic_function",
+      "version": "1.0.0",
+      "status": "ACTIVE",
+      "authorityId": "visual-intelligence-graph-v1",
+      "question": "How is the visual-intelligence graph projection built from this repository's sources?",
+      "implementation": {
+        "entrypoint": "buildVisualGraph",
+        "path": "graph/projection/build-visual-graph.mjs"
+      },
+      "surfaces": [
+        "CLI"
+      ],
+      "package": null,
+      "metadata": {
+        "npmScript": "graph:extract",
+        "validateScript": "graph:validate"
+      }
+    },
+    {
+      "capabilityId": "visual_intelligence_graph_publish_v1",
+      "kind": "deterministic_function",
+      "version": "2.0.0",
+      "status": "ACTIVE",
+      "authorityId": "visual-intelligence-graph-v1",
+      "question": "Which packet does this repository publish as the authoritative visual-intelligence extraction?",
+      "implementation": {
+        "entrypoint": "publishVisualGraphPacket",
+        "path": "graph/publication/publish-visual-graph.mjs"
+      },
+      "surfaces": [
+        "CLI"
+      ],
+      "package": null,
+      "metadata": {
+        "npmScript": "graph:publish:packet",
+        "graphProducerCapability": "vae-visual-graph-publish",
+        "extractionId": "extraction:vae-visual-intelligence-authoritative-v1",
+        "publishedPacket": "graph/publication/vae-visual-intelligence-authoritative-v1.extraction.v1.json",
+        "consumer": "CG-MASTER-GRAPH"
+      }
+    }
+  ],
+  "protocols": [
+    {
+      "protocolId": "illustrator-visual-authoring-v1",
+      "name": "Illustrator visual authoring contract",
+      "status": "ACTIVE",
+      "path": "generation-core/contracts/illustrator-visual-authoring.v1.json"
+    },
+    {
+      "protocolId": "proposal-cover-hero-dissolve-v1",
+      "name": "Proposal cover hero dissolve contract",
+      "status": "ACTIVE",
+      "path": "generation-core/contracts/proposal-cover-hero-dissolve.v1.json"
+    },
+    {
+      "protocolId": "visual-experience-event-v1",
+      "name": "Visual experience event contract",
+      "status": "ACTIVE",
+      "path": "graph/contracts/visual-experience-event.v1.json"
+    }
+  ],
+  "surfaces": [
+    {
+      "surfaceId": "vae-cli",
+      "kind": "CLI",
+      "entrypoint": "vae",
+      "path": "generation-core/packages/cli/bin/vae.mjs",
+      "status": "ACTIVE"
+    },
+    {
+      "surfaceId": "vae-mcp-server",
+      "kind": "MCP",
+      "entrypoint": "mcp:start",
+      "path": "mcp/run.mjs",
+      "status": "ACTIVE"
+    },
+    {
+      "surfaceId": "vae-pipeline-status",
+      "kind": "SCRIPT",
+      "entrypoint": "vae:pipeline:status",
+      "path": "pipeline/vae-pipeline-status.mjs",
+      "status": "ACTIVE"
+    }
+  ],
+  "dependencies": [
+    {
+      "repoId": "CG-AppBuilder-MCP",
+      "relationship": "contract-and-governance-authority",
+      "note": "MCP contract registry and Application Bible sync; overrides this repo's docs on conflict."
+    }
+  ],
+  "PROGRAMS": [
+    {
+      "id": "vae-foundation-v1",
+      "name": "VAE foundation",
+      "aliases": [
+        "vae",
+        "visual asset engine"
+      ]
+    },
+    {
+      "id": "vae-visual-intelligence-authoritative-v1",
+      "name": "VAE authoritative visual-intelligence extraction",
+      "aliases": [
+        "visual intelligence graph",
+        "vae graph"
+      ]
+    }
+  ],
+  "WORK_PACKAGES": [
+    "vae-foundation-v1",
+    "vae-visual-intelligence-authoritative-v1"
+  ],
+  "CODE_POINTERS": [
+    {
+      "path": "README.md",
+      "program": "vae-foundation-v1",
+      "repo": "Visual-Asset-Engine",
+      "branch": "main",
+      "publishedGitSha": "44e121c006f8e762008053a6df63d8fbf53e13b3",
+      "localObservedSha": "44e121c006f8e762008053a6df63d8fbf53e13b3",
+      "gitStatus": "PUBLISHED",
+      "pathClassification": "clean"
+    },
+    {
+      "path": "docs/application-bible/README.md",
+      "program": "vae-foundation-v1",
+      "repo": "Visual-Asset-Engine",
+      "branch": "main",
+      "publishedGitSha": "44e121c006f8e762008053a6df63d8fbf53e13b3",
+      "localObservedSha": "44e121c006f8e762008053a6df63d8fbf53e13b3",
+      "gitStatus": "PUBLISHED",
+      "pathClassification": "clean"
+    },
+    {
+      "path": "generation-core/contracts/proposal-cover-hero-dissolve.v1.json",
+      "program": "vae-foundation-v1",
+      "repo": "Visual-Asset-Engine",
+      "branch": "main",
+      "publishedGitSha": "44e121c006f8e762008053a6df63d8fbf53e13b3",
+      "localObservedSha": "44e121c006f8e762008053a6df63d8fbf53e13b3",
+      "gitStatus": "PUBLISHED",
+      "pathClassification": "clean"
+    },
+    {
+      "path": "graph/publication/vae-visual-intelligence-authoritative-v1.extraction.v1.json",
+      "program": "vae-visual-intelligence-authoritative-v1",
+      "repo": "Visual-Asset-Engine",
+      "branch": "main",
+      "publishedGitSha": "44e121c006f8e762008053a6df63d8fbf53e13b3",
+      "localObservedSha": "44e121c006f8e762008053a6df63d8fbf53e13b3",
+      "gitStatus": "PUBLISHED",
+      "pathClassification": "clean"
+    }
+  ],
+  "SYMBOL_POINTERS": [
+    {
+      "symbol": "buildVisualGraph",
+      "path": "graph/projection/build-visual-graph.mjs",
+      "program": "vae-visual-intelligence-authoritative-v1",
+      "repo": "Visual-Asset-Engine",
+      "branch": "main",
+      "publishedGitSha": "44e121c006f8e762008053a6df63d8fbf53e13b3",
+      "localObservedSha": "44e121c006f8e762008053a6df63d8fbf53e13b3",
+      "gitStatus": "PUBLISHED",
+      "pathClassification": "clean"
+    },
+    {
+      "symbol": "publishVisualGraphPacket",
+      "path": "graph/publication/publish-visual-graph.mjs",
+      "program": "vae-visual-intelligence-authoritative-v1",
+      "repo": "Visual-Asset-Engine",
+      "branch": "main",
+      "publishedGitSha": "44e121c006f8e762008053a6df63d8fbf53e13b3",
+      "localObservedSha": "44e121c006f8e762008053a6df63d8fbf53e13b3",
+      "gitStatus": "PUBLISHED",
+      "pathClassification": "clean"
+    },
+    {
+      "symbol": "getVisualContext",
+      "path": "graph/retrieval/get-visual-context.mjs",
+      "program": "vae-visual-intelligence-authoritative-v1",
+      "repo": "Visual-Asset-Engine",
+      "branch": "main",
+      "publishedGitSha": "44e121c006f8e762008053a6df63d8fbf53e13b3",
+      "localObservedSha": "44e121c006f8e762008053a6df63d8fbf53e13b3",
+      "gitStatus": "PUBLISHED",
+      "pathClassification": "clean"
+    },
+    {
+      "symbol": "vectorizeDocument",
+      "path": "generation-core/packages/illustrator-vectorize/vectorize.mjs",
+      "program": "vae-foundation-v1",
+      "repo": "Visual-Asset-Engine",
+      "branch": "main",
+      "publishedGitSha": "44e121c006f8e762008053a6df63d8fbf53e13b3",
+      "localObservedSha": "44e121c006f8e762008053a6df63d8fbf53e13b3",
+      "gitStatus": "PUBLISHED",
+      "pathClassification": "clean"
+    },
+    {
+      "symbol": "callVisualAssetEngineMcpTool",
+      "path": "mcp/tools.mjs",
+      "program": "vae-foundation-v1",
+      "repo": "Visual-Asset-Engine",
+      "branch": "main",
+      "publishedGitSha": "44e121c006f8e762008053a6df63d8fbf53e13b3",
+      "localObservedSha": "44e121c006f8e762008053a6df63d8fbf53e13b3",
+      "gitStatus": "PUBLISHED",
+      "pathClassification": "clean"
+    }
+  ],
+  "ARTIFACT_ROOTS": [
+    "artifacts/agent-runs",
+    "artifacts/runs"
+  ],
+  "LATEST_RECEIPTS": [],
+  "DECISIONS": [],
+  "BLOCKERS": [],
+  "ALIASES": [
+    "vae",
+    "visual asset engine",
+    "visual-asset-engine"
+  ],
+  "SUPERSEDED_ITEMS": [],
+  "NEXT_ACTIONS": [
+    "Mirror this seed into CG-AppBuilder-MCP RICH_OVERRIDES so generate-seed-bank.mjs stops regenerating the engines-tier boilerplate over it",
+    "Populate LATEST_RECEIPTS from the graph milestone runs under artifacts/runs"
+  ],
+  "LAST_INDEXED_SHA": "44e121c006f8e762008053a6df63d8fbf53e13b3",
+  "INDEX_GENERATED_AT": "2026-09-07T16:47:38.370Z",
+  "INDEX_INPUT_DIGEST": "sha256:1a22148de9c6b9f9c6dbfe0f48095fcdc4883e236dc08e3b41e87036cd7cdedc",
+  "routingSummary": {
+    "ownerRepo": "Visual-Asset-Engine",
+    "ownerIndex": "Visual-Asset-Engine-index",
+    "domains": [
+      "visual-assets"
+    ],
+    "canonicalPrograms": [
+      "vae-foundation-v1",
+      "vae-visual-intelligence-authoritative-v1"
+    ],
+    "aliases": [
+      "vae",
+      "visual asset engine",
+      "visual-asset-engine"
+    ],
+    "estateAliases": [
+      "vae",
+      "visual-asset-engine",
+      "visual asset engine"
+    ],
+    "capabilities": [
+      "illustrator_vector_trace_v1",
+      "vae_read_only_mcp_tools_v1",
+      "visual-asset-pipeline",
+      "visual_context_retrieval_v1",
+      "visual_intelligence_graph_build_v1",
+      "visual_intelligence_graph_publish_v1"
+    ],
+    "localIndexPath": "index/cg-federated-repo-index.v1.json"
+  },
+  "provenance": {
+    "lastIndexedSha": "44e121c006f8e762008053a6df63d8fbf53e13b3",
+    "sourceAuthoritySha": "44e121c006f8e762008053a6df63d8fbf53e13b3",
+    "sourceAuthorityBinding": {
+      "lastIndexedShaMeaning": "OBSERVED_HEAD_AT_GENERATION",
+      "indexGeneratedAtMeaning": "WALL_CLOCK_UTC_AT_GENERATION (carried forward by writeLocalIndex while contentSha256, INDEX_INPUT_DIGEST and LAST_INDEXED_SHA are unchanged)",
+      "contentIdentity": "INDEX_INPUT_DIGEST + contentSha256 (excludes LAST_INDEXED_SHA)",
+      "generatedOutputsExcludedFromDigest": [
+        "index/cg-federated-repo-index.v1.json"
+      ]
+    },
+    "indexInputDigest": "sha256:1a22148de9c6b9f9c6dbfe0f48095fcdc4883e236dc08e3b41e87036cd7cdedc",
+    "contentSha256": "sha256:402da67a8218b3e054213e2108a297e692473a3529dc625fe0042ace89574e3f",
+    "schemaVersion": "cg-federated-repo-index-v2",
+    "generatedOn": {
+      "hostname": "vm",
+      "machineRole": null
+    }
+  }
+}

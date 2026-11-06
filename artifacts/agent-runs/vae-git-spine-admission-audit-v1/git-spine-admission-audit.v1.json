@@ -1,0 +1,97 @@
+{
+  "schema": "vae-git-spine-admission-audit-v1@1.0.0",
+  "workPackageId": "vae-git-spine-admission-audit-v1",
+  "auditedAt": "2026-09-08T00:20:00.000Z",
+  "subject": { "repo": "Capglass5708/Visual-Asset-Engine", "mainSha": "44e121c006f8e762008053a6df63d8fbf53e13b3" },
+  "spineDefinition": {
+    "note": "The Git spine is the platform registry + derived-intel structural index in Supabase. It is NOT the federated repo index.",
+    "runbook": "CG-AppBuilder-MCP/docs/platform-registry/CG-WEB-AGENT-GIT-SPINE-ADMISSION.md",
+    "quotedRule": "repository_index_status resolves only against Supabase registry after import. Local index/latest/* is repository-local and is not Git-spine admission proof.",
+    "corollary": "Visual-Asset-Engine/index/cg-federated-repo-index.v1.json is likewise NOT Git-spine admission proof.",
+    "controlPlaneProjectRef": "xjivcwcyyimjujbchwdf"
+  },
+  "verdict": "ON_SPINE_BUT_UNGOVERNED_AND_STALE",
+  "liveState": {
+    "registryRepositories": {
+      "present": true,
+      "repo_key": "Visual-Asset-Engine",
+      "classification": "control_plane",
+      "index_status": "indexed",
+      "verification_status": "discovered",
+      "confidence": "high",
+      "source_type": "platform-registry",
+      "source_ref": "approved-repositories-v1",
+      "discovered_at": "2026-07-19T07:40:24.604301Z",
+      "last_verified_at": "2026-07-19T07:51:21.077383Z",
+      "metadata": { "phase1Pilot": true, "applicationKey": "visual-asset-engine" },
+      "note": "Only row in the 27-row table with verification_status 'discovered'; others are 'inferred' or 'verified'."
+    },
+    "registryApps": { "present": true, "app_key": "visual-asset-engine", "display_name": "Visual Asset Engine", "classification": "development_local" },
+    "registryRepositoryAliases": {
+      "count": 4,
+      "allVerifiedAndActive": true,
+      "authority_source": "ephemeral-vae-vector-intake-smoke-v1",
+      "aliases": ["Capglass5708/Visual-Asset-Engine", "Visual Asset Engine", "visual-asset-engine", "Visual-Asset-Engine"]
+    },
+    "codeintelLatestPublishedRun": {
+      "id": "524ffaf1-8d9b-4075-afb8-fe43dff87899",
+      "index_status": "completed",
+      "lifecycle_status": "COMPLETE",
+      "extraction_profile": "structural-v1a",
+      "indexer_name": "derived-intel-git-indexer",
+      "commit_sha": "33a791a88945901546ff27240c0d649af8bbaa6c",
+      "file_count": 6230,
+      "symbol_count": 7915,
+      "published_at": "2026-08-16T16:39:53.607246Z",
+      "publications": 1
+    },
+    "estateContext": "Only 2 of 27 registered repos have index_status 'indexed' — CapitalGlass-Documents and Visual-Asset-Engine. The other 25 are 'pending'."
+  },
+  "defects": [
+    {
+      "id": "GOVERNED_SEED_DOES_NOT_REPRODUCE_ROW",
+      "severity": "high",
+      "detail": "docs/platform-registry/registry-seed-v1.json (regenerated 2026-09-07) contains 23 apps and ZERO mentions of Visual-Asset-Engine. scripts/platform-registry/lib/seed-data.mjs CANONICAL_APPS has no VAE entry. The live rows therefore sit outside the governed authority and would not be maintained by import-seed-v1.mjs.",
+      "contrast": "CG-Web-Agent IS in the seed, because it is being properly admitted."
+    },
+    {
+      "id": "PROVENANCE_IS_SMOKE_TEST",
+      "severity": "high",
+      "detail": "repositories.verification_status = 'discovered' (unique in the table) with metadata.phase1Pilot true from 2026-07-19; all four alias rows carry authority_source 'ephemeral-vae-vector-intake-smoke-v1'."
+    },
+    {
+      "id": "CLASSIFICATION_DISAGREEMENT",
+      "severity": "medium",
+      "detail": "registry.repositories says 'control_plane'; registry.apps says 'development_local'; the estate git-estate manifest tiers VAE as 'engines'. Three sources, three answers. VAE is not a control plane.",
+      "decisionNeeded": "CLASSIFICATIONS enum has no 'engines'. Recommend 'mcp_package' (package is @capital-glass/visual-asset-engine-mcp and it exposes MCP tools), matching CG-Human-Estimator-MCP and CapitalGlass-Office-Admin. This is a governance call."
+    },
+    {
+      "id": "STRUCTURAL_INDEX_STALE",
+      "severity": "medium",
+      "detail": "Published index is at 33a791a8 (2026-08-16, PR #51). origin/main is 44e121c (2026-09-05) — 16 commits ahead; 33a791a8 confirmed an ancestor. The index predates the authoritative visual-intelligence extraction (PR #57), the Illustrator fork reconciliation, and the federated-index provenance recovery.",
+      "effect": "repository_index_status resolves but reports drift."
+    },
+    {
+      "id": "NO_DOMAIN_KEY",
+      "severity": "medium",
+      "detail": "DOMAIN_OWNERSHIP has no 'visual-assets' key. A CANONICAL_APPS entry needs primaryDomainKey to reference an existing domain or a new one must be added.",
+      "decisionNeeded": "Map VAE to an existing domain, or add a visual-assets domain (larger governance change)."
+    }
+  ],
+  "partialAdmissionMatrix": [
+    { "authority": "1. seed-data.mjs CANONICAL_APPS / REPO_ALIASES", "vaePresent": false },
+    { "authority": "2. docs/platform-registry/registry-seed-v1.json", "vaePresent": false },
+    { "authority": "3. Supabase registry.repositories / registry.apps (via import)", "vaePresent": true, "caveat": "present but from discovery/pilot, not the governed import" },
+    { "authority": "4. intelligence-hub repository-id-registry.v1.json", "vaePresent": true },
+    { "authority": "5. packages/derived-intel-core/src/repository-profiles.ts", "vaePresent": true, "caveat": "declares registryRepoKey 'Visual-Asset-Engine'" },
+    { "authority": "6. packages/derived-intel-core/src/repository-aliases-manifest.ts", "vaePresent": false, "caveat": "estate-wide gap — only 6 of 23 profiles have an entry; not VAE-specific" }
+  ],
+  "remediation": [
+    "1. Add Visual-Asset-Engine to CANONICAL_APPS + REPO_ALIASES in CG-AppBuilder-MCP scripts/platform-registry/lib/seed-data.mjs (needs the classification and domain decisions above).",
+    "2. Regenerate docs/platform-registry/registry-seed-v1.json (23 -> 24 apps). NOTE: generate-seed-v1.mjs requires sibling checkouts (CapitalGlass-BidComposer/docs/platform-discovery/data) — governed-host step.",
+    "3. Dry-run then apply the Supabase import so the discovered/ephemeral rows become governed rows.",
+    "4. Re-run structural cohort refresh at current main to clear the 16-commit drift: npm run platform-intelligence:structural-cohort-refresh -- --repo=Visual-Asset-Engine --apply",
+    "5. Verify: repository_index_status({ repository: 'Visual-Asset-Engine' }) and the 'Capglass5708/Visual-Asset-Engine' alias form."
+  ],
+  "evidenceMethod": "Live SQL against control plane xjivcwcyyimjujbchwdf (read-only selects) plus static reads of CG-AppBuilder-MCP@04f81628d and a full clone of Visual-Asset-Engine at 44e121c."
+}
