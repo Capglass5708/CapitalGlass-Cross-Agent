@@ -15,7 +15,7 @@ Implements the VAE Universal Spatial Intelligence master plan (`plans/2026-10-29
 | Coordination repo | CapitalGlass-Cross-Agent |
 | Authority repo | BlackBoxCompute/Visual-Asset-Engine |
 | Execution repo | BlackBoxCompute/Visual-Asset-Engine (consumer fix: Capglass5708/CG-Website-) |
-| Status | Active: slices 1–7 integrated and verified in `main`'s authoritative CI; next: `pdf-render` |
+| Status | Active: slices 1–11 merged, deployed to the MCP host and green in `main`'s authoritative CI (main `d92fb35`, 2026-11-07); open: VAE #44, #40 |
 
 ## Repositories involved
 
@@ -40,6 +40,14 @@ VAE owns capture, spatial scene, comparison, inspection and replacement planning
 | 5 Focal-point responsive image replacement | [#31](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/31) | yes | approved | yes | yes | yes | yes |
 | 6 Reuse on a second page; mission receipt | [#32](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/32) | evidence only | n/a | yes | yes | yes | yes |
 | 7 `svg-render` capture adapter | [#33](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/33) | yes | approved | yes | yes | yes | yes |
+| CI: USI suites in the authoritative CI | [#34](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/34) | yes | approved | yes | yes | yes | yes |
+| 8 `pdf-render` capture adapter (pinned PDF.js) | [#35](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/35) | yes | approved | yes | yes | yes | yes |
+| CI: workflow/CI drift guard; ROI-20 gates on main | [#36](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/36) | yes | approved | yes | yes | yes | yes |
+| 9 PDF page elements, glyph-level visibility | [#37](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/37) | yes | approved | yes | yes | yes | yes |
+| Fix: drift guard vs runner browser skip (main red after #37) | [#38](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/38) | yes | approved | yes | yes | yes | yes |
+| 10 PDF colour, anchored links, multi-page documents | [#39](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/39) | yes | approved | yes | yes | yes | yes |
+| 11 One browser launch per PDF document | [#42](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/42) | yes | approved | yes | yes | yes | yes |
+| Fix: PDF session test browser path (main red after #42) | [#43](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/43) | yes | approved | yes | yes | yes | yes |
 
 "Lab-tested" means the Omarchy host and the full `generation-core.yml` step list run locally, which is WORKFLOW_COMPLETE input, not RELEASE_PROVEN. "Independently verified" = `main`'s authoritative local-actions CI on `0c3b1f9` (test-and-gates and visual-graph-authority success, signed receipt, network none, read-only root) plus the live MCP probe. Since [VAE #34](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/34) (merged as `4a6662c`) that CI also runs both USI suites: 26/26 and 44/44, 0 skipped, signed receipt.
 
@@ -78,7 +86,8 @@ Baseline (CG-Website `b3d1aa97`, storefront page). Region loop against the infer
 
 | Blocker | Owner repo | Required action |
 | --- | --- | --- |
-| Workflow file and the authoritative CI parity script can drift (they did once) | Visual-Asset-Engine | Follow-up: shared test manifest or a drift check |
+| VAE #44 (toolbox admission of the reference-layout engines; GPT approve gx-1a5504b4-677) and #40 (clean install, MCP access, brand tokens; other author, unreviewed here) both open; they collide in three toolbox files, so the second to merge needs its index regenerated | Visual-Asset-Engine | Owner review and merge grants |
+| MCP host at `410a3d5`: has all USI code, not #41 (L: drive retirement, outside this mission) | Visual-Asset-Engine | Routine host update |
 | CG-Website anatomy illustration broken in production (0x14 byte) | CG-Website- | Review/merge [CG-Website PR #12](https://github.com/Capglass5708/CG-Website-/pull/12); deployment by that repo's owner |
 
 ## Commits / PRs
@@ -87,14 +96,17 @@ Baseline (CG-Website `b3d1aa97`, storefront page). Region loop against the infer
 | --- | --- | --- |
 | Visual-Asset-Engine | #27–#33 merged: 4ba23a2, 85a3d8f, fbf5ca6, ab16fba, 78aa378, 852677f, 0c3b1f9 (`main`) | merged, deployed, CI green |
 | Visual-Asset-Engine | [#34](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/34): CI parity + operational acceptance receipt | merged `4a6662c` (main); CI green with both USI suites |
+| Visual-Asset-Engine | #35 `8cd20cc`, #36 `a4fa84c`, #37 `2eec219`, #38 `debe62e`, #39 `6728c0f`, #42 `a8069ff`, #43 `410a3d5` | merged, deployed, CI green |
+| Visual-Asset-Engine | [#44](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/44) toolbox admission · [#40](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/40) brand tokens and setup | open |
 | CG-Website- | [#12](https://github.com/Capglass5708/CG-Website-/pull/12) `0870c59`: one byte in `anatomy.svg` + XML parse check in `tests/storefront-systems-page-v1.py` | open; before/after evidence in the PR |
 
 ## Next actions
 
 | Priority | Action | Owner repo | Status |
 | --- | --- | --- | --- |
-| 1 | `pdf-render` adapter per approved plan (gx-63a53a10-f89), from `main` `4a6662c` | Visual-Asset-Engine | next |
-| 2 | Prevent drift between `generation-core.yml` and the parity script | Visual-Asset-Engine | not started |
+| 1 | Owner decisions on VAE #44 and #40 | Visual-Asset-Engine | owner |
+| 2 | PDF: page-reorder detection, link destinations to page numbers, colour for images and vector fills | Visual-Asset-Engine | not started |
+| 3 | Keep failed-attempt CI evidence in the local-actions engine (a retry overwrote the first failure on `8cd20cc`) | BlackBoxServer | not started |
 | 4 | Interaction/responsive state capture (menus, details); contextual matching for repeated cards | Visual-Asset-Engine | not started |
 | 5 | Fusion / rebrand / functional reconstruction; §7 license inventory per candidate; learning-sink integration | Visual-Asset-Engine | not started |
 
@@ -103,6 +115,7 @@ Baseline (CG-Website `b3d1aa97`, storefront page). Region loop against the infer
 - Programmatic `scrollTo` does not trigger Chromium lazy loading; wheel input does. Readiness must not await lazy images outside the capture area: that alone made every capture of such a page wait out a 30 s timeout.
 - Real Chromium DOMSnapshot output gives some nodes several layout objects; validating "one layout row per node" rejects real pages.
 - The live MCP probe (NDJSON JSON-RPC to `mcp/run.mjs`) separates deployed from merged: run it before and after.
+- `agent/*` branches get no authoritative CI before merge, so an environment assumption is first tested on `main`. Main went red twice (after #37: a runner-injected setting; after #42: a browser path that exists on the dev host, not in the image). Run browser-backed suites in the pinned image before opening the PR.
 
 ## Update log
 
@@ -122,3 +135,8 @@ Baseline (CG-Website `b3d1aa97`, storefront page). Region loop against the infer
 
 - VAE #34 merged (owner DAL) as `4a6662c`; MCP host moved to `4a6662c` (live probe unchanged: merged behaviour).
 - `main`'s local-actions CI on `4a6662c`: test-and-gates and visual-graph-authority success; signed receipt; `test:visual-reference-proof` 26/26 and `test:reference-layout-intelligence` 44/44 ran, 0 skipped; 42 suite summaries, 0 failures.
+
+### 2026-11-07 CT — Claude Code (status refresh)
+
+- Slices 8–11 and CI fixes #34, #36, #38, #43 recorded: all merged, deployed to the MCP host, green in `main`'s authoritative CI (`d92fb35`: signed receipt, exit 0, 43 suites, 0 failures).
+- Open: VAE #44 and #40 (owner), CG-Website #12 (that repo's owner), Intelligence #349. MCP host one merge behind (#41, outside this mission).
