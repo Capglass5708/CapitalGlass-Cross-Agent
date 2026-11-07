@@ -22,6 +22,21 @@ Purpose: keep current work, project IDs, status, blockers, evidence, commits, ve
 
 ## Current saved work
 
+### 2026-10-29 CT — VAE-USI-20261029 vae-universal-spatial-intelligence (integration gate)
+
+| Field | Value |
+| --- | --- |
+| Work package | `vae-universal-spatial-intelligence` (mission VAE-USI-20261029) |
+| Plan | `plans/2026-10-29_vae-universal-spatial-intelligence-master-plan.md` (branch `plan/vae-universal-spatial-intelligence-20261029` @ `12b68fe`) |
+| Status | **ACTIVE — slices 1–11 integrated.** Merged (owner DALs), deployed to the MCP host, live-proven, `main` local-actions CI green on `d92fb35` (2026-11-07) |
+| Owner repo | `BlackBoxCompute/Visual-Asset-Engine`; consumer fix in `Capglass5708/CG-Website-` |
+| Project file | `work-progress/projects/2026-10-29_vae-universal-spatial-intelligence.md` |
+| Commits / PRs | VAE [#27](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/27)–[#33](https://github.com/BlackBoxCompute/Visual-Asset-Engine/pull/33) (stacked, head `c6b7d77` on `main` `84aec220`); CG-Website [#12](https://github.com/Capglass5708/CG-Website-/pull/12) (`anatomy.svg` 0x14 byte) |
+| Verification | Lab: full `generation-core.yml` step list + visual-proof + reference-layout + toolbox gates 22/22 at `c6b7d77`. Live MCP probe pre-merge (host at `84aec220`) still shows the silent-zero-match bug; the same probe against the stack shows the fix |
+| Correction | PRs #27–#32 blamed `@capital-glass/vae-tokens` for 3 `test:root` failures; the real cause was uninstalled `packages/vae-visual` deps. Fixed in #33 (CI install step + receipt) |
+| Not claimed | RELEASE_PROVEN, pixel-perfect, SSIM (no approved reference PNG) |
+| Next action | Owner decisions on VAE #44 (toolbox admission, GPT approved) and #40 (other author); CG-Website #12 by its owner; then PDF page-reorder detection and link destinations |
+
 ### 2026-09-10 CT — github-plane-legacy-path-retirement-v1 (current milestone: MAP_CALLER)
 
 | Field | Value |
